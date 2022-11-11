@@ -25,9 +25,12 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
+    "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist"
   },
   "dependencies": {
+    "@infineon/design-system-tokens": "^2.0.1",
     "@stencil/core": "^2.13.0"
   },
   "devDependencies": {
@@ -41,6 +44,7 @@
     "@storybook/manager-webpack4": "^6.5.13",
     "@types/jest": "^27.0.3",
     "babel-loader": "^8.3.0",
+    "copyfiles": "^2.4.1",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0"
