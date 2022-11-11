@@ -6,6 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface IfxButton {
+        "gradient": 'purple' | 'green' | 'orange';
+        "icon": boolean;
+        "label": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +27,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
+    }
+    var HTMLIfxButtonElement: {
+        prototype: HTMLIfxButtonElement;
+        new (): HTMLIfxButtonElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +40,16 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "ifx-button": HTMLIfxButtonElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface IfxButton {
+        "gradient"?: 'purple' | 'green' | 'orange';
+        "icon"?: boolean;
+        "label"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +65,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "ifx-button": IfxButton;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +73,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
