@@ -2,6 +2,7 @@ export default {
   title: "Components/Button",
   args: {
     label: "Button",
+    color: "btn-primary",
     icon: true,
   },
   argTypes: {
