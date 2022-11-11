@@ -29,6 +29,7 @@
     "@stencil/core": "^2.13.0"
   },
   "devDependencies": {
+    "@stencil/sass": "^2.0.0",
     "@types/jest": "^27.0.3",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
