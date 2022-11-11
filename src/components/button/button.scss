@@ -21,9 +21,21 @@
   border-color: $color-default-500;
 }
 
+.btn-outline-primary {
+  background-color: $color-bg-white;
+  color: $color-default-500;
+  border-color: $color-default-500;
+}
+
 .btn-secondary {
   color: $color-text-white;
   background-color: $color-highlight-500;
+  border-color: $color-highlight-500;
+}
+
+.btn-outline-secondary {
+  background-color: $color-bg-white;
+  color: $color-highlight-500;
   border-color: $color-highlight-500;
 }
 
@@ -33,9 +45,20 @@
   border-color: $color-success-500;
 }
 
+.btn-outline-success {
+  background-color: $color-bg-white;
+  border-color: $color-success-500;
+}
+
 .btn-danger {
   color: $color-text-white;
   background-color: $color-danger-500;
+  border-color: $color-danger-500;
+}
+
+.btn-outline-danger {
+  background-color: $color-bg-white;
+  color: $color-danger-500;
   border-color: $color-danger-500;
 }
 
@@ -45,6 +68,10 @@
   border-color: $color-warning-500;
 }
 
+.btn-outline-warning {
+  background-color: $color-bg-white;
+  border-color: $color-warning-500;
+}
 
 
 
@@ -148,6 +175,7 @@
     }
 
     &:hover {
+      color: $color-bg-white;
       background-color: $color-default-600;
       border-color: $color-default-600;
 
@@ -204,6 +232,7 @@
     }
 
     &:hover {
+      color: $color-bg-white;
       background-color: $color-highlight-600;
       border-color: $color-highlight-600;
 
@@ -322,6 +351,7 @@
     }
 
     &:hover {
+      color: $color-bg-white;
       background-color: $color-danger-600;
       border-color: $color-danger-600;
 

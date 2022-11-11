@@ -7,9 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
-        "color": 'btn-primary' | 'btn-secondary' |  'btn-success' | 'btn-danger' | 'btn-warning';
+        "color": 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
         "icon": boolean;
         "label": string;
+        "variant": 'solid' | 'outline' |  'outline-text';
     }
     interface MyComponent {
         /**
@@ -46,9 +47,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IfxButton {
-        "color"?: 'btn-primary' | 'btn-secondary' |  'btn-success' | 'btn-danger' | 'btn-warning';
+        "color"?: 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
         "icon"?: boolean;
         "label"?: string;
+        "variant"?: 'solid' | 'outline' |  'outline-text';
     }
     interface MyComponent {
         /**

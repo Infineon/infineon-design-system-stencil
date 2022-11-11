@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                                 | Default     |
-| -------- | --------- | ----------- | ------------------------------------------------------------------------------------ | ----------- |
-| `color`  | `color`   |             | `"btn-danger" \| "btn-primary" \| "btn-secondary" \| "btn-success" \| "btn-warning"` | `undefined` |
-| `icon`   | `icon`    |             | `boolean`                                                                            | `undefined` |
-| `label`  | `label`   |             | `string`                                                                             | `undefined` |
+| Property  | Attribute | Description | Type                                                             | Default     |
+| --------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
+| `color`   | `color`   |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
+| `icon`    | `icon`    |             | `boolean`                                                        | `undefined` |
+| `label`   | `label`   |             | `string`                                                         | `undefined` |
+| `variant` | `variant` |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
 
 
 ----------------------------------------------
