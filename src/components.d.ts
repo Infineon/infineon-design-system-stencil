@@ -10,6 +10,7 @@ export namespace Components {
         "color": 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
         "icon": boolean;
         "label": string;
+        "size": 's' | 'm';
         "variant": 'solid' | 'outline' |  'outline-text';
     }
     interface MyComponent {
@@ -50,6 +51,7 @@ declare namespace LocalJSX {
         "color"?: 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
         "icon"?: boolean;
         "label"?: string;
+        "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' |  'outline-text';
     }
     interface MyComponent {

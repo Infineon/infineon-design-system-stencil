@@ -1,6 +1,7 @@
 @import "./node_modules/@infineon/design-system-tokens/dist/tokens";
 
 .btn {
+  font-family: $font-family-body;
   display: inline-block;
   text-align: center;
   text-decoration: none;
@@ -494,21 +495,14 @@
   }
 }
 
-.btn-sm {
+.btn-s {
+  font-size: $font-size-s;
   min-width: 71px;
   min-height: 32px;
   line-height: 16px;
 
   & svg.svg-inline--fa {
     vertical-align: -2.5px;
-  }
-}
-
-.btn-lg {
-  font-size: 22px;
-
-  & svg.svg-inline--fa {
-    vertical-align: 0;
   }
 }
 

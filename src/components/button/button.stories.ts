@@ -4,6 +4,7 @@ export default {
     label: "Button",
     variant: "solid",
     color: "primary",
+    size: "m",
     icon: true,
   },
   argTypes: {
@@ -15,11 +16,15 @@ export default {
       options: ['primary', 'secondary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
     },
+    size: {
+      options: ['s', 'm'],
+      control: { type: 'radio' },
+    },
   },
 };
 
 const DefaultTemplate = (args) => 
-`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" icon="${args.icon}">
+`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" icon="${args.icon}">
 </ifx-button>`;
 
 export const Default = DefaultTemplate.bind({});
