@@ -5,6 +5,7 @@ export default {
     variant: "solid",
     color: "primary",
     size: "m",
+    disabled: false,
     icon: true,
   },
   argTypes: {
@@ -24,7 +25,7 @@ export default {
 };
 
 const DefaultTemplate = (args) => 
-`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" icon="${args.icon}">
+`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
 </ifx-button>`;
 
 export const Default = DefaultTemplate.bind({});
