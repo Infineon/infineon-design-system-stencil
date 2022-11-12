@@ -6,7 +6,7 @@ export default {
     color: "primary",
     size: "m",
     disabled: false,
-    icon: true,
+    icon: false,
   },
   argTypes: {
     variant: {
