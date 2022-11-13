@@ -31,28 +31,17 @@ export class Button {
       )
     };
 
-    if (this.size == "m") {
-      return (
-        <button class={
-          `btn
-          btn-${this.variant}-${this.color}
-          btn-${this.color}
-          ${this.disabled ? 'disabled' : ''}`}
-          type="button"
-        >
-  
-          {this.icon ? 'icon' : ''}
-          {this.label}
-        </button>
-      )
-    };
+    const sizeClass =
+      `${this.size}` === "s" 
+      ? "btn-s" 
+      : "";
 
     return (
       <button class={
         `btn
         btn-${this.variant}-${this.color}
         btn-${this.color}
-        btn-${this.size}
+        ${sizeClass}
         ${this.disabled ? 'disabled' : ''}`}
         type="button"
       >
