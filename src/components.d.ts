@@ -7,12 +7,12 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
-        "color": 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
+        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
         "icon": boolean;
         "label": string;
         "size": 's' | 'm';
-        "variant": 'solid' | 'outline' |  'outline-text';
+        "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface MyComponent {
         /**
@@ -49,12 +49,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IfxButton {
-        "color"?: 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
+        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
         "icon"?: boolean;
         "label"?: string;
         "size"?: 's' | 'm';
-        "variant"?: 'solid' | 'outline' |  'outline-text';
+        "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface MyComponent {
         /**

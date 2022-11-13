@@ -8,8 +8,8 @@ import { Component, Prop, h } from '@stencil/core';
 
 export class Button {
   @Prop() label: string;
-  @Prop() variant: 'solid' | 'outline' |  'outline-text';
-  @Prop() color: 'primary' | 'secondary' |  'success' | 'danger' | 'warning';
+  @Prop() variant: 'solid' | 'outline' | 'outline-text';
+  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
@@ -32,7 +32,8 @@ export class Button {
         `btn
         btn-${variantClass}
         ${sizeClass}
-        ${this.disabled ? 'disabled' : ''}`}
+        ${this.disabled ? 'disabled' : ''}`
+      }
         type="button"
       >
 
