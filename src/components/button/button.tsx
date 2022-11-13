@@ -15,21 +15,12 @@ export class Button {
   @Prop() icon: boolean;
 
   render() {
-    if (this.variant == "solid") {
-      return (
-        <button class={
-          `btn
-          btn-${this.color}
-          btn-${this.size}
-          ${this.disabled ? 'disabled' : ''}`}
-          type="button"
-        >
-  
-          {this.icon ? 'icon' : ''}
-          {this.label}
-        </button>
-      )
-    };
+    const variantClass =
+      `${this.variant}` === "outline" 
+      ? `outline-${this.color}`
+      : `${this.variant}` === 'outline-text' 
+        ? 'outline-text'
+        : `${this.color}`;
 
     const sizeClass =
       `${this.size}` === "s" 
@@ -39,8 +30,7 @@ export class Button {
     return (
       <button class={
         `btn
-        btn-${this.variant}-${this.color}
-        btn-${this.color}
+        btn-${variantClass}
         ${sizeClass}
         ${this.disabled ? 'disabled' : ''}`}
         type="button"
