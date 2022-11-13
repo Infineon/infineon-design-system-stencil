@@ -11,15 +11,15 @@ export default {
   argTypes: {
     variant: {
       options: ['solid', 'outline', 'outline-text'],
-      control: { type: 'radio' },
+      control: {type: 'radio'},
     },
     color: {
       options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'radio' },
+      control: {type: 'radio'},
     },
     size: {
       options: ['s', 'm'],
-      control: { type: 'radio' },
+      control: {type: 'radio'},
     },
   },
 };
