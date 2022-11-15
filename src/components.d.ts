@@ -14,20 +14,6 @@ export namespace Components {
         "size": 's' | 'm';
         "variant": 'solid' | 'outline' | 'outline-text';
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
 }
 declare global {
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
@@ -36,15 +22,8 @@ declare global {
         prototype: HTMLIfxButtonElement;
         new (): HTMLIfxButtonElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ifx-button": HTMLIfxButtonElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -56,23 +35,8 @@ declare namespace LocalJSX {
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface IntrinsicElements {
         "ifx-button": IfxButton;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -80,7 +44,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }
