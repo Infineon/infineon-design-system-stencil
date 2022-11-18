@@ -1,0 +1,53 @@
+name: Deploy Stencil Web components Library to NPM
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize # canary on new commit
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all tags for ship-it
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://npm.pkg.github.com"
+
+      # - name: Create Release 
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+      #   run: |
+      #     npm install
+      #     npm run bundle
+      #     auto shipit
+      # - name: Switch registry to npmjs.org
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 16
+      #     registry-url: "https://registry.npmjs.org"
+      #     scope: "@infineon"
+      #     cache: 'npm'
+      #     cache-dependency-path: package-lock.json
+      # - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     registry: "https://registry.npmjs.org"
+      #     token: ${{ secrets.NPM_TOKEN }}
+          
+

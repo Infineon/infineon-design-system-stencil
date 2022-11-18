@@ -1,0 +1,36 @@
+# # Deploys each PR under its own subfolder
+# name: Deploy PR previews
+
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#       - reopened
+#       - synchronize
+#       - closed
+
+# concurrency: preview-${{ github.ref }}
+
+# jobs:
+#   deploy-preview:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: Use Node.js 16
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 16
+#           cache: 'npm'
+
+#       - name: Install and Build
+#         run: |
+#           npm install
+#           npm run storybook-prepare
+#           npm run storybook-build
+
+#       - name: Deploy preview
+#         uses: rossjrw/pr-preview-action@v1
+#         with:
+#           source-dir: ./storybook-static
