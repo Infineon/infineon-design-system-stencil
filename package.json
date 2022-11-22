@@ -16,18 +16,29 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "/src/**/*",
+    "/public/**"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build-stencil": "stencil build --docs",
+    "build-docs": "node tools/createMarkdownStories.js",
+    "build": "yarn copy-fonts && yarn build-docs && yarn stencil build",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "storybook-prepare": "npm run bundle && npm run build",
+    "storybook-start": "start-storybook -p 6006",
+    "storybook-build": "stencil build",
+    "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
+    "watch-storybook": "start-storybook -p 6006",
+    "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
+    "watch-css": "chokidar \"src/**/*.scss\" -c \"yarn bundle-css\" --initial",
     "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
-    "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist"
+    "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
+    "bundle-assets": "copyfiles -u 1 ./public/* dist && copyfiles -u 1 ./public/**/* dist",
+    "bundle-ts": "esbuild src/index.ts --outfile=dist/index.ts --bundle --platform=browser --minify --target=es6",
+    "bundle": "rimraf ./dist && npm run bundle-css && npm run bundle-ts && npm run bundle-fonts && npm run bundle-assets"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
@@ -45,10 +56,23 @@
     "@types/jest": "^27.0.3",
     "babel-loader": "^8.3.0",
     "copyfiles": "^2.4.1",
+    "css-loader": "^5",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^6.4.0",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
+    "sass": "^1.44.0",
+    "sass-loader": "^10",
     "puppeteer": "^10.0.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "esbuild": "^0.14.38",
+    "style-loader": "^2"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
   },
   "license": "MIT"
 }

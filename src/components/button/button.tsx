@@ -2,7 +2,7 @@ import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-button',
-  styleUrl: 'button.scss',
+  styleUrl: '_button.scss',
   shadow: true,
 })
 
@@ -16,16 +16,16 @@ export class Button {
 
   render() {
     const variantClass =
-      `${this.variant}` === "outline" 
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text' 
-        ? 'outline-text'
-        : `${this.color}`;
+      `${this.variant}` === "outline"
+        ? `outline-${this.color}`
+        : `${this.variant}` === 'outline-text'
+          ? 'outline-text'
+          : `${this.color}`;
 
     const sizeClass =
-      `${this.size}` === "s" 
-      ? "btn-s" 
-      : "";
+      `${this.size}` === "s"
+        ? "btn-s"
+        : "";
 
     return (
       <button class={
