@@ -1,7 +1,12 @@
 {
-  "name": "infineon-design-system-stencil",
+  "name": "@infineon/infineon-design-system-stencil",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "private": true,
+  "description": "Infineon design system Stencil web components",
+  "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
+  "bugs": {
+    "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+  },
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -15,7 +20,7 @@
     "url": "https://github.com/ionic-team/stencil-component-starter.git"
   },
   "files": [
-    "dist/",
+    "dist",
     "/src/**/*",
     "/public/**"
   ],
