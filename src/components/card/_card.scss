@@ -1,4 +1,4 @@
-@use "./node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 .card {
   position: relative;
@@ -100,7 +100,7 @@ p {
 
 
 // ***************************************** LIST GROUP
-.card > .list-group {
+.card>.list-group {
   border-top: inherit;
   // border-bottom: inherit;
 }
@@ -192,7 +192,7 @@ p {
 
 
 // ***************************************** LIST
-.list-group-flush > .list-group-item {
+.list-group-flush>.list-group-item {
   border-width: 0 0 1px;
 }
 
@@ -207,7 +207,7 @@ p {
   background-color: #fff;
 }
 
-.list-group-flush > .list-group-item:last-child {
+.list-group-flush>.list-group-item:last-child {
   border-bottom-width: 0;
 }
 
