@@ -7,7 +7,7 @@
 [![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
 
 
---- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT AND ONLY CONTAINS---
+--- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT ---
 <!-- TABLE OF CONTENTS -->
 <details id="tableContent">
   <summary>Table of Contents</summary>
