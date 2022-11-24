@@ -2,7 +2,7 @@ import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-button',
-  styleUrl: '_button.scss',
+  styleUrl: '../../index.scss',
   shadow: true,
 })
 
