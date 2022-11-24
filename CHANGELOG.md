@@ -1,3 +1,16 @@
+# v0.0.5 (Thu Nov 24 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- readme typo (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.4 (Thu Nov 24 2022)
 
 #### ⚠️ Pushed to `master`
