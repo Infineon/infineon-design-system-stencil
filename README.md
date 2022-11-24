@@ -1,75 +1,212 @@
-![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)
+# Infineon Design System Stencil Web Components
+[![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
+[![GitHub Repo Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/package.json)
+[![GitHub Master Branch Weekly Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
+[![GitHub Repo Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
+[![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
 
-# Stencil Component Starter
 
-This is a starter-project for building a standalone Web Component using Stencil
+--- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT ---
+<!-- TABLE OF CONTENTS -->
+<details id="tableContent">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#local-development">Local Development</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Stencil is also great for building entire apps. For that, use the [stencil-app-starter](https://github.com/ionic-team/stencil-app-starter) instead.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-# Stencil
+As part of the Infineon brand guidelines, the Infineon Digital Design System supports designers, developers and project managers to build user interfaces faster and better – with the ultimate goal to create a coherent and optimal user journey across all internal and external Infineon digital touchpoints.
 
-Stencil is a compiler for building fast web apps using Web Components.
+This repository contains an implementation of Infineons Digital Design System and it's Storybook sourcecode using Stencil web components.
 
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than run-time tool.  Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements v1 spec.
+Use it to build & run storybook and distribute the Stencil web components.
 
-Stencil components are just Web Components, so they work in any major framework or with no framework at all.
+### Built With
 
+Stencil web components
+<!-- * [![React][React.js]][React-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url] -->
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-To start building a new web component using Stencil, clone this repo to a new directory:
+### Prerequisites
 
+- [Node](https://nodejs.org/en/) v14 or older.
+- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or older, or [Npm](https://www.npmjs.com/) v6.14.13 or older.
+
+### Installation on React, Vue or Angular
+
+#### With NPM
+
+1. ```npm install --save @infineon/design-system-stencil```
+
+#### With Yarn
+
+1. ```yarn add @infineon/design-system-stencil```
+
+#### Import the module inside your entry point file.
+
+For React: <b>index.js</b> <br />
+For Vue: <b>main.js</b> <br />
+For Angular: <b>main.ts</b>
+
+```import "@infineon/design-system-stencil";```
+
+#### Installation of Fontawesome
+
+1. Send an email to dds@infineon.com to get the fontawesome token key. Then execute these two commands:
 ```bash
-git clone https://github.com/ionic-team/stencil-component-starter.git my-component
-cd my-component
-git remote rm origin
+
+npm config set "@fortawesome:registry" https://npm.fontawesome.com/
+npm config set "//npm.fontawesome.com/:_authToken" <PASTE KEY HERE>
 ```
 
-and run:
+Additional Fontawesome installation instructions can be found here: 
 
+For Angular: https://fontawesome.com/v5/docs/web/use-with/angular <br />
+For Vue https://fontawesome.com/v6/docs/web/use-with/vue/ <br />
+For React: https://fontawesome.com/v6/docs/web/use-with/react/
+
+#### Installation of SASS
+For React projects only, run: 
+```bash
+npm install sass
+```
+
+#### Change Public folder as a temporary solution for React only
+Copy (<b>not move!</b>) the:
+
+node_modules -> @infineon -> design-system-bootstrap -> <b>public</b> folder
+
+inside
+
+node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
+
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Explore our components in Storybook.
+
+https://storybook-bootstrap.icp.infineon.com
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+## Local Development
+
+### Installation
+
+Install all the modules and dependencies listed on the ```package.json``` file with:
+
+```bash
+yarn install
+```
+
+or
 ```bash
 npm install
-npm start
 ```
 
-To build the component for production, run:
+### Build Storybook
+
+To deploy Storybook, we first need to export it as a static web app.
+To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
 ```bash
-npm run build
+yarn storybook-build
 ```
 
-To run the unit tests for the components, run:
+or
 
 ```bash
-npm test
+npm storybook-build
 ```
 
-Need help? Check out our docs [here](https://stenciljs.com/docs/my-first-component).
+This will generate a static Storybook in the ```storybook-static``` directory.
 
+### Start Storybook
 
-## Naming Components
+To start storybook, simply run the inbuild command ```storybook-start``` with ```npm``` or ```yarn```.
 
-When creating new component tags, we recommend _not_ using `stencil` in the component name (ex: `<stencil-datepicker>`). This is because the generated component has little to nothing to do with Stencil; it's just a web component!
+```bash
+yarn storybook-start
+```
 
-Instead, use a prefix that fits your company or any name for a group of related components. For example, all of the Ionic generated web components use the prefix `ion`.
+or
 
+```bash
+npm storybook-start
+```
 
-## Using this component
+```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
 
-There are three strategies we recommend for using web components built with Stencil.
+<p align="right"><a href="#tableContent">back to top</a></p>
 
-The first step for all three of these strategies is to [publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages).
+<!-- CONTACT -->
+## Contact
 
-### Script tag
+### WebEx
+Lechner Verena <br />
+Yanchev Tihomir <br />
 
-- Put a script tag similar to this `<script type='module' src='https://unpkg.com/my-component@0.0.1/dist/my-component.esm.js'></script>` in the head of your index.html
-- Then you can use the element anywhere in your template, JSX, html etc
+### Email
+verena.lechner@infineon.com <br />
+tihomir.yanchev-EE@infineon.com
 
-### Node Modules
-- Run `npm install my-component --save`
-- Put a script tag similar to this `<script type='module' src='node_modules/my-component/dist/my-component.esm.js'></script>` in the head of your index.html
-- Then you can use the element anywhere in your template, JSX, html etc
+<p align="right"><a href="#tableContent">back to top</a></p>
 
-### In a stencil-starter app
-- Run `npm install my-component --save`
-- Add an import to the npm packages `import my-component;`
-- Then you can use the element anywhere in your template, JSX, html etc
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
+[Angular-url]: https://angular.io/
+[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
+[Svelte-url]: https://svelte.dev/
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
