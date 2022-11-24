@@ -1,4 +1,4 @@
-# Infineon Design System Stencil Web Components
+# Infineon Design System Stencil Web Components (MVP)
 [![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
 [![GitHub Repo Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/package.json)
@@ -7,7 +7,7 @@
 [![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
 
 
---- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT ---
+--- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT AND ONLY CONTAINS---
 <!-- TABLE OF CONTENTS -->
 <details id="tableContent">
   <summary>Table of Contents</summary>
@@ -137,13 +137,13 @@ To deploy Storybook, we first need to export it as a static web app.
 To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
 ```bash
-yarn storybook-build
+yarn storybook-prepare
 ```
 
 or
 
 ```bash
-npm storybook-build
+npm storybook-prepare
 ```
 
 This will generate a static Storybook in the ```storybook-static``` directory.
