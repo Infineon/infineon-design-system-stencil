@@ -15,9 +15,22 @@ const DefaultTemplate = (args) =>
 </ifx-card>`;
 
 export const Default = DefaultTemplate.bind({});
+Default.argTypes = {
+  list: {
+    control: false,
+  },
+};
 
 export const KitchenSink = DefaultTemplate.bind({});
 KitchenSink.args = {
   button: false,
   list: true,
+};
+KitchenSink.argTypes = {
+  button: {
+    control: false,
+  },
+  list: {
+    control: false,
+  },
 };
