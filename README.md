@@ -7,7 +7,6 @@
 [![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
 
 
---- DISCLAIMER: THIS PROJECT IS UNDER DEVELOPMENT ---
 <!-- TABLE OF CONTENTS -->
 <details id="tableContent">
   <summary>Table of Contents</summary>
@@ -42,9 +41,7 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 ### Built With
 
-Stencil web components
-<!-- * [![React][React.js]][React-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url] -->
+[Stencil web components][Stencil-url]
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
@@ -74,7 +71,7 @@ For Angular: <b>main.ts</b>
 
 ```import "@infineon/design-system-stencil";```
 
-#### Installation of Fontawesome
+<!-- #### Installation of Fontawesome
 
 1. Send an email to dds@infineon.com to get the fontawesome token key. Then execute these two commands:
 ```bash
@@ -87,7 +84,7 @@ Additional Fontawesome installation instructions can be found here:
 
 For Angular: https://fontawesome.com/v5/docs/web/use-with/angular <br />
 For Vue https://fontawesome.com/v6/docs/web/use-with/vue/ <br />
-For React: https://fontawesome.com/v6/docs/web/use-with/react/
+For React: https://fontawesome.com/v6/docs/web/use-with/react/ -->
 
 #### Installation of SASS
 For React projects only, run: 
@@ -95,7 +92,7 @@ For React projects only, run:
 npm install sass
 ```
 
-#### Change Public folder as a temporary solution for React only
+<!-- #### Change Public folder as a temporary solution for React only
 Copy (<b>not move!</b>) the:
 
 node_modules -> @infineon -> design-system-bootstrap -> <b>public</b> folder
@@ -105,14 +102,15 @@ inside
 node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
 
 
-<p align="right"><a href="#tableContent">back to top</a></p>
+<p align="right"><a href="#tableContent">back to top</a></p> -->
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Explore our components in Storybook.
+Explore our current components in Storybook.
 
-https://storybook-bootstrap.icp.infineon.com
+ADD HERE: link to storybook
+<!-- https://storybook-bootstrap.icp.infineon.com -->
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
@@ -210,3 +208,4 @@ tihomir.yanchev-EE@infineon.com
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[Stencil-url]: https://stenciljs.com/
