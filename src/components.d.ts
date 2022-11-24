@@ -14,6 +14,13 @@ export namespace Components {
         "size": 's' | 'm';
         "variant": 'solid' | 'outline' | 'outline-text';
     }
+    interface IfxCard {
+        "button": boolean;
+        "headline": string;
+        "list": boolean;
+        "skyline": boolean;
+        "text": string;
+    }
 }
 declare global {
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
@@ -22,8 +29,15 @@ declare global {
         prototype: HTMLIfxButtonElement;
         new (): HTMLIfxButtonElement;
     };
+    interface HTMLIfxCardElement extends Components.IfxCard, HTMLStencilElement {
+    }
+    var HTMLIfxCardElement: {
+        prototype: HTMLIfxCardElement;
+        new (): HTMLIfxCardElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-button": HTMLIfxButtonElement;
+        "ifx-card": HTMLIfxCardElement;
     }
 }
 declare namespace LocalJSX {
@@ -35,8 +49,16 @@ declare namespace LocalJSX {
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
+    interface IfxCard {
+        "button"?: boolean;
+        "headline"?: string;
+        "list"?: boolean;
+        "skyline"?: boolean;
+        "text"?: string;
+    }
     interface IntrinsicElements {
         "ifx-button": IfxButton;
+        "ifx-card": IfxCard;
     }
 }
 export { LocalJSX as JSX };
@@ -44,6 +66,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
+            "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
         }
     }
 }

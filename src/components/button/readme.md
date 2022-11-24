@@ -17,6 +17,19 @@
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
 
 
+## Dependencies
+
+### Used by
+
+ - [ifx-card](../card)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-card --> ifx-button
+  style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
