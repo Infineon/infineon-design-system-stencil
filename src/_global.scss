@@ -1,0 +1,6 @@
+@use "./node_modules/@infineon/design-system-tokens/dist/tokens";
+
+* {
+  box-sizing: border-box;
+  line-height: tokens.$font-line-height-m;
+}
