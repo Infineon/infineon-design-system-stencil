@@ -100,6 +100,15 @@ p {
 
 
 // ***************************************** LIST GROUP
+.card > .list-group {
+  border-top: inherit;
+  // border-bottom: inherit;
+}
+
+
+
+
+
 .list-group {
   max-width: 350px;
   border-radius: 1px;
@@ -183,6 +192,31 @@ p {
 
 
 // ***************************************** LIST
+.list-group-flush > .list-group-item {
+  border-width: 0 0 1px;
+}
+
+.list-group-item {
+  border: 1px solid #ebe9e9;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background-color: #fff;
+}
+
+.list-group-flush > .list-group-item:last-child {
+  border-bottom-width: 0;
+}
+
+
+
+
+
+
+
 .ifx__list-icon {
   padding-left: 0;
 
