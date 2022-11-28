@@ -1,3 +1,15 @@
+# v0.0.7 (Mon Nov 28 2022)
+
+#### ⚠️ Pushed to `master`
+
+- updated package json ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v0.0.6 (Thu Nov 24 2022)
 
 #### ⚠️ Pushed to `master`
