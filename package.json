@@ -33,7 +33,7 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate",
     "storybook-prepare": "npm run bundle && npm run build",
-    "storybook-start": "start-storybook -p 6006",
+    "storybook-start": "concurrently -r yarn:watch-*",
     "storybook-build": "stencil build --docs && build-storybook",
     "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
     "watch-storybook": "start-storybook -p 6006",
