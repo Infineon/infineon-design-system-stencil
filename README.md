@@ -135,13 +135,13 @@ To deploy Storybook, we first need to export it as a static web app.
 To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
 ```bash
-yarn storybook-prepare
+yarn storybook-build-watch
 ```
 
 or
 
 ```bash
-npm storybook-prepare
+npm storybook-build-watch
 ```
 
 This will generate a static Storybook in the ```storybook-static``` directory.
