@@ -34,7 +34,7 @@
     "generate": "stencil generate",
     "storybook-prepare": "npm run bundle && npm run build",
     "storybook-start": "concurrently -r yarn:watch-*",
-    "storybook-build": "stencil build --docs && build-storybook",
+    "storybook-build": "stencil build --watch --docs && build-storybook",
     "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
     "watch-storybook": "start-storybook -p 6006",
     "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
@@ -47,7 +47,8 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "^2.13.0",
+    "@infineon/infineon-icons": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
