@@ -1,3 +1,15 @@
+# v0.0.8 (Mon Dec 05 2022)
+
+#### ⚠️ Pushed to `master`
+
+- adding infineonIcon library as a plugin - not configured globally, only working within the button component (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.7 (Mon Nov 28 2022)
 
 #### ⚠️ Pushed to `master`
