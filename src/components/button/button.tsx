@@ -2,16 +2,6 @@ import { Component, Prop, h } from '@stencil/core';
 
 import library from '@infineon/infineon-icons/library';
 
-//here, library is empty again, as the plugin config in infineonIcons.ts is not applied correctly
-//importing an icon only works, if added again right here in the component
-
-import {
-  arrowTriangleHorizontal16,
-} from '@infineon/infineon-icons';
-
-library.add(
-  arrowTriangleHorizontal16,
-);
 @Component({
   tag: 'ifx-button',
   styleUrl: '../../index.scss',
@@ -39,16 +29,26 @@ export class Button {
         ? "btn-s"
         : "";
 
-    const ifxIcon2 = library.getIcon('arrowTriangleHorizontal16');
-    const height = ifxIcon2.height;
-    const width = ifxIcon2.width;
-    const pathD = ifxIcon2.svgContent.substring(ifxIcon2.svgContent.indexOf('d=') + 3).split("\"/>")[0];
-    console.log("icon2", ifxIcon2);
+    const arrowTriangleHorizontal = library.getIcon('arrowTriangleHorizontal16');
+    const arrowTriangleHorizontalHeight = arrowTriangleHorizontal.height;
+    const arrowTriangleHorizontalWidth = arrowTriangleHorizontal.width;
+    const arrowTriangleHorizontalPath = arrowTriangleHorizontal.svgContent.substring(arrowTriangleHorizontal.svgContent.indexOf('d=') + 3).split("\"/>")[0];
+    console.log("arrowTriangleHorizontal", arrowTriangleHorizontal);
+    const cogwheel = library.getIcon('cogwheel24')
+    const cogwheelHeight = cogwheel.height;
+    const cogwheelWidth = cogwheel.width;
+    const cogwheelViewbox = `0 0 ${cogwheelHeight} ${cogwheelWidth}`;
+    const cogwheelPath = cogwheel.svgContent.substring(cogwheel.svgContent.indexOf('d=') + 3).split("\"/>")[0];
+    console.log("cogwheel", cogwheel);
+
 
     return (
       <div>
-        <div><svg width={width} height={height} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-          <path fill="currentColor" d={pathD} />
+        <div><svg width={arrowTriangleHorizontalWidth} height={arrowTriangleHorizontalHeight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path fill="currentColor" d={arrowTriangleHorizontalPath} />
+        </svg></div>
+        <div><svg width={cogwheelWidth} height={cogwheelHeight} xmlns="http://www.w3.org/2000/svg" viewBox={cogwheelViewbox}>
+          <path fill="currentColor" d={cogwheelPath} />
         </svg></div>
         <button class={
           `btn

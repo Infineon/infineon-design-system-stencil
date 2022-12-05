@@ -10,3 +10,4 @@
 // initNavBar();
 // initVerticalNavBar();
 
+import './plugins/infineonIcons'

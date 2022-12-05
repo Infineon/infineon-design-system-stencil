@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
+  globalScript: 'src/index.ts',
   outputTargets: [
     {
       type: 'dist',
