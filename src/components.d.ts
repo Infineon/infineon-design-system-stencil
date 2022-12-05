@@ -7,9 +7,11 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
+        "cogwheel": string;
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
         "icon": boolean;
+        "iconName": string;
         "label": string;
         "size": 's' | 'm';
         "variant": 'solid' | 'outline' | 'outline-text';
@@ -20,6 +22,9 @@ export namespace Components {
         "list": boolean;
         "skyline": boolean;
         "text": string;
+    }
+    interface InfineonIconStencil {
+        "config": any;
     }
 }
 declare global {
@@ -35,16 +40,25 @@ declare global {
         prototype: HTMLIfxCardElement;
         new (): HTMLIfxCardElement;
     };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
     interface IfxButton {
+        "cogwheel"?: string;
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
         "icon"?: boolean;
+        "iconName"?: string;
         "label"?: string;
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
@@ -56,9 +70,13 @@ declare namespace LocalJSX {
         "skyline"?: boolean;
         "text"?: string;
     }
+    interface InfineonIconStencil {
+        "config"?: any;
+    }
     interface IntrinsicElements {
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -67,6 +85,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }

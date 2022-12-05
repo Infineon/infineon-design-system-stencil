@@ -1,6 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
 
-import library from '@infineon/infineon-icons/library';
 
 @Component({
   tag: 'ifx-button',
@@ -15,6 +14,8 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
+  @Prop() cogwheel: string;
+  @Prop() iconName: string;
 
   render() {
     const variantClass =
@@ -29,27 +30,16 @@ export class Button {
         ? "btn-s"
         : "";
 
-    const arrowTriangleHorizontal = library.getIcon('arrowTriangleHorizontal16');
-    const arrowTriangleHorizontalHeight = arrowTriangleHorizontal.height;
-    const arrowTriangleHorizontalWidth = arrowTriangleHorizontal.width;
-    const arrowTriangleHorizontalPath = arrowTriangleHorizontal.svgContent.substring(arrowTriangleHorizontal.svgContent.indexOf('d=') + 3).split("\"/>")[0];
-    console.log("arrowTriangleHorizontal", arrowTriangleHorizontal);
-    const cogwheel = library.getIcon('cogwheel24')
-    const cogwheelHeight = cogwheel.height;
-    const cogwheelWidth = cogwheel.width;
-    const cogwheelViewbox = `0 0 ${cogwheelHeight} ${cogwheelWidth}`;
-    const cogwheelPath = cogwheel.svgContent.substring(cogwheel.svgContent.indexOf('d=') + 3).split("\"/>")[0];
-    console.log("cogwheel", cogwheel);
-
 
     return (
       <div>
-        <div><svg width={arrowTriangleHorizontalWidth} height={arrowTriangleHorizontalHeight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-          <path fill="currentColor" d={arrowTriangleHorizontalPath} />
-        </svg></div>
-        <div><svg width={cogwheelWidth} height={cogwheelHeight} xmlns="http://www.w3.org/2000/svg" viewBox={cogwheelViewbox}>
-          <path fill="currentColor" d={cogwheelPath} />
-        </svg></div>
+        <div>
+          <infineon-icon-stencil config={{ data: { icon: "cogwheel24" } }}>  </infineon-icon-stencil>
+          <infineon-icon-stencil config={{ data: { icon: "arrowTriangleHorizontal16" } }}>  </infineon-icon-stencil>
+
+
+        </div>
+
         <button class={
           `btn
         btn-${variantClass}

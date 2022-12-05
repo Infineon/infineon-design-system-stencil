@@ -26,6 +26,7 @@
 ```mermaid
 graph TD;
   ifx-card --> ifx-button
+  ifx-button --> infineon-icon-stencil
   style ifx-card fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
