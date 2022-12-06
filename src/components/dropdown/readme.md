@@ -12,6 +12,7 @@
 | `disabled` | `disabled` |             | `boolean`    | `undefined` |
 | `icon`     | `icon`     |             | `boolean`    | `false`     |
 | `label`    | `label`    |             | `string`     | `undefined` |
+| `search`   | `search`   |             | `boolean`    | `false`     |
 | `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
 
 

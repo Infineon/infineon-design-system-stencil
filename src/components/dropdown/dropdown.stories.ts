@@ -24,3 +24,10 @@ const IconTemplate = (args) =>
 </ifx-dropdown>`;
 
 export const Icon = IconTemplate.bind({})
+
+const SearchTemplate = (args) => 
+`<ifx-dropdown label="${args.label}" size="${args.size}" disabled="${args.disabled}" search={true}>
+  <button>test</button>
+</ifx-dropdown>`;
+
+export const Search = SearchTemplate.bind({})

@@ -13,6 +13,7 @@ export class Dropdown {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean = false;
+  @Prop() search: boolean = false;
   @Element() el;
 
   getDropdownMenu() { 
@@ -51,6 +52,10 @@ export class Dropdown {
   }
 
   addActiveMenuItem = (e) => {
+    if(e.target.className.toLowerCase() === 'inf__dropdown-search') { 
+      e.preventDefault()
+      return;
+    }
     this.removeActiveMenuItem()
     this.toggleDropdownMenu()
     this.handleClassList(e.target, 'add', 'active')
@@ -85,6 +90,9 @@ export class Dropdown {
           {this.label}
         </button>
         <div class={`dropdown-menu ${this.icon ? 'showIcon' : ""}`}>
+
+          {this.search && <input class='inf__dropdown-search' type="text" />}
+
           <a href="javascript:;" class="dropdown-item">
           {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
             Action Default1
