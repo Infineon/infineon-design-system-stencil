@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.7",
+  "version": "0.0.13",
   "private": true,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -25,9 +25,9 @@
     "/public/**"
   ],
   "scripts": {
-    "build-stencil": "stencil build --docs --watch",
+    "build-stencil": "stencil build --docs",
     "build-docs": "node tools/createMarkdownStories.js",
-    "build": "yarn copy-fonts && yarn build-docs && yarn build-stencil --docs && yarn build-storybook",
+    "build": "yarn copy-fonts && yarn build-docs && yarn stencil build --docs && yarn build-storybook",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -35,10 +35,10 @@
     "storybook-prepare": "npm run bundle && npm run build",
     "storybook-start": "concurrently -r yarn:watch-*",
     "storybook-build": "stencil build --docs && build-storybook",
+    "storybook-build-watch": "stencil build --watch --docs && build-storybook",
     "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
     "watch-storybook": "start-storybook -p 6006",
     "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
-    "watch-ts": "chokidar \"*.ts\" -c --initial",
     "watch-css": "chokidar \"src/**/*.scss\" -c \"yarn bundle-css\" --initial",
     "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
@@ -48,8 +48,8 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
-    "@infineon/infineon-icons": "^1.0.0",
-    "@stencil/core": "^2.13.0"
+    "@stencil/core": "^2.13.0",
+    "@infineon/infineon-icons": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
