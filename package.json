@@ -25,9 +25,9 @@
     "/public/**"
   ],
   "scripts": {
-    "build-stencil": "stencil build --docs",
+    "build-stencil": "stencil build --docs --watch",
     "build-docs": "node tools/createMarkdownStories.js",
-    "build": "yarn copy-fonts && yarn build-docs && yarn stencil build --docs && yarn build-storybook",
+    "build": "yarn copy-fonts && yarn build-docs && yarn build-stencil --docs && yarn build-storybook",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -38,6 +38,7 @@
     "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
     "watch-storybook": "start-storybook -p 6006",
     "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
+    "watch-ts": "chokidar \"*.ts\" -c --initial",
     "watch-css": "chokidar \"src/**/*.scss\" -c \"yarn bundle-css\" --initial",
     "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
@@ -47,6 +48,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
+    "@infineon/infineon-icons": "^1.0.0",
     "@stencil/core": "^2.13.0"
   },
   "devDependencies": {
