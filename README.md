@@ -71,20 +71,6 @@ For Angular: <b>main.ts</b>
 
 ```import "@infineon/design-system-stencil";```
 
-<!-- #### Installation of Fontawesome
-
-1. Send an email to dds@infineon.com to get the fontawesome token key. Then execute these two commands:
-```bash
-
-npm config set "@fortawesome:registry" https://npm.fontawesome.com/
-npm config set "//npm.fontawesome.com/:_authToken" <PASTE KEY HERE>
-```
-
-Additional Fontawesome installation instructions can be found here: 
-
-For Angular: https://fontawesome.com/v5/docs/web/use-with/angular <br />
-For Vue https://fontawesome.com/v6/docs/web/use-with/vue/ <br />
-For React: https://fontawesome.com/v6/docs/web/use-with/react/ -->
 
 #### Installation of SASS
 For React projects only, run: 
