@@ -1,3 +1,19 @@
+# v0.0.16 (Wed Dec 07 2022)
+
+#### ⚠️ Pushed to `master`
+
+- update readme (lechneve@ISCN5CG1201S7M.infineon.com)
+- update package-lock json (lechneve@ISCN5CG1201S7M.infineon.com)
+- update (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- package json set package to non private (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.15 (Wed Dec 07 2022)
 
 #### 🐛 Bug Fix
