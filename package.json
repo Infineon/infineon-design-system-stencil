@@ -7,8 +7,8 @@
   "bugs": {
     "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "main": "dist/index.ts",
+  "module": "dist/index.ts",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
