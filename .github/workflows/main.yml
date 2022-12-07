@@ -30,7 +30,6 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Create Release 
-      - run: npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
