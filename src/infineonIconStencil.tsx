@@ -17,8 +17,8 @@ export class InfineonIconStencil {
   parseHTML(html) {
     let el = document.createElement("div");
     el.innerHTML = html;
-    return el.children; 
-}
+    return el.children;
+  }
 
   componentWillLoad() {
     this.path = this.parseHTML(this.icon.svgContent);
@@ -33,9 +33,9 @@ export class InfineonIconStencil {
   render() {
     return (
       <div class="svg-wrapper">
-         <svg class="inline-svg" width={this.svgWidth} height={this.svgHeight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-            <path stroke={this.svgStroke} stroke-linecap={this.svgStrokeLinecap} stroke-linejoin={this.svgLineJoin} d={this.pathD}/>
-          </svg>
+        <svg class="inline-svg" width={this.svgWidth} height={this.svgHeight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path stroke={this.svgStroke} stroke-linecap={this.svgStrokeLinecap} stroke-linejoin={this.svgLineJoin} d={this.pathD} />
+        </svg>
       </div>
     );
   }
