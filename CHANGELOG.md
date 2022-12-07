@@ -1,3 +1,16 @@
+# v0.0.19 (Wed Dec 07 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- set package json types to components.d.ts (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.18 (Wed Dec 07 2022)
 
 #### ⚠️ Pushed to `master`
