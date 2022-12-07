@@ -1,3 +1,27 @@
+# v0.0.15 (Wed Dec 07 2022)
+
+#### 🐛 Bug Fix
+
+- dropdown component [#2](https://github.com/Infineon/infineon-design-system-stencil/pull/2) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- cleaned up package json (lechneve@ISCN5CG1201S7M.infineon.com)
+- update (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- resolved merge conflicts (lechneve@ISCN5CG1201S7M.infineon.com)
+- reset main.yml since publishing wont work before the repository is set to internal or public (lechneve@ISCN5CG1201S7M.infineon.com)
+- main.yml modified to publish to gh package (lechneve@ISCN5CG1201S7M.infineon.com)
+- gh actions modified to only publish to gh package for now (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.13 (Mon Dec 05 2022)
 
 #### ⚠️ Pushed to `master`
