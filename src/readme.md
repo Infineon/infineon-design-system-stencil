@@ -9,19 +9,19 @@
 
 | Property | Attribute | Description | Type  | Default     |
 | -------- | --------- | ----------- | ----- | ----------- |
-| `config` | `config`  |             | `any` | `undefined` |
+| `icon`   | `icon`    |             | `any` | `undefined` |
 
 
 ## Dependencies
 
 ### Used by
 
- - [ifx-button](./components/button)
+ - [ifx-dropdown](./components/dropdown)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-button --> infineon-icon-stencil
+  ifx-dropdown --> infineon-icon-stencil
   style infineon-icon-stencil fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

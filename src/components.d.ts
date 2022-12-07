@@ -7,11 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
-        "cogwheel": string;
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
         "icon": boolean;
-        "iconName": string;
         "label": string;
         "size": 's' | 'm';
         "variant": 'solid' | 'outline' | 'outline-text';
@@ -23,8 +21,14 @@ export namespace Components {
         "skyline": boolean;
         "text": string;
     }
+    interface IfxDropdown {
+        "disabled": boolean;
+        "icon": boolean;
+        "label": string;
+        "size": 's' | 'm';
+    }
     interface InfineonIconStencil {
-        "config": any;
+        "icon": any;
     }
 }
 declare global {
@@ -40,6 +44,12 @@ declare global {
         prototype: HTMLIfxCardElement;
         new (): HTMLIfxCardElement;
     };
+    interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownElement: {
+        prototype: HTMLIfxDropdownElement;
+        new (): HTMLIfxDropdownElement;
+    };
     interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
     }
     var HTMLInfineonIconStencilElement: {
@@ -49,16 +59,15 @@ declare global {
     interface HTMLElementTagNameMap {
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
+        "ifx-dropdown": HTMLIfxDropdownElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
     interface IfxButton {
-        "cogwheel"?: string;
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
         "icon"?: boolean;
-        "iconName"?: string;
         "label"?: string;
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
@@ -70,12 +79,19 @@ declare namespace LocalJSX {
         "skyline"?: boolean;
         "text"?: string;
     }
+    interface IfxDropdown {
+        "disabled"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "size"?: 's' | 'm';
+    }
     interface InfineonIconStencil {
-        "config"?: any;
+        "icon"?: any;
     }
     interface IntrinsicElements {
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
+        "ifx-dropdown": IfxDropdown;
         "infineon-icon-stencil": InfineonIconStencil;
     }
 }
@@ -85,6 +101,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
+            "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }

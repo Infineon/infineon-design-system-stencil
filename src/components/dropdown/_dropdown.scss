@@ -1,0 +1,140 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+
+.dropdown {
+
+  position: relative;
+
+  & .btn {
+    min-width: 200px;
+  }
+
+  & .dropdown-toggle::after {
+    content: "";
+    display: inline-block;
+    border: none; 
+    vertical-align: -2px;
+    margin-left: 10px;
+    width: 14px;
+    height: 14px;
+    background-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease-in-out;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z'/%3E%3C/svg%3E");
+  }
+
+  &.show .dropdown-toggle::after {
+    transform: rotate(-180deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23FFF' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z'/%3E%3C/svg%3E");
+  }
+
+  & .dropdown-menu { 
+    display: none;
+  }
+
+  & .dropdown-menu.show {
+    display: inline-block;
+    position: absolute;
+    inset: 0px auto auto 0px;
+    min-width: 200px;
+    padding: 0;
+    border: none;
+    border-radius: 1px;
+    background-color: tokens.$color-gray-100;
+    transform: translate3d(0px, calc(44px + 8px), 0px) !important; //54px + 8px
+
+    & .form-control, .form-select {
+      margin: 16px;
+    }
+
+    & .form-select {
+      color: tokens.$color-gray-400;
+    }
+
+    & .inf__dropdown-search, .inf__dropdown-select {
+      width: 160px;
+    }
+
+    & .ifx__search-icon-wrapper {
+      margin-right: calc(8px + 16px);
+    }
+
+    & .dropdown-item {
+      display: block;
+      width: 100%;
+      clear: both;
+      font-weight: 400;
+      text-align: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: rgba(0,0,0,0);
+      border: 0;
+      font-size: 16px;
+      padding: 8px 16px;
+      color: tokens.$color-text-black;
+
+      &:focus {
+        background-color: tokens.$color-gray-100;
+      }
+
+      &:focus-visible {
+        outline: none;
+        background-color: tokens.$color-gray-100;
+        border: 3px solid #B4DDD8;
+        padding-left: calc(16px - 3px);
+        margin-left: 0;
+      }
+
+      &:hover {
+        font-weight: 600;
+        background-color: tokens.$color-gray-200;
+
+        & svg {
+          color: tokens.$color-text-black;
+        }
+      }
+
+      &.active, &:active {
+        font-weight: 600;
+        background-color: transparent;
+        color: tokens.$color-default-500;
+
+        & svg {
+          color: tokens.$color-default-500;
+        }
+      }
+
+      & svg {
+        width: 13px;
+        height: 13px;
+        margin-right: 10px;
+        vertical-align: -0.5px;
+      }
+    }
+
+    .form-check-label {
+      font-weight: 400;
+    }
+  }
+
+  & .btn-sm {
+    & + .dropdown-menu {
+      transform: translate3d(0px, calc(48.75px + 8px), 0px) !important;
+    }
+  }
+
+  & .btn-lg {
+    & + .dropdown-menu {
+      transform: translate3d(0px, calc(64.5px + 8px), 0px) !important;
+    }
+  }
+}
+
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.svg-wrapper {
+  display: inline-block;
+}
