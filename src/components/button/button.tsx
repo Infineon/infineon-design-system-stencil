@@ -1,5 +1,6 @@
 import { Component, Prop, h } from '@stencil/core';
 
+
 @Component({
   tag: 'ifx-button',
   styleUrl: '../../index.scss',
@@ -13,6 +14,8 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
+  @Prop() cogwheel: string;
+  @Prop() iconName: string;
 
   render() {
     const variantClass =
@@ -27,19 +30,28 @@ export class Button {
         ? "btn-s"
         : "";
 
+
     return (
-      <button class={
-        `btn
+      <div>
+        <div>
+          <infineon-icon-stencil config={{ data: { icon: "cogwheel24" } }}>  </infineon-icon-stencil>
+          <infineon-icon-stencil config={{ data: { icon: "arrowTriangleHorizontal16" } }}>  </infineon-icon-stencil>
+
+
+        </div>
+
+        <button class={
+          `btn
         btn-${variantClass}
         ${sizeClass}
         ${this.disabled ? 'disabled' : ''}`
-      }
-        type="button"
-      >
-
-        {this.icon ? 'icon' : ''}
-        {this.label}
-      </button>
+        }
+          type="button"
+        >
+          {this.icon ? 'icon' : ''}
+          {this.label}
+        </button>
+      </div >
     );
   }
 }
