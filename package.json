@@ -42,13 +42,13 @@
     "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
     "bundle-assets": "copyfiles -u 1 ./public/* dist && copyfiles -u 1 ./public/**/* dist",
-    "bundle-ts": "esbuild src/index.ts --outfile=dist/index.ts --bundle --platform=browser --minify --target=es6",
+    "bundle-ts": "stencil build --docs",
     "bundle": "rimraf ./dist && npm run bundle-css && npm run bundle-ts && npm run bundle-fonts && npm run bundle-assets"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
     "@infineon/infineon-icons": "^1.0.0",
-    "@stencil/core": "^2.13.0",
+    "@stencil/core": "^2.16.0",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "devDependencies": {
@@ -66,7 +66,7 @@
     "concurrently": "^6.4.0",
     "copyfiles": "^2.4.1",
     "css-loader": "^5",
-    "esbuild": "^0.14.38",
+    "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
     "puppeteer": "^10.0.0",
