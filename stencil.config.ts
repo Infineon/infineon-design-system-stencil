@@ -28,5 +28,9 @@ export const config: Config = {
     after: [
       nodePolyfills(),
     ]
-  }
+  },
+  extras: {
+    cloneNodeFix: true,
+    experimentalImportInjection: true,
+  },
 };
