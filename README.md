@@ -138,11 +138,11 @@ or
 npm storybook-build-watch
 ```
 
-This will generate a static Storybook in the ```storybook-static``` directory.
+This will generate a static Storybook in the ```storybook-static``` directory. We add --watch so that the storybook automatically updates in case of changes.
 
 ### Start Storybook
 
-To start storybook, simply open another terminal window and run the inbuild command ```storybook-start``` with ```npm``` or ```yarn```.
+To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
 
 ```bash
 yarn storybook-start
