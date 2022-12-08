@@ -69,8 +69,16 @@ For React: <b>index.js</b> <br />
 For Vue: <b>main.js</b> <br />
 For Angular: <b>main.ts</b>
 
-```import "@infineon/design-system-stencil";```
+```bash
+import { applyPolyfills, defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
+const app = createApp(App);
+//...
+app.mount('#app')
+
+applyPolyfills().then(() => { defineCustomElements(window)})
+;
+```
 
 #### Installation of SASS
 For React projects only, run: 
