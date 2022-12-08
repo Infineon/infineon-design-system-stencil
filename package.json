@@ -69,7 +69,7 @@
     "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0",
+    "puppeteer": "^19.4.0",
     "rimraf": "^3.0.2",
     "sass": "^1.44.0",
     "sass-loader": "^10",
