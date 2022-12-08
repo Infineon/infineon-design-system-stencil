@@ -23,6 +23,7 @@ export namespace Components {
     }
     interface IfxDropdown {
         "disabled": boolean;
+        "filter": boolean;
         "icon": boolean;
         "label": string;
         "search": boolean;
@@ -82,6 +83,7 @@ declare namespace LocalJSX {
     }
     interface IfxDropdown {
         "disabled"?: boolean;
+        "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
         "search"?: boolean;

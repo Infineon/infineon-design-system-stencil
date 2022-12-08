@@ -1,7 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
   "version": "0.0.13",
-  "private": true,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
   "bugs": {
@@ -21,6 +20,7 @@
   },
   "files": [
     "dist",
+    "loader",
     "/src/**/*",
     "/public/**"
   ],

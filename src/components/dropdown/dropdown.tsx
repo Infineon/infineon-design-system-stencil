@@ -14,6 +14,7 @@ export class Dropdown {
   @Prop() disabled: boolean;
   @Prop() icon: boolean = false;
   @Prop() search: boolean = false;
+  @Prop() filter: boolean = false;
   @Element() el;
 
   getDropdownMenu() { 
@@ -52,10 +53,16 @@ export class Dropdown {
   }
 
   addActiveMenuItem = (e) => {
-    if(e.target.className.toLowerCase() === 'inf__dropdown-search') { 
-      e.preventDefault()
-      return;
-    }
+    console.log(e.target.className)
+    console.log(e.target)
+    // if(e.target.className.toLowerCase() === 'inf__dropdown-search' 
+    // || e.target.className.toLowerCase() === 'inf__dropdown-select' 
+    // ) { 
+    //   console.log('inside')
+    //   e.preventDefault()
+    //   return;
+    // }
+    console.log('passed')
     this.removeActiveMenuItem()
     this.toggleDropdownMenu()
     this.handleClassList(e.target, 'add', 'active')
@@ -91,28 +98,39 @@ export class Dropdown {
         </button>
         <div class={`dropdown-menu ${this.icon ? 'showIcon' : ""}`}>
 
-          {this.search && <input class='inf__dropdown-search' type="text" />}
+          {this.search && <input class='inf__dropdown-search' type="text" placeholder="search" />}
+          {this.filter && 
+          <select class="inf__dropdown-select">
+            <option>Sort by</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          }
 
           <a href="javascript:;" class="dropdown-item">
-          {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
-            Action Default1
+            {this.filter && <input type="checkbox" id="checkbox" class="form-check-input" />}
+            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+            <label htmlFor="checkbox" class="form-check-label">Action Default1</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
-          {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
-            Action Default2
+            {this.filter && <input type="checkbox" id="checkbox2" class="form-check-input" />}
+            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+            <label htmlFor="checkbox2" class="form-check-label">Action Default2</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
-          {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
-            Action Default3
+            {this.filter && <input type="checkbox" id="checkbox3" class="form-check-input" />}
+            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+            <label htmlFor="checkbox3" class="form-check-label">Action Default3</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
-          {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
-            Action Default4
+            {this.filter && <input type="checkbox" id="checkbox4" class="form-check-input" />}
+            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+            <label htmlFor="checkbox4" class="form-check-label">Action Default4</label>
           </a>
-          <a href="javascript:;" class="dropdown-item">
-          {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
-            Action Default5
-          </a>
+
+ 
+    
         </div>
       </div>
     )
