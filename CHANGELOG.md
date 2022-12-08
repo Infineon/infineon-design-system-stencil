@@ -1,3 +1,15 @@
+# v0.0.30 (Thu Dec 08 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Create SECURITY.md ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v0.0.29 (Thu Dec 08 2022)
 
 #### ⚠️ Pushed to `master`
