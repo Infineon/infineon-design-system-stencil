@@ -1,14 +1,14 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.18",
+  "version": "0.0.16",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
   "bugs": {
     "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
   },
-  "main": "dist/index.ts",
-  "module": "dist/index.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
   "types": "dist/types/components.d.ts",
@@ -21,6 +21,7 @@
   },
   "files": [
     "dist",
+    "loader",
     "/src/**/*",
     "/public/**"
   ],
@@ -48,8 +49,9 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
+    "@infineon/infineon-icons": "^1.0.0",
     "@stencil/core": "^2.13.0",
-    "@infineon/infineon-icons": "^1.0.0"
+    "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
