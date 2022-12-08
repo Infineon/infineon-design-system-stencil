@@ -1,4 +1,4 @@
-dist
+dist/
 www/
 loader/
 
@@ -82,12 +82,7 @@ typings/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
+ 
 
 # # TODO re-add this, when modules is published for real
 # dist
@@ -98,15 +93,7 @@ typings/
 # Comment in the public line in if your project uses Gatsby and *not* Next.js
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
-
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
+  
 
 # DynamoDB Local files
 .dynamodb/
@@ -118,6 +105,6 @@ typings/
 .netlify
 
 .npmrc
-/dist/
+
 
 /yarn.lock
