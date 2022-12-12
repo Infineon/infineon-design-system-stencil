@@ -54,6 +54,22 @@
 
     & .inf__dropdown-search, .inf__dropdown-select {
       width: 160px;
+      min-height: calc(1.75em + 18px);
+      font-size: 0.8125rem;
+      margin: 16px;
+      display: block;
+      // width: 100%;
+      padding: 8px 16px;
+      font-family: "Source Sans Pro";
+      font-weight: 400;
+      line-height: 1.75;
+      color: #1d1d1d;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #c5bbbd;
+      appearance: none;
+      border-radius: 1px;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
 
     & .ifx__search-icon-wrapper {
@@ -61,18 +77,23 @@
     }
 
     & .dropdown-item {
-      display: block;
+      display: flex; 
+      align-items: center;
       width: 100%;
-      clear: both;
-      font-weight: 400;
       text-align: inherit;
-      text-decoration: none;
       white-space: nowrap;
-      background-color: rgba(0,0,0,0);
       border: 0;
-      font-size: 16px;
       padding: 8px 16px;
+      background-color: rgba(0,0,0,0);
+      text-decoration: none;
       color: tokens.$color-text-black;
+   
+      & .form-check-label {
+         flex: 1;
+         &:hover { 
+          cursor: pointer;
+         }
+      }
 
       &:focus {
         background-color: tokens.$color-gray-100;
@@ -89,6 +110,7 @@
       &:hover {
         font-weight: 600;
         background-color: tokens.$color-gray-200;
+     
 
         & svg {
           color: tokens.$color-text-black;
@@ -137,4 +159,10 @@
 
 .svg-wrapper {
   display: inline-block;
+}
+
+
+.form-check-input {
+  border-radius: 1px;
+  margin-right: 12px;
 }

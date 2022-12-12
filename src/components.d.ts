@@ -23,8 +23,10 @@ export namespace Components {
     }
     interface IfxDropdown {
         "disabled": boolean;
+        "filter": boolean;
         "icon": boolean;
         "label": string;
+        "search": boolean;
         "size": 's' | 'm';
     }
     interface InfineonIconStencil {
@@ -81,8 +83,10 @@ declare namespace LocalJSX {
     }
     interface IfxDropdown {
         "disabled"?: boolean;
+        "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "search"?: boolean;
         "size"?: 's' | 'm';
     }
     interface InfineonIconStencil {
