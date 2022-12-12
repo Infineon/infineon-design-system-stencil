@@ -1,3 +1,20 @@
+# v0.0.31 (Mon Dec 12 2022)
+
+#### 🐛 Bug Fix
+
+- Dropdown - all variants [#4](https://github.com/Infineon/infineon-design-system-stencil/pull/4) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump node-fetch and puppeteer [#3](https://github.com/Infineon/infineon-design-system-stencil/pull/3) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v0.0.30 (Thu Dec 08 2022)
 
 #### ⚠️ Pushed to `master`
