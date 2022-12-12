@@ -1,6 +1,7 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.13",
+  "version": "0.0.30",
+  "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
   "bugs": {
@@ -10,7 +11,7 @@
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
@@ -19,10 +20,8 @@
     "url": "https://github.com/ionic-team/stencil-component-starter.git"
   },
   "files": [
-    "dist",
-    "loader",
-    "/src/**/*",
-    "/public/**"
+    "dist/",
+    "loader/"
   ],
   "scripts": {
     "build-stencil": "stencil build --docs",
@@ -43,13 +42,14 @@
     "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
     "bundle-assets": "copyfiles -u 1 ./public/* dist && copyfiles -u 1 ./public/**/* dist",
-    "bundle-ts": "esbuild src/index.ts --outfile=dist/index.ts --bundle --platform=browser --minify --target=es6",
+    "bundle-ts": "stencil build --docs",
     "bundle": "rimraf ./dist && npm run bundle-css && npm run bundle-ts && npm run bundle-fonts && npm run bundle-assets"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
-    "@stencil/core": "^2.13.0",
-    "@infineon/infineon-icons": "^1.0.0"
+    "@infineon/infineon-icons": "^1.0.0",
+    "@stencil/core": "^2.16.0",
+    "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
@@ -66,10 +66,10 @@
     "concurrently": "^6.4.0",
     "copyfiles": "^2.4.1",
     "css-loader": "^5",
-    "esbuild": "^0.14.38",
+    "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "puppeteer": "^10.0.0",
+    "puppeteer": "^19.4.0",
     "rimraf": "^3.0.2",
     "sass": "^1.44.0",
     "sass-loader": "^10",
