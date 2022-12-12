@@ -53,19 +53,28 @@ export class Dropdown {
   }
 
   addActiveMenuItem = (e) => {
-    console.log(e.target.className)
-    console.log(e.target)
-    // if(e.target.className.toLowerCase() === 'inf__dropdown-search' 
-    // || e.target.className.toLowerCase() === 'inf__dropdown-select' 
-    // ) { 
-    //   console.log('inside')
-    //   e.preventDefault()
-    //   return;
-    // }
-    console.log('passed')
+    if(typeof e.target.className !== 'string') return;
+    if(e.target.className.includes('dropdown-menu')) return;
+
+    if(e.target.className.toLowerCase() === 'inf__dropdown-search' 
+    || e.target.className.toLowerCase() === 'inf__dropdown-select') { 
+      return;
+    }
+
+    if(this.filter) {
+      const input = e.target.querySelector('input')
+      if(input) {
+        input.checked = !input.checked
+      }
+      return;
+    }
+    
     this.removeActiveMenuItem()
+    if(e.target.className === 'form-check-label') { 
+      this.handleClassList(e.target.parentElement, 'add', 'active')
+    } else this.handleClassList(e.target, 'add', 'active')
+ 
     this.toggleDropdownMenu()
-    this.handleClassList(e.target, 'add', 'active')
   }
 
   handleOutsideClick(e) { 
@@ -128,9 +137,6 @@ export class Dropdown {
             {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
             <label htmlFor="checkbox4" class="form-check-label">Action Default4</label>
           </a>
-
- 
-    
         </div>
       </div>
     )
