@@ -1,3 +1,15 @@
+# v0.0.33 (Wed Dec 14 2022)
+
+#### ⚠️ Pushed to `master`
+
+- npm publish (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.32 (Wed Dec 14 2022)
 
 #### 🐛 Bug Fix
