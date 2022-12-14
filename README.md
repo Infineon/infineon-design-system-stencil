@@ -81,7 +81,7 @@ applyPolyfills().then(() => { defineCustomElements(window)})
 ```
 
 #### Installation of SASS
-For React projects only, run: 
+<!-- For React projects only, run:  -->
 ```bash
 npm install sass
 ```
@@ -103,7 +103,7 @@ node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
 
 Explore our current components in Storybook.
 
-ADD HERE: link to storybook
+<!-- ADD HERE: link to storybook -->
 <!-- https://storybook-bootstrap.icp.infineon.com -->
 
 <p align="right"><a href="#tableContent">back to top</a></p>
