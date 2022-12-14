@@ -1,3 +1,16 @@
+# v0.0.32 (Wed Dec 14 2022)
+
+#### 🐛 Bug Fix
+
+- dropdown with slot [#5](https://github.com/Infineon/infineon-design-system-stencil/pull/5) ([@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v0.0.31 (Mon Dec 12 2022)
 
 #### 🐛 Bug Fix
