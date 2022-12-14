@@ -1,3 +1,18 @@
+# v0.0.35 (Wed Dec 14 2022)
+
+#### ⚠️ Pushed to `master`
+
+- Update SECURITY.md ([@verena-ifx](https://github.com/verena-ifx))
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- readme update (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.34 (Wed Dec 14 2022)
 
 #### ⚠️ Pushed to `master`
