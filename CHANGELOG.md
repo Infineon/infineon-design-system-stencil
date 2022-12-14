@@ -1,3 +1,15 @@
+# v0.0.36 (Wed Dec 14 2022)
+
+#### ⚠️ Pushed to `master`
+
+- removed names from readme and added generic dds email (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.35 (Wed Dec 14 2022)
 
 #### ⚠️ Pushed to `master`
