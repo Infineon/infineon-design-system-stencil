@@ -103,7 +103,8 @@ export class Dropdown {
     return(
       <div class='dropdown'>
         <button onClick={this.toggleDropdownMenu.bind(this)} class={`dropdown-toggle btn btn-primary ${sizeClass} ${this.disabled ? 'disabled' : ''}`} type="button">
-          {this.label}
+          {/* {this.label} */}
+          <slot>{this.label}</slot>
         </button>
         <div class={`dropdown-menu ${this.icon ? 'showIcon' : ""}`}>
 
