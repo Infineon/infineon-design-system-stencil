@@ -161,13 +161,9 @@ npm storybook-start
 <!-- CONTACT -->
 ## Contact
 
-### WebEx
-Lechner Verena <br />
-Yanchev Tihomir <br />
-
 ### Email
-verena.lechner@infineon.com <br />
-tihomir.yanchev-EE@infineon.com
+dds@infineon.com <br />
+
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
