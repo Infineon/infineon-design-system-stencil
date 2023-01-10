@@ -57,11 +57,11 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 #### With NPM
 
-1. ```npm install --save @infineon/design-system-stencil```
+1. ```npm install --save @infineon/infineon-design-system-stencil```
 
 #### With Yarn
 
-1. ```yarn add @infineon/design-system-stencil```
+1. ```yarn add @infineon/infineon-design-system-stencil```
 
 #### Import the module inside your entry point file.
 
