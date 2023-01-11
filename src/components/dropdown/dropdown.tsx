@@ -1,5 +1,5 @@
 import { Component, Prop, h, Element } from "@stencil/core";
-import { calendar16 } from '@infineon/infineon-icons';
+// import { calendar16 } from '@infineon/infineon-icons';
 
 @Component({
   tag: 'ifx-dropdown',
@@ -17,17 +17,17 @@ export class Dropdown {
   @Prop() filter: boolean = false;
   @Element() el;
 
-  getDropdownMenu() { 
+  getDropdownMenu() {
     const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
     return dropdownMenu
   }
 
-  getDropdownWrapper() { 
+  getDropdownWrapper() {
     const dropdownWrapper = this.el.shadowRoot.querySelector('.dropdown');
     return dropdownWrapper
   }
 
-  handleClassList(el, type, className) { 
+  handleClassList(el, type, className) {
     el.classList[type](className)
   }
 
@@ -38,69 +38,69 @@ export class Dropdown {
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
   }
 
-  closeDropdownMenu() { 
+  closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
   }
 
-  removeActiveMenuItem() { 
+  removeActiveMenuItem() {
     const dropdownMenuItems = this.el.shadowRoot.querySelectorAll('.dropdown-item');
-    for(let i = 0; i < dropdownMenuItems.length; i++) { 
+    for (let i = 0; i < dropdownMenuItems.length; i++) {
       this.handleClassList(dropdownMenuItems[i], 'remove', 'active')
     }
   }
 
   addActiveMenuItem = (e) => {
-    if(typeof e.target.className !== 'string') return;
-    if(e.target.className.includes('dropdown-menu')) return;
+    if (typeof e.target.className !== 'string') return;
+    if (e.target.className.includes('dropdown-menu')) return;
 
-    if(e.target.className.toLowerCase() === 'inf__dropdown-search' 
-    || e.target.className.toLowerCase() === 'inf__dropdown-select') { 
+    if (e.target.className.toLowerCase() === 'inf__dropdown-search'
+      || e.target.className.toLowerCase() === 'inf__dropdown-select') {
       return;
     }
 
-    if(this.filter) {
+    if (this.filter) {
       const input = e.target.querySelector('input')
-      if(input) {
+      if (input) {
         input.checked = !input.checked
       }
       return;
     }
-    
+
     this.removeActiveMenuItem()
-    if(e.target.className === 'form-check-label') { 
+    if (e.target.className === 'form-check-label') {
       this.handleClassList(e.target.parentElement, 'add', 'active')
     } else this.handleClassList(e.target, 'add', 'active')
- 
+
     this.toggleDropdownMenu()
   }
 
-  handleOutsideClick(e) { 
-    if(e.target.tagName.toLowerCase() === 'html') { 
+  handleOutsideClick(e) {
+    if (e.target.tagName.toLowerCase() === 'html') {
       this.closeDropdownMenu()
     } else return;
   }
 
-  addEventListeners() { 
+  addEventListeners() {
     const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
   }
-  
+
   componentDidRender() {
-   this.addEventListeners()
+    this.addEventListeners()
   }
-  
-  render() { 
+
+  render() {
 
     const sizeClass =
       `${this.size}` === "s"
-      ? "btn-s"
-      : "";
+        ? "btn-s"
+        : "";
 
-    return(
+    return (
       <div class='dropdown'>
         <button onClick={this.toggleDropdownMenu.bind(this)} class={`dropdown-toggle btn btn-primary ${sizeClass} ${this.disabled ? 'disabled' : ''}`} type="button">
           {/* {this.label} */}
@@ -109,33 +109,33 @@ export class Dropdown {
         <div class={`dropdown-menu ${this.icon ? 'showIcon' : ""}`}>
 
           {this.search && <input class='inf__dropdown-search' type="text" placeholder="search" />}
-          {this.filter && 
-          <select class="inf__dropdown-select">
-            <option>Sort by</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+          {this.filter &&
+            <select class="inf__dropdown-select">
+              <option>Sort by</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           }
 
           <a href="javascript:;" class="dropdown-item">
             {this.filter && <input type="checkbox" id="checkbox" class="form-check-input" />}
-            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+
             <label htmlFor="checkbox" class="form-check-label">Action Default1</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
             {this.filter && <input type="checkbox" id="checkbox2" class="form-check-input" />}
-            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+
             <label htmlFor="checkbox2" class="form-check-label">Action Default2</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
             {this.filter && <input type="checkbox" id="checkbox3" class="form-check-input" />}
-            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+
             <label htmlFor="checkbox3" class="form-check-label">Action Default3</label>
           </a>
           <a href="javascript:;" class="dropdown-item">
             {this.filter && <input type="checkbox" id="checkbox4" class="form-check-input" />}
-            {this.icon && <infineon-icon-stencil icon={calendar16}></infineon-icon-stencil>}
+
             <label htmlFor="checkbox4" class="form-check-label">Action Default4</label>
           </a>
         </div>

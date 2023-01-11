@@ -5,6 +5,8 @@ import nodePolyfills from 'rollup-plugin-node-polyfills';
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
   globalScript: 'src/index.ts',
+  globalStyle: 'src/global/global.scss',
+
   outputTargets: [
     {
       type: 'dist',

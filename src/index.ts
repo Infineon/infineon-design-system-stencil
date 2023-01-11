@@ -1,1 +1,1 @@
-import './plugins/infineonIcons'
+// import './plugins/infineonIcons'

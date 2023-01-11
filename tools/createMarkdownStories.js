@@ -33,7 +33,7 @@ const createStories = async () => {
   const filePaths = await glob(`**/*.md`, {
     cwd: './',
     absolute: true,
-    ignore: 'node_modules',
+    ignore: ['node_modules', 'docs'],
   });
 
   filePaths.forEach(async (filePath) => {
