@@ -129,13 +129,13 @@ To deploy Storybook, we first need to export it as a static web app.
 To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
 ```bash
-yarn storybook-build-watch
+yarn run storybook-build-watch
 ```
 
 or
 
 ```bash
-npm storybook-build-watch
+npm run storybook-build-watch
 ```
 
 This will generate a static Storybook in the ```storybook-static``` directory. We add --watch so that the storybook automatically updates in case of changes.
@@ -145,13 +145,13 @@ This will generate a static Storybook in the ```storybook-static``` directory. W
 To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
 
 ```bash
-yarn storybook-start
+yarn run storybook-start
 ```
 
 or
 
 ```bash
-npm storybook-start
+npm run storybook-start
 ```
 
 ```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
