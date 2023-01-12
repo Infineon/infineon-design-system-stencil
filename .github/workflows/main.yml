@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # fetch all tags for ship-it
+      - name: Clean working directory
+        run: git clean -fdx
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
@@ -33,7 +35,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm ci
+          npm install
           npm run bundle
           auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
