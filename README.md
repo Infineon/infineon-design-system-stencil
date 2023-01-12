@@ -72,12 +72,23 @@ For Angular: <b>main.ts</b>
 ```bash
 import { applyPolyfills, defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
-const app = createApp(App);
-//...
-app.mount('#app')
+applyPolyfills().then(() => { defineCustomElements(window)});
+```
 
-applyPolyfills().then(() => { defineCustomElements(window)})
-;
+##### Additional steps for Angular
+
+Inside <b>app.modules.ts</b> file:
+
+```bash
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+ ...
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+ ...
+})
 ```
 
 #### Installation of SASS
