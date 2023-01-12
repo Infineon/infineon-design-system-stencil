@@ -30,7 +30,7 @@ const DefaultTemplate = (args) =>
 
 const WithSlotTemplate = (args) =>
   `<ifx-button variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
-  <slot="label">Custom label</slot>
+  <slot="label">${args.label}</slot>
 </ifx-button>`;
 
 const WithIconTemplateToTheLeft = (args) =>
