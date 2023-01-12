@@ -51,8 +51,6 @@
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
     "@stencil/core": "^2.16.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "devDependencies": {
