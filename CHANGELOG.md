@@ -1,3 +1,16 @@
+# v0.0.40 (Thu Jan 12 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- bugfix for the working-directory not clean error in github actions (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.39 (Thu Jan 12 2023)
 
 #### ⚠️ Pushed to `master`
