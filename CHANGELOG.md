@@ -1,3 +1,16 @@
+# v0.0.38 (Wed Jan 11 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- removed icon library from package.json and components using it; added global stylesheet (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.37 (Tue Jan 10 2023)
 
 #### ⚠️ Pushed to `master`
