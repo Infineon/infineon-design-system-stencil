@@ -1,3 +1,15 @@
+# v0.0.41 (Thu Jan 12 2023)
+
+#### 🐛 Bug Fix
+
+- new readme for angular [#8](https://github.com/Infineon/infineon-design-system-stencil/pull/8) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v0.0.40 (Thu Jan 12 2023)
 
 #### ⚠️ Pushed to `master`
