@@ -1,3 +1,19 @@
+# v0.0.39 (Thu Jan 12 2023)
+
+#### ⚠️ Pushed to `master`
+
+- bugfix for the working-directory not clean error in github actions (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- delete react + react-dom packages ([@nk-radikant](https://github.com/nk-radikant))
+- added react and react-dom packages ([@nk-radikant](https://github.com/nk-radikant))
+
+#### Authors: 2
+
+- Nici ([@nk-radikant](https://github.com/nk-radikant))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.38 (Wed Jan 11 2023)
 
 #### ⚠️ Pushed to `master`
