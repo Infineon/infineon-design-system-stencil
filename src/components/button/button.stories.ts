@@ -8,6 +8,9 @@ export default {
     disabled: false,
     icon: false,
   },
+  argsSlot: {
+    label: "Button",
+  },
   argTypes: {
     variant: {
       options: ['solid', 'outline', 'outline-text'],
@@ -29,7 +32,7 @@ const DefaultTemplate = (args) =>
 </ifx-button>`;
 
 const WithSlotTemplate = (args) =>
-  `<ifx-button variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
+  `<ifx-button variant="${args.variant}" color="${args.color}" size="${args.size}" >
   <slot="label">${args.label}</slot>
 </ifx-button>`;
 
@@ -39,4 +42,10 @@ const WithIconTemplateToTheLeft = (args) =>
 
 export const Default = DefaultTemplate.bind({});
 export const WithSlot = WithSlotTemplate.bind({});
+WithSlot.args = {
+  label: 'Label via slot',
+};
 export const WithIconToTheLeft = WithIconTemplateToTheLeft.bind({});
+WithIconToTheLeft.args = {
+  icon: true,
+};
