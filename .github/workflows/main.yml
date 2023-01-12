@@ -33,7 +33,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          npm install
+          npm ci
           npm run bundle
           auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
