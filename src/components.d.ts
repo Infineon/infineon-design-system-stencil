@@ -11,6 +11,7 @@ export namespace Components {
         "disabled": boolean;
         "icon": boolean;
         "label": string;
+        "position": string;
         "size": 's' | 'm';
         "variant": 'solid' | 'outline' | 'outline-text';
     }
@@ -71,6 +72,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "position"?: string;
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }

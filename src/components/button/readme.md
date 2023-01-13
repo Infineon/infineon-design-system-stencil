@@ -13,6 +13,7 @@
 | `disabled` | `disabled` |             | `boolean`                                                        | `undefined` |
 | `icon`     | `icon`     |             | `boolean`                                                        | `undefined` |
 | `label`    | `label`    |             | `string`                                                         | `undefined` |
+| `position` | `position` |             | `string`                                                         | `'left'`    |
 | `size`     | `size`     |             | `"m" \| "s"`                                                     | `undefined` |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
 

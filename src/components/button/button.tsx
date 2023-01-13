@@ -13,6 +13,7 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
+  @Prop() position: string = 'left';
 
   render() {
     const variantClass =
@@ -27,6 +28,7 @@ export class Button {
         ? "btn-s"
         : "";
 
+
     return (
       <button class={
         `btn
@@ -37,8 +39,13 @@ export class Button {
         type="button"
       >
 
-        {this.icon ? 'icon' : ''}
-        {this.label}
+      {this.icon ?
+       this.position === 'left'
+        ? `icon ${this.label}`
+        : `${this.label} icon` 
+      : this.label}
+    
+        
       </button>
     );
   }
