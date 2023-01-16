@@ -12,9 +12,27 @@
 </head>
 
 <body>
-  <!-- <ifx-dropdown size="m" color="primary" icon="true" filter="true">this is a dropdown button</ifx-dropdown> -->
 
-  <ifx-button size="m" color="secondary" label="button" variant="solid" icon="true"></ifx-button>
+
+  <!-- <ifx-card skyline="true" headline="headline" text="random text" button="true" list="true">
+    <span slot="outside">slot test</span>
+
+    <select slot="select-option">
+      <option>One</option>
+      <option>Two</option>
+      <option>Three</option>
+    </select>
+  </ifx-card> -->
+
+  <ifx-dropdown label="dropdown" size="m" filter="true">
+    <select slot="filter" class="inf__dropdown-select">
+      <option>One</option>
+      <option>Two</option>
+      <option>Three</option>
+    </select>
+  </ifx-dropdown>
+
+
 </body>
 
 </html>
