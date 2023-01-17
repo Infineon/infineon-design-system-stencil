@@ -7,6 +7,7 @@ export default {
     size: "m",
     disabled: false,
     icon: false,
+    position: 'left'
   },
   argTypes: {
     variant: {
@@ -21,11 +22,15 @@ export default {
       options: ['s', 'm'],
       control: {type: 'radio'},
     },
+    position: { 
+      options: ['left', 'right'],
+      control: {type: 'radio'}
+    }
   },
 };
 
 const DefaultTemplate = (args) => 
-`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
+`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}" position="${args.position}">
 </ifx-button>`;
 
 export const Default = DefaultTemplate.bind({});
