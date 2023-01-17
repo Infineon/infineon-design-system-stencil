@@ -7,18 +7,22 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
-        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
+        "href"?: string;
         "icon": boolean;
+        "iconOnly"?: boolean;
+        "iconPosition": 'before' | 'after';
         "label": string;
         "size": 's' | 'm';
-        "variant": 'solid' | 'outline' | 'outline-text';
+        "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
         "button": boolean;
         "headline": string;
         "list": boolean;
         "skyline": boolean;
+        "subtitle": string;
         "text": string;
     }
     interface IfxDropdown {
@@ -69,7 +73,10 @@ declare namespace LocalJSX {
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
+        "href"?: string;
         "icon"?: boolean;
+        "iconOnly"?: boolean;
+        "iconPosition"?: 'before' | 'after';
         "label"?: string;
         "size"?: 's' | 'm';
         "variant"?: 'solid' | 'outline' | 'outline-text';
@@ -79,6 +86,7 @@ declare namespace LocalJSX {
         "headline"?: string;
         "list"?: boolean;
         "skyline"?: boolean;
+        "subtitle"?: string;
         "text"?: string;
     }
     interface IfxDropdown {
