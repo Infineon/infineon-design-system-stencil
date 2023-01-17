@@ -29,6 +29,10 @@ export class Button {
         : "";
 
 
+    const iconSVG =
+      <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 16 16"><title>thumb up 16</title><g stroke-width="1" stroke-linejoin="round" fill="none" stroke="#000000" stroke-linecap="round" class="nc-icon-wrapper"><rect x="0.5" y="7.5" width="3" height="8" stroke="#000000"></rect> <path d="M5.5,15.5h6.9a2,2,0,0,0,1.952-1.566l1.111-5A2,2,0,0,0,13.507,6.5H9.5v-4a2,2,0,0,0-2-2l-2,6"></path></g></svg>
+    
+
     return (
       <button class={
         `btn
@@ -38,10 +42,10 @@ export class Button {
       }
         type="button"
       >
-
+      
       {this.icon ?
        this.position === 'left'
-        ? `icon ${this.label}`
+        ? iconSVG `${this.label}`
         : `${this.label} icon` 
       : this.label}
     
