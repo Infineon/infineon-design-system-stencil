@@ -18,7 +18,7 @@ export class Card {
   private action: HTMLElement;
 
   componentDidLoad() {
-    console.log(this.action);
+    console.log("button slot name=action: ", this.action);
 
     const actionSlot = this.hostElement.querySelector(
       '[slot="action"]'

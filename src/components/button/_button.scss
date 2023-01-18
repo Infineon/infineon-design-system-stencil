@@ -16,11 +16,11 @@
   font-family: tokens.$font-family-body;
   display: inline-block;
   text-align: center;
-  text-decoration: none;
   vertical-align: middle;
   user-select: none;
   border: 1px solid rgba(0, 0, 0, 0);
-  font-size: 1rem;
+  font-size: tokens.$font-size-l;
+  font-weight: tokens.$font-weight-regular;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 

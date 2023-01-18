@@ -21,17 +21,6 @@ jobs:
           fetch-depth: 0 # fetch all tags for ship-it
       - name: Clean working directory
         run: git clean -fdx
-      
-      - name: Install dependencies
-        run: npm i
-        # run: |
-        #   if [ -e yarn.lock ]; then
-        #   yarn install --frozen-lockfile
-        #   elif [ -e package-lock.json ]; then
-        #   npm ci
-        #   else
-        #   npm i
-        #   fi
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
@@ -42,11 +31,20 @@ jobs:
           node-version: 16
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Install dependencies
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
+
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          npm install
+        run: | # npm install
           npm run bundle
           auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
