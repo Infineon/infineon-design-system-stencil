@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host, Method } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -17,16 +17,39 @@ export class Button {
   @Prop() iconOnly: boolean = false;
   @Prop({ reflect: true }) iconPosition: 'before' | 'after' = 'before';
   @Prop() href: string;
+  @Prop() target: string = '_self';
 
+  private focusableElement: HTMLElement;
+
+  @Method()
+  async setFocus() {
+    this.focusableElement.focus();
+  }
 
   render() {
     return (
-      <button class={this.getClassNames()}
-        type="button"
-      >
-        <slot></slot>
+      <Host>
+        {this.href ? (
+          <a
+            ref={(el) => (this.focusableElement = el)}
+            class={this.getClassNames()}
+            href={this.href}
+            target={this.target}
+            rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
+          >
+            <slot />
+          </a>
+        ) : (
+          <button class={this.getClassNames()}
+            type="button"
+          >
+            <slot></slot>
+          </button>
+        )}
+      </Host>
 
-      </button>
+
+
     );
   }
 

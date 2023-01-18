@@ -6,10 +6,7 @@
   --spacing-x-icon-only: 2px --spacing-x-icon-only-small: 2px;
   --spacing-icon-x-small: 2px;
   --font-size-small: 12px;
-  line-height: 10px;
-  min-height: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  line-height: tokens.$font-line-height-m;
 }
 
 .btn {
@@ -32,6 +29,22 @@
   color: tokens.$color-text-white;
   background-color: tokens.$color-default-500;
   border-color: tokens.$color-default-500;
+
+  &:focus {
+    background-color: tokens.$color-default-500;
+    border-color: tokens.$color-default-500;
+  }
+
+  &:hover {
+    background-color: tokens.$color-default-600;
+    border-color: tokens.$color-default-600;
+  }
+
+  &:active,
+  &.active {
+    background-color: tokens.$color-default-700;
+    border-color: tokens.$color-default-700;
+  }
 }
 
 .btn.btn--outline-primary {

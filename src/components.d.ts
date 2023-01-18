@@ -14,7 +14,9 @@ export namespace Components {
         "iconOnly": boolean;
         "iconPosition": 'before' | 'after';
         "label": string;
+        "setFocus": () => Promise<void>;
         "size": 's' | 'm';
+        "target": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
@@ -79,6 +81,7 @@ declare namespace LocalJSX {
         "iconPosition"?: 'before' | 'after';
         "label"?: string;
         "size"?: 's' | 'm';
+        "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
