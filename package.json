@@ -42,7 +42,7 @@
     "watch-storybook": "start-storybook -p 6006",
     "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
     "watch-css": "chokidar \"src/**/*.scss\" -c \"yarn bundle-css\" --initial",
-    "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
+    "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts/**/* .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
     "bundle-assets": "copyfiles -u 1 ./public/* dist && copyfiles -u 1 ./public/**/* dist",
     "bundle-ts": "stencil build --docs",
