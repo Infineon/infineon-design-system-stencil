@@ -18,7 +18,6 @@ export class Card {
   private action: HTMLElement;
 
   componentDidLoad() {
-    console.log("button slot name=action: ", this.action);
 
     const actionSlot = this.hostElement.querySelector(
       '[slot="action"]'
@@ -29,6 +28,8 @@ export class Card {
     } else {
       this.action = actionSlot;
     }
+    console.log("button: ", this.button, " -  slot name=action: ", this.action);
+
 
     // this.setTriggerAttributes();
   }
@@ -38,7 +39,7 @@ export class Card {
       <Host>
         <div class="card">
           <div class="card-body">
-            <div>
+            <div part="img">
               <slot name="img" />
             </div>
             {`${this.skyline}` === "true"
@@ -49,9 +50,11 @@ export class Card {
             <div class="card-title">{this.headline}</div>
 
             <p class="card-text">{this.text}</p>
-
             <div part="action">
-              <slot name="action" />
+              {this.button
+                ? <slot name="action" />
+                : ""}
+
             </div>
 
 

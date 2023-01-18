@@ -22,6 +22,7 @@ const WithImgTemplate = (args) =>
     <img slot="img" src=
     "https://media.geeksforgeeks.org/wp-content/uploads/20190506164011/logo3.png" 
              alt="GeeksforGeeks logo">
+    <ifx-button slot="action" variant="solid" color="primary">${args.label}</ifx-button>
       </ifx-card>`;
 
 export const Default = DefaultTemplate.bind({});
@@ -35,9 +36,14 @@ WithList.args = {
 };
 
 export const WithImg = WithImgTemplate.bind({});
-WithImg.args = {
-  button: false,
-};
+// WithImg.argTypes = {
+//   button: {
+//     table: {
+//       disable: true,
+//     }
+//   }
+// };
+
 
 export const WithSubtitle = DefaultTemplate.bind({});
 WithSubtitle.args = {
