@@ -26,8 +26,6 @@ const WithImgTemplate = (args) =>
       </ifx-card>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.args = {
-};
 
 export const WithList = DefaultTemplate.bind({});
 WithList.args = {
@@ -35,15 +33,7 @@ WithList.args = {
   list: true,
 };
 
-export const WithImg = WithImgTemplate.bind({});
-// WithImg.argTypes = {
-//   button: {
-//     table: {
-//       disable: true,
-//     }
-//   }
-// };
-
+export const WithImage = WithImgTemplate.bind({});
 
 export const WithSubtitle = DefaultTemplate.bind({});
 WithSubtitle.args = {
