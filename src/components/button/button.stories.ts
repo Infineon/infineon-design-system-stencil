@@ -34,11 +34,7 @@ export default {
 
 
 const DefaultTemplate = (args) => 
-`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}" position="${args.position}">
-
-const DefaultTemplate = (args) =>
-  `<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
-</ifx-button>`;
+`<ifx-button label="${args.label}" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}" position="${args.position}"></ifx-button>
 
 const WithSlotTemplate = (args) =>
   `<ifx-button variant="${args.variant}" color="${args.color}" size="${args.size}" >
@@ -47,8 +43,7 @@ const WithSlotTemplate = (args) =>
 
 const WithIconTemplateToTheLeft = (args) =>
   `<ifx-button label="${args.label}" icon="yes" variant="${args.variant}" color="${args.color}" size="${args.size}" disabled="${args.disabled}" icon="${args.icon}">
-
-</ifx-button>`;
+   </ifx-button>`;
 
 export const Default = DefaultTemplate.bind({});
 export const WithSlot = WithSlotTemplate.bind({});
