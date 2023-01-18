@@ -23,14 +23,15 @@ jobs:
         run: git clean -fdx
       
       - name: Install dependencies
-        run: |
-          if [ -e yarn.lock ]; then
-          yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
+        run: npm i
+        # run: |
+        #   if [ -e yarn.lock ]; then
+        #   yarn install --frozen-lockfile
+        #   elif [ -e package-lock.json ]; then
+        #   npm ci
+        #   else
+        #   npm i
+        #   fi
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
