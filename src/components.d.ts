@@ -7,15 +7,15 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface IfxButton {
-        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
-        "href"?: string;
+        "href": string;
         "icon": boolean;
-        "iconOnly"?: boolean;
+        "iconOnly": boolean;
         "iconPosition": 'before' | 'after';
         "label": string;
         "size": 's' | 'm';
-        "variant"?: 'solid' | 'outline' | 'outline-text';
+        "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
         "button": boolean;

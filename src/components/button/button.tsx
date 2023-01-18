@@ -9,14 +9,14 @@ import classNames from 'classnames';
 
 export class Button {
   @Prop() label: string;
-  @Prop() variant?: 'solid' | 'outline' | 'outline-text';
-  @Prop() color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+  @Prop() variant: 'solid' | 'outline' | 'outline-text';
+  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
-  @Prop() iconOnly?: boolean = false;
+  @Prop() iconOnly: boolean = false;
   @Prop({ reflect: true }) iconPosition: 'before' | 'after' = 'before';
-  @Prop() href?: string;
+  @Prop() href: string;
 
 
   render() {
