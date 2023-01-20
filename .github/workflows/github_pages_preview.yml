@@ -8,6 +8,7 @@ on:
       - reopened
       - synchronize
       - closed
+      - edited
 
 concurrency: preview-${{ github.ref }}
 
