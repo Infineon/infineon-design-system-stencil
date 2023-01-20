@@ -110,16 +110,16 @@ node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
 <p align="right"><a href="#tableContent">back to top</a></p> -->
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage of components
 
-Explore our current components in Storybook.
+Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
 
-<!-- ADD HERE: link to storybook -->
-<!-- https://storybook-bootstrap.icp.infineon.com -->
+https://infineon.github.io/infineon-design-system-stencil
+
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-## Local Development
+## Local Development of new components for Storybook
 
 ### Installation
 
@@ -139,17 +139,25 @@ npm install
 To deploy Storybook, we first need to export it as a static web app.
 To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
-```bash
-yarn run storybook-build-watch
-```
-
-or
+For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
-npm run storybook-build-watch
+yarn/npm run storybook-build-prepare
 ```
 
-This will generate a static Storybook in the ```storybook-static``` directory. We add --watch so that the storybook automatically updates in case of changes.
+To build storybook for local preview, run:
+
+```bash
+yarn/npm run storybook-build
+```
+
+or (to rebuild on changes)
+
+```bash
+yarn/npm run storybook-build-watch
+```
+
+This will generate a static Storybook in the ```storybook-static``` directory. We can add --watch so that the storybook automatically updates in case of changes.
 
 ### Start Storybook
 
