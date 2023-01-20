@@ -164,13 +164,7 @@ This will generate a static Storybook in the ```storybook-static``` directory. W
 To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
 
 ```bash
-yarn run storybook-start
-```
-
-or
-
-```bash
-npm run storybook-start
+yarn/npm run storybook-start
 ```
 
 ```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
