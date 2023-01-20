@@ -11,7 +11,7 @@
 
 .btn {
   font-family: tokens.$font-family-body;
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
   vertical-align: middle;
   user-select: none;
@@ -19,6 +19,615 @@
   font-size: tokens.$font-size-l;
   font-weight: tokens.$font-weight-regular;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 16px;
+  gap: 8px;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 1px;
+  font-weight: 600;
+  padding: 0px 16px;
+  min-width: 80px;
+  min-height: 40px;
+  line-height: 24px;
+  outline: none;
+
+  &.btn.btn-primary,
+  &.btn.btn--outline-primary,
+  &.btn.btn-secondary,
+  &.btn.btn--outline-secondary,
+  &.btn.btn-success,
+  &.btn.btn--outline-success,
+  &.btn.btn-danger,
+  &.btn.btn--outline-danger,
+  &.btn.btn-warning,
+  &.btn.btn--outline-warning,
+  &.btn.btn--outline-text {
+    &:focus {
+      box-shadow: none;
+
+    }
+  }
+
+  &.btn.btn-primary,
+  &.btn.btn--outline-primary,
+  &.btn.btn-secondary,
+  &.btn.btn--outline-secondary,
+  &.btn.btn-success,
+  &.btn.btn--outline-success,
+  &.btn.btn-danger,
+  &.btn.btn--outline-danger,
+  &.btn.btn-warning,
+  &.btn.btn--outline-warning,
+  &.btn.btn--outline-text {
+    &:focus-visible {
+      box-shadow: 0 0 0 3px #B4DDD8;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 1;
+    background-color: tokens.$color-gray-300;
+    border-color: tokens.$color-gray-300;
+    color: tokens.$color-text-white;
+  }
+
+  &.btn.btn-primary,
+  &.btn.btn-secondary,
+  &.btn.btn-success,
+  &.btn.btn-danger,
+  &.btn.btn-warning {
+    &.active {
+      & .btn-badge {
+        color: tokens.$color-text-black;
+      }
+    }
+  }
+
+  &.btn.btn--outline-primary,
+  &.btn.btn--outline-secondary,
+  &.btn.btn--outline-success,
+  &.btn.btn--outline-danger,
+  &.btn.btn--outline-warning {
+
+    &:disabled,
+    &.disabled {
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+  }
+
+  &.btn.btn-primary {
+    &:focus {
+      background-color: tokens.$color-default-500;
+      border-color: tokens.$color-default-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-default-600;
+      border-color: tokens.$color-default-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-default-700;
+      border-color: tokens.$color-default-700;
+    }
+
+  }
+
+  &.btn.btn--outline-primary:not(:disabled, .disabled) {
+    .btn-badge {
+      background-color: tokens.$color-default-500;
+      color: tokens.$color-text-white;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-default-600;
+      border-color: tokens.$color-default-600;
+
+      .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-default-700;
+      border-color: tokens.$color-default-700;
+
+      & .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+  }
+
+  &.btn.btn-secondary {
+    &:focus {
+      background-color: tokens.$color-highlight-500;
+      border-color: tokens.$color-highlight-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-highlight-600;
+      border-color: tokens.$color-highlight-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-highlight-700;
+      border-color: tokens.$color-highlight-700;
+    }
+  }
+
+  &.btn.btn--outline-secondary:not(:disabled, .disabled) {
+    .btn-badge {
+      background-color: tokens.$color-highlight-500;
+      color: tokens.$color-text-white;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-highlight-600;
+      border-color: tokens.$color-highlight-600;
+
+      .btn.btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-highlight-700;
+      border-color: tokens.$color-highlight-700;
+
+      & .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+  }
+
+  &.btn.btn-success:not(:disabled, .disabled) {
+    & .spinner-border {
+      color: tokens.$color-text-black;
+    }
+
+    &:focus {
+      background-color: tokens.$color-success-500;
+      border-color: tokens.$color-success-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-success-600;
+      border-color: tokens.$color-success-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-success-700;
+      border-color: tokens.$color-success-700;
+    }
+  }
+
+  &.btn.btn--outline-success:not(:disabled, .disabled) {
+    color: tokens.$color-text-black;
+
+    .btn-badge {
+      background-color: tokens.$color-success-500;
+      color: tokens.$color-text-white;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: tokens.$color-success-600;
+      border-color: tokens.$color-success-600;
+
+      .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-black;
+      }
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-success-700;
+      border-color: tokens.$color-success-700;
+
+      & .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-black;
+      }
+    }
+  }
+
+  &.btn.btn-danger {
+    &:focus {
+      background-color: tokens.$color-danger-500;
+      border-color: tokens.$color-danger-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-danger-600;
+      border-color: tokens.$color-danger-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-danger-700;
+      border-color: tokens.$color-danger-700;
+    }
+  }
+
+  &.btn.btn--outline-danger:not(:disabled, .disabled) {
+    .btn-badge {
+      background-color: tokens.$color-danger-500;
+      color: tokens.$color-text-white;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-danger-600;
+      border-color: tokens.$color-danger-600;
+
+      .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-danger-700;
+      border-color: tokens.$color-danger-700;
+
+      & .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-white;
+      }
+    }
+  }
+
+  &.btn.btn-warning:not(:disabled, .disabled) {
+    & .spinner-border {
+      color: tokens.$color-text-black;
+    }
+
+    &:focus {
+      background-color: tokens.$color-warning-500;
+      border-color: tokens.$color-warning-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-warning-600;
+      border-color: tokens.$color-warning-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-warning-700;
+      border-color: tokens.$color-warning-700;
+    }
+  }
+
+  &.btn.btn--outline-warning:not(:disabled, .disabled) {
+    color: tokens.$color-text-black;
+
+    .btn-badge {
+      background-color: tokens.$color-warning-500;
+      color: tokens.$color-text-white;
+    }
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: tokens.$color-warning-600;
+      border-color: tokens.$color-warning-600;
+
+      .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-black;
+      }
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-warning-700;
+      border-color: tokens.$color-warning-700;
+
+      .btn-badge {
+        background-color: tokens.$color-bg-white;
+        color: tokens.$color-text-black;
+      }
+
+      & .spinner-border {
+        color: tokens.$color-text-black;
+      }
+    }
+  }
+
+  &.btn.btn--primary-outline-text {
+    background-color: transparent;
+    color: tokens.$color-default-500;
+
+    &:hover {
+      color: tokens.$color-default-600;
+
+      & svg {
+        stroke: tokens.$color-default-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-default-700;
+
+      & svg {
+        stroke: tokens.$color-default-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg {
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg {
+      stroke: tokens.$color-default-500;
+    }
+  }
+
+  &.btn.btn--secondary-outline-text {
+    background-color: transparent;
+    color: tokens.$color-highlight-500;
+
+    &:hover {
+      color: tokens.$color-highlight-600;
+
+      & svg {
+        stroke: tokens.$color-highlight-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-highlight-700;
+
+      & svg {
+        stroke: tokens.$color-highlight-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg {
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg {
+      stroke: tokens.$color-highlight-500;
+    }
+  }
+
+  &.btn.btn--success-outline-text {
+    background-color: transparent;
+    color: tokens.$color-success-500;
+
+    &:hover {
+      color: tokens.$color-success-600;
+
+      & svg {
+        stroke: tokens.$color-success-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-success-700;
+
+      & svg {
+        stroke: tokens.$color-success-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg {
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg {
+      stroke: tokens.$color-success-500;
+    }
+  }
+
+  &.btn.btn--danger-outline-text {
+    background-color: transparent;
+    color: tokens.$color-danger-500;
+
+    &:hover {
+      color: tokens.$color-danger-600;
+
+      & svg {
+        stroke: tokens.$color-danger-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-danger-700;
+
+      & svg {
+        stroke: tokens.$color-danger-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg {
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg {
+      stroke: tokens.$color-danger-500;
+    }
+  }
+
+  &.btn.btn--warning-outline-text {
+    background-color: transparent;
+    color: tokens.$color-warning-500;
+
+    &:hover {
+      color: tokens.$color-warning-600;
+
+      & svg {
+        stroke: tokens.$color-warning-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-warning-700;
+
+      & svg {
+        stroke: tokens.$color-warning-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg {
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg {
+      stroke: tokens.$color-warning-500;
+    }
+  }
+
+  &.btn.btn--primary svg.svg-inline--fa,
+  &.btn.btn--outline-primary svg.svg-inline--fa,
+  &.btn.btn--secondary svg.svg-inline--fa,
+  &.btn.btn--outline-secondary svg.svg-inline--fa,
+  &.btn.btn--success svg.svg-inline--fa,
+  &.btn.btn--outline-success svg.svg-inline--fa,
+  &.btn.btn--danger svg.svg-inline--fa,
+  &.btn.btn--outline-danger svg.svg-inline--fa,
+  &.btn.btn--warning svg.svg-inline--fa,
+  &.btn.btn--outline-warning svg.svg-inline--fa {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.btn.btn--outline-primary,
+  &.btn.btn--outline-secondary,
+  &.btn.btn--outline-success,
+  &.btn.btn--outline-danger,
+  &.btn.btn--outline-warning {
+    & .spinner-border {
+      color: tokens.$color-text-black;
+    }
+  }
+
+  & .spinner-border {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+    color: tokens.$color-text-white;
+  }
 }
 
 .btn:not(.disabled) {
@@ -30,20 +639,23 @@
   background-color: tokens.$color-default-500;
   border-color: tokens.$color-default-500;
 
-  &:focus {
-    background-color: tokens.$color-default-500;
-    border-color: tokens.$color-default-500;
-  }
+  // &:focus {
+  //   background-color: tokens.$color-default-500;
+  //   border-color: tokens.$color-default-500;
+  // }
 
-  &:hover {
-    background-color: tokens.$color-default-600;
-    border-color: tokens.$color-default-600;
-  }
+  // &:hover {
+  //   background-color: tokens.$color-default-600;
+  //   border-color: tokens.$color-default-600;
+  // }
 
-  &:active,
-  &.active {
-    background-color: tokens.$color-default-700;
-    border-color: tokens.$color-default-700;
+  // &:active,
+  // &.active {
+  //   background-color: tokens.$color-default-700;
+  //   border-color: tokens.$color-default-700;
+  // }
+  & svg {
+    stroke: tokens.$color-text-white;
   }
 }
 
@@ -51,65 +663,145 @@
   background-color: tokens.$color-bg-white;
   color: tokens.$color-default-500;
   border-color: tokens.$color-default-500;
+
+  & svg {
+    stroke: tokens.$color-default-500;
+  }
+
 }
 
 .btn.btn--secondary {
   color: tokens.$color-text-white;
   background-color: tokens.$color-highlight-500;
   border-color: tokens.$color-highlight-500;
+
+  & svg {
+    stroke: tokens.$color-text-white;
+  }
+
 }
 
 .btn.btn--outline-secondary {
   background-color: tokens.$color-bg-white;
   color: tokens.$color-highlight-500;
   border-color: tokens.$color-highlight-500;
+
+  & svg {
+    stroke: tokens.$color-highlight-500;
+  }
+
 }
 
 .btn.btn--success {
   color: tokens.$color-text-black;
   background-color: tokens.$color-success-500;
   border-color: tokens.$color-success-500;
+
+  & svg {
+    stroke: tokens.$color-text-black;
+  }
+
 }
 
 .btn.btn--outline-success {
   background-color: tokens.$color-bg-white;
   border-color: tokens.$color-success-500;
+
+  & svg {
+    stroke: tokens.$color-text-black;
+  }
+
 }
 
 .btn.btn--danger {
   color: tokens.$color-text-white;
   background-color: tokens.$color-danger-500;
   border-color: tokens.$color-danger-500;
+
+  & svg {
+    stroke: tokens.$color-text-white;
+  }
+
 }
 
 .btn.btn--outline-danger {
   background-color: tokens.$color-bg-white;
   color: tokens.$color-danger-500;
   border-color: tokens.$color-danger-500;
+
+  & svg {
+    stroke: tokens.$color-danger-500;
+  }
+
 }
 
 .btn.btn--warning {
   color: tokens.$color-text-black;
   background-color: tokens.$color-warning-500;
   border-color: tokens.$color-warning-500;
+
+  & svg {
+    stroke: tokens.$color-text-black;
+  }
+
 }
 
 .btn.btn--outline-warning {
   background-color: tokens.$color-bg-white;
   border-color: tokens.$color-warning-500;
+
+  & svg {
+    stroke: tokens.$color-text-black;
+
+  }
+}
+
+
+.ifx {
+  &__btn-icon {
+    &--before {
+      margin-right: 10px;
+    }
+
+    &--after {
+      margin-left: 10px;
+    }
+  }
+}
+
+.btn-badge {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  padding: 2px 8px;
+  min-width: 18px;
+  min-height: 18px;
+  margin-left: 12px;
+  background-color: tokens.$color-bg-white;
+  color: tokens.$color-text-black;
 }
 
 .btn.btn--size-small {
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
-  min-height: var(--min-height-small);
-  padding-left: var(--spacing-x-left-small);
-  padding-right: var(--spacing-x-right-small);
+  // font-size: var(--font-size-small);
+  // line-height: var(--line-height-small);
+  // min-height: var(--min-height-small);
+  // padding-left: var(--spacing-x-left-small);
+  // padding-right: var(--spacing-x-right-small);
+
+  font-size: tokens.$font-size-s;
+  min-width: 71px;
+  min-height: 32px;
+  line-height: 16px;
+
+  & svg.svg-inline--fa {
+    vertical-align: -2.5px;
+  }
 }
 
 .btn.btn--icon-before:not(.btn--icon-only) ::slotted(*) {
   margin-right: var(--spacing-icon-x);
   margin-left: calc(var(--spacing-icon-x) * -1);
+
 }
 
 .btn.btn--icon-before:not(.btn--icon-only).btn--size-small ::slotted(*) {

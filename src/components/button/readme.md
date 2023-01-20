@@ -16,6 +16,7 @@
 | `iconOnly`     | `icon-only`     |             | `boolean`                                                        | `false`     |
 | `iconPosition` | `icon-position` |             | `"after" \| "before"`                                            | `'before'`  |
 | `label`        | `label`         |             | `string`                                                         | `undefined` |
+| `position`     | `position`      |             | `string`                                                         | `'left'`    |
 | `size`         | `size`          |             | `"m" \| "s"`                                                     | `undefined` |
 | `target`       | `target`        |             | `string`                                                         | `'_self'`   |
 | `variant`      | `variant`       |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |

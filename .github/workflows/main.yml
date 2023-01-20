@@ -6,7 +6,7 @@ on:
       - opened
       - reopened
       - synchronize # canary on new commit
-  push:
+   push:
     branches:
       - master
 

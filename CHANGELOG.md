@@ -1,3 +1,37 @@
+# v0.0.45 (Wed Jan 18 2023)
+
+#### 🐛 Bug Fix
+
+- Update button.stories.ts ([@tishoyanchev](https://github.com/tishoyanchev))
+- Merge branch 'master' into feature/button ([@tishoyanchev](https://github.com/tishoyanchev))
+- updated button ([@tishoyanchev](https://github.com/tishoyanchev))
+- no commit ([@tishoyanchev](https://github.com/tishoyanchev))
+- non-commit ([@tishoyanchev](https://github.com/tishoyanchev))
+- button update ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- button latest version ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v0.0.44 (Thu Jan 12 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+- button story with svg icon and slot for label (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.43 (Thu Jan 12 2023)
 
 #### ⚠️ Pushed to `master`

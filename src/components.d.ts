@@ -14,6 +14,7 @@ export namespace Components {
         "iconOnly": boolean;
         "iconPosition": 'before' | 'after';
         "label": string;
+        "position": string;
         "setFocus": () => Promise<void>;
         "size": 's' | 'm';
         "target": string;
@@ -80,6 +81,7 @@ declare namespace LocalJSX {
         "iconOnly"?: boolean;
         "iconPosition"?: 'before' | 'after';
         "label"?: string;
+        "position"?: string;
         "size"?: 's' | 'm';
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';

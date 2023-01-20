@@ -14,6 +14,8 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
+  @Prop() position: string = 'left';
+
   @Prop() iconOnly: boolean = false;
   @Prop({ reflect: true }) iconPosition: 'before' | 'after' = 'before';
   @Prop() href: string;
@@ -54,30 +56,33 @@ export class Button {
   }
 
 
+
   getVariantClass() {
     return `${this.variant}` === "outline"
       ? `outline-${this.color}`
       : `${this.variant}` === 'outline-text'
-        ? 'outline-text'
+        ? `${this.color}-outline-text`
         : `${this.color}`;
   }
 
   getSizeClass() {
     return `${this.size}` === "s"
-      ? "small"
+      ? "btn--size-small"
       : "";
   }
 
   getClassNames() {
+
     return classNames(
       'btn',
-      this.size && `btn--size-${this.getSizeClass()}`,
+      this.size && `${this.getSizeClass()}`,
       this.variant && `btn--${this.getVariantClass()}`,
       this.iconOnly && `btn--icon-only`,
       !this.iconOnly &&
       this.iconPosition &&
       `btn--icon-${this.iconPosition}`,
-      this.disabled && !this.href && `btn--disabled`
+      this.disabled ? 'disabled' : ''
+
     );
   }
 }
