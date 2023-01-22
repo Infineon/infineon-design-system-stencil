@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'SourceSansPro';
+  font-style: italic;
+  font-weight: bold;
+  src: url('../../node_modules/@infineon/design-system-tokens/dist/fonts/source-sans-pro-v18-latin/source-sans-pro-v18-latin-600.woff');
+}
+
+:root {
+  font-family: 'SourceSansPro', sans-serif;
+}

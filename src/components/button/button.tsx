@@ -14,10 +14,9 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
-  @Prop() position: string = 'left';
 
   @Prop() iconOnly: boolean = false;
-  @Prop({ reflect: true }) iconPosition: 'before' | 'after' = 'before';
+  @Prop({ reflect: true }) iconPosition: 'left' | 'right' = 'left';
   @Prop() href: string;
   @Prop() target: string = '_self';
 
@@ -72,12 +71,11 @@ export class Button {
   }
 
   getClassNames() {
-
     return classNames(
       'btn',
       this.size && `${this.getSizeClass()}`,
       this.variant && `btn--${this.getVariantClass()}`,
-      this.iconOnly && `btn--icon-only`,
+      this.icon && this.iconOnly && `btn--icon-only`,
       !this.iconOnly &&
       this.iconPosition &&
       `btn--icon-${this.iconPosition}`,

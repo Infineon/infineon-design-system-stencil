@@ -12,9 +12,8 @@ export namespace Components {
         "href": string;
         "icon": boolean;
         "iconOnly": boolean;
-        "iconPosition": 'before' | 'after';
+        "iconPosition": 'left' | 'right';
         "label": string;
-        "position": string;
         "setFocus": () => Promise<void>;
         "size": 's' | 'm';
         "target": string;
@@ -79,9 +78,8 @@ declare namespace LocalJSX {
         "href"?: string;
         "icon"?: boolean;
         "iconOnly"?: boolean;
-        "iconPosition"?: 'before' | 'after';
+        "iconPosition"?: 'left' | 'right';
         "label"?: string;
-        "position"?: string;
         "size"?: 's' | 'm';
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
