@@ -13,7 +13,21 @@
 
 <body>
 
-  <ifx-button label="Button" color="warning" size="m" icon="true" position="left" variant="outline"  ></ifx-button>
+  <ifx-dropdown size="m">
+    <ifx-button slot="trigger">dropdown</ifx-button>
+    <ifx-dropdown-menu>
+      <ifx-dropdown-search />
+      <ifx-dropdown-filter>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+      </ifx-dropdown-filter>
+      <ifx-dropdown-menu-item>item 1</ifx-dropdown-menu-item>
+      <ifx-dropdown-menu-item>item 2</ifx-dropdown-menu-item>
+      <ifx-dropdown-menu-item>item 3</ifx-dropdown-menu-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
 
 
 </body>
