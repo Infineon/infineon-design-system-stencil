@@ -1,4 +1,4 @@
-import { Component, Element, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
@@ -14,25 +14,6 @@ export class Card {
   @Prop() button: boolean;
   @Prop() list: boolean;
 
-  @Element() hostElement: HTMLElement;
-  private action: HTMLElement;
-
-  componentDidLoad() {
-
-    const actionSlot = this.hostElement.querySelector(
-      '[slot="action"]'
-    ) as HTMLElement;
-
-    if (actionSlot && actionSlot.tagName.toUpperCase() === 'IFX-BUTTON') {
-      this.action = actionSlot.shadowRoot.querySelector('button');
-    } else {
-      this.action = actionSlot;
-    }
-    console.log("button: ", this.button, " -  slot name=action: ", this.action);
-
-
-    // this.setTriggerAttributes();
-  }
 
   render() {
     return (
@@ -56,8 +37,6 @@ export class Card {
                 : ""}
 
             </div>
-
-
           </div>
 
           {`${this.list}` === "true"
