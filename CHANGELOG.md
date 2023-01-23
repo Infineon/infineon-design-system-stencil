@@ -1,3 +1,16 @@
+# v0.0.46 (Mon Jan 23 2023)
+
+#### 🐛 Bug Fix
+
+- card with nested button component [#10](https://github.com/Infineon/infineon-design-system-stencil/pull/10) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.45 (Wed Jan 18 2023)
 
 #### 🐛 Bug Fix
