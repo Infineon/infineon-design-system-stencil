@@ -16,7 +16,7 @@ export const parameters = {
     // canvas: {
     //   hidden: true,
     // },
-    'storybook/docs/panel': { index: -1 },
+    // 'storybook/docs/panel': { index: -1 },
   },
   viewMode: 'docs',
 
