@@ -13,21 +13,17 @@
 | `headline` | `headline` |             | `string`  | `undefined` |
 | `list`     | `list`     |             | `boolean` | `undefined` |
 | `skyline`  | `skyline`  |             | `boolean` | `undefined` |
+| `subtitle` | `subtitle` |             | `string`  | `undefined` |
 | `text`     | `text`     |             | `string`  | `undefined` |
 
 
-## Dependencies
+## Shadow Parts
 
-### Depends on
+| Part       | Description |
+| ---------- | ----------- |
+| `"action"` |             |
+| `"img"`    |             |
 
-- [ifx-button](../button)
-
-### Graph
-```mermaid
-graph TD;
-  ifx-card --> ifx-button
-  style ifx-card fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 
