@@ -18,12 +18,18 @@ export class Dropdown {
   @Element() el;
 
   getDropdownMenu() {
-    const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
-    return dropdownMenu
+    const dropdownMenuComponent = document.querySelector('ifx-dropdown-menu').shadowRoot;
+    const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
+    //const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
+    //console.log('inside dropdown', dropdownMenuElement)
+    return dropdownMenuElement
   }
 
   getDropdownWrapper() {
+    //const dropdownComponent = document.querySelector('ifx-dropdown').shadowRoot;
+    //const dropdownElement = dropdownComponent.querySelector('.dropdown');
     const dropdownWrapper = this.el.shadowRoot.querySelector('.dropdown');
+    //console.log('dropdownWrapper', dropdownWrapper)
     return dropdownWrapper
   }
 
@@ -53,6 +59,7 @@ export class Dropdown {
   }
 
   addActiveMenuItem = (e) => {
+   
     if (typeof e.target.className !== 'string') return;
     if (e.target.className.includes('dropdown-menu')) return;
 
@@ -62,7 +69,8 @@ export class Dropdown {
     }
 
     if (this.filter) {
-      const input = e.target.querySelector('input')
+      const input = e.target.shadowRoot.querySelector('input')
+      console.log('e', input)
       if (input) {
         input.checked = !input.checked
       }
@@ -84,61 +92,33 @@ export class Dropdown {
   }
 
   addEventListeners() {
-    const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
+    const dropdownMenu = this.getDropdownMenu();
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
   }
 
   componentDidRender() {
+    //const slottedButton = this.el.shadowRoot.querySelector('slot[name=button]')
+    const buttonComponent = document.querySelector('ifx-button').shadowRoot;
+    const buttonElement = buttonComponent.querySelector('button');
+    buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+   
     this.addEventListeners()
   }
 
   render() {
 
-    const sizeClass =
-      `${this.size}` === "s"
-        ? "btn-s"
-        : "";
+    // const sizeClass =
+    //   `${this.size}` === "s"
+    //     ? "btn-s"
+    //     : "";
+
+    
 
     return (
       <div class='dropdown'>
-        <button onClick={this.toggleDropdownMenu.bind(this)} class={`dropdown-toggle btn btn-primary ${sizeClass} ${this.disabled ? 'disabled' : ''}`} type="button">
-          {/* {this.label} */}
-          <slot>{this.label}</slot>
-        </button>
-        <div class={`dropdown-menu ${this.icon ? 'showIcon' : ""}`}>
-
-          {this.search && <input class='inf__dropdown-search' type="text" placeholder="search" />}
-          {this.filter &&
-            <select class="inf__dropdown-select">
-              <option>Sort by</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          }
-
-          <a href="javascript:;" class="dropdown-item">
-            {this.filter && <input type="checkbox" id="checkbox" class="form-check-input" />}
-
-            <label htmlFor="checkbox" class="form-check-label">Action Default1</label>
-          </a>
-          <a href="javascript:;" class="dropdown-item">
-            {this.filter && <input type="checkbox" id="checkbox2" class="form-check-input" />}
-
-            <label htmlFor="checkbox2" class="form-check-label">Action Default2</label>
-          </a>
-          <a href="javascript:;" class="dropdown-item">
-            {this.filter && <input type="checkbox" id="checkbox3" class="form-check-input" />}
-
-            <label htmlFor="checkbox3" class="form-check-label">Action Default3</label>
-          </a>
-          <a href="javascript:;" class="dropdown-item">
-            {this.filter && <input type="checkbox" id="checkbox4" class="form-check-input" />}
-
-            <label htmlFor="checkbox4" class="form-check-label">Action Default4</label>
-          </a>
-        </div>
+        <slot name="button" />
+        <slot />
       </div>
     )
   }

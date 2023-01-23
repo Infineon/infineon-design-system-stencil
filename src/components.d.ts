@@ -30,6 +30,45 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxDropdownFilter {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
+    interface IfxDropdownItem {
+        "checkable": boolean;
+        "disabled": boolean;
+        "icon": boolean;
+        "label": string;
+        "size": 's' | 'm';
+    }
+    interface IfxDropdownMenu {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
+    interface IfxDropdownOption {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
+    interface IfxDropdownSearch {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
     interface InfineonIconStencil {
         "icon": any;
     }
@@ -53,6 +92,36 @@ declare global {
         prototype: HTMLIfxDropdownElement;
         new (): HTMLIfxDropdownElement;
     };
+    interface HTMLIfxDropdownFilterElement extends Components.IfxDropdownFilter, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownFilterElement: {
+        prototype: HTMLIfxDropdownFilterElement;
+        new (): HTMLIfxDropdownFilterElement;
+    };
+    interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownItemElement: {
+        prototype: HTMLIfxDropdownItemElement;
+        new (): HTMLIfxDropdownItemElement;
+    };
+    interface HTMLIfxDropdownMenuElement extends Components.IfxDropdownMenu, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownMenuElement: {
+        prototype: HTMLIfxDropdownMenuElement;
+        new (): HTMLIfxDropdownMenuElement;
+    };
+    interface HTMLIfxDropdownOptionElement extends Components.IfxDropdownOption, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownOptionElement: {
+        prototype: HTMLIfxDropdownOptionElement;
+        new (): HTMLIfxDropdownOptionElement;
+    };
+    interface HTMLIfxDropdownSearchElement extends Components.IfxDropdownSearch, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownSearchElement: {
+        prototype: HTMLIfxDropdownSearchElement;
+        new (): HTMLIfxDropdownSearchElement;
+    };
     interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
     }
     var HTMLInfineonIconStencilElement: {
@@ -63,6 +132,11 @@ declare global {
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
+        "ifx-dropdown-filter": HTMLIfxDropdownFilterElement;
+        "ifx-dropdown-item": HTMLIfxDropdownItemElement;
+        "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
+        "ifx-dropdown-option": HTMLIfxDropdownOptionElement;
+        "ifx-dropdown-search": HTMLIfxDropdownSearchElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
@@ -91,6 +165,45 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxDropdownFilter {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
+    interface IfxDropdownItem {
+        "checkable"?: boolean;
+        "disabled"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "size"?: 's' | 'm';
+    }
+    interface IfxDropdownMenu {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
+    interface IfxDropdownOption {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
+    interface IfxDropdownSearch {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
     interface InfineonIconStencil {
         "icon"?: any;
     }
@@ -98,6 +211,11 @@ declare namespace LocalJSX {
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-dropdown": IfxDropdown;
+        "ifx-dropdown-filter": IfxDropdownFilter;
+        "ifx-dropdown-item": IfxDropdownItem;
+        "ifx-dropdown-menu": IfxDropdownMenu;
+        "ifx-dropdown-option": IfxDropdownOption;
+        "ifx-dropdown-search": IfxDropdownSearch;
         "infineon-icon-stencil": InfineonIconStencil;
     }
 }
@@ -108,6 +226,11 @@ declare module "@stencil/core" {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
+            "ifx-dropdown-filter": LocalJSX.IfxDropdownFilter & JSXBase.HTMLAttributes<HTMLIfxDropdownFilterElement>;
+            "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
+            "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
+            "ifx-dropdown-option": LocalJSX.IfxDropdownOption & JSXBase.HTMLAttributes<HTMLIfxDropdownOptionElement>;
+            "ifx-dropdown-search": LocalJSX.IfxDropdownSearch & JSXBase.HTMLAttributes<HTMLIfxDropdownSearchElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }

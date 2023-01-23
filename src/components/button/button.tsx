@@ -45,6 +45,7 @@ export class Button {
       >
         {this.icon && this.position === 'left' && iconSVG }
         {this.label}
+        <slot />
         {this.icon && this.position === 'right' && iconSVG}
     
       </button>
