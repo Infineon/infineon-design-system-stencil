@@ -18,7 +18,7 @@ export const parameters = {
     // },
     // 'storybook/docs/panel': { index: -1 },
   },
-  viewMode: 'docs',
+  // viewMode: 'docs',
 
   docs: {
      source: {
