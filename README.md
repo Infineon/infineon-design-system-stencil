@@ -141,7 +141,7 @@ To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or
 For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
-yarn/npm run storybook-build-prepare
+yarn/npm run storybook-prepare
 ```
 
 To build storybook for local preview, run:
