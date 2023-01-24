@@ -1,3 +1,16 @@
+# v0.0.49 (Tue Jan 24 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of github.com:Infineon/infineon-design-system-stencil ([@g-rdknt](https://github.com/g-rdknt))
+- Add correct 'storybook-prepare' command to Readme ([@g-rdknt](https://github.com/g-rdknt))
+
+#### Authors: 1
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+
+---
+
 # v0.0.48 (Tue Jan 24 2023)
 
 #### ⚠️ Pushed to `master`
