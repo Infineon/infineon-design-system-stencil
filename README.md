@@ -25,7 +25,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#local-development">Local Development</a></li>
+    <li><a href="#local-development">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -119,7 +119,7 @@ https://infineon.github.io/infineon-design-system-stencil
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-## Local Development of new components for Storybook
+## Contributing
 
 ### Installation
 
