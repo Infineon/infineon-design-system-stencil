@@ -17,7 +17,6 @@ export class DropdownItem {
 
 
   render() {
-
     return (
        <a href="javascript:;" class="dropdown-item">
           {this.checkable && <input type="checkbox" id="checkbox4" class="form-check-input" />}

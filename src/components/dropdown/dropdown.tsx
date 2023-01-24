@@ -20,17 +20,17 @@ export class Dropdown {
   getDropdownMenu() {
     const dropdownMenuComponent = document.querySelector('ifx-dropdown-menu').shadowRoot;
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
-    //const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
-    //console.log('inside dropdown', dropdownMenuElement)
     return dropdownMenuElement
   }
 
   getDropdownWrapper() {
-    //const dropdownComponent = document.querySelector('ifx-dropdown').shadowRoot;
-    //const dropdownElement = dropdownComponent.querySelector('.dropdown');
     const dropdownWrapper = this.el.shadowRoot.querySelector('.dropdown');
-    //console.log('dropdownWrapper', dropdownWrapper)
     return dropdownWrapper
+  }
+
+  getDropdownItems() { 
+    const dropdownMenuItems = document.querySelectorAll('ifx-dropdown-item')
+    return dropdownMenuItems
   }
 
   handleClassList(el, type, className) {
@@ -52,35 +52,38 @@ export class Dropdown {
   }
 
   removeActiveMenuItem() {
-    const dropdownMenuItems = this.el.shadowRoot.querySelectorAll('.dropdown-item');
+    const dropdownMenuItems = this.getDropdownItems()
     for (let i = 0; i < dropdownMenuItems.length; i++) {
-      this.handleClassList(dropdownMenuItems[i], 'remove', 'active')
+      this.handleClassList(dropdownMenuItems[i].shadowRoot.querySelector('a'), 'remove', 'active')
     }
   }
 
-  addActiveMenuItem = (e) => {
-   
-    if (typeof e.target.className !== 'string') return;
-    if (e.target.className.includes('dropdown-menu')) return;
 
-    if (e.target.className.toLowerCase() === 'inf__dropdown-search'
-      || e.target.className.toLowerCase() === 'inf__dropdown-select') {
-      return;
+  addActiveMenuItem = (e) => {
+    let target = e.target;
+    const composedPath = e.composedPath()
+    const isCheckable = target.checkable;
+
+    if(target && target.className.includes('dropdown-menu')) return;
+    target = e.target.shadowRoot.querySelector('style').nextElementSibling
+   
+    if(composedPath[0].className === 'dropdown-item') { 
+      target.querySelector('input').checked = !target.querySelector('input').checked
     }
 
-    if (this.filter) {
-      const input = e.target.shadowRoot.querySelector('input')
-      console.log('e', input)
-      if (input) {
-        input.checked = !input.checked
-      }
+    if (target.className.toLowerCase() === 'inf__dropdown-search'
+      || target.className.toLowerCase() === 'inf__dropdown-select') {
+      return;
+    }
+    
+    if (isCheckable) { 
       return;
     }
 
     this.removeActiveMenuItem()
-    if (e.target.className === 'form-check-label') {
-      this.handleClassList(e.target.parentElement, 'add', 'active')
-    } else this.handleClassList(e.target, 'add', 'active')
+    if (target.firstChild.className === 'form-check-label') {
+      this.handleClassList(target.firstChild.parentElement, 'add', 'active')
+    } else this.handleClassList(target.firstChild, 'add', 'active')
 
     this.toggleDropdownMenu()
   }
@@ -98,7 +101,6 @@ export class Dropdown {
   }
 
   componentDidRender() {
-    //const slottedButton = this.el.shadowRoot.querySelector('slot[name=button]')
     const buttonComponent = document.querySelector('ifx-button').shadowRoot;
     const buttonElement = buttonComponent.querySelector('button');
     buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
@@ -107,14 +109,6 @@ export class Dropdown {
   }
 
   render() {
-
-    // const sizeClass =
-    //   `${this.size}` === "s"
-    //     ? "btn-s"
-    //     : "";
-
-    
-
     return (
       <div class='dropdown'>
         <slot name="button" />

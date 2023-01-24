@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element } from "@stencil/core";
+import { Component, Prop, h, Element, State } from "@stencil/core";
 
 @Component({
   tag: 'ifx-dropdown-filter',
@@ -14,19 +14,21 @@ export class DropdownFilter {
   @Prop() icon: boolean = false;
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
+  @State() options: Array<any> =[]
   @Element() el;
 
-  componentDidRender() { 
-    const item = this.el.shadowRoot.querySelector('option');
-    console.log('items', item)
+  componentWillRender() { 
+    const optionElements = this.el.querySelectorAll('option')
+    for(let i = 0; i < optionElements.length; i++) { 
+      this.options.push(optionElements[i])
+    }
   }
 
   render() {
-
-
     return  (
       <select class="inf__dropdown-select">
         <slot />
+        {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>
     )
   }
