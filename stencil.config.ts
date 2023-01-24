@@ -1,6 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
+// import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -27,11 +27,11 @@ export const config: Config = {
   plugins: [
     sass()
   ],
-  rollupPlugins: {
-    after: [
-      nodePolyfills(),
-    ]
-  },
+  // rollupPlugins: {
+  //   after: [
+  //     nodePolyfills(),
+  //   ]
+  // },
   extras: {
     cloneNodeFix: true,
     experimentalImportInjection: true,

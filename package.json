@@ -51,8 +51,7 @@
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
     "@stencil/core": "^2.16.0",
-    "classnames": "^2.3.2",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

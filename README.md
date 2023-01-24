@@ -70,9 +70,9 @@ For Vue: <b>main.js</b> <br />
 For Angular: <b>main.ts</b>
 
 ```bash
-import { applyPolyfills, defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
-applyPolyfills().then(() => { defineCustomElements(window)});
+defineCustomElements(window);
 ```
 
 ##### Additional steps for Angular
