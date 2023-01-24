@@ -1,3 +1,16 @@
+# v0.0.48 (Tue Jan 24 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of github.com:Infineon/infineon-design-system-stencil ([@g-rdknt](https://github.com/g-rdknt))
+- Add new font-weights for 'Source Sans Pro' ([@g-rdknt](https://github.com/g-rdknt))
+
+#### Authors: 1
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+
+---
+
 # v0.0.47 (Tue Jan 24 2023)
 
 #### 🐛 Bug Fix
