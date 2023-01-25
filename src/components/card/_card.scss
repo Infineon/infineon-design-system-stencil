@@ -1,5 +1,11 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
+
+:host {
+  --background: white --radius: 1px
+}
+
+
 .card {
   position: relative;
   display: flex;

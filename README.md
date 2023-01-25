@@ -25,7 +25,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#local-development">Local Development</a></li>
+    <li><a href="#local-development">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -70,9 +70,9 @@ For Vue: <b>main.js</b> <br />
 For Angular: <b>main.ts</b>
 
 ```bash
-import { applyPolyfills, defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
-applyPolyfills().then(() => { defineCustomElements(window)});
+defineCustomElements(window);
 ```
 
 ##### Additional steps for Angular
@@ -110,28 +110,27 @@ node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
 <p align="right"><a href="#tableContent">back to top</a></p> -->
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage of components
 
-Explore our current components in Storybook.
+Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
 
-<!-- ADD HERE: link to storybook -->
-<!-- https://storybook-bootstrap.icp.infineon.com -->
+https://infineon.github.io/infineon-design-system-stencil
+
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-## Local Development
+## Contributing
 
 ### Installation
+
+```bash
+git clone https://github.com/Infineon/infineon-design-system-stencil.git
+```
 
 Install all the modules and dependencies listed on the ```package.json``` file with:
 
 ```bash
-yarn install
-```
-
-or
-```bash
-npm install
+yarn/npm install
 ```
 
 ### Build Storybook
@@ -139,33 +138,43 @@ npm install
 To deploy Storybook, we first need to export it as a static web app.
 To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
 
-```bash
-yarn run storybook-build-watch
-```
-
-or
+For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
-npm run storybook-build-watch
+yarn/npm run storybook-prepare
 ```
 
-This will generate a static Storybook in the ```storybook-static``` directory. We add --watch so that the storybook automatically updates in case of changes.
+To build storybook for local preview, run:
+
+```bash
+yarn/npm run storybook-build
+```
+
+or (to automatically rebuild on changes)
+
+```bash
+yarn/npm run storybook-build-watch
+```
+
+This will generate a static Storybook in the ```storybook-static``` directory. We can add --watch so that the storybook automatically updates in case of changes.
 
 ### Start Storybook
 
 To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
 
 ```bash
-yarn run storybook-start
-```
-
-or
-
-```bash
-npm run storybook-start
+yarn/npm run storybook-start
 ```
 
 ```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
+
+### Development
+
++ Create an issue with your new feature description on Github
++ Go to the issue and create a feature from it. (Naming convention: 'feature/name-of-component').
++ After the feature is ready for testing, create a pull request and request review => On each new pull request, github actions trigger the deployment to a github pages preview url as well as a canary release that can be used to include and test the new feature in another web application
+
+
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 

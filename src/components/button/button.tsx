@@ -1,4 +1,5 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host, Method } from '@stencil/core';
+import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-button',
@@ -13,24 +14,46 @@ export class Button {
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
   @Prop() icon: boolean;
-  @Prop() position: string = 'left';
 
+  @Prop() iconOnly: boolean = false;
+  @Prop({ reflect: true }) iconPosition: 'left' | 'right' = 'left';
+  @Prop() href: string;
+  @Prop() target: string = '_self';
+
+  private focusableElement: HTMLElement;
+
+  @Method()
+  async setFocus() {
+    this.focusableElement.focus();
+  }
 
   render() {
-    const variantClass =
-      `${this.variant}` === "outline"
-        ? `outline-${this.color}`
-        : `${this.variant}` === 'outline-text'
-          ? `${this.color}-outline-text`
-          : `${this.color}`;
+    return (
+      <Host>
+        {this.href ? (
+          <a
+            ref={(el) => (this.focusableElement = el)}
+            class={this.getClassNames()}
+            href={this.href}
+            target={this.target}
+            rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
+          >
+            <slot />
+          </a>
+        ) : (
+          <button class={this.getClassNames()}
+            type="button"
+          >
+            <slot></slot>
+          </button>
+        )}
+      </Host>
 
-    const sizeClass =
-      `${this.size}` === "s"
-        ? "btn-s"
-        : "";
 
 
-    const iconSVG = <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 16 16"><title>star 16</title><g stroke-width="1" stroke-linejoin="round" fill="none" stroke="" stroke-linecap="round" class="nc-icon-wrapper"><polygon points="8,0.867 10.318,5.563 15.5,6.316 11.75,9.971 12.635,15.133 8,12.696 3.365,15.133 4.25,9.971 0.5,6.316 5.682,5.563 " data-cap="butt"></polygon> </g></svg>
+    );
+  }
+
 
 
      
@@ -49,6 +72,34 @@ export class Button {
         {this.icon && this.position === 'right' && iconSVG}
     
       </button>
+
+
+  getVariantClass() {
+    return `${this.variant}` === "outline"
+      ? `outline-${this.color}`
+      : `${this.variant}` === 'outline-text'
+        ? `${this.color}-outline-text`
+        : `${this.color}`;
+  }
+
+  getSizeClass() {
+    return `${this.size}` === "s"
+      ? "btn--size-small"
+      : "";
+  }
+
+  getClassNames() {
+    return classNames(
+      'btn',
+      this.size && `${this.getSizeClass()}`,
+      this.variant && `btn--${this.getVariantClass()}`,
+      this.icon && this.iconOnly && `btn--icon-only`,
+      !this.iconOnly &&
+      this.iconPosition &&
+      `btn--icon-${this.iconPosition}`,
+      this.disabled ? 'disabled' : ''
+
+
     );
   }
 }
