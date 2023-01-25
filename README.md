@@ -114,7 +114,7 @@ node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
 
 Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
 
-https://infineon.github.io/infineon-design-system-stencil
+https://infineon.github.io/infineon-design-system-stencil/pr-preview/pr-17
 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
