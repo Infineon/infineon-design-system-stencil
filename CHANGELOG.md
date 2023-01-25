@@ -1,3 +1,20 @@
+# v0.0.50 (Wed Jan 25 2023)
+
+#### 🐛 Bug Fix
+
+- new commit [#14](https://github.com/Infineon/infineon-design-system-stencil/pull/14) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- readme whitespace update (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.49 (Tue Jan 24 2023)
 
 #### ⚠️ Pushed to `master`
