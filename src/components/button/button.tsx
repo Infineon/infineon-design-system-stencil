@@ -13,7 +13,6 @@ export class Button {
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
-  @Prop() icon: boolean;
 
   @Prop() iconOnly: boolean = false;
   @Prop({ reflect: true }) iconPosition: 'left' | 'right' = 'left';
@@ -75,7 +74,7 @@ export class Button {
       'btn',
       this.size && `${this.getSizeClass()}`,
       this.variant && `btn--${this.getVariantClass()}`,
-      this.icon && this.iconOnly && `btn--icon-only`,
+      this.iconOnly && `btn--icon-only`,
       !this.iconOnly &&
       this.iconPosition &&
       `btn--icon-${this.iconPosition}`,

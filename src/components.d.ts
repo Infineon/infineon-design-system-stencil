@@ -10,7 +10,6 @@ export namespace Components {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
         "href": string;
-        "icon": boolean;
         "iconOnly": boolean;
         "iconPosition": 'left' | 'right';
         "label": string;
@@ -135,7 +134,6 @@ declare namespace LocalJSX {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
         "href"?: string;
-        "icon"?: boolean;
         "iconOnly"?: boolean;
         "iconPosition"?: 'left' | 'right';
         "label"?: string;
