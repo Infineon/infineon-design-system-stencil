@@ -12,7 +12,6 @@
 | `color`        | `color`         |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
 | `disabled`     | `disabled`      |             | `boolean`                                                        | `undefined` |
 | `href`         | `href`          |             | `string`                                                         | `undefined` |
-| `icon`         | `icon`          |             | `boolean`                                                        | `undefined` |
 | `iconOnly`     | `icon-only`     |             | `boolean`                                                        | `false`     |
 | `iconPosition` | `icon-position` |             | `"left" \| "right"`                                              | `'left'`    |
 | `label`        | `label`         |             | `string`                                                         | `undefined` |
