@@ -1,3 +1,15 @@
+# v0.0.52 (Wed Jan 25 2023)
+
+#### ⚠️ Pushed to `master`
+
+- version update (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.51 (Wed Jan 25 2023)
 
 #### 🐛 Bug Fix
