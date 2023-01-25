@@ -1,3 +1,44 @@
+# v0.0.63 (Wed Jan 25 2023)
+
+#### 🐛 Bug Fix
+
+- Merge branch 'feature/ifx-dropdown' [#16](https://github.com/Infineon/infineon-design-system-stencil/pull/16) (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v0.0.52 (Wed Jan 25 2023)
+
+#### ⚠️ Pushed to `master`
+
+- version update (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v0.0.51 (Wed Jan 25 2023)
+
+#### 🐛 Bug Fix
+
+- Feature/card and button [#15](https://github.com/Infineon/infineon-design-system-stencil/pull/15) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.50 (Wed Jan 25 2023)
 
 #### 🐛 Bug Fix
