@@ -65,7 +65,9 @@ export class Dropdown {
     const isCheckable = target.checkable;
 
     if(target && target.className.includes('dropdown-menu')) return;
-    target = e.target.shadowRoot.querySelector('style').nextElementSibling
+    if(e.target.shadowRoot.querySelector('style')) {
+      target = e.target.shadowRoot.querySelector('style').nextElementSibling
+    } else  target = e.target.shadowRoot.querySelector('a');
    
     if(composedPath[0].className === 'dropdown-item') { 
       target.querySelector('input').checked = !target.querySelector('input').checked
