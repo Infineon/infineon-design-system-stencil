@@ -1,36 +1,42 @@
 export default {
   title: "Components/Card",
   args: {
-    skyline: true,
+    skyline: false,
     headline: "Card Title",
+    subtitle: "Sub title",
     text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
     button: true,
     list: false,
+    label: "Click me",
   },
 };
 
-const DefaultTemplate = (args) => 
-`<ifx-card skyline="${args.skyline}" headline="${args.headline}" text="${args.text}" button="${args.button}" list="${args.list}">
-<ifx-button label="${args.label}"></ifx-button>
+const DefaultTemplate = (args) =>
+  `<ifx-card skyline="${args.skyline}" headline="${args.headline}" subtitle="${args.subtitle}" text="${args.text}" button="${args.button}" list="${args.list}">
+<ifx-button slot="action" variant="solid" color="primary">${args.label}</ifx-button>
 </ifx-card>`;
 
-export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
-  list: {
-    control: false,
-  },
-};
 
-export const KitchenSink = DefaultTemplate.bind({});
-KitchenSink.args = {
+const WithImgTemplate = (args) =>
+  `<ifx-card skyline="${args.skyline}" headline="${args.headline}" subtitle="${args.subtitle}" text="${args.text}" button="${args.button}" list="${args.list}">
+    <img slot="img" src=
+    "https://media.geeksforgeeks.org/wp-content/uploads/20190506164011/logo3.png" 
+             alt="GeeksforGeeks logo">
+    <ifx-button slot="action" variant="solid" color="primary">${args.label}</ifx-button>
+      </ifx-card>`;
+
+export const Default = DefaultTemplate.bind({});
+
+export const WithList = DefaultTemplate.bind({});
+WithList.args = {
   button: false,
   list: true,
 };
-KitchenSink.argTypes = {
-  button: {
-    control: false,
-  },
-  list: {
-    control: false,
-  },
+
+export const WithImage = WithImgTemplate.bind({});
+
+export const WithSubtitle = DefaultTemplate.bind({});
+WithSubtitle.args = {
+  skyline: true,
 };
+

@@ -9,10 +9,14 @@ export namespace Components {
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
+        "href": string;
         "icon": boolean;
+        "iconOnly": boolean;
+        "iconPosition": 'left' | 'right';
         "label": string;
-        "position": string;
+        "setFocus": () => Promise<void>;
         "size": 's' | 'm';
+        "target": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
@@ -20,6 +24,7 @@ export namespace Components {
         "headline": string;
         "list": boolean;
         "skyline": boolean;
+        "subtitle": string;
         "text": string;
     }
     interface IfxDropdown {
@@ -129,10 +134,13 @@ declare namespace LocalJSX {
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
+        "href"?: string;
         "icon"?: boolean;
+        "iconOnly"?: boolean;
+        "iconPosition"?: 'left' | 'right';
         "label"?: string;
-        "position"?: string;
         "size"?: 's' | 'm';
+        "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
@@ -140,6 +148,7 @@ declare namespace LocalJSX {
         "headline"?: string;
         "list"?: boolean;
         "skyline"?: boolean;
+        "subtitle"?: string;
         "text"?: string;
     }
     interface IfxDropdown {

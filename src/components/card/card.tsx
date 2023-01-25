@@ -1,46 +1,54 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
-  styleUrl: '../../index.scss',
+  styleUrl: '_card.scss',
   shadow: true,
 })
 
 export class Card {
   @Prop() skyline: boolean;
   @Prop() headline: string;
+  @Prop() subtitle: string;
   @Prop() text: string;
   @Prop() button: boolean;
   @Prop() list: boolean;
 
+
   render() {
     return (
-      <div class="card">
-        <div class="card-body">
-          {`${this.skyline}` === "true"
-            ? <div class="card-subtitle">More Information</div>
-            : null
-          }
+      <Host>
+        <div class="card">
+          <div class="card-body">
+            <div part="img">
+              <slot name="img" />
+            </div>
+            {`${this.skyline}` === "true"
+              ? <div class="card-subtitle">{this.subtitle}</div>
+              : null
+            }
 
-          <div class="card-title">{this.headline}</div>
+            <div class="card-title">{this.headline}</div>
 
-          <p class="card-text">{this.text}</p>
+            <p class="card-text">{this.text}</p>
+            <div part="action">
+              {this.button
+                ? <slot name="action" />
+                : ""}
 
-          {`${this.button}` === "true"
-            ? <ifx-button label="Go somewhere" variant="solid" color="primary" size="s" disabled={false} icon={false}/>
-            : null
-          }
-        </div>
+            </div>
+          </div>
 
-        {`${this.list}` === "true"
-          ? <div class="list-group list-group-flush">
+          {`${this.list}` === "true"
+            ? <div class="list-group list-group-flush">
               <div class="list-group-item">An item</div>
               <div class="list-group-item">A second item</div>
               <div class="list-group-item">A third item</div>
             </div>
-          : null
-        }
-      </div>
+            : null
+          }
+        </div>
+      </Host>
     );
   }
 }

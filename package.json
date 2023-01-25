@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.45",
+  "version": "0.0.49",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -42,7 +42,7 @@
     "watch-storybook": "start-storybook -p 6006",
     "watch-docs": "chokidar \"*.md\" -c \"yarn build-docs\" --initial",
     "watch-css": "chokidar \"src/**/*.scss\" -c \"yarn bundle-css\" --initial",
-    "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts .storybook",
+    "copy-fonts": "copyfiles -u 4 node_modules/@infineon/design-system-tokens/dist/fonts/**/* .storybook",
     "bundle-fonts": "copyfiles -u 4 ./node_modules/@infineon/design-system-tokens/dist/fonts/**/* dist",
     "bundle-assets": "copyfiles -u 1 ./public/* dist && copyfiles -u 1 ./public/**/* dist",
     "bundle-ts": "stencil build --docs",
@@ -51,7 +51,7 @@
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
     "@stencil/core": "^2.16.0",
-    "rollup-plugin-node-polyfills": "^0.2.1"
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

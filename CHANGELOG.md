@@ -1,3 +1,55 @@
+# v0.0.49 (Tue Jan 24 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of github.com:Infineon/infineon-design-system-stencil ([@g-rdknt](https://github.com/g-rdknt))
+- Add correct 'storybook-prepare' command to Readme ([@g-rdknt](https://github.com/g-rdknt))
+
+#### Authors: 1
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+
+---
+
+# v0.0.48 (Tue Jan 24 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of github.com:Infineon/infineon-design-system-stencil ([@g-rdknt](https://github.com/g-rdknt))
+- Add new font-weights for 'Source Sans Pro' ([@g-rdknt](https://github.com/g-rdknt))
+
+#### Authors: 1
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+
+---
+
+# v0.0.47 (Tue Jan 24 2023)
+
+#### 🐛 Bug Fix
+
+- removed nodePolyfills package, updated readme [#11](https://github.com/Infineon/infineon-design-system-stencil/pull/11) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v0.0.46 (Mon Jan 23 2023)
+
+#### 🐛 Bug Fix
+
+- card with nested button component [#10](https://github.com/Infineon/infineon-design-system-stencil/pull/10) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.45 (Wed Jan 18 2023)
 
 #### 🐛 Bug Fix
