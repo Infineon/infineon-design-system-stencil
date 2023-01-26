@@ -103,7 +103,7 @@ export class Dropdown {
   }
 
   componentDidRender() {
-    const buttonComponent = document.querySelector('ifx-button').shadowRoot;
+    const buttonComponent = this.el.querySelector('ifx-button').shadowRoot;
     const buttonElement = buttonComponent.querySelector('button');
     buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
    
