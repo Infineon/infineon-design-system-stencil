@@ -1,0 +1,16 @@
+{
+  "name": "vanilla-cdn",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "serve"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
