@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element } from "@stencil/core";
+import { Component, Prop, h, Element, Listen } from "@stencil/core";
 // import { calendar16 } from '@infineon/infineon-icons';
 
 @Component({
@@ -17,8 +17,16 @@ export class Dropdown {
   @Prop() filter: boolean = false;
   @Element() el;
 
+  @Listen('mousedown', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    const path = event.composedPath();
+    if (!path.includes(this.el)) {
+      this.closeDropdownMenu();
+    }
+  }
+
   getDropdownMenu() {
-    const dropdownMenuComponent = document.querySelector('ifx-dropdown-menu').shadowRoot;
+    const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
     return dropdownMenuElement
   }
@@ -29,7 +37,7 @@ export class Dropdown {
   }
 
   getDropdownItems() { 
-    const dropdownMenuItems = document.querySelectorAll('ifx-dropdown-item')
+    const dropdownMenuItems = this.el.querySelectorAll('ifx-dropdown-item')
     return dropdownMenuItems
   }
 
@@ -90,11 +98,7 @@ export class Dropdown {
     this.toggleDropdownMenu()
   }
 
-  handleOutsideClick(e) {
-    if (e.target.tagName.toLowerCase() === 'html') {
-      this.closeDropdownMenu()
-    } else return;
-  }
+
 
   addEventListeners() {
     const dropdownMenu = this.getDropdownMenu();
@@ -106,7 +110,6 @@ export class Dropdown {
     const buttonComponent = this.el.querySelector('ifx-button').shadowRoot;
     const buttonElement = buttonComponent.querySelector('button');
     buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
-   
     this.addEventListeners()
   }
 
