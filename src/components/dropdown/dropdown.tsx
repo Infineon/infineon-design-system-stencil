@@ -27,6 +27,7 @@ export class Dropdown {
 
   getDropdownMenu() {
     const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
+    console.log('dropdownmenu', dropdownMenuComponent)
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
     return dropdownMenuElement
   }
@@ -107,10 +108,13 @@ export class Dropdown {
   }
 
   componentDidRender() {
-    const buttonComponent = this.el.querySelector('ifx-button').shadowRoot;
-    const buttonElement = buttonComponent.querySelector('button');
-    buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
-    this.addEventListeners()
+    let buttonComponent = this.el.querySelector('ifx-button'); 
+    if(buttonComponent) { 
+      buttonComponent = buttonComponent.shadowRoot;
+      const buttonElement = buttonComponent.querySelector('button');
+      buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+      this.addEventListeners()
+    }
   }
 
   render() {
