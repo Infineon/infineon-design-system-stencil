@@ -26,7 +26,7 @@ export class DropdownMenu {
   
   render() {
     return (
-      <div class={`dropdown-menu ${this.isShown ? 'show' : ""} ${this.icon ? 'showIcon' : ""}`}>
+      <div class={`dropdown-menu ${this.isShown ? 'show nested' : ""} ${this.icon ? 'showIcon' : ""}`}>
         <slot />
       </div>
     )

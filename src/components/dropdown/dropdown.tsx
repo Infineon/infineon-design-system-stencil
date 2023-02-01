@@ -27,7 +27,6 @@ export class Dropdown {
 
   getDropdownMenu() {
     const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
-    console.log('dropdownmenu', dropdownMenuComponent)
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
     return dropdownMenuElement
   }
