@@ -17,11 +17,14 @@ export class DropdownItem {
   @Element() el;
 
   componentDidRender() { 
-    const dropdownColor = this.el.closest('ifx-dropdown').querySelector('ifx-button')?.color;
-    if(dropdownColor) { 
-      this.checkboxColor = dropdownColor;
+    const ifxDropdown = this.el.closest('ifx-dropdown')
+    if(ifxDropdown) { 
+      const ifxButton = this.el.closest('ifx-dropdown').querySelector('ifx-button');
+      if(ifxButton) { 
+        const ifxButtonColor = this.el.closest('ifx-dropdown').querySelector('ifx-button').color;
+        this.checkboxColor = ifxButtonColor;
+      }
     }
-    console.log(this.checkboxColor)
   }
 
   render() {
