@@ -8,6 +8,7 @@
  .dropdown-menu.show {
     display: inline-block;
     position: absolute;
+    z-index: 1000;
     inset: 0px auto auto 0px;
     min-width: 200px;
     padding: 0;
