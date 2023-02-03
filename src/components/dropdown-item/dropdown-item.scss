@@ -13,6 +13,38 @@
       background-color: rgba(0,0,0,0);
       text-decoration: none;
       color: tokens.$color-text-black;
+
+      &.primary  { 
+        input[type=checkbox] {
+          accent-color: tokens.$color-default-500;
+        }
+      }
+
+      &.secondary  { 
+        input[type=checkbox] {
+          accent-color: tokens.$color-highlight-500;
+        }
+      }
+
+      &.success  { 
+        input[type=checkbox] {
+          accent-color: tokens.$color-success-500;
+        }
+      }
+
+      &.danger  { 
+        input[type=checkbox] {
+          accent-color: tokens.$color-danger-500;
+        }
+      }
+
+      &.warning  { 
+        input[type=checkbox] {
+          accent-color: tokens.$color-warning-500;
+        }
+      }
+
+      
    
       & .form-check-label {
          flex: 1;
