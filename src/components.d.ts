@@ -6,6 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface IfxAlert {
+        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "icon": string;
+        "overflowing": boolean;
+    }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
@@ -70,6 +75,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
+    }
+    var HTMLIfxAlertElement: {
+        prototype: HTMLIfxAlertElement;
+        new (): HTMLIfxAlertElement;
+    };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
     var HTMLIfxButtonElement: {
@@ -119,6 +130,7 @@ declare global {
         new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
+        "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
@@ -130,6 +142,11 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface IfxAlert {
+        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "icon"?: string;
+        "overflowing"?: boolean;
+    }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
@@ -192,6 +209,7 @@ declare namespace LocalJSX {
         "icon"?: any;
     }
     interface IntrinsicElements {
+        "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-dropdown": IfxDropdown;
@@ -206,6 +224,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
