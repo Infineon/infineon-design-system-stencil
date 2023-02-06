@@ -82,7 +82,7 @@ export class Dropdown {
     }
 
     if (target.className.toLowerCase() === 'inf__search-input'
-      || target.className.toLowerCase() === 'inf__dropdown-select') {
+      || target.className.toLowerCase() === 'inf__filter-input') {
       return;
     }
     

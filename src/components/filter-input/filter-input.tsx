@@ -1,7 +1,7 @@
 import { Component, Prop, h, Element, State } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-dropdown-filter',
+  tag: 'ifx-filter-input',
   styleUrl: '../../index.scss',
   shadow: true
 })
@@ -26,7 +26,7 @@ export class DropdownFilter {
 
   render() {
     return  (
-      <select class="inf__dropdown-select">
+      <select class="inf__filter-input">
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>
