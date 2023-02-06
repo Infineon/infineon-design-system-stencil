@@ -1,7 +1,7 @@
 import { Component, Prop, h, Element } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-dropdown-search',
+  tag: 'ifx-search-input',
   styleUrl: '../../index.scss',
   shadow: true
 })
@@ -18,6 +18,6 @@ export class DropdownSearch {
 
 
   render() {
-    return <input class='inf__dropdown-search' type="text" placeholder="search" />
+    return <input class='inf__search-input' type="text" placeholder="search" />
   }
 }

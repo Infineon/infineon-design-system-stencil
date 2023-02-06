@@ -1,4 +1,4 @@
-# ifx-dropdown-search
+# ifx-search-input
 
 
 

@@ -81,7 +81,7 @@ export class Dropdown {
       target.querySelector('input').checked = !target.querySelector('input').checked
     }
 
-    if (target.className.toLowerCase() === 'inf__dropdown-search'
+    if (target.className.toLowerCase() === 'inf__search-input'
       || target.className.toLowerCase() === 'inf__dropdown-select') {
       return;
     }

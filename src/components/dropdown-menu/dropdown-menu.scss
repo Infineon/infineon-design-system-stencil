@@ -30,7 +30,7 @@
       color: tokens.$color-gray-400;
     }
 
-    & .inf__dropdown-search, .inf__dropdown-select {
+    & .inf__search-input, .inf__dropdown-select {
       width: 160px;
       min-height: calc(1.75em + 18px);
       font-size: 0.8125rem;
