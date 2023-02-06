@@ -45,7 +45,7 @@ const SearchTemplate = (args) =>
 `<ifx-dropdown>
 <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
 <ifx-dropdown-menu>
-  <ifx-dropdown-search></ifx-dropdown-search>
+  <ifx-search-input></ifx-search-input>
   <ifx-dropdown-item>item 1</ifx-dropdown-item>
   <ifx-dropdown-item checkable>item 2</ifx-dropdown-item>
   <ifx-dropdown-item checkable>item 3</ifx-dropdown-item>
