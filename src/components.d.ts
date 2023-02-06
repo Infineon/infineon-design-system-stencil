@@ -39,14 +39,6 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
-    interface IfxDropdownFilter {
-        "disabled": boolean;
-        "filter": boolean;
-        "icon": boolean;
-        "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
-    }
     interface IfxDropdownItem {
         "checkable": boolean;
         "disabled": boolean;
@@ -55,6 +47,14 @@ export namespace Components {
         "size": 's' | 'm';
     }
     interface IfxDropdownMenu {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
+    interface IfxFilterInput {
         "disabled": boolean;
         "filter": boolean;
         "icon": boolean;
@@ -99,12 +99,6 @@ declare global {
         prototype: HTMLIfxDropdownElement;
         new (): HTMLIfxDropdownElement;
     };
-    interface HTMLIfxDropdownFilterElement extends Components.IfxDropdownFilter, HTMLStencilElement {
-    }
-    var HTMLIfxDropdownFilterElement: {
-        prototype: HTMLIfxDropdownFilterElement;
-        new (): HTMLIfxDropdownFilterElement;
-    };
     interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
     }
     var HTMLIfxDropdownItemElement: {
@@ -116,6 +110,12 @@ declare global {
     var HTMLIfxDropdownMenuElement: {
         prototype: HTMLIfxDropdownMenuElement;
         new (): HTMLIfxDropdownMenuElement;
+    };
+    interface HTMLIfxFilterInputElement extends Components.IfxFilterInput, HTMLStencilElement {
+    }
+    var HTMLIfxFilterInputElement: {
+        prototype: HTMLIfxFilterInputElement;
+        new (): HTMLIfxFilterInputElement;
     };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
@@ -134,9 +134,9 @@ declare global {
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
-        "ifx-dropdown-filter": HTMLIfxDropdownFilterElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
+        "ifx-filter-input": HTMLIfxFilterInputElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
@@ -174,14 +174,6 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
-    interface IfxDropdownFilter {
-        "disabled"?: boolean;
-        "filter"?: boolean;
-        "icon"?: boolean;
-        "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
-    }
     interface IfxDropdownItem {
         "checkable"?: boolean;
         "disabled"?: boolean;
@@ -190,6 +182,14 @@ declare namespace LocalJSX {
         "size"?: 's' | 'm';
     }
     interface IfxDropdownMenu {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
+    interface IfxFilterInput {
         "disabled"?: boolean;
         "filter"?: boolean;
         "icon"?: boolean;
@@ -213,9 +213,9 @@ declare namespace LocalJSX {
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-dropdown": IfxDropdown;
-        "ifx-dropdown-filter": IfxDropdownFilter;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
+        "ifx-filter-input": IfxFilterInput;
         "ifx-search-input": IfxSearchInput;
         "infineon-icon-stencil": InfineonIconStencil;
     }
@@ -228,9 +228,9 @@ declare module "@stencil/core" {
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
-            "ifx-dropdown-filter": LocalJSX.IfxDropdownFilter & JSXBase.HTMLAttributes<HTMLIfxDropdownFilterElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
+            "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }

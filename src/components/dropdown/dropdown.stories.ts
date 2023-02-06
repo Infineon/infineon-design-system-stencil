@@ -59,12 +59,12 @@ const FilterTemplate = (args) =>
 `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
   <ifx-dropdown-menu>
-    <ifx-dropdown-filter>
+    <ifx-filter-input>
       <option value="">One</option>
       <option value="">Two</option>
       <option value="">Three</option>
       <option value="">Four</option>
-    </ifx-dropdown-filter>
+    </ifx-filter-input>
     <ifx-dropdown-item>item 1</ifx-dropdown-item>
     <ifx-dropdown-item checkable>item 2</ifx-dropdown-item>
     <ifx-dropdown-item checkable>item 3</ifx-dropdown-item>

@@ -1,4 +1,4 @@
-# ifx-dropdown-filter
+# ifx-filter-input
 
 
 
