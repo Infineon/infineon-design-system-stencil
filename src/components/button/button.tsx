@@ -47,9 +47,6 @@ export class Button {
           </button>
         )}
       </Host>
-
-
-
     );
   }
 
@@ -65,21 +62,20 @@ export class Button {
 
   getSizeClass() {
     return `${this.size}` === "s"
-      ? "btn--size-small"
+      ? "s"
       : "";
   }
 
   getClassNames() {
     return classNames(
       'btn',
-      this.size && `${this.getSizeClass()}`,
-      this.variant && `btn--${this.getVariantClass()}`,
-      this.iconOnly && `btn--icon-only`,
+      this.size && `btn-${this.getSizeClass()}`,
+      this.variant && `btn-${this.getVariantClass()}`,
+      this.iconOnly && `btn-icon-only`,
       !this.iconOnly &&
       this.iconPosition &&
       `btn--icon-${this.iconPosition}`,
       this.disabled ? 'disabled' : ''
-
     );
   }
 }
