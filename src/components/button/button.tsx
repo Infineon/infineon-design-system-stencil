@@ -70,7 +70,7 @@ export class Button {
     return classNames(
       'btn',
       this.size && `btn-${this.getSizeClass()}`,
-      this.variant && `btn-${this.getVariantClass()}`,
+      `btn-${this.getVariantClass()}`,
       this.iconOnly && `btn-icon-only`,
       !this.iconOnly &&
       this.iconPosition &&
