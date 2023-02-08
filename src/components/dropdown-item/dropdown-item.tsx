@@ -16,7 +16,7 @@ export class DropdownItem {
   @State() checkboxColor: string = "";
   @Element() el;
 
-  componentDidRender() { 
+  componentWillRender() { 
     const ifxDropdown = this.el.closest('ifx-dropdown')
     if(ifxDropdown) { 
       const ifxButton = this.el.closest('ifx-dropdown').querySelector('ifx-button');
