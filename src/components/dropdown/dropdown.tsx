@@ -111,8 +111,10 @@ export class Dropdown {
     if(buttonComponent) { 
       buttonComponent = buttonComponent.shadowRoot;
       const buttonElement = buttonComponent.querySelector('button');
-      buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
-      this.addEventListeners()
+      if(!buttonElement.classList.contains('disabled')) { 
+        buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+        this.addEventListeners()
+      }
     }
   }
 
