@@ -72,6 +72,7 @@ export namespace Components {
     }
     interface InfineonIconStencil {
         "icon": any;
+        "ifxIcon": any;
     }
 }
 declare global {
@@ -207,6 +208,7 @@ declare namespace LocalJSX {
     }
     interface InfineonIconStencil {
         "icon"?: any;
+        "ifxIcon"?: any;
     }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
