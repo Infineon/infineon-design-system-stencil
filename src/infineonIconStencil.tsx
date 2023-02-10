@@ -3,7 +3,7 @@ import { getIcon } from '@infineon/infineon-icons'
 
 
 @Component({
-  tag: 'infineon-icon-stencil',
+  tag: 'ifx-icon',
 })
 
 export class InfineonIconStencil {

@@ -31,7 +31,6 @@ export class DropdownItem {
     return (
        <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
           {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
-          <infineon-icon-stencil icon={'upload-24'}></infineon-icon-stencil>
           <label htmlFor="checkbox4" class="form-check-label"><slot /></label>
         </a>
     )

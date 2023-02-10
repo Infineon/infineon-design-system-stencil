@@ -20,12 +20,12 @@
 
 ### Depends on
 
-- [infineon-icon-stencil](../..)
+- [ifx-icon](../..)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-dropdown-item --> infineon-icon-stencil
+  ifx-dropdown-item --> ifx-icon
   style ifx-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

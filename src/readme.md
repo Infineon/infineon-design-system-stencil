@@ -1,4 +1,4 @@
-# infineon-icon-stencil
+# ifx-icon
 
 
 
@@ -22,8 +22,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-dropdown-item --> infineon-icon-stencil
-  style infineon-icon-stencil fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-dropdown-item --> ifx-icon
+  style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
