@@ -62,6 +62,10 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxIcon {
+        "icon": any;
+        "ifxIcon": any;
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -69,9 +73,6 @@ export namespace Components {
         "label": string;
         "search": boolean;
         "size": 's' | 'm';
-    }
-    interface InfineonIconStencil {
-        "icon": any;
     }
 }
 declare global {
@@ -117,17 +118,17 @@ declare global {
         prototype: HTMLIfxFilterInputElement;
         new (): HTMLIfxFilterInputElement;
     };
+    interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
+    }
+    var HTMLIfxIconElement: {
+        prototype: HTMLIfxIconElement;
+        new (): HTMLIfxIconElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
-    };
-    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
-    }
-    var HTMLInfineonIconStencilElement: {
-        prototype: HTMLInfineonIconStencilElement;
-        new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
@@ -137,8 +138,8 @@ declare global {
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
+        "ifx-icon": HTMLIfxIconElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
-        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
@@ -197,6 +198,10 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxIcon {
+        "icon"?: any;
+        "ifxIcon"?: any;
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -204,9 +209,6 @@ declare namespace LocalJSX {
         "label"?: string;
         "search"?: boolean;
         "size"?: 's' | 'm';
-    }
-    interface InfineonIconStencil {
-        "icon"?: any;
     }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
@@ -216,8 +218,8 @@ declare namespace LocalJSX {
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
+        "ifx-icon": IfxIcon;
         "ifx-search-input": IfxSearchInput;
-        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -231,8 +233,8 @@ declare module "@stencil/core" {
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
+            "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
-            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }
