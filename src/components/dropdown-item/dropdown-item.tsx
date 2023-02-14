@@ -28,9 +28,11 @@ export class DropdownItem {
   }
 
   render() {
+
     return (
        <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
           {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
+          <ifx-icon icon="bell24"></ifx-icon>
           <label htmlFor="checkbox4" class="form-check-label"><slot /></label>
         </a>
     )
