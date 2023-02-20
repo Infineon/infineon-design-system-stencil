@@ -11,7 +11,7 @@
 | ----------- | ----------- | ----------- | ------------ | ----------- |
 | `checkable` | `checkable` |             | `boolean`    | `false`     |
 | `disabled`  | `disabled`  |             | `boolean`    | `undefined` |
-| `icon`      | `icon`      |             | `boolean`    | `false`     |
+| `icon`      | `icon`      |             | `string`     | `undefined` |
 | `label`     | `label`     |             | `string`     | `undefined` |
 | `size`      | `size`      |             | `"m" \| "s"` | `undefined` |
 
@@ -20,7 +20,7 @@
 
 ### Depends on
 
-- [ifx-icon](../..)
+- [ifx-icon](../icon)
 
 ### Graph
 ```mermaid

@@ -3,6 +3,7 @@ import { Component, Prop, h, Element, State } from "@stencil/core";
 @Component({
   tag: 'ifx-dropdown-item',
   styleUrl: '../../index.scss',
+  //styleUrls: ['../../global/global-theme.scss', './dropdown-item.scss'],
   shadow: true
 })
 
@@ -11,7 +12,7 @@ export class DropdownItem {
   @Prop() label: string;
   @Prop() size: 's' | 'm';
   @Prop() disabled: boolean;
-  @Prop() icon: boolean = false;
+  @Prop() icon: string;
   @Prop() checkable: boolean = false;
   @State() checkboxColor: string = "";
   @Element() el;
@@ -28,11 +29,10 @@ export class DropdownItem {
   }
 
   render() {
-
     return (
        <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
           {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
-          <ifx-icon icon="bell24"></ifx-icon>
+          {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
           <label htmlFor="checkbox4" class="form-check-label"><slot /></label>
         </a>
     )

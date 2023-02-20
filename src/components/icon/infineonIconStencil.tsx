@@ -1,13 +1,14 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Host } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
 
 
 @Component({
   tag: 'ifx-icon',
+  styleUrl: './infineonIconStencil.scss'
 })
 
 export class InfineonIconStencil {
-  @Prop({ mutable: true }) icon: any;
+  @Prop({ mutable: true }) icon: any = "";
   @Prop({ mutable: true }) ifxIcon: any;
  
   convertStringToHtml(htmlString) { 
@@ -44,14 +45,15 @@ export class InfineonIconStencil {
 }
   
   componentWillLoad() {
+    console.log('icon', this.icon)
     this.ifxIcon = getIcon(this.icon);
   }
 
   render() {
     return (
-      <div class="svg-wrapper">
+      <Host>
       {this.constructIcon()}
-      </div>
+      </Host>
     );
   }
 }
