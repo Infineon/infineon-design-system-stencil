@@ -45,7 +45,6 @@ export class InfineonIconStencil {
 }
   
   componentWillLoad() {
-    console.log('icon', this.icon)
     this.ifxIcon = getIcon(this.icon);
   }
 
