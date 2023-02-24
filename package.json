@@ -62,9 +62,11 @@
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-viewport": "^6.5.16",
     "@storybook/builder-webpack4": "^6.5.13",
     "@storybook/html": "^6.5.13",
     "@storybook/manager-webpack4": "^6.5.13",
+    "@storybook/mdx2-csf": "0.0.3",
     "@types/jest": "^27.0.3",
     "@types/react-dom": "^18.0.11",
     "babel-loader": "^8.3.0",
@@ -75,15 +77,14 @@
     "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
+    "parcel-bundler": "^1.6.1",
     "puppeteer": "^19.4.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.44.0",
     "sass-loader": "^10",
-    "style-loader": "^2",
-    "@storybook/mdx2-csf": "0.0.3",
-    "parcel-bundler": "^1.6.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "style-loader": "^2"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"

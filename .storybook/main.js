@@ -6,6 +6,12 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    "@storybook/addon-docs",
+    "@storybook/addon-actions",
+    "@storybook/addon-controls",
+    '@storybook/addon-viewport',
+    // Other Storybook addons
+    "./usage-tab/register.js",
   ],
   "features": {
     storyStoreV7: true,
