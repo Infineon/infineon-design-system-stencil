@@ -9,7 +9,7 @@
 
 | Property  | Attribute  | Description | Type  | Default     |
 | --------- | ---------- | ----------- | ----- | ----------- |
-| `icon`    | `icon`     |             | `any` | `""`        |
+| `icon`    | `icon`     |             | `any` | `undefined` |
 | `ifxIcon` | `ifx-icon` |             | `any` | `undefined` |
 
 

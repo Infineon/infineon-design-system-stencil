@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
-    "@infineon/infineon-icons": "^1.0.5",
+    "@infineon/infineon-icons": "^1.0.9",
     "@stencil/core": "^2.16.0",
     "classnames": "^2.3.2"
   },

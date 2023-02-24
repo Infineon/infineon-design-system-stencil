@@ -2,7 +2,7 @@ import { Component, Prop, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
-  styleUrl: '_card.scss',
+  styleUrl: '../../index.scss',
   shadow: true,
 })
 

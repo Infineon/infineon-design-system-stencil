@@ -3,7 +3,6 @@ import { Component, Prop, h, Element, State } from "@stencil/core";
 @Component({
   tag: 'ifx-dropdown-item',
   styleUrl: '../../index.scss',
-  //styleUrls: ['../../global/global-theme.scss', './dropdown-item.scss'],
   shadow: true
 })
 
