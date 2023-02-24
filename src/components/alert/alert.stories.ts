@@ -12,12 +12,12 @@ export default {
       options: ['primary', 'secondary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
     },
-   
-    iconType: { 
+
+    iconType: {
       options: ['c-info-24', 'calendar-24', 'download-24', 'upload-24'],
-      control: {type: 'select'}
+      control: { type: 'select' }
     }
-   
+
   }
 };
 
@@ -25,5 +25,4 @@ export default {
 const DefaultTemplate = (args) =>
   `<ifx-alert  color="${args.color}" icon="${args.icon ? args.iconType : ""}">${args.label}</ifx-alert>`;
 
-  export const Default = DefaultTemplate.bind({});
- 
+export const Default = DefaultTemplate.bind({});

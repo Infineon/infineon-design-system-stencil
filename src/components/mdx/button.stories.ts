@@ -1,6 +1,12 @@
+import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
 
 export default {
-  title: "Components/Button",
+  title: "Components/MDX",
+  parameters: {
+    docs: {
+      page: CustomMDXDocumentation,
+    },
+  },
   args: {
     label: "Button",
     variant: "solid",
