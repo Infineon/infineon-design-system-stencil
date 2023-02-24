@@ -1,6 +1,6 @@
 // import '../src/plugins/infineonIcons';
 import '../src/global/global-theme.scss'
-import {defineCustomElements} from '../loader';
+import { defineCustomElements } from '../loader';
 
 defineCustomElements();
 
@@ -21,8 +21,8 @@ export const parameters = {
   // viewMode: 'docs',
 
   docs: {
-     source: {
-        state: 'open',
+    source: {
+      state: 'open',
     },
   }
 }
