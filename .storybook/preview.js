@@ -12,7 +12,11 @@ applyPolyfills().then(() => {
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   viewMode: "docs",
-
+  docs: {
+    source: {
+      state: 'open',
+    },
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
