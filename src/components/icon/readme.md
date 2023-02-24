@@ -9,7 +9,7 @@
 
 | Property  | Attribute  | Description | Type  | Default     |
 | --------- | ---------- | ----------- | ----- | ----------- |
-| `icon`    | `icon`     |             | `any` | `""`        |
+| `icon`    | `icon`     |             | `any` | `undefined` |
 | `ifxIcon` | `ifx-icon` |             | `any` | `undefined` |
 
 
@@ -17,9 +17,9 @@
 
 ### Used by
 
- - [ifx-alert](./components/alert)
- - [ifx-button](./components/button)
- - [ifx-dropdown-item](./components/dropdown-item)
+ - [ifx-alert](../alert)
+ - [ifx-button](../button)
+ - [ifx-dropdown-item](../dropdown-item)
 
 ### Graph
 ```mermaid
