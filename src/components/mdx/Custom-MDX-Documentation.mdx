@@ -5,7 +5,7 @@ It can be further expanded with your own code snippets and include specific info
 
 For example:
 
-import { Story } from "@storybook/addon-docs";
+import { ArgsTable, Canvas, Story } from "@storybook/addon-docs";
 
 ## Button
 
@@ -16,10 +16,20 @@ Button is the primary component. It has four possible states.
 - [Large](#large)
 - [Small](#small)
 
+ 
 ## With the story title defined
 
 If you included the title in the story's default export, use this approach.
 
-### Primary
 
-<Story id="components-button--default" />
+### Default
+
+<Canvas withSource="none">
+  <Story
+    name="Default"
+    id="components-button--default"
+  >
+   </Story>
+</Canvas>
+
+<ArgsTable story="Default" />
