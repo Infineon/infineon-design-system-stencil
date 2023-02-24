@@ -24,9 +24,11 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
+  
   plugins: [
     sass()
   ],
+  
   // rollupPlugins: {
   //   after: [
   //     nodePolyfills(),

@@ -13,15 +13,14 @@
   }
 
   &__alert-icon-wrapper {
-    position: relative;
-    min-width: 48px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: tokens.$color-default-500;
-    
-    & svg { 
-      stroke: tokens.$color-text-white;
+    display: none;
+    &.show { 
+      position: relative;
+      min-width: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: tokens.$color-default-500;
     }
   }
 
@@ -30,13 +29,11 @@
     align-items: center;
     justify-content: center;
     min-width: 40px;
+    
 
     & a { 
       line-height: 0;
-
-      & svg { 
-        stroke: tokens.$color-black;
-      }
+      color: tokens.$color-text-black;
 
       &:hover svg { 
         stroke: tokens.$color-default-500;
@@ -66,6 +63,7 @@
 
   & .ifx__alert-icon-wrapper {
     background-color: tokens.$color-default-500;
+    color: tokens.$color-text-white;
   }
 }
 
@@ -74,6 +72,7 @@
 
   & .ifx__alert-icon-wrapper {
     background-color: tokens.$color-highlight-500;
+    color: tokens.$color-text-white;
   }
 }
 
@@ -82,6 +81,7 @@
 
   & .ifx__alert-icon-wrapper {
     background-color: tokens.$color-success-500;
+    color: tokens.$color-text-white;
   }
 }
 
@@ -90,6 +90,7 @@
 
   & .ifx__alert-icon-wrapper {
     background-color: tokens.$color-danger-500;
+    color: tokens.$color-text-white;
   }
 }
 
@@ -98,10 +99,13 @@
 
   & .ifx__alert-icon-wrapper {
     background-color: tokens.$color-warning-500;
+    color: tokens.$color-text-white;
   }
 }
 
-
+// ifx-icon:empty { 
+//   display: none;
+//  }
 
 
 

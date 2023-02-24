@@ -23,7 +23,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-alert  color="${args.color}" icon="${args.icon ? args.iconType : ""}">${args.label}</ifx-alert>`;
+  `<ifx-alert color="${args.color}" icon="${args.icon ? args.iconType : ""}">${args.label}</ifx-alert>`;
 
   export const Default = DefaultTemplate.bind({});
  

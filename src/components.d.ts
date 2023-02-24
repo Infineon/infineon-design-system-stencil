@@ -15,11 +15,10 @@ export namespace Components {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
         "href": string;
-        "iconOnly": boolean;
-        "iconPosition": 'left' | 'right';
-        "label": string;
+        "icon": string;
+        "position": string;
         "setFocus": () => Promise<void>;
-        "size": 's' | 'm';
+        "size": string;
         "target": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
@@ -42,7 +41,7 @@ export namespace Components {
     interface IfxDropdownItem {
         "checkable": boolean;
         "disabled": boolean;
-        "icon": boolean;
+        "icon": string;
         "label": string;
         "size": 's' | 'm';
     }
@@ -152,10 +151,9 @@ declare namespace LocalJSX {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled"?: boolean;
         "href"?: string;
-        "iconOnly"?: boolean;
-        "iconPosition"?: 'left' | 'right';
-        "label"?: string;
-        "size"?: 's' | 'm';
+        "icon"?: string;
+        "position"?: string;
+        "size"?: string;
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
@@ -178,7 +176,7 @@ declare namespace LocalJSX {
     interface IfxDropdownItem {
         "checkable"?: boolean;
         "disabled"?: boolean;
-        "icon"?: boolean;
+        "icon"?: string;
         "label"?: string;
         "size"?: 's' | 'm';
     }

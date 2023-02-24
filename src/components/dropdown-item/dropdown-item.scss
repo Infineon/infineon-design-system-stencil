@@ -1,10 +1,9 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-
- 
  .dropdown-item {
       display: flex; 
       align-items: center;
+      gap: 12px;
       width: 100%;
       text-align: inherit;
       white-space: nowrap;
@@ -47,10 +46,13 @@
       
    
       & .form-check-label {
-         flex: 1;
          &:hover { 
           cursor: pointer;
          }
+      }
+
+      & .form-check-input {
+        border-radius: 1px;
       }
 
       &:focus {
@@ -86,12 +88,8 @@
           fill: none;
         }
       }
-
-      & svg {
-        width: 13px;
-        height: 13px;
-        margin-right: 10px;
-        vertical-align: -0.5px;
-      }
     }
 
+    // ifx-icon:empty { 
+    //   display: none;
+    // }
