@@ -18,7 +18,6 @@ export default {
     iconPosition: 'left'
 
   },
-
   argTypes: {
     variant: {
       options: ['solid', 'outline', 'outline-text'],
@@ -36,16 +35,14 @@ export default {
       options: ['left', 'right'],
       control: { type: 'radio' }
     }
-
   },
-
 };
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button  variant="${args.variant}" href="${args.href}" target="_blank" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
+  `<test-button  variant="${args.variant}" href="${args.href}" target="_blank" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
   ${args.label}
-  </ifx-button>`;
+  </test-button>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {

@@ -73,6 +73,17 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface TestButton {
+        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "disabled": boolean;
+        "href": string;
+        "icon": string;
+        "position": string;
+        "setFocus": () => Promise<void>;
+        "size": string;
+        "target": string;
+        "variant": 'solid' | 'outline' | 'outline-text';
+    }
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -129,6 +140,12 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLTestButtonElement extends Components.TestButton, HTMLStencilElement {
+    }
+    var HTMLTestButtonElement: {
+        prototype: HTMLTestButtonElement;
+        new (): HTMLTestButtonElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
@@ -139,6 +156,7 @@ declare global {
         "ifx-filter-input": HTMLIfxFilterInputElement;
         "ifx-icon": HTMLIfxIconElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "test-button": HTMLTestButtonElement;
     }
 }
 declare namespace LocalJSX {
@@ -208,6 +226,16 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface TestButton {
+        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "disabled"?: boolean;
+        "href"?: string;
+        "icon"?: string;
+        "position"?: string;
+        "size"?: string;
+        "target"?: string;
+        "variant"?: 'solid' | 'outline' | 'outline-text';
+    }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
@@ -218,6 +246,7 @@ declare namespace LocalJSX {
         "ifx-filter-input": IfxFilterInput;
         "ifx-icon": IfxIcon;
         "ifx-search-input": IfxSearchInput;
+        "test-button": TestButton;
     }
 }
 export { LocalJSX as JSX };
@@ -233,6 +262,7 @@ declare module "@stencil/core" {
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "test-button": LocalJSX.TestButton & JSXBase.HTMLAttributes<HTMLTestButtonElement>;
         }
     }
 }
