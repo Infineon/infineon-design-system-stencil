@@ -22,18 +22,12 @@ Button is the primary component. It has four possible states.
 - [Small](#small)
 
 
-export const DefaultTemplate = (args) =>
-  `<test-button  variant="${args.variant}" href="${args.href}" target="_blank" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
-  ${args.label}
-  </test-button>`;
-
 ## Component code
 
 <Canvas columns={2} withSource="open" withToolbar>
   <Story
      id="components-mdxbutton--default"
    >
-    {DefaultTemplate.bind({})}
    </Story>
 </Canvas>
 
