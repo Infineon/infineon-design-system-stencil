@@ -1,9 +1,5 @@
-# Replacing DocsPage with custom `MDX` content
-This file is a documentation-only `MDX`file to customize Storybook's [DocsPage](https://storybook.js.org/docs/react/writing-docs/docs-page#replacing-docspage).
-
-It can be further expanded with your own code snippets and include specific information related to your stories.
-
-For example:
+# `MDX` button story
+some text
 
 import {
   Meta,
@@ -16,7 +12,7 @@ import {
 import dedent from 'ts-dedent';
 
 
-## Button
+## Variants
 
 Button is the primary component. It has four possible states.
 
@@ -25,22 +21,18 @@ Button is the primary component. It has four possible states.
 - [Large](#large)
 - [Small](#small)
 
- 
-## With the story title defined
-
-If you included the title in the story's default export, use this approach.
 
 export const DefaultTemplate = (args) =>
   `<test-button  variant="${args.variant}" href="${args.href}" target="_blank" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
   ${args.label}
   </test-button>`;
 
-### Default
+## Component code
 
-<Canvas withSource="none">
+<Canvas columns={2} withSource="open" withToolbar>
   <Story
     name="Default"
-    id="components-button--default"
+    id="components-mdxbutton--default"
     args={{
       label: 'Label',
     }}>
@@ -49,20 +41,6 @@ export const DefaultTemplate = (args) =>
 </Canvas>
 
 
-<Source
-  language='js'
-  dark
-  format={false}
-  code={dedent`
-     .container {
-       display: grid | inline-grid;
-     }
-  `}
-/>
-
-## With Story Id
-
-<Source id="components-button--default" />
-
+## ArgsTable
 
 <ArgsTable story="." />

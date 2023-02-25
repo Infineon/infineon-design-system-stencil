@@ -1,7 +1,7 @@
 import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
 
 export default {
-  title: "Components/MDX",
+  title: "Components/MDXButton",
   parameters: {
     docs: {
       page: CustomMDXDocumentation,
@@ -16,7 +16,6 @@ export default {
     icon: false,
     href: "",
     iconPosition: 'left'
-
   },
   argTypes: {
     variant: {
