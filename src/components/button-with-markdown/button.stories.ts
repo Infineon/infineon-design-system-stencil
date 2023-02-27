@@ -1,7 +1,7 @@
 import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
 
 export default {
-  title: "Components/MDXButton",
+  title: "Components/ButtonWithMarkdown",
   parameters: {
     docs: {
       page: CustomMDXDocumentation,

@@ -20,7 +20,7 @@
  - [ifx-alert](../alert)
  - [ifx-button](../button)
  - [ifx-dropdown-item](../dropdown-item)
- - [test-button](../mdx)
+ - [test-button](../button-with-markdown)
 
 ### Graph
 ```mermaid
