@@ -66,21 +66,31 @@ export class Dropdown {
     }
   }
 
+  toggleCheckbox(target) { 
+    target.querySelector('input').checked = !target.querySelector('input').checked
+  }
 
   addActiveMenuItem = (e) => {
     let target = e.target;
     const composedPath = e.composedPath()
     const isCheckable = target.checkable;
-
+    
     if(target && target.className.includes('dropdown-menu')) return;
-    if(e.target.shadowRoot.querySelector('style')) {
-      target = e.target.shadowRoot.querySelector('style').nextElementSibling
-    } else  target = e.target.shadowRoot.querySelector('a');
-   
-    if(composedPath[0].className === 'dropdown-item') { 
-      target.querySelector('input').checked = !target.querySelector('input').checked
+    if(target && target.shadowRoot) { 
+      if(target.shadowRoot.querySelector('style')) {
+        target = target.shadowRoot.querySelector('style').nextElementSibling
+      } else target = target.shadowRoot.firstChild;
     }
 
+    if(isCheckable) {
+      if(composedPath[0].tagName.toUpperCase() === 'A'
+      && composedPath[0].className.includes('dropdown-item')) {
+        this.toggleCheckbox(target)
+      } else if (composedPath[0].tagName.toUpperCase() === 'SVG') { 
+        this.toggleCheckbox(target)
+      }
+    }
+    
     if (target.className.toLowerCase() === 'inf__search-input'
       || target.className.toLowerCase() === 'inf__filter-input') {
       return;
@@ -91,14 +101,11 @@ export class Dropdown {
     }
 
     this.removeActiveMenuItem()
-    if (target.firstChild.className === 'form-check-label') {
-      this.handleClassList(target.firstChild.parentElement, 'add', 'active')
-    } else this.handleClassList(target.firstChild, 'add', 'active')
-
+    if (target.className.includes('dropdown-item')) {
+      this.handleClassList(target, 'add', 'active')
+    }
     this.toggleDropdownMenu()
   }
-
-
 
   addEventListeners() {
     const dropdownMenu = this.getDropdownMenu();

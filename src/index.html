@@ -12,15 +12,25 @@
 </head>
 
 <body>
+  <ifx-button color="secondary">my BUTTON</ifx-button>
 
-
-  <ifx-alert color="warning" icon="c-info-24">my alert</ifx-alert>
-  <ifx-button color="secondary" icon="B-e-L-L2-4">my button</ifx-button>
-  <ifx-button color="warning" icon="bell24">my button</ifx-button>
-  <ifx-button color="danger" icon="cINFO-16">my button</ifx-button>
-  <ifx-button color="primary" icon="">my button</ifx-button>
-  <ifx-button color="secondary" icon="asfdsfsf">my button</ifx-button>
-  <ifx-button color="warning">my button</ifx-button>
+  <ifx-dropdown>
+    <ifx-button color="primary">my dropdown</ifx-button>
+    <ifx-dropdown-menu>
+      <ifx-search-input></ifx-search-input>
+      <ifx-filter-input>
+        <option value="">one</option>
+        <option value="">two</option>
+        <option value="">three</option>
+        <option value="">four</option>
+      </ifx-filter-input>
+      <ifx-dropdown-item icon="calendar-16" checkable>Item1</ifx-dropdown-item>
+      <ifx-dropdown-item checkable>Item2</ifx-dropdown-item>
+      <ifx-dropdown-item checkable>Item3</ifx-dropdown-item>
+      <ifx-dropdown-item icon="calendar24">Item4</ifx-dropdown-item>
+      <ifx-dropdown-item >Item5</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
 
 
 </body>
