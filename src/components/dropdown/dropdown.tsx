@@ -70,18 +70,30 @@ export class Dropdown {
     target.querySelector('input').checked = !target.querySelector('input').checked
   }
 
-  addActiveMenuItem = (e) => {
-    let target = e.target;
-    const composedPath = e.composedPath()
-    const isCheckable = target.checkable;
-    
-    if(target && target.className.includes('dropdown-menu')) return;
+  getClickedElement(target) { 
+    let targetEl;
+    if(target && target.className.includes('dropdown-menu')) return false;
     if(target && target.shadowRoot) { 
       if(target.shadowRoot.querySelector('style')) {
-        target = target.shadowRoot.querySelector('style').nextElementSibling
-      } else target = target.shadowRoot.firstChild;
+        for(let i = 0; i < target.shadowRoot.childNodes.length; i++) { 
+          if(target.shadowRoot.childNodes[i].nodeName !== "STYLE") { 
+            targetEl = target.shadowRoot.childNodes[i]
+           break;
+          }
+        }
+      } else {
+        targetEl = target.shadowRoot.firstChild;
+      }
     }
+    return targetEl;
+  }
 
+  addActiveMenuItem = (e) => {
+    let target = this.getClickedElement(e.target)
+    const composedPath = e.composedPath()
+    const isCheckable = e.target.checkable;
+    
+    if(!target) return;
     if(isCheckable) {
       if(composedPath[0].tagName.toUpperCase() === 'A'
       && composedPath[0].className.includes('dropdown-item')) {
