@@ -71,51 +71,28 @@ export class Dropdown {
   }
 
   getClickedElement(target) { 
-    let targetEl;
-    if(target && target.className.includes('dropdown-menu')) return false;
-    if(target && target.shadowRoot) { 
-      if(target.shadowRoot.querySelector('style')) {
-        for(let i = 0; i < target.shadowRoot.childNodes.length; i++) { 
-          if(target.shadowRoot.childNodes[i].nodeName !== "STYLE") { 
-            targetEl = target.shadowRoot.childNodes[i]
-           break;
-          }
-        }
-      } else {
-        targetEl = target.shadowRoot.firstChild;
-      }
+    if(target instanceof SVGElement) { 
+      return target.closest('.dropdown-item')
+    } else if(target.className.includes('dropdown-menu') 
+    || target.className.includes('form-check-input')) { 
+      return false
+    } else {
+      return target.closest('.dropdown-item');
     }
-    return targetEl;
   }
 
   addActiveMenuItem = (e) => {
-    let target = this.getClickedElement(e.target)
-    const composedPath = e.composedPath()
+    const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
-    
+
     if(!target) return;
     if(isCheckable) {
-      if(composedPath[0].tagName.toUpperCase() === 'A'
-      && composedPath[0].className.includes('dropdown-item')) {
-        this.toggleCheckbox(target)
-      } else if (composedPath[0].tagName.toUpperCase() === 'SVG') { 
-        this.toggleCheckbox(target)
-      }
-    }
-    
-    if (target.className.toLowerCase() === 'inf__search-input'
-      || target.className.toLowerCase() === 'inf__filter-input') {
-      return;
-    }
-    
-    if (isCheckable) { 
+      this.toggleCheckbox(target)
       return;
     }
 
     this.removeActiveMenuItem()
-    if (target.className.includes('dropdown-item')) {
-      this.handleClassList(target, 'add', 'active')
-    }
+    this.handleClassList(target, 'add', 'active')
     this.toggleDropdownMenu()
   }
 
@@ -128,8 +105,7 @@ export class Dropdown {
   componentDidRender() {
     let buttonComponent = this.el.querySelector('ifx-button'); 
     if(buttonComponent) { 
-      buttonComponent = buttonComponent.shadowRoot;
-      const buttonElement = buttonComponent.querySelector('button');
+      const buttonElement = buttonComponent.shadowRoot.querySelector('button');
       if(!buttonElement.classList.contains('disabled')) { 
         buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()
