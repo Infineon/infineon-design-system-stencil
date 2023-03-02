@@ -95,6 +95,29 @@
     line-height: 16px;
   }
 
+  &.icon-button { 
+    min-width: initial;
+    min-height: initial;
+    width: 40px; 
+    height: 40px;
+    padding: 0;
+    justify-content: center;
+
+   &.btn-round { 
+    border-radius: 100px;
+   }
+
+   &.btn-square { 
+    border-radius: 1px;
+   }
+
+   &.btn-s { 
+    width: 32px;
+    height: 32px;
+   }
+
+  }
+
   &.btn-primary,
   &.btn-outline-primary,
   &.btn-secondary,
