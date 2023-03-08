@@ -39,7 +39,7 @@ export class Button {
           <a
             ref={(el) => (this.focusableElement = el)}
             class={this.getClassNames()}
-            href={this.href}
+            href={!this.disabled ? this.href : undefined}
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >

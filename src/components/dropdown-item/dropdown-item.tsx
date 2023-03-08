@@ -32,7 +32,7 @@ export class DropdownItem {
        <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
           {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
           {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
-          <label htmlFor="checkbox4" class="form-check-label"><slot /></label>
+          <label class="form-check-label"><slot /></label>
         </a>
     )
   }

@@ -1,21 +1,11 @@
-
-import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
-
 export default {
-  title: "Components/Button",
-  parameters: {
-    docs: {
-      page: CustomMDXDocumentation,
-    },
-  },
+  title: "Components/Icon-Button",
   args: {
-    label: "Button",
     variant: "solid",
+    size: 'm',
     color: "primary",
-    size: "m",
     disabled: false,
-    icon: "",
-    position: 'left',
+    icon: "c-info-24",
     href: "",
     target: '_blank'
   },
@@ -33,28 +23,20 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    position: {
-      options: ['left', 'right'],
-      control: { type: 'radio' }
-    },
-    target: {
+    target: { 
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     }
 
   },
-
 };
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button  variant="${args.variant}" icon="${args.icon}" position="${args.position}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
-  ${args.label}
-  </ifx-button>`;
+  `<ifx-icon-button variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
+  </ifx-icon-button>`;
 
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
 
-};
 

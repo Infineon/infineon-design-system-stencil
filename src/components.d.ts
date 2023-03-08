@@ -65,6 +65,17 @@ export namespace Components {
         "icon": any;
         "ifxIcon": any;
     }
+    interface IfxIconButton {
+        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "disabled": boolean;
+        "href": string;
+        "icon": string;
+        "setFocus": () => Promise<void>;
+        "shape": string;
+        "size": string;
+        "target": string;
+        "variant": 'solid' | 'outline' | 'outline-text';
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -72,17 +83,6 @@ export namespace Components {
         "label": string;
         "search": boolean;
         "size": 's' | 'm';
-    }
-    interface TestButton {
-        "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-        "disabled": boolean;
-        "href": string;
-        "icon": string;
-        "position": string;
-        "setFocus": () => Promise<void>;
-        "size": string;
-        "target": string;
-        "variant": 'solid' | 'outline' | 'outline-text';
     }
 }
 declare global {
@@ -134,17 +134,17 @@ declare global {
         prototype: HTMLIfxIconElement;
         new (): HTMLIfxIconElement;
     };
+    interface HTMLIfxIconButtonElement extends Components.IfxIconButton, HTMLStencilElement {
+    }
+    var HTMLIfxIconButtonElement: {
+        prototype: HTMLIfxIconButtonElement;
+        new (): HTMLIfxIconButtonElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
-    };
-    interface HTMLTestButtonElement extends Components.TestButton, HTMLStencilElement {
-    }
-    var HTMLTestButtonElement: {
-        prototype: HTMLTestButtonElement;
-        new (): HTMLTestButtonElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
@@ -155,8 +155,8 @@ declare global {
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
         "ifx-icon": HTMLIfxIconElement;
+        "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
-        "test-button": HTMLTestButtonElement;
     }
 }
 declare namespace LocalJSX {
@@ -218,6 +218,16 @@ declare namespace LocalJSX {
         "icon"?: any;
         "ifxIcon"?: any;
     }
+    interface IfxIconButton {
+        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+        "disabled"?: boolean;
+        "href"?: string;
+        "icon"?: string;
+        "shape"?: string;
+        "size"?: string;
+        "target"?: string;
+        "variant"?: 'solid' | 'outline' | 'outline-text';
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -225,16 +235,6 @@ declare namespace LocalJSX {
         "label"?: string;
         "search"?: boolean;
         "size"?: 's' | 'm';
-    }
-    interface TestButton {
-        "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-        "disabled"?: boolean;
-        "href"?: string;
-        "icon"?: string;
-        "position"?: string;
-        "size"?: string;
-        "target"?: string;
-        "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
@@ -245,8 +245,8 @@ declare namespace LocalJSX {
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
         "ifx-icon": IfxIcon;
+        "ifx-icon-button": IfxIconButton;
         "ifx-search-input": IfxSearchInput;
-        "test-button": TestButton;
     }
 }
 export { LocalJSX as JSX };
@@ -261,8 +261,8 @@ declare module "@stencil/core" {
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
+            "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
-            "test-button": LocalJSX.TestButton & JSXBase.HTMLAttributes<HTMLTestButtonElement>;
         }
     }
 }
