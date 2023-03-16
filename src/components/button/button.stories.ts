@@ -1,5 +1,13 @@
+
+import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
+
 export default {
   title: "Components/Button",
+  parameters: {
+    docs: {
+      page: CustomMDXDocumentation,
+    },
+  },
   args: {
     label: "Button",
     variant: "solid",
@@ -29,12 +37,13 @@ export default {
       options: ['left', 'right'],
       control: { type: 'radio' }
     },
-    target: { 
+    target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     }
 
   },
+
 };
 
 

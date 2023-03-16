@@ -1,254 +1,68 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-
-:host {
-  --background: white --radius: 1px
-}
-
-
 .card {
   position: relative;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #ebe9e9;
   border-radius: 1px;
   width: 22rem;
-}
-
-.img-fluid {
-  max-width: 100%;
   height: auto;
-}
 
-.card-body {
-  flex: 1 1 auto;
-  padding: 24px 24px;
-}
-
-.card-subtitle {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #343a40;
-  margin-top: 0;
-  margin-bottom: 4px;
-
-  font-family: "Source Sans Pro";
-  line-height: 1.2;
-}
-
-.card-title {
-  margin-top: 0;
-  margin-bottom: .5rem;
-  font-family: "Source Sans Pro";
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-p {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.card-text:last-child {
-  margin-bottom: 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.card {
-  & .list-group {
-    & .list-group-item {
-      padding-left: tokens.$spacing-l;
-      padding-right: tokens.$spacing-l;
-    }
-  }
-}
-
-.card-subtitle {
-  font-size: tokens.$font-size-m;
-  font-weight: tokens.$font-weight-regular;
-  color: tokens.$color-gray-500;
-  margin-top: 0;
-  margin-bottom: tokens.$spacing-xs;
-}
-
-.card-title {
-  font-size: tokens.$font-size-xl;
-}
-
-.card-body {
-  & .badge {
-    margin-bottom: tokens.$spacing-m;
-  }
-}
-
-
-
-
-
-
-
-
-
-// ***************************************** LIST GROUP
-.card>.list-group {
-  border-top: inherit;
-  // border-bottom: inherit;
-}
-
-
-
-
-
-.list-group {
-  max-width: 350px;
-  border-radius: 1px;
-
-  & .list-group-item {
-    padding: 8px 16px;
-    color: tokens.$color-text-black;
-
-    &:hover {
-      background-color: tokens.$color-gray-200;
+  & .card-img {
+    & ::slotted([slot=img]) {
+      width: 100%;
+      vertical-align: bottom;
     }
   }
 
-  & .list-group-item.active {
-    color: tokens.$color-text-white;
-    background-color: tokens.$color-default-500;
-    border-color: tokens.$color-gray-200;
+  & .card-body {
+    padding: 24px;
   }
 
-  & .badge {
-    color: tokens.$color-text-white;
-    padding: 2px 8px;
-  }
-}
+  &.horizontal { 
+    flex-direction: row;
+    width: 538px;
 
-.list-group-item {
-  border: 1px solid tokens.$color-gray-200;
-}
+    &.hasAll { 
+      height: auto;
+    }
 
-.ifx__list-group-heading {
-  font-weight: 600;
-  line-height: 20px;
-  color: tokens.$color-default-500;
-  padding-bottom: 11px;
-}
+    &.largeSize { 
+      height: 218px;
+    }
 
-.active .ifx__list-group-heading {
-  color: tokens.$color-text-white;
-}
+    &.smallSize { 
+      height: 138px;
+    }
+    
+    & .card-body {
+      flex: 1;
+      width: 0;
+      padding: 17px 24px 25px 25px;
+    }
 
-.ifx__list-group-date {
-  font-size: 13px;
-  line-height: 20px;
-  color: tokens.$color-default-500;
-}
+    & .card-img { 
+      flex: 1;
+      order: 2;
+      & ::slotted([slot=img]) {
+        width: 100%;
+        height: 100%;
+        vertical-align: bottom;
+        object-fit: cover;
+      }
+    }
 
-.active .ifx__list-group-date {
-  color: tokens.$color-text-white;
-}
+    &.right { 
+      & .card-img { 
+        order: 1;
+      }
 
-.active .badge {
-  color: tokens.$color-default-500;
-}
-
-.ifx__list-group-notification {
-  & .list-group-item {
-    padding: 16px;
-  }
-}
-
-.list-group.ifx__list-group-bulletpoints {
-  & .list-group-item {
-    display: list-item;
-    list-style-position: inside;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ***************************************** LIST
-.list-group-flush>.list-group-item {
-  border-width: 0 0 1px;
-}
-
-.list-group-item {
-  border: 1px solid #ebe9e9;
-}
-
-.list-group-item {
-  position: relative;
-  display: block;
-  text-decoration: none;
-  background-color: #fff;
-}
-
-.list-group-flush>.list-group-item:last-child {
-  border-bottom-width: 0;
-}
-
-
-
-
-
-
-
-.ifx__list-icon {
-  padding-left: 0;
-
-  ul {
-    padding-left: 0;
-  }
-
-  li {
-    position: relative;
-    list-style-type: none;
-    padding-left: 2em;
-  }
-
-  &--check {
-    li {
-      &:before {
-        content: "";
-        position: absolute;
-        left: 0.25em;
-        top: 0.25em;
-        height: 1.25em;
-        width: 1.25em;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='20' width='20' fill='%231d1d1d' viewBox='0 0 448 512'%3E%3C!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --%3E%3Cpath d='M443.3 100.7C449.6 106.9 449.6 117.1 443.3 123.3L171.3 395.3C165.1 401.6 154.9 401.6 148.7 395.3L4.686 251.3C-1.562 245.1-1.562 234.9 4.686 228.7C10.93 222.4 21.06 222.4 27.31 228.7L160 361.4L420.7 100.7C426.9 94.44 437.1 94.44 443.3 100.7H443.3z'/%3E%3C/svg%3E");
+      & .card-body { 
+        order: 2;
       }
     }
   }
