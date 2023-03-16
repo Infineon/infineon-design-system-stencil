@@ -84,6 +84,10 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxTag {
+        "color": 'primary' | 'secondary' | 'warning';
+        "text": string;
+    }
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -146,6 +150,12 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxTagElement extends Components.IfxTag, HTMLStencilElement {
+    }
+    var HTMLIfxTagElement: {
+        prototype: HTMLIfxTagElement;
+        new (): HTMLIfxTagElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
@@ -157,6 +167,7 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-tag": HTMLIfxTagElement;
     }
 }
 declare namespace LocalJSX {
@@ -236,6 +247,10 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxTag {
+        "color"?: 'primary' | 'secondary' | 'warning';
+        "text"?: string;
+    }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
@@ -247,6 +262,7 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-search-input": IfxSearchInput;
+        "ifx-tag": IfxTag;
     }
 }
 export { LocalJSX as JSX };
@@ -263,6 +279,7 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
         }
     }
 }

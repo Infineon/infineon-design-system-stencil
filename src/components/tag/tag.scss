@@ -1,0 +1,51 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+    display: inline-block;
+    color: tokens.$color-default-500;
+    border: tokens.$border-width-default solid;
+    padding: tokens.$spacing-xxs tokens.$spacing-s;
+    border-radius: tokens.$border-radius-pill;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .text {
+    margin: 0;
+    padding-left: 5px;
+    font-style: normal;
+    font-weight: tokens.$font-weight-regular;
+    font-size: tokens.$font-size-m;
+    line-height: 1.25rem;
+    display: inline;
+    color: tokens.$color-black;
+  }
+  
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: tokens.$border-radius-circle;
+    background-color: var(--dot-color);
+  }
+  
+  :host([color="primary"]) {
+    --dot-color: blue;
+    border-color: blue;
+    color: blue;
+  }
+  
+  :host([color="secondary"]) {
+    --dot-color: green;
+    border-color: green;
+    color: green;
+  }
+  
+  :host([color="warning"]) {
+    --dot-color: red;
+    border-color: red;
+    color: red;
+  }
