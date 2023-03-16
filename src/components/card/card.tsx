@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, h, Host, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
@@ -7,46 +7,56 @@ import { Component, Prop, h, Host } from '@stencil/core';
 })
 
 export class Card {
-  @Prop() skyline: boolean;
-  @Prop() headline: string;
-  @Prop() subtitle: string;
-  @Prop() text: string;
-  @Prop() button: boolean;
-  @Prop() list: boolean;
+  @Element() el;
+  @Prop({mutable: true}) hasBtn: boolean;
+  @Prop({mutable: true}) direction: string;
+  @Prop({mutable: true}) alignment: string;
+  @Prop({mutable: true}) hasDesc: boolean;
+  @Prop({mutable: true}) hasAll: boolean;
+  @Prop({mutable: true}) largeSize: boolean;
+  @Prop({mutable: true}) smallSize: boolean;
+
+  componentWillLoad() { 
+    const desc = this.el.querySelector('ifx-card-text')
+    const overline = this.el.querySelector('ifx-card-overline')
+    const headline = this.el.querySelector('ifx-card-headline')
+    const link = this.el.querySelector('ifx-link')
+
+    if(desc) { 
+      this.hasDesc = true;
+    } 
+
+    if(overline && headline && desc && link) { 
+      this.hasAll = true;
+    } else if(this.hasDesc || (overline && headline && link)) { 
+      this.largeSize = true
+    } else {
+      this.smallSize = true
+    }
+  }
 
 
   render() {
     return (
       <Host>
-        <div class="card">
-          <div class="card-body">
-            <div part="img">
-              <slot name="img" />
-            </div>
-            {`${this.skyline}` === "true"
-              ? <div class="card-subtitle">{this.subtitle}</div>
-              : null
-            }
-
-            <div class="card-title">{this.headline}</div>
-
-            <p class="card-text">{this.text}</p>
-            <div part="action">
-              {this.button
-                ? <slot name="action" />
-                : ""}
-
-            </div>
+        <div class={
+          `card 
+          ${this.direction} 
+          ${this.alignment} 
+          ${this.largeSize ? 'largeSize' : ""} 
+          ${this.smallSize ? 'smallSize' : ""} 
+          ${this.hasAll ? 'hasAll' : ""}`
+          }>
+          <div class="card-img">
+            <slot name="img" />
           </div>
 
-          {`${this.list}` === "true"
-            ? <div class="list-group list-group-flush">
-              <div class="list-group-item">An item</div>
-              <div class="list-group-item">A second item</div>
-              <div class="list-group-item">A third item</div>
-            </div>
-            : null
-          }
+          <div class='card-body'>
+            <slot name='overline' />
+            <slot name='headline' />
+            <slot name='text' />
+            <slot name="btn" />
+          </div>
         </div>
       </Host>
     );

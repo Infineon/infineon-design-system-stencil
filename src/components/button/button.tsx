@@ -26,8 +26,8 @@ export class Button {
   }
 
   componentWillLoad() {
-    if (this.position === '') {
-      this.position = 'left';
+    if (this.position.toUpperCase() !== "LEFT") {
+      this.position = 'right';
     }
   }
 
@@ -43,18 +43,18 @@ export class Button {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-           {this.icon && this.position === 'left' && <ifx-icon icon={this.icon}></ifx-icon>}
+           {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
-           {this.icon && this.position === 'right' && <ifx-icon icon={this.icon}></ifx-icon>}
+           {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
           </a>
         ) : (
           <button 
             class={this.getClassNames()}
             type="button"
           >
-            {this.icon && this.position === 'left' && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
-            {this.icon && this.position === 'right' && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
           </button>
         )}
       </Host>

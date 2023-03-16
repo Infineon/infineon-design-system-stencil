@@ -7,22 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `button`   | `button`   |             | `boolean` | `undefined` |
-| `headline` | `headline` |             | `string`  | `undefined` |
-| `list`     | `list`     |             | `boolean` | `undefined` |
-| `skyline`  | `skyline`  |             | `boolean` | `undefined` |
-| `subtitle` | `subtitle` |             | `string`  | `undefined` |
-| `text`     | `text`     |             | `string`  | `undefined` |
-
-
-## Shadow Parts
-
-| Part       | Description |
-| ---------- | ----------- |
-| `"action"` |             |
-| `"img"`    |             |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `alignment` | `alignment`  |             | `string`  | `undefined` |
+| `direction` | `direction`  |             | `string`  | `undefined` |
+| `hasAll`    | `has-all`    |             | `boolean` | `undefined` |
+| `hasBtn`    | `has-btn`    |             | `boolean` | `undefined` |
+| `hasDesc`   | `has-desc`   |             | `boolean` | `undefined` |
+| `largeSize` | `large-size` |             | `boolean` | `undefined` |
+| `smallSize` | `small-size` |             | `boolean` | `undefined` |
 
 
 ----------------------------------------------

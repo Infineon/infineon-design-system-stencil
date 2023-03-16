@@ -23,12 +23,22 @@ export namespace Components {
         "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
-        "button": boolean;
-        "headline": string;
-        "list": boolean;
-        "skyline": boolean;
-        "subtitle": string;
-        "text": string;
+        "alignment": string;
+        "direction": string;
+        "hasAll": boolean;
+        "hasBtn": boolean;
+        "hasDesc": boolean;
+        "largeSize": boolean;
+        "smallSize": boolean;
+    }
+    interface IfxCardHeadline {
+        "direction": string;
+        "hasDesc": boolean;
+    }
+    interface IfxCardOverline {
+    }
+    interface IfxCardText {
+        "hasBtn": boolean;
     }
     interface IfxDropdown {
         "disabled": boolean;
@@ -76,6 +86,13 @@ export namespace Components {
         "target": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
+    interface IfxLink {
+        "href": string;
+        "icon": any;
+        "position": string;
+        "target": string;
+        "underline": any;
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -103,6 +120,24 @@ declare global {
     var HTMLIfxCardElement: {
         prototype: HTMLIfxCardElement;
         new (): HTMLIfxCardElement;
+    };
+    interface HTMLIfxCardHeadlineElement extends Components.IfxCardHeadline, HTMLStencilElement {
+    }
+    var HTMLIfxCardHeadlineElement: {
+        prototype: HTMLIfxCardHeadlineElement;
+        new (): HTMLIfxCardHeadlineElement;
+    };
+    interface HTMLIfxCardOverlineElement extends Components.IfxCardOverline, HTMLStencilElement {
+    }
+    var HTMLIfxCardOverlineElement: {
+        prototype: HTMLIfxCardOverlineElement;
+        new (): HTMLIfxCardOverlineElement;
+    };
+    interface HTMLIfxCardTextElement extends Components.IfxCardText, HTMLStencilElement {
+    }
+    var HTMLIfxCardTextElement: {
+        prototype: HTMLIfxCardTextElement;
+        new (): HTMLIfxCardTextElement;
     };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
@@ -140,6 +175,12 @@ declare global {
         prototype: HTMLIfxIconButtonElement;
         new (): HTMLIfxIconButtonElement;
     };
+    interface HTMLIfxLinkElement extends Components.IfxLink, HTMLStencilElement {
+    }
+    var HTMLIfxLinkElement: {
+        prototype: HTMLIfxLinkElement;
+        new (): HTMLIfxLinkElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -150,12 +191,16 @@ declare global {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
+        "ifx-card-headline": HTMLIfxCardHeadlineElement;
+        "ifx-card-overline": HTMLIfxCardOverlineElement;
+        "ifx-card-text": HTMLIfxCardTextElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
+        "ifx-link": HTMLIfxLinkElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
     }
 }
@@ -176,12 +221,22 @@ declare namespace LocalJSX {
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
-        "button"?: boolean;
-        "headline"?: string;
-        "list"?: boolean;
-        "skyline"?: boolean;
-        "subtitle"?: string;
-        "text"?: string;
+        "alignment"?: string;
+        "direction"?: string;
+        "hasAll"?: boolean;
+        "hasBtn"?: boolean;
+        "hasDesc"?: boolean;
+        "largeSize"?: boolean;
+        "smallSize"?: boolean;
+    }
+    interface IfxCardHeadline {
+        "direction"?: string;
+        "hasDesc"?: boolean;
+    }
+    interface IfxCardOverline {
+    }
+    interface IfxCardText {
+        "hasBtn"?: boolean;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -228,6 +283,13 @@ declare namespace LocalJSX {
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
+    interface IfxLink {
+        "href"?: string;
+        "icon"?: any;
+        "position"?: string;
+        "target"?: string;
+        "underline"?: any;
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -240,12 +302,16 @@ declare namespace LocalJSX {
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
+        "ifx-card-headline": IfxCardHeadline;
+        "ifx-card-overline": IfxCardOverline;
+        "ifx-card-text": IfxCardText;
         "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
+        "ifx-link": IfxLink;
         "ifx-search-input": IfxSearchInput;
     }
 }
@@ -256,12 +322,16 @@ declare module "@stencil/core" {
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
+            "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
+            "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
+            "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
+            "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
         }
     }
