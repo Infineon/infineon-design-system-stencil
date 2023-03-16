@@ -31,7 +31,7 @@
     "dev:stencil": "stencil build --watch",
     "dev": "run-p dev:stencil dev:storybook",
 
-    "build:storybook": "build:stencil && build-storybook",
+    "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs"
   },
   "dependencies": {
