@@ -30,23 +30,28 @@
     width: 8px;
     height: 8px;
     border-radius: tokens.$border-radius-circle;
-    background-color: var(--dot-color);
   }
   
   :host([color="primary"]) {
-    --dot-color: blue;
     border-color: blue;
-    color: blue;
   }
-  
+
+  :host([color="primary"]) .dot {
+    background-color: blue;
+  }
+
   :host([color="secondary"]) {
-    --dot-color: green;
     border-color: green;
-    color: green;
   }
-  
+
+  :host([color="secondary"]) .dot  {
+    background-color: green;
+  }
+
   :host([color="warning"]) {
-    --dot-color: red;
     border-color: red;
-    color: red;
+  }
+
+  :host([color="warning"])  .dot  {
+    background-color: red;
   }
