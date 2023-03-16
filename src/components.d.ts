@@ -85,6 +85,7 @@ export namespace Components {
         "size": 's' | 'm';
     }
     interface IfxTag {
+        "border": Boolean;
         "color": 'primary' | 'secondary' | 'warning';
         "text": string;
     }
@@ -248,6 +249,7 @@ declare namespace LocalJSX {
         "size"?: 's' | 'm';
     }
     interface IfxTag {
+        "border"?: Boolean;
         "color"?: 'primary' | 'secondary' | 'warning';
         "text"?: string;
     }

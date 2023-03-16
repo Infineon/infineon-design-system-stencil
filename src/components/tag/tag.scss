@@ -3,10 +3,8 @@
 :host {
     display: inline-block;
     color: tokens.$color-default-500;
-    border: tokens.$border-width-default solid;
     font-family: tokens.$font-family-body;
     padding: tokens.$spacing-xxs tokens.$spacing-s;
-    border-radius: tokens.$border-radius-pill;
   }
   
   .container {
@@ -30,6 +28,15 @@
     width: 8px;
     height: 8px;
     border-radius: tokens.$border-radius-circle;
+  }
+
+  :host([border=true]) {
+    border-radius: tokens.$border-radius-pill;
+    border: tokens.$border-width-default solid;
+  }
+
+  :host([border=false]) {
+    
   }
   
   :host([color="primary"]) {
