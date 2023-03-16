@@ -4,6 +4,7 @@
     display: inline-block;
     color: tokens.$color-default-500;
     border: tokens.$border-width-default solid;
+    font-family: tokens.$font-family-body;
     padding: tokens.$spacing-xxs tokens.$spacing-s;
     border-radius: tokens.$border-radius-pill;
   }
