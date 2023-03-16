@@ -1,0 +1,576 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  min-height: 40px;
+  padding: 0px 16px;
+  gap: 8px;
+  color: #FFFFFF;
+  flex-direction: row;
+  font-weight: 600;
+  border-radius: 1px;
+  line-height: 24px;
+  outline: none;
+  font-family: tokens.$font-family-body;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  font-size: 1rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn:not(.disabled) {
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: tokens.$color-text-white;
+  background-color: tokens.$color-default-500;
+  border-color: tokens.$color-default-500;
+
+  & svg { 
+    stroke: tokens.$color-text-white;
+  }
+
+}
+
+.btn-outline-primary {
+  background-color: tokens.$color-bg-white;
+  color: tokens.$color-default-500;
+  border-color: tokens.$color-default-500;
+
+  & svg { 
+    stroke: tokens.$color-default-500;
+  }
+}
+
+.btn-secondary {
+  color: tokens.$color-text-white;
+  background-color: tokens.$color-highlight-500;
+  border-color: tokens.$color-highlight-500;
+
+  & svg { 
+    stroke: tokens.$color-text-white;
+  }
+}
+
+.btn-outline-secondary {
+  background-color: tokens.$color-bg-white;
+  color: tokens.$color-highlight-500;
+  border-color: tokens.$color-highlight-500;
+
+  & svg { 
+    stroke: tokens.$color-highlight-500;
+  }
+}
+
+.btn-success {
+  color: tokens.$color-text-black;
+  background-color: tokens.$color-success-500;
+  border-color: tokens.$color-success-500;
+
+  & svg { 
+    stroke: tokens.$color-text-black;
+  }
+}
+
+.btn-outline-success {
+  background-color: tokens.$color-bg-white;
+  border-color: tokens.$color-success-500;
+
+  & svg { 
+    stroke: tokens.$color-text-black;
+  }
+}
+
+.btn-danger {
+  color: tokens.$color-text-white;
+  background-color: tokens.$color-danger-500;
+  border-color: tokens.$color-danger-500;
+
+  & svg { 
+    stroke: tokens.$color-text-white;
+  }
+}
+
+.btn-outline-danger {
+  background-color: tokens.$color-bg-white;
+  color: tokens.$color-danger-500;
+  border-color: tokens.$color-danger-500;
+
+  & svg { 
+    stroke: tokens.$color-danger-500;
+  }
+}
+
+.btn-warning {
+  color: tokens.$color-text-black;
+  background-color: tokens.$color-warning-500;
+  border-color: tokens.$color-warning-500;
+
+  & svg { 
+    stroke: tokens.$color-text-black;
+  }
+}
+
+.btn-outline-warning {
+  background-color: tokens.$color-bg-white;
+  border-color: tokens.$color-warning-500;
+
+  & svg { 
+    stroke: tokens.$color-text-black;
+  }
+}
+
+
+
+.btn {
+ 
+  &.btn-s {
+    font-size: tokens.$font-size-s;
+    min-width: 71px;
+    min-height: 32px;
+    line-height: 16px;
+  }
+
+  &.btn-primary,
+  &.btn-outline-primary,
+  &.btn-secondary,
+  &.btn-outline-secondary,
+  &.btn-success,
+  &.btn-outline-success,
+  &.btn-danger,
+  &.btn-outline-danger,
+  &.btn-warning,
+  &.btn-outline-warning,
+  &.btn-outline-text {
+    &:focus {
+      box-shadow: none;
+
+    }
+  }
+
+  &.btn-primary,
+  &.btn-outline-primary,
+  &.btn-secondary,
+  &.btn-outline-secondary,
+  &.btn-success,
+  &.btn-outline-success,
+  &.btn-danger,
+  &.btn-outline-danger,
+  &.btn-warning,
+  &.btn-outline-warning,
+  &.btn-outline-text {
+    &:focus-visible {
+      box-shadow: 0 0 0 3px #B4DDD8;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 1;
+    background-color: tokens.$color-gray-300;
+    border-color: tokens.$color-gray-300;
+    color: tokens.$color-text-white;
+  }
+
+
+  &.btn-primary:not(:disabled, .disabled) {
+    &:focus {
+      background-color: tokens.$color-default-500;
+      border-color: tokens.$color-default-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-default-600;
+      border-color: tokens.$color-default-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-default-700;
+      border-color: tokens.$color-default-700;
+    }
+  }
+
+  &.btn-outline-primary:not(:disabled, .disabled) {
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-default-600;
+      border-color: tokens.$color-default-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-default-700;
+      border-color: tokens.$color-default-700;
+    }
+  }
+
+  &.btn-secondary:not(:disabled, .disabled) {
+    &:focus {
+      background-color: tokens.$color-highlight-500;
+      border-color: tokens.$color-highlight-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-highlight-600;
+      border-color: tokens.$color-highlight-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-highlight-700;
+      border-color: tokens.$color-highlight-700;
+    }
+  }
+
+  &.btn-outline-secondary:not(:disabled, .disabled) {
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-highlight-600;
+      border-color: tokens.$color-highlight-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-highlight-700;
+      border-color: tokens.$color-highlight-700;
+    }
+  }
+
+  &.btn-success:not(:disabled, .disabled) {
+ 
+    &:focus {
+      background-color: tokens.$color-success-500;
+      border-color: tokens.$color-success-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-success-600;
+      border-color: tokens.$color-success-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-success-700;
+      border-color: tokens.$color-success-700;
+    }
+  }
+
+  &.btn-outline-success:not(:disabled, .disabled) {
+    color: tokens.$color-text-black;
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: tokens.$color-success-600;
+      border-color: tokens.$color-success-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-success-700;
+      border-color: tokens.$color-success-700;
+    }
+  }
+
+  &.btn-danger:not(:disabled, .disabled) {
+    &:focus {
+      background-color: tokens.$color-danger-500;
+      border-color: tokens.$color-danger-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-danger-600;
+      border-color: tokens.$color-danger-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-danger-700;
+      border-color: tokens.$color-danger-700;
+    }
+  }
+
+  &.btn-outline-danger:not(:disabled, .disabled) {
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      color: tokens.$color-bg-white;
+      background-color: tokens.$color-danger-600;
+      border-color: tokens.$color-danger-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-danger-700;
+      border-color: tokens.$color-danger-700;
+    }
+  }
+
+  &.btn-warning:not(:disabled, .disabled) {
+  
+    &:focus {
+      background-color: tokens.$color-warning-500;
+      border-color: tokens.$color-warning-500;
+    }
+
+    &:hover {
+      background-color: tokens.$color-warning-600;
+      border-color: tokens.$color-warning-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-warning-700;
+      border-color: tokens.$color-warning-700;
+    }
+  }
+
+  &.btn-outline-warning:not(:disabled, .disabled) {
+    color: tokens.$color-text-black;
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &:hover {
+      background-color: tokens.$color-warning-600;
+      border-color: tokens.$color-warning-600;
+    }
+
+    &:active,
+    &.active {
+      background-color: tokens.$color-warning-700;
+      border-color: tokens.$color-warning-700;
+    }
+  }
+
+  &.btn-primary-outline-text {
+    background-color: transparent;
+    color: tokens.$color-default-500;
+
+    &:hover {
+      color: tokens.$color-default-600;
+
+       & svg { 
+        stroke: tokens.$color-default-600;
+       }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-default-700;
+
+      & svg { 
+        stroke: tokens.$color-default-700;
+       }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg { 
+        stroke: tokens.$color-gray-300;
+       }
+    }
+
+    & svg { 
+      stroke: tokens.$color-default-500;
+    }
+  }
+
+  &.btn-secondary-outline-text {
+    background-color: transparent;
+    color: tokens.$color-highlight-500;
+
+    &:hover {
+      color: tokens.$color-highlight-600;
+
+      & svg { 
+        stroke: tokens.$color-highlight-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-highlight-700;
+
+      & svg { 
+        stroke: tokens.$color-highlight-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg { 
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg { 
+      stroke: tokens.$color-highlight-500;
+    }
+  }
+
+  &.btn-success-outline-text {
+    background-color: transparent;
+    color: tokens.$color-success-500;
+
+    &:hover {
+      color: tokens.$color-success-600;
+
+      & svg { 
+        stroke: tokens.$color-success-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-success-700;
+
+      & svg { 
+        stroke: tokens.$color-success-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg { 
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg { 
+      stroke: tokens.$color-success-500;
+    }
+  }
+
+  &.btn-danger-outline-text {
+    background-color: transparent;
+    color: tokens.$color-danger-500;
+
+    &:hover {
+      color: tokens.$color-danger-600;
+
+      & svg { 
+        stroke: tokens.$color-danger-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-danger-700;
+
+      & svg { 
+        stroke: tokens.$color-danger-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg { 
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg { 
+      stroke: tokens.$color-danger-500;
+    }
+  }
+
+  &.btn-warning-outline-text {
+    background-color: transparent;
+    color: tokens.$color-warning-500;
+
+    &:hover {
+      color: tokens.$color-warning-600;
+
+      & svg { 
+        stroke: tokens.$color-warning-600;
+      }
+    }
+
+    &:active,
+    &.active {
+      color: tokens.$color-warning-700;
+
+      & svg { 
+        stroke: tokens.$color-warning-700;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 1;
+      background-color: transparent;
+      border-color: transparent;
+      color: tokens.$color-gray-300;
+
+      & svg { 
+        stroke: tokens.$color-gray-300;
+      }
+    }
+
+    & svg { 
+      stroke: tokens.$color-warning-500;
+    }
+  }
+}
+
+
+
+.ifx {
+  &__btn-icon {
+    &--before {
+      margin-right: 10px;
+    }
+
+    &--after {
+      margin-left: 10px;
+    }
+  }
+}
+
+
