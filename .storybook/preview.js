@@ -1,5 +1,5 @@
 // import '../src/plugins/infineonIcons';
-import '../src/global/global-theme.scss'
+import '../src/global/global.scss'
 import {defineCustomElements} from '../loader';
 
 defineCustomElements();
