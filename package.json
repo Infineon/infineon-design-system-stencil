@@ -30,6 +30,10 @@
     "dev:storybook": "start-storybook -p 6262",
     "dev:stencil": "stencil build --watch",
     "dev": "run-p dev:stencil dev:storybook",
+
+    "dev:test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
+    "prod:test": "stencil test --e2e",
+
     "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs"
   },
