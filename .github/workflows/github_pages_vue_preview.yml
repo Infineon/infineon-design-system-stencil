@@ -31,11 +31,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Install and Build
-        source-dir: ./examples/vue3-vite/dist
         run: |
-          npm install
-          npm run build
-
+          cd examples/vue3-vite
+          npm i && npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
