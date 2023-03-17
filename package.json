@@ -30,10 +30,7 @@
     "dev:storybook": "start-storybook -p 6262",
     "dev:stencil": "stencil build --watch",
     "dev": "run-p dev:stencil dev:storybook",
-
-    "dev:test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
-    "prod:test": "stencil test --e2e",
-
+    "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs"
   },
@@ -69,6 +66,7 @@
     "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
+    "jest-github-actions-reporter": "^1.0.3",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.6.1",
     "puppeteer": "^19.4.0",
