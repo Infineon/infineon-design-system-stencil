@@ -9,7 +9,7 @@ on:
       - synchronize
       - closed
 
-concurrency: ${{ github.workflow }}-${{ github.ref }}
+concurrency: preview-${{ github.ref }}
 
 jobs:
   deploy-preview:
@@ -40,3 +40,4 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./examples/vue3-vite/dist
+          umbrella-dir: vue-app
