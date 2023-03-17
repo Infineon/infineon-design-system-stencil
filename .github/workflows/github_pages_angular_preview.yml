@@ -29,11 +29,11 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/angularjs
+          cd examples/angular
           npm i && npm run build
           
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./examples/angularjs/dist
+          source-dir: ./examples/angular/dist
           umbrella-dir: pr-preview-angular-example
