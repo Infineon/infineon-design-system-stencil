@@ -33,5 +33,5 @@ jobs:
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./examples/angular/dist/angular
+          source-dir: ./examples/angular/dist
           umbrella-dir: pr-preview-angular-example
