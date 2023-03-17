@@ -1,5 +1,4 @@
 name: Deploy Master Storybook
-
 on:
   push:
     branches:
