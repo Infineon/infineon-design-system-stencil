@@ -1,3 +1,51 @@
+# v0.0.64 (Fri Mar 17 2023)
+
+#### 🐛 Bug Fix
+
+- updates on the master branch will now lead to a new package release o… [#51](https://github.com/Infineon/infineon-design-system-stencil/pull/51) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- readme updated with the information about the node version requiremen… [#53](https://github.com/Infineon/infineon-design-system-stencil/pull/53) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Feature/mdx stories [#42](https://github.com/Infineon/infineon-design-system-stencil/pull/42) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- completed card component [#49](https://github.com/Infineon/infineon-design-system-stencil/pull/49) ([@tishoyanchev](https://github.com/tishoyanchev))
+- readme fix [#47](https://github.com/Infineon/infineon-design-system-stencil/pull/47) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Feature/ifx icon button [#44](https://github.com/Infineon/infineon-design-system-stencil/pull/44) ([@tishoyanchev](https://github.com/tishoyanchev))
+- fixed dropdown related issues [#43](https://github.com/Infineon/infineon-design-system-stencil/pull/43) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Feature/nesting ifx icon [#40](https://github.com/Infineon/infineon-design-system-stencil/pull/40) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Feature/ifx icon [#39](https://github.com/Infineon/infineon-design-system-stencil/pull/39) ([@tishoyanchev](https://github.com/tishoyanchev))
+- removed warnings to potential errors [#38](https://github.com/Infineon/infineon-design-system-stencil/pull/38) ([@tishoyanchev](https://github.com/tishoyanchev))
+- disabled dropdown-menu [#36](https://github.com/Infineon/infineon-design-system-stencil/pull/36) ([@tishoyanchev](https://github.com/tishoyanchev))
+- default variant [#34](https://github.com/Infineon/infineon-design-system-stencil/pull/34) ([@tishoyanchev](https://github.com/tishoyanchev))
+- re-organized the classes [#32](https://github.com/Infineon/infineon-design-system-stencil/pull/32) ([@tishoyanchev](https://github.com/tishoyanchev))
+- replaced dropdown-filter with filter-input [#29](https://github.com/Infineon/infineon-design-system-stencil/pull/29) ([@tishoyanchev](https://github.com/tishoyanchev))
+- renamed dropdown-search [#28](https://github.com/Infineon/infineon-design-system-stencil/pull/28) ([@tishoyanchev](https://github.com/tishoyanchev))
+- new alert component [#27](https://github.com/Infineon/infineon-design-system-stencil/pull/27) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Feature/dropdown menu [#26](https://github.com/Infineon/infineon-design-system-stencil/pull/26) ([@tishoyanchev](https://github.com/tishoyanchev))
+- latest figma design [#25](https://github.com/Infineon/infineon-design-system-stencil/pull/25) ([@tishoyanchev](https://github.com/tishoyanchev))
+- outside click closes menu [#24](https://github.com/Infineon/infineon-design-system-stencil/pull/24) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Merge branch 'feature/button-dropdown-bug' [#20](https://github.com/Infineon/infineon-design-system-stencil/pull/20) (lechneve@ISCN5CG1201S7M.infineon.com)
+- package-lock json update [#18](https://github.com/Infineon/infineon-design-system-stencil/pull/18) (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil [#18](https://github.com/Infineon/infineon-design-system-stencil/pull/18) (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'testing-phase' [#18](https://github.com/Infineon/infineon-design-system-stencil/pull/18) (lechneve@ISCN5CG1201S7M.infineon.com)
+- testing-phase set up to be base for gh-pages preview url (lechneve@ISCN5CG1201S7M.infineon.com)
+- version updated for testing (lechneve@ISCN5CG1201S7M.infineon.com)
+- removed dropdown from stories that are being rendered for now (lechneve@ISCN5CG1201S7M.infineon.com)
+- version update (lechneve@ISCN5CG1201S7M.infineon.com)
+- testing phase branch changes publish to npm (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### ⚠️ Pushed to `master`
+
+- updated icon component ([@tishoyanchev](https://github.com/tishoyanchev))
+- fixed dropdown-item error ([@tishoyanchev](https://github.com/tishoyanchev))
+- no commit ([@tishoyanchev](https://github.com/tishoyanchev))
+- added excluded stories for dropdown (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.63 (Wed Jan 25 2023)
 
 #### 🐛 Bug Fix
