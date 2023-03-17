@@ -25,11 +25,14 @@ jobs:
           cache: 'npm'
           registry-url: https://npm.pkg.github.com/
           
-      - run: npm ci
+      - run: |
+          cd examples/vue3-vite
+          npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Install and Build
         run: |
+          cd examples/vue3-vite
           npm install
           npm run build
 
