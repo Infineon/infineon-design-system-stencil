@@ -1,5 +1,5 @@
 # Deploys each PR under its own subfolder
-name: Deploy Angular preview
+name: Deploy PR preview Angular app
 
 on:
   pull_request:
@@ -34,4 +34,4 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./examples/angular/dist
-          umbrella-dir: angular-app
+          umbrella-dir: pr-preview-angular-example

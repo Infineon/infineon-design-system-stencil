@@ -1,5 +1,5 @@
 # Deploys each PR under its own subfolder
-name: Deploy Vanilla preview
+name: Deploy PR preview Vanilla app
 
 on:
   pull_request:
@@ -33,4 +33,4 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./examples/vanilla-cdn
-          umbrella-dir: vanilla-app
+          umbrella-dir: pr-preview-vanilla-example

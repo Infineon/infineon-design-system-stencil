@@ -1,5 +1,5 @@
 # Deploys each PR under its own subfolder
-name: Deploy PR previews
+name: Deploy PR preview Storybook
 
 on:
   pull_request:
