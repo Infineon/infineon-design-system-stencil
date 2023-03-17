@@ -3,7 +3,7 @@ name: Deploy Master Vanilla example
 on:
   push:
     branches:
-      - feature/include-examples #master
+      - master
 
 permissions:
   contents: write

@@ -1,5 +1,5 @@
 # Deploys each PR under its own subfolder
-name: Deploy PR preview Angular app
+name: Deploy PR preview Angular App
 
 on:
   pull_request:
