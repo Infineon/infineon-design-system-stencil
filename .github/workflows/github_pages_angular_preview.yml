@@ -29,7 +29,8 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/angular
-          npm i && npm run build
+          npm ci
+          npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
