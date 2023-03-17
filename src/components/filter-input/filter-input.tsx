@@ -15,36 +15,34 @@ export class DropdownFilter {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @State() options: Array<any> =[]
-  @Prop() selectedValue: string
+  @Prop({mutable: true}) selectedValue: string
   @Element() el;
 
   @Watch('selectedValue')
-  changeSelectedOption() {
-    console.log('here', this.el)
-    this.el.setAttribute('selected-option', '');
+  addSelectedOption() {
+    //console.log('here', this.el)
+    this.el.setAttribute('selected-value',`${this.selectedValue}`);
+  }
+
+ 
+  handleOnChange(e) { 
+    this.selectedValue = e.target.children[e.composedPath()[0].selectedIndex+1].innerHTML;
   }
 
 
 
 
-
-
-
-  componentWillRender() { 
+  componentWillLoad() { 
     const optionElements = this.el.querySelectorAll('option')
+    //console.log('option elements', optionElements)
     for(let i = 0; i < optionElements.length; i++) { 
       this.options.push(optionElements[i])
     }
   }
 
-  componentWillLoad() { 
-    this.el.setAttribute('selected-city', 'sapporo')
-    console.log(this.el)
-  }
-
   render() {
     return  (
-      <select class="inf__filter-input" selected-value={this.selectedValue}>
+      <select class="inf__filter-input" onChange={this.handleOnChange.bind(this)} >
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>

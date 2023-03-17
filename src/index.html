@@ -11,11 +11,22 @@
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
 
   <script>
-    const getValue = () => {
-      //console.log(event.target.children[event.composedPath()[0].selectedIndex].innerHTML)
-      const ifxFilterInput = document.getElementById("select-city-dropdown")
-      console.log(ifxFilterInput.getAttribute('selected-city'))
+
+    const getValue = (ifxFilterInput) => { 
+      console.log('getValue', ifxFilterInput.getAttribute('selected-value'))
     }
+
+    const addEventListeners = () => {
+      const ifxFilterInput = document.getElementById("select-city-dropdown")
+      ifxFilterInput.addEventListener('change', () => { 
+        console.log('getValue', ifxFilterInput.getAttribute('selected-value'))
+      })
+    }
+
+    // window.onload = function () {
+    //   console.log('Dokument geladen');
+    //   addEventListeners()
+    // }
     
   </script>
 
@@ -23,8 +34,8 @@
 
 <body>
 
-  <ifx-filter-input onClick="getValue()" id="select-city-dropdown" selectedValue="tokyot">
-    <option>Tokyo</option>  
+  <ifx-filter-input id="select-city-dropdown" onChange="getValue(this)">
+    <option value="tokyo">Tokyo</option>  
     <option>Osaka</option>
     <option>Nagoya</option>
     <option>Sapporo</option>
