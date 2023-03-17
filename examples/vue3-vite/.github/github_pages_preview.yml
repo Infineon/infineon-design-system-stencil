@@ -9,7 +9,7 @@ on:
       - synchronize
       - closed
 
-concurrency: vue-preview-${{ github.ref }}
+concurrency: preview-vue-${{ github.ref }}
 
 jobs:
   deploy-preview:
