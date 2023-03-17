@@ -24,8 +24,9 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#local-development">Contributing</a></li>
+    <li><a href="#usage-of-components">Usage</a></li>
+      <li><a href="#local-development">Local development</a></li>
+    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -119,8 +120,10 @@ https://infineon.github.io/infineon-design-system-stencil
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-## Contributing
 
+## Local development
+
+Please note that the current version of storybook does not support the latest Node version. Please use Node version < 17.
 ### Installation
 
 ```bash
@@ -168,7 +171,7 @@ yarn/npm run storybook-start
 
 ```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
 
-### Development
+### Contributing
 
 + Create an issue with your new feature description on Github
 + Go to the issue and create a feature from it. (Naming convention: 'feature/name-of-component').

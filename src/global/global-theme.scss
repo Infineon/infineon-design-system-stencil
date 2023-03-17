@@ -6,3 +6,7 @@
   line-height: tokens.$font-line-height-m;
   font-family: tokens.$font-family-body;
 }
+
+ifx-icon:empty {
+  display: none;
+}

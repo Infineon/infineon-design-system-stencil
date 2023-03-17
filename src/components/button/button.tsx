@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -8,16 +8,16 @@ import classNames from 'classnames';
 })
 
 export class Button {
-  @Prop() label: string;
   @Prop() variant: 'solid' | 'outline' | 'outline-text';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-  @Prop() size: 's' | 'm';
+  @Prop() size: string;
   @Prop() disabled: boolean;
+  @Prop() icon: string;
+  @Prop({ mutable: true }) position: string = 'left'
 
-  @Prop() iconOnly: boolean = false;
-  @Prop({ reflect: true }) iconPosition: 'left' | 'right' = 'left';
   @Prop() href: string;
   @Prop() target: string = '_self';
+  @Element() el;
 
   private focusableElement: HTMLElement;
 
@@ -26,6 +26,14 @@ export class Button {
     this.focusableElement.focus();
   }
 
+  componentWillLoad() {
+    if (this.position.toUpperCase() !== "LEFT") {
+      this.position = 'right';
+    }
+  }
+
+
+
   render() {
     return (
       <Host>
@@ -33,23 +41,27 @@ export class Button {
           <a
             ref={(el) => (this.focusableElement = el)}
             class={this.getClassNames()}
-            href={this.href}
+            href={!this.disabled ? this.href : undefined}
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-            <slot />
+            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            <slot></slot>
+            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+
           </a>
         ) : (
-          <button class={this.getClassNames()}
+          <button
+            class={this.getClassNames()}
+
             type="button"
           >
+            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
+            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
           </button>
         )}
       </Host>
-
-
-
     );
   }
 
@@ -65,21 +77,16 @@ export class Button {
 
   getSizeClass() {
     return `${this.size}` === "s"
-      ? "btn--size-small"
+      ? "s"
       : "";
   }
 
   getClassNames() {
     return classNames(
       'btn',
-      this.size && `${this.getSizeClass()}`,
-      this.variant && `btn--${this.getVariantClass()}`,
-      this.iconOnly && `btn--icon-only`,
-      !this.iconOnly &&
-      this.iconPosition &&
-      `btn--icon-${this.iconPosition}`,
+      this.size && `btn-${this.getSizeClass()}`,
+      `btn-${this.getVariantClass()}`,
       this.disabled ? 'disabled' : ''
-
     );
   }
 }

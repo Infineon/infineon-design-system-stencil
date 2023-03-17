@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.63",
+  "version": "0.0.64",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -50,19 +50,28 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
+    "@infineon/infineon-icons": "^1.0.9",
     "@stencil/core": "^2.16.0",
     "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
+    "@storybook/mdx2-csf": "0.0.3",
     "@stencil/sass": "^2.0.0",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
+    "@storybook/addon-viewport": "^6.5.16",
+    "@storybook/addons": "^6.5.16",
+    "@storybook/api": "^6.5.16",
     "@storybook/builder-webpack4": "^6.5.13",
+    "@storybook/components": "^6.5.16",
     "@storybook/html": "^6.5.13",
     "@storybook/manager-webpack4": "^6.5.13",
     "@types/jest": "^27.0.3",
+    "@types/react-dom": "^18.0.11",
     "babel-loader": "^8.3.0",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^6.4.0",
@@ -71,11 +80,17 @@
     "esbuild": "^0.14.43",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
+    "parcel-bundler": "^1.6.1",
     "puppeteer": "^19.4.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "rimraf": "^3.0.2",
     "sass": "^1.44.0",
     "sass-loader": "^10",
     "style-loader": "^2"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
   },
   "auto": {
     "plugins": [

@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element } from "@stencil/core";
+import { Component, Prop, h, Element, Listen } from "@stencil/core";
 // import { calendar16 } from '@infineon/infineon-icons';
 
 @Component({
@@ -17,8 +17,16 @@ export class Dropdown {
   @Prop() filter: boolean = false;
   @Element() el;
 
+  @Listen('mousedown', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    const path = event.composedPath();
+    if (!path.includes(this.el)) {
+      this.closeDropdownMenu();
+    }
+  }
+
   getDropdownMenu() {
-    const dropdownMenuComponent = document.querySelector('ifx-dropdown-menu').shadowRoot;
+    const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
     return dropdownMenuElement
   }
@@ -28,8 +36,10 @@ export class Dropdown {
     return dropdownWrapper
   }
 
-  getDropdownItems() { 
-    const dropdownMenuItems = document.querySelectorAll('ifx-dropdown-item')
+  getDropdownItems() {
+
+    const dropdownMenuItems = this.el.querySelectorAll('ifx-dropdown-item')
+
     return dropdownMenuItems
   }
 
@@ -58,42 +68,37 @@ export class Dropdown {
     }
   }
 
+  toggleCheckbox(target) {
+    target.querySelector('input').checked = !target.querySelector('input').checked
+  }
+
+
+  getClickedElement(target) {
+    if (target instanceof SVGElement) {
+      return target.closest('.dropdown-item')
+    } else if (target.className.includes('dropdown-menu')
+      || target.className.includes('form-check-input')) {
+      return false
+    } else {
+      return target.closest('.dropdown-item');
+
+    }
+  }
 
   addActiveMenuItem = (e) => {
-    let target = e.target;
-    const composedPath = e.composedPath()
-    const isCheckable = target.checkable;
+    const target = this.getClickedElement(e.composedPath()[0])
+    const isCheckable = e.target.checkable;
 
-    if(target && target.className.includes('dropdown-menu')) return;
-    if(e.target.shadowRoot.querySelector('style')) {
-      target = e.target.shadowRoot.querySelector('style').nextElementSibling
-    } else  target = e.target.shadowRoot.querySelector('a');
-   
-    if(composedPath[0].className === 'dropdown-item') { 
-      target.querySelector('input').checked = !target.querySelector('input').checked
-    }
+    if (!target) return;
+    if (isCheckable) {
+      this.toggleCheckbox(target)
 
-    if (target.className.toLowerCase() === 'inf__dropdown-search'
-      || target.className.toLowerCase() === 'inf__dropdown-select') {
-      return;
-    }
-    
-    if (isCheckable) { 
       return;
     }
 
     this.removeActiveMenuItem()
-    if (target.firstChild.className === 'form-check-label') {
-      this.handleClassList(target.firstChild.parentElement, 'add', 'active')
-    } else this.handleClassList(target.firstChild, 'add', 'active')
-
+    this.handleClassList(target, 'add', 'active')
     this.toggleDropdownMenu()
-  }
-
-  handleOutsideClick(e) {
-    if (e.target.tagName.toLowerCase() === 'html') {
-      this.closeDropdownMenu()
-    } else return;
   }
 
   addEventListeners() {
@@ -103,12 +108,16 @@ export class Dropdown {
   }
 
   componentDidRender() {
-    const buttonComponent = document.querySelector('ifx-button').shadowRoot;
-    const buttonElement = buttonComponent.querySelector('button');
-    buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
-   
-    this.addEventListeners()
+    let buttonComponent = this.el.querySelector('ifx-button');
+    if (buttonComponent) {
+      const buttonElement = buttonComponent.shadowRoot.querySelector('button');
+      if (!buttonElement.classList.contains('disabled')) {
+        buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+        this.addEventListeners()
+      }
+    }
   }
+
 
   render() {
     return (

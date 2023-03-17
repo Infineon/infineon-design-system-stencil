@@ -1,0 +1,112 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.ifx {
+
+  &__alert-text {
+    font-size: 16px;
+    width: 100%;
+    padding: 12px 0px 12px 12px;
+    color: tokens.$color-text-black;
+    &.text-overflow { 
+      word-break:break-all
+    }
+  }
+
+  &__alert-icon-wrapper {
+    display: none;
+    &.show { 
+      position: relative;
+      min-width: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: tokens.$color-default-500;
+    }
+  }
+
+  &__close-icon-wrapper { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    
+
+    & a { 
+      line-height: 0;
+      color: tokens.$color-text-black;
+
+      &:hover svg { 
+        stroke: tokens.$color-default-500;
+      }
+    }
+  }
+}
+
+.alert {
+  display: flex;
+  border: 1px solid tokens.$color-default-500;
+  border-radius: 1px;
+  max-width: 800px;
+}
+
+.alert-primary,
+.alert-secondary,
+.alert-danger,
+.alert-success,
+.alert-warning {
+  color: tokens.$color-text-black;
+  background-color: tokens.$color-bg-white;
+}
+
+.alert-primary {
+  border: 1px solid tokens.$color-default-500;
+
+  & .ifx__alert-icon-wrapper {
+    background-color: tokens.$color-default-500;
+    color: tokens.$color-text-white;
+  }
+}
+
+.alert-secondary {
+  border: 1px solid tokens.$color-highlight-500;
+
+  & .ifx__alert-icon-wrapper {
+    background-color: tokens.$color-highlight-500;
+    color: tokens.$color-text-white;
+  }
+}
+
+.alert-success {
+  border: 1px solid tokens.$color-success-500;
+
+  & .ifx__alert-icon-wrapper {
+    background-color: tokens.$color-success-500;
+    color: tokens.$color-text-white;
+  }
+}
+
+.alert-danger {
+  border: 1px solid tokens.$color-danger-500;
+
+  & .ifx__alert-icon-wrapper {
+    background-color: tokens.$color-danger-500;
+    color: tokens.$color-text-white;
+  }
+}
+
+.alert-warning {
+  border: 1px solid tokens.$color-warning-500;
+
+  & .ifx__alert-icon-wrapper {
+    background-color: tokens.$color-warning-500;
+    color: tokens.$color-text-white;
+  }
+}
+
+// ifx-icon:empty { 
+//   display: none;
+//  }
+
+
+
+
