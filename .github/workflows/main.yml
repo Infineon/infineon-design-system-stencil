@@ -8,9 +8,8 @@ on:
       - synchronize # canary on new commit
   push:
     branches:
-     # - master
-      - testing-phase
-
+     - master
+ 
 jobs:
   release:
     runs-on: ubuntu-latest
