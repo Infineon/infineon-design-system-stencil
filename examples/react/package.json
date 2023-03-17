@@ -2,6 +2,7 @@
   "name": "react-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "@infineon/infineon-design-system-stencil": "^0.0.63",
     "@testing-library/jest-dom": "^5.16.5",
