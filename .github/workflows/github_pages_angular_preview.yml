@@ -26,14 +26,14 @@ jobs:
           registry-url: https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Install and Build
         run: |
-          cd examples/angular
-          npm install
-          cd examples/angular
-          npm run build
+          cd examples/angularjs
+          npm i && npm run build
+          
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./examples/angular/dist
+          source-dir: ./examples/angularjs/dist
           umbrella-dir: pr-preview-angular-example
