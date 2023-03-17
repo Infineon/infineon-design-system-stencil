@@ -24,7 +24,7 @@ jobs:
           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-        - name: Deploy 🚀
+      - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: examples/vanilla-cdn/ # The folder the action should deploy.
