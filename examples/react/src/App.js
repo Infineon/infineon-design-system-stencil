@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Hello world
+          Using Stencil web components in a React application
         </p>
 
         <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m" disabled="false">
