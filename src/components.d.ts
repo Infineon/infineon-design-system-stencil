@@ -69,6 +69,7 @@ export namespace Components {
         "icon": boolean;
         "label": string;
         "search": boolean;
+        "selectedValue": string;
         "size": 's' | 'm';
     }
     interface IfxIcon {
@@ -267,6 +268,7 @@ declare namespace LocalJSX {
         "icon"?: boolean;
         "label"?: string;
         "search"?: boolean;
+        "selectedValue"?: string;
         "size"?: 's' | 'm';
     }
     interface IfxIcon {

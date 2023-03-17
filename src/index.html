@@ -9,23 +9,26 @@
   <link rel="stylesheet" href="/build/infineon-design-system-stencil/global-theme.scss" />
   <script type="module" src="/build/infineon-design-system-stencil.esm.js"></script>
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
+
+  <script>
+    const getValue = () => {
+      //console.log(event.target.children[event.composedPath()[0].selectedIndex].innerHTML)
+      const ifxFilterInput = document.getElementById("select-city-dropdown")
+      console.log(ifxFilterInput.getAttribute('selected-city'))
+    }
+    
+  </script>
+
 </head>
 
 <body>
 
-  <ifx-card direction="horizontal" alignment="left">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img">
-    <ifx-card-overline slot="overline">
-    wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-    </ifx-card-overline>
-    <ifx-card-headline slot="headline">
-      aaaaaaaaaaaaaaaaaaaaaaaaaaa
-    </ifx-card-headline>
-    <ifx-card-text slot="text">
-     Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro iure facere ducimus corrupti minima cum sunt praesentium necessitatibus. Animi perspiciatis, dolor ratione voluptates reprehenderit mollitia, molestiae cum necessitatibus molestias, deleniti ducimus beatae. Praesentium facilis adipisci voluptates ex ipsum fuga? Sunt nemo aperiam veniam maiores, sint odio omnis eos possimus quia?
-    </ifx-card-text>
-    <ifx-link href="http://google.com" target="_blank" icon="true" slot="btn" underline="false" position="right">Link</ifx-link>
-  </ifx-card>
+  <ifx-filter-input onClick="getValue()" id="select-city-dropdown" selectedValue="tokyot">
+    <option>Tokyo</option>  
+    <option>Osaka</option>
+    <option>Nagoya</option>
+    <option>Sapporo</option>
+  </ifx-filter-input>
 
 
 </body>
