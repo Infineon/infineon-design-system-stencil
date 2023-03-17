@@ -1,9 +1,9 @@
-name: Deploy Master
+name: Deploy Vue Master
 
 on:
   push:
     branches:
-      - feature/include-examples
+      - feature/include-examples #master
 
 permissions:
   contents: write

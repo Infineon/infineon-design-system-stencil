@@ -29,7 +29,6 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/vanilla-cdn
-          npm i
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
