@@ -29,8 +29,8 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/angular
-          npm cache clean --force
           npm install
+          cd examples/angular
           npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
