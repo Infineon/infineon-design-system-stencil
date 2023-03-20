@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - examples/**
 
 permissions:
   contents: write
@@ -24,6 +26,12 @@ jobs:
           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          
+      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
+        if: ${{ env.ACT }}
+        run: |
+          apt-get update && apt-get install -y rsync
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:

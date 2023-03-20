@@ -8,7 +8,9 @@ on:
       - reopened
       - synchronize
       - closed
-
+    paths:
+      - examples/**
+      
 concurrency: preview-${{ github.ref }}
 
 jobs:
@@ -26,6 +28,12 @@ jobs:
           registry-url: https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
+        if: ${{ env.ACT }}
+        run: |
+          apt-get update && apt-get install -y rsync
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         with:
