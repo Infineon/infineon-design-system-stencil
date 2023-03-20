@@ -103,6 +103,10 @@ export namespace Components {
         "size": 's' | 'm';
     }
 }
+export interface IfxFilterInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxFilterInputElement;
+}
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
@@ -267,6 +271,7 @@ declare namespace LocalJSX {
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "onValueSelected"?: (event: IfxFilterInputCustomEvent<string>) => void;
         "search"?: boolean;
         "selectedValue"?: string;
         "size"?: 's' | 'm';
