@@ -1,25 +1,15 @@
 export default {
   title: 'Components/Tag',
   args: {
-    text: "text",
-    color: "primary",
-    border: true,
+    text: "Tag label",
   },
   argTypes: {
 
-    border: {
-      options: [ true, false],
-      control: { type: 'radio' },
-    },
-    color: {
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'radio' },
-    },
   },
 }
 
 const DefaultTemplate = (args) =>
-  `<ifx-tag text="${args.text}" color="${args.color}" border="${args.border}"/>`;
+  `<ifx-tag text="${args.text}"/>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes={

@@ -1,0 +1,91 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: inline-block;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: tokens.$spacing-xxs tokens.$spacing-m;
+  border-radius: tokens.$border-radius-pill;
+}
+
+.text {
+  font-family: tokens.$font-family-body;
+  margin: 0;
+  padding-left: 5px;
+  font-style: normal;
+  font-weight: tokens.$font-weight-semi-bold;
+  font-size: tokens.$font-size-m;
+  line-height: 1.25rem;
+  display: inline;
+  color: tokens.$color-text-black;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: tokens.$border-radius-circle;
+}
+
+.container {
+  &.border-orange {
+    border: tokens.$border-width-default solid tokens.$color-warning-500;
+  }
+
+  &.border-ocean {
+    border: tokens.$border-width-default solid tokens.$color-default-500;
+  }
+
+  &.border-grey {
+    border: tokens.$border-width-default solid tokens.$color-gray-500;
+  }
+
+  &.border-grey-200 {
+    border: tokens.$border-width-default solid tokens.$color-gray-200;
+  }
+
+  &.border-red {
+    border: tokens.$border-width-default solid tokens.$color-danger-500;
+  }
+
+  &.border-green {
+    border: tokens.$border-width-default solid tokens.$color-success-500;
+  }
+
+  &.border-berry {
+    border: tokens.$border-width-default solid tokens.$color-highlight-500;
+  }
+}
+
+.dot {
+  &.orange {
+    background-color: tokens.$color-warning-500;
+  }
+
+  &.ocean {
+    background-color: tokens.$color-default-500;
+  }
+
+  &.grey {
+    background-color: tokens.$color-gray-500;
+  }
+
+  &.grey-200 {
+    background-color: tokens.$color-gray-200;
+  }
+
+  &.red {
+    background-color: tokens.$color-danger-500;
+  }
+
+  &.green {
+    background-color: tokens.$color-success-500;
+  }
+
+  &.berry {
+    background-color: tokens.$color-highlight-500;
+  }
+}

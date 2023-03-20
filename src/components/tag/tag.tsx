@@ -8,15 +8,12 @@ import { Component, h, Prop } from '@stencil/core';
 export class Tag {
 
   @Prop() text: string;
-  @Prop() border: Boolean = true;
-  @Prop() color: 'primary' | 'secondary' | 'warning' = 'primary';
 
   render() {
     return (
-      <div class="container">
-        <span class="dot"></span>
+      <a href="javascript:void(null);" class={`container`}>
         <p class="text">{this.text}</p>
-      </div>
+      </a>
     );
   }
 }

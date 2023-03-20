@@ -1,51 +1,19 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('ifx-tag', () => {
-  it('renders with default values', async () => {
+describe('ifx-tag component', () => {
+  it('renders the component with the correct text', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-tag></ifx-tag>');
-
-    const container = await page.find('.container');
-    const dot = await page.find('.dot');
-    const text = await page.find('.text');
-
-    expect(container).toHaveClass('border');
-    expect(dot).toBeTruthy();
-    expect(text).not.toHaveText();
-
-    await page.waitForChanges();
+    await page.setContent('<ifx-tag text="Hello World"></ifx-tag>');
+    const textElement = await page.find('ifx-tag >>> .text');
+    expect(textElement.textContent).toEqual('Hello World');
   });
 
-  it('renders with custom text', async () => {
+  it('handles click events', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-tag text="Hello"></ifx-tag>');
-
-    const text = await page.find('.text');
-
-    expect(text).toHaveText('Hello');
-
-    await page.waitForChanges();
-  });
-
-  it('renders without border', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-tag border="false"></ifx-tag>');
-
-    const container = await page.find('.container');
-
-    expect(container).not.toHaveClass('border');
-
-    await page.waitForChanges();
-  });
-
-  it('renders with secondary color', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-tag color="secondary"></ifx-tag>');
-
-    const container = await page.find('.container');
-
-    expect(container).toHaveClass('secondary');
-
-    await page.waitForChanges();
+    await page.setContent('<ifx-tag text="Click me"></ifx-tag>');
+    const element = await page.find('ifx-tag');
+    const clickEvent = await element.spyOnEvent('click');
+    await element.click();
+    expect(clickEvent).toHaveReceivedEvent();
   });
 });

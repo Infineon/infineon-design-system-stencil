@@ -7,11 +7,9 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                    | Default     |
-| -------- | --------- | ----------- | --------------------------------------- | ----------- |
-| `border` | --        |             | `Boolean`                               | `true`      |
-| `color`  | `color`   |             | `"primary" \| "secondary" \| "warning"` | `'primary'` |
-| `text`   | `text`    |             | `string`                                | `undefined` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `text`   | `text`    |             | `string` | `undefined` |
 
 
 ----------------------------------------------
