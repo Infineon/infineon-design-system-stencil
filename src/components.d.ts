@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { TabOrientation } from "./components/ifxTabs/ifxTabs";
 export namespace Components {
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -106,6 +107,11 @@ export namespace Components {
         "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text": string;
     }
+    interface IfxTabs {
+        "orientation": TabOrientation;
+        "small": boolean;
+        "tabs": string[];
+    }
     interface IfxTag {
         "text": string;
     }
@@ -201,6 +207,12 @@ declare global {
         prototype: HTMLIfxStatusElement;
         new (): HTMLIfxStatusElement;
     };
+    interface HTMLIfxTabsElement extends Components.IfxTabs, HTMLStencilElement {
+    }
+    var HTMLIfxTabsElement: {
+        prototype: HTMLIfxTabsElement;
+        new (): HTMLIfxTabsElement;
+    };
     interface HTMLIfxTagElement extends Components.IfxTag, HTMLStencilElement {
     }
     var HTMLIfxTagElement: {
@@ -223,6 +235,7 @@ declare global {
         "ifx-link": HTMLIfxLinkElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
+        "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
     }
 }
@@ -325,6 +338,11 @@ declare namespace LocalJSX {
         "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text"?: string;
     }
+    interface IfxTabs {
+        "orientation"?: TabOrientation;
+        "small"?: boolean;
+        "tabs"?: string[];
+    }
     interface IfxTag {
         "text"?: string;
     }
@@ -344,6 +362,7 @@ declare namespace LocalJSX {
         "ifx-link": IfxLink;
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
+        "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
     }
 }
@@ -366,6 +385,7 @@ declare module "@stencil/core" {
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
+            "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
         }
     }
