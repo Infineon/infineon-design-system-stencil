@@ -9,18 +9,33 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
+  <div class="app">
+    <div class="header">
 
-  <ifx-button variant="outline" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
-    Button
-  </ifx-button>
+      <p>{{ msg }}</p>
 
-
-
+      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+        Button
+      </ifx-button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.app {
+  text-align: center;
+
+}
+
+
+.header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 </style>
