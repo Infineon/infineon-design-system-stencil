@@ -16,18 +16,20 @@ export class DropdownFilter {
   @Prop() filter: boolean = false;
   @State() options: Array<any> =[]
   //@Prop({mutable: true}) selectedValue: string
-  //@Prop({ mutable: true }) value: string = "";
+  //@Prop({ mutable: true }) value: string;
   @Element() el;
 
-  @Event() valueChanged: EventEmitter<string>;
+  @Event({ bubbles: false }) valueChanged: EventEmitter<string>;
   //@Event({ bubbles: false }) valueSelected: EventEmitter<string>;
 
   //private selectRef: HTMLSelectElement;
 
   handleInputChange(event) {
     const target = event.target.value;
-    console.log('target', event.target.value)
-    this.valueChanged.emit(target);
+    //console.log('target', event.target.value)
+    this.valueChanged.emit(target); //this works
+    //console.log('select', this.el.shadowRoot.querySelector('select'))
+    //this.el.shadowRoot.querySelector('select').dispatchEvent(new CustomEvent('valueChanged', { detail: target }));
   }
 
   // @Watch('selectedValue')

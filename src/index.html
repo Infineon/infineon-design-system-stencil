@@ -18,8 +18,8 @@
 
     const addEventListeners = () => {
       const ifxFilterInput = document.getElementById("select-city-dropdown")
-      ifxFilterInput.addEventListener('change', () => { 
-        console.log('getValue', ifxFilterInput.getAttribute('selected-value'))
+      ifxFilterInput.addEventListener('valueChanged', function(event) { 
+        console.log('getValue', event.detail)
       })
     }
 
@@ -28,18 +28,24 @@
       //const selectedValue = event.detail.value;
     }
 
-    // window.onload = function () {
-    //   console.log('Dokument geladen');
-    //   addEventListeners()
-    // }
+    const myNewFunc = (value) => { 
+      console.log('value', value.detail.value)
+    }
+
+    window.onload = function () {
+      console.log('Dokument geladen');
+      addEventListeners()
+    }
     //onClick="getValue(this)"
+
+
   </script>
   
 </head>
 
 <body>
 
-  <ifx-filter-input id="select-city-dropdown" valueChanged="getNewValue">
+  <ifx-filter-input id="select-city-dropdown" valueChanged="myNewFunc">
     <option value="tokyo">Tokyo</option>  
     <option>Osaka</option>
     <option>Nagoya</option>
