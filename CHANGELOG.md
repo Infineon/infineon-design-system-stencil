@@ -1,3 +1,15 @@
+# v0.0.65 (Tue Mar 21 2023)
+
+#### 🐛 Bug Fix
+
+- 55 tags + status [#57](https://github.com/Infineon/infineon-design-system-stencil/pull/57) ([@kaiwerther](https://github.com/kaiwerther))
+
+#### Authors: 1
+
+- Kai Werther ([@kaiwerther](https://github.com/kaiwerther))
+
+---
+
 # v0.0.64 (Fri Mar 17 2023)
 
 #### 🐛 Bug Fix
