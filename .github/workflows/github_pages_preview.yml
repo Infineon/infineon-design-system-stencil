@@ -39,7 +39,7 @@ jobs:
         with:
           source-dir: ./storybook-static
       - name: Get output url
-        run: echo ${{ deployment-url }}
+        run: echo deployment-url
   # deploy-react-preview:
   #   needs: deploy-storybook-preview
   #   steps:
