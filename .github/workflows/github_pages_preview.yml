@@ -39,7 +39,7 @@ jobs:
         with:
           source-dir: ./storybook-static
       - name: Get output url
-        run: echo deployment-url
+        run: echo "::set-output name=url::https://${{ env.pagesurl }}/${{ env.targetdir }}/"
   # deploy-react-preview:
   #   needs: deploy-storybook-preview
   #   steps:
