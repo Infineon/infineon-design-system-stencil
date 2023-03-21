@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "serve"
+    "start": "serve local"
   },
   "browserslist": [
     "> 1%",

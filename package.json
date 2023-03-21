@@ -27,7 +27,7 @@
     "loader/"
   ],
   "scripts": {
-    "build-stencil": "stencil build --docs",
+    "build-stencil": "stencil build --docs && npm run copy-components-to-vanilla-example",
     "build-docs": "node tools/createMarkdownStories.js",
     "build": "yarn copy-fonts && yarn build-docs && yarn stencil build --docs && yarn build-storybook",
     "start": "stencil build --dev --watch --serve",
@@ -37,6 +37,7 @@
     "storybook-prepare": "npm run bundle && npm run build",
     "storybook-start": "concurrently -r yarn:watch-*",
     "storybook-build": "stencil build --docs && build-storybook",
+    "copy-components-to-vanilla-example": "copyfiles ./dist/* examples/vanilla-cdn/local && copyfiles ./dist/**/* examples/vanilla-cdn/local && copyfiles ./dist/**/**/* examples/vanilla-cdn/local",
     "storybook-build-watch": "stencil build --watch --docs && build-storybook",
     "bundle-css": "sass --load-path=node_modules --style=compressed --no-source-map .storybook/index.scss dist/index.css",
     "watch-storybook": "start-storybook -p 6006",
