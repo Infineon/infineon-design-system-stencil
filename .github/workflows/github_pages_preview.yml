@@ -38,6 +38,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./storybook-static
+      - name: Get output url
         run: echo ${{ deployment-url }}
   # deploy-react-preview:
   #   needs: deploy-storybook-preview
