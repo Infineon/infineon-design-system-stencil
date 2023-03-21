@@ -9,7 +9,7 @@ on:
       - synchronize
       - closed
     paths:
-      - examples/**
+      - 'examples/**'
       
 concurrency: preview-${{ github.ref }}
 
