@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State, Watch, Event, EventEmitter, Listen } from "@stencil/core";
+import { Component, Prop, h, Element, State, Event, EventEmitter} from "@stencil/core";
 
 @Component({
   tag: 'ifx-filter-input',
@@ -15,31 +15,49 @@ export class DropdownFilter {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @State() options: Array<any> =[]
-  @Prop({mutable: true}) selectedValue: string
+  //@Prop({mutable: true}) selectedValue: string
+  //@Prop({ mutable: true }) value: string = "";
   @Element() el;
 
-  @Watch('selectedValue')
-  addSelectedOption() {
-    //console.log('here', this.el)
-    this.el.setAttribute('selected-value',`${this.selectedValue}`);
+  @Event() valueChanged: EventEmitter<string>;
+  //@Event({ bubbles: false }) valueSelected: EventEmitter<string>;
+
+  //private selectRef: HTMLSelectElement;
+
+  handleInputChange(event) {
+    const target = event.target.value;
+    console.log('target', event.target.value)
+    this.valueChanged.emit(target);
   }
 
-  @Event() valueSelected: EventEmitter<string>;
+  // @Watch('selectedValue')
+  // addSelectedOption() {
+  //   //console.log('here', this.el)
+  //   this.el.setAttribute('selected-value',`${this.selectedValue}`);
+  // }
 
-  @Listen('selectedOptionValue')
-  selectedOptionValueFunc() { 
-    console.log('event emitted')
-  }
 
-  handleOnChange(e) { 
-    this.selectedValue = e.target.children[e.composedPath()[0].selectedIndex+1].innerHTML;
-  }
+  //@Event() valueSelected: EventEmitter<{value: string}>;
 
-  fireCustomEvent() { 
-    console.log('here')
-    console.log(this.valueSelected)
-    this.valueSelected.emit('selectedOptionValue')
-  }
+  // @Listen('valueSelected')
+  // selectedOptionValueFunc(event) { 
+  //   console.log('event emitted')
+  //   console.log(event.detail.value)
+  // }
+
+  // handleOnChange(e) { 
+  //   this.selectedValue = e.target.children[e.composedPath()[0].selectedIndex+1].innerHTML;
+  // }
+
+  // fireCustomEvent() { 
+ 
+  //  this.valueSelected.emit({value: 'selectedOptionValue'})
+  // }
+
+  // handleChange(event: Event) {
+  //   const selectedValue = (event.target as HTMLSelectElement).value;
+  //   this.selectChange.emit(selectedValue);
+  // }
 
 
   componentWillLoad() { 
@@ -52,7 +70,7 @@ export class DropdownFilter {
 
   render() {
     return  (
-      <select class="inf__filter-input" onChange={this.fireCustomEvent} >
+      <select class="inf__filter-input" onChange={(event) => this.handleInputChange(event)}>
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>

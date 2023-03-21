@@ -23,6 +23,11 @@
       })
     }
 
+    const getNewValue = () => {
+      console.log('getNewValue')
+      //const selectedValue = event.detail.value;
+    }
+
     // window.onload = function () {
     //   console.log('Dokument geladen');
     //   addEventListeners()
@@ -34,7 +39,7 @@
 
 <body>
 
-  <ifx-filter-input id="select-city-dropdown" >
+  <ifx-filter-input id="select-city-dropdown" valueChanged="getNewValue">
     <option value="tokyo">Tokyo</option>  
     <option>Osaka</option>
     <option>Nagoya</option>
