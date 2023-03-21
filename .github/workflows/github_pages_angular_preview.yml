@@ -2,14 +2,9 @@
 name: Deploy PR preview Angular App
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
+  push:
     paths:
-      - examples/**
+      - 'examples/**'
 
 concurrency: preview-${{ github.ref }}
 
