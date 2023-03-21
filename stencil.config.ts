@@ -5,7 +5,7 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
   globalScript: 'src/index.ts',
-  globalStyle: 'src/global/global-theme.scss',
+  globalStyle: 'src/global/global.scss',
 
   outputTargets: [
     {

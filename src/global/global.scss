@@ -1,0 +1,8 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@import "~@infineon/design-system-tokens/dist/fonts.css";
+
+* {
+  box-sizing: border-box;
+  line-height: tokens.$font-line-height-m;
+  font-family: tokens.$font-family-body;
+}
