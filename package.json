@@ -33,7 +33,7 @@
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs",
-    "copy-components-to-vanilla-example": "copyfiles ./dist/* examples/vanilla-cdn/local && copyfiles ./dist/**/* examples/vanilla-cdn/local && copyfiles ./dist/**/**/* examples/vanilla-cdn/local"
+    "copy:dist": "copyfiles ./dist/* examples/vanilla-cdn/local && copyfiles ./dist/**/* examples/vanilla-cdn/local && copyfiles ./dist/**/**/* examples/vanilla-cdn/local"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
