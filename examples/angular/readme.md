@@ -1,12 +1,11 @@
-# Stencil web components in React 
-
-Install the React example app to see, how Stencil web components can be used within it.
+# Stencil web components in Angular 
 
 ## Run locally
 
 ### Using Stencil components from npm package
 
  ```npm install```
+
 
  ```npm run start``` 
  

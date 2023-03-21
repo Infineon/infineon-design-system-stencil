@@ -5,8 +5,18 @@ This example application demonstrates the usage of some of our Stencil web compo
 
 ## Run locally
 
+### Using Stencil components from npm package
 
  ```npm install```
 
 
  ```npm run dev```
+ 
+ OR (to unlink the previously linked local dependency)
+
+ ```npm run clean:dev```
+
+
+### Using Stencil components from local package (for testing purposes)
+
+ ```npm run test:local```

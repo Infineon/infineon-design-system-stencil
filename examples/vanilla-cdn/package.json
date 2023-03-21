@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "serve local",
-    "get:dist": "cd ../ && npm run build:stencil && npm run copy:dist"
+    "get:dist": "cd ../ && npm run build:stencil && npm run copy:dist && serve local-test"
   },
   "browserslist": [
     "> 1%",
