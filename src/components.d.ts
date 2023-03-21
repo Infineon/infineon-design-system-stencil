@@ -93,6 +93,17 @@ export namespace Components {
         "target": string;
         "underline": any;
     }
+    interface IfxRange {
+        "disabled": boolean;
+        "leftIcon": string;
+        "leftText": string;
+        "max": number;
+        "min": number;
+        "rightIcon": string;
+        "rightText": string;
+        "showPercentage": boolean;
+        "value": number;
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -109,6 +120,10 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+}
+export interface IfxRangeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxRangeElement;
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -189,6 +204,12 @@ declare global {
         prototype: HTMLIfxLinkElement;
         new (): HTMLIfxLinkElement;
     };
+    interface HTMLIfxRangeElement extends Components.IfxRange, HTMLStencilElement {
+    }
+    var HTMLIfxRangeElement: {
+        prototype: HTMLIfxRangeElement;
+        new (): HTMLIfxRangeElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -221,6 +242,7 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
+        "ifx-range": HTMLIfxRangeElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
@@ -312,6 +334,18 @@ declare namespace LocalJSX {
         "target"?: string;
         "underline"?: any;
     }
+    interface IfxRange {
+        "disabled"?: boolean;
+        "leftIcon"?: string;
+        "leftText"?: string;
+        "max"?: number;
+        "min"?: number;
+        "onValueChanged"?: (event: IfxRangeCustomEvent<number>) => void;
+        "rightIcon"?: string;
+        "rightText"?: string;
+        "showPercentage"?: boolean;
+        "value"?: number;
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -342,6 +376,7 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
+        "ifx-range": IfxRange;
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
@@ -364,6 +399,7 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
