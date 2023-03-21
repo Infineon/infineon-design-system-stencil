@@ -73,7 +73,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".app {\n  text-align: center;\n\n}\n\n\n.header {\n  background-color: #282c34;\n  min-height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7O0FBRXBCOzs7QUFHQTtFQUNFLHlCQUF5QjtFQUN6QixpQkFBaUI7RUFDakIsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLDZCQUE2QjtFQUM3QixZQUFZO0FBQ2QiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hcHAge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG5cbn1cblxuXG4uaGVhZGVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzI4MmMzNDtcbiAgbWluLWhlaWdodDogMTAwdmg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBmb250LXNpemU6IGNhbGMoMTBweCArIDJ2bWluKTtcbiAgY29sb3I6IHdoaXRlO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -84,7 +84,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\" style=\"text-align:center\">\n  <h1>Using Stencil web components in an Angular application</h1>\n  <ifx-button variant=\"outline\" href=\"\" target=\"_blank\" color=\"primary\" size=\"m\" disabled=\"false\" icon=\"false\">\n    Button\n  </ifx-button>\n</div>"
+module.exports = "<div class=\"app\">\n  <div class=\"header\">\n    <p>Using Stencil web components in an Angular application</p>\n    <ifx-button variant=\"solid\" href=\"\" target=\"_blank\" color=\"primary\" size=\"m\" disabled=\"false\" icon=\"false\">\n      Button\n    </ifx-button>\n  </div>\n</div>"
 
 /***/ }),
 
