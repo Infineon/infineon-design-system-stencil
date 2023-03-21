@@ -7,11 +7,12 @@ function App() {
         <p>
           Using Stencil web components in a React application
         </p>
-
         <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m" disabled="false">
           Button
         </ifx-button>
+
       </header>
+
     </div>
   );
 }

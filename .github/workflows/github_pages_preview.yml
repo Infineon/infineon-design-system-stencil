@@ -12,7 +12,7 @@ on:
 concurrency: preview-${{ github.ref }}
 
 jobs:
-  deploy-preview:
+  deploy-storybook-preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,3 +38,8 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./storybook-static
+        run: echo ${{ deployment-url }}
+  # deploy-react-preview:
+  #   needs: deploy-storybook-preview
+  #   steps:
+  #     - 
