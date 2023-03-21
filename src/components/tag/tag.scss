@@ -17,6 +17,11 @@
   border-color: tokens.$color-black;
 }
 
+.container:active {
+  border-color: tokens.$color-black;
+  background-color: tokens.$color-gray-100;
+}
+
 .text {
   font-family: tokens.$font-family-body;
   margin: 0;
