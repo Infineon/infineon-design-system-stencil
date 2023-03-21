@@ -31,8 +31,7 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          npm run storybook-prepare
-          npm run storybook-build
+          npm run build:storybook
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
