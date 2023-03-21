@@ -9,10 +9,14 @@ To copy the compiled components to the example application, follow the steps bel
 
 ## Run locally
 
-### Run for the first time or on a component change
+### Using Stencil components from npm package
+
+```npm run start```
+
+### Using Stencil components from local package (for testing purposes)
 
  ```npm run get:dist```
 
  This builds the Stencil components and copies the dist folder to the Vanilla example application.
 
- ```npm run start```
+ ```npm run test:local```
