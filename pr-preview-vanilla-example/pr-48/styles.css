@@ -1,14 +1,16 @@
-body {
+.app {
   text-align: center;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: sans-serif;
+
 }
 
-.container {
+
+.header {
+  background-color: #282c34;
+  min-height: 100vh;
   display: flex;
-  height: 100%;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
