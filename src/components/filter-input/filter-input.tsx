@@ -15,56 +15,16 @@ export class DropdownFilter {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @State() options: Array<any> =[]
-  //@Prop({mutable: true}) selectedValue: string
-  //@Prop({ mutable: true }) value: string;
   @Element() el;
-
   @Event({ bubbles: false }) valueChanged: EventEmitter<string>;
-  //@Event({ bubbles: false }) valueSelected: EventEmitter<string>;
-
-  //private selectRef: HTMLSelectElement;
 
   handleInputChange(event) {
     const target = event.target.value;
-    //console.log('target', event.target.value)
-    this.valueChanged.emit(target); //this works
-    //console.log('select', this.el.shadowRoot.querySelector('select'))
-    //this.el.shadowRoot.querySelector('select').dispatchEvent(new CustomEvent('valueChanged', { detail: target }));
+    this.valueChanged.emit(target);
   }
-
-  // @Watch('selectedValue')
-  // addSelectedOption() {
-  //   //console.log('here', this.el)
-  //   this.el.setAttribute('selected-value',`${this.selectedValue}`);
-  // }
-
-
-  //@Event() valueSelected: EventEmitter<{value: string}>;
-
-  // @Listen('valueSelected')
-  // selectedOptionValueFunc(event) { 
-  //   console.log('event emitted')
-  //   console.log(event.detail.value)
-  // }
-
-  // handleOnChange(e) { 
-  //   this.selectedValue = e.target.children[e.composedPath()[0].selectedIndex+1].innerHTML;
-  // }
-
-  // fireCustomEvent() { 
- 
-  //  this.valueSelected.emit({value: 'selectedOptionValue'})
-  // }
-
-  // handleChange(event: Event) {
-  //   const selectedValue = (event.target as HTMLSelectElement).value;
-  //   this.selectChange.emit(selectedValue);
-  // }
-
 
   componentWillLoad() { 
     const optionElements = this.el.querySelectorAll('option')
-    //console.log('option elements', optionElements)
     for(let i = 0; i < optionElements.length; i++) { 
       this.options.push(optionElements[i])
     }
