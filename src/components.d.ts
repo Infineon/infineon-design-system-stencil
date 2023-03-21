@@ -109,6 +109,13 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxToggle {
+        "checked": boolean;
+    }
+}
+export interface IfxToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToggleElement;
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -207,6 +214,12 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
+    interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
+    }
+    var HTMLIfxToggleElement: {
+        prototype: HTMLIfxToggleElement;
+        new (): HTMLIfxToggleElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
@@ -224,6 +237,7 @@ declare global {
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
+        "ifx-toggle": HTMLIfxToggleElement;
     }
 }
 declare namespace LocalJSX {
@@ -328,6 +342,10 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
+    interface IfxToggle {
+        "checked"?: boolean;
+        "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
+    }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
@@ -345,6 +363,7 @@ declare namespace LocalJSX {
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
+        "ifx-toggle": IfxToggle;
     }
 }
 export { LocalJSX as JSX };
@@ -367,6 +386,7 @@ declare module "@stencil/core" {
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
         }
     }
 }
