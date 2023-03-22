@@ -40,7 +40,9 @@ jobs:
           auto shipit
       
       - name: Update link in Vanilla example # updates the CDN link in the VanillJs example application 
-        run: npm run update-link
+        run:  |
+          cd examples/vanilla-cdn
+          npm run update-link
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
