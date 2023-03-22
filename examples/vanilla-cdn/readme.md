@@ -19,4 +19,4 @@ To copy the compiled components to the example application, follow the steps bel
 
  This builds the Stencil components and copies the dist folder to the Vanilla example application.
 
- ```npm run test:local```
+ ```npm run update-link```
