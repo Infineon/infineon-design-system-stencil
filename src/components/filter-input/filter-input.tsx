@@ -32,7 +32,7 @@ export class DropdownFilter {
 
   render() {
     return  (
-      <select class="inf__filter-input" onChange={(event) => this.handleInputChange(event)}>
+      <select class="inf__filter-input" onChange={this.handleInputChange.bind(this)}>
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>

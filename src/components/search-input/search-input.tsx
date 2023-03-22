@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element } from "@stencil/core";
+import { Component, Prop, h, Element, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: 'ifx-search-input',
@@ -15,9 +15,15 @@ export class DropdownSearch {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @Element() el;
+  @Event({ bubbles: false }) searchedValue: EventEmitter<string>;
 
+  handleInputChange(event) {
+    const target = event.target.value;
+    console.log(target)
+    this.searchedValue.emit(target);
+  }
 
   render() {
-    return <input class='inf__search-input' type="text" placeholder="search" />
+    return <input class='inf__search-input' type="text" placeholder="search" onInput={this.handleInputChange.bind(this)} />
   }
 }

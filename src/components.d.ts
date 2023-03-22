@@ -106,6 +106,10 @@ export interface IfxFilterInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxFilterInputElement;
 }
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
+}
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
@@ -300,6 +304,7 @@ declare namespace LocalJSX {
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "onSearchedValue"?: (event: IfxSearchInputCustomEvent<string>) => void;
         "search"?: boolean;
         "size"?: 's' | 'm';
     }

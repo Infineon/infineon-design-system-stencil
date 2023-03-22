@@ -10,18 +10,36 @@
   <script type="module" src="/build/infineon-design-system-stencil.esm.js"></script>
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
 
+  <style>
+    #show { 
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      font-weight: bold;
+    }
+  </style>
+
   <script>
 
-    const addEventListeners = () => {
-      const ifxFilterInput = document.getElementById("select-city-dropdown")
-      ifxFilterInput.addEventListener('valueChanged', function(event) { 
-        console.log('getValue', event.detail)
-      })
-    }
+    // const addEventListeners = () => {
+    //   const ifxFilterInput = document.getElementById("select-city-dropdown")
+    //   const ifxSearchInput = document.getElementById("search-input")
+    //   const showValue = document.getElementById('show')
+    //   ifxFilterInput.addEventListener('valueChanged', function(event) { 
+    //     console.log('getValue', event.detail)
+    //     showValue.innerHTML = event.detail
+    //   })
 
-    window.onload = function () {
-      addEventListeners()
-    }
+    //   ifxSearchInput.addEventListener('searchedValue', function(event) { 
+    //     console.log('searched Value', event.detail)
+    //     showValue.innerHTML = event.detail
+    //   })
+
+    // }
+
+    // window.onload = function () {
+    //   addEventListeners()
+    // }
  
   </script>
   
@@ -29,12 +47,37 @@
 
 <body>
 
-  <ifx-filter-input id="select-city-dropdown">
+  <!-- <ifx-filter-input id="select-city-dropdown">
     <option>Tokyo</option>  
     <option>Osaka</option>
     <option>Nagoya</option>
     <option>Sapporo</option>
-  </ifx-filter-input>
+  </ifx-filter-input> -->
+
+  <!-- <ifx-dropdown>
+    <ifx-button color="primary">dropdown</ifx-button>
+    <ifx-dropdown-menu>
+      <ifx-search-input id="search-input"></ifx-search-input>
+      <ifx-filter-input id="select-city-dropdown">
+        <option>Tokyo</option>  
+        <option>Osaka</option>
+        <option>Nagoya</option>
+        <option>Sapporo</option>
+      </ifx-filter-input>
+      <ifx-dropdown-item icon="calendar-16">One</ifx-dropdown-item>
+      <ifx-dropdown-item>Two</ifx-dropdown-item>
+      <ifx-dropdown-item>Three</ifx-dropdown-item>
+      <ifx-dropdown-item>Four</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
+
+  <p id="show"></p> -->
+
+  <ifx-card>
+    <ifx-card-headline slot="headline">headline</ifx-card-headline>
+    <ifx-card-text slot="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus fugiat maxime molestias veniam odio voluptatum consequatur quod, earum delectus, saepe commodi quae quaerat accusamus magni esse iure, pariatur libero? Quia aliquid maiores molestiae obcaecati? Incidunt ad similique voluptas, perferendis quidem eveniet iusto rem earum, deleniti fugiat possimus ullam sapiente voluptate.</ifx-card-text>
+    
+  </ifx-card>
 
 
 </body>

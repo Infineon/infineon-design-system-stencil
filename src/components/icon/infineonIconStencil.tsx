@@ -1,5 +1,10 @@
 import { Component, Prop, h, Host } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
+function myFunc(val) { 
+  return `import { ${val} } from '@infineon/infineon-icons'`
+};
+
+
 
 
 @Component({
@@ -10,13 +15,17 @@ import { getIcon } from '@infineon/infineon-icons'
 export class InfineonIconStencil {
   @Prop({ mutable: true }) icon: any;
   @Prop({ mutable: true }) ifxIcon: any;
- 
+  
   convertStringToHtml(htmlString) { 
     const div = document.createElement('div')
     div.innerHTML = htmlString
     return div.firstChild
   }
 
+
+
+
+  
   convertHtmlToObject(htmlElement) { 
     let pathToObject = Array
       .from(htmlElement.attributes, ({ name, value }) => ({ name, value }))
@@ -64,6 +73,10 @@ export class InfineonIconStencil {
   componentWillLoad() {
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
     this.ifxIcon = getIcon(removeHyphen(this.icon));
+
+
+    const testIcon = myFunc('getIcon')
+    console.log('testIcon', testIcon)
   }
 
   render() {

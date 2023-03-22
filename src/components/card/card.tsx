@@ -35,6 +35,11 @@ export class Card {
     }
   }
 
+  handleSearchedValue(event) { 
+    console.log(event.detail)
+  }
+ 
+
 
   render() {
     return (
