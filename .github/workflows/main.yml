@@ -34,15 +34,13 @@ jobs:
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: | 
+        run: | # install, update the CDN link in the VanillJs example application, build and create a realese  
           npm install
+          cd examples/vanilla-cdn 
+          npm run update-link
+          cd ../..
           npm run build:stencil
           auto shipit
-      
-      - name: Update link in Vanilla example # updates the CDN link in the VanillJs example application 
-        run:  |
-          cd examples/vanilla-cdn
-          npm run update-link
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
