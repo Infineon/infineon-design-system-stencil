@@ -18,7 +18,7 @@ export class Spinner {
 
   getSize() {
     return `${this.size}` === "s"
-      ? "25px"
+      ? "24px"
       : "40px";
   }
 }
