@@ -48,10 +48,10 @@ jobs:
             const {data: comments} = await github.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: prNumber
+              issue_number: prNumber,
+              per_page: 1
             });
-            const originalComment = comments.find(c => c.user.login === context.payload.pull_request.user.login);
-            console.log(originalComment);
+            const originalComment = comments[0];
             if (originalComment) {
               const existingText = originalComment.body;
               const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
