@@ -37,6 +37,7 @@ jobs:
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          AUTO_NO_VERIFY: 1
         run: | 
           npm install
           npm run build:stencil
