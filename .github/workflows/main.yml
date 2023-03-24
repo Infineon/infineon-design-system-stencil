@@ -37,7 +37,7 @@ jobs:
         run: | 
           npm install
           npm run build:stencil
-          auto shipit --no-git-tag-version
+          auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
         with:
