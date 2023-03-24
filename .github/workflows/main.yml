@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0 # fetch all tags for ship-it
       - name: Clean working directory
-        run: git clean -fdx
+        run: git clean -f
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
