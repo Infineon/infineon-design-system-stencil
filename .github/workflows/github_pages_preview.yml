@@ -60,7 +60,7 @@ jobs:
               await github.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: autoComment.id,
+                comment_id: pullRequest.id,
                 body: `${existingText}\n${newText}`
               });
             }
