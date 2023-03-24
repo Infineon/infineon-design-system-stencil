@@ -54,16 +54,24 @@ jobs:
               repo: context.repo.repo,
               pull_number: prNumber
             });
-            console.log("pr original message ", context.payload.pull_request.review_comment.id);
+            console.log("pr original message ", context.payload);
             const existingText = pullRequest.body;
-            const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
+            const newText = 'This is new text added to the comment.';
             if (!existingText.includes(newText)) {
-              await github.issues.updateComment({
+              const {data: comments} = await github.issues.listComments({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: context.payload.pull_request.review_comment.id,
-                body: `${existingText}\n${newText}`
+                issue_number: prNumber
               });
+              const commentId = comments.find(comment => comment.user.login === pullRequest.user.login)?.id;
+              if (commentId) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: commentId,
+                  body: `${existingText}\n${newText}`
+                });
+              }
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
