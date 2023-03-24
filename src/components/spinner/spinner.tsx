@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-spinner',
@@ -10,15 +11,23 @@ export class Spinner {
 
   render() {
     return (
-      <div class="spinner" style={{ width: this.getSize(), height: this.getSize() }}>
+      <div class={this.getClassNames()}
+      >
         <div class="border"></div>
       </div>
     );
   }
 
-  getSize() {
+  getSizeClass() {
     return `${this.size}` === "s"
-      ? "24px"
-      : "40px";
+      ? "s"
+      : "";
+  }
+
+  getClassNames() {
+    return classNames(
+      'spinner',
+      this.size && `spinner ${this.getSizeClass()}`,
+    );
   }
 }

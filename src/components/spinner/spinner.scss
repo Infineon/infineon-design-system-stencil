@@ -5,6 +5,13 @@
 
 .spinner {
   position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.spinner.s {
+  width: 24px;
+  height: 24px;
 }
 
 .border {
