@@ -48,6 +48,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
+            const { owner, repo } = context.repo;
             const prNumber = context.payload.pull_request.number;
             console.log("pr original message ", context.payload.pull_request.body);
             const newText = 'This is new text added to the comment.';
