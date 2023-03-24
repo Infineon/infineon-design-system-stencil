@@ -59,7 +59,7 @@ jobs:
             const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
             if (autoComment) {
               const existingText = autoComment.body;
-              const newText = 'PR Preview URL for Vue example: ${{ steps.preview.outputs.url }}';
+              const newText = 'PR Preview URL for Vue example: ${{ steps.preview.outputs.deployment-url }}';
               if (!existingText.includes(newText)) {
                 await github.issues.updateComment({
                   owner: context.repo.owner,

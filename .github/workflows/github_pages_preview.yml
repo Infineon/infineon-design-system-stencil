@@ -39,10 +39,10 @@ jobs:
         with:
           source-dir: ./storybook-static
           github-token: ${{ secrets.GITHUB_TOKEN }}  
-                 
+
       - name: Get preview URL
         run: |
-          echo "Preview URL: ${{ steps.preview.outputs.url }}"
+          echo "Preview URL: ${{ steps.preview.outputs.deployment-url }}"
 
       - name: Update comment in PR
         uses: actions/github-script@v4
