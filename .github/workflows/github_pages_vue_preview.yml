@@ -39,6 +39,7 @@ jobs:
           cd examples/vue3-vite
           npm i && npm run build
       - name: Deploy preview
+        id: preview       
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./examples/vue3-vite/dist

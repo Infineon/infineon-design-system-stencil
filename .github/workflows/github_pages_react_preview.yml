@@ -40,6 +40,7 @@ jobs:
           npm i && npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
+        id: preview
         with:
           source-dir: ./examples/react/build
           umbrella-dir: pr-preview-react-example
