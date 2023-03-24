@@ -48,19 +48,24 @@ jobs:
         uses: actions/github@v4
         with:
           script: |
-            const { owner, repo } = context.repo;
             const prNumber = context.payload.pull_request.number;
-            console.log("pr original message ", context.payload.pull_request.body);
-            const newText = 'This is new text added to the comment.';
-            const currentBody = context.payload.pull_request.body;
-            if (!currentBody.includes(newText)) {
-              const updatedBody = `${currentBody}\n${newText}`;
-              await github.rest.pulls.update({
-                owner,
-                repo,
-                pull_number: prNumber,
-                body: updatedBody
-              });
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            if (autoComment) {
+              const existingText = autoComment.body;
+              const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
+              if (!existingText.includes(newText)) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: autoComment.id,
+                  body: `${existingText}\n${newText}`
+                });
+              }
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
