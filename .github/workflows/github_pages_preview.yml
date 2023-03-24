@@ -54,15 +54,15 @@ jobs:
               repo: context.repo.repo,
               issue_number: prNumber
             });
-            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
-            if (autoComment) {
-              const existingText = autoComment.body;
+            const originalComment = comments.find(c => c.user.login === context.payload.pull_request.user.login);
+            if (originalComment) {
+              const existingText = originalComment.body;
               const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
               if (!existingText.includes(newText)) {
                 await github.issues.updateComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  comment_id: autoComment.id,
+                  comment_id: originalComment.id,
                   body: `${existingText}\n${newText}`
                 });
               }
