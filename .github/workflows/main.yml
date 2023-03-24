@@ -56,4 +56,23 @@ jobs:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
           
+      - name: Modify comment in PR
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            if (autoComment) {
+              await github.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: autoComment.id,
+                body: 'This is a modified comment.'
+              });
+            }
 
