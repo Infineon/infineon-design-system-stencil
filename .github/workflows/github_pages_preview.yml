@@ -54,14 +54,14 @@ jobs:
               repo: context.repo.repo,
               pull_number: prNumber
             });
-            console.log("pr original message ", pullRequest);
+            console.log("pr original message ", context.payload.pull_request.review_comment.id);
             const existingText = pullRequest.body;
             const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
             if (!existingText.includes(newText)) {
               await github.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                comment_id: pullRequest.id,
+                comment_id: context.payload.pull_request.review_comment.id,
                 body: `${existingText}\n${newText}`
               });
             }
