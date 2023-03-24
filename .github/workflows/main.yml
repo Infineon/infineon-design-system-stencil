@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0 # fetch all tags for ship-it
       - name: Clean working directory
-        run: git clean -f
+        run: git clean -fdx
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
@@ -37,7 +37,7 @@ jobs:
         run: | 
           npm install
           npm run build:stencil
-          auto shipit
+          auto shipit --no-git-tag-version
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
         with:
