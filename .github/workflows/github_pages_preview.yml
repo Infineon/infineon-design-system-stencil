@@ -51,7 +51,7 @@ jobs:
               issue_number: prNumber
             });
             const originalComment = comments.find(c => c.user.login === context.payload.pull_request.user.login);
-            console.log(existingText);
+            console.log(originalComment);
             if (originalComment) {
               const existingText = originalComment.body;
               const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
