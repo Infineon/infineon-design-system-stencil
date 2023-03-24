@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "serve",
-    "watch": "run-p get:dist serve",
+    "watch": "run-p get:dist start",
     "update-link": "node update-link.js",
     "get:dist": "cd ../ && npm run dev:stencil && npm run copy:dist && cd examples/vanilla-cdn"
   },
