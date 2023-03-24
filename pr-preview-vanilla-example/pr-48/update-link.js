@@ -15,5 +15,5 @@ const localLink = '<script type="module" src="dist/infineon-design-system-stenci
 const newLink = isMaster ? cdnLink : localLink;
 const updatedContent = htmlContent.replace(linkRegex, newLink);
 
-
 fs.writeFileSync(indexHtmlPath, updatedContent, 'utf-8');
+console.log("updated link: ", newLink);

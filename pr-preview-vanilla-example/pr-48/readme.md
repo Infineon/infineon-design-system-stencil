@@ -15,11 +15,10 @@ To test the compiled components locally, follow the steps below.
 
 ### Using Stencil components from local package (for testing purposes)
 
- ```npm run get:dist```
+ ```npm run watch```
 
- This builds the Stencil components and copies the dist folder to the Vanilla example application.
- If the link in the ```index.html``` points to the npm package, run following command to switch to the local link:
+ This builds the Stencil components (hot reload included) and copies the dist folder to the Vanilla example application.
+
+ If you have checked out the master branch, the link in the ```index.html``` points to the npm package. Run the following command to replace it with the local link, before running the application.
 
  ```npm run update-link```
-
-Else run ```npm run start```.
