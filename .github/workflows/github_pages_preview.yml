@@ -49,34 +49,17 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
-            const {data: pullRequest} = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: prNumber
-            });
-            console.log("pr original message ", context.payload);
-            const existingText = pullRequest.body;
+            console.log("pr original message ", context.payload.pull_request.body);
             const newText = 'This is new text added to the comment.';
-            if (!existingText.includes(newText)) {
-              const {data: comments} = await github.issues.listComments({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number
+            const currentBody = context.payload.pull_request.body;
+            if (!currentBody.includes(newText)) {
+              const updatedBody = `${currentBody}\n${newText}`;
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number: prNumber,
+                body: updatedBody
               });
-              let commentId = null;
-              comments.forEach(comment => {
-                if (comment.user && comment.user.login === context.payload.pull_request.user.login) {
-                  commentId = comment.id;
-                }
-              });
-              if (commentId) {
-                await github.issues.updateComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  comment_id: commentId,
-                  body: `${existingText}\n${newText}`
-                });
-              }
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
