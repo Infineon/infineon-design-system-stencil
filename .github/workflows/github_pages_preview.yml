@@ -52,6 +52,7 @@ jobs:
               per_page: 1
             });
             const originalComment = comments[0];
+            console.log("og comment", originalComment);
             if (originalComment) {
               const existingText = originalComment.body;
               const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
