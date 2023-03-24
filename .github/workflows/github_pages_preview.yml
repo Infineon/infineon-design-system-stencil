@@ -61,9 +61,14 @@ jobs:
               const {data: comments} = await github.issues.listComments({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: prNumber
+                issue_number: context.payload.pull_request.number
               });
-              const commentId = comments.find(comment => comment.user.login === pullRequest.user.login)?.id;
+              let commentId = null;
+              comments.forEach(comment => {
+                if (comment.user && comment.user.login === context.payload.pull_request.user.login) {
+                  commentId = comment.id;
+                }
+              });
               if (commentId) {
                 await github.issues.updateComment({
                   owner: context.repo.owner,
