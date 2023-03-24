@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "serve",
-    "watch": "run-p get:dist start",
+    "watch": "run-s get:dist start",
     "update-link": "node update-link.js",
-    "get:dist": "cd ../ && npm run dev:stencil && npm run copy:dist && cd examples/vanilla-cdn"
+    "get:dist": "cd ../../ && npm run build:stencil && npm run copy:dist && cd examples/vanilla-cdn"
   },
   "browserslist": [
     "> 1%",
