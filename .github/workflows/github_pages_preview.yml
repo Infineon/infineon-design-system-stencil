@@ -54,7 +54,7 @@ jobs:
               repo: context.repo.repo,
               pull_number: prNumber
             });
-            console.log("pr original message ", existingText);
+            console.log("pr original message ", pullRequest);
             const existingText = pullRequest.body;
             const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
             if (!existingText.includes(newText)) {
