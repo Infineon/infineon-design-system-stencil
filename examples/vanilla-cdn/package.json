@@ -3,20 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "serve",
-    "watch": "run-s get:dist start",
+    "build-and-run": "run-s get:dist dev",
     "update-link": "node update-link.js",
-    "get:dist": "cd ../../ && npm run build:stencil && npm run copy:dist && cd examples/vanilla-cdn"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "get:dist": "cd ../../ && npm run build:stencil && npm run copy:dist"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
   ],
-  "dependencies": {
-    "serve": "^14.2.0"
-  },
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "vite": "^4.2.1"
   }
 }
