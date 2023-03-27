@@ -24,7 +24,6 @@ export class IfxModal {
   async open() {
     this.showModal = true;
     this.modalOpen.emit();
-    console.log(this.alertColor, this.alertIcon)
   }
 
   @Method()
@@ -49,12 +48,12 @@ export class IfxModal {
 
   render() {
     return (
-      <div class={`modal-container${this.showModal ? ' open' : ''}`}>
+      <div class={`modal-container ${this.showModal ? 'open' : ''}`}>
         <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div>
         <div class="modal-content-container">
           {this.alertColor && this.alertIcon ? (
             <div class={`modal-border ${this.alertColor}`}>
-              <i class={this.alertIcon}></i>
+              <ifx-icon icon={this.alertIcon}></ifx-icon>
             </div>
           ) : null}
           <div class="modal-content">

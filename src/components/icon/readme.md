@@ -22,6 +22,7 @@
  - [ifx-dropdown-item](../dropdown-item)
  - [ifx-icon-button](../icon-button)
  - [ifx-link](../link)
+ - [ifx-modal](../ifxModal)
 
 ### Graph
 ```mermaid
@@ -31,6 +32,7 @@ graph TD;
   ifx-dropdown-item --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-link --> ifx-icon
+  ifx-modal --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
