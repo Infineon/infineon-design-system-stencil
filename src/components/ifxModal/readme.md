@@ -52,11 +52,13 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ifx-icon](../icon)
 - [ifx-button](../button)
 
 ### Graph
 ```mermaid
 graph TD;
+  ifx-modal --> ifx-icon
   ifx-modal --> ifx-button
   ifx-button --> ifx-icon
   style ifx-modal fill:#f9f,stroke:#333,stroke-width:4px

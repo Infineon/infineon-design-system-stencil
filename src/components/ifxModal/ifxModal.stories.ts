@@ -1,5 +1,6 @@
 // ifx-modal.stories.js
 import { action } from '@storybook/addon-actions';
+import { icons } from '@infineon/infineon-icons'
 
 export default {
   title: 'Components/IfxModal',
@@ -13,13 +14,14 @@ export default {
       control: 'boolean',
       description: 'Close the modal when clicking outside the window',
     },
-    alertColor: {
-      options: ['orange', 'ocean', 'grey', 'grey-200', 'red', 'green', 'berry'],
-      control: { type: 'radio' },
+    alertIcon: {
+      options: Object.keys(icons),
+      control: { type: 'select' },
       description: 'When specified together with alertIcon then an border to the right is shown',
     },
-    alertIcon: {
-      control: 'text',
+    alertColor: {
+      options: ['orange', 'ocean', 'grey', 'grey-200', 'red', 'green', 'berry'],
+      control: { type: 'select' },
       description: 'When specified together with alertColor then an border to the right is shown',
     },
   },
@@ -53,7 +55,7 @@ const Template = ({
   `;
   modal.appendChild(content);
 
-  const openButton = document.createElement('button');
+  const openButton = document.createElement('ifx-button');
   openButton.id = 'open';
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
