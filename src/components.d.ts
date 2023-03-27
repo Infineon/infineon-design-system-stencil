@@ -93,6 +93,14 @@ export namespace Components {
         "target": string;
         "underline": any;
     }
+    interface IfxModal {
+        "alertColor": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry' | '';
+        "alertIcon": string;
+        "caption": string;
+        "close": () => Promise<void>;
+        "closeOnOverlayClick": boolean;
+        "open": () => Promise<void>;
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -109,6 +117,10 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+}
+export interface IfxModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxModalElement;
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -189,6 +201,12 @@ declare global {
         prototype: HTMLIfxLinkElement;
         new (): HTMLIfxLinkElement;
     };
+    interface HTMLIfxModalElement extends Components.IfxModal, HTMLStencilElement {
+    }
+    var HTMLIfxModalElement: {
+        prototype: HTMLIfxModalElement;
+        new (): HTMLIfxModalElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -221,6 +239,7 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
+        "ifx-modal": HTMLIfxModalElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
@@ -312,6 +331,16 @@ declare namespace LocalJSX {
         "target"?: string;
         "underline"?: any;
     }
+    interface IfxModal {
+        "alertColor"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry' | '';
+        "alertIcon"?: string;
+        "caption"?: string;
+        "closeOnOverlayClick"?: boolean;
+        "onCancelButtonClick"?: (event: IfxModalCustomEvent<any>) => void;
+        "onModalClose"?: (event: IfxModalCustomEvent<any>) => void;
+        "onModalOpen"?: (event: IfxModalCustomEvent<any>) => void;
+        "onOkButtonClick"?: (event: IfxModalCustomEvent<any>) => void;
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -342,6 +371,7 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
+        "ifx-modal": IfxModal;
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
@@ -364,6 +394,7 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-modal": LocalJSX.IfxModal & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
