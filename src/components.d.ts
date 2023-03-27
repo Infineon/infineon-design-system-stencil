@@ -101,6 +101,9 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxSpinner {
+        "size": string;
+    }
     interface IfxStatus {
         "border": boolean;
         "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
@@ -195,6 +198,12 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
+    }
+    var HTMLIfxSpinnerElement: {
+        prototype: HTMLIfxSpinnerElement;
+        new (): HTMLIfxSpinnerElement;
+    };
     interface HTMLIfxStatusElement extends Components.IfxStatus, HTMLStencilElement {
     }
     var HTMLIfxStatusElement: {
@@ -222,6 +231,7 @@ declare global {
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
     }
@@ -320,6 +330,9 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxSpinner {
+        "size"?: string;
+    }
     interface IfxStatus {
         "border"?: boolean;
         "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
@@ -343,6 +356,7 @@ declare namespace LocalJSX {
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
         "ifx-search-input": IfxSearchInput;
+        "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
     }
@@ -365,6 +379,7 @@ declare module "@stencil/core" {
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
         }
