@@ -41,9 +41,7 @@ export default {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     }
-
   },
-
 };
 
 

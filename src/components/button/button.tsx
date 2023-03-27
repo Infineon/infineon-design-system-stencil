@@ -13,7 +13,7 @@ export class Button {
   @Prop() size: string;
   @Prop() disabled: boolean;
   @Prop() icon: string;
-  @Prop({mutable: true}) position: string = 'left'
+  @Prop({mutable: true}) position: 'left' | 'right'
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
@@ -26,11 +26,15 @@ export class Button {
   }
 
   componentWillLoad() {
-    if (this.position.toUpperCase() !== "LEFT") {
-      this.position = 'right';
+    if(!this.position) {
+      this.position = 'left';
+    }
+
+    if(!this.color) { 
+      this.color = 'primary'
     }
   }
-
+  
   
   render() {
     return (

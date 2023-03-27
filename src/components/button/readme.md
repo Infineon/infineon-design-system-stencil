@@ -13,7 +13,7 @@
 | `disabled` | `disabled` |             | `boolean`                                                        | `undefined` |
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
 | `icon`     | `icon`     |             | `string`                                                         | `undefined` |
-| `position` | `position` |             | `string`                                                         | `'left'`    |
+| `position` | `position` |             | `"left" \| "right"`                                              | `undefined` |
 | `size`     | `size`     |             | `string`                                                         | `undefined` |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |

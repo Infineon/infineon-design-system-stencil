@@ -16,7 +16,7 @@ export namespace Components {
         "disabled": boolean;
         "href": string;
         "icon": string;
-        "position": string;
+        "position": 'left' | 'right';
         "setFocus": () => Promise<void>;
         "size": string;
         "target": string;
@@ -237,7 +237,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "href"?: string;
         "icon"?: string;
-        "position"?: string;
+        "position"?: 'left' | 'right';
         "size"?: string;
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
