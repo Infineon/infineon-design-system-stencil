@@ -93,6 +93,12 @@ export namespace Components {
         "target": string;
         "underline": any;
     }
+    interface IfxProgressBar {
+        "label": string;
+        "percentage": number;
+        "showLabel": boolean;
+        "size": string;
+    }
     interface IfxSearchInput {
         "disabled": boolean;
         "filter": boolean;
@@ -192,6 +198,12 @@ declare global {
         prototype: HTMLIfxLinkElement;
         new (): HTMLIfxLinkElement;
     };
+    interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
+    }
+    var HTMLIfxProgressBarElement: {
+        prototype: HTMLIfxProgressBarElement;
+        new (): HTMLIfxProgressBarElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -230,6 +242,7 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
+        "ifx-progress-bar": HTMLIfxProgressBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
@@ -322,6 +335,12 @@ declare namespace LocalJSX {
         "target"?: string;
         "underline"?: any;
     }
+    interface IfxProgressBar {
+        "label"?: string;
+        "percentage"?: number;
+        "showLabel"?: boolean;
+        "size"?: string;
+    }
     interface IfxSearchInput {
         "disabled"?: boolean;
         "filter"?: boolean;
@@ -355,6 +374,7 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
+        "ifx-progress-bar": IfxProgressBar;
         "ifx-search-input": IfxSearchInput;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
@@ -378,6 +398,7 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
