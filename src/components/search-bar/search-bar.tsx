@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, State } from '@stencil/core';
 import { debounce } from 'lodash';
 
 @Component({
@@ -12,13 +12,17 @@ export class SearchBar {
 
   @Prop() icon: string;
   @Prop() width: string = '100%';
-
   @Event() search: EventEmitter<string>;
+  @State() isOpen: boolean = true;
 
   handleInput = () => {
     const query = this.inputElement.value;
     this.debounceSearch(this.search.emit(query));
   };
+
+  handleClick = () => {
+    this.isOpen = !this.isOpen;
+  }
 
   connectedCallback() {
     this.debounceSearch = debounce((query) => {
@@ -29,21 +33,27 @@ export class SearchBar {
 
   render() {
     return (
-      <div class={`search-bar ${this.width}`}>
-        <div class="search-bar__input-wrapper">
+      <div class={`search-bar ${this.width} `}>
+        {this.isOpen ? (
 
-          <ifx-icon icon="search-16"></ifx-icon>
-          <input
-            ref={(el) => (this.inputElement = el)}
-            type="text"
-            onInput={this.handleInput}
-            placeholder="Search..."
-          // style={{ width: `calc(${this.width} - 16px)` }} //deduct icon size 
-          />
-        </div>
-        <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" >
-          Close
-        </ifx-button>
+          <div class="search-bar__wrapper">
+            <div class="search-bar__input-wrapper">
+              <ifx-icon icon="search-16"></ifx-icon>
+              <input
+                ref={(el) => (this.inputElement = el)}
+                type="text"
+                onInput={this.handleInput}
+                placeholder="Search..."
+              />
+            </div>
+            <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" onClick={this.handleClick}>
+              Close
+            </ifx-button>
+          </div>
+        ) : (
+          <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+        )}
+
       </div>
     );
   }

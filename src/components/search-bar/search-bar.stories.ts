@@ -5,12 +5,16 @@ export default {
   title: 'Components/Search Bar',
   args: {
     width: '100%',
+    isOpen: true,
   },
   argTypes: {
     onSearch: { action: 'search' },
     width: {
       options: ['20%', '40%', '60%', '80%', '100%'],
       control: { type: 'radio' },
+    },
+    isOpen: {
+      control: { type: 'boolean' },
     },
   },
 };
@@ -26,10 +30,9 @@ const Template = (args) => {
 
   };
 
-  return `<ifx-search-bar onSearch=${handleInput} style="width: ${args.width}"></ifx-search-bar>`;
+  return `<ifx-search-bar onSearch=${handleInput} style="width: ${args.width}" isOpen=${args.isOpen}></ifx-search-bar>`;
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  onSearch: (query) => console.log(query),
 };
