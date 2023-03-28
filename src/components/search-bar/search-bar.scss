@@ -1,0 +1,29 @@
+:host {
+  display: block;
+
+
+  .search-bar {
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    height: 40px;
+    border-radius: 1px;
+    background: #FFFFFF;
+
+
+    input[type='text'] {
+      border: 1px solid #8D8786;
+      box-sizing: border-box;
+      flex: none;
+      order: 0;
+      flex-grow: 1;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
