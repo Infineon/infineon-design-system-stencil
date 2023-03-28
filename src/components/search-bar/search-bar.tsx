@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop } from '@stencil/core';
 import { debounce } from 'lodash';
 
 @Component({
@@ -9,6 +9,9 @@ import { debounce } from 'lodash';
 export class SearchBar {
   private inputElement: HTMLInputElement;
   private debounceSearch: any;
+
+  @Prop() icon: string;
+  @Prop() width: string = '100%';
 
   @Event() search: EventEmitter<string>;
 
@@ -26,13 +29,21 @@ export class SearchBar {
 
   render() {
     return (
-      <div class="search-bar">
-        <input
-          ref={(el) => (this.inputElement = el)}
-          type="text"
-          onInput={this.handleInput}
-          placeholder="Search..."
-        />
+      <div class={`search-bar ${this.width}`}>
+        <div class="search-bar__input-wrapper">
+
+          <ifx-icon icon="search-16"></ifx-icon>
+          <input
+            ref={(el) => (this.inputElement = el)}
+            type="text"
+            onInput={this.handleInput}
+            placeholder="Search..."
+          // style={{ width: `calc(${this.width} - 16px)` }} //deduct icon size 
+          />
+        </div>
+        <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" >
+          Close
+        </ifx-button>
       </div>
     );
   }

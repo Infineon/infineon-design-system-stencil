@@ -94,6 +94,8 @@ export namespace Components {
         "underline": any;
     }
     interface IfxSearchBar {
+        "icon": string;
+        "width": string;
     }
     interface IfxSearchInput {
         "disabled": boolean;
@@ -336,7 +338,9 @@ declare namespace LocalJSX {
         "underline"?: any;
     }
     interface IfxSearchBar {
+        "icon"?: string;
         "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "width"?: string;
     }
     interface IfxSearchInput {
         "disabled"?: boolean;
