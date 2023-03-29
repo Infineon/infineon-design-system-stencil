@@ -17,3 +17,5 @@
 ### Using Stencil components from local package (for testing purposes)
 
  ```npm run test:local```
+
+ The application will be served on http://localhost:4200/.
