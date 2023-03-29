@@ -5,7 +5,8 @@
   "scripts": {
     "update-link": "node update-link.js",
     "dev": "vite",
-    "dev:watch": "run-p dev watch",
+    "dev:watch": "run-p build:stencil dev watch",
+    "build:stencil": "npm i && cd ../ && npm run dev:stencil",
     "watch": "nodemon --watch ../../dist --exec 'cp -r ../../dist ./'",
     "build": "vite build",
     "preview": "vite preview"
