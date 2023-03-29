@@ -11,13 +11,13 @@ To test the compiled components locally, follow the steps below.
 
 ### Using Stencil components from npm package (on master branch)
 
-```npm run start```
+```npm run dev```
 
 ### Using Stencil components from local package (for testing purposes)
 
- ```npm run build-and-run```
+ ```npm run dev:watch```
 
- This builds the Stencil components and copies the dist folder to the Vanilla example application. Currently, no hot or live reloading is set up, so the command needs to be run again in case of changes to the components.
+ This command listens to changes to the Stencil components. If the ``dist`` folder at the project root has changed, it gets copied to the Vanilla example application. Vite is configured to automatically reload the ```index.html``` in the browser when changes are made to files in the ``dist` folder. 
 
  If you have checked out the master branch, the link in the ```index.html``` points to the npm package. Run the following command to replace it with the local link, before running the application.
 

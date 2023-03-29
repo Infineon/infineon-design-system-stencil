@@ -32,8 +32,7 @@
     "dev": "run-p dev:stencil dev:storybook",
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
-    "build:stencil": "stencil build --docs",
-    "copy:dist": "copyfiles ./dist/* examples/vanilla-cdn && copyfiles ./dist/**/* examples/vanilla-cdn && copyfiles ./dist/**/**/* examples/vanilla-cdn"
+    "build:stencil": "stencil build --docs"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
@@ -62,6 +61,7 @@
     "chokidar-cli": "^3.0.0",
     "classnames": "^2.3.2",
     "concurrently": "^6.4.0",
+    "copy-and-watch": "^0.1.6",
     "copyfiles": "^2.4.1",
     "css-loader": "^5",
     "esbuild": "^0.14.43",

@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build-and-run": "run-s get:dist dev",
     "update-link": "node update-link.js",
     "dev": "vite",
+    "dev:watch": "run-p dev watch",
+    "watch": "nodemon --watch ../../dist --exec 'cp -r ../../dist ./'",
     "build": "vite build",
-    "preview": "vite preview",
-    "get:dist": "cd ../../ && npm run build:stencil && npm run copy:dist"
+    "preview": "vite preview"
   },
   "browserslist": [
     "> 1%",
@@ -16,7 +16,9 @@
     "not dead"
   ],
   "devDependencies": {
+    "nodemon": "^2.0.22",
     "npm-run-all": "^4.1.5",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "vite-plugin-html": "^3.2.0"
   }
 }
