@@ -54,17 +54,7 @@
     border-radius: 1px;
   }
 
-  &:focus {
-    background-color: tokens.$color-gray-100;
-  }
 
-  &:focus-visible {
-    outline: none;
-    background-color: tokens.$color-gray-100;
-    border: 3px solid #B4DDD8;
-    padding-left: calc(16px - 3px);
-    margin-left: 0;
-  }
 
   &:hover {
     font-weight: 600;

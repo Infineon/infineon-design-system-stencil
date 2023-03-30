@@ -1,5 +1,12 @@
+import MdxStory from './DropdownStory.mdx';
+
 export default {
   title: 'Components/Dropdown',
+  parameters: {
+    docs: {
+      page: MdxStory,
+    },
+  },
   args: {
     label: "dropdown",
     size: "m",
