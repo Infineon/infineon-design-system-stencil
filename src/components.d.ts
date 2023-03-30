@@ -11,6 +11,8 @@ export namespace Components {
         "icon": string;
         "overflowing": boolean;
     }
+    interface IfxBadge {
+    }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
@@ -130,6 +132,12 @@ declare global {
         prototype: HTMLIfxAlertElement;
         new (): HTMLIfxAlertElement;
     };
+    interface HTMLIfxBadgeElement extends Components.IfxBadge, HTMLStencilElement {
+    }
+    var HTMLIfxBadgeElement: {
+        prototype: HTMLIfxBadgeElement;
+        new (): HTMLIfxBadgeElement;
+    };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
     var HTMLIfxButtonElement: {
@@ -240,6 +248,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
+        "ifx-badge": HTMLIfxBadgeElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
@@ -265,6 +274,8 @@ declare namespace LocalJSX {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon"?: string;
         "overflowing"?: boolean;
+    }
+    interface IfxBadge {
     }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -377,6 +388,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
+        "ifx-badge": IfxBadge;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
@@ -402,6 +414,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
+            "ifx-badge": LocalJSX.IfxBadge & JSXBase.HTMLAttributes<HTMLIfxBadgeElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
