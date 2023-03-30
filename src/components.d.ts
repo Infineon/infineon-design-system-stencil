@@ -95,15 +95,13 @@ export namespace Components {
     }
     interface IfxSearchBar {
         "icon": string;
+        "showCloseButton": boolean;
         "width": string;
     }
     interface IfxSearchInput {
-        "disabled": boolean;
-        "filter": boolean;
-        "icon": boolean;
-        "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
+        "icon": string;
+        "showCloseButton": boolean;
+        "width": string;
     }
     interface IfxSpinner {
         "size": string;
@@ -120,6 +118,10 @@ export namespace Components {
 export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -340,15 +342,14 @@ declare namespace LocalJSX {
     interface IfxSearchBar {
         "icon"?: string;
         "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "showCloseButton"?: boolean;
         "width"?: string;
     }
     interface IfxSearchInput {
-        "disabled"?: boolean;
-        "filter"?: boolean;
-        "icon"?: boolean;
-        "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
+        "icon"?: string;
+        "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
+        "showCloseButton"?: boolean;
+        "width"?: string;
     }
     interface IfxSpinner {
         "size"?: string;

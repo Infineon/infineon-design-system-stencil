@@ -12,6 +12,7 @@ export class SearchBar {
 
   @Prop() icon: string;
   @Prop() width: string = '100%';
+  @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
   @State() isOpen: boolean = true;
 
@@ -32,29 +33,27 @@ export class SearchBar {
   }
 
   render() {
+    console.log("is open ", this.isOpen)
     return (
       <div class={`search-bar ${this.width} `}>
         {this.isOpen ? (
-
           <div class="search-bar__wrapper">
-            <div class="search-bar__input-wrapper">
-              <ifx-icon icon="search-16"></ifx-icon>
-              <input
-                ref={(el) => (this.inputElement = el)}
-                type="text"
-                onInput={this.handleInput}
-                placeholder="Search..."
-              />
-            </div>
-            <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" onClick={this.handleClick}>
-              Close
-            </ifx-button>
+            <ifx-search-input style={{ width: this.width }}></ifx-search-input>
+            {this.showCloseButton ? (
+              <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" onClick={this.handleClick}>
+                Close
+              </ifx-button>
+            ) : null}
           </div>
         ) : (
-          <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+          <div class="search-bar__icon-wrapper">
+            <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+          </div>
         )}
 
       </div>
     );
   }
 }
+
+

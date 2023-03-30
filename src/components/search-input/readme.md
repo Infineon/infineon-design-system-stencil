@@ -7,15 +7,37 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type         | Default     |
-| ---------- | ---------- | ----------- | ------------ | ----------- |
-| `disabled` | `disabled` |             | `boolean`    | `undefined` |
-| `filter`   | `filter`   |             | `boolean`    | `false`     |
-| `icon`     | `icon`     |             | `boolean`    | `false`     |
-| `label`    | `label`    |             | `string`     | `undefined` |
-| `search`   | `search`   |             | `boolean`    | `false`     |
-| `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
+| Property          | Attribute           | Description | Type      | Default     |
+| ----------------- | ------------------- | ----------- | --------- | ----------- |
+| `icon`            | `icon`              |             | `string`  | `undefined` |
+| `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
+| `width`           | `width`             |             | `string`  | `'100%'`    |
 
+
+## Events
+
+| Event    | Description | Type                  |
+| -------- | ----------- | --------------------- |
+| `search` |             | `CustomEvent<string>` |
+
+
+## Dependencies
+
+### Used by
+
+ - [ifx-search-bar](../search-bar)
+
+### Depends on
+
+- [ifx-icon](../icon)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-search-input --> ifx-icon
+  ifx-search-bar --> ifx-search-input
+  style ifx-search-input fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

@@ -1,21 +1,68 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-.inf__search-input {
-  width: 160px;
-  min-height: calc(1.75em + 18px);
-  font-size: 0.8125rem;
-  margin: 16px;
+// .inf__search-input {
+//   width: 160px;
+//   min-height: calc(1.75em + 18px);
+//   font-size: 0.8125rem;
+//   margin: 16px;
+//   display: block;
+//   // width: 100%;
+//   padding: 8px 16px;
+//   font-family: "Source Sans Pro";
+//   font-weight: 400;
+//   line-height: 1.75;
+//   color: #1d1d1d;
+//   background-color: #fff;
+//   background-clip: padding-box;
+//   border: 1px solid #c5bbbd;
+//   appearance: none;
+//   border-radius: 1px;
+//   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+// }
+
+
+:host {
   display: block;
-  // width: 100%;
-  padding: 8px 16px;
-  font-family: "Source Sans Pro";
-  font-weight: 400;
-  line-height: 1.75;
-  color: #1d1d1d;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #c5bbbd;
-  appearance: none;
-  border-radius: 1px;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+
+  .search-input {
+    height: 48px;
+    background: #FFFFFF;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    flex: 1;
+
+
+    .search-input__wrapper {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      border: 1px solid #8D8786;
+      border-radius: 1px;
+      padding: 8px 12px;
+      gap: 12px;
+      flex: none;
+      order: 0;
+      align-self: stretch;
+      flex-grow: 0;
+
+      input[type='text'] {
+        line-height: 24px;
+        font-family: tokens.$font-family-body;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        color: #8D8786;
+        border: none;
+        width: 100%;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+
+  }
 }
