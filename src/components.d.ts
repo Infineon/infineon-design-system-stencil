@@ -103,6 +103,7 @@ export namespace Components {
         "isFlush": boolean;
     }
     interface IfxListNotification {
+        "created": any;
         "isFlush": boolean;
         "title": string;
     }
@@ -356,6 +357,7 @@ declare namespace LocalJSX {
         "isFlush"?: boolean;
     }
     interface IfxListNotification {
+        "created"?: any;
         "isFlush"?: boolean;
         "title"?: string;
     }

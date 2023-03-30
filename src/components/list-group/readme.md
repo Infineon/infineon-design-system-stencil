@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type      | Default |
-| --------- | ---------- | ----------- | --------- | ------- |
-| `isFlush` | `is-flush` |             | `boolean` | `false` |
-| `title`   | `title`    |             | `string`  | `""`    |
+| Property  | Attribute  | Description | Type      | Default     |
+| --------- | ---------- | ----------- | --------- | ----------- |
+| `created` | `created`  |             | `any`     | `undefined` |
+| `isFlush` | `is-flush` |             | `boolean` | `false`     |
+| `title`   | `title`    |             | `string`  | `""`        |
 
 
 ----------------------------------------------
