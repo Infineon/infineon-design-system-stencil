@@ -10,10 +10,9 @@ export class ListGroupNotification {
   @Element() el;
   @Prop() title: string = ""
   @Prop() isFlush: boolean = false;
-  @Prop() created: any;
-  @State() postTime: any;
+  @Prop() creationTime: any;
+  @State() postTime: number;
   @State() shownTime: string;
-
 
   setDisplayTime(seconds, minutes, hours, days) { 
     if(seconds <= 60) { 
@@ -30,39 +29,45 @@ export class ListGroupNotification {
   stringToDate(dataString) {
     if (!dataString) return null
     let dateParts = dataString.split("/");
-    let timeParts = dateParts[2].split(" ")[1].split(":");
-    dateParts[2] = dateParts[2].split(" ")[0];
-    return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0], timeParts[0], timeParts[1], timeParts[2]);
+    if(dateParts[2]) { 
+      if(dateParts[2].split(" ")[1]) {
+        let timeParts = dateParts[2].split(" ")[1].split(":");
+        dateParts[2] = dateParts[2].split(" ")[0];
+        return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0], timeParts[0], timeParts[1], timeParts[2]);
+      }
+    }
   }
 
   getElapsedTime(time) { 
     let date = this.stringToDate(time)
-    let miliseconds = Date.now() - date.getTime()
-    let seconds = Math.floor(miliseconds / 1000);
-    let minutes = Math.floor(miliseconds / 60000);
-    let hours = Math.floor(minutes / 60);
-    let days =  Math.floor(hours/24);
-    this.setDisplayTime(seconds, minutes, hours, days)
+    if(date) { 
+      let miliseconds = Date.now() - date.getTime()
+      let seconds = Math.floor(miliseconds / 1000);
+      let minutes = Math.floor(miliseconds / 60000);
+      let hours = Math.floor(minutes / 60);
+      let days =  Math.floor(hours/24);
+      this.setDisplayTime(seconds, minutes, hours, days)
+    }
   }
 
   setTimeInterval(time) {
-    this.postTime = setInterval(() => {
-      console.log('triggered')
+    this.postTime = window.setInterval(() => {
       this.getElapsedTime(time)
     }, 1000)
   };
   
-
-
   componentWillLoad() { 
-    this.getElapsedTime(this.created)
-    this.setTimeInterval(this.created) //if time update on refresh, delete this
+    this.getElapsedTime(this.creationTime)
+    this.setTimeInterval(this.creationTime) //if time update on refresh, delete this & clear interval
     const ifxListGroup = this.el.closest('ifx-list-group')
     if(ifxListGroup.flush) { 
       this.isFlush = true;
     } else this.isFlush = false;
   }
 
+  disconnectedCallback() {
+    window.clearInterval(this.postTime);
+  }
 
   render() {
     return (

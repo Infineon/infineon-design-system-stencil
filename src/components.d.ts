@@ -99,13 +99,17 @@ export namespace Components {
         "notification": boolean;
     }
     interface IfxListItem {
-        "hasBulletpoint": boolean;
+        "badge": boolean;
+        "badgeValue": number;
         "isFlush": boolean;
     }
     interface IfxListNotification {
-        "created": any;
+        "creationTime": any;
         "isFlush": boolean;
         "title": string;
+    }
+    interface IfxNumberIndicator {
+        "inverted": boolean;
     }
     interface IfxSearchInput {
         "disabled": boolean;
@@ -221,6 +225,12 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxNumberIndicatorElement extends Components.IfxNumberIndicator, HTMLStencilElement {
+    }
+    var HTMLIfxNumberIndicatorElement: {
+        prototype: HTMLIfxNumberIndicatorElement;
+        new (): HTMLIfxNumberIndicatorElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -256,6 +266,7 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
@@ -353,13 +364,17 @@ declare namespace LocalJSX {
         "notification"?: boolean;
     }
     interface IfxListItem {
-        "hasBulletpoint"?: boolean;
+        "badge"?: boolean;
+        "badgeValue"?: number;
         "isFlush"?: boolean;
     }
     interface IfxListNotification {
-        "created"?: any;
+        "creationTime"?: any;
         "isFlush"?: boolean;
         "title"?: string;
+    }
+    interface IfxNumberIndicator {
+        "inverted"?: boolean;
     }
     interface IfxSearchInput {
         "disabled"?: boolean;
@@ -394,6 +409,7 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-number-indicator": IfxNumberIndicator;
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
@@ -419,6 +435,7 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
