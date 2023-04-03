@@ -36,8 +36,10 @@ export class Dropdown {
     return dropdownWrapper
   }
 
-  getDropdownItems() { 
+  getDropdownItems() {
+
     const dropdownMenuItems = this.el.querySelectorAll('ifx-dropdown-item')
+
     return dropdownMenuItems
   }
 
@@ -66,18 +68,20 @@ export class Dropdown {
     }
   }
 
-  toggleCheckbox(target) { 
+  toggleCheckbox(target) {
     target.querySelector('input').checked = !target.querySelector('input').checked
   }
 
-  getClickedElement(target) { 
-    if(target instanceof SVGElement) { 
+
+  getClickedElement(target) {
+    if (target instanceof SVGElement) {
       return target.closest('.dropdown-item')
-    } else if(target.className.includes('dropdown-menu') 
-    || target.className.includes('form-check-input')) { 
+    } else if (target.className.includes('dropdown-menu')
+      || target.className.includes('form-check-input')) {
       return false
     } else {
       return target.closest('.dropdown-item');
+
     }
   }
 
@@ -85,9 +89,10 @@ export class Dropdown {
     const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
 
-    if(!target) return;
-    if(isCheckable) {
+    if (!target) return;
+    if (isCheckable) {
       this.toggleCheckbox(target)
+
       return;
     }
 
@@ -103,15 +108,16 @@ export class Dropdown {
   }
 
   componentDidRender() {
-    let buttonComponent = this.el.querySelector('ifx-button'); 
-    if(buttonComponent) { 
+    let buttonComponent = this.el.querySelector('ifx-button');
+    if (buttonComponent) {
       const buttonElement = buttonComponent.shadowRoot.querySelector('button');
-      if(!buttonElement.classList.contains('disabled')) { 
+      if (!buttonElement.classList.contains('disabled')) {
         buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()
       }
     }
   }
+
 
   render() {
     return (
