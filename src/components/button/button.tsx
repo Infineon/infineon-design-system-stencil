@@ -13,7 +13,8 @@ export class Button {
   @Prop() size: string;
   @Prop() disabled: boolean;
   @Prop() icon: string;
-  @Prop({mutable: true}) position: string = 'left'
+  @Prop({ mutable: true }) position: string = 'left'
+
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
@@ -31,7 +32,8 @@ export class Button {
     }
   }
 
-  
+
+
   render() {
     return (
       <Host>
@@ -43,13 +45,15 @@ export class Button {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-           {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
-           {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+
           </a>
         ) : (
-          <button 
+          <button
             class={this.getClassNames()}
+
             type="button"
           >
             {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
