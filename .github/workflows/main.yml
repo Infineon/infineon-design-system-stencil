@@ -37,10 +37,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | # install, update the CDN link in the VanillJs example application, build and create a realese  
+          npm install
           cd examples/vanilla-cdn 
           npm run update-link
           cd ../..
-          npm install
           npm run build:stencil
           auto shipit
 
