@@ -12,7 +12,7 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.author.name, 'bot')"
+    if: "!contains(github.event.head_commit.author.name, '')"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -32,6 +32,7 @@ jobs:
           else 
             npm version prerelease --preid=canary
           fi
+          git push origin HEAD:${{ github.head_ref }}
 
   release:
     runs-on: ubuntu-latest
