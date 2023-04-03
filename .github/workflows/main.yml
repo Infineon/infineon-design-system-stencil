@@ -26,7 +26,7 @@ jobs:
           else 
             npm version prerelease --preid=canary
           fi
-          git push origin HEAD:${{GITHUB_REF##*/}} # push changes to current branch
+          git push origin HEAD:${{github.ref}} # push changes to current branch
 
 
   release:
