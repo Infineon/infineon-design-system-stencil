@@ -37,16 +37,16 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         
         run: | # update the package version, install, update the CDN link in the VanillJs example application, build and create a realese  
-          if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
-            npm version major --force
-          else 
-            npm version prerelease --preid=canary --force
-          fi
           npm install
           cd examples/vanilla-cdn 
           npm run update-link
           cd ../..
           npm run build:stencil
+          if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
+            npm version major --force
+          else 
+            npm version prerelease --preid=canary --force
+          fi
           npm publish --tag canary
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
