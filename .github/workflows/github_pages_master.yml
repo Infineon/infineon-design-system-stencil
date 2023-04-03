@@ -1,5 +1,4 @@
-name: Deploy Master
-
+name: Deploy Master Storybook
 on:
   push:
     branches:
@@ -34,5 +33,10 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: storybook-static/ # The folder the action should deploy.
-          clean-exclude: pr-preview/
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
           force: false
