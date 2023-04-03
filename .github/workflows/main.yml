@@ -19,15 +19,15 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
       - run: |
-          echo "current branch: ${{github.base_ref}}"
+          echo "current branch: ${{github.head_ref}}"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
+          if [[ ${{ github.head_ref }} == "master" ]]; then
             npm version major --force
           else 
             npm version prerelease --preid=canary --force
           fi
-          git push origin HEAD:${{ github.ref }}
+          git push origin HEAD:${{ github.head_ref }}
   release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
