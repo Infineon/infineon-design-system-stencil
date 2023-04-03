@@ -13,7 +13,6 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,8 +23,8 @@ jobs:
           else 
             npm version prerelease --preid=canary --force
           fi
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           git push
   release:
     runs-on: ubuntu-latest
