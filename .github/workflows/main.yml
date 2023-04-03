@@ -32,8 +32,7 @@ jobs:
             else 
               npm version prerelease --preid=canary
             fi
-            git push origin HEAD:${{ github.head_ref }}
-          fi
+           fi
 
   release:
     runs-on: ubuntu-latest
