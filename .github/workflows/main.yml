@@ -33,16 +33,18 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
 
       - name: Clear npm cache
-        run: npm cache clean --force
+        run: |
+          rm -rf node_modules
+          rm package-lock.json
 
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | # install, update the CDN link in the VanillJs example application, build and create a realese  
-          npm install
           cd examples/vanilla-cdn 
           npm run update-link
           cd ../..
+          npm install
           npm run build:stencil
           auto shipit
 
