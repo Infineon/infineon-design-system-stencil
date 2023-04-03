@@ -1,5 +1,5 @@
 # Deploys each PR under its own subfolder
-name: Deploy PR previews
+name: Deploy PR preview Storybook
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ on:
 concurrency: preview-${{ github.ref }}
 
 jobs:
-  deploy-preview:
+  deploy-storybook-preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,5 +35,37 @@ jobs:
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
+        id: preview
         with:
           source-dir: ./storybook-static
+          github-token: ${{ secrets.GITHUB_TOKEN }}  
+
+      - name: Get preview URL
+        run: |
+          echo "Preview URL: ${{ steps.preview.outputs.deployment-url }}"
+
+      - name: Update comment in PR
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            if (autoComment) {
+              const existingText = autoComment.body;
+              const newText = 'PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
+              if (!existingText.includes(newText)) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: autoComment.id,
+                  body: `${existingText}\n${newText}`
+                });
+              }
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
