@@ -2,7 +2,6 @@ name: Deploy Stencil Web components Library to NPM
 
 on:
   push:
-
  
 jobs:
   version:
@@ -27,7 +26,7 @@ jobs:
           else 
             npm version prerelease --preid=canary
           fi
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:${{GITHUB_REF#refs/heads/}}
 
   release:
     runs-on: ubuntu-latest
