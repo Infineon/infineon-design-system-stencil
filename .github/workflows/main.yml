@@ -35,13 +35,19 @@ jobs:
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+        
         run: | # install, update the CDN link in the VanillJs example application, build and create a realese  
+          if [[ ${{github.head_ref || github.ref_name}} === "master"]]; then
+            npm version major --force
+          else 
+            npm version patch --force
+          fi
           npm install
           cd examples/vanilla-cdn 
           npm run update-link
           cd ../..
           npm run build:stencil
-          auto shipit
+          npm publish
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
