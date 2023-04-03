@@ -40,7 +40,7 @@ jobs:
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
             npm version major --force
           else 
-            npm version prerelease --preid=canary
+            npm version prerelease --preid=canary --force
           fi
           npm install
           cd examples/vanilla-cdn 
