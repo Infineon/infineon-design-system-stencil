@@ -18,8 +18,9 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
+          ref: ${{ GITHUB_REF }}
       - run: |
-          echo "Current branch is ${GITHUB_REF#refs/heads/}"
+          echo ${GITHUB_REF#refs/heads/}
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
