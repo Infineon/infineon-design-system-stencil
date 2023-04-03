@@ -1,3 +1,16 @@
+# v0.0.66 (Mon Mar 27 2023)
+
+#### 🐛 Bug Fix
+
+- 70 spinner [#71](https://github.com/Infineon/infineon-design-system-stencil/pull/71) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.65 (Tue Mar 21 2023)
 
 #### 🐛 Bug Fix
