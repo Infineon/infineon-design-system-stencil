@@ -24,6 +24,8 @@ jobs:
           else 
             npm version prerelease --preid=canary --force
           fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git push
   release:
     runs-on: ubuntu-latest
