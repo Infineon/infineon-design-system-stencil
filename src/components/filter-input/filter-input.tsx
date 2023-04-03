@@ -14,18 +14,19 @@ export class DropdownFilter {
   @Prop() icon: boolean = false;
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
-  @State() options: Array<any> =[]
+  @State() options: Array<any> = []
   @Element() el;
 
-  componentWillRender() { 
+  componentWillRender() {
     const optionElements = this.el.querySelectorAll('option')
-    for(let i = 0; i < optionElements.length; i++) { 
+    for (let i = 0; i < optionElements.length; i++) {
       this.options.push(optionElements[i])
     }
   }
 
+
   render() {
-    return  (
+    return (
       <select class="inf__filter-input">
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
