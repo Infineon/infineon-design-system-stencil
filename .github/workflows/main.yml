@@ -18,9 +18,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.GH_TOKEN }}
-          fetch-depth: 0
       - run: |
-          echo "last commit by: ${{ github.event.head_commit.message }} ${{ toJson(github.event) }}"
+          echo "last commit by: ${{ github.event.head_commit.message }} gh event: ${{ toJson(github.event) }}"
           echo "current branch: ${{github.head_ref}}
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
