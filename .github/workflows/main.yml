@@ -12,6 +12,7 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
+    run: echo "last commit by: ${{ github.event.head_commit.author.name }}"
     if: "!contains(github.event.head_commit.author.name, '')"
     steps:
       - uses: actions/checkout@v2
