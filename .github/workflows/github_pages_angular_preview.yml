@@ -1,0 +1,74 @@
+# Deploys each PR under its own subfolder
+name: Deploy PR preview Angular App
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+    paths:
+      - 'examples/**'
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
+        if: ${{ env.ACT }}
+        run: |
+          apt-get update && apt-get install -y rsync
+
+      - name: Install and Build
+        run: |
+          cd examples/angular
+          npm i && npm run build
+          
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/angular/dist
+          umbrella-dir: pr-preview-angular-example
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update comment in PR
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            if (autoComment) {
+              const existingText = autoComment.body;
+              const newText = 'PR Preview URL for Angular example: ${{ steps.preview.outputs.deployment-url }}';
+              if (!existingText.includes(newText)) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: autoComment.id,
+                  body: `${existingText}\n${newText}`
+                });
+              }
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
