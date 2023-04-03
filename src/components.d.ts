@@ -112,6 +112,9 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -216,6 +219,12 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
+    };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
@@ -234,6 +243,7 @@ declare global {
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
@@ -341,6 +351,9 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
+    interface InfineonIconStencil {
+        "icon"?: any;
+    }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
@@ -359,6 +372,7 @@ declare namespace LocalJSX {
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -382,6 +396,7 @@ declare module "@stencil/core" {
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }
