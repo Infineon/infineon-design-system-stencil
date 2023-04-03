@@ -11,22 +11,24 @@ on:
      - master
  
 jobs:
-  release:
+  version:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0 # fetch all tags for ship-it
           token: ${{ secrets.GH_TOKEN }}
-        run: |
+      - run: |
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
             npm version major --force
           else 
             npm version prerelease --preid=canary --force
           fi
           git push
+  release:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
