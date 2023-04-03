@@ -41,7 +41,7 @@ jobs:
           npm run update-link
           cd ../..
           npm run build:stencil
-          auto shipit
+          npm publish
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
