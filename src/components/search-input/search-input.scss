@@ -1,5 +1,3 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
-
 .inf__search-input {
   width: 160px;
   min-height: calc(1.75em + 18px);
@@ -17,5 +15,5 @@
   border: 1px solid #c5bbbd;
   appearance: none;
   border-radius: 1px;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }

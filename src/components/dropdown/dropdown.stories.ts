@@ -36,7 +36,7 @@ const DefaultTemplate = (args) =>
   </ifx-dropdown>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
+Default.argTypes = {
   icon: {
     table: {
       disable: true
@@ -44,8 +44,9 @@ Default.argTypes={
   }
 }
 
+
 const IconTemplate = (args) =>
-`<ifx-dropdown>
+  `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
   <ifx-dropdown-menu>
     <ifx-dropdown-item icon=${args.icon}>item 1</ifx-dropdown-item>
@@ -55,10 +56,11 @@ const IconTemplate = (args) =>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
+
 export const Icon = IconTemplate.bind({})
 
-const SearchTemplate = (args) => 
-`<ifx-dropdown>
+const SearchTemplate = (args) =>
+  `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
   <ifx-dropdown-menu>
     <ifx-search-input></ifx-search-input>
@@ -67,10 +69,11 @@ const SearchTemplate = (args) =>
     <ifx-dropdown-item>item 3</ifx-dropdown-item>
     <ifx-dropdown-item>item 4</ifx-dropdown-item>
   </ifx-dropdown-menu>
+
 </ifx-dropdown>`;
 
 export const Search = SearchTemplate.bind({})
-Search.argTypes={
+Search.argTypes = {
   icon: {
     table: {
       disable: true
@@ -78,8 +81,9 @@ Search.argTypes={
   }
 }
 
-const FilterTemplate = (args) => 
-`<ifx-dropdown>
+
+const FilterTemplate = (args) =>
+  `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
   <ifx-dropdown-menu>
     <ifx-filter-input>
@@ -96,10 +100,11 @@ const FilterTemplate = (args) =>
 </ifx-dropdown>`;
 
 export const Filter = FilterTemplate.bind({})
-Filter.argTypes={
+Filter.argTypes = {
   icon: {
     table: {
       disable: true
     }
   }
 }
+
