@@ -18,13 +18,13 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
       - run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
             npm version major --force
           else 
             npm version prerelease --preid=canary --force
           fi
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
           git push
   release:
     runs-on: ubuntu-latest
