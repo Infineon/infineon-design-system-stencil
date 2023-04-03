@@ -107,5 +107,5 @@ typings/
 
 .npmrc
 
-
+/package-lock.json
 /yarn.lock
