@@ -36,11 +36,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         
-        run: | # install, update the CDN link in the VanillJs example application, build and create a realese  
+        run: | # update the package version, install, update the CDN link in the VanillJs example application, build and create a realese  
           if [[ ${{ github.ref }} == "refs/heads/master" ]]; then
             npm version major --force
           else 
-            npm version patch --force
+            npm version prerelease --preid=canary
           fi
           npm install
           cd examples/vanilla-cdn 
