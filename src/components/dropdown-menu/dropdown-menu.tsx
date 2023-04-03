@@ -16,14 +16,15 @@ export class DropdownMenu {
   @Prop() filter: boolean = false;
   @State() isShown: boolean = true;
   @Element() el;
-  
-  componentWillRender() { 
+
+  componentWillRender() {
     const isInsideDropdown = this.el.closest('ifx-dropdown')
-    if(isInsideDropdown) { 
+    if (isInsideDropdown) {
       this.isShown = false;
     }
   }
-  
+
+
   render() {
     return (
       <div class={`dropdown-menu ${this.isShown ? 'show nested' : ""} ${this.icon ? 'showIcon' : ""}`}>
