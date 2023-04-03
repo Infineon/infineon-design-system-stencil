@@ -2,7 +2,8 @@
 
 
 .btn {
-  display: inline-flex; 
+  display: inline-flex;
+
   align-items: center;
   min-width: 80px;
   min-height: 40px;
@@ -87,7 +88,7 @@
 
 
 .btn {
- 
+
   &.btn-s {
     font-size: tokens.$font-size-s;
     min-width: 71px;
@@ -95,26 +96,26 @@
     line-height: 16px;
   }
 
-  &.icon-button { 
+  &.icon-button {
     min-width: initial;
     min-height: initial;
-    width: 40px; 
+    width: 40px;
     height: 40px;
     padding: 0;
     justify-content: center;
 
-   &.btn-round { 
-    border-radius: 100px;
-   }
+    &.btn-round {
+      border-radius: 100px;
+    }
 
-   &.btn-square { 
-    border-radius: 1px;
-   }
+    &.btn-square {
+      border-radius: 1px;
+    }
 
-   &.btn-s { 
-    width: 32px;
-    height: 32px;
-   }
+    &.btn-s {
+      width: 32px;
+      height: 32px;
+    }
 
   }
 
@@ -129,6 +130,7 @@
   &.btn-warning,
   &.btn-outline-warning,
   &.btn-outline-text {
+
     &:focus {
       box-shadow: none;
 
@@ -235,7 +237,8 @@
   }
 
   &.btn-success:not(:disabled, .disabled) {
- 
+
+
     &:focus {
       background-color: tokens.$color-success-500;
       border-color: tokens.$color-success-500;
@@ -310,7 +313,8 @@
   }
 
   &.btn-warning:not(:disabled, .disabled) {
-  
+
+
     &:focus {
       background-color: tokens.$color-warning-500;
       border-color: tokens.$color-warning-500;
