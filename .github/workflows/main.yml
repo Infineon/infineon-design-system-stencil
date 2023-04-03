@@ -28,7 +28,6 @@ jobs:
           else 
             npm version prerelease --preid=canary --force
           fi
-          git push origin HEAD:${{ github.head_ref }}
   release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.author.name, 'bot') && !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
