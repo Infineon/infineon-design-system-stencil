@@ -16,24 +16,26 @@ export class DropdownItem {
   @State() checkboxColor: string = "";
   @Element() el;
 
-  componentWillRender() { 
+  componentWillRender() {
     const ifxDropdown = this.el.closest('ifx-dropdown')
-    if(ifxDropdown) { 
+    if (ifxDropdown) {
       const ifxButton = this.el.closest('ifx-dropdown').querySelector('ifx-button');
-      if(ifxButton) { 
+      if (ifxButton) {
         const ifxButtonColor = this.el.closest('ifx-dropdown').querySelector('ifx-button').color;
         this.checkboxColor = ifxButtonColor;
       }
     }
   }
 
+
   render() {
     return (
-       <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
-          {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
-          {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
-          <label class="form-check-label"><slot /></label>
-        </a>
+      <a href="javascript:;" class={`dropdown-item ${this.checkboxColor}`}>
+        {this.checkable && <input type="checkbox" id="checkbox4" class={`form-check-input`} />}
+        {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+        <label class="form-check-label"><slot /></label>
+      </a>
+
     )
   }
 }
