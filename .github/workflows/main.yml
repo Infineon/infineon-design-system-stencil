@@ -32,6 +32,9 @@ jobs:
           node-version: 16
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
