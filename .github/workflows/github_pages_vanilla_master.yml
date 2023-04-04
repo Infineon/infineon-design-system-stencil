@@ -32,6 +32,13 @@ jobs:
         run: |
           apt-get update && apt-get install -y rsync
 
+      - name: Update CDN Link in Vanilla example app & build
+        run: | 
+          cd examples/vanilla-cdn
+          npm install
+          npm run update-link
+          npm run build
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
