@@ -1,42 +1,25 @@
 name: Deploy Stencil Web components Library to NPM
 
 on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize # canary on new commit
   push:
+    branches:
+     - master
  
 jobs:
-  version:
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.author.name, 'github-actions[bot]') }}
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          fetch-depth: 0 # fetch all tags for ship-it
-      - name: Pull changes from remote branch
-        run: |
-          git checkout ${{github.ref}}
-          git pull origin ${{github.ref}}
-      - run: |
-          echo "last commit by: ${{ github.event.head_commit.author.name }}"
-          echo "current branch: ${{github.ref}}"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          if [[ "${{ github.ref }}" == "master" ]]; then
-            npm version 
-          else 
-            npm version prerelease --preid=canary
-          fi
-          git push origin HEAD:${{github.ref}} # push changes to current branch
-
-
   release:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.author.name, 'github-actions[bot]') && !contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0 # fetch all tags for ship-it
+
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
@@ -49,15 +32,10 @@ jobs:
       - name: Create Release # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-        
-        run: | # update the package version, install, update the CDN link in the VanillJs example application, build and create a realese  
+        run: | 
           npm install
-          cd examples/vanilla-cdn 
-          npm run update-link
-          cd ../..
           npm run build:stencil
-          npm publish --tag canary
-
+          auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v1
         with:
@@ -72,4 +50,3 @@ jobs:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
           
-     

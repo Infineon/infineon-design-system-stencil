@@ -29,6 +29,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
+      - name: Update CDN Link in Vanilla example app
+        run: | 
+          npm install
+          cd examples/vanilla-cdn
+          npm run update-link
+          cd ../..
+          npm run build:stencil
+          auto shipit
+
+
       - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
         if: ${{ env.ACT }}
         run: |
