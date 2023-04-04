@@ -3,6 +3,7 @@ const path = require('path');
 
 const indexHtmlPath = path.join(__dirname, '/index.html');
 const isMaster = process.env.GITHUB_REF === 'refs/heads/master';
+
 console.log("is local", process.env.GITHUB_REF === undefined)
 
 const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
@@ -14,6 +15,8 @@ const cdnLinkCanary = '<script type="module" src="https://unpkg.com/@infineon/in
 const localLink = '<script type="module" src="dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
 
 let newLink;
+
+console.log("current branch ", process.env.GITHUB_REF);
 
 if (process.env.GITHUB_REF === undefined) {
   newLink = localLink;
