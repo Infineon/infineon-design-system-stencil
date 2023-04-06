@@ -104,6 +104,7 @@ export namespace Components {
     }
     interface IfxListNotification {
         "created": any;
+        "elapsedTime": string;
         "isFlush": boolean;
         "title": string;
     }
@@ -358,6 +359,7 @@ declare namespace LocalJSX {
     }
     interface IfxListNotification {
         "created"?: any;
+        "elapsedTime"?: string;
         "isFlush"?: boolean;
         "title"?: string;
     }
