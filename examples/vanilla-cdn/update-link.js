@@ -10,13 +10,14 @@ const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
 
 const linkRegex = /<\s*script[^>]+src\s*=\s*['"]\s?(https:\/\/www\.googletagservices\.com\/tag\/js\/gpt\.js)*([^'" ]+)\s*["'][^>]*><\/script>/gis
 
-const cdnLinkLatest = '<script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil@^18.0.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
-const cdnLinkCanary = '<script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
+const version = require('../../package.json').version;
+const cdnLinkLatest = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
+const cdnLinkCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>`;
 const localLink = '<script type="module" src="dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
 
 let newLink;
 
-console.log("current branch ", process.env.GITHUB_REF);
+console.log("current branch: ", process.env.GITHUB_REF, " - package version: ", require('../../package.json').version);
 
 if (process.env.GITHUB_REF === undefined) {
   newLink = localLink;
