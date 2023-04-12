@@ -33,7 +33,7 @@ jobs:
 
       - name: Create Release # releasing as a npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN_STENCIL }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
           npm install
           npm run build:stencil
