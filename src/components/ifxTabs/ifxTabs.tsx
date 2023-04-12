@@ -20,20 +20,24 @@ export class IfxTabs {
   tabRefs: HTMLElement[] = [];
 
   setActiveTab(index: number) {
-    this.activeTabIndex = index;
-    const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
+    if (index < 0 || index >= this.tabs.length) {
+      return;
+    } else {
+      this.activeTabIndex = index;
+      const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
 
-    if (borderElement) {
-      if (this.orientation === 'horizontal') {
-        borderElement.style.left = `${this.tabRefs[index].offsetLeft}px`;
-        borderElement.style.width = `${this.tabRefs[index].offsetWidth}px`;
-        borderElement.style.top = '';
-        borderElement.style.height = '';
-      } else {
-        borderElement.style.top = `${this.tabRefs[index].offsetTop}px`;
-        borderElement.style.height = `${this.tabRefs[index].offsetHeight}px`;
-        borderElement.style.left = '';
-        borderElement.style.width = '';
+      if (borderElement) {
+        if (this.orientation === 'horizontal') {
+          borderElement.style.left = `${this.tabRefs[index].offsetLeft}px`;
+          borderElement.style.width = `${this.tabRefs[index].offsetWidth}px`;
+          borderElement.style.top = '';
+          borderElement.style.height = '';
+        } else {
+          borderElement.style.top = `${this.tabRefs[index].offsetTop}px`;
+          borderElement.style.height = `${this.tabRefs[index].offsetHeight}px`;
+          borderElement.style.left = '';
+          borderElement.style.width = '';
+        }
       }
     }
   }

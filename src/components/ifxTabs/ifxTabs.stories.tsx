@@ -2,9 +2,9 @@ export default {
   title: 'Components/Tabs',
   component: 'ifx-tabs',
   argTypes: {
-    amountOfTabs: { control: 'number' },
-    orientation: { control: { type: 'select', options: ['horizontal', 'vertical'] } },
-    small: { control: 'boolean' }, // Add this line
+    amountOfTabs: { name: 'Amount of Tabs', control: 'number' },
+    orientation: { name: 'Orientation', control: { type: 'select', options: ['horizontal', 'vertical'] } },
+    small: { name: 'Small', control: 'boolean' }, // Add this line
   },
 };
 
