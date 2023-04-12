@@ -20,7 +20,7 @@ export default {
       description: 'When specified together with alertIcon then an border to the right is shown',
     },
     alertColor: {
-      options: ['orange', 'ocean', 'grey', 'grey-200', 'red', 'green', 'berry'],
+      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
       control: { type: 'select' },
       description: 'When specified together with alertColor then an border to the right is shown',
     },
@@ -80,5 +80,5 @@ Alert.args = {
   caption: 'Alert Modal Title',
   closeOnOverlayClick: true,
   alertIcon: 'test',
-  alertColor: 'orange'
+  alertColor: 'primary'
 };

@@ -1,5 +1,6 @@
 //ifxModal.scss
 @use "~@infineon/design-system-tokens/dist/tokens";
+
 :host {
   display: block;
 }
@@ -29,6 +30,7 @@
 }
 
 .modal-content {
+  width: 100%;
   flex: 1;
 }
 
@@ -52,6 +54,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
+  white-space: pre-wrap;
+  /* wraps text at spaces and within words */
+  word-wrap: break-word;
+  /* breaks text within a word if necessary */
+  overflow-wrap: anywhere;
+  /* breaks text at arbitrary points when needed */
+
   border-bottom: 1px solid #eee;
 }
 
@@ -88,33 +97,23 @@
   width: 40px;
   font-size: 1.5em;
 
-
-  &.ocean {
+  &.primary {
     background-color: tokens.$color-default-500;
   }
-  
-  &.grey {
+
+  &.secondary {
     background-color: tokens.$color-gray-500;
   }
-  
-  &.grey-200 {
-    background-color: tokens.$color-gray-200;
-  }
-  
-  &.red {
+
+  &.danger {
     background-color: tokens.$color-danger-500;
   }
-  
-  &.green {
+
+  &.success {
     background-color: tokens.$color-success-500;
   }
-  
-  &.berry {
-    background-color: tokens.$color-highlight-500;
-  }
-  
-}
 
-.modal-border.orange {
-  background-color: tokens.$color-warning-500;
+  &.warning {
+    background-color: tokens.$color-warning-500;
+  }
 }
