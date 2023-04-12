@@ -71,6 +71,11 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxFooter {
+        "variant": string;
+    }
+    interface IfxFooterColumn {
+    }
     interface IfxIcon {
         "icon": any;
         "ifxIcon": any;
@@ -87,9 +92,9 @@ export namespace Components {
         "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxLink {
+        "bold": boolean;
+        "color": string;
         "href": string;
-        "icon": any;
-        "position": string;
         "target": string;
         "underline": any;
     }
@@ -174,6 +179,18 @@ declare global {
         prototype: HTMLIfxFilterInputElement;
         new (): HTMLIfxFilterInputElement;
     };
+    interface HTMLIfxFooterElement extends Components.IfxFooter, HTMLStencilElement {
+    }
+    var HTMLIfxFooterElement: {
+        prototype: HTMLIfxFooterElement;
+        new (): HTMLIfxFooterElement;
+    };
+    interface HTMLIfxFooterColumnElement extends Components.IfxFooterColumn, HTMLStencilElement {
+    }
+    var HTMLIfxFooterColumnElement: {
+        prototype: HTMLIfxFooterColumnElement;
+        new (): HTMLIfxFooterColumnElement;
+    };
     interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
     }
     var HTMLIfxIconElement: {
@@ -227,6 +244,8 @@ declare global {
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
+        "ifx-footer": HTMLIfxFooterElement;
+        "ifx-footer-column": HTMLIfxFooterColumnElement;
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
@@ -301,6 +320,11 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxFooter {
+        "variant"?: string;
+    }
+    interface IfxFooterColumn {
+    }
     interface IfxIcon {
         "icon"?: any;
         "ifxIcon"?: any;
@@ -316,9 +340,9 @@ declare namespace LocalJSX {
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxLink {
+        "bold"?: boolean;
+        "color"?: string;
         "href"?: string;
-        "icon"?: any;
-        "position"?: string;
         "target"?: string;
         "underline"?: any;
     }
@@ -352,6 +376,8 @@ declare namespace LocalJSX {
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
+        "ifx-footer": IfxFooter;
+        "ifx-footer-column": IfxFooterColumn;
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
@@ -375,6 +401,8 @@ declare module "@stencil/core" {
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
+            "ifx-footer": LocalJSX.IfxFooter & JSXBase.HTMLAttributes<HTMLIfxFooterElement>;
+            "ifx-footer-column": LocalJSX.IfxFooterColumn & JSXBase.HTMLAttributes<HTMLIfxFooterColumnElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;

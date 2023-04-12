@@ -29,6 +29,7 @@
   "scripts": {
     "dev:storybook": "start-storybook -p 6262",
     "dev:stencil": "stencil build --watch",
+    "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook",
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
