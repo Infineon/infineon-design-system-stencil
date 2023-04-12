@@ -14,14 +14,12 @@ export class ifxToggle {
   toggle() {
     this.checked = !this.checked;
     this.valueChanged.emit(this.checked);
-
-    console.log(this.checked);
   }
 
   render() {
     return (
-      <div class={`pill-container ${this.checked ? 'checked' : ''}`} onClick={() => this.toggle()}>
-        <div class={`pill-switch ${this.checked ? 'checked' : ''}`} />
+      <div class={`toggle-container ${this.checked ? 'checked' : ''}`} onClick={() => this.toggle()}>
+        <div class={`toggle-switch ${this.checked ? 'checked' : ''}`} />
       </div>
     );
   }

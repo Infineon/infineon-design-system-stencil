@@ -6,7 +6,7 @@
   user-select: none;
 }
 
-.pill-container {
+.toggle-container {
   display: inline-block;
   position: relative;
   width: 50px;
@@ -18,7 +18,7 @@
   transition: background-color 0.3s ease;
 }
 
-.pill-switch {
+.toggle-switch {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -39,6 +39,7 @@
 }
 
 .pill-container.checked {
-  background-color: tokens.$color-default-500; /* Ocean color */
+  background-color: tokens.$color-default-500;
+  /* Ocean color */
   border-color: tokens.$color-default-500;
 }
