@@ -47,9 +47,7 @@ export class IfxRange {
           </span>
         )}
         {this.leftIcon && (
-          <i class={`left-icon${this.disabled ? ' disabled' : ''}`}>
-            {this.leftIcon}
-          </i>
+          <ifx-icon icon={this.leftIcon} class={`left-icon${this.disabled ? ' disabled' : ''}`} />
         )}
 
         <input
@@ -62,9 +60,7 @@ export class IfxRange {
           onInput={(event) => this.handleInputChange(event)}
         />
         {this.rightIcon && (
-          <i class={`right-icon${this.disabled ? ' disabled' : ''}`}>
-            {this.rightIcon}
-          </i>
+          <ifx-icon icon={this.rightIcon} class={`right-icon${this.disabled ? ' disabled' : ''}`} />
         )}
         {this.rightText && (
           <span class={`right-text${this.disabled ? ' disabled' : ''}`}>
