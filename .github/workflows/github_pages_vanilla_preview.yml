@@ -45,7 +45,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/vanilla-cdn
+          source-dir: ./examples/vanilla-cdn/dist
           umbrella-dir: pr-preview-vanilla-example
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
