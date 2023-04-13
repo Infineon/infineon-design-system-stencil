@@ -1,3 +1,16 @@
+# v18.0.2 (Thu Apr 13 2023)
+
+#### 🐛 Bug Fix
+
+- Feature/include examples [#94](https://github.com/Infineon/infineon-design-system-stencil/pull/94) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v0.0.67 (Thu Apr 13 2023)
 
 #### 🐛 Bug Fix
