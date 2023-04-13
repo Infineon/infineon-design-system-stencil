@@ -1,6 +1,3 @@
 exclude:
-  - examples/vue3-vite/node_modules/**/*.md
-  - examples/vanilla-cdn/node_modules/**/*.md
-  - examples/react/node_modules/**/*.md
-  - examples/angular/node_modules/**/*.md
+  - examples/pr-preview-vanilla-example/*/node_modules/**/*.md
 
