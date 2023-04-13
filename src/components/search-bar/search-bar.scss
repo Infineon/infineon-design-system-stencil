@@ -14,6 +14,7 @@
   align-items: center;
   width: 100%;
 
+
   .search-bar__wrapper {
     width: 100%;
     flex-direction: row;
@@ -24,7 +25,11 @@
   }
 
   .search-bar__icon-wrapper {
-    padding: 20px 28px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 34px;
+    padding-top: 4px;
   }
 
 
