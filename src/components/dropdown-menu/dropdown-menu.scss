@@ -6,20 +6,19 @@
   background: #FFFF;
   box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
   border-radius: 1px;
-  margin-top: 12px;
+  margin-top: 8px;
+
 
 }
 
 .dropdown-menu.show {
   display: inline-block;
   position: absolute;
-  // z-index: 1000;
-  // inset: 0px auto auto 0px;
-  min-width: 200px;
+  min-width: 224px;
   padding: 0;
   border: none;
   border-radius: 1px;
-  // transform: translate3d(0px, calc(44px + 8px), 0px) !important; //54px + 8px
+
 
   &.nested {
     transform: none !important;

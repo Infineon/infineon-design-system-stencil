@@ -10,7 +10,7 @@ export default {
   argTypes: {
     onSearch: { action: 'search' },
     width: {
-      options: ['20%', '40%', '60%', '80%', '100%'],
+      options: ['40%', '60%', '80%', '100%'],
       control: { type: 'radio' },
     },
     showCloseButton: {
