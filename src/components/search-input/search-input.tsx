@@ -21,9 +21,6 @@ export class SearchInput {
     this.debounceSearch(this.search.emit(query));
   };
 
-  handleClick = () => {
-    this.isOpen = !this.isOpen;
-  }
 
   connectedCallback() {
     this.debounceSearch = debounce((query) => {

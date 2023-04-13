@@ -56,6 +56,9 @@
         color: #8D8786;
         border: none;
         width: 100%;
+        max-width: calc(100% - 32px);
+
+
 
         &:focus {
           outline: none;

@@ -5,7 +5,6 @@ export default {
   title: 'Components/Search Bar',
   args: {
     width: '100%',
-    isOpen: true,
     showCloseButton: true,
   },
   argTypes: {
@@ -13,9 +12,6 @@ export default {
     width: {
       options: ['20%', '40%', '60%', '80%', '100%'],
       control: { type: 'radio' },
-    },
-    isOpen: {
-      control: { type: 'boolean' },
     },
     showCloseButton: {
       control: { type: 'boolean' },
@@ -34,7 +30,7 @@ const Template = (args) => {
 
   };
 
-  return `<ifx-search-bar onSearch=${handleInput} style="width: ${args.width}" is-open="${args.isOpen}" show-close-button="${args.showCloseButton}"></ifx-search-bar>`;
+  return `<ifx-search-bar onSearch=${handleInput} style="width: ${args.width}" show-close-button="${args.showCloseButton}"></ifx-search-bar>`;
 };
 
 export const Default = Template.bind({});

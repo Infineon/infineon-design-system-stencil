@@ -33,7 +33,6 @@ export class SearchBar {
   }
 
   render() {
-    console.log("is open ", this.isOpen)
     return (
       <div class={`search-bar ${this.width} `}>
         {this.isOpen ? (
