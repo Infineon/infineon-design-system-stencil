@@ -1,3 +1,4 @@
 exclude:
   - '**/*/node_modules/**/*.md'
+  -  vanilla-example/node_modules
 
