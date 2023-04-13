@@ -41,7 +41,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/vanilla-cdn/ # The folder the action should deploy.
+          folder: examples/vanilla-cdn/dist # The folder the action should deploy.
           target-folder: vanilla-example
           clean-exclude: |
             pr-preview/
