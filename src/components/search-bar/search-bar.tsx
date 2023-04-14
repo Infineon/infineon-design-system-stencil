@@ -48,7 +48,7 @@ export class SearchBar {
           </div>
         ) : (
           <div class="search-bar__icon-wrapper">
-            <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+            <ifx-icon icon="search-16" class="search-icon" onClick={this.handleClick}></ifx-icon>
           </div>
         )}
 
