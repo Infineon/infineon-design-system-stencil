@@ -13,6 +13,9 @@
   padding: 16px 16px;
   flex: 1;
 
+  &.inside-dropdown {
+    max-width: calc(224px - 32px);
+  }
 
   .search-input__wrapper {
     box-sizing: border-box;

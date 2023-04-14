@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop, State } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, State, Element } from '@stencil/core';
 import { debounce } from 'lodash';
 @Component({
   tag: 'ifx-search-input',
@@ -15,6 +15,10 @@ export class SearchInput {
   @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
   @State() isOpen: boolean = true;
+  @State() insideDropdown: boolean = false;
+  @Element() el: HTMLElement;
+
+
 
   handleInput = () => {
     const query = this.inputElement.value;
@@ -23,6 +27,7 @@ export class SearchInput {
 
 
   connectedCallback() {
+    this.insideDropdown = !!this.el.closest('ifx-dropdown-menu');
     this.debounceSearch = debounce((query) => {
       console.log(query.detail)
       this.search.emit(query);
@@ -33,7 +38,8 @@ export class SearchInput {
 
   render() {
     return (
-      <div class="search-input">
+      <div class={`search-input ${this.insideDropdown ? 'inside-dropdown' : ''}`}>
+
         <div class="search-input__wrapper">
           <slot name="search-icon"></slot>
           <input
