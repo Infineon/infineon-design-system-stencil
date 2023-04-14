@@ -35,7 +35,7 @@ export class SearchInput {
     return (
       <div class="search-input">
         <div class="search-input__wrapper">
-          <ifx-icon icon="search-16"></ifx-icon>
+          <slot name="search-icon"></slot>
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"

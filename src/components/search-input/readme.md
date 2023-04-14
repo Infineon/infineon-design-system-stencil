@@ -27,14 +27,9 @@
 
  - [ifx-search-bar](../search-bar)
 
-### Depends on
-
-- [ifx-icon](../icon)
-
 ### Graph
 ```mermaid
 graph TD;
-  ifx-search-input --> ifx-icon
   ifx-search-bar --> ifx-search-input
   style ifx-search-input fill:#f9f,stroke:#333,stroke-width:4px
 ```

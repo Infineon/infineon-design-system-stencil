@@ -26,16 +26,15 @@
 ### Depends on
 
 - [ifx-search-input](../search-input)
-- [ifx-button](../button)
 - [ifx-icon](../icon)
+- [ifx-button](../button)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-search-bar --> ifx-search-input
-  ifx-search-bar --> ifx-button
   ifx-search-bar --> ifx-icon
-  ifx-search-input --> ifx-icon
+  ifx-search-bar --> ifx-button
   ifx-button --> ifx-icon
   style ifx-search-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```

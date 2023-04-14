@@ -37,7 +37,9 @@ export class SearchBar {
       <div class={`search-bar ${this.width} `}>
         {this.isOpen ? (
           <div class="search-bar__wrapper">
-            <ifx-search-input style={{ width: this.width }}></ifx-search-input>
+            <ifx-search-input style={{ width: this.width }}>
+              <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
+            </ifx-search-input>
             {this.showCloseButton ? (
               <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" onClick={this.handleClick}>
                 Close
