@@ -35,6 +35,7 @@ graph TD;
   ifx-search-bar --> ifx-search-input
   ifx-search-bar --> ifx-icon
   ifx-search-bar --> ifx-button
+  ifx-search-input --> ifx-icon
   ifx-button --> ifx-icon
   style ifx-search-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```

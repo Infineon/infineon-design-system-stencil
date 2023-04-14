@@ -99,8 +99,10 @@ export namespace Components {
         "width": string;
     }
     interface IfxSearchInput {
-        "icon": string;
-        "showCloseButton": boolean;
+        "borderColor": 'light' | 'dark' | 'green';
+        "disabled": boolean;
+        "showDeleteIcon": boolean;
+        "size": string;
         "width": string;
     }
     interface IfxSpinner {
@@ -356,9 +358,11 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface IfxSearchInput {
-        "icon"?: string;
+        "borderColor"?: 'light' | 'dark' | 'green';
+        "disabled"?: boolean;
         "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
-        "showCloseButton"?: boolean;
+        "showDeleteIcon"?: boolean;
+        "size"?: string;
         "width"?: string;
     }
     interface IfxSpinner {
