@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption": string;
+        "close": () => Promise<void>;
+        "isOpen": () => Promise<boolean>;
+    }
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon": string;
@@ -121,15 +128,20 @@ export namespace Components {
         "icon": any;
     }
 }
-export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIfxSearchBarElement;
-}
-export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIfxSearchInputElement;
 }
 declare global {
+    interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionElement: {
+        prototype: HTMLIfxAccordionElement;
+        new (): HTMLIfxAccordionElement;
+    };
+    interface HTMLIfxAccordionItemElement extends Components.IfxAccordionItem, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionItemElement: {
+        prototype: HTMLIfxAccordionItemElement;
+        new (): HTMLIfxAccordionItemElement;
+    };
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
     var HTMLIfxAlertElement: {
@@ -245,6 +257,8 @@ declare global {
         new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
+        "ifx-accordion": HTMLIfxAccordionElement;
+        "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
@@ -267,6 +281,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption"?: string;
+        "onItemClosed"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+        "onItemOpened"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+    }
     interface IfxAlert {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon"?: string;
@@ -382,6 +403,8 @@ declare namespace LocalJSX {
         "icon"?: any;
     }
     interface IntrinsicElements {
+        "ifx-accordion": IfxAccordion;
+        "ifx-accordion-item": IfxAccordionItem;
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
@@ -407,6 +430,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ifx-accordion": LocalJSX.IfxAccordion & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
+            "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;

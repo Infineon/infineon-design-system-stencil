@@ -1,3 +1,15 @@
+# v18.0.3 (Mon Apr 17 2023)
+
+#### 🐛 Bug Fix
+
+- added accordion component [#62](https://github.com/Infineon/infineon-design-system-stencil/pull/62) ([@kaiwerther](https://github.com/kaiwerther))
+
+#### Authors: 1
+
+- Kai Werther ([@kaiwerther](https://github.com/kaiwerther))
+
+---
+
 # v18.0.2 (Thu Apr 13 2023)
 
 #### 🐛 Bug Fix
