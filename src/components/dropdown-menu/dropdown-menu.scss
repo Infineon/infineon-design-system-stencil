@@ -2,25 +2,26 @@
 
 .dropdown-menu {
   display: none;
-}
+  box-sizing: border-box;
+  background: #FFFF;
+  box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
+  border-radius: 1px;
+  margin-top: 8px;
 
+  & ifx-search-input {
+    max-width: 150px;
+  }
+
+}
 
 .dropdown-menu.show {
   display: inline-block;
   position: absolute;
-  z-index: 1000;
-  inset: 0px auto auto 0px;
-  min-width: 200px;
+  min-width: 224px;
   padding: 0;
   border: none;
   border-radius: 1px;
-  background-color: tokens.$color-gray-100;
-  transform: translate3d(0px, calc(44px + 8px), 0px) !important; //54px + 8px
 
-  &.nested {
-    transform: none !important;
-    position: static;
-  }
 
   &.nested {
     transform: none !important;
@@ -37,32 +38,9 @@
   }
 
 
-
-  & .inf__search-input,
-  .inf__filter-input {
-    width: 160px;
-    min-height: calc(1.75em + 18px);
-    font-size: 0.8125rem;
-    margin: 16px;
-    display: block;
-    // width: 100%;
-    padding: 8px 16px;
-    font-family: "Source Sans Pro";
-    font-weight: 400;
-    line-height: 1.75;
-    color: #1d1d1d;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #c5bbbd;
-    appearance: none;
-    border-radius: 1px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  }
-
   & .ifx__search-icon-wrapper {
     margin-right: calc(8px + 16px);
   }
-
 
   & .dropdown-item {
     display: flex;
@@ -78,7 +56,6 @@
 
     & .form-check-label {
 
-
       //flex: 1;
       &:hover {
         cursor: pointer;
@@ -86,17 +63,6 @@
     }
 
 
-    &:focus {
-      background-color: tokens.$color-gray-100;
-    }
-
-    &:focus-visible {
-      outline: none;
-      background-color: tokens.$color-gray-100;
-      border: 3px solid #B4DDD8;
-      padding-left: calc(16px - 3px);
-      margin-left: 0;
-    }
 
     &:hover {
       font-weight: 600;

@@ -1,5 +1,12 @@
+import MdxStory from './DropdownStory.mdx';
+
 export default {
   title: 'Components/Dropdown',
+  parameters: {
+    docs: {
+      page: MdxStory,
+    },
+  },
   args: {
     label: "dropdown",
     size: "m",
@@ -44,7 +51,6 @@ Default.argTypes = {
   }
 }
 
-
 const IconTemplate = (args) =>
   `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
@@ -56,23 +62,22 @@ const IconTemplate = (args) =>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-
 export const Icon = IconTemplate.bind({})
 
 const SearchTemplate = (args) =>
   `<ifx-dropdown>
   <ifx-button color="${args.color}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}">${args.label}</ifx-button>
   <ifx-dropdown-menu>
-    <ifx-search-input></ifx-search-input>
-    <ifx-dropdown-item>item 1</ifx-dropdown-item>
+  <ifx-search-input></ifx-search-input>
+  <ifx-dropdown-item>item 1</ifx-dropdown-item>
     <ifx-dropdown-item>item 2</ifx-dropdown-item>
     <ifx-dropdown-item>item 3</ifx-dropdown-item>
     <ifx-dropdown-item>item 4</ifx-dropdown-item>
   </ifx-dropdown-menu>
-
 </ifx-dropdown>`;
 
 export const Search = SearchTemplate.bind({})
+
 Search.argTypes = {
   icon: {
     table: {
@@ -80,7 +85,6 @@ Search.argTypes = {
     }
   }
 }
-
 
 const FilterTemplate = (args) =>
   `<ifx-dropdown>
@@ -107,4 +111,3 @@ Filter.argTypes = {
     }
   }
 }
-

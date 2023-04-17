@@ -1,8 +1,5 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-
-
-
 .dropdown-item {
   display: flex;
   align-items: center;
@@ -12,7 +9,6 @@
   white-space: nowrap;
   border: 0;
   padding: 8px 16px;
-  background-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   color: tokens.$color-text-black;
 
@@ -49,8 +45,6 @@
 
 
   & .form-check-label {
-    flex: 1;
-
     &:hover {
       cursor: pointer;
     }
@@ -60,17 +54,7 @@
     border-radius: 1px;
   }
 
-  &:focus {
-    background-color: tokens.$color-gray-100;
-  }
 
-  &:focus-visible {
-    outline: none;
-    background-color: tokens.$color-gray-100;
-    border: 3px solid #B4DDD8;
-    padding-left: calc(16px - 3px);
-    margin-left: 0;
-  }
 
   &:hover {
     font-weight: 600;
@@ -80,12 +64,8 @@
     & svg {
       color: tokens.$color-text-black;
 
-
     }
   }
-
-
-
 
   &.active,
   &:active {
@@ -95,7 +75,6 @@
 
     & svg {
       color: tokens.$color-default-500;
-
       fill: none;
     }
   }

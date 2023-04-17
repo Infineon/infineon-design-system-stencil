@@ -100,13 +100,18 @@ export namespace Components {
         "target": string;
         "underline": any;
     }
+    interface IfxSearchBar {
+        "icon": string;
+        "isOpen": boolean;
+        "showCloseButton": boolean;
+        "width": string;
+    }
     interface IfxSearchInput {
+        "borderColor": 'light' | 'dark' | 'green';
         "disabled": boolean;
-        "filter": boolean;
-        "icon": boolean;
-        "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
+        "showDeleteIcon": boolean;
+        "size": string;
+        "width": string;
     }
     interface IfxSpinner {
         "size": string;
@@ -123,9 +128,6 @@ export namespace Components {
         "icon": any;
     }
 }
-export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIfxAccordionItemElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
@@ -218,6 +220,12 @@ declare global {
         prototype: HTMLIfxLinkElement;
         new (): HTMLIfxLinkElement;
     };
+    interface HTMLIfxSearchBarElement extends Components.IfxSearchBar, HTMLStencilElement {
+    }
+    var HTMLIfxSearchBarElement: {
+        prototype: HTMLIfxSearchBarElement;
+        new (): HTMLIfxSearchBarElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
@@ -264,6 +272,7 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
+        "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
@@ -364,13 +373,20 @@ declare namespace LocalJSX {
         "target"?: string;
         "underline"?: any;
     }
+    interface IfxSearchBar {
+        "icon"?: string;
+        "isOpen"?: boolean;
+        "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "showCloseButton"?: boolean;
+        "width"?: string;
+    }
     interface IfxSearchInput {
+        "borderColor"?: 'light' | 'dark' | 'green';
         "disabled"?: boolean;
-        "filter"?: boolean;
-        "icon"?: boolean;
-        "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
+        "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
+        "showDeleteIcon"?: boolean;
+        "size"?: string;
+        "width"?: string;
     }
     interface IfxSpinner {
         "size"?: string;
@@ -402,6 +418,7 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
+        "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
@@ -428,6 +445,7 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
