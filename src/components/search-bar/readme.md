@@ -10,6 +10,7 @@
 | Property          | Attribute           | Description | Type      | Default     |
 | ----------------- | ------------------- | ----------- | --------- | ----------- |
 | `icon`            | `icon`              |             | `string`  | `undefined` |
+| `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
 | `width`           | `width`             |             | `string`  | `'100%'`    |
 

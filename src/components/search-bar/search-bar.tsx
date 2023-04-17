@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop, State } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop } from '@stencil/core';
 import { debounce } from 'lodash';
 
 @Component({
@@ -14,7 +14,7 @@ export class SearchBar {
   @Prop() width: string = '100%';
   @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
-  @State() isOpen: boolean = true;
+  @Prop({mutable: true}) isOpen: boolean = true;
 
   handleInput = () => {
     const query = this.inputElement.value;

@@ -95,6 +95,7 @@ export namespace Components {
     }
     interface IfxSearchBar {
         "icon": string;
+        "isOpen": boolean;
         "showCloseButton": boolean;
         "width": string;
     }
@@ -353,6 +354,7 @@ declare namespace LocalJSX {
     }
     interface IfxSearchBar {
         "icon"?: string;
+        "isOpen"?: boolean;
         "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
         "showCloseButton"?: boolean;
         "width"?: string;
