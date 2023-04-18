@@ -42,7 +42,7 @@ const Template = (args) => {
     progressBar.dispatchEvent(new CustomEvent('percentageChange', { detail: args.percentage }));
   }, [args.percentage]);
 
-  return wrapper;
+  return wrapper.innerHTML;
 };
 
 export const Default = Template.bind({});
