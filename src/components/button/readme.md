@@ -34,6 +34,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-search-bar](../search-bar)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -42,6 +46,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-button --> ifx-icon
+  ifx-search-bar --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
