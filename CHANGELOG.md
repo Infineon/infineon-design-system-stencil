@@ -1,3 +1,18 @@
+# v18.0.4 (Tue Apr 18 2023)
+
+#### 🐛 Bug Fix
+
+- progress bar added [#78](https://github.com/Infineon/infineon-design-system-stencil/pull/78) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Feature/search bar [#80](https://github.com/Infineon/infineon-design-system-stencil/pull/80) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.0.3 (Mon Apr 17 2023)
 
 #### 🐛 Bug Fix
