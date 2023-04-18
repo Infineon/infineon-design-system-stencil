@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, h, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-progress-bar',
@@ -11,13 +11,18 @@ export class ProgressBar {
   @Prop() size: string;
   @Prop() showLabel: boolean = false;
 
+  @Event() percentageChange: EventEmitter<number>;
 
+  @Watch('percentage')
+  onPercentageChanged(newValue: number) {
+    this.percentageChange.emit(newValue);
+  }
 
   render() {
     return (
       <div class={`progress-bar ${this.size}`}>
         <div class="progress" style={{ width: `${this.percentage}%` }}>
-          {this.showLabel && this.size === "m" && <span class="label">{`${this.percentage}%`}</span>}
+          {this.showLabel && this.size !== "s" && <span class="label">{`${this.percentage}%`}</span>}
         </div>
       </div>
     );

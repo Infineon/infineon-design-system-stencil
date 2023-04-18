@@ -15,6 +15,13 @@
 | `size`       | `size`       |             | `string`  | `undefined` |
 
 
+## Events
+
+| Event              | Description | Type                  |
+| ------------------ | ----------- | --------------------- |
+| `percentageChange` |             | `CustomEvent<number>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

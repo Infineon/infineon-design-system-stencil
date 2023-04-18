@@ -124,7 +124,7 @@ export namespace Components {
     }
     interface IfxStatus {
         "border": boolean;
-        "color": 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
+        "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text": string;
     }
     interface IfxTag {
@@ -134,139 +134,154 @@ export namespace Components {
         "icon": any;
     }
 }
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
     }
     var HTMLIfxAccordionElement: {
         prototype: HTMLIfxAccordionElement;
-        new(): HTMLIfxAccordionElement;
+        new (): HTMLIfxAccordionElement;
     };
     interface HTMLIfxAccordionItemElement extends Components.IfxAccordionItem, HTMLStencilElement {
     }
     var HTMLIfxAccordionItemElement: {
         prototype: HTMLIfxAccordionItemElement;
-        new(): HTMLIfxAccordionItemElement;
+        new (): HTMLIfxAccordionItemElement;
     };
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
     var HTMLIfxAlertElement: {
         prototype: HTMLIfxAlertElement;
-        new(): HTMLIfxAlertElement;
+        new (): HTMLIfxAlertElement;
     };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
     var HTMLIfxButtonElement: {
         prototype: HTMLIfxButtonElement;
-        new(): HTMLIfxButtonElement;
+        new (): HTMLIfxButtonElement;
     };
     interface HTMLIfxCardElement extends Components.IfxCard, HTMLStencilElement {
     }
     var HTMLIfxCardElement: {
         prototype: HTMLIfxCardElement;
-        new(): HTMLIfxCardElement;
+        new (): HTMLIfxCardElement;
     };
     interface HTMLIfxCardHeadlineElement extends Components.IfxCardHeadline, HTMLStencilElement {
     }
     var HTMLIfxCardHeadlineElement: {
         prototype: HTMLIfxCardHeadlineElement;
-        new(): HTMLIfxCardHeadlineElement;
+        new (): HTMLIfxCardHeadlineElement;
     };
     interface HTMLIfxCardOverlineElement extends Components.IfxCardOverline, HTMLStencilElement {
     }
     var HTMLIfxCardOverlineElement: {
         prototype: HTMLIfxCardOverlineElement;
-        new(): HTMLIfxCardOverlineElement;
+        new (): HTMLIfxCardOverlineElement;
     };
     interface HTMLIfxCardTextElement extends Components.IfxCardText, HTMLStencilElement {
     }
     var HTMLIfxCardTextElement: {
         prototype: HTMLIfxCardTextElement;
-        new(): HTMLIfxCardTextElement;
+        new (): HTMLIfxCardTextElement;
     };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
     var HTMLIfxDropdownElement: {
         prototype: HTMLIfxDropdownElement;
-        new(): HTMLIfxDropdownElement;
+        new (): HTMLIfxDropdownElement;
     };
     interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
     }
     var HTMLIfxDropdownItemElement: {
         prototype: HTMLIfxDropdownItemElement;
-        new(): HTMLIfxDropdownItemElement;
+        new (): HTMLIfxDropdownItemElement;
     };
     interface HTMLIfxDropdownMenuElement extends Components.IfxDropdownMenu, HTMLStencilElement {
     }
     var HTMLIfxDropdownMenuElement: {
         prototype: HTMLIfxDropdownMenuElement;
-        new(): HTMLIfxDropdownMenuElement;
+        new (): HTMLIfxDropdownMenuElement;
     };
     interface HTMLIfxFilterInputElement extends Components.IfxFilterInput, HTMLStencilElement {
     }
     var HTMLIfxFilterInputElement: {
         prototype: HTMLIfxFilterInputElement;
-        new(): HTMLIfxFilterInputElement;
+        new (): HTMLIfxFilterInputElement;
     };
     interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
     }
     var HTMLIfxIconElement: {
         prototype: HTMLIfxIconElement;
-        new(): HTMLIfxIconElement;
+        new (): HTMLIfxIconElement;
     };
     interface HTMLIfxIconButtonElement extends Components.IfxIconButton, HTMLStencilElement {
     }
     var HTMLIfxIconButtonElement: {
         prototype: HTMLIfxIconButtonElement;
-        new(): HTMLIfxIconButtonElement;
+        new (): HTMLIfxIconButtonElement;
     };
     interface HTMLIfxLinkElement extends Components.IfxLink, HTMLStencilElement {
     }
     var HTMLIfxLinkElement: {
         prototype: HTMLIfxLinkElement;
-        new(): HTMLIfxLinkElement;
+        new (): HTMLIfxLinkElement;
     };
     interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
     }
     var HTMLIfxProgressBarElement: {
         prototype: HTMLIfxProgressBarElement;
-        new(): HTMLIfxProgressBarElement;
+        new (): HTMLIfxProgressBarElement;
     };
     interface HTMLIfxSearchBarElement extends Components.IfxSearchBar, HTMLStencilElement {
     }
     var HTMLIfxSearchBarElement: {
         prototype: HTMLIfxSearchBarElement;
-        new(): HTMLIfxSearchBarElement;
+        new (): HTMLIfxSearchBarElement;
     };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
         prototype: HTMLIfxSearchInputElement;
-        new(): HTMLIfxSearchInputElement;
+        new (): HTMLIfxSearchInputElement;
     };
     interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
     }
     var HTMLIfxSpinnerElement: {
         prototype: HTMLIfxSpinnerElement;
-        new(): HTMLIfxSpinnerElement;
+        new (): HTMLIfxSpinnerElement;
     };
     interface HTMLIfxStatusElement extends Components.IfxStatus, HTMLStencilElement {
     }
     var HTMLIfxStatusElement: {
         prototype: HTMLIfxStatusElement;
-        new(): HTMLIfxStatusElement;
+        new (): HTMLIfxStatusElement;
     };
     interface HTMLIfxTagElement extends Components.IfxTag, HTMLStencilElement {
     }
     var HTMLIfxTagElement: {
         prototype: HTMLIfxTagElement;
-        new(): HTMLIfxTagElement;
+        new (): HTMLIfxTagElement;
     };
     interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
     }
     var HTMLInfineonIconStencilElement: {
         prototype: HTMLInfineonIconStencilElement;
-        new(): HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
@@ -388,6 +403,7 @@ declare namespace LocalJSX {
     }
     interface IfxProgressBar {
         "label"?: string;
+        "onPercentageChange"?: (event: IfxProgressBarCustomEvent<number>) => void;
         "percentage"?: number;
         "showLabel"?: boolean;
         "size"?: string;
@@ -412,7 +428,7 @@ declare namespace LocalJSX {
     }
     interface IfxStatus {
         "border"?: boolean;
-        "color"?: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
+        "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text"?: string;
     }
     interface IfxTag {
@@ -467,7 +483,6 @@ declare module "@stencil/core" {
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
-
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
