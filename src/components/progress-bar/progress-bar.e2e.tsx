@@ -16,6 +16,18 @@ describe('ifx-progress-bar', () => {
     const element = await page.find('ifx-progress-bar >>> .progress-bar');
     await page.waitForChanges();
     expect(element).toHaveClass('s');
+  });
 
+  it('emits percentageChange event when percentage changes', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-progress-bar percentage="25"></ifx-progress-bar>');
+
+    const progressBar = await page.find('ifx-progress-bar');
+    const percentageChange = await progressBar.spyOnEvent('percentageChange');
+
+    progressBar.setProperty('percentage', 50);
+    await page.waitForChanges();
+
+    expect(percentageChange).toHaveReceivedEventDetail(50);
   });
 });
