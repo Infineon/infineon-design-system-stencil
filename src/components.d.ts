@@ -95,6 +95,8 @@ export namespace Components {
     }
     interface IfxNavbar {
     }
+    interface IfxNavbarMenuItem {
+    }
     interface IfxSearchBar {
         "icon": string;
         "isOpen": boolean;
@@ -212,6 +214,12 @@ declare global {
         prototype: HTMLIfxNavbarElement;
         new (): HTMLIfxNavbarElement;
     };
+    interface HTMLIfxNavbarMenuItemElement extends Components.IfxNavbarMenuItem, HTMLStencilElement {
+    }
+    var HTMLIfxNavbarMenuItemElement: {
+        prototype: HTMLIfxNavbarMenuItemElement;
+        new (): HTMLIfxNavbarMenuItemElement;
+    };
     interface HTMLIfxSearchBarElement extends Components.IfxSearchBar, HTMLStencilElement {
     }
     var HTMLIfxSearchBarElement: {
@@ -257,6 +265,7 @@ declare global {
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
         "ifx-navbar": HTMLIfxNavbarElement;
+        "ifx-navbar-menu-item": HTMLIfxNavbarMenuItemElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
@@ -352,6 +361,8 @@ declare namespace LocalJSX {
     }
     interface IfxNavbar {
     }
+    interface IfxNavbarMenuItem {
+    }
     interface IfxSearchBar {
         "icon"?: string;
         "isOpen"?: boolean;
@@ -392,6 +403,7 @@ declare namespace LocalJSX {
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
         "ifx-navbar": IfxNavbar;
+        "ifx-navbar-menu-item": IfxNavbarMenuItem;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
         "ifx-spinner": IfxSpinner;
@@ -417,6 +429,7 @@ declare module "@stencil/core" {
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
+            "ifx-navbar-menu-item": LocalJSX.IfxNavbarMenuItem & JSXBase.HTMLAttributes<HTMLIfxNavbarMenuItemElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;

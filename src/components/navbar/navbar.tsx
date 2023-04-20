@@ -6,7 +6,7 @@ import { Component, h, Element, State } from '@stencil/core';
   shadow: true,
 })
 
-export class Card {
+export class Navbar {
   @Element() el;
   @State() main: boolean = true
   @State() products: boolean = false
@@ -71,7 +71,8 @@ export class Card {
               </div>
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
-                  <div class="navbar__container-left-content-navigation-item">
+                  <slot name='left-menu-item' />
+                  {/* <div class="navbar__container-left-content-navigation-item">
                     <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-left-content-navigation-item">
@@ -79,7 +80,7 @@ export class Card {
                   </div>
                   <div class="navbar__container-left-content-navigation-item">
                     <a href="javascript:void(0)">Menu Item</a>
-                  </div>
+                  </div> */}
                   <div class="navbar__container-left-content-navigation-dropdown-menu">
                     <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
                       <a href="javascript:void(0)">
