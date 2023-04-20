@@ -18,6 +18,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-navbar](../navbar)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -26,6 +30,7 @@
 ```mermaid
 graph TD;
   ifx-dropdown-item --> ifx-icon
+  ifx-navbar --> ifx-dropdown-item
   style ifx-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

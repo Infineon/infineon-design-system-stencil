@@ -1,4 +1,4 @@
-import { Component, h, Element } from '@stencil/core';
+import { Component, h, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -8,7 +8,16 @@ import { Component, h, Element } from '@stencil/core';
 
 export class Card {
   @Element() el;
+  @State() main: boolean = true
+  @State() products: boolean = false
+  @State() applications: boolean = false
+  @State() design: boolean = false
+  @State() support: boolean = false
+  @State() about: boolean = false
 
+  toggleClass(el, className) { 
+    el.classList.toggle(className)
+  }
 
   handleSidebar(el) { 
     const sidebarIconWrapper = el.currentTarget.closest('.navbar__burger-icon-wrapper');
@@ -17,11 +26,11 @@ export class Card {
     const mainContainer = el.currentTarget.closest('.navbar__main-container');
     const navbarWrapper = el.currentTarget.closest('.navbar__wrapper')
     const sidebarWrapper = navbarWrapper.querySelector('.navbar__sidebar');
-    navbarWrapper.classList.toggle('show')
-    mainContainer.classList.toggle('show')
-    sidebarWrapper.classList.toggle('show')
-    sidebarIconOpen.classList.toggle('close')
-    sidebarIconClose.classList.toggle('show')
+    this.toggleClass(navbarWrapper, 'show')
+    this.toggleClass(mainContainer, 'show')
+    this.toggleClass(sidebarWrapper, 'show')
+    this.toggleClass(sidebarIconOpen, 'close')
+    this.toggleClass(sidebarIconClose, 'show')
   }
 
   handleDropdownMenu(el) { 
@@ -29,6 +38,11 @@ export class Card {
     dropdownWrapper.classList.toggle('open')
     const iconWrapper = el.currentTarget.querySelector('a')
     iconWrapper.classList.toggle('open')
+  }
+
+  handleSubSidebarMenu(menu) { 
+    this.main = !this.main;
+    this[menu] = !this[menu];
   }
 
 
@@ -40,7 +54,7 @@ export class Card {
             <div class="navbar__container-left">
               <div class="navbar__container-left-logo">
                 <div class="navbar__container-left-logo-default">
-                  <a href="#">
+                  <a href="javascript:void(0)">
                     <svg width="91" height="40" viewBox="0 0 91 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_2396_2480)">
                         <path d="M67.691 26.7766C71.0884 26.7766 72.1461 23.1841 72.1461 19.8802C72.1461 15.4536 70.2871 13.1441 67.691 13.1441C64.4219 13.1441 63.2681 16.7367 63.3001 19.9443C63.3322 23.1199 64.2296 26.7766 67.691 26.7766ZM66.0244 19.8481C66.0244 18.533 66.0244 15.4536 67.691 15.4536C69.4859 15.4536 69.4218 18.5009 69.4218 19.9123C69.4218 21.2595 69.4218 24.5313 67.7551 24.5313C65.9603 24.4992 66.0244 21.2274 66.0244 19.8481ZM57.8195 26.7766C59.1976 26.7766 60.3835 26.2313 61.5053 25.0445L60.5117 23.1841C59.7425 24.018 58.9733 24.4671 58.0438 24.4671C57.2746 24.4671 56.6336 24.018 56.249 23.2482C55.9285 22.5746 55.8644 21.8048 55.8644 20.9708V20.7142H61.6335V20.1368C61.6335 17.282 61.2809 15.7102 60.3835 14.5234C59.7104 13.6253 58.7169 13.1441 57.499 13.1441C56.2169 13.1441 55.1593 13.7215 54.39 14.8442C53.5567 16.0631 53.2042 17.699 53.2042 19.9443C53.1721 24.2426 54.8708 26.7766 57.8195 26.7766ZM57.531 15.2612C58.172 15.2612 58.5566 15.614 58.813 16.1914C59.0053 16.7046 59.1015 17.5707 59.1015 18.5971H55.8644C55.8964 16.3197 56.3772 15.2612 57.531 15.2612ZM74.2614 26.4559H76.7614V16.8329C77.3703 16.0952 78.0754 15.6782 78.5882 15.6782C78.9087 15.6782 79.2292 15.7423 79.4215 15.9989C79.6138 16.2876 79.71 16.7046 79.71 17.699V26.4559H82.21V16.5442C82.21 15.6782 82.1138 14.8121 81.601 14.1706C81.1523 13.5932 80.4472 13.2404 79.5497 13.2404C78.3959 13.2404 77.2101 13.914 76.569 14.6838C76.537 14.0102 76.3126 13.3687 76.2485 13.1441L73.9089 13.7536C74.0371 14.4593 74.2294 15.3253 74.2294 16.8971V26.4559H74.2614ZM45.2236 14.6838C45.1915 14.0102 44.9672 13.3687 44.9031 13.1441L42.5634 13.7536C42.6916 14.4593 42.8839 15.3253 42.8839 16.8971V26.4238H45.3838V16.8008C45.9928 16.0631 46.6979 15.6461 47.2107 15.6461C47.5312 15.6461 47.8517 15.7102 48.044 15.9669C48.2363 16.2555 48.3325 16.6725 48.3325 17.6669V26.4238H50.8324V16.5442C50.8324 15.6782 50.7363 14.8121 50.2235 14.1706C49.7748 13.5932 49.0696 13.2404 48.1722 13.2404C47.0505 13.2404 45.8646 13.914 45.2236 14.6838ZM14.6473 9.07042C16.1216 9.07042 17.3075 7.88359 17.3075 6.40807C17.3075 4.93256 16.1216 3.74573 14.6473 3.74573C13.173 3.74573 11.9871 4.93256 11.9871 6.40807C11.9871 7.88359 13.173 9.07042 14.6473 9.07042ZM26.9227 26.4559V16.5442C26.9227 15.6782 26.8265 14.8121 26.3137 14.1706C25.865 13.5932 25.1599 13.2404 24.2625 13.2404C23.1087 13.2404 21.9228 13.914 21.2818 14.6838C21.2497 14.0102 21.0254 13.3687 20.9613 13.1441L18.6536 13.7857C18.7818 14.4913 18.9741 15.3574 18.9741 16.9291V26.4559H21.4741V16.8329C22.0831 16.0952 22.7882 15.6782 23.301 15.6782C23.6215 15.6782 23.942 15.7423 24.1343 15.9989C24.3266 16.2876 24.4227 16.7046 24.4227 17.699V26.4559H26.9227ZM38.4289 8.36474C37.4994 8.36474 36.7622 9.10249 36.7622 10.0327C36.7622 10.9629 37.4994 11.7007 38.3968 11.7007C39.3263 11.7007 40.0634 10.9629 40.0634 10.0327C40.0634 9.10249 39.3263 8.36474 38.4289 8.36474ZM13.4614 26.4559H15.9614V10.8346L13.4614 11.1554V26.4559ZM33.8777 9.90441C34.3264 9.90441 34.7751 10.0648 35.0635 10.2893L35.7687 8.33266C35.0956 7.85151 34.3584 7.62698 33.429 7.62698C32.788 7.62698 32.1149 7.78736 31.5059 8.26851C30.897 8.78173 30.256 9.80818 30.256 11.7328C30.256 12.5667 30.288 13.4328 30.288 13.4328H29.4226V15.6461H30.288V26.4238H32.8521V15.6782H34.743L35.2238 13.4649H32.8841V11.4762C32.8841 10.5139 33.2687 9.90441 33.8777 9.90441ZM37.1468 26.4559H39.6788V13.2404L37.1468 13.5611V26.4559Z" fill="#005DA9"/>
@@ -58,17 +72,17 @@ export class Card {
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
                   <div class="navbar__container-left-content-navigation-item">
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-left-content-navigation-item">
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-left-content-navigation-item">
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-left-content-navigation-dropdown-menu">
                     <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
-                      <a href="#">
+                      <a href="javascript:void(0)">
                         <span>More</span>
                         <ifx-icon icon="chevron-down-12"></ifx-icon>
                       </a>
@@ -81,15 +95,15 @@ export class Card {
                     </div>
                     <div class="shown">
                       <div class="navbar__container-left-content-navigation-item">
-                        <a href="#">Menu Item</a>
+                        <a href="javascript:void(0)">Menu Item</a>
                       </div>
                       <div class="navbar__container-left-content-navigation-item">
-                        <a href="#">Menu Item</a>
+                        <a href="javascript:void(0)">Menu Item</a>
                       </div>
                     </div>
                   </div>
                   <div class="navbar__container-left-content-navigation-item-search-bar">
-                    <ifx-search-input></ifx-search-input>
+                    <ifx-search-bar show-close-button="false"></ifx-search-bar>
                   </div>
                 </div>
               </div>
@@ -99,27 +113,26 @@ export class Card {
                 <div class="navbar__container-right-content-navigation-group">
                   <div class="navbar__container-right-content-navigation-item-search-bar">
                     <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
-                      <ifx-icon icon="search-16"></ifx-icon>
+                      <ifx-search-bar is-open="false" show-close-button="true"></ifx-search-bar>
                     </div>
-                    <a href="#">Search</a>
                   </div>
                   <div class="navbar__container-right-content-navigation-item">
                     <div class="navbar__container-right-content-navigation-item-icon-wrapper">
                       <ifx-icon icon="image-16"></ifx-icon>
                     </div>
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-right-content-navigation-item tablet">
                     <div class="navbar__container-right-content-navigation-item-icon-wrapper">
                       <ifx-icon icon="image-16"></ifx-icon>
                     </div>
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                   <div class="navbar__container-right-content-navigation-item-profile">
                     <div class="navbar__container-right-content-navigation-item-navigation-profile">
-                      <a href="#">AA</a>
+                      <a href="javascript:void(0)">AA</a>
                     </div>
-                    <a href="#">Menu Item</a>
+                    <a href="javascript:void(0)">Menu Item</a>
                   </div>
                 </div>
               </div>
@@ -134,40 +147,203 @@ export class Card {
             </div>
           </div>
         </div>
-          <div class="navbar__sidebar">
-            <div class="navbar__sidebar-content">
-              <div class="navbar__sidebar-content-header">
+        <div class="navbar__sidebar">
+           {this.main &&
+            <div class="navbar__sidebar-content-main">
+            <div class="navbar__sidebar-content-main-menu">
+              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('products')}>
+                <a href="javascript:void(0)">Products</a>
+                <ifx-icon icon="chevron-right-16"></ifx-icon>
+              </div>
+              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('applications')}>
+                <a href="javascript:void(0)">Applications</a>
+                <ifx-icon icon="chevron-right-16"></ifx-icon>
+              </div>
+              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('design')}>
+                <a href="javascript:void(0)">Design Resources</a>
+                <ifx-icon icon="chevron-right-16"></ifx-icon>
+              </div>
+              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('support')}>
+                <a href="javascript:void(0)">Support & Training</a>
+                <ifx-icon icon="chevron-right-16"></ifx-icon>
+              </div>
+              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('about')}>
+                <a href="javascript:void(0)">About</a>
+                <ifx-icon icon="chevron-right-16"></ifx-icon>
+              </div>
+            </div>
+          </div>}
+
+            {this.products &&
+            <div class="navbar__sidebar-content-products">
+                <div class="navbar__sidebar-content-products-header" onClick={() => this.handleSubSidebarMenu('products')}>
+                <ifx-icon icon="chevron-left-16"></ifx-icon>
+                <span>Products</span>
+              </div>
+              <div class="navbar__sidebar-content-products-menu">
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Careers</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Job Search</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Working at Infineon</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Our Locations</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Opportunities & Benefits</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Students & Pupils</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">How to Apply</a>
+                  </div>
+                  <div class="navbar__sidebar-content-products-menu-item">
+                    <a href="javascript:void(0)">Events</a>
+                  </div>
+              </div>
+            </div>}
+
+            {this.applications && 
+            <div class="navbar__sidebar-content-applications">
+              <div class="navbar__sidebar-content-applications-header" onClick={() => this.handleSubSidebarMenu('applications')}>
+                <ifx-icon icon="chevron-left-16"></ifx-icon>
+                <span>Applications</span>
+              </div>
+              <div class="navbar__sidebar-content-applications-menu">
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Careers</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Job Search</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Working at Infineon</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Our Locations</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Opportunities & Benefits</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Students & Pupils</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">How to Apply</a>
+                  </div>
+                  <div class="navbar__sidebar-content-applications-menu-item">
+                    <a href="javascript:void(0)">Events</a>
+                  </div>
+              </div>
+            </div>}
+
+            {this.design &&
+            <div class="navbar__sidebar-content-design">
+              <div class="navbar__sidebar-content-design-header" onClick={() => this.handleSubSidebarMenu('design')}>
+                  <ifx-icon icon="chevron-left-16"></ifx-icon>
+                <span>Design</span>
+              </div>
+              <div class="navbar__sidebar-content-design-menu">
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Careers</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Job Search</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Working at Infineon</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Our Locations</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Opportunities & Benefits</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Students & Pupils</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">How to Apply</a>
+                  </div>
+                  <div class="navbar__sidebar-content-design-menu-item">
+                    <a href="javascript:void(0)">Events</a>
+                  </div>
+              </div>
+            </div>}
+            
+            {this.support &&
+            <div class="navbar__sidebar-content-support">
+              <div class="navbar__sidebar-content-about-header" onClick={() => this.handleSubSidebarMenu('support')}>
+                  <ifx-icon icon="chevron-left-16"></ifx-icon>
+                <span>Support</span>
+              </div>
+              <div class="navbar__sidebar-content-support-menu">
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Careers</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Job Search</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Working at Infineon</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Our Locations</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Opportunities & Benefits</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Students & Pupils</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">How to Apply</a>
+                  </div>
+                  <div class="navbar__sidebar-content-support-menu-item">
+                    <a href="javascript:void(0)">Events</a>
+                  </div>
+              </div>
+            </div>}
+
+            {this.about &&
+            <div class="navbar__sidebar-content-about">
+              <div class="navbar__sidebar-content-about-header" onClick={() => this.handleSubSidebarMenu('about')}>
                 <ifx-icon icon="chevron-left-16"></ifx-icon>
                 <span>About</span>
               </div>
-              <div class="navbar__sidebar-content-menu">
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Careers</a>
+              <div class="navbar__sidebar-content-about-menu">
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Careers</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Job Search</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Job Search</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Working at Infineon</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Working at Infineon</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Our Locations</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Our Locations</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Opportunities & Benefits</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Opportunities & Benefits</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Students & Pupils</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Students & Pupils</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">How to Apply</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">How to Apply</a>
                 </div>
-                <div class="navbar__sidebar-content-menu-item">
-                  <a href="#">Events</a>
+                <div class="navbar__sidebar-content-about-menu-item">
+                  <a href="javascript:void(0)">Events</a>
                 </div>
               </div>
-            </div>
-          </div>
+          </div>}
+        </div>
       </div>
     );
   }
