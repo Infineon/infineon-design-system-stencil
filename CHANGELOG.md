@@ -1,3 +1,16 @@
+# v18.0.7 (Mon Apr 24 2023)
+
+#### 🐛 Bug Fix
+
+- Number Indicator component + updates on List Group and Badge components [#85](https://github.com/Infineon/infineon-design-system-stencil/pull/85) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.0.6 (Mon Apr 24 2023)
 
 #### 🐛 Bug Fix
