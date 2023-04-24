@@ -44,9 +44,16 @@
   }
 
   & .heading__section-time {
+    flex: 1;
     margin-left: 2px;
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

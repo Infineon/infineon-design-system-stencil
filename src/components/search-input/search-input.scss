@@ -1,21 +1,88 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-.inf__search-input {
-  width: 160px;
-  min-height: calc(1.75em + 18px);
-  font-size: 0.8125rem;
-  margin: 16px;
+
+:host {
   display: block;
-  // width: 100%;
-  padding: 8px 16px;
-  font-family: "Source Sans Pro";
-  font-weight: 400;
-  line-height: 1.75;
-  color: #1d1d1d;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #c5bbbd;
-  appearance: none;
-  border-radius: 1px;
-  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.search-input {
+  background: #FFFFFF;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px 16px;
+  flex: 1;
+
+
+
+
+  &.inside-dropdown {
+    max-width: calc(224px - 32px);
+  }
+
+  .search-input__wrapper {
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border: 1px solid #8D8786;
+    border-radius: 1px;
+    padding: 12px 16px;
+    gap: 12px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    position: relative;
+
+    &.search-input__wrapper-s {
+      height: 40px;
+    }
+
+    &.search-input__wrapper-outline-light {
+      border: 1px solid #8D8786;
+    }
+
+    &.search-input__wrapper-outline-dark {
+      border: 1px solid #3C3A39;
+    }
+
+    &.search-input__wrapper-outline-green {
+      border: 1px solid #0A8276;
+    }
+
+    ::slotted(.search-icon) {
+      left: 12px;
+    }
+
+    .delete-icon {
+      right: 12px;
+    }
+
+    input[type='text'] {
+      line-height: 24px;
+      font-family: tokens.$font-family-body;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      color: #8D8786;
+      border: none;
+      width: 100%;
+      min-width: calc(224px - 56px);
+
+      &:focus {
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: #EEEDED;
+      }
+    }
+
+    &:has(input[disabled]) {
+      background-color: #EEEDED;
+    }
+
+
+  }
+
 }
