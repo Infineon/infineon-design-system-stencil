@@ -1,97 +1,85 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
- .dropdown-item {
-      display: flex; 
-      align-items: center;
-      gap: 12px;
-      width: 100%;
-      text-align: inherit;
-      white-space: nowrap;
-      border: 0;
-      padding: 8px 16px;
-      background-color: rgba(0,0,0,0);
-      text-decoration: none;
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: inherit;
+  white-space: nowrap;
+  border: 0;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: tokens.$color-text-black;
+
+  &.primary {
+    input[type=checkbox] {
+      accent-color: tokens.$color-default-500;
+    }
+  }
+
+  &.secondary {
+    input[type=checkbox] {
+      accent-color: tokens.$color-highlight-500;
+    }
+  }
+
+  &.success {
+    input[type=checkbox] {
+      accent-color: tokens.$color-success-500;
+    }
+  }
+
+  &.danger {
+    input[type=checkbox] {
+      accent-color: tokens.$color-danger-500;
+    }
+  }
+
+  &.warning {
+    input[type=checkbox] {
+      accent-color: tokens.$color-warning-500;
+    }
+  }
+
+
+
+  & .form-check-label {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  & .form-check-input {
+    border-radius: 1px;
+  }
+
+
+
+  &:hover {
+    font-weight: 600;
+    background-color: tokens.$color-gray-200;
+
+
+    & svg {
       color: tokens.$color-text-black;
 
-      &.primary  { 
-        input[type=checkbox] {
-          accent-color: tokens.$color-default-500;
-        }
-      }
-
-      &.secondary  { 
-        input[type=checkbox] {
-          accent-color: tokens.$color-highlight-500;
-        }
-      }
-
-      &.success  { 
-        input[type=checkbox] {
-          accent-color: tokens.$color-success-500;
-        }
-      }
-
-      &.danger  { 
-        input[type=checkbox] {
-          accent-color: tokens.$color-danger-500;
-        }
-      }
-
-      &.warning  { 
-        input[type=checkbox] {
-          accent-color: tokens.$color-warning-500;
-        }
-      }
-
-      
-   
-      & .form-check-label {
-         &:hover { 
-          cursor: pointer;
-         }
-      }
-
-      & .form-check-input {
-        border-radius: 1px;
-      }
-
-      &:focus {
-        background-color: tokens.$color-gray-100;
-      }
-
-      &:focus-visible {
-        outline: none;
-        background-color: tokens.$color-gray-100;
-        border: 3px solid #B4DDD8;
-        padding-left: calc(16px - 3px);
-        margin-left: 0;
-      }
-
-      &:hover {
-        font-weight: 600;
-        background-color: tokens.$color-gray-200;
-     
-
-        & svg {
-          color: tokens.$color-text-black;
-          
-        }
-      }
-
-      &.active, &:active {
-        font-weight: 600;
-        background-color: transparent;
-        color: tokens.$color-default-500;
-
-        & svg {
-          color: tokens.$color-default-500;
-          fill: none;
-        }
-      }
     }
+  }
 
-    // ifx-icon:empty { 
-    //   display: none;
-    // }
+  &.active,
+  &:active {
+    font-weight: 600;
+    background-color: transparent;
+    color: tokens.$color-default-500;
 
-   
+    & svg {
+      color: tokens.$color-default-500;
+      fill: none;
+    }
+  }
+}
+
+// ifx-icon:empty { 
+//   display: none;
+// }

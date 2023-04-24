@@ -1,0 +1,58 @@
+// ifxAccordionItem.scss
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+  font-family: tokens.$font-family-body;
+}
+
+.accordion-item {
+  border-radius: 3px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.accordion-title:hover {
+  border: 1px solid tokens.$color-gray-200;
+  background-color: tokens.$color-gray-200;
+}
+
+.accordion-title {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: tokens.$color-default-500;
+  border: 1px solid tokens.$color-gray-200;
+  cursor: pointer;
+}
+
+.accordion-caption {
+  font-weight: tokens.$font-weight-semi-bold;
+  font-size: tokens.$font-size-m;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.accordion-content ::slotted(p) {
+  margin: 0;
+  padding: 0;
+}
+
+.inner-content {
+  padding: 24px;
+}
+
+.accordion-icon {
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.3s;
+  margin-right: 0.5rem;
+}
+
+.accordion-item.open .accordion-icon {
+  transform: rotate(90deg);
+}

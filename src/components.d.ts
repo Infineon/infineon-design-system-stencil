@@ -6,6 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption": string;
+        "close": () => Promise<void>;
+        "isOpen": () => Promise<boolean>;
+    }
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon": string;
@@ -108,13 +115,27 @@ export namespace Components {
         "isFlush": boolean;
         "title": string;
     }
-    interface IfxSearchInput {
-        "disabled": boolean;
-        "filter": boolean;
-        "icon": boolean;
+    interface IfxProgressBar {
         "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
+        "percentage": number;
+        "showLabel": boolean;
+        "size": string;
+    }
+    interface IfxSearchBar {
+        "icon": string;
+        "isOpen": boolean;
+        "showCloseButton": boolean;
+        "width": string;
+    }
+    interface IfxSearchInput {
+        "borderColor": 'light' | 'dark' | 'green';
+        "disabled": boolean;
+        "showDeleteIcon": boolean;
+        "size": string;
+        "width": string;
+    }
+    interface IfxSpinner {
+        "size": string;
     }
     interface IfxStatus {
         "border": boolean;
@@ -124,8 +145,39 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
+}
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
 }
 declare global {
+    interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionElement: {
+        prototype: HTMLIfxAccordionElement;
+        new (): HTMLIfxAccordionElement;
+    };
+    interface HTMLIfxAccordionItemElement extends Components.IfxAccordionItem, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionItemElement: {
+        prototype: HTMLIfxAccordionItemElement;
+        new (): HTMLIfxAccordionItemElement;
+    };
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
     var HTMLIfxAlertElement: {
@@ -222,11 +274,29 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
+    }
+    var HTMLIfxProgressBarElement: {
+        prototype: HTMLIfxProgressBarElement;
+        new (): HTMLIfxProgressBarElement;
+    };
+    interface HTMLIfxSearchBarElement extends Components.IfxSearchBar, HTMLStencilElement {
+    }
+    var HTMLIfxSearchBarElement: {
+        prototype: HTMLIfxSearchBarElement;
+        new (): HTMLIfxSearchBarElement;
+    };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
+    };
+    interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
+    }
+    var HTMLIfxSpinnerElement: {
+        prototype: HTMLIfxSpinnerElement;
+        new (): HTMLIfxSpinnerElement;
     };
     interface HTMLIfxStatusElement extends Components.IfxStatus, HTMLStencilElement {
     }
@@ -240,7 +310,15 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
+    };
     interface HTMLElementTagNameMap {
+        "ifx-accordion": HTMLIfxAccordionElement;
+        "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
@@ -257,12 +335,23 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-progress-bar": HTMLIfxProgressBarElement;
+        "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption"?: string;
+        "onItemClosed"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+        "onItemOpened"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+    }
     interface IfxAlert {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon"?: string;
@@ -363,13 +452,30 @@ declare namespace LocalJSX {
         "isFlush"?: boolean;
         "title"?: string;
     }
-    interface IfxSearchInput {
-        "disabled"?: boolean;
-        "filter"?: boolean;
-        "icon"?: boolean;
+    interface IfxProgressBar {
         "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
+        "onPercentageChange"?: (event: IfxProgressBarCustomEvent<number>) => void;
+        "percentage"?: number;
+        "showLabel"?: boolean;
+        "size"?: string;
+    }
+    interface IfxSearchBar {
+        "icon"?: string;
+        "isOpen"?: boolean;
+        "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "showCloseButton"?: boolean;
+        "width"?: string;
+    }
+    interface IfxSearchInput {
+        "borderColor"?: 'light' | 'dark' | 'green';
+        "disabled"?: boolean;
+        "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
+        "showDeleteIcon"?: boolean;
+        "size"?: string;
+        "width"?: string;
+    }
+    interface IfxSpinner {
+        "size"?: string;
     }
     interface IfxStatus {
         "border"?: boolean;
@@ -379,7 +485,12 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
+    interface InfineonIconStencil {
+        "icon"?: any;
+    }
     interface IntrinsicElements {
+        "ifx-accordion": IfxAccordion;
+        "ifx-accordion-item": IfxAccordionItem;
         "ifx-alert": IfxAlert;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
@@ -396,15 +507,21 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-progress-bar": IfxProgressBar;
+        "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
+        "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ifx-accordion": LocalJSX.IfxAccordion & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
+            "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
@@ -421,9 +538,13 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
+            "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }

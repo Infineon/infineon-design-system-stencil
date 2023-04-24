@@ -1,13 +1,11 @@
-
 import { addons } from '@storybook/addons';
 
 addons.setConfig({
-
+  panelPosition: 'bottom',
+  selectedPanel: 'usage-tab/panel',
   previewTabs: {
-    // the order of the tabs is configured by the order here
-    // null means no override for the title
-    'storybook/docs/panel': null,
-    'usage-tab': null,
-    canvas: null,
+    'storybook/docs/panel': 'Docs',
+    'usage-tab/panel': 'Usage',
+    canvas: 'Canvas',
   },
 });
