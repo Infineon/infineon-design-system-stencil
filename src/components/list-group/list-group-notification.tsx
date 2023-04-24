@@ -77,7 +77,7 @@ export class ListGroupNotification {
       <div class={`list-group-notification ${this.isFlush ? 'flush' : ""}`}>
         <div class="heading__section">
           <h6 class="heading__section-title">{this.title}</h6>
-          <div class="heading__section-time">{this.elapsedTime}</div>
+          <div class="heading__section-time">{this.shownTime}</div>
         </div>
         <div class="description__section">
           <slot />
