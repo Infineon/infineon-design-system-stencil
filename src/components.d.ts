@@ -100,6 +100,21 @@ export namespace Components {
         "target": string;
         "underline": any;
     }
+    interface IfxListGroup {
+        "bulletpoint": boolean;
+        "flush": boolean;
+        "notification": boolean;
+    }
+    interface IfxListItem {
+        "hasBulletpoint": boolean;
+        "isFlush": boolean;
+    }
+    interface IfxListNotification {
+        "created": any;
+        "elapsedTime": string;
+        "isFlush": boolean;
+        "title": string;
+    }
     interface IfxProgressBar {
         "label": string;
         "percentage": number;
@@ -241,6 +256,24 @@ declare global {
         prototype: HTMLIfxLinkElement;
         new (): HTMLIfxLinkElement;
     };
+    interface HTMLIfxListGroupElement extends Components.IfxListGroup, HTMLStencilElement {
+    }
+    var HTMLIfxListGroupElement: {
+        prototype: HTMLIfxListGroupElement;
+        new (): HTMLIfxListGroupElement;
+    };
+    interface HTMLIfxListItemElement extends Components.IfxListItem, HTMLStencilElement {
+    }
+    var HTMLIfxListItemElement: {
+        prototype: HTMLIfxListItemElement;
+        new (): HTMLIfxListItemElement;
+    };
+    interface HTMLIfxListNotificationElement extends Components.IfxListNotification, HTMLStencilElement {
+    }
+    var HTMLIfxListNotificationElement: {
+        prototype: HTMLIfxListNotificationElement;
+        new (): HTMLIfxListNotificationElement;
+    };
     interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
     }
     var HTMLIfxProgressBarElement: {
@@ -299,6 +332,9 @@ declare global {
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
         "ifx-link": HTMLIfxLinkElement;
+        "ifx-list-group": HTMLIfxListGroupElement;
+        "ifx-list-item": HTMLIfxListItemElement;
+        "ifx-list-notification": HTMLIfxListNotificationElement;
         "ifx-progress-bar": HTMLIfxProgressBarElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
@@ -401,6 +437,21 @@ declare namespace LocalJSX {
         "target"?: string;
         "underline"?: any;
     }
+    interface IfxListGroup {
+        "bulletpoint"?: boolean;
+        "flush"?: boolean;
+        "notification"?: boolean;
+    }
+    interface IfxListItem {
+        "hasBulletpoint"?: boolean;
+        "isFlush"?: boolean;
+    }
+    interface IfxListNotification {
+        "created"?: any;
+        "elapsedTime"?: string;
+        "isFlush"?: boolean;
+        "title"?: string;
+    }
     interface IfxProgressBar {
         "label"?: string;
         "onPercentageChange"?: (event: IfxProgressBarCustomEvent<number>) => void;
@@ -453,6 +504,9 @@ declare namespace LocalJSX {
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
         "ifx-link": IfxLink;
+        "ifx-list-group": IfxListGroup;
+        "ifx-list-item": IfxListItem;
+        "ifx-list-notification": IfxListNotification;
         "ifx-progress-bar": IfxProgressBar;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
@@ -481,6 +535,9 @@ declare module "@stencil/core" {
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
+            "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
+            "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
+            "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
