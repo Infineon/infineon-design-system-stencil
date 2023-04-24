@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State} from '@stencil/core';
+import { Component, h, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-list-item',
@@ -13,13 +13,13 @@ export class ListGroupItem {
   @Prop() badge: boolean = false;
   @Prop() badgeValue: number = 0;
 
-  componentWillLoad() { 
+  componentWillLoad() {
     const ifxListGroup = this.el.closest('ifx-list-group')
-    if(ifxListGroup.flush) { 
+    if (ifxListGroup.flush) {
       this.isFlush = true;
     } else this.isFlush = false;
 
-    if(ifxListGroup.bulletpoint && !this.badge) { 
+    if (ifxListGroup.bulletpoint && !this.badge) {
       this.hasBulletpoint = true;
     } else this.hasBulletpoint = false;
   }

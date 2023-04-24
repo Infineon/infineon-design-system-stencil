@@ -1,0 +1,56 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.search-bar {
+  box-sizing: border-box;
+  height: 40px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+
+
+  .search-icon {
+    cursor: pointer;
+  }
+
+  .search-bar__wrapper {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+    flex: 1;
+
+  }
+
+  .search-bar__icon-wrapper {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 34px;
+    padding-top: 4px;
+
+  }
+
+
+  &.width-40 {
+    width: 40%;
+  }
+
+  &.width-60 {
+    width: 60%;
+  }
+
+  &.width-80 {
+    width: 80%;
+  }
+
+  &.width-100 {
+    width: 100%;
+  }
+}

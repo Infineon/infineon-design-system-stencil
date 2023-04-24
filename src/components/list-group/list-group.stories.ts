@@ -1,8 +1,8 @@
 export default {
   title: "Components/Ifx-List-Group",
   args: {
-    title: 'Things to buy today',
-    description: 'Achtung. Has du Bananen gekauft?',
+    title: 'Notification title',
+    description: 'Notification description',
     flush: false,
     bulletpoint: false,
     badge: false,
@@ -22,7 +22,7 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
+Default.argTypes = {
   description: {
     table: {
       disable: true
@@ -52,7 +52,7 @@ const NotificationTemplate = (args) =>
 
 
 export const Notifications = NotificationTemplate.bind({});
-Notifications.argTypes={
+Notifications.argTypes = {
   bulletpoint: {
     table: {
       disable: true

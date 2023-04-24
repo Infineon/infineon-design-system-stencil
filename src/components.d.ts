@@ -6,10 +6,19 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption": string;
+        "close": () => Promise<void>;
+        "isOpen": () => Promise<boolean>;
+    }
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon": string;
         "overflowing": boolean;
+    }
+    interface IfxBadge {
     }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -112,145 +121,199 @@ export namespace Components {
         "inverted": boolean;
     }
     interface IfxSearchInput {
+        "borderColor": 'light' | 'dark' | 'green';
         "disabled": boolean;
-        "filter": boolean;
-        "icon": boolean;
-        "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
+        "showDeleteIcon": boolean;
+        "size": string;
+        "width": string;
+    }
+    interface IfxSpinner {
+        "size": string;
     }
     interface IfxStatus {
         "border": boolean;
-        "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
+        "color": 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
         "text": string;
     }
     interface IfxTag {
         "text": string;
     }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
+}
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
 }
 declare global {
+    interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionElement: {
+        prototype: HTMLIfxAccordionElement;
+        new(): HTMLIfxAccordionElement;
+    };
+    interface HTMLIfxAccordionItemElement extends Components.IfxAccordionItem, HTMLStencilElement {
+    }
+    var HTMLIfxAccordionItemElement: {
+        prototype: HTMLIfxAccordionItemElement;
+        new(): HTMLIfxAccordionItemElement;
+    };
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
     }
     var HTMLIfxAlertElement: {
         prototype: HTMLIfxAlertElement;
-        new (): HTMLIfxAlertElement;
+        new(): HTMLIfxAlertElement;
+    };
+    interface HTMLIfxBadgeElement extends Components.IfxBadge, HTMLStencilElement {
+    }
+    var HTMLIfxBadgeElement: {
+        prototype: HTMLIfxBadgeElement;
+        new(): HTMLIfxBadgeElement;
     };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
     var HTMLIfxButtonElement: {
         prototype: HTMLIfxButtonElement;
-        new (): HTMLIfxButtonElement;
+        new(): HTMLIfxButtonElement;
     };
     interface HTMLIfxCardElement extends Components.IfxCard, HTMLStencilElement {
     }
     var HTMLIfxCardElement: {
         prototype: HTMLIfxCardElement;
-        new (): HTMLIfxCardElement;
+        new(): HTMLIfxCardElement;
     };
     interface HTMLIfxCardHeadlineElement extends Components.IfxCardHeadline, HTMLStencilElement {
     }
     var HTMLIfxCardHeadlineElement: {
         prototype: HTMLIfxCardHeadlineElement;
-        new (): HTMLIfxCardHeadlineElement;
+        new(): HTMLIfxCardHeadlineElement;
     };
     interface HTMLIfxCardOverlineElement extends Components.IfxCardOverline, HTMLStencilElement {
     }
     var HTMLIfxCardOverlineElement: {
         prototype: HTMLIfxCardOverlineElement;
-        new (): HTMLIfxCardOverlineElement;
+        new(): HTMLIfxCardOverlineElement;
     };
     interface HTMLIfxCardTextElement extends Components.IfxCardText, HTMLStencilElement {
     }
     var HTMLIfxCardTextElement: {
         prototype: HTMLIfxCardTextElement;
-        new (): HTMLIfxCardTextElement;
+        new(): HTMLIfxCardTextElement;
     };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
     var HTMLIfxDropdownElement: {
         prototype: HTMLIfxDropdownElement;
-        new (): HTMLIfxDropdownElement;
+        new(): HTMLIfxDropdownElement;
     };
     interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
     }
     var HTMLIfxDropdownItemElement: {
         prototype: HTMLIfxDropdownItemElement;
-        new (): HTMLIfxDropdownItemElement;
+        new(): HTMLIfxDropdownItemElement;
     };
     interface HTMLIfxDropdownMenuElement extends Components.IfxDropdownMenu, HTMLStencilElement {
     }
     var HTMLIfxDropdownMenuElement: {
         prototype: HTMLIfxDropdownMenuElement;
-        new (): HTMLIfxDropdownMenuElement;
+        new(): HTMLIfxDropdownMenuElement;
     };
     interface HTMLIfxFilterInputElement extends Components.IfxFilterInput, HTMLStencilElement {
     }
     var HTMLIfxFilterInputElement: {
         prototype: HTMLIfxFilterInputElement;
-        new (): HTMLIfxFilterInputElement;
+        new(): HTMLIfxFilterInputElement;
     };
     interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
     }
     var HTMLIfxIconElement: {
         prototype: HTMLIfxIconElement;
-        new (): HTMLIfxIconElement;
+        new(): HTMLIfxIconElement;
     };
     interface HTMLIfxIconButtonElement extends Components.IfxIconButton, HTMLStencilElement {
     }
     var HTMLIfxIconButtonElement: {
         prototype: HTMLIfxIconButtonElement;
-        new (): HTMLIfxIconButtonElement;
+        new(): HTMLIfxIconButtonElement;
     };
     interface HTMLIfxLinkElement extends Components.IfxLink, HTMLStencilElement {
     }
     var HTMLIfxLinkElement: {
         prototype: HTMLIfxLinkElement;
-        new (): HTMLIfxLinkElement;
+        new(): HTMLIfxLinkElement;
     };
     interface HTMLIfxListGroupElement extends Components.IfxListGroup, HTMLStencilElement {
     }
     var HTMLIfxListGroupElement: {
         prototype: HTMLIfxListGroupElement;
-        new (): HTMLIfxListGroupElement;
+        new(): HTMLIfxListGroupElement;
     };
     interface HTMLIfxListItemElement extends Components.IfxListItem, HTMLStencilElement {
     }
     var HTMLIfxListItemElement: {
         prototype: HTMLIfxListItemElement;
-        new (): HTMLIfxListItemElement;
+        new(): HTMLIfxListItemElement;
     };
     interface HTMLIfxListNotificationElement extends Components.IfxListNotification, HTMLStencilElement {
     }
     var HTMLIfxListNotificationElement: {
         prototype: HTMLIfxListNotificationElement;
-        new (): HTMLIfxListNotificationElement;
+        new(): HTMLIfxListNotificationElement;
     };
     interface HTMLIfxNumberIndicatorElement extends Components.IfxNumberIndicator, HTMLStencilElement {
     }
     var HTMLIfxNumberIndicatorElement: {
         prototype: HTMLIfxNumberIndicatorElement;
-        new (): HTMLIfxNumberIndicatorElement;
+        new(): HTMLIfxNumberIndicatorElement;
     };
     interface HTMLIfxSearchInputElement extends Components.IfxSearchInput, HTMLStencilElement {
     }
     var HTMLIfxSearchInputElement: {
         prototype: HTMLIfxSearchInputElement;
-        new (): HTMLIfxSearchInputElement;
+        new(): HTMLIfxSearchInputElement;
+    };
+    interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
+    }
+    var HTMLIfxSpinnerElement: {
+        prototype: HTMLIfxSpinnerElement;
+        new(): HTMLIfxSpinnerElement;
     };
     interface HTMLIfxStatusElement extends Components.IfxStatus, HTMLStencilElement {
     }
     var HTMLIfxStatusElement: {
         prototype: HTMLIfxStatusElement;
-        new (): HTMLIfxStatusElement;
+        new(): HTMLIfxStatusElement;
     };
     interface HTMLIfxTagElement extends Components.IfxTag, HTMLStencilElement {
     }
     var HTMLIfxTagElement: {
         prototype: HTMLIfxTagElement;
-        new (): HTMLIfxTagElement;
+        new(): HTMLIfxTagElement;
+    };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new(): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
+        "ifx-accordion": HTMLIfxAccordionElement;
+        "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-alert": HTMLIfxAlertElement;
+        "ifx-badge": HTMLIfxBadgeElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
@@ -268,15 +331,26 @@ declare global {
         "ifx-list-notification": HTMLIfxListNotificationElement;
         "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
+    interface IfxAccordion {
+    }
+    interface IfxAccordionItem {
+        "caption"?: string;
+        "onItemClosed"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+        "onItemOpened"?: (event: IfxAccordionItemCustomEvent<any>) => void;
+    }
     interface IfxAlert {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon"?: string;
         "overflowing"?: boolean;
+    }
+    interface IfxBadge {
     }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -377,23 +451,32 @@ declare namespace LocalJSX {
         "inverted"?: boolean;
     }
     interface IfxSearchInput {
+        "borderColor"?: 'light' | 'dark' | 'green';
         "disabled"?: boolean;
-        "filter"?: boolean;
-        "icon"?: boolean;
-        "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
+        "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
+        "showDeleteIcon"?: boolean;
+        "size"?: string;
+        "width"?: string;
+    }
+    interface IfxSpinner {
+        "size"?: string;
     }
     interface IfxStatus {
         "border"?: boolean;
-        "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
+        "color"?: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
         "text"?: string;
     }
     interface IfxTag {
         "text"?: string;
     }
+    interface InfineonIconStencil {
+        "icon"?: any;
+    }
     interface IntrinsicElements {
+        "ifx-accordion": IfxAccordion;
+        "ifx-accordion-item": IfxAccordionItem;
         "ifx-alert": IfxAlert;
+        "ifx-badge": IfxBadge;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
@@ -411,15 +494,20 @@ declare namespace LocalJSX {
         "ifx-list-notification": IfxListNotification;
         "ifx-number-indicator": IfxNumberIndicator;
         "ifx-search-input": IfxSearchInput;
+        "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ifx-accordion": LocalJSX.IfxAccordion & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
+            "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
+            "ifx-badge": LocalJSX.IfxBadge & JSXBase.HTMLAttributes<HTMLIfxBadgeElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
@@ -437,8 +525,10 @@ declare module "@stencil/core" {
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
             "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }
