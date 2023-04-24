@@ -108,14 +108,17 @@ export namespace Components {
         "notification": boolean;
     }
     interface IfxListItem {
-        "hasBulletpoint": boolean;
+        "badge": boolean;
+        "badgeValue": number;
         "isFlush": boolean;
     }
     interface IfxListNotification {
-        "created": any;
-        "elapsedTime": string;
+        "creationTime": any;
         "isFlush": boolean;
         "title": string;
+    }
+    interface IfxNumberIndicator {
+        "inverted": boolean;
     }
     interface IfxProgressBar {
         "label": string;
@@ -282,6 +285,12 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxNumberIndicatorElement extends Components.IfxNumberIndicator, HTMLStencilElement {
+    }
+    var HTMLIfxNumberIndicatorElement: {
+        prototype: HTMLIfxNumberIndicatorElement;
+        new (): HTMLIfxNumberIndicatorElement;
+    };
     interface HTMLIfxProgressBarElement extends Components.IfxProgressBar, HTMLStencilElement {
     }
     var HTMLIfxProgressBarElement: {
@@ -344,6 +353,7 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
         "ifx-progress-bar": HTMLIfxProgressBarElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
@@ -454,14 +464,17 @@ declare namespace LocalJSX {
         "notification"?: boolean;
     }
     interface IfxListItem {
-        "hasBulletpoint"?: boolean;
+        "badge"?: boolean;
+        "badgeValue"?: number;
         "isFlush"?: boolean;
     }
     interface IfxListNotification {
-        "created"?: any;
-        "elapsedTime"?: string;
+        "creationTime"?: any;
         "isFlush"?: boolean;
         "title"?: string;
+    }
+    interface IfxNumberIndicator {
+        "inverted"?: boolean;
     }
     interface IfxProgressBar {
         "label"?: string;
@@ -519,6 +532,7 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-number-indicator": IfxNumberIndicator;
         "ifx-progress-bar": IfxProgressBar;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
@@ -551,6 +565,7 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;

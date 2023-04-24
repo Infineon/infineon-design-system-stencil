@@ -7,12 +7,11 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type      | Default     |
-| ------------- | -------------- | ----------- | --------- | ----------- |
-| `created`     | `created`      |             | `any`     | `undefined` |
-| `elapsedTime` | `elapsed-time` |             | `string`  | `""`        |
-| `isFlush`     | `is-flush`     |             | `boolean` | `false`     |
-| `title`       | `title`        |             | `string`  | `""`        |
+| Property       | Attribute       | Description | Type      | Default     |
+| -------------- | --------------- | ----------- | --------- | ----------- |
+| `creationTime` | `creation-time` |             | `any`     | `undefined` |
+| `isFlush`      | `is-flush`      |             | `boolean` | `false`     |
+| `title`        | `title`         |             | `string`  | `""`        |
 
 
 ----------------------------------------------

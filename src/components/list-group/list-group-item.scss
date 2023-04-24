@@ -1,9 +1,9 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 .list-group-item { 
-  position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 40px;
   width: 350px;
   padding: 8px 16px;
@@ -25,16 +25,9 @@
   }
 
    &.bulletpoint { 
-    &::before { 
+    & .list-group-item-content::before { 
       content: "•";
-      position: relative;
       display: inline-block;
-      top: 50%;
-      left: 0;
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
       font-size: 18px;
       padding-right: 10px;
     }
