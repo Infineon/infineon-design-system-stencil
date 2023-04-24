@@ -1,8 +1,8 @@
 export default {
   title: "Components/Ifx-List-Group",
   args: {
-    title: 'Things to buy today',
-    description: 'Achtung. Has du Bananen gekauft?',
+    title: 'Notification title',
+    description: 'Notification description',
     flush: false,
     bulletpoint: false,
     created: "30/03/2023 06:25:00",
