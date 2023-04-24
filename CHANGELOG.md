@@ -1,3 +1,23 @@
+# v18.0.5 (Mon Apr 24 2023)
+
+#### 🐛 Bug Fix
+
+- 75 list group [#83](https://github.com/Infineon/infineon-design-system-stencil/pull/83) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump glob-parent and @angular/compiler-cli in /examples/angular [#100](https://github.com/Infineon/infineon-design-system-stencil/pull/100) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump ajv and @angular/cli in /examples/angular [#97](https://github.com/Infineon/infineon-design-system-stencil/pull/97) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump loader-utils and @angular-devkit/build-angular in /examples/angular [#93](https://github.com/Infineon/infineon-design-system-stencil/pull/93) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.0.4 (Tue Apr 18 2023)
 
 #### 🐛 Bug Fix
