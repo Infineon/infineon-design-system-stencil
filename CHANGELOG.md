@@ -1,3 +1,20 @@
+# v18.0.8 (Tue Apr 25 2023)
+
+#### 🐛 Bug Fix
+
+- Merge branch '60-range' of https://github.com/kaiwerther/infineon-design-system-stencil into kaiwerther-60-range [#65](https://github.com/Infineon/infineon-design-system-stencil/pull/65) (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### ⚠️ Pushed to `master`
+
+- Merged Range component (lechneve@ISCN5CG1201S7M.infineon.com)
+- Merge branch 'kaiwerther-60-range' (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 1
+
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.0.7 (Mon Apr 24 2023)
 
 #### 🐛 Bug Fix
