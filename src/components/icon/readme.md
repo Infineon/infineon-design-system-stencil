@@ -23,6 +23,8 @@
  - [ifx-icon-button](../icon-button)
  - [ifx-link](../link)
  - [ifx-range](../ifxRange)
+ - [ifx-search-bar](../search-bar)
+ - [ifx-search-input](../search-input)
 
 ### Graph
 ```mermaid
@@ -33,6 +35,8 @@ graph TD;
   ifx-icon-button --> ifx-icon
   ifx-link --> ifx-icon
   ifx-range --> ifx-icon
+  ifx-search-bar --> ifx-icon
+  ifx-search-input --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
