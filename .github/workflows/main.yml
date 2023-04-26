@@ -77,6 +77,7 @@ jobs:
       #     npm install
       #     npm run build
       #     auto shipit
+
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v3
         with:
@@ -89,8 +90,8 @@ jobs:
       - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
-          registry: "https://registry.npmjs.org"
-          token: ${{ secrets.NPM_TOKEN }}
+          registry: "https://npm.pkg.github.com"
+          token: ${{ secrets.GH_TOKEN }}
           package: 'packages/components-vue/package.json'
 
 
