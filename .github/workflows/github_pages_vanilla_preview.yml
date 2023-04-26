@@ -43,7 +43,7 @@ jobs:
  
       - name: Update CDN Link in Vanilla example app & build
         run: | 
-          cd examples/vanilla-cdn
+          cd examples/stencil-components/vanilla-cdn
           npm install
           npm run update-link
           npm run build
@@ -52,7 +52,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/vanilla-cdn/dist
+          source-dir: ./examples/stencil-components/vanilla-cdn/dist
           umbrella-dir: pr-preview-vanilla-example
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

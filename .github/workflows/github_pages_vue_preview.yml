@@ -43,13 +43,13 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/vue3-vite
+          cd examples/stencil-components/vue3-vite
           npm i && npm run build
       - name: Deploy preview
         id: preview       
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./examples/vue3-vite/dist
+          source-dir: ./examples/stencil-components/vue3-vite/dist
           umbrella-dir: pr-preview-vue-example
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

@@ -43,13 +43,13 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/react
+          cd examples/stencil-components/react
           npm i && npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/react/build
+          source-dir: ./examples/stencil-components/react/build
           umbrella-dir: pr-preview-react-example
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

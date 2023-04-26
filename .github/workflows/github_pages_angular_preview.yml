@@ -43,14 +43,14 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/angular
+          cd examples/stencil-components/angular
           npm i && npm run build
           
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/angular/dist
+          source-dir: ./examples/stencil-components/angular/dist
           umbrella-dir: pr-preview-angular-example
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

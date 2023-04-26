@@ -39,7 +39,7 @@ jobs:
 
       - name: Update CDN Link in Vanilla example app & build
         run: | 
-          cd examples/vanilla-cdn
+          cd examples/stencil-components/vanilla-cdn
           npm install
           npm run update-link
           npm run build
@@ -47,7 +47,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/vanilla-cdn/dist # The folder the action should deploy.
+          folder: examples/stencil-components/vanilla-cdn/dist # The folder the action should deploy.
           target-folder: vanilla-example
           clean-exclude: |
             pr-preview/

@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:stencil": "npm i && cd ../../packages/components && npm run dev:stencil",
-    "link": "cd ../../packages/components && npm link && cd ../../examples/vue3-vite && npm link @infineon/infineon-design-system-stencil",
+    "link": "cd ../../packages/components && npm link && cd ../../examples/stencil-components/vue3-vite && npm link @infineon/infineon-design-system-stencil",
     "unlink": "npm unlink @infineon/infineon-design-system-stencil && npm i @infineon/infineon-design-system-stencil",
     "preview:link": "run-s link dev",
     "test:local": "run-p build:stencil preview:link"
