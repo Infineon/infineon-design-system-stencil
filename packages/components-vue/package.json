@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "*"
+    "@infineon/infineon-design-system-vue": "*"
   },
   "devDependencies": {
     "@stencil/vue-output-target": "^0.8.2",

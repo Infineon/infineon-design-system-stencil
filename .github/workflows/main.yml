@@ -91,7 +91,7 @@ jobs:
         with:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
-          package: 'packages/components/package.json'
+          package: 'packages/components-vue/package.json'
 
 
           
