@@ -36,9 +36,12 @@
     "build:stencil": "stencil build --docs"
   },
   "dependencies": {
+    "@babel/traverse": "^7.21.4",
     "@infineon/design-system-tokens": "^2.0.1",
     "@infineon/infineon-icons": "^1.1.2",
-    "@stencil/core": "^2.16.0"
+    "@stencil/core": "^2.16.0",
+    "@types/babel__traverse": "^7.18.4",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",

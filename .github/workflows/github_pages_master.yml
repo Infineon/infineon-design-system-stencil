@@ -14,12 +14,21 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
           registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Cache dependencies for packages/components
+      uses: actions/cache@v2
+      with:
+        path: packages/components/node_modules
+        key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
+        restore-keys: |
+            ${{ runner.os }}-npm-packages-components-
           
       - run: |
           cd packages/components
