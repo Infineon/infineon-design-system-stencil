@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "*"
+    "@infineon/infineon-design-system-stencil": "18.0.9--canary.112.cbbae326c799732739f7ba77dd0825fd802e48d8.0"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
