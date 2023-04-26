@@ -69,19 +69,19 @@ jobs:
         with:
           node-version: 16
           registry-url: "https://npm.pkg.github.com"
-      # - name: Create Release # releasing as a github npm package
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   run: | 
-      #     cd packages/components-vue
-      #     npm install
-      #     npm run build
-      #     auto shipit
+      - name: Create Release # releasing as a github npm package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: | 
+          cd packages/components-vue
+          npm install
+          npm run build
+          auto shipit
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
           scope: "@infineon"
           cache: 'npm'
           cache-dependency-path: packages/components-vue/package-lock.json
