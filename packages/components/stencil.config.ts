@@ -14,7 +14,7 @@ export const config: Config = {
     },
     vueOutputTarget({
       componentCorePackage: '@infineon/infineon-design-system-stencil',
-      proxiesFile: '../components-vue/lib/components.ts',
+      proxiesFile: '../components-vue/src/lib/components.ts',
     }),
     {
       type: 'dist-custom-elements',

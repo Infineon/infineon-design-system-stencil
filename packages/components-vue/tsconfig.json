@@ -12,7 +12,8 @@
     "skipLibCheck": true
   },
   "include": [
-    "lib"
+    "src/lib/lib",
+    "src/lib/vue-component-lib"
   ],
   "exclude": [
     "node_modules"
