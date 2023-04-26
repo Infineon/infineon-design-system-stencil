@@ -81,7 +81,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com"
           scope: "@infineon"
           cache: 'npm'
           cache-dependency-path: packages/components-vue/package-lock.json
