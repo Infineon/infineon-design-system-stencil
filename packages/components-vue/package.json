@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@infineon/dds-components-stencil": "*"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "devDependencies": {
     "vue": "^3.2.47"
