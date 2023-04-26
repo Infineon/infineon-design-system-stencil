@@ -14,6 +14,7 @@ export class SearchBar {
   @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
   @Prop({mutable: true}) isOpen: boolean = true;
+  @Prop() hideLabel: boolean = false;
 
   handleInput = () => {
     const query = this.inputElement.value;
@@ -46,6 +47,7 @@ export class SearchBar {
         ) : (
           <div class="search-bar__icon-wrapper">
             <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+            <a href="javascript:void(0)">Search</a>
           </div>
         )}
 

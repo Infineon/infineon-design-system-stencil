@@ -261,8 +261,7 @@
         }
 
         & .navbar__container-left-content-navigation-dropdown-menu {
-          & .hidden,
-          & .shown { 
+          & .hidden { 
             display: none;
             flex-direction: row;
             align-items: center;
@@ -680,5 +679,4 @@
     }
   }
 }
-
 

@@ -45,6 +45,61 @@ export class Navbar {
     this[menu] = !this[menu];
   }
 
+  handleMenuItems() { 
+    const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
+    const navbar = this.el.closest('ifx-navbar')
+    const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
+
+    if(window.screen.availWidth > 1024 && window.screen.availWidth < 1200) { 
+      const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
+      if(dropdownMenu.childNodes.length === 0) { 
+        if(leftMenuItems.length > 3) { 
+          for (let i = 3; i < leftMenuItems.length; i++) {
+            const dropdownMenuItem = document.createElement('ifx-dropdown-item');
+            dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
+            leftMenuItems[i].remove()
+            dropdownMenu.append(dropdownMenuItem);
+          }
+        }
+      }
+
+    } else if(window.screen.availWidth > 1200) { 
+      for(let i = 0; i < dropdownMenuItems.length; i++) { 
+        const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
+        navbarMenuItem.setAttribute('slot', 'left-menu-item')
+        navbarMenuItem.innerHTML = dropdownMenuItems[i].innerHTML;
+
+        while (dropdownMenu.firstChild) {
+          dropdownMenu.removeChild(dropdownMenu.lastChild);
+        } 
+
+        setTimeout(() => {
+          navbar.append(navbarMenuItem)
+        }, 0);
+      }
+    }
+  }
+
+  componentDidLoad() { 
+    window.addEventListener('resize', this.handleMenuItems.bind(this));
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
+    const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
+
+    if(window.screen.availWidth < 1200) { 
+      if(leftMenuItems.length > 3) { 
+        for (let i = 3; i < leftMenuItems.length; i++) {
+          const dropdownMenuItem = document.createElement('ifx-dropdown-item');
+          dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
+          //leftMenuItems[i].shadowRoot.querySelector('.navbar__container-left-content-navigation-item').classList.add('remove')
+          //dropdownMenu.append(dropdownMenuItem);
+          //console.log('dropdown-item', leftMenuItems[i])
+          leftMenuItems[i].remove()
+          dropdownMenu.append(dropdownMenuItem);
+        }
+      }
+    }
+  }
+
 
   render() {
     return (
@@ -72,15 +127,6 @@ export class Navbar {
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
                   <slot name='left-menu-item' />
-                  {/* <div class="navbar__container-left-content-navigation-item">
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div>
-                  <div class="navbar__container-left-content-navigation-item">
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div>
-                  <div class="navbar__container-left-content-navigation-item">
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div> */}
                   <div class="navbar__container-left-content-navigation-dropdown-menu">
                     <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
                       <a href="javascript:void(0)">
@@ -88,18 +134,7 @@ export class Navbar {
                         <ifx-icon icon="chevron-down-12"></ifx-icon>
                       </a>
                       <div class="navbar__dropdown-wrapper">
-                        <ifx-dropdown-menu>
-                          <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-                          <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-                        </ifx-dropdown-menu>
-                      </div>
-                    </div>
-                    <div class="shown">
-                      <div class="navbar__container-left-content-navigation-item">
-                        <a href="javascript:void(0)">Menu Item</a>
-                      </div>
-                      <div class="navbar__container-left-content-navigation-item">
-                        <a href="javascript:void(0)">Menu Item</a>
+                        <ifx-dropdown-menu></ifx-dropdown-menu>
                       </div>
                     </div>
                   </div>
@@ -114,27 +149,23 @@ export class Navbar {
                 <div class="navbar__container-right-content-navigation-group">
                   <div class="navbar__container-right-content-navigation-item-search-bar">
                     <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
-                      <ifx-search-bar is-open="false" show-close-button="true"></ifx-search-bar>
+                      <slot name='search-bar' />
                     </div>
                   </div>
                   <div class="navbar__container-right-content-navigation-item">
+                    <slot name='right-menu-item' />
+                    <slot name='right-menu-profile-item' />
+                  </div>
+                  {/* <div class="navbar__container-right-content-navigation-item tablet">
                     <div class="navbar__container-right-content-navigation-item-icon-wrapper">
                       <ifx-icon icon="image-16"></ifx-icon>
                     </div>
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div>
-                  <div class="navbar__container-right-content-navigation-item tablet">
-                    <div class="navbar__container-right-content-navigation-item-icon-wrapper">
-                      <ifx-icon icon="image-16"></ifx-icon>
-                    </div>
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div>
-                  <div class="navbar__container-right-content-navigation-item-profile">
+                  </div> */}
+                  {/* <div class="navbar__container-right-content-navigation-item-profile">
                     <div class="navbar__container-right-content-navigation-item-navigation-profile">
                       <a href="javascript:void(0)">AA</a>
                     </div>
-                    <a href="javascript:void(0)">Menu Item</a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
