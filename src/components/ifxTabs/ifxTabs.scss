@@ -1,0 +1,77 @@
+//ifxTabs.scss
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs.horizontal {
+  flex-direction: column;
+}
+
+.tabs.vertical {
+  flex-direction: row;
+}
+
+.tabs-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  font-weight: tokens.$font-weight-semi-bold;
+}
+
+.active-border {
+  content: "";
+  position: absolute;
+  transition: left 0.3s ease-in-out, width 0.3s ease-in-out, top 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.tabs.horizontal .active-border {
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: tokens.$color-default-500;
+}
+
+.tabs.vertical .tabs-list {
+  flex-direction: column;
+  border-bottom: none;
+}
+
+.tab-item.active {
+  color: tokens.$color-default-500;
+}
+
+.tab-item {
+  padding: 0.5rem 1rem ;
+  cursor: pointer;
+  position: relative;
+}
+
+.tabs.vertical .tab-item {
+  border-right: 2px solid transparent;
+  min-width: 7em;
+}
+
+.tabs.vertical .active-border {
+  left: 0;
+  top: 0;
+  width: 2px;
+  background-color: tokens.$color-default-500;
+}
+
+
+.tab-content {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.tabs.small .tab-item {
+  font-size: 14px; // Add the font-size rule directly here
+}
