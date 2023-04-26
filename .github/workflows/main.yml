@@ -49,7 +49,7 @@ jobs:
         with:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
-        working-directory: packages/components-vue
+          cwd: packages/components-vue
 
   vue-library-release:
     runs-on: ubuntu-latest
@@ -84,12 +84,13 @@ jobs:
           scope: "@infineon"
           cache: 'npm'
           cache-dependency-path: packages/components-vue/package-lock.json
+
       - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
-        working-directory: packages/components-vue
+          cwd: packages/components-vue
 
 
           
