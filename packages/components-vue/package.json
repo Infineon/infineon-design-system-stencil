@@ -1,5 +1,5 @@
 {
-  "name": "dds-components-vue",
+  "name": "infineon-design-system-vue",
   "version": "1.0.0",
   "description": "Infineon design system Stencil web components for Vue",
   "main": "dist/index.cjs.js",

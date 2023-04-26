@@ -38,7 +38,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./storybook-static
+          source-dir: ./packages/components/storybook-static
           github-token: ${{ secrets.GITHUB_TOKEN }}  
 
       - name: Get preview URL

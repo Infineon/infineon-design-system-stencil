@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import {
   applyPolyfills,
   defineCustomElements as defineProductMgmtExp
-} from "@infineon/dds-components-stencil/loader";
+} from "@infineon/infineon-design-system-stencil/loader";
 
 import { AppModule } from './app/app.module';
 

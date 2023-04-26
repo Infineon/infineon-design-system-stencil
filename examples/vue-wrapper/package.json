@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "vue": "^3.2.47",
-    "@infineon/dds-components-vue": "*"
+    "@infineon/infineon-design-system-vue": "*"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

@@ -3,7 +3,7 @@
 /* auto-generated vue proxies */
 import { defineContainer } from './vue-component-lib/utils';
 
-import type { JSX } from '@infineon/dds-components-stencil';
+import type { JSX } from '@infineon/infineon-design-system-stencil';
 
 
 
