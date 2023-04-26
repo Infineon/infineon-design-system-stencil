@@ -49,7 +49,7 @@ jobs:
         with:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
-          cwd: packages/components-vue
+          package: 'packages/components/package.json'
 
   vue-library-release:
     runs-on: ubuntu-latest
@@ -90,7 +90,7 @@ jobs:
         with:
           registry: "https://registry.npmjs.org"
           token: ${{ secrets.NPM_TOKEN }}
-          cwd: packages/components-vue
+          package: 'packages/components/package.json'
 
 
           
