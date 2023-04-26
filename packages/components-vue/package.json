@@ -18,6 +18,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@infineon/infineon-design-system-stencil": "*"
+  },
   "devDependencies": {
     "typescript": "^5.0.4",
     "vue": "^3.2.47"

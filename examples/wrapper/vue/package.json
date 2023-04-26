@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "*",
+    "@infineon/infineon-design-system-vue": "^1.0.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
