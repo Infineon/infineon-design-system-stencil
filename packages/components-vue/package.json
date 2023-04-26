@@ -1,0 +1,27 @@
+{
+  "name": "dds-components-vue",
+  "version": "1.0.0",
+  "description": "Infineon design system Stencil web components for Vue",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Infineon/infineon-design-system-stencil.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@infineon/dds-components-stencil": "*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.47"
+  }
+}

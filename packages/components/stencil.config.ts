@@ -1,6 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-// import nodePolyfills from 'rollup-plugin-node-polyfills';
+import { vueOutputTarget } from '@stencil/vue-output-target';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -12,6 +12,10 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
+    vueOutputTarget({
+      componentCorePackage: '@infineon/dds-components-stencil',
+      proxiesFile: '../components-vue/lib/components.ts',
+    }),
     {
       type: 'dist-custom-elements',
       generateTypeDeclarations: true,

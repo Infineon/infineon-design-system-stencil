@@ -30,6 +30,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Install and Build
         run: |
+          cd packages/components
           npm install
           npm run build:storybook
 

@@ -13,8 +13,8 @@ const count = ref(0)
     <div class="header">
 
       <p>{{ msg }}</p>
-
-      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+      <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
+        disabled="false">
         Button
       </ifx-button>
     </div>

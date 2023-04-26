@@ -18,7 +18,7 @@
     "allowJs": true,
   },
   "include": [
-    "src"
+    "packages/components/src"
   ],
   "exclude": [
     "node_modules"

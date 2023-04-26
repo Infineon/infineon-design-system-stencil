@@ -1,6 +1,6 @@
 {
-  "name": "@infineon/infineon-design-system-stencil",
-  "version": "18.0.8",
+  "name": "@infineon/dds-components-stencil",
+  "version": "1.0.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -20,7 +20,7 @@
   "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/Infineon/infineon-design-system-stencil.git"
   },
   "files": [
     "dist/",
@@ -45,6 +45,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@stencil/sass": "^2.0.0",
+    "@stencil/vue-output-target": "^0.8.2",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
