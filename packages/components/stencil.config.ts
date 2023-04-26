@@ -13,7 +13,7 @@ export const config: Config = {
       esmLoaderPath: '../loader',
     },
     vueOutputTarget({
-      componentCorePackage: '@infineon/dds-components-stencil',
+      componentCorePackage: '@infineon/infineon-design-system-stencil',
       proxiesFile: '../components-vue/lib/components.ts',
     }),
     {

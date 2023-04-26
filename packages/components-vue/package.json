@@ -22,6 +22,7 @@
     "@infineon/infineon-design-system-stencil": "*"
   },
   "devDependencies": {
+    "@stencil/vue-output-target": "^0.8.2",
     "typescript": "^5.0.4",
     "vue": "^3.2.47"
   }
