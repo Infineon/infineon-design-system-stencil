@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^1.0.0",
+    "@infineon/infineon-design-system-vue": "18.0.9--canary.112.aa36929f8cc0796119bf8db6fe753b5f3b61f948.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
