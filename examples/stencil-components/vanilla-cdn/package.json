@@ -6,8 +6,8 @@
     "update-link": "node update-link.js",
     "dev": "vite",
     "dev:watch": "run-p build:stencil dev watch",
-    "build:stencil": "npm i && cd ../../packages/components && npm run dev:stencil",
-    "watch": "nodemon --watch ../../packages/components/dist --exec \"node utils/copy.js\"",
+    "build:stencil": "npm i && cd ../../../packages/components && npm run dev:stencil",
+    "watch": "nodemon --watch ../../../packages/components/dist --exec \"node utils/copy.js\"",
     "build": "vite build",
     "preview": "vite preview"
   },

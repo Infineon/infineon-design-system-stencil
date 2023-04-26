@@ -7,8 +7,8 @@
     "clean:start": "run-s unlink start",
     "build": "ng build",
     "lint": "ng lint",
-    "build:stencil": "npm i && cd ../../packages/components && npm run dev:stencil",
-    "link": "cd ../../packages/components && npm link && cd ../../examples/stencil-components/angular && npm link @infineon/infineon-design-system-stencil",
+    "build:stencil": "npm i && cd ../../../packages/components && npm run dev:stencil",
+    "link": "cd ../../../packages/components && npm link && cd ../../examples/stencil-components/angular && npm link @infineon/infineon-design-system-stencil",
     "preview:link": "run-s link start",
     "unlink": "npm unlink @infineon/infineon-design-system-stencil && npm i @infineon/infineon-design-system-stencil",
     "test:local": "run-p build:stencil preview:link"
