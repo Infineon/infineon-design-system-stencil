@@ -168,18 +168,22 @@ export class Navbar {
                   </div> */}
                 </div>
               </div>
-              <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
+
+              {/* SIDEBAR BUTTON */}
+              {/* <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
                 <div class="navbar__burger-icon">
                   <ifx-icon icon="menu-right-24"></ifx-icon>
                 </div>
                 <div class="navbar__cross-icon">
                   <ifx-icon icon="cross-24"></ifx-icon>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <div class="navbar__sidebar">
+
+        {/* SIDEBAR */}
+        {/* <div class="navbar__sidebar">
            {this.main &&
             <div class="navbar__sidebar-content-main">
             <div class="navbar__sidebar-content-main-menu">
@@ -375,7 +379,7 @@ export class Navbar {
                 </div>
               </div>
           </div>}
-        </div>
+        </div> */}
       </div>
     );
   }
