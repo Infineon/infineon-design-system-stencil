@@ -271,7 +271,7 @@
 
           & .hidden { 
             position: relative;
-            display: flex;
+            //display: flex;
             flex-direction: column;
             & .navbar__dropdown-wrapper { 
               display: none;
@@ -558,7 +558,7 @@
         & .navbar__container-left-content-navigation-group {
           & .navbar__container-left-content-navigation-dropdown-menu { 
             & .hidden { 
-              display: flex;
+              //display: flex;
               & .navbar__dropdown-wrapper { 
                 &.open { 
                   top: 72px;
@@ -626,7 +626,7 @@
         & .navbar__container-left-content-navigation-group { 
           & .navbar__container-left-content-navigation-dropdown-menu { 
             & .hidden { 
-              display: none
+              //display: none
             }
   
             & .shown { 

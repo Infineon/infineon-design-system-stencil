@@ -49,12 +49,14 @@ export class Navbar {
     const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
     const navbar = this.el.closest('ifx-navbar')
     const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
+    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
 
     if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
-      console.log('here')
       const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
       if(dropdownMenu.childNodes.length === 0) { 
+        moreMenu.style.display = 'none'
         if(leftMenuItems.length > 3) { 
+          moreMenu.style.display = 'flex'
           for (let i = 3; i < leftMenuItems.length; i++) {
             const dropdownMenuItem = document.createElement('ifx-dropdown-item');
             dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
@@ -65,7 +67,6 @@ export class Navbar {
       }
 
     } else if(window.matchMedia("(min-width: 1200px)").matches) { 
-      console.log('more than 1200')
       for(let i = 0; i < dropdownMenuItems.length; i++) { 
         const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
         navbarMenuItem.setAttribute('slot', 'left-menu-item')
@@ -74,7 +75,7 @@ export class Navbar {
         while (dropdownMenu.firstChild) {
           dropdownMenu.removeChild(dropdownMenu.lastChild);
         } 
-
+        moreMenu.style.display = 'none'
         setTimeout(() => {
           navbar.append(navbarMenuItem)
         }, 0);
@@ -87,14 +88,14 @@ export class Navbar {
     const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
     const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
 
-    if(window.screen.availWidth < 1200) { 
+    if(window.matchMedia("(max-width: 1200px)").matches) { 
+      const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
+      
       if(leftMenuItems.length > 3) { 
+        moreMenu.style.display = 'flex'
         for (let i = 3; i < leftMenuItems.length; i++) {
           const dropdownMenuItem = document.createElement('ifx-dropdown-item');
           dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-          //leftMenuItems[i].shadowRoot.querySelector('.navbar__container-left-content-navigation-item').classList.add('remove')
-          //dropdownMenu.append(dropdownMenuItem);
-          //console.log('dropdown-item', leftMenuItems[i])
           leftMenuItems[i].remove()
           dropdownMenu.append(dropdownMenuItem);
         }
