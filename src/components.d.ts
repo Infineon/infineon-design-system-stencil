@@ -150,6 +150,8 @@ export namespace Components {
         "size": string;
         "width": string;
     }
+    interface IfxSidebar {
+    }
     interface IfxSpinner {
         "size": string;
     }
@@ -330,6 +332,12 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarElement: {
+        prototype: HTMLIfxSidebarElement;
+        new (): HTMLIfxSidebarElement;
+    };
     interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
     }
     var HTMLIfxSpinnerElement: {
@@ -379,6 +387,7 @@ declare global {
         "ifx-range": HTMLIfxRangeElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-sidebar": HTMLIfxSidebarElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tag": HTMLIfxTagElement;
@@ -532,6 +541,8 @@ declare namespace LocalJSX {
         "size"?: string;
         "width"?: string;
     }
+    interface IfxSidebar {
+    }
     interface IfxSpinner {
         "size"?: string;
     }
@@ -571,6 +582,7 @@ declare namespace LocalJSX {
         "ifx-range": IfxRange;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
+        "ifx-sidebar": IfxSidebar;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tag": IfxTag;
@@ -605,6 +617,7 @@ declare module "@stencil/core" {
             "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-sidebar": LocalJSX.IfxSidebar & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
