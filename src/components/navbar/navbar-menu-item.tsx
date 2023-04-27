@@ -11,6 +11,7 @@ export class NavbarMenuItem {
   @Element() el;
   @Prop({mutable: true}) isProfile: boolean = false;
   @Prop() hideLabel: boolean = false;
+  @Prop() icon: string = "image-16"
 
   // componentDidLoad() { 
   //   const navbar = this.el.closest('ifx-navbar')
@@ -46,8 +47,8 @@ export class NavbarMenuItem {
   render() {
     return (
       <div class={`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""}`}>
-        <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${this.isProfile ? "hide" : ""}`}>
-          <ifx-icon icon="image-16"></ifx-icon>
+        <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon && !this.isProfile ? "removeWrapper" : ""} ${this.isProfile  ? "hide" : ""}`}>
+          {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         </div>
         <div class={`navbar__container-right-content-navigation-item-navigation-profile ${this.isProfile ? 'show' : ""}`}>
           <a href="javascript:void(0)">AA</a>

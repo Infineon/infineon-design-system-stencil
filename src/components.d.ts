@@ -97,6 +97,7 @@ export namespace Components {
     }
     interface IfxNavbarMenuItem {
         "hideLabel": boolean;
+        "icon": string;
         "isProfile": boolean;
     }
     interface IfxSearchBar {
@@ -367,6 +368,7 @@ declare namespace LocalJSX {
     }
     interface IfxNavbarMenuItem {
         "hideLabel"?: boolean;
+        "icon"?: string;
         "isProfile"?: boolean;
     }
     interface IfxSearchBar {
