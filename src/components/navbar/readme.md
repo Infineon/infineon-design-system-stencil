@@ -5,29 +5,30 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute    | Description | Type      | Default |
+| ----------- | ------------ | ----------- | --------- | ------- |
+| `hideLabel` | `hide-label` |             | `boolean` | `false` |
+| `isProfile` | `is-profile` |             | `boolean` | `false` |
+
+
 ## Dependencies
+
+### Used by
+
+ - [ifx-navbar](.)
 
 ### Depends on
 
 - [ifx-icon](../icon)
-- [ifx-dropdown-menu](../dropdown-menu)
-- [ifx-dropdown-item](../dropdown-item)
-- [ifx-search-bar](../search-bar)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-navbar --> ifx-icon
-  ifx-navbar --> ifx-dropdown-menu
-  ifx-navbar --> ifx-dropdown-item
-  ifx-navbar --> ifx-search-bar
-  ifx-dropdown-item --> ifx-icon
-  ifx-search-bar --> ifx-search-input
-  ifx-search-bar --> ifx-icon
-  ifx-search-bar --> ifx-link
-  ifx-search-input --> ifx-icon
-  ifx-link --> ifx-icon
-  style ifx-navbar fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-navbar-menu-item --> ifx-icon
+  ifx-navbar --> ifx-navbar-menu-item
+  style ifx-navbar-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

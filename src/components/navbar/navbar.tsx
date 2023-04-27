@@ -50,7 +50,8 @@ export class Navbar {
     const navbar = this.el.closest('ifx-navbar')
     const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
 
-    if(window.screen.availWidth > 1024 && window.screen.availWidth < 1200) { 
+    if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
+      console.log('here')
       const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
       if(dropdownMenu.childNodes.length === 0) { 
         if(leftMenuItems.length > 3) { 
@@ -63,7 +64,8 @@ export class Navbar {
         }
       }
 
-    } else if(window.screen.availWidth > 1200) { 
+    } else if(window.matchMedia("(min-width: 1200px)").matches) { 
+      console.log('more than 1200')
       for(let i = 0; i < dropdownMenuItems.length; i++) { 
         const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
         navbarMenuItem.setAttribute('slot', 'left-menu-item')

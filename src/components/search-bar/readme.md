@@ -9,6 +9,7 @@
 
 | Property          | Attribute           | Description | Type      | Default     |
 | ----------------- | ------------------- | ----------- | --------- | ----------- |
+| `hideLabel`       | `hide-label`        |             | `boolean` | `false`     |
 | `icon`            | `icon`              |             | `string`  | `undefined` |
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
