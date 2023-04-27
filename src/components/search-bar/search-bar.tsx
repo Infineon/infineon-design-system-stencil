@@ -15,6 +15,7 @@ export class SearchBar {
   @Event() search: EventEmitter<string>;
   @Prop({mutable: true}) isOpen: boolean = true;
   @Prop() hideLabel: boolean = false;
+  @Prop() size: string = ""
 
   handleInput = () => {
     const query = this.inputElement.value;
@@ -34,7 +35,7 @@ export class SearchBar {
 
   render() {
     return (
-      <div class={`search-bar ${!this.isOpen ? 'closed' : ""}`}>
+      <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
         {this.isOpen ? (
           <div class="search-bar-wrapper">
             <ifx-search-input>

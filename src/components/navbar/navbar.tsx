@@ -141,7 +141,8 @@ export class Navbar {
                     </div>
                   </div>
                   <div class="navbar__container-left-content-navigation-item-search-bar">
-                    <ifx-search-bar show-close-button="false"></ifx-search-bar>
+                    <slot name='search-bar-left' />
+                    {/* <ifx-search-bar show-close-button="false"></ifx-search-bar> */}
                   </div>
                 </div>
               </div>
@@ -151,7 +152,7 @@ export class Navbar {
                 <div class="navbar__container-right-content-navigation-group">
                   <div class="navbar__container-right-content-navigation-item-search-bar">
                     <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
-                      <slot name='search-bar' />
+                      <slot name='search-bar-right' />
                     </div>
                   </div>
                   <div class="navbar__container-right-content-navigation-item">

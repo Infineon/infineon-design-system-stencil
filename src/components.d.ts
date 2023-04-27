@@ -104,6 +104,7 @@ export namespace Components {
         "icon": string;
         "isOpen": boolean;
         "showCloseButton": boolean;
+        "size": string;
     }
     interface IfxSearchInput {
         "borderColor": 'light' | 'dark' | 'green';
@@ -374,6 +375,7 @@ declare namespace LocalJSX {
         "isOpen"?: boolean;
         "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
         "showCloseButton"?: boolean;
+        "size"?: string;
     }
     interface IfxSearchInput {
         "borderColor"?: 'light' | 'dark' | 'green';

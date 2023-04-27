@@ -225,14 +225,14 @@
         flex-grow: 0;
 
         & .navbar__container-left-content-navigation-item-search-bar { 
-          display: none;
+          display: flex; //none
           flex-direction: row;
           align-items: center;
           padding: 0px 8px;
           flex: none;
           order: 5;
           flex-grow: 0;
-          width: 256px;
+          //width: 256px;
           height: 40px;
         }
 
@@ -661,7 +661,7 @@
         justify-content: center;
         & .navbar__container-left-content-navigation-group { 
           & .navbar__container-left-content-navigation-item-search-bar { 
-            display: flex;
+            display: inherit; //flex
           }
         }
       }
