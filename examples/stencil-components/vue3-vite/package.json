@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "vue": "^3.2.45",
-    "@infineon/infineon-design-system-stencil": "^0.0.63"
+    "@infineon/infineon-design-system-stencil": "^18.0.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
