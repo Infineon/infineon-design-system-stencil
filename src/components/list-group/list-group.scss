@@ -1,0 +1,8 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.list-group-container { 
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
