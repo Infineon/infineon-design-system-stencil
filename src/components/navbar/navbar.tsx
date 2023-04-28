@@ -1,4 +1,4 @@
-import { Component, h, Element, State } from '@stencil/core';
+import { Component, h, Element, State, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -14,6 +14,8 @@ export class Navbar {
   @State() design: boolean = false
   @State() support: boolean = false
   @State() about: boolean = false
+  @Prop() applicationName: string = ""
+  @State() hasLeftMenuItems: boolean = true;
 
   toggleClass(el, className) { 
     el.classList.toggle(className)
@@ -45,61 +47,78 @@ export class Navbar {
     this[menu] = !this[menu];
   }
 
-  handleMenuItems() { 
-    const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
-    const navbar = this.el.closest('ifx-navbar')
-    const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
-    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
+  // handleMenuItems() { 
+  //   const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
+  //   const navbar = this.el.closest('ifx-navbar')
+  //   const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
+  //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
 
-    if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
-      const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
-      if(dropdownMenu.childNodes.length === 0) { 
-        moreMenu.style.display = 'none'
-        if(leftMenuItems.length > 3) { 
-          moreMenu.style.display = 'flex'
-          for (let i = 3; i < leftMenuItems.length; i++) {
-            const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-            dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-            leftMenuItems[i].remove()
-            dropdownMenu.append(dropdownMenuItem);
-          }
-        }
-      }
+  //   if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
+  //     const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
+  //     if(dropdownMenu.childNodes.length === 0) { 
+  //       moreMenu.style.display = 'none'
+  //       if(leftMenuItems.length > 3) { 
+  //         moreMenu.style.display = 'flex'
+  //         for (let i = 3; i < leftMenuItems.length; i++) {
+  //           const dropdownMenuItem = document.createElement('ifx-dropdown-item');
+  //           dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
+  //           leftMenuItems[i].remove()
+  //           dropdownMenu.append(dropdownMenuItem);
+  //         }
+  //       }
+  //     }
 
-    } else if(window.matchMedia("(min-width: 1200px)").matches) { 
-      for(let i = 0; i < dropdownMenuItems.length; i++) { 
-        const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
-        navbarMenuItem.setAttribute('slot', 'left-menu-item')
-        navbarMenuItem.innerHTML = dropdownMenuItems[i].innerHTML;
+  //   } else if(window.matchMedia("(min-width: 1200px)").matches) { 
+  //     for(let i = 0; i < dropdownMenuItems.length; i++) { 
+  //       const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
+  //       navbarMenuItem.setAttribute('slot', 'left-menu-item')
+  //       navbarMenuItem.innerHTML = dropdownMenuItems[i].innerHTML;
 
-        while (dropdownMenu.firstChild) {
-          dropdownMenu.removeChild(dropdownMenu.lastChild);
-        } 
-        moreMenu.style.display = 'none'
-        setTimeout(() => {
-          navbar.append(navbarMenuItem)
-        }, 0);
-      }
-    }
-  }
+  //       while (dropdownMenu.firstChild) {
+  //         dropdownMenu.removeChild(dropdownMenu.lastChild);
+  //       } 
+  //       moreMenu.style.display = 'none'
+  //       setTimeout(() => {
+  //         navbar.append(navbarMenuItem)
+  //       }, 0);
+  //     }
+  //   }
+  // }
 
   componentDidLoad() { 
-    window.addEventListener('resize', this.handleMenuItems.bind(this));
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
-    const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
+    //window.addEventListener('resize', this.handleMenuItems.bind(this));
+   
+    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
+  
+    if(!dropdownMenu) {
+        const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
+        
+        moreMenu.style.display = 'none'
+    }
 
-    if(window.matchMedia("(max-width: 1200px)").matches) { 
-      const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
+  
+  
+    // if(window.matchMedia("(max-width: 1200px)").matches) { 
+    //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
       
-      if(leftMenuItems.length > 3) { 
-        moreMenu.style.display = 'flex'
-        for (let i = 3; i < leftMenuItems.length; i++) {
-          const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-          dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-          leftMenuItems[i].remove()
-          dropdownMenu.append(dropdownMenuItem);
-        }
-      }
+    //   if(leftMenuItems.length > 3) { 
+    //     moreMenu.style.display = 'flex'
+    //     for (let i = 3; i < leftMenuItems.length; i++) {
+    //       const dropdownMenuItem = document.createElement('ifx-dropdown-item');
+    //       dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
+    //       leftMenuItems[i].remove()
+    //       dropdownMenu.append(dropdownMenuItem);
+    //     }
+    //   }
+    // }
+  }
+
+  componentWillLoad() { 
+    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
+    if(!leftMenuItems.length && !dropdownMenu) { 
+      console.log('here')
+      this.hasLeftMenuItems = false;
     }
   }
 
@@ -126,6 +145,9 @@ export class Navbar {
                     </svg>
                   </a>
                 </div>
+                {this.applicationName && <h6>{this.applicationName}</h6>}
+                {this.applicationName && this.hasLeftMenuItems && 
+                <div class="navbar__container-left-logo-divider"></div>}
               </div>
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
@@ -137,7 +159,8 @@ export class Navbar {
                         <ifx-icon icon="chevron-down-12"></ifx-icon>
                       </a>
                       <div class="navbar__dropdown-wrapper">
-                        <ifx-dropdown-menu></ifx-dropdown-menu>
+                        <slot name='dropdown-menu' />
+                        {/* <ifx-dropdown-menu></ifx-dropdown-menu> */}
                       </div>
                     </div>
                   </div>

@@ -17,19 +17,6 @@
 | `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
 
 
-## Dependencies
-
-### Used by
-
- - [ifx-navbar](../navbar)
-
-### Graph
-```mermaid
-graph TD;
-  ifx-navbar --> ifx-dropdown-menu
-  style ifx-dropdown-menu fill:#f9f,stroke:#333,stroke-width:4px
-```
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

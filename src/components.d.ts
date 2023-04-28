@@ -94,6 +94,7 @@ export namespace Components {
         "underline": any;
     }
     interface IfxNavbar {
+        "applicationName": string;
     }
     interface IfxNavbarMenuItem {
         "hideLabel": boolean;
@@ -365,6 +366,7 @@ declare namespace LocalJSX {
         "underline"?: any;
     }
     interface IfxNavbar {
+        "applicationName"?: string;
     }
     interface IfxNavbarMenuItem {
         "hideLabel"?: boolean;

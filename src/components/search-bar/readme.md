@@ -13,6 +13,7 @@
 | `icon`            | `icon`              |             | `string`  | `undefined` |
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
+| `size`            | `size`              |             | `string`  | `""`        |
 
 
 ## Events
@@ -23,10 +24,6 @@
 
 
 ## Dependencies
-
-### Used by
-
- - [ifx-navbar](../navbar)
 
 ### Depends on
 
@@ -42,7 +39,6 @@ graph TD;
   ifx-search-bar --> ifx-link
   ifx-search-input --> ifx-icon
   ifx-link --> ifx-icon
-  ifx-navbar --> ifx-search-bar
   style ifx-search-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
