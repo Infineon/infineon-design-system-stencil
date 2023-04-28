@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { TabOrientation } from "./components/ifxTabs/ifxTabs";
+import { TabOrientation } from "./components/tabs/tabs";
 export namespace Components {
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -107,6 +107,9 @@ export namespace Components {
         "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text": string;
     }
+    interface IfxTab {
+        "header": string;
+    }
     interface IfxTabs {
         "orientation": TabOrientation;
         "small": boolean;
@@ -115,6 +118,14 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+}
+export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabElement;
+}
+export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabsElement;
 }
 declare global {
     interface HTMLIfxAlertElement extends Components.IfxAlert, HTMLStencilElement {
@@ -207,6 +218,12 @@ declare global {
         prototype: HTMLIfxStatusElement;
         new (): HTMLIfxStatusElement;
     };
+    interface HTMLIfxTabElement extends Components.IfxTab, HTMLStencilElement {
+    }
+    var HTMLIfxTabElement: {
+        prototype: HTMLIfxTabElement;
+        new (): HTMLIfxTabElement;
+    };
     interface HTMLIfxTabsElement extends Components.IfxTabs, HTMLStencilElement {
     }
     var HTMLIfxTabsElement: {
@@ -235,6 +252,7 @@ declare global {
         "ifx-link": HTMLIfxLinkElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
         "ifx-status": HTMLIfxStatusElement;
+        "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
     }
@@ -338,7 +356,13 @@ declare namespace LocalJSX {
         "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
         "text"?: string;
     }
+    interface IfxTab {
+        "header"?: string;
+        "onTabBecameActive"?: (event: IfxTabCustomEvent<any>) => void;
+        "onTabBecameInactive"?: (event: IfxTabCustomEvent<any>) => void;
+    }
     interface IfxTabs {
+        "onTabChange"?: (event: IfxTabsCustomEvent<any>) => void;
         "orientation"?: TabOrientation;
         "small"?: boolean;
         "tabs"?: string[];
@@ -362,6 +386,7 @@ declare namespace LocalJSX {
         "ifx-link": IfxLink;
         "ifx-search-input": IfxSearchInput;
         "ifx-status": IfxStatus;
+        "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
     }
@@ -385,6 +410,7 @@ declare module "@stencil/core" {
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
+            "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
         }

@@ -14,6 +14,13 @@
 | `tabs`        | --            |             | `string[]`                   | `[]`           |
 
 
+## Events
+
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `tabChange` |             | `CustomEvent<any>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
