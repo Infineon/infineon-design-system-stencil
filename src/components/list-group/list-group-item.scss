@@ -1,0 +1,50 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.list-group-item { 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 350px;
+  padding: 8px 16px;
+  background-color: tokens.$color-bg-white;
+  border: 1px solid tokens.$color-gray-200;
+  border-radius: 1px 1px 0px 0px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  &.flush { 
+    border: none;
+    border-bottom: 1px solid tokens.$color-gray-200;
+    
+    &.bulletpoint { 
+      padding: 8px;
+    }
+  }
+
+   &.bulletpoint { 
+    & .list-group-item-content::before { 
+      content: "•";
+      display: inline-block;
+      font-size: 18px;
+      padding-right: 10px;
+    }
+  }
+
+  &:hover:not(.show) { 
+    background-color: tokens.$color-gray-200;
+  }
+
+  &:active:not(.show) { 
+    background-color: tokens.$color-default-500;
+    color: tokens.$color-text-white;
+  }
+
+  &.show { 
+    display: block;
+    height: 88px;
+    padding: 16px;
+  }
+}

@@ -1,0 +1,11 @@
+// ifxAccordion.scss
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+}
+
+.accordion-wrapper {
+  display: flex;
+  flex-direction: column;
+} 

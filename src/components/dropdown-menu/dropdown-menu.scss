@@ -1,123 +1,99 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-  .dropdown-menu { 
-    display: none;
+.dropdown-menu {
+  display: none;
+  box-sizing: border-box;
+  background: #FFFF;
+  box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
+  border-radius: 1px;
+  margin-top: 8px;
+
+  & ifx-search-input {
+    max-width: 150px;
   }
 
- .dropdown-menu.show {
-    display: inline-block;
-    position: absolute;
-    z-index: 1000;
-    inset: 0px auto auto 0px;
-    min-width: 200px;
-    padding: 0;
-    border: none;
-    border-radius: 1px;
-    background-color: tokens.$color-gray-100;
-    transform: translate3d(0px, calc(44px + 8px), 0px) !important; //54px + 8px
+}
 
-    &.nested { 
-      transform: none!important;
-      position: static;
-    } 
+.dropdown-menu.show {
+  display: inline-block;
+  position: absolute;
+  min-width: 224px;
+  padding: 0;
+  border: none;
+  border-radius: 1px;
 
-    & .form-control, .form-select {
-      margin: 16px;
-    }
 
-    & .form-select {
-      color: tokens.$color-gray-400;
-    }
+  &.nested {
+    transform: none !important;
+    position: static;
+  }
 
-    & .inf__search-input, .inf__filter-input {
-      width: 160px;
-      min-height: calc(1.75em + 18px);
-      font-size: 0.8125rem;
-      margin: 16px;
-      display: block;
-      // width: 100%;
-      padding: 8px 16px;
-      font-family: "Source Sans Pro";
-      font-weight: 400;
-      line-height: 1.75;
-      color: #1d1d1d;
-      background-color: #fff;
-      background-clip: padding-box;
-      border: 1px solid #c5bbbd;
-      appearance: none;
-      border-radius: 1px;
-      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    }
+  & .form-control,
+  .form-select {
+    margin: 16px;
+  }
 
-    & .ifx__search-icon-wrapper {
-      margin-right: calc(8px + 16px);
-    }
+  & .form-select {
+    color: tokens.$color-gray-400;
+  }
 
-    & .dropdown-item {
-      display: flex; 
-      align-items: center;
-      width: 100%;
-      text-align: inherit;
-      white-space: nowrap;
-      border: 0;
-      padding: 8px 16px;
-      background-color: rgba(0,0,0,0);
-      text-decoration: none;
-      color: tokens.$color-text-black;
-   
-      & .form-check-label {
-         //flex: 1;
-         &:hover { 
-          cursor: pointer;
-         }
-      }
 
-      &:focus {
-        background-color: tokens.$color-gray-100;
-      }
+  & .ifx__search-icon-wrapper {
+    margin-right: calc(8px + 16px);
+  }
 
-      &:focus-visible {
-        outline: none;
-        background-color: tokens.$color-gray-100;
-        border: 3px solid #B4DDD8;
-        padding-left: calc(16px - 3px);
-        margin-left: 0;
-      }
+  & .dropdown-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: inherit;
+    white-space: nowrap;
+    border: 0;
+    padding: 8px 16px;
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: none;
+    color: tokens.$color-text-black;
 
+    & .form-check-label {
+
+      //flex: 1;
       &:hover {
-        font-weight: 600;
-        background-color: tokens.$color-gray-200;
-     
-
-        & svg {
-          color: tokens.$color-text-black;
-        }
+        cursor: pointer;
       }
+    }
 
-      &.active, &:active {
-        font-weight: 600;
-        background-color: transparent;
-        color: tokens.$color-default-500;
 
-        & svg {
-          color: tokens.$color-default-500;
-        }
-      }
+
+    &:hover {
+      font-weight: 600;
+      background-color: tokens.$color-gray-200;
+
 
       & svg {
-        width: 13px;
-        height: 13px;
-        margin-right: 10px;
-        vertical-align: -0.5px;
+        color: tokens.$color-text-black;
       }
     }
 
-    .form-check-label {
-      font-weight: 400;
+    &.active,
+    &:active {
+      font-weight: 600;
+      background-color: transparent;
+      color: tokens.$color-default-500;
+
+      & svg {
+        color: tokens.$color-default-500;
+      }
+    }
+
+    & svg {
+      width: 13px;
+      height: 13px;
+      margin-right: 10px;
+      vertical-align: -0.5px;
     }
   }
 
-
- 
-
-  
+  .form-check-label {
+    font-weight: 400;
+  }
+}

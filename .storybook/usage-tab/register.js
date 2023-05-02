@@ -3,7 +3,7 @@ import { addons, types } from "@storybook/addons";
 import Usage from "./usage";
 
 addons.register("usage-tab", () => {
-  addons.add(`usage-tab`, {
+  addons.add(`usage-tab/panel`, {
     type: types.TAB,
     title: "Usage",
     route: ({ storyId, refId, path }) => {
@@ -25,6 +25,8 @@ addons.register("usage-tab", () => {
       return refId ? `/usage/${refId}_${storyId}` : `/usage/${storyId}`;
     },
     match: ({ viewMode }) => viewMode === "usage",
-    render: props => <Usage {...props} />
+    render: props => <Usage {...props} />,
+    paramKey: 'usage',
+
   });
 });

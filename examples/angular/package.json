@@ -1,0 +1,43 @@
+{
+  "name": "angular",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "clean:start": "run-s unlink start",
+    "build": "ng build",
+    "lint": "ng lint",
+    "build:stencil": "npm i && cd ../ && npm run dev:stencil",
+    "link": "cd ../ && npm link && cd ../examples/angular && npm link @infineon/infineon-design-system-stencil",
+    "preview:link": "run-s link start",
+    "unlink": "npm unlink @infineon/infineon-design-system-stencil && npm i @infineon/infineon-design-system-stencil",
+    "test:local": "run-p build:stencil preview:link"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~7.2.0",
+    "@angular/common": "~7.2.0",
+    "@angular/compiler": "~7.2.0",
+    "@angular/core": "~7.2.0",
+    "@angular/forms": "~7.2.0",
+    "@angular/platform-browser": "~7.2.0",
+    "@angular/platform-browser-dynamic": "~7.2.0",
+    "@angular/router": "~7.2.0",
+    "@infineon/infineon-design-system-stencil": "^0.0.65",
+    "core-js": "^2.5.4",
+    "rxjs": "~6.3.3",
+    "tslib": "^1.9.0",
+    "zone.js": "~0.8.26"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~15.2.6",
+    "@angular/cli": "~15.2.6",
+    "@angular/compiler-cli": "~15.2.7",
+    "@angular/language-service": "~7.2.0",
+    "@types/node": "~8.9.4",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.2.2",
+    "npm-run-all": "^4.1.5"
+  }
+}

@@ -1,0 +1,21 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.numberIndicator__container { 
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0px 4px;
+  background-color: tokens.$color-default-500;
+  color: tokens.$color-text-white;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+
+  &.inverted { 
+    background-color: tokens.$color-bg-white;
+    color: tokens.$color-default-500;
+  }
+}
