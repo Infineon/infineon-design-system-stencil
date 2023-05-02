@@ -88,11 +88,9 @@ export class Dropdown {
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
-
     if (!target) return;
     if (isCheckable) {
       this.toggleCheckbox(target)
-
       return;
     }
 

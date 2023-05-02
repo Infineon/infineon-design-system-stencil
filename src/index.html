@@ -9,9 +9,41 @@
   <link rel="stylesheet" href="/build/infineon-design-system-stencil/global-theme.scss" />
   <script type="module" src="/build/infineon-design-system-stencil.esm.js"></script>
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
+
+  <script>
+      const addListeners = () => { 
+        const dmenu = document.getElementById('mymenu')
+        //console.log(dmenu)
+        dmenu.addEventListener('selectValues', (event) => { 
+          console.log('here', event.detail)
+        })
+      }
+
+      window.onload = function () {
+        addListeners()
+      }
+
+  </script>
+
 </head>
 
 <body>
+
+  <ifx-dropdown-menu id="mymenu">
+    <ifx-dropdown-item checkable value="one">Item One</ifx-dropdown-item>
+    <ifx-dropdown-item value="two">Two</ifx-dropdown-item>
+    <ifx-dropdown-item>Three</ifx-dropdown-item>
+  </ifx-dropdown-menu>
+
+  <ifx-dropdown>
+    <ifx-button slot="button" color="primary">dropdown</ifx-button>
+    <ifx-dropdown-menu>
+      <ifx-dropdown-item checkable>One</ifx-dropdown-item>
+      <ifx-dropdown-item>One</ifx-dropdown-item>
+      <ifx-dropdown-item>One</ifx-dropdown-item>
+      <ifx-dropdown-item>One</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
 
 
 </body>
