@@ -12,6 +12,24 @@
       </ifx-button>
     </th>
 
+    <br />
+
+    <h2>V-bind</h2>
+
+    <ifx-card>
+      <img :src="imgLink1 ? imgLink1 : imgLink2" alt="" slot="img">
+      <ifx-card-overline slot="overline">
+        Overline
+      </ifx-card-overline>
+      <ifx-card-headline slot="headline">
+        Headline
+      </ifx-card-headline>
+      <ifx-card-text slot="text">
+        Some quick example text to build on the card title and make up the bulk of the card's content.
+      </ifx-card-text>
+
+      <ifx-link href="" target="_blank" icon="true" slot="btn" underline="false" position="right">Link</ifx-link>
+    </ifx-card>
   </div>
 </template>
 
@@ -33,4 +51,6 @@ import {
 } from 'vue';
 
 const buttons = ref(["Button 1", "Button 2", "Button 3"]);
+const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
+const imgLink2 = ref("");
 </script>
