@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State } from "@stencil/core";
+import { Component, Prop, h, Element, State, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: 'ifx-filter-input',
@@ -15,7 +15,13 @@ export class DropdownFilter {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @State() options: Array<any> = []
+  @Event({ bubbles: false }) select: EventEmitter<string>;
   @Element() el;
+
+  handleSelectValue(event) { 
+    console.log('select', event.target.value)
+    this.select.emit(event.target.value)
+  }
 
   componentWillRender() {
     const optionElements = this.el.querySelectorAll('option')
@@ -27,7 +33,7 @@ export class DropdownFilter {
 
   render() {
     return (
-      <select class="inf__filter-input">
+      <select class="inf__filter-input" onChange={this.handleSelectValue.bind(this)}>
         <slot />
         {this.options.map(item => <option>{item.label || item.value}</option>)}
       </select>

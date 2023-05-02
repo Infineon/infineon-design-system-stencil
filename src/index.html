@@ -11,11 +11,28 @@
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
 
   <script>
+    const handleInput = (event) => { 
+      console.log(event.target.value)
+      const progressBar = document.getElementById('myprogress')
+      progressBar.percentage = event.target.value
+    }
+
       const addListeners = () => { 
+        const myprogress = document.getElementById('myprogress')
+        const filterInput = document.getElementById('myfilter')
+        const searchInput = document.getElementById('mysearch')
         const dmenu = document.getElementById('mymenu')
-        //console.log(dmenu)
+        myprogress.addEventListener('percentageChange', (event) => { 
+          console.log('progress bar', event.detail)
+        })
+        filterInput.addEventListener('select', (event) => { 
+          console.log(event.detail)
+        })
+        searchInput.addEventListener('search', (event) => { 
+          //console.log('search', event.detail)
+        })
         dmenu.addEventListener('selectValues', (event) => { 
-          console.log('here', event.detail)
+          //console.log('here', event.detail)
         })
       }
 
@@ -29,22 +46,30 @@
 
 <body>
 
-  <ifx-dropdown-menu id="mymenu">
+  <!-- <ifx-dropdown-menu id="mymenu">
     <ifx-dropdown-item checkable value="one">Item One</ifx-dropdown-item>
     <ifx-dropdown-item value="two">Two</ifx-dropdown-item>
     <ifx-dropdown-item>Three</ifx-dropdown-item>
-  </ifx-dropdown-menu>
+  </ifx-dropdown-menu> -->
 
-  <ifx-dropdown>
+  <!-- <ifx-dropdown>
     <ifx-button slot="button" color="primary">dropdown</ifx-button>
-    <ifx-dropdown-menu>
-      <ifx-dropdown-item checkable>One</ifx-dropdown-item>
-      <ifx-dropdown-item>One</ifx-dropdown-item>
-      <ifx-dropdown-item>One</ifx-dropdown-item>
-      <ifx-dropdown-item>One</ifx-dropdown-item>
+    <ifx-dropdown-menu id="mymenu">
+      <ifx-search-input id="mysearch"></ifx-search-input>
+      <ifx-filter-input id="myfilter">
+        <option value="one">One</option>
+        <option value="Two">Two</option>
+        <option value="Three">Three</option>
+      </ifx-filter-input>
+      <ifx-dropdown-item value="first" checkable>First</ifx-dropdown-item>
+      <ifx-dropdown-item value="One">One</ifx-dropdown-item>
+      <ifx-dropdown-item value="Two">Two</ifx-dropdown-item>
+      <ifx-dropdown-item value="Three">Three</ifx-dropdown-item>
     </ifx-dropdown-menu>
-  </ifx-dropdown>
+  </ifx-dropdown> -->
 
+  <ifx-progress-bar id="myprogress" percentage="50" size="m" show-label="false"></ifx-progress-bar>
+  <input type="number" onchange='handleInput(event)'>
 
 </body>
 
