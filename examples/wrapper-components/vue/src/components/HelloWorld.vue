@@ -14,8 +14,13 @@
 
     <br />
 
-    <h2>V-bind</h2>
+    <h2>Custom events using Vue syntax</h2>
+    <br />
+    <ifx-search-bar @search="handleInput" style="width: 100%" show-close-button="true"></ifx-search-bar>
 
+    <br />
+
+    <h2>V-bind</h2>
     <ifx-card>
       <img :src="imgLink1 ? imgLink1 : imgLink2" alt="" slot="img">
       <ifx-card-overline slot="overline">
@@ -53,4 +58,8 @@ import {
 const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
 const imgLink2 = ref("");
+
+function handleInput(e) {
+  let query = e.target.value; console.log(query), debounceSearch(args.onSearch, query)
+}
 </script>
