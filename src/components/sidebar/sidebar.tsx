@@ -31,7 +31,8 @@ export class Sidebar {
               </div>
             </div>
             <div class="sidebar__nav-container">
-              <div class="sidebar__nav-item">
+              <slot />
+              {/* <div class="sidebar__nav-item">
                 <div class="sidebar__nav-item-icon-wrapper">
                   <ifx-icon icon='image-16'></ifx-icon>
                 </div>
@@ -39,7 +40,7 @@ export class Sidebar {
                 <div class="sidebar__nav-item-number">
                   <ifx-number-indicator>7</ifx-number-indicator>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
