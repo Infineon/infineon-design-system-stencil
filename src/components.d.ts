@@ -153,6 +153,7 @@ export namespace Components {
     interface IfxSidebar {
     }
     interface IfxSidebarItem {
+        "icon": string;
     }
     interface IfxSpinner {
         "size": string;
@@ -553,6 +554,7 @@ declare namespace LocalJSX {
     interface IfxSidebar {
     }
     interface IfxSidebarItem {
+        "icon"?: string;
     }
     interface IfxSpinner {
         "size"?: string;

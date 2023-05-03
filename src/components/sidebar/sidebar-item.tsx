@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar-item',
@@ -6,18 +6,21 @@ import { Component, h } from '@stencil/core';
   shadow: true
 })
 export class SidebarItem {
- 
+  @Prop() icon: string = ""
 
   render() {
     return (
       <div class='sidebar__nav-item'>
+       {this.icon && 
         <div class="sidebar__nav-item-icon-wrapper">
-          <ifx-icon icon='image-16'></ifx-icon>
+        <ifx-icon icon={this.icon}></ifx-icon>
+      </div>}
+        <div class="sidebar__nav-item-label">
+          <slot />
         </div>
-        <div class="sidebar__nav-item-label">Menu Item</div>
-        <div class="sidebar__nav-item-number">
+        {/* <div class="sidebar__nav-item-number">
           <ifx-number-indicator>7</ifx-number-indicator>
-        </div>
+        </div> */}
       </div>
     );
   }
