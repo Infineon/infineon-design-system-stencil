@@ -22,7 +22,7 @@
 
     <h2>V-bind</h2>
     <ifx-card>
-      <img :src="imgLink1 ? imgLink1 : imgLink2" alt="" slot="img">
+      <img :src="imgLink1" alt="" slot="img">
       <ifx-card-overline slot="overline">
         Overline
       </ifx-card-overline>
@@ -57,7 +57,6 @@ import {
 
 const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
-const imgLink2 = ref("");
 
 function handleInput(e) {
   let query = e.target.value; console.log(query), debounceSearch(args.onSearch, query)

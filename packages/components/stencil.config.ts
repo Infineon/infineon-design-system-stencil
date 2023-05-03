@@ -1,6 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
-import { vueOutputTarget } from '@stencil/vue-output-target';
+import { frameworkTargets } from './framework-output-targets';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -12,10 +12,7 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
-    vueOutputTarget({
-      componentCorePackage: '@infineon/infineon-design-system-stencil',
-      proxiesFile: '../components-vue/src/lib/components.ts',
-    }),
+    ...frameworkTargets,
     {
       type: 'dist-custom-elements',
       generateTypeDeclarations: true,
