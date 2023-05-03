@@ -170,6 +170,44 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxToggle {
+        "checked": boolean;
+    }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
+}
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxRangeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxRangeElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
+}
+export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabElement;
+}
+export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabsElement;
+}
+export interface IfxToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToggleElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
@@ -346,7 +384,17 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
-
+    interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
+    }
+    var HTMLIfxToggleElement: {
+        prototype: HTMLIfxToggleElement;
+        new (): HTMLIfxToggleElement;
+    };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
@@ -378,7 +426,8 @@ declare global {
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
-
+        "ifx-toggle": HTMLIfxToggleElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
@@ -550,7 +599,12 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
-
+    interface IfxToggle {
+        "checked"?: boolean;
+        "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
+    }
+    interface InfineonIconStencil {
+        "icon"?: any;
     }
     interface IntrinsicElements {
         "ifx-accordion": IfxAccordion;
@@ -582,7 +636,8 @@ declare namespace LocalJSX {
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
-
+        "ifx-toggle": IfxToggle;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -618,7 +673,8 @@ declare module "@stencil/core" {
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
-
+            "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }

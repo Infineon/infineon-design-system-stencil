@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import prettier from 'prettier';
 
 export default {
   title: 'Components/Tabs',
