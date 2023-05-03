@@ -117,7 +117,7 @@ export namespace Components {
     interface IfxListNotification {
         "creationTime": any;
         "isFlush": boolean;
-        "title": string;
+        "titleText": string;
     }
     interface IfxNumberIndicator {
         "inverted": boolean;
@@ -485,8 +485,6 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: string;
         "label"?: string;
-        "onItemCheck"?: (event: IfxDropdownItemCustomEvent<string>) => void;
-        "onItemValue"?: (event: IfxDropdownItemCustomEvent<string>) => void;
         "onItemValues"?: (event: IfxDropdownItemCustomEvent<Object>) => void;
         "size"?: 's' | 'm';
         "value"?: string;
@@ -505,7 +503,7 @@ declare namespace LocalJSX {
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
-        "onSelect"?: (event: IfxFilterInputCustomEvent<string>) => void;
+        "onSelectValue"?: (event: IfxFilterInputCustomEvent<string>) => void;
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
@@ -543,7 +541,7 @@ declare namespace LocalJSX {
     interface IfxListNotification {
         "creationTime"?: any;
         "isFlush"?: boolean;
-        "title"?: string;
+        "titleText"?: string;
     }
     interface IfxNumberIndicator {
         "inverted"?: boolean;

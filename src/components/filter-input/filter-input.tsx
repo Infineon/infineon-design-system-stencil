@@ -15,12 +15,11 @@ export class DropdownFilter {
   @Prop() search: boolean = false;
   @Prop() filter: boolean = false;
   @State() options: Array<any> = []
-  @Event({ bubbles: false }) select: EventEmitter<string>;
+  @Event({ bubbles: false }) selectValue: EventEmitter<string>;
   @Element() el;
 
   handleSelectValue(event) { 
-    console.log('select', event.target.value)
-    this.select.emit(event.target.value)
+    this.selectValue.emit(event.target.value)
   }
 
   componentWillRender() {

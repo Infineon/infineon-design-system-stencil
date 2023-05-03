@@ -17,6 +17,13 @@
 | `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
 
 
+## Events
+
+| Event         | Description | Type                  |
+| ------------- | ----------- | --------------------- |
+| `selectValue` |             | `CustomEvent<string>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

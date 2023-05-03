@@ -15,9 +15,7 @@ export class DropdownItem {
   @Prop() checkable: boolean = false;
   @Prop() value: string = ""
   @State() checkboxColor: string = "";
-  @Event({ bubbles: false }) itemValue: EventEmitter<string>;
-  @Event({ bubbles: false }) ItemCheck: EventEmitter<string>;
-  @Event({ bubbles: false }) ItemValues: EventEmitter<Object>;
+  @Event({ bubbles: false }) itemValues: EventEmitter<Object>;
   @Element() el;
 
   // handleMenuItem() {
@@ -47,8 +45,8 @@ export class DropdownItem {
       
       const checkBoxValue = this.el.shadowRoot.querySelector('input');
       if(checkBoxValue) { 
-        this.ItemValues.emit({check: checkBoxValue.checked, value: this.value})
-      } else this.ItemValues.emit({value: this.value})
+        this.itemValues.emit({check: checkBoxValue.checked, value: this.value})
+      } else this.itemValues.emit({value: this.value})
     }
   }
   
