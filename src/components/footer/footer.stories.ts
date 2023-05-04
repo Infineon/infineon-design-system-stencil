@@ -78,19 +78,19 @@ const LargeTemplate = () =>
         <ifx-icon icon="c-info-16"></ifx-icon>
       </ifx-link>
       <ifx-link href="http://youtube.com/infineon">
-        <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-icon icon="calendar-16"></ifx-icon>
       </ifx-link>
       <ifx-link href="http://instagram.com/infineon">
-        <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-icon icon="fileexe16"></ifx-icon>
       </ifx-link>
       <ifx-link href="http://linkedin.com/infineon">
-        <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-icon icon="filegif16"></ifx-icon>
       </ifx-link>
       <ifx-link href="http://twitter.com/infineon">
-        <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-icon icon="filehtml16"></ifx-icon>
       </ifx-link>
       <ifx-link href="http://xing.com/infineon">
-        <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-icon icon="filejpg16"></ifx-icon>
       </ifx-link>
     </div>
   </ifx-footer>`;
