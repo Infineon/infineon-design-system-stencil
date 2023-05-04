@@ -1,5 +1,116 @@
-# Getting started
+# Infineon Design System Stencil Web Components (MVP)
+[![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
+[![GitHub Repo Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/package.json)
+[![GitHub Master Branch Weekly Commits](https://img.shields.io/github/commit-activity/w/Infineon/infineon-design-system-stencil/master?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/tree/master)
+[![GitHub Repo Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
+[![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
+
+
+<!-- TABLE OF CONTENTS -->
+<details id="tableContent">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage-of-components">Usage</a></li>
+      <li><a href="#local-development">Local development</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+As part of the Infineon brand guidelines, the Infineon Digital Design System supports designers, developers and project managers to build user interfaces faster and better – with the ultimate goal to create a coherent and optimal user journey across all internal and external Infineon digital touchpoints.
+
+This repository contains an implementation of Infineons Digital Design System and it's Storybook sourcecode using Stencil web components.
+
+Use it to build & run storybook and distribute the Stencil web components.
+
+### Built With
+
+[Stencil web components][Stencil-url]
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+- [Node](https://nodejs.org/en/) v14 or older.
+- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or older, or [Npm](https://www.npmjs.com/) v6.14.13 or older.
+
+### Installation on React, Vue or Angular
+
+#### With NPM
+
+1. ```npm install --save @infineon/infineon-design-system-stencil```
+
+#### With Yarn
+
+1. ```yarn add @infineon/infineon-design-system-stencil```
+
+#### Import the module inside your entry point file.
+
+For React: <b>index.js</b> <br />
+For Vue: <b>main.js</b> <br />
+For Angular: <b>main.ts</b>
 
 ```bash
-npm install package-name
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+
+defineCustomElements(window);
+```
+
+##### Additional steps for Angular
+
+Inside <b>app.modules.ts</b> file:
+
+```bash
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+ ...
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+ ...
+})
+```
+
+#### Installation of SASS
+<!-- For React projects only, run:  -->
+```bash
+npm install sass
+```
+
+## Using only the Icons
+
+For the case in which you only want to use our icons, please follow these steps:
+
+1. install the package by following the instructions explained above
+2. Import only the ifx-icon component inside your entry point file as explained below;
+
+For React: <b>index.js</b> <br />
+For Vue: <b>main.js</b> <br />
+For Angular: <b>main.ts</b>
+
+```bash
+import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
+
+defineCustomElementIfxTag(window);
 ```
