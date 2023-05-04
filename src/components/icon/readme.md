@@ -21,6 +21,7 @@
  - [ifx-button](../button)
  - [ifx-dropdown-item](../dropdown-item)
  - [ifx-icon-button](../icon-button)
+ - [ifx-icons-preview](../icons-preview)
  - [ifx-link](../link)
  - [ifx-range](../ifxRange)
  - [ifx-search-bar](../search-bar)
@@ -33,6 +34,7 @@ graph TD;
   ifx-button --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-icon-button --> ifx-icon
+  ifx-icons-preview --> ifx-icon
   ifx-link --> ifx-icon
   ifx-range --> ifx-icon
   ifx-search-bar --> ifx-icon

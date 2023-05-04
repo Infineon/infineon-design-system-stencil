@@ -1,7 +1,3 @@
-# About 
+# Icons 
 
-## general information
 
-```bash
-npm install package-name
-```
