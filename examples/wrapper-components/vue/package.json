@@ -5,7 +5,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean:dev": "run-s unlink dev",
+    "build:wrapper": "npm i && cd ../../../packages/components-vue && npm run build",
+    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue && npm link @infineon/infineon-design-system-vue",
+    "unlink": "npm unlink @infineon/infineon-design-system-vue && npm i @infineon/infineon-design-system-vue",
+    "preview:link": "run-s link dev",
+    "test:local": "run-p build:wrapper preview:link"
   },
   "dependencies": {
     "@infineon/infineon-design-system-vue": "^18.0.9--canary.112.585e3172d30cd043aaa7a1b09f4f8313b4b31827.0",

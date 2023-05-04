@@ -1,29 +1,24 @@
-# vue-wrapper
+# Consuming Vue Wrapper Components
 
-This template should help get you started developing with Vue 3 in Vite.
+This example application demonstrates the usage of the Vue Wrapper Components based on our Stencil web components. Additionally, it serves for testing purposes.
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Run locally
 
-## Customize configuration
+### Using Vue Wrapper components from npm package
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+ ```npm install```
 
-## Project Setup
 
-```sh
-npm install
-```
+ ```npm run dev```
+ 
+ OR (to unlink the previously linked local dependency)
 
-### Compile and Hot-Reload for Development
+ ```npm run clean:dev```
 
-```sh
-npm run dev
-```
 
-### Compile and Minify for Production
+### Using Vue wrapper components from local package (for testing purposes)
 
-```sh
-npm run build
-```
+ ```npm run test:local```
+
+The application will be served on http://localhost:5173.
