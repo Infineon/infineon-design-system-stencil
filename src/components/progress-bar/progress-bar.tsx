@@ -11,11 +11,16 @@ export class ProgressBar {
   @Prop() size: string;
   @Prop() showLabel: boolean = false;
 
-  @Event() percentageChange: EventEmitter<number>;
+  @Event() percentageChange: EventEmitter<CustomEvent>;
 
   @Watch('percentage')
   onPercentageChanged(newValue: number) {
-    this.percentageChange.emit(newValue);
+    const event = new CustomEvent('percentage-change', {
+      bubbles: true,
+      composed: true,
+      detail: newValue
+    });
+    this.percentageChange.emit(event);
   }
 
   render() {

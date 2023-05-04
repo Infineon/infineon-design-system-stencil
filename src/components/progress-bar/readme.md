@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event              | Description | Type                  |
-| ------------------ | ----------- | --------------------- |
-| `percentageChange` |             | `CustomEvent<number>` |
+| Event              | Description | Type                            |
+| ------------------ | ----------- | ------------------------------- |
+| `percentageChange` |             | `CustomEvent<CustomEvent<any>>` |
 
 
 ----------------------------------------------
