@@ -46,8 +46,8 @@ export class SearchBar {
             <ifx-link onClick={this.handleClick}>Close</ifx-link>}
           </div>
         ) : (
-          <div class="search-bar__icon-wrapper">
-            <ifx-icon icon="search-16" onClick={this.handleClick}></ifx-icon>
+          <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
+            <ifx-icon icon="search-16"></ifx-icon>
             <a href="javascript:void(0)">Search</a>
           </div>
         )}
