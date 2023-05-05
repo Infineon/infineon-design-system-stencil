@@ -5,6 +5,7 @@ import { Description } from '@storybook/components';
 import { useStorybookState, useGlobals } from '@storybook/api';
 import button from 'raw-loader!../../src/components/button/button_usage.md';
 import alert from 'raw-loader!../../src/components/alert/alert_usage.md';
+import progressBar from 'raw-loader!../../src/components/progress-bar/progress-bar_usage.md';
 
 
 
@@ -17,11 +18,10 @@ const Usage = (props) => {
 
 
   // Check if this is a component's story and grab it's name when available.
-
-
   const componentName = storyId.includes('components-')
     ? storyId.split('components-')[1].split('--')[0]
     : null;
+
 
   // 🎯 This is where you want to add your imported component usage markdown.
   // Watch out for the locale postfix and pay attention to pick the key names according to the story url. eg:
@@ -29,8 +29,9 @@ const Usage = (props) => {
   // or:
   // ?path=/story/components-brandheader--standard > brandheader_de
   const componentMap = {
-    button,
-    alert
+    'button': button,
+    'alert': alert,
+    'progress-bar': progressBar, // Use a string key for the component
 
   };
 
