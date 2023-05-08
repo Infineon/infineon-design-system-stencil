@@ -1,0 +1,141 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+:host { 
+    display: inline-flex;
+    vertical-align: top;
+}
+
+.radioButton__container { 
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+
+    & .radioButton__wrapper { 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: tokens.$color-bg-white;
+        border: 1px solid #575352;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+        & .radioButton__wrapper-mark { 
+          background-color: #0A8276;
+          width: 8.75px;
+          height: 8.75px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-color: transparent;
+        }
+
+        &.error { 
+            border-color: #CD002F;
+            &:hover { 
+              border-color: #CD002F;
+            }
+
+            &:focus-visible { 
+              border: 1px solid #CD002F;
+              outline: 2px solid #CD002F;
+              outline-offset: 2px;
+          }
+        }
+
+        &:focus-visible { 
+            border: 1px solid #575352;
+            outline: 2px solid #0A8276;
+            outline-offset: 2px;
+            
+        }
+
+        &:hover { 
+            border: 1px solid #575352;
+            border-color: #0A8276;
+            border-radius: 50%;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        &.disabled { 
+            background-color: #BFBBBB;
+            border: none;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        &.checked { 
+          border-color: #0A8276;
+
+            &:focus-visible { 
+                outline: 2px solid #0A8276;
+                outline-offset: 2px; 
+            }
+
+                &:hover { 
+                    border-color: #08665C;
+                    border-radius: 50%;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+
+                    & .radioButton__wrapper-mark {
+                      background-color: #08665C;
+                    }
+                }
+
+                &.disabled { 
+                    background-color: tokens.$color-bg-white;
+                    border: 1px solid #BFBBBB;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+
+                    & .radioButton__wrapper-mark { 
+                      background-color: #BFBBBB;
+                      border-color: #BFBBBB;
+        
+                    }
+                }
+            }
+        }
+
+        & .label { 
+            width: 25px;
+            height: 20px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: tokens.$color-text-black;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+
+            &.disabled { 
+              color: #BFBBBB;
+            }
+
+            &.error { 
+                color: #CD002F;
+            }
+        }
+
+        & .radioButton__wrapper,
+        & .label { 
+            &:hover { 
+            cursor: pointer;
+        }
+    }
+  
+}

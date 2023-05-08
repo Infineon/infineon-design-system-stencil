@@ -116,7 +116,7 @@ export namespace Components {
     interface IfxListNotification {
         "creationTime": any;
         "isFlush": boolean;
-        "title": string;
+        "titleText": string;
     }
     interface IfxNumberIndicator {
         "inverted": boolean;
@@ -126,6 +126,11 @@ export namespace Components {
         "percentage": number;
         "showLabel": boolean;
         "size": string;
+    }
+    interface IfxRadioButton {
+        "checked": boolean;
+        "disabled": boolean;
+        "error": boolean;
     }
     interface IfxRange {
         "disabled": boolean;
@@ -170,6 +175,44 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxToggle {
+        "checked": boolean;
+    }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
+}
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxRangeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxRangeElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
+}
+export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabElement;
+}
+export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabsElement;
+}
+export interface IfxToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToggleElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
@@ -298,6 +341,12 @@ declare global {
         prototype: HTMLIfxProgressBarElement;
         new (): HTMLIfxProgressBarElement;
     };
+    interface HTMLIfxRadioButtonElement extends Components.IfxRadioButton, HTMLStencilElement {
+    }
+    var HTMLIfxRadioButtonElement: {
+        prototype: HTMLIfxRadioButtonElement;
+        new (): HTMLIfxRadioButtonElement;
+    };
     interface HTMLIfxRangeElement extends Components.IfxRange, HTMLStencilElement {
     }
     var HTMLIfxRangeElement: {
@@ -346,7 +395,17 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
-
+    interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
+    }
+    var HTMLIfxToggleElement: {
+        prototype: HTMLIfxToggleElement;
+        new (): HTMLIfxToggleElement;
+    };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
@@ -370,6 +429,7 @@ declare global {
         "ifx-list-notification": HTMLIfxListNotificationElement;
         "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
         "ifx-progress-bar": HTMLIfxProgressBarElement;
+        "ifx-radio-button": HTMLIfxRadioButtonElement;
         "ifx-range": HTMLIfxRangeElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
@@ -378,7 +438,8 @@ declare global {
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
-
+        "ifx-toggle": HTMLIfxToggleElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
@@ -489,7 +550,7 @@ declare namespace LocalJSX {
     interface IfxListNotification {
         "creationTime"?: any;
         "isFlush"?: boolean;
-        "title"?: string;
+        "titleText"?: string;
     }
     interface IfxNumberIndicator {
         "inverted"?: boolean;
@@ -500,6 +561,11 @@ declare namespace LocalJSX {
         "percentage"?: number;
         "showLabel"?: boolean;
         "size"?: string;
+    }
+    interface IfxRadioButton {
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "error"?: boolean;
     }
     interface IfxRange {
         "disabled"?: boolean;
@@ -550,7 +616,12 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
-
+    interface IfxToggle {
+        "checked"?: boolean;
+        "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
+    }
+    interface InfineonIconStencil {
+        "icon"?: any;
     }
     interface IntrinsicElements {
         "ifx-accordion": IfxAccordion;
@@ -574,6 +645,7 @@ declare namespace LocalJSX {
         "ifx-list-notification": IfxListNotification;
         "ifx-number-indicator": IfxNumberIndicator;
         "ifx-progress-bar": IfxProgressBar;
+        "ifx-radio-button": IfxRadioButton;
         "ifx-range": IfxRange;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
@@ -582,7 +654,8 @@ declare namespace LocalJSX {
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
-
+        "ifx-toggle": IfxToggle;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -610,6 +683,7 @@ declare module "@stencil/core" {
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
             "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
+            "ifx-radio-button": LocalJSX.IfxRadioButton & JSXBase.HTMLAttributes<HTMLIfxRadioButtonElement>;
             "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
@@ -618,7 +692,8 @@ declare module "@stencil/core" {
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
-
+            "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }
