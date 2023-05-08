@@ -50,6 +50,11 @@ export namespace Components {
     interface IfxCardText {
         "hasBtn": boolean;
     }
+    interface IfxCheckbox {
+        "checked": boolean;
+        "disabled": boolean;
+        "error": boolean;
+    }
     interface IfxDropdown {
         "disabled": boolean;
         "filter": boolean;
@@ -116,7 +121,7 @@ export namespace Components {
     interface IfxListNotification {
         "creationTime": any;
         "isFlush": boolean;
-        "title": string;
+        "titleText": string;
     }
     interface IfxNumberIndicator {
         "inverted": boolean;
@@ -170,6 +175,44 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxToggle {
+        "checked": boolean;
+    }
+    interface InfineonIconStencil {
+        "icon": any;
+    }
+}
+export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxAccordionItemElement;
+}
+export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxProgressBarElement;
+}
+export interface IfxRangeCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxRangeElement;
+}
+export interface IfxSearchBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchBarElement;
+}
+export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSearchInputElement;
+}
+export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabElement;
+}
+export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTabsElement;
+}
+export interface IfxToggleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxToggleElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
@@ -225,6 +268,12 @@ declare global {
     var HTMLIfxCardTextElement: {
         prototype: HTMLIfxCardTextElement;
         new (): HTMLIfxCardTextElement;
+    };
+    interface HTMLIfxCheckboxElement extends Components.IfxCheckbox, HTMLStencilElement {
+    }
+    var HTMLIfxCheckboxElement: {
+        prototype: HTMLIfxCheckboxElement;
+        new (): HTMLIfxCheckboxElement;
     };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
@@ -346,7 +395,17 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
-
+    interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
+    }
+    var HTMLIfxToggleElement: {
+        prototype: HTMLIfxToggleElement;
+        new (): HTMLIfxToggleElement;
+    };
+    interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
+    }
+    var HTMLInfineonIconStencilElement: {
+        prototype: HTMLInfineonIconStencilElement;
+        new (): HTMLInfineonIconStencilElement;
     };
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
@@ -358,6 +417,7 @@ declare global {
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
         "ifx-card-overline": HTMLIfxCardOverlineElement;
         "ifx-card-text": HTMLIfxCardTextElement;
+        "ifx-checkbox": HTMLIfxCheckboxElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
@@ -378,7 +438,8 @@ declare global {
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
-
+        "ifx-toggle": HTMLIfxToggleElement;
+        "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
 declare namespace LocalJSX {
@@ -423,6 +484,11 @@ declare namespace LocalJSX {
     }
     interface IfxCardText {
         "hasBtn"?: boolean;
+    }
+    interface IfxCheckbox {
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "error"?: boolean;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -489,7 +555,7 @@ declare namespace LocalJSX {
     interface IfxListNotification {
         "creationTime"?: any;
         "isFlush"?: boolean;
-        "title"?: string;
+        "titleText"?: string;
     }
     interface IfxNumberIndicator {
         "inverted"?: boolean;
@@ -550,7 +616,12 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
-
+    interface IfxToggle {
+        "checked"?: boolean;
+        "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
+    }
+    interface InfineonIconStencil {
+        "icon"?: any;
     }
     interface IntrinsicElements {
         "ifx-accordion": IfxAccordion;
@@ -562,6 +633,7 @@ declare namespace LocalJSX {
         "ifx-card-headline": IfxCardHeadline;
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
+        "ifx-checkbox": IfxCheckbox;
         "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
@@ -582,7 +654,8 @@ declare namespace LocalJSX {
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
-
+        "ifx-toggle": IfxToggle;
+        "infineon-icon-stencil": InfineonIconStencil;
     }
 }
 export { LocalJSX as JSX };
@@ -598,6 +671,7 @@ declare module "@stencil/core" {
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
             "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
+            "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
@@ -618,7 +692,8 @@ declare module "@stencil/core" {
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
-
+            "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
+            "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
 }
