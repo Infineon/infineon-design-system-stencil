@@ -11,7 +11,7 @@
 | -------------- | --------------- | ----------- | --------- | ----------- |
 | `creationTime` | `creation-time` |             | `any`     | `undefined` |
 | `isFlush`      | `is-flush`      |             | `boolean` | `false`     |
-| `title`        | `title`         |             | `string`  | `""`        |
+| `titleText`    | `title-text`    |             | `string`  | `""`        |
 
 
 ----------------------------------------------
