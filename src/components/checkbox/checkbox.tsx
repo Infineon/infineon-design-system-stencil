@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox',
@@ -11,11 +11,20 @@ export class Checkbox {
   @Prop() disabled: boolean = false;
   @Prop({mutable: true}) checked: boolean = false;
   @Prop() error: boolean = false;
+  @State() hasSlot: boolean = true;
 
   handleCheckbox() { 
     if(!this.disabled && !this.error) { 
       this.checked = !this.checked;
     }
+  }
+
+  componentWillLoad() { 
+    const slot = this.el.innerHTML;
+    if(slot) { 
+      console.log('has slot')
+      this.hasSlot = true;
+    } else this.hasSlot = false;
   }
 
 
@@ -31,9 +40,10 @@ export class Checkbox {
         ${this.error ? 'error' : ""}`}>
           {this.checked && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
+      {this.hasSlot &&
         <div class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
-          <slot />
-        </div>
+        <slot />
+      </div>}
       </div>
     );
   }
