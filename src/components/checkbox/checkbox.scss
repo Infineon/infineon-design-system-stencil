@@ -47,7 +47,7 @@
 
         &.disabled { 
             background-color: #BFBBBB;
-            border: none;
+            border-color: #BFBBBB;
             border-radius: 1px;
             flex: none;
             order: 0;
@@ -98,6 +98,10 @@
             flex: none;
             order: 1;
             flex-grow: 0;
+
+            &.disabled { 
+                color: #BFBBBB;
+            }
 
             &.error { 
                 color: #CD002F;

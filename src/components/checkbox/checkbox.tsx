@@ -31,7 +31,7 @@ export class Checkbox {
         ${this.error ? 'error' : ""}`}>
           {this.checked && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
-        <div class={`label ${this.error ? 'error' : ""}`} onClick={this.handleCheckbox.bind(this)}>
+        <div class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
           <slot />
         </div>
       </div>
