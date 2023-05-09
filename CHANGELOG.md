@@ -1,3 +1,15 @@
+# v18.0.13 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- footer + ifx-link updates [#87](https://github.com/Infineon/infineon-design-system-stencil/pull/87) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.12 (Tue May 09 2023)
 
 #### 🐛 Bug Fix
