@@ -8,9 +8,18 @@
 @import "./components/filter-input/filter-input";
 @import "./components/alert/alert";
 @import "./components/link/ifx-link";
+
+@import './components/navbar/navbar';
+@import './components/navbar/navbar-menu-item';
+
+
 @import './components/list-group/list-group';
 @import './components/list-group/list-group-item';
 @import './components/list-group/list-group-notification';
 @import './components/number-indicator/number-indicator';
+
 @import './components/sidebar/sidebar';
 @import './components/sidebar/sidebar-item';
+
+@import './components/checkbox/checkbox';
+
