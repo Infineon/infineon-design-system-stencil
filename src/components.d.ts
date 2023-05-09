@@ -118,6 +118,14 @@ export namespace Components {
         "isFlush": boolean;
         "titleText": string;
     }
+    interface IfxNavbar {
+        "applicationName": string;
+    }
+    interface IfxNavbarMenuItem {
+        "hideLabel": boolean;
+        "icon": string;
+        "isProfile": boolean;
+    }
     interface IfxNumberIndicator {
         "inverted": boolean;
     }
@@ -144,10 +152,11 @@ export namespace Components {
         "value": number;
     }
     interface IfxSearchBar {
+        "hideLabel": boolean;
         "icon": string;
         "isOpen": boolean;
         "showCloseButton": boolean;
-        "width": string;
+        "size": string;
     }
     interface IfxSearchInput {
         "borderColor": 'light' | 'dark' | 'green';
@@ -329,6 +338,18 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxNavbarElement extends Components.IfxNavbar, HTMLStencilElement {
+    }
+    var HTMLIfxNavbarElement: {
+        prototype: HTMLIfxNavbarElement;
+        new (): HTMLIfxNavbarElement;
+    };
+    interface HTMLIfxNavbarMenuItemElement extends Components.IfxNavbarMenuItem, HTMLStencilElement {
+    }
+    var HTMLIfxNavbarMenuItemElement: {
+        prototype: HTMLIfxNavbarMenuItemElement;
+        new (): HTMLIfxNavbarMenuItemElement;
+    };
     interface HTMLIfxNumberIndicatorElement extends Components.IfxNumberIndicator, HTMLStencilElement {
     }
     var HTMLIfxNumberIndicatorElement: {
@@ -427,6 +448,8 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-navbar": HTMLIfxNavbarElement;
+        "ifx-navbar-menu-item": HTMLIfxNavbarMenuItemElement;
         "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
         "ifx-progress-bar": HTMLIfxProgressBarElement;
         "ifx-radio-button": HTMLIfxRadioButtonElement;
@@ -552,6 +575,14 @@ declare namespace LocalJSX {
         "isFlush"?: boolean;
         "titleText"?: string;
     }
+    interface IfxNavbar {
+        "applicationName"?: string;
+    }
+    interface IfxNavbarMenuItem {
+        "hideLabel"?: boolean;
+        "icon"?: string;
+        "isProfile"?: boolean;
+    }
     interface IfxNumberIndicator {
         "inverted"?: boolean;
     }
@@ -580,11 +611,12 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface IfxSearchBar {
+        "hideLabel"?: boolean;
         "icon"?: string;
         "isOpen"?: boolean;
         "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
         "showCloseButton"?: boolean;
-        "width"?: string;
+        "size"?: string;
     }
     interface IfxSearchInput {
         "borderColor"?: 'light' | 'dark' | 'green';
@@ -643,6 +675,8 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-navbar": IfxNavbar;
+        "ifx-navbar-menu-item": IfxNavbarMenuItem;
         "ifx-number-indicator": IfxNumberIndicator;
         "ifx-progress-bar": IfxProgressBar;
         "ifx-radio-button": IfxRadioButton;
@@ -681,6 +715,8 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
+            "ifx-navbar-menu-item": LocalJSX.IfxNavbarMenuItem & JSXBase.HTMLAttributes<HTMLIfxNavbarMenuItemElement>;
             "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
             "ifx-progress-bar": LocalJSX.IfxProgressBar & JSXBase.HTMLAttributes<HTMLIfxProgressBarElement>;
             "ifx-radio-button": LocalJSX.IfxRadioButton & JSXBase.HTMLAttributes<HTMLIfxRadioButtonElement>;

@@ -18,6 +18,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-search-bar](../search-bar)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -26,6 +30,7 @@
 ```mermaid
 graph TD;
   ifx-link --> ifx-icon
+  ifx-search-bar --> ifx-link
   style ifx-link fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
