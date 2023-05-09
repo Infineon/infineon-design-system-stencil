@@ -1,3 +1,15 @@
+# v18.0.11 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- checkbox [#124](https://github.com/Infineon/infineon-design-system-stencil/pull/124) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.10 (Tue May 09 2023)
 
 #### 🐛 Bug Fix
