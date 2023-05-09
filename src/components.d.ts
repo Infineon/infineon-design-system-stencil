@@ -101,6 +101,8 @@ export namespace Components {
         "target": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
+    interface IfxIconsPreview {
+    }
     interface IfxLink {
         "href": string;
         "icon": any;
@@ -325,6 +327,12 @@ declare global {
         prototype: HTMLIfxIconButtonElement;
         new (): HTMLIfxIconButtonElement;
     };
+    interface HTMLIfxIconsPreviewElement extends Components.IfxIconsPreview, HTMLStencilElement {
+    }
+    var HTMLIfxIconsPreviewElement: {
+        prototype: HTMLIfxIconsPreviewElement;
+        new (): HTMLIfxIconsPreviewElement;
+    };
     interface HTMLIfxLinkElement extends Components.IfxLink, HTMLStencilElement {
     }
     var HTMLIfxLinkElement: {
@@ -456,6 +464,7 @@ declare global {
         "ifx-filter-input": HTMLIfxFilterInputElement;
         "ifx-icon": HTMLIfxIconElement;
         "ifx-icon-button": HTMLIfxIconButtonElement;
+        "ifx-icons-preview": HTMLIfxIconsPreviewElement;
         "ifx-link": HTMLIfxLinkElement;
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
@@ -569,6 +578,8 @@ declare namespace LocalJSX {
         "size"?: string;
         "target"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
+    }
+    interface IfxIconsPreview {
     }
     interface IfxLink {
         "href"?: string;
@@ -689,6 +700,7 @@ declare namespace LocalJSX {
         "ifx-filter-input": IfxFilterInput;
         "ifx-icon": IfxIcon;
         "ifx-icon-button": IfxIconButton;
+        "ifx-icons-preview": IfxIconsPreview;
         "ifx-link": IfxLink;
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
@@ -730,6 +742,7 @@ declare module "@stencil/core" {
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "ifx-icon-button": LocalJSX.IfxIconButton & JSXBase.HTMLAttributes<HTMLIfxIconButtonElement>;
+            "ifx-icons-preview": LocalJSX.IfxIconsPreview & JSXBase.HTMLAttributes<HTMLIfxIconsPreviewElement>;
             "ifx-link": LocalJSX.IfxLink & JSXBase.HTMLAttributes<HTMLIfxLinkElement>;
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
