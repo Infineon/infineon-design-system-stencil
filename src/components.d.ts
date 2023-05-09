@@ -50,6 +50,11 @@ export namespace Components {
     interface IfxCardText {
         "hasBtn": boolean;
     }
+    interface IfxCheckbox {
+        "checked": boolean;
+        "disabled": boolean;
+        "error": boolean;
+    }
     interface IfxDropdown {
         "disabled": boolean;
         "filter": boolean;
@@ -278,6 +283,12 @@ declare global {
         prototype: HTMLIfxCardTextElement;
         new (): HTMLIfxCardTextElement;
     };
+    interface HTMLIfxCheckboxElement extends Components.IfxCheckbox, HTMLStencilElement {
+    }
+    var HTMLIfxCheckboxElement: {
+        prototype: HTMLIfxCheckboxElement;
+        new (): HTMLIfxCheckboxElement;
+    };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
     var HTMLIfxDropdownElement: {
@@ -438,6 +449,7 @@ declare global {
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
         "ifx-card-overline": HTMLIfxCardOverlineElement;
         "ifx-card-text": HTMLIfxCardTextElement;
+        "ifx-checkbox": HTMLIfxCheckboxElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
@@ -507,6 +519,11 @@ declare namespace LocalJSX {
     }
     interface IfxCardText {
         "hasBtn"?: boolean;
+    }
+    interface IfxCheckbox {
+        "checked"?: boolean;
+        "disabled"?: boolean;
+        "error"?: boolean;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -665,6 +682,7 @@ declare namespace LocalJSX {
         "ifx-card-headline": IfxCardHeadline;
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
+        "ifx-checkbox": IfxCheckbox;
         "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
@@ -705,6 +723,7 @@ declare module "@stencil/core" {
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
             "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
+            "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
