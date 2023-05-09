@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "18.0.9",
+  "version": "18.0.10",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -31,7 +31,6 @@
     "dev:stencil": "stencil build --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook",
-    "index": "stencil build --serve --watch --dev",
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs"
