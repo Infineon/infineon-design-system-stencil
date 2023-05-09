@@ -13,11 +13,11 @@ describe('ifx-toggle', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-toggle></ifx-toggle>');
 
-    const toggle = await page.find('ifx-toggle >>> .pill-container');
+    const toggle = await page.find('ifx-toggle >>> .toggle-container');
     await toggle.click();
 
     const hasCheckedClass = await page.evaluate(() => {
-      const pillContainer = document.querySelector('ifx-toggle').shadowRoot.querySelector('.pill-container');
+      const pillContainer = document.querySelector('ifx-toggle').shadowRoot.querySelector('.toggle-container');
       return pillContainer.classList.contains('checked');
     });
     expect(hasCheckedClass).toBeTruthy();
@@ -28,7 +28,7 @@ describe('ifx-toggle', () => {
     await page.setContent('<ifx-toggle></ifx-toggle>');
 
     const valueChanged = await page.spyOnEvent('valueChanged');
-    const toggle = await page.find('ifx-toggle >>> .pill-container');
+    const toggle = await page.find('ifx-toggle >>> .toggle-container');
     await toggle.click();
 
     expect(valueChanged).toHaveReceivedEventTimes(1);
