@@ -1,0 +1,52 @@
+name: Deploy Master Vanilla example
+
+on:
+  push:
+    branches:
+      - master
+
+
+permissions:
+  contents: write
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          registry-url: https://npm.pkg.github.com/
+          
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          
+      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
+        if: ${{ env.ACT }}
+        run: |
+          apt-get update && apt-get install -y rsync
+
+      - name: Update CDN Link in Vanilla example app & build
+        run: | 
+          cd examples/vanilla-cdn
+          npm install
+          npm run update-link
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: examples/vanilla-cdn/dist # The folder the action should deploy.
+          target-folder: vanilla-example
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
+          force: false

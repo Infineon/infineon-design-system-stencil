@@ -1,9 +1,11 @@
+
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 
 .btn {
   display: inline-flex; 
   align-items: center;
+  justify-content: center;
   min-width: 80px;
   min-height: 40px;
   padding: 0px 16px;
@@ -462,4 +464,4 @@
 
 // ifx-icon:empty { 
 //   display: none;
-//  }
+

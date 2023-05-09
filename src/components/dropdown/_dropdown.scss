@@ -12,12 +12,9 @@
   & .dropdown-toggle::after {
     content: "";
     display: inline-block;
-    border: none; 
+    border: none;
     vertical-align: -2px;
     margin-left: 10px;
-    width: 14px;
-    height: 14px;
-    background-size: 14px;
     background-position: center;
     background-repeat: no-repeat;
     transition: transform 0.2s ease-in-out;
@@ -30,25 +27,22 @@
   }
 
   & .btn-sm {
-    & + .dropdown-menu {
+    &+.dropdown-menu {
       transform: translate3d(0px, calc(48.75px + 8px), 0px) !important;
     }
   }
 
   & .btn-lg {
-    & + .dropdown-menu {
+    &+.dropdown-menu {
       transform: translate3d(0px, calc(64.5px + 8px), 0px) !important;
     }
   }
 }
 
-.show > .btn-secondary.dropdown-toggle:focus {
+.show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }
 
 .svg-wrapper {
   display: inline-block;
 }
-
-
-

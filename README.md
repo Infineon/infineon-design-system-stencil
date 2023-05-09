@@ -120,6 +120,23 @@ https://infineon.github.io/infineon-design-system-stencil
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
+## Using only the Icons
+
+For the case in which you only want to use our icons, please follow these steps:
+
+1. install the package by following the instructions explained above
+2. Import only the ifx-icon component inside your entry point file as explained below;
+
+For React: <b>index.js</b> <br />
+For Vue: <b>main.js</b> <br />
+For Angular: <b>main.ts</b>
+
+```bash
+import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
+
+defineCustomElementIfxTag(window);
+```
+
 
 ## Local development
 

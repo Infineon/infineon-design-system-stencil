@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "0.0.66",
+  "version": "18.0.11",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
-    "@infineon/infineon-icons": "^1.0.9",
+    "@infineon/infineon-icons": "^1.1.2",
     "@stencil/core": "^2.16.0"
   },
   "devDependencies": {
@@ -46,6 +46,7 @@
     "@mdx-js/react": "^2.3.0",
     "@stencil/sass": "^2.0.0",
     "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-docs": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
     "@storybook/addon-viewport": "^6.5.16",

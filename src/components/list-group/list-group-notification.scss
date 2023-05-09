@@ -1,0 +1,59 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.list-group-notification { 
+  width: 350px;
+  height: 88px;
+  padding: 16px;
+  margin-bottom: 8px;
+  background-color: tokens.$color-bg-white;
+  border: 1px solid tokens.$color-gray-200;
+
+  & .description__section {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &.flush { 
+    border: none;
+    border-bottom: 1px solid tokens.$color-gray-200;
+  }
+
+  & .heading__section { 
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: tokens.$color-default-500;
+  }
+
+  & .heading__section-title { 
+    flex: 1;
+    margin: 0;
+    font-family: "Source Sans Pro";
+    font-weight: 600;
+    line-height: 1.2;
+    font-size: 1rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .heading__section-time {
+    flex: 1;
+    margin-left: 2px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
