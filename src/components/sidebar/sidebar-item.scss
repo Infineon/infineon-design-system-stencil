@@ -12,7 +12,7 @@
   flex-grow: 0;
 
   & .sidebar__nav-item-icon-wrapper {
-    display: flex;
+    display: flex; //why is this causing a gap?
     flex-direction: row;
     justify-content: center;
     align-items: center;

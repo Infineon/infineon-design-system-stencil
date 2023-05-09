@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar-item',
@@ -6,7 +6,18 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class SidebarItem {
+  @Element() el;
   @Prop() icon: string = ""
+  @State() hasIcon: boolean = false;
+
+  componentDidLoad() { 
+    //sidebar__nav-item-icon-wrapper
+    const iconWrapper = this.el.shadowRoot.querySelector('.sidebar__nav-item-icon-wrapper')
+    if(!iconWrapper) { 
+      //no icon
+      this.hasIcon = false;
+    } else this.hasIcon = true;
+  }
 
   render() {
     return (
