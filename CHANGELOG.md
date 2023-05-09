@@ -1,3 +1,29 @@
+# v18.0.13 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- footer + ifx-link updates [#87](https://github.com/Infineon/infineon-design-system-stencil/pull/87) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.12 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- About and getting started page added [#121](https://github.com/Infineon/infineon-design-system-stencil/pull/121) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.0.11 (Tue May 09 2023)
 
 #### 🐛 Bug Fix
