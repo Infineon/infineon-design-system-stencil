@@ -122,8 +122,6 @@ export namespace Components {
         "creationTime": any;
         "isFlush": boolean;
         "titleText": string;
-        
-
     }
     interface IfxNavbar {
         "applicationName": string;
@@ -132,7 +130,6 @@ export namespace Components {
         "hideLabel": boolean;
         "icon": string;
         "isProfile": boolean;
-
     }
     interface IfxNumberIndicator {
         "inverted": boolean;
@@ -594,7 +591,6 @@ declare namespace LocalJSX {
         "creationTime"?: any;
         "isFlush"?: boolean;
         "titleText"?: string;
-
     }
     interface IfxNavbar {
         "applicationName"?: string;
@@ -603,7 +599,6 @@ declare namespace LocalJSX {
         "hideLabel"?: boolean;
         "icon"?: string;
         "isProfile"?: boolean;
-
     }
     interface IfxNumberIndicator {
         "inverted"?: boolean;
