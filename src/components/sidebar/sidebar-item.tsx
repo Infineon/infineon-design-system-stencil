@@ -12,18 +12,24 @@ export class SidebarItem {
 
   componentDidLoad() { 
     //sidebar__nav-item-icon-wrapper
-    const iconWrapper = this.el.shadowRoot.querySelector('.sidebar__nav-item-icon-wrapper')
-    if(!iconWrapper) { 
-      //no icon
-      this.hasIcon = false;
-    } else this.hasIcon = true;
+    //const iconWrapper = this.el.shadowRoot.querySelector('.sidebar__nav-item-icon-wrapper');
+    const iconWrapper = this.el.shadowRoot.querySelector('ifx-icon')
+    if(iconWrapper) { 
+      const icon = iconWrapper.querySelector('svg')
+      if(!icon) { 
+        this.hasIcon = false;
+      } else this.hasIcon = true;
+    }
+    // if(!iconWrapper) { 
+    //   this.hasIcon = false;
+    // } else this.hasIcon = true;
   }
 
   render() {
     return (
       <div class='sidebar__nav-item'>
        {this.icon && 
-        <div class="sidebar__nav-item-icon-wrapper">
+        <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
         <ifx-icon icon={this.icon}></ifx-icon>
       </div>}
         <div class="sidebar__nav-item-label">

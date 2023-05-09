@@ -22,6 +22,10 @@
     order: 0;
     flex-grow: 0;
 
+    &.noIcon { 
+      display: none;
+    }
+
     & ifx-icon { 
       width: 16px;
       height: 16px;
