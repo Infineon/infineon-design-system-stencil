@@ -8,7 +8,7 @@ import { Component, h, Element, Prop, State } from '@stencil/core';
 
 export class ListGroupNotification {
   @Element() el;
-  @Prop() title: string = ""
+  @Prop() titleText: string = ""
   @Prop() isFlush: boolean = false;
   @Prop() creationTime: any;
   @State() postTime: number;
@@ -76,7 +76,7 @@ export class ListGroupNotification {
     return (
       <div class={`list-group-notification ${this.isFlush ? 'flush' : ""}`}>
         <div class="heading__section">
-          <h6 class="heading__section-title">{this.title}</h6>
+          <h6 class="heading__section-title">{this.titleText}</h6>
           <div class="heading__section-time">{this.shownTime}</div>
         </div>
         <div class="description__section">
