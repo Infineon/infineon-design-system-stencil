@@ -11,8 +11,6 @@ export class SidebarItem {
   @State() hasIcon: boolean = false;
 
   componentDidLoad() { 
-    //sidebar__nav-item-icon-wrapper
-    //const iconWrapper = this.el.shadowRoot.querySelector('.sidebar__nav-item-icon-wrapper');
     const iconWrapper = this.el.shadowRoot.querySelector('ifx-icon')
     if(iconWrapper) { 
       const icon = iconWrapper.querySelector('svg')
@@ -20,9 +18,6 @@ export class SidebarItem {
         this.hasIcon = false;
       } else this.hasIcon = true;
     }
-    // if(!iconWrapper) { 
-    //   this.hasIcon = false;
-    // } else this.hasIcon = true;
   }
 
   render() {
