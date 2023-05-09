@@ -11,6 +11,7 @@ export class SidebarItem {
   @State() hasIcon: boolean = false;
 
   componentDidLoad() { 
+    //random change
     const iconWrapper = this.el.shadowRoot.querySelector('ifx-icon')
     if(iconWrapper) { 
       const icon = iconWrapper.querySelector('svg')
