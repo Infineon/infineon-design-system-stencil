@@ -2,7 +2,8 @@
 
 
 .dropdown {
-
+  display: inline-flex;
+  flex-direction: column;
   position: relative;
 
   & .btn {
@@ -27,19 +28,19 @@
   }
 
   & .btn-sm {
-    &.dropdown-menu {
+    &+.dropdown-menu {
       transform: translate3d(0px, calc(48.75px + 8px), 0px) !important;
     }
   }
 
   & .btn-lg {
-    &.dropdown-menu {
+    &+.dropdown-menu {
       transform: translate3d(0px, calc(64.5px + 8px), 0px) !important;
     }
   }
 }
 
-.show.btn-secondary.dropdown-toggle:focus {
+.show>.btn-secondary.dropdown-toggle:focus {
   box-shadow: none;
 }
 
