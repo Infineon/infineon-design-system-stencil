@@ -177,6 +177,14 @@ export namespace Components {
         "size": string;
         "width": string;
     }
+    interface IfxSelectInput {
+        "disabled": boolean;
+        "filter": boolean;
+        "icon": boolean;
+        "label": string;
+        "search": boolean;
+        "size": 's' | 'm';
+    }
     interface IfxSpinner {
         "size": string;
     }
@@ -422,6 +430,12 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxSelectInputElement extends Components.IfxSelectInput, HTMLStencilElement {
+    }
+    var HTMLIfxSelectInputElement: {
+        prototype: HTMLIfxSelectInputElement;
+        new (): HTMLIfxSelectInputElement;
+    };
     interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
     }
     var HTMLIfxSpinnerElement: {
@@ -496,6 +510,7 @@ declare global {
         "ifx-range": HTMLIfxRangeElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-select-input": HTMLIfxSelectInputElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tab": HTMLIfxTabElement;
@@ -678,6 +693,14 @@ declare namespace LocalJSX {
         "size"?: string;
         "width"?: string;
     }
+    interface IfxSelectInput {
+        "disabled"?: boolean;
+        "filter"?: boolean;
+        "icon"?: boolean;
+        "label"?: string;
+        "search"?: boolean;
+        "size"?: 's' | 'm';
+    }
     interface IfxSpinner {
         "size"?: string;
     }
@@ -739,6 +762,7 @@ declare namespace LocalJSX {
         "ifx-range": IfxRange;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
+        "ifx-select-input": IfxSelectInput;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tab": IfxTab;
@@ -783,6 +807,7 @@ declare module "@stencil/core" {
             "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-select-input": LocalJSX.IfxSelectInput & JSXBase.HTMLAttributes<HTMLIfxSelectInputElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
