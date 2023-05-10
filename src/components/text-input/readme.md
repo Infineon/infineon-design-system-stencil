@@ -7,9 +7,13 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type     | Default |
-| ------------- | ------------- | ----------- | -------- | ------- |
-| `placeholder` | `placeholder` |             | `string` | `""`    |
+| Property       | Attribute       | Description | Type      | Default         |
+| -------------- | --------------- | ----------- | --------- | --------------- |
+| `disabled`     | `disabled`      |             | `boolean` | `false`         |
+| `error`        | `error`         |             | `boolean` | `false`         |
+| `errorMessage` | `error-message` |             | `string`  | `""`            |
+| `placeholder`  | `placeholder`   |             | `string`  | `"Placeholder"` |
+| `success`      | `success`       |             | `boolean` | `false`         |
 
 
 ----------------------------------------------
