@@ -65,14 +65,22 @@ export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-c
 ]);
 
 
-export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
+export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
+  'disabled',
+  'checked',
+  'error'
+]);
+
+
+export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown, JSX.IfxDropdown["value"]>('ifx-dropdown', undefined, [
   'label',
   'size',
   'disabled',
   'icon',
   'search',
   'filter'
-]);
+],
+'value', 'itemSelected');
 
 
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
@@ -104,6 +112,14 @@ export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>(
 ]);
 
 
+export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', undefined, [
+  'variant'
+]);
+
+
+export const IfxFooterColumn = /*@__PURE__*/ defineContainer<JSX.IfxFooterColumn>('ifx-footer-column', undefined);
+
+
 export const IfxIcon = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', undefined, [
   'icon',
   'ifxIcon'
@@ -122,11 +138,14 @@ export const IfxIconButton = /*@__PURE__*/ defineContainer<JSX.IfxIconButton>('i
 ]);
 
 
+export const IfxIconsPreview = /*@__PURE__*/ defineContainer<JSX.IfxIconsPreview>('ifx-icons-preview', undefined);
+
+
 export const IfxLink = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', undefined, [
   'href',
   'target',
-  'icon',
-  'position',
+  'color',
+  'bold',
   'underline'
 ]);
 
@@ -146,9 +165,21 @@ export const IfxListItem = /*@__PURE__*/ defineContainer<JSX.IfxListItem>('ifx-l
 
 
 export const IfxListNotification = /*@__PURE__*/ defineContainer<JSX.IfxListNotification>('ifx-list-notification', undefined, [
-  'title',
+  'titleText',
   'isFlush',
   'creationTime'
+]);
+
+
+export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
+  'applicationName'
+]);
+
+
+export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+  'isProfile',
+  'hideLabel',
+  'icon'
 ]);
 
 
@@ -157,12 +188,20 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
-export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', undefined, [
+export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["value"]>('ifx-progress-bar', undefined, [
   'percentage',
   'label',
   'size',
   'showLabel',
   'percentageChange'
+],
+'value', 'percentageChange');
+
+
+export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
+  'disabled',
+  'checked',
+  'error'
 ]);
 
 
@@ -182,9 +221,10 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
 
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', undefined, [
   'icon',
-  'width',
   'showCloseButton',
   'isOpen',
+  'hideLabel',
+  'size',
   'search'
 ]);
 
@@ -211,11 +251,33 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 ]);
 
 
+export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [
+  'header',
+  'tabBecameActive',
+  'tabBecameInactive'
+]);
+
+
+export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
+  'tabs',
+  'orientation',
+  'small',
+  'tabChange'
+]);
+
+
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined, [
   'text'
+]);
+
+
+export const IfxToggle = /*@__PURE__*/ defineContainer<JSX.IfxToggle>('ifx-toggle', undefined, [
+  'checked',
+  'valueChanged'
 ]);
 
 
 export const InfineonIconStencil = /*@__PURE__*/ defineContainer<JSX.InfineonIconStencil>('infineon-icon-stencil', undefined, [
   'icon'
 ]);
+
