@@ -15,7 +15,6 @@ export class TextInput {
   @Prop() disabled: boolean = false;
 
   render() {
-    console.log('error message', this.errorMessage)
     return (
       <div class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
