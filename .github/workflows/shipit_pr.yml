@@ -8,7 +8,7 @@ on:
       - synchronize # canary on new commit
  
 jobs:
-  release:
+  stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -29,6 +29,34 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | 
+          cd packages/components
           npm install
           npm run build:stencil
+          auto shipit
+
+  vue-library-release:
+    needs: stencil-libary-release
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all tags for ship-it
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://npm.pkg.github.com"
+      - name: Create Release # releasing as a github npm package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: | 
+          cd packages/components-vue
+          npm install
+          npm run build
           auto shipit
