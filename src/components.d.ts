@@ -171,7 +171,9 @@ export namespace Components {
         "text": string;
     }
     interface IfxTextInput {
+        "disabled": boolean;
         "error": boolean;
+        "errorMessage": string;
         "placeholder": string;
         "success": boolean;
     }
@@ -612,7 +614,9 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface IfxTextInput {
+        "disabled"?: boolean;
         "error"?: boolean;
+        "errorMessage"?: string;
         "placeholder"?: string;
         "success"?: boolean;
     }
