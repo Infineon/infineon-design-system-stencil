@@ -59,7 +59,6 @@ export class SearchInput {
             type="text"
             onInput={this.handleInput}
             placeholder="Search..."
-            style={{ width: this.width }}
             disabled={this.disabled}
 
           />
