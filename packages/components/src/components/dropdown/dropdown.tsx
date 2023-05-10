@@ -25,10 +25,6 @@ export class Dropdown {
     }
   }
 
-  emitItemSelected(itemValue) {
-    this.el.dispatchEvent(new CustomEvent('itemSelected', { detail: itemValue }));
-  }
-
   getDropdownMenu() {
     const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
     const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
@@ -99,9 +95,6 @@ export class Dropdown {
 
       return;
     }
-
-    // Emit the itemSelected event with the selected item value
-    this.emitItemSelected(target.value);
 
     this.removeActiveMenuItem()
     this.handleClassList(target, 'add', 'active')
