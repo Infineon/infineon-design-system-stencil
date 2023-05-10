@@ -1,3 +1,15 @@
+# v18.0.14 (Wed May 10 2023)
+
+#### 🐛 Bug Fix
+
+- new commit [#129](https://github.com/Infineon/infineon-design-system-stencil/pull/129) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.13 (Tue May 09 2023)
 
 #### 🐛 Bug Fix
