@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "18.0.8",
+  "version": "18.0.13",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -29,8 +29,8 @@
   "scripts": {
     "dev:storybook": "start-storybook -p 6262",
     "dev:stencil": "stencil build --watch",
-    "dev": "run-p dev:stencil dev:storybook",
     "index": "stencil build --serve --watch --dev",
+    "dev": "run-p dev:stencil dev:storybook",
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
     "build:stencil": "stencil build --docs"
@@ -46,6 +46,7 @@
     "@mdx-js/react": "^2.3.0",
     "@stencil/sass": "^2.0.0",
     "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-docs": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-links": "^6.5.13",
     "@storybook/addon-viewport": "^6.5.16",
