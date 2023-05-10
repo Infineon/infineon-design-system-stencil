@@ -1,0 +1,25 @@
+import { Meta, Description } from '@storybook/addon-docs';
+import {
+  Story,
+  Source,
+  ArgsTable,
+  Canvas,
+} from '@storybook/addon-docs';
+import dedent from 'ts-dedent';
+
+import text_en from './About_en.md';
+
+
+<Meta title="Icons" parameters={{ previewTabs: { canvas: { hidden: true }, 'storybook/docs/panel': { hidden: true }, 'usage-tab/panel': { hidden: true } } }} />
+
+
+<Description markdown={text_en} />
+
+<Canvas columns={2} withSource="open" >
+  <Story id="components-icon--default" ></Story>
+</Canvas>
+
+<ArgsTable story="." />
+<ifx-icons-preview />
+
+
