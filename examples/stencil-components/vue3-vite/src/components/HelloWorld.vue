@@ -6,6 +6,8 @@ defineProps({
 })
 
 const count = ref(0)
+const buttons = ref(["Button 1", "Button 2", "Button 3"]);
+
 </script>
 
 <template>
@@ -17,6 +19,15 @@ const count = ref(0)
         disabled="false">
         Button
       </ifx-button>
+
+      <br />
+
+      <th v-for="btn in buttons" scope="col">
+        <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
+          disabled="false">
+          {{ btn }}
+        </ifx-button>
+      </th>
     </div>
   </div>
 </template>
@@ -39,3 +50,5 @@ const count = ref(0)
   color: white;
 }
 </style>
+
+ 

@@ -3,20 +3,11 @@
 <template>
   <div class="greetings">
     <h1 class="green">Stencil Framework integration - Vue3 </h1>
-    <h2>V-For</h2>
 
-    <th v-for="btn in buttons" scope="col">
-      <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
-        disabled="false">
-        {{ btn }}
-      </ifx-button>
-    </th>
-
-    <br />
-
-    <h2>Custom events using Vue syntax</h2>
+    <h2>Event binding using Vue syntax</h2>
     <br />
     <ifx-search-bar @search="handleInput" style="width: 100%" show-close-button="true"></ifx-search-bar>
+    <p>Query: {{ query }}</p>
 
     <br />
 
@@ -66,10 +57,11 @@ import {
   computed,
   ref,
 } from 'vue';
+import { debounce } from 'lodash';
 
-const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
 const percentage = ref(10);
+const query = ref('');
 
 function updatePercentage() {
   percentage.value < 100 ? percentage.value += 10 : percentage.value = 10;
@@ -79,9 +71,8 @@ function handlePercentageUpdate(newPercentage) {
   percentage.value = newPercentage;
 }
 
-function handleInput(e) {
-  let query = e.target.value; console.log(query), debounceSearch(args.onSearch, query)
-}
-
+const handleSearch = debounce((value) => {
+  query.value = value;
+}, 500);
 
 </script>

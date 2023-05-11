@@ -13,7 +13,7 @@ export class SearchBar {
   @Prop() icon: string;
   @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
-  @Prop({mutable: true}) isOpen: boolean = true;
+  @Prop({ mutable: true }) isOpen: boolean = true;
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = ""
 
@@ -28,7 +28,7 @@ export class SearchBar {
 
   connectedCallback() {
     this.debounceSearch = debounce((query) => {
-      console.log(query.detail)
+      // console.log("search-bar query: ", query.detail)
       this.search.emit(query);
     }, 500);
   }
@@ -42,8 +42,8 @@ export class SearchBar {
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {/* <input type="text" /> */}
-            {this.showCloseButton && 
-            <ifx-link onClick={this.handleClick}>Close</ifx-link>}
+            {this.showCloseButton &&
+              <ifx-link onClick={this.handleClick}>Close</ifx-link>}
           </div>
         ) : (
           <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
