@@ -204,6 +204,13 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxTextInput {
+        "disabled": boolean;
+        "error": boolean;
+        "errorMessage": string;
+        "placeholder": string;
+        "success": boolean;
+    }
     interface IfxToggle {
         "checked": boolean;
     }
@@ -466,6 +473,12 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
+    interface HTMLIfxTextInputElement extends Components.IfxTextInput, HTMLStencilElement {
+    }
+    var HTMLIfxTextInputElement: {
+        prototype: HTMLIfxTextInputElement;
+        new (): HTMLIfxTextInputElement;
+    };
     interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
     }
     var HTMLIfxToggleElement: {
@@ -516,6 +529,7 @@ declare global {
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
+        "ifx-text-input": HTMLIfxTextInputElement;
         "ifx-toggle": HTMLIfxToggleElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
@@ -723,6 +737,13 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
+    interface IfxTextInput {
+        "disabled"?: boolean;
+        "error"?: boolean;
+        "errorMessage"?: string;
+        "placeholder"?: string;
+        "success"?: boolean;
+    }
     interface IfxToggle {
         "checked"?: boolean;
         "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
@@ -768,6 +789,7 @@ declare namespace LocalJSX {
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
+        "ifx-text-input": IfxTextInput;
         "ifx-toggle": IfxToggle;
         "infineon-icon-stencil": InfineonIconStencil;
     }
@@ -813,6 +835,7 @@ declare module "@stencil/core" {
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "ifx-text-input": LocalJSX.IfxTextInput & JSXBase.HTMLAttributes<HTMLIfxTextInputElement>;
             "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
