@@ -4,11 +4,34 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
-  color: tokens.$color-default-500;
   text-decoration: none;
+  vertical-align: middle;
+
+  &.bold { 
+    font-weight: 600;
+  }
+
+  &.black { 
+    color: tokens.$color-text-black;
+  }
+
+  &.primary { 
+    color: tokens.$color-default-500;
+  }
+  &.secondary { 
+    color: tokens.$color-highlight-500;
+  }
+  &.warning { 
+    color: tokens.$color-warning-500;
+  }
+  &.danger { 
+    color: tokens.$color-danger-500;
+  }
+  &.success { 
+    color: tokens.$color-success-500;
+  }
 
   &.underline { 
     text-decoration:underline;
