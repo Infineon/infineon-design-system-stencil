@@ -122,9 +122,20 @@ export class SelectInput {
 
   render() {
     return (
-      <div class='dropdown'>
-        <slot name="text-input" />
-        <slot />
+      // <div class='dropdown'>
+      //   <slot name="text-input" />
+      //   <slot />
+      // </div>
+      <div class="select__container">
+        <div class="select__container-field">
+          <select name="" id="">
+            <option value="">Item</option>
+            <option value="">Item</option>
+            <option value="">Item</option>
+            <option value="">Item</option>
+          </select>
+        </div>
+        <div class="select__container-dropdown"></div>
       </div>
     )
   }
