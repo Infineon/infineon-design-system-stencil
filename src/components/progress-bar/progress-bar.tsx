@@ -20,8 +20,11 @@ export class ProgressBar {
       composed: true,
       detail: newValue
     });
+
     this.percentageChange.emit(event);
   }
+
+
 
   render() {
     return (
