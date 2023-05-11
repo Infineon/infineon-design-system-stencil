@@ -40,7 +40,7 @@ export class SearchInput {
   connectedCallback() {
     this.insideDropdown = !!this.el.closest('ifx-dropdown-menu');
     this.debounceSearch = debounce((query) => {
-      console.log(query.detail)
+      // console.log("search input query: ", query.detail)
       this.search.emit(query);
     }, 500);
   }
