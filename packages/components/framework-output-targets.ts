@@ -2,11 +2,11 @@ import { ComponentModelConfig, vueOutputTarget } from '@stencil/vue-output-targe
 
 
 const vueComponentModels: ComponentModelConfig[] = [
-  {
-    elements: ['ifx-dropdown'],
-    event: 'itemSelected',
-    targetAttr: 'value',
-  },
+  // {
+  //   elements: ['ifx-dropdown'],
+  //   event: 'itemSelected',
+  //   targetAttr: 'value',
+  // },
   // {
   //   elements: ['ifx-search-bar'],
   //   event: 'onSearch',
@@ -15,7 +15,7 @@ const vueComponentModels: ComponentModelConfig[] = [
   {
     elements: ['ifx-progress-bar'],
     event: 'percentageChange',
-    targetAttr: 'value',
+    targetAttr: 'percentage',
   },
 ];
 

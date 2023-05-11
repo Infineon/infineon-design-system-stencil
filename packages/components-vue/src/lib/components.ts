@@ -72,15 +72,14 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
 ]);
 
 
-export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown, JSX.IfxDropdown["value"]>('ifx-dropdown', undefined, [
+export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
   'label',
   'size',
   'disabled',
   'icon',
   'search',
   'filter'
-],
-'value', 'itemSelected');
+]);
 
 
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
@@ -188,14 +187,14 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
-export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["value"]>('ifx-progress-bar', undefined, [
+export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["percentage"]>('ifx-progress-bar', undefined, [
   'percentage',
   'label',
   'size',
   'showLabel',
   'percentageChange'
 ],
-'value', 'percentageChange');
+'percentage', 'percentageChange');
 
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [

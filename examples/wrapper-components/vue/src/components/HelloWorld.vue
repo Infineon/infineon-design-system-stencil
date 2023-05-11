@@ -20,6 +20,17 @@
 
     <br />
 
+    <h2>V-model</h2>
+    <ifx-progress-bar :percentage="percentage" size="m" show-label="true"
+      @update:percentage="handlePercentageUpdate"></ifx-progress-bar>
+    <br />
+    <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m" disabled="false"
+      @click="updatePercentage">
+      Increase by 10
+    </ifx-button>
+
+    <br />
+
     <h2>V-bind</h2>
     <ifx-card>
       <img :src="imgLink1" alt="" slot="img">
@@ -52,13 +63,25 @@ h3 {
 
 <script setup>
 import {
+  computed,
   ref,
 } from 'vue';
 
 const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
+const percentage = ref(10);
+
+function updatePercentage() {
+  percentage.value < 100 ? percentage.value += 10 : percentage.value = 10;
+}
+
+function handlePercentageUpdate(newPercentage) {
+  percentage.value = newPercentage;
+}
 
 function handleInput(e) {
   let query = e.target.value; console.log(query), debounceSearch(args.onSearch, query)
 }
+
+
 </script>
