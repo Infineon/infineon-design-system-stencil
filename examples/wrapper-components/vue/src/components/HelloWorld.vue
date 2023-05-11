@@ -6,7 +6,7 @@
 
     <h2>Event binding using Vue syntax</h2>
     <br />
-    <ifx-search-bar @search="handleInput" style="width: 100%" show-close-button="true"></ifx-search-bar>
+    <ifx-search-bar @search="handleSearch" style="width: 100%" show-close-button="true"></ifx-search-bar>
     <p>Query: {{ query }}</p>
 
     <br />
@@ -57,7 +57,6 @@ import {
   computed,
   ref,
 } from 'vue';
-import { debounce } from 'lodash';
 
 const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
 const percentage = ref(10);
@@ -71,8 +70,16 @@ function handlePercentageUpdate(newPercentage) {
   percentage.value = newPercentage;
 }
 
-const handleSearch = debounce((value) => {
-  query.value = value;
-}, 500);
+function handleSearch(event) {
+  query.value = event.detail;
+}
+
 
 </script>
+ 
+
+
+
+
+
+ 

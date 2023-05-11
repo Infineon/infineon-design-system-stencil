@@ -25,11 +25,9 @@ export class SearchInput {
   @Prop() size: string;
 
 
-
-
   handleInput = () => {
     const query = this.inputElement.value;
-    this.debounceSearch(this.search.emit(query));
+    this.debounceSearch(query);
   };
 
   handleDelete = () => {
@@ -40,12 +38,14 @@ export class SearchInput {
   connectedCallback() {
     this.insideDropdown = !!this.el.closest('ifx-dropdown-menu');
     this.debounceSearch = debounce((query) => {
-      // console.log("search input query: ", query.detail)
       this.search.emit(query);
     }, 500);
   }
 
-
+  disconnectedCallback() {
+    // Cancel any pending execution of debounceSearch when the component is disconnected
+    this.debounceSearch.cancel();
+  }
 
   render() {
 

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, h, Event, Prop } from '@stencil/core';
-import { debounce } from 'lodash';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -7,8 +6,6 @@ import { debounce } from 'lodash';
   shadow: true,
 })
 export class SearchBar {
-  private inputElement: HTMLInputElement;
-  private debounceSearch: any;
 
   @Prop() icon: string;
   @Prop() showCloseButton: boolean = true;
@@ -17,20 +14,10 @@ export class SearchBar {
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = ""
 
-  handleInput = () => {
-    const query = this.inputElement.value;
-    this.debounceSearch(this.search.emit(query));
-  };
+
 
   handleClick = () => {
     this.isOpen = !this.isOpen;
-  }
-
-  connectedCallback() {
-    this.debounceSearch = debounce((query) => {
-      // console.log("search-bar query: ", query.detail)
-      this.search.emit(query);
-    }, 500);
   }
 
   render() {
