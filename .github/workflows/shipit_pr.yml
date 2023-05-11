@@ -34,7 +34,7 @@ jobs:
           npm run build:stencil
           auto shipit
 
-  vue-library-release:
+  vue-library-release: # release vue-library on npm
     needs: stencil-library-release
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
