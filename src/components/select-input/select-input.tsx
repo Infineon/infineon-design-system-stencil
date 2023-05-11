@@ -33,6 +33,7 @@ export class SelectInput {
 
   getDropdownWrapper() {
     const dropdownWrapper = this.el.shadowRoot.querySelector('.dropdown');
+    console.log('dropdopwn', dropdownWrapper)
     return dropdownWrapper
   }
 

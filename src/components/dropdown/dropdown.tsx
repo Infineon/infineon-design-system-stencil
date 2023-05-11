@@ -102,6 +102,7 @@ export class Dropdown {
   }
 
   addEventListeners() {
+    console.log('here')
     const dropdownMenu = this.getDropdownMenu();
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)

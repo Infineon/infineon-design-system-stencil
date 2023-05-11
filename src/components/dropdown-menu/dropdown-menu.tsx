@@ -19,7 +19,8 @@ export class DropdownMenu {
 
   componentWillRender() {
     const isInsideDropdown = this.el.closest('ifx-dropdown')
-    if (isInsideDropdown) {
+    const isInsideSelect = this.el.closest('ifx-select-input')
+    if (isInsideDropdown || isInsideSelect) {
       this.isShown = false;
     }
   }
