@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, Listen } from "@stencil/core";
+import { Component, h, Element, Listen } from "@stencil/core";
 
 @Component({
   tag: 'ifx-select-input',
@@ -8,7 +8,6 @@ import { Component, Prop, h, Element, Listen } from "@stencil/core";
 
 export class SelectInput {
 
-  @Prop() icon: boolean = false;
   @Element() el;
 
   @Listen('mousedown', { target: 'document' })

@@ -63,6 +63,8 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxDropdownDivider {
+    }
     interface IfxDropdownItem {
         "checkable": boolean;
         "disabled": boolean;
@@ -324,6 +326,12 @@ declare global {
         prototype: HTMLIfxDropdownElement;
         new (): HTMLIfxDropdownElement;
     };
+    interface HTMLIfxDropdownDividerElement extends Components.IfxDropdownDivider, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownDividerElement: {
+        prototype: HTMLIfxDropdownDividerElement;
+        new (): HTMLIfxDropdownDividerElement;
+    };
     interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
     }
     var HTMLIfxDropdownItemElement: {
@@ -510,6 +518,7 @@ declare global {
         "ifx-card-text": HTMLIfxCardTextElement;
         "ifx-checkbox": HTMLIfxCheckboxElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
+        "ifx-dropdown-divider": HTMLIfxDropdownDividerElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
@@ -596,6 +605,8 @@ declare namespace LocalJSX {
         "label"?: string;
         "search"?: boolean;
         "size"?: 's' | 'm';
+    }
+    interface IfxDropdownDivider {
     }
     interface IfxDropdownItem {
         "checkable"?: boolean;
@@ -771,6 +782,7 @@ declare namespace LocalJSX {
         "ifx-card-text": IfxCardText;
         "ifx-checkbox": IfxCheckbox;
         "ifx-dropdown": IfxDropdown;
+        "ifx-dropdown-divider": IfxDropdownDivider;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
@@ -817,6 +829,7 @@ declare module "@stencil/core" {
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
             "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
+            "ifx-dropdown-divider": LocalJSX.IfxDropdownDivider & JSXBase.HTMLAttributes<HTMLIfxDropdownDividerElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
