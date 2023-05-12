@@ -8,12 +8,7 @@ import { Component, Prop, h, Element, Listen } from "@stencil/core";
 
 export class SelectInput {
 
-  @Prop() label: string;
-  @Prop() size: 's' | 'm';
-  @Prop() disabled: boolean;
   @Prop() icon: boolean = false;
-  @Prop() search: boolean = false;
-  @Prop() filter: boolean = false;
   @Element() el;
 
   @Listen('mousedown', { target: 'document' })

@@ -14,6 +14,14 @@
 | `icon`      | `icon`      |             | `string`     | `undefined` |
 | `label`     | `label`     |             | `string`     | `undefined` |
 | `size`      | `size`      |             | `"m" \| "s"` | `undefined` |
+| `value`     | `value`     |             | `string`     | `""`        |
+
+
+## Events
+
+| Event        | Description | Type                  |
+| ------------ | ----------- | --------------------- |
+| `itemValues` |             | `CustomEvent<Object>` |
 
 
 ## Dependencies

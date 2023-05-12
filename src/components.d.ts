@@ -179,12 +179,7 @@ export namespace Components {
         "width": string;
     }
     interface IfxSelectInput {
-        "disabled": boolean;
-        "filter": boolean;
         "icon": boolean;
-        "label": string;
-        "search": boolean;
-        "size": 's' | 'm';
     }
     interface IfxSpinner {
         "size": string;
@@ -723,12 +718,7 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface IfxSelectInput {
-        "disabled"?: boolean;
-        "filter"?: boolean;
         "icon"?: boolean;
-        "label"?: string;
-        "search"?: boolean;
-        "size"?: 's' | 'm';
     }
     interface IfxSpinner {
         "size"?: string;

@@ -28,6 +28,7 @@
  - [ifx-range](../ifxRange)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-input](../search-input)
+ - [ifx-text-input](../text-input)
 
 ### Graph
 ```mermaid
@@ -43,6 +44,7 @@ graph TD;
   ifx-range --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-input --> ifx-icon
+  ifx-text-input --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

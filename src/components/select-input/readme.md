@@ -7,14 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type         | Default     |
-| ---------- | ---------- | ----------- | ------------ | ----------- |
-| `disabled` | `disabled` |             | `boolean`    | `undefined` |
-| `filter`   | `filter`   |             | `boolean`    | `false`     |
-| `icon`     | `icon`     |             | `boolean`    | `false`     |
-| `label`    | `label`    |             | `string`     | `undefined` |
-| `search`   | `search`   |             | `boolean`    | `false`     |
-| `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
+| Property | Attribute | Description | Type      | Default |
+| -------- | --------- | ----------- | --------- | ------- |
+| `icon`   | `icon`    |             | `boolean` | `false` |
 
 
 ----------------------------------------------
