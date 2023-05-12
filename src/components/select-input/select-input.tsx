@@ -26,33 +26,38 @@ export class SelectInput {
   }
 
   getDropdownMenu() {
-    const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
-    const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
-    return dropdownMenuElement
+    let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
+    if(dropdownMenuComponent) { 
+      dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
+      const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
+      return dropdownMenuElement
+    }
   }
 
   getDropdownWrapper() {
     const dropdownWrapper = this.el.shadowRoot.querySelector('.dropdown');
-    console.log('dropdopwn', dropdownWrapper)
     return dropdownWrapper
   }
 
   getDropdownItems() {
-
     const dropdownMenuItems = this.el.querySelectorAll('ifx-dropdown-item')
-
     return dropdownMenuItems
   }
 
   handleClassList(el, type, className) {
-    el.classList[type](className)
+    el?.classList[type](className)
   }
 
   toggleDropdownMenu() {
+    //add toggle for the ifx-icon
+    const textField = this.getTextField()
+    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'toggle', 'show')
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
+    this.handleClassList(textFieldElement, 'toggle', 'show')
+
   }
 
   closeDropdownMenu() {
@@ -89,7 +94,6 @@ export class SelectInput {
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
-
     if (!target) return;
     if (isCheckable) {
       this.toggleCheckbox(target)
@@ -102,16 +106,31 @@ export class SelectInput {
     this.toggleDropdownMenu()
   }
 
+  getTextField() { 
+    let textField = this.el.querySelector('ifx-text-input');
+    return textField
+  }
+
+  addItemValueToTextField(value) { 
+    const textField = this.getTextField()
+    console.log('value', value)
+    textField.value = value.value
+  }
+
   addEventListeners() {
     const dropdownMenu = this.getDropdownMenu();
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
+    let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
+    dropdownMenuComponent.addEventListener('selectValues', (event) => { 
+      this.addItemValueToTextField(event.detail)
+    })
   }
 
   componentDidRender() {
-    let buttonComponent = this.el.querySelector('ifx-button');
+    let buttonComponent = this.el.querySelector('ifx-text-input');
     if (buttonComponent) {
-      const buttonElement = buttonComponent.shadowRoot.querySelector('button');
+      const buttonElement = buttonComponent.shadowRoot.querySelector('input');
       if (!buttonElement.classList.contains('disabled')) {
         buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()
@@ -122,20 +141,9 @@ export class SelectInput {
 
   render() {
     return (
-      // <div class='dropdown'>
-      //   <slot name="text-input" />
-      //   <slot />
-      // </div>
-      <div class="select__container">
-        <div class="select__container-field">
-          <select name="" id="">
-            <option value="">Item</option>
-            <option value="">Item</option>
-            <option value="">Item</option>
-            <option value="">Item</option>
-          </select>
-        </div>
-        <div class="select__container-dropdown"></div>
+      <div class='dropdown'>
+        <slot name="text-input" />
+        <slot />
       </div>
     )
   }

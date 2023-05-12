@@ -63,6 +63,7 @@
   }
 
   & .textInput__bottom-wrapper { 
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -117,6 +118,7 @@
 
       &:hover:not(:disabled, .error, .success) { 
         border: 1px solid #3C3A39;
+        cursor: pointer; //only when readonly
       }
 
       &::placeholder { 
@@ -130,6 +132,20 @@
         flex: none;
         order: 1;
         flex-grow: 1;
+      }
+    }
+
+    & ifx-icon { 
+      position: absolute;
+      top: 12px;
+      right: 17px;
+      transition: .3s;
+    }
+
+    &.show { 
+      & ifx-icon { 
+        transition: .3s;
+        transform: rotate(180deg);
       }
     }
 
