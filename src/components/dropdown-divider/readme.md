@@ -1,4 +1,4 @@
-# ifx-select-input
+# ifx-dropdown-divider
 
 
 

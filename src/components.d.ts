@@ -181,7 +181,6 @@ export namespace Components {
         "width": string;
     }
     interface IfxSelectInput {
-        "icon": boolean;
     }
     interface IfxSpinner {
         "size": string;
@@ -729,7 +728,6 @@ declare namespace LocalJSX {
         "width"?: string;
     }
     interface IfxSelectInput {
-        "icon"?: boolean;
     }
     interface IfxSpinner {
         "size"?: string;
