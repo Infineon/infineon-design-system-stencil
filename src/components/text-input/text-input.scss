@@ -1,5 +1,9 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
+:host { 
+  width: 100%;
+}
+
 .textInput__container { 
   display: flex;
   flex-direction: column;
@@ -7,7 +11,8 @@
   padding: 0px;
   
   //width: 588px;
-  height: 64px;
+  width: 100%;
+  //height: 64px;
   
   flex: none;
   order: 0;

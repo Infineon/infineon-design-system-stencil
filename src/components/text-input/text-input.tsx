@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State } from '@stencil/core';
+import { Component, h, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
@@ -15,7 +15,7 @@ export class TextInput {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
-  @State() icon: boolean = true;
+  @Prop() icon: boolean = false;
 
   render() {
     return (

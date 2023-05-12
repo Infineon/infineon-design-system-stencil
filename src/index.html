@@ -19,22 +19,6 @@
     }
   </style>
 
-  <script defer>
-
-    const addEventListeners = () => { 
-      console.log('here')
-      const mymenu = document.getElementById('mymenu')
-      mymenu.addEventListener('selectValues', (event) => { 
-        console.log(event.detail)
-      })
-    }
-
-      window.addEventListener('load', () => { 
-        //addEventListeners()
-      })
-
-  </script>
-
 
 </head>
 
@@ -42,17 +26,15 @@
   
 
   <ifx-select-input>
-    <ifx-text-input readonly="true" slot="text-input"></ifx-text-input>
-    <ifx-dropdown-menu id="mymenu">
-      <ifx-dropdown-item value="Item1">Item1</ifx-dropdown-item>
-      <ifx-dropdown-item value="Item2">Item2</ifx-dropdown-item>
-      <ifx-dropdown-item value="Item3">Item3</ifx-dropdown-item>
+    <ifx-text-input icon="true" readonly="true" slot="text-input"></ifx-text-input>
+    <ifx-dropdown-menu slot="menu">
+      <ifx-dropdown-item icon="calendar-16" value="Item1">Item1</ifx-dropdown-item>
+      <ifx-dropdown-item icon="calendar-16" value="Item2">Item2</ifx-dropdown-item>
+      <ifx-dropdown-item icon="calendar-16" value="Item3">Item3</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-select-input>
 
-  <ifx-select-input></ifx-select-input>
 
- 
 </body>
 
 </html>

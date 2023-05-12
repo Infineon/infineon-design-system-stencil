@@ -1,5 +1,4 @@
 import { Component, Prop, h, Element, Listen } from "@stencil/core";
-// import { calendar16 } from '@infineon/infineon-icons';
 
 @Component({
   tag: 'ifx-select-input',
@@ -49,7 +48,6 @@ export class SelectInput {
   }
 
   toggleDropdownMenu() {
-    //add toggle for the ifx-icon
     const textField = this.getTextField()
     const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
     const dropdownMenu = this.getDropdownMenu();
@@ -63,8 +61,11 @@ export class SelectInput {
   closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
+    const textField = this.getTextField()
+    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
+    this.handleClassList(textFieldElement, 'remove', 'show')
   }
 
   removeActiveMenuItem() {
@@ -113,7 +114,6 @@ export class SelectInput {
 
   addItemValueToTextField(value) { 
     const textField = this.getTextField()
-    console.log('value', value)
     textField.value = value.value
   }
 
@@ -128,11 +128,11 @@ export class SelectInput {
   }
 
   componentDidRender() {
-    let buttonComponent = this.el.querySelector('ifx-text-input');
-    if (buttonComponent) {
-      const buttonElement = buttonComponent.shadowRoot.querySelector('input');
-      if (!buttonElement.classList.contains('disabled')) {
-        buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+    let textInput = this.el.querySelector('ifx-text-input');
+    if (textInput) {
+      const textInputElement = textInput.shadowRoot.querySelector('input');
+      if (!textInputElement.classList.contains('disabled')) {
+        textInputElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()
       }
     }
@@ -143,7 +143,7 @@ export class SelectInput {
     return (
       <div class='dropdown'>
         <slot name="text-input" />
-        <slot />
+        <slot name="menu" />
       </div>
     )
   }

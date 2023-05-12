@@ -7,6 +7,7 @@
   box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
   border-radius: 1px;
   margin-top: 8px;
+  z-index: 1000;
 
   & ifx-search-input {
     max-width: 150px;
@@ -23,6 +24,10 @@
   border: none;
   border-radius: 1px;
 
+  &.select { 
+    //when inside select
+    width: 235px;
+  }
 
   &.nested {
     transform: none !important;

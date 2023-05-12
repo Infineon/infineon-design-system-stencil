@@ -209,6 +209,7 @@ export namespace Components {
         "disabled": boolean;
         "error": boolean;
         "errorMessage": string;
+        "icon": boolean;
         "placeholder": string;
         "readonly": boolean;
         "success": boolean;
@@ -755,6 +756,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "error"?: boolean;
         "errorMessage"?: string;
+        "icon"?: boolean;
         "placeholder"?: string;
         "readonly"?: boolean;
         "success"?: boolean;

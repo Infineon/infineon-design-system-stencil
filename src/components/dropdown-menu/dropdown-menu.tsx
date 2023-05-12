@@ -16,6 +16,7 @@ export class DropdownMenu {
   @Prop() filter: boolean = false;
   @Event({ bubbles: false }) selectValues: EventEmitter<Object>;
   @State() isShown: boolean = true;
+  @State() isInsideSelect: boolean = false;
   @Element() el;
 
 
@@ -33,6 +34,9 @@ export class DropdownMenu {
     if (isInsideDropdown || isInsideSelect) {
       this.isShown = false;
     }
+    if(isInsideSelect) { 
+      this.isInsideSelect = true;
+    } else this.isInsideSelect = false;
   }
 
   componentDidLoad() { 
@@ -45,7 +49,11 @@ export class DropdownMenu {
 
   render() {
     return (
-      <div class={`dropdown-menu ${this.isShown ? 'show nested' : ""} ${this.icon ? 'showIcon' : ""}`}>
+      <div class={
+        `dropdown-menu 
+        ${this.isShown ? 'show nested' : ""} 
+        ${this.icon ? 'showIcon' : ""}
+        ${this.isInsideSelect ? 'select' : ""}`}>
         <slot />
       </div>
     )
