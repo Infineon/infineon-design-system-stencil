@@ -7,19 +7,19 @@
 
 ## Properties
 
-| Property     | Attribute    | Description | Type      | Default     |
-| ------------ | ------------ | ----------- | --------- | ----------- |
-| `label`      | `label`      |             | `string`  | `''`        |
-| `percentage` | `percentage` |             | `number`  | `0`         |
-| `showLabel`  | `show-label` |             | `boolean` | `false`     |
-| `size`       | `size`       |             | `string`  | `undefined` |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `label`     | `label`      |             | `string`  | `''`        |
+| `showLabel` | `show-label` |             | `boolean` | `false`     |
+| `size`      | `size`       |             | `string`  | `undefined` |
+| `value`     | `value`      |             | `number`  | `0`         |
 
 
 ## Events
 
-| Event              | Description | Type                            |
-| ------------------ | ----------- | ------------------------------- |
-| `percentageChange` |             | `CustomEvent<CustomEvent<any>>` |
+| Event       | Description | Type                            |
+| ----------- | ----------- | ------------------------------- |
+| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
 
 
 ----------------------------------------------

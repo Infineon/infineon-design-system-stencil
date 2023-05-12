@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -9,15 +9,20 @@ export class SearchBar {
 
   @Prop() icon: string;
   @Prop() showCloseButton: boolean = true;
-  @Event() search: EventEmitter<string>;
   @Prop({ mutable: true }) isOpen: boolean = true;
   @Prop() hideLabel: boolean = false;
-  @Prop() size: string = ""
-
-
+  @Prop() size: string = "";
+  @Prop({ mutable: true }) value: string; // Use Prop instead of State
+  @Event() ifxChange: EventEmitter<string>; // Emit changes
 
   handleClick = () => {
     this.isOpen = !this.isOpen;
+  }
+
+  handleSearchInput(event: CustomEvent) {
+    this.value = event.detail;
+    this.ifxChange.emit(this.value); // Emit change
+    console.log("Search bar value updated: ", this.value);
   }
 
   render() {
@@ -25,10 +30,9 @@ export class SearchBar {
       <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
         {this.isOpen ? (
           <div class="search-bar-wrapper">
-            <ifx-search-input>
+            <ifx-search-input onIfxChange={(event) => this.handleSearchInput(event)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
-            {/* <input type="text" /> */}
             {this.showCloseButton &&
               <ifx-link onClick={this.handleClick}>Close</ifx-link>}
           </div>

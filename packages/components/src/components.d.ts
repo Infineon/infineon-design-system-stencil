@@ -143,9 +143,9 @@ export namespace Components {
     }
     interface IfxProgressBar {
         "label": string;
-        "percentage": number;
         "showLabel": boolean;
         "size": string;
+        "value": number;
     }
     interface IfxRadioButton {
         "checked": boolean;
@@ -169,12 +169,14 @@ export namespace Components {
         "isOpen": boolean;
         "showCloseButton": boolean;
         "size": string;
+        "value": string;
     }
     interface IfxSearchInput {
         "borderColor": 'light' | 'dark' | 'green';
         "disabled": boolean;
         "showDeleteIcon": boolean;
         "size": string;
+        "value": string;
         "width": string;
     }
     interface IfxSpinner {
@@ -640,10 +642,10 @@ declare namespace LocalJSX {
     }
     interface IfxProgressBar {
         "label"?: string;
-        "onPercentageChange"?: (event: IfxProgressBarCustomEvent<CustomEvent>) => void;
-        "percentage"?: number;
+        "onIfxChange"?: (event: IfxProgressBarCustomEvent<CustomEvent>) => void;
         "showLabel"?: boolean;
         "size"?: string;
+        "value"?: number;
     }
     interface IfxRadioButton {
         "checked"?: boolean;
@@ -666,16 +668,18 @@ declare namespace LocalJSX {
         "hideLabel"?: boolean;
         "icon"?: string;
         "isOpen"?: boolean;
-        "onSearch"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "onIfxChange"?: (event: IfxSearchBarCustomEvent<string>) => void;
         "showCloseButton"?: boolean;
         "size"?: string;
+        "value"?: string;
     }
     interface IfxSearchInput {
         "borderColor"?: 'light' | 'dark' | 'green';
         "disabled"?: boolean;
-        "onSearch"?: (event: IfxSearchInputCustomEvent<string>) => void;
+        "onIfxChange"?: (event: IfxSearchInputCustomEvent<CustomEvent>) => void;
         "showDeleteIcon"?: boolean;
         "size"?: string;
+        "value"?: string;
         "width"?: string;
     }
     interface IfxSpinner {

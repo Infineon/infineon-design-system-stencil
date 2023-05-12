@@ -187,14 +187,14 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
-export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["percentage"]>('ifx-progress-bar', undefined, [
-  'percentage',
+export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["value"]>('ifx-progress-bar', undefined, [
+  'value',
   'label',
   'size',
   'showLabel',
-  'percentageChange'
+  'ifxChange'
 ],
-'percentage', 'percentageChange');
+'value', 'ifxChange');
 
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
@@ -218,24 +218,28 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
 ]);
 
 
-export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', undefined, [
+export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
   'icon',
   'showCloseButton',
   'isOpen',
   'hideLabel',
   'size',
-  'search'
-]);
+  'value',
+  'ifxChange'
+],
+'value', 'ifxChange');
 
 
-export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput>('ifx-search-input', undefined, [
+export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
+  'value',
   'width',
   'showDeleteIcon',
   'disabled',
   'borderColor',
   'size',
-  'search'
-]);
+  'ifxChange'
+],
+'value', 'ifxChange');
 
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [

@@ -13,14 +13,15 @@
 | `disabled`       | `disabled`         |             | `boolean`                      | `false`     |
 | `showDeleteIcon` | `show-delete-icon` |             | `boolean`                      | `false`     |
 | `size`           | `size`             |             | `string`                       | `undefined` |
+| `value`          | `value`            |             | `string`                       | `''`        |
 | `width`          | `width`            |             | `string`                       | `'100%'`    |
 
 
 ## Events
 
-| Event    | Description | Type                  |
-| -------- | ----------- | --------------------- |
-| `search` |             | `CustomEvent<string>` |
+| Event       | Description | Type                            |
+| ----------- | ----------- | ------------------------------- |
+| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
 
 
 ## Dependencies

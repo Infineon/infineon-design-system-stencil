@@ -24,22 +24,22 @@ const Template = (args) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
     <ifx-progress-bar
-      percentage="${args.percentage}"
+      value="${args.percentage}"
       size="${args.size}"
       show-label="${args.showLabel}"
     ></ifx-progress-bar>
   `;
 
   const progressBar = wrapper.querySelector('ifx-progress-bar');
-  progressBar.addEventListener('percentageChange', (event: CustomEvent<Event>) => {
+  progressBar.addEventListener('ifxChange', (event: CustomEvent<Event>) => {
     console.log('Percentage:', event);
     action('Percentage:')(event);
   });
 
   // Run this useEffect hook whenever the percentage changes
   useEffect(() => {
-    // Trigger the percentageChange event manually
-    progressBar.dispatchEvent(new CustomEvent('percentageChange', { detail: args.percentage }));
+    // Trigger the ifxChange event manually
+    progressBar.dispatchEvent(new CustomEvent('ifxChange', { detail: args.percentage }));
   }, [args.percentage]);
 
   return wrapper.innerHTML;

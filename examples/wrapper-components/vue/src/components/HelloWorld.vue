@@ -4,39 +4,39 @@
   <div class="greetings">
     <h1 class="green">Stencil Framework integration - Vue3 </h1>
 
-    <h2>Event binding using Vue syntax</h2>
+    <h2>Ifx-Search-Input</h2>
+    <h3>Event binding using Vue syntax</h3>
     <br />
-    <ifx-search-bar @search="handleSearch" style="width: 100%" show-close-button="true"></ifx-search-bar>
-    <p>Query: {{ query }}</p>
+    <ifx-search-input v-model="searchInputQuery" style="width: 100%" show-close-button="true"></ifx-search-input>
+    <p>Search input: {{ searchInput }}</p>
+
+    <br />
+    <h2>Ifx-Search-Bar</h2>
+    <h3>Event binding using Vue syntax</h3>
+    <ifx-search-bar v-model="searchBar1" style="width: 100%" show-close-button="true"></ifx-search-bar>
+    <p>Search bar 1: {{ searchBar1 }}</p>
+    <ifx-search-bar @ifxChange="handleSearch2" style="width: 100%" show-close-button="true"></ifx-search-bar>
+    <p>Search bar 2: {{ searchBar2 }}</p>
 
     <br />
 
-    <h2>V-model</h2>
-    <ifx-progress-bar :percentage="percentage" size="m" show-label="true"
-      @update:percentage="handlePercentageUpdate"></ifx-progress-bar>
+    <h2>Ifx-Progress-Bar</h2>
+
+    <h3>Using v-model</h3>
+    <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
     <br />
-    <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m" disabled="false"
-      @click="updatePercentage">
+    <h3>Using value and the ifxChange event</h3>
+    <ifx-progress-bar :value="progressValue2" size="m" show-label="true"
+      @ifxChange:progressValue2="handleProgressUpdate"></ifx-progress-bar>
+    <br />
+    <ifx-button variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
+      disabled="false" @click="updateProgressOnClick">
       Increase by 10
     </ifx-button>
 
     <br />
 
-    <h2>V-bind</h2>
-    <ifx-card>
-      <img :src="imgLink1" alt="" slot="img">
-      <ifx-card-overline slot="overline">
-        Overline
-      </ifx-card-overline>
-      <ifx-card-headline slot="headline">
-        Headline
-      </ifx-card-headline>
-      <ifx-card-text slot="text">
-        Some quick example text to build on the card title and make up the bulk of the card's content.
-      </ifx-card-text>
 
-      <ifx-link href="" target="_blank" icon="true" slot="btn" underline="false" position="right">Link</ifx-link>
-    </ifx-card>
   </div>
 </template>
 
@@ -56,23 +56,67 @@ h3 {
 import {
   computed,
   ref,
+  onMounted,
 } from 'vue';
 
-const imgLink1 = ref("https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg");
-const percentage = ref(10);
-const query = ref('');
+const searchBar2 = ref('');
+const searchBar1 = ref('');
+const searchInput = ref('');
+const progressValue1 = ref(10);
+const progressValue2 = ref(10);
 
-function updatePercentage() {
-  percentage.value < 100 ? percentage.value += 10 : percentage.value = 10;
+
+
+onMounted(() => {
+  updateProgress();
+  setInterval(updateProgress, 10000);
+})
+
+// Computed property to retrieve the query value
+const searchInputQuery = computed({
+  get: () => searchInput.value,
+  set: (newValue) => handleSearchInput(newValue)
+});
+
+// // Computed property to retrieve the query value
+// const query = computed({
+//   get: () => searchBar1.value,
+//   set: (newValue) => handleSearch1(newValue)
+// });
+
+
+const progress = computed(() => {
+  return progressValue1.value;
+});
+
+function updateProgress() {
+  progressValue1.value < 100 ? progressValue1.value += 10 : progressValue1.value = 10;
 }
 
-function handlePercentageUpdate(newPercentage) {
-  percentage.value = newPercentage;
+function updateProgressOnClick() {
+  progressValue2.value < 100 ? progressValue2.value += 10 : progressValue2.value = 10;
 }
 
-function handleSearch(event) {
-  query.value = event.detail;
+
+function handleProgressUpdate(event) {
+  progressValue2.value = event.detail;
 }
+
+function handleSearch2(event) {
+  searchBar2.value = event.detail;
+}
+
+
+// function handleSearch1(event) {
+//   console.log("handling search 1", event.detail)
+//   searchBar1.value = '';
+//   searchBar1.value = event.detail;
+// };
+
+function handleSearchInput(event) {
+  console.log("updating search input: ", event)
+  searchInput.value = event;
+};
 
 
 </script>

@@ -1,4 +1,3 @@
-import { debounce } from 'lodash';
 
 
 export default {
@@ -8,7 +7,7 @@ export default {
     showCloseButton: true,
   },
   argTypes: {
-    onSearch: { action: 'search' },
+    onIfxChange: { action: 'ifxChange' },
     width: {
       options: ['40%', '60%', '80%', '100%'],
       control: { type: 'radio' },
@@ -18,19 +17,21 @@ export default {
     },
   },
 };
-const debounceSearch = debounce((onSearch, query) => {
-  onSearch(query);
-}, 500);
+
+
 
 const Template = (args) => {
-  const handleInput = (e) => {
-    const query = e.target.value;
-    console.log(query);
-    debounceSearch(args.onSearch, query);
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `<ifx-search-bar  style="width: ${args.width}" show-close-button="${args.showCloseButton}"></ifx-search-bar>`;
 
-  };
+  const inputElement = wrapper.querySelector('ifx-search-bar');
+  inputElement.addEventListener('ifxChange', (event) => {
+    // console.log('Storybook Search-Input:', event);
+    args.onIfxChange(event);
 
-  return `<ifx-search-bar onSearch=${handleInput} style="width: ${args.width}" show-close-button="${args.showCloseButton}"></ifx-search-bar>`;
+  });
+
+  return wrapper;
 };
 
 export const Default = Template.bind({});

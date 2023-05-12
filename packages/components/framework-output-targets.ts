@@ -3,10 +3,11 @@ import { ComponentModelConfig, vueOutputTarget } from '@stencil/vue-output-targe
 
 const vueComponentModels: ComponentModelConfig[] = [
   {
-    elements: ['ifx-progress-bar'],
-    event: 'percentageChange',
-    targetAttr: 'percentage',
+    elements: ['ifx-progress-bar', 'ifx-search-bar', 'ifx-search-input'],
+    event: 'ifxChange',
+    targetAttr: 'value',
   },
+
 ];
 
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop, State, Element } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, State, Element, Watch } from '@stencil/core';
 import { debounce } from 'lodash';
 import classNames from 'classnames';
 
@@ -14,9 +14,9 @@ export class SearchInput {
 
   private inputElement: HTMLInputElement;
   private debounceSearch: any;
-
+  @Prop({ mutable: true }) value: string = '';
   @Prop() width: string = '100%';
-  @Event() search: EventEmitter<string>;
+  @Event() ifxChange: EventEmitter<CustomEvent>;
   @State() insideDropdown: boolean = false;
   @Element() el: HTMLElement;
   @Prop() showDeleteIcon: boolean = false;
@@ -24,21 +24,28 @@ export class SearchInput {
   @Prop() borderColor: 'light' | 'dark' | 'green';
   @Prop() size: string;
 
+  @Watch('value')
+  valueWatcher(newValue: string) {
+    if (newValue !== this.inputElement.value) {
+      this.inputElement.value = newValue;
+    }
+  }
 
   handleInput = () => {
     const query = this.inputElement.value;
+    this.value = query; // update the value property when input changes
     this.debounceSearch(query);
   };
 
   handleDelete = () => {
     this.inputElement.value = '';
-    this.search.emit('');
+    this.ifxChange.emit(null);
   }
 
   connectedCallback() {
     this.insideDropdown = !!this.el.closest('ifx-dropdown-menu');
     this.debounceSearch = debounce((query) => {
-      this.search.emit(query);
+      this.ifxChange.emit(query);
     }, 500);
   }
 
@@ -60,6 +67,8 @@ export class SearchInput {
             onInput={this.handleInput}
             placeholder="Search..."
             disabled={this.disabled}
+            value={this.value} // bind the value property to input element
+
 
           />
           {this.showDeleteIcon ? (

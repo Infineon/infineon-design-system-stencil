@@ -1,5 +1,3 @@
-import { debounce } from 'lodash';
-
 
 export default {
   title: 'Components/Search Input',
@@ -11,7 +9,7 @@ export default {
 
   },
   argTypes: {
-    onSearch: { action: 'search' },
+    onIfxChange: { action: 'ifxChange' },
     borderColor: {
       options: ['light', 'dark', 'green'],
       control: { type: 'radio' },
@@ -24,21 +22,20 @@ export default {
 };
 
 
-const debounceSearch = debounce((onSearch, query) => {
-  onSearch(query);
-}, 500);
-
 const Template = (args) => {
-  const handleInput = (e) => {
-    const query = e.target.value;
-    console.log(query);
-    debounceSearch(args.onSearch, query);
-
-  };
-
-  return `<ifx-search-input size="${args.size}" border-color="${args.borderColor}" disabled="${args.disabled}" onSearch=${handleInput} show-delete-icon="${args.showDeleteIcon}">
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `<ifx-search-input size="${args.size}" border-color="${args.borderColor}" disabled="${args.disabled}" show-delete-icon="${args.showDeleteIcon}">
   <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
-  </ifx-search-bar>`;
+  </ifx-search-input>`;
+
+  const inputElement = wrapper.querySelector('ifx-search-input');
+  inputElement.addEventListener('ifxChange', (event) => {
+    // console.log('Storybook Search-Input:', event);
+    args.onIfxChange(event);
+
+  });
+
+  return wrapper;
 };
 
 export const Default = Template.bind({});
@@ -47,54 +44,19 @@ Default.args = {
 };
 
 
-const BorderColorTemplate = (args) => {
-  const handleInput = (e) => {
-    const query = e.target.value;
-    console.log(query);
-    debounceSearch(args.onSearch, query);
-  };
 
-  return `<ifx-search-input size="${args.size}" border-color="${args.borderColor}" disabled="${args.disabled}" onSearch=${handleInput} show-delete-icon="${args.showDeleteIcon}">
-  <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
-  </ifx-search-bar>`;
-};
-
-export const BorderColor = BorderColorTemplate.bind({})
+export const BorderColor = Template.bind({})
 BorderColor.args = {
   borderColor: "green",
 };
 
 
-const DeleteIconTemplate = (args) => {
-  const handleInput = (e) => {
-    const query = e.target.value;
-    console.log(query);
-    debounceSearch(args.onSearch, query);
-  };
-
-  return `<ifx-search-input size="${args.size}" border-color="${args.borderColor}" disabled="${args.disabled}" onSearch=${handleInput} show-delete-icon="${args.showDeleteIcon}">
-  <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
-  </ifx-search-bar>`;
-};
-
-export const DeleteIcon = DeleteIconTemplate.bind({})
+export const DeleteIcon = Template.bind({})
 DeleteIcon.args = {
   showDeleteIcon: true,
 };
 
-const DisabledTemplate = (args) => {
-  const handleInput = (e) => {
-    const query = e.target.value;
-    console.log(query);
-    debounceSearch(args.onSearch, query);
-  };
-
-  return `<ifx-search-input size="${args.size}" border-color="${args.borderColor}" onSearch=${handleInput} disabled="${args.disabled}">
-  <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
-  </ifx-search-bar>`;
-};
-
-export const Disabled = DisabledTemplate.bind({})
+export const Disabled = Template.bind({})
 Disabled.args = {
   disabled: true,
 };

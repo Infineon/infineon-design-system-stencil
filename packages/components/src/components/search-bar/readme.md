@@ -14,13 +14,14 @@
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
 | `size`            | `size`              |             | `string`  | `""`        |
+| `value`           | `value`             |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event    | Description | Type                  |
-| -------- | ----------- | --------------------- |
-| `search` |             | `CustomEvent<string>` |
+| Event       | Description | Type                  |
+| ----------- | ----------- | --------------------- |
+| `ifxChange` |             | `CustomEvent<string>` |
 
 
 ## Dependencies
