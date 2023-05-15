@@ -35,7 +35,7 @@ const Template = (args) => {
 
   });
 
-  return wrapper;
+  return wrapper.innerHTML;
 };
 
 export const Default = Template.bind({});
