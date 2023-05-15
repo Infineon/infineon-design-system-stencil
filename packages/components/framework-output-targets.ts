@@ -20,7 +20,7 @@ export const frameworkTargets = [
   vueOutputTarget({
     componentCorePackage: '@infineon/infineon-design-system-stencil',
     proxiesFile: '../components-vue/src/components.ts',
-    componentModels: vueComponentModels,
+    // componentModels: vueComponentModels,
     excludeComponents,
   }),
   reactOutputTarget({
