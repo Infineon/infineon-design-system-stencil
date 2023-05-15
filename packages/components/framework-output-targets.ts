@@ -19,7 +19,7 @@ const excludeComponents = [
 export const frameworkTargets = [
   vueOutputTarget({
     componentCorePackage: '@infineon/infineon-design-system-stencil',
-    proxiesFile: '../components-vue/src/lib/components.ts',
+    proxiesFile: '../components-vue/src/components.ts',
     componentModels: vueComponentModels,
     excludeComponents,
   }),

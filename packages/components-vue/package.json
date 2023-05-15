@@ -23,7 +23,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.0.14"
+    "@infineon/infineon-design-system-stencil": "^18.0.15"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
