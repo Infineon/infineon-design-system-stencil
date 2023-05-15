@@ -13,7 +13,7 @@
     <br />
     <h2>Ifx-Search-Bar</h2>
     <h3>Event binding using Vue syntax</h3>
-    <ifx-search-bar v-model="searchBar1" style="width: 100%" show-close-button="true"></ifx-search-bar>
+    <ifx-search-bar v-model="searchBarQuery" style="width: 100%" show-close-button="true"></ifx-search-bar>
     <p>Search bar 1: {{ searchBar1 }}</p>
     <ifx-search-bar @ifxChange="handleSearch2" style="width: 100%" show-close-button="true"></ifx-search-bar>
     <p>Search bar 2: {{ searchBar2 }}</p>
@@ -56,7 +56,9 @@ h3 {
 import {
   computed,
   ref,
+  watch,
   onMounted,
+  nextTick,
 } from 'vue';
 
 const searchBar2 = ref('');
@@ -78,11 +80,11 @@ const searchInputQuery = computed({
   set: (newValue) => handleSearchInput(newValue)
 });
 
-// // Computed property to retrieve the query value
-// const query = computed({
-//   get: () => searchBar1.value,
-//   set: (newValue) => handleSearch1(newValue)
-// });
+// Computed property to retrieve the query value
+const searchBarQuery = computed({
+  get: () => searchBar1.value,
+  set: (newValue) => handleSearch1(newValue)
+});
 
 
 const progress = computed(() => {
@@ -103,20 +105,21 @@ function handleProgressUpdate(event) {
 }
 
 function handleSearch2(event) {
-  searchBar2.value = event.detail;
+  console.log("handling search 2", event)
+  searchBar2.value = event.detail?.detail;
 }
 
 
-// function handleSearch1(event) {
-//   console.log("handling search 1", event.detail)
-//   searchBar1.value = '';
-//   searchBar1.value = event.detail;
-// };
+function handleSearch1(event) {
+  console.log("handling search 1", event)
+  searchBar1.value = event.detail; //v-model automatically accesses event.detail (so no event.detail.detail access is necessary as when we listen to @ifxChange manually)
+};
 
 function handleSearchInput(event) {
   console.log("updating search input: ", event)
-  searchInput.value = event;
+  searchInput.value = event; //v-model automatically accesses event.detail
 };
+
 
 
 </script>

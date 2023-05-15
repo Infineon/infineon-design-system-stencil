@@ -13,7 +13,7 @@ export class SearchBar {
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = "";
   @Prop({ mutable: true }) value: string; // Use Prop instead of State
-  @Event() ifxChange: EventEmitter<string>; // Emit changes
+  @Event() ifxChange: EventEmitter<CustomEvent>;
 
   handleClick = () => {
     this.isOpen = !this.isOpen;
@@ -21,9 +21,15 @@ export class SearchBar {
 
   handleSearchInput(event: CustomEvent) {
     this.value = event.detail;
-    this.ifxChange.emit(this.value); // Emit change
-    console.log("Search bar value updated: ", this.value);
+    const reEmitEvent = new CustomEvent('ifx-change', {
+      bubbles: true,
+      composed: true,
+      detail: this.value
+    });
+    this.ifxChange.emit(reEmitEvent);
+    // console.log("Search bar value updated: ", reEmitEvent.detail);
   }
+
 
   render() {
     return (

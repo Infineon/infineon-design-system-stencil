@@ -668,7 +668,7 @@ declare namespace LocalJSX {
         "hideLabel"?: boolean;
         "icon"?: string;
         "isOpen"?: boolean;
-        "onIfxChange"?: (event: IfxSearchBarCustomEvent<string>) => void;
+        "onIfxChange"?: (event: IfxSearchBarCustomEvent<CustomEvent>) => void;
         "showCloseButton"?: boolean;
         "size"?: string;
         "value"?: string;

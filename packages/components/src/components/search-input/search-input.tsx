@@ -1,5 +1,4 @@
 import { Component, EventEmitter, h, Event, Prop, State, Element, Watch } from '@stencil/core';
-import { debounce } from 'lodash';
 import classNames from 'classnames';
 
 
@@ -13,7 +12,6 @@ import classNames from 'classnames';
 export class SearchInput {
 
   private inputElement: HTMLInputElement;
-  private debounceSearch: any;
   @Prop({ mutable: true }) value: string = '';
   @Prop() width: string = '100%';
   @Event() ifxChange: EventEmitter<CustomEvent>;
@@ -34,25 +32,20 @@ export class SearchInput {
   handleInput = () => {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    this.debounceSearch(query);
+    const customEvent = new CustomEvent('ifxChange', {
+      detail: query,
+      bubbles: true,
+      composed: true
+    });
+    this.ifxChange.emit(customEvent);
   };
+
 
   handleDelete = () => {
     this.inputElement.value = '';
     this.ifxChange.emit(null);
   }
 
-  connectedCallback() {
-    this.insideDropdown = !!this.el.closest('ifx-dropdown-menu');
-    this.debounceSearch = debounce((query) => {
-      this.ifxChange.emit(query);
-    }, 500);
-  }
-
-  disconnectedCallback() {
-    // Cancel any pending execution of debounceSearch when the component is disconnected
-    this.debounceSearch.cancel();
-  }
 
   render() {
 
