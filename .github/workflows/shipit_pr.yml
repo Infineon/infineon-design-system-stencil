@@ -24,14 +24,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
+
       - name: Create Release # releasing as a github npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         run: | 
-          cd packages/components
+          cd packages/components-vue
           npm install
-          npm run build:stencil
+          npm run build
           auto shipit
 
   vue-library-release: # release vue-library on npm
