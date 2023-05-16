@@ -93,12 +93,13 @@ jobs:
 
       - name: Create Release # releasing as a github npm package
         env:
+          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
           cd packages/components-react
           npm install
-          echo "Installing Stencil Library Version=${{ needs.stencil-library-release.outputs.version}}"
-          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.version }}"
+          echo "Installing Stencil Library Version=$CANARY_VERSION"
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
           auto shipit
