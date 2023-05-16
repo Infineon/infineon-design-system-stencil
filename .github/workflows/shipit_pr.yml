@@ -65,7 +65,7 @@ jobs:
   react-library-release: # release vue-library on npm
     needs: stencil-library-release
     runs-on: ubuntu-latest
-        steps:
+    steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
