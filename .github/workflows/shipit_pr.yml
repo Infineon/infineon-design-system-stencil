@@ -110,8 +110,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           scope: "@infineon"
           cache: 'npm'
-          cache-dependency-path: package-lock.json
-          
+          cache-dependency-path: packages/components-react/package-lock.json
+
       - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
