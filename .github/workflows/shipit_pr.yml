@@ -11,6 +11,8 @@ jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    outputs:
+      canary_version: ${{ steps.stencil-release.outputs.version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -27,6 +29,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Create Release # releasing as npm package
+        id: stencil-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -36,7 +39,7 @@ jobs:
           npm run build:stencil
           VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "canary_version=$VERSION" >> $GITHUB_OUTPUT
           auto shipit
 
   vue-library-release: # release vue-library on npm
@@ -59,13 +62,14 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Create Release # releasing as a github npm package
         env:
+          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
           NODE_AUTH_TOKEN:  ${{ secrets.NPM_TOKEN }}
 
         run: | 
           cd packages/components-vue
           npm install
-          echo "Installing Stencil Library Version=$stencil-library-release.outputs.version"
-          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.version }}"
+          echo "Installing Stencil Library Version=$stencil-library-release.outputs.CANARY_VERSION"
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
           auto shipit
 
