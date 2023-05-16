@@ -68,7 +68,7 @@ jobs:
         run: | 
           cd packages/components-vue
           npm install
-          echo "Installing Stencil Library Version=$stencil-library-release.outputs.CANARY_VERSION"
+          echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
           auto shipit
