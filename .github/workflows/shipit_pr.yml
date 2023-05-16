@@ -87,7 +87,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          cd packages/components-vue
+          cd packages/components-react
           npm install
           npm run build
           auto shipit
