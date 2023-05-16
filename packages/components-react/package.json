@@ -19,7 +19,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.0.16--canary.112.97e5d2941ed8fc8bb2dba636cc8c2eb565db1b7b.0"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "devDependencies": {
     "@types/node": "^20.1.4",

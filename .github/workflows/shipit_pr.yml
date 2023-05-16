@@ -26,7 +26,7 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
 
-      - name: Create Release # releasing as a github npm package
+      - name: Create Release # releasing as npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -34,6 +34,9 @@ jobs:
           cd packages/components
           npm install
           npm run build:stencil
+          VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $VERSION"
+          echo "::set-output name=version::$VERSION"
           auto shipit
 
   vue-library-release: # release vue-library on npm
@@ -61,10 +64,11 @@ jobs:
         run: | 
           cd packages/components-vue
           npm install
+          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.version }}"
           npm run build
           auto shipit
 
-  react-library-release: # release vue-library on npm
+  react-library-release: # release react-library on npm
     needs: stencil-library-release
     runs-on: ubuntu-latest
     steps:
@@ -89,5 +93,6 @@ jobs:
         run: | 
           cd packages/components-react
           npm install
+          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.version }}"
           npm run build
           auto shipit
