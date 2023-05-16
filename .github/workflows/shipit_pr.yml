@@ -51,11 +51,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://registry.npmjs.org"
-
+          registry-url: "https://npm.pkg.github.com"
       - name: Create Release # releasing as a github npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
         run: | 
           cd packages/components-vue
@@ -80,11 +79,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://registry.npmjs.org"
-
+          registry-url: "https://npm.pkg.github.com"
       - name: Create Release # releasing as a github npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
         run: | 
           cd packages/components-react
