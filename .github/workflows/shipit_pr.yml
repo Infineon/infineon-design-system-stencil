@@ -33,7 +33,7 @@ jobs:
         run: | 
           cd packages/components
           npm install
-          npm run build
+          npm run build:stencil
           auto shipit
 
   vue-library-release: # release vue-library on npm
