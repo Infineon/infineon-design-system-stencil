@@ -94,6 +94,7 @@ jobs:
         run: | 
           cd packages/components-react
           npm install
+          echo "Installing Stencil Library Version=${{ needs.stencil-library-release.outputs.version}}"
           npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.version }}"
           npm run build
           auto shipit
