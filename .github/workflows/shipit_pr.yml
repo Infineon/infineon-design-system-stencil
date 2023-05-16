@@ -51,10 +51,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
       - name: Create Release # releasing as a github npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN:  ${{ secrets.NPM_TOKEN }}
 
         run: | 
           cd packages/components-vue
@@ -65,8 +65,7 @@ jobs:
   react-library-release: # release vue-library on npm
     needs: stencil-library-release
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
-    steps:
+        steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
@@ -79,13 +78,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
+
       - name: Create Release # releasing as a github npm package
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          cd packages/components-react
+          cd packages/components-vue
           npm install
           npm run build
           auto shipit
