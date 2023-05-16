@@ -102,4 +102,4 @@ jobs:
           echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
-          auto canary --force
+          auto canary --build --force
