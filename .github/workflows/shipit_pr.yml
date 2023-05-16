@@ -102,4 +102,10 @@ jobs:
           echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
-          auto canary --build 1 --dry-run
+
+      - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          registry: "https://registry.npmjs.org"
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: "$CANARY_VERSION"
