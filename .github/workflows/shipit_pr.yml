@@ -116,6 +116,6 @@ jobs:
         uses: JS-DevTools/npm-publish@v1
         with:
           registry: "https://registry.npmjs.org"
-          working-directory: packages/components-react
+          package: packages/components-react
           token: ${{ secrets.NPM_TOKEN }}
           tag: "$CANARY_VERSION"
