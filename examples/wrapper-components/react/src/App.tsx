@@ -17,7 +17,7 @@ function App() {
   // };
   const updateProgressOnClick = () => {
     setProgressValue((currentValue) => {
-      return currentValue + 10;
+      return currentValue < 100 ? currentValue += 10 : currentValue = 10;
     });
   };
   
