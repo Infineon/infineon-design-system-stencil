@@ -121,4 +121,4 @@ jobs:
           registry: "https://registry.npmjs.org"
           package: ./packages/components-react/package.json
           token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ CANARY_VERSION }}
+          tag: ${{ needs.stencil-library-release.outputs.canary_version }}
