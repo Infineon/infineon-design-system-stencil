@@ -1,38 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { IfxProgressBar } from '@infineon/infineon-design-system-react';
+import { IfxProgressBar, IfxButton } from '@infineon/infineon-design-system-react';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [progressValue, setProgressValue] = useState(25);  // Add this line
+
+  // Define your methods here
+  // const handleProgressUpdate = (event:number) => {
+  //   // The event details would depend on how your IfxProgressBar's 'ifxChange' event is structured
+  //   // For example, if it provides the new value in 'event.detail.value'
+  //   console.log("new value ", event)
+  //   const newValue = event;
+  //   setProgressValue(newValue);
+  // };
+  const updateProgressOnClick = () => {
+    setProgressValue((currentValue) => {
+      return currentValue + 10;
+    });
+  };
+  
+
 
   return (
     <>
-      <div>
+      <div className="greetings">
+    <h1 className="green">Stencil Framework integration - React </h1>
       <h2>Ifx-Progress-Bar</h2>
-      <IfxProgressBar value="50" size="m" show-label="true"></IfxProgressBar>
+      <IfxProgressBar value={progressValue} size="m" show-label="true"></IfxProgressBar>
       <br />
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+ 
+    <IfxButton variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
+      disabled={false} onClick={updateProgressOnClick}>
+      Increase by 10
+    </IfxButton>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    
     </>
   )
 }
