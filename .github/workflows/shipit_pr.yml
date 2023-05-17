@@ -113,6 +113,9 @@ jobs:
           cache-dependency-path: packages/components-react/package-lock.json
 
       - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
+        env:
+          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}      
         uses: JS-DevTools/npm-publish@v1
         with:
           registry: "https://registry.npmjs.org"
