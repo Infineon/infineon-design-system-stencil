@@ -112,7 +112,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: packages/components-react/package-lock.json
 
-      - name: Npm Publish # takes version number from package.json, canary releases will not be published to NPM
+      - name: Npm Publish # takes canary tag
         env:
           CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}      
