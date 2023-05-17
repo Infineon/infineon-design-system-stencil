@@ -2,9 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { defineCustomElements } from '@infineon/infineon-design-system-react';
+import { IfxProgressBar } from '@infineon/infineon-design-system-react';
 
-defineCustomElements();
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +12,7 @@ function App() {
     <>
       <div>
       <h2>Ifx-Progress-Bar</h2>
-      <IfxProgressBar size="m" show-label="true"></IfxProgressBar>
+      <IfxProgressBar value="50" size="m" show-label="true"></IfxProgressBar>
       <br />
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

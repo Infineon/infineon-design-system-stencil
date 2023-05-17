@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowUnreachableCode": false,
+    "skipLibCheck": true,
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "emitDecoratorMetadata": true,
@@ -11,19 +13,15 @@
       "dom",
       "es2015"
     ],
-    "module": "CommonJS",
+    "module": "es2015",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "removeComments": false,
     "sourceMap": true,
-    "jsx": "react",
     "jsxFactory": "React.createElement",
     "jsxFragmentFactory": "React.Fragment",
-    "target": "es2015"
+    "target": "es2015",
+    "declarationDir": "./dist/types"
   },
   "include": [
     "lib",

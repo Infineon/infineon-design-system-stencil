@@ -16,7 +16,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@infineon/infineon-design-system-react": "*"
+    "@infineon/infineon-design-system-react": "18.0.16--canary.112.7de19be701dc78495a76afa19041ea00bcbfe7a8.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
