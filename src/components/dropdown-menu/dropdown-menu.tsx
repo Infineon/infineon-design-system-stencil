@@ -17,6 +17,7 @@ export class DropdownMenu {
   @Event({ bubbles: false }) selectValues: EventEmitter<Object>;
   @State() isShown: boolean = true;
   @State() isInsideSelect: boolean = false;
+  @State() isInsideMultiSelect: boolean = false;
   @Element() el;
 
 
@@ -31,18 +32,24 @@ export class DropdownMenu {
   componentWillRender() {
     const isInsideDropdown = this.el.closest('ifx-dropdown')
     const isInsideSelect = this.el.closest('ifx-select-input')
-    if (isInsideDropdown || isInsideSelect) {
+    const isInsideMultiSelect = this.el.closest('ifx-multi-select-input')
+    if (isInsideDropdown || isInsideSelect || isInsideMultiSelect) {
       this.isShown = false;
     }
     if(isInsideSelect) { 
       this.isInsideSelect = true;
     } else this.isInsideSelect = false;
+
+    if(isInsideMultiSelect) { 
+      this.isInsideMultiSelect = true;
+    } else this.isInsideMultiSelect = false;
   }
 
   componentDidLoad() { 
     const dropdownItems = this.el.querySelectorAll('ifx-dropdown-item');
     for(let i = 0; i < dropdownItems.length; i++) { 
       dropdownItems[i].addEventListener('itemValues', this.handleValues.bind(this))
+      dropdownItems[i].index = i;
     }
   }
 
@@ -53,7 +60,8 @@ export class DropdownMenu {
         `dropdown-menu 
         ${this.isShown ? 'show nested' : ""} 
         ${this.icon ? 'showIcon' : ""}
-        ${this.isInsideSelect ? 'select' : ""}`}>
+        ${this.isInsideSelect ? 'select' : ""}
+        ${this.isInsideMultiSelect ? "multiSelect" : ""}`}>
         <slot />
       </div>
     )

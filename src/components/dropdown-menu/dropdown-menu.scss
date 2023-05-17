@@ -29,6 +29,10 @@
     width: 235px;
   }
 
+  &.multiSelect { 
+    width: 300px;
+  }
+
   &.nested {
     transform: none !important;
     position: static;

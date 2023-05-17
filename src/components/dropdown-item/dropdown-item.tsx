@@ -18,16 +18,6 @@ export class DropdownItem {
   @Event({ bubbles: false }) itemValues: EventEmitter<Object>;
   @Element() el;
 
-  // handleMenuItem() {
-  //   const target = this.el.innerHTML;
-  //   //console.log('target', this.el.innerHTML)
-  //   this.select.emit(target);
-  // }
-
-  // handleCheckValue(event) { 
-  //   this.ItemCheck.emit(event.target.checked)
-  // }
-
   toggleCheckBox() { 
     let input = this.el.shadowRoot.querySelector('input')
     if(input) { 
@@ -40,17 +30,18 @@ export class DropdownItem {
     if(!isNested) { 
       this.toggleCheckBox()
     }
-    //console.log('current Target',event.currentTarget)
+
     if(event.currentTarget.className.toLowerCase() !== 'form-check-input') { 
       
-      const checkBoxValue = this.el.shadowRoot.querySelector('input');
+      const checkBoxValue = this.el.shadowRoot.querySelector('ifx-checkbox');
       if(checkBoxValue) { 
-        this.itemValues.emit({check: checkBoxValue.checked, value: this.value})
+        if(event.target.nodeName.toUpperCase() === 'IFX-CHECKBOX') { 
+          this.itemValues.emit({check: !checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item')})
+        } else this.itemValues.emit({check: checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item')})
       } else this.itemValues.emit({value: this.value})
     }
   }
   
-
 
   componentWillRender() {
     const ifxDropdown = this.el.closest('ifx-dropdown')
@@ -67,7 +58,8 @@ export class DropdownItem {
   render() {
     return (
       <a href="javascript:;" onClick={this.handleItemChange.bind(this)} class={`dropdown-item ${this.checkboxColor}`}>
-        {this.checkable && <input onClick={this.handleItemChange.bind(this)} type="checkbox" id="checkbox4" class={`form-check-input`} />}
+        {/* {this.checkable && <input onClick={this.handleItemChange.bind(this)} type="checkbox" id="checkbox4" class={`form-check-input`} />} */}
+        {this.checkable && <ifx-checkbox></ifx-checkbox> }
         {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         <label class="form-check-label"><slot /></label>
       </a>

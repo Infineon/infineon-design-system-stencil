@@ -133,6 +133,12 @@ export namespace Components {
         "isFlush": boolean;
         "titleText": string;
     }
+    interface IfxMultiSelectInput {
+        "Placeholder": string;
+    }
+    interface IfxMultiSelectInputItem {
+        "content": string;
+    }
     interface IfxNavbar {
         "applicationName": string;
     }
@@ -229,6 +235,10 @@ export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
 export interface IfxDropdownMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDropdownMenuElement;
+}
+export interface IfxMultiSelectInputItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxMultiSelectInputItemElement;
 }
 export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -403,6 +413,18 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxMultiSelectInputElement extends Components.IfxMultiSelectInput, HTMLStencilElement {
+    }
+    var HTMLIfxMultiSelectInputElement: {
+        prototype: HTMLIfxMultiSelectInputElement;
+        new (): HTMLIfxMultiSelectInputElement;
+    };
+    interface HTMLIfxMultiSelectInputItemElement extends Components.IfxMultiSelectInputItem, HTMLStencilElement {
+    }
+    var HTMLIfxMultiSelectInputItemElement: {
+        prototype: HTMLIfxMultiSelectInputItemElement;
+        new (): HTMLIfxMultiSelectInputItemElement;
+    };
     interface HTMLIfxNavbarElement extends Components.IfxNavbar, HTMLStencilElement {
     }
     var HTMLIfxNavbarElement: {
@@ -530,6 +552,8 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-multi-select-input": HTMLIfxMultiSelectInputElement;
+        "ifx-multi-select-input-item": HTMLIfxMultiSelectInputItemElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-menu-item": HTMLIfxNavbarMenuItemElement;
         "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
@@ -676,6 +700,13 @@ declare namespace LocalJSX {
         "isFlush"?: boolean;
         "titleText"?: string;
     }
+    interface IfxMultiSelectInput {
+        "Placeholder"?: string;
+    }
+    interface IfxMultiSelectInputItem {
+        "content"?: string;
+        "onClosed"?: (event: IfxMultiSelectInputItemCustomEvent<boolean>) => void;
+    }
     interface IfxNavbar {
         "applicationName"?: string;
     }
@@ -793,6 +824,8 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-multi-select-input": IfxMultiSelectInput;
+        "ifx-multi-select-input-item": IfxMultiSelectInputItem;
         "ifx-navbar": IfxNavbar;
         "ifx-navbar-menu-item": IfxNavbarMenuItem;
         "ifx-number-indicator": IfxNumberIndicator;
@@ -840,6 +873,8 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-multi-select-input": LocalJSX.IfxMultiSelectInput & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputElement>;
+            "ifx-multi-select-input-item": LocalJSX.IfxMultiSelectInputItem & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputItemElement>;
             "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-menu-item": LocalJSX.IfxNavbarMenuItem & JSXBase.HTMLAttributes<HTMLIfxNavbarMenuItemElement>;
             "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
