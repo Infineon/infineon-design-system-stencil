@@ -101,6 +101,7 @@ jobs:
           npm install
           echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          npm version $CANARY_VERSION --no-git-tag-version
           npm run build
 
       - name: Switch registry to npmjs.org # switching registry to npm, to additionally publish to npm
