@@ -44,7 +44,7 @@
     "@babel/core": "^7.20.2",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@stencil/vue-output-target": "^0.8.4",
+    "@stencil/vue-output-target": "^0.8.5",
     "@stencil/react-output-target": "^0.5.0",
     "@stencil/sass": "^2.0.0",
     "@storybook/addon-actions": "^6.5.13",
