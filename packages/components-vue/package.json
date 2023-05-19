@@ -2,11 +2,8 @@
   "name": "@infineon/infineon-design-system-vue",
   "version": "1.0.0",
   "description": "Infineon design system Stencil web components for Vue",
-  "main": "dist/index.cjs.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run tsc",
@@ -26,7 +23,7 @@
   },
   "devDependencies": {
     "typescript": "^5.0.4",
-    "vue": "^3.3"
+    "vue": "^3.3.2"
   },
   "auto": {
     "plugins": [
