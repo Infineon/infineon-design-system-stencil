@@ -1,7 +1,15 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 .dropdown { 
+  box-sizing: border-box;
   width: 300px;
+  border: 1px solid transparent;
+
+  &:active { 
+    outline: none;
+    border: 1px solid #0A8276;
+    
+  }
 }
 
 .multiSelectInput__container {
@@ -23,21 +31,17 @@
   align-self: stretch;
   flex-grow: 0;
 
-  &:focus:not(.error, .success) { 
-    outline: none;
-    border: 1px solid #0A8276;
+
+  &:focus:not(.success, :active) { 
+    outline: 2px solid #0A8276;
+    border: 1px solid #3C3A39;
+    border-radius: 1px;
+    outline-offset: 2px;
   }
 
-  &:hover:not(:disabled, .error, .success) { 
+  &:hover:not(:disabled, .success) { 
     border: 1px solid #3C3A39;
     cursor: pointer; //only when readonly
-  }
-
-  &.error { 
-    border: 1px solid #CD002F;
-    &:focus { 
-      outline: none;
-    }
   }
 
   &.success { 
@@ -86,9 +90,6 @@
     }
   }
 
-  
-  
-
   & .multiSelectInput__icon-wrapper { 
     & ifx-icon { 
       position: absolute;
@@ -100,14 +101,15 @@
 
   & .multiSelectInput__wrapper { 
     position: relative;
-    overflow: hidden; 
+    //overflow: hidden; 
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 8px;
-    gap: 6px;
-    font-size: 14px;
+    //padding: 8px;
+    padding: 0px;
+    //gap: 6px;
+    //font-size: 14px;
     height: 40px;
     left: 20px;
     //width: 250px;
@@ -120,74 +122,41 @@
     border-radius: 1px;
 
     flex: none;
-    order: 0;
-    align-self: stretch;
+    //order: 0;
+    //align-self: stretch;
     flex-grow: 0;
 
-    & span { 
-      pointer-events: none;
+    // & span { 
+    //   pointer-events: none;
+    // }
+
+    & .multiSelectInput__content { 
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      width: 220px;
+      gap: 6px;
+      font-size: 14px;
+      //height: 100%;
+      overflow: hidden; 
+
+      & span { 
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        pointer-events: none;
+        color: #8D8786;
+  
+        flex: none;
+        order: 1;
+        flex-grow: 1;
+      }
     }
 
-    // & ifx-multi-select-item { 
-    //   //flex: 1 0 0;
-    //   width: 150px;
-    // }
-
-    // &.show { 
-    //   & ifx-icon { 
-    //     transition: .3s;
-    //     transform: rotate(180deg);
-    //   }
-    // }
-
-    // &.error { 
-    //   border: 1px solid #CD002F;
-    //   &:focus { 
-    //     outline: none;
-    //   }
-    // }
-
-    // &.success { 
-    //   border: 1px solid #4CA460;
-    //   &:focus { 
-    //     outline: none;
-    //   }
-    // }
-
-
-    // &:focus:not(.error, .success) { 
-    //   outline: none;
-    //   border: 1px solid #0A8276;
-    // }
-
-    // &:hover:not(:disabled, .error, .success) { 
-    //   border: 1px solid #3C3A39;
-    //   cursor: pointer; //only when readonly
-    // }
-
-    &::placeholder { 
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
-
-      color: #8D8786;
-
-      flex: none;
-      order: 1;
-      flex-grow: 1;
-    }
   }
 
-
-
-  // &.show { 
-  //   & ifx-icon { 
-  //     transition: .3s;
-  //     transform: rotate(180deg);
-  //   }
-  // }
-
+  
   & .textInput__bottom-wrapper-error { 
     font-style: normal;
     font-weight: 400;

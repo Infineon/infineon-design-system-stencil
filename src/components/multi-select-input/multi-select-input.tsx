@@ -59,11 +59,12 @@ export class MultiSelectInput {
   }
 
   toggleSlideButtons() { 
+    console.log('HERE')
     const multiSelectElement = this.getMultiSelectFieldWrapper()
     const isOverFlowing =  this.isOverflown(multiSelectElement)
-    if(isOverFlowing && !this.isOverflowing) { 
+    if(isOverFlowing) { 
       this.isOverflowing = true;
-    } else if(!isOverFlowing && this.isOverflowing) { 
+    } else if(this.isOverflowing) { 
       this.isOverflowing = false;
     }
   }
@@ -154,7 +155,7 @@ export class MultiSelectInput {
   }
 
   getMultiSelectFieldWrapper() { 
-    let selectWrapper = this.el.shadowRoot.querySelector('.multiSelectInput__wrapper');
+    let selectWrapper = this.el.shadowRoot.querySelector('.multiSelectInput__content');
     return selectWrapper
   }
 
@@ -178,6 +179,9 @@ export class MultiSelectInput {
   }
 
   isOverflown(element) {
+    console.log('element', element)
+    console.log('element', element.scrollWidth)
+    console.log('element', element.clientWidth)
     return element.scrollWidth > element.clientWidth;
   }
 
@@ -194,13 +198,19 @@ export class MultiSelectInput {
     }
   }
 
-  addItemValueToTextField(value) { 
+
+  async addItemValueToTextField(value) { 
     const multiSelectElement = this.getMultiSelectFieldWrapper()
-    this.toggleSlideButtons()
     const newItem = document.createElement('ifx-multi-select-input-item')
     newItem.setAttribute('target', value.target?.index)
     newItem.setAttribute('content', value.value)
+
     multiSelectElement.append(newItem)
+ 
+    setTimeout(() => {
+      this.toggleSlideButtons();
+    }, 20);
+   
   }
 
   addEventListeners() {
@@ -224,7 +234,7 @@ export class MultiSelectInput {
   render() {
     return (
       <div class='dropdown'>
-        <div class="multiSelectInput__container">
+        <div class="multiSelectInput__container" tabindex={1}>
             {this.isOverflowing && 
             <span class="prev" onClick={() => this.addSelectSlider('left')}>
               <ifx-icon icon='chevron-left-16'></ifx-icon>
@@ -234,7 +244,9 @@ export class MultiSelectInput {
               <ifx-icon icon='chevron-right-16'></ifx-icon>
             </span>}
           <div class='multiSelectInput__wrapper'>
-            {this.isEmpty && <span>{this.Placeholder}</span>}
+            <div class="multiSelectInput__content">
+              {this.isEmpty && <span>{this.Placeholder}</span>}
+            </div>
           </div>
           <div class="multiSelectInput__icon-wrapper">
             <ifx-icon icon='chevron-down-16'></ifx-icon>
