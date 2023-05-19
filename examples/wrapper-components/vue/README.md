@@ -5,19 +5,9 @@ This example application demonstrates the usage of the Vue Wrapper Components ba
 
 ## Run locally
 
-### Using Vue Wrapper components from npm package
+### Using Vue Wrapper components (link to local Stencil library)
 
  ```npm install```
-
-
- ```npm run dev```
- 
- OR (to unlink the previously linked local dependency)
-
- ```npm run clean:dev```
-
-
-### Using Vue wrapper components from local package (for testing purposes)
 
  ```npm run test:local```
 

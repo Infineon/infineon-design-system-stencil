@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm run build:stencil && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
+    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
     "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link dev",
     "test:local": "run-s build:wrapper preview:link"

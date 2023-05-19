@@ -4,14 +4,9 @@ This example application demonstrates the usage of the React Wrapper Components 
 
 ## Run locally
 
-### Using Stencil components from npm package
+### Using Stencil components from npm package (link to local Stencil library)
 
  ```npm install```
-
- ```npm run dev``` 
-
-
-### Using Stencil components from local package (for testing purposes)
 
  ```npm run test:local```
 
