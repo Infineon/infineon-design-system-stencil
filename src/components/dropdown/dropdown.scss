@@ -2,7 +2,8 @@
 
 
 .dropdown {
-
+  display: inline-flex;
+  flex-direction: column;
   position: relative;
 
   & .btn {

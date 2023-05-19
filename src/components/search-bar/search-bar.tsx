@@ -11,10 +11,11 @@ export class SearchBar {
   private debounceSearch: any;
 
   @Prop() icon: string;
-  @Prop() width: string = '100%';
   @Prop() showCloseButton: boolean = true;
   @Event() search: EventEmitter<string>;
   @Prop({mutable: true}) isOpen: boolean = true;
+  @Prop() hideLabel: boolean = false;
+  @Prop() size: string = ""
 
   handleInput = () => {
     const query = this.inputElement.value;
@@ -34,21 +35,20 @@ export class SearchBar {
 
   render() {
     return (
-      <div class={`search-bar ${this.width} `}>
+      <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
         {this.isOpen ? (
-          <div class="search-bar__wrapper">
-            <ifx-search-input style={{ width: this.width }}>
-              <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
+          <div class="search-bar-wrapper">
+            <ifx-search-input>
+              <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
-            {this.showCloseButton ? (
-              <ifx-button variant="outline-text" icon="" position="left" href="" target="_blank" color="primary" size="m" onClick={this.handleClick}>
-                Close
-              </ifx-button>
-            ) : null}
+            {/* <input type="text" /> */}
+            {this.showCloseButton && 
+            <ifx-link onClick={this.handleClick}>Close</ifx-link>}
           </div>
         ) : (
-          <div class="search-bar__icon-wrapper">
-            <ifx-icon icon="search-16" class="search-icon" onClick={this.handleClick}></ifx-icon>
+          <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
+            <ifx-icon icon="search-16"></ifx-icon>
+            <a href="javascript:void(0)">Search</a>
           </div>
         )}
 
@@ -56,5 +56,3 @@ export class SearchBar {
     );
   }
 }
-
-

@@ -1,3 +1,97 @@
+# v18.0.15 (Thu May 11 2023)
+
+#### 🐛 Bug Fix
+
+- progress-bar now emitting whole event [#122](https://github.com/Infineon/infineon-design-system-stencil/pull/122) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.0.14 (Wed May 10 2023)
+
+#### 🐛 Bug Fix
+
+- new commit [#129](https://github.com/Infineon/infineon-design-system-stencil/pull/129) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.13 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- footer + ifx-link updates [#87](https://github.com/Infineon/infineon-design-system-stencil/pull/87) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.12 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- About and getting started page added [#121](https://github.com/Infineon/infineon-design-system-stencil/pull/121) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.0.11 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- checkbox [#124](https://github.com/Infineon/infineon-design-system-stencil/pull/124) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.10 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- 88 navbar v-1 [#113](https://github.com/Infineon/infineon-design-system-stencil/pull/113) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.9 (Tue May 09 2023)
+
+#### 🐛 Bug Fix
+
+- 125 radio button [#126](https://github.com/Infineon/infineon-design-system-stencil/pull/126) ([@tishoyanchev](https://github.com/tishoyanchev) [@kaiwerther](https://github.com/kaiwerther))
+- add toggle [#64](https://github.com/Infineon/infineon-design-system-stencil/pull/64) ([@kaiwerther](https://github.com/kaiwerther) [@tishoyanchev](https://github.com/tishoyanchev))
+- added tabs component [#63](https://github.com/Infineon/infineon-design-system-stencil/pull/63) ([@kaiwerther](https://github.com/kaiwerther) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update README.md ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Kai Werther ([@kaiwerther](https://github.com/kaiwerther))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.8 (Tue Apr 25 2023)
 
 #### 🐛 Bug Fix

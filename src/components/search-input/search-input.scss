@@ -1,19 +1,18 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 
-:host {
-  display: block;
-}
+// :host {
+//   display: block;
+//   width: 100%;
+// }
 
 .search-input {
   background: #FFFFFF;
   flex-direction: row;
   align-items: center;
-  padding: 16px 16px;
+  //padding: 16px 16px;
   flex: 1;
-
-
-
+  width: 100%;
 
   &.inside-dropdown {
     max-width: calc(224px - 32px);
@@ -33,6 +32,8 @@
     align-self: stretch;
     flex-grow: 0;
     position: relative;
+
+    width: 100%;
 
     &.search-input__wrapper-s {
       height: 40px;
@@ -59,7 +60,7 @@
     }
 
     input[type='text'] {
-      line-height: 24px;
+      //line-height: 24px;
       font-family: tokens.$font-family-body;
       font-style: normal;
       font-weight: 400;
@@ -67,7 +68,7 @@
       color: #8D8786;
       border: none;
       width: 100%;
-      min-width: calc(224px - 56px);
+      //min-width: calc(224px - 56px);
 
       &:focus {
         outline: none;
