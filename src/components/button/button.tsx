@@ -17,6 +17,9 @@ export class Button {
 
   @Prop() href: string;
   @Prop() target: string = '_self';
+
+  @Prop() tooltip: string = ""
+  @Prop({mutable: true}) tooltipPosition: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -30,6 +33,25 @@ export class Button {
     if (this.position.toUpperCase() !== "LEFT") {
       this.position = 'right';
     }
+
+    console.log(this.tooltip)
+
+    if(this.tooltipPosition.toLowerCase() === 'right') { 
+      this.tooltipPosition = 'right'
+    }
+    if(this.tooltipPosition.toLowerCase() === 'bottom') { 
+      this.tooltipPosition = 'bottom'
+    }
+    if(this.tooltipPosition.toLowerCase() === 'left') { 
+      this.tooltipPosition = 'left'
+    }
+    if(this.tooltipPosition.toLowerCase() === 'top') { 
+      this.tooltipPosition = 'top'
+    } else if(this.tooltip) { 
+      this.tooltipPosition = 'right'
+    }
+
+    
   }
 
 
@@ -53,9 +75,9 @@ export class Button {
         ) : (
           <button
             class={this.getClassNames()}
-
             type="button"
           >
+            {this.tooltip && <span class={`${this.tooltipPosition}`}>{this.tooltip}</span>}
             {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
             {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}

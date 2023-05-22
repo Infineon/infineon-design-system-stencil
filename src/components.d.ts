@@ -30,6 +30,8 @@ export namespace Components {
         "setFocus": () => Promise<void>;
         "size": string;
         "target": string;
+        "tooltip": string;
+        "tooltipPosition": string;
         "variant": 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
@@ -528,6 +530,8 @@ declare namespace LocalJSX {
         "position"?: string;
         "size"?: string;
         "target"?: string;
+        "tooltip"?: string;
+        "tooltipPosition"?: string;
         "variant"?: 'solid' | 'outline' | 'outline-text';
     }
     interface IfxCard {
