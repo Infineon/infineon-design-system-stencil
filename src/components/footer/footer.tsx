@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State } from '@stencil/core';
+import { Component, h, Element, Prop, State, Host } from '@stencil/core';
 
 @Component({
   tag: 'ifx-footer',
@@ -22,9 +22,7 @@ export class Card {
   }
 
   handleSlotChange(val) { 
-    console.log('here', val)
     if(val === 'facebook') { 
-      console.log('inside')
       this.showFacebook = true;
     }
   }
@@ -42,12 +40,16 @@ export class Card {
     } else {
       this.default = true;
     }
+
+    const hostElement = this.el.closest('ifx-footer')
+    hostElement.style.width = '100%';
   }
 
 
   render() {
     return (
-      <div class="footer__container">
+    <Host>
+        <div class="footer__container">
         <div class="footer__wrapper">
 
           {this.large && 
@@ -88,6 +90,7 @@ export class Card {
           
         </div>
       </div>
+    </Host>
     );
   }
 }
