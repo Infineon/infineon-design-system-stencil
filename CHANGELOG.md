@@ -1,3 +1,15 @@
+# v18.0.16 (Mon May 22 2023)
+
+#### 🐛 Bug Fix
+
+- 140 missing stylesheets in indexscss [#141](https://github.com/Infineon/infineon-design-system-stencil/pull/141) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.15 (Thu May 11 2023)
 
 #### 🐛 Bug Fix
