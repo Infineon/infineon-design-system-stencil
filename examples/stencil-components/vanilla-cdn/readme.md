@@ -22,3 +22,6 @@ To test the compiled components locally, follow the steps below.
  If you have checked out the master branch, the link in the ```index.html``` points to the npm package. Run the following command to replace it with the local link, before running the application.
 
  ```npm run update-link```
+
+
+The application will be served on http://localhost:5173/
