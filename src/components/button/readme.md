@@ -7,16 +7,18 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                                             | Default     |
-| ---------- | ---------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
-| `disabled` | `disabled` |             | `boolean`                                                        | `undefined` |
-| `href`     | `href`     |             | `string`                                                         | `undefined` |
-| `icon`     | `icon`     |             | `string`                                                         | `undefined` |
-| `position` | `position` |             | `string`                                                         | `'left'`    |
-| `size`     | `size`     |             | `string`                                                         | `undefined` |
-| `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
+| Property          | Attribute          | Description | Type                                                             | Default     |
+| ----------------- | ------------------ | ----------- | ---------------------------------------------------------------- | ----------- |
+| `color`           | `color`            |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
+| `disabled`        | `disabled`         |             | `boolean`                                                        | `undefined` |
+| `href`            | `href`             |             | `string`                                                         | `undefined` |
+| `icon`            | `icon`             |             | `string`                                                         | `undefined` |
+| `position`        | `position`         |             | `string`                                                         | `'left'`    |
+| `size`            | `size`             |             | `string`                                                         | `undefined` |
+| `target`          | `target`           |             | `string`                                                         | `'_self'`   |
+| `tooltip`         | `tooltip`          |             | `string`                                                         | `""`        |
+| `tooltipPosition` | `tooltip-position` |             | `string`                                                         | `undefined` |
+| `variant`         | `variant`          |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
 
 
 ## Methods
