@@ -6,10 +6,11 @@
   margin: 0;
   display: flex;
   align-items: center;
+  font-family: tokens.$font-family-body;
+  font-size: tokens.$font-size-s;
 }
 
 .breadcrumb-item > a{
-  font-size: 1rem;
   color: tokens.$color-text-black;
 }
 
