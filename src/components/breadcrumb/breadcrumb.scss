@@ -8,8 +8,9 @@
   align-items: center;
 }
 
-.breadcrumb-item {
+.breadcrumb-item > a{
   font-size: 1rem;
+  color: tokens.$color-text-black;
 }
 
 .separator {
