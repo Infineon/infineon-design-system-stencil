@@ -7,13 +7,15 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type      | Default     |
-| ----------- | ----------- | ----------- | --------- | ----------- |
-| `bold`      | `bold`      |             | `boolean` | `true`      |
-| `color`     | `color`     |             | `string`  | `'black'`   |
-| `href`      | `href`      |             | `string`  | `undefined` |
-| `target`    | `target`    |             | `string`  | `'_self'`   |
-| `underline` | `underline` |             | `any`     | `""`        |
+| Property          | Attribute          | Description | Type      | Default     |
+| ----------------- | ------------------ | ----------- | --------- | ----------- |
+| `bold`            | `bold`             |             | `boolean` | `true`      |
+| `color`           | `color`            |             | `string`  | `'black'`   |
+| `href`            | `href`             |             | `string`  | `undefined` |
+| `target`          | `target`           |             | `string`  | `'_self'`   |
+| `tooltip`         | `tooltip`          |             | `string`  | `""`        |
+| `tooltipPosition` | `tooltip-position` |             | `string`  | `undefined` |
+| `underline`       | `underline`        |             | `any`     | `""`        |
 
 
 ## Dependencies
