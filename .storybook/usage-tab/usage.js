@@ -5,6 +5,7 @@ import { Description } from '@storybook/components';
 import { useStorybookState, useGlobals } from '@storybook/api';
 import button from 'raw-loader!../../src/components/button/button_usage.md';
 import alert from 'raw-loader!../../src/components/alert/alert_usage.md';
+import navbar from 'raw-loader!../../src/components/navbar/navbar_usage.md';
 import progressBar from 'raw-loader!../../src/components/progress-bar/progress-bar_usage.md';
 
 
@@ -31,6 +32,7 @@ const Usage = (props) => {
   const componentMap = {
     'button': button,
     'alert': alert,
+    'navbar': navbar,
     'progress-bar': progressBar, // Use a string key for the component
 
   };
