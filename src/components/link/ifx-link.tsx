@@ -41,8 +41,6 @@ export class Link {
     } else if(this.tooltip) { 
       this.tooltipPosition = 'right'
     }
-
-    console.log('here', this.tooltipPosition)
   }
 
   render() {

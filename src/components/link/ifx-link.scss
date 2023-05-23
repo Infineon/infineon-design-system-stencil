@@ -52,7 +52,8 @@
       top: 150%;
       right: initial;
       bottom: initial;
-      left: initial;
+      left: 50%;
+      transform: translate(-50%);
 
       &::before { 
         bottom: 100%;
@@ -83,7 +84,8 @@
       bottom: 150%;
       right: initial;
       top: initial;
-      left: initial;
+      left: 50%;
+      transform: translate(-50%);
       &::before { 
         top: 100%;
         left: 50%;
