@@ -17,7 +17,14 @@ export class Link {
   @Element() el;
 
 
+  addHoverEffect(el) { 
+    console.log('hovered', el.target)
+    el.target.classList.toggle('show')
+
+  }
+
   componentWillLoad() {
+  
     if (this.underline.toUpperCase() !== 'TRUE') {
       this.underline = false;
     } else this.underline = true;
@@ -43,10 +50,16 @@ export class Link {
     }
   }
 
+  componentDidLoad() { 
+    const tooltip = this.el.shadowRoot.querySelector('.ifx-link')
+    //tooltip.onmouseover = this.addHoverEffect.bind(this);
+    console.log('tooltip', tooltip)
+  }
+
   render() {
     return (
-      <a href={this.href} target={this.target} class={`ifx-link ${this.color} ${this.bold ? 'bold' : ""} ${this.underline ? 'underline' : ""}`}>
-        {this.tooltip && <span class={`${this.tooltipPosition}`}>{this.tooltip}</span>}
+      <a href={this.href} target={this.target} class={`ifx-link ${this.tooltip ? 'show' : ""} ${this.color} ${this.bold ? 'bold' : ""} ${this.underline ? 'underline' : ""}`}>
+        {this.tooltip && <span class={`tooltip ${this.tooltipPosition}`}>{this.tooltip}</span>}
         <slot></slot>
       </a>
     )
