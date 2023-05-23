@@ -36,12 +36,15 @@ export class Button {
 
     if(this.tooltipPosition.toLowerCase() === 'right') { 
       this.tooltipPosition = 'right'
+      return;
     }
     if(this.tooltipPosition.toLowerCase() === 'bottom') { 
       this.tooltipPosition = 'bottom'
+      return;
     }
     if(this.tooltipPosition.toLowerCase() === 'left') { 
       this.tooltipPosition = 'left'
+      return;
     }
     if(this.tooltipPosition.toLowerCase() === 'top') { 
       this.tooltipPosition = 'top'
@@ -104,6 +107,7 @@ export class Button {
   getClassNames() {
     return classNames(
       'btn',
+      this.tooltip ? "show" : "",
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
       this.disabled ? 'disabled' : ''
