@@ -21,6 +21,9 @@ export namespace Components {
     }
     interface IfxBadge {
     }
+    interface IfxBreadcrumb {
+        "breadcrumbs": { text: string, url: string }[];
+    }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
@@ -260,6 +263,12 @@ declare global {
         prototype: HTMLIfxBadgeElement;
         new (): HTMLIfxBadgeElement;
     };
+    interface HTMLIfxBreadcrumbElement extends Components.IfxBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLIfxBreadcrumbElement: {
+        prototype: HTMLIfxBreadcrumbElement;
+        new (): HTMLIfxBreadcrumbElement;
+    };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
     var HTMLIfxButtonElement: {
@@ -469,6 +478,7 @@ declare global {
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-badge": HTMLIfxBadgeElement;
+        "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
@@ -519,6 +529,9 @@ declare namespace LocalJSX {
         "overflowing"?: boolean;
     }
     interface IfxBadge {
+    }
+    interface IfxBreadcrumb {
+        "breadcrumbs"?: { text: string, url: string }[];
     }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -712,6 +725,7 @@ declare namespace LocalJSX {
         "ifx-accordion-item": IfxAccordionItem;
         "ifx-alert": IfxAlert;
         "ifx-badge": IfxBadge;
+        "ifx-breadcrumb": IfxBreadcrumb;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
@@ -756,6 +770,7 @@ declare module "@stencil/core" {
             "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-badge": LocalJSX.IfxBadge & JSXBase.HTMLAttributes<HTMLIfxBadgeElement>;
+            "ifx-breadcrumb": LocalJSX.IfxBreadcrumb & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
