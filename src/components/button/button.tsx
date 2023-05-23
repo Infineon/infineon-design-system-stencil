@@ -34,8 +34,6 @@ export class Button {
       this.position = 'right';
     }
 
-    console.log(this.tooltip)
-
     if(this.tooltipPosition.toLowerCase() === 'right') { 
       this.tooltipPosition = 'right'
     }

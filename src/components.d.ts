@@ -115,6 +115,8 @@ export namespace Components {
         "color": string;
         "href": string;
         "target": string;
+        "tooltip": string;
+        "tooltipPosition": string;
         "underline": any;
     }
     interface IfxListGroup {
@@ -614,6 +616,8 @@ declare namespace LocalJSX {
         "color"?: string;
         "href"?: string;
         "target"?: string;
+        "tooltip"?: string;
+        "tooltipPosition"?: string;
         "underline"?: any;
     }
     interface IfxListGroup {
