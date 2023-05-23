@@ -68,10 +68,10 @@ export class Button {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
+            {this.tooltip && <span class={`${this.tooltipPosition}`}>{this.tooltip}</span>}
             {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
             {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
-
           </a>
         ) : (
           <button
