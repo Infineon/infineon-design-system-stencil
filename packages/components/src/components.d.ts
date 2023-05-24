@@ -63,12 +63,15 @@ export namespace Components {
         "search": boolean;
         "size": 's' | 'm';
     }
+    interface IfxDropdownDivider {
+    }
     interface IfxDropdownItem {
         "checkable": boolean;
         "disabled": boolean;
         "icon": string;
         "label": string;
         "size": 's' | 'm';
+        "value": string;
     }
     interface IfxDropdownMenu {
         "disabled": boolean;
@@ -130,6 +133,12 @@ export namespace Components {
         "isFlush": boolean;
         "titleText": string;
     }
+    interface IfxMultiSelectInput {
+        "Placeholder": string;
+    }
+    interface IfxMultiSelectInputItem {
+        "content": string;
+    }
     interface IfxNavbar {
         "applicationName": string;
     }
@@ -179,6 +188,13 @@ export namespace Components {
         "value": string;
         "width": string;
     }
+    interface IfxSelectInput {
+    }
+    interface IfxSidebar {
+    }
+    interface IfxSidebarItem {
+        "icon": string;
+    }
     interface IfxSpinner {
         "size": string;
     }
@@ -198,6 +214,16 @@ export namespace Components {
     interface IfxTag {
         "text": string;
     }
+    interface IfxTextInput {
+        "disabled": boolean;
+        "error": boolean;
+        "errorMessage": string;
+        "icon": boolean;
+        "placeholder": string;
+        "readonly": boolean;
+        "success": boolean;
+        "value": string;
+    }
     interface IfxToggle {
         "checked": boolean;
     }
@@ -208,6 +234,18 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxDropdownItemElement;
+}
+export interface IfxDropdownMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxDropdownMenuElement;
+}
+export interface IfxMultiSelectInputItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxMultiSelectInputItemElement;
 }
 export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -304,6 +342,12 @@ declare global {
         prototype: HTMLIfxDropdownElement;
         new (): HTMLIfxDropdownElement;
     };
+    interface HTMLIfxDropdownDividerElement extends Components.IfxDropdownDivider, HTMLStencilElement {
+    }
+    var HTMLIfxDropdownDividerElement: {
+        prototype: HTMLIfxDropdownDividerElement;
+        new (): HTMLIfxDropdownDividerElement;
+    };
     interface HTMLIfxDropdownItemElement extends Components.IfxDropdownItem, HTMLStencilElement {
     }
     var HTMLIfxDropdownItemElement: {
@@ -376,6 +420,18 @@ declare global {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
     };
+    interface HTMLIfxMultiSelectInputElement extends Components.IfxMultiSelectInput, HTMLStencilElement {
+    }
+    var HTMLIfxMultiSelectInputElement: {
+        prototype: HTMLIfxMultiSelectInputElement;
+        new (): HTMLIfxMultiSelectInputElement;
+    };
+    interface HTMLIfxMultiSelectInputItemElement extends Components.IfxMultiSelectInputItem, HTMLStencilElement {
+    }
+    var HTMLIfxMultiSelectInputItemElement: {
+        prototype: HTMLIfxMultiSelectInputItemElement;
+        new (): HTMLIfxMultiSelectInputItemElement;
+    };
     interface HTMLIfxNavbarElement extends Components.IfxNavbar, HTMLStencilElement {
     }
     var HTMLIfxNavbarElement: {
@@ -424,6 +480,24 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxSelectInputElement extends Components.IfxSelectInput, HTMLStencilElement {
+    }
+    var HTMLIfxSelectInputElement: {
+        prototype: HTMLIfxSelectInputElement;
+        new (): HTMLIfxSelectInputElement;
+    };
+    interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarElement: {
+        prototype: HTMLIfxSidebarElement;
+        new (): HTMLIfxSidebarElement;
+    };
+    interface HTMLIfxSidebarItemElement extends Components.IfxSidebarItem, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarItemElement: {
+        prototype: HTMLIfxSidebarItemElement;
+        new (): HTMLIfxSidebarItemElement;
+    };
     interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
     }
     var HTMLIfxSpinnerElement: {
@@ -454,6 +528,12 @@ declare global {
         prototype: HTMLIfxTagElement;
         new (): HTMLIfxTagElement;
     };
+    interface HTMLIfxTextInputElement extends Components.IfxTextInput, HTMLStencilElement {
+    }
+    var HTMLIfxTextInputElement: {
+        prototype: HTMLIfxTextInputElement;
+        new (): HTMLIfxTextInputElement;
+    };
     interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
     }
     var HTMLIfxToggleElement: {
@@ -478,6 +558,7 @@ declare global {
         "ifx-card-text": HTMLIfxCardTextElement;
         "ifx-checkbox": HTMLIfxCheckboxElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
+        "ifx-dropdown-divider": HTMLIfxDropdownDividerElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
         "ifx-dropdown-menu": HTMLIfxDropdownMenuElement;
         "ifx-filter-input": HTMLIfxFilterInputElement;
@@ -490,6 +571,8 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-multi-select-input": HTMLIfxMultiSelectInputElement;
+        "ifx-multi-select-input-item": HTMLIfxMultiSelectInputItemElement;
         "ifx-navbar": HTMLIfxNavbarElement;
         "ifx-navbar-menu-item": HTMLIfxNavbarMenuItemElement;
         "ifx-number-indicator": HTMLIfxNumberIndicatorElement;
@@ -498,11 +581,15 @@ declare global {
         "ifx-range": HTMLIfxRangeElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-select-input": HTMLIfxSelectInputElement;
+        "ifx-sidebar": HTMLIfxSidebarElement;
+        "ifx-sidebar-item": HTMLIfxSidebarItemElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
+        "ifx-text-input": HTMLIfxTextInputElement;
         "ifx-toggle": HTMLIfxToggleElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
@@ -563,18 +650,23 @@ declare namespace LocalJSX {
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
+    interface IfxDropdownDivider {
+    }
     interface IfxDropdownItem {
         "checkable"?: boolean;
         "disabled"?: boolean;
         "icon"?: string;
         "label"?: string;
+        "onItemValues"?: (event: IfxDropdownItemCustomEvent<Object>) => void;
         "size"?: 's' | 'm';
+        "value"?: string;
     }
     interface IfxDropdownMenu {
         "disabled"?: boolean;
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "onSelectValues"?: (event: IfxDropdownMenuCustomEvent<Object>) => void;
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
@@ -629,6 +721,13 @@ declare namespace LocalJSX {
         "isFlush"?: boolean;
         "titleText"?: string;
     }
+    interface IfxMultiSelectInput {
+        "Placeholder"?: string;
+    }
+    interface IfxMultiSelectInputItem {
+        "content"?: string;
+        "onClosed"?: (event: IfxMultiSelectInputItemCustomEvent<boolean>) => void;
+    }
     interface IfxNavbar {
         "applicationName"?: string;
     }
@@ -682,6 +781,13 @@ declare namespace LocalJSX {
         "value"?: string;
         "width"?: string;
     }
+    interface IfxSelectInput {
+    }
+    interface IfxSidebar {
+    }
+    interface IfxSidebarItem {
+        "icon"?: string;
+    }
     interface IfxSpinner {
         "size"?: string;
     }
@@ -704,6 +810,16 @@ declare namespace LocalJSX {
     interface IfxTag {
         "text"?: string;
     }
+    interface IfxTextInput {
+        "disabled"?: boolean;
+        "error"?: boolean;
+        "errorMessage"?: string;
+        "icon"?: boolean;
+        "placeholder"?: string;
+        "readonly"?: boolean;
+        "success"?: boolean;
+        "value"?: string;
+    }
     interface IfxToggle {
         "checked"?: boolean;
         "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
@@ -723,6 +839,7 @@ declare namespace LocalJSX {
         "ifx-card-text": IfxCardText;
         "ifx-checkbox": IfxCheckbox;
         "ifx-dropdown": IfxDropdown;
+        "ifx-dropdown-divider": IfxDropdownDivider;
         "ifx-dropdown-item": IfxDropdownItem;
         "ifx-dropdown-menu": IfxDropdownMenu;
         "ifx-filter-input": IfxFilterInput;
@@ -735,6 +852,8 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-multi-select-input": IfxMultiSelectInput;
+        "ifx-multi-select-input-item": IfxMultiSelectInputItem;
         "ifx-navbar": IfxNavbar;
         "ifx-navbar-menu-item": IfxNavbarMenuItem;
         "ifx-number-indicator": IfxNumberIndicator;
@@ -743,11 +862,15 @@ declare namespace LocalJSX {
         "ifx-range": IfxRange;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
+        "ifx-select-input": IfxSelectInput;
+        "ifx-sidebar": IfxSidebar;
+        "ifx-sidebar-item": IfxSidebarItem;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
+        "ifx-text-input": IfxTextInput;
         "ifx-toggle": IfxToggle;
         "infineon-icon-stencil": InfineonIconStencil;
     }
@@ -767,6 +890,7 @@ declare module "@stencil/core" {
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
             "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
+            "ifx-dropdown-divider": LocalJSX.IfxDropdownDivider & JSXBase.HTMLAttributes<HTMLIfxDropdownDividerElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
             "ifx-dropdown-menu": LocalJSX.IfxDropdownMenu & JSXBase.HTMLAttributes<HTMLIfxDropdownMenuElement>;
             "ifx-filter-input": LocalJSX.IfxFilterInput & JSXBase.HTMLAttributes<HTMLIfxFilterInputElement>;
@@ -779,6 +903,8 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-multi-select-input": LocalJSX.IfxMultiSelectInput & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputElement>;
+            "ifx-multi-select-input-item": LocalJSX.IfxMultiSelectInputItem & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputItemElement>;
             "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
             "ifx-navbar-menu-item": LocalJSX.IfxNavbarMenuItem & JSXBase.HTMLAttributes<HTMLIfxNavbarMenuItemElement>;
             "ifx-number-indicator": LocalJSX.IfxNumberIndicator & JSXBase.HTMLAttributes<HTMLIfxNumberIndicatorElement>;
@@ -787,11 +913,15 @@ declare module "@stencil/core" {
             "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-select-input": LocalJSX.IfxSelectInput & JSXBase.HTMLAttributes<HTMLIfxSelectInputElement>;
+            "ifx-sidebar": LocalJSX.IfxSidebar & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
+            "ifx-sidebar-item": LocalJSX.IfxSidebarItem & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
+            "ifx-text-input": LocalJSX.IfxTextInput & JSXBase.HTMLAttributes<HTMLIfxTextInputElement>;
             "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }

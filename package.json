@@ -1,4 +1,45 @@
 {
+  "name": "@infineon/infineon-design-system-stencil",
+  "version": "18.0.19",
+  "private": false,
+  "description": "Infineon design system Stencil web components",
+  "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
+  "bugs": {
+    "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "dev:storybook": "start-storybook -p 6262",
+    "dev:stencil": "stencil build --watch",
+    "index": "stencil build --serve --watch --dev",
+    "dev": "run-p dev:stencil dev:storybook",
+    "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
+    "build:storybook": "npm run build:stencil && build-storybook",
+    "build:stencil": "stencil build --docs"
+  },
+  "dependencies": {
+    "@infineon/design-system-tokens": "^2.0.1",
+    "@infineon/infineon-icons": "^1.1.2",
+    "@stencil/core": "^2.16.0"
+  },
   "devDependencies": {
     "@types/react": "^18.2.6",
     "react": "^18.2.0",

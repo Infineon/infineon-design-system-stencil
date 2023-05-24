@@ -9,7 +9,7 @@
 @import "./components/alert/alert";
 @import "./components/link/ifx-link";
 @import "./components/footer/footer";
-
+@import './components/badge/badge';
 @import './components/navbar/navbar';
 @import './components/navbar/navbar-menu-item';
 
@@ -19,4 +19,16 @@
 @import './components/list-group/list-group-notification';
 @import './components/number-indicator/number-indicator';
 
+@import './components/text-input/text-input';
+
+@import './components/sidebar/sidebar';
+@import './components/sidebar/sidebar-item';
+
+
 @import './components/checkbox/checkbox';
+
+@import './components/text-input/text-input';
+@import './components/select-input/select-input';
+@import './components/multi-select-input/multi-select-input';
+
+
