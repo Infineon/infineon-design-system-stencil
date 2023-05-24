@@ -177,6 +177,11 @@ export namespace Components {
         "size": string;
         "width": string;
     }
+    interface IfxSidebar {
+    }
+    interface IfxSidebarItem {
+        "icon": string;
+    }
     interface IfxSpinner {
         "size": string;
     }
@@ -429,6 +434,18 @@ declare global {
         prototype: HTMLIfxSearchInputElement;
         new (): HTMLIfxSearchInputElement;
     };
+    interface HTMLIfxSidebarElement extends Components.IfxSidebar, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarElement: {
+        prototype: HTMLIfxSidebarElement;
+        new (): HTMLIfxSidebarElement;
+    };
+    interface HTMLIfxSidebarItemElement extends Components.IfxSidebarItem, HTMLStencilElement {
+    }
+    var HTMLIfxSidebarItemElement: {
+        prototype: HTMLIfxSidebarItemElement;
+        new (): HTMLIfxSidebarItemElement;
+    };
     interface HTMLIfxSpinnerElement extends Components.IfxSpinner, HTMLStencilElement {
     }
     var HTMLIfxSpinnerElement: {
@@ -509,6 +526,8 @@ declare global {
         "ifx-range": HTMLIfxRangeElement;
         "ifx-search-bar": HTMLIfxSearchBarElement;
         "ifx-search-input": HTMLIfxSearchInputElement;
+        "ifx-sidebar": HTMLIfxSidebarElement;
+        "ifx-sidebar-item": HTMLIfxSidebarItemElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
         "ifx-tab": HTMLIfxTabElement;
@@ -692,6 +711,11 @@ declare namespace LocalJSX {
         "size"?: string;
         "width"?: string;
     }
+    interface IfxSidebar {
+    }
+    interface IfxSidebarItem {
+        "icon"?: string;
+    }
     interface IfxSpinner {
         "size"?: string;
     }
@@ -760,6 +784,8 @@ declare namespace LocalJSX {
         "ifx-range": IfxRange;
         "ifx-search-bar": IfxSearchBar;
         "ifx-search-input": IfxSearchInput;
+        "ifx-sidebar": IfxSidebar;
+        "ifx-sidebar-item": IfxSidebarItem;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
         "ifx-tab": IfxTab;
@@ -805,6 +831,8 @@ declare module "@stencil/core" {
             "ifx-range": LocalJSX.IfxRange & JSXBase.HTMLAttributes<HTMLIfxRangeElement>;
             "ifx-search-bar": LocalJSX.IfxSearchBar & JSXBase.HTMLAttributes<HTMLIfxSearchBarElement>;
             "ifx-search-input": LocalJSX.IfxSearchInput & JSXBase.HTMLAttributes<HTMLIfxSearchInputElement>;
+            "ifx-sidebar": LocalJSX.IfxSidebar & JSXBase.HTMLAttributes<HTMLIfxSidebarElement>;
+            "ifx-sidebar-item": LocalJSX.IfxSidebarItem & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
