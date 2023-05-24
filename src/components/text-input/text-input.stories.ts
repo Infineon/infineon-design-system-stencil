@@ -5,7 +5,7 @@ export default {
     disabled: false,
     success: false,
     placeholder: 'Placeholder',
-    errorMessage: ""
+    errorMessage: "",
   },
 
   argTypes: {
@@ -15,13 +15,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-text-input 
-  error=${args.error} 
-  disabled=${args.disabled} 
-  error-message=${args.errorMessage}
-  success="${args.success}"
-  placeholder="${args.placeholder}">Text Field
-  </ifx-text-input>`;
+  `<ifx-text-input disabled="${args.disabled}" error="${args.error}" success="${args.success}" error-message="${args.errorMessage}">Text field</ifx-text-input>`;
 
 
 export const Default = DefaultTemplate.bind({});

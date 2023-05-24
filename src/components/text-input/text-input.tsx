@@ -10,7 +10,7 @@ export class TextInput {
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
   @Prop() error: boolean = false;
-  @Prop() errorMessage: string = ""
+  @Prop() errorMessage: string = "";
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
 
