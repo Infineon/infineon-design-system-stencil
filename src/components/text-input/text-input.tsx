@@ -9,6 +9,7 @@ import { Component, h, Element, Prop } from '@stencil/core';
 export class TextInput {
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
+
   @Prop() value: string = ""
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
@@ -27,18 +28,22 @@ export class TextInput {
         </div>
         <div class="textInput__bottom-wrapper">
           <input 
+
           readonly={this.readonly}
           disabled={this.disabled}
           type="text" 
           id='text-field' 
           value={this.value}
+
           placeholder={this.placeholder} 
           class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}/>
           {this.error && 
             <div class="textInput__bottom-wrapper-error">
             {this.errorMessage}
           </div>}
+
           {this.icon && <ifx-icon icon='chevron-down-16'></ifx-icon>}
+
         </div>
       </div>
     );
