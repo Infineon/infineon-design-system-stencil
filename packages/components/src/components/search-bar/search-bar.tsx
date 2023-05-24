@@ -12,7 +12,7 @@ export class SearchBar {
   @Prop({ mutable: true }) isOpen: boolean = true;
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = "";
-  @Prop({ mutable: true }) value: string; // Use Prop instead of State
+  @Prop({ mutable: true }) value: string = '';
   @Event() ifxChange: EventEmitter<CustomEvent>;
 
   handleClick = () => {
