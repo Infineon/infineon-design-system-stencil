@@ -31,9 +31,9 @@ const Template = (args) => {
   `;
 
   const progressBar = wrapper.querySelector('ifx-progress-bar');
-  progressBar.addEventListener('percentageChange', (event: CustomEvent<number>) => {
-    console.log('Percentage:', event?.detail);
-    action('Percentage:')(event?.detail);
+  progressBar.addEventListener('percentageChange', (event: CustomEvent<Event>) => {
+    console.log('Percentage:', event);
+    action('Percentage:')(event);
   });
 
   // Run this useEffect hook whenever the percentage changes
