@@ -56,6 +56,7 @@ export namespace Components {
         "error": boolean;
     }
     interface IfxChip {
+        "label": string;
     }
     interface IfxDropdown {
         "disabled": boolean;
@@ -71,6 +72,7 @@ export namespace Components {
         "icon": string;
         "label": string;
         "size": 's' | 'm';
+        "value": string;
     }
     interface IfxDropdownMenu {
         "disabled": boolean;
@@ -208,6 +210,10 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxDropdownItemElement;
 }
 export interface IfxProgressBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -563,6 +569,7 @@ declare namespace LocalJSX {
         "error"?: boolean;
     }
     interface IfxChip {
+        "label"?: string;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -577,7 +584,9 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "icon"?: string;
         "label"?: string;
+        "onItemValues"?: (event: IfxDropdownItemCustomEvent<Object>) => void;
         "size"?: 's' | 'm';
+        "value"?: string;
     }
     interface IfxDropdownMenu {
         "disabled"?: boolean;

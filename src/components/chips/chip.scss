@@ -1,23 +1,14 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 .chip__container { 
-  display: flex;
-  flex-direction: column;
-  
+  display: block;
 
   & .chip__wrapper { 
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
     padding: 8px 16px;
     gap: 8px;
-
-    position: absolute;
-    width: 85px;
-    height: 36px;
-    left: 117px;
-    top: 16px;
 
     background: #FFFFFF;
 
@@ -29,17 +20,11 @@
       font-weight: 400;
       font-size: 14px;
       line-height: 20px;
-      /* identical to box height, or 143% */
 
       display: flex;
       align-items: center;
 
-      /* Color/Base/Black */
-
       color: #1D1D1D;
-
-
-      /* Inside auto layout */
 
       flex: none;
       order: 0;
