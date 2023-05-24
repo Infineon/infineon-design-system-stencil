@@ -1,20 +1,13 @@
-import { Component, Prop, h, Element, Listen } from "@stencil/core";
-// import { calendar16 } from '@infineon/infineon-icons';
+import { Component, h, Element, Listen } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-dropdown',
+  tag: 'ifx-select-input',
   styleUrl: '../../index.scss',
   shadow: true
 })
 
-export class Dropdown {
+export class SelectInput {
 
-  @Prop() label: string;
-  @Prop() size: 's' | 'm';
-  @Prop() disabled: boolean;
-  @Prop() icon: boolean = false;
-  @Prop() search: boolean = false;
-  @Prop() filter: boolean = false;
   @Element() el;
 
   @Listen('mousedown', { target: 'document' })
@@ -26,9 +19,12 @@ export class Dropdown {
   }
 
   getDropdownMenu() {
-    const dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
-    const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
-    return dropdownMenuElement
+    let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
+    if(dropdownMenuComponent) { 
+      dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
+      const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
+      return dropdownMenuElement
+    }
   }
 
   getDropdownWrapper() {
@@ -37,28 +33,33 @@ export class Dropdown {
   }
 
   getDropdownItems() {
-
     const dropdownMenuItems = this.el.querySelectorAll('ifx-dropdown-item')
-
     return dropdownMenuItems
   }
 
   handleClassList(el, type, className) {
-    el.classList[type](className)
+    el?.classList[type](className)
   }
 
   toggleDropdownMenu() {
+    const textField = this.getTextField()
+    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'toggle', 'show')
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
+    this.handleClassList(textFieldElement, 'toggle', 'show')
+
   }
 
   closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
+    const textField = this.getTextField()
+    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
+    this.handleClassList(textFieldElement, 'remove', 'show')
   }
 
   removeActiveMenuItem() {
@@ -88,7 +89,6 @@ export class Dropdown {
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
-
     if (!target) return;
     if (isCheckable) {
       this.toggleCheckbox(target)
@@ -101,19 +101,32 @@ export class Dropdown {
     this.toggleDropdownMenu()
   }
 
+  getTextField() { 
+    let textField = this.el.querySelector('ifx-text-input');
+    return textField
+  }
+
+  addItemValueToTextField(value) { 
+    const textField = this.getTextField()
+    textField.value = value.value
+  }
+
   addEventListeners() {
-    console.log('here')
     const dropdownMenu = this.getDropdownMenu();
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
+    let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
+    dropdownMenuComponent.addEventListener('selectValues', (event) => { 
+      this.addItemValueToTextField(event.detail)
+    })
   }
 
   componentDidRender() {
-    let buttonComponent = this.el.querySelector('ifx-button');
-    if (buttonComponent) {
-      const buttonElement = buttonComponent.shadowRoot.querySelector('button');
-      if (!buttonElement.classList.contains('disabled')) {
-        buttonElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
+    let textInput = this.el.querySelector('ifx-text-input');
+    if (textInput) {
+      const textInputElement = textInput.shadowRoot.querySelector('input');
+      if (!textInputElement.classList.contains('disabled')) {
+        textInputElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()
       }
     }
@@ -123,8 +136,8 @@ export class Dropdown {
   render() {
     return (
       <div class='dropdown'>
-        <slot name="button" />
-        <slot />
+        <slot name="text-input" />
+        <slot name="menu" />
       </div>
     )
   }

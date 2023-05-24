@@ -19,18 +19,37 @@
     }
   </style>
 
-  <script>
-
-
-
-  </script>
-
 
 </head>
 
 <body>
   
-  <ifx-text-input disabled="false" error="false" success="false" error-message="Caption text, description, error notification">Text field</ifx-text-input>
+
+  <!-- <ifx-select-input>
+    <ifx-text-input icon="true" readonly="true" slot="text-input"></ifx-text-input>
+    <ifx-dropdown-menu slot="menu">
+      <ifx-dropdown-item value="Item1">Item1</ifx-dropdown-item>
+      <ifx-dropdown-item value="Item2">Item2</ifx-dropdown-item>
+      <ifx-dropdown-divider></ifx-dropdown-divider>
+      <ifx-dropdown-item icon="bargraph16" value="Item3">Item3</ifx-dropdown-item>
+      <ifx-dropdown-item icon="bargraph16" value="Item3">Item4</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-select-input> -->
+
+
+  <ifx-multi-select-input placeholder="placeholder">
+    <ifx-dropdown-menu slot="menu">
+      <ifx-dropdown-item checkable value="Automated system">Automated system</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Automated machine">Automated machine</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Automated Engineering system">Automated Engineering system</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Item4">Item4</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Item5">Item5</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Item6">Item6</ifx-dropdown-item>
+      <ifx-dropdown-item checkable value="Item7">Item7</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-multi-select-input>
+
+
 
 </body>
 
