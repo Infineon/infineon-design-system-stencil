@@ -4,17 +4,9 @@ import { IfxProgressBar, IfxButton } from '@infineon/infineon-design-system-reac
 
 
 function App() {
-  const [count, setCount] = useState(0);
   const [progressValue, setProgressValue] = useState(25);  // Add this line
 
   // Define your methods here
-  // const handleProgressUpdate = (event:number) => {
-  //   // The event details would depend on how your IfxProgressBar's 'ifxChange' event is structured
-  //   // For example, if it provides the new value in 'event.detail.value'
-  //   console.log("new value ", event)
-  //   const newValue = event;
-  //   setProgressValue(newValue);
-  // };
   const updateProgressOnClick = () => {
     setProgressValue((currentValue) => {
       return currentValue < 100 ? currentValue += 10 : currentValue = 10;
