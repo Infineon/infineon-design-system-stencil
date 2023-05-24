@@ -1,3 +1,15 @@
+# v18.0.18 (Wed May 24 2023)
+
+#### 🐛 Bug Fix
+
+- 127 text input [#130](https://github.com/Infineon/infineon-design-system-stencil/pull/130) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.17 (Wed May 24 2023)
 
 #### 🐛 Bug Fix
