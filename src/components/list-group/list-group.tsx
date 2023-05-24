@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop} from '@stencil/core';
+import { Component, h, Element, Prop, Host} from '@stencil/core';
 
 @Component({
   tag: 'ifx-list-group',
@@ -14,7 +14,8 @@ export class ListGroup {
 
   render() {
     return (
-      <div class={
+    <Host>
+        <div class={
         `list-group-container 
         ${this.flush ? 'flush' : ""} 
         ${this.bulletpoint ? 'bulletpoint' : ""}`
@@ -22,6 +23,7 @@ export class ListGroup {
         <slot name='list-item' />
         <slot name="list-notification" />
       </div>
+    </Host>
     );
   }
 }

@@ -17,6 +17,26 @@
 | `size`     | `size`     |             | `"m" \| "s"` | `undefined` |
 
 
+## Events
+
+| Event          | Description | Type                  |
+| -------------- | ----------- | --------------------- |
+| `selectValues` |             | `CustomEvent<Object>` |
+
+
+## Dependencies
+
+### Used by
+
+ - [ifx-chip](../chips)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-chip --> ifx-dropdown-menu
+  style ifx-dropdown-menu fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
