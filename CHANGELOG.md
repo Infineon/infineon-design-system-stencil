@@ -1,3 +1,16 @@
+# v18.0.19 (Wed May 24 2023)
+
+#### 🐛 Bug Fix
+
+- 132 multi select input v-1 [#135](https://github.com/Infineon/infineon-design-system-stencil/pull/135) ([@tishoyanchev](https://github.com/tishoyanchev))
+- v-2 [#132](https://github.com/Infineon/infineon-design-system-stencil/pull/132) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.18 (Wed May 24 2023)
 
 #### 🐛 Bug Fix
