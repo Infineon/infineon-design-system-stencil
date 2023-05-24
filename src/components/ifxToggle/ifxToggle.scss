@@ -1,6 +1,6 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-/* pill-toggle.css */
+/* toggle-toggle.css */
 :host {
   display: inline-block;
   user-select: none;
@@ -29,16 +29,16 @@
   transition: transform 0.3s ease;
 }
 
-.pill-container:hover .pill-switch {
+.toggle-container:hover .toggle-switch {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.pill-switch.checked {
+.toggle-switch.checked {
   transform: translateX(25px);
   background-color: tokens.$color-bg-white;
 }
 
-.pill-container.checked {
+.toggle-container.checked {
   background-color: tokens.$color-default-500;
   /* Ocean color */
   border-color: tokens.$color-default-500;

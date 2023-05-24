@@ -720,7 +720,7 @@ declare namespace LocalJSX {
     }
     interface IfxProgressBar {
         "label"?: string;
-        "onPercentageChange"?: (event: IfxProgressBarCustomEvent<number>) => void;
+        "onPercentageChange"?: (event: IfxProgressBarCustomEvent<CustomEvent>) => void;
         "percentage"?: number;
         "showLabel"?: boolean;
         "size"?: string;
