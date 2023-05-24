@@ -1,3 +1,28 @@
+# v18.0.15 (Thu May 11 2023)
+
+#### 🐛 Bug Fix
+
+- progress-bar now emitting whole event [#122](https://github.com/Infineon/infineon-design-system-stencil/pull/122) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Verena Lechner (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.0.14 (Wed May 10 2023)
+
+#### 🐛 Bug Fix
+
+- new commit [#129](https://github.com/Infineon/infineon-design-system-stencil/pull/129) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.13 (Tue May 09 2023)
 
 #### 🐛 Bug Fix
