@@ -82,12 +82,17 @@ export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-d
 ]);
 
 
+export const IfxDropdownDivider = /*@__PURE__*/ defineContainer<JSX.IfxDropdownDivider>('ifx-dropdown-divider', undefined);
+
+
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
   'label',
   'size',
   'disabled',
   'icon',
-  'checkable'
+  'checkable',
+  'value',
+  'itemValues'
 ]);
 
 
@@ -97,7 +102,8 @@ export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu
   'disabled',
   'icon',
   'search',
-  'filter'
+  'filter',
+  'selectValues'
 ]);
 
 
@@ -167,6 +173,17 @@ export const IfxListNotification = /*@__PURE__*/ defineContainer<JSX.IfxListNoti
   'titleText',
   'isFlush',
   'creationTime'
+]);
+
+
+export const IfxMultiSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxMultiSelectInput>('ifx-multi-select-input', undefined, [
+  'Placeholder'
+]);
+
+
+export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMultiSelectInputItem>('ifx-multi-select-input-item', undefined, [
+  'content',
+  'closed'
 ]);
 
 
@@ -242,6 +259,17 @@ export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, 
 'value', 'ifxChange');
 
 
+export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);
+
+
+export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined);
+
+
+export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
+  'icon'
+]);
+
+
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size'
 ]);
@@ -271,6 +299,18 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined, [
   'text'
+]);
+
+
+export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx-text-input', undefined, [
+  'placeholder',
+  'value',
+  'error',
+  'errorMessage',
+  'success',
+  'disabled',
+  'readonly',
+  'icon'
 ]);
 
 

@@ -20,6 +20,9 @@ function App() {
   };
   
 
+  const handleMouseOver = () => {
+    console.log('Mouse over event detected');
+  };
 
   return (
     <>
@@ -34,7 +37,7 @@ function App() {
       <br />
  
     <IfxButton ref={ifxButtonRef} variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
-      disabled={false} onClick={updateProgressOnClick}>
+      disabled={false} onClick={updateProgressOnClick} onMouseOver={handleMouseOver}>
       Increase by 10
     </IfxButton>
 
