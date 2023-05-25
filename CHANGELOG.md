@@ -1,3 +1,40 @@
+# v18.0.21 (Thu May 25 2023)
+
+#### 🐛 Bug Fix
+
+- fixed select input class [#148](https://github.com/Infineon/infineon-design-system-stencil/pull/148) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.20 (Wed May 24 2023)
+
+#### 🐛 Bug Fix
+
+- working commit [#147](https://github.com/Infineon/infineon-design-system-stencil/pull/147) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v18.0.19 (Wed May 24 2023)
+
+#### 🐛 Bug Fix
+
+- 132 multi select input v-1 [#135](https://github.com/Infineon/infineon-design-system-stencil/pull/135) ([@tishoyanchev](https://github.com/tishoyanchev))
+- v-2 [#132](https://github.com/Infineon/infineon-design-system-stencil/pull/132) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.18 (Wed May 24 2023)
 
 #### 🐛 Bug Fix
