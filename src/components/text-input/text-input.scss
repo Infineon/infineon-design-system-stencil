@@ -1,6 +1,5 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-
 :host { 
   width: 100%;
 }
@@ -12,12 +11,8 @@
   padding: 0px;
   
   //width: 588px;
-
   width: 100%;
   //height: 64px;
-
-  height: 64px;
-
   
   flex: none;
   order: 0;
@@ -73,10 +68,7 @@
   }
 
   & .textInput__bottom-wrapper { 
-
     position: relative;
-
-
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -131,10 +123,7 @@
 
       &:hover:not(:disabled, .error, .success) { 
         border: 1px solid #3C3A39;
-
         cursor: pointer; //only when readonly
-
-
       }
 
       &::placeholder { 
