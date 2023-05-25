@@ -1,16 +1,19 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-.dropdown { 
-  box-sizing: border-box;
-  width: 300px;
-  border: 1px solid transparent;
-
-  &:active { 
-    outline: none;
-    border: 1px solid #0A8276;
-    
+.multiSelect {
+  &.dropdown { 
+    box-sizing: border-box;
+    width: 300px;
+    border: 1px solid transparent;
+  
+    &:active { 
+      outline: none;
+      border: 1px solid #0A8276;
+      
+    }
   }
 }
+
 
 .multiSelectInput__container {
   
