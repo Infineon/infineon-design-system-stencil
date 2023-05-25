@@ -56,9 +56,7 @@ h3 {
 import {
   computed,
   ref,
-  watch,
   onMounted,
-  nextTick,
 } from 'vue';
 
 const searchBar2 = ref('');

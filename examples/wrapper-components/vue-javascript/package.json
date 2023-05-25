@@ -7,12 +7,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../components-vue && npm i && npm link @infineon/infineon-design-system-stencil && npm run build",
-    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue && npm link @infineon/infineon-design-system-vue",
+    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
     "preview:link": "run-s link dev",
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "18.0.16--canary.112.1fdbea56f20699ac5c8abd5ee62f1f57e164b577.0",
+    "@infineon/infineon-design-system-vue": "18.0.21--canary.112.eb1a528cdd66434d7c2e0dec6de3a1285a2bf310.0",
     "vue": "^3.3.2"
   },
   "devDependencies": {
