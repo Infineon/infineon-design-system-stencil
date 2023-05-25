@@ -30,7 +30,7 @@
       @ifxChange:progressValue2="handleProgressUpdate"></ifx-progress-bar>
     <br />
     <ifx-button variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
-      disabled="false" @click="updateProgressOnClick">
+      disabled="false" @click="updateProgressOnClick" @mouseover="handleMouseOver">
       Increase by 10
     </ifx-button>
 
@@ -120,6 +120,9 @@ function handleSearchInput(event) {
   searchInput.value = event; //v-model automatically accesses event.detail
 };
 
+function handleMouseOver() {
+  console.log('Mouse over event detected');
+};
 
 
 </script>
