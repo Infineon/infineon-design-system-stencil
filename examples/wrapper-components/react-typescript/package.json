@@ -9,14 +9,14 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
-    "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react && npm link @infineon/infineon-design-system-react",
+    "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react-typescript && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link dev",
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@infineon/infineon-design-system-react": "18.0.16--canary.112.7de19be701dc78495a76afa19041ea00bcbfe7a8.0"
+    "@infineon/infineon-design-system-react": "18.0.21--canary.112.eb1a528cdd66434d7c2e0dec6de3a1285a2bf310.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

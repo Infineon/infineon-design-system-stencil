@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <div className="greetings">
-    <h1 className="green">Stencil Framework integration - React </h1>
+    <h1 className="green">Stencil Framework integration - React + TS </h1>
     <h2>Ifx-Search-Bar</h2>
     <IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }}  show-close-button="true"></IfxSearchBar>
     <br />
