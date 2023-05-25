@@ -1,4 +1,4 @@
-# Infineon Design System Stencil Web Components (MVP)
+# Infineon Design System Stencil Web Components
 [![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
 [![GitHub Repo Version](https://img.shields.io/github/package-json/v/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/package.json)
@@ -36,13 +36,13 @@
 
 As part of the Infineon brand guidelines, the Infineon Digital Design System supports designers, developers and project managers to build user interfaces faster and better – with the ultimate goal to create a coherent and optimal user journey across all internal and external Infineon digital touchpoints.
 
-This repository contains an implementation of Infineons Digital Design System and it's Storybook sourcecode using Stencil web components.
+This project is an initiative aimed at creating a library of reusable, framework-agnostic UI components. Developed using Stencil.js, these web components provide consistent and efficient building blocks for Infineon's digital properties. The project focuses on providing high-quality, well-documented components, aligning with Infineon's design system and ensuring cross-framework compatibility for maximum reusability and scalability.
 
-Use it to build & run storybook and distribute the Stencil web components.
+The following showcases an implementation of Infineons Digital Design System based on Stencil web components.
 
 ### Built With
 
-[Stencil web components][Stencil-url]
+[Stencil web components](https://stenciljs.com)
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
