@@ -1,6 +1,9 @@
 name: Deploy Stencil Web components Library to NPM
 
 on:
+  push:
+    branches:
+     - master
   pull_request:
     types:
       - opened
@@ -26,23 +29,22 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
 
-      - name: Create Release for stencil # releasing as npm package
-        id: release-stencil
+      - name: Build stencil
+        id: build-stencil
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
+        run: | 
           cd packages/components
           npm install
           npm run build:stencil
-          auto shipit
 
       - name: Create Release for vue wrapper # releasing as npm package
         id: release-vue
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
+        run: | 
           cd packages/components-vue
           npm install
           npm run build
@@ -53,8 +55,17 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
+        run: | 
           cd packages/components-react
           npm install
           npm run build
+          auto shipit
+
+      - name: Release stencil
+        id: release-stencil
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components
           auto shipit
