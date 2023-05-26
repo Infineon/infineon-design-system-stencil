@@ -233,7 +233,7 @@ export class MultiSelectInput {
 
   render() {
     return (
-      <div class='multiSelect dropdown'>
+      <div class='dropdown'>
         <div class="multiSelectInput__container" tabindex={1}>
             {this.isOverflowing && 
             <span class="prev" onClick={() => this.addSelectSlider('left')}>

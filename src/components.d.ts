@@ -56,7 +56,7 @@ export namespace Components {
         "error": boolean;
     }
     interface IfxChip {
-        "label": string;
+        "defaultLabel": string;
     }
     interface IfxDropdown {
         "disabled": boolean;
@@ -651,7 +651,7 @@ declare namespace LocalJSX {
         "error"?: boolean;
     }
     interface IfxChip {
-        "label"?: string;
+        "defaultLabel"?: string;
     }
     interface IfxDropdown {
         "disabled"?: boolean;

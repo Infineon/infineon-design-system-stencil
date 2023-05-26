@@ -135,7 +135,7 @@ export class SelectInput {
 
   render() {
     return (
-      <div class='dropdown'>
+      <div class='dropdown selectInput'>
         <slot name="text-input" />
         <slot name="menu" />
       </div>

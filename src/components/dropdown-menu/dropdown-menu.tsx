@@ -33,9 +33,12 @@ export class DropdownMenu {
     const isInsideDropdown = this.el.closest('ifx-dropdown')
     const isInsideSelect = this.el.closest('ifx-select-input')
     const isInsideMultiSelect = this.el.closest('ifx-multi-select-input')
-    if (isInsideDropdown || isInsideSelect || isInsideMultiSelect) {
+    const isInsideChip = this.el.closest('ifx-chip')
+
+    if (isInsideDropdown || isInsideSelect || isInsideMultiSelect || isInsideChip) {
       this.isShown = false;
     }
+    
     if(isInsideSelect) { 
       this.isInsideSelect = true;
     } else this.isInsideSelect = false;
