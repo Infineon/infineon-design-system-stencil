@@ -1,0 +1,30 @@
+
+# Vue + Stencil
+
+Vue Wrappers: A Vue wrapper is a Vue-specific interface for a Stencil-generated web component. It offers a bridge between Stencil and Vue, enabling more native Vue syntax, such as Vue's event handling and property binding. This makes it easier to use Stencil components in a Vue app. Stencil generates these wrappers when configured to do so.
+
+We have added some additional configuration to support the use of Vue's v-model.
+Currently this works with the ``IfxProgressBar``, the ``IfxSearchBar`` and the ``IfxSearchInput``.
+
+
+## Installation
+
+### With NPM
+
+1. ```npm install @infineon/infineon-design-system-vue```
+
+#### With Yarn
+
+1. ```yarn add @infineon/infineon-design-system-vue```
+
+#### Import the module inside your entry point file.
+
+``import { ComponentLibrary } from '@infineon/infineon-design-system-vue';``
+
+``createApp(App).use(ComponentLibrary).mount('#app');``
+
+In Vue, this registers the components globally.
+
+#### Usage
+
+``<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>``
