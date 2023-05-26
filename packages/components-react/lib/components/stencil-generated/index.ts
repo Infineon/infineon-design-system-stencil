@@ -3,9 +3,9 @@
 /* auto-generated react proxies */
 import { createReactComponent } from './react-component-lib';
 
-import type { JSX } from '@infineon/infineon-design-system-stencil';
+import type { JSX } from '../../../../components';
 
-import { applyPolyfills, defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+import { applyPolyfills, defineCustomElements } from '../../../../components/loader';
 
 applyPolyfills().then(() => defineCustomElements());
 export const IfxAccordion = /*@__PURE__*/createReactComponent<JSX.IfxAccordion, HTMLIfxAccordionElement>('ifx-accordion');

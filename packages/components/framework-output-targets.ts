@@ -16,13 +16,13 @@ const excludeComponents = [
 
 export const frameworkTargets = [
   vueOutputTarget({
-    componentCorePackage: '@infineon/infineon-design-system-stencil',
+    componentCorePackage: '../../components',
     proxiesFile: '../components-vue/lib/components.ts',
     componentModels: vueComponentModels,
     excludeComponents,
   }),
   reactOutputTarget({
-    componentCorePackage: '@infineon/infineon-design-system-stencil',
+    componentCorePackage: '../../../../components',
     proxiesFile: '../components-react/lib/components/stencil-generated/index.ts',
     includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
     includePolyfills: true,

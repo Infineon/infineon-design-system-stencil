@@ -18,9 +18,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.0.16--canary.112.8252b6b00a36dc102d6b87b86bee401fc272a058.0"
-  },
   "devDependencies": {
     "typescript": "^5.0.4",
     "vue": "^3.3.2"

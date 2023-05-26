@@ -11,8 +11,6 @@ jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
-    outputs:
-      canary_version: ${{ steps.release.outputs.version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -28,8 +26,8 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
 
-      - name: Create Release # releasing as npm package
-        id: release
+      - name: Create Release for stencil # releasing as npm package
+        id: release-stencil
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -37,70 +35,26 @@ jobs:
           cd packages/components
           npm install
           npm run build:stencil
-          VERSION=$(auto shipit --dry-run --quiet)
-          echo "Publishing: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
           auto shipit
 
-  vue-library-release: # release vue-library on npm
-    needs: stencil-library-release
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # fetch all tags for ship-it
-
-      - name: download + setup auto
-        uses: auto-it/setup-auto@v1
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Build # build project and set version to previously created canary
+      - name: Create Release for vue wrapper # releasing as npm package
+        id: release-vue
         env:
-          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        run: | 
-          cd packages/components-vue
+        run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
+          cd ../components-vue
           npm install
-          echo "Installing Stencil Library Version=$CANARY_VERSION"
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
           auto shipit
 
-  react-library-release: # release react-library on npm
-    needs: stencil-library-release
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # fetch all tags for ship-it
-
-      - name: download + setup auto
-        uses: auto-it/setup-auto@v1
-
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: "https://registry.npmjs.org"
-
-      - name: Build # build project and set version to previously created canary
+      - name: Create Release for react wrapper # releasing as npm package
+        id: release-react
         env:
-          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-        run: | 
-          cd packages/components-react
+        run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
+          cd ../components-react
           npm install
-          echo "Installing Stencil Library Version=$CANARY_VERSION"
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm run build
           auto shipit
