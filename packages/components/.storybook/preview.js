@@ -31,6 +31,12 @@ export const parameters = {
         'Setup & installation',
         [
           'Getting started',
+          'Framework integration',
+          [
+            'Wrapper Components',
+            'React + Stencil',
+            'Vue + Stencil'
+          ]
         ],
         'Components',
         'Contact'

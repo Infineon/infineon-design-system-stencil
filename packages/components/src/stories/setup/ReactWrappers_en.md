@@ -1,11 +1,7 @@
 
 # React + Stencil
 
-Stencil generates standard web components that are framework-agnostic. These are "vanilla" components that can be used with any JavaScript framework, or without a framework at all.
-
 React Wrappers: Similarly to Vue, a React wrapper provides a React interface to a Stencil web component, making the web component feel more like a typical React component. This includes proper handling of props, state, and events within the context of a React application.
-
-The wrapper components are not a necessity but they provide a more idiomatic and pleasant developer experience within the respective frameworks. They translate the native framework usage to the underlying Stencil component.
 
 ## Installation
 
@@ -18,3 +14,26 @@ The wrapper components are not a necessity but they provide a more idiomatic and
 1. ```yarn add @infineon/infineon-design-system-react```
 
 #### Import the module inside your entry point file.
+
+
+```import { defineCustomElements } from '@infineon/infineon-design-system-react';```
+
+```defineCustomElements(window)```
+
+In React, there isn't a built-in mechanism to globally register components like in Vue. Therefore, components need to be imported in the file that they are being used in.
+
+#### Usage
+
+``import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-react';``
+
+``<IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }} show-close-button="true"></IfxSearchBar>``
+
+##### React + Javascript specific
+
+It may be necessary to add the following to your .env file at project root:
+
+``GENERATE_SOURCEMAP=false``
+
+This can also be achieved by updating your start script in the ``package.json`` accordingly.
+
+
