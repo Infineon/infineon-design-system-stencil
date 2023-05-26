@@ -11,3 +11,9 @@ This example application demonstrates the usage of the React Wrapper Components 
  ```npm run test:local```
 
 The application will be served on http://localhost:3000.
+
+To run the application using the latest version of the React Library on NPM:
+
+ ```npm install```
+
+ ```npm run dev```
