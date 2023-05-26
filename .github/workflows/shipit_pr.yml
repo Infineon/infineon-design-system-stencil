@@ -43,7 +43,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
-          cd ../components-vue
+          cd packages/components-vue
           npm install
           npm run build
           auto shipit
@@ -54,7 +54,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | # here, auto shipit can be used, but after the first canary version has been created, the command fails to use it on the other packages under the same commit
-          cd ../components-react
+          cd packages/components-react
           npm install
           npm run build
           auto shipit
