@@ -1,6 +1,9 @@
 name: Deploy Stencil Web components Library to NPM
 
 on:
+  push:
+    branches:
+     - master
   pull_request:
     types:
       - opened
@@ -8,7 +11,7 @@ on:
       - synchronize # canary on new commit
  
 jobs:
-  release:
+  stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -24,11 +27,45 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
-      - name: Create Release # releasing as a github npm package
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build stencil
+        id: build-stencil
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         run: | 
+          cd packages/components
           npm install
           npm run build:stencil
+
+      - name: Create Release for vue wrapper # releasing as npm package
+        id: release-vue
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components-vue
+          npm install
+          npm run build
+          auto shipit
+
+      - name: Create Release for react wrapper # releasing as npm package
+        id: release-react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components-react
+          npm install
+          npm run build
+          auto shipit
+
+      - name: Release stencil
+        id: release-stencil
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components
           auto shipit
