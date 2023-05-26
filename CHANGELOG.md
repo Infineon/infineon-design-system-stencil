@@ -1,3 +1,15 @@
+# v18.0.21 (Thu May 25 2023)
+
+#### 🐛 Bug Fix
+
+- fixed select input class [#148](https://github.com/Infineon/infineon-design-system-stencil/pull/148) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.0.20 (Wed May 24 2023)
 
 #### 🐛 Bug Fix
