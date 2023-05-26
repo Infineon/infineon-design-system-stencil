@@ -40,7 +40,7 @@ jobs:
           VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          auto shipit 
+          auto shipit
 
   vue-library-release: # release vue-library on npm
     needs: stencil-library-release
@@ -71,28 +71,8 @@ jobs:
           npm install
           echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
-          npm version $CANARY_VERSION --no-git-tag-version
           npm run build
-
-      - name: Set registry to npmjs.org # sets registry to npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: "https://registry.npmjs.org"
-          scope: "@infineon"
-          cache: 'npm'
-          cache-dependency-path: packages/components-vue/package-lock.json
-
-      - name: Release # adds canary tag
-        env:
-          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}      
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          registry: "https://registry.npmjs.org"
-          package: ./packages/components-vue/package.json
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: "canary"
+          auto shipit
 
   react-library-release: # release react-library on npm
     needs: stencil-library-release
@@ -122,25 +102,5 @@ jobs:
           npm install
           echo "Installing Stencil Library Version=$CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
-          npm version $CANARY_VERSION --no-git-tag-version
           npm run build
-
-      - name: Set registry to npmjs.org # sets registry to npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: "https://registry.npmjs.org"
-          scope: "@infineon"
-          cache: 'npm'
-          cache-dependency-path: packages/components-react/package-lock.json
-
-      - name: Release # adds canary tag
-        env:
-          CANARY_VERSION: ${{needs.stencil-library-release.outputs.canary_version}}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}      
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          registry: "https://registry.npmjs.org"
-          package: ./packages/components-react/package.json
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: "canary"
+          auto shipit
