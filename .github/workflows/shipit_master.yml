@@ -1,0 +1,74 @@
+name: Deploy Stencil Web components Library to NPM
+
+on:
+  push:
+    branches:
+     - master
+ 
+env:
+  VERSION: ''
+
+jobs:
+  stencil-library-release:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all tags for ship-it
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build stencil
+        id: build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components
+          npm install
+          npm run build:stencil
+          VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          auto shipit
+
+      - name: Create Release for react wrapper # releasing as npm package
+        id: release-react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          cd packages/components-react
+          echo "VERSION: $VERSION"
+          echo "Publishing: $VERSION"
+          npm install
+          npm install @infineon/infineon-design-system-stencil@latest
+          npm version $VERSION --no-git-tag-version --force
+          npm run build
+          npm publish
+
+
+      - name: Create Release for vue wrapper # releasing as npm package
+        id: release-vue
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          cd packages/components-vue
+          echo "VERSION: $VERSION"
+          echo "Publishing: $VERSION"
+          npm install
+          npm install @infineon/infineon-design-system-stencil@latest
+          npm version $VERSION --no-git-tag-version --force
+          npm run build
+          npm publish
+
+
+          

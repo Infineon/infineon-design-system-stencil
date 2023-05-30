@@ -1,9 +1,6 @@
 name: Deploy Stencil Web components Library to NPM
 
 on:
-  push:
-    branches:
-     - master
   pull_request:
     types:
       - opened
