@@ -1,0 +1,73 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+//@use "../../global/global";
+
+:host { 
+  //display: inline-block!important;
+}
+
+.chip__container { 
+  //display: inline-block;
+  position: relative;
+
+  & .chip__wrapper { 
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 8px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #575352;
+    border-radius: 100px;
+
+    &:hover { 
+      cursor: pointer;
+    }
+
+    & .chip__wrapper-label { 
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+
+      display: flex;
+      align-items: center;
+
+      color: #1D1D1D;
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+
+    & .chip__wrapper-close-button { 
+      & ifx-icon { 
+        transition: .3s;
+      }
+        &.show { 
+          & ifx-icon { 
+            transition: .3s;
+            transform: rotate(180deg);
+          }
+        }
+        & ifx-icon { 
+          width: 12px;
+          height: 12px;
+    
+          flex: none;
+          order: 1;
+          flex-grow: 0;
+        }
+    }
+  }
+
+  // & .chip__dropdown-menu { 
+  //   display: none;
+  // }
+  // &.show  { 
+  //   & .chip__dropdown-menu { 
+  //     display: block;
+  //   }
+  // }
+}
