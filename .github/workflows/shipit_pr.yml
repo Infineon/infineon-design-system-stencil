@@ -11,12 +11,14 @@ on:
       - synchronize # canary on new commit
  
 env:
-  VERSION: 1.0.0
+  CANARY_VERSION: ${{ steps.build-stencil.outputs.CANARY_VERSION }}
 
 jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    outputs:
+      version: ${{ steps.build-stencil.outputs.version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -41,19 +43,22 @@ jobs:
           cd packages/components
           npm install
           npm run build:stencil
-          VERSION=$(auto shipit --dry-run --quiet)
-          echo "Publishing: $VERSION"
+          CANARY_VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $CANARY_VERSION"
+          echo "canary_version=$CANARY_VERSION" >> $GITHUB_OUTPUT
           auto shipit
 
       - name: Create Release for react wrapper # releasing as npm package
         id: release-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CANARY_VERSION: ${{ env.CANARY_VERSION }}
+
         run: | 
           cd packages/components-react
-          npm install @infineon/infineon-design-system-stencil@"$VERSION"
-          echo "Setting version: $VERSION"
-          npm version $VERSION --no-git-tag-version --force
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          echo $CANARY_VERSION
+          npm version $CANARY_VERSION --no-git-tag-version --force
           npm run build
           npm publish --tag canary
 
