@@ -10,13 +10,14 @@ on:
       - reopened
       - synchronize # canary on new commit
  
-env:
-  CANARY_VERSION: ${{ steps.build-stencil.outputs.CANARY_VERSION }}
+
 
 jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    outputs:
+      version: ${{ steps.build-stencil.outputs.canary_version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -50,7 +51,7 @@ jobs:
         id: release-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CANARY_VERSION: ${{ env.CANARY_VERSION }}
+          CANARY_VERSION: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
 
         run: | 
           cd packages/components-react
