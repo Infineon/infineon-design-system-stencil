@@ -10,7 +10,8 @@ on:
       - reopened
       - synchronize # canary on new commit
  
-
+env:
+  CANARY_VERSION: ''
 
 jobs:
   stencil-library-release:
@@ -42,7 +43,7 @@ jobs:
           npm run build:stencil
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
-          echo "canary_version=$CANARY_VERSION" > temp.txt
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           auto shipit
 
       - name: Create Release for react wrapper # releasing as npm package
@@ -50,10 +51,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
-          CANARY_VERSION=$(cat temp.txt)
+          cd packages/components-react
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Publishing: $CANARY_VERSION"
-          cd packages/components-react
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm version $CANARY_VERSION --no-git-tag-version --force
           npm run build
