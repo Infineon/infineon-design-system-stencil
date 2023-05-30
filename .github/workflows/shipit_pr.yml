@@ -16,8 +16,6 @@ jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
-    outputs:
-      version: ${{ steps.build.outputs.canary_version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -44,17 +42,17 @@ jobs:
           npm run build:stencil
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
-          echo "canary_version=$CANARY_VERSION" >> $GITHUB_OUTPUT
+          echo "canary_version=$CANARY_VERSION" > temp.txt
           auto shipit
 
       - name: Create Release for react wrapper # releasing as npm package
         id: release-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CANARY_VERSION: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
-
-        run: | 
+         run: | 
           cd packages/components-react
+          CANARY_VERSION=$(cat temp.txt)
+          echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Publishing: $CANARY_VERSION"
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm version $CANARY_VERSION --no-git-tag-version --force
