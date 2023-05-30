@@ -46,25 +46,29 @@ export class Chip {
   toggleDropdownMenu() {
     const textField = this.getTextField()
     const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
-    const chipContainer = textField.closest('.chip__container');
+    const chipWrapper = textField.closest('.chip__wrapper');
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'toggle', 'show')
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
     this.handleClassList(textFieldElement, 'toggle', 'show')
-    console.log('here')
+
+    this.handleClassList(chipWrapper, 'toggle', 'open')
+    console.log('here', chipWrapper)
     //this.handleClassList(chipContainer, 'toggle', 'show') //why not added?
-    chipContainer.classList.add('show')
+    //chipContainer.classList.toggle('show')
   }
 
   closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
     const textField = this.getTextField()
+    const chipWrapper = textField.closest('.chip__wrapper');
     const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
     this.handleClassList(textFieldElement, 'remove', 'show')
+    this.handleClassList(chipWrapper, 'remove', 'open')
   }
 
   removeActiveMenuItem() {

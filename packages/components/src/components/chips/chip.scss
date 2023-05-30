@@ -18,11 +18,20 @@
 
     background: #FFFFFF;
 
-    border: 1px solid #575352;
+    border: 1px solid #BFBBBB;
     border-radius: 100px;
 
     &:hover { 
       cursor: pointer;
+      border: 1px solid #575352;
+    }
+
+    &:active { 
+      border: 1px solid #0A8276;
+    }
+
+    &.open { 
+      border: 1px solid #0A8276;
     }
 
     & .chip__wrapper-label { 
