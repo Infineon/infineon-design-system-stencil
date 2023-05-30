@@ -38,6 +38,8 @@ jobs:
           cd packages/components
           npm install
           npm run build:stencil
+          VERSION=$(auto shipit --dry-run --quiet)
+          auto shipit
 
       - name: Create Release for vue wrapper # releasing as npm package
         id: release-vue
@@ -46,26 +48,7 @@ jobs:
 
         run: | 
           cd packages/components-vue
-          npm install
+          npm install @infineon/infineon-design-system-stencil@"$VERSION"
+          npm version $VERSION
           npm run build
-          auto shipit
-
-      - name: Create Release for react wrapper # releasing as npm package
-        id: release-react
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        run: | 
-          cd packages/components-react
-          npm install
-          npm run build
-          auto shipit
-
-      - name: Release stencil
-        id: release-stencil
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        run: | 
-          cd packages/components
-          auto shipit
+          npm publish --tag canary

@@ -19,8 +19,12 @@
     "access": "public"
   },
   "devDependencies": {
+    "@types/node": "^20.2.5",
     "typescript": "^5.0.4",
     "vue": "^3.3.2"
+  },
+  "dependencies": {
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "auto": {
     "plugins": [

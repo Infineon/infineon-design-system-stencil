@@ -33,20 +33,22 @@
     "dev": "run-p dev:stencil dev:storybook",
     "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
     "build:storybook": "npm run build:stencil && build-storybook",
-    "build:stencil": "stencil build --docs"
+    "build:stencil": "stencil build --docs",
+    "copy:loader": "node utils/copy-loader.js"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
     "@infineon/infineon-icons": "^1.1.2",
-    "@stencil/core": "^2.16.0"
+    "@stencil/core": "^2.16.0",
+    "fs-extra": "^11.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@stencil/vue-output-target": "^0.8.5",
     "@stencil/react-output-target": "^0.5.0",
     "@stencil/sass": "^2.0.0",
+    "@stencil/vue-output-target": "^0.8.5",
     "@storybook/addon-actions": "^6.5.13",
     "@storybook/addon-docs": "^6.5.13",
     "@storybook/addon-essentials": "^6.5.13",
