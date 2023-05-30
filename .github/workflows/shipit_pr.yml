@@ -49,7 +49,7 @@ jobs:
         id: release-react
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-         run: | 
+        run: | 
           cd packages/components-react
           CANARY_VERSION=$(cat temp.txt)
           echo "CANARY_VERSION: $CANARY_VERSION"
