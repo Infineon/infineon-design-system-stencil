@@ -14,6 +14,8 @@ jobs:
   stencil-library-release:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    outputs:
+      version: ${{ steps.release.outputs.version }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -39,16 +41,20 @@ jobs:
           npm install
           npm run build:stencil
           VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           auto shipit
 
       - name: Create Release for react wrapper # releasing as npm package
         id: release-vue
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          VERSION: ${{needs.stencil-library-release.outputs.version}}
 
         run: | 
           cd packages/components-react
           npm install @infineon/infineon-design-system-stencil@"$VERSION"
+          echo $VERSION
           npm version $VERSION --no-git-tag-version --force
           npm run build
           npm publish --tag canary
