@@ -8,7 +8,6 @@ const vueComponentModels: ComponentModelConfig[] = [
     event: 'ifxChange',
     targetAttr: 'value',
   },
-
 ];
 
 const excludeComponents = [

@@ -54,6 +54,22 @@ jobs:
           cd packages/components-react
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Publishing: $CANARY_VERSION"
+          npm install
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          npm version $CANARY_VERSION --no-git-tag-version --force
+          npm run build
+          npm publish --tag canary
+
+
+      - name: Create Release for vue wrapper # releasing as npm package
+        id: release-vue
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          cd packages/components-vue
+          echo "CANARY_VERSION: $CANARY_VERSION"
+          echo "Publishing: $CANARY_VERSION"
+          npm install
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm version $CANARY_VERSION --no-git-tag-version --force
           npm run build
