@@ -15,7 +15,7 @@
     "test:local": "run-p build:stencil preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.0.22--canary.150.deeaeab2c8c24a0ca1989901c2d5b54e11a61c1b.1",
+    "@infineon/infineon-design-system-stencil": "18.0.22--canary.150.deeaeab2c8c24a0ca1989901c2d5b54e11a61c1b.1",
     "vue": "^3.2.45"
   },
   "devDependencies": {
