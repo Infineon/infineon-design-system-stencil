@@ -26,10 +26,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ifx-chip](../chips)
-
 ### Depends on
 
 - [ifx-checkbox](../checkbox)
@@ -41,7 +37,6 @@ graph TD;
   ifx-dropdown-item --> ifx-checkbox
   ifx-dropdown-item --> ifx-icon
   ifx-checkbox --> ifx-icon
-  ifx-chip --> ifx-dropdown-item
   style ifx-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
