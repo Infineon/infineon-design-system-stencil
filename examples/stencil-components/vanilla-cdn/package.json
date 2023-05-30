@@ -23,7 +23,7 @@
     "vite": "^4.2.1"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.0.15",
+    "@infineon/infineon-design-system-stencil": "^18.0.21",
     "typescript": "^4.5.4"
   }
 }

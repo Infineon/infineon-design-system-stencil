@@ -1,8 +1,22 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: '',
-  plugins: [vue()],
-})
+  plugins: [
+    vue(),
+    {
+      name: 'sass-plugin',
+      enforce: 'pre',
+      async transform(code, id) {
+        if (id.endsWith('.scss')) {
+          const { default: sass } = await import('sass');
+          const result = sass.renderSync({ file: id });
+          return {
+            code: result.css.toString(),
+          };
+        }
+      },
+    },
+  ],
+});
