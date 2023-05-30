@@ -50,10 +50,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
-          cd packages/components-react
           CANARY_VERSION=$(cat temp.txt)
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Publishing: $CANARY_VERSION"
+          cd packages/components-react
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           npm version $CANARY_VERSION --no-git-tag-version --force
           npm run build
