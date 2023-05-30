@@ -49,6 +49,6 @@ jobs:
         run: | 
           cd packages/components-vue
           npm install @infineon/infineon-design-system-stencil@"$VERSION"
-          npm version $VERSION
+          npm version $VERSION --no-git-tag-version --force
           npm run build
           npm publish --tag canary
