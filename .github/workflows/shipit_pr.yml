@@ -41,14 +41,17 @@ jobs:
           VERSION=$(auto shipit --dry-run --quiet)
           auto shipit
 
-      - name: Create Release for vue wrapper # releasing as npm package
+      - name: Create Release for react wrapper # releasing as npm package
         id: release-vue
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          cd packages/components-vue
+          cd packages/components-react
           npm install @infineon/infineon-design-system-stencil@"$VERSION"
           npm version $VERSION --no-git-tag-version --force
           npm run build
           npm publish --tag canary
+
+
+          
