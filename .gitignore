@@ -13,6 +13,8 @@ log.txt
 *.sublime-project
 *.sublime-workspace
 
+*.txt
+
 .stencil/
 .idea/
 .vscode/
