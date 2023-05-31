@@ -31,5 +31,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | 
+          cd packages/components
           npm install
           npm run test

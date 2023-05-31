@@ -22,14 +22,26 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
           registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Cache dependencies for packages/components
+        uses: actions/cache@v2
+        with:
+          path: packages/components/node_modules
+          key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-packages-components-
           
-      - run: npm ci
+      - run: |
+          cd packages/components
+          npm ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Install and Build
         run: |
+          cd packages/components
           npm install
           npm run build:storybook
 
@@ -37,7 +49,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./storybook-static
+          source-dir: ./packages/components/storybook-static
           github-token: ${{ secrets.GITHUB_TOKEN }}  
 
       - name: Get preview URL
