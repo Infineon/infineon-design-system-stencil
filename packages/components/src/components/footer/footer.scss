@@ -1,0 +1,83 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+// :host { 
+//    width: 100%;
+// }
+
+.footer__container { 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: tokens.$color-bg-white;
+
+  & .footer__wrapper { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
+    & .large { 
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      padding: 24px 0;
+
+      & ::slotted([slot=col]) { 
+        width: 276px;
+        min-height: 168px;
+      }
+    }
+
+    & .default { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 24px 0;
+      border-bottom: 1px solid #BFBBBB;
+
+      & .footer__logo { 
+        & svg { 
+          vertical-align: bottom;
+        }
+      }
+  
+      & ::slotted([slot=socials]) { 
+        display: flex;
+        gap: 32px;
+      }
+    }
+    
+    & .footer__base { 
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 28px 0;
+      
+      & .footer__brand { 
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: tokens.$color-text-black;
+      }
+    
+      & .footer__buttons { 
+          display: flex;
+          gap: 24px;
+          padding-right: 8px;
+
+        & a { 
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: tokens.$color-text-black;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

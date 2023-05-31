@@ -25,11 +25,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16
-          registry-url: "https://npm.pkg.github.com"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Run tests # releasing as a github npm package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | 
+          cd packages/components
           npm install
           npm run test
