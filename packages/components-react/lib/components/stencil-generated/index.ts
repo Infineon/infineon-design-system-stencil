@@ -12,6 +12,7 @@ export const IfxAccordion = /*@__PURE__*/createReactComponent<JSX.IfxAccordion, 
 export const IfxAccordionItem = /*@__PURE__*/createReactComponent<JSX.IfxAccordionItem, HTMLIfxAccordionItemElement>('ifx-accordion-item');
 export const IfxAlert = /*@__PURE__*/createReactComponent<JSX.IfxAlert, HTMLIfxAlertElement>('ifx-alert');
 export const IfxBadge = /*@__PURE__*/createReactComponent<JSX.IfxBadge, HTMLIfxBadgeElement>('ifx-badge');
+export const IfxBreadcrumb = /*@__PURE__*/createReactComponent<JSX.IfxBreadcrumb, HTMLIfxBreadcrumbElement>('ifx-breadcrumb');
 export const IfxButton = /*@__PURE__*/createReactComponent<JSX.IfxButton, HTMLIfxButtonElement>('ifx-button');
 export const IfxCard = /*@__PURE__*/createReactComponent<JSX.IfxCard, HTMLIfxCardElement>('ifx-card');
 export const IfxCardHeadline = /*@__PURE__*/createReactComponent<JSX.IfxCardHeadline, HTMLIfxCardHeadlineElement>('ifx-card-headline');
