@@ -32,6 +32,7 @@ export const IfxLink = /*@__PURE__*/createReactComponent<JSX.IfxLink, HTMLIfxLin
 export const IfxListGroup = /*@__PURE__*/createReactComponent<JSX.IfxListGroup, HTMLIfxListGroupElement>('ifx-list-group');
 export const IfxListItem = /*@__PURE__*/createReactComponent<JSX.IfxListItem, HTMLIfxListItemElement>('ifx-list-item');
 export const IfxListNotification = /*@__PURE__*/createReactComponent<JSX.IfxListNotification, HTMLIfxListNotificationElement>('ifx-list-notification');
+export const IfxModal = /*@__PURE__*/createReactComponent<JSX.IfxModal, HTMLIfxModalElement>('ifx-modal');
 export const IfxMultiSelectInput = /*@__PURE__*/createReactComponent<JSX.IfxMultiSelectInput, HTMLIfxMultiSelectInputElement>('ifx-multi-select-input');
 export const IfxMultiSelectInputItem = /*@__PURE__*/createReactComponent<JSX.IfxMultiSelectInputItem, HTMLIfxMultiSelectInputItemElement>('ifx-multi-select-input-item');
 export const IfxNavbar = /*@__PURE__*/createReactComponent<JSX.IfxNavbar, HTMLIfxNavbarElement>('ifx-navbar');

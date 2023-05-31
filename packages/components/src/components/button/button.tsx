@@ -8,9 +8,9 @@ import classNames from 'classnames';
 })
 
 export class Button {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text';
-  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
-  @Prop() size: string;
+  @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
+  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
+  @Prop() size: string = 'm';
   @Prop() disabled: boolean;
   @Prop() icon: string;
   @Prop({ mutable: true }) position: string = 'left'

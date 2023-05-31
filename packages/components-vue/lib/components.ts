@@ -176,6 +176,18 @@ export const IfxListNotification = /*@__PURE__*/ defineContainer<JSX.IfxListNoti
 ]);
 
 
+export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', undefined, [
+  'caption',
+  'closeOnOverlayClick',
+  'alertColor',
+  'alertIcon',
+  'modalOpen',
+  'modalClose',
+  'okButtonClick',
+  'cancelButtonClick'
+]);
+
+
 export const IfxMultiSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxMultiSelectInput>('ifx-multi-select-input', undefined, [
   'Placeholder'
 ]);
