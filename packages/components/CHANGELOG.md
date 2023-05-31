@@ -1,3 +1,15 @@
+# v18.1.1 (Wed May 31 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Create dependabot.yml ([@kaiwerther](https://github.com/kaiwerther))
+
+#### Authors: 1
+
+- Kai Werther ([@kaiwerther](https://github.com/kaiwerther))
+
+---
+
 # v18.1.0 (Wed May 31 2023)
 
 #### 🚀 Enhancement
