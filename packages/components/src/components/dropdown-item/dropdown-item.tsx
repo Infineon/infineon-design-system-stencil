@@ -28,28 +28,28 @@ export class DropdownItem {
   //   this.ItemCheck.emit(event.target.checked)
   // }
 
-  toggleCheckBox() { 
+  toggleCheckBox() {
     let input = this.el.shadowRoot.querySelector('input')
-    if(input) { 
+    if (input) {
       input.checked = !input.checked
     }
   }
 
-  handleItemChange(event) { 
+  handleItemChange(event) {
     const isNested = this.el.closest('ifx-dropdown')
-    if(!isNested) { 
+    if (!isNested) {
       this.toggleCheckBox()
     }
     //console.log('current Target',event.currentTarget)
-    if(event.currentTarget.className.toLowerCase() !== 'form-check-input') { 
-      
+    if (event.currentTarget.className.toLowerCase() !== 'form-check-input') {
+
       const checkBoxValue = this.el.shadowRoot.querySelector('input');
-      if(checkBoxValue) { 
-        this.itemValues.emit({check: checkBoxValue.checked, value: this.value})
-      } else this.itemValues.emit({value: this.value})
+      if (checkBoxValue) {
+        this.itemValues.emit({ checked: checkBoxValue.checked, value: this.value })
+      } else this.itemValues.emit({ value: this.value })
     }
   }
-  
+
 
 
   componentWillRender() {
