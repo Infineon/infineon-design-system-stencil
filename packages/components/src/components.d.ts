@@ -254,6 +254,10 @@ export interface IfxDropdownMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDropdownMenuElement;
 }
+export interface IfxFilterInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxFilterInputElement;
+}
 export interface IfxModalCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxModalElement;
@@ -707,6 +711,7 @@ declare namespace LocalJSX {
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "onSelectValue"?: (event: IfxFilterInputCustomEvent<string>) => void;
         "search"?: boolean;
         "size"?: 's' | 'm';
     }

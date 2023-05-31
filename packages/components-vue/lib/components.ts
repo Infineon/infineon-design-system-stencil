@@ -118,7 +118,8 @@ export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>(
   'disabled',
   'icon',
   'search',
-  'filter'
+  'filter',
+  'selectValue'
 ]);
 
 
