@@ -3,7 +3,7 @@ import { Component, h, Listen, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion',
-  styleUrl: 'ifxAccordion.scss',
+  styleUrl: 'accordion.scss',
   shadow: true,
 })
 export class IfxAccordion {

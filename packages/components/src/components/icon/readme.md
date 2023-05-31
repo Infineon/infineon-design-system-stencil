@@ -28,7 +28,7 @@
  - [ifx-multi-select-input-item](../multi-select-input)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
- - [ifx-range](../ifxRange)
+ - [ifx-range](../range)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-input](../search-input)
  - [ifx-sidebar-item](../sidebar)

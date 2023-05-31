@@ -3,7 +3,7 @@ import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil
 
 @Component({
   tag: 'ifx-accordion-item',
-  styleUrl: 'ifxAccordionItem.scss',
+  styleUrl: 'accordionItem.scss',
   shadow: true,
 })
 export class IfxAccordionItem {
@@ -43,8 +43,8 @@ export class IfxAccordionItem {
 
   render() {
     return (
-      <div class={`accordion-item ${this.open ? 'open' : ''}`} onClick={() => this.toggleOpen()}>
-        <div class="accordion-title">
+      <div class={`accordion-item ${this.open ? 'open' : ''}`}>
+        <div class="accordion-title" onClick={() => this.toggleOpen()}>
           <span class="accordion-icon">▶</span>
           <span class="accordion-caption">{this.caption}</span>
         </div>
