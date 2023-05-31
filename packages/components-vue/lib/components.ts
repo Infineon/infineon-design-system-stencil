@@ -28,6 +28,11 @@ export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert',
 export const IfxBadge = /*@__PURE__*/ defineContainer<JSX.IfxBadge>('ifx-badge', undefined);
 
 
+export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined, [
+  'breadcrumbs'
+]);
+
+
 export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', undefined, [
   'variant',
   'color',
@@ -113,7 +118,8 @@ export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>(
   'disabled',
   'icon',
   'search',
-  'filter'
+  'filter',
+  'selectValue'
 ]);
 
 
@@ -173,6 +179,18 @@ export const IfxListNotification = /*@__PURE__*/ defineContainer<JSX.IfxListNoti
   'titleText',
   'isFlush',
   'creationTime'
+]);
+
+
+export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', undefined, [
+  'caption',
+  'closeOnOverlayClick',
+  'alertColor',
+  'alertIcon',
+  'modalOpen',
+  'modalClose',
+  'okButtonClick',
+  'cancelButtonClick'
 ]);
 
 

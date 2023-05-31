@@ -2,7 +2,7 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-range',
-  styleUrl: 'ifxRange.scss',
+  styleUrl: 'range.scss',
   shadow: true,
 })
 export class IfxRange {

@@ -21,6 +21,9 @@ export namespace Components {
     }
     interface IfxBadge {
     }
+    interface IfxBreadcrumb {
+        "breadcrumbs": { text: string, url: string }[];
+    }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "disabled": boolean;
@@ -133,6 +136,14 @@ export namespace Components {
         "isFlush": boolean;
         "titleText": string;
     }
+    interface IfxModal {
+        "alertColor": 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' | '';
+        "alertIcon": string;
+        "caption": string;
+        "close": () => Promise<void>;
+        "closeOnOverlayClick": boolean;
+        "open": () => Promise<void>;
+    }
     interface IfxMultiSelectInput {
         "Placeholder": string;
     }
@@ -243,6 +254,14 @@ export interface IfxDropdownMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxDropdownMenuElement;
 }
+export interface IfxFilterInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxFilterInputElement;
+}
+export interface IfxModalCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxModalElement;
+}
 export interface IfxMultiSelectInputItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxMultiSelectInputItemElement;
@@ -299,6 +318,12 @@ declare global {
     var HTMLIfxBadgeElement: {
         prototype: HTMLIfxBadgeElement;
         new (): HTMLIfxBadgeElement;
+    };
+    interface HTMLIfxBreadcrumbElement extends Components.IfxBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLIfxBreadcrumbElement: {
+        prototype: HTMLIfxBreadcrumbElement;
+        new (): HTMLIfxBreadcrumbElement;
     };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
@@ -419,6 +444,12 @@ declare global {
     var HTMLIfxListNotificationElement: {
         prototype: HTMLIfxListNotificationElement;
         new (): HTMLIfxListNotificationElement;
+    };
+    interface HTMLIfxModalElement extends Components.IfxModal, HTMLStencilElement {
+    }
+    var HTMLIfxModalElement: {
+        prototype: HTMLIfxModalElement;
+        new (): HTMLIfxModalElement;
     };
     interface HTMLIfxMultiSelectInputElement extends Components.IfxMultiSelectInput, HTMLStencilElement {
     }
@@ -551,6 +582,7 @@ declare global {
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-badge": HTMLIfxBadgeElement;
+        "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
@@ -571,6 +603,7 @@ declare global {
         "ifx-list-group": HTMLIfxListGroupElement;
         "ifx-list-item": HTMLIfxListItemElement;
         "ifx-list-notification": HTMLIfxListNotificationElement;
+        "ifx-modal": HTMLIfxModalElement;
         "ifx-multi-select-input": HTMLIfxMultiSelectInputElement;
         "ifx-multi-select-input-item": HTMLIfxMultiSelectInputItemElement;
         "ifx-navbar": HTMLIfxNavbarElement;
@@ -608,6 +641,9 @@ declare namespace LocalJSX {
         "overflowing"?: boolean;
     }
     interface IfxBadge {
+    }
+    interface IfxBreadcrumb {
+        "breadcrumbs"?: { text: string, url: string }[];
     }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -675,6 +711,7 @@ declare namespace LocalJSX {
         "filter"?: boolean;
         "icon"?: boolean;
         "label"?: string;
+        "onSelectValue"?: (event: IfxFilterInputCustomEvent<string>) => void;
         "search"?: boolean;
         "size"?: 's' | 'm';
     }
@@ -720,6 +757,16 @@ declare namespace LocalJSX {
         "creationTime"?: any;
         "isFlush"?: boolean;
         "titleText"?: string;
+    }
+    interface IfxModal {
+        "alertColor"?: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' | '';
+        "alertIcon"?: string;
+        "caption"?: string;
+        "closeOnOverlayClick"?: boolean;
+        "onCancelButtonClick"?: (event: IfxModalCustomEvent<any>) => void;
+        "onModalClose"?: (event: IfxModalCustomEvent<any>) => void;
+        "onModalOpen"?: (event: IfxModalCustomEvent<any>) => void;
+        "onOkButtonClick"?: (event: IfxModalCustomEvent<any>) => void;
     }
     interface IfxMultiSelectInput {
         "Placeholder"?: string;
@@ -832,6 +879,7 @@ declare namespace LocalJSX {
         "ifx-accordion-item": IfxAccordionItem;
         "ifx-alert": IfxAlert;
         "ifx-badge": IfxBadge;
+        "ifx-breadcrumb": IfxBreadcrumb;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
@@ -852,6 +900,7 @@ declare namespace LocalJSX {
         "ifx-list-group": IfxListGroup;
         "ifx-list-item": IfxListItem;
         "ifx-list-notification": IfxListNotification;
+        "ifx-modal": IfxModal;
         "ifx-multi-select-input": IfxMultiSelectInput;
         "ifx-multi-select-input-item": IfxMultiSelectInputItem;
         "ifx-navbar": IfxNavbar;
@@ -883,6 +932,7 @@ declare module "@stencil/core" {
             "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-badge": LocalJSX.IfxBadge & JSXBase.HTMLAttributes<HTMLIfxBadgeElement>;
+            "ifx-breadcrumb": LocalJSX.IfxBreadcrumb & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
@@ -903,6 +953,7 @@ declare module "@stencil/core" {
             "ifx-list-group": LocalJSX.IfxListGroup & JSXBase.HTMLAttributes<HTMLIfxListGroupElement>;
             "ifx-list-item": LocalJSX.IfxListItem & JSXBase.HTMLAttributes<HTMLIfxListItemElement>;
             "ifx-list-notification": LocalJSX.IfxListNotification & JSXBase.HTMLAttributes<HTMLIfxListNotificationElement>;
+            "ifx-modal": LocalJSX.IfxModal & JSXBase.HTMLAttributes<HTMLIfxModalElement>;
             "ifx-multi-select-input": LocalJSX.IfxMultiSelectInput & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputElement>;
             "ifx-multi-select-input-item": LocalJSX.IfxMultiSelectInputItem & JSXBase.HTMLAttributes<HTMLIfxMultiSelectInputItemElement>;
             "ifx-navbar": LocalJSX.IfxNavbar & JSXBase.HTMLAttributes<HTMLIfxNavbarElement>;
