@@ -1,0 +1,15 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+
+// :host {
+//   & ifx-list-group { 
+//     width: initial;
+//   }
+// }
+
+.list-group-container { 
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
