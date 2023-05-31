@@ -16,12 +16,21 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
           registry-url: https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Cache dependencies for packages/components
+        uses: actions/cache@v2
+        with:
+          path: packages/components/node_modules
+          key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-packages-components-
           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -33,14 +42,14 @@ jobs:
           
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
-          cd examples/vue3-vite
+          cd examples/stencil-components/vue3-vite
           npm install
           npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/vue3-vite/dist/ # The folder the action should deploy.
+          folder: examples/stencil-components/vue3-vite/dist/ # The folder the action should deploy.
           target-folder: vue-example
           clean-exclude: |
             pr-preview/

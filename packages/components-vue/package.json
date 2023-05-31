@@ -1,0 +1,31 @@
+{
+  "name": "@infineon/infineon-design-system-vue",
+  "version": "1.0.0",
+  "description": "Infineon design system Stencil web components for Vue",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Infineon/infineon-design-system-stencil.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "vue": "^3.3.2"
+  },
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
+  }
+}
