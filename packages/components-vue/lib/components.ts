@@ -28,6 +28,11 @@ export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert',
 export const IfxBadge = /*@__PURE__*/ defineContainer<JSX.IfxBadge>('ifx-badge', undefined);
 
 
+export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined, [
+  'breadcrumbs'
+]);
+
+
 export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', undefined, [
   'variant',
   'color',
