@@ -13,7 +13,7 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^18.0.21--canary.112.eb1a528cdd66434d7c2e0dec6de3a1285a2bf310.0",
+    "@infineon/infineon-design-system-vue": "18.0.22--canary.150.48a062d122f10ca00df0db0b98421cd07cc780a2.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {

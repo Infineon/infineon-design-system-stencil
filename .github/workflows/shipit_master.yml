@@ -1,14 +1,12 @@
 name: Deploy Stencil Web components Library to NPM
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize # canary on new commit
+  push:
+    branches:
+     - master
  
 env:
-  CANARY_VERSION: ''
+  VERSION: ''
 
 jobs:
   stencil-library-release:
@@ -38,9 +36,9 @@ jobs:
           cd packages/components
           npm install
           npm run build:stencil
-          CANARY_VERSION=$(auto shipit --dry-run --quiet)
-          echo "Publishing: $CANARY_VERSION"
-          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+          VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
           auto shipit
 
       - name: Create Release for react wrapper # releasing as npm package
@@ -49,13 +47,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
           cd packages/components-react
-          echo "CANARY_VERSION: $CANARY_VERSION"
-          echo "Publishing: $CANARY_VERSION"
+          echo "VERSION: $VERSION"
+          echo "Publishing: $VERSION"
           npm install
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
-          npm version $CANARY_VERSION --no-git-tag-version --force
+          npm install @infineon/infineon-design-system-stencil@latest
+          npm version $VERSION --no-git-tag-version --force
           npm run build
-          npm publish --tag canary
+          npm publish
 
 
       - name: Create Release for vue wrapper # releasing as npm package
@@ -64,13 +62,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
           cd packages/components-vue
-          echo "CANARY_VERSION: $CANARY_VERSION"
-          echo "Publishing: $CANARY_VERSION"
+          echo "VERSION: $VERSION"
+          echo "Publishing: $VERSION"
           npm install
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
-          npm version $CANARY_VERSION --no-git-tag-version --force
+          npm install @infineon/infineon-design-system-stencil@latest
+          npm version $VERSION --no-git-tag-version --force
           npm run build
-          npm publish --tag canary
+          npm publish
 
 
           
