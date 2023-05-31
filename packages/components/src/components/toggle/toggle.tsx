@@ -3,11 +3,7 @@ import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-toggle',
-<<<<<<<< HEAD:src/components/toggle/toggle.tsx
   styleUrl: 'toggle.scss',
-========
-  styleUrl: './ifxToggle.scss',
->>>>>>>> origin/master:packages/components/src/components/ifxToggle/ifxToggle.tsx
   shadow: true,
 })
 export class ifxToggle {
