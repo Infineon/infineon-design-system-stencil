@@ -1,6 +1,12 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
 
+:host {
+  display: flex;
+  width: 100%;
+}
+
+
 .progress-bar {
   height: 16px;
   border-radius: 1px;
@@ -8,6 +14,13 @@
   right: 0;
   top: 0;
   left: 0;
+  display: flex;
+  height: 16px;
+  border-radius: 1px;
+  width: 100%; // Ensure the bar itself can grow up to 100% width
+  overflow: hidden; // Ensures that the inner progress bar doesn't exceed the width of the outer progress bar
+
+
 
   .label {
     height: 17px;

@@ -1,4 +1,4 @@
-# ifx-tag
+# ifx-accordion-item
 
 
 
