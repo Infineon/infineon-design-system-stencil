@@ -1,0 +1,5 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+* {
+  font-family: tokens.$font-family-body;
+}
