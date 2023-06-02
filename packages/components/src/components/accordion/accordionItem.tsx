@@ -45,7 +45,9 @@ export class IfxAccordionItem {
     return (
       <div class={`accordion-item ${this.open ? 'open' : ''}`}>
         <div class="accordion-title" onClick={() => this.toggleOpen()}>
-          <span class="accordion-icon">▶</span>
+          <span class="accordion-icon">
+            <ifx-icon icon="chevron-right-12" />
+          </span>
           <span class="accordion-caption">{this.caption}</span>
         </div>
         <div class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)}>
