@@ -40,7 +40,6 @@ export class Chip {
 
   handleClassList(el, type, className) {
     el?.classList[type](className)
-    //console.log(el, type, className)
   }
 
   toggleDropdownMenu() {
@@ -52,11 +51,7 @@ export class Chip {
     this.handleClassList(dropdownMenu, 'toggle', 'show')
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
     this.handleClassList(textFieldElement, 'toggle', 'show')
-
     this.handleClassList(chipWrapper, 'toggle', 'open')
-    console.log('here', chipWrapper)
-    //this.handleClassList(chipContainer, 'toggle', 'show') //why not added?
-    //chipContainer.classList.toggle('show')
   }
 
   closeDropdownMenu() {

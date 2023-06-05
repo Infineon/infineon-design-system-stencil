@@ -3,15 +3,16 @@
 /* auto-generated react proxies */
 import { createReactComponent } from './react-component-lib';
 
-import type { JSX } from '../../../../components';
+import type { JSX } from '@infineon/infineon-design-system-stencil';
 
-import { applyPolyfills, defineCustomElements } from '../../../../components/loader';
+import { applyPolyfills, defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
 applyPolyfills().then(() => defineCustomElements());
 export const IfxAccordion = /*@__PURE__*/createReactComponent<JSX.IfxAccordion, HTMLIfxAccordionElement>('ifx-accordion');
 export const IfxAccordionItem = /*@__PURE__*/createReactComponent<JSX.IfxAccordionItem, HTMLIfxAccordionItemElement>('ifx-accordion-item');
 export const IfxAlert = /*@__PURE__*/createReactComponent<JSX.IfxAlert, HTMLIfxAlertElement>('ifx-alert');
 export const IfxBadge = /*@__PURE__*/createReactComponent<JSX.IfxBadge, HTMLIfxBadgeElement>('ifx-badge');
+export const IfxBreadcrumb = /*@__PURE__*/createReactComponent<JSX.IfxBreadcrumb, HTMLIfxBreadcrumbElement>('ifx-breadcrumb');
 export const IfxButton = /*@__PURE__*/createReactComponent<JSX.IfxButton, HTMLIfxButtonElement>('ifx-button');
 export const IfxCard = /*@__PURE__*/createReactComponent<JSX.IfxCard, HTMLIfxCardElement>('ifx-card');
 export const IfxCardHeadline = /*@__PURE__*/createReactComponent<JSX.IfxCardHeadline, HTMLIfxCardHeadlineElement>('ifx-card-headline');
@@ -33,6 +34,7 @@ export const IfxLink = /*@__PURE__*/createReactComponent<JSX.IfxLink, HTMLIfxLin
 export const IfxListGroup = /*@__PURE__*/createReactComponent<JSX.IfxListGroup, HTMLIfxListGroupElement>('ifx-list-group');
 export const IfxListItem = /*@__PURE__*/createReactComponent<JSX.IfxListItem, HTMLIfxListItemElement>('ifx-list-item');
 export const IfxListNotification = /*@__PURE__*/createReactComponent<JSX.IfxListNotification, HTMLIfxListNotificationElement>('ifx-list-notification');
+export const IfxModal = /*@__PURE__*/createReactComponent<JSX.IfxModal, HTMLIfxModalElement>('ifx-modal');
 export const IfxMultiSelectInput = /*@__PURE__*/createReactComponent<JSX.IfxMultiSelectInput, HTMLIfxMultiSelectInputElement>('ifx-multi-select-input');
 export const IfxMultiSelectInputItem = /*@__PURE__*/createReactComponent<JSX.IfxMultiSelectInputItem, HTMLIfxMultiSelectInputItemElement>('ifx-multi-select-input-item');
 export const IfxNavbar = /*@__PURE__*/createReactComponent<JSX.IfxNavbar, HTMLIfxNavbarElement>('ifx-navbar');

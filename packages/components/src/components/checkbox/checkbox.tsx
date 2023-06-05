@@ -31,6 +31,7 @@ export class Checkbox {
   render() {
     return (
       <div class="checkbox__container">
+        <input type="checkbox" hidden />
         <div 
         tabindex="0"
         onClick={this.handleCheckbox.bind(this)}

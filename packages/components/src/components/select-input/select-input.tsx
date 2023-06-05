@@ -125,7 +125,6 @@ export class SelectInput {
     let textInput = this.el.querySelector('ifx-text-input');
     if (textInput) {
       const textInputElement = textInput.shadowRoot.querySelector('input');
-      console.log('here', textInputElement)
       if (!textInputElement.classList.contains('disabled')) {
         textInputElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
         this.addEventListeners()

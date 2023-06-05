@@ -5,7 +5,18 @@ defineProps({
   msg: String,
 })
 
-const count = ref(0)
+const progressValue = ref("10");
+
+
+function updateProgressOnClick() {
+  console.log("val", progressValue.value)
+  progressValue.value < 100 ? progressValue.value += 10 : progressValue.value = 10;
+}
+
+function handleProgressUpdate(event) {
+  progressValue.value = event.detail;
+}
+
 const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 
 </script>
@@ -15,10 +26,15 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
     <div class="header">
 
       <p>{{ msg }}</p>
+      <ifx-progress-bar value="50" size="m" show-label="true"></ifx-progress-bar>
+      <ifx-progress-bar :value="progressValue.value" size="m" show-label="true"
+        @ifxChange:progressValue="handleProgressUpdate"></ifx-progress-bar>
+
       <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
-        disabled="false">
-        Button
+        disabled="false" @click="updateProgressOnClick">
+        Update progress
       </ifx-button>
+
 
       <br />
 

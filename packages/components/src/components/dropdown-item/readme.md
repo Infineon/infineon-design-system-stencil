@@ -28,15 +28,12 @@
 
 ### Depends on
 
-- [ifx-checkbox](../checkbox)
 - [ifx-icon](../icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-dropdown-item --> ifx-checkbox
   ifx-dropdown-item --> ifx-icon
-  ifx-checkbox --> ifx-icon
   style ifx-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

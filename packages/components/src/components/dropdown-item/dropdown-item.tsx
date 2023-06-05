@@ -18,18 +18,7 @@ export class DropdownItem {
   @Event({ bubbles: false }) itemValues: EventEmitter<Object>;
   @Element() el;
 
-  toggleCheckBox() { 
-    let input = this.el.shadowRoot.querySelector('input')
-    if(input) { 
-      input.checked = !input.checked
-    }
-  }
-
   handleItemChange(event) { 
-    const isNested = this.el.closest('ifx-dropdown')
-    if(!isNested) { 
-      this.toggleCheckBox()
-    }
 
     if(event.currentTarget.className.toLowerCase() !== 'form-check-input') { 
       

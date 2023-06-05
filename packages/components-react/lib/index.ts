@@ -1,2 +1,2 @@
 export * from './components/stencil-generated';
-export { defineCustomElements } from "../../components/loader";
+export { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";

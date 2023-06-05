@@ -59,7 +59,6 @@ export class MultiSelectInput {
   }
 
   toggleSlideButtons() { 
-    console.log('HERE')
     const multiSelectElement = this.getMultiSelectFieldWrapper()
     const isOverFlowing =  this.isOverflown(multiSelectElement)
     if(isOverFlowing) { 
@@ -179,9 +178,6 @@ export class MultiSelectInput {
   }
 
   isOverflown(element) {
-    console.log('element', element)
-    console.log('element', element.scrollWidth)
-    console.log('element', element.clientWidth)
     return element.scrollWidth > element.clientWidth;
   }
 
