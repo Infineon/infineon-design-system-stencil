@@ -27,13 +27,16 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 
       <p>{{ msg }}</p>
       <ifx-progress-bar value="50" size="m" show-label="true"></ifx-progress-bar>
-      <ifx-progress-bar :value="progressValue.value" size="m" show-label="true"
+      <ifx-progress-bar :value="progressValue" size="m" show-label="true"
         @ifxChange:progressValue="handleProgressUpdate"></ifx-progress-bar>
 
-      <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
-        disabled="false" @click="updateProgressOnClick">
-        Update progress
-      </ifx-button>
+      <div>
+        <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
+          disabled="false" @click="updateProgressOnClick">
+          Update progress
+        </ifx-button>
+      </div>
+
 
 
       <br />

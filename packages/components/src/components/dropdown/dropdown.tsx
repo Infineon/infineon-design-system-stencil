@@ -69,7 +69,7 @@ export class Dropdown {
   }
 
   toggleCheckbox(target) {
-    target.querySelector('input').checked = !target.querySelector('input').checked
+    target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
   }
 
 
@@ -88,9 +88,11 @@ export class Dropdown {
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
     const isCheckable = e.target.checkable;
+
     if (!target) return;
     if (isCheckable) {
       this.toggleCheckbox(target)
+
       return;
     }
 
@@ -100,7 +102,6 @@ export class Dropdown {
   }
 
   addEventListeners() {
-    console.log('here')
     const dropdownMenu = this.getDropdownMenu();
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)

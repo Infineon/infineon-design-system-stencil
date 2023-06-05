@@ -58,6 +58,9 @@ export namespace Components {
         "disabled": boolean;
         "error": boolean;
     }
+    interface IfxChip {
+        "defaultLabel": string;
+    }
     interface IfxDropdown {
         "disabled": boolean;
         "filter": boolean;
@@ -361,6 +364,12 @@ declare global {
         prototype: HTMLIfxCheckboxElement;
         new (): HTMLIfxCheckboxElement;
     };
+    interface HTMLIfxChipElement extends Components.IfxChip, HTMLStencilElement {
+    }
+    var HTMLIfxChipElement: {
+        prototype: HTMLIfxChipElement;
+        new (): HTMLIfxChipElement;
+    };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
     var HTMLIfxDropdownElement: {
@@ -589,6 +598,7 @@ declare global {
         "ifx-card-overline": HTMLIfxCardOverlineElement;
         "ifx-card-text": HTMLIfxCardTextElement;
         "ifx-checkbox": HTMLIfxCheckboxElement;
+        "ifx-chip": HTMLIfxChipElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
         "ifx-dropdown-divider": HTMLIfxDropdownDividerElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
@@ -677,6 +687,9 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         "disabled"?: boolean;
         "error"?: boolean;
+    }
+    interface IfxChip {
+        "defaultLabel"?: string;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -886,6 +899,7 @@ declare namespace LocalJSX {
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
         "ifx-checkbox": IfxCheckbox;
+        "ifx-chip": IfxChip;
         "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-divider": IfxDropdownDivider;
         "ifx-dropdown-item": IfxDropdownItem;
@@ -939,6 +953,7 @@ declare module "@stencil/core" {
             "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
             "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
+            "ifx-chip": LocalJSX.IfxChip & JSXBase.HTMLAttributes<HTMLIfxChipElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "ifx-dropdown-divider": LocalJSX.IfxDropdownDivider & JSXBase.HTMLAttributes<HTMLIfxDropdownDividerElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;

@@ -1,3 +1,21 @@
+# v18.2.0 (Mon Jun 05 2023)
+
+#### 🚀 Enhancement
+
+- 108 chips + updated text-input, select-input and multi-select input [#151](https://github.com/Infineon/infineon-design-system-stencil/pull/151) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- progress-bar fixed styling; fixed version display on storybook gettin… [#154](https://github.com/Infineon/infineon-design-system-stencil/pull/154) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.1.1 (Wed May 31 2023)
 
 #### ⚠️ Pushed to `master`
