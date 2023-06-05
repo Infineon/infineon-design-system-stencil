@@ -77,6 +77,11 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
 ]);
 
 
+export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
+  'defaultLabel'
+]);
+
+
 export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
   'label',
   'size',

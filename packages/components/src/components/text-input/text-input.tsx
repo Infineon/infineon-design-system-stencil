@@ -2,7 +2,7 @@ import { Component, h, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
-  styleUrl: '../../index.scss', 
+  styleUrl: 'text-input.scss', 
   shadow: true
 })
 
