@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox',
@@ -9,42 +9,69 @@ import { Component, h, Prop, Element, State } from '@stencil/core';
 export class Checkbox {
   @Element() el;
   @Prop() disabled: boolean = false;
-  @Prop({mutable: true}) checked: boolean = false;
+  @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @State() hasSlot: boolean = true;
+  @State() internalValue: boolean;
+  @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
-  handleCheckbox() { 
-    if(!this.disabled && !this.error) { 
-      this.checked = !this.checked;
+
+  handleCheckbox() {
+    if (!this.disabled) {
+      this.internalValue = !this.internalValue;
+      this.ifxChange.emit({ value: this.internalValue });
     }
   }
 
-  componentWillLoad() { 
+  @Watch('value')
+  valueChanged(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) {
+      this.internalValue = newValue;
+    }
+  }
+
+  componentDidUpdate() {
     const slot = this.el.innerHTML;
-    if(slot) { 
-      console.log('has slot')
+    if (slot) {
       this.hasSlot = true;
     } else this.hasSlot = false;
+  }
+
+  handleKeydown(event) {
+    // Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
+    if (event.keyCode === 32 || event.keyCode === 13) {
+      this.handleCheckbox();
+      event.preventDefault();  // prevent the default action when space or enter is pressed
+    }
+  }
+
+  componentWillLoad() {
+    this.internalValue = this.value;
   }
 
 
   render() {
     return (
       <div class="checkbox__container">
-        <input type="checkbox" hidden />
-        <div 
-        tabindex="0"
-        onClick={this.handleCheckbox.bind(this)}
-        class={`checkbox__wrapper 
-        ${this.checked ? 'checked' : ""} 
+        <input type="checkbox" hidden checked={this.internalValue} />
+        <div
+          tabindex="0"
+          onClick={this.handleCheckbox.bind(this)}
+          onKeyDown={this.handleKeydown.bind(this)}
+          role="checkbox"  // role attribute
+          aria-value={this.internalValue} // aria attribute
+          aria-disabled={this.disabled} // aria attribute
+          aria-labelledby="label"
+          class={`checkbox__wrapper 
+        ${this.internalValue ? 'checked' : ""} 
         ${this.disabled ? 'disabled' : ""}
         ${this.error ? 'error' : ""}`}>
-          {this.checked && <ifx-icon icon="check-12"></ifx-icon>}
+          {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
-      {this.hasSlot &&
-        <div class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
-        <slot />
-      </div>}
+        {this.hasSlot &&
+          <div id="label" class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
+            <slot />
+          </div>}
       </div>
     );
   }
