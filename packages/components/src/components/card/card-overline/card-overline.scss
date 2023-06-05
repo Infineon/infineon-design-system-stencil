@@ -1,0 +1,17 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
+.card-overline {
+  font-size: tokens.$font-size-m;
+  font-weight: tokens.$font-weight-regular;
+  color: tokens.$color-gray-500;
+  padding-bottom: 4px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  word-break: break-all;
+}
