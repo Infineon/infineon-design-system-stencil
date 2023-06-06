@@ -42,6 +42,9 @@
     "@stencil/core": "^2.16.0",
     "fs-extra": "^11.1.1"
   },
+  "peerDependencies": {
+    "choices.js": "^10.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@mdx-js/loader": "^2.3.0",

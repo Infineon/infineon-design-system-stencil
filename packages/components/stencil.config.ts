@@ -4,7 +4,6 @@ import { frameworkTargets } from './framework-output-targets';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
-  globalScript: 'src/index.ts',
   globalStyle: 'src/global/global.scss',
 
   outputTargets: [

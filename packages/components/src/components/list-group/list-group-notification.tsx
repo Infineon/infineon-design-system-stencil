@@ -2,8 +2,8 @@ import { Component, h, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-list-notification',
-  styleUrl: '../../index.scss',
-  shadow: true,
+  styleUrl: 'list-group-notification.scss',
+  shadow: true
 })
 
 export class ListGroupNotification {

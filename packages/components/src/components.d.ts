@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/choices/interfaces";
 import { TabOrientation } from "./components/tabs/tabs";
 export namespace Components {
     interface IfxAccordion {
@@ -57,6 +58,72 @@ export namespace Components {
         "checked": boolean;
         "disabled": boolean;
         "error": boolean;
+    }
+    interface IfxChoices {
+        "addItemFilter": string | RegExp | ItemFilterFn;
+        "addItemText": string | AddItemTextFn;
+        "addItems": boolean;
+        "ajax": (fn: AjaxFn) => Promise<this>;
+        "appendValue": string;
+        "callbackOnCreateTemplates": OnCreateTemplates;
+        "callbackOnInit": OnInit;
+        "choices": Array<any>;
+        "classNames": ClassNames;
+        "clearChoices": () => Promise<this>;
+        "clearInput": () => Promise<this>;
+        "clearStore": () => Promise<this>;
+        "customAddItemText": CustomAddItemText;
+        "delimiter": string;
+        "disable": () => Promise<this>;
+        "duplicateItemsAllowed": boolean;
+        "editItems": boolean;
+        "enable": () => Promise<this>;
+        "fuseOptions": FuseOptions;
+        "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
+        "hideDropdown": (blurInput?: boolean) => Promise<this>;
+        "highlightAll": () => Promise<this>;
+        "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
+        "itemSelectText": '';
+        "items": Array<any>;
+        "loadingText": string;
+        "maxItemCount": number;
+        "maxItemText": string | MaxItemTextFn;
+        "name": string;
+        "noChoicesText": string | NoChoicesTextFn;
+        "noResultsText": string | NoResultsTextFn;
+        "paste": boolean;
+        "placeholder": boolean | string;
+        "placeholderValue": string;
+        "position": 'auto' | 'top' | 'bottom';
+        "prependValue": string;
+        "removeActiveItems": (excludedId?: number) => Promise<this>;
+        "removeActiveItemsByValue": (value: string) => Promise<this>;
+        "removeHighlightedItems": (runEvent?: boolean) => Promise<this>;
+        "removeItemButton": boolean;
+        "removeItems": boolean;
+        "renderChoiceLimit": number;
+        "renderSelectedChoices": 'always' | 'auto';
+        "resetScrollPosition": boolean;
+        "searchChoices": boolean;
+        "searchEnabled": boolean;
+        "searchFields": Array<string> | string;
+        "searchFloor": number;
+        "searchPlaceholderValue": string;
+        "searchResultLimit": number;
+        "setChoiceByValue": (value: string | Array<string>) => Promise<this>;
+        "setChoices": (choices: Array<any>, value: string, label: string, replaceChoices?: boolean) => Promise<this>;
+        "setValue": (args: Array<any>) => Promise<this>;
+        "shouldSort": boolean;
+        "shouldSortItems": boolean;
+        "showDropdown": (focusInput?: boolean) => Promise<this>;
+        "silent": boolean;
+        "sorter": SortFn;
+        "type"?: 'single' | 'multiple' | 'text';
+        "unhighlightAll": () => Promise<this>;
+        "unhighlightItem": (item: HTMLElement) => Promise<this>;
+        "uniqueItemText": UniqueItemText;
+        "value": string;
+        "valueComparer": ValueCompareFunction;
     }
     interface IfxDropdown {
         "disabled": boolean;
@@ -361,6 +428,12 @@ declare global {
         prototype: HTMLIfxCheckboxElement;
         new (): HTMLIfxCheckboxElement;
     };
+    interface HTMLIfxChoicesElement extends Components.IfxChoices, HTMLStencilElement {
+    }
+    var HTMLIfxChoicesElement: {
+        prototype: HTMLIfxChoicesElement;
+        new (): HTMLIfxChoicesElement;
+    };
     interface HTMLIfxDropdownElement extends Components.IfxDropdown, HTMLStencilElement {
     }
     var HTMLIfxDropdownElement: {
@@ -589,6 +662,7 @@ declare global {
         "ifx-card-overline": HTMLIfxCardOverlineElement;
         "ifx-card-text": HTMLIfxCardTextElement;
         "ifx-checkbox": HTMLIfxCheckboxElement;
+        "ifx-choices": HTMLIfxChoicesElement;
         "ifx-dropdown": HTMLIfxDropdownElement;
         "ifx-dropdown-divider": HTMLIfxDropdownDividerElement;
         "ifx-dropdown-item": HTMLIfxDropdownItemElement;
@@ -677,6 +751,53 @@ declare namespace LocalJSX {
         "checked"?: boolean;
         "disabled"?: boolean;
         "error"?: boolean;
+    }
+    interface IfxChoices {
+        "addItemFilter"?: string | RegExp | ItemFilterFn;
+        "addItemText"?: string | AddItemTextFn;
+        "addItems"?: boolean;
+        "appendValue"?: string;
+        "callbackOnCreateTemplates"?: OnCreateTemplates;
+        "callbackOnInit"?: OnInit;
+        "choices"?: Array<any>;
+        "classNames"?: ClassNames;
+        "customAddItemText"?: CustomAddItemText;
+        "delimiter"?: string;
+        "duplicateItemsAllowed"?: boolean;
+        "editItems"?: boolean;
+        "fuseOptions"?: FuseOptions;
+        "itemSelectText"?: '';
+        "items"?: Array<any>;
+        "loadingText"?: string;
+        "maxItemCount"?: number;
+        "maxItemText"?: string | MaxItemTextFn;
+        "name"?: string;
+        "noChoicesText"?: string | NoChoicesTextFn;
+        "noResultsText"?: string | NoResultsTextFn;
+        "paste"?: boolean;
+        "placeholder"?: boolean | string;
+        "placeholderValue"?: string;
+        "position"?: 'auto' | 'top' | 'bottom';
+        "prependValue"?: string;
+        "removeItemButton"?: boolean;
+        "removeItems"?: boolean;
+        "renderChoiceLimit"?: number;
+        "renderSelectedChoices"?: 'always' | 'auto';
+        "resetScrollPosition"?: boolean;
+        "searchChoices"?: boolean;
+        "searchEnabled"?: boolean;
+        "searchFields"?: Array<string> | string;
+        "searchFloor"?: number;
+        "searchPlaceholderValue"?: string;
+        "searchResultLimit"?: number;
+        "shouldSort"?: boolean;
+        "shouldSortItems"?: boolean;
+        "silent"?: boolean;
+        "sorter"?: SortFn;
+        "type"?: 'single' | 'multiple' | 'text';
+        "uniqueItemText"?: UniqueItemText;
+        "value"?: string;
+        "valueComparer"?: ValueCompareFunction;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -886,6 +1007,7 @@ declare namespace LocalJSX {
         "ifx-card-overline": IfxCardOverline;
         "ifx-card-text": IfxCardText;
         "ifx-checkbox": IfxCheckbox;
+        "ifx-choices": IfxChoices;
         "ifx-dropdown": IfxDropdown;
         "ifx-dropdown-divider": IfxDropdownDivider;
         "ifx-dropdown-item": IfxDropdownItem;
@@ -939,6 +1061,7 @@ declare module "@stencil/core" {
             "ifx-card-overline": LocalJSX.IfxCardOverline & JSXBase.HTMLAttributes<HTMLIfxCardOverlineElement>;
             "ifx-card-text": LocalJSX.IfxCardText & JSXBase.HTMLAttributes<HTMLIfxCardTextElement>;
             "ifx-checkbox": LocalJSX.IfxCheckbox & JSXBase.HTMLAttributes<HTMLIfxCheckboxElement>;
+            "ifx-choices": LocalJSX.IfxChoices & JSXBase.HTMLAttributes<HTMLIfxChoicesElement>;
             "ifx-dropdown": LocalJSX.IfxDropdown & JSXBase.HTMLAttributes<HTMLIfxDropdownElement>;
             "ifx-dropdown-divider": LocalJSX.IfxDropdownDivider & JSXBase.HTMLAttributes<HTMLIfxDropdownDividerElement>;
             "ifx-dropdown-item": LocalJSX.IfxDropdownItem & JSXBase.HTMLAttributes<HTMLIfxDropdownItemElement>;
