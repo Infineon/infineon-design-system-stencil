@@ -16,6 +16,7 @@ export class DropdownItem {
   @Prop() value: string = ""
   @State() checkboxColor: string = "";
   @Event({ bubbles: false }) itemValues: EventEmitter<Object>;
+  @Prop() href: 'string'
   @Element() el;
 
   handleItemChange(event) { 
@@ -46,7 +47,7 @@ export class DropdownItem {
 
   render() {
     return (
-      <a href="javascript:;" onClick={this.handleItemChange.bind(this)} class={`dropdown-item ${this.checkboxColor}`}>
+      <a href={this.href} onClick={this.handleItemChange.bind(this)} class={`dropdown-item ${this.checkboxColor}`}>
         {this.checkable && <ifx-checkbox></ifx-checkbox> }
         {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         <label class="form-check-label"><slot /></label>

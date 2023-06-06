@@ -22,7 +22,9 @@ export namespace Components {
     interface IfxBadge {
     }
     interface IfxBreadcrumb {
-        "breadcrumbs": { text: string, url: string }[];
+    }
+    interface IfxBreadcrumbItem {
+        "url": string;
     }
     interface IfxButton {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -74,6 +76,7 @@ export namespace Components {
     interface IfxDropdownItem {
         "checkable": boolean;
         "disabled": boolean;
+        "href": 'string';
         "icon": string;
         "label": string;
         "size": 's' | 'm';
@@ -327,6 +330,12 @@ declare global {
     var HTMLIfxBreadcrumbElement: {
         prototype: HTMLIfxBreadcrumbElement;
         new (): HTMLIfxBreadcrumbElement;
+    };
+    interface HTMLIfxBreadcrumbItemElement extends Components.IfxBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLIfxBreadcrumbItemElement: {
+        prototype: HTMLIfxBreadcrumbItemElement;
+        new (): HTMLIfxBreadcrumbItemElement;
     };
     interface HTMLIfxButtonElement extends Components.IfxButton, HTMLStencilElement {
     }
@@ -592,6 +601,7 @@ declare global {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-badge": HTMLIfxBadgeElement;
         "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
+        "ifx-breadcrumb-item": HTMLIfxBreadcrumbItemElement;
         "ifx-button": HTMLIfxButtonElement;
         "ifx-card": HTMLIfxCardElement;
         "ifx-card-headline": HTMLIfxCardHeadlineElement;
@@ -653,7 +663,9 @@ declare namespace LocalJSX {
     interface IfxBadge {
     }
     interface IfxBreadcrumb {
-        "breadcrumbs"?: { text: string, url: string }[];
+    }
+    interface IfxBreadcrumbItem {
+        "url"?: string;
     }
     interface IfxButton {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
@@ -704,6 +716,7 @@ declare namespace LocalJSX {
     interface IfxDropdownItem {
         "checkable"?: boolean;
         "disabled"?: boolean;
+        "href"?: 'string';
         "icon"?: string;
         "label"?: string;
         "onItemValues"?: (event: IfxDropdownItemCustomEvent<Object>) => void;
@@ -893,6 +906,7 @@ declare namespace LocalJSX {
         "ifx-alert": IfxAlert;
         "ifx-badge": IfxBadge;
         "ifx-breadcrumb": IfxBreadcrumb;
+        "ifx-breadcrumb-item": IfxBreadcrumbItem;
         "ifx-button": IfxButton;
         "ifx-card": IfxCard;
         "ifx-card-headline": IfxCardHeadline;
@@ -947,6 +961,7 @@ declare module "@stencil/core" {
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-badge": LocalJSX.IfxBadge & JSXBase.HTMLAttributes<HTMLIfxBadgeElement>;
             "ifx-breadcrumb": LocalJSX.IfxBreadcrumb & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
+            "ifx-breadcrumb-item": LocalJSX.IfxBreadcrumbItem & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbItemElement>;
             "ifx-button": LocalJSX.IfxButton & JSXBase.HTMLAttributes<HTMLIfxButtonElement>;
             "ifx-card": LocalJSX.IfxCard & JSXBase.HTMLAttributes<HTMLIfxCardElement>;
             "ifx-card-headline": LocalJSX.IfxCardHeadline & JSXBase.HTMLAttributes<HTMLIfxCardHeadlineElement>;
