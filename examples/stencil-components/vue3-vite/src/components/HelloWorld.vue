@@ -48,6 +48,10 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
           {{ btn }}
         </ifx-button>
       </th>
+
+      <br />
+      <form> test<ifx-checkbox error=false disabled=false checked=false>Text</ifx-checkbox>test</form>
+
     </div>
   </div>
 </template>
