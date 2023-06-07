@@ -9,6 +9,7 @@ export default {
     setTimeout(() => {
       const component = el.querySelector('ifx-choices');
 
+      console.log("choices ", context.args.choices)
       const choices = context.args.choices?.split(',').map((choice) => ({
         value: choice.trim(),
         label: choice.trim(),
@@ -71,7 +72,15 @@ Single.args = {
 
 };
 
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  type: 'single',
+  value: 'Placeholder',
+  name: 'single',
+  searchPlaceholderValue: 'Search...',
+  choices: "Choice 1, <ifx-icon icon='chevron-down-16'></ifx-icon> Choice 2, <ifx-icon icon='chevron-down-16'></ifx-icon> Choice 3",
 
+};
 
 
 export const Multiple = Template.bind({});

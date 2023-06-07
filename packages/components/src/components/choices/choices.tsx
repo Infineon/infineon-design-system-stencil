@@ -239,13 +239,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const attributesSingle = {
       'data-selector': 'root',
       'name': this.name || null,
-      'remove-item-button': false
+      'remove-item-button': false,
     };
     const attributesDefault = {
       'data-selector': 'root',
       'name': this.name || null,
     };
-    const containerClass = `ifx-choices__container`;
+    const containerClass = `ifx-choices__container ifx-choices__selected-item`;
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
     this.destroy();
@@ -257,7 +257,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             <select {...attributesSingle} onChange={() => this.closeDropdownMenu()}>
               {this.value ? this.createSelectOptions(this.value) : null}
             </select>
-
             <div class="ifx-choices__icon-wrapper">
               <ifx-icon
                 icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}

@@ -24,6 +24,10 @@
         transform: rotate(180deg);
       }
     }
+
+    // & .ifx-choices__selected-item {
+    // color: green;
+    // }
   }
 
   & .ifx-choices__icon-wrapper {
@@ -355,8 +359,10 @@
   }
 }
 
+
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
   background-color: tokens.$color-gray-200;
+  font-weight: bold;
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted:after {
