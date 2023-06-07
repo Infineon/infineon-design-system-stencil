@@ -112,3 +112,4 @@ typings/
 /yarn.lock
 
 packages/components/src/components.d.ts
+packages/components-vue/lib/components.ts
