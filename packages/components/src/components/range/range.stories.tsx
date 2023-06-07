@@ -11,11 +11,11 @@ export default {
     showPercentage: { control: 'boolean' },
     disabled: { control: 'boolean' },
     leftIcon: {
-      options: Object.keys(icons),
+      options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
     },
     rightIcon: {
-      options: Object.keys(icons),
+      options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
     },
     leftText: { control: 'text' },
@@ -47,7 +47,7 @@ const Template = (args) => {
   if (args.rightText) {
     rangeElement.setAttribute('right-text', args.rightText);
   }
-  rangeElement.addEventListener('valueChanged', action('valueChanged'));
+  rangeElement.addEventListener('ifxChanged', action('ifxChanged'));
 
   return rangeElement;
 };
@@ -73,8 +73,8 @@ WithPercentageDisplay.args = {
 export const WithIcons = Template.bind({});
 WithIcons.args = {
   ...Default.args,
-  leftIcon: 'arrowright16',
-  rightIcon: 'arrowleft16',
+  leftIcon: 'cogwheel-16',
+  rightIcon: 'cogwheel-16',
 };
 
 export const WithTexts = Template.bind({});

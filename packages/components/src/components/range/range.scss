@@ -1,15 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
 
 // ifx-range.scss
 :host {
   display: inline-block;
-}
-
-.dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: tokens.$border-radius-circle;
 }
 
 .left-icon,
@@ -17,12 +12,12 @@
 .left-text,
 .right-text,
 .percentage-display {
-  font-family: tokens.$font-family-body;
   font-size: tokens.$font-size-s;
   color: tokens.$color-gray-500;
   margin-left: 8px;
 
-  &.disabled { // Add the disabled state for the percentage display
+  &.disabled {
+    // Add the disabled state for the percentage display
     color: tokens.$color-gray-300;
   }
 }
@@ -55,7 +50,7 @@
 
     &:disabled {
       background: tokens.$color-gray-300;
-      cursor:default;
+      cursor: default;
     }
 
     &::-webkit-slider-thumb {

@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-range',
@@ -8,27 +8,34 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 export class IfxRange {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
-  @Prop({ mutable: true }) value: number = 0;
+  @Prop() value: number = 0;
   @Prop() disabled: boolean = false;
-  @Prop() showPercentage: boolean = false; // New property for toggleable percentage display
+  @Prop() showPercentage: boolean = false;
   @Prop() leftIcon: string;
   @Prop() rightIcon: string;
   @Prop() leftText: string;
   @Prop() rightText: string;
-  @Event() valueChanged: EventEmitter<number>;
+  @State() internalValue: number = 0;
+  @Event() ifxChanged: EventEmitter<number>;
 
   private inputRef: HTMLInputElement;
 
+  @Watch('value')
+  valueChanged(newValue: number) {
+    this.internalValue = newValue;
+    this.updateValuePercent();
+  }
+
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.value = parseInt(target.value);
-    this.valueChanged.emit(this.value);
+    this.internalValue = parseInt(target.value);
+    this.ifxChanged.emit(this.internalValue);
     this.updateValuePercent();
   }
 
   updateValuePercent() {
     if (this.inputRef) {
-      const percent = ((this.value - this.min) / (this.max - this.min)) * 100;
+      const percent = ((this.internalValue - this.min) / (this.max - this.min)) * 100;
       this.inputRef.style.setProperty('--value-percent', `${percent}%`);
     }
   }
@@ -42,7 +49,7 @@ export class IfxRange {
     return (
       <div class="ifx-range">
         {this.leftText && (
-          <span class={`left-text${this.disabled ? ' disabled' : ''}`}>
+          <span class={`left-text`}>
             {this.leftText}
           </span>
         )}
@@ -55,7 +62,7 @@ export class IfxRange {
           min={this.min}
           max={this.max}
           disabled={this.disabled}
-          value={this.value}
+          value={this.internalValue}
           ref={(el) => (this.inputRef = el as HTMLInputElement)}
           onInput={(event) => this.handleInputChange(event)}
         />
