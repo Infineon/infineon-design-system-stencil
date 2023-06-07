@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Ifx-Link",
+  title: "Components/Link",
   args: {
     label: 'Link',
     icon: true,
@@ -10,13 +10,13 @@ export default {
   },
 
   argTypes: {
-    target: { 
+    target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    position: { 
+    position: {
       options: ['right', 'left'],
-      control: { type: 'radio'}
+      control: { type: 'radio' }
     }
   },
 };

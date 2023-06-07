@@ -1,0 +1,37 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.link {
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: underline;
+  color: tokens.$color-text-black;
+
+  &.bold {
+    font-weight: 600;
+  }
+
+  &.primary {
+    color: tokens.$color-default-500;
+  }
+
+  &.secondary {
+    color: tokens.$color-highlight-500;
+  }
+
+  &.warning {
+    color: tokens.$color-warning-500;
+  }
+
+  &.danger {
+    color: tokens.$color-danger-500;
+  }
+
+  &.success {
+    color: tokens.$color-success-500;
+  }
+
+  &.underline {
+    text-decoration: underline;
+  }
+}
