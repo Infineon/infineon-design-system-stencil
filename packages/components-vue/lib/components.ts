@@ -77,54 +77,9 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
 ]);
 
 
-export const IfxChoices = /*@__PURE__*/ defineContainer<JSX.IfxChoices, JSX.IfxChoices["value"]>('ifx-choices', undefined, [
-  'type',
-  'value',
-  'name',
-  'silent',
-  'items',
-  'choices',
-  'renderChoiceLimit',
-  'maxItemCount',
-  'addItems',
-  'removeItems',
-  'removeItemButton',
-  'editItems',
-  'duplicateItemsAllowed',
-  'delimiter',
-  'paste',
-  'searchEnabled',
-  'searchChoices',
-  'searchFields',
-  'searchFloor',
-  'searchResultLimit',
-  'position',
-  'resetScrollPosition',
-  'shouldSort',
-  'shouldSortItems',
-  'sorter',
-  'placeholder',
-  'placeholderValue',
-  'searchPlaceholderValue',
-  'prependValue',
-  'appendValue',
-  'renderSelectedChoices',
-  'loadingText',
-  'noResultsText',
-  'noChoicesText',
-  'itemSelectText',
-  'addItemText',
-  'maxItemText',
-  'uniqueItemText',
-  'classNames',
-  'fuseOptions',
-  'addItemFilter',
-  'customAddItemText',
-  'callbackOnInit',
-  'callbackOnCreateTemplates',
-  'valueComparer'
-],
-'value', 'change');
+export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
+  'defaultLabel'
+]);
 
 
 export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
@@ -279,7 +234,7 @@ export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, 
   'showLabel',
   'ifxChange'
 ],
-'value', 'ifxChange');
+  'value', 'ifxChange');
 
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
@@ -312,7 +267,7 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'value',
   'ifxChange'
 ],
-'value', 'ifxChange');
+  'value', 'ifxChange');
 
 
 export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
@@ -324,7 +279,7 @@ export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, 
   'size',
   'ifxChange'
 ],
-'value', 'ifxChange');
+  'value', 'ifxChange');
 
 
 export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);

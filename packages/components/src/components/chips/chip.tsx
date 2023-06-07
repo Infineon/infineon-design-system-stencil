@@ -1,14 +1,15 @@
-import { Component, h, Element, Listen } from "@stencil/core";
+import { Component, h, Element, Prop, Listen, State } from '@stencil/core';
 
 @Component({
-  tag: 'ifx-select-input',
+  tag: 'ifx-chip',
   styleUrl: '../../index.scss',
   shadow: true
 })
 
-export class SelectInput {
-
+export class Chip {
   @Element() el;
+  @Prop() defaultLabel: string;
+  @State() isEmpty: boolean = true;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -43,23 +44,26 @@ export class SelectInput {
 
   toggleDropdownMenu() {
     const textField = this.getTextField()
-    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
+    const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
+    const chipWrapper = textField.closest('.chip__wrapper');
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'toggle', 'show')
     this.handleClassList(dropdownWrapper, 'toggle', 'show')
     this.handleClassList(textFieldElement, 'toggle', 'show')
-
+    this.handleClassList(chipWrapper, 'toggle', 'open')
   }
 
   closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
     const textField = this.getTextField()
-    const textFieldElement = textField.shadowRoot.querySelector('.textInput__bottom-wrapper')
+    const chipWrapper = textField.closest('.chip__wrapper');
+    const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
     this.handleClassList(textFieldElement, 'remove', 'show')
+    this.handleClassList(chipWrapper, 'remove', 'open')
   }
 
   removeActiveMenuItem() {
@@ -69,10 +73,28 @@ export class SelectInput {
     }
   }
 
-  toggleCheckbox(target) {
-    target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
+  uncheckCheckboxes(target) { 
+    const dropdownMenuItems =  this.getDropdownItems()
+    for(let i = 0; i < dropdownMenuItems.length; i++) { 
+      if(dropdownMenuItems[i].shadowRoot.querySelector('a') !== target) { 
+        dropdownMenuItems[i].shadowRoot.querySelector('a').querySelector('ifx-checkbox').checked = false;
+      }
+    }
   }
 
+  returnToDefaultLabel() { 
+    const textField = this.getTextField()
+    const labelWrapper = textField.querySelector('.chip__wrapper-label');
+    labelWrapper.innerHTML = this.defaultLabel;
+  }
+
+  toggleCheckbox(target) {
+    this.uncheckCheckboxes(target)
+    target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
+    if(target.querySelector('ifx-checkbox').checked === false) { 
+      this.returnToDefaultLabel()
+    } 
+  }
 
   getClickedElement(target) {
     if (target instanceof SVGElement) {
@@ -88,11 +110,19 @@ export class SelectInput {
 
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
+    const selectedAnchor = e.target.shadowRoot.querySelector('a');
     const isCheckable = e.target.checkable;
-    if (!target) return;
+    this.uncheckCheckboxes(selectedAnchor)
+
+    if (!target) {
+      if(selectedAnchor.querySelector('ifx-checkbox').checked === false) { 
+        this.returnToDefaultLabel()
+      }
+      return;
+    }
+
     if (isCheckable) {
       this.toggleCheckbox(target)
-
       return;
     }
 
@@ -102,13 +132,15 @@ export class SelectInput {
   }
 
   getTextField() { 
-    let textField = this.el.querySelector('ifx-text-input');
+    let textField = this.el.shadowRoot.querySelector('.chip__wrapper');
     return textField
   }
 
   addItemValueToTextField(value) { 
     const textField = this.getTextField()
-    textField.value = value.value
+    const labelWrapper = textField.querySelector('.chip__wrapper-label')
+    value.target.setAttribute('target', value.target?.index)
+    labelWrapper.innerHTML = value.value
   }
 
   addEventListeners() {
@@ -122,23 +154,28 @@ export class SelectInput {
   }
 
   componentDidRender() {
-    let textInput = this.el.querySelector('ifx-text-input');
+    let textInput = this.getTextField()
     if (textInput) {
-      const textInputElement = textInput.shadowRoot.querySelector('input');
-      if (!textInputElement.classList.contains('disabled')) {
-        textInputElement.addEventListener('click', this.toggleDropdownMenu.bind(this))
-        this.addEventListeners()
-      }
+      textInput.addEventListener('click', this.toggleDropdownMenu.bind(this))
+      this.addEventListeners()
     }
   }
 
-
   render() {
     return (
-      <div class='dropdown selectInput'>
-        <slot name="text-input" />
+      <div class="dropdown chip__container">
+        <div class="chip__wrapper">
+          <div class="chip__wrapper-label">
+            {this.defaultLabel}
+          </div>
+          <div class="chip__wrapper-close-button">
+            <ifx-icon icon="chevrondown12"></ifx-icon>
+          </div>
+        </div>
+        
         <slot name="menu" />
+        
       </div>
-    )
+    );
   }
 }

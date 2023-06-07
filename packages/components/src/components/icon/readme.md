@@ -20,6 +20,7 @@
  - [ifx-alert](../alert)
  - [ifx-button](../button)
  - [ifx-checkbox](../checkbox)
+ - [ifx-chip](../chips)
  - [ifx-choices](../choices)
  - [ifx-dropdown-item](../dropdown-item)
  - [ifx-icon-button](../icon-button)
@@ -41,6 +42,7 @@ graph TD;
   ifx-alert --> ifx-icon
   ifx-button --> ifx-icon
   ifx-checkbox --> ifx-icon
+  ifx-chip --> ifx-icon
   ifx-choices --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-icon-button --> ifx-icon

@@ -111,4 +111,4 @@ typings/
 
 /yarn.lock
 
-components.d.ts
+packages/components/src/components.d.ts

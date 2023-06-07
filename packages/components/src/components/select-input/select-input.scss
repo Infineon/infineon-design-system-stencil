@@ -1,7 +1,9 @@
 :host { 
-  width: 100%;
+  //width: 100%;
 }
 
-.dropdown { 
-  width: 235px;
+.selectInput  { 
+  &.dropdown { 
+    width: 235px;
+  }
 }
