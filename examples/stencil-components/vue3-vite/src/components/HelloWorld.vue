@@ -37,10 +37,7 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
         </ifx-button>
       </div>
 
-
-
       <br />
-
 
       <th v-for="btn in buttons" scope="col">
         <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
@@ -50,7 +47,7 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
       </th>
 
       <br />
-      <form> test<ifx-checkbox error=false disabled=false checked=false>Text</ifx-checkbox>test</form>
+      <form>test<ifx-checkbox error=false disabled=false checked=false>Text</ifx-checkbox>test</form>
 
     </div>
   </div>
