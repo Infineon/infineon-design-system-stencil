@@ -72,8 +72,8 @@ Single.args = {
 
 };
 
-export const WithIcon = Template.bind({});
-WithIcon.args = {
+export const SingleWithIcon = Template.bind({});
+SingleWithIcon.args = {
   type: 'single',
   value: 'Placeholder',
   name: 'single',
