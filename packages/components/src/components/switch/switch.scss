@@ -6,7 +6,7 @@
   user-select: none;
 }
 
-.toggle-container {
+.container {
   display: inline-block;
   position: relative;
   width: 50px;
@@ -18,7 +18,7 @@
   transition: background-color 0.3s ease;
 }
 
-.toggle-switch {
+.switch {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -29,16 +29,16 @@
   transition: transform 0.3s ease;
 }
 
-.toggle-container:hover .toggle-switch {
+.container:hover .toggle-switch {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.toggle-switch.checked {
+.switch.checked {
   transform: translateX(25px);
   background-color: tokens.$color-bg-white;
 }
 
-.toggle-container.checked {
+.container.checked {
   background-color: tokens.$color-default-500;
   /* Ocean color */
   border-color: tokens.$color-default-500;
