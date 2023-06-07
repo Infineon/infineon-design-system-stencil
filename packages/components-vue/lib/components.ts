@@ -20,8 +20,7 @@ export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionIt
 
 export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
   'color',
-  'icon',
-  'overflowing'
+  'icon'
 ]);
 
 
@@ -46,10 +45,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
-  'hasBtn',
   'direction',
   'alignment',
-  'hasDesc',
   'hasAll',
   'largeSize',
   'smallSize'
@@ -72,13 +69,15 @@ export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-c
 
 export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
   'disabled',
-  'checked',
-  'error'
+  'value',
+  'error',
+  'name',
+  'ifxChange'
 ]);
 
 
 export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
-  'defaultLabel'
+  'placeholder'
 ]);
 
 
@@ -254,7 +253,7 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
   'rightIcon',
   'leftText',
   'rightText',
-  'valueChanged'
+  'ifxChanged'
 ]);
 
 
@@ -299,9 +298,16 @@ export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spi
 
 
 export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-status', undefined, [
-  'text',
+  'label',
   'border',
   'color'
+]);
+
+
+export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [
+  'value',
+  'name',
+  'ifxChange'
 ]);
 
 
@@ -321,7 +327,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 
 
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined, [
-  'text'
+  'label'
 ]);
 
 
@@ -334,12 +340,6 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'disabled',
   'readonly',
   'icon'
-]);
-
-
-export const IfxToggle = /*@__PURE__*/ defineContainer<JSX.IfxToggle>('ifx-toggle', undefined, [
-  'checked',
-  'valueChanged'
 ]);
 
 

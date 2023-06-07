@@ -11,10 +11,10 @@ export class Checkbox {
   @Prop() disabled: boolean = false;
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
+  @Prop() name: string = '';
   @State() hasSlot: boolean = true;
   @State() internalValue: boolean;
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
-
 
   handleCheckbox() {
     if (!this.disabled) {
@@ -53,7 +53,10 @@ export class Checkbox {
   render() {
     return (
       <div class="checkbox__container">
-        <input type="checkbox" hidden checked={this.internalValue} />
+        <input type="checkbox" hidden
+          name={this.name}
+          checked={this.internalValue}
+          value={`${this.internalValue}`} />
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { mainColors } from "./global/colorNames";
 import { TabOrientation } from "./components/tabs/tabs";
 export namespace Components {
     interface IfxAccordion {
@@ -17,7 +18,6 @@ export namespace Components {
     interface IfxAlert {
         "color": 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon": string;
-        "overflowing": boolean;
     }
     interface IfxBadge {
     }
@@ -37,10 +37,8 @@ export namespace Components {
     }
     interface IfxCard {
         "alignment": string;
-        "direction": string;
+        "direction": 'horizontal' | 'vertical';
         "hasAll": boolean;
-        "hasBtn": boolean;
-        "hasDesc": boolean;
         "largeSize": boolean;
         "smallSize": boolean;
     }
@@ -54,12 +52,13 @@ export namespace Components {
         "hasBtn": boolean;
     }
     interface IfxCheckbox {
-        "checked": boolean;
         "disabled": boolean;
         "error": boolean;
+        "name": string;
+        "value": boolean;
     }
     interface IfxChip {
-        "defaultLabel": string;
+        "placeholder": string;
     }
     interface IfxDropdown {
         "disabled": boolean;
@@ -119,10 +118,10 @@ export namespace Components {
     }
     interface IfxLink {
         "bold": boolean;
-        "color": string;
+        "color": mainColors;
         "href": string;
         "target": string;
-        "underline": any;
+        "underline": boolean;
     }
     interface IfxListGroup {
         "bulletpoint": boolean;
@@ -214,8 +213,12 @@ export namespace Components {
     }
     interface IfxStatus {
         "border": boolean;
-        "color": 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
-        "text": string;
+        "color": 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
+        "label": string;
+    }
+    interface IfxSwitch {
+        "name": string;
+        "value": boolean;
     }
     interface IfxTab {
         "header": string;
@@ -226,7 +229,7 @@ export namespace Components {
         "tabs": string[];
     }
     interface IfxTag {
-        "text": string;
+        "label": string;
     }
     interface IfxTextInput {
         "disabled": boolean;
@@ -238,9 +241,6 @@ export namespace Components {
         "success": boolean;
         "value": string;
     }
-    interface IfxToggle {
-        "checked": boolean;
-    }
     interface InfineonIconStencil {
         "icon": any;
     }
@@ -248,6 +248,10 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCheckboxElement;
 }
 export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -285,6 +289,10 @@ export interface IfxSearchInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxSearchInputElement;
 }
+export interface IfxSwitchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxSwitchElement;
+}
 export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxTabElement;
@@ -292,10 +300,6 @@ export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
 export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxTabsElement;
-}
-export interface IfxToggleCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLIfxToggleElement;
 }
 declare global {
     interface HTMLIfxAccordionElement extends Components.IfxAccordion, HTMLStencilElement {
@@ -550,6 +554,12 @@ declare global {
         prototype: HTMLIfxStatusElement;
         new (): HTMLIfxStatusElement;
     };
+    interface HTMLIfxSwitchElement extends Components.IfxSwitch, HTMLStencilElement {
+    }
+    var HTMLIfxSwitchElement: {
+        prototype: HTMLIfxSwitchElement;
+        new (): HTMLIfxSwitchElement;
+    };
     interface HTMLIfxTabElement extends Components.IfxTab, HTMLStencilElement {
     }
     var HTMLIfxTabElement: {
@@ -573,12 +583,6 @@ declare global {
     var HTMLIfxTextInputElement: {
         prototype: HTMLIfxTextInputElement;
         new (): HTMLIfxTextInputElement;
-    };
-    interface HTMLIfxToggleElement extends Components.IfxToggle, HTMLStencilElement {
-    }
-    var HTMLIfxToggleElement: {
-        prototype: HTMLIfxToggleElement;
-        new (): HTMLIfxToggleElement;
     };
     interface HTMLInfineonIconStencilElement extends Components.InfineonIconStencil, HTMLStencilElement {
     }
@@ -629,11 +633,11 @@ declare global {
         "ifx-sidebar-item": HTMLIfxSidebarItemElement;
         "ifx-spinner": HTMLIfxSpinnerElement;
         "ifx-status": HTMLIfxStatusElement;
+        "ifx-switch": HTMLIfxSwitchElement;
         "ifx-tab": HTMLIfxTabElement;
         "ifx-tabs": HTMLIfxTabsElement;
         "ifx-tag": HTMLIfxTagElement;
         "ifx-text-input": HTMLIfxTextInputElement;
-        "ifx-toggle": HTMLIfxToggleElement;
         "infineon-icon-stencil": HTMLInfineonIconStencilElement;
     }
 }
@@ -648,7 +652,6 @@ declare namespace LocalJSX {
     interface IfxAlert {
         "color"?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
         "icon"?: string;
-        "overflowing"?: boolean;
     }
     interface IfxBadge {
     }
@@ -667,10 +670,8 @@ declare namespace LocalJSX {
     }
     interface IfxCard {
         "alignment"?: string;
-        "direction"?: string;
+        "direction"?: 'horizontal' | 'vertical';
         "hasAll"?: boolean;
-        "hasBtn"?: boolean;
-        "hasDesc"?: boolean;
         "largeSize"?: boolean;
         "smallSize"?: boolean;
     }
@@ -684,12 +685,14 @@ declare namespace LocalJSX {
         "hasBtn"?: boolean;
     }
     interface IfxCheckbox {
-        "checked"?: boolean;
         "disabled"?: boolean;
         "error"?: boolean;
+        "name"?: string;
+        "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
+        "value"?: boolean;
     }
     interface IfxChip {
-        "defaultLabel"?: string;
+        "placeholder"?: string;
     }
     interface IfxDropdown {
         "disabled"?: boolean;
@@ -751,10 +754,10 @@ declare namespace LocalJSX {
     }
     interface IfxLink {
         "bold"?: boolean;
-        "color"?: string;
+        "color"?: mainColors;
         "href"?: string;
         "target"?: string;
-        "underline"?: any;
+        "underline"?: boolean;
     }
     interface IfxListGroup {
         "bulletpoint"?: boolean;
@@ -817,7 +820,7 @@ declare namespace LocalJSX {
         "leftText"?: string;
         "max"?: number;
         "min"?: number;
-        "onValueChanged"?: (event: IfxRangeCustomEvent<number>) => void;
+        "onIfxChanged"?: (event: IfxRangeCustomEvent<number>) => void;
         "rightIcon"?: string;
         "rightText"?: string;
         "showPercentage"?: boolean;
@@ -853,8 +856,13 @@ declare namespace LocalJSX {
     }
     interface IfxStatus {
         "border"?: boolean;
-        "color"?: 'orange' | 'ocean'| 'grey'| 'grey-200'| 'red'| 'green'| 'berry';
-        "text"?: string;
+        "color"?: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry';
+        "label"?: string;
+    }
+    interface IfxSwitch {
+        "name"?: string;
+        "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
+        "value"?: boolean;
     }
     interface IfxTab {
         "header"?: string;
@@ -868,7 +876,7 @@ declare namespace LocalJSX {
         "tabs"?: string[];
     }
     interface IfxTag {
-        "text"?: string;
+        "label"?: string;
     }
     interface IfxTextInput {
         "disabled"?: boolean;
@@ -879,10 +887,6 @@ declare namespace LocalJSX {
         "readonly"?: boolean;
         "success"?: boolean;
         "value"?: string;
-    }
-    interface IfxToggle {
-        "checked"?: boolean;
-        "onValueChanged"?: (event: IfxToggleCustomEvent<boolean>) => void;
     }
     interface InfineonIconStencil {
         "icon"?: any;
@@ -930,11 +934,11 @@ declare namespace LocalJSX {
         "ifx-sidebar-item": IfxSidebarItem;
         "ifx-spinner": IfxSpinner;
         "ifx-status": IfxStatus;
+        "ifx-switch": IfxSwitch;
         "ifx-tab": IfxTab;
         "ifx-tabs": IfxTabs;
         "ifx-tag": IfxTag;
         "ifx-text-input": IfxTextInput;
-        "ifx-toggle": IfxToggle;
         "infineon-icon-stencil": InfineonIconStencil;
     }
 }
@@ -984,11 +988,11 @@ declare module "@stencil/core" {
             "ifx-sidebar-item": LocalJSX.IfxSidebarItem & JSXBase.HTMLAttributes<HTMLIfxSidebarItemElement>;
             "ifx-spinner": LocalJSX.IfxSpinner & JSXBase.HTMLAttributes<HTMLIfxSpinnerElement>;
             "ifx-status": LocalJSX.IfxStatus & JSXBase.HTMLAttributes<HTMLIfxStatusElement>;
+            "ifx-switch": LocalJSX.IfxSwitch & JSXBase.HTMLAttributes<HTMLIfxSwitchElement>;
             "ifx-tab": LocalJSX.IfxTab & JSXBase.HTMLAttributes<HTMLIfxTabElement>;
             "ifx-tabs": LocalJSX.IfxTabs & JSXBase.HTMLAttributes<HTMLIfxTabsElement>;
             "ifx-tag": LocalJSX.IfxTag & JSXBase.HTMLAttributes<HTMLIfxTagElement>;
             "ifx-text-input": LocalJSX.IfxTextInput & JSXBase.HTMLAttributes<HTMLIfxTextInputElement>;
-            "ifx-toggle": LocalJSX.IfxToggle & JSXBase.HTMLAttributes<HTMLIfxToggleElement>;
             "infineon-icon-stencil": LocalJSX.InfineonIconStencil & JSXBase.HTMLAttributes<HTMLInfineonIconStencilElement>;
         }
     }
