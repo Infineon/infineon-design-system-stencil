@@ -7,10 +7,25 @@
 
 ## Properties
 
-| Property      | Attribute | Description | Type                               | Default     |
-| ------------- | --------- | ----------- | ---------------------------------- | ----------- |
-| `breadcrumbs` | --        |             | `{ text: string; url: string; }[]` | `undefined` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `icon`   | `icon`    |             | `string` | `undefined` |
+| `target` | `target`  |             | `string` | `"_self"`   |
+| `url`    | `url`     |             | `string` | `undefined` |
 
+
+## Dependencies
+
+### Depends on
+
+- [ifx-icon](../icon)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-breadcrumb-item-label --> ifx-icon
+  style ifx-breadcrumb-item-label fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

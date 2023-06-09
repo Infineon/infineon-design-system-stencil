@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type  | Default     |
-| --------- | ---------- | ----------- | ----- | ----------- |
-| `icon`    | `icon`     |             | `any` | `undefined` |
-| `ifxIcon` | `ifx-icon` |             | `any` | `undefined` |
+| Property  | Attribute  | Description | Type     | Default     |
+| --------- | ---------- | ----------- | -------- | ----------- |
+| `icon`    | `icon`     |             | `string` | `""`        |
+| `ifxIcon` | `ifx-icon` |             | `any`    | `undefined` |
 
 
 ## Dependencies
@@ -18,6 +18,7 @@
 ### Used by
 
  - [ifx-alert](../alert)
+ - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-button](../button)
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
@@ -39,6 +40,7 @@
 ```mermaid
 graph TD;
   ifx-alert --> ifx-icon
+  ifx-breadcrumb-item-label --> ifx-icon
   ifx-button --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
