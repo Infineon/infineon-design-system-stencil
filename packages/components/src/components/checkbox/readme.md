@@ -7,11 +7,18 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `checked`  | `checked`  |             | `boolean` | `false` |
-| `disabled` | `disabled` |             | `boolean` | `false` |
-| `error`    | `error`    |             | `boolean` | `false` |
+| Property   | Attribute  | Description | Type      | Default   |
+| ---------- | ---------- | ----------- | --------- | --------- |
+| `checked`  | `checked`  |             | `string`  | `'false'` |
+| `disabled` | `disabled` |             | `boolean` | `false`   |
+| `error`    | `error`    |             | `boolean` | `false`   |
+
+
+## Events
+
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxCheck` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

@@ -73,7 +73,8 @@ export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-c
 export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
   'disabled',
   'checked',
-  'error'
+  'error',
+  'ifxCheck'
 ]);
 
 

@@ -54,7 +54,7 @@ export namespace Components {
         "hasBtn": boolean;
     }
     interface IfxCheckbox {
-        "checked": boolean;
+        "checked": string;
         "disabled": boolean;
         "error": boolean;
     }
@@ -248,6 +248,10 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxCheckboxElement;
 }
 export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -684,9 +688,10 @@ declare namespace LocalJSX {
         "hasBtn"?: boolean;
     }
     interface IfxCheckbox {
-        "checked"?: boolean;
+        "checked"?: string;
         "disabled"?: boolean;
         "error"?: boolean;
+        "onIfxCheck"?: (event: IfxCheckboxCustomEvent<any>) => void;
     }
     interface IfxChip {
         "defaultLabel"?: string;
