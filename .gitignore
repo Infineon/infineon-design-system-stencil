@@ -110,3 +110,6 @@ typings/
 .npmrc
 
 /yarn.lock
+
+
+packages/components/src/components.d.ts
