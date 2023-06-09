@@ -7,6 +7,10 @@
   padding: 0px;
   gap: 12px;
 
+  &:hover { 
+    cursor: pointer;
+  }
+
   & .breadcrumb-wrapper { 
     display: flex;
     flex-direction: row;

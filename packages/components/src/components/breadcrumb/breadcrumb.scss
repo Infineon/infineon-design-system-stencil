@@ -9,7 +9,8 @@
   font-family: tokens.$font-family-body;
   font-size: tokens.$font-size-s;
   align-items: flex-start;
-  gap: 16px;
+  //gap: 16px; //this is where the gap comes from
+
 }
 
 // .separator {
