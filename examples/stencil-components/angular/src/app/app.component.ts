@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular';
+  progressValue = 10;
+
+  updateProgressOnClick() {
+    this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
+  }
 }
