@@ -1,11 +1,11 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-:host { 
+:host {
     display: inline-flex;
     vertical-align: top;
 }
 
-.checkbox__container { 
+.checkbox__container {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
@@ -13,7 +13,7 @@
     padding: 0px;
     gap: 8px;
 
-    & .checkbox__wrapper { 
+    & .checkbox__wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -26,17 +26,17 @@
         order: 0;
         flex-grow: 0;
 
-        &.error { 
+        &.error {
             border-color: #CD002F;
         }
 
-        &:focus-visible { 
+        &:focus-visible {
             border: 1px solid #575352;
             outline: 2px solid #0A8276;
             outline-offset: 2px;
         }
 
-        &:hover { 
+        &:hover {
             background-color: #EEEDED;
             border: 1px solid #575352;
             border-radius: 1px;
@@ -45,7 +45,7 @@
             flex-grow: 0;
         }
 
-        &.disabled { 
+        &.disabled {
             background-color: #BFBBBB;
             border-color: #BFBBBB;
             border-radius: 1px;
@@ -54,7 +54,7 @@
             flex-grow: 0;
         }
 
-        &.checked { 
+        &.checked {
             background-color: #0A8276;
             border-radius: 1px;
             border-color: transparent;
@@ -63,56 +63,56 @@
             flex-grow: 0;
             color: tokens.$color-white;
 
-            &:focus-visible { 
+            &:focus-visible {
                 border: 1px solid transparent;
                 outline: 2px solid #0A8276;
                 outline-offset: 2px;
             }
 
-                &:hover { 
-                    background-color: #08665C;
-                    border-radius: 1px;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
-                }
+            &:hover {
+                background-color: #08665C;
+                border-radius: 1px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
 
-                &.disabled { 
-                    background: #BFBBBB;
-                    border-radius: 1px;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
-                }
+            &.disabled {
+                background: #BFBBBB;
+                border-radius: 1px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
             }
         }
+    }
 
-        & .label { 
-            width: 25px;
-            height: 20px;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
-            color: tokens.$color-text-black;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
+    & .label {
+        width: 25px;
+        height: 20px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: tokens.$color-text-black;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
 
-            &.disabled { 
-                color: #BFBBBB;
-            }
-
-            &.error { 
-                color: #CD002F;
-            }
+        &.disabled {
+            color: #BFBBBB;
         }
 
-        & .checkbox__wrapper,
-        & .label { 
-            &:hover { 
+        &.error {
+            color: #CD002F;
+        }
+    }
+
+    & .checkbox__wrapper,
+    & .label {
+        &:hover {
             cursor: pointer;
         }
     }
-  
+
 }
