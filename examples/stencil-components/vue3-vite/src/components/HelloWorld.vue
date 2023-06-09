@@ -61,7 +61,6 @@ const buttons = ref(["Button 1", "Button 2", "Button 3"]);
 
 .header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
