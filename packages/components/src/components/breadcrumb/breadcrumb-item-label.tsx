@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-breadcrumb-item-label',
@@ -9,7 +9,6 @@ export class BreadcrumbItemLabel {
   @Prop() icon: string;
   @Prop() url: string;
   @Prop() target: string = "_self"
-  @Element() el;
 
 
   render() {

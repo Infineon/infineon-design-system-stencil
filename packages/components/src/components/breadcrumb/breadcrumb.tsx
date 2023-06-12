@@ -1,4 +1,4 @@
-import { Component, h, Element } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-breadcrumb',
@@ -6,19 +6,7 @@ import { Component, h, Element } from '@stencil/core';
   shadow: true,
 })
 export class Breadcrumb {
-  @Element() el;
-
-  componentDidLoad() { 
-    const breadcrumbItems = this.el.querySelectorAll('ifx-breadcrumb-item')
-    for(let i = 1; i < breadcrumbItems.length; i++) { 
-      let label = breadcrumbItems[i].querySelector('ifx-breadcrumb-item-label')
-      let container = label.shadowRoot.querySelector('.breadcrumb-item-label-container')
-      if(container) { 
-        container.classList.add('margin')
-      }
-    }
-  }
-
+ 
   render() {
     return (
       <nav aria-label="breadcrumb">
