@@ -2,7 +2,7 @@ import { Component, Prop, h, Element, State, Event, EventEmitter } from "@stenci
 
 @Component({
   tag: 'ifx-dropdown-item',
-  styleUrl: '../../index.scss',
+  styleUrl: 'dropdown-item.scss',
   shadow: true
 })
 
@@ -18,19 +18,19 @@ export class DropdownItem {
   @Event({ bubbles: false }) itemValues: EventEmitter<Object>;
   @Element() el;
 
-  handleItemChange(event) { 
+  handleItemChange(event) {
 
-    if(event.currentTarget.className.toLowerCase() !== 'form-check-input') { 
-      
+    if (event.currentTarget.className.toLowerCase() !== 'form-check-input') {
+
       const checkBoxValue = this.el.shadowRoot.querySelector('ifx-checkbox');
-      if(checkBoxValue) { 
-        if(event.target.nodeName.toUpperCase() === 'IFX-CHECKBOX') { 
-          this.itemValues.emit({check: !checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item')})
-        } else this.itemValues.emit({check: checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item')})
-      } else this.itemValues.emit({value: this.value})
+      if (checkBoxValue) {
+        if (event.target.nodeName.toUpperCase() === 'IFX-CHECKBOX') {
+          this.itemValues.emit({ check: !checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item') })
+        } else this.itemValues.emit({ check: checkBoxValue.checked, value: this.value, target: this.el.closest('ifx-dropdown-item') })
+      } else this.itemValues.emit({ value: this.value })
     }
   }
-  
+
 
   componentWillRender() {
     const ifxDropdown = this.el.closest('ifx-dropdown')
@@ -47,7 +47,7 @@ export class DropdownItem {
   render() {
     return (
       <a href="javascript:;" onClick={this.handleItemChange.bind(this)} class={`dropdown-item ${this.checkboxColor}`}>
-        {this.checkable && <ifx-checkbox></ifx-checkbox> }
+        {this.checkable && <ifx-checkbox></ifx-checkbox>}
         {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         <label class="form-check-label"><slot /></label>
       </a>

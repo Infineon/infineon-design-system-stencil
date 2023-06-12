@@ -2,13 +2,13 @@ import { Component, h, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-list-item',
-  styleUrl: '../../index.scss',
+  styleUrl: 'list-group-item.scss',
   shadow: true,
 })
 
 export class ListGroupItem {
   @Element() el;
-  @Prop({mutable: true}) isFlush: boolean = false;
+  @Prop({ mutable: true }) isFlush: boolean = false;
   @State() hasBulletpoint: boolean = false;
   @Prop() badge: boolean = false;
   @Prop() badgeValue: number = 0;
