@@ -43,6 +43,10 @@ jobs:
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           auto shipit
 
+      - name: Sleep for 5 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: sleep 5s
+        shell: bash
+
       - name: Create Release for react wrapper # releasing as npm package
         id: release-react
         env:

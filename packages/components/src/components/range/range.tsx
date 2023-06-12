@@ -40,6 +40,10 @@ export class IfxRange {
     }
   }
 
+  componentWillLoad() {
+    this.internalValue = this.value;
+  }
+
   componentDidLoad() {
     this.updateValuePercent();
   }

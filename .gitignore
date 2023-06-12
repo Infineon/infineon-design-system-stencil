@@ -107,9 +107,4 @@ typings/
 # Local Netlify folder
 .netlify
 
-.npmrc
-
-/yarn.lock
-
-
 packages/components/src/components.d.ts

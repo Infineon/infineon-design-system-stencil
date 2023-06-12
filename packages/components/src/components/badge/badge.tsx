@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-badge',
-  styleUrl: '../../index.scss',
+  styleUrl: 'badge.scss',
   shadow: true
 })
 export class Badge {
@@ -11,7 +11,7 @@ export class Badge {
     return (
       <div class="badge__container">
         <span>
-          <slot/>
+          <slot />
         </span>
       </div>
     );

@@ -55,4 +55,3 @@ export const IfxTab = /*@__PURE__*/createReactComponent<JSX.IfxTab, HTMLIfxTabEl
 export const IfxTabs = /*@__PURE__*/createReactComponent<JSX.IfxTabs, HTMLIfxTabsElement>('ifx-tabs');
 export const IfxTag = /*@__PURE__*/createReactComponent<JSX.IfxTag, HTMLIfxTagElement>('ifx-tag');
 export const IfxTextInput = /*@__PURE__*/createReactComponent<JSX.IfxTextInput, HTMLIfxTextInputElement>('ifx-text-input');
-export const InfineonIconStencil = /*@__PURE__*/createReactComponent<JSX.InfineonIconStencil, HTMLInfineonIconStencilElement>('infineon-icon-stencil');
