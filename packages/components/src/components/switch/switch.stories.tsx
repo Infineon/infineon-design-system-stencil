@@ -15,11 +15,11 @@ export default {
 
 
 const DefaultTemplate = (args) => {
-  const pillToggle = document.createElement('ifx-toggle') as HTMLIfxSwitchElement;
-  pillToggle.value = args.value;
-  pillToggle.addEventListener('ifxChange', action('ifxChange'));
+  const toggleSwitch = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
+  toggleSwitch.value = args.value;
+  toggleSwitch.addEventListener('ifxChange', action('ifxChange'));
 
-  return pillToggle;
+  return toggleSwitch;
 };
 
 export const Default = DefaultTemplate.bind({});

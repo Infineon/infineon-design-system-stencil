@@ -1,13 +1,31 @@
+import { Meta } from '@storybook/html';
+
 export default {
   title: "Components/SelectInput",
   args: {
     icon: 'bargraph16',
   },
-
-  argTypes: {
-
+  parameters: {
+    viewport: {
+      defaultViewport: 'reset',
+    },
+    docs: {
+      viewport: {
+        defaultViewport: 'custom',
+        viewports: {
+          custom: {
+            name: 'Custom',
+            styles: {
+              width: '400px', // Adjust the width as per your requirements
+              height: '500px', // Adjust the height as per your requirements
+            },
+          },
+        },
+      },
+    },
   },
-};
+  argTypes: {},
+} as Meta;
 
 
 const DefaultTemplate = (args) =>

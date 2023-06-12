@@ -1,7 +1,8 @@
+
 export default {
   title: "Components/Sidebar",
   args: {
-   icon: ""
+    icon: ""
   },
 
   argTypes: {
@@ -20,5 +21,7 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
+
+
 
 

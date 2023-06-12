@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Ifx-List-Group",
+  title: "Components/List-Group",
   args: {
     title: 'Notification title',
     description: 'Notification description',
