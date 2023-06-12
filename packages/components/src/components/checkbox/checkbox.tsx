@@ -2,7 +2,7 @@ import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '
 
 @Component({
   tag: 'ifx-checkbox',
-  styleUrl: './checkbox.scss',
+  styleUrl: 'checkbox.scss',
   shadow: true
 })
 

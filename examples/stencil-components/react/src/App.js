@@ -9,8 +9,8 @@ function App() {
   }
 
   return (
-    <div class="app">
-      <h1 class="header">
+    <div className="app">
+      <h1 className="header">
         Using Stencil web components in a React application
       </h1>
       <h2>Progress bar</h2>

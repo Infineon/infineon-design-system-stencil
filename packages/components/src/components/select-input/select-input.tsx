@@ -2,7 +2,7 @@ import { Component, h, Element, Listen } from "@stencil/core";
 
 @Component({
   tag: 'ifx-select-input',
-  styleUrl: '../../index.scss',
+  styleUrl: 'select-input.scss',
   shadow: true
 })
 
@@ -20,7 +20,7 @@ export class SelectInput {
 
   getDropdownMenu() {
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    if(dropdownMenuComponent) { 
+    if (dropdownMenuComponent) {
       dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
       const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
       return dropdownMenuElement
@@ -101,12 +101,12 @@ export class SelectInput {
     this.toggleDropdownMenu()
   }
 
-  getTextField() { 
+  getTextField() {
     let textField = this.el.querySelector('ifx-text-input');
     return textField
   }
 
-  addItemValueToTextField(value) { 
+  addItemValueToTextField(value) {
     const textField = this.getTextField()
     textField.value = value.value
   }
@@ -116,7 +116,7 @@ export class SelectInput {
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    dropdownMenuComponent.addEventListener('selectValues', (event) => { 
+    dropdownMenuComponent.addEventListener('selectValues', (event) => {
       this.addItemValueToTextField(event.detail)
     })
   }

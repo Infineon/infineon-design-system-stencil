@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-icon-button',
-  styleUrl: '../../index.scss',
+  styleUrl: 'icon-button.scss',
   shadow: true,
 })
 
@@ -42,10 +42,10 @@ export class IconButton {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-          <ifx-icon icon={this.icon}></ifx-icon>
+            <ifx-icon icon={this.icon}></ifx-icon>
           </a>
         ) : (
-          <button 
+          <button
             class={this.getClassNames()}
             type="button"
           >

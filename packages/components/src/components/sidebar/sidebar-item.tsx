@@ -2,7 +2,7 @@ import { Component, h, Prop, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar-item',
-  styleUrl: '../../index.scss',
+  styleUrl: 'sidebar-item.scss',
   shadow: true
 })
 export class SidebarItem {
@@ -10,12 +10,12 @@ export class SidebarItem {
   @Prop() icon: string = ""
   @State() hasIcon: boolean = false;
 
-  componentDidLoad() { 
+  componentDidLoad() {
     //random change
     const iconWrapper = this.el.shadowRoot.querySelector('ifx-icon')
-    if(iconWrapper) { 
+    if (iconWrapper) {
       const icon = iconWrapper.querySelector('svg')
-      if(!icon) { 
+      if (!icon) {
         this.hasIcon = false;
       } else this.hasIcon = true;
     }
@@ -24,10 +24,10 @@ export class SidebarItem {
   render() {
     return (
       <div class='sidebar__nav-item'>
-       {this.icon && 
-        <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
-        <ifx-icon icon={this.icon}></ifx-icon>
-      </div>}
+        {this.icon &&
+          <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
+            <ifx-icon icon={this.icon}></ifx-icon>
+          </div>}
         <div class="sidebar__nav-item-label">
           <slot />
         </div>

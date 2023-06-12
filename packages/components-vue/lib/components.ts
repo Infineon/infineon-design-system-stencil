@@ -67,13 +67,14 @@ export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-c
 ]);
 
 
-export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
+export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["value"]>('ifx-checkbox', undefined, [
   'disabled',
   'value',
   'error',
   'name',
   'ifxChange'
-]);
+],
+'value', 'ifxChange');
 
 
 export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
@@ -304,11 +305,12 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 ]);
 
 
-export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [
+export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch, JSX.IfxSwitch["value"]>('ifx-switch', undefined, [
   'value',
   'name',
   'ifxChange'
-]);
+],
+'value', 'ifxChange');
 
 
 export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [

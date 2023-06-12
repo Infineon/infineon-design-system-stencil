@@ -17,6 +17,8 @@ Install the React example app to see, how Stencil web components can be used wit
 
 ### Using Stencil components from local package (for testing purposes)
 
+ ```npm install```
+
  ```npm run test:local```
 
 The application will be served on http://localhost:3000.

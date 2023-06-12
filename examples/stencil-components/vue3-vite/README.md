@@ -9,7 +9,6 @@ This example application demonstrates the usage of some of our Stencil web compo
 
  ```npm install```
 
-
  ```npm run dev```
  
  OR (to unlink the previously linked local dependency)
@@ -18,6 +17,8 @@ This example application demonstrates the usage of some of our Stencil web compo
 
 
 ### Using Stencil components from local package (for testing purposes)
+
+ ```npm install```
 
  ```npm run test:local```
 
