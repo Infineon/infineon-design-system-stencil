@@ -4,7 +4,7 @@ import { frameworkTargets } from './framework-output-targets';
 
 
 export const config: Config = {
-  namespace: 'components2',
+  namespace: 'infineon-design-system-stencil',
   plugins: [
     sass()
   ],
