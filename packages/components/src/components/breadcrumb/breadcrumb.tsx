@@ -9,7 +9,7 @@ export class Breadcrumb {
  
   render() {
     return (
-      <nav aria-label="breadcrumb">
+      <nav aria-label="Page navigation breadcrumb">
         <ol class="breadcrumb">
           <slot />
         </ol>

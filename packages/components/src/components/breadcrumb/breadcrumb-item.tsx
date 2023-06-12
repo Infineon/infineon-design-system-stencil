@@ -65,7 +65,7 @@ export class BreadcrumbItem {
 
   render() {
     return (
-      <li class="breadcrumb-parent" aria-current="" onClick={this.toggleDropdownMenu.bind(this)}>
+      <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`} onClick={this.toggleDropdownMenu.bind(this)}>
        <li class="breadcrumb-wrapper">
           <slot name='label' />
           <div class="dropdown-menu">
