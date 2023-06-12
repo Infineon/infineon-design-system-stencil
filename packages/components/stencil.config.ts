@@ -1,5 +1,7 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import { frameworkTargets } from './framework-output-targets';
+
 
 export const config: Config = {
   namespace: 'components2',
@@ -21,5 +23,6 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
+    ...frameworkTargets,
   ],
 };

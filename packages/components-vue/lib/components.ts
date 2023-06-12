@@ -342,8 +342,3 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'icon'
 ]);
 
-
-export const InfineonIconStencil = /*@__PURE__*/ defineContainer<JSX.InfineonIconStencil>('infineon-icon-stencil', undefined, [
-  'icon'
-]);
-
