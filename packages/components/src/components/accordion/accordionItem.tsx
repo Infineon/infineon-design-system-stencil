@@ -9,16 +9,16 @@ import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil
 export class IfxAccordionItem {
   @Prop() caption: string;
   @State() open: boolean = false;
-  @Event() itemOpened: EventEmitter;
-  @Event() itemClosed: EventEmitter;
+  @Event() ifxItemOpened: EventEmitter;
+  @Event() ifxItemClosed: EventEmitter;
   private contentEl!: HTMLElement;
 
   toggleOpen() {
     this.open = !this.open;
     if (this.open) {
-      this.itemOpened.emit();
+      this.ifxItemOpened.emit();
     } else {
-      this.itemClosed.emit();
+      this.ifxItemClosed.emit();
     }
   }
 
@@ -33,7 +33,7 @@ export class IfxAccordionItem {
   @Method()
   async close() {
     this.open = false;
-    this.itemClosed.emit();
+    this.ifxItemClosed.emit();
   }
 
   @Method()

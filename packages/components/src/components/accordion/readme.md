@@ -14,10 +14,10 @@
 
 ## Events
 
-| Event        | Description | Type               |
-| ------------ | ----------- | ------------------ |
-| `itemClosed` |             | `CustomEvent<any>` |
-| `itemOpened` |             | `CustomEvent<any>` |
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `ifxItemClosed` |             | `CustomEvent<any>` |
+| `ifxItemOpened` |             | `CustomEvent<any>` |
 
 
 ## Methods

@@ -13,8 +13,8 @@ export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
-  'itemOpened',
-  'itemClosed'
+  'ifxItemOpened',
+  'ifxItemClosed'
 ]);
 
 
