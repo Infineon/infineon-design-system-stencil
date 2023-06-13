@@ -7,14 +7,14 @@ import classNames from 'classnames';
   shadow: true,
 })
 
-export class Card {
+export class Alert {
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() icon: string;
   @Prop() overflowing: boolean
   @Element() el;
 
   isOverflowing() { 
-    const el = this.el.shadowRoot.querySelector('.ifx__alert-text')
+    const el = this.el.shadowRoot.querySelector('.alert-text')
     if(el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight) {
       el.classList.add('text-overflow')
     } else if(el.classList.contains('text-overflow')) { 
@@ -29,7 +29,7 @@ export class Card {
   componentDidRender() { 
     this.isOverflowing()
     const ifxAlert = this.el.shadowRoot.querySelector('.alert');
-    const ifxIconWrapper = ifxAlert.querySelector('.ifx__alert-icon-wrapper')
+    const ifxIconWrapper = ifxAlert.querySelector('.alert-icon-wrapper')
     const ifxIcon = ifxIconWrapper.querySelector('ifx-icon');
     const ifxSvg = ifxIcon.querySelector('svg')
     if(ifxSvg) {
@@ -40,13 +40,13 @@ export class Card {
   render() {
     return (
       <div class={this.getClassNames()}>
-       <div class='ifx__alert-icon-wrapper'>
+       <div class='alert-icon-wrapper'>
         <ifx-icon icon={this.icon}></ifx-icon>
        </div>
-        <div class="ifx__alert-text">
+        <div class="alert-text">
           <slot />
         </div>
-        <div class="ifx__close-icon-wrapper">
+        <div class="close-icon-wrapper">
         <a href="#">
           <ifx-icon icon='cross-16'></ifx-icon>
         </a>
