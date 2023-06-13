@@ -9,8 +9,8 @@ import { Component, h, Listen, Element } from '@stencil/core';
 export class IfxAccordion {
   @Element() el: HTMLElement;
 
-  @Listen('itemOpened', { target: 'body' })
-  async onItemOpened(event: CustomEvent) {
+  @Listen('ifxItemOpened', { target: 'body' })
+  async onIfxItemOpened(event: CustomEvent) {
     const items = Array.from(this.el.shadowRoot.querySelectorAll('ifx-accordion-item'));
     for (const item of items) {
       const itemElement = item as HTMLIfxAccordionItemElement;

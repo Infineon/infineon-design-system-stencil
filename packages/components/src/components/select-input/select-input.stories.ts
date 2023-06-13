@@ -1,13 +1,10 @@
+
 export default {
   title: "Components/SelectInput",
   args: {
     icon: 'bargraph16',
   },
-
-  argTypes: {
-
-  },
-};
+}
 
 
 const DefaultTemplate = (args) =>

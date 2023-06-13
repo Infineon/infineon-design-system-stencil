@@ -13,15 +13,35 @@
 <body>
 
   <div class="app">
-    <div class="header">
-      <p>Using Stencil web components in an Vanilla JS</p>
+    <h1 class="header">Using Stencil web components in an Vanilla JS</h1>
+    <h2>Button</h2>
+    <div>
+
       <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
         Button
       </ifx-button>
-      <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
-
+    </div>
+    <br />
+    <h2>Progress bar</h2>
+    <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
+    <div>
+      <h2>Checkbox</h2>
+      <ifx-checkbox error="false" disabled="false" checked="false">
+        Text
+      </ifx-checkbox>
     </div>
   </div>
 </body>
 
 </html>
+
+<script>
+  function handleCheckbox(event) {
+    console.log('checked: ', event.detail.value);
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const checkbox = document.querySelector('ifx-checkbox');
+    checkbox.addEventListener('ifxChange', handleCheckbox);
+  });
+</script>

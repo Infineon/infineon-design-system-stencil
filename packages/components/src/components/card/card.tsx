@@ -1,17 +1,17 @@
-import { Component, h, Host, Element, Prop } from '@stencil/core';
+import { Component, h, Host, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
-  styleUrl: '../../index.scss',
+  styleUrl: 'card.scss',
   shadow: true,
 })
 
 export class Card {
   @Element() el;
-  @Prop({ mutable: true }) hasBtn: boolean;
-  @Prop({ mutable: true }) direction: string;
-  @Prop({ mutable: true }) alignment: string;
-  @Prop({ mutable: true }) hasDesc: boolean;
+  @State() hasBtn: boolean;
+  @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() alignment: string;
+  @State() hasDesc: boolean;
   @Prop({ mutable: true }) hasAll: boolean;
   @Prop({ mutable: true }) largeSize: boolean;
   @Prop({ mutable: true }) smallSize: boolean;

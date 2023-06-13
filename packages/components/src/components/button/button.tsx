@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-button',
-  styleUrl: '../../index.scss',
+  styleUrl: 'button.scss',
   shadow: true,
 })
 

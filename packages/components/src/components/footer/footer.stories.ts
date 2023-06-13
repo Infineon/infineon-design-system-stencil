@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Ifx-Footer",
+  title: "Components/Footer",
   args: {
     variant: 'default'
   },

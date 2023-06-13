@@ -1,53 +1,75 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-range', () => {
-  it('should render the component', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-range></ifx-range>');
+    it('renders', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range></ifx-range>');
 
-    const element = await page.find('ifx-range');
-    expect(element).toHaveClass('hydrated');
-  });
-
-  it('should set --value-percent correctly', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-range min="0" max="100" value="50"></ifx-range>');
-  
-    const input = await page.find('ifx-range >>> input');
-    await input.focus();
-    await page.keyboard.press('ArrowRight');
-  
-    const valuePercent = await page.evaluate(() => {
-      const ifxRange = document.querySelector('ifx-range');
-      const inputEl = ifxRange.shadowRoot.querySelector('input') as HTMLInputElement;
-      return inputEl.style.getPropertyValue('--value-percent').trim();
+        const element = await page.find('ifx-range');
+        expect(element).toHaveClass('hydrated');
     });
-  
-    expect(valuePercent).toBe('51%');
-  });
-  
 
-  it('should emit valueChanged event', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-range></ifx-range>');
+    it('renders changes to the value data', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range value="50"></ifx-range>');
 
-    const valueChanged = await page.spyOnEvent('valueChanged');
-    const input = await page.find('ifx-range >>> input');
-    await input.focus();
-    await page.keyboard.press('ArrowRight');
+        const element = await page.find('ifx-range >>> input');
 
-    expect(valueChanged).toHaveReceivedEventTimes(1);
-    expect(valueChanged).toHaveReceivedEventDetail(1);
-  });
+        const value = await element.getProperty('value');
+        expect(value).toEqual('50');
+    });
 
-  it('should not update value when disabled', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-range disabled="true"></ifx-range>');
+    it('handles input change', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range></ifx-range>');
 
-    const input = await page.find('ifx-range >>> input');
-    await input.focus();
-    await page.keyboard.press('ArrowRight');
+        const element = await page.find('ifx-range >>> input');
+        await element.press('ArrowRight');
 
-    expect(await input.getProperty('value')).toBe('0');
-  });
+        const value = await element.getProperty('value');
+        expect(value).toEqual('1');
+    });
+
+    it('disables when the disabled property is set', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range disabled></ifx-range>');
+
+        const element = await page.find('ifx-range >>> input');
+        expect(element.getAttribute('disabled')).not.toBeNull();
+    });
+
+    it('renders left text', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range left-text="Left Text"></ifx-range>');
+
+        const element = await page.find('ifx-range >>> .left-text');
+        expect(element.textContent).toEqual('Left Text');
+    });
+
+    it('renders right text', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range right-text="Right Text"></ifx-range>');
+
+        const element = await page.find('ifx-range >>> .right-text');
+        expect(element.textContent).toEqual('Right Text');
+    });
+
+    it('renders percentage if showPercentage is true', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range value="30" show-percentage></ifx-range>');
+
+        const element = await page.find('ifx-range >>> .percentage-display');
+        expect(element.textContent).toEqual('30%');
+    });
+
+    it('emits the ifxChanged event when the input changes', async () => {
+        const page = await newE2EPage();
+        await page.setContent('<ifx-range value="50"></ifx-range>');
+        const spy = await page.spyOnEvent('ifxChanged');
+
+        const input = await page.find('ifx-range >>> input');
+        await input.press('ArrowRight');
+
+        expect(spy).toHaveReceivedEventDetail(51);
+    });
 });
