@@ -31,7 +31,7 @@ export class IfxAccordionItem {
   }
 
   @Method()
-  close() {
+  async close() {
     this.open = false;
     this.ifxItemClose.emit();
   }
