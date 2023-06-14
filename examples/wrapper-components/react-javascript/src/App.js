@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <IfxAlert icon='calendar16' color='secondary' onIfxClose={handleClose} >Achtung! Hast du etwas vergessen?</IfxAlert>
+      <IfxAlert icon='calendar16' color='danger' onIfxClose={handleClose} >Achtung! Hast du etwas vergessen?</IfxAlert>
     </div>
   );
 }
