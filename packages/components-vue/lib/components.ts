@@ -8,13 +8,15 @@ import type { JSX } from '@infineon/infineon-design-system-stencil';
 
 
 
-export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined);
+export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
+  'autoCollapse'
+]);
 
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
-  'ifxItemOpened',
-  'ifxItemClosed'
+  'ifxItemOpen',
+  'ifxItemClose'
 ]);
 
 
