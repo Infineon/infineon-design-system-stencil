@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Watch, State } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -10,16 +10,24 @@ import classNames from 'classnames';
 export class Button {
   @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
-  @Prop() size: string = 'm';
+  @Prop() size: string;
   @Prop() disabled: boolean;
   @Prop() icon: string;
-  @Prop({ mutable: true }) position: string = 'left'
-
+  @Prop() position: string = 'left'
+  @State() internalPosition: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
 
   private focusableElement: HTMLElement;
+
+  @Watch('position')
+  reassignPosition(newValue: string) {
+    if (newValue && newValue !== this.internalPosition) {
+      if(newValue.toUpperCase() === "LEFT" || newValue.toUpperCase() === "RIGHT")
+      this.internalPosition = newValue;
+    }
+  }
 
   @Method()
   async setFocus() {
@@ -28,10 +36,9 @@ export class Button {
 
   componentWillLoad() {
     if (this.position.toUpperCase() !== "LEFT") {
-      this.position = 'right';
-    }
+      this.internalPosition = 'left';
+    } else this.internalPosition = this.position;
   }
-
 
 
   render() {
@@ -45,20 +52,19 @@ export class Button {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.internalPosition.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
-            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.internalPosition.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
 
           </a>
         ) : (
           <button
             class={this.getClassNames()}
-
             type="button"
           >
-            {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.internalPosition.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
-            {this.icon && this.position.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+            {this.icon && this.internalPosition.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
           </button>
         )}
       </Host>
