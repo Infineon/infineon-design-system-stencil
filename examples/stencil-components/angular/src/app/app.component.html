@@ -1,8 +1,27 @@
 <div class="app">
-  <div class="header">
-    <p>Using Stencil web components in an Angular application</p>
-    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+  <h1 class="header">Using Stencil web components in an Angular application</h1>
+  <h2>Button</h2>
+  <div>
+    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" [disabled]="false" [icon]="false">
       Button
     </ifx-button>
   </div>
+  <br />
+  <h2>Progress bar</h2>
+  <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
+  <div>
+    <br />
+    <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
+      [disabled]="false" (click)="updateProgressOnClick()">
+      Update progress
+    </ifx-button>
+  </div>
+  <br />
+
+  <h2>Checkbox</h2>
+  <form>
+    <ifx-checkbox [error]="false" [disabled]="false" [checked]="false">
+      Text
+    </ifx-checkbox>
+  </form>
 </div>

@@ -13,15 +13,14 @@ export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
-  'itemOpened',
-  'itemClosed'
+  'ifxItemOpened',
+  'ifxItemClosed'
 ]);
 
 
 export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
   'color',
-  'icon',
-  'overflowing'
+  'icon'
 ]);
 
 
@@ -54,10 +53,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
-  'hasBtn',
   'direction',
   'alignment',
-  'hasDesc',
   'hasAll',
   'largeSize',
   'smallSize'
@@ -78,15 +75,18 @@ export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-c
 ]);
 
 
-export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
+export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["value"]>('ifx-checkbox', undefined, [
   'disabled',
-  'checked',
-  'error'
-]);
+  'value',
+  'error',
+  'name',
+  'ifxChange'
+],
+'value', 'ifxChange');
 
 
 export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
-  'defaultLabel'
+  'placeholder'
 ]);
 
 
@@ -264,7 +264,7 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
   'rightIcon',
   'leftText',
   'rightText',
-  'valueChanged'
+  'ifxChanged'
 ]);
 
 
@@ -309,10 +309,18 @@ export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spi
 
 
 export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-status', undefined, [
-  'text',
+  'label',
   'border',
   'color'
 ]);
+
+
+export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch, JSX.IfxSwitch["value"]>('ifx-switch', undefined, [
+  'value',
+  'name',
+  'ifxChange'
+],
+'value', 'ifxChange');
 
 
 export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [
@@ -331,7 +339,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 
 
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined, [
-  'text'
+  'label'
 ]);
 
 
@@ -343,17 +351,6 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'success',
   'disabled',
   'readonly',
-  'icon'
-]);
-
-
-export const IfxToggle = /*@__PURE__*/ defineContainer<JSX.IfxToggle>('ifx-toggle', undefined, [
-  'checked',
-  'valueChanged'
-]);
-
-
-export const InfineonIconStencil = /*@__PURE__*/ defineContainer<JSX.InfineonIconStencil>('infineon-icon-stencil', undefined, [
   'icon'
 ]);
 

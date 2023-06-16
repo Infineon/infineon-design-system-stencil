@@ -2,7 +2,7 @@ import { Component, h, Element, Listen, Prop, State } from "@stencil/core";
 
 @Component({
   tag: 'ifx-multi-select-input',
-  styleUrl: '../../index.scss',
+  styleUrl: 'multi-select-input.scss',
   shadow: true
 })
 
@@ -22,24 +22,24 @@ export class MultiSelectInput {
   }
 
   @Listen('closed')
-  handleButtonClose(el) { 
+  handleButtonClose(el) {
     const target = el.detail?.getAttribute('target');
     const dropdownMenu = this.el.querySelectorAll('ifx-dropdown-item')
     const selectedItems = this.el.shadowRoot.querySelector('.dropdown').querySelectorAll('ifx-multi-select-input-item')
-    for(let i = 0; i < dropdownMenu.length; i++) { 
-      if(dropdownMenu[i].index === Number(target)) {
+    for (let i = 0; i < dropdownMenu.length; i++) {
+      if (dropdownMenu[i].index === Number(target)) {
         dropdownMenu[i].shadowRoot.querySelector('ifx-checkbox').checked = false;
       }
     }
     el.detail?.remove()
-  
-    if(el) { 
-      if(el.check) { 
-        for(let i = 0; i < selectedItems.length; i++) { 
+
+    if (el) {
+      if (el.check) {
+        for (let i = 0; i < selectedItems.length; i++) {
           let selectedItemIndex = selectedItems[i].getAttribute('target');
-          if(Number(el.target.index) === Number(selectedItemIndex)) { 
+          if (Number(el.target.index) === Number(selectedItemIndex)) {
             selectedItems[i].remove()
-          }     
+          }
         }
       }
     }
@@ -48,29 +48,29 @@ export class MultiSelectInput {
     this.toggleSlideButtons()
   }
 
-  togglePlaceHolder() { 
+  togglePlaceHolder() {
     const wrapper = this.getMultiSelectFieldWrapper()
     const wrapperItems = wrapper.querySelector('ifx-multi-select-input-item')
-    if(wrapperItems && this.isEmpty) {
+    if (wrapperItems && this.isEmpty) {
       this.isEmpty = false;
-    } else if(!wrapperItems && !this.isEmpty) {
+    } else if (!wrapperItems && !this.isEmpty) {
       this.isEmpty = true;
     }
   }
 
-  toggleSlideButtons() { 
+  toggleSlideButtons() {
     const multiSelectElement = this.getMultiSelectFieldWrapper()
-    const isOverFlowing =  this.isOverflown(multiSelectElement)
-    if(isOverFlowing) { 
+    const isOverFlowing = this.isOverflown(multiSelectElement)
+    if (isOverFlowing) {
       this.isOverflowing = true;
-    } else if(this.isOverflowing) { 
+    } else if (this.isOverflowing) {
       this.isOverflowing = false;
     }
   }
 
   getDropdownMenu() {
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    if(dropdownMenuComponent) { 
+    if (dropdownMenuComponent) {
       dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
       const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
       return dropdownMenuElement
@@ -94,10 +94,10 @@ export class MultiSelectInput {
   toggleDropdownMenu(e) {
     const target = e.composedPath()[0].closest('span')
 
-    if(target) { 
+    if (target) {
       return
     }
-    
+
     const multiSelectContainer = this.getMultiSelectFieldContainer()
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
@@ -153,25 +153,25 @@ export class MultiSelectInput {
     this.toggleDropdownMenu(e)
   }
 
-  getMultiSelectFieldWrapper() { 
+  getMultiSelectFieldWrapper() {
     let selectWrapper = this.el.shadowRoot.querySelector('.multiSelectInput__content');
     return selectWrapper
   }
 
-  getMultiSelectFieldContainer() { 
+  getMultiSelectFieldContainer() {
     let selectContainer = this.el.shadowRoot.querySelector('.multiSelectInput__container');
     return selectContainer
   }
 
-  getMultiSelectFieldIconWrapper() { 
+  getMultiSelectFieldIconWrapper() {
     let selectContainer = this.el.shadowRoot.querySelector('.multiSelectInput__container').querySelector('.multiSelectInput__icon-wrapper');
     return selectContainer
   }
 
-  addSelectItemsToArray() { 
+  addSelectItemsToArray() {
     var wrapper = this.getMultiSelectFieldWrapper()
     var menuItems = wrapper.querySelectorAll('ifx-multi-select-input-item') as HTMLElement[];
-    var totalWidth = Array.from(menuItems).reduce(function(acc, item) {
+    var totalWidth = Array.from(menuItems).reduce(function (acc, item) {
       return acc + item.offsetWidth;
     }, 0);
     return totalWidth
@@ -181,32 +181,32 @@ export class MultiSelectInput {
     return element.scrollWidth > element.clientWidth;
   }
 
-  addSelectSlider(direction) { 
+  addSelectSlider(direction) {
     var wrapper = this.getMultiSelectFieldWrapper()
     var menuItems = wrapper.querySelectorAll('ifx-multi-select-input-item') as HTMLElement[];
-    var totalWidth = Array.from(menuItems).reduce(function(acc, item) {
+    var totalWidth = Array.from(menuItems).reduce(function (acc, item) {
       return acc + item.offsetWidth;
     }, 0);
-    if(direction === 'left') { 
+    if (direction === 'left') {
       wrapper.scrollLeft -= totalWidth;
-    } else if(direction === 'right') { 
+    } else if (direction === 'right') {
       wrapper.scrollLeft += totalWidth;
     }
   }
 
 
-  async addItemValueToTextField(value) { 
+  async addItemValueToTextField(value) {
     const multiSelectElement = this.getMultiSelectFieldWrapper()
     const newItem = document.createElement('ifx-multi-select-input-item')
     newItem.setAttribute('target', value.target?.index)
     newItem.setAttribute('content', value.value)
 
     multiSelectElement.append(newItem)
- 
+
     setTimeout(() => {
       this.toggleSlideButtons();
     }, 20);
-   
+
   }
 
   addEventListeners() {
@@ -214,7 +214,7 @@ export class MultiSelectInput {
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
-    dropdownMenuComponent.addEventListener('selectValues', (event) => { 
+    dropdownMenuComponent.addEventListener('selectValues', (event) => {
       this.addItemValueToTextField(event.detail)
       this.handleButtonClose(event.detail)
     })
@@ -231,11 +231,11 @@ export class MultiSelectInput {
     return (
       <div class='multiSelect dropdown'>
         <div class="multiSelectInput__container" tabindex={1}>
-            {this.isOverflowing && 
+          {this.isOverflowing &&
             <span class="prev" onClick={() => this.addSelectSlider('left')}>
               <ifx-icon icon='chevron-left-16'></ifx-icon>
             </span>}
-           {this.isOverflowing &&  
+          {this.isOverflowing &&
             <span class="next" onClick={() => this.addSelectSlider('right')}>
               <ifx-icon icon='chevron-right-16'></ifx-icon>
             </span>}

@@ -1,10 +1,12 @@
+import { icons } from '@infineon/infineon-icons';
+
 export default {
   title: "Components/Alert",
   args: {
     label: 'Attention! This is an alert message — check it out!',
     color: "primary",
-    icon: true,
-    iconType: 'c-info-24',
+    showIcon: true,
+    iconName: 'c-info-24',
   },
 
   argTypes: {
@@ -13,8 +15,8 @@ export default {
       control: { type: 'radio' },
     },
 
-    iconType: {
-      options: ['c-info-24', 'calendar-24', 'download-24', 'upload-24'],
+    iconName: {
+      options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
     }
 
@@ -23,6 +25,6 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-alert color="${args.color}" icon="${args.icon ? args.iconType : ""}">${args.label}</ifx-alert>`;
+  `<ifx-alert color="${args.color}" icon="${args.showIcon ? args.iconName : ""}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});

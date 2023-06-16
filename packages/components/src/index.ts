@@ -1,1 +1,1 @@
-// import './plugins/infineonIcons'
+export * from './components';

@@ -1,7 +1,7 @@
 export default {
   title: 'Components/Tag',
   args: {
-    text: "Tag label",
+    label: "Tag label",
   },
   argTypes: {
 
@@ -9,9 +9,9 @@ export default {
 }
 
 const DefaultTemplate = (args) =>
-  `<ifx-tag text="${args.text}"/>`;
+  `<ifx-tag label="${args.label}"/>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
-  
+Default.argTypes = {
+
 }

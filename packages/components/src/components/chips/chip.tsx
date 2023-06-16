@@ -2,13 +2,13 @@ import { Component, h, Element, Prop, Listen, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-chip',
-  styleUrl: '../../index.scss',
+  styleUrl: 'chip.scss',
   shadow: true
 })
 
 export class Chip {
   @Element() el;
-  @Prop() defaultLabel: string;
+  @Prop() placeholder: string;
   @State() isEmpty: boolean = true;
 
   @Listen('mousedown', { target: 'document' })
@@ -21,7 +21,7 @@ export class Chip {
 
   getDropdownMenu() {
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    if(dropdownMenuComponent) { 
+    if (dropdownMenuComponent) {
       dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu').shadowRoot;
       const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
       return dropdownMenuElement
@@ -44,8 +44,8 @@ export class Chip {
 
   toggleDropdownMenu() {
     const textField = this.getTextField()
-    const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
-    const chipWrapper = textField.closest('.chip__wrapper');
+    const textFieldElement = textField.querySelector('.wrapper-close-button')
+    const chipWrapper = textField.closest('.wrapper');
     const dropdownMenu = this.getDropdownMenu();
     const dropdownWrapper = this.getDropdownWrapper()
     this.handleClassList(dropdownMenu, 'toggle', 'show')
@@ -58,8 +58,8 @@ export class Chip {
     const dropdownMenu = this.getDropdownMenu()
     const dropdownWrapper = this.getDropdownWrapper()
     const textField = this.getTextField()
-    const chipWrapper = textField.closest('.chip__wrapper');
-    const textFieldElement = textField.querySelector('.chip__wrapper-close-button')
+    const chipWrapper = textField.closest('.wrapper');
+    const textFieldElement = textField.querySelector('.wrapper-close-button')
     this.handleClassList(dropdownMenu, 'remove', 'show')
     this.handleClassList(dropdownWrapper, 'remove', 'show')
     this.handleClassList(textFieldElement, 'remove', 'show')
@@ -73,27 +73,27 @@ export class Chip {
     }
   }
 
-  uncheckCheckboxes(target) { 
-    const dropdownMenuItems =  this.getDropdownItems()
-    for(let i = 0; i < dropdownMenuItems.length; i++) { 
-      if(dropdownMenuItems[i].shadowRoot.querySelector('a') !== target) { 
+  uncheckCheckboxes(target) {
+    const dropdownMenuItems = this.getDropdownItems()
+    for (let i = 0; i < dropdownMenuItems.length; i++) {
+      if (dropdownMenuItems[i].shadowRoot.querySelector('a') !== target) {
         dropdownMenuItems[i].shadowRoot.querySelector('a').querySelector('ifx-checkbox').checked = false;
       }
     }
   }
 
-  returnToDefaultLabel() { 
+  returnToDefaultLabel() {
     const textField = this.getTextField()
-    const labelWrapper = textField.querySelector('.chip__wrapper-label');
-    labelWrapper.innerHTML = this.defaultLabel;
+    const labelWrapper = textField.querySelector('.wrapper-label');
+    labelWrapper.innerHTML = this.placeholder;
   }
 
   toggleCheckbox(target) {
     this.uncheckCheckboxes(target)
     target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
-    if(target.querySelector('ifx-checkbox').checked === false) { 
+    if (target.querySelector('ifx-checkbox').checked === false) {
       this.returnToDefaultLabel()
-    } 
+    }
   }
 
   getClickedElement(target) {
@@ -115,7 +115,7 @@ export class Chip {
     this.uncheckCheckboxes(selectedAnchor)
 
     if (!target) {
-      if(selectedAnchor.querySelector('ifx-checkbox').checked === false) { 
+      if (selectedAnchor.querySelector('ifx-checkbox').checked === false) {
         this.returnToDefaultLabel()
       }
       return;
@@ -131,14 +131,14 @@ export class Chip {
     this.toggleDropdownMenu()
   }
 
-  getTextField() { 
-    let textField = this.el.shadowRoot.querySelector('.chip__wrapper');
+  getTextField() {
+    let textField = this.el.shadowRoot.querySelector('.wrapper');
     return textField
   }
 
-  addItemValueToTextField(value) { 
+  addItemValueToTextField(value) {
     const textField = this.getTextField()
-    const labelWrapper = textField.querySelector('.chip__wrapper-label')
+    const labelWrapper = textField.querySelector('.wrapper-label')
     value.target.setAttribute('target', value.target?.index)
     labelWrapper.innerHTML = value.value
   }
@@ -148,7 +148,7 @@ export class Chip {
     document.addEventListener('click', this.handleOutsideClick.bind(this))
     dropdownMenu.addEventListener('click', this.addActiveMenuItem)
     let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    dropdownMenuComponent.addEventListener('selectValues', (event) => { 
+    dropdownMenuComponent.addEventListener('selectValues', (event) => {
       this.addItemValueToTextField(event.detail)
     })
   }
@@ -163,18 +163,18 @@ export class Chip {
 
   render() {
     return (
-      <div class="dropdown chip__container">
-        <div class="chip__wrapper">
-          <div class="chip__wrapper-label">
-            {this.defaultLabel}
+      <div class="dropdown container">
+        <div class="wrapper">
+          <div class="wrapper-label">
+            {this.placeholder}
           </div>
-          <div class="chip__wrapper-close-button">
+          <div class="wrapper-close-button">
             <ifx-icon icon="chevrondown12"></ifx-icon>
           </div>
         </div>
-        
+
         <slot name="menu" />
-        
+
       </div>
     );
   }

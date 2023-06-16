@@ -2,7 +2,7 @@ import { Component, Prop, h, Element, State, Event, EventEmitter } from "@stenci
 
 @Component({
   tag: 'ifx-dropdown-menu',
-  styleUrl: '../../index.scss',
+  styleUrl: 'dropdown-menu.scss',
   shadow: true
 })
 
@@ -21,7 +21,7 @@ export class DropdownMenu {
   @Element() el;
 
 
-  handleValues(event) { 
+  handleValues(event) {
     this.selectValues.emit(event.detail)
   }
 
@@ -38,19 +38,19 @@ export class DropdownMenu {
     if (isInsideDropdown || isInsideSelect || isInsideMultiSelect || isInsideChip) {
       this.isShown = false;
     }
-    
-    if(isInsideSelect) { 
+
+    if (isInsideSelect) {
       this.isInsideSelect = true;
     } else this.isInsideSelect = false;
 
-    if(isInsideMultiSelect) { 
+    if (isInsideMultiSelect) {
       this.isInsideMultiSelect = true;
     } else this.isInsideMultiSelect = false;
   }
 
-  componentDidLoad() { 
+  componentDidLoad() {
     const dropdownItems = this.el.querySelectorAll('ifx-dropdown-item');
-    for(let i = 0; i < dropdownItems.length; i++) { 
+    for (let i = 0; i < dropdownItems.length; i++) {
       dropdownItems[i].addEventListener('itemValues', this.handleValues.bind(this))
       dropdownItems[i].index = i;
     }

@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 :host {
   display: inline-block;
@@ -22,8 +23,7 @@
   background-color: tokens.$color-gray-100;
 }
 
-.text {
-  font-family: tokens.$font-family-body;
+.label {
   margin: 0;
   font-weight: tokens.$font-weight-regular;
   font-size: tokens.$font-size-m;

@@ -46,6 +46,7 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -98,19 +99,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 npm install sass
 ```
 
-<!-- #### Change Public folder as a temporary solution for React only
-Copy (<b>not move!</b>) the:
+ <br>
 
-node_modules -> @infineon -> design-system-bootstrap -> <b>public</b> folder
-
-inside
-
-node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
-
-
-<p align="right"><a href="#tableContent">back to top</a></p> -->
-
-<!-- USAGE EXAMPLES -->
 ## Usage of components
 
 Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
@@ -119,6 +109,8 @@ https://infineon.github.io/infineon-design-system-stencil
 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
 
 ## Using only the Icons
 
@@ -137,6 +129,7 @@ import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infi
 defineCustomElementIfxTag(window);
 ```
 
+ <br>
 
 ## Local development
 
@@ -153,40 +146,71 @@ Install all the modules and dependencies listed on the ```package.json``` file w
 yarn/npm install
 ```
 
+## Project structure 
+
+### Overall structure
+
+The repository has a monorepo architecture, containing not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage.
+
+### Wrapper components
+
+Stencil Web Components can be used with any JavaScript framework or with no framework at all, just like any other HTML elements. This is because they are built on Web APIs that are native to the browser. They are self-contained and encapsulate their functionality in a way that makes them portable and easy to drop into any project.
+
+To bridge the gap between Stencil components and specific frameworks, it can be useful to create wrapper components 
+
+A Stencil Wrapper Component is a component that wraps around a Stencil Web Component and translates the properties, events, and methods to work seamlessly within the specific framework context.
+
+Our Wrapper Components are built automatically every time ```npm run stencil:build``` is executed.
+
+ <br>
+
 ### Build Storybook
 
-To deploy Storybook, we first need to export it as a static web app.
-To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
+To run Storybook to view and test our Stencil Web Components, we first need to export it as a static web app.
 
-For building the application for the first time (to load fonts, assets and stylesheets) run:
-
-```bash
-yarn/npm run storybook-prepare
-```
-
-To build storybook for local preview, run:
+For building the application for the first time (to load fonts, assets and stylesheets) navigate to 
 
 ```bash
-yarn/npm run storybook-build
-```
+cd packages/components
+``` 
 
-or (to automatically rebuild on changes)
+and run:
 
 ```bash
-yarn/npm run storybook-build-watch
+yarn/npm run build:storybook
 ```
 
-This will generate a static Storybook in the ```storybook-static``` directory. We can add --watch so that the storybook automatically updates in case of changes.
+This will generate a static Storybook in the ```storybook-static``` directory.
 
 ### Start Storybook
 
-To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
+To run storybook locally (automatically rebuilds on changes), run:
 
 ```bash
-yarn/npm run storybook-start
+yarn/npm run dev
 ```
 
-```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
+ <br>
+
+### Example applications
+
+To test the standard Stencil components within our example applicatons, navigate to 
+
+```bash
+cd examples/stencil-components
+```
+
+and go to the folder for Vue, React, Angular or VanillaJs. Follow the instructions described in the ```readme.md``` in each of these folders.
+
+To test the Wrapper components within React or Vue applicatons, navigate to 
+
+```bash
+cd examples/wrapper-components
+```
+
+and go to the application folder you want to use for testing. (React-Ts, React-Js, Vue-Ts, Vue-Js). Again, follow the instructions described in the ```readme.md``` in each of these folders.
+
+ <br>
 
 ### Contributing
 
@@ -198,7 +222,8 @@ yarn/npm run storybook-start
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-<!-- CONTACT -->
+ <br>
+ 
 ## Contact
 
 ### Email

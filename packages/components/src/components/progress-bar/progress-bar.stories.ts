@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { useEffect } from '@storybook/client-api';
 
 export default {
   title: 'Components/Progress Bar',
@@ -36,11 +35,6 @@ const Template = (args) => {
     action('Percentage:')(event);
   });
 
-  // Run this useEffect hook whenever the percentage changes
-  useEffect(() => {
-    // Trigger the ifxChange event manually
-    progressBar.dispatchEvent(new CustomEvent('ifxChange', { detail: args.percentage }));
-  }, [args.percentage]);
 
   return wrapper.innerHTML;
 };

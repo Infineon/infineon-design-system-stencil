@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-number-indicator',
-  styleUrl: '../../index.scss',
+  styleUrl: 'number-indicator.scss',
   shadow: true
 })
 export class NumberIndicator {
@@ -12,7 +12,7 @@ export class NumberIndicator {
     return (
       <div class={`numberIndicator__container ${this.inverted ? 'inverted' : ""}`}>
         <span>
-          <slot/>
+          <slot />
         </span>
       </div>
     );

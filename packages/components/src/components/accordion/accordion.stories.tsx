@@ -13,16 +13,16 @@ const Template = (args) => {
 
   for (let i = 0; i < args.amountOfItems; i++) {
     const item = document.createElement('ifx-accordion-item');
-    item.setAttribute('caption', `Item Title #${i+1}`);
+    item.setAttribute('caption', `Item Title #${i + 1}`);
     item.innerHTML = `
       <p>
-        Content for Item #${i+1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Content for Item #${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </p>
     `;
-    item.addEventListener('itemOpened', action('itemOpened'));
-    item.addEventListener('itemClosed', action('itemClosed'));
+    item.addEventListener('ifxItemOpened', action('ifxItemOpened'));
+    item.addEventListener('ifxItemClosed', action('ifxItemClosed'));
 
     accordionElement.append(item);
   }

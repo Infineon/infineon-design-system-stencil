@@ -1,24 +1,26 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <h1 class="header">Using Stencil web components in a Vue application</h1>
+  <Alert />
+  <Button />
+  <Checkbox />
+  <ProgressBar />
+  <Search />
 </template>
 
+
+<script lang="ts" setup>
+import Alert from './components/Alert.vue'
+import Button from './components/Button.vue'
+import Checkbox from './components/Checkbox.vue'
+import ProgressBar from './components/ProgressBar.vue'
+import Search from './components/Search.vue'
+
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.header {
+  text-align: center;
 }
 </style>

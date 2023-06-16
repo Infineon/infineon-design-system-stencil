@@ -11,7 +11,7 @@
 | -------- | --------- | ----------- | ---------------------------------------------------------------------------- | ----------- |
 | `border` | `border`  |             | `boolean`                                                                    | `false`     |
 | `color`  | `color`   |             | `"berry" \| "green" \| "grey" \| "grey-200" \| "ocean" \| "orange" \| "red"` | `'orange'`  |
-| `text`   | `text`    |             | `string`                                                                     | `undefined` |
+| `label`  | `label`   |             | `string`                                                                     | `undefined` |
 
 
 ----------------------------------------------

@@ -17,6 +17,7 @@
 
 ### Used by
 
+ - [ifx-accordion-item](../accordion)
  - [ifx-alert](../alert)
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-button](../button)
@@ -39,6 +40,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ifx-accordion-item --> ifx-icon
   ifx-alert --> ifx-icon
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-button --> ifx-icon

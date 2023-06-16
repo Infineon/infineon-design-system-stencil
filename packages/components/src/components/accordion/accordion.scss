@@ -1,5 +1,6 @@
 // ifxAccordion.scss
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 :host {
   display: block;
@@ -8,4 +9,4 @@
 .accordion-wrapper {
   display: flex;
   flex-direction: column;
-} 
+}
