@@ -1,3 +1,15 @@
+# v18.2.3 (Fri Jun 16 2023)
+
+#### 🐛 Bug Fix
+
+- 159 restructuring breadcrumb [#172](https://github.com/Infineon/infineon-design-system-stencil/pull/172) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.2.2 (Wed Jun 14 2023)
 
 #### 🐛 Bug Fix
