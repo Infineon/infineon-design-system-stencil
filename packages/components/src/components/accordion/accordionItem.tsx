@@ -9,20 +9,20 @@ import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil
 export class IfxAccordionItem {
   @Prop() caption: string;
   @State() open: boolean = false;
-  @Event() ifxItemOpened: EventEmitter;
-  @Event() ifxItemClosed: EventEmitter;
+  @Event() ifxItemOpen: EventEmitter;
+  @Event() ifxItemClose: EventEmitter;
   private contentEl!: HTMLElement;
 
   toggleOpen() {
     this.open = !this.open;
     if (this.open) {
-      this.ifxItemOpened.emit();
+      this.ifxItemOpen.emit();
     } else {
-      this.ifxItemClosed.emit();
+      this.ifxItemClose.emit();
     }
   }
 
-  componentDidRender() {
+  componentDidUpdate() {
     if (this.open) {
       this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
     } else {
@@ -33,7 +33,7 @@ export class IfxAccordionItem {
   @Method()
   async close() {
     this.open = false;
-    this.ifxItemClosed.emit();
+    this.ifxItemClose.emit();
   }
 
   @Method()
@@ -46,7 +46,7 @@ export class IfxAccordionItem {
       <div class={`accordion-item ${this.open ? 'open' : ''}`}>
         <div class="accordion-title" onClick={() => this.toggleOpen()}>
           <span class="accordion-icon">
-            <ifx-icon icon="chevron-right-12" />
+            <ifx-icon icon="chevron-down-12" />
           </span>
           <span class="accordion-caption">{this.caption}</span>
         </div>

@@ -1,21 +1,24 @@
 //ifxAccordion.tsx
-import { Component, h, Listen, Element } from '@stencil/core';
+import { Component, h, Listen, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion',
   styleUrl: 'accordion.scss',
   shadow: true,
 })
-export class IfxAccordion {
+export class Accordion {
   @Element() el: HTMLElement;
+  @Prop() autoCollapse: boolean = false;
 
-  @Listen('ifxItemOpened', { target: 'body' })
-  async onIfxItemOpened(event: CustomEvent) {
-    const items = Array.from(this.el.shadowRoot.querySelectorAll('ifx-accordion-item'));
-    for (const item of items) {
-      const itemElement = item as HTMLIfxAccordionItemElement;
-      if (itemElement !== event.target && (await itemElement.isOpen())) {
-        itemElement.close();
+  @Listen('ifxItemOpen')
+  async onItemOpen(event: CustomEvent) {
+    if(this.autoCollapse) { 
+      const items = Array.from(this.el.querySelectorAll('ifx-accordion-item'));
+      for (const item of items) {
+        const itemElement = item as HTMLIfxAccordionItemElement;
+        if (itemElement !== event.target && (await itemElement.isOpen())) {
+          itemElement.close();
+        }
       }
     }
   }

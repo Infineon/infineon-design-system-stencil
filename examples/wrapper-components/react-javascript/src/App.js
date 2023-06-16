@@ -1,19 +1,32 @@
 import './App.css';
 
-import { IfxAlert } from '@infineon/infineon-design-system-react';
+
+import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-react';
 
 
 function App() {
- 
-  const handleClose = (event) =>{ 
-    console.log('here', event)
+
+  const handleItems = () => { 
+    console.log('here')
   }
 
   return (
-    <div>
-      <IfxAlert icon='calendar16' color='danger' onIfxClose={handleClose} >Achtung! Hast du etwas vergessen?</IfxAlert>
-    </div>
-  );
+    <IfxAccordion auto-collapse="true" onIfxItemOpen={handleItems}>
+      <IfxAccordionItem caption="How to be happy?">
+        I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+        I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+        I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+        I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+        I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+      </IfxAccordionItem>
+      <IfxAccordionItem caption="How to be happy?">
+        I have no idea.
+      </IfxAccordionItem>
+      <IfxAccordionItem caption="How to be happy?">
+        I have no idea.
+      </IfxAccordionItem>
+    </IfxAccordion>
+  )
 }
 
 export default App;
