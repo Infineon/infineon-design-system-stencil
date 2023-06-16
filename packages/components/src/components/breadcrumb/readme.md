@@ -14,6 +14,13 @@
 | `url`    | `url`     |             | `string` | `undefined` |
 
 
+## Events
+
+| Event                       | Description | Type                            |
+| --------------------------- | ----------- | ------------------------------- |
+| `breadcrumbMenuIconWrapper` |             | `CustomEvent<CustomEvent<any>>` |
+
+
 ## Dependencies
 
 ### Depends on

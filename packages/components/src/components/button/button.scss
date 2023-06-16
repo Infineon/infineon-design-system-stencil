@@ -1,11 +1,4 @@
 
-
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
-
-:host { 
-  display: inline-flex;
-}
-
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 

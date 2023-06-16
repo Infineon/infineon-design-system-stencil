@@ -36,7 +36,8 @@ export const IfxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb
 export const IfxBreadcrumbItemLabel = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItemLabel>('ifx-breadcrumb-item-label', undefined, [
   'icon',
   'url',
-  'target'
+  'target',
+  'breadcrumbMenuIconWrapper'
 ]);
 
 
