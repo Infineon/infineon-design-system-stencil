@@ -1,9 +1,4 @@
 
-import {
-  defineCustomElements,
-  applyPolyfills,
-} from '../loader';
-
 import {defineCustomElements} from '../loader';
 
 
