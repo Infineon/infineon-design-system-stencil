@@ -1,3 +1,15 @@
+# v18.2.4 (Fri Jun 16 2023)
+
+#### 🐛 Bug Fix
+
+- Accordion issues fixed [#178](https://github.com/Infineon/infineon-design-system-stencil/pull/178) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.2.3 (Fri Jun 16 2023)
 
 #### 🐛 Bug Fix
