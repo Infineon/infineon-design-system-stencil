@@ -342,6 +342,7 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'success',
   'disabled',
   'readonly',
-  'icon'
+  'icon',
+  'ifxChange'
 ]);
 

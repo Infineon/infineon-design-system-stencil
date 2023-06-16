@@ -1,3 +1,5 @@
+import { action } from '@storybook/addon-actions';
+
 export default {
   title: "Components/TextInput",
   args: {
@@ -6,16 +8,29 @@ export default {
     success: false,
     placeholder: 'Placeholder',
     errorMessage: "",
-  },
-
-  argTypes: {
 
   },
+
+
 };
 
 
-const DefaultTemplate = (args) =>
-  `<ifx-text-input disabled="${args.disabled}" error="${args.error}" success="${args.success}" error-message="${args.errorMessage}">Text field</ifx-text-input>`;
+const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage }) => {
+  const element = document.createElement('ifx-text-input');
+  element.setAttribute('error', error);
+  element.setAttribute('disabled', disabled);
+  element.setAttribute('success', success);
+  element.setAttribute('placeholder', placeholder);
+  element.setAttribute('errorMessage', errorMessage);
+  element.addEventListener('ifxChange', action('ifxChange'));
+
+  const slotContent = document.createTextNode('Text field');
+  element.appendChild(slotContent);
+
+  return element;
+}
+
+
 
 
 export const Default = DefaultTemplate.bind({});
