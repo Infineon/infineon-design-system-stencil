@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-alert',
@@ -9,10 +9,16 @@ import { Component, Prop, h } from '@stencil/core';
 export class Alert {
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() icon: string;
+  @Event() ifxClose: EventEmitter;
 
+  handleClose() { 
+    this.ifxClose.emit()
+  }
+
+ 
   render() {
     return (
-      <div class={`alert alert-${this.color}`}>
+      <div class={`alert ${this.color}`}>
         {this.icon && (
           <div class='icon-wrapper'>
             <ifx-icon icon={this.icon} />
@@ -23,7 +29,7 @@ export class Alert {
           <slot />
         </div>
         <div class="close-icon-wrapper">
-          <a href="#">
+          <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
             <ifx-icon icon='cross-16' />
           </a>
         </div>

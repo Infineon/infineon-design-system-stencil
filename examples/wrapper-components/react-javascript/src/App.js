@@ -1,5 +1,6 @@
 import './App.css';
 
+
 import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system-react';
 
 
@@ -25,7 +26,7 @@ function App() {
         I have no idea.
       </IfxAccordionItem>
     </IfxAccordion>
-  );
+  )
 }
 
 export default App;

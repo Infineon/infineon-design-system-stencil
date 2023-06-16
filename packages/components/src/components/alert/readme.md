@@ -13,6 +13,13 @@
 | `icon`   | `icon`    |             | `string`                                                         | `undefined` |
 
 
+## Events
+
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxClose` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Depends on
