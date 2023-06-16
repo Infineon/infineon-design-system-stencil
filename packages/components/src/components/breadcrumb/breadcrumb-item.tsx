@@ -9,6 +9,7 @@ export class BreadcrumbItem {
 
   @State() isLastItem: boolean = false;
   @Element() el;
+  private emittedElement: HTMLElement;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -23,11 +24,13 @@ export class BreadcrumbItem {
     return dropdownMenu
   }
 
-  getMenuIconWrapper() { 
-    const menuIconWrapper = this.el.querySelector('ifx-breadcrumb-item-label')
-    const container = menuIconWrapper.shadowRoot.querySelector('.breadcrumb-item-label-container')
-    const menuWrapper = container.querySelector('.menu-icon-wrapper')
-    return menuWrapper
+  @Listen('breadcrumbMenuIconWrapper')
+  menuWrapperEventReEmitter(event: CustomEvent<HTMLElement>) { 
+    this.emittedElement = event.detail;
+  }
+
+  getMenuIconWrapper(): HTMLElement | undefined {
+    return this.emittedElement;
   }
 
   handleClassList(el, type, className) {
@@ -48,11 +51,19 @@ export class BreadcrumbItem {
     this.handleClassList(menuWrapper, 'toggle', 'show')
   }
 
-  componentWillLoad() { 
+  handleLastItem() { 
     const breadcrumbItems = this.el.closest('ifx-breadcrumb').querySelectorAll('ifx-breadcrumb-item')
     if(this.el === breadcrumbItems[breadcrumbItems.length-1]) { 
       this.isLastItem = true;
     } else this.isLastItem = false;
+  }
+
+  componentWillLoad() { 
+    this.handleLastItem()
+  }
+
+  componentDidUpdate() {
+    this.handleLastItem()
   }
 
   componentDidLoad() { 
@@ -65,7 +76,7 @@ export class BreadcrumbItem {
 
   render() {
     return (
-      <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`} onClick={this.toggleDropdownMenu.bind(this)}>
+      <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`} onClick={() => this.toggleDropdownMenu()}>
        <li class="breadcrumb-wrapper">
           <slot name='label' />
           <div class="dropdown-menu">

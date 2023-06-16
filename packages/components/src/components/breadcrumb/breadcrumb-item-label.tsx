@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-breadcrumb-item-label',
@@ -9,7 +9,14 @@ export class BreadcrumbItemLabel {
   @Prop() icon: string;
   @Prop() url: string;
   @Prop() target: string = "_self"
+  @Element() el;
+  @Event() breadcrumbMenuIconWrapper: EventEmitter<CustomEvent>;
 
+  componentDidLoad() { 
+    const container = this.el.shadowRoot.querySelector('.breadcrumb-item-label-container')
+    const menuWrapper = container.querySelector('.menu-icon-wrapper')
+    this.breadcrumbMenuIconWrapper.emit(menuWrapper)
+  }
 
   render() {
     return (

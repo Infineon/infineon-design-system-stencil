@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { TabOrientation } from "./components/tabs/tabs";
+export { TabOrientation } from "./components/tabs/tabs";
 export namespace Components {
     interface IfxAccordion {
     }
@@ -256,6 +257,10 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxBreadcrumbItemLabelCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxBreadcrumbItemLabelElement;
 }
 export interface IfxDropdownItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -680,6 +685,7 @@ declare namespace LocalJSX {
     }
     interface IfxBreadcrumbItemLabel {
         "icon"?: string;
+        "onBreadcrumbMenuIconWrapper"?: (event: IfxBreadcrumbItemLabelCustomEvent<CustomEvent>) => void;
         "target"?: string;
         "url"?: string;
     }
