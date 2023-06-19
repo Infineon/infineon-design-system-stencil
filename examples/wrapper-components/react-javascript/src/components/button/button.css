@@ -1,0 +1,10 @@
+.chooseApp { 
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.button__wrapper { 
+  display: flex;
+  gap: 5px;
+}

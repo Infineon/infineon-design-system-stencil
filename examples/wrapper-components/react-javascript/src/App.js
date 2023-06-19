@@ -1,12 +1,11 @@
 import './App.css';
-import { IfxButton } from '@infineon/infineon-design-system-react';
-
+import Button from './components/button/button';
 
 function App() {
   
   return (
     <div>
-      <IfxButton variant='outline-text' href='http://google.com' target='_blank' color="warning" position='left' icon=''>Button</IfxButton>
+      <Button />
     </div>
   );
 }
