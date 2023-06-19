@@ -21,8 +21,8 @@ const Template = (args) => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </p>
     `;
-    item.addEventListener('ifxItemOpened', action('ifxItemOpened'));
-    item.addEventListener('ifxItemClosed', action('ifxItemClosed'));
+    item.addEventListener('ifxItemOpen', action('ifxItemOpen'));
+    item.addEventListener('ifxItemClose', action('ifxItemClose'));
 
     accordionElement.append(item);
   }

@@ -8,7 +8,7 @@ import { getIcon } from '@infineon/infineon-icons'
 })
 
 export class InfineonIconStencil {
-  @Prop({ mutable: true }) icon: any;
+  @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
  
   convertStringToHtml(htmlString) { 

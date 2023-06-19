@@ -2,9 +2,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host {
-  display: block;
-}
+// :host {
+//   display: block;
+// }
 
 .accordion-item {
   border-radius: 3px;
@@ -37,13 +37,14 @@
   transition: max-height 0.3s ease-in-out;
 }
 
-.accordion-content ::slotted(p) {
-  margin: 0;
-  padding: 0;
-}
-
 .inner-content {
   padding: 24px;
+  white-space: pre-wrap;
+  /* wraps text at spaces and within words */
+  word-wrap: break-word;
+  /* breaks text within a word if necessary */
+  overflow-wrap: anywhere;
+  /* breaks text at arbitrary points when needed */
 }
 
 .accordion-icon {
@@ -54,5 +55,5 @@
 }
 
 .accordion-item.open .accordion-icon {
-  transform: rotate(90deg);
+  transform: rotate(-180deg);
 }
