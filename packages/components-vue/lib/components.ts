@@ -245,8 +245,7 @@ export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, 
   'value',
   'label',
   'size',
-  'showLabel',
-  'ifxChange'
+  'showLabel'
 ],
 'value', 'ifxChange');
 
