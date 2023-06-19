@@ -1,6 +1,6 @@
 
 <template>
-  <h1 class="header">Using Stencil web components in a Vue application</h1>
+  <h1 class="header">Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
   <Checkbox />

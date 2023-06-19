@@ -8,13 +8,15 @@ import type { JSX } from '@infineon/infineon-design-system-stencil';
 
 
 
-export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined);
+export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
+  'autoCollapse'
+]);
 
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
-  'ifxItemOpened',
-  'ifxItemClosed'
+  'ifxItemOpen',
+  'ifxItemClose'
 ]);
 
 
@@ -28,8 +30,17 @@ export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert',
 export const IfxBadge = /*@__PURE__*/ defineContainer<JSX.IfxBadge>('ifx-badge', undefined);
 
 
-export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined, [
-  'breadcrumbs'
+export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined);
+
+
+export const IfxBreadcrumbItem = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItem>('ifx-breadcrumb-item', undefined);
+
+
+export const IfxBreadcrumbItemLabel = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItemLabel>('ifx-breadcrumb-item-label', undefined, [
+  'icon',
+  'url',
+  'target',
+  'breadcrumbMenuIconWrapper'
 ]);
 
 
@@ -103,6 +114,8 @@ export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem
   'icon',
   'checkable',
   'value',
+  'url',
+  'target',
   'itemValues'
 ]);
 

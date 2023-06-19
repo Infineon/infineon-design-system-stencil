@@ -1,0 +1,44 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.breadcrumb-item-label-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: tokens.$color-text-black;
+
+  &.margin { 
+    margin-left: 16px;
+  }
+
+  & ifx-icon:empty { 
+    display: none;
+  }
+
+  & .label-icon-wrapper { 
+    display: inline-flex;
+  }
+  
+  & .menu-icon-wrapper { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+
+    &.hide { 
+      display: none;
+    }
+
+    & ifx-icon { 
+      transition: .3s;
+    }
+
+    &.show { 
+      & ifx-icon { 
+        transition: .3s;
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

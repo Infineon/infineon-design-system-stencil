@@ -1,0 +1,59 @@
+@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+
+.breadcrumb-parent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  &:hover { 
+    cursor: pointer;
+  }
+
+  & .breadcrumb-wrapper { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    position: relative;
+
+    & .dropdown-menu { 
+      display: none;
+      position: absolute;
+      top: 20px;
+
+      &.open { 
+        display: block;
+      }
+    }
+
+    & a { 
+      text-decoration: none;
+      color: tokens.$color-text-black;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      color: #1D1D1D;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0px;
+      border-bottom: 1px solid #1D1D1D;
+    }
+  }
+
+  & .breadcrumb-divider { 
+    width: 10px;
+    height: 16px;
+    color: tokens.$color-gray-300;
+    line-height: 13px;
+    font-size: 20px;
+
+    margin-right: 12px;
+  }
+}
+
