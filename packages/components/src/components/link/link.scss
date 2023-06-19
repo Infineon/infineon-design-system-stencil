@@ -2,13 +2,20 @@
 @use "../../global/font.scss";
 
 .link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 400;
   font-size: 16px;
-  text-decoration: underline;
-  color: tokens.$color-text-black;
+  text-decoration: none;
+  vertical-align: middle;
 
   &.bold {
     font-weight: 600;
+  }
+
+  &.black { 
+    color: tokens.$color-text-black;
   }
 
   &.primary {

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop} from '@stencil/core';
+import { Component, h, Element, State} from '@stencil/core';
 
 @Component({
   tag: 'ifx-card-text',
@@ -8,7 +8,7 @@ import { Component, h, Element, Prop} from '@stencil/core';
 
 export class CardText {
   @Element() el;
-  @Prop({mutable: true}) hasBtn: boolean;
+  @State() hasBtn: boolean;
 
   componentWillLoad() { 
     const link = this.el.closest('ifx-card').querySelector('ifx-link');

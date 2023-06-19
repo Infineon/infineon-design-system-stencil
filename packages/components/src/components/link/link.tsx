@@ -11,7 +11,7 @@ import classNames from 'classnames';
 export class Link {
   @Prop() href: string
   @Prop() target: string = '_self';
-  @Prop() color: mainColors = undefined;
+  @Prop() color: mainColors;
 
   @Prop() bold: boolean = true;
   @Prop() underline: boolean = true
@@ -27,7 +27,7 @@ export class Link {
   linkClassNames() {
     return classNames(
       'link',
-      this.color,
+      this.color ? this.color : 'black',
       this.bold && 'bold',
       this.underline && 'nounderline',
     );

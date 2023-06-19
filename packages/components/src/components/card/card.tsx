@@ -1,4 +1,4 @@
-import { Component, h, Host, Element, Prop, State } from '@stencil/core';
+import { Component, h, Host, Element, Prop, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
@@ -10,11 +10,16 @@ export class Card {
   @Element() el;
   @State() hasBtn: boolean;
   @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
-  @Prop() alignment: string;
+  @State() alignment: string;
   @State() hasDesc: boolean;
-  @Prop({ mutable: true }) hasAll: boolean;
-  @Prop({ mutable: true }) largeSize: boolean;
-  @Prop({ mutable: true }) smallSize: boolean;
+  @State() hasAll: boolean;
+  @State() largeSize: boolean;
+  @State() smallSize: boolean;
+
+  @Listen('imgPosition')
+  setImgPosition(event) { 
+    this.alignment = event.detail
+  }
 
   componentWillLoad() {
     const desc = this.el.querySelector('ifx-card-text')
@@ -52,12 +57,8 @@ export class Card {
             <slot name="img" />
           </div>
 
-
           <div class='card-body'>
-            <slot name='overline' />
-            <slot name='headline' />
-            <slot name='text' />
-            <slot name="btn" />
+            <slot />
           </div>
         </div>
       </Host>

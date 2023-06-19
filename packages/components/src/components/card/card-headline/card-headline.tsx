@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, h, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card-headline',
@@ -8,8 +8,8 @@ import { Component, h, Element, Prop } from '@stencil/core';
 
 export class CardHeadline {
   @Element() el;
-  @Prop({ mutable: true }) direction: string;
-  @Prop({ mutable: true }) hasDesc: boolean;
+  @State() direction: string;
+  @State() hasDesc: boolean;
 
   componentWillLoad() {
     const isHorizontal = this.el.closest('ifx-card').shadowRoot.querySelector('.card').className.includes('horizontal')

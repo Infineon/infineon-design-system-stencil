@@ -49,16 +49,9 @@
     & .card-img {
       flex: 1;
       order: 2;
-
-      & ::slotted([slot=img]) {
-        width: 100%;
-        height: 100%;
-        vertical-align: bottom;
-        object-fit: cover;
-      }
     }
 
-    &.right {
+    &.left {
       & .card-img {
         order: 1;
       }
