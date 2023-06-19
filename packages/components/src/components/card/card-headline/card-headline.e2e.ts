@@ -12,6 +12,7 @@ describe('ifx-card-headline', () => {
 
   it('should display slotted content', async () => {
     const page = await newE2EPage();
+
     await page.setContent('<ifx-card-headline>Test content</ifx-card-headline>');
 
     const headlineContent = await page.evaluate(() => {
@@ -19,7 +20,7 @@ describe('ifx-card-headline', () => {
       const slot = headline.shadowRoot.querySelector('slot');
       const nodes = slot.assignedNodes();
       return nodes[0].textContent;
-    });
+    }).catch(e => console.error(e));
 
     expect(headlineContent).toBe('Test content');
   });

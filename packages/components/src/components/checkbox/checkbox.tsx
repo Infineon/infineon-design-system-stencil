@@ -12,7 +12,6 @@ export class Checkbox {
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @Prop() name: string = '';
-  @State() hasSlot: boolean = true;
   @State() internalValue: boolean;
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
@@ -30,13 +29,6 @@ export class Checkbox {
     }
   }
 
-  componentDidUpdate() {
-    const slot = this.el.innerHTML;
-    if (slot) {
-      this.hasSlot = true;
-    } else this.hasSlot = false;
-  }
-
   handleKeydown(event) {
     // Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
     if (event.keyCode === 32 || event.keyCode === 13) {
@@ -49,8 +41,14 @@ export class Checkbox {
     this.internalValue = this.value;
   }
 
-
   render() {
+    const slot = this.el.innerHTML;
+    let hasSlot = false;
+
+    if (slot) {
+      hasSlot = true;
+    }
+
     return (
       <div class="checkbox__container">
         <input type="checkbox" hidden
@@ -71,7 +69,7 @@ export class Checkbox {
         ${this.error ? 'error' : ""}`}>
           {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
-        {this.hasSlot &&
+        {hasSlot &&
           <div id="label" class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
             <slot />
           </div>}
