@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.0.15/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  
+  <title>Vanilla</title>
+  <script type="module" crossorigin src="/assets/index-4bb2e081.js"></script>
+  <link rel="stylesheet" href="/assets/index-e7b1c3cb.css">
+</head>
+
+<body>
+
+  <div class="app">
+    <h1 class="header">Using Stencil web components in an Vanilla JS</h1>
+    <h2>Button</h2>
+    <div>
+
+      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+        Button
+      </ifx-button>
+    </div>
+    <br />
+    <h2>Progress bar</h2>
+    <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
+    <div>
+      <h2>Checkbox</h2>
+      <ifx-checkbox error="false" disabled="false" checked="false">
+        Text
+      </ifx-checkbox>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+  function handleCheckbox(event) {
+    console.log('checked: ', event.detail.value);
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const checkbox = document.querySelector('ifx-checkbox');
+    checkbox.addEventListener('ifxChange', handleCheckbox);
+  });
+</script>
