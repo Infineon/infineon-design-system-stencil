@@ -12,16 +12,22 @@ export class CardHeadline {
   @Prop({ mutable: true }) hasDesc: boolean;
 
   componentWillLoad() {
-    const isHorizontal = this.el.closest('ifx-card').shadowRoot.querySelector('.card').className.includes('horizontal')
-    if (isHorizontal) {
-      this.direction = 'horizontal'
-    }
+    const cardElement = this.el.closest('ifx-card');
 
-    let desc = this.el.closest('ifx-card').querySelector('ifx-card-text')
-    if (desc) {
-      this.hasDesc = true;
+    if (cardElement) {
+      const cardClass = cardElement.shadowRoot.querySelector('.card')?.className;
+
+      if (cardClass && cardClass.includes('horizontal')) {
+        this.direction = 'horizontal'
+      }
+
+      const desc = cardElement.querySelector('ifx-card-text');
+      if (desc) {
+        this.hasDesc = true;
+      }
     }
   }
+
 
   render() {
     return (
