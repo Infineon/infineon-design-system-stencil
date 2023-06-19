@@ -241,13 +241,12 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
-export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["value"]>('ifx-progress-bar', undefined, [
+export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', undefined, [
   'value',
   'label',
   'size',
   'showLabel'
-],
-'value', 'ifxChange');
+]);
 
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
