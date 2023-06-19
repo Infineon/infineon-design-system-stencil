@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.2.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  
+  <title>Vanilla</title>
+  <script type="module" crossorigin src="/assets/index-4bb2e081.js"></script>
+  <link rel="stylesheet" href="/assets/index-e7b1c3cb.css">
+</head>
+
+<body>
+
+  <div class="app">
+    <h1 class="header">Using Stencil web components in an Vanilla JS</h1>
+    <h2>Button</h2>
+    <div>
+
+      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+        Button
+      </ifx-button>
+    </div>
+    <br />
+    <h2>Progress bar</h2>
+    <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
+
+    <br />
+    <h2>Checkbox</h2>
+
+    <form id="form">
+      TestText
+      <ifx-checkbox id="checkbox" name="name">label</ifx-checkbox>
+      TestText
+      <br />
+      <ifx-button type="submit">Submit</ifx-button>
+    </form>
+
+    <ifx-button id="toggleDisabled">Toggle Disabled</ifx-button>
+    <ifx-button id="toggleError">Toggle Error</ifx-button>
+    <ifx-button id="toggleValue">Toggle Value</ifx-button>
+
+
+    <span id="disabledSpan"></span>
+    <span id="errorSpan"></span>
+    <span id="valueSpan"></span>
+  </div>
+</body>
+
+</html>
+
+<script>
+  let disabled = false;
+  let checked = false;
+  let error = false;
+
+  const form = document.querySelector("#form");
+  const checkbox = document.querySelector("#checkbox");
+  const toggleDisabledButton = document.querySelector("#toggleDisabled");
+  const toggleErrorButton = document.querySelector("#toggleError");
+  const toggleValueButton = document.querySelector("#toggleValue");
+  const disabledSpan = document.querySelector("#disabledSpan");
+  const errorSpan = document.querySelector("#errorSpan");
+  const valueSpan = document.querySelector("#valueSpan");
+
+  function updateValues() {
+    checkbox.setAttribute('disabled', disabled);
+    checkbox.setAttribute('value', checked);
+    checkbox.setAttribute('error', error);
+    disabledSpan.textContent = `Disabled: ${disabled}`;
+    errorSpan.textContent = `Error: ${error}`;
+    valueSpan.textContent = `Value: ${checked}`;
+  }
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log('Form submitted. Checkbox value:', checked);
+  });
+
+  checkbox.addEventListener('ifxChange', () => {
+    console.log("checked value change");
+    checked = !checked;
+    updateValues();
+  });
+
+  toggleDisabledButton.addEventListener('click', () => {
+    disabled = !disabled;
+    updateValues();
+  });
+
+  toggleErrorButton.addEventListener('click', () => {
+    error = !error;
+    updateValues();
+  });
+
+  toggleValueButton.addEventListener('click', () => {
+    checked = !checked;
+    updateValues();
+  });
+
+  updateValues();
+
+
+  // document.addEventListener('DOMContentLoaded', (event) => {
+  //   const checkbox = document.querySelector('ifx-checkbox');
+  //   checkbox.addEventListener('ifxChange', handleCheckbox);
+  // });
+</script>
