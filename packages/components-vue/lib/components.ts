@@ -57,26 +57,25 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
-  'direction',
-  'alignment',
-  'hasAll',
-  'largeSize',
-  'smallSize'
+  'direction'
 ]);
 
 
-export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined, [
-  'direction',
-  'hasDesc'
+export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined);
+
+
+export const IfxCardImage = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', undefined, [
+  'src',
+  'alt',
+  'position',
+  'imgPosition'
 ]);
 
 
 export const IfxCardOverline = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', undefined);
 
 
-export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined, [
-  'hasBtn'
-]);
+export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined);
 
 
 export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["value"]>('ifx-checkbox', undefined, [

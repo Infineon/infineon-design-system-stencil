@@ -12,7 +12,6 @@ export class Link {
   @Prop() href: string
   @Prop() target: string = '_self';
   @Prop() color: mainColors;
-
   @Prop() bold: boolean = true;
   @Prop() underline: boolean = true
 
