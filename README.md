@@ -93,6 +93,58 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 })
 ```
 
+
+##### Additional steps for Vue (when using the plain Stencil components)
+
+Inside <b>vite.config.js</b> file:
+
+```bash
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags starting with 'ifx-' as custom elements
+          isCustomElement: (tag) => tag.startsWith('ifx-')
+        }
+      }
+    }),
+    ...
+  ]
+});
+```
+
+##### Additional steps for React (when using the plain Stencil components)
+
+To listen to custom events emitted from the Stencil components, you might need to attach an EventListener.
+
+```bash
+import React, { useEffect, useRef } from 'react';
+
+function App() {
+  const checkboxRef = useRef();
+
+  useEffect(() => {
+    const checkbox = checkboxRef.current;
+    checkbox.addEventListener("ifxChange", toggleValue);
+    return () => {
+      checkbox.removeEventListener("ifxChange", toggleValue);
+    };
+  });
+
+  ...
+  
+   return (
+      <ifx-checkbox ref={checkboxRef} disabled={disabled} value={checked} error={error} name="name" onIfxChange={toggleValue}>label</ifx-checkbox>
+  );
+}
+
+export default App;
+```
+
 #### Installation of SASS
 <!-- For React projects only, run:  -->
 ```bash

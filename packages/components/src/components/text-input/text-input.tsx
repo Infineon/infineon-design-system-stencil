@@ -17,16 +17,10 @@ export class TextInput {
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() icon: boolean = false;
-  @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Event() ifxInput: EventEmitter<CustomEvent>;
 
-  handleChange(e) {
-    console.log("handling input");
-    const customEvent = new CustomEvent('ifxChange', {
-      detail: e.target.value,
-      bubbles: true,
-      composed: true
-    });
-    this.ifxChange.emit(customEvent);
+  handleInput(e) {
+    this.ifxInput.emit(e.target.value);
   }
 
   render() {
@@ -44,7 +38,7 @@ export class TextInput {
             type="text"
             id='text-field'
             value={this.value}
-            onInput={(ev) => this.handleChange(ev)}
+            onInput={(ev) => this.handleInput(ev)}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
           {this.error &&

@@ -22,7 +22,7 @@ const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage }
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
   element.setAttribute('errorMessage', errorMessage);
-  element.addEventListener('ifxChange', action('ifxChange'));
+  element.addEventListener('ifxInput', action('ifxInput'));
 
   const slotContent = document.createTextNode('Text field');
   element.appendChild(slotContent);

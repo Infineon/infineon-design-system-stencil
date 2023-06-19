@@ -19,9 +19,33 @@
   <br />
 
   <h2>Checkbox</h2>
-  <form>
-    <ifx-checkbox [error]="false" [disabled]="false" [checked]="false">
-      Text
-    </ifx-checkbox>
+
+  <form (ngSubmit)="handleSubmit()">
+    TestText
+    <ifx-checkbox [disabled]="disabled" [value]="checked" [error]="error" name="name"
+      (ifxChange)="toggleValue()">label</ifx-checkbox> TestText
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
   </form>
+
+  <ifx-button (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button (click)="toggleError()">Toggle Error</ifx-button>
+  <ifx-button (click)="toggleValue()">Toggle Value</ifx-button>
+
+  <span>Disabled: {{ disabled }} </span>
+  <span>Error: {{ error }} </span>
+  <span>Value: {{ checked }}</span>
+
+
+  <h2>Text Input</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-text-input (ifxInput)="handleIfxInput($event)" [error]="false" [disabled]="false" [success]="false"
+      placeholder="Placeholder" [errormessage]="">Text
+      field</ifx-text-input>
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+  </form>
+  <span>Text field value: {{ textFieldValue }}</span>
 </div>
