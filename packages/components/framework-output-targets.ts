@@ -8,6 +8,11 @@ const vueComponentModels: ComponentModelConfig[] = [
         event: 'ifxChange',
         targetAttr: 'value',
     },
+    {
+        elements: ['ifx-text-input'],
+        event: 'ifxInput',
+        targetAttr: 'value',
+    },
 ];
 
 const excludeComponents = [

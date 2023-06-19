@@ -334,7 +334,7 @@ export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undef
 ]);
 
 
-export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx-text-input', undefined, [
+export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.IfxTextInput["value"]>('ifx-text-input', undefined, [
   'placeholder',
   'value',
   'error',
@@ -344,5 +344,6 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'readonly',
   'icon',
   'ifxInput'
-]);
+],
+'value', 'ifxInput');
 
