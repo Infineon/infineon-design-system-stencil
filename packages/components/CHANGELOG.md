@@ -1,3 +1,16 @@
+# v18.2.5 (Mon Jun 19 2023)
+
+#### 🐛 Bug Fix
+
+- 160 e2e tests [#197](https://github.com/Infineon/infineon-design-system-stencil/pull/197) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.4 (Fri Jun 16 2023)
 
 #### 🐛 Bug Fix
