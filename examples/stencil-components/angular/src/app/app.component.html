@@ -20,8 +20,16 @@
 
   <h2>Checkbox</h2>
   <form>
-    <ifx-checkbox [error]="false" [disabled]="false" [checked]="false">
+    <ifx-checkbox [error]="false" [disabled]="false" [value]="false" (ifxChange)="handleCheckboxChange($event)">
       Text
     </ifx-checkbox>
+  </form>
+  <br />
+
+  <h2>Radio Button</h2>
+  <form>
+    <ifx-radio-button [error]="false" [disabled]="false" [value]="false" (ifxChange)="handleRadioButtonChange($event)">
+      Text
+    </ifx-radio-button>
   </form>
 </div>

@@ -4,6 +4,7 @@
   <Alert />
   <Button />
   <Checkbox />
+  <RadioButton />
   <ProgressBar />
   <Search />
 </template>
@@ -15,6 +16,7 @@ import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
+import RadioButton from './components/RadioButton.vue'
 
 </script>
 

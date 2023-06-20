@@ -14,6 +14,8 @@ export class Button {
   @Prop() disabled: boolean;
   @Prop() icon: string;
   @Prop({ mutable: true }) position: string = 'left'
+  @Prop() type: 'button' | 'submit' | 'reset' = 'button';
+
 
   @Prop() href: string;
   @Prop() target: string = '_self';
@@ -53,8 +55,8 @@ export class Button {
         ) : (
           <button
             class={this.getClassNames()}
+            type={this.type}
 
-            type="button"
           >
             {this.icon && this.position.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>

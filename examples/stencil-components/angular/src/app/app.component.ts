@@ -11,4 +11,12 @@ export class AppComponent {
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
   }
+
+  handleRadioButtonChange(event: CustomEvent) {
+    console.log('Radio button value: ', event.detail);
+  }
+
+  handleCheckboxChange(event: CustomEvent) {
+    console.log('Checkbox value: ', event.detail);
+  }
 }

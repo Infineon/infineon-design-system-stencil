@@ -2,7 +2,7 @@ import { Component, h, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
-  styleUrl: 'text-input.scss', 
+  styleUrl: 'text-input.scss',
   shadow: true
 })
 
@@ -27,20 +27,20 @@ export class TextInput {
           </label>
         </div>
         <div class="textInput__bottom-wrapper">
-          <input 
+          <input
 
-          readonly={this.readonly}
-          disabled={this.disabled}
-          type="text" 
-          id='text-field' 
-          value={this.value}
+            readonly={this.readonly}
+            disabled={this.disabled}
+            type="text"
+            id='text-field'
+            value={this.value}
 
-          placeholder={this.placeholder} 
-          class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}/>
-          {this.error && 
+            placeholder={this.placeholder}
+            class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
+          {this.error &&
             <div class="textInput__bottom-wrapper-error">
-            {this.errorMessage}
-          </div>}
+              {this.errorMessage}
+            </div>}
 
           {this.icon && <ifx-icon icon='chevron-down-16'></ifx-icon>}
 

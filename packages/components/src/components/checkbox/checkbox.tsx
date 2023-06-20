@@ -18,7 +18,7 @@ export class Checkbox {
   handleCheckbox() {
     if (!this.disabled) {
       this.internalValue = !this.internalValue;
-      this.ifxChange.emit({ value: this.internalValue });
+      this.ifxChange.emit(this.internalValue);
     }
   }
 

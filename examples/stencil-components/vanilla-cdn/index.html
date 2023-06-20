@@ -24,12 +24,14 @@
     <br />
     <h2>Progress bar</h2>
     <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
-    <div>
-      <h2>Checkbox</h2>
-      <ifx-checkbox error="false" disabled="false" checked="false">
-        Text
-      </ifx-checkbox>
-    </div>
+    <h2>Checkbox</h2>
+    <ifx-checkbox error="false" disabled="false" checked="false">
+      Text
+    </ifx-checkbox>
+    <h2>Radio Button</h2>
+    <ifx-radio-button error="false" disabled="false" value="false">
+      Text
+    </ifx-radio-button>
   </div>
 </body>
 
@@ -37,11 +39,19 @@
 
 <script>
   function handleCheckbox(event) {
-    console.log('checked: ', event.detail.value);
+    console.log('checkbox value change: ', event.detail);
+  }
+
+
+  function handleRadioButton(event) {
+    console.log('radio button value change: ', event.detail);
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
     const checkbox = document.querySelector('ifx-checkbox');
+    const radioButton = document.querySelector('ifx-radio-button');
+
     checkbox.addEventListener('ifxChange', handleCheckbox);
+    radioButton.addEventListener('ifxChange', handleRadioButton);
   });
 </script>

@@ -51,6 +51,7 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'disabled',
   'icon',
   'position',
+  'type',
   'href',
   'target'
 ]);
@@ -251,11 +252,13 @@ export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, 
 'value', 'ifxChange');
 
 
-export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
+export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton, JSX.IfxRadioButton["value"]>('ifx-radio-button', undefined, [
   'disabled',
-  'checked',
-  'error'
-]);
+  'value',
+  'error',
+  'ifxChange'
+],
+'value', 'ifxChange');
 
 
 export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range', undefined, [

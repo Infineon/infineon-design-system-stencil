@@ -9,9 +9,16 @@
 
 | Property   | Attribute  | Description | Type      | Default |
 | ---------- | ---------- | ----------- | --------- | ------- |
-| `checked`  | `checked`  |             | `boolean` | `false` |
 | `disabled` | `disabled` |             | `boolean` | `false` |
 | `error`    | `error`    |             | `boolean` | `false` |
+| `value`    | `value`    |             | `boolean` | `false` |
+
+
+## Events
+
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `ifxChange` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------
