@@ -8,20 +8,19 @@ export default {
     success: false,
     placeholder: 'Placeholder',
     errorMessage: "",
-
-  },
-
-
+    readonly: false
+  }
 };
 
 
-const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage }) => {
+const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage, readonly }) => {
   const element = document.createElement('ifx-text-input');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
   element.setAttribute('errorMessage', errorMessage);
+  element.setAttribute('readonly', readonly);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   const slotContent = document.createTextNode('Text field');
