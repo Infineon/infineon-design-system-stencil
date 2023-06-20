@@ -1,3 +1,17 @@
+# v18.2.6 (Tue Jun 20 2023)
+
+#### 🐛 Bug Fix
+
+- 186 review progress bar [#203](https://github.com/Infineon/infineon-design-system-stencil/pull/203) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.5 (Mon Jun 19 2023)
 
 #### 🐛 Bug Fix
