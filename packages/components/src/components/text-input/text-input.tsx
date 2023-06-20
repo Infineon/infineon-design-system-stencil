@@ -10,7 +10,7 @@ export class TextInput {
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
 
-  @Prop() value: string = ""
+  @Prop({ mutable: true }) value: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
   @Prop() success: boolean = false;
@@ -20,7 +20,14 @@ export class TextInput {
   @Event() ifxInput: EventEmitter<CustomEvent>;
 
   handleInput(e) {
-    this.ifxInput.emit(e.target.value);
+    const query = e.target.value;
+    this.value = query; // update the value property when input changes
+    const customEvent = new CustomEvent('ifxInput', {
+      detail: query,
+      bubbles: true,
+      composed: true
+    });
+    this.ifxInput.emit(customEvent);
   }
 
   render() {

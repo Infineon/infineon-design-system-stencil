@@ -2,7 +2,7 @@
   <div class="app">
     <h2>Text Input</h2>
     <div>
-      <ifx-text-input @ifxInput="handleIfxInput" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-input v-model="input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Label</ifx-text-input>
     </div>
     <p>Text field value: {{ input }}</p>
@@ -11,14 +11,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 let input = ref("");
 
-const handleIfxInput = (e) => {
-  console.log('ifxInput event emitted with value:', e.detail);
-  input.value = e.detail;
-}
+
 </script>
 
 
