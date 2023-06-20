@@ -28,6 +28,10 @@
     flex-direction: row;
     width: 538px;
 
+    &.onlyBody { 
+      width: 269px;
+    }
+
     &.hasAll {
       height: auto;
     }
@@ -49,6 +53,10 @@
     & .card-img {
       flex: 1;
       order: 2;
+
+      &.noImage { 
+        display: none;
+      }
     }
 
     &.left {

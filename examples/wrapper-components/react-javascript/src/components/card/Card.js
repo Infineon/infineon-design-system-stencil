@@ -3,7 +3,7 @@ import { IfxCard, IfxCardHeadline, IfxCardOverline, IfxCardText, IfxLink, IfxIco
 
 function Card() {
   return (
-    <IfxCard direction="vertical">
+    <IfxCard direction="horizontal">
       <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>
       <IfxCardOverline>Overline</IfxCardOverline>
       <IfxCardHeadline>Headline</IfxCardHeadline>
@@ -12,7 +12,7 @@ function Card() {
       </IfxCardText>
         <IfxLink href="http://google.com" target="_blank" underline={false}>
           <IfxIcon icon="calendar16"></IfxIcon>
-          Linkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          adadadad
         </IfxLink>
     </IfxCard>
   );

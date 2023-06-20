@@ -15,17 +15,24 @@ export class Card {
   @State() hasAll: boolean;
   @State() largeSize: boolean;
   @State() smallSize: boolean;
+  @State() hasImg: boolean;
 
   @Listen('imgPosition')
   setImgPosition(event) { 
     this.alignment = event.detail
   }
 
-  componentWillLoad() {
+
+  handleComponentAdjustment() { 
+    const img = this.el.querySelector('ifx-card-image')
     const desc = this.el.querySelector('ifx-card-text')
     const overline = this.el.querySelector('ifx-card-overline')
     const headline = this.el.querySelector('ifx-card-headline')
     const link = this.el.querySelector('ifx-link')
+
+    if(!img) { 
+      this.hasImg = false;
+    } else this.hasImg = true;
 
     if (desc) {
       this.hasDesc = true;
@@ -40,6 +47,13 @@ export class Card {
     }
   }
 
+  componentWillLoad() {
+    this.handleComponentAdjustment()
+  }
+
+  componentWillUpdate() { 
+    this.handleComponentAdjustment()
+  }
 
 
   render() {
@@ -47,13 +61,14 @@ export class Card {
       <Host>
         <div class={
           `card 
+          ${!this.hasImg ? 'onlyBody' : ""}
           ${this.direction} 
           ${this.alignment} 
           ${this.largeSize ? 'largeSize' : ""} 
           ${this.smallSize ? 'smallSize' : ""} 
           ${this.hasAll ? 'hasAll' : ""}`
         }>
-          <div class="card-img">
+          <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
             <slot name="img" />
           </div>
 
