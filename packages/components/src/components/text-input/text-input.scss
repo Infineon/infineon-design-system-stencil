@@ -1,20 +1,13 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 @use "../../global/global";
 
-:host { 
-  width: 100%;
-}
 
 .textInput__container { 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  
-  //width: 588px;
   width: 100%;
-  //height: 64px;
-  
   flex: none;
   order: 0;
   align-self: stretch;
@@ -36,7 +29,6 @@
         }
       }
     }
-
   }
 
   & .textInput__top-wrapper { 
@@ -45,7 +37,6 @@
     align-items: flex-start;
     padding: 0px;
     gap: 4px;
-
     flex: none;
     order: 0;
     align-self: stretch;
@@ -56,12 +47,9 @@
       font-weight: 400;
       font-size: 16px;
       line-height: 24px;
-
       display: flex;
       align-items: center;
-
       color: tokens.$color-text-black;
-
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -75,7 +63,6 @@
     align-items: flex-start;
     padding: 0px;
     gap: 4px;
-  
     flex: none;
     order: 1;
     align-self: stretch;
@@ -88,15 +75,11 @@
       align-items: center;
       padding: 8px 16px;
       gap: 6px;
-      
       height: 40px;
-  
       background-color: tokens.$color-text-white;
-      color: #1D1D1D;
-
+      color: tokens.$color-text-black;
       border: 1px solid #8D8786;
       border-radius: 1px;
-  
       flex: none;
       order: 0;
       align-self: stretch;
@@ -124,7 +107,6 @@
 
       &:hover:not(:disabled, .error, .success) { 
         border: 1px solid #3C3A39;
-        cursor: pointer; //only when readonly
       }
 
       &::placeholder { 
@@ -132,9 +114,7 @@
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-
         color: #8D8786;
-
         flex: none;
         order: 1;
         flex-grow: 1;
@@ -160,11 +140,8 @@
       font-weight: 400;
       font-size: 12px;
       line-height: 16px;
-
       letter-spacing: 0.2px;
-
       color: #CD002F;
-
       flex: none;
       order: 1;
       align-self: stretch;
