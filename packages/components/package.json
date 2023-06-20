@@ -27,14 +27,13 @@
     "loader/"
   ],
   "scripts": {
-    "dev:storybook": "start-storybook -p 6262",
+    "test": "stencil test --e2e --max-workers=2",
+    "build:storybook": "npm run build:stencil && storybook build",
+    "build:stencil": "stencil build --docs",
+    "dev:storybook": "storybook dev -p 6262",
     "dev:stencil": "stencil build --watch",
     "index": "stencil build --serve --watch --dev",
-    "dev": "run-p dev:stencil dev:storybook",
-    "test": "stencil test --e2e --reporters=default --reporters=jest-github-actions-reporter",
-    "build:storybook": "npm run build:stencil && build-storybook",
-    "build:stencil": "stencil build --docs",
-    "copy:loader": "node utils/copy-loader.js"
+    "dev": "run-p dev:stencil dev:storybook"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^2.0.1",
