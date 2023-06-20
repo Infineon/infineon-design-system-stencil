@@ -23,21 +23,27 @@
     </div>
     <br />
     <h2>Progress bar</h2>
-    <ifx-progress-bar value="50" size="m" show-label="false"></ifx-progress-bar>
-    <div>
-      <h2>Checkbox</h2>
-      <ifx-checkbox error="false" disabled="false" checked="false">
-        Text
-      </ifx-checkbox>
-    </div>
+    <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
+    <ifx-button onclick="updateProgress()" variant="outline" href="" target="_blank" color="primary" size="s"
+      disabled="false" icon="false">
+      Update Progress
+    </ifx-button>
+    <h2>Checkbox</h2>
+    <ifx-checkbox error="false" disabled="false" checked="false">
+      Text
+    </ifx-checkbox>
   </div>
 </body>
-
-</html>
 
 <script>
   function handleCheckbox(event) {
     console.log('checked: ', event.detail.value);
+  }
+
+  function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const newValue = Math.floor(Math.random() * 101);
+    progressBar.setAttribute('value', newValue);
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
@@ -45,3 +51,5 @@
     checkbox.addEventListener('ifxChange', handleCheckbox);
   });
 </script>
+
+</html>

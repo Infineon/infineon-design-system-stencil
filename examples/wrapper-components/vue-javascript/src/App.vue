@@ -1,11 +1,9 @@
 
 <template>
   <h1 class="header">Using Stencil web components in a Vue application</h1>
-  <Alert />
-  <Button />
-  <Checkbox />
+
   <ProgressBar />
-  <Search />
+
 </template>
 
 
