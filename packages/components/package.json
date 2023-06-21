@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "18.2.0",
+  "version": "18.0.15",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -14,20 +14,16 @@
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/components.d.ts",
+  "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
-  },
   "files": [
     "dist/",
     "loader/"
   ],
   "scripts": {
-    "test": "stencil test --e2e --max-workers=2",
+    "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",
@@ -36,60 +32,43 @@
     "dev": "run-p dev:stencil dev:storybook"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "^2.0.1",
-    "@infineon/infineon-icons": "^1.1.2",
-    "@stencil/core": "^2.16.0",
-    "fs-extra": "^11.1.1"
+    "@infineon/design-system-tokens": "^2.0.3",
+    "@infineon/infineon-icons": "^1.1.3",
+    "@stencil/core": "^3.0.0",
+    "@storybook/cli": "^7.0.20",
+    "classnames": "^2.3.2",
+    "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@mdx-js/loader": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
-    "@stencil/react-output-target": "^0.5.0",
-    "@stencil/sass": "^2.0.0",
-    "@stencil/vue-output-target": "^0.8.5",
-    "@storybook/addon-actions": "^6.5.13",
-    "@storybook/addon-docs": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
-    "@storybook/addon-links": "^6.5.13",
-    "@storybook/addon-viewport": "^6.5.16",
-    "@storybook/addons": "^6.5.16",
-    "@storybook/api": "^6.5.16",
-    "@storybook/builder-webpack4": "^6.5.13",
-    "@storybook/components": "^6.5.16",
-    "@storybook/html": "^6.5.13",
-    "@storybook/manager-webpack4": "^6.5.13",
-    "@storybook/mdx2-csf": "0.0.3",
-    "@types/jest": "^27.0.3",
-    "@types/react-dom": "^18.0.11",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@stencil/sass": "^3.0.4",
+    "@storybook/addon-actions": "^7.0.20",
+    "@storybook/addon-essentials": "^7.0.20",
+    "@storybook/addon-interactions": "^7.0.20",
+    "@storybook/addon-links": "^7.0.20",
+    "@storybook/addon-mdx-gfm": "^7.0.20",
+    "@storybook/html": "^7.0.20",
+    "@storybook/html-webpack5": "^7.0.20",
+    "@storybook/testing-library": "^0.1.0",
+    "@stencil/react-output-target": "^0.5.3",
+    "@stencil/vue-output-target": "^0.8.6",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.11",
     "babel-loader": "^8.3.0",
-    "chokidar-cli": "^3.0.0",
-    "classnames": "^2.3.2",
-    "concurrently": "^6.4.0",
-    "copyfiles": "^2.4.1",
-    "css-loader": "^5",
-    "esbuild": "^0.14.43",
-    "jest": "^27.4.5",
-    "jest-cli": "^27.4.5",
-    "jest-github-actions-reporter": "^1.0.3",
-    "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.6.1",
-    "puppeteer": "^19.7.5",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "rimraf": "^3.0.2",
-    "sass": "^1.44.0",
-    "sass-loader": "^10",
-    "style-loader": "^2"
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "puppeteer": "^19.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.20"
   },
-  "resolutions": {
-    "@babel/preset-env": "7.13.8"
-  },
+  "license": "MIT",
   "auto": {
     "plugins": [
       "npm",
       "released"
     ]
-  },
-  "license": "MIT"
+  }
 }
