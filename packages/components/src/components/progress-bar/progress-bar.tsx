@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, h, Watch } from '@stencil/core';
+import { Component, Prop, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-progress-bar',
@@ -10,21 +10,6 @@ export class ProgressBar {
   @Prop() label: string = '';
   @Prop() size: string;
   @Prop() showLabel: boolean = false;
-
-  @Event() ifxChange: EventEmitter<CustomEvent>;
-
-  @Watch('value')
-  onValueChanged(newValue: number) {
-    const event = new CustomEvent('ifx-change', {
-      bubbles: true,
-      composed: true,
-      detail: newValue
-    });
-    // console.log("progress-bar event ", event)
-    this.ifxChange.emit(event);
-  }
-
-
 
   render() {
     return (

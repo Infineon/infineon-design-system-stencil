@@ -107,4 +107,6 @@ typings/
 # Local Netlify folder
 .netlify
 
+.angular
+
 packages/components/src/components.d.ts

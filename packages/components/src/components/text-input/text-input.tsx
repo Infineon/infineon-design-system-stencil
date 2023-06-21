@@ -17,17 +17,10 @@ export class TextInput {
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() icon: boolean = false;
-  @Event() ifxInput: EventEmitter<CustomEvent>;
+  @Event({ bubbles: true, composed: true }) ifxInput: EventEmitter;
 
   handleInput(e) {
-    const query = e.target.value;
-    this.value = query; // update the value property when input changes
-    const customEvent = new CustomEvent('ifxInput', {
-      detail: query,
-      bubbles: true,
-      composed: true
-    });
-    this.ifxInput.emit(customEvent);
+    this.ifxInput.emit(e.target.value);
   }
 
   render() {

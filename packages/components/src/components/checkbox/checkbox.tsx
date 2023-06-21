@@ -13,12 +13,12 @@ export class Checkbox {
   @Prop() error: boolean = false;
   @Prop() name: string = '';
   @State() internalValue: boolean;
-  @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
+  @Event({ bubbles: true, composed: true, eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
       this.internalValue = !this.internalValue;
-      this.ifxChange.emit({ value: this.internalValue });
+      this.ifxChange.emit(this.internalValue);
     }
   }
 
