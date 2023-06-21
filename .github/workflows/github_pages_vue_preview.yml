@@ -85,7 +85,14 @@ jobs:
                   comment_id: commentId,
                   body: `${existingText}\n${newText}`
                 });
-              }
-            }
+                } else {
+                  await github.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: prNumber,
+                    body: newText
+                  });
+                }
+             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
