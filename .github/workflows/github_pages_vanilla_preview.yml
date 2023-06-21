@@ -54,7 +54,7 @@ jobs:
         with:
           source-dir: ./examples/stencil-components/vanilla-cdn/dist
           umbrella-dir: pr-preview-vanilla-example
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update comment in PR
         uses: actions/github-script@v4
