@@ -110,3 +110,5 @@ typings/
 .angular
 
 packages/components/src/components.d.ts
+
+.angular
