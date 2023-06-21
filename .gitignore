@@ -108,3 +108,5 @@ typings/
 .netlify
 
 packages/components/src/components.d.ts
+
+.angular

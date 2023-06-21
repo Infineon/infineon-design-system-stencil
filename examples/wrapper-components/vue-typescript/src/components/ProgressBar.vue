@@ -7,15 +7,22 @@
     <h3>Using v-model</h3>
     <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
     <br />
-    <h3>Using value and the ifxChange event</h3>
+    <h3>Using value</h3>
     <ifx-progress-bar :value="progressValue2" size="m" show-label="true"></ifx-progress-bar>
+    <br />
+    <ifx-button @click="updateProgress" variant="outline" href="" target="_blank" color="primary" size="s"
+      disabled="false" icon="false">
+      Update Progress
+    </ifx-button>
     <br />
 
   </div>
 </template>
 
 <script lang="ts" setup>
+
 import { computed, onMounted, ref } from 'vue'
+
 const progressValue1 = ref(50);
 const progressValue2 = ref(10);
 
@@ -36,6 +43,8 @@ function updateProgress() {
   progressValue2.value < 100 ? progressValue2.value += 10 : progressValue2.value = 10;
 
 }
+
+
 
 
 </script>
