@@ -1,3 +1,16 @@
+# v18.2.7 (Wed Jun 21 2023)
+
+#### 🐛 Bug Fix
+
+- Button fixes [#199](https://github.com/Infineon/infineon-design-system-stencil/pull/199) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.6 (Tue Jun 20 2023)
 
 #### 🐛 Bug Fix
