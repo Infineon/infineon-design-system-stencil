@@ -18,14 +18,16 @@ export class Button {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
+  @Prop() type: string; // New property for type of button
 
   private focusableElement: HTMLElement;
+  private nativeButton: HTMLButtonElement;
 
   @Watch('position')
   reassignPosition(newValue: string) {
     if (newValue && newValue !== this.internalPosition) {
-      if(newValue.toUpperCase() === "LEFT" || newValue.toUpperCase() === "RIGHT")
-      this.internalPosition = newValue;
+      if (newValue.toUpperCase() === "LEFT" || newValue.toUpperCase() === "RIGHT")
+        this.internalPosition = newValue;
     }
   }
 
@@ -38,6 +40,22 @@ export class Button {
     if (this.position.toUpperCase() !== "LEFT") {
       this.internalPosition = 'left';
     } else this.internalPosition = this.position;
+  }
+
+
+  componentDidLoad() {
+    if (this.type === 'submit' && this.el.closest('form')) {
+      this.nativeButton = document.createElement('button');
+      this.nativeButton.type = 'submit';
+      this.nativeButton.style.display = 'none';
+      this.el.closest('form').appendChild(this.nativeButton);
+    }
+  }
+
+  handleClick() {
+    if (this.nativeButton) {
+      this.nativeButton.click();
+    }
   }
 
 
@@ -61,6 +79,8 @@ export class Button {
           <button
             class={this.getClassNames()}
             type="button"
+            onClick={this.handleClick.bind(this)} // Add click handler
+
           >
             {this.icon && this.internalPosition.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
@@ -70,7 +90,6 @@ export class Button {
       </Host>
     );
   }
-
 
 
   getVariantClass() {
