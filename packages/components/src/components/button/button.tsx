@@ -18,7 +18,7 @@ export class Button {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
-  @Prop() type: string = 'button';
+  @Prop() type: string; // New property for type of button
 
   private focusableElement: HTMLElement;
   private nativeButton: HTMLButtonElement;
@@ -42,10 +42,11 @@ export class Button {
     } else this.internalPosition = this.position;
   }
 
+
   componentDidLoad() {
-    if ((this.type === 'submit' || this.type === 'reset') && this.el.closest('form')) {
+    if (this.type === 'submit' && this.el.closest('form')) {
       this.nativeButton = document.createElement('button');
-      this.nativeButton.type = this.type;
+      this.nativeButton.type = 'submit';
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
     }
@@ -53,13 +54,10 @@ export class Button {
 
   handleClick() {
     if (this.nativeButton) {
-      if (this.type === 'reset') {
-        this.nativeButton.form.reset();
-      } else {
-        this.nativeButton.click();
-      }
+      this.nativeButton.click();
     }
   }
+
 
   render() {
     return (
@@ -75,12 +73,14 @@ export class Button {
             {this.icon && this.internalPosition.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
             {this.icon && this.internalPosition.toUpperCase() === "RIGHT" && <ifx-icon icon={this.icon}></ifx-icon>}
+
           </a>
         ) : (
           <button
             class={this.getClassNames()}
-            type={this.type}
-            onClick={this.handleClick.bind(this)}
+            type="button"
+            onClick={this.handleClick.bind(this)} // Add click handler
+
           >
             {this.icon && this.internalPosition.toUpperCase() === "LEFT" && <ifx-icon icon={this.icon}></ifx-icon>}
             <slot></slot>
@@ -90,6 +90,7 @@ export class Button {
       </Host>
     );
   }
+
 
   getVariantClass() {
     return `${this.variant}` === "outline"

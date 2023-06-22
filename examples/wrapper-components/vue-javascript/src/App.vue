@@ -1,9 +1,12 @@
 
 <template>
-  <h1 class="header">Using Stencil web components in a Vue application</h1>
-
+  <h1 class="header">Stencil Framework integration - Vue + JS </h1>
+  <Alert />
+  <Button />
+  <Checkbox />
   <ProgressBar />
-
+  <Search />
+  <TextInput />
 </template>
 
 
@@ -13,6 +16,7 @@ import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
+import TextInput from './components/TextInput.vue'
 
 </script>
 

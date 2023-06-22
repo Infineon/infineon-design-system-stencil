@@ -1,13 +1,15 @@
 <template>
   <div class="app">
     <h2>Checkbox</h2>
+
     <form @submit.prevent="handleSubmit">
-      TestText <ifx-checkbox :disabled="disabled" :value="value" :error="error" name="name"
-        @ifxChange="handleIfxChange">label</ifx-checkbox> TestText
+      TestText <ifx-checkbox :disabled="disabled" :value="checked" :error="error" name="name"
+        @ifxChange="toggleValue">label</ifx-checkbox> TestText
       <br />
 
       <ifx-button type="submit">Submit</ifx-button>
     </form>
+
 
     <ifx-button @click="toggleDisabled">Toggle Disabled</ifx-button>
     <ifx-button @click="toggleError">Toggle Error</ifx-button>
@@ -15,39 +17,39 @@
 
     <span>Disabled: {{ disabled }} </span>
     <span>Error: {{ error }} </span>
-    <span>Value: {{ value }}</span>
+    <span>Value: {{ checked }}</span>
+
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      disabled: false,
-      value: false,
-      error: false,
-    }
-  },
-  methods: {
-    handleIfxChange(e) {
-      console.log('ifxChange event emitted with value:', e.detail.value);
-      this.value = e.detail.value;
-    },
-    handleSubmit() {
-      console.log('Form submitted. Checkbox value:', this.value);
-    },
-    toggleDisabled() {
-      this.disabled = !this.disabled;
-    },
-    toggleError() {
-      this.error = !this.error;
-    },
-    toggleValue() {
-      this.value = !this.value;
-    }
-  }
+
+<script setup>
+import { ref } from 'vue'
+
+const disabled = ref(false);
+const checked = ref(false);
+const error = ref(false);
+
+
+function handleSubmit() {
+  console.log('Form submitted. Checkbox value:', checked.value);
 }
+function toggleDisabled() {
+  disabled.value = !disabled.value;
+}
+function toggleError() {
+  error.value = !error.value;
+}
+function toggleValue() {
+  console.log("checked value change")
+  checked.value = !checked.value;
+}
+
+
 </script>
+
+
+
 
 <style scoped>
 .app {

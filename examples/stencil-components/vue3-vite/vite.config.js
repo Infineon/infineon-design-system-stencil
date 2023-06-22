@@ -4,7 +4,14 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: '',
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: (tag) => tag.startsWith('ifx-')
+        }
+      }
+    }),
     {
       name: 'sass-plugin',
       enforce: 'pre',
@@ -16,7 +23,7 @@ export default defineConfig({
             code: result.css.toString(),
           };
         }
-      },
-    },
-  ],
+      }
+    }
+  ]
 });

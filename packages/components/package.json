@@ -23,7 +23,7 @@
     "loader/"
   ],
   "scripts": {
-    "test": "stencil test --e2e --max-workers=2",
+    "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",

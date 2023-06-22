@@ -1,11 +1,18 @@
 import { useRef, useState } from 'react'
 import './App.css'
-import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxProgressBar, IfxSearchBar, IfxButton, IfxTextInput } from '@infineon/infineon-design-system-react';
 
 
 function App() {
   const [progressValue, setProgressValue] = useState(25);  // Add this line
   const ifxButtonRef = useRef(null);
+
+  const [input, setInput] = useState('');
+ 
+  const handleIfxInput = (e: CustomEvent) => {
+    console.log('ifxInput event emitted with value:', e.detail);
+    setInput(e.detail);
+  }
 
   // Define your methods here
   const updateProgressOnClick = () => {
@@ -40,7 +47,19 @@ function App() {
       disabled={false} onClick={updateProgressOnClick} onMouseOver={handleMouseOver}>
       Increase by 10
     </IfxButton>
-
+   <h2>Text Input</h2>
+      <div>
+        <IfxTextInput
+          onIfxInput={handleIfxInput} 
+          error={false} 
+          disabled={false} 
+          success={false} 
+          placeholder="Placeholder"
+          errorMessage="">Label
+        </IfxTextInput>
+      </div>
+      <p>Text field value: {input}</p>
+      <br />
       </div>
     
     </>
