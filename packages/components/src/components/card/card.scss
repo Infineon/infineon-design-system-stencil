@@ -12,6 +12,19 @@
   border-radius: 1px;
   width: 22rem;
   height: auto;
+  text-decoration: none;
+  color: #1D1D1D; //use tokens instead!
+
+  &:hover { 
+    cursor: pointer;
+    border-color: #0A8276;
+  }
+
+  &.hasBtn { 
+    &:hover { 
+      cursor: default;
+    }
+  }
 
   & .card-img {
     & ::slotted([slot=img]) {

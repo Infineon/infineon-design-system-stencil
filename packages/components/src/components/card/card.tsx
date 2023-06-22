@@ -16,6 +16,8 @@ export class Card {
   @State() largeSize: boolean;
   @State() smallSize: boolean;
   @State() hasImg: boolean;
+  @Prop() href: string = "";
+  @Prop() target: string = "_self";
 
   @Listen('imgPosition')
   setImgPosition(event) { 
@@ -28,8 +30,8 @@ export class Card {
     const desc = this.el.querySelector('ifx-card-text')
     const overline = this.el.querySelector('ifx-card-overline')
     const headline = this.el.querySelector('ifx-card-headline')
-    const link = this.el.querySelector('ifx-link')
-
+    const button = this.el.querySelector('ifx-link') || this.el.querySelector('ifx-button')
+ 
     if(!img) { 
       this.hasImg = false;
     } else this.hasImg = true;
@@ -38,13 +40,19 @@ export class Card {
       this.hasDesc = true;
     }
 
-    if (overline && headline && desc && link) {
+    if(button) { 
+      this.hasBtn = true;
+    } else this.hasBtn = false;
+
+    if (overline && headline && desc && button) {
       this.hasAll = true;
-    } else if (this.hasDesc || (overline && headline && link)) {
+    } else if (this.hasDesc || (overline && headline && button)) {
       this.largeSize = true
     } else {
       this.smallSize = true
     }
+
+
   }
 
   componentWillLoad() {
@@ -59,8 +67,9 @@ export class Card {
   render() {
     return (
       <Host>
-        <div class={
+        <a href={!this.hasBtn ? this.href : undefined} target={this.target} class={
           `card 
+          ${this.hasBtn ? 'hasBtn' : ""}
           ${!this.hasImg ? 'onlyBody' : ""}
           ${this.direction} 
           ${this.alignment} 
@@ -75,7 +84,7 @@ export class Card {
           <div class='card-body'>
             <slot />
           </div>
-        </div>
+        </a>
       </Host>
     );
   }

@@ -12,7 +12,8 @@ export class CardText {
 
   componentWillLoad() { 
     const link = this.el.closest('ifx-card').querySelector('ifx-link');
-    if(link) { 
+    const button = this.el.closest('ifx-card').querySelector('ifx-button');
+    if(link || button) { 
       this.hasBtn = true;
     }
   }

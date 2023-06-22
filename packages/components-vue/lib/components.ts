@@ -57,7 +57,9 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
-  'direction'
+  'direction',
+  'href',
+  'target'
 ]);
 
 
