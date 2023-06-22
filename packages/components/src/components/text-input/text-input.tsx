@@ -1,16 +1,16 @@
-import { Component, h, Event, Element, Prop, EventEmitter } from '@stencil/core';
+import { Component, h, Event, Element, Prop, State, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
   styleUrl: 'text-input.scss',
   shadow: true
 })
-
 export class TextInput {
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
 
-  @Prop({ mutable: true }) value: string = '';
+  @Prop() value: string = '';
+  @State() internalValue: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
   @Prop() success: boolean = false;
@@ -19,8 +19,20 @@ export class TextInput {
   @Prop() icon: boolean = false;
   @Event({ bubbles: true, composed: true }) ifxInput: EventEmitter;
 
+  componentWillLoad() {
+    this.internalValue = this.value;
+  }
+
+  @Watch('value')
+  valueChanged(newValue: string, oldValue: string) {
+    if (newValue !== oldValue) {
+      this.internalValue = newValue;
+    }
+  }
+
   handleInput(e) {
-    this.ifxInput.emit(e.target.value);
+    this.internalValue = e.target.value;
+    this.ifxInput.emit(this.internalValue);
   }
 
   render() {
@@ -37,7 +49,7 @@ export class TextInput {
             disabled={this.disabled}
             type="text"
             id='text-field'
-            value={this.value}
+            value={this.internalValue}
             onInput={(ev) => this.handleInput(ev)}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />

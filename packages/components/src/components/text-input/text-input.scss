@@ -2,7 +2,7 @@
 @use "../../global/global";
 
 
-.textInput__container { 
+.textInput__container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -13,25 +13,25 @@
   align-self: stretch;
   flex-grow: 0;
 
-  &.disabled { 
-    & .textInput__top-wrapper { 
-      & label { 
+  &.disabled {
+    & .textInput__top-wrapper {
+      & label {
         color: #BFBBBB;
       }
     }
 
-    & .textInput__bottom-wrapper { 
-      input { 
+    & .textInput__bottom-wrapper {
+      input {
         border: 1px solid #BFBBBB;
 
-        &::placeholder { 
+        &::placeholder {
           color: #BFBBBB;
         }
       }
     }
   }
 
-  & .textInput__top-wrapper { 
+  & .textInput__top-wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -42,7 +42,7 @@
     align-self: stretch;
     flex-grow: 0;
 
-    & label { 
+    & label {
       font-style: normal;
       font-weight: 400;
       font-size: 16px;
@@ -56,7 +56,7 @@
     }
   }
 
-  & .textInput__bottom-wrapper { 
+  & .textInput__bottom-wrapper {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -68,7 +68,7 @@
     align-self: stretch;
     flex-grow: 0;
 
-    & input { 
+    & input {
       box-sizing: border-box;
       display: flex;
       flex-direction: row;
@@ -85,31 +85,33 @@
       align-self: stretch;
       flex-grow: 0;
 
-      &.error { 
+      &.error {
         border: 1px solid #CD002F;
-        &:focus { 
+
+        &:focus {
           outline: none;
         }
       }
 
-      &.success { 
+      &.success {
         border: 1px solid #4CA460;
-        &:focus { 
+
+        &:focus {
           outline: none;
         }
       }
 
 
-      &:focus:not(.error, .success) { 
+      &:focus:not(.error, .success) {
         outline: none;
         border: 1px solid #0A8276;
       }
 
-      &:hover:not(:disabled, .error, .success) { 
+      &:hover:not(:disabled, .error, .success) {
         border: 1px solid #3C3A39;
       }
 
-      &::placeholder { 
+      &::placeholder {
         font-style: normal;
         font-weight: 400;
         font-size: 16px;
@@ -121,21 +123,21 @@
       }
     }
 
-    & ifx-icon { 
+    & ifx-icon {
       position: absolute;
       top: 12px;
       right: 17px;
       transition: .3s;
     }
 
-    &.show { 
-      & ifx-icon { 
+    &.show {
+      & ifx-icon {
         transition: .3s;
         transform: rotate(180deg);
       }
     }
 
-    & .textInput__bottom-wrapper-error { 
+    & .textInput__bottom-wrapper-error {
       font-style: normal;
       font-weight: 400;
       font-size: 12px;

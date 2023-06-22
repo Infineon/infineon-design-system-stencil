@@ -19,7 +19,7 @@ const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage, 
   element.setAttribute('disabled', disabled);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
-  element.setAttribute('errorMessage', errorMessage);
+  element.setAttribute('error-message', errorMessage);
   element.setAttribute('readonly', readonly);
   element.addEventListener('ifxInput', action('ifxInput'));
 
