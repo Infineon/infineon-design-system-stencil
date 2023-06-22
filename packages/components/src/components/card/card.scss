@@ -8,12 +8,12 @@
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid #ebe9e9;
+  border: 1px solid tokens.$color-gray-200;
   border-radius: 1px;
   width: 22rem;
   height: auto;
   text-decoration: none;
-  color: #1D1D1D; //use tokens instead!
+  color: tokens.$color-text-black; 
 
   &:hover { 
     cursor: pointer;
@@ -23,6 +23,7 @@
   &.hasBtn { 
     &:hover { 
       cursor: default;
+      border-color: tokens.$color-gray-200;
     }
   }
 

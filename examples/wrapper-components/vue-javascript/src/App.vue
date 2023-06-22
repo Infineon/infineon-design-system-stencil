@@ -6,6 +6,7 @@
   <Checkbox />
   <ProgressBar />
   <Search />
+  <Card />
 </template>
 
 
@@ -15,6 +16,7 @@ import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
+import Card from './components/Card.vue'
 
 </script>
 
