@@ -16,7 +16,14 @@
 | `placeholder`  | `placeholder`   |             | `string`  | `"Placeholder"` |
 | `readonly`     | `readonly`      |             | `boolean` | `false`         |
 | `success`      | `success`       |             | `boolean` | `false`         |
-| `value`        | `value`         |             | `string`  | `""`            |
+| `value`        | `value`         |             | `string`  | `''`            |
+
+
+## Events
+
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxInput` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

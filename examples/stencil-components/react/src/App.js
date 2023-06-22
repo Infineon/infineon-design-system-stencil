@@ -1,12 +1,45 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 function App() {
+  const checkboxRef = useRef();
+
+
   const [progressValue, setProgressValue] = useState(10);
+  const [disabled, setDisabled] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const checkbox = checkboxRef.current;
+
+    checkbox.addEventListener("ifxChange", toggleValue);
+
+    return () => {
+      checkbox.removeEventListener("ifxChange", toggleValue);
+    };
+  });
+
   function updateProgressOnClick() {
     const newValue = progressValue < 100 ? progressValue + 10 : 10;
     setProgressValue(newValue);
   }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Form submitted. Checkbox value:", checked);
+  };
+
+  const toggleValue = () => {
+    console.log("checkbock value change")
+    setChecked(!checked);
+  };
+
+  const toggleDisabled = () => {
+    setDisabled(!disabled);
+  };
+  const toggleError = () => {
+    setError(!error);
+  };
 
   return (
     <div className="app">
@@ -31,11 +64,26 @@ function App() {
       </div>
       <br />
       <h2>Checkbox</h2>
-      <form>
-        <ifx-checkbox error={false} disabled={false} checked={false}>
-          Text
+
+
+      <form onSubmit={handleSubmit}>
+        TestText
+        <ifx-checkbox ref={checkboxRef} disabled={disabled} value={checked} error={error} name="name" onIfxChange={toggleValue}>
+          label
         </ifx-checkbox>
+        TestText
+        <br />
+        <ifx-button type="submit">Submit</ifx-button>
       </form>
+
+
+      <ifx-button onClick={toggleDisabled}>Toggle Disabled</ifx-button>
+      <ifx-button onClick={toggleError}>Toggle Error</ifx-button>
+      <ifx-button onClick={toggleValue}>Toggle Value</ifx-button>
+
+      <span>Disabled: {disabled} </span>
+      <span>Error: {error} </span>
+      <span>Value: {checked}</span>
 
     </div>
   );
