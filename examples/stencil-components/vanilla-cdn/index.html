@@ -36,6 +36,8 @@
       <ifx-checkbox id="checkbox" name="name">label</ifx-checkbox>
       <br />
       <ifx-button type="submit" variant="outline">Submit</ifx-button>
+      <ifx-button type="reset" variant="outline">Reset</ifx-button>
+
     </form>
 
     <ifx-button id="toggleDisabled">Toggle Disabled</ifx-button>
@@ -107,6 +109,21 @@
       event.preventDefault();
       console.log('Form submitted. Checkbox value:', checked);
     });
+    form.addEventListener('reset', () => {
+      // Prevent form's default reset behaviour
+      event.preventDefault();
+
+      // Reset checkbox state
+      checked = false;
+      checkbox.setAttribute('value', checked);
+
+      // Log for debugging purposes
+      console.log('Form resetted. Checkbox value:', checked);
+
+      // Update other values as well
+      updateValues();
+    });
+
 
 
     checkbox.addEventListener('ifxChange', (event) => {

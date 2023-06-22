@@ -16,7 +16,7 @@
 | `position` | `position` |             | `string`                                                         | `'left'`    |
 | `size`     | `size`     |             | `string`                                                         | `undefined` |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `type`     | `type`     |             | `string`                                                         | `undefined` |
+| `type`     | `type`     |             | `string`                                                         | `'button'`  |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
 
 

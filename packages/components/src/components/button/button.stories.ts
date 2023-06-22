@@ -33,7 +33,7 @@ export default {
       control: { type: 'radio' },
     },
     type: {
-      options: ['submit', 'button'],
+      options: ['submit', 'button', 'reset'],
       control: { type: 'radio' },
     },
     size: {
