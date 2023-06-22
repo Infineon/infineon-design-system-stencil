@@ -30,7 +30,6 @@ const Template = (args) => {
 
   const inputElement = wrapper.querySelector('ifx-search-input');
   inputElement.addEventListener('ifxChange', (event) => {
-    // console.log('Storybook Search-Input:', event);
     args.onIfxChange(event);
 
   });

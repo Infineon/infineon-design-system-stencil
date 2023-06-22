@@ -1,3 +1,57 @@
+# v18.2.8 (Thu Jun 22 2023)
+
+#### 🐛 Bug Fix
+
+- 193 review textinput [#200](https://github.com/Infineon/infineon-design-system-stencil/pull/200) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.7 (Wed Jun 21 2023)
+
+#### 🐛 Bug Fix
+
+- Button fixes [#199](https://github.com/Infineon/infineon-design-system-stencil/pull/199) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.6 (Tue Jun 20 2023)
+
+#### 🐛 Bug Fix
+
+- 186 review progress bar [#203](https://github.com/Infineon/infineon-design-system-stencil/pull/203) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.5 (Mon Jun 19 2023)
+
+#### 🐛 Bug Fix
+
+- 160 e2e tests [#197](https://github.com/Infineon/infineon-design-system-stencil/pull/197) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.4 (Fri Jun 16 2023)
 
 #### 🐛 Bug Fix

@@ -4,8 +4,7 @@
   <div class="app">
     <h2>Progress bar</h2>
     <ifx-progress-bar value="50" size="m" show-label="true"></ifx-progress-bar>
-    <ifx-progress-bar :value="progressValue" size="m" show-label="true"
-      @ifxChange:progressValue="handleProgressUpdate"></ifx-progress-bar>
+    <ifx-progress-bar :value="progressValue" size="m" show-label="true"></ifx-progress-bar>
 
     <div>
       <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
@@ -28,10 +27,6 @@ const progressValue = ref("10");
 function updateProgressOnClick() {
   console.log("val", progressValue.value)
   progressValue.value < 100 ? progressValue.value += 10 : progressValue.value = 10;
-}
-
-function handleProgressUpdate(event) {
-  progressValue.value = event.detail;
 }
 
 

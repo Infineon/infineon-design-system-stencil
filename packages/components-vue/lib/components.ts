@@ -242,14 +242,12 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
-export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar, JSX.IfxProgressBar["value"]>('ifx-progress-bar', undefined, [
+export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', undefined, [
   'value',
   'label',
   'size',
-  'showLabel',
-  'ifxChange'
-],
-'value', 'ifxChange');
+  'showLabel'
+]);
 
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
@@ -348,7 +346,7 @@ export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undef
 ]);
 
 
-export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx-text-input', undefined, [
+export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.IfxTextInput["value"]>('ifx-text-input', undefined, [
   'placeholder',
   'value',
   'error',
@@ -356,6 +354,8 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput>('ifx
   'success',
   'disabled',
   'readonly',
-  'icon'
-]);
+  'icon',
+  'ifxInput'
+],
+'value', 'ifxInput');
 

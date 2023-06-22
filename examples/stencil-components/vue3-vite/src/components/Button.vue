@@ -8,17 +8,13 @@
         disabled="false" @click="handleClick">
         Click me
       </ifx-button>
+      <ifx-button variant="outline" disabled="true" icon="" position="left" href="" target="_blank" color="primary"
+        size="m">
+        Dont click me
+      </ifx-button>
     </div>
 
-    <br />
-    <div>
-      <th v-for="btn in buttons">
-        <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
-          disabled="false">
-          {{ btn }}
-        </ifx-button>
-      </th>
-    </div>
+
     <br />
   </div>
 </template>

@@ -7,8 +7,13 @@
     <h3>Using v-model</h3>
     <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
     <br />
-    <h3>Using value and the ifxChange event</h3>
+    <h3>Using value</h3>
     <ifx-progress-bar :value="progressValue2" size="m" show-label="true"></ifx-progress-bar>
+    <br />
+    <ifx-button @click="updateProgress" variant="outline" href="" target="_blank" color="primary" size="s"
+      disabled="false" icon="false">
+      Update Progress
+    </ifx-button>
     <br />
 
   </div>
@@ -23,7 +28,7 @@ const progressValue2 = ref(10);
 
 onMounted(() => {
   updateProgress();
-  setInterval(updateProgress, 5000);
+  setInterval(updateProgress, 50000);
 })
 
 const progress = computed(() => {

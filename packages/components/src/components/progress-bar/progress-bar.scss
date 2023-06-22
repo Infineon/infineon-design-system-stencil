@@ -9,7 +9,6 @@
 
 .progress-bar {
   height: 16px;
-  border-radius: 1px;
   bottom: 0;
   right: 0;
   top: 0;
@@ -20,12 +19,9 @@
   width: 100%; // Ensure the bar itself can grow up to 100% width
   overflow: hidden; // Ensures that the inner progress bar doesn't exceed the width of the outer progress bar
 
-
-
   .label {
     height: 17px;
     border-radius: 1px 0px 0px 1px;
-
   }
 
   &.s {
@@ -57,7 +53,7 @@
     font-size: 14px;
     line-height: 20px;
     font-family: tokens.$font-family-body;
-    color: #fff;
+    color: tokens.$color-text-white;
     top: 0;
     bottom: 0;
     left: 0;

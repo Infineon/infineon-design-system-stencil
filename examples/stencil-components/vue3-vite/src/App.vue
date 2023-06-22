@@ -6,6 +6,7 @@
   <Button />
   <Checkbox />
   <ProgressBar />
+  <TextInput />
 </template>
 
 
@@ -14,6 +15,7 @@ import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
+import TextInput from './components/TextInput.vue'
 
 </script>
 <style scoped>
