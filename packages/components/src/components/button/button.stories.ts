@@ -1,15 +1,7 @@
 
-import ButtonDocumentation from './button_docs.mdx';
-
 export default {
   title: "Components/Button",
 
-  parameters: {
-    docs: {
-      page: ButtonDocumentation,
-      canvas: { sourceState: 'shown' },
-    },
-  },
   args: {
     label: "Button",
     variant: "solid",
