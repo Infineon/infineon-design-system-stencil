@@ -10,15 +10,15 @@ import classNames from 'classnames';
 export class Button {
   @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
-  @Prop() size: string;
-  @Prop() disabled: boolean;
+  @Prop() size: string = 'm';
+  @Prop() disabled: boolean = false;
   @Prop() icon: string;
   @Prop() position: string = 'left'
   @State() internalPosition: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
-  @Prop() type: string; // New property for type of button
+  @Prop() type: string = 'button'; // handle buttons of type button and of type submit
 
   private focusableElement: HTMLElement;
   private nativeButton: HTMLButtonElement;
