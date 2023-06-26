@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="app">
+  <div>
     <h2>Button</h2>
     <div>
       <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"

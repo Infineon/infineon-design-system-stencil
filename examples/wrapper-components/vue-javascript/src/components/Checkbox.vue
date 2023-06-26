@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Checkbox</h2>
     <h3>Using v-model</h3>
 

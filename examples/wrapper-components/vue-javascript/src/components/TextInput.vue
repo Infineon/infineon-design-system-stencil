@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Text Input</h2>
     <div>
       <ifx-text-input v-model="input" error="false" disabled="false" success="false" placeholder="Placeholder"

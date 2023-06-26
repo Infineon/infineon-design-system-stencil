@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="app">
+  <div>
     <h2>Ifx-Search-Input</h2>
     <h3>Using v-model</h3>
     <br />

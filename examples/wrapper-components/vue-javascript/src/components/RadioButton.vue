@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Radio Button</h2>
     <h3>Using v-model</h3>
 

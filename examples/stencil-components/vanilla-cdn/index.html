@@ -52,7 +52,7 @@
 
     <form id="another-form">
       <h2>Text Input</h2>
-      <ifx-text-input id="radio-btn" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Text
         field</ifx-text-input>
       <br />
@@ -63,7 +63,7 @@
     <br />
 
     <h2>Radio Button</h2>
-    <ifx-radio-button error="false" disabled="false" value="false">Text</ifx-radio-button>
+    <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false">Text</ifx-radio-button>
   </div>
 
 </body>
@@ -73,6 +73,7 @@
   let checked = false;
   let error = false;
   let textInputValue = "";
+  let radioChecked = false;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -80,6 +81,7 @@
   const checkbox = document.querySelector("#checkbox");
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
+  const radioBtn = document.querySelector('#radio-btn');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -136,11 +138,15 @@
     });
 
 
-
     textInput.addEventListener('ifxInput', (event) => {
       console.log("Text input: ", event.detail);
       textInputValue = event.detail;
       updateValues();
+    });
+
+    radioBtn.addEventListener('ifxChange', (event) => {
+      console.log("radio btn value change", event.detail);
+      radioChecked = !radioChecked;
     });
 
   });
