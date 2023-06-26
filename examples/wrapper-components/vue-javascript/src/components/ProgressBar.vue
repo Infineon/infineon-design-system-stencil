@@ -10,6 +10,11 @@
     <h3>Using value</h3>
     <ifx-progress-bar :value="progressValue2" size="m" show-label="true"></ifx-progress-bar>
     <br />
+    <ifx-button @click="updateProgress" variant="outline" href="" target="_blank" color="primary" size="s"
+      disabled="false" icon="false">
+      Update Progress
+    </ifx-button>
+    <br />
 
   </div>
 </template>

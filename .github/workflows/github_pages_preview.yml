@@ -50,7 +50,7 @@ jobs:
         id: preview
         with:
           source-dir: ./packages/components/storybook-static
-          github-token: ${{ secrets.GITHUB_TOKEN }}  
+          token: ${{ secrets.GH_TOKEN }}  
 
       - name: Get preview URL
         run: |
@@ -80,4 +80,4 @@ jobs:
               }
             }
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

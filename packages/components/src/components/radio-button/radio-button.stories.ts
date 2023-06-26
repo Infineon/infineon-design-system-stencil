@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 
 
 export default {
-  title: "Components/RadioButton",
+  title: "Components/Radio Button",
   args: {
     error: false,
     disabled: false,
@@ -34,5 +34,4 @@ const DefaultTemplate = (args) => {
 
 
 export const Default = DefaultTemplate.bind({});
-
 

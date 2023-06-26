@@ -1,5 +1,5 @@
-<div class="app">
-  <h1 class="header">Using Stencil web components in an Angular application</h1>
+<div>
+  <h1>Using Stencil web components in an Angular application</h1>
   <h2>Button</h2>
   <div>
     <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" [disabled]="false" [icon]="false">
@@ -19,11 +19,34 @@
   <br />
 
   <h2>Checkbox</h2>
-  <form>
-    <ifx-checkbox [error]="false" [disabled]="false" [value]="false" (ifxChange)="handleCheckboxChange($event)">
-      Text
-    </ifx-checkbox>
+
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-checkbox [disabled]="disabled" [value]="checked" [error]="error" name="name"
+      (ifxChange)="toggleValue()">label</ifx-checkbox>
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
   </form>
+
+  <ifx-button variant="outline" (click)="toggleDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="outline" (click)="toggleError()">Toggle Error</ifx-button>
+  <ifx-button variant="outline" (click)="toggleValue()">Toggle Value</ifx-button>
+
+  <span>Disabled: {{ disabled }} </span>
+  <span>Error: {{ error }} </span>
+  <span>Value: {{ checked }}</span>
+
+
+  <h2>Text Input</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-text-input (ifxInput)="handleIfxInput($event)" [error]="false" [disabled]="false" [success]="false"
+      placeholder="Placeholder" [errorMessage]="">Text
+      field</ifx-text-input>
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+  </form>
+  <span>Text field value: {{ textFieldValue }}</span>
   <br />
 
   <h2>Radio Button</h2>

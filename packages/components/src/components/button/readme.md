@@ -14,9 +14,8 @@
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
 | `icon`     | `icon`     |             | `string`                                                         | `undefined` |
 | `position` | `position` |             | `string`                                                         | `'left'`    |
-| `size`     | `size`     |             | `string`                                                         | `'m'`       |
+| `size`     | `size`     |             | `string`                                                         | `undefined` |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `type`     | `type`     |             | `"button" \| "reset" \| "submit"`                                | `'button'`  |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
 
 

@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   progressValue = 10;
+  checked = false;
+  error = false;
+  disabled = false;
+  textFieldValue = '';
 
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
@@ -19,4 +23,25 @@ export class AppComponent {
   handleCheckboxChange(event: CustomEvent) {
     console.log('Checkbox value: ', event.detail);
   }
+
+  handleSubmit() {
+    console.log('Form submitted. Checkbox value:', this.checked);
+  }
+  toggleDisabled() {
+    this.disabled = !this.disabled;
+  }
+  toggleError() {
+    this.error = !this.error;
+  }
+  toggleValue() {
+    console.log("checkbox value change")
+    this.checked = !this.checked;
+  }
+
+  handleIfxInput(e) {
+    console.log("textInput value change")
+    this.textFieldValue = e.detail;
+
+  }
+
 }
