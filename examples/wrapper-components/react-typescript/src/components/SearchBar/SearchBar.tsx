@@ -1,8 +1,7 @@
-import React from 'react';
 import { IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 function SearchBar() {
-  const handleSearch = (event) => {
+  const handleSearch = (event: CustomEvent) => {
     console.log("handling search: ", event.detail?.detail)
   };
   return (

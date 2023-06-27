@@ -9,7 +9,7 @@ import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '
 export class RadioButton {
   @Element() el;
   @Prop() disabled: boolean = false;
-  @Prop({ mutable: true }) value: boolean = false;
+  @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @State() internalValue: boolean;
   @State() hasSlot: boolean = true;
@@ -19,6 +19,7 @@ export class RadioButton {
   handleRadioButtonClick() {
     if (!this.disabled && !this.error) {
       this.internalValue = !this.internalValue;
+      // Emit the change event with the new value
       this.ifxChange.emit(this.internalValue);
     }
   }
@@ -47,7 +48,7 @@ export class RadioButton {
           tabindex="0"
           onClick={this.handleRadioButtonClick.bind(this)}
           class={`radioButton__wrapper 
-        ${this.internalValue ? 'value' : ""} 
+        ${this.internalValue ? 'checked' : ""} 
         ${this.disabled ? 'disabled' : ""}
         ${this.error ? 'error' : ""}`}>
           {this.internalValue && <div class="radioButton__wrapper-mark"></div>}

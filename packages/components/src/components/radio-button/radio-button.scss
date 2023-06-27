@@ -1,6 +1,5 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-
 .radioButton__container {
     box-sizing: border-box;
     display: inline-flex;
@@ -10,7 +9,8 @@
     gap: 8px;
 
     & .radioButton__wrapper {
-        display: flex;
+        position: relative; // New
+        display: block; // Updated
         justify-content: center;
         align-items: center;
         width: 20px;
@@ -21,8 +21,14 @@
         flex: none;
         order: 0;
         flex-grow: 0;
+        margin: 0;
+        padding: 0;
 
         & .radioButton__wrapper-mark {
+            position: absolute; // New
+            top: 50%; // New
+            left: 50%; // New
+            transform: translate(-50%, -50%); // New
             background-color: #0A8276;
             width: 8.75px;
             height: 8.75px;
@@ -41,50 +47,32 @@
             }
 
             &:focus-visible {
-                border: 1px solid #CD002F;
-                outline: 2px solid #CD002F;
-                outline-offset: 2px;
+                box-shadow: 0 0 0 2px #CD002F;
             }
         }
 
         &:focus-visible {
-            border: 1px solid #575352;
-            outline: 2px solid #0A8276;
-            outline-offset: 2px;
-
+            box-shadow: 0 0 0 2px #575352;
         }
 
         &:hover {
-            border: 1px solid #575352;
             border-color: #0A8276;
-            border-radius: 50%;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
         }
 
         &.disabled {
             background-color: #BFBBBB;
             border-color: #BFBBBB;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
         }
 
         &.checked {
             border-color: #0A8276;
 
             &:focus-visible {
-                outline: 2px solid #0A8276;
-                outline-offset: 2px;
+                box-shadow: 0 0 0 2px #0A8276;
             }
 
             &:hover {
                 border-color: #08665C;
-                border-radius: 50%;
-                flex: none;
-                order: 0;
-                flex-grow: 0;
 
                 & .radioButton__wrapper-mark {
                     background-color: #08665C;
@@ -93,15 +81,10 @@
 
             &.disabled {
                 background-color: tokens.$color-bg-white;
-                border: 1px solid #BFBBBB;
-                flex: none;
-                order: 0;
-                flex-grow: 0;
+                border-color: #BFBBBB;
 
                 & .radioButton__wrapper-mark {
                     background-color: #BFBBBB;
-                    border-color: #BFBBBB;
-
                 }
             }
         }
@@ -134,5 +117,4 @@
             cursor: pointer;
         }
     }
-
 }

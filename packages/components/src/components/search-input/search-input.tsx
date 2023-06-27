@@ -14,7 +14,7 @@ export class SearchInput {
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
   @Prop() width: string = '100%';
-  @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Event() ifxInput: EventEmitter<CustomEvent>;
   @State() insideDropdown: boolean = false;
   @Element() el: HTMLElement;
   @Prop() showDeleteIcon: boolean = false;
@@ -32,18 +32,18 @@ export class SearchInput {
   handleInput = () => {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    const customEvent = new CustomEvent('ifxChange', {
+    const customEvent = new CustomEvent('ifxInput', {
       detail: query,
       bubbles: true,
       composed: true
     });
-    this.ifxChange.emit(customEvent);
+    this.ifxInput.emit(customEvent);
   };
 
 
   handleDelete = () => {
     this.inputElement.value = '';
-    this.ifxChange.emit(null);
+    this.ifxInput.emit(null);
   }
 
 

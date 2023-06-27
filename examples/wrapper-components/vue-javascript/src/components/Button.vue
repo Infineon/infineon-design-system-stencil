@@ -10,6 +10,7 @@
       </ifx-button>
     </div>
     <br />
+    <br />
   </div>
 </template>
 
@@ -25,13 +26,5 @@ function handleMouseOver() {
 };
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
-
+ 
  

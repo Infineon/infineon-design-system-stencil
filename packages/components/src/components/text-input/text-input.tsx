@@ -6,10 +6,12 @@ import { Component, h, Event, Element, Prop, State, EventEmitter, Watch } from '
   shadow: true
 })
 export class TextInput {
+  private inputElement: HTMLInputElement;
+
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
 
-  @Prop() value: string = '';
+  @Prop({ mutable: true }) value: string = '';
   @State() internalValue: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
@@ -20,20 +22,22 @@ export class TextInput {
   @Event({ bubbles: true, composed: true }) ifxInput: EventEmitter;
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalValue = this.internalValue || '';
   }
 
   @Watch('value')
-  valueChanged(newValue: string, oldValue: string) {
-    if (newValue !== oldValue) {
-      this.internalValue = newValue;
+  valueWatcher(newValue: string) {
+    if (newValue !== this.inputElement.value) {
+      this.inputElement.value = newValue;
     }
   }
 
-  handleInput(e) {
-    this.internalValue = e.target.value;
-    this.ifxInput.emit(this.internalValue);
-  }
+  handleInput = () => {
+    const query = this.inputElement.value;
+    this.value = query; // update the internalValue when input changes
+    this.ifxInput.emit(query);
+  };
+
 
   render() {
     return (
@@ -45,12 +49,13 @@ export class TextInput {
         </div>
         <div class="textInput__bottom-wrapper">
           <input
+            ref={(el) => (this.inputElement = el)}
             readonly={this.readonly}
             disabled={this.disabled}
             type="text"
             id='text-field'
             value={this.internalValue}
-            onInput={(ev) => this.handleInput(ev)}
+            onInput={this.handleInput}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
           {this.error &&

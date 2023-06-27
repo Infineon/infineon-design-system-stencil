@@ -5,12 +5,12 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 const vueComponentModels: ComponentModelConfig[] = [
     {
 
-        elements: ['ifx-search-bar', 'ifx-search-input', 'ifx-checkbox', 'ifx-radio-button', 'ifx-switch'],
+        elements: ['ifx-checkbox', 'ifx-radio-button', 'ifx-switch'],
         event: 'ifxChange',
         targetAttr: 'value',
     },
     {
-        elements: ['ifx-text-input'],
+        elements: ['ifx-text-input', 'ifx-search-input', 'ifx-search-bar',],
         event: 'ifxInput',
         targetAttr: 'value',
     },

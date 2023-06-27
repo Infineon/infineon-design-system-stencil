@@ -14,8 +14,13 @@ describe('ifx-radio-button', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button value="true"></ifx-radio-button>');
 
+    const radioButton = await page.find('ifx-radio-button');
+    radioButton.setProperty('value', true); // sets the value prop to true
+    await page.waitForChanges();
+
     const element = await page.find('ifx-radio-button >>> .radioButton__wrapper');
-    expect(element).toHaveClass('value');
+    expect(element).toHaveClass('checked'); // now check for the 'checked' class
+
   });
 
   it('renders changes to the disabled prop', async () => {

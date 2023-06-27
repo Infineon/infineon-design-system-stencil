@@ -1,7 +1,6 @@
 import './App.css';
 
 import Button from './components/Button/button';
-
 import TextField from './components/TextFIeld/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -34,9 +33,11 @@ function App() {
 
       <h2>Accordion</h2>
       <Accordion />
+      <br />
 
       <h2>Radio Button</h2>
       <RadioButton />
+      <br />
 
     </div>
 

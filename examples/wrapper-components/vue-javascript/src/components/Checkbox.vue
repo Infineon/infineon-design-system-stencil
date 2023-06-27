@@ -1,10 +1,14 @@
 <template>
   <div>
     <h2>Checkbox</h2>
-    <h3>Using v-model</h3>
+    <!-- <h3>Using v-model</h3> -->
 
     <form @submit.prevent="handleSubmit">
-      <ifx-checkbox :disabled="disabled" v-model="checked" :error="error" name="name">label</ifx-checkbox>
+      <!-- <ifx-checkbox :disabled="disabled" v-model="checked" :error="error" name="name">label</ifx-checkbox> -->
+
+      <h3>Using v-bind/v-on</h3>
+      <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
+        name="name">label</ifx-checkbox>
       <br />
 
       <ifx-button color="primary" type="submit">Submit</ifx-button>
@@ -20,8 +24,11 @@
     </div>
     <br />
     <span>Disabled: {{ disabled }} </span>
+    <br />
     <span>Error: {{ error }} </span>
-    <span>Value: {{ value }}</span>
+    <br />
+    <span>Value: {{ checkboxValue }}</span>
+    <br />
     <br />
   </div>
 </template>
@@ -30,23 +37,17 @@
 import { ref, computed } from 'vue';
 
 let disabled = ref(false);
-let value = ref(false);
+let checkboxValue = ref(false);
 let error = ref(false);
 
 
-// Computed property to retrieve the query value
-const checked = computed({
-  get: () => value.value,
-  set: (newValue) => handleCheckboxChange(newValue)
-});
-
 function handleCheckboxChange(event) {
-  console.log("updating checkbox value: ", event)
-  value.value = event;
+  console.log("updating checkbox value: ", event.detail)
+  checkboxValue.value = event.detail;
 };
 
 const handleSubmit = () => {
-  console.log('Form submitted. Checkbox value:', value.value);
+  console.log('Form submitted. Checkbox value:', checkboxValue.value);
 };
 
 const toggleDisabled = () => {
@@ -58,15 +59,7 @@ const toggleError = () => {
 };
 
 const toggleValue = () => {
-  value.value = !value.value;
+  checkboxValue.value = !checkboxValue.value;
 };
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>

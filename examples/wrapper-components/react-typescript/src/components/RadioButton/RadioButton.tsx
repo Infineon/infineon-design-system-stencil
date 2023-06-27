@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { IfxRadioButton, IfxButton } from '@infineon/infineon-design-system-react';
 
-function RadioButton() {
-  const [disabled, setDisabled] = useState(false);
-  const [radioBtnValue, setRadioBtnValue] = useState(false);
-  const [error, setError] = useState(false);
+const RadioButton: React.FC = () => {
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [radioBtnValue, setRadioBtnValue] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log('Form submitted. Radio Button value:', radioBtnValue);
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: CustomEvent) => {
     console.log("Updating radio btn value: ", event.detail);
     setRadioBtnValue(event.detail);
   };
 
-
   return (
     <div>
+ 
       <form onSubmit={handleSubmit}>
         <IfxRadioButton disabled={disabled} onIfxChange={handleChange} value={radioBtnValue} error={error} name="name">
           label

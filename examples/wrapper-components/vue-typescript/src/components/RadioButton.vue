@@ -1,10 +1,10 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Radio Button</h2>
-    <h3>Using v-model</h3>
+    <h3>Using v-bind/v-on</h3>
 
     <form @submit.prevent="handleSubmit">
-      <ifx-radio-button :disabled="state.disabled" v-model="state.value" :error="state.error"
+      <ifx-radio-button :disabled="disabled" @ifxChange="handleChange" :value="radioBtnValue" :error="error"
         name="name">label</ifx-radio-button>
       <br />
 
@@ -19,45 +19,43 @@
       <ifx-button variant="outline" @click="toggleValue">Toggle Value</ifx-button>
 
     </div>
+    <span>Disabled: {{ disabled }} </span>
     <br />
-    <span>Disabled: {{ state.disabled }} </span>
-    <span>Error: {{ state.error }} </span>
-    <span>Value: {{ state.value }}</span>
+    <span>Error: {{ error }} </span>
+    <br />
+    <span>Value: {{ radioBtnValue }}</span>
+    <br />
     <br />
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref } from 'vue';
 
-const state = reactive({
-  disabled: false,
-  value: false,
-  error: false,
-});
+const disabled = ref(false);
+const radioBtnValue = ref(false);
+const error = ref(false);
 
 const handleSubmit = () => {
-  console.log('Form submitted. Radio Button value:', state.value);
+  console.log('Form submitted. Radio Button value:', radioBtnValue.value);
+};
+
+function handleChange(event: any) {
+  console.log("updating radio btn value: ", event.detail)
+  radioBtnValue.value = event.detail;
 };
 
 const toggleDisabled = () => {
-  state.disabled = !state.disabled;
+  disabled.value = !disabled.value;
 };
 
 const toggleError = () => {
-  state.error = !state.error;
+  error.value = !error.value;
 };
 
 const toggleValue = () => {
-  state.value = !state.value;
+  radioBtnValue.value = !radioBtnValue.value;
 };
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
+ 

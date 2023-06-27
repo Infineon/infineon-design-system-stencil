@@ -1,10 +1,11 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Checkbox</h2>
-    <h3>Using v-model</h3>
+    <h3>Using v-bind/v-on</h3>
 
     <form @submit.prevent="handleSubmit">
-      <ifx-checkbox :disabled="disabled" v-model="value" :error="error" name="name">label</ifx-checkbox>
+      <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
+        name="name">label</ifx-checkbox>
       <br />
 
       <ifx-button color="primary" type="submit">Submit</ifx-button>
@@ -20,8 +21,11 @@
     </div>
     <br />
     <span>Disabled: {{ disabled }} </span>
+    <br />
     <span>Error: {{ error }} </span>
-    <span>Value: {{ value }}</span>
+    <br />
+    <span>Value: {{ checkboxValue }}</span>
+    <br />
     <br />
   </div>
 </template>
@@ -30,13 +34,17 @@
 import { ref } from 'vue';
 
 const disabled = ref(false);
-const value = ref(false);
+const checkboxValue = ref(false);
 const error = ref(false);
 
+function handleCheckboxChange(event: CustomEvent) {
+  console.log("updating checkbox value: ", event.detail)
+  checkboxValue.value = event.detail;
+};
 
 
 const handleSubmit = () => {
-  console.log('Form submitted. Checkbox value:', value.value);
+  console.log('Form submitted. Checkbox value:', checkboxValue.value);
 };
 
 const toggleDisabled = () => {
@@ -48,15 +56,7 @@ const toggleError = () => {
 };
 
 const toggleValue = () => {
-  value.value = !value.value;
+  checkboxValue.value = !checkboxValue.value;
 };
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
