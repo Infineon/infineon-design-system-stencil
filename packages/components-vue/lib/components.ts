@@ -131,6 +131,19 @@ export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu
 ]);
 
 
+export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-example', undefined, [
+  'variant',
+  'color',
+  'size',
+  'disabled',
+  'icon',
+  'position',
+  'href',
+  'target',
+  'type'
+]);
+
+
 export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>('ifx-filter-input', undefined, [
   'label',
   'size',

@@ -11,20 +11,26 @@ export class IconsPreview {
   @State() iconsArray: string[] = [];
   @State() isCopied: boolean = false;
   @State() copiedIndex: number;
-  
+  @State() htmlTag: string = '<ifx-icon icon="calendar-16"></ifx-icon>';
+  @State() iconName: string = `"c-info-24"`;
   @Element() el;
 
-  handleToolTip(index) {
-    this.isCopied = true
-    this.copiedIndex = index;
+  handleCopiedText() { 
+    this.isCopied = true;
     setTimeout(() => {
       this.isCopied = false
     }, 2000);
   }
 
-  copyIconText(icon, index) { 
-    navigator.clipboard.writeText(icon);
-    this.handleToolTip(index)
+  copyIconText(icon) { 
+    this.htmlTag = `<ifx-icon icon="${icon}"></ifx-icon>`;
+    this.iconName = `"${icon}"`
+  }
+
+  copyHtmlString() { 
+    const copiedTag = `<ifx-icon icon=${this.iconName}></ifx-icon>`;
+    navigator.clipboard.writeText(copiedTag);
+    this.handleCopiedText()
   }
 
   componentWillLoad() { 
@@ -33,15 +39,26 @@ export class IconsPreview {
     }
   }
 
-
   render() {
     return (
-    <div class="preview__container">
-      {this.iconsArray.map((icon, index) => 
-      <div class={`preview__container-item ${this.isCopied && this.copiedIndex === index ? 'copied' : ""}`} onClick={() => this.copyIconText(icon, index)}>
-        <ifx-icon icon={icon}></ifx-icon>
-      </div>)}
-    </div>
+      <div class='container'>
+        <div class='html-wrapper'>
+          <span class="html-tag">&lt;</span>
+          <span class="component-name">ifx-icon</span>
+          <span class="attribute-name"> icon</span>=<span class="attribute-value">{this.iconName}</span>
+          <span class="html-tag">&gt;</span>
+          <span class="html-tag">&lt;/</span>
+          <span class="component-name">ifx-icon</span>
+          <span class="html-tag">&gt;</span>
+          <button onClick={() => this.copyHtmlString()}>{this.isCopied ? 'Copied' : 'Copy'}</button>
+        </div>
+        <div class="preview__container">
+          {this.iconsArray.map((icon, index) => 
+          <div class={`preview__container-item ${this.isCopied && this.copiedIndex === index ? 'copied' : ""}`} onClick={() => this.copyIconText(icon)}>
+            <ifx-icon icon={icon}></ifx-icon>
+          </div>)}
+        </div>
+      </div>
     )
   }
 }
