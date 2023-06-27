@@ -7,6 +7,7 @@
   <ProgressBar />
   <Search />
   <TextInput />
+  <Spinner />
 </template>
 
 
@@ -17,6 +18,7 @@ import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import TextInput from './components/TextInput.vue'
+import Spinner from './components/Spinner.vue'
 
 </script>
 
