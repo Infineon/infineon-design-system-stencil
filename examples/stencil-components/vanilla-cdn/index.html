@@ -8,6 +8,8 @@
   <script type="module" src="dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
 
+  <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+
   <title>Vanilla</title>
 </head>
 
@@ -28,7 +30,6 @@
       disabled="false" icon="false">
       Update Progress
     </ifx-button>
-
     <br />
     <h2>Checkbox</h2>
 
@@ -36,7 +37,6 @@
       <ifx-checkbox id="checkbox" name="name">label</ifx-checkbox>
       <br />
       <ifx-button type="submit" variant="outline">Submit</ifx-button>
-
     </form>
 
     <ifx-button id="toggleDisabled">Toggle Disabled</ifx-button>
@@ -64,6 +64,7 @@
 
     <h2>Radio Button</h2>
     <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false">Text</ifx-radio-button>
+
   </div>
 
 </body>
@@ -109,7 +110,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
-
     form.addEventListener('submit', () => {
       event.preventDefault();
       console.log('Form submitted. Checkbox value:', checked);
@@ -148,6 +148,7 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
+
 
   });
 
