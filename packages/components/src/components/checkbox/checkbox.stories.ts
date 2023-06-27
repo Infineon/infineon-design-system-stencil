@@ -1,17 +1,23 @@
 import { action } from '@storybook/addon-actions';
+import CheckboxDocumentation from './checkbox_docs.mdx';
 
 export default {
   title: "Components/Checkbox",
+  parameters: {
+    docs: {
+      page: CheckboxDocumentation,
+      canvas: { sourceState: 'shown' },
+    },
+  },
   args: {
     error: false,
     disabled: false,
     value: false,
-    label: 'Text'
+    label: 'Text',
   },
 
-  argTypes: {
+  argTypes: { onIfxChange: { action: 'checked' } },
 
-  },
 };
 
 

@@ -1,0 +1,23 @@
+import { Meta, Primary, Controls, Story } from '@storybook/blocks';
+import * as CheckboxStories from './checkbox.stories';
+ 
+<Meta of={CheckboxStories.default} />
+
+# Checkbox
+
+<Primary />
+
+## Props
+
+<Controls />
+
+<b>Hint for Vue Developers:</b> 
+The Checkbox component is not usable in combination with v-model. Instead, use v-bind/v-on.
+
+```js
+<ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error" name="name">label</ifx-checkbox>
+```
+
+ 
+
+

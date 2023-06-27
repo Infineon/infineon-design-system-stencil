@@ -1,14 +1,23 @@
 import { action } from '@storybook/addon-actions';
+import RadioButtonDocumentation from './radio-button_docs.mdx';
 
 
 export default {
   title: "Components/Radio Button",
+  parameters: {
+    docs: {
+      page: RadioButtonDocumentation,
+      canvas: { sourceState: 'shown' },
+    },
+  },
   args: {
     error: false,
     disabled: false,
     value: false,
     label: 'Text'
   },
+  argTypes: { onIfxChange: { action: 'checked' } },
+
 
 };
 
