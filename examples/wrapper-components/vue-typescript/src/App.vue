@@ -8,6 +8,7 @@
   <ProgressBar />
   <Search />
   <TextInput />
+  <Sidebar />
 </template>
 
 
@@ -17,8 +18,8 @@ import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
+import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
-
 
 </script>
 

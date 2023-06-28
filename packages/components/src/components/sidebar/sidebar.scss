@@ -1,9 +1,13 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
+:host { 
+  width: 264px;
+  display: inline-block;
+}
 
 .sidebar__container { 
   box-sizing: border-box;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
