@@ -9,7 +9,6 @@ export class SearchBar {
   @Prop() showCloseButton: boolean = true;
   @Prop() isOpen: boolean = true;
   @State() internalState: boolean;
-  @Prop() size: string = "";
   @Event() ifxChange: EventEmitter<CustomEvent>;
 
   @Watch('isOpen')
@@ -27,28 +26,22 @@ export class SearchBar {
 
   setInitialState() { 
     this.internalState = this.isOpen;
-    console.log('inside initialState', this.internalState)
   }
 
   componentWillLoad() { 
     this.setInitialState()
   }
 
-  componentWillUpdate() { 
-    //this.setInitialState()
-  }
-
-
   render() {
     return (
-      <div class={`search-bar ${!this.internalState ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
+      <div class={`search-bar ${!this.internalState ? 'closed' : ""}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
             <ifx-search-input onIfxChange={(event) => this.handleSearchInput(event)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {this.showCloseButton &&
-              <ifx-link onClick={this.handleClick}>Close</ifx-link>}
+              <a href='javascript:void(0)' onClick={this.handleClick}>Close</a>}
           </div>
         ) : (
           <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
@@ -56,7 +49,6 @@ export class SearchBar {
             <a href="javascript:void(0)">Search</a>
           </div>
         )}
-
       </div>
     );
   }
