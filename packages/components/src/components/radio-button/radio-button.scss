@@ -8,6 +8,7 @@
     padding: 0px;
     gap: 8px;
 
+
     &.s .radioButton__wrapper {
         width: 20px;
         height: 20px;
@@ -16,6 +17,32 @@
     &.m .radioButton__wrapper {
         width: 24px;
         height: 24px;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            width: 18.75px;
+            height: 18.75px;
+            border-radius: 50%;
+            border: 1px solid black;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        &.checked::before,
+        &:focus-visible::before,
+        &.error::before {
+            opacity: 1;
+        }
+
+        &.error::before {
+            border-color: #CD002F;
+        }
     }
 
     & .radioButton__wrapper {
@@ -26,11 +53,6 @@
         border-radius: 50%;
         background-color: tokens.$color-bg-white;
         border: 1px solid #575352;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-        margin: 0;
-        padding: 0;
 
         & .radioButton__wrapper-mark {
             position: absolute;
@@ -59,6 +81,7 @@
             }
         }
 
+
         &:focus-visible {
             box-shadow: 0 0 0 2px #575352;
         }
@@ -70,6 +93,11 @@
         &.disabled {
             background-color: #BFBBBB;
             border-color: #BFBBBB;
+
+            &::before,
+            &::after {
+                opacity: 0;
+            }
         }
 
         &.checked {

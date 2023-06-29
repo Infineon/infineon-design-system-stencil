@@ -22,7 +22,6 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-
   },
 };
 
@@ -34,7 +33,7 @@ const DefaultTemplate = (args) => {
   element.setAttribute('error', args.error);
   element.setAttribute('disabled', args.disabled);
   element.setAttribute('value', args.value);
-  element.setAttribute('size', args.size);  // Added size prop
+  element.setAttribute('size', args.size);
 
   // Add the label as a text node
   element.appendChild(document.createTextNode(args.label));
