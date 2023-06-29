@@ -253,6 +253,7 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton, 
   'disabled',
   'value',
   'error',
+  'size',
   'ifxChange'
 ],
 'value', 'ifxChange');

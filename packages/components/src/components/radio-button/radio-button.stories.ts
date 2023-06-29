@@ -1,7 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import RadioButtonDocumentation from './radio-button_docs.mdx';
 
-
 export default {
   title: "Components/Radio Button",
   parameters: {
@@ -14,13 +13,18 @@ export default {
     error: false,
     disabled: false,
     value: false,
+    size: 's',
     label: 'Text'
   },
-  argTypes: { onIfxChange: { action: 'checked' } },
+  argTypes: {
+    onIfxChange: { action: 'checked' },
+    size: {
+      options: ['s', 'm'],
+      control: { type: 'radio' },
+    },
 
-
+  },
 };
-
 
 const DefaultTemplate = (args) => {
   // Create the radio button element
@@ -30,6 +34,7 @@ const DefaultTemplate = (args) => {
   element.setAttribute('error', args.error);
   element.setAttribute('disabled', args.disabled);
   element.setAttribute('value', args.value);
+  element.setAttribute('size', args.size);  // Added size prop
 
   // Add the label as a text node
   element.appendChild(document.createTextNode(args.label));
@@ -41,6 +46,4 @@ const DefaultTemplate = (args) => {
   return element;
 }
 
-
 export const Default = DefaultTemplate.bind({});
-

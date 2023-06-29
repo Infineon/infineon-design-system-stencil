@@ -11,6 +11,7 @@ export class RadioButton {
   @Prop() disabled: boolean = false;
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
+  @Prop() size: "s" | "m" = "s"; // New size prop
   @State() internalValue: boolean;
   @State() hasSlot: boolean = true;
 
@@ -43,7 +44,7 @@ export class RadioButton {
 
   render() {
     return (
-      <div class="radioButton__container">
+      <div class={`radioButton__container ${this.size}`}>
         <div
           tabindex="0"
           onClick={this.handleRadioButtonClick.bind(this)}

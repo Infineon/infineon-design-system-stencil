@@ -8,13 +8,21 @@
     padding: 0px;
     gap: 8px;
 
-    & .radioButton__wrapper {
-        position: relative; // New
-        display: block; // Updated
-        justify-content: center;
-        align-items: center;
+    &.s .radioButton__wrapper {
         width: 20px;
         height: 20px;
+    }
+
+    &.m .radioButton__wrapper {
+        width: 24px;
+        height: 24px;
+    }
+
+    & .radioButton__wrapper {
+        position: relative;
+        display: block;
+        justify-content: center;
+        align-items: center;
         border-radius: 50%;
         background-color: tokens.$color-bg-white;
         border: 1px solid #575352;
@@ -25,10 +33,10 @@
         padding: 0;
 
         & .radioButton__wrapper-mark {
-            position: absolute; // New
-            top: 50%; // New
-            left: 50%; // New
-            transform: translate(-50%, -50%); // New
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             background-color: #0A8276;
             width: 8.75px;
             height: 8.75px;
@@ -91,6 +99,8 @@
     }
 
     & .label {
+        display: flex;
+        align-items: center;
         width: 25px;
         height: 20px;
         font-style: normal;
