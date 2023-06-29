@@ -1,10 +1,5 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-:host { 
-  width: 264px;
-  display: inline-block;
-}
-
 .sidebar__container { 
   box-sizing: border-box;
   display: inline-flex;
@@ -14,7 +9,7 @@
   background-color: tokens.$color-bg-white;
   border-right: 1px solid #EEEDED;
   width: 264px;
-  height: 100vh;
+  height: 100%;
 
   & .sidebar__top-container { 
     display: flex;
