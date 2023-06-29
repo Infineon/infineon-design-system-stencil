@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -6,35 +6,43 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class SearchBar {
-
-  @Prop() icon: string;
   @Prop() showCloseButton: boolean = true;
-  @Prop({ mutable: true }) isOpen: boolean = true;
-  @Prop() hideLabel: boolean = false;
+  @Prop() isOpen: boolean = true;
+  @State() internalState: boolean;
   @Prop() size: string = "";
-  @Prop({ mutable: true }) value: string = '';
   @Event() ifxChange: EventEmitter<CustomEvent>;
 
+  @Watch('isOpen')
+  handlePropChange() {
+    this.internalState = this.isOpen;
+  }
+
   handleClick = () => {
-    this.isOpen = !this.isOpen;
+    this.internalState = !this.internalState;
   }
 
   handleSearchInput(event: CustomEvent) {
-    this.value = event.detail;
-    const reEmitEvent = new CustomEvent('ifx-change', {
-      bubbles: true,
-      composed: true,
-      detail: this.value
-    });
-    this.ifxChange.emit(reEmitEvent);
-    // console.log("Search bar value updated: ", reEmitEvent.detail);
+    this.ifxChange.emit(event.detail);
+  }
+
+  setInitialState() { 
+    this.internalState = this.isOpen;
+    console.log('inside initialState', this.internalState)
+  }
+
+  componentWillLoad() { 
+    this.setInitialState()
+  }
+
+  componentWillUpdate() { 
+    //this.setInitialState()
   }
 
 
   render() {
     return (
-      <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
-        {this.isOpen ? (
+      <div class={`search-bar ${!this.internalState ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
+        {this.internalState ? (
           <div class="search-bar-wrapper">
             <ifx-search-input onIfxChange={(event) => this.handleSearchInput(event)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
