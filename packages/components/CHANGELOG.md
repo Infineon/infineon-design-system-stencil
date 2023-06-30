@@ -1,3 +1,16 @@
+# v18.2.10 (Fri Jun 30 2023)
+
+#### 🐛 Bug Fix
+
+- 205 review button add form support [#207](https://github.com/Infineon/infineon-design-system-stencil/pull/207) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.9 (Fri Jun 30 2023)
 
 #### 🐛 Bug Fix
