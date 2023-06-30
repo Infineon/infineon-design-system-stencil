@@ -15,14 +15,22 @@
 
   <script defer>
 
+    window.addEventListener('load', () => { 
+      const search = document.getElementById('mysearch')
+      search.addEventListener('ifxChange', (event) => { 
+        console.log('event', event.detail)
+      })
+    })
+
   </script>
 
 </head>
 
 <body>
 
-
-
+  <ifx-search-input show-delete-icon="true" id="mysearch">
+    <ifx-icon icon="search-16" slot="search-icon" class="search-icon"></ifx-icon>
+  </ifx-search-input>
 
 </body>
 

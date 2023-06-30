@@ -13,14 +13,13 @@ export class SearchInput {
 
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
-  @Prop() width: string = '100%';
   @Event() ifxChange: EventEmitter<CustomEvent>;
   @State() insideDropdown: boolean = false;
-  @Element() el: HTMLElement;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() borderColor: 'light' | 'dark' | 'green';
   @Prop() size: string;
+  @Element() el: HTMLElement;
 
   @Watch('value')
   valueWatcher(newValue: string) {
@@ -31,6 +30,7 @@ export class SearchInput {
 
   handleInput = () => {
     const query = this.inputElement.value;
+    console.log('input element', this.inputElement.value)
     this.value = query; // update the value property when input changes
     const customEvent = new CustomEvent('ifxChange', {
       detail: query,
@@ -61,8 +61,6 @@ export class SearchInput {
             placeholder="Search..."
             disabled={this.disabled}
             value={this.value} // bind the value property to input element
-
-
           />
           {this.showDeleteIcon ? (
             <ifx-icon icon="delete-x-16" class="delete-icon" onClick={this.handleDelete}>
