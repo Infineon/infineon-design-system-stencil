@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const searchBar = ref('');
 const searchInput = ref('');
@@ -28,4 +28,19 @@ const searchBarModel = computed({
     searchBar.value = newValue.detail;
   }
 });
+
+
+onMounted(() => {
+  updateProgress();
+  setInterval(updateProgress, 10000);
+})
+
+
+function updateProgress() {
+  console.log("updating progress")
+  searchInput.value = searchInput.value + "+1";
+
+}
+
+
 </script>
