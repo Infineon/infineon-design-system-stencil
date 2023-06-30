@@ -2,7 +2,7 @@
 import ExampleDocumentation from './example_docs.mdx';
 
 export default {
-  title: "Components/DocumentedExample",
+  title: "Documentation/Story template",
 
   parameters: {
     docs: {
