@@ -368,7 +368,7 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.
   'disabled',
   'readonly',
   'icon',
-  'ifxInput'
+  'ifxChange'
 ],
 'value', 'ifxInput');
 
