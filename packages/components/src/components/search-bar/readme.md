@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type      | Default |
-| ----------------- | ------------------- | ----------- | --------- | ------- |
-| `isOpen`          | `is-open`           |             | `boolean` | `true`  |
-| `showCloseButton` | `show-close-button` |             | `boolean` | `true`  |
+| Property          | Attribute           | Description | Type      | Default     |
+| ----------------- | ------------------- | ----------- | --------- | ----------- |
+| `isOpen`          | `is-open`           |             | `boolean` | `true`      |
+| `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
+| `value`           | `value`             |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event       | Description | Type                            |
-| ----------- | ----------- | ------------------------------- |
-| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `ifxChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

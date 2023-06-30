@@ -9,18 +9,20 @@ export class SearchBar {
   @Prop() showCloseButton: boolean = true;
   @Prop() isOpen: boolean = true;
   @State() internalState: boolean;
-  @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Event() ifxChange: EventEmitter;
+  @Prop({mutable: true}) value: string;
 
   @Watch('isOpen')
   handlePropChange() {
     this.internalState = this.isOpen;
   }
 
-  handleClick = () => {
+  handleCloseButton = () => {
     this.internalState = !this.internalState;
   }
 
   handleSearchInput(event: CustomEvent) {
+    this.value = event.detail.detail;
     this.ifxChange.emit(event.detail);
   }
 
@@ -41,10 +43,10 @@ export class SearchBar {
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {this.showCloseButton &&
-              <a href='javascript:void(0)' onClick={this.handleClick}>Close</a>}
+              <a href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>}
           </div>
         ) : (
-          <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
+          <div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
             <ifx-icon icon="search-16"></ifx-icon>
             <a href="javascript:void(0)">Search</a>
           </div>
