@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-example',
+  styleUrl: 'example.scss',
   shadow: true,
 })
 

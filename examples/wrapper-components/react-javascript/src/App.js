@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 
+import Checkbox from './components/Checkbox/Checkbox';
 
 function App() {
 
@@ -39,6 +40,8 @@ function App() {
       <RadioButton />
       <br />
 
+      <h2>Checkbox</h2>
+      <Checkbox />
     </div>
 
   )

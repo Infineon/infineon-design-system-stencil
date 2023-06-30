@@ -1,10 +1,11 @@
-import { Component, h, Event, Element, Prop, State, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
   styleUrl: 'text-input.scss',
   shadow: true
 })
+
 export class TextInput {
   private inputElement: HTMLInputElement;
 
@@ -12,18 +13,14 @@ export class TextInput {
   @Prop() placeholder: string = "Placeholder"
 
   @Prop({ mutable: true }) value: string = '';
-  @State() internalValue: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() icon: boolean = false;
-  @Event({ bubbles: true, composed: true }) ifxInput: EventEmitter;
+  @Event() ifxChange: EventEmitter<CustomEvent>;
 
-  componentWillLoad() {
-    this.internalValue = this.internalValue || '';
-  }
 
   @Watch('value')
   valueWatcher(newValue: string) {
@@ -32,12 +29,18 @@ export class TextInput {
     }
   }
 
-  handleInput = () => {
-    const query = this.inputElement.value;
-    this.value = query; // update the internalValue when input changes
-    this.ifxInput.emit(query);
-  };
 
+  handleChange(e) {
+
+    const query = this.inputElement.value;
+    this.value = query; // update the value property when input changes
+    const customEvent = new CustomEvent('ifxChange', {
+      detail: e.target.value,
+      bubbles: true,
+      composed: true
+    });
+    this.ifxChange.emit(customEvent);
+  }
 
   render() {
     return (
@@ -54,8 +57,8 @@ export class TextInput {
             disabled={this.disabled}
             type="text"
             id='text-field'
-            value={this.internalValue}
-            onInput={this.handleInput}
+            value={this.value}
+            onInput={(ev) => this.handleChange(ev)}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
           {this.error &&

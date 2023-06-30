@@ -21,8 +21,13 @@ const input = computed({
   set: (newValue) => handleInput(newValue)
 });
 
+// Computed property to retrieve the query value
+const textInput = computed({
+  get: () => inputValue.value,
+  set: (newValue) => handleInput(newValue)
+});
 function handleInput(event) {
-  console.log("updating  input: ", event)
+  console.log("updating input: ", event)
   inputValue.value = event; //v-model automatically accesses event.detail
 };
 </script>

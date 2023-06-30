@@ -9,14 +9,15 @@
 
 | Property   | Attribute  | Description | Type                                                             | Default     |
 | ---------- | ---------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
-| `disabled` | `disabled` |             | `boolean`                                                        | `undefined` |
+| `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
+| `disabled` | `disabled` |             | `boolean`                                                        | `false`     |
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
 | `icon`     | `icon`     |             | `string`                                                         | `undefined` |
 | `position` | `position` |             | `string`                                                         | `'left'`    |
-| `size`     | `size`     |             | `string`                                                         | `undefined` |
+| `size`     | `size`     |             | `string`                                                         | `'m'`       |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
+| `type`     | `type`     |             | `string`                                                         | `'button'`  |
+| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
 
 
 ## Methods
@@ -41,8 +42,8 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  test-button --> ifx-icon
-  style test-button fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-example --> ifx-icon
+  style ifx-example fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

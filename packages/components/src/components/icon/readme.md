@@ -24,7 +24,7 @@
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
  - [ifx-dropdown-item](../dropdown-item)
- - [ifx-example](../../stories)
+ - [ifx-example](../template-story-with-markdown)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)

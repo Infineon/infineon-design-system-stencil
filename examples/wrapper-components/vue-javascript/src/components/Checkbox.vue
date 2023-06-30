@@ -10,7 +10,6 @@
       <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
         name="name">label</ifx-checkbox>
       <br />
-
       <ifx-button color="primary" type="submit">Submit</ifx-button>
     </form>
     <br />

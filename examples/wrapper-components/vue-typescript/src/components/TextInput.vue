@@ -5,6 +5,7 @@
     <div>
       <ifx-text-input v-model="input" error="true" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="some error message">Label</ifx-text-input>
+
     </div>
     <p>Text field value: {{ inputValue }}</p>
     <br />
