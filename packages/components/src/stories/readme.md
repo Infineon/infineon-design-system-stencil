@@ -1,4 +1,4 @@
-# test-button
+# ifx-example
 
 
 
@@ -37,7 +37,7 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [ifx-icon](../icon)
+- [ifx-icon](../components/icon)
 
 ### Graph
 ```mermaid

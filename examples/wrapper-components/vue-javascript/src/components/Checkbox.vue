@@ -4,9 +4,9 @@
     <h3>Using v-model</h3>
 
     <form @submit.prevent="handleSubmit">
-      TestText <ifx-checkbox :disabled="disabled" v-model="value" :error="error" name="name">label</ifx-checkbox> TestText
+      <ifx-checkbox :disabled="disabled" v-model="value" :error="error" name="name"
+        @ifxChange="handleIfxChange">label</ifx-checkbox>
       <br />
-
       <ifx-button color="primary" type="submit">Submit</ifx-button>
     </form>
     <br />
@@ -26,35 +26,35 @@
   </div>
 </template>
 
-<script  >
-export default {
-  data() {
-    return {
-      disabled: false,
-      value: false,
-      error: false,
-    }
-  },
-  methods: {
-    handleIfxChange(e) {
-      console.log('ifxChange event emitted with value:', e.detail.value);
-      this.value = e.detail.value;
-    },
-    handleSubmit() {
-      console.log('Form submitted. Checkbox value:', this.value);
-    },
-    toggleDisabled() {
-      this.disabled = !this.disabled;
-    },
-    toggleError() {
-      this.error = !this.error;
-    },
-    toggleValue() {
-      this.value = !this.value;
-    }
-  }
+<script setup>
+import { ref } from 'vue'
+
+const disabled = ref(false)
+const value = ref(false)
+const error = ref(false)
+
+const handleIfxChange = (e) => {
+  console.log('ifxChange event emitted with value:', e.detail);
+  value.value = e.detail;
+}
+
+const handleSubmit = () => {
+  console.log('Form submitted. Checkbox value:', value.value);
+}
+
+const toggleDisabled = () => {
+  disabled.value = !disabled.value;
+}
+
+const toggleError = () => {
+  error.value = !error.value;
+}
+
+const toggleValue = () => {
+  value.value = !value.value;
 }
 </script>
+
 <style scoped>
 .app {
   text-align: center;

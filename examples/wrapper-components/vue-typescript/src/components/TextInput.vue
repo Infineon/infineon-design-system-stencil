@@ -4,6 +4,7 @@
     <div>
       <ifx-text-input v-model="input" error="true" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="some error message">Label</ifx-text-input>
+
     </div>
     <p>Text field value: {{ input }}</p>
     <br />
@@ -11,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref, computed } from 'vue';
+import { ref, Ref } from 'vue';
 
 let input: Ref<string> = ref("");
 

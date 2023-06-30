@@ -2,12 +2,12 @@ import { Component, Prop, h, Host, Method, Element, Watch, State } from '@stenci
 import classNames from 'classnames';
 
 @Component({
-  tag: 'ifx-button',
-  styleUrl: 'button.scss',
+  tag: 'ifx-example',
+  styleUrl: 'example.scss',
   shadow: true,
 })
 
-export class Button {
+export class Example {
   @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
   @Prop() size: string = 'm';
