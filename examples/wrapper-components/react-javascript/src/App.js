@@ -9,6 +9,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 
+import Checkbox from './components/Checkbox/Checkbox';
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
       <h2>Accordion</h2>
       <Accordion />
 
+      <h2>Checkbox</h2>
+      <Checkbox />
     </div>
 
   )

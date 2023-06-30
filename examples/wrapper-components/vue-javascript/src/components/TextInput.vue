@@ -15,7 +15,15 @@ import { ref, computed } from 'vue';
 
 let input = ref("");
 
-
+// Computed property to retrieve the query value
+const textInput = computed({
+  get: () => input.value,
+  set: (newValue) => handleInput(newValue)
+});
+function handleInput(event) {
+  console.log("updating input: ", event)
+  input.value = event; //v-model automatically accesses event.detail
+};
 </script>
 
 
