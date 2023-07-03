@@ -291,7 +291,8 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'isOpen',
   'hideLabel',
   'size',
-  'value'
+  'value',
+  'ifxInput'
 ],
 'value', 'ifxInput');
 
@@ -367,7 +368,7 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.
   'disabled',
   'readonly',
   'icon',
-  'ifxChange'
+  'ifxInput'
 ],
 'value', 'ifxInput');
 

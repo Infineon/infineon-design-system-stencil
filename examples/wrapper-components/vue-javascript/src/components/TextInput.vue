@@ -2,7 +2,7 @@
   <div>
     <h2>Text Input</h2>
     <div>
-      <ifx-text-input v-model="input" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-input v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Label</ifx-text-input>
     </div>
     <p>Text field value: {{ inputValue }}</p>
@@ -12,24 +12,21 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 
 let inputValue = ref("");
-// Computed property to retrieve the query value
-const input = computed({
-  get: () => inputValue.value,
-  set: (newValue) => handleInput(newValue)
-});
 
-// Computed property to retrieve the query value
-const textInput = computed({
-  get: () => inputValue.value,
-  set: (newValue) => handleInput(newValue)
-});
-function handleInput(event) {
-  console.log("updating input: ", event)
-  inputValue.value = event; //v-model automatically accesses event.detail
-};
+onMounted(() => {
+  updateTextInput();
+  setInterval(updateTextInput, 10000);
+})
+
+function updateTextInput() {
+  console.log("updating text input from parent component")
+  inputValue.value = inputValue.value + "+1";
+
+}
+
 </script>
 
 

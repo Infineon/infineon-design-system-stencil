@@ -31,12 +31,12 @@ const searchBarModel = computed({
 
 
 onMounted(() => {
-  updateProgress();
-  setInterval(updateProgress, 10000);
+  updateSearchBarAndSearchInput();
+  setInterval(updateSearchBarAndSearchInput, 10000);
 })
 
 
-function updateProgress() {
+function updateSearchBarAndSearchInput() {
   console.log("updating search input and search bar from parent component")
   searchInput.value = searchInput.value + "+1";
   searchBar.value = searchBar.value + "+2";

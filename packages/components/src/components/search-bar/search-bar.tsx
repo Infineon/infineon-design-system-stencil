@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -13,17 +13,15 @@ export class SearchBar {
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = "";
   @Prop({ mutable: true }) value: string = '';
+  @Event() ifxInput: EventEmitter;
 
   handleClick = () => {
     this.isOpen = !this.isOpen;
   }
 
-
-
   handleInput(event: CustomEvent) {
     this.value = event.detail;
   }
-
 
   render() {
     return (
