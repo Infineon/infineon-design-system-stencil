@@ -13,24 +13,15 @@ export class SearchBar {
   @Prop() hideLabel: boolean = false;
   @Prop() size: string = "";
   @Prop({ mutable: true }) value: string = '';
-  @Event() ifxInput: EventEmitter<CustomEvent>;
 
   handleClick = () => {
     this.isOpen = !this.isOpen;
   }
 
-  @Watch('value')
-  valueWatcher(newValue: string) {
-    const reEmitEvent = new CustomEvent('ifx-input', {
-      bubbles: true,
-      composed: true,
-      detail: newValue
-    });
-    this.ifxInput.emit(reEmitEvent);
-  }
 
-  handleSearchInput(event: CustomEvent) {
-    this.value = event.detail;  // Setting this will trigger valueWatcher
+
+  handleInput(event: CustomEvent) {
+    this.value = event.detail;
   }
 
 
@@ -39,7 +30,7 @@ export class SearchBar {
       <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
         {this.isOpen ? (
           <div class="search-bar-wrapper">
-            <ifx-search-input value={this.value} onIfxInput={(event) => this.handleSearchInput(event)}>
+            <ifx-search-input value={this.value} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {this.showCloseButton &&
