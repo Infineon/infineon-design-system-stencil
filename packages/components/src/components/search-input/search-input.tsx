@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop, State, Element, Watch } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, Watch } from '@stencil/core';
 import classNames from 'classnames';
 
 
@@ -13,13 +13,11 @@ export class SearchInput {
 
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
-  @Event() ifxChange: EventEmitter<CustomEvent>;
-  @State() insideDropdown: boolean = false;
+  @Event() ifxChange: EventEmitter;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() borderColor: 'light' | 'dark' | 'green';
   @Prop() size: string;
-  @Element() el: HTMLElement;
 
   @Watch('value')
   valueWatcher(newValue: string) {
@@ -30,14 +28,14 @@ export class SearchInput {
 
   handleInput = () => {
     const query = this.inputElement.value;
-    console.log('input element', this.inputElement.value)
     this.value = query; // update the value property when input changes
-    const customEvent = new CustomEvent('ifxChange', {
-      detail: query,
-      bubbles: true,
-      composed: true
-    });
-    this.ifxChange.emit(customEvent);
+    this.ifxChange.emit(query)
+    // const customEvent = new CustomEvent('ifxChange', {
+    //   detail: query,
+    //   bubbles: true,
+    //   composed: true
+    // });
+    //this.ifxChange.emit(customEvent);
   };
 
 
@@ -53,7 +51,7 @@ export class SearchInput {
       <div class={this.getClassNames()}>
         <div class={this.getWrapperClassNames()}
         >
-          <slot name="search-icon"></slot>
+          <slot></slot>
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
@@ -85,7 +83,6 @@ export class SearchInput {
   getClassNames() {
     return classNames(
       'search-input', {
-      'inside-dropdown': this.insideDropdown,
     })
   }
 
