@@ -1,5 +1,7 @@
 export default {
   title: "Components/List-Group",
+  tags: ['autodocs'],
+
   args: {
     title: 'Notification title',
     description: 'Notification description',

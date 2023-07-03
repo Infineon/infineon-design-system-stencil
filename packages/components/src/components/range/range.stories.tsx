@@ -4,6 +4,8 @@ import { icons } from '@infineon/infineon-icons'
 export default {
   title: 'Components/Range',
   component: 'ifx-range',
+  tags: ['autodocs'],
+
   argTypes: {
     value: { control: 'number' },
     min: { control: 'number' },

@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/TextInput",
+  tags: ['autodocs'],
+
   args: {
     error: false,
     disabled: false,

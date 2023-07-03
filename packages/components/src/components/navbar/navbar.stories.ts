@@ -1,12 +1,7 @@
-import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
 
 export default {
   title: "Components/Navbar",
-  parameters: {
-    docs: {
-      page: CustomMDXDocumentation,
-    },
-  },
+
 };
 
 
