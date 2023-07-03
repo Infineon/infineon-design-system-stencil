@@ -31,7 +31,6 @@ export class TextInput {
 
 
   handleChange(e) {
-
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
     const customEvent = new CustomEvent('ifxChange', {

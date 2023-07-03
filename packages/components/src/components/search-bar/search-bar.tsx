@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -19,14 +19,18 @@ export class SearchBar {
     this.isOpen = !this.isOpen;
   }
 
-  handleSearchInput(event: CustomEvent) {
-    this.value = event.detail;
+  @Watch('value')
+  valueWatcher(newValue: string) {
     const reEmitEvent = new CustomEvent('ifx-input', {
       bubbles: true,
       composed: true,
-      detail: this.value
+      detail: newValue
     });
     this.ifxInput.emit(reEmitEvent);
+  }
+
+  handleSearchInput(event: CustomEvent) {
+    this.value = event.detail;  // Setting this will trigger valueWatcher
   }
 
 
@@ -35,7 +39,7 @@ export class SearchBar {
       <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
         {this.isOpen ? (
           <div class="search-bar-wrapper">
-            <ifx-search-input onIfxInput={(event) => this.handleSearchInput(event)}>
+            <ifx-search-input value={this.value} onIfxInput={(event) => this.handleSearchInput(event)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {this.showCloseButton &&
@@ -47,7 +51,6 @@ export class SearchBar {
             <a href="javascript:void(0)">Search</a>
           </div>
         )}
-
       </div>
     );
   }

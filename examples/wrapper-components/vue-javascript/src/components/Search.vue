@@ -25,7 +25,7 @@ const searchInput = ref('');
 const searchBarModel = computed({
   get: () => searchBar.value,
   set: (newValue) => {
-    searchBar.value = newValue.detail;
+    searchBar.value = newValue.detail || newValue;
   }
 });
 
@@ -37,9 +37,9 @@ onMounted(() => {
 
 
 function updateProgress() {
-  console.log("updating progress")
+  console.log("updating search input and search bar from parent component")
   searchInput.value = searchInput.value + "+1";
-
+  searchBar.value = searchBar.value + "+2";
 }
 
 
