@@ -17,7 +17,7 @@
 
     window.addEventListener('load', () => { 
       const search = document.getElementById('mysearch')
-      search.addEventListener('ifxChange', (event) => { 
+      search.addEventListener('ifxInput', (event) => { 
         console.log('event', event.detail)
       })
     })
@@ -28,7 +28,7 @@
 
 <body>
 
-  <ifx-search-input size='s' show-delete-icon="true" id="mysearch">
+  <ifx-search-input disabled="false" size='m' show-delete-icon="true" id="mysearch">
     <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
   </ifx-search-input>
 

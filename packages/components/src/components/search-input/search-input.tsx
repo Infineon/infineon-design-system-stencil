@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Prop, Watch } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
 
 
@@ -13,11 +13,19 @@ export class SearchInput {
 
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
-  @Event() ifxChange: EventEmitter;
+  @Event() ifxInput: EventEmitter<CustomEvent>;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
-  @Prop() borderColor: 'light' | 'dark' | 'green';
   @Prop() size: string;
+  @State() isFocused: boolean = false;
+
+  @Listen('mousedown', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    const path = event.composedPath();
+    if (!path.includes(this.inputElement)) {
+      this.isFocused = false;
+    }
+  }
 
   @Watch('value')
   valueWatcher(newValue: string) {
@@ -29,29 +37,33 @@ export class SearchInput {
   handleInput = () => {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    this.ifxChange.emit(query)
-    // const customEvent = new CustomEvent('ifxChange', {
-    //   detail: query,
-    //   bubbles: true,
-    //   composed: true
-    // });
-    //this.ifxChange.emit(customEvent);
+    const customEvent = new CustomEvent('ifxInput', {
+      detail: query,
+      bubbles: true,
+      composed: true
+    });
+    this.ifxInput.emit(customEvent);
   };
-
 
   handleDelete = () => {
     this.inputElement.value = '';
-    this.ifxChange.emit(null);
+    this.ifxInput.emit(null);
   }
 
+  focusInput() { 
+    this.inputElement.focus();
+    this.isFocused = true;
+  }
 
   render() {
-
     return (
-      <div class={this.getClassNames()}>
-        <div class={this.getWrapperClassNames()}
+      <div class='search-input'>
+        <div class={this.getWrapperClassNames()} 
+          tabindex={1} 
+          onFocus={() => this.focusInput()}
+          onClick={() => this.focusInput()}
         >
-          <slot></slot>
+          <slot />
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
@@ -61,17 +73,12 @@ export class SearchInput {
             value={this.value} // bind the value property to input element
           />
           {this.showDeleteIcon ? (
-            <ifx-icon icon="delete-x-16" class="delete-icon" onClick={this.handleDelete}>
+            <ifx-icon icon="deletex16" class="delete-icon" onClick={this.handleDelete}>
             </ifx-icon>
           ) : null}
         </div>
       </div>
-
     );
-  }
-
-  getBorderClasses() {
-    return `search-input__wrapper-outline-${this.borderColor}`;
   }
 
   getSizeClass() {
@@ -80,17 +87,11 @@ export class SearchInput {
       : "";
   }
 
-  getClassNames() {
-    return classNames(
-      'search-input', {
-    })
-  }
-
   getWrapperClassNames() {
     return classNames(
-      `search-input__wrapper ${this.getBorderClasses()}`,
+      `search-input__wrapper`,
       `search-input__wrapper ${this.getSizeClass()}`,
-      this.disabled ? 'disabled' : ''
+      `${this.isFocused ? 'focused' : ""}`
     );
   }
 }
