@@ -1,5 +1,7 @@
 export default {
   title: "Components/Number Indicator",
+  tags: ['autodocs'],
+
   args: {
     label: 1,
     inverted: false
@@ -12,8 +14,8 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
- 
+Default.argTypes = {
+
 }
 
 

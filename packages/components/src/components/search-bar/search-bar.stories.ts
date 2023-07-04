@@ -2,6 +2,8 @@
 
 export default {
   title: 'Components/Search Bar',
+  tags: ['autodocs'],
+
   args: {
     width: '100%',
     showCloseButton: true,

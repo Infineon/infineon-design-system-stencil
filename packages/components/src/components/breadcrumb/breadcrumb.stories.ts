@@ -1,5 +1,7 @@
 export default {
   title: 'Components/Breadcrumb',
+  tags: ['autodocs'],
+
   args: {
     icon: false
   },
