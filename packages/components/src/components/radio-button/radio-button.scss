@@ -7,6 +7,7 @@
     align-items: center;
     padding: 0px;
     gap: 8px;
+    cursor: pointer; // Add this line
 
     &.s .radioButton__wrapper {
         width: 20px;
