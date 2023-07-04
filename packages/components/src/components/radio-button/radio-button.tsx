@@ -17,13 +17,6 @@ export class RadioButton {
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
-  handleRadioButtonClick() {
-    if (!this.disabled && !this.error) {
-      this.internalValue = !this.internalValue;
-      // Emit the change event with the new value
-      this.ifxChange.emit(this.internalValue);
-    }
-  }
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
@@ -42,20 +35,30 @@ export class RadioButton {
   }
 
 
+  handleRadioButtonClick() {
+    if (!this.disabled && !this.error) {
+      this.internalValue = !this.internalValue;
+      this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
+      // Emit the change event with the new value
+      this.ifxChange.emit(this.internalValue);
+    }
+  }
+
 
   render() {
     return (
       <div
         class={`radioButton__container ${this.size} ${this.disabled ? 'disabled' : ''}`}
+        onClick={this.handleRadioButtonClick.bind(this)}
       >
-        <div class={`radioButton__wrapper ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}>
+        <div
+          class={`radioButton__wrapper ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''} ${this.error ? 'error' : ''}`}
+          tabIndex={this.disabled ? -1 : 0}
+        >
           {this.internalValue && <div class="radioButton__wrapper-mark"></div>}
         </div>
         {this.hasSlot && (
-          <div
-            class={`label ${this.error ? 'error' : ''} ${this.disabled ? 'disabled' : ''}`}
-            onClick={this.handleRadioButtonClick.bind(this)}
-          >
+          <div class={`label ${this.error ? 'error' : ''} ${this.disabled ? 'disabled' : ''}`}>
             <slot />
           </div>
         )}
