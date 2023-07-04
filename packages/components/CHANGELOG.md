@@ -1,3 +1,16 @@
+# v18.2.11 (Tue Jul 04 2023)
+
+#### 🐛 Bug Fix
+
+- 206-research-the-possibility-to-include-assets-in-mdx-documentation-files [#217](https://github.com/Infineon/infineon-design-system-stencil/pull/217) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.10 (Fri Jun 30 2023)
 
 #### 🐛 Bug Fix
