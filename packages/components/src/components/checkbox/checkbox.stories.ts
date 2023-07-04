@@ -1,14 +1,8 @@
 import { action } from '@storybook/addon-actions';
-import CheckboxDocumentation from './checkbox_docs.mdx';
 
 export default {
   title: "Components/Checkbox",
-  parameters: {
-    docs: {
-      page: CheckboxDocumentation,
-      canvas: { sourceState: 'shown' },
-    },
-  },
+  tags: ['autodocs'],
   args: {
     error: false,
     disabled: false,

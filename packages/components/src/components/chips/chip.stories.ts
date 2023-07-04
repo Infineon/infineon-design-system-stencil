@@ -1,9 +1,10 @@
 export default {
   title: "Components/Chip",
+  tags: ['autodocs'],
+
   args: {
     defaultLabel: 'default label',
   },
-
   argTypes: {
 
   },

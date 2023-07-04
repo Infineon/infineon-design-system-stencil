@@ -1,10 +1,12 @@
 export default {
   title: 'Components/Icon',
+  tags: ['autodocs'],
+
   args: {
     icon: "c-check-16"
   },
   argTypes: {
-   icon: { control: 'text'}
+    icon: { control: 'text' }
   },
 
 

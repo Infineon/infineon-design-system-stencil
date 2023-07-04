@@ -29,7 +29,6 @@ const searchBarModel = computed({
   }
 });
 
-
 onMounted(() => {
   updateSearchBarAndSearchInput();
   setInterval(updateSearchBarAndSearchInput, 10000);

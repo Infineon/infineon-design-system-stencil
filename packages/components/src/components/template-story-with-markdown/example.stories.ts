@@ -1,15 +1,8 @@
 
-import ExampleDocumentation from './example_docs.mdx';
 
 export default {
   title: "Documentation/Story template",
 
-  parameters: {
-    docs: {
-      page: ExampleDocumentation,
-      canvas: { sourceState: 'shown' },
-    },
-  },
   args: {
     label: "Button",
     variant: "solid",
