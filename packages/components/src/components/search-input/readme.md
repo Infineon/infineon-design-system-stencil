@@ -7,21 +7,19 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type                           | Default     |
-| ---------------- | ------------------ | ----------- | ------------------------------ | ----------- |
-| `borderColor`    | `border-color`     |             | `"dark" \| "green" \| "light"` | `undefined` |
-| `disabled`       | `disabled`         |             | `boolean`                      | `false`     |
-| `showDeleteIcon` | `show-delete-icon` |             | `boolean`                      | `false`     |
-| `size`           | `size`             |             | `string`                       | `undefined` |
-| `value`          | `value`            |             | `string`                       | `''`        |
-| `width`          | `width`            |             | `string`                       | `'100%'`    |
+| Property         | Attribute          | Description | Type      | Default     |
+| ---------------- | ------------------ | ----------- | --------- | ----------- |
+| `disabled`       | `disabled`         |             | `boolean` | `false`     |
+| `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false`     |
+| `size`           | `size`             |             | `string`  | `undefined` |
+| `value`          | `value`            |             | `string`  | `''`        |
 
 
 ## Events
 
-| Event       | Description | Type                            |
-| ----------- | ----------- | ------------------------------- |
-| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
+| Event      | Description | Type                            |
+| ---------- | ----------- | ------------------------------- |
+| `ifxInput` |             | `CustomEvent<CustomEvent<any>>` |
 
 
 ## Dependencies

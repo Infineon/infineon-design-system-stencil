@@ -17,13 +17,6 @@
 | `value`           | `value`             |             | `string`  | `''`        |
 
 
-## Events
-
-| Event       | Description | Type                            |
-| ----------- | ----------- | ------------------------------- |
-| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
-
-
 ## Dependencies
 
 ### Depends on
