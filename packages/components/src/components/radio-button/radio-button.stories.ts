@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/Radio Button",
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     error: false,
