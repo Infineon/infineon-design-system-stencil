@@ -7,9 +7,7 @@ function SearchInput() {
 
   return (
     <div  >
-        <IfxSearchInput disabled={false} size='m' show-delete-icon="true" onIfxInput={handleSearch}>
-          <IfxIcon icon="search-16" class="search-icon"></IfxIcon>
-        </IfxSearchInput>
+        <IfxSearchInput disabled={false} size='m' show-delete-icon="true" onIfxInput={handleSearch}></IfxSearchInput>
     </div>
   )
 }

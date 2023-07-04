@@ -63,7 +63,7 @@ export class SearchInput {
           onFocus={() => this.focusInput()}
           onClick={() => this.focusInput()}
         >
-          <slot />
+          <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
