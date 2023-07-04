@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/Checkbox",
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
     error: false,
     disabled: false,
