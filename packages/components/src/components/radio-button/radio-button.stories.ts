@@ -12,7 +12,7 @@ export default {
     label: 'Text'
   },
   argTypes: {
-    onIfxChange: { action: 'checked' },
+    onIfxChange: { action: 'ifxChange' },
     size: {
       options: ['s', 'm'],
       control: { type: 'radio' },
