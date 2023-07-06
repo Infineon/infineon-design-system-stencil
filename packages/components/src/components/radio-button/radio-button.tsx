@@ -26,6 +26,7 @@ export class RadioButton {
   }
 
   componentWillLoad() {
+
     this.internalValue = this.value;
 
     const slot = this.el.innerHTML;
@@ -36,13 +37,13 @@ export class RadioButton {
 
 
   handleRadioButtonClick() {
-    if (!this.disabled && !this.error) {
+    if (!this.disabled) {
       this.internalValue = !this.internalValue;
       this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
-      // Emit the change event with the new value
       this.ifxChange.emit(this.internalValue);
     }
   }
+
 
 
   render() {
