@@ -1,14 +1,14 @@
 
 import { Meta } from '@storybook/blocks';
 
-import * as RadioButtonStories from './radio-button.stories';
-import RadioButtonSizes from '../../../public-storybook/images/radio-button-sizes.png';
-import RadioButtonAnatomy from '../../../public-storybook/images/radio-button-anatomy.png';
-import RadioButtonGroupBlock from '../../../public-storybook/images/radio-button-group-block.png';
-import RadioButtonGroupInline from '../../../public-storybook/images/radio-button-group-inline.png';
-import RadioButtonStates from '../../../public-storybook/images/radio-button-states.png';
+import * as ButtonStories from './button.stories';
+import inf-radio-button-sizes from '../../../public-storybook/images/inf-radio-button-sizes.png';
+import inf-radio-button-anatomy from '../../../public-storybook/images/inf-radio-button-anatomy.png';
+import inf-radio-button-group-block from '../../../public-storybook/images/inf-radio-button-group-block.png';
+import inf-radio-button-group-inline from '../../../public-storybook/images/inf-radio-button-group-inline.png';
+import inf-radio-button-states from '../../../public-storybook/images/inf-radio-button-states.png';
 
-<Meta of={RadioButtonStories} /> 
+<Meta of={ButtonStories} /> 
 # Radio Button
 The radio component is used to allow users to select a single option from a predefined list. It represents a mutually exclusive choice, where only one option can be selected at a time.
 
@@ -23,33 +23,30 @@ The radio component is used to allow users to select a single option from a pred
 - If the options are independent and not mutually exclusive, checkboxes should be used instead.
 
 ## Anatomy
-<img src={RadioButtonAnatomy} alt="Radio Button anatomy" />
-**Radio Button input (1)**
-A radio button indicating the appropriate state. By default an option is selected. In some UX cases it is also possible to let the state unselected.
-**Radio Button label (2)**
-Provides an information you want to select or unselect.
+<img src={inf-radio-button-anatomy} alt="Radio Button anatomy" />
 
 ## Sizes
 The radio button component in our design system is available in two different sizes: 20px and 24px. These sizes are designed to provide flexibility and meet various design requirements.
-<img src={RadioButtonSizes} alt="Radio Button sizes" />
+<img src={inf-radio-button-sizes} alt="Radio Button sizes" />
 
 ## Grouping radio buttons
 Deciding whether to place radio buttons in an inline or block layout depends on the specific context and requirements of your user interface.
 
 ### Inline
-<img src={RadioButtonGroupInline} alt="Radio Button grouping inline" />
+<img src={inf-radio-button-group-inline} alt="Radio Button grouping inline" />
 
 - Use to save space when you have limited screen real estate or need to place other elements alongside the radio buttons. 
 - Use when the options in your radio button group have short labels, an inline layout can provide a more compact and visually streamlined presentation. 
 - Use to visually group related options or indicate that they belong to the same category.
 
+
 ### Block
-<img src={RadioButtonGroupBlock} alt="Radio Button grouping block" />
+<img src={inf-radio-button-group-block} alt="Radio Button grouping block" />
 
 - Use for long radio button labels. 
 - Use to easily scan and compare the options from top to bottom. 
 - Use to visually separate radio button options.
 
 ## States
-<img src={RadioButtonStates} alt="Radio Button states" />
+<img src={inf-radio-button-states} alt="Radio Button states" />
 
