@@ -11,6 +11,16 @@ import Accordion from './components/Accordion/Accordion';
 
 import Checkbox from './components/Checkbox/Checkbox';
 
+import Alert from './components/Alert/Alert';
+
+import Badge from './components/Badge/Badge';
+
+import Tag from './components/Tag/Tag';
+
+import Link from './components/Link/Link';
+
+import Breadcrumb from './components/Breadcrumb/Breadcrumb';
+
 function App() {
 
 
@@ -41,6 +51,21 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+
+      <h2>Alert</h2>
+      <Alert />
+
+      <h2>Badge</h2>
+      <Badge />
+
+      <h2>Tag</h2>
+      <Tag />
+
+      <h2>Link</h2>
+      <Link />
+
+      <h2>Breadcrumb</h2>
+      <Breadcrumb />
     </div>
 
   )
