@@ -12,7 +12,16 @@ export default {
     label: 'Text'
   },
   argTypes: {
-    onIfxChange: { action: 'ifxChange' },
+    onIfxChange: {
+      description: 'Custom event',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxChange={handleIfxChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+        },
+      },
+      action: 'ifxChange'
+    },
     size: {
       options: ['s', 'm'],
       control: { type: 'radio' },
