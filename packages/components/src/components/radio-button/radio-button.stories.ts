@@ -20,6 +20,7 @@ export default {
           detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
+
       action: 'ifxChange'
     },
     size: {
