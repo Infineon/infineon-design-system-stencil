@@ -289,6 +289,9 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'showCloseButton',
   'isOpen',
   'value',
+  'hideLabel',
+  'size',
+  'ifxChange',
   'ifxInput'
 ],
 'value', 'ifxInput');

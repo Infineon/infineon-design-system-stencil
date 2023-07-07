@@ -9,8 +9,10 @@
 
 | Property          | Attribute           | Description | Type      | Default     |
 | ----------------- | ------------------- | ----------- | --------- | ----------- |
+| `hideLabel`       | `hide-label`        |             | `boolean` | `false`     |
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
+| `size`            | `size`              |             | `string`  | `""`        |
 | `value`           | `value`             |             | `string`  | `undefined` |
 
 
@@ -19,10 +21,8 @@
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `ifxChange` |             | `CustomEvent<any>` |
+| `ifxInput`  |             | `CustomEvent<any>` |
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxInput` |             | `CustomEvent<any>` |
 
 ## Dependencies
 
