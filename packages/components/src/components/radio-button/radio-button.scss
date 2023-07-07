@@ -1,141 +1,149 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-:host { 
-    display: inline-flex;
-    vertical-align: top;
-}
-
-.radioButton__container { 
+.radioButton__container {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
     align-items: center;
     padding: 0px;
     gap: 8px;
+    cursor: pointer;
 
-    & .radioButton__wrapper { 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    &.m .radioButton__wrapper {
+        width: 24px;
+        height: 24px;
+    }
+
+    .radioButton__wrapper {
         width: 20px;
         height: 20px;
+        position: relative;
+        display: block;
         border-radius: 50%;
         background-color: tokens.$color-bg-white;
         border: 1px solid #575352;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
 
-        & .radioButton__wrapper-mark { 
-          background-color: #0A8276;
-          width: 8.75px;
-          height: 8.75px;
-          border-radius: 50%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-color: transparent;
-        }
+        &:focus {
+            outline: none;
 
-        &.error { 
-            border-color: #CD002F;
-            &:hover { 
-              border-color: #CD002F;
+            &::before {
+                content: '';
+                position: absolute;
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border: 2px solid #0A8276;
+                border-radius: 50%;
             }
-
-            &:focus-visible { 
-              border: 1px solid #CD002F;
-              outline: 2px solid #CD002F;
-              outline-offset: 2px;
-          }
         }
 
-        &:focus-visible { 
-            border: 1px solid #575352;
-            outline: 2px solid #0A8276;
-            outline-offset: 2px;
-            
-        }
-
-        &:hover { 
-            border: 1px solid #575352;
-            border-color: #0A8276;
+        .radioButton__wrapper-mark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0A8276;
             border-radius: 50%;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: transparent;
         }
 
-        &.disabled { 
+        &:hover {
+            border-color: #0A8276;
+        }
+
+        &.disabled {
             background-color: #BFBBBB;
             border-color: #BFBBBB;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
-        }
-
-        &.checked { 
-          border-color: #0A8276;
-
-            &:focus-visible { 
-                outline: 2px solid #0A8276;
-                outline-offset: 2px; 
-            }
-
-                &:hover { 
-                    border-color: #08665C;
-                    border-radius: 50%;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
-
-                    & .radioButton__wrapper-mark {
-                      background-color: #08665C;
-                    }
-                }
-
-                &.disabled { 
-                    background-color: tokens.$color-bg-white;
-                    border: 1px solid #BFBBBB;
-                    flex: none;
-                    order: 0;
-                    flex-grow: 0;
-
-                    & .radioButton__wrapper-mark { 
-                      background-color: #BFBBBB;
-                      border-color: #BFBBBB;
-        
-                    }
-                }
-            }
-        }
-
-        & .label { 
-            width: 25px;
-            height: 20px;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
-            color: tokens.$color-text-black;
-            flex: none;
-            order: 1;
-            flex-grow: 0;
-
-            &.disabled { 
-              color: #BFBBBB;
-            }
 
             &.error { 
-                color: #CD002F;
+                &:hover,
+                &:focus-visible {
+                    border-color: #CD002F;
+                }
             }
         }
 
-        & .radioButton__wrapper,
-        & .label { 
-            &:hover { 
+        &.checked {
+            border-color: #0A8276;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 10px;
+                height: 10px;
+                background-color: #0A8276;
+                border-radius: 50%;
+            }
+
+            &.disabled::after {
+                background-color: #BFBBBB;
+            }
+
+
+            &:hover {
+                border-color: #08665C;
+
+                & .radioButton__wrapper-mark {
+                    background-color: #08665C;
+                }
+            }
+
+            &.disabled {
+                background-color: tokens.$color-bg-white;
+                border-color: #BFBBBB;
+
+                &.disabled::after {
+                    background-color: #BFBBBB;
+                }
+
+                & .radioButton__wrapper-mark {
+                    background-color: #BFBBBB;
+                }
+            }
+        }
+
+        &.error:not(.disabled) {
+            border-color: #CD002F;
+
+            &:hover,
+            &:focus-visible {
+                border-color: #CD002F;
+            }
+        }
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+        width: 25px;
+        height: 20px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: tokens.$color-text-black;
+        flex: none;
+        order: 1;
+        flex-grow: 0;
+
+        &.disabled {
+            color: #BFBBBB;
+        }
+
+        &.error {
+            color: #CD002F;
+        }
+
+        &:hover {
             cursor: pointer;
         }
     }
-  
 }

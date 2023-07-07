@@ -1,6 +1,8 @@
 
 export default {
   title: 'Components/Progress Bar',
+  tags: ['autodocs'],
+
   args: {
     size: "m",
     percentage: 50,

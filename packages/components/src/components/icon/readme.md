@@ -24,6 +24,7 @@
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
  - [ifx-dropdown-item](../dropdown-item)
+ - [ifx-example](../template-story-with-markdown)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
@@ -47,6 +48,7 @@ graph TD;
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
   ifx-dropdown-item --> ifx-icon
+  ifx-example --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
   ifx-modal --> ifx-icon

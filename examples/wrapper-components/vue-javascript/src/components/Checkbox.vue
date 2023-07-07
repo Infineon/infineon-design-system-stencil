@@ -1,12 +1,15 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Checkbox</h2>
-    <h3>Using v-model</h3>
+    <!-- <h3>Using v-model</h3> -->
 
     <form @submit.prevent="handleSubmit">
-      TestText <ifx-checkbox :disabled="disabled" v-model="value" :error="error" name="name">label</ifx-checkbox> TestText
-      <br />
+      <!-- <ifx-checkbox :disabled="disabled" v-model="checked" :error="error" name="name">label</ifx-checkbox> -->
 
+      <h3>Using v-bind/v-on</h3>
+      <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
+        name="name">label</ifx-checkbox>
+      <br />
       <ifx-button color="primary" type="submit">Submit</ifx-button>
     </form>
     <br />
@@ -20,46 +23,42 @@
     </div>
     <br />
     <span>Disabled: {{ disabled }} </span>
+    <br />
     <span>Error: {{ error }} </span>
-    <span>Value: {{ value }}</span>
+    <br />
+    <span>Value: {{ checkboxValue }}</span>
+    <br />
     <br />
   </div>
 </template>
 
-<script  >
-export default {
-  data() {
-    return {
-      disabled: false,
-      value: false,
-      error: false,
-    }
-  },
-  methods: {
-    handleIfxChange(e) {
-      console.log('ifxChange event emitted with value:', e.detail.value);
-      this.value = e.detail.value;
-    },
-    handleSubmit() {
-      console.log('Form submitted. Checkbox value:', this.value);
-    },
-    toggleDisabled() {
-      this.disabled = !this.disabled;
-    },
-    toggleError() {
-      this.error = !this.error;
-    },
-    toggleValue() {
-      this.value = !this.value;
-    }
-  }
-}
+<script setup>
+import { ref, computed } from 'vue';
+
+let disabled = ref(false);
+let checkboxValue = ref(false);
+let error = ref(false);
+
+
+function handleCheckboxChange(event) {
+  console.log("updating checkbox value: ", event.detail)
+  checkboxValue.value = event.detail;
+};
+
+const handleSubmit = () => {
+  console.log('Form submitted. Checkbox value:', checkboxValue.value);
+};
+
+const toggleDisabled = () => {
+  disabled.value = !disabled.value;
+};
+
+const toggleError = () => {
+  error.value = !error.value;
+};
+
+const toggleValue = () => {
+  checkboxValue.value = !checkboxValue.value;
+};
 </script>
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
+

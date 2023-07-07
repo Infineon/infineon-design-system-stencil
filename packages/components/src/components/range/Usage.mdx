@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/blocks';
+
+import * as SliderStories from './range.stories';
+
+
+<Meta of={SliderStories} />
+# Slider
+The slider component allows users to select a value or a range of values within a specified numeric range. It provides a visual representation of a continuous scale with adjustable handles, enabling users to slide and select desired values.
+
+## Usage
+
+### When to use
+- When you need to allow users to select a specific value or a range of values within a defined numeric range.
+- When precise control over the selected values is required, such as input ranges.
+
+### When not to use
+- If the range of values is extremely limited or has a small number of discrete options.
+- If the input requires highly precise or specific numeric values.
+- If the available space for the range slider component is constrained, and displaying the full range or a large number of values becomes visually challenging.
+- If the numeric range is complex or non-linear, with varying intervals or irregular increments.
+
+## Types
+
+### Slider
+This variant allows users to select a single value within a specified range. It consists of a track and a draggable thumb that can be moved along the track to set the desired value.
+**Show image (slider)**
+
+#### Variants
+Depending on use cases, there are various value options which can be displayed.
+**Show image (slider variants)**
+
+#### States
+**Show image (slider states)**
+
+### Range Slider
+This variant allows users to select a range of values within a specified numeric range. It consists of a track and two draggable thumbs that can be adjusted to set the desired range.
+
+#### States
+**Show image (range slider states)**
+
+## Anatomy
+**Show image (slider+range slider anatomy)**

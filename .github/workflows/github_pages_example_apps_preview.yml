@@ -209,12 +209,15 @@ jobs:
             });
             const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
             if (autoComment) {
-              await github.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: autoComment.id,
-                body: newText
-              });
+              const existingText = autoComment.body;
+              if (!existingText.includes(newText)) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: autoComment.id,
+                  body: `${existingText}\n${newText}`
+                });
+              } 
             } else {
               await github.issues.createComment({
                 owner: context.repo.owner,

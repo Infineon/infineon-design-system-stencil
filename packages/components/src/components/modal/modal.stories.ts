@@ -5,6 +5,8 @@ import { icons } from '@infineon/infineon-icons'
 export default {
   title: 'Components/Modal',
   component: 'ifx-modal',
+  tags: ['autodocs'],
+
   argTypes: {
     caption: {
       control: 'text',

@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/TextInput",
+  tags: ['autodocs'],
+
   args: {
     error: false,
     disabled: false,
@@ -9,6 +11,9 @@ export default {
     placeholder: 'Placeholder',
     errorMessage: "",
     readonly: false
+  },
+  argTypes: {
+    onIfxInput: { action: 'ifxInput' },
   }
 };
 

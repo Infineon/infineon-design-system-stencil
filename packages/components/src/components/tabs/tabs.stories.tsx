@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Tabs',
+  tags: ['autodocs'],
+
   component: 'ifx-tabs',
   argTypes: {
     amountOfTabs: { name: 'Amount of Tabs', control: 'number' },

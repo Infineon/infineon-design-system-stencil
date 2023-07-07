@@ -1,5 +1,7 @@
 export default {
   title: 'Components/Spinner',
+  tags: ['autodocs'],
+
   args: {
     size: "m",
   },
