@@ -1,12 +1,7 @@
 name: Clear cache
 
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
+  workflow_dispatch
 
 permissions:
   actions: write
