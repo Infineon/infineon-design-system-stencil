@@ -1,25 +1,21 @@
 import './App.css';
 
 import Button from './components/Button/button';
-
 import TextField from './components/TextFIeld/TextField';
-
 import ProgressBar from './components/ProgressBar/ProgressBar';
-
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
-
 import Checkbox from './components/Checkbox/Checkbox';
-
 import Alert from './components/Alert/Alert';
-
 import Badge from './components/Badge/Badge';
-
 import Tag from './components/Tag/Tag';
-
 import Link from './components/Link/Link';
-
+import Spinner from './components/Spinner/Spinner';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb';
+import NumberIndicator from './components/NumberIndicator/NumberIndicator';
+import Status from './components/Status/Status';
+import Footer from './components/Footer/Footer';
+
 
 function App() {
 
@@ -64,10 +60,21 @@ function App() {
       <h2>Link</h2>
       <Link />
 
+      <h2>Spinner</h2>
+      <Spinner />
+
       <h2>Breadcrumb</h2>
       <Breadcrumb />
-    </div>
 
+      <h2>NumberIndicator</h2>
+      <NumberIndicator />
+
+      <h2>Status</h2>
+      <Status />
+
+      <h2>Footer</h2>
+      <Footer />
+   </div>
   )
 }
 export default App;

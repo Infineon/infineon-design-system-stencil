@@ -3,11 +3,17 @@ import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel } from '@infin
 
 
 function Breadcrumb() {
+
+    const handleComponentDidLoad = (event) =>{
+        console.log("component did load")
+    }
+
+
     return (
         <div>
             <IfxBreadcrumb>
                 <IfxBreadcrumbItem>
-                    <IfxBreadcrumbItemLabel slot='label' icon='share12'>Breadcrumb1</IfxBreadcrumbItemLabel>
+                    <IfxBreadcrumbItemLabel slot='label' icon='arrow-down-16' componentDidLoad={handleComponentDidLoad}>Breadcrumb1</IfxBreadcrumbItemLabel>
                         <ifxdropdown-menu>
                             <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
                             <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
@@ -17,7 +23,7 @@ function Breadcrumb() {
                 </IfxBreadcrumbItem>
 
                 <IfxBreadcrumbItem>
-                    <IfxBreadcrumbItemLabel slot='label' icon='share12'>Breadcrumb2</IfxBreadcrumbItemLabel>
+                    <IfxBreadcrumbItemLabel slot='label' icon='arrow-down-16' url="http://google.com">Breadcrumb2</IfxBreadcrumbItemLabel>
                         <ifxdropdown-menu>
                             <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
                             <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
@@ -27,7 +33,7 @@ function Breadcrumb() {
                 </IfxBreadcrumbItem> 
 
                 <IfxBreadcrumbItem>
-                    <IfxBreadcrumbItemLabel slot='label' icon='share12'>Breadcrumb3aaaaaaaa</IfxBreadcrumbItemLabel>
+                    <IfxBreadcrumbItemLabel slot='label' icon='arrow-down-16' target='right'>Breadcrumb3aaaaaaaa</IfxBreadcrumbItemLabel>
                         <ifxdropdown-menu>
                             <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
                             <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
