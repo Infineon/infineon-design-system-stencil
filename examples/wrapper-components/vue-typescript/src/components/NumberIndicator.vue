@@ -1,7 +1,9 @@
 
 
 <template>
-  <div class="app">
+  <div>
+    <h2>Number Indicator</h2>
+
     <ifx-number-indicator inverted="false">1</ifx-number-indicator>
     <button @click="increaseNumber">+</button>
     <button @click="decreaseNumber">-</button>
