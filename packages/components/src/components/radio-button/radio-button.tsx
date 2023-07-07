@@ -17,7 +17,6 @@ export class RadioButton {
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
-
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
@@ -26,9 +25,7 @@ export class RadioButton {
   }
 
   componentWillLoad() {
-
     this.internalValue = this.value;
-
     const slot = this.el.innerHTML;
     if (slot) {
       this.hasSlot = true;
@@ -43,8 +40,6 @@ export class RadioButton {
       this.ifxChange.emit(this.internalValue);
     }
   }
-
-
 
   render() {
     return (

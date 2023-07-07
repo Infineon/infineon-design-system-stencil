@@ -7,12 +7,7 @@
     align-items: center;
     padding: 0px;
     gap: 8px;
-    cursor: pointer; // Add this line
-
-    &.s .radioButton__wrapper {
-        width: 20px;
-        height: 20px;
-    }
+    cursor: pointer;
 
     &.m .radioButton__wrapper {
         width: 24px;
@@ -20,6 +15,8 @@
     }
 
     .radioButton__wrapper {
+        width: 20px;
+        height: 20px;
         position: relative;
         display: block;
         border-radius: 50%;
@@ -62,6 +59,13 @@
         &.disabled {
             background-color: #BFBBBB;
             border-color: #BFBBBB;
+
+            &.error { 
+                &:hover,
+                &:focus-visible {
+                    border-color: #CD002F;
+                }
+            }
         }
 
         &.checked {
@@ -106,7 +110,7 @@
             }
         }
 
-        &.error {
+        &.error:not(.disabled) {
             border-color: #CD002F;
 
             &:hover,
