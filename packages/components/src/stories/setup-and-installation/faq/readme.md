@@ -9,8 +9,8 @@
 
 ### Depends on
 
-- [ifx-accordion](../accordion)
-- [ifx-accordion-item](../accordion)
+- [ifx-accordion](../../../components/accordion)
+- [ifx-accordion-item](../../../components/accordion)
 
 ### Graph
 ```mermaid

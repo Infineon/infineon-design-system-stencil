@@ -15,16 +15,17 @@ export const parameters = {
   options: {
     storySort: {
       order: [
-        // 'About',
         'Setup & installation',
         [
+          'About',
           'Getting started',
           'Framework integration',
           [
             'Wrapper Components',
             'React + Stencil',
             'Vue + Stencil'
-          ]
+          ],
+          'FAQ',
         ],
         'Components',
         'Documentation',

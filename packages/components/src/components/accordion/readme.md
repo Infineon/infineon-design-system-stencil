@@ -47,7 +47,7 @@ Type: `Promise<boolean>`
 
 ### Used by
 
- - [ifx-faq](../faq)
+ - [ifx-faq](../../stories/setup-and-installation/faq)
 
 ### Depends on
 
