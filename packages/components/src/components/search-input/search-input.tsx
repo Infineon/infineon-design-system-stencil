@@ -10,10 +10,12 @@ import classNames from 'classnames';
 
 
 export class SearchInput {
-
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
+
   @Event() ifxInput: EventEmitter<CustomEvent>;
+  @State() insideDropdown: boolean = false;
+
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() size: string;
@@ -33,6 +35,7 @@ export class SearchInput {
       this.inputElement.value = newValue;
     }
   }
+
 
   handleInput = () => {
     const query = this.inputElement.value;
@@ -67,7 +70,7 @@ export class SearchInput {
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
-            onInput={this.handleInput}
+            onInput={() => this.handleInput()}
             placeholder="Search..."
             disabled={this.disabled}
             value={this.value} // bind the value property to input element

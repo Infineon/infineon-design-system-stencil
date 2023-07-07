@@ -2,8 +2,6 @@
 import './App.css'
 import SearchInput from './components/SearchInput/SearchInput'
 
-
-
 function App() {
 
   return (
@@ -12,5 +10,4 @@ function App() {
     </div>
   )
 }
-
 export default App

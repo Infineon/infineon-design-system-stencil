@@ -1,5 +1,7 @@
 export default {
   title: "Components/Link",
+  tags: ['autodocs'],
+
   args: {
     label: 'Link',
     icon: true,

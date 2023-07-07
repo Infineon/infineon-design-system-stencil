@@ -2,12 +2,14 @@
 
 export default {
   title: 'Components/Search Bar',
+  tags: ['autodocs'],
+
   args: {
     width: '100%',
     showCloseButton: true,
   },
   argTypes: {
-    onIfxChange: { action: 'ifxChange' },
+    onIfxInput: { action: 'ifxInput' },
     width: {
       options: ['40%', '60%', '80%', '100%'],
       control: { type: 'radio' },

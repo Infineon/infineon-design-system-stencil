@@ -21,6 +21,9 @@
 | ---------- | ----------- | ------------------------------- |
 | `ifxInput` |             | `CustomEvent<CustomEvent<any>>` |
 
+| Event      | Description | Type                  |
+| ---------- | ----------- | --------------------- |
+| `ifxInput` |             | `CustomEvent<String>` |
 
 ## Dependencies
 

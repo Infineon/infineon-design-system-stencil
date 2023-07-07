@@ -1,6 +1,7 @@
 
 export default {
   title: "Components/Button",
+  tags: ['autodocs'],
 
   args: {
     label: "Button",

@@ -1,5 +1,7 @@
 export default {
   title: 'Components/IconsPreview',
+  tags: ['autodocs'],
+
   excludeStories: ["Default"],
 }
 

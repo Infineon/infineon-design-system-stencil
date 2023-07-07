@@ -17,6 +17,12 @@
 | `value`           | `value`             |             | `string`  | `''`        |
 
 
+## Events
+
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxInput` |             | `CustomEvent<any>` |
+
 ## Dependencies
 
 ### Depends on

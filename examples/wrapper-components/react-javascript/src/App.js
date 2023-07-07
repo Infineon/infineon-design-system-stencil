@@ -8,7 +8,6 @@ function App() {
     <div>
       <SearchInput />
     </div>
-
   )
 }
 export default App;
