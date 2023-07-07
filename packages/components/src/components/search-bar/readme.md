@@ -20,6 +20,9 @@
 | ----------- | ----------- | ------------------ |
 | `ifxChange` |             | `CustomEvent<any>` |
 
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxInput` |             | `CustomEvent<any>` |
 
 ## Dependencies
 

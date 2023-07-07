@@ -7,10 +7,15 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/
 })
 export class SearchBar {
   @Prop() showCloseButton: boolean = true;
+
   @Prop() isOpen: boolean = true;
   @State() internalState: boolean;
   @Event() ifxChange: EventEmitter;
   @Prop({mutable: true}) value: string;
+  @Prop() hideLabel: boolean = false;
+  @Prop() size: string = "";
+  @Event() ifxInput: EventEmitter;
+
 
   @Watch('isOpen')
   handlePropChange() {
@@ -34,12 +39,16 @@ export class SearchBar {
     this.setInitialState()
   }
 
+  handleInput(event: CustomEvent) {
+    this.value = event.detail;
+  }
+
   render() {
     return (
       <div class={`search-bar ${!this.internalState ? 'closed' : ""}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
-            <ifx-search-input onIfxChange={(event) => this.handleSearchInput(event)}>
+            <ifx-search-input value={this.value} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-input>
             {this.showCloseButton &&

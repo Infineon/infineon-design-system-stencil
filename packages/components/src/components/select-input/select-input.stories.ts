@@ -1,6 +1,8 @@
 
 export default {
   title: "Components/SelectInput",
+  tags: ['autodocs'],
+
   args: {
     icon: 'bargraph16',
   },

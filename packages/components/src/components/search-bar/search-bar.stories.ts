@@ -17,4 +17,3 @@ const DefaultTemplate = (args) =>
 
 export const Default = DefaultTemplate.bind({});
 
-

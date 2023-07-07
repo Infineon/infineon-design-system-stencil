@@ -1,5 +1,7 @@
 export default {
   title: "Components/MultiSelectInput",
+  tags: ['autodocs'],
+
   args: {
     placeholder: 'Placeholder',
   },

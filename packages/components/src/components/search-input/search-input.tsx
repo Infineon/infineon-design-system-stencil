@@ -10,13 +10,12 @@ import classNames from 'classnames';
 
 
 export class SearchInput {
-
   private inputElement: HTMLInputElement;
+  @Element() el: HTMLElement;
   @Prop({ mutable: true }) value: string = '';
   @Prop() width: string = '100%';
-  @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Event() ifxInput: EventEmitter<String>;
   @State() insideDropdown: boolean = false;
-  @Element() el: HTMLElement;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() borderColor: 'light' | 'dark' | 'green';
@@ -29,26 +28,21 @@ export class SearchInput {
     }
   }
 
+
   handleInput = () => {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    const customEvent = new CustomEvent('ifxChange', {
-      detail: query,
-      bubbles: true,
-      composed: true
-    });
-    this.ifxChange.emit(customEvent);
+    this.ifxInput.emit(this.value);
   };
 
 
   handleDelete = () => {
     this.inputElement.value = '';
-    this.ifxChange.emit(null);
+    this.ifxInput.emit(null);
   }
 
 
   render() {
-
     return (
       <div class={this.getClassNames()}>
         <div class={this.getWrapperClassNames()}
@@ -57,12 +51,10 @@ export class SearchInput {
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
-            onInput={this.handleInput}
+            onInput={() => this.handleInput()}
             placeholder="Search..."
             disabled={this.disabled}
             value={this.value} // bind the value property to input element
-
-
           />
           {this.showDeleteIcon ? (
             <ifx-icon icon="delete-x-16" class="delete-icon" onClick={this.handleDelete}>

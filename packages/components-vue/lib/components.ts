@@ -264,8 +264,10 @@ export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>(
 
 export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
   'disabled',
-  'checked',
-  'error'
+  'value',
+  'error',
+  'size',
+  'ifxChange'
 ]);
 
 
@@ -287,9 +289,9 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'showCloseButton',
   'isOpen',
   'value',
-  'ifxChange'
+  'ifxInput'
 ],
-'value', 'ifxChange');
+'value', 'ifxInput');
 
 
 export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
@@ -299,9 +301,9 @@ export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, 
   'disabled',
   'borderColor',
   'size',
-  'ifxChange'
+  'ifxInput'
 ],
-'value', 'ifxChange');
+'value', 'ifxInput');
 
 
 export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);
@@ -363,7 +365,7 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.
   'disabled',
   'readonly',
   'icon',
-  'ifxChange'
+  'ifxInput'
 ],
 'value', 'ifxInput');
 
