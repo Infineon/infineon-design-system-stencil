@@ -3,6 +3,8 @@ import { action } from '@storybook/addon-actions';
 export default {
   title: 'Components/Accordion',
   component: 'ifx-accordion',
+  tags: ['autodocs'],
+
   argTypes: {
     amountOfItems: { control: 'number' },
   },

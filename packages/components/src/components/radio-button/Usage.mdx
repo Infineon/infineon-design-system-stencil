@@ -1,0 +1,42 @@
+
+import { Meta } from '@storybook/blocks';
+
+import * as RadioButtonStories from './radio-button.stories';
+
+
+<Meta of={RadioButtonStories} /> 
+# Radio Button
+The radio component is used to allow users to select a single option from a predefined list. It represents a mutually exclusive choice, where only one option can be selected at a time.
+
+## Usage
+
+### When to use
+- When you want to provide users with the ability to select a single option from a list.
+- When the options are mutually exclusive, and selecting one option automatically deselects the others.
+
+### When not to use
+- When multiple selections are allowed. In such cases, checkboxes are more appropriate.
+- If the options are independent and not mutually exclusive, checkboxes should be used instead.
+
+## Sizes
+The radio button component in our design system is available in two different sizes: 20px and 24px. These sizes are designed to provide flexibility and meet various design requirements.
+
+## Grouping radio buttons
+Deciding whether to place radio buttons in an inline or block layout depends on the specific context and requirements of your user interface.
+
+**Show image(inline radio button group)**
+
+### Inline 
+- Use to save space when you have limited screen real estate or need to place other elements alongside the radio buttons. 
+- Use when the options in your radio button group have short labels, an inline layout can provide a more compact and visually streamlined presentation. 
+- Use to visually group related options or indicate that they belong to the same category.
+
+**Show image(block radio button group)**
+
+### Block
+- Use for long radio button labels. 
+- Use to easily scan and compare the options from top to bottom. 
+- Use to visually separate radio button options.
+
+## States
+**Show nice image(radio button states)**

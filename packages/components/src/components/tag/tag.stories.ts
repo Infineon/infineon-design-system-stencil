@@ -1,5 +1,7 @@
 export default {
   title: 'Components/Tag',
+  tags: ['autodocs'],
+
   args: {
     label: "Tag label",
   },

@@ -1,17 +1,13 @@
 
-import CustomMDXDocumentation from './Custom-MDX-Documentation.mdx';
-
 export default {
   title: "Components/Button",
-  parameters: {
-    docs: {
-      page: CustomMDXDocumentation,
-    },
-  },
+  tags: ['autodocs'],
+
   args: {
     label: "Button",
     variant: "solid",
     color: "primary",
+    type: "button",
     size: "m",
     disabled: false,
     icon: "",
@@ -27,6 +23,10 @@ export default {
     },
     color: {
       options: ['primary', 'secondary', 'success', 'danger', 'warning'],
+      control: { type: 'radio' },
+    },
+    type: {
+      options: ['submit', 'button'],
       control: { type: 'radio' },
     },
     size: {
@@ -48,13 +48,12 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button  variant="${args.variant}" icon="${args.icon}" position="${args.position}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
+  `<ifx-button type="${args.type}" variant="${args.variant}" icon="${args.icon}" position="${args.position}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
   ${args.label}
   </ifx-button>`;
 
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
 
-};
+
 
