@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Ifx-Search-Input</h2>
+    <h2>Search-Input</h2>
     <h3>Using v-model</h3>
     <br />
     <ifx-search-input v-model="searchInput" style="width: 100%" show-close-button="true"></ifx-search-input>

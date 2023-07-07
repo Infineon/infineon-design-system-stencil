@@ -1,24 +1,19 @@
 
-
 <template>
-  <div class="app">
-      <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+  <div>
+    <h2>Spinner</h2>
+    <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+    <br />
+    <br />
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 
 
 
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: block;
-  align-items: center;
-}
-</style>
+
 
  
