@@ -5,8 +5,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.0.15/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.0.15/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.2.7/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
+
 
   <title>Vanilla</title>
   <script type="module" crossorigin src="/assets/index-3cfb730f.js"></script>
@@ -14,16 +15,15 @@
 
 <body>
 
-  <div class="app">
-    <h1 class="header">Using Stencil web components in an Vanilla JS</h1>
+  <div>
+    <h1>Using Stencil web components in an Vanilla JS</h1>
     <h2>Button</h2>
-    <div>
 
-      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
-        Button
-      </ifx-button>
-    </div>
+    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+      Button
+    </ifx-button>
     <br />
+
     <h2>Progress bar</h2>
     <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
     <ifx-button onclick="updateProgress()" variant="outline" href="" target="_blank" color="primary" size="s"
@@ -31,12 +31,14 @@
       Update Progress
     </ifx-button>
     <br />
+    <br />
     <h2>Checkbox</h2>
 
     <form id="form">
       <ifx-checkbox id="checkbox" name="name">label</ifx-checkbox>
       <br />
       <ifx-button type="submit" variant="outline">Submit</ifx-button>
+
     </form>
 
     <ifx-button id="toggleDisabled">Toggle Disabled</ifx-button>
@@ -50,11 +52,21 @@
 
     <br />
 
-    <h2>Text Input</h2>
-    <ifx-text-input id="text-input" error="true" disabled="false" success="false" placeholder="Placeholder"
-      error-message="Some error message">Text field</ifx-text-input>
+    <form id="another-form">
+      <h2>Text Input</h2>
+      <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
+        errorMessage="">Text
+        field</ifx-text-input>
+      <br />
+
+    </form>
+
     <span id="textInputSpan"></span>
     <br />
+
+    <h2>Radio Button</h2>
+    <ifx-radio-button id="radio-btn" size="s" error="false" disabled="false" value="false">Text</ifx-radio-button>
+
   </div>
 
 </body>
@@ -64,11 +76,15 @@
   let checked = false;
   let error = false;
   let textInputValue = "";
+  let radioChecked = false;
 
   const form = document.querySelector("#form");
+  const anotherForm = document.querySelector("#another-form");
+
   const checkbox = document.querySelector("#checkbox");
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
+  const radioBtn = document.querySelector('#radio-btn');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -96,14 +112,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
-    const textInput = document.querySelector('#text-input');
-
-    textInput.addEventListener('ifxInput', (event) => {
-      console.log("Text input: ", event.detail);
-      textInputValue = event.detail;
-      updateValues();
-
-    });
     form.addEventListener('submit', () => {
       event.preventDefault();
       console.log('Form submitted. Checkbox value:', checked);
@@ -130,25 +138,31 @@
       checked = !checked;
       updateValues();
     });
+
+
+    textInput.addEventListener('ifxInput', (event) => {
+      console.log("Text input: ", event.detail);
+      textInputValue = event.detail;
+      updateValues();
+    });
+
+    radioBtn.addEventListener('ifxChange', (event) => {
+      console.log("radio btn value change", event.detail);
+      radioChecked = !radioChecked;
+    });
+
   });
 
 
   updateValues();
 
 
+
+
 </script>
 
 <style>
-  .app {
-    text-align: center;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-  }
 
-  .header {
-    text-align: center;
-  }
 </style>
 
 </html>
