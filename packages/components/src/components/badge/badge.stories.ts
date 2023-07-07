@@ -1,5 +1,7 @@
 export default {
   title: "Components/Badge",
+  tags: ['autodocs'],
+
   args: {
     label: 'Badge label',
   },
@@ -11,8 +13,8 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
- 
+Default.argTypes = {
+
 }
 
 

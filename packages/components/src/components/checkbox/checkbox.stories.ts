@@ -2,16 +2,16 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/Checkbox",
+  tags: ['autodocs'],
   args: {
     error: false,
     disabled: false,
     value: false,
-    label: 'Text'
+    label: 'Text',
   },
 
-  argTypes: {
+  argTypes: { onIfxChange: { action: 'checked' } },
 
-  },
 };
 
 

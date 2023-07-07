@@ -2,6 +2,8 @@ import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: "Components/Alert",
+  tags: ['autodocs'],
+
   args: {
     label: 'Attention! This is an alert message — check it out!',
     color: "primary",
