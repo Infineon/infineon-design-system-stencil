@@ -21,15 +21,8 @@
 | ---------- | ----------- | ------------------------------- |
 | `ifxInput` |             | `CustomEvent<CustomEvent<any>>` |
 
-| Event      | Description | Type                  |
-| ---------- | ----------- | --------------------- |
-| `ifxInput` |             | `CustomEvent<String>` |
 
 ## Dependencies
-
-### Used by
-
- - [ifx-search-bar](../search-bar)
 
 ### Depends on
 
@@ -39,7 +32,6 @@
 ```mermaid
 graph TD;
   ifx-search-input --> ifx-icon
-  ifx-search-bar --> ifx-search-input
   style ifx-search-input fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
