@@ -7,10 +7,9 @@ import { Component, h, Event, Element, Prop, EventEmitter, Watch } from '@stenci
 })
 
 export class TextInput {
+  private inputElement: HTMLInputElement;
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
-  private inputElement: HTMLInputElement;
-
   @Prop({ mutable: true }) value: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
@@ -18,7 +17,7 @@ export class TextInput {
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() icon: boolean = false;
-  @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Event() ifxInput: EventEmitter<String>;
 
 
   @Watch('value')
@@ -29,16 +28,10 @@ export class TextInput {
   }
 
 
-  handleChange(e) {
-
+  handleInput() {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    const customEvent = new CustomEvent('ifxChange', {
-      detail: e.target.value,
-      bubbles: true,
-      composed: true
-    });
-    this.ifxChange.emit(customEvent);
+    this.ifxInput.emit(this.value);
   }
 
   render() {
@@ -57,7 +50,7 @@ export class TextInput {
             type="text"
             id='text-field'
             value={this.value}
-            onInput={(ev) => this.handleChange(ev)}
+            onInput={() => this.handleInput()}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
           {this.error &&

@@ -7,17 +7,20 @@ import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '
 })
 
 export class Checkbox {
+  private inputElement: HTMLInputElement;
+
   @Element() el;
   @Prop() disabled: boolean = false;
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @Prop() name: string = '';
   @State() internalValue: boolean;
-  @Event({ bubbles: true, composed: true, eventName: 'ifxChange' }) ifxChange: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
       this.internalValue = !this.internalValue;
+      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
       this.ifxChange.emit(this.internalValue);
     }
   }
@@ -26,8 +29,10 @@ export class Checkbox {
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this.internalValue = newValue;
+      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
     }
   }
+
 
   handleKeydown(event) {
     // Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
@@ -38,7 +43,7 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalValue = this.internalValue || false
   }
 
   render() {
@@ -51,10 +56,17 @@ export class Checkbox {
 
     return (
       <div class="checkbox__container">
-        <input type="checkbox" hidden
+        <input
+          type="checkbox"
+          hidden
+          ref={(el) => (this.inputElement = el)}
           name={this.name}
           checked={this.internalValue}
-          value={`${this.internalValue}`} />
+          onChange={this.handleCheckbox.bind(this)} // Listen for changes here
+          id='checkbox'
+          value={`${this.internalValue}`}
+        />
+
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}

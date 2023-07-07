@@ -6,23 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="module" src="dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
+
 
   <title>Vanilla</title>
 </head>
 
 <body>
 
-  <div class="app">
-    <h1 class="header">Using Stencil web components in an Vanilla JS</h1>
+  <div>
+    <h1>Using Stencil web components in an Vanilla JS</h1>
     <h2>Button</h2>
-    <div>
 
-      <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
-        Button
-      </ifx-button>
-    </div>
+    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+      Button
+    </ifx-button>
     <br />
+
     <h2>Progress bar</h2>
     <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
     <ifx-button onclick="updateProgress()" variant="outline" href="" target="_blank" color="primary" size="s"
@@ -62,6 +62,15 @@
 
     <span id="textInputSpan"></span>
     <br />
+
+    <h2>Radio Button</h2>
+    <ifx-radio-button id="radio-btn" size="s" error="false" disabled="false" value="false">Text</ifx-radio-button>
+
+    <h2>Number Indicator</h2>
+    <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
+    <button onClick="increaseNumber()">+</button>
+    <button onClick="decreaseNumber()">-</button>
+
   </div>
 
 </body>
@@ -71,6 +80,8 @@
   let checked = false;
   let error = false;
   let textInputValue = "";
+  let radioChecked = false;
+  let number = 1;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -78,6 +89,8 @@
   const checkbox = document.querySelector("#checkbox");
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
+  const radioBtn = document.querySelector('#radio-btn');
+  const numberIndicator = document.querySelector('#number-indicator');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -96,7 +109,15 @@
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
     textInputSpan.textContent = `Text Input: ${textInputValue}`;
+  }
 
+  function increaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) + 1;
+
+  }
+
+  function decreaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) - 1;
   }
 
   function updateProgress() {
@@ -105,7 +126,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
-
     form.addEventListener('submit', () => {
       event.preventDefault();
       console.log('Form submitted. Checkbox value:', checked);
@@ -134,32 +154,28 @@
     });
 
 
-
     textInput.addEventListener('ifxInput', (event) => {
       console.log("Text input: ", event.detail);
       textInputValue = event.detail;
       updateValues();
     });
 
+    radioBtn.addEventListener('ifxChange', (event) => {
+      console.log("radio btn value change", event.detail);
+      radioChecked = !radioChecked;
+    });
   });
 
 
   updateValues();
 
 
+
+
 </script>
 
 <style>
-  .app {
-    text-align: center;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-  }
 
-  .header {
-    text-align: center;
-  }
 </style>
 
 </html>

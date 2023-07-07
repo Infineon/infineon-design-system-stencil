@@ -1,22 +1,29 @@
 
 
 <template>
-  <div class="app">
+  <div>
+    <h2>Number Indicator</h2>
+
     <ifx-number-indicator inverted="false">1</ifx-number-indicator>
+    <button @click="increaseNumber">+</button>
+    <button @click="decreaseNumber">-</button>
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-</script>
+let number = ref(1);
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
+
+function increaseNumber() {
+  number.value = number.value + 1;
+
 }
-</style>
+
+function decreaseNumber() {
+  number.value = number.value - 1;
+}
+</script>
 
  
