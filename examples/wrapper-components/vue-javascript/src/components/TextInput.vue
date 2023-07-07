@@ -1,29 +1,32 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Text Input</h2>
     <div>
-      <ifx-text-input v-model="input" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-input v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Label</ifx-text-input>
     </div>
-    <p>Text field value: {{ input }}</p>
+    <p>Text field value: {{ inputValue }}</p>
+    <br />
     <br />
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 
-let input = ref("");
+let inputValue = ref("");
 
+onMounted(() => {
+  updateTextInput();
+  setInterval(updateTextInput, 10000);
+})
+
+function updateTextInput() {
+  console.log("updating text input from parent component")
+  inputValue.value = inputValue.value + "+1";
+
+}
 
 </script>
 
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>

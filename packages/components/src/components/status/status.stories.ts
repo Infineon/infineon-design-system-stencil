@@ -1,5 +1,7 @@
 export default {
   title: 'Components/Status',
+  tags: ['autodocs'],
+
   args: {
     label: "text",
     color: "orange",

@@ -1,38 +1,37 @@
-import { Component, h, Event, Element, Prop, State, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-input',
   styleUrl: 'text-input.scss',
   shadow: true
 })
+
 export class TextInput {
+  private inputElement: HTMLInputElement;
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
-
-  @Prop() value: string = '';
-  @State() internalValue: string = '';
+  @Prop({ mutable: true }) value: string = '';
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = ""
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() readonly: boolean = false;
   @Prop() icon: boolean = false;
-  @Event({ bubbles: true, composed: true }) ifxInput: EventEmitter;
+  @Event() ifxInput: EventEmitter<String>;
 
-  componentWillLoad() {
-    this.internalValue = this.value;
-  }
 
   @Watch('value')
-  valueChanged(newValue: string, oldValue: string) {
-    if (newValue !== oldValue) {
-      this.internalValue = newValue;
+  valueWatcher(newValue: string) {
+    if (newValue !== this.inputElement.value) {
+      this.inputElement.value = newValue;
     }
   }
 
-  handleInput(e) {
-    this.internalValue = e.target.value;
-    this.ifxInput.emit(this.internalValue);
+
+  handleInput() {
+    const query = this.inputElement.value;
+    this.value = query; // update the value property when input changes
+    this.ifxInput.emit(this.value);
   }
 
   render() {
@@ -45,12 +44,13 @@ export class TextInput {
         </div>
         <div class="textInput__bottom-wrapper">
           <input
+            ref={(el) => (this.inputElement = el)}
             readonly={this.readonly}
             disabled={this.disabled}
             type="text"
             id='text-field'
-            value={this.internalValue}
-            onInput={(ev) => this.handleInput(ev)}
+            value={this.value}
+            onInput={() => this.handleInput()}
             placeholder={this.placeholder}
             class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
           {this.error &&

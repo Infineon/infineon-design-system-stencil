@@ -1,7 +1,7 @@
 
 
 <template>
-  <div class="app">
+  <div>
     <h2>Button</h2>
     <div>
       <ifx-button variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
@@ -9,6 +9,7 @@
         Click me
       </ifx-button>
     </div>
+    <br />
     <br />
   </div>
 </template>
@@ -24,14 +25,5 @@ function handleMouseOver() {
   console.log('Mouse over event detected');
 };
 </script>
-
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
 
  
