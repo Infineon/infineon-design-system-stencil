@@ -64,7 +64,6 @@ export class AppComponent {
   }
 
   increaseNumber() {
-    console.log("test", this.numberIndicator)
     this.numberIndicator = this.numberIndicator + 1;
 
   }

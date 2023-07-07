@@ -2,21 +2,28 @@
 
 <template>
   <div class="app">
-    <ifx-number-indicator inverted="false">1</ifx-number-indicator>
+    <ifx-number-indicator inverted="false">{{ number }}</ifx-number-indicator>
+    <button @click="increaseNumber">+</button>
+    <button @click="decreaseNumber">-</button>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 
+let number = ref(1);
+
+
+function increaseNumber() {
+  number.value = number.value + 1;
+
+}
+
+function decreaseNumber() {
+  number.value = number.value - 1;
+}
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
+
 
  
