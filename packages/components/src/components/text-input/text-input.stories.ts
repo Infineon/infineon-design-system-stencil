@@ -11,6 +11,9 @@ export default {
     placeholder: 'Placeholder',
     errorMessage: "",
     readonly: false
+  },
+  argTypes: {
+    onIfxInput: { action: 'ifxInput' },
   }
 };
 

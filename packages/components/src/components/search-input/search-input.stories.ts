@@ -11,7 +11,7 @@ export default {
 
   },
   argTypes: {
-    onIfxChange: { action: 'ifxChange' },
+    onIfxInput: { action: 'ifxInput' },
     borderColor: {
       options: ['light', 'dark', 'green'],
       control: { type: 'radio' },
@@ -31,8 +31,8 @@ const Template = (args) => {
   </ifx-search-input>`;
 
   const inputElement = wrapper.querySelector('ifx-search-input');
-  inputElement.addEventListener('ifxChange', (event) => {
-    args.onIfxChange(event);
+  inputElement.addEventListener('ifxInput', (event) => {
+    args.onIfxInput(event);
 
   });
 
