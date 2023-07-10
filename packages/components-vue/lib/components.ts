@@ -144,6 +144,9 @@ export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-exa
 ]);
 
 
+export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
+
+
 export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>('ifx-filter-input', undefined, [
   'label',
   'size',
@@ -285,7 +288,7 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
 ]);
 
 
-export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
+export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', undefined, [
   'value',
   'showDeleteIcon',
   'disabled',
@@ -307,7 +310,8 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
-  'size'
+  'size',
+  'variant'
 ]);
 
 

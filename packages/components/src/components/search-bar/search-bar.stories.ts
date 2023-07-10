@@ -28,7 +28,7 @@ const Template = (args) => {
 
   const inputElement = wrapper.querySelector('ifx-search-bar');
   inputElement.addEventListener('ifxChange', (event) => {
-    // console.log('Storybook Search-Input:', event);
+    // console.log('Storybook Search-Field:', event);
     args.onIfxChange(event);
 
   });

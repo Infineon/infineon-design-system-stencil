@@ -33,7 +33,7 @@
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
  - [ifx-range](../range)
- - [ifx-search-input](../search-input)
+ - [ifx-search-field](../search-input)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-text-input](../text-input)
 
@@ -56,7 +56,7 @@ graph TD;
   ifx-navbar --> ifx-icon
   ifx-navbar-menu-item --> ifx-icon
   ifx-range --> ifx-icon
-  ifx-search-input --> ifx-icon
+  ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-text-input --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px

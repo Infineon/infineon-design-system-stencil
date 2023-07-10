@@ -3,13 +3,13 @@ import classNames from 'classnames';
 
 
 @Component({
-  tag: 'ifx-search-input',
-  styleUrl: 'search-input.scss',
+  tag: 'ifx-search-field',
+  styleUrl: 'search-field.scss',
   shadow: true
 })
 
 
-export class SearchInput {
+export class SearchField {
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
 
@@ -53,16 +53,16 @@ export class SearchInput {
     this.ifxInput.emit(null);
   }
 
-  focusInput() { 
+  focusInput() {
     this.inputElement.focus();
     this.isFocused = true;
   }
 
   render() {
     return (
-      <div class='search-input'>
-        <div class={this.getWrapperClassNames()} 
-          tabindex={1} 
+      <div class='search-field'>
+        <div class={this.getWrapperClassNames()}
+          tabindex={1}
           onFocus={() => this.focusInput()}
           onClick={() => this.focusInput()}
         >
@@ -86,14 +86,14 @@ export class SearchInput {
 
   getSizeClass() {
     return `${this.size}` === "s"
-      ? "search-input__wrapper-s"
+      ? "search-field__wrapper-s"
       : "";
   }
 
   getWrapperClassNames() {
     return classNames(
-      `search-input__wrapper`,
-      `search-input__wrapper ${this.getSizeClass()}`,
+      `search-field__wrapper`,
+      `search-field__wrapper ${this.getSizeClass()}`,
       `${this.isFocused ? 'focused' : ""}`
     );
   }

@@ -1,10 +1,10 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
 
-.search-input {
+.search-field {
   background-color: tokens.$color-bg-white;
   width: 100%;
 
-  .search-input__wrapper {
+  .search-field__wrapper {
     box-sizing: border-box;
     height: 48px;
     display: flex;
@@ -21,11 +21,11 @@
     width: 100%;
     outline: none;
 
-    &.focused { 
+    &.focused {
       border: 1px solid #0A8276;
     }
 
-    &.search-input__wrapper-s {
+    &.search-field__wrapper-s {
       height: 40px;
     }
 

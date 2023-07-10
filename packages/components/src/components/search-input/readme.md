@@ -31,8 +31,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-search-input --> ifx-icon
-  style ifx-search-input fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-search-field --> ifx-icon
+  style ifx-search-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
