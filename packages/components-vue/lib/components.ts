@@ -144,6 +144,9 @@ export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-exa
 ]);
 
 
+export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
+
+
 export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>('ifx-filter-input', undefined, [
   'label',
   'size',
