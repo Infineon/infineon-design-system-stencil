@@ -1,14 +1,16 @@
 import './App.css';
 import Link from './components/Link/Link';
-import SearchInput from './components/SearchInput/SearchInput';
+import SearchField from './components/SearchField/SearchField';
 import Spinner from './components/Spinner/Spinner';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 
 function App() {
   return (
     <div>
+      <h1>Stencil Framework integration - React + TS </h1>
+
       <h2>Search Field</h2>
-      <SearchInput />
+      <SearchField />
       <br />
 
       <h2>Spinner</h2>

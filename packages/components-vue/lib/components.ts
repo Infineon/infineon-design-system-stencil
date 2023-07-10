@@ -288,6 +288,17 @@ export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range',
 ]);
 
 
+export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
+  'showCloseButton',
+  'isOpen',
+  'value',
+  'hideLabel',
+  'size',
+  'ifxInput'
+],
+'value', 'ifxInput');
+
+
 export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', undefined, [
   'value',
   'showDeleteIcon',

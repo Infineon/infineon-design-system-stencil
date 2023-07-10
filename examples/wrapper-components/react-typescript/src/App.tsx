@@ -8,11 +8,11 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 
-import Spinner from './Components/Spinner/Spinner'
+import Spinner from './components/Spinner'
 
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 
-import SearchInput from './components/SearchInput/SearchInput'
+import SearchField from './components/SearchField/SearchField'
 
 function App() {
  
@@ -56,7 +56,7 @@ function App() {
       <br />
 
       <h2>Search Field</h2>
-       <SearchInput />
+       <SearchField />
        <br />
 
        <h2>Search Bar</h2>

@@ -1,5 +1,5 @@
 @use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
-
+@use "../../global/font.scss";
 
 .search-bar {
   box-sizing: border-box;
@@ -9,52 +9,41 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  
-  //padding: 12px 16px;
-  //border: 2px solid blue;
 
-  &.large { 
+  &.large {
     width: 362px;
   }
 
-  &.closed { 
+  &.closed {
     display: inline-flex;
     width: auto;
   }
 
-  & .search-bar-wrapper { 
+  & .search-bar-wrapper {
     display: flex;
     align-items: center;
     gap: 16px;
     width: 100%;
-    //border: 1px solid; //remove
-    //padding: 0 16px;
 
-    & ifx-search-input { 
-      width: 100%;
-    }
-    // & input { 
-    //   width: 100%;
-    // }
-  
-    & ifx-link:hover { 
+    & a {
+      text-decoration: none;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      color: #0A8276;
       cursor: pointer;
     }
-  }
 
-  // & .search-input__wrapper {
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-items: center;
-  //   padding: 12px 16px;
-  //   gap: 12px;
-  //   //width: 274px;
-  //   height: 40px;
-  //   border-radius: 1px;
-  //   flex: none;
-  //   order: 0;
-  //   flex-grow: 1;
-  // }
+    & ifx-search-input {
+      width: 100%;
+    }
+
+    // & a:hover { 
+    //   cursor: pointer;
+    //   color: #0A8276;
+    // }
+  }
 
   .search-bar__icon-wrapper {
     display: inline-flex;
@@ -62,7 +51,7 @@
     align-items: center;
     justify-content: center;
 
-    & a { 
+    & a {
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
@@ -77,27 +66,8 @@
       padding-left: 11px;
     }
 
-    & ifx-icon:hover { 
+    & ifx-icon:hover {
       cursor: pointer;
     }
-
   }
-
 }
-
-
-// @media screen and (max-width: 720px) { 
-//   .search-bar { 
-//     padding: 0px 16px;
-//     width: 360px;
-//     height: 64px;
-//   }
-// }
-
-// @media screen and (min-width: 720px) { 
-//   .search-bar { 
-//     padding: 0px 16px;
-//     width: 360px;
-//     height: 64px;
-//   }
-// }

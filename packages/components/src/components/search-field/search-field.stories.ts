@@ -3,6 +3,8 @@ import { action } from "@storybook/addon-actions";
 export default {
   title: 'Components/Search Field',
   tags: ['autodocs'],
+  'parameters.docs.source.type': 'code',
+
   args: {
     showDeleteIcon: true,
     disabled: false,

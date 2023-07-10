@@ -1,6 +1,5 @@
 
 <template>
-  <SearchInput />
   <h1 class="header">Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
@@ -8,6 +7,7 @@
   <RadioButton />
   <ProgressBar />
   <Search />
+  <SearchField />
   <TextInput />
   <Spinner />
   <Link />
@@ -16,8 +16,7 @@
 
 
 <script lang="ts" setup>
-import SearchInput from './components/SearchInput.vue'
-
+import SearchField from './components/SearchField.vue'
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
@@ -31,6 +30,4 @@ import Link from './components/Link.vue'
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
