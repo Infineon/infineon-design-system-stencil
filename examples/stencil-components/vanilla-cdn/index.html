@@ -76,11 +76,21 @@
     <ifx-link color="primary" href="" target="_blank" underline="false">
       Link
     </ifx-link>
+    <br />
 
     <h2>Number Indicator</h2>
     <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
     <button onClick="increaseNumber()">+</button>
     <button onClick="decreaseNumber()">-</button>
+    <br />
+
+    <h2>Search field</h2>
+    <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
+    <br />
+
+    <h2>Search bar</h2>
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-field>
+      <br />
 
   </div>
 
@@ -102,6 +112,8 @@
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
+  const searchField = document.querySelector('#search-field');
+  const searchBar = document.querySelector('#search-bar');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -174,6 +186,14 @@
     radioBtn.addEventListener('ifxChange', (event) => {
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
+    });
+
+    searchField.addEventListener('ifxInput', (event) => {
+      console.log("search field value", event.detail);
+    });
+
+    searchBar.addEventListener('ifxInput', (event) => {
+      console.log("search bar value", event.detail);
     });
   });
 
