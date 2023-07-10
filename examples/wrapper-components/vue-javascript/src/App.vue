@@ -8,6 +8,7 @@
   <ProgressBar />
   <Search />
   <TextInput />
+  <Spinner />
 </template>
 
 
@@ -19,6 +20,7 @@ import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import RadioButton from './components/RadioButton.vue'
 import TextInput from './components/TextInput.vue'
+import Spinner from './components/Spinner.vue'
 
 </script>
 

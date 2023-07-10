@@ -8,6 +8,7 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 
 import Checkbox from './components/Checkbox/Checkbox';
+import Spinner from './components/Spinner/Spinner';
 
 function App() {
 
@@ -42,6 +43,10 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+      <br />
+
+      <h2>Spinner</h2>
+      <Spinner />
     </div>
 
   )

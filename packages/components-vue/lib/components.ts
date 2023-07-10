@@ -321,7 +321,8 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
-  'size'
+  'size',
+  'variant'
 ]);
 
 
