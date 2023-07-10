@@ -9,6 +9,7 @@ import RadioButton from './components/RadioButton/RadioButton';
 
 import Checkbox from './components/Checkbox/Checkbox';
 import Spinner from './components/Spinner/Spinner';
+import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 
 function App() {
   return (
@@ -49,6 +50,11 @@ function App() {
 
       <h2>Link</h2>
       <Link />
+      <br />
+
+
+      <h2>Number Indicator</h2>
+      <NumberIndicator />
       <br />
     </div>
 

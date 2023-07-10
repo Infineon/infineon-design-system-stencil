@@ -77,6 +77,11 @@
       Link
     </ifx-link>
 
+    <h2>Number Indicator</h2>
+    <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
+    <button onClick="increaseNumber()">+</button>
+    <button onClick="decreaseNumber()">-</button>
+
   </div>
 
 </body>
@@ -87,6 +92,7 @@
   let error = false;
   let textInputValue = "";
   let radioChecked = false;
+  let number = 1;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -95,6 +101,7 @@
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
+  const numberIndicator = document.querySelector('#number-indicator');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -113,7 +120,15 @@
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
     textInputSpan.textContent = `Text Input: ${textInputValue}`;
+  }
 
+  function increaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) + 1;
+
+  }
+
+  function decreaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) - 1;
   }
 
   function updateProgress() {
@@ -160,7 +175,6 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
-
   });
 
 

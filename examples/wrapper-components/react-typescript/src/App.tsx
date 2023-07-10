@@ -11,13 +11,16 @@ import RadioButton from './components/RadioButton/RadioButton';
 import './App.css'
 import Spinner from './Components/Spinner/Spinner'
 
+import './App.css'
+import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 
 function App() {
+ 
  
 
   return (
     <div>
-      <h1 className="header">Stencil Framework integration - React + TS </h1>
+      <h1>Stencil Framework integration - React + TS </h1>
       <h2>Search Bar</h2>
       <SearchBar />
       <br />
@@ -49,6 +52,10 @@ function App() {
       <h2>Link</h2>
       <Link />
       <br />
+
+      <h2>Number Indicator</h2>
+      <NumberIndicator />
+      
     </div>
    )
 }
