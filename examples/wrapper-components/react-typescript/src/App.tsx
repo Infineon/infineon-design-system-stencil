@@ -1,4 +1,6 @@
- import './App.css'
+
+import './App.css'
+import Link from './components/Link/Link'
 import Button from './components/Button/button';
 import TextField from './components/TextFIeld/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
@@ -14,9 +16,9 @@ function App() {
  
 
   return (
-       <div>
-    <h1 className="header">Stencil Framework integration - React + TS </h1>
-    <h2>Search Bar</h2>
+    <div>
+      <h1 className="header">Stencil Framework integration - React + TS </h1>
+      <h2>Search Bar</h2>
       <SearchBar />
       <br />
 
@@ -42,8 +44,12 @@ function App() {
       
       <h2>Spinner</h2>
       <Spinner />
-      </div>
-    
+      <br />
+      
+      <h2>Link</h2>
+      <Link />
+      <br />
+    </div>
    )
 }
 

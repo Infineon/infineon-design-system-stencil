@@ -1,5 +1,5 @@
 import './App.css';
-
+import Link from './components/Link/Link';
 import Button from './components/Button/button';
 import TextField from './components/TextFIeld/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
@@ -11,8 +11,6 @@ import Checkbox from './components/Checkbox/Checkbox';
 import Spinner from './components/Spinner/Spinner';
 
 function App() {
-
-
   return (
     <div>
       <h1>Stencil Framework integration - React + JS</h1>
@@ -47,6 +45,11 @@ function App() {
 
       <h2>Spinner</h2>
       <Spinner />
+      <br />
+
+      <h2>Link</h2>
+      <Link />
+      <br />
     </div>
 
   )
