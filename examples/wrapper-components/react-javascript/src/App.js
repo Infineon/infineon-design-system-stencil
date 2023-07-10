@@ -17,6 +17,12 @@ import Status from './components/Status/Status';
 import Footer from './components/Footer/Footer';
 import RadioButton from './components/RadioButton/RadioButton';
 import Card from './components/Card/Card';
+import Chips from './components/Chips/Chips';
+import Dropdown from './components/Dropdown/Dropdown';
+import Icon from './components/Icon/Icon';
+import Sidebar from './components/Sidebar/Sidebar';
+import Switch from './components/Switch/Switch';
+import Navbar from './components/Navbar/Navbar';
 
 
 function App() {
@@ -82,6 +88,24 @@ function App() {
 
       <h2>Card</h2>
       <Card />
+
+      <h2>Chips</h2>
+      <Chips />
+
+      <h2>Dropdown</h2>
+      <Dropdown />
+
+      <h2>Icon</h2>
+      <Icon />
+
+      <h2>Sidebar</h2>
+      <Sidebar />
+
+      <h2>Switch</h2>
+      <Switch />
+
+      <h2>Navbar</h2>
+      <Navbar />
    </div>
   )
 }
