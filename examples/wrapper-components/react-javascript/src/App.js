@@ -15,6 +15,8 @@ import Breadcrumb from './components/Breadcrumb/Breadcrumb';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import Status from './components/Status/Status';
 import Footer from './components/Footer/Footer';
+import RadioButton from './components/RadioButton/RadioButton';
+import Card from './components/Card/Card';
 
 
 function App() {
@@ -74,6 +76,12 @@ function App() {
 
       <h2>Footer</h2>
       <Footer />
+
+      <h2>RadioButton</h2>
+      <RadioButton />
+
+      <h2>Card</h2>
+      <Card />
    </div>
   )
 }
