@@ -1,3 +1,16 @@
+# v18.2.13 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 191 review spinner [#214](https://github.com/Infineon/infineon-design-system-stencil/pull/214) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.12 (Fri Jul 07 2023)
 
 #### 🐛 Bug Fix

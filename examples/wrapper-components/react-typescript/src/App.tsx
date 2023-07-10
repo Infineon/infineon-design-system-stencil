@@ -8,8 +8,13 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 
+import './App.css'
+import Spinner from './Components/Spinner/Spinner'
+
+
 function App() {
-  
+ 
+
   return (
     <div>
       <h1 className="header">Stencil Framework integration - React + TS </h1>
@@ -36,7 +41,11 @@ function App() {
       <h2>Radio Button</h2>
       <RadioButton />
       <br />
-
+      
+      <h2>Spinner</h2>
+      <Spinner />
+      <br />
+      
       <h2>Link</h2>
       <Link />
       <br />
