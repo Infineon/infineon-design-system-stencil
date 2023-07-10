@@ -67,6 +67,7 @@ jobs:
               issue_number: prNumber
             });
             const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            console.log('autoComment: ', autoComment); // Add console log here
             if (autoComment) {
               const existingText = autoComment.body;
               console.log('existingText:', existingText); // Add console log here
