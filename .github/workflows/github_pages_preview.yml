@@ -67,12 +67,9 @@ jobs:
               issue_number: prNumber
             });
             const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
-            console.log('autoComment: ', autoComment); // Add console log here
             if (autoComment) {
               const existingText = autoComment.body;
-              console.log('existingText:', existingText); // Add console log here
               const newText = '\n- PR Preview URL for Storybook: ${{ steps.preview.outputs.deployment-url }}';
-              console.log('newText:', newText); // Add console log here
               if (!existingText.includes(newText)) {
                 await github.issues.updateComment({
                   owner: context.repo.owner,
