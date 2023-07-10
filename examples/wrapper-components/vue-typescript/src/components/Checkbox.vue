@@ -1,66 +1,62 @@
 <template>
-  <div class="app">
+  <div>
     <h2>Checkbox</h2>
-    <h3>Using v-model</h3>
+    <h3>Using v-bind/v-on</h3>
 
     <form @submit.prevent="handleSubmit">
-      <ifx-checkbox :disabled="disabled" v-model="value" :error="error" name="name"
-        @ifxChange="handleIfxChange">label</ifx-checkbox>
+      <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
+        name="name">label</ifx-checkbox>
       <br />
 
-      <ifx-button type="submit">Submit</ifx-button>
+      <ifx-button color="primary" type="submit">Submit</ifx-button>
     </form>
     <br />
     <div>
-      <ifx-button variant="outline" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="outline" color="primary" @click="toggleError">Toggle Error</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleValue">Toggle Value</ifx-button>
+      <ifx-button variant="outline" color="primary" @click="toggleValue">Toggle Value</ifx-button>
 
     </div>
     <br />
     <span>Disabled: {{ disabled }} </span>
+    <br />
     <span>Error: {{ error }} </span>
-    <span>Value: {{ value }}</span>
+    <br />
+    <span>Value: {{ checkboxValue }}</span>
+    <br />
     <br />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const disabled = ref(false)
-const value = ref(false)
-const error = ref(false)
+const disabled = ref(false);
+const checkboxValue = ref(false);
+const error = ref(false);
 
-const handleIfxChange = (e: CustomEvent) => {
-  console.log('ifxChange event emitted with value:', e.detail);
-  value.value = e.detail;
-}
+function handleCheckboxChange(event: CustomEvent) {
+  console.log("updating checkbox value: ", event.detail)
+  checkboxValue.value = event.detail;
+};
+
 
 const handleSubmit = () => {
-  console.log('Form submitted. Checkbox value:', value.value);
-}
+  console.log('Form submitted. Checkbox value:', checkboxValue.value);
+};
 
 const toggleDisabled = () => {
   disabled.value = !disabled.value;
-}
+};
 
 const toggleError = () => {
   error.value = !error.value;
-}
+};
 
 const toggleValue = () => {
-  value.value = !value.value;
-}
+  checkboxValue.value = !checkboxValue.value;
+};
 </script>
 
-<style scoped>
-.app {
-  text-align: center;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-}
-</style>
