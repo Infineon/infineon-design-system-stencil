@@ -23,6 +23,7 @@ import Icon from './components/Icon/Icon';
 import Sidebar from './components/Sidebar/Sidebar';
 import Switch from './components/Switch/Switch';
 import Navbar from './components/Navbar/Navbar';
+import Modal from './components/Modal/Modal';
 
 
 function App() {
@@ -106,6 +107,9 @@ function App() {
 
       <h2>Navbar</h2>
       <Navbar />
+
+      <h2>Modal</h2>
+      <Modal />
    </div>
   )
 }
