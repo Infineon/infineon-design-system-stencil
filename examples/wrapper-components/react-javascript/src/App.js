@@ -24,17 +24,18 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Switch from './components/Switch/Switch';
 import Navbar from './components/Navbar/Navbar';
 import Modal from './components/Modal/Modal';
-
+import ListGroup from './components/ListGroup/ListGroup';
+import FilterInput from './components/FilterInput/FilterInput';
+import IconButton from './components/IconButton/IconButton';
+import Tabs from './components/Tabs/Tabs';
 
 function App() {
 
-
-
-
   return (
     <div>
+      
       <h1 className="header">Stencil Framework integration - React + JS</h1>
-
+      
       <h2>Search Bar</h2>
       <SearchBar />
       <br />
@@ -57,9 +58,6 @@ function App() {
       <h2>Checkbox</h2>
       <Checkbox />
 
-      <h2>Alert</h2>
-      <Alert />
-
       <h2>Badge</h2>
       <Badge />
 
@@ -69,14 +67,8 @@ function App() {
       <h2>Link</h2>
       <Link />
 
-      <h2>Spinner</h2>
-      <Spinner />
-
       <h2>Breadcrumb</h2>
       <Breadcrumb />
-
-      <h2>NumberIndicator</h2>
-      <NumberIndicator />
 
       <h2>Status</h2>
       <Status />
@@ -99,17 +91,38 @@ function App() {
       <h2>Icon</h2>
       <Icon />
 
-      <h2>Sidebar</h2>
-      <Sidebar />
-
       <h2>Switch</h2>
       <Switch />
 
-      <h2>Navbar</h2>
-      <Navbar />
-
       <h2>Modal</h2>
       <Modal />
+
+      <h2>ListGroup</h2>
+      <ListGroup />
+
+      <h2>FilterInput</h2>
+      <FilterInput />
+
+      <Navbar />
+
+      <h2>IconButton</h2>
+      <IconButton />
+
+      <h2>Tabs</h2>
+      <Tabs />
+
+      <h2>Sidebar</h2>
+      <Sidebar />
+
+      <h2>Spinner</h2>
+      <Spinner />
+
+      <h2>Alert</h2>
+      <Alert />
+
+      <h2>NumberIndicator</h2>
+      <NumberIndicator />
+
    </div>
   )
 }
