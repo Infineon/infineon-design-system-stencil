@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
 
 
@@ -10,6 +10,7 @@ import { getIcon } from '@infineon/infineon-icons'
 export class InfineonIconStencil {
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
+  @Event() consoleError: EventEmitter<boolean>;
  
   convertStringToHtml(htmlString) { 
     const div = document.createElement('div')
@@ -54,9 +55,11 @@ export class InfineonIconStencil {
       const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
+      this.consoleError.emit(false)
       return SVG;
     } else {
       console.error('Icon not found!')
+      this.consoleError.emit(true)
       return ""
     }
   }

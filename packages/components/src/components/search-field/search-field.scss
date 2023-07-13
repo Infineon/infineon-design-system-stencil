@@ -26,7 +26,15 @@
     }
 
     &.search-field__wrapper-s {
+      height: 36px;
+    }
+
+    &.search-field__wrapper-m {
       height: 40px;
+    }
+
+    &:not(.search-field__wrapper-s):not(.search-field__wrapper-m) {
+      height: 48px;
     }
 
     &:hover:not(.focused, :focus) {

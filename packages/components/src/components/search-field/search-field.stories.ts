@@ -3,20 +3,29 @@ import { action } from "@storybook/addon-actions";
 export default {
   title: 'Components/Search Field',
   tags: ['autodocs'],
-  'parameters.docs.source.type': 'code',
 
   args: {
     showDeleteIcon: true,
     disabled: false,
-    size: "m",
+    size: "l",
 
   },
   argTypes: {
     size: {
-      options: ['s', 'm'],
+      options: ['s', 'm', 'l'],
       control: { type: 'radio' },
     },
-    onIfxInput: { action: 'ifxInput' },
+    onIfxInput: {
+      action: 'ifxInput',
+      description: 'Custom event',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+        },
+      },
+    },
+
   },
 };
 

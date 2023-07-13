@@ -1,22 +1,17 @@
-
-import './App.css'
-import Link from './components/Link/Link'
+ import './App.css'
 import Button from './components/Button/button';
 import TextField from './components/TextFIeld/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
-
 import Spinner from './components/Spinner'
-
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
-
+import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
 
 function App() {
- 
- 
+  
 
   return (
     <div>
@@ -54,15 +49,13 @@ function App() {
       <h2>Number Indicator</h2>
       <NumberIndicator />
       <br />
-
+      
       <h2>Search Field</h2>
-       <SearchField />
-       <br />
-
-       <h2>Search Bar</h2>
-      <SearchBar />
+      <SearchField />
       <br />
+      
     </div>
-  )
+   )
+
 }
 export default App

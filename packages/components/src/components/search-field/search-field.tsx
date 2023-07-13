@@ -18,7 +18,7 @@ export class SearchField {
 
   @Prop() showDeleteIcon: boolean = false;
   @Prop() disabled: boolean = false;
-  @Prop() size: string;
+  @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
 
   @Listen('mousedown', { target: 'document' })
@@ -83,8 +83,11 @@ export class SearchField {
   getSizeClass() {
     return `${this.size}` === "s"
       ? "search-field__wrapper-s"
-      : "";
+      : `${this.size}` === "m"
+        ? "search-field__wrapper-m"
+        : "";
   }
+
 
   getWrapperClassNames() {
     return classNames(

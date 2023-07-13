@@ -12,7 +12,6 @@ export class SearchBar {
   @State() internalState: boolean;
   @Prop({ mutable: true }) value: string;
   @Prop() hideLabel: boolean = false;
-  @Prop() size: string = "";
   @Event() ifxInput: EventEmitter;
 
 

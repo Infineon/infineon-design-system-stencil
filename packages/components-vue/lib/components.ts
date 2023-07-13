@@ -168,7 +168,8 @@ export const IfxFooterColumn = /*@__PURE__*/ defineContainer<JSX.IfxFooterColumn
 
 export const IfxIcon = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', undefined, [
   'icon',
-  'ifxIcon'
+  'ifxIcon',
+  'consoleError'
 ]);
 
 
@@ -293,7 +294,6 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'isOpen',
   'value',
   'hideLabel',
-  'size',
   'ifxInput'
 ],
 'value', 'ifxInput');
@@ -312,11 +312,15 @@ export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, 
 export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);
 
 
-export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined);
+export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
+  'applicationName'
+]);
 
 
 export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
-  'icon'
+  'icon',
+  'href',
+  'target'
 ]);
 
 

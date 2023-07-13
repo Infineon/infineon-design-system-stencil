@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type      | Default     |
-| ---------------- | ------------------ | ----------- | --------- | ----------- |
-| `disabled`       | `disabled`         |             | `boolean` | `false`     |
-| `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false`     |
-| `size`           | `size`             |             | `string`  | `undefined` |
-| `value`          | `value`            |             | `string`  | `''`        |
+| Property         | Attribute          | Description | Type      | Default |
+| ---------------- | ------------------ | ----------- | --------- | ------- |
+| `disabled`       | `disabled`         |             | `boolean` | `false` |
+| `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false` |
+| `size`           | `size`             |             | `string`  | `'l'`   |
+| `value`          | `value`            |             | `string`  | `''`    |
 
 
 ## Events

@@ -12,7 +12,6 @@
 | `hideLabel`       | `hide-label`        |             | `boolean` | `false`     |
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
-| `size`            | `size`              |             | `string`  | `""`        |
 | `value`           | `value`             |             | `string`  | `undefined` |
 
 

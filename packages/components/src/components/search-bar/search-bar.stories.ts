@@ -9,8 +9,16 @@ export default {
     showCloseButton: true,
   },
   argTypes: {
-    onIfxInput: { action: 'ifxInput' },
-    showCloseButton: {
+    onIfxInput: {
+      action: 'ifxInput',
+      description: 'Custom event',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+        },
+      },
+    }, showCloseButton: {
       control: { type: 'boolean' },
     },
   },

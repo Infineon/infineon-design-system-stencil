@@ -5,13 +5,14 @@
   <Alert />
   <Button />
   <Checkbox />
-  <RadioButton />
   <ProgressBar />
   <SearchField />
+  <SearchBar />
   <TextInput />
+  <NumberIndicator />
   <Spinner />
   <Link />
-  <NumberIndicator />
+  <Sidebar />
 </template>
 
 
@@ -24,7 +25,8 @@ import Checkbox from './components/Checkbox.vue'
 import NumberIndicator from './components/NumberIndicator.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import SearchField from './components/SearchField.vue'
-import RadioButton from './components/RadioButton.vue'
+import SearchBar from './components/SearchBar.vue'
+import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
 import Spinner from './components/Spinner.vue'
 import Link from './components/Link.vue'
