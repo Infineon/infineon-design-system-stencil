@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `icon`   | `icon`    |             | `string` | `""`    |
+| Property | Attribute | Description | Type     | Default   |
+| -------- | --------- | ----------- | -------- | --------- |
+| `href`   | `href`    |             | `string` | `""`      |
+| `icon`   | `icon`    |             | `string` | `""`      |
+| `target` | `target`  |             | `string` | `"_self"` |
 
 
 ## Dependencies

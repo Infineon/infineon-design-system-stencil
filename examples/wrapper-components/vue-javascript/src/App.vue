@@ -11,6 +11,7 @@
   <Spinner />
   <Link />
   <NumberIndicator />
+  <Sidebar />
 </template>
 
 
@@ -25,6 +26,7 @@ import RadioButton from './components/RadioButton.vue'
 import TextInput from './components/TextInput.vue'
 import Spinner from './components/Spinner.vue'
 import Link from './components/Link.vue'
+import Sidebar from './components/Sidebar.vue'
 
 </script>
 
