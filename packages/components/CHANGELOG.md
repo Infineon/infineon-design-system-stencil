@@ -1,3 +1,23 @@
+# v18.2.16 (Thu Jul 13 2023)
+
+#### 🐛 Bug Fix
+
+- 190 review sidebar [#215](https://github.com/Infineon/infineon-design-system-stencil/pull/215) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/react [#253](https://github.com/Infineon/infineon-design-system-stencil/pull/253) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-javascript [#254](https://github.com/Infineon/infineon-design-system-stencil/pull/254) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /packages/components [#246](https://github.com/Infineon/infineon-design-system-stencil/pull/246) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.15 (Mon Jul 10 2023)
 
 #### 🐛 Bug Fix
