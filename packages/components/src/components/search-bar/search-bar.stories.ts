@@ -7,6 +7,8 @@ export default {
 
   args: {
     showCloseButton: true,
+    disabled: false,
+
   },
   argTypes: {
     onIfxInput: {
@@ -26,9 +28,10 @@ export default {
 
 
 
-const DefaultTemplate = ({ isOpen, showCloseButton }) => {
+const DefaultTemplate = ({ isOpen, showCloseButton, disabled }) => {
   const element = document.createElement('ifx-search-bar');
   element.setAttribute('is-open', isOpen);
+  element.setAttribute('disabled', disabled);
   element.setAttribute('show-close-button', showCloseButton);
   element.addEventListener('ifxInput', action('ifxInput'));
 

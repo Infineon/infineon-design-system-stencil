@@ -9,7 +9,9 @@
 
 | Property          | Attribute           | Description | Type      | Default     |
 | ----------------- | ------------------- | ----------- | --------- | ----------- |
+| `disabled`        | `disabled`          |             | `boolean` | `false`     |
 | `hideLabel`       | `hide-label`        |             | `boolean` | `false`     |
+| `inSidebar`       | `in-sidebar`        |             | `boolean` | `false`     |
 | `isOpen`          | `is-open`           |             | `boolean` | `true`      |
 | `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
 | `value`           | `value`             |             | `string`  | `undefined` |

@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -7,13 +7,15 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/
 })
 export class SearchBar {
   @Prop() showCloseButton: boolean = true;
-
   @Prop() isOpen: boolean = true;
+  @Prop() disabled: boolean = false;
   @State() internalState: boolean;
   @Prop({ mutable: true }) value: string;
   @Prop() hideLabel: boolean = false;
+  @Prop() inSidebar: boolean = false;
+  @Element() el: HTMLElement;
+  viewportClass: string;
   @Event() ifxInput: EventEmitter;
-
 
   @Watch('isOpen')
   handlePropChange() {
@@ -38,16 +40,42 @@ export class SearchBar {
     this.setInitialState()
   }
 
+  componentDidLoad() {
+    this.updateViewportClass();
+    window.addEventListener("resize", this.updateViewportClass);
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener("resize", this.updateViewportClass);
+  }
+
+  updateViewportClass = () => {
+    const viewportWidth = window.innerWidth;
+
+    if (viewportWidth >= 1440) {
+      this.viewportClass = 'large';
+    } else if (viewportWidth >= 1024 && viewportWidth < 1440) {
+      this.viewportClass = 'medium';
+    } else {
+      this.viewportClass = 'small';
+    }
+  }
+
   handleInput(event: CustomEvent) {
     this.value = event.detail;
   }
 
+  handleFocus = () => {
+    this.internalState = true;
+  }
+
+
   render() {
     return (
-      <div class={`search-bar ${!this.internalState ? 'closed' : ""}`}>
+      <div class={`search-bar ${this.internalState ? 'open' : 'closed'} ${this.viewportClass}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
-            <ifx-search-field value={this.value} onIfxInput={this.handleInput.bind(this)}>
+            <ifx-search-field disabled={this.disabled} value={this.value} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
             {this.showCloseButton &&
@@ -57,6 +85,14 @@ export class SearchBar {
           <div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
             <ifx-icon icon="search-16"></ifx-icon>
             <a href="javascript:void(0)">Search</a>
+          </div>
+        )}
+        {!this.internalState && this.viewportClass === 'large' && (
+          <div class="search-bar-wrapper">
+            <ifx-search-field value={this.value} onClick={this.handleCloseButton} onFocus={this.handleFocus}>
+              <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
+            </ifx-search-field>
+
           </div>
         )}
       </div>
