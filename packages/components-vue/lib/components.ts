@@ -144,6 +144,9 @@ export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-exa
 ]);
 
 
+export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
+
+
 export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>('ifx-filter-input', undefined, [
   'label',
   'size',
@@ -326,7 +329,8 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
-  'size'
+  'size',
+  'variant'
 ]);
 
 

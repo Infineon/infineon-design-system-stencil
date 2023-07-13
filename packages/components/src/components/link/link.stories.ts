@@ -4,9 +4,8 @@ export default {
 
   args: {
     label: 'Link',
-    icon: true,
-    position: 'right',
     underline: false,
+    color: "primary",
     href: "",
     target: '_blank',
   },
@@ -16,16 +15,16 @@ export default {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    position: {
-      options: ['right', 'left'],
-      control: { type: 'radio' }
-    }
+    color: {
+      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
+      control: { type: 'radio' },
+    },
   },
 };
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-link href="${args.href}" target="${args.target}" position="${args.position}" underline="${args.underline}" icon="${args.icon}">
+  `<ifx-link color="${args.color}" href="${args.href}" target="${args.target}" underline="${args.underline}">
   ${args.label}
   </ifx-link>`;
 
