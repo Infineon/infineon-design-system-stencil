@@ -90,7 +90,7 @@ export class SearchBar {
         {/* {!this.internalState && this.viewportClass === 'large' && (
           <div class="search-bar-wrapper">
             <ifx-search-field value={this.value} onClick={this.handleCloseButton} onFocus={this.handleFocus}>
-              <ifx-icon icon="calendar16" slot="search-icon"></ifx-icon>
+              <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
 
           </div>
