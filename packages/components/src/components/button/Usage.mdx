@@ -13,14 +13,8 @@ import ErrorButtonStates from '../../../public-storybook/images/button/error-but
 import ButtonIconLeft from '../../../public-storybook/images/button/button-icon-left.png';
 import ButtonIconRight from '../../../public-storybook/images/button/button-icon-right.png';
 import ButtonSizes from '../../../public-storybook/images/button/button-sizes.png';
-import IconButtonPrimaryVariant from '../../../public-storybook/images/button/icon-button-primary-variant.png';
-import IconButtonPrimaryStates from '../../../public-storybook/images/button/icon-button-primary-states.png';
-import IconButtonSecondaryVariant from '../../../public-storybook/images/button/icon-button-secondary-variant.png';
-import IconButtonSecondaryStates from '../../../public-storybook/images/button/icon-button-secondary-states.png';
-import IconButtonSizes from '../../../public-storybook/images/button/icon-button-sizes.png';
 import ButtonGroupingImportanceHorizontal from '../../../public-storybook/images/button/button-grouping-by-importance-horizontal.png';
 import ButtonGroupingImportanceVertical from '../../../public-storybook/images/button/button-grouping-by-importance-vertical.png';
-import ButtonGroupingByFunction from '../../../public-storybook/images/button/button-grouping-by-function.png';
 
 <Meta of={ButtonStories} /> 
 
@@ -42,8 +36,8 @@ Buttons provide a clear visual call-to-action for users, guiding them towards co
 ## Variants
 
 ### Primary
-<img src={ButtonVariantPrimary} alt="Button Variant Primary" />
 Should be used for the primary action on a page or form, such as submitting a form. Try to limit its use per page as much as possible.
+<img src={ButtonVariantPrimary} alt="Button Variant Primary" />
 
 
 #### States
@@ -51,29 +45,24 @@ Should be used for the primary action on a page or form, such as submitting a fo
 
 
 ### Secondary
-<img src={ButtonVariantSecondary} alt="Button Variant Secondary" />
-
 Should be used for all other actions. It is possible to use this button alone or in combination with the primary button or links.
-
+<img src={ButtonVariantSecondary} alt="Button Variant Secondary" />
 
 #### States
 <img src={SecondaryButtonStates} alt="Secondary Button States" />
 
-
 ### Tertiary
-<img src={ButtonVariantTertiary} alt="Button Variant Tertiary" />
-
 Use for actions that are not as important as primary or secondary actions. The tertiary button is a low-contrast button that provides a subtle visual cue to the user.
+<img src={ButtonVariantTertiary} alt="Button Variant Tertiary" />
 
 #### States
 <img src={TertiaryButtonStates} alt="Tertiary Button States" />
 
-
-### Destructive
+### Error
+Should be used for actions that result in a destructive action, such as deleting a record. The error button has a high-contrast, attention-grabbing style — try to limit its use per page as much as possible.
+To make it easier for users to cancel a destructive action, it is recommended to include a secondary button alongside the error button on modal components. For instance, if a table is being deleted, users can use the "Cancel" button to close the modal.
 <img src={ButtonVariantError} alt="Button Variant Error" />
 
-Should be used for actions that result in a destructive action, such as deleting a record. The destructive button has a high-contrast, attention-grabbing style — try to limit its use per page as much as possible.
-To make it easier for users to cancel a destructive action, it is recommended to include a secondary button alongside the destructive button on modal components. For instance, if a table is being deleted, users can use the "Cancel" button to close the modal.
 
 #### States
 <img src={ErrorButtonStates} alt="Error Button States" />
@@ -89,6 +78,7 @@ Use it to enhance the meaning of the action like "Add to cart", "Share" or "Show
 Use it to trigger a specific action, such as navigating to the next page.
 
 ## Size
+<img src={ButtonSizes} alt="Button Sizes" width="50%"/>
 
 ### 32px
 Use in information dense scenarios when there is not enough vertical space.
@@ -104,29 +94,6 @@ Our call-to-action button. Primarily used at the top/bottom of a page to highlig
 
 ## Light version
 To work on $brand-500 backgrounds there are also light versions of the primary, secondary and tertiary buttons available. The use of the destructive button on $brand-500 backgrounds is not allowed.
-
-## Icon button
-This button variant uses only an icon and is the most minimal style. It is available in square and round style. Use it for information dense scenarios with only a limited amount of free interface space like table rows which need a Buy-Action. Or use it as a supportive element for example for accordion or pagination elements.
-
-### Variants
-
-#### Primary
-<img src={IconButtonPrimaryVariant} alt="Icon Button Primary Variant" />
-Especially the primary square and round variants are the most prominent in their branding appearcance.
-
-##### States
-<img src={IconButtonPrimaryStates} alt="Icon Button Primary States" />
-
-#### Secondary
-<img src={IconButtonSecondaryVariant} alt="Icon Button Secondary Variant" />
-These variant get less attention due to colored border only.
-
-##### States
-<img src={IconButtonSecondaryStates} alt="Icon Button Secondary States" />
-
-### Size
-The Icon button is available in two different sizes: 32px and 40px
-<img src={IconButtonSizes} alt="Icon Button Sizes" />
 
 ## Grouping buttons
 Button grouping is used to organize related actions or tasks. It helps users to identify and differentiate between the actions they can perform on a page or screen. Grouping buttons also improves the visual hierarchy of a design, making it more scannable and user-friendly.
