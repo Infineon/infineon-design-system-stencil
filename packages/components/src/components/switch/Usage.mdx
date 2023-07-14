@@ -1,8 +1,8 @@
 import { Meta  } from '@storybook/blocks';
 import * as SwitchStories from './switch.stories';
-import SwitchAnatomy from '../../../public-storybook/images/switch/switch-anatomy.jpg';
-import SwitchMouseInteraction from '../../../public-storybook/images/switch/switch-mouse-interaction.jpg';
-import SwitchStates from '../../../public-storybook/images/switch/switch-states.jpg';
+import SwitchAnatomy from '../../../public-storybook/images/switch/switch-anatomy.png';
+import SwitchMouseInteraction from '../../../public-storybook/images/switch/switch-mouse-interaction.png';
+import SwitchStates from '../../../public-storybook/images/switch/switch-states.png';
 <Meta of={SwitchStories} />
 
 # Switch
@@ -24,6 +24,10 @@ The main part of the component
 
 **Switch Action Label (2)**
 Describes the action which can be done by the user. Since the shwitch should represent the two actions (on/off or yes/no), the action label can also be disabled. 
+
+## Mouse interaction
+To check the switch, users have two options: they can either directly click on the switch or click on the action label.
+<img src={SwitchMouseInteraction} alt="Switch Mouse Interaction" />
 
 ## States
 <img src={SwitchStates} alt="Switch States" />
