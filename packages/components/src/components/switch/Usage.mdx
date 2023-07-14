@@ -1,0 +1,29 @@
+import { Meta  } from '@storybook/blocks';
+import * as SwitchStories from './switch.stories';
+import SwitchAnatomy from '../../../public-storybook/images/switch/switch-anatomy.jpg';
+import SwitchMouseInteraction from '../../../public-storybook/images/switch/switch-mouse-interaction.jpg';
+import SwitchStates from '../../../public-storybook/images/switch/switch-states.jpg';
+<Meta of={SwitchStories} />
+
+# Switch
+The switch component allows users to toggle between two mutually exclusive states (on/off or yes/no). It always has a default value.
+
+## Usage
+
+### When to use
+- When you need to provide users with a straightforward and intuitive way to toggle between two states, such as enabling or disabling a feature or setting.
+- When the binary nature of the choice is clear, and there is no need for additional options or complex interactions.
+
+### When not to use
+- If you have more complex options or a range of values, alternative UI elements like radio buttons, checkboxes, dropdown menus, or sliders might be more suitable.
+
+## Anatomy
+<img src={SwitchAnatomy} alt="Switch Anatomy" />
+**Switch(1)**
+The main part of the component
+
+**Switch Action Label (2)**
+Describes the action which can be done by the user. Since the shwitch should represent the two actions (on/off or yes/no), the action label can also be disabled. 
+
+## States
+<img src={SwitchStates} alt="Switch States" />
