@@ -1,5 +1,6 @@
 
 <template>
+  <Navbar />
   <h1 class="header">Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
@@ -27,6 +28,7 @@ import TextInput from './components/TextInput.vue'
 import Spinner from './components/Spinner.vue'
 import Link from './components/Link.vue'
 import Sidebar from './components/Sidebar.vue'
+import Navbar from './components/Navbar.vue'
 
 </script>
 

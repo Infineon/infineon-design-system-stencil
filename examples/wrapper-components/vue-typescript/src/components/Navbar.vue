@@ -1,12 +1,8 @@
 
-export default {
-  title: "Components/Navbar",
 
-};
-
-
-const DefaultTemplate = () =>
-  `<ifx-navbar application-name="Application name" fixed="false">
+<template>
+  <div>
+    <ifx-navbar application-name="Application name" fixed="true">
     <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
     <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
  
@@ -21,9 +17,16 @@ const DefaultTemplate = () =>
     <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
     <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
     <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
-  </ifx-navbar>`;
+  </ifx-navbar>
+
+  </div>
+</template>
+
+<script setup>
 
 
-export const Default = DefaultTemplate.bind({});
+
+</script>
 
 
+ 
