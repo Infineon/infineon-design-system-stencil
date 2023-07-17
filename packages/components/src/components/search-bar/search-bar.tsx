@@ -11,8 +11,6 @@ export class SearchBar {
   @Prop() disabled: boolean = false;
   @State() internalState: boolean;
   @Prop({ mutable: true }) value: string;
-  @Prop() hideLabel: boolean = false;
-  @Prop() inSidebar: boolean = false;
   @Element() el: HTMLElement;
   viewportClass: string;
   @Event() ifxInput: EventEmitter;
@@ -51,15 +49,27 @@ export class SearchBar {
 
   updateViewportClass = () => {
     const viewportWidth = window.innerWidth;
-
-    if (viewportWidth >= 1440) {
-      this.viewportClass = 'large';
-    } else if (viewportWidth >= 1024 && viewportWidth < 1440) {
-      this.viewportClass = 'medium';
-    } else {
-      this.viewportClass = 'small';
+    const hostElementWidth = this.el.offsetWidth;
+    if (hostElementWidth) {
+      if (hostElementWidth >= 1440) {
+        this.viewportClass = 'large';
+      } else if (hostElementWidth >= 1024 && hostElementWidth < 1440) {
+        this.viewportClass = 'medium';
+      } else {
+        this.viewportClass = 'small';
+      }
+    }
+    else {
+      if (viewportWidth >= 1440) {
+        this.viewportClass = 'large';
+      } else if (viewportWidth >= 1024 && viewportWidth < 1440) {
+        this.viewportClass = 'medium';
+      } else {
+        this.viewportClass = 'small';
+      }
     }
   }
+
 
   handleInput(event: CustomEvent) {
     this.value = event.detail;
