@@ -12,6 +12,7 @@
   <Spinner />
   <Link />
   <Sidebar />
+  <IconButton />
 </template>
 
 
@@ -26,6 +27,7 @@ import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
 import Link from './components/Link.vue';
 import Spinner from './components/Spinner.vue';
+import IconButton from './components/IconButton.vue'
 
 
 
