@@ -8,6 +8,7 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 
 import Checkbox from './components/Checkbox/Checkbox';
+import Tag from './components/Tag/Tag';
 
 function App() {
 
@@ -15,6 +16,9 @@ function App() {
   return (
     <div>
       <h1>Stencil Framework integration - React + JS</h1>
+
+      <h2>Tag</h2>
+      <Tag>Label Tag</Tag>
 
       <h2>Search Bar</h2>
       <SearchBar />
