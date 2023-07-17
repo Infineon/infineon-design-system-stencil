@@ -5,7 +5,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
-
+import Tabs from './components/Tab/Tab'
 
 function App() {
   
@@ -36,10 +36,13 @@ function App() {
       <h2>Radio Button</h2>
       <RadioButton />
       <br />
+
+      <h2>Tabs</h2>
+      <Tabs />
+      <br/>
       </div>
     
    )
-
 }
 
 export default App

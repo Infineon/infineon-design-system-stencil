@@ -5,13 +5,13 @@
   <Alert />
   <Button />
   <Checkbox />
+  <RadioButton />
   <ProgressBar />
   <Search />
   <TextInput />
   <NumberIndicator />
-  <Spinner />
-  <Link />
   <Sidebar />
+  <Tabs />
 </template>
 
 
@@ -24,9 +24,8 @@ import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
-import Link from './components/Link.vue';
-import Spinner from './components/Spinner.vue';
-
+import Tabs from './components/Tabs.vue'
+import RadioButton from './components/RadioButton.vue'
 
 
 </script>
