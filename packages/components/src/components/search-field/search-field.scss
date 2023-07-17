@@ -6,7 +6,8 @@
 
   .search-field__wrapper {
     box-sizing: border-box;
-    height: 48px;
+    //height: 48px;
+    height: 40px;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
@@ -33,9 +34,9 @@
       height: 40px;
     }
 
-    &:not(.search-field__wrapper-s):not(.search-field__wrapper-m) {
-      height: 48px;
-    }
+    // &:not(.search-field__wrapper-s):not(.search-field__wrapper-m) {
+    //   height: 48px;
+    // }
 
     &:hover:not(.focused, :focus) {
       border: 1px solid #3C3A39;
