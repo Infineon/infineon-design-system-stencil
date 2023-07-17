@@ -1,3 +1,18 @@
+# v18.2.17 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- 224 documentation button [#238](https://github.com/Infineon/infineon-design-system-stencil/pull/238) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 4
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.16 (Thu Jul 13 2023)
 
 #### 🐛 Bug Fix
