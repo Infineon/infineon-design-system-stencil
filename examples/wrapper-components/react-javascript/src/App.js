@@ -12,20 +12,22 @@ import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Tag from './components/Tag/Tag';
-
+import Tab from './components/Tab/Tab';
 function App() {
   return (
     <div>
       <h1>Stencil Framework integration - React + JS</h1>
+
       <h2>Tag</h2>
       <Tag>Label Tag</Tag>
+      <br />
 
       <h2>Search Bar</h2>
       <SearchBar />
+      <br />
 
       <h2>Alert</h2>
       <Alert />
-
       <br />
 
       <h2>Button</h2>
@@ -54,28 +56,21 @@ function App() {
 
       <h2>Link</h2>
       <Link />
-      <br />
 
-      <h2>Spinner</h2>
-      <Link />
-      <br />
-
-      <h2>Search Bar</h2>
-      <SearchBar />
-      <br />
+      <h2>Tab</h2>
+      <Tab />
 
       <h2>Spinner</h2>
       <Spinner />
       <br />
 
-      <h2>Number indicator</h2>
+      <h2>Number Indicator</h2>
       <NumberIndicator />
       <br />
 
       <h2>Sidebar</h2>
       <Sidebar />
       <br />
-
     </div>
 
   )
