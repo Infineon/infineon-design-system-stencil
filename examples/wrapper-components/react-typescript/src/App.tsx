@@ -5,11 +5,11 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
-import Tab from './components/Tab/Tab'
+import Tabs from './components/Tab/Tab'
 
 function App() {
   
-  
+
   return (
        <div>
     <h1 className="header">Stencil Framework integration - React + TS </h1>
@@ -37,8 +37,8 @@ function App() {
       <RadioButton />
       <br />
 
-      <h2>Tab</h2>
-      <Tab />
+      <h2>Tabs</h2>
+      <Tabs />
       <br/>
       </div>
     

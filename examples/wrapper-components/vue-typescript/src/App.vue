@@ -9,6 +9,8 @@
   <ProgressBar />
   <Search />
   <TextInput />
+  <NumberIndicator />
+  <Sidebar />
   <Tabs />
 </template>
 
@@ -22,7 +24,8 @@ import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
-mport Tabs from './components/Tabs.vue'
+import Tabs from './components/Tabs.vue'
+import RadioButton from './components/RadioButton.vue'
 
 
 </script>
