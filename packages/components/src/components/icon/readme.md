@@ -13,6 +13,13 @@
 | `ifxIcon` | `ifx-icon` |             | `any`    | `undefined` |
 
 
+## Events
+
+| Event          | Description | Type                   |
+| -------------- | ----------- | ---------------------- |
+| `consoleError` |             | `CustomEvent<boolean>` |
+
+
 ## Dependencies
 
 ### Used by

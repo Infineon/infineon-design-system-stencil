@@ -1,3 +1,97 @@
+# v18.2.18 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation switch [#257](https://github.com/Infineon/infineon-design-system-stencil/pull/257) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.17 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- 224 documentation button [#238](https://github.com/Infineon/infineon-design-system-stencil/pull/238) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 4
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.16 (Thu Jul 13 2023)
+
+#### 🐛 Bug Fix
+
+- 190 review sidebar [#215](https://github.com/Infineon/infineon-design-system-stencil/pull/215) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/react [#253](https://github.com/Infineon/infineon-design-system-stencil/pull/253) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-javascript [#254](https://github.com/Infineon/infineon-design-system-stencil/pull/254) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /packages/components [#246](https://github.com/Infineon/infineon-design-system-stencil/pull/246) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.15 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 218-add-about-and-faq-section-to-storybook [#221](https://github.com/Infineon/infineon-design-system-stencil/pull/221) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.14 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 185 review number indicator [#237](https://github.com/Infineon/infineon-design-system-stencil/pull/237) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+- 209 review link [#240](https://github.com/Infineon/infineon-design-system-stencil/pull/240) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump tough-cookie from 4.1.2 to 4.1.3 in /examples/wrapper-components/react-javascript [#242](https://github.com/Infineon/infineon-design-system-stencil/pull/242) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump tough-cookie from 4.1.2 to 4.1.3 in /examples/stencil-components/react [#243](https://github.com/Infineon/infineon-design-system-stencil/pull/243) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.13 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 191 review spinner [#214](https://github.com/Infineon/infineon-design-system-stencil/pull/214) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.12 (Fri Jul 07 2023)
 
 #### 🐛 Bug Fix
