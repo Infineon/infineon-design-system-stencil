@@ -13,8 +13,7 @@ import ErrorButtonStates from '../../../public-storybook/images/button/error-but
 import ButtonIconLeft from '../../../public-storybook/images/button/button-icon-left.png';
 import ButtonIconRight from '../../../public-storybook/images/button/button-icon-right.png';
 import ButtonSizes from '../../../public-storybook/images/button/button-sizes.png';
-import ButtonGroupingImportanceHorizontal from '../../../public-storybook/images/button/button-grouping-by-importance-horizontal.png';
-import ButtonGroupingImportanceVertical from '../../../public-storybook/images/button/button-grouping-by-importance-vertical.png';
+import ButtonGroupingByImportance from '../../../public-storybook/images/button/button-grouping-by-importance.png';
 
 <Meta of={ButtonStories} /> 
 
@@ -78,7 +77,7 @@ Use it to enhance the meaning of the action like "Add to cart", "Share" or "Show
 Use it to trigger a specific action, such as navigating to the next page.
 
 ## Size
-<img src={ButtonSizes} alt="Button Sizes" width="50%"/>
+<img src={ButtonSizes} alt="Button Sizes" />
 
 ### 32px
 Use in information dense scenarios when there is not enough vertical space.
@@ -100,11 +99,9 @@ Button grouping is used to organize related actions or tasks. It helps users to 
 
 ### Group by importance
 Group buttons by importance if you want to help users quickly identify the primary action they should take. You can use a primary button for an important action like "Add to cart" and a secondary button for "Contact sales". If it fits it is also possible to place a tertiary button like "View distributors' inventory" to improve the user flow.
+<img src={ButtonGroupingByImportance} alt="Button Group By Importance" />
 
-### Group by function
-Group buttons by function to help users quickly find the action they need to take based on the task they are trying to complete. For example this can be useful in tables to manage a single row with actions like "Download", "Share", "Mark as favorite".
-
-There are several ways to group buttons in your layout. 
+There are several ways to group buttons in your layout:
 - Left (important) to right (less important) for a large amount of horizontal space.
 - Top (important) to bottom (less important) for less horizontal space.
 - Try to limit the number of buttons for vertical grouping by three. Instead group them horizontally.
