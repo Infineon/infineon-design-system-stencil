@@ -1,3 +1,16 @@
+# v18.2.18 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation switch [#257](https://github.com/Infineon/infineon-design-system-stencil/pull/257) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.17 (Mon Jul 17 2023)
 
 #### 🐛 Bug Fix
