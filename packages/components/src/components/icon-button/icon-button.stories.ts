@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Icon-Button",
+  title: "Components/IconButton",
   tags: ['autodocs'],
 
   args: {
