@@ -66,6 +66,34 @@
 
     <h2>Radio Button</h2>
     <ifx-radio-button id="radio-btn" size="s" error="false" disabled="false" value="false">Text</ifx-radio-button>
+    <br />
+
+    <h2>Spinner</h2>
+    <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+    <br />
+
+
+    <h2>Link</h2>
+    <ifx-link color="primary" href="" target="_blank" underline="false">
+      Link
+    </ifx-link>
+    <br />
+
+    <h2>Number Indicator</h2>
+    <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
+    <button onClick="increaseNumber()">+</button>
+    <button onClick="decreaseNumber()">-</button>
+    <br />
+
+
+    <h2>Sidebar</h2>
+    <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+    </ifx-sidebar>
+    <br />
 
   </div>
 
@@ -77,6 +105,7 @@
   let error = false;
   let textInputValue = "";
   let radioChecked = false;
+  let number = 1;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -85,6 +114,7 @@
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
+  const numberIndicator = document.querySelector('#number-indicator');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -103,7 +133,15 @@
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
     textInputSpan.textContent = `Text Input: ${textInputValue}`;
+  }
 
+  function increaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) + 1;
+
+  }
+
+  function decreaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) - 1;
   }
 
   function updateProgress() {
@@ -150,7 +188,6 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
-
   });
 
 
@@ -161,8 +198,5 @@
 
 </script>
 
-<style>
-
-</style>
 
 </html>
