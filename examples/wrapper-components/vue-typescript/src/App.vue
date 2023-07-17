@@ -10,6 +10,7 @@
   <Search />
   <TextInput />
   <Tag />
+  <Link />
   <NumberIndicator />
   <Link />
   <Spinner />
