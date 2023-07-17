@@ -1,3 +1,16 @@
+# v18.3.0 (Mon Jul 17 2023)
+
+#### 🚀 Enhancement
+
+- reviewed and updated tag [#269](https://github.com/Infineon/infineon-design-system-stencil/pull/269) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.19 (Mon Jul 17 2023)
 
 #### 🐛 Bug Fix
