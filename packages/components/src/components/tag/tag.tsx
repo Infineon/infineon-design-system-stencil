@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'ifx-tag',
@@ -6,12 +6,13 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class Tag {
-  @Prop() label: string;
 
   render() {
     return (
       <a href="javascript:void(null);" class="container">
-        <p class="label">{this.label}</p>
+        <p class="label">
+          <slot />
+        </p>
       </a>
     );
   }
