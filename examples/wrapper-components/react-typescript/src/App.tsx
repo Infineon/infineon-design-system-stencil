@@ -5,11 +5,10 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
-import Tag from './Components/Tag/Tag';
+import Tag from './components/Tag/Tag';
 
 
 function App() {
-  
 
   return (
       <div>
@@ -44,7 +43,6 @@ function App() {
          <br />
       </div>
    )
-
 }
 
 export default App
