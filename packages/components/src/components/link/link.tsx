@@ -12,7 +12,6 @@ export class Link {
   @Prop() href: string
   @Prop() target: string = '_self';
   @Prop() color: mainColors = undefined;
-
   @Prop() bold: boolean = true;
   @Prop() underline: boolean = true
 
@@ -29,7 +28,7 @@ export class Link {
       'link',
       this.color,
       this.bold && 'bold',
-      this.underline && 'nounderline',
+      this.underline && 'underline',
     );
   }
 }

@@ -7,8 +7,10 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tag from './Components/Tag/Tag';
 
+
 function App() {
   
+
   return (
       <div>
          <h1 className="header">Stencil Framework integration - React + TS </h1>
@@ -42,6 +44,7 @@ function App() {
          <br />
       </div>
    )
+
 }
 
 export default App
