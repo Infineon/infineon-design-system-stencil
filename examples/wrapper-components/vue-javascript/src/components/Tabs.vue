@@ -1,8 +1,9 @@
 
 
 <template>
-  <div class="app">
-      <ifx-tabs orientation="vertical">
+  <div>
+      <h2>Tabs</h2>
+      <ifx-tabs orientation="horizontal">
         <ifx-tab header="tab 01">
         This is tab 1
         </ifx-tab>

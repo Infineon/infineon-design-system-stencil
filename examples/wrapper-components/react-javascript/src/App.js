@@ -14,7 +14,6 @@ function App() {
   return (
     <div>
       <h1>Stencil Framework integration - React + JS</h1>
-
       <h2>Search Bar</h2>
       <SearchBar />
       <br />
