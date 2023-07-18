@@ -2,7 +2,6 @@
   "name": "react-javascript",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://infineon.github.io/infineon-design-system-stencil/pr-preview-react-example",
   "dependencies": {
     "@infineon/infineon-design-system-react": "18.0.22--canary.150.48a062d122f10ca00df0db0b98421cd07cc780a2.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -14,12 +13,12 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "serve": "^14.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=. react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
