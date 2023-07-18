@@ -7,6 +7,8 @@ import RadioButtonAnatomy from '../../../public-storybook/images/radio-button/ra
 import RadioButtonGroupBlock from '../../../public-storybook/images/radio-button/radio-button-group-block.png';
 import RadioButtonGroupInline from '../../../public-storybook/images/radio-button/radio-button-group-inline.png';
 import RadioButtonStates from '../../../public-storybook/images/radio-button/radio-button-states.png';
+import RadioButtonMouseInteraction from '../../../public-storybook/images/radio-button/radio-button-mouse-interaction.png';
+import RadioButtonOverflowText from '../../../public-storybook/images/radio-button/radio-button-overflow-text.png';
 
 <Meta of={RadioButtonStories} /> 
 # Radio Button
@@ -51,6 +53,14 @@ Deciding whether to place radio buttons in an inline or block layout depends on 
 - Use for long radio button labels. 
 - Use to easily scan and compare the options from top to bottom. 
 - Use to visually separate radio button options.
+
+## Mouse interaction
+To select the radio button, users have two options: they can either directly click on the radio button or click on the label.
+<img src={RadioButtonMouseInteraction} alt="Radio Button mouse interaction" width="50%" />
+
+## Overflow content
+When the content associated with a radio button option is too long or exceeds the available space, it can lead to an overflow scenario. In that case the long labels may wrap to a second line.
+<img src={RadioButtonOverflowText} alt="Radio Button overflow content" width="50%" />
 
 ## States
 <img src={RadioButtonStates} alt="Radio Button states" />
