@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "",
   plugins: [
     vue({
       template: {
@@ -21,8 +22,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  build: {
-    base: '/infineon-design-system-stencil/',
-    assetsDir: './assets',
-  },
+
 });
