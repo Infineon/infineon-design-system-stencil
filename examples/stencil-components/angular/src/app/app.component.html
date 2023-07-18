@@ -1,5 +1,18 @@
 <div>
   <h1>Using Stencil web components in an Angular application</h1>
+
+  <h2>Tabs</h2>
+  <ifx-tabs orientation="horizontal">
+    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
+    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
+    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+  </ifx-tabs>
+
+
+  <h2>Tag</h2>
+  <ifx-tag>tag</ifx-tag>
+  <br />
+
   <h2>Button</h2>
   <div>
     <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" [disabled]="false" [icon]="false">
@@ -59,10 +72,34 @@
   <ifx-button variant="outline" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
   <ifx-button variant="outline" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
   <ifx-button variant="outline" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
-
   <span>Disabled: {{ radioDisabled }} </span>
   <span>Error: {{ radioError }} </span>
   <span>Value: {{ radioChecked }}</span>
   <span>Radio button value: {{ radioButtonValue }}</span>
+  <br />
 
+  <h2>Spinner</h2>
+  <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+  <br />
+
+  <h2>Link</h2>
+  <ifx-link color="primary" href="" target="_blank" underline="false">
+    Link
+  </ifx-link>
+  <br />
+
+  <h2>Number indicator</h2>
+  <ifx-number-indicator inverted='false'> {{ numberIndicator }}</ifx-number-indicator>
+  <button (click)="increaseNumber()">+</button>
+  <button (click)="decreaseNumber()">-</button>
+  <br />
+
+  <h2>Sidebar</h2>
+  <ifx-sidebar application-name="Application Name">
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+  </ifx-sidebar>
+  <br />
 </div>

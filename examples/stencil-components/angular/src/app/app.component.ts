@@ -15,6 +15,7 @@ export class AppComponent {
   radioChecked = false;
   textFieldValue = '';
   radioButtonValue = false;
+  numberIndicator = 1;
 
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
@@ -60,6 +61,15 @@ export class AppComponent {
     console.log("textInput value change")
     this.textFieldValue = event.detail;
 
+  }
+
+  increaseNumber() {
+    this.numberIndicator = this.numberIndicator + 1;
+
+  }
+
+  decreaseNumber() {
+    this.numberIndicator = this.numberIndicator - 1;
   }
 
 }
