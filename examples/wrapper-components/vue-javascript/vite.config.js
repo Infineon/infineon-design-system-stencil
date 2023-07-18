@@ -22,7 +22,7 @@ export default defineConfig({
     },
   },
   build: {
+    base: '/infineon-design-system-stencil/',
     assetsDir: './assets',
-    base: './',
   },
 });
