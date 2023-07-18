@@ -8,7 +8,8 @@ on:
       - reopened
       - synchronize
       - closed
-
+    # paths:
+    #   - 'examples/**'
       
 concurrency: preview-${{ github.ref }}
 
@@ -52,7 +53,7 @@ jobs:
         id: preview       
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: ./examples/stencil-components/vue3-vite/dist
+          source-dir: ./examples/wrapper-components/vue-javascript/dist
           umbrella-dir: pr-preview-vue-example
           token: ${{ secrets.GH_TOKEN }}
 
@@ -96,7 +97,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/stencil-components/react/build
+          source-dir: ./examples/wrapper-components/react-javascript/build
           umbrella-dir: pr-preview-react-example
           token: ${{ secrets.GH_TOKEN }}
 
