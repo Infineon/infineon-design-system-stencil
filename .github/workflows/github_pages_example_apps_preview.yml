@@ -45,8 +45,10 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/stencil-components/vue3-vite
-          npm i && npm run build
+          cd examples/wrapper-components/vue-javascript
+          npm i
+          npm install @infineon/infineon-design-system-vue@"$CANARY_VERSION"
+          npm run build
       - name: Deploy preview
         id: preview       
         uses: rossjrw/pr-preview-action@v1
@@ -87,8 +89,10 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd examples/stencil-components/react
-          npm i && npm run build
+          cd examples/wrapper-components/react-javascript
+          npm i
+          npm i @infineon/infineon-design-system-react@"$CANARY_VERSION"
+          npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
