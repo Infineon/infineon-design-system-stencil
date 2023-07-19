@@ -1,21 +1,25 @@
 {
   "extends": "../../tsconfig.vue.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "lib": [
-      "dom",
-      "es2020"
-    ],
-    "module": "es2015",
-    "moduleResolution": "node",
-    "target": "es2017",
+    "allowUnreachableCode": false,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "declaration": true,
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2015",
+    "declarationDir": "./dist/types"
   },
   "include": [
     "lib"
