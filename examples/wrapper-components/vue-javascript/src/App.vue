@@ -17,7 +17,7 @@
 </template>
 
 
-<script lang="ts" setup>
+<script setup>
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
