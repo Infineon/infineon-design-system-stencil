@@ -10,7 +10,7 @@ on:
 jobs:
   stencil-library-release:
     outputs:
-      canary-release: ${{ steps.build.outputs.canary-release }}
+      CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -40,7 +40,7 @@ jobs:
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-          echo "canary-release=$CANARY_VERSION" >> $GITHUB_OUTPUT
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           auto shipit
 
       - name: Sleep for 5 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
@@ -109,8 +109,8 @@ jobs:
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.canary-release }}"
-          npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.canary-release }}"
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
       - name: Deploy preview
         id: preview       
@@ -152,8 +152,8 @@ jobs:
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.canary-release }}"
-          npm i @infineon/infineon-design-system-react@"${{ needs.stencil-library-release.outputs.canary-release }}"
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-react@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
