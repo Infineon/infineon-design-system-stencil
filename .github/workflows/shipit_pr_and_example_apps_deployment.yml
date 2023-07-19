@@ -1,38 +1,93 @@
-# Deploys each PR under its own subfolder
-name: Deploy PR previews for example applications
+name: Deploy Stencil Web components Library to NPM
 
 on:
   pull_request:
     types:
       - opened
       - reopened
-      - synchronize
-      - closed
-    paths:
-      - 'examples/**'
-      
-concurrency: preview-${{ github.ref }}
+      - synchronize # canary on new commit
+ 
+env:
+  CANARY_VERSION: ''
 
 jobs:
-  build:
+  stencil-library-release:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
-      - name: Download version
-        uses: actions/download-artifact@v2
+      - name: checkout
+        uses: actions/checkout@v3
         with:
-          name: canary-version
-      - name: Load version
-        id: load_version
-        run: echo "CANARY_VERSION=$(cat canary_version.txt)" >> $GITHUB_ENV
+          fetch-depth: 0 # fetch all tags for ship-it
 
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build stencil
+        id: build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          cd packages/components
+          npm install
+          npm run build:stencil
+          CANARY_VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $CANARY_VERSION"
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+          auto shipit
+
+      - name: Sleep for 5 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: sleep 5s
+        shell: bash
+
+      - name: Create Release for react wrapper # releasing as npm package
+        id: release-react
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          cd packages/components-react
+          echo "CANARY_VERSION: $CANARY_VERSION"
+          echo "Publishing: $CANARY_VERSION"
+          npm install
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          npm version $CANARY_VERSION --no-git-tag-version --force
+          npm run build
+          npm publish --tag canary
+
+
+      - name: Create Release for vue wrapper # releasing as npm package
+        id: release-vue
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          cd packages/components-vue
+          echo "CANARY_VERSION: $CANARY_VERSION"
+          echo "Publishing: $CANARY_VERSION"
+          npm install
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          npm version $CANARY_VERSION --no-git-tag-version --force
+          npm run build
+          npm publish --tag canary
+          
+
+
+  #deploy-preview:
   deploy-preview-vue:
+    needs: stencil-library-release  
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+  
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
@@ -40,7 +95,7 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+  
       - name: Cache dependencies for packages/components
         uses: actions/cache@v2
         with:
@@ -48,12 +103,8 @@ jobs:
           key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-packages-components-
-
-      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
-        if: ${{ env.ACT }}
-        run: |
-          apt-get update && apt-get install -y rsync
-
+  
+  
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
@@ -68,16 +119,17 @@ jobs:
           source-dir: ./examples/wrapper-components/vue-javascript/dist
           umbrella-dir: pr-preview-vue-example
           token: ${{ secrets.GH_TOKEN }}
-
-
+  
+  
   deploy-preview-react:
+    needs: stencil-library-release  
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+  
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
@@ -85,7 +137,7 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+  
       - name: Cache dependencies for packages/components
         uses: actions/cache@v2
         with:
@@ -93,12 +145,9 @@ jobs:
           key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-packages-components-
+  
 
-      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
-        if: ${{ env.ACT }}
-        run: |
-          apt-get update && apt-get install -y rsync
-
+  
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-javascript
@@ -113,8 +162,7 @@ jobs:
           source-dir: ./examples/wrapper-components/react-javascript/build
           umbrella-dir: pr-preview-react-example
           token: ${{ secrets.GH_TOKEN }}
-
-
+   
   deploy-preview-angular:
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
@@ -122,7 +170,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
+          
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
@@ -130,7 +178,7 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+  
       - name: Cache dependencies for packages/components
         uses: actions/cache@v2
         with:
@@ -139,16 +187,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-packages-components-
 
-      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
-        if: ${{ env.ACT }}
-        run: |
-          apt-get update && apt-get install -y rsync
-
+  
       - name: Install and Build
         run: |
           cd examples/stencil-components/angular
           npm i && npm run build
-          
+           
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -156,8 +200,8 @@ jobs:
           source-dir: ./examples/stencil-components/angular/dist
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
-
-
+  
+  
   deploy-preview-vanilla:
     runs-on: ubuntu-latest
     outputs:
@@ -165,7 +209,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
+ 
       - name: Use Node.js 16
         uses: actions/setup-node@v3
         with:
@@ -173,7 +217,7 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+  
       - name: Cache dependencies for packages/components
         uses: actions/cache@v2
         with:
@@ -181,19 +225,14 @@ jobs:
           key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-packages-components-
-
-      - name: Install rsync 📚 # additional package needed to run github action locally in a docker container
-        if: ${{ env.ACT }}
-        run: |
-          apt-get update && apt-get install -y rsync
- 
+   
       - name: Update CDN Link in Vanilla example app & build
         run: | 
           cd examples/stencil-components/vanilla-cdn
           npm install
           npm run update-link
           npm run build
-          
+            
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -201,7 +240,7 @@ jobs:
           source-dir: ./examples/stencil-components/vanilla-cdn/dist
           umbrella-dir: pr-preview-vanilla-example
           token: ${{ secrets.GH_TOKEN }}
-
+  
   update-pr-comment: 
     needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
     runs-on: ubuntu-latest
@@ -218,7 +257,7 @@ jobs:
             const angularUrl = "${{ needs.deploy-preview-angular.outputs.deployment-url }}";
             const vanillaUrl = "${{ needs.deploy-preview-vanilla.outputs.deployment-url }}";
             const newText = `PR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
-
+  
             const {data: comments} = await github.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
