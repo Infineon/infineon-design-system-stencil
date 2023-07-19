@@ -6,6 +6,9 @@ import vue from '@vitejs/plugin-vue';
 // https://vitejs.dev/config/
 export default defineConfig({
   // base: "./",
+  exclude: [
+    '@ionic/core/loader' //fix weird Vite error "outdated optimize dep"
+  ],
   plugins: [
     vue({
       template: {
