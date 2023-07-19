@@ -14,6 +14,17 @@ on:
 concurrency: preview-${{ github.ref }}
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download version
+        uses: actions/download-artifact@v2
+        with:
+          name: canary-version
+      - name: Load version
+        id: load_version
+        run: echo "CANARY_VERSION=$(cat canary_version.txt)" >> $GITHUB_ENV
+
   deploy-preview-vue:
     runs-on: ubuntu-latest
     outputs:
@@ -47,6 +58,7 @@ jobs:
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
+          echo "Installing package with canary version: $CANARY_VERSION"
           npm install @infineon/infineon-design-system-vue@"$CANARY_VERSION"
           npm run build
       - name: Deploy preview
@@ -91,6 +103,7 @@ jobs:
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
+          echo "Installing package with canary version: $CANARY_VERSION"
           npm i @infineon/infineon-design-system-react@"$CANARY_VERSION"
           npm run build
       - name: Deploy preview
