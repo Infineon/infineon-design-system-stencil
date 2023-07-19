@@ -12,11 +12,11 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "18.3.1--canary.272.f768526be92ba847804f1d93f0858bb3d7cb9855.2",
-    "vue": "^3.3.2",
+    "@infineon/infineon-design-system-vue": "^18.3.1--canary.272.fe3baec6f44c821596721d716a7b555ba4c1d793.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vue": "^3.3.2"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

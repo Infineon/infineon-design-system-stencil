@@ -9,7 +9,13 @@
     "module": "es2015",
     "moduleResolution": "node",
     "target": "es2017",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
   },
   "include": [
     "lib"
