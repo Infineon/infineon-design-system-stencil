@@ -24,7 +24,7 @@
     "vue": "^3.3.2"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^18.3.0"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "auto": {
     "plugins": [
