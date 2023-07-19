@@ -1,4 +1,4 @@
-name: Deploy Stencil Web components Library to NPM
+name: Deploy canary release and update example apps on Github pages
 
 on:
   pull_request:
@@ -109,8 +109,8 @@ jobs:
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          echo "Installing package with canary version: $CANARY_VERSION"
-          npm install @infineon/infineon-design-system-vue@"$CANARY_VERSION"
+          echo "Installing package with canary version: ${{ env.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-vue@"${{ env.CANARY_VERSION }}"
           npm run build
       - name: Deploy preview
         id: preview       
@@ -152,8 +152,8 @@ jobs:
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
-          echo "Installing package with canary version: $CANARY_VERSION"
-          npm i @infineon/infineon-design-system-react@"$CANARY_VERSION"
+          echo "Installing package with canary version: ${{ env.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-react@"${{ env.CANARY_VERSION }}"
           npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
