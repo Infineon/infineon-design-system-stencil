@@ -32,7 +32,7 @@
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "18.3.4--canary.272.b56173dc3438b0b557a0e0fba4ff3231edf07364.1"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "auto": {
     "plugins": [
