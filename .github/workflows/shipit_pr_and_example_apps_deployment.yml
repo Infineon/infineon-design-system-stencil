@@ -34,7 +34,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm run bootstrap
+          npm install
           npm run build:components
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
@@ -51,8 +51,8 @@ jobs:
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
-          lerna add @infineon/infineon-design-system-stencil@"$CANARY_VERSION" --scope=@infineon/infineon-design-system-vue
-          lerna add @infineon/infineon-design-system-stencil@"$CANARY_VERSION" --scope=@infineon/infineon-design-system-react
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-vue
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-react
   
       - name: Rebuild and Publish Vue and React packages
         env:
