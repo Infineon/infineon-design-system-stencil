@@ -1,3 +1,23 @@
+# v18.3.2 (Thu Jul 20 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Create commit_changes.yml ([@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/wrapper-components/react-javascript [#279](https://github.com/Infineon/infineon-design-system-stencil/pull/279) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/wrapper-components/react-typescript [#278](https://github.com/Infineon/infineon-design-system-stencil/pull/278) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/stencil-components/react [#280](https://github.com/Infineon/infineon-design-system-stencil/pull/280) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /packages/components [#281](https://github.com/Infineon/infineon-design-system-stencil/pull/281) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v18.3.1 (Wed Jul 19 2023)
 
 #### 🐛 Bug Fix
