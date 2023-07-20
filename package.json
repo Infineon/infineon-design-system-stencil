@@ -2,22 +2,16 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "start": "lerna run start --scope @prismaui/core",
-    "story": "lerna run story --scope @prismaui/core",
-    "build:all": "lerna run build --concurrency=1 && lerna run build:story --scope @prismaui/core ",
-    "build:core": "lerna run build --scope @prismaui/core",
-    "build:story": "lerna run build:story --scope @prismaui/core",
-    "build:angular": "lerna run build --scope @prismaui/angular",
-    "build:react": "lerna run build --scope @prismaui/react",
-    "build:vue": "lerna run build --scope @prismaui/vue",
-    "bootstrap": "lerna bootstrap",
-    "generate": "cd ./packages/core/ && npx stencil generate",
+    "storybook": "lerna run dev --scope @infineon/infineon-design-system-stencil",
+    "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
+    "build:components": "lerna run build:stencil --scope @infineon/infineon-design-system-stencil",
+    "test:components": "lerna run test --scope @infineon/infineon-design-system-stencil",
+    "build:storybook": "lerna run build:storybook --scope @infineon/infineon-design-system-stencil",
+    "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
+    "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
     "graph": "nx graph",
-    "publish": "lerna publish --no-private"
+    "bootstrap": "lerna bootstrap"
   },
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "@types/node": "^20.2.1",
     "lerna": "^6.6.2",
