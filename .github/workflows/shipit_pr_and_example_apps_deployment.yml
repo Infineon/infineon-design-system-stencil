@@ -65,11 +65,11 @@ jobs:
           npm run build:components-react
           npm run build:components-vue
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          lerna publish --dist-tag canary
+          lerna publish --dist-tag canary --y --registry hhtps://registry.npmjs.org/:_authToken=${NPM_TOKEN}
           
 
 
-  #deploy-preview:
+  #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
     runs-on: ubuntu-latest
