@@ -12,7 +12,7 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "18.3.4--canary.272.4063430554c0857ae522f372ec9112e7e96052c5.0",
+    "@infineon/infineon-design-system-vue": "18.3.4--canary.272.260ca7a132e67b6185c73aa70180ffc7f3ea8bde.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
