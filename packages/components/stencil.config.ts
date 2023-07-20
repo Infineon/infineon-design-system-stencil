@@ -8,6 +8,9 @@ export const config: Config = {
   plugins: [
     sass()
   ],
+  extras: {
+    enableImportInjection: true,
+  },
   outputTargets: [
     {
       type: 'dist',
