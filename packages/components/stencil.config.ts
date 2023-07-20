@@ -9,6 +9,7 @@ export const config: Config = {
     sass()
   ],
   extras: {
+    cloneNodeFix: true,
     enableImportInjection: true,
   },
   outputTargets: [
