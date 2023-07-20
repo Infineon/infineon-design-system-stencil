@@ -71,7 +71,6 @@ jobs:
           cd ../components-vue
           npm publish --tag canary
         
-
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
