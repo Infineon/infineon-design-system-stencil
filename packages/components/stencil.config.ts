@@ -13,9 +13,10 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
+    ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      generateTypeDeclarations: true,
+      // generateTypeDeclarations: true,
     },
     {
       type: 'docs-readme',
@@ -23,7 +24,6 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-    },
-    ...frameworkTargets,
+    }
   ],
 };

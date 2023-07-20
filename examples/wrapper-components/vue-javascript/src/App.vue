@@ -1,6 +1,10 @@
 
 <template>
   <h1 class="header">Stencil Framework integration - Vue + JS </h1>
+  <h2>Alert</h2>
+  <div>
+    <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+  </div>
   <Alert />
   <Button />
   <Checkbox />
@@ -17,7 +21,7 @@
 </template>
 
 
-<script setup>
+<script type="module" setup>
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
