@@ -65,7 +65,6 @@ jobs:
         run: |
           npm run build:components-react
           npm run build:components-vue
-          git clean -fdx
           lerna version $CANARY_VERSION --no-git-tag-version --y
           lerna publish from-package --dist-tag canary --y
         
