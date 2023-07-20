@@ -17,6 +17,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         with:
+          ref: ${{ github.ref }}
           fetch-depth: 0 # fetch all tags for ship-it
 
       - name: download + setup auto
