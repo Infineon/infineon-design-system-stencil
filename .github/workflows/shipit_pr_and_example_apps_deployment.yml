@@ -28,7 +28,7 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
 
-      - name: Build stencil core component package
+      - name: Build stencil
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -48,6 +48,9 @@ jobs:
         shell: bash
 
       - name: Update Dependencies in Vue and React packages
+        id: update-wrapper-dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
