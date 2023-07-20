@@ -1,4 +1,4 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 .breadcrumb-item-label-container {
   display: flex;
@@ -7,35 +7,35 @@
   text-decoration: none;
   color: tokens.$color-text-black;
 
-  &.margin { 
+  &.margin {
     margin-left: 16px;
   }
 
-  & ifx-icon:empty { 
+  & ifx-icon:empty {
     display: none;
   }
 
-  & .label-icon-wrapper { 
+  & .label-icon-wrapper {
     display: inline-flex;
   }
-  
-  & .menu-icon-wrapper { 
+
+  & .menu-icon-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 16px;
     height: 16px;
 
-    &.hide { 
+    &.hide {
       display: none;
     }
 
-    & ifx-icon { 
+    & ifx-icon {
       transition: .3s;
     }
 
-    &.show { 
-      & ifx-icon { 
+    &.show {
+      & ifx-icon {
         transition: .3s;
         transform: rotate(180deg);
       }

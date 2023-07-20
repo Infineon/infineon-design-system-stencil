@@ -1,4 +1,4 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 
 // :host {
@@ -7,9 +7,8 @@
 //   }
 // }
 
-.list-group-container { 
+.list-group-container {
   display: inline-flex;
   flex-direction: column;
   gap: 3px;
 }
-
