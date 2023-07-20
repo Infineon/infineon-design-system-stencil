@@ -1,0 +1,27 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "lerna run start --scope @prismaui/core",
+    "story": "lerna run story --scope @prismaui/core",
+    "build:all": "lerna run build --concurrency=1 && lerna run build:story --scope @prismaui/core ",
+    "build:core": "lerna run build --scope @prismaui/core",
+    "build:story": "lerna run build:story --scope @prismaui/core",
+    "build:angular": "lerna run build --scope @prismaui/angular",
+    "build:react": "lerna run build --scope @prismaui/react",
+    "build:vue": "lerna run build --scope @prismaui/vue",
+    "bootstrap": "lerna bootstrap",
+    "generate": "cd ./packages/core/ && npx stencil generate",
+    "graph": "nx graph",
+    "publish": "lerna publish --no-private"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "lerna": "^6.6.2",
+    "nx": "^16.2.1",
+    "typescript": "^5.0.4"
+  }
+}
