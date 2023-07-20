@@ -68,7 +68,7 @@ jobs:
           lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-react
           npm publish --tag canary
-          cd packages/components-vue
+          cd ../components-vue
           npm publish --tag canary
         
 
