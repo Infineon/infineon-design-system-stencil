@@ -36,12 +36,12 @@ jobs:
         run: | 
           npm install
           npm run build:components
+          cd packages/components
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
-          echo "CANARY_VERSION=$CANARY_VERSION" >> "$GITHUB_ENV"
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
-          cd packages/components
           auto shipit
 
       - name: Sleep for 5 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
