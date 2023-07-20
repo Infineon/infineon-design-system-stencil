@@ -23,7 +23,7 @@ export const frameworkTargets = [
         componentCorePackage: '@infineon/infineon-design-system-stencil',
         proxiesFile: '../components-vue/lib/components.ts',
         componentModels: vueComponentModels,
-        // includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
+        includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
         // includePolyfills: true,
         excludeComponents,
     }),
