@@ -1,3 +1,15 @@
+# v18.3.1 (Wed Jul 19 2023)
+
+#### 🐛 Bug Fix
+
+- 271 documentation radio button [#276](https://github.com/Infineon/infineon-design-system-stencil/pull/276) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v18.3.0 (Mon Jul 17 2023)
 
 #### 🚀 Enhancement
