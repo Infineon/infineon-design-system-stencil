@@ -67,8 +67,7 @@ jobs:
           npm run build:components-vue
           lerna version $CANARY_VERSION --no-git-tag-version --y
           lerna publish from-package --dist-tag canary --y
-          
-
+        
 
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
