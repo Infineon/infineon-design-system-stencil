@@ -1,0 +1,21 @@
+name: Clear cache
+
+on:
+  workflow_dispatch
+
+permissions:
+  actions: write
+
+jobs:
+  clear-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commit changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "Commit changes" || true
+          git push
+
+            
