@@ -233,7 +233,7 @@ This will generate a static Storybook in the ```storybook-static``` directory.
 To run storybook locally (automatically rebuilds on changes), run:
 
 ```bash
-yarn/npm run dev
+yarn/npm run storybook
 ```
 
  <br>
