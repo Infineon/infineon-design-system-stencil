@@ -1,3 +1,16 @@
+# v18.5.3 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- deploying preview urls for the example apps using wrapper components [#272](https://github.com/Infineon/infineon-design-system-stencil/pull/272) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.2 (Fri Jul 21 2023)
 
 #### 🐛 Bug Fix
