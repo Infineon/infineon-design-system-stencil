@@ -276,20 +276,6 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 ]);
 
 
-export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range', undefined, [
-  'min',
-  'max',
-  'value',
-  'disabled',
-  'showPercentage',
-  'leftIcon',
-  'rightIcon',
-  'leftText',
-  'rightText',
-  'ifxChanged'
-]);
-
-
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
   'icon',
   'showCloseButton',
@@ -326,6 +312,20 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'icon',
   'href',
   'target'
+]);
+
+
+export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
+  'min',
+  'max',
+  'value',
+  'disabled',
+  'showPercentage',
+  'leftIcon',
+  'rightIcon',
+  'leftText',
+  'rightText',
+  'ifxChanged'
 ]);
 
 
