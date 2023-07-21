@@ -8,11 +8,14 @@ import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
 
   return (
       <div>
+               <Navbar />      
+
          <h1 className="header">Stencil Framework integration - React + TS </h1>
 
          <h2>Tag</h2>
@@ -46,6 +49,9 @@ function App() {
       <h2>Tabs</h2>
       <Tabs />
       <br/>
+
+   
+      
       </div>
    )
 }

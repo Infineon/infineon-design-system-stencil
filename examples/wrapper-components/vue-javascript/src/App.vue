@@ -1,6 +1,7 @@
 
 <template>
-  <h1 class="header">Stencil Framework integration - Vue + JS </h1>
+  <Navbar />
+  <h1>Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
   <Checkbox />
@@ -31,11 +32,7 @@ import NumberIndicator from './components/NumberIndicator.vue'
 import Link from './components/Link.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
+import Navbar from './components/Navbar.vue'
 
 </script>
 
-<style scoped>
-.header {
-  text-align: center;
-}
-</style>

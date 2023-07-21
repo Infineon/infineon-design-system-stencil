@@ -1,5 +1,27 @@
 <div>
+  <ifx-navbar application-name="Application name" fixed="false">
+    <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+
+    <ifx-dropdown-menu slot="dropdown-menu">
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+
+    <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+  </ifx-navbar>
+
+
   <h1>Using Stencil web components in an Angular application</h1>
+
+  <h2>Alert</h2>
+  <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+  <br />
 
   <h2>Tabs</h2>
   <ifx-tabs orientation="horizontal">
@@ -7,7 +29,7 @@
     <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
     <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
   </ifx-tabs>
-
+  <br />
 
   <h2>Tag</h2>
   <ifx-tag>tag</ifx-tag>
@@ -48,9 +70,10 @@
   <span>Disabled: {{ checkboxDisabled }} </span>
   <span>Error: {{ checkboxError }} </span>
   <span>Value: {{ checkboxChecked }}</span>
+  <br />
 
 
-  <h2>Text Input</h2>
+  <h2>Text Field</h2>
   <form (ngSubmit)="handleSubmit()">
     <ifx-text-input (ifxInput)="handleIfxInput($event)" [error]="false" [disabled]="false" [success]="false"
       placeholder="Placeholder" [errorMessage]="">Text

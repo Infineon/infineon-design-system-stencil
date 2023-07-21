@@ -1,19 +1,26 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
 
 
 .navbar__wrapper {
   height: 64px;
-  position: relative;
+  position: sticky;
   overflow: hidden;
+  z-index: 1000000;
 }
 
 .navbar__main-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
-  //padding: 0 16px;
   overflow: hidden;
   transition: all 1s;
+  z-index: 1000000;
+
+  &.fixed {
+    position: fixed;
+  }
 
   &.show {
     height: 100vh;
