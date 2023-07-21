@@ -1,3 +1,16 @@
+# v18.5.2 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- added badge doc [#294](https://github.com/Infineon/infineon-design-system-stencil/pull/294) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.1 (Fri Jul 21 2023)
 
 #### 🐛 Bug Fix
