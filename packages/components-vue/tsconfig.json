@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.vue.json",
   "compilerOptions": {
     "outDir": "./dist",
     "lib": [
@@ -8,27 +9,12 @@
     "module": "es2015",
     "moduleResolution": "node",
     "target": "es2017",
-    "skipLibCheck": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "jsx": "react",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "allowUnreachableCode": false,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": [
     "lib"
   ],
   "exclude": [
     "node_modules"
-  ],
-  "compileOnSave": false,
-  "buildOnSave": false
+  ]
 }
