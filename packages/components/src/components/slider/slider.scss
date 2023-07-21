@@ -2,7 +2,7 @@
 @use "../../global/font.scss";
 
 
-// ifx-range.scss
+// ifx-slider.scss
 :host {
   display: inline-block;
 }
@@ -33,7 +33,7 @@
   margin-left: 8px;
 }
 
-.ifx-range {
+.ifx-slider {
   display: flex;
   align-items: center;
   padding: tokens.$spacing-xxs tokens.$spacing-m;
