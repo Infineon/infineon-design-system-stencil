@@ -1,20 +1,23 @@
 import './App.css';
-import Alert from './components/Alert.vue'
+import Alert from './components/Alert/Alert'
 import Link from './components/Link/Link';
 import Button from './components/Button/button';
-import TextField from './components/TextFIeld/TextField';
+import TextField from './components/TextField/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
-import Sidebar from './components/Sidebar.vue'
-import NumberIndicator from './components/NumberIndicator.vue'
-import Spinner from './components/Spinner.vue'
+import Sidebar from './components/Sidebar/Sidebar'
+import NumberIndicator from './components/NumberIndicator/NumberIndicator'
+import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <div>
+      <Navbar />
+
       <h1>Stencil Framework integration - React + JS</h1>
 
       <h2>Alert</h2>
@@ -68,6 +71,8 @@ function App() {
       <h2>Sidebar</h2>
       <Sidebar />
       <br />
+
+
 
     </div>
 

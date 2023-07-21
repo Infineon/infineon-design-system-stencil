@@ -16,6 +16,7 @@ export class Navbar {
   @State() about: boolean = false
   @Prop() applicationName: string = ""
   @State() hasLeftMenuItems: boolean = true;
+  @Prop() fixed: boolean = true;
 
   toggleClass(el, className) {
     el.classList.toggle(className)
@@ -117,7 +118,6 @@ export class Navbar {
     const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
     const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
     if (!leftMenuItems.length && !dropdownMenu) {
-      console.log('here')
       this.hasLeftMenuItems = false;
     }
   }
@@ -126,7 +126,7 @@ export class Navbar {
   render() {
     return (
       <div class="navbar__wrapper">
-        <div class="navbar__main-container">
+        <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
           <div class="navbar__container">
             <div class="navbar__container-left">
               <div class="navbar__container-left-logo">

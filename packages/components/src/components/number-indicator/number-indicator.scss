@@ -1,15 +1,15 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-.numberIndicator__container { 
+.numberIndicator__container {
   display: inline-flex;
   padding: 0px 4px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
   background-color: tokens.$color-default-500;
- 
-  & span { 
+
+  & span {
     color: tokens.$color-text-white;
     text-align: center;
     font-size: 14px;
@@ -18,9 +18,10 @@
     line-height: 15px;
   }
 
-  &.inverted { 
+  &.inverted {
     background-color: tokens.$color-bg-white;
-    & span { 
+
+    & span {
       color: tokens.$color-default-500;
     }
   }

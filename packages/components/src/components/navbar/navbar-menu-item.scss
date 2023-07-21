@@ -1,6 +1,6 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
- 
- .navbar__container-left-content-navigation-item { 
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.navbar__container-left-content-navigation-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,11 +10,11 @@
   order: 0;
   flex-grow: 0;
 
-  &.remove { 
+  &.remove {
     display: none;
   }
 
-  & a { 
+  & a {
     display: flex;
     align-items: center;
     font-weight: 400;
@@ -27,13 +27,13 @@
     flex-grow: 0;
   }
 
-  &.removeLabel { 
+  &.removeLabel {
     & a {
       display: none;
     }
   }
 
-  & .navbar__container-right-content-navigation-item-icon-wrapper { 
+  & .navbar__container-right-content-navigation-item-icon-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -44,16 +44,16 @@
     order: 0;
     flex-grow: 0;
 
-    &.removeWrapper { 
+    &.removeWrapper {
       display: none;
     }
 
-    &.hide { 
+    &.hide {
       display: none;
     }
   }
 
-  & .navbar__container-right-content-navigation-item-navigation-profile { 
+  & .navbar__container-right-content-navigation-item-navigation-profile {
     position: relative;
     width: 24px;
     height: 24px;
@@ -65,10 +65,10 @@
     display: none;
 
     &.show {
-      display: flex; 
+      display: flex;
     }
 
-    & a { 
+    & a {
       position: absolute;
       width: 22px;
       height: 20px;
