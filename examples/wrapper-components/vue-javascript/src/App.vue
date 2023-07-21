@@ -8,6 +8,8 @@
   <ProgressBar />
   <Search />
   <TextInput />
+  <Tag />
+  <Tabs />
   <Spinner />
   <Link />
   <NumberIndicator />
@@ -20,13 +22,15 @@
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
-import NumberIndicator from './components/NumberIndicator.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import RadioButton from './components/RadioButton.vue'
 import TextInput from './components/TextInput.vue'
+import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
+import NumberIndicator from './components/NumberIndicator.vue'
 import Link from './components/Link.vue'
+import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
 import IconButton from './components/IconButton.vue'
 

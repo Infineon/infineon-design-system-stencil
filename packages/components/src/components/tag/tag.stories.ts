@@ -5,13 +5,11 @@ export default {
   args: {
     label: "Tag label",
   },
-  argTypes: {
 
-  },
 }
 
 const DefaultTemplate = (args) =>
-  `<ifx-tag label="${args.label}"/>`;
+  `<ifx-tag>${args.label}</ifx-tag>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {
