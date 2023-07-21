@@ -1,3 +1,32 @@
+# v18.5.0 (Fri Jul 21 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: Range [#282](https://github.com/Infineon/infineon-design-system-stencil/pull/282) ([@SergejLust](https://github.com/SergejLust) [@dependabot[bot]](https://github.com/dependabot[bot]) [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.4.1 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- 252 fix navbar component position inconsistency [#256](https://github.com/Infineon/infineon-design-system-stencil/pull/256) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.4.0 (Fri Jul 21 2023)
 
 #### 🚀 Enhancement

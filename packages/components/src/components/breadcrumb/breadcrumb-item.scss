@@ -1,4 +1,4 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 .breadcrumb-parent {
   display: flex;
@@ -7,11 +7,11 @@
   padding: 0px;
   gap: 12px;
 
-  &:hover { 
+  &:hover {
     cursor: pointer;
   }
 
-  & .breadcrumb-wrapper { 
+  & .breadcrumb-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,17 +19,17 @@
     gap: 8px;
     position: relative;
 
-    & .dropdown-menu { 
+    & .dropdown-menu {
       display: none;
       position: absolute;
       top: 20px;
 
-      &.open { 
+      &.open {
         display: block;
       }
     }
 
-    & a { 
+    & a {
       text-decoration: none;
       color: tokens.$color-text-black;
       font-style: normal;
@@ -46,7 +46,7 @@
     }
   }
 
-  & .breadcrumb-divider { 
+  & .breadcrumb-divider {
     width: 10px;
     height: 16px;
     color: tokens.$color-gray-300;
@@ -56,4 +56,3 @@
     margin-right: 12px;
   }
 }
-

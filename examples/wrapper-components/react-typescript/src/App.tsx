@@ -10,11 +10,14 @@ import Tag from './components/Tag/Tag';
 import Sidebar from './components/Sidebar/Sidebar';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
 
   return (
       <div>
+               <Navbar />      
+
          <h1 className="header">Stencil Framework integration - React + TS </h1>
 
          <h2>Tag</h2>

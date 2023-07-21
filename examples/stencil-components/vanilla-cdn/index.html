@@ -15,7 +15,29 @@
 <body>
 
   <div>
+    <ifx-navbar application-name="Application name" fixed="false">
+      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+
+      <ifx-dropdown-menu slot="dropdown-menu">
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+    </ifx-navbar>
+
+
     <h1>Using Stencil web components in an Vanilla JS</h1>
+
+    <h2>Alert</h2>
+    <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+    <br />
 
     <h2>Tabs</h2>
     <ifx-tabs orientation="horizontal">
@@ -66,7 +88,7 @@
     <br />
 
     <form id="another-form">
-      <h2>Text Input</h2>
+      <h2>Text Field</h2>
       <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Text
         field</ifx-text-input>

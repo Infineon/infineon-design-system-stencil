@@ -1,4 +1,4 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 .radioButton__container {
     box-sizing: border-box;
@@ -60,7 +60,8 @@
             background-color: #BFBBBB;
             border-color: #BFBBBB;
 
-            &.error { 
+            &.error {
+
                 &:hover,
                 &:focus-visible {
                     border-color: #CD002F;

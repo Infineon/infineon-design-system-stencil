@@ -36,8 +36,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-range --> ifx-icon
-  style ifx-range fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-slider --> ifx-icon
+  style ifx-slider fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
