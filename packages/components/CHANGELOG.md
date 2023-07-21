@@ -1,3 +1,17 @@
+# v18.4.0 (Fri Jul 21 2023)
+
+#### 🚀 Enhancement
+
+- Documentation sidebar [#284](https://github.com/Infineon/infineon-design-system-stencil/pull/284) ([@SergejLust](https://github.com/SergejLust))
+- 265 documentation documentation spinner [#286](https://github.com/Infineon/infineon-design-system-stencil/pull/286) ([@SergejLust](https://github.com/SergejLust))
+- added accordion documentation [#290](https://github.com/Infineon/infineon-design-system-stencil/pull/290) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v18.3.3 (Thu Jul 20 2023)
 
 #### ⚠️ Pushed to `master`
