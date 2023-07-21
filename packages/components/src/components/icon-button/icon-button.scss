@@ -1,4 +1,4 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 // :host {
 //   --spacing-icon-x: 2px;
 //   --spacing-icon-x-small: 2px;
@@ -7,5 +7,3 @@
 //   --font-size-small: 12px;
 //   line-height: tokens.$font-line-height-m;
 // }
-
-
