@@ -1,3 +1,16 @@
+# v18.5.5 (Mon Jul 24 2023)
+
+#### 🐛 Bug Fix
+
+- added text field doc [#298](https://github.com/Infineon/infineon-design-system-stencil/pull/298) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.4 (Mon Jul 24 2023)
 
 #### 🐛 Bug Fix
