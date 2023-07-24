@@ -3,21 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@infineon/infineon-design-system-react": "^18.3.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
-    "@infineon/infineon-design-system-react": "18.0.22--canary.150.deeaeab2c8c24a0ca1989901c2d5b54e11a61c1b.0"
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "serve": "^14.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=. react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
