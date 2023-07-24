@@ -1,3 +1,22 @@
+# v18.5.4 (Mon Jul 24 2023)
+
+#### 🐛 Bug Fix
+
+- 251 fix icon button styling [#268](https://github.com/Infineon/infineon-design-system-stencil/pull/268) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/angular [#295](https://github.com/Infineon/infineon-design-system-stencil/pull/295) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-typescript [#296](https://github.com/Infineon/infineon-design-system-stencil/pull/296) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.3 (Fri Jul 21 2023)
 
 #### 🐛 Bug Fix
