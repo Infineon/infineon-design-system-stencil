@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.2.7/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.5.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
 
 
@@ -16,9 +16,45 @@
 <body>
 
   <div>
-    <h1>Using Stencil web components in an Vanilla JS</h1>
-    <h2>Button</h2>
+    <ifx-navbar application-name="Application name" fixed="false">
+      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
 
+      <ifx-dropdown-menu slot="dropdown-menu">
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+    </ifx-navbar>
+
+
+    <h1>Using Stencil web components in an Vanilla JS</h1>
+
+    <h2>Alert</h2>
+    <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+    <br />
+
+    <h2>Tabs</h2>
+    <ifx-tabs orientation="horizontal">
+      <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
+      <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
+      <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+    </ifx-tabs>
+    <br />
+
+
+
+    <h2>Tag</h2>
+    <ifx-tag>tag</ifx-tag>
+    <br />
+
+    <h2>Button</h2>
     <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
       Button
     </ifx-button>
@@ -53,10 +89,10 @@
     <br />
 
     <form id="another-form">
-      <h2>Text Input</h2>
-      <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <h2>Text Field</h2>
+      <ifx-text-field id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Text
-        field</ifx-text-input>
+        field</ifx-text-field>
       <br />
 
     </form>
@@ -66,6 +102,34 @@
 
     <h2>Radio Button</h2>
     <ifx-radio-button id="radio-btn" size="s" error="false" disabled="false" value="false">Text</ifx-radio-button>
+    <br />
+
+    <h2>Spinner</h2>
+    <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+    <br />
+
+
+    <h2>Link</h2>
+    <ifx-link color="primary" href="" target="_blank" underline="false">
+      Link
+    </ifx-link>
+    <br />
+
+    <h2>Number Indicator</h2>
+    <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
+    <button onClick="increaseNumber()">+</button>
+    <button onClick="decreaseNumber()">-</button>
+    <br />
+
+
+    <h2>Sidebar</h2>
+    <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+    </ifx-sidebar>
+    <br />
 
   </div>
 
@@ -77,6 +141,7 @@
   let error = false;
   let textInputValue = "";
   let radioChecked = false;
+  let number = 1;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -85,6 +150,7 @@
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
+  const numberIndicator = document.querySelector('#number-indicator');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -102,8 +168,16 @@
     disabledSpan.textContent = `Disabled: ${disabled}`;
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
-    textInputSpan.textContent = `Text Input: ${textInputValue}`;
+    textInputSpan.textContent = `Text field: ${textInputValue}`;
+  }
 
+  function increaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) + 1;
+
+  }
+
+  function decreaseNumber() {
+    numberIndicator.textContent = Number(numberIndicator.textContent) - 1;
   }
 
   function updateProgress() {
@@ -141,7 +215,7 @@
 
 
     textInput.addEventListener('ifxInput', (event) => {
-      console.log("Text input: ", event.detail);
+      console.log("Text field: ", event.detail);
       textInputValue = event.detail;
       updateValues();
     });
@@ -150,7 +224,6 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
-
   });
 
 
@@ -161,8 +234,5 @@
 
 </script>
 
-<style>
-
-</style>
 
 </html>
