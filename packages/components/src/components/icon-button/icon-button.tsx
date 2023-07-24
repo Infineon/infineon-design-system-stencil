@@ -8,7 +8,7 @@ import classNames from 'classnames';
 })
 
 export class IconButton {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text';
+  @Prop() variant: 'solid' | 'outline';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: string;
   @Prop() disabled: boolean;

@@ -15,7 +15,7 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['solid', 'outline', 'outline-text'],
+      options: ['solid', 'outline'],
       control: { type: 'radio' },
     },
     color: {
@@ -45,5 +45,4 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-
 
