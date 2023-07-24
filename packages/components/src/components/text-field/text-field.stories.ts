@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Components/TextInput",
+  title: "Components/TextField",
   tags: ['autodocs'],
 
   args: {
