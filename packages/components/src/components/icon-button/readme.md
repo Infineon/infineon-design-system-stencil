@@ -16,7 +16,7 @@
 | `shape`    | `shape`    |             | `string`                                                         | `'round'`   |
 | `size`     | `size`     |             | `string`                                                         | `undefined` |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `undefined` |
+| `variant`  | `variant`  |             | `"outline" \| "solid"`                                           | `undefined` |
 
 
 ## Methods
