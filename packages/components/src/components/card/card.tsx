@@ -18,12 +18,12 @@ export class Card {
   @State() hasImg: boolean;
   @Prop() href: string = "";
   @Prop() target: string = "_self";
+  @State() isHovered: boolean = false;
 
   @Listen('imgPosition')
   setImgPosition(event) { 
     this.alignment = event.detail
   }
-
 
   handleComponentAdjustment() { 
     const img = this.el.querySelector('ifx-card-image')
@@ -51,8 +51,12 @@ export class Card {
     } else {
       this.smallSize = true
     }
+  }
 
-
+  handleHover() { 
+    if(!this.isHovered) {
+      this.isHovered = true;
+    } else this.isHovered = false;
   }
 
   componentWillLoad() {
@@ -67,7 +71,7 @@ export class Card {
   render() {
     return (
       <Host>
-        <a href={!this.hasBtn ? this.href : undefined} target={this.target} class={
+        <div class={
           `card 
           ${this.hasBtn ? 'hasBtn' : ""}
           ${!this.hasImg ? 'onlyBody' : ""}
@@ -77,14 +81,51 @@ export class Card {
           ${this.smallSize ? 'smallSize' : ""} 
           ${this.hasAll ? 'hasAll' : ""}`
         }>
+         
+        {/* {this.direction === 'horizontal' &&
+           <div class="horizontal">
+              <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+                <slot name="img" />
+              </div>
+
+              <div class='lower-body'>
+                <div class='upper-body'>
+                    <slot />
+                </div>
+                <slot name='buttons' />
+              </div>
+         </div>} */}
+
           <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
             <slot name="img" />
           </div>
 
           <div class='card-body'>
             <slot />
+            <slot name='buttons' />
           </div>
-        </a>
+
+         {/* <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+            <slot name="img" />
+          </div> */}
+
+         {/* {this.direction === 'vertical' && 
+          <div class="vertical">
+            <a class='upper__body-wrapper' href={this.href} target={this.target}>
+              <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+                <slot name="img" />
+              </div>
+
+              <div class='upper-body'>
+                <slot />
+              </div>
+            </a>
+
+            <div class='lower-body'>
+              <slot name='buttons' />
+            </div>
+          </div>} */}
+        </div>
       </Host>
     );
   }

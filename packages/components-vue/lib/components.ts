@@ -75,6 +75,9 @@ export const IfxCardImage = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx
 ]);
 
 
+export const IfxCardLinks = /*@__PURE__*/ defineContainer<JSX.IfxCardLinks>('ifx-card-links', undefined);
+
+
 export const IfxCardOverline = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', undefined);
 
 
