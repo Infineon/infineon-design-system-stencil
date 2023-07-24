@@ -82,34 +82,34 @@ export class Card {
           ${this.hasAll ? 'hasAll' : ""}`
         }>
          
-        {/* {this.direction === 'horizontal' &&
+        {this.direction === 'horizontal' &&
            <div class="horizontal">
-              <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+              <a class={`card-img ${!this.hasImg ? 'noImage' : ""}`} href={this.href}>
                 <slot name="img" />
-              </div>
+              </a>
 
-              <div class='lower-body'>
-                <div class='upper-body'>
+              <div class='lower__body-wrapper'>
+                <a class='upper-body' href={this.href}>
                     <slot />
-                </div>
+                </a>
                 <slot name='buttons' />
               </div>
-         </div>} */}
+         </div>}
 
-          <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+          {/* <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
             <slot name="img" />
           </div>
 
           <div class='card-body'>
             <slot />
             <slot name='buttons' />
-          </div>
+          </div> */}
 
          {/* <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
             <slot name="img" />
           </div> */}
 
-         {/* {this.direction === 'vertical' && 
+         {this.direction === 'vertical' && 
           <div class="vertical">
             <a class='upper__body-wrapper' href={this.href} target={this.target}>
               <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
@@ -121,10 +121,11 @@ export class Card {
               </div>
             </a>
 
-            <div class='lower-body'>
+            <div class='lower__body-wrapper'>
               <slot name='buttons' />
             </div>
-          </div>} */}
+
+          </div>}
         </div>
       </Host>
     );

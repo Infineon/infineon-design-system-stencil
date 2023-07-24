@@ -30,7 +30,7 @@ export default {
 
 const DefaultTemplate = (args) =>
   `<ifx-card href="${args.href}" target="${args.target}">
-    <ifx-card-image src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
+    <ifx-card-image position="${args.position}" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
     ${args.overline 
       ? `<ifx-card-overline>
         ${args.overline}
@@ -46,16 +46,30 @@ const DefaultTemplate = (args) =>
         ${args.description}
         </ifx-card-text>` 
       : ""}
+
       ${args.button === 'button'
-      ? `<ifx-button href="${args.href}" icon="${args.icon}" target="${args.target}" color="primary">button</ifx-button>` 
+      ? `<ifx-card-links slot="buttons">
+          <ifx-button color="primary">Button</ifx-button>
+          <ifx-button color="secondary">Button</ifx-button>
+          <ifx-button color="primary">Button</ifx-button>
+          <ifx-button color="secondary">Button</ifx-button>
+          </ifx-card-links>` 
       : ""}
 
       ${args.button === 'link' 
-      ? `<ifx-link color='primary' href="${args.href}" target="${args.target}" underline="false">
-        <ifx-icon icon="${args.icon}"></ifx-icon>
-      ${args.button}
-      </ifx-link>` 
+      ? `<ifx-card-links slot="buttons">
+            <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
+              <ifx-icon icon="calendar16"></ifx-icon>
+              Link
+            </ifx-link>
+            <ifx-link color="primary" href="https://yahoo.com" target="_blank" underline="false">
+              <ifx-icon icon="calendar16"></ifx-icon>
+              Link
+            </ifx-link>
+          </ifx-card-links>` 
       : ""}
+
+     
   </ifx-card>`;
 
   export const Default = DefaultTemplate.bind({});
@@ -85,17 +99,20 @@ const HorizontalTemplate = (args) =>
             ${args.description}
             </ifx-card-text>` 
           : ""}
-          ${args.button === 'button'
-          ? `<ifx-button href="${args.href}" icon="${args.icon}" target="${args.target}" color="primary">button</ifx-button>` 
-          : ""}
-    
+
           ${args.button === 'link' 
-          ? `<ifx-link color='primary' href="${args.href}" target="${args.target}" underline="false">
-            <ifx-icon icon="${args.icon}"></ifx-icon>
-          ${args.button}
-          </ifx-link>` 
-          : ""}
+          ? `<ifx-card-links slot="buttons">
+          <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
+            <ifx-icon icon="calendar16"></ifx-icon>
+            Link
+          </ifx-link>
+          <ifx-link color="primary" href="https://yahoo.com" target="_blank" underline="false">
+            <ifx-icon icon="calendar16"></ifx-icon>
+            Link
+          </ifx-link>
+        </ifx-card-links>` : ""}
   </ifx-card>`;
+  
 
 export const Horizontal = HorizontalTemplate.bind({});
 Horizontal.argTypes={
@@ -103,6 +120,10 @@ Horizontal.argTypes={
     table: {
       disable: true
     }
-  }
+  },
+  button: {
+    options: ['link', 'none'],
+    control: { type: 'radio' },
+  },
 }
 

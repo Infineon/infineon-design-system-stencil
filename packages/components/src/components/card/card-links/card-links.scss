@@ -8,9 +8,9 @@
   flex-wrap: wrap;
   text-decoration: none;
   color: tokens.$color-text-black;
-  padding: 24px;
+  padding: 0px 24px 24px 24px;
 
-  white-space: pre-wrap;
+  //white-space: pre-wrap;
   /* wraps text at spaces and within words */
   word-wrap: break-word;
   /* breaks text within a word if necessary */
