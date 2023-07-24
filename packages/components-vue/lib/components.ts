@@ -5,8 +5,9 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
+import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-
+defineCustomElements();
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
@@ -242,7 +243,8 @@ export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMult
 
 
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
-  'applicationName'
+  'applicationName',
+  'fixed'
 ]);
 
 
@@ -272,20 +274,6 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
   'error',
   'size',
   'ifxChange'
-]);
-
-
-export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range', undefined, [
-  'min',
-  'max',
-  'value',
-  'disabled',
-  'showPercentage',
-  'leftIcon',
-  'rightIcon',
-  'leftText',
-  'rightText',
-  'ifxChanged'
 ]);
 
 
@@ -324,6 +312,20 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 ]);
 
 
+export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
+  'min',
+  'max',
+  'value',
+  'disabled',
+  'showPercentage',
+  'leftIcon',
+  'rightIcon',
+  'leftText',
+  'rightText',
+  'ifxChanged'
+]);
+
+
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
   'variant'
@@ -355,13 +357,11 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
   'tabs',
   'orientation',
   'small',
-  'tabChange'
+  'ifxTabIndex'
 ]);
 
 
-export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined, [
-  'label'
-]);
+export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined);
 
 
 export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.IfxTextInput["value"]>('ifx-text-input', undefined, [

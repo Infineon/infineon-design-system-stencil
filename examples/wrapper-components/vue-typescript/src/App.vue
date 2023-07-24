@@ -1,18 +1,23 @@
 
 
 <template>
-  <h1 class="header">Stencil Framework integration - Vue + TS </h1>
+  <Navbar />
+  <h1>Stencil Framework integration - Vue + TS </h1>
   <Alert />
   <Button />
   <Checkbox />
+  <RadioButton />
   <ProgressBar />
   <SearchField />
   <SearchBar />
   <TextInput />
-  <NumberIndicator />
-  <Spinner />
+  <Tag />
   <Link />
+  <NumberIndicator />
+  <Link />
+  <Spinner />
   <Sidebar />
+  <Tabs />
 </template>
 
 
@@ -28,13 +33,14 @@ import SearchField from './components/SearchField.vue'
 import SearchBar from './components/SearchBar.vue'
 import Sidebar from './components/Sidebar.vue'
 import TextInput from './components/TextInput.vue'
-import Spinner from './components/Spinner.vue'
-import Link from './components/Link.vue'
+import Link from './components/Link.vue';
+import Spinner from './components/Spinner.vue';
+import Tabs from './components/Tabs.vue'
+import RadioButton from './components/RadioButton.vue'
+import Tag from './components/Tag.vue'
+import Navbar from './components/Navbar.vue'
+
 
 </script>
 
-<style scoped>
-.header {
-  text-align: center;
-}
-</style>
+ 

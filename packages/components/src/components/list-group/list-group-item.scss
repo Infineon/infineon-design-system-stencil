@@ -1,6 +1,6 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
-.list-group-item { 
+.list-group-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,17 +15,17 @@
   font-size: 16px;
   line-height: 24px;
 
-  &.flush { 
+  &.flush {
     border: none;
     border-bottom: 1px solid tokens.$color-gray-200;
-    
-    &.bulletpoint { 
+
+    &.bulletpoint {
       padding: 8px;
     }
   }
 
-   &.bulletpoint { 
-    & .list-group-item-content::before { 
+  &.bulletpoint {
+    & .list-group-item-content::before {
       content: "•";
       display: inline-block;
       font-size: 18px;
@@ -33,16 +33,16 @@
     }
   }
 
-  &:hover:not(.show) { 
+  &:hover:not(.show) {
     background-color: tokens.$color-gray-200;
   }
 
-  &:active:not(.show) { 
+  &:active:not(.show) {
     background-color: tokens.$color-default-500;
     color: tokens.$color-text-white;
   }
 
-  &.show { 
+  &.show {
     display: block;
     height: 88px;
     padding: 16px;

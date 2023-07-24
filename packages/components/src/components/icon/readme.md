@@ -39,10 +39,10 @@
  - [ifx-multi-select-input-item](../multi-select-input)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
- - [ifx-range](../range)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-sidebar-item](../sidebar)
+ - [ifx-slider](../slider)
  - [ifx-text-input](../text-input)
 
 ### Graph
@@ -63,10 +63,10 @@ graph TD;
   ifx-multi-select-input-item --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-menu-item --> ifx-icon
-  ifx-range --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon
+  ifx-slider --> ifx-icon
   ifx-text-input --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

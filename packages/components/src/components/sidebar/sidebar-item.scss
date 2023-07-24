@@ -1,6 +1,6 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
- 
- .sidebar__nav-item { 
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.sidebar__nav-item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,11 +22,11 @@
     gap: 8px;
     flex-shrink: 0;
 
-    &.noIcon { 
+    &.noIcon {
       display: none;
     }
 
-    & ifx-icon { 
+    & ifx-icon {
       width: 16px;
       height: 16px;
     }
@@ -43,7 +43,7 @@
     flex: none;
     order: 1;
     flex-grow: 1;
-  } 
+  }
 
   & .sidebar__nav-item-number {
     display: flex;

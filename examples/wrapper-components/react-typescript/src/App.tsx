@@ -5,39 +5,54 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
+import Tabs from './components/Tab/Tab';
+import Tag from './components/Tag/Tag';
 import Spinner from './components/Spinner'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
-  
 
   return (
-    <div>
-      <h1>Stencil Framework integration - React + TS </h1>
-     
+      <div>
+               <Navbar />      
 
-      <h2>Button</h2>
-      <Button />
-      <br />
+         <h1 className="header">Stencil Framework integration - React + TS </h1>
 
-      <h2>Progress Bar</h2>
-      <ProgressBar />
-      <br />
+         <h2>Tag</h2>
+         <Tag />
+         <br />
 
-      <h2>Text Field</h2>
-      <TextField />
-      <br />
+         <h2>Search Bar</h2>
+         <SearchBar />
+         <br />
 
-      <h2>Accordion</h2>
-      <Accordion />
-      <br />
+         <h2>Button</h2>
+         <Button />
+         <br />
+
+         <h2>Progress Bar</h2>
+         <ProgressBar />
+         <br />
+
+         <h2>Text Field</h2>
+         <TextField />
+         <br />
+
+         <h2>Accordion</h2>
+         <Accordion />
+         <br />
 
       <h2>Radio Button</h2>
       <RadioButton />
       <br />
-      
+
+      <h2>Tabs</h2>
+      <Tabs />
+      <br/>
+
       <h2>Spinner</h2>
       <Spinner />
       <br />
@@ -54,8 +69,10 @@ function App() {
       <SearchField />
       <br />
       
-    </div>
-   )
 
+   
+      
+      </div>
+   )
 }
 export default App
