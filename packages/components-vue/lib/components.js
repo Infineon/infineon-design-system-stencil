@@ -259,7 +259,7 @@ exports.IfxTabs = (0, utils_1.defineContainer)('ifx-tabs', undefined, [
     'ifxTabIndex'
 ]);
 exports.IfxTag = (0, utils_1.defineContainer)('ifx-tag', undefined);
-exports.IfxTextInput = (0, utils_1.defineContainer)('ifx-text-input', undefined, [
+exports.IfxTextInput = (0, utils_1.defineContainer)('ifx-text-field', undefined, [
     'placeholder',
     'value',
     'error',

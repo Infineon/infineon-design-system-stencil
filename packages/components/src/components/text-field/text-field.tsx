@@ -1,12 +1,12 @@
 import { Component, h, Event, Element, Prop, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
-  tag: 'ifx-text-input',
-  styleUrl: 'text-input.scss',
+  tag: 'ifx-text-field',
+  styleUrl: 'text-field.scss',
   shadow: true
 })
 
-export class TextInput {
+export class TextField {
   private inputElement: HTMLInputElement;
   @Element() el;
   @Prop() placeholder: string = "Placeholder"
