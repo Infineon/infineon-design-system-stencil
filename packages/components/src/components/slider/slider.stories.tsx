@@ -2,8 +2,8 @@ import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons'
 
 export default {
-  title: 'Components/Range',
-  component: 'ifx-range',
+  title: 'Components/Slider',
+  component: 'ifx-slider',
   tags: ['autodocs'],
 
   argTypes: {
@@ -26,32 +26,32 @@ export default {
 };
 
 const Template = (args) => {
-  const rangeElement = document.createElement('ifx-range');
-  rangeElement.setAttribute('value', args.value);
-  rangeElement.setAttribute('min', args.min);
-  rangeElement.setAttribute('max', args.max);
+  const sliderElement = document.createElement('ifx-slider');
+  sliderElement.setAttribute('value', args.value);
+  sliderElement.setAttribute('min', args.min);
+  sliderElement.setAttribute('max', args.max);
   if (args.showPercentage) {
-    rangeElement.setAttribute('show-percentage', 'true');
+    sliderElement.setAttribute('show-percentage', 'true');
   }
   if (args.disabled) {
-    rangeElement.setAttribute('disabled', 'true'); // Set disabled attribute
+    sliderElement.setAttribute('disabled', 'true'); // Set disabled attribute
   }
 
   if (args.leftIcon) {
-    rangeElement.setAttribute('left-icon', args.leftIcon);
+    sliderElement.setAttribute('left-icon', args.leftIcon);
   }
   if (args.rightIcon) {
-    rangeElement.setAttribute('right-icon', args.rightIcon);
+    sliderElement.setAttribute('right-icon', args.rightIcon);
   }
   if (args.leftText) {
-    rangeElement.setAttribute('left-text', args.leftText);
+    sliderElement.setAttribute('left-text', args.leftText);
   }
   if (args.rightText) {
-    rangeElement.setAttribute('right-text', args.rightText);
+    sliderElement.setAttribute('right-text', args.rightText);
   }
-  rangeElement.addEventListener('ifxChanged', action('ifxChanged'));
+  sliderElement.addEventListener('ifxChanged', action('ifxChanged'));
 
-  return rangeElement;
+  return sliderElement;
 };
 
 export const Default = Template.bind({});

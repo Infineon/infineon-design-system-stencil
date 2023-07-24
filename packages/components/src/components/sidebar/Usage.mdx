@@ -1,0 +1,80 @@
+
+import { Meta } from '@storybook/blocks';
+
+import * as SidebarStories from './sidebar.stories';
+import SidebarAnatomy from '../../../public-storybook/images/sidebar/sidebar-anatomy.png';
+import SidebarExpandedAnatomy from '../../../public-storybook/images/sidebar/sidebar-expanded-anatomy.png';
+
+
+<Meta of={SidebarStories} /> 
+# Sidebar Navigation
+For dashboards or similar functional application we provide a different and usually common variant of navigation. The sidebar navigation gives users an easy access to different sections.
+
+## Anatomy of default sidebar navigation
+<img src={SidebarAnatomy} alt="Sidebar Anatomy" />
+
+**Logo (1)**/
+The header always starts with the brand logo.
+
+
+**Application name (2)**/
+The application name is always shown below the brand logo.
+ 
+
+**Main Menu item list (3)**/
+To navigate through different sections and pages. It is possible to attach a supportive icon before the menu item-labels.
+
+
+**Divider (4)**/
+To visually cluster different sub menus or to differentiate the sticky footer from the rest above.
+
+
+**Cluster tile (5)**/
+This item opens another subordinate menu. It is always denoted with a chevron-down icon to the right. The cluster tile has always a divider above. Do not use any icons before this menu item.
+
+
+**Footer (6)**/
+The bottom-sticked footer can be displayed optional. The text links inside the footer are displayed in line and break if they become to long. A divider on top indicates the footer's edge.
+
+
+**Search field (7)**/
+If needed the search field can be displayed inside the sidebar's navigation bar.
+
+
+**Secondary navigation (8)**/
+Crucial functions can be placed here. Please pay attention to the placement by priority. [Read more "Header navigation"](link)
+
+
+**Border (9)**/
+A 1px border indicates the bottom edge of the navigation bar and the right edge of the sidebar at anytime.
+
+
+**Number Indicator (10)**/
+Informs the user about the amount of unseen content inside the menu item's page.
+
+
+## Anatomy of expanded sidebar navigation
+<img src={SidebarExpandedAnatomy} alt="Sidebar Expanded Anatomy" />
+
+**Subordinated menu (1)**/
+Opens a subordinated menu when you click on the referenced cluster tile. It is possible to attach a supportive icon before the menu item-labels.
+
+
+**Hidden overflow (2)**/
+When the content in the sidebar navigation gets too big than the further overflow is clipped.
+ 
+
+**Scroll bar (3)**/
+A scroll bar appears as the sidebar's height increases.
+
+
+**Expanded menu item (4)**/
+The chevron-up icon indicates that the menu item is expanded.
+
+
+**Intended subordinate menu (5)**/
+Shows another subordinate menu in an intended style. Avoid using icons in this menu-depth. Up to here the maximum available menu-depth is reached.
+
+
+**Navigation bar (6)**/
+Can be displayed optionally. If displayed the navigation bar is sticky.

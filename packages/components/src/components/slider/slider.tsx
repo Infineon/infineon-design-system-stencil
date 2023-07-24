@@ -1,11 +1,11 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
-  tag: 'ifx-range',
-  styleUrl: 'range.scss',
+  tag: 'ifx-slider',
+  styleUrl: 'slider.scss',
   shadow: true,
 })
-export class IfxRange {
+export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
   @Prop() value: number = 0;
@@ -51,7 +51,7 @@ export class IfxRange {
 
   render() {
     return (
-      <div class="ifx-range">
+      <div class="ifx-slider">
         {this.leftText && (
           <span class={`left-text`}>
             {this.leftText}

@@ -5,8 +5,9 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
+import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-
+defineCustomElements();
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
@@ -246,7 +247,8 @@ export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMult
 
 
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
-  'applicationName'
+  'applicationName',
+  'fixed'
 ]);
 
 
@@ -276,20 +278,6 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
   'error',
   'size',
   'ifxChange'
-]);
-
-
-export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range', undefined, [
-  'min',
-  'max',
-  'value',
-  'disabled',
-  'showPercentage',
-  'leftIcon',
-  'rightIcon',
-  'leftText',
-  'rightText',
-  'ifxChanged'
 ]);
 
 
@@ -329,6 +317,20 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'icon',
   'href',
   'target'
+]);
+
+
+export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
+  'min',
+  'max',
+  'value',
+  'disabled',
+  'showPercentage',
+  'leftIcon',
+  'rightIcon',
+  'leftText',
+  'rightText',
+  'ifxChanged'
 ]);
 
 
