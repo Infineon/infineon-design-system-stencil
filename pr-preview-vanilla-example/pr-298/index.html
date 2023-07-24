@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.2.7/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.5.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
 
 
@@ -90,9 +90,9 @@
 
     <form id="another-form">
       <h2>Text Field</h2>
-      <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-field id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Text
-        field</ifx-text-input>
+        field</ifx-text-field>
       <br />
 
     </form>
@@ -168,7 +168,7 @@
     disabledSpan.textContent = `Disabled: ${disabled}`;
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
-    textInputSpan.textContent = `Text Input: ${textInputValue}`;
+    textInputSpan.textContent = `Text field: ${textInputValue}`;
   }
 
   function increaseNumber() {
@@ -215,7 +215,7 @@
 
 
     textInput.addEventListener('ifxInput', (event) => {
-      console.log("Text input: ", event.detail);
+      console.log("Text field: ", event.detail);
       textInputValue = event.detail;
       updateValues();
     });
