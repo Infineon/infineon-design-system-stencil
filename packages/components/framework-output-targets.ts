@@ -3,13 +3,13 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 
 const vueComponentModels: ComponentModelConfig[] = [
+    // {
+    //     elements: ['ifx-search-bar', 'ifx-search-input'],
+    //     event: 'ifxChange',
+    //     targetAttr: 'value',
+    // },
     {
-        elements: ['ifx-search-bar', 'ifx-search-input'],
-        event: 'ifxChange',
-        targetAttr: 'value',
-    },
-    {
-        elements: ['ifx-text-input'],
+        elements: ['ifx-text-input', 'ifx-search-input', 'ifx-search-bar',],
         event: 'ifxInput',
         targetAttr: 'value',
     },
@@ -23,6 +23,8 @@ export const frameworkTargets = [
         componentCorePackage: '@infineon/infineon-design-system-stencil',
         proxiesFile: '../components-vue/lib/components.ts',
         componentModels: vueComponentModels,
+        includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
+        // includePolyfills: true,
         excludeComponents,
     }),
     reactOutputTarget({

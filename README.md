@@ -202,7 +202,7 @@ yarn/npm install
 
 ### Overall structure
 
-The repository has a monorepo architecture, containing not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage.
+The repository has a monorepo architecture using Lerna. It contains not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage (not included in the Lerna workspaces)
 
 ### Wrapper components
 
@@ -220,13 +220,7 @@ Our Wrapper Components are built automatically every time ```npm run stencil:bui
 
 To run Storybook to view and test our Stencil Web Components, we first need to export it as a static web app.
 
-For building the application for the first time (to load fonts, assets and stylesheets) navigate to 
-
-```bash
-cd packages/components
-``` 
-
-and run:
+For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
 yarn/npm run build:storybook
@@ -239,7 +233,7 @@ This will generate a static Storybook in the ```storybook-static``` directory.
 To run storybook locally (automatically rebuilds on changes), run:
 
 ```bash
-yarn/npm run dev
+yarn/npm run storybook
 ```
 
  <br>

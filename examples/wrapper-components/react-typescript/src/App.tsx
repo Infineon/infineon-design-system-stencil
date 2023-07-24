@@ -1,69 +1,70 @@
-import { useRef, useState } from 'react'
-import './App.css'
-import { IfxProgressBar, IfxSearchBar, IfxButton, IfxTextInput } from '@infineon/infineon-design-system-react';
-
+ import './App.css'
+import Button from './components/Button/button';
+import TextField from './components/TextField/TextField';
+import ProgressBar from './components/ProgressBar/ProgressBar';
+import SearchBar from './components/SearchBar/SearchBar';
+import Accordion from './components/Accordion/Accordion';
+import RadioButton from './components/RadioButton/RadioButton';
+import Tabs from './components/Tab/Tab';
+import Tag from './components/Tag/Tag';
+import Sidebar from './components/Sidebar/Sidebar';
+import NumberIndicator from './components/NumberIndicator/NumberIndicator';
+import IconButton from './components/IconButton/IconButton';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
-  const [progressValue, setProgressValue] = useState(25);  // Add this line
-  const ifxButtonRef = useRef(null);
-
-  const [input, setInput] = useState('');
- 
-  const handleIfxInput = (e: CustomEvent) => {
-    console.log('ifxInput event emitted with value:', e.detail);
-    setInput(e.detail);
-  }
-
-  // Define your methods here
-  const updateProgressOnClick = () => {
-    setProgressValue((currentValue) => {
-      return currentValue < 100 ? currentValue += 10 : currentValue = 10;
-    });
-    console.log("ifxButtonRef. ", ifxButtonRef.current)
-   };
-
-  const handleSearch = (event: CustomEvent) => {
-    console.log("handling search: ", event.detail?.detail)
-  };
-  
-
-  const handleMouseOver = () => {
-    console.log('Mouse over event detected');
-  };
 
   return (
-    <>
       <div>
-    <h1 className="header">Stencil Framework integration - React + TS </h1>
-    <h2>Ifx-Search-Bar</h2>
-    <IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }}  show-close-button="true"></IfxSearchBar>
-    <br />
+               <Navbar />      
 
-      <h2>Ifx-Progress-Bar</h2>
-      <IfxProgressBar value={progressValue} size="m" show-label="true"></IfxProgressBar>
+         <h1 className="header">Stencil Framework integration - React + TS </h1>
+
+         <h2>Tag</h2>
+         <Tag />
+         <br />
+
+         <h2>Search Bar</h2>
+         <SearchBar />
+         <br />
+
+         <h2>Button</h2>
+         <Button />
+         <br />
+
+         <h2>Progress Bar</h2>
+         <ProgressBar />
+         <br />
+
+         <h2>Text Field</h2>
+         <TextField />
+         <br />
+
+         <h2>Accordion</h2>
+         <Accordion />
+         <br />
+
+      <h2>Radio Button</h2>
+      <RadioButton />
       <br />
- 
-    <IfxButton ref={ifxButtonRef} variant="outline" icon="" position="left" href="" target="_blank" color="primary" size="m"
-      disabled={false} onClick={updateProgressOnClick} onMouseOver={handleMouseOver}>
-      Increase by 10
-    </IfxButton>
-   <h2>Text Input</h2>
-      <div>
-        <IfxTextInput
-          onIfxInput={handleIfxInput} 
-          error={false} 
-          disabled={false} 
-          success={false} 
-          placeholder="Placeholder"
-          errorMessage="">Label
-        </IfxTextInput>
-      </div>
-      <p>Text field value: {input}</p>
+
+      <h2>Tabs</h2>
+      <Tabs />
+      <br/>
+
+      <h2>Number indicator</h2>
+      <NumberIndicator />
+      <br />
+
+      <h2>Sidebar</h2>
+      <Sidebar />
+      <br />
+
+      <h2>IconButton</h2>
+      <IconButton />
       <br />
       </div>
-    
-    </>
-  )
+   )
 }
 
 export default App

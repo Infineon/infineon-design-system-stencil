@@ -1,27 +1,40 @@
 
 <template>
-  <h1 class="header">Stencil Framework integration - Vue + JS </h1>
+  <Navbar />
+  <h1>Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
   <Checkbox />
+  <RadioButton />
   <ProgressBar />
   <Search />
   <TextInput />
+  <Tag />
+  <Tabs />
+  <Spinner />
+  <Link />
+  <NumberIndicator />
+  <Sidebar />
+  <IconButton />
 </template>
 
 
-<script lang="ts" setup>
+<script type="module" setup>
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
+import RadioButton from './components/RadioButton.vue'
 import TextInput from './components/TextInput.vue'
+import Tag from './components/Tag.vue'
+import Spinner from './components/Spinner.vue'
+import NumberIndicator from './components/NumberIndicator.vue'
+import Link from './components/Link.vue'
+import Tabs from './components/Tabs.vue'
+import Sidebar from './components/Sidebar.vue'
+import Navbar from './components/Navbar.vue'
+import IconButton from './components/IconButton.vue'
 
 </script>
 
-<style scoped>
-.header {
-  text-align: center;
-}
-</style>

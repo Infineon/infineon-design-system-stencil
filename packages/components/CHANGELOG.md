@@ -1,3 +1,283 @@
+# v18.5.4 (Mon Jul 24 2023)
+
+#### 🐛 Bug Fix
+
+- 251 fix icon button styling [#268](https://github.com/Infineon/infineon-design-system-stencil/pull/268) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/angular [#295](https://github.com/Infineon/infineon-design-system-stencil/pull/295) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-typescript [#296](https://github.com/Infineon/infineon-design-system-stencil/pull/296) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.3 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- deploying preview urls for the example apps using wrapper components [#272](https://github.com/Infineon/infineon-design-system-stencil/pull/272) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.2 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- added badge doc [#294](https://github.com/Infineon/infineon-design-system-stencil/pull/294) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.1 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation checkbox [#285](https://github.com/Infineon/infineon-design-system-stencil/pull/285) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.0 (Fri Jul 21 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: Range [#282](https://github.com/Infineon/infineon-design-system-stencil/pull/282) ([@SergejLust](https://github.com/SergejLust) [@dependabot[bot]](https://github.com/dependabot[bot]) [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.4.1 (Fri Jul 21 2023)
+
+#### 🐛 Bug Fix
+
+- 252 fix navbar component position inconsistency [#256](https://github.com/Infineon/infineon-design-system-stencil/pull/256) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.4.0 (Fri Jul 21 2023)
+
+#### 🚀 Enhancement
+
+- Documentation sidebar [#284](https://github.com/Infineon/infineon-design-system-stencil/pull/284) ([@SergejLust](https://github.com/SergejLust))
+- 265 documentation documentation spinner [#286](https://github.com/Infineon/infineon-design-system-stencil/pull/286) ([@SergejLust](https://github.com/SergejLust))
+- added accordion documentation [#290](https://github.com/Infineon/infineon-design-system-stencil/pull/290) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v18.3.3 (Thu Jul 20 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Delete commit_changes.yml ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v18.3.2 (Thu Jul 20 2023)
+
+#### ⚠️ Pushed to `master`
+
+- Create commit_changes.yml ([@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/wrapper-components/react-javascript [#279](https://github.com/Infineon/infineon-design-system-stencil/pull/279) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/wrapper-components/react-typescript [#278](https://github.com/Infineon/infineon-design-system-stencil/pull/278) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /examples/stencil-components/react [#280](https://github.com/Infineon/infineon-design-system-stencil/pull/280) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump word-wrap from 1.2.3 to 1.2.4 in /packages/components [#281](https://github.com/Infineon/infineon-design-system-stencil/pull/281) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v18.3.1 (Wed Jul 19 2023)
+
+#### 🐛 Bug Fix
+
+- 271 documentation radio button [#276](https://github.com/Infineon/infineon-design-system-stencil/pull/276) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v18.3.0 (Mon Jul 17 2023)
+
+#### 🚀 Enhancement
+
+- reviewed and updated tag [#269](https://github.com/Infineon/infineon-design-system-stencil/pull/269) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.19 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- 192 review tabs [#211](https://github.com/Infineon/infineon-design-system-stencil/pull/211) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.18 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation switch [#257](https://github.com/Infineon/infineon-design-system-stencil/pull/257) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.17 (Mon Jul 17 2023)
+
+#### 🐛 Bug Fix
+
+- 224 documentation button [#238](https://github.com/Infineon/infineon-design-system-stencil/pull/238) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 4
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.16 (Thu Jul 13 2023)
+
+#### 🐛 Bug Fix
+
+- 190 review sidebar [#215](https://github.com/Infineon/infineon-design-system-stencil/pull/215) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/react [#253](https://github.com/Infineon/infineon-design-system-stencil/pull/253) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-javascript [#254](https://github.com/Infineon/infineon-design-system-stencil/pull/254) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /packages/components [#246](https://github.com/Infineon/infineon-design-system-stencil/pull/246) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.15 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 218-add-about-and-faq-section-to-storybook [#221](https://github.com/Infineon/infineon-design-system-stencil/pull/221) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.14 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 185 review number indicator [#237](https://github.com/Infineon/infineon-design-system-stencil/pull/237) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+- 209 review link [#240](https://github.com/Infineon/infineon-design-system-stencil/pull/240) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump tough-cookie from 4.1.2 to 4.1.3 in /examples/wrapper-components/react-javascript [#242](https://github.com/Infineon/infineon-design-system-stencil/pull/242) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump tough-cookie from 4.1.2 to 4.1.3 in /examples/stencil-components/react [#243](https://github.com/Infineon/infineon-design-system-stencil/pull/243) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.13 (Mon Jul 10 2023)
+
+#### 🐛 Bug Fix
+
+- 191 review spinner [#214](https://github.com/Infineon/infineon-design-system-stencil/pull/214) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.2.12 (Fri Jul 07 2023)
+
+#### 🐛 Bug Fix
+
+- 187 review radio button [#210](https://github.com/Infineon/infineon-design-system-stencil/pull/210) (lechneve@ISCN5CG1201S7M.infineon.com [@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 4
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.2.11 (Tue Jul 04 2023)
 
 #### 🐛 Bug Fix

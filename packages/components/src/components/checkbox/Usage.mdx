@@ -1,35 +1,63 @@
-# Radio Button
-The radio component is used to allow users to select a single option from a predefined list. It represents a mutually exclusive choice, where only one option can be selected at a time.
+import { Meta  } from '@storybook/blocks';
+import * as CheckboxStories from './checkbox.stories';
+import CheckboxAnatomy from '../../../public-storybook/images/checkbox/checkbox-anatomy.png';
+import CheckboxGroupBlock from '../../../public-storybook/images/checkbox/checkbox-group-block.png';
+import CheckboxGroupInline from '../../../public-storybook/images/checkbox/checkbox-group-inline.png';
+import CheckboxMouseInteraction from '../../../public-storybook/images/checkbox/checkbox-mouse-interaction.png';
+import CheckboxOverflowText from '../../../public-storybook/images/checkbox/checkbox-overflow-text.png';
+import CheckboxSizes from '../../../public-storybook/images/checkbox/checkbox-sizes.png';
+import CheckboxStates from '../../../public-storybook/images/checkbox/checkbox-states.png';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+The checkbox component allows users to select multiple options from a predefined list. It represents a binary choice, where the options can be either checked or unchecked.
 
 ## Usage
 
 ### When to use
-- When you want to provide users with the ability to select a single option from a list.
-- When the options are mutually exclusive, and selecting one option automatically deselects the others.
+- When you want to provide users with the ability to select multiple options from a list the options are independent of each other.
+- For filtering or sorting functionality, particularly when there are multiple filter criteria or sorting options available.
+- For preference or settings menus that enable users to customize their experience e.g. in tables.
+- In forms where users need to indicate their agreement or consent to certain terms and conditions, privacy policies, or subscription options.
 
 ### When not to use
-- When multiple selections are allowed. In such cases, checkboxes are more appropriate.
-- If the options are independent and not mutually exclusive, checkboxes should be used instead.
+- If you need to provide users with options where only one selection is allowed. In such cases, consider using radio buttons instead.
+- If there are 5 or more options from which users can choose. In such cases consider using a select-dropdown.
 
-## Sizes
-The radio button component in our design system is available in two different sizes: 20px and 24px. These sizes are designed to provide flexibility and meet various design requirements.
+## Size
+There are two different checkbox sizes: 20px and 24px. The distinction between the sizes is achieved by varying the font size used within the checkboxes. This gives the flexibility to use checkboxes in densed layouts.
+<img src={CheckboxSizes} alt="Checkbox Sizes" />
 
-## Grouping radio buttons
-Deciding whether to place radio buttons in an inline or block layout depends on the specific context and requirements of your user interface.
+## Anatomy
+<img src={CheckboxAnatomy} alt="Checkbox Anatomy" width="50%"/>
+**Checkbox input (1)**\
+The checkbox input represents a specific state and is initially set as unselected by default.
 
-**Show image(inline radio button group)**
+**Checkbox label (2)**\
+Describes the information that you can choose to either select or deselect.
+
+## Mouse interaction
+To select an item, users have two options: they can either directly click on the checkbox input or click on the checkbox label. By making both areas interactive, it enhances the accessibility of the click target.
+<img src={CheckboxMouseInteraction} alt="Checkbox Mouse Interaction" />
+
+## Grouping checkboxes
+Deciding to place a checkbox group inline or block depends on the specific context and requirements of your user interface. 
 
 ### Inline 
-- Use to save space when you have limited screen real estate or need to place other elements alongside the radio buttons. 
-- Use when the options in your radio button group have short labels, an inline layout can provide a more compact and visually streamlined presentation. 
+<img src={CheckboxGroupInline} alt="Checkbox Group Inline" />
+- Use to save space when you have limited screen real estate or need to place other elements alongside the checkboxes. 
+- Use when the options in your checkbox group have short labels, an inline layout can provide a more compact and visually streamlined presentation. 
 - Use to visually group related options or indicate that they belong to the same category.
 
-**Show image(block radio button group)**
-
 ### Block
-- Use for long radio button labels. 
-- Use to easily scan and compare the options from top to bottom. 
-- Use to visually separate radio button options.
+<img src={CheckboxGroupBlock} alt="Checkbox Group Block" />
+- Use for long checkbox labels. 
+- Use to visually separate checkbox options.
+
+## Overflow text
+If your labels get too long, they may wrap to a second line. Generally try to avoid of having too long labels. A maximum of three words should be rule.
+<img src={CheckboxOverflowText} alt="Checkbox Overflow Text" />
 
 ## States
-**Show image(radio button states)**
+<img src={CheckboxStates} alt="Checkbox States" />
