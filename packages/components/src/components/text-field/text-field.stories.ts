@@ -19,7 +19,7 @@ export default {
 
 
 const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage, readonly }) => {
-  const element = document.createElement('ifx-text-input');
+  const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('success', success);
