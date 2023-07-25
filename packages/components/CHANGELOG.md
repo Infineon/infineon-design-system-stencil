@@ -1,3 +1,16 @@
+# v18.5.6 (Tue Jul 25 2023)
+
+#### 🐛 Bug Fix
+
+- 306 test wrapper components with vite [#307](https://github.com/Infineon/infineon-design-system-stencil/pull/307) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.5 (Mon Jul 24 2023)
 
 #### 🐛 Bug Fix
