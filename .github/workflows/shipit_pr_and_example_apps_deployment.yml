@@ -45,8 +45,8 @@ jobs:
           echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
           auto shipit
 
-      - name: Sleep for 5 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
-        run: sleep 5s
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: sleep 10s
         shell: bash
 
       - name: Update Dependencies in Vue and React packages
@@ -63,9 +63,9 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          lerna version $CANARY_VERSION --no-git-tag-version --y
           npm run build:components-react
           npm run build:components-vue
-          lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-react
           npm publish --tag canary
           cd ../components-vue
@@ -97,7 +97,7 @@ jobs:
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
-          
+
       - name: Deploy preview
         id: preview       
         uses: rossjrw/pr-preview-action@v1
@@ -175,6 +175,7 @@ jobs:
   
   
   deploy-preview-vanilla:
+    needs: stencil-library-release  
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}

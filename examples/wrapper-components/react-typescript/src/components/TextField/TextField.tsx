@@ -1,5 +1,5 @@
 import React from 'react';
-import { IfxTextInput } from '@infineon/infineon-design-system-react';
+import { IfxTextField } from '@infineon/infineon-design-system-react';
 
 function TextField() {
 
@@ -9,7 +9,7 @@ function TextField() {
 
   return (
     <div>
-      <IfxTextInput onIfxInput={handleInput} />
+      <IfxTextField onIfxInput={handleInput} />
     </div>
   );
 }
