@@ -5,26 +5,39 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    checked: true,
+    value: false,
+    disabled: false,
+
   },
   argTypes: {
-
-    value: {
-      control: 'boolean',
+    onIfxChange: {
+      description: 'Custom event',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+        },
+      },
+      action: 'ifxChange'
     },
-  },
-}
+  }
+};
 
 
 const DefaultTemplate = (args) => {
-  const toggleSwitch = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
-  toggleSwitch.value = args.value;
-  toggleSwitch.addEventListener('ifxChange', action('ifxChange'));
+  const element = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
 
-  return toggleSwitch;
+  // Set the attributes
+  element.setAttribute('disabled', args.disabled);
+  element.setAttribute('value', args.value);
+
+  // Add the event listener
+  element.addEventListener('ifxChange', action('ifxChange'));
+
+  // Return the element
+  return element;
+
 };
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
 
-}

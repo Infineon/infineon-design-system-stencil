@@ -346,6 +346,7 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [
   'value',
   'name',
+  'disabled',
   'ifxChange'
 ]);
 
