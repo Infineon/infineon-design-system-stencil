@@ -15,6 +15,7 @@ import Navbar from './components/Navbar/Navbar';
 import IconButton from './components/IconButton/IconButton';
 import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
+import Switch from './components/Switch/Switch';
 
 function App() {
       return (
@@ -85,6 +86,10 @@ function App() {
 
                   <h2>IconButton</h2>
                   <IconButton />
+                  <br />
+
+                  <h2>Switch</h2>
+                  <Switch />
                   <br />
 
             </div>
