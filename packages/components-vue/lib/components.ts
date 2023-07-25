@@ -326,7 +326,7 @@ export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slide
   'rightIcon',
   'leftText',
   'rightText',
-  'ifxChanged'
+  'ifxChange'
 ]);
 
 
