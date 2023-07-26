@@ -9,7 +9,7 @@
   <RadioButton />
   <ProgressBar />
   <Search />
-  <TextInput />
+  <TextField />
   <Tag />
   <Link />
   <NumberIndicator />
@@ -17,6 +17,7 @@
   <Spinner />
   <Sidebar />
   <Tabs />
+  <IconButton />
 </template>
 
 
@@ -28,9 +29,10 @@ import NumberIndicator from './components/NumberIndicator.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import Search from './components/Search.vue'
 import Sidebar from './components/Sidebar.vue'
-import TextInput from './components/TextInput.vue'
+import TextField from './components/TextField.vue'
 import Link from './components/Link.vue';
 import Spinner from './components/Spinner.vue';
+import IconButton from './components/IconButton.vue'
 import Tabs from './components/Tabs.vue'
 import RadioButton from './components/RadioButton.vue'
 import Tag from './components/Tag.vue'

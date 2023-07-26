@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h2>Text Input</h2>
+    <h2>Text field</h2>
     <h3>Using v-model</h3>
     <div>
-      <ifx-text-input v-model="input" error="true" disabled="false" success="false" placeholder="Placeholder"
-        errorMessage="some error message">Label</ifx-text-input>
+      <ifx-text-field v-model="input" error="true" disabled="false" success="false" placeholder="Placeholder"
+        errorMessage="some error message">Label</ifx-text-field>
 
     </div>
     <p>Text field value: {{ inputValue }}</p>

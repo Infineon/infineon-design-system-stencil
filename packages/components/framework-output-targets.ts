@@ -9,7 +9,7 @@ const vueComponentModels: ComponentModelConfig[] = [
     //     targetAttr: 'value',
     // },
     {
-        elements: ['ifx-text-input', 'ifx-search-input', 'ifx-search-bar',],
+        elements: ['ifx-text-field', 'ifx-search-input', 'ifx-search-bar',],
         event: 'ifxInput',
         targetAttr: 'value',
     },
