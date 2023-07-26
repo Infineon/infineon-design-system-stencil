@@ -1,17 +1,17 @@
 export default {
   title: 'Components/Tag',
-  args: {
-    text: "Tag label",
-  },
-  argTypes: {
+  tags: ['autodocs'],
 
+  args: {
+    label: "Tag label",
   },
+
 }
 
 const DefaultTemplate = (args) =>
-  `<ifx-tag text="${args.text}"/>`;
+  `<ifx-tag>${args.label}</ifx-tag>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes={
-  
+Default.argTypes = {
+
 }

@@ -14,6 +14,8 @@
 | `icon`      | `icon`      |             | `string`     | `undefined` |
 | `label`     | `label`     |             | `string`     | `undefined` |
 | `size`      | `size`      |             | `"m" \| "s"` | `undefined` |
+| `target`    | `target`    |             | `string`     | `"_self"`   |
+| `url`       | `url`       |             | `string`     | `""`        |
 | `value`     | `value`     |             | `string`     | `""`        |
 
 

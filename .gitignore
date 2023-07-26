@@ -107,9 +107,13 @@ typings/
 # Local Netlify folder
 .netlify
 
-.npmrc
-
-/yarn.lock
+.angular
 
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
+packages/components-vue/lib/components.d.ts
+
+
+packages/components/src/components.d.ts
+packages/components-vue/lib/components.ts
+.angular

@@ -3,7 +3,7 @@ import { Component, h, Element, Prop, Host } from '@stencil/core';
 @Component({
   tag: 'ifx-list-group',
   styleUrl: 'list-group.scss',
-  shadow: true
+  shadow: true,
 })
 
 export class ListGroup {

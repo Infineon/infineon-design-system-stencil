@@ -1,21 +1,39 @@
+import { action } from '@storybook/addon-actions';
+
 export default {
   title: "Components/Checkbox",
+  tags: ['autodocs'],
   args: {
     error: false,
     disabled: false,
-    checked: false,
-    label: 'Text'
+    value: false,
+    label: 'Text',
   },
 
-  argTypes: {
+  argTypes: { onIfxChange: { action: 'checked' } },
 
-  },
 };
 
 
-const DefaultTemplate = (args) =>
-  `<ifx-checkbox error=${args.error} disabled=${args.disabled} checked=${args.checked}>${args.label}</ifx-checkbox>`;
+const DefaultTemplate = ({
+  error,
+  disabled,
+  value,
+  label
+}) => {
+  const checkbox = document.createElement('ifx-checkbox');
+  checkbox.setAttribute('error', error);
+  checkbox.setAttribute('disabled', disabled);
+  checkbox.setAttribute('value', value);
 
+  checkbox.addEventListener('ifxChange', action('ifxChange'));
+
+  checkbox.innerHTML = `
+    ${label}
+  `
+
+  return checkbox;
+};
 
 export const Default = DefaultTemplate.bind({});
 

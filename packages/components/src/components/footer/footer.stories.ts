@@ -1,5 +1,7 @@
 export default {
-  title: "Components/Ifx-Footer",
+  title: "Components/Footer",
+  tags: ['autodocs'],
+
   args: {
     variant: 'default'
   },

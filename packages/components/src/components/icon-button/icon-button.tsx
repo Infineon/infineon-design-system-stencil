@@ -3,12 +3,12 @@ import classNames from 'classnames';
 
 @Component({
   tag: 'ifx-icon-button',
-  styleUrl: '../../index.scss',
+  styleUrl: 'icon-button.scss',
   shadow: true,
 })
 
 export class IconButton {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text';
+  @Prop() variant: 'solid' | 'outline';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: string;
   @Prop() disabled: boolean;
@@ -42,10 +42,10 @@ export class IconButton {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-          <ifx-icon icon={this.icon}></ifx-icon>
+            <ifx-icon icon={this.icon}></ifx-icon>
           </a>
         ) : (
-          <button 
+          <button
             class={this.getClassNames()}
             type="button"
           >

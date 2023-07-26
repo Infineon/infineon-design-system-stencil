@@ -2,9 +2,16 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { frameworkTargets } from './framework-output-targets';
 
+
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
-  globalStyle: 'src/global/global.scss',
+  plugins: [
+    sass()
+  ],
+  extras: {
+    cloneNodeFix: true,
+    enableImportInjection: true,
+  },
 
   outputTargets: [
     {
@@ -14,7 +21,7 @@ export const config: Config = {
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      generateTypeDeclarations: true,
+      // generateTypeDeclarations: true,
     },
     {
       type: 'docs-readme',
@@ -22,22 +29,6 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-    },
+    }
   ],
-
-
-
-  plugins: [
-    sass()
-  ],
-
-  // rollupPlugins: {
-  //   after: [
-  //     nodePolyfills(),
-  //   ]
-  // },
-  extras: {
-    cloneNodeFix: true,
-    experimentalImportInjection: true,
-  },
 };

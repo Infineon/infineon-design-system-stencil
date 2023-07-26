@@ -10,12 +10,13 @@
 | Property   | Attribute  | Description | Type                                                             | Default     |
 | ---------- | ---------- | ----------- | ---------------------------------------------------------------- | ----------- |
 | `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
-| `disabled` | `disabled` |             | `boolean`                                                        | `undefined` |
+| `disabled` | `disabled` |             | `boolean`                                                        | `false`     |
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
 | `icon`     | `icon`     |             | `string`                                                         | `undefined` |
 | `position` | `position` |             | `string`                                                         | `'left'`    |
 | `size`     | `size`     |             | `string`                                                         | `'m'`       |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
+| `type`     | `type`     |             | `string`                                                         | `'button'`  |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
 
 

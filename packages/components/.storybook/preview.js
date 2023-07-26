@@ -1,45 +1,35 @@
-// import '../src/plugins/infineonIcons';
-import '../src/global/global.scss'
-import {
-  defineCustomElements,
-  applyPolyfills,
-} from '../loader';
+
+import { defineCustomElements } from '../loader';
 
 
-applyPolyfills().then(() => {
-  defineCustomElements(window);
-});
+defineCustomElements();
+
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  viewMode: "docs",
-  docs: {
-    source: {
-      state: 'open',
-    },
-  },
+  actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
       color: /(background|color)$/i,
-      date: /Date$/
+      date: /Date$/,
     },
   },
-
   options: {
     storySort: {
       order: [
-        'About',
         'Setup & installation',
         [
+          'About',
           'Getting started',
           'Framework integration',
           [
             'Wrapper Components',
             'React + Stencil',
             'Vue + Stencil'
-          ]
+          ],
+          'FAQ',
         ],
         'Components',
-        'Contact'
+        'Documentation',
+        // 'Contact'
       ]
     }
   }

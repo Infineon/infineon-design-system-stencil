@@ -46,6 +46,7 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -92,25 +93,66 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 })
 ```
 
+
+##### Additional steps for Vue (when using the plain Stencil components)
+
+Inside <b>vite.config.js</b> file:
+
+```bash
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags starting with 'ifx-' as custom elements
+          isCustomElement: (tag) => tag.startsWith('ifx-')
+        }
+      }
+    }),
+    ...
+  ]
+});
+```
+
+##### Additional steps for React (when using the plain Stencil components)
+
+To listen to custom events emitted from the Stencil components, you might need to attach an EventListener.
+
+```bash
+import React, { useEffect, useRef } from 'react';
+
+function App() {
+  const checkboxRef = useRef();
+
+  useEffect(() => {
+    const checkbox = checkboxRef.current;
+    checkbox.addEventListener("ifxChange", toggleValue);
+    return () => {
+      checkbox.removeEventListener("ifxChange", toggleValue);
+    };
+  });
+
+  ...
+  
+   return (
+      <ifx-checkbox ref={checkboxRef} disabled={disabled} value={checked} error={error} name="name" onIfxChange={toggleValue}>label</ifx-checkbox>
+  );
+}
+
+export default App;
+```
+
 #### Installation of SASS
 <!-- For React projects only, run:  -->
 ```bash
 npm install sass
 ```
 
-<!-- #### Change Public folder as a temporary solution for React only
-Copy (<b>not move!</b>) the:
+ <br>
 
-node_modules -> @infineon -> design-system-bootstrap -> <b>public</b> folder
-
-inside
-
-node_modules -> @infineon -> design-system-bootstrap -> <b>src</b> folder
-
-
-<p align="right"><a href="#tableContent">back to top</a></p> -->
-
-<!-- USAGE EXAMPLES -->
 ## Usage of components
 
 Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
@@ -119,6 +161,8 @@ https://infineon.github.io/infineon-design-system-stencil
 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
 
 ## Using only the Icons
 
@@ -137,6 +181,7 @@ import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infi
 defineCustomElementIfxTag(window);
 ```
 
+ <br>
 
 ## Local development
 
@@ -153,40 +198,65 @@ Install all the modules and dependencies listed on the ```package.json``` file w
 yarn/npm install
 ```
 
+## Project structure 
+
+### Overall structure
+
+The repository has a monorepo architecture using Lerna. It contains not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage (not included in the Lerna workspaces)
+
+### Wrapper components
+
+Stencil Web Components can be used with any JavaScript framework or with no framework at all, just like any other HTML elements. This is because they are built on Web APIs that are native to the browser. They are self-contained and encapsulate their functionality in a way that makes them portable and easy to drop into any project.
+
+To bridge the gap between Stencil components and specific frameworks, it can be useful to create wrapper components 
+
+A Stencil Wrapper Component is a component that wraps around a Stencil Web Component and translates the properties, events, and methods to work seamlessly within the specific framework context.
+
+Our Wrapper Components are built automatically every time ```npm run stencil:build``` is executed.
+
+ <br>
+
 ### Build Storybook
 
-To deploy Storybook, we first need to export it as a static web app.
-To do so, we can use the inbuild ```build-storybook``` command with ```npm``` or ```yarn```.
+To run Storybook to view and test our Stencil Web Components, we first need to export it as a static web app.
 
 For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
-yarn/npm run storybook-prepare
+yarn/npm run build:storybook
 ```
 
-To build storybook for local preview, run:
-
-```bash
-yarn/npm run storybook-build
-```
-
-or (to automatically rebuild on changes)
-
-```bash
-yarn/npm run storybook-build-watch
-```
-
-This will generate a static Storybook in the ```storybook-static``` directory. We can add --watch so that the storybook automatically updates in case of changes.
+This will generate a static Storybook in the ```storybook-static``` directory.
 
 ### Start Storybook
 
-To start storybook, simply open another terminal window and run the inbuilt command ```storybook-start``` with ```npm``` or ```yarn```.
+To run storybook locally (automatically rebuilds on changes), run:
 
 ```bash
-yarn/npm run storybook-start
+yarn/npm run storybook
 ```
 
-```storybook-start``` also executes ```watch-css``` and ```watch-storybook``` which automatically update storybook on code change.
+ <br>
+
+### Example applications
+
+To test the standard Stencil components within our example applicatons, navigate to 
+
+```bash
+cd examples/stencil-components
+```
+
+and go to the folder for Vue, React, Angular or VanillaJs. Follow the instructions described in the ```readme.md``` in each of these folders.
+
+To test the Wrapper components within React or Vue applicatons, navigate to 
+
+```bash
+cd examples/wrapper-components
+```
+
+and go to the application folder you want to use for testing. (React-Ts, React-Js, Vue-Ts, Vue-Js). Again, follow the instructions described in the ```readme.md``` in each of these folders.
+
+ <br>
 
 ### Contributing
 
@@ -198,7 +268,8 @@ yarn/npm run storybook-start
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-<!-- CONTACT -->
+ <br>
+ 
 ## Contact
 
 ### Email

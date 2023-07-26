@@ -1,32 +1,32 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
- 
- .sidebar__nav-item { 
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.sidebar__nav-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding: 8px 4px 8px 0px;
+  padding: 0px 4px 0px 0px;
   gap: 4px;
   flex: none;
   order: 0;
   flex-grow: 0;
+  text-decoration: none;
+  color: #1D1D1D;
 
   & .sidebar__nav-item-icon-wrapper {
-    display: flex; //why is this causing a gap?
-    flex-direction: row;
+    display: flex;
+    width: 24px;
+    height: 24px;
     justify-content: center;
     align-items: center;
-    padding: 0px;
     gap: 8px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    flex-shrink: 0;
 
-    &.noIcon { 
+    &.noIcon {
       display: none;
     }
 
-    & ifx-icon { 
+    & ifx-icon {
       width: 16px;
       height: 16px;
     }
@@ -43,7 +43,7 @@
     flex: none;
     order: 1;
     flex-grow: 1;
-  } 
+  }
 
   & .sidebar__nav-item-number {
     display: flex;

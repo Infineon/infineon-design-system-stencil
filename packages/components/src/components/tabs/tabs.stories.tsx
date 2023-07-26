@@ -2,11 +2,17 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Tabs',
+  tags: ['autodocs'],
+
   component: 'ifx-tabs',
   argTypes: {
     amountOfTabs: { name: 'Amount of Tabs', control: 'number' },
-    orientation: { name: 'Orientation', control: { type: 'select', options: ['horizontal', 'vertical'] } },
-    small: { name: 'Small', control: 'boolean' }, // Add this line
+    orientation: {
+      name: 'Orientation',
+      options: ['horizontal', 'vertical'],
+      control: { type: 'radio' },
+    },
+    small: { name: 'Small', control: 'boolean' }, 
   },
 };
 
@@ -16,7 +22,7 @@ const Template = (args) => {
   if (args.small) {
     tabsElement.setAttribute('small', '');
   }
-  tabsElement.addEventListener('tabChange', action(`tabChange`));
+  tabsElement.addEventListener('ifxTabIndex', action(`ifxTabIndex`));
   for (let i = 0; i < args.amountOfTabs; i++) {
     const tabContent = document.createElement('ifx-tab');
     tabContent.setAttribute('header', `tab header ${i + 1}`);

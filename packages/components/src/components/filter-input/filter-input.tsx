@@ -2,7 +2,7 @@ import { Component, Prop, h, Element, State, Event, EventEmitter } from "@stenci
 
 @Component({
   tag: 'ifx-filter-input',
-  styleUrl: '../../index.scss',
+  styleUrl: 'filter-input.scss',
   shadow: true
 })
 
@@ -18,7 +18,7 @@ export class DropdownFilter {
   @Event({ bubbles: false }) selectValue: EventEmitter<string>;
   @Element() el;
 
-  handleSelectValue(event) { 
+  handleSelectValue(event) {
     this.selectValue.emit(event.target.value)
   }
 

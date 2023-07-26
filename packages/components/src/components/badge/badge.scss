@@ -1,6 +1,7 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
-.badge__container { 
+.badge__container {
   display: inline-flex;
   justify-content: center;
   align-items: center;

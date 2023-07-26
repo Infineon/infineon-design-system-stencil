@@ -1,6 +1,8 @@
 
 export default {
   title: 'Components/Search Input',
+  tags: ['autodocs'],
+
   args: {
     showDeleteIcon: false,
     disabled: false,
@@ -9,7 +11,7 @@ export default {
 
   },
   argTypes: {
-    onIfxChange: { action: 'ifxChange' },
+    onIfxInput: { action: 'ifxInput' },
     borderColor: {
       options: ['light', 'dark', 'green'],
       control: { type: 'radio' },
@@ -29,9 +31,8 @@ const Template = (args) => {
   </ifx-search-input>`;
 
   const inputElement = wrapper.querySelector('ifx-search-input');
-  inputElement.addEventListener('ifxChange', (event) => {
-    // console.log('Storybook Search-Input:', event);
-    args.onIfxChange(event);
+  inputElement.addEventListener('ifxInput', (event) => {
+    args.onIfxInput(event);
 
   });
 

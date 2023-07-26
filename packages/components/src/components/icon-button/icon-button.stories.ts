@@ -1,5 +1,7 @@
 export default {
-  title: "Components/Icon-Button",
+  title: "Components/Icon Button",
+  tags: ['autodocs'],
+
   args: {
     variant: "solid",
     size: 'm',
@@ -13,7 +15,7 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['solid', 'outline', 'outline-text'],
+      options: ['solid', 'outline'],
       control: { type: 'radio' },
     },
     color: {
@@ -24,11 +26,11 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    target: { 
+    target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    shape: { 
+    shape: {
       options: ['round', 'square'],
       control: { type: 'radio' }
     }
@@ -43,5 +45,4 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-
 

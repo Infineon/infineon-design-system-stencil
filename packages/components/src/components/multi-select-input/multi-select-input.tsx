@@ -2,7 +2,7 @@ import { Component, h, Element, Listen, Prop, State } from "@stencil/core";
 
 @Component({
   tag: 'ifx-multi-select-input',
-  styleUrl: '../../index.scss',
+  styleUrl: 'multi-select-input.scss',
   shadow: true
 })
 

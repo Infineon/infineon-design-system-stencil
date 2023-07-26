@@ -2,14 +2,14 @@ import { Component, h, Element, Prop } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-menu-item',
-  styleUrl: '../../index.scss',
+  styleUrl: 'navbar-menu-item.scss',
   shadow: true
 })
 
 export class NavbarMenuItem {
 
   @Element() el;
-  @Prop({mutable: true}) isProfile: boolean = false;
+  @Prop({ mutable: true }) isProfile: boolean = false;
   @Prop() hideLabel: boolean = false;
   @Prop() icon: string = "image-16"
 
@@ -21,7 +21,7 @@ export class NavbarMenuItem {
   //     //const menuItem = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item');
   //     //const menuItem = this.el;
   //     //console.log(navbarMenuItem.length)
-      
+
   //     for(let i = 0; i < navbarMenuItem.length; i++) { 
   //       //console.log(navbarMenuItem[i].shadowRoot.querySelector('.navbar__container-left-content-navigation-item'))
   //       //let menuItem = navbarMenuItem[i].shadowRoot.querySelector('.navbar__container-left-content-navigation-item');
@@ -33,11 +33,11 @@ export class NavbarMenuItem {
   //   }
   // }
 
-  componentWillLoad() { 
+  componentWillLoad() {
     const menuItem = this.el;
     const slotValue = menuItem.getAttribute('slot')
-    if(slotValue) { 
-      if(slotValue.toLowerCase() === 'right-menu-profile-item') { 
+    if (slotValue) {
+      if (slotValue.toLowerCase() === 'right-menu-profile-item') {
         this.isProfile = true;
       } else this.isProfile = false;
     }
@@ -47,7 +47,7 @@ export class NavbarMenuItem {
   render() {
     return (
       <div class={`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""}`}>
-        <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon && !this.isProfile ? "removeWrapper" : ""} ${this.isProfile  ? "hide" : ""}`}>
+        <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon && !this.isProfile ? "removeWrapper" : ""} ${this.isProfile ? "hide" : ""}`}>
           {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         </div>
         <div class={`navbar__container-right-content-navigation-item-navigation-profile ${this.isProfile ? 'show' : ""}`}>
