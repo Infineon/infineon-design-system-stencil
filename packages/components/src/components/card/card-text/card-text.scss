@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
+:host { 
+  pointer-events: none;
+}
+
 .card__text-wrapper {
   padding-bottom: 0px;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { IfxCard, IfxCardHeadline, IfxButton, IfxCardOverline, IfxCardText, IfxCardImage, IfxCardLinks } from '@infineon/infineon-design-system-react';
 
 function Card() {

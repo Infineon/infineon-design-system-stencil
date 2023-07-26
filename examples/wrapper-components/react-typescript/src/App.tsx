@@ -7,6 +7,7 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
+import Card from './Components/Card/Card';
 
 import Navbar from './components/Navbar/Navbar';
 
@@ -42,13 +43,17 @@ function App() {
          <Accordion />
          <br />
 
-      <h2>Radio Button</h2>
-      <RadioButton />
-      <br />
+         <h2>Radio Button</h2>
+         <RadioButton />
+         <br />
 
-      <h2>Tabs</h2>
-      <Tabs />
-      <br/>
+         <h2>Tabs</h2>
+         <Tabs />
+         <br/>
+
+         <h2>Tabs</h2>
+         <Card />
+         <br/>
 
    
       

@@ -12,7 +12,12 @@
   border-radius: 1px;
   width: 22rem;
   height: auto;
-  
+
+  &:hover { 
+    cursor: pointer;
+    border-color: #0A8276;
+  }
+
   & .horizontal { 
     display: flex;
     flex-direction: row;
@@ -44,23 +49,19 @@
     & .upper__body-wrapper { 
       text-decoration: none;
       color: tokens.$color-text-black;
+      //padding: 0px 10px 10px 10px;
 
       & .upper-body { 
         padding: 24px 24px 0px 24px;
       }
     }
+
+    & .lower__body-wrapper { 
+      &:hover { 
+        border-color: #ebe9e9;
+      }
+    }
   }
-
-  // & .card-img {
-  //   & ::slotted([slot=img]) {
-  //     width: 100%;
-  //     vertical-align: bottom;
-  //   }
-  // }
-
-  // & .card-body {
-  //   padding: 24px;
-  // }
 
   &.horizontal {
     flex-direction: row;
@@ -78,13 +79,7 @@
     //   height: 138px;
     // }
 
-    // & .lower__body-wrapper { 
-    //   & .card-body {
-    //     flex: 1;
-    //     width: 0;
-    //   }
-    // }
-
+   
     & .card-img {
       flex: 1;
       order: 2;
@@ -110,23 +105,3 @@
     }
   }
 }
-
-// .card__text-wrapper {
-//   padding-bottom: 0px;
-
-//   &.hasBtn {
-//     padding-bottom: 16px;
-//   }
-// }
-
-// .card-text {
-//   line-height: 24px;
-//   font-size: 16px;
-//   font-weight: 400;
-//   white-space: wrap;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 3;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-// }

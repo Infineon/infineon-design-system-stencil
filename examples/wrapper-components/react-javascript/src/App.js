@@ -12,6 +12,7 @@ import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
+import Card from './components/card/Card'
 
 function App() {
   return (
@@ -70,6 +71,10 @@ function App() {
 
       <h2>Sidebar</h2>
       <Sidebar />
+      <br />
+
+      <h2>Card</h2>
+      <Card />
       <br />
 
 

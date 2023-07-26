@@ -53,20 +53,30 @@ export class Card {
     }
   }
 
-  handleHover() { 
-    if(!this.isHovered) {
-      this.isHovered = true;
-    } else this.isHovered = false;
-  }
+  handleHovering() { 
+    const card = this.el.shadowRoot.querySelector('.card')
+    card.addEventListener('mouseover', (ev) => { 
+      if(ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') { 
+        this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+      } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
+    })
 
+    card.addEventListener('mouseout', () => { 
+      this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+    })
+  }
+  
   componentWillLoad() {
     this.handleComponentAdjustment()
+  }
+
+  componentDidLoad() { 
+    this.handleHovering()
   }
 
   componentWillUpdate() { 
     this.handleComponentAdjustment()
   }
-
 
   render() {
     return (
@@ -96,19 +106,6 @@ export class Card {
               </div>
          </div>}
 
-          {/* <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
-            <slot name="img" />
-          </div>
-
-          <div class='card-body'>
-            <slot />
-            <slot name='buttons' />
-          </div> */}
-
-         {/* <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
-            <slot name="img" />
-          </div> */}
-
          {this.direction === 'vertical' && 
           <div class="vertical">
             <a class='upper__body-wrapper' href={this.href} target={this.target}>
@@ -124,7 +121,6 @@ export class Card {
             <div class='lower__body-wrapper'>
               <slot name='buttons' />
             </div>
-
           </div>}
         </div>
       </Host>
