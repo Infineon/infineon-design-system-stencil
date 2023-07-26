@@ -15,8 +15,8 @@
   <Link />
   <NumberIndicator />
   <Sidebar />
-  <Card />
   <IconButton />
+  <Card />
 
 </template>
 
