@@ -63,7 +63,6 @@
     & .upper__body-wrapper { 
       text-decoration: none;
       color: tokens.$color-text-black;
-      //padding: 0px 10px 10px 10px;
 
       & .upper-body { 
         padding: 24px 24px 0px 24px;
@@ -81,19 +80,6 @@
     flex-direction: row;
     width: 538px;
 
-    // &.hasAll {
-    //   height: auto;
-    // }
-
-    // &.largeSize {
-    //   height: 218px;
-    // }
-
-    // &.smallSize {
-    //   height: 138px;
-    // }
-
-   
     & .card-img {
       flex: 1;
       order: 2;

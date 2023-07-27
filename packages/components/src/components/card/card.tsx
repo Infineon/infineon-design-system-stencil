@@ -11,10 +11,6 @@ export class Card {
   @State() noBtns: boolean;
   @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
   @State() alignment: string;
-  @State() hasDesc: boolean;
-  @State() hasAll: boolean;
-  @State() largeSize: boolean;
-  @State() smallSize: boolean;
   @State() hasImg: boolean;
   @Prop() href: string = "";
   @Prop() target: string = "_self";
@@ -25,32 +21,7 @@ export class Card {
   }
 
   handleComponentAdjustment() { 
-    const img = this.el.querySelector('ifx-card-image')
-    const desc = this.el.querySelector('ifx-card-text')
-    const overline = this.el.querySelector('ifx-card-overline')
-    const headline = this.el.querySelector('ifx-card-headline')
-    const button = this.el.querySelector('ifx-link') || this.el.querySelector('ifx-button')
     const links = this.el.querySelector('ifx-card-links')
- 
-    if(!img) { 
-      this.hasImg = false;
-    } else this.hasImg = true;
-
-    if (desc) {
-      this.hasDesc = true;
-    }
-
-    // if(button) { 
-    //   this.hasBtn = true;
-    // } else this.hasBtn = false;
-
-    if (overline && headline && desc && button) {
-      this.hasAll = true;
-    } else if (this.hasDesc || (overline && headline && button)) {
-      this.largeSize = true
-    } else {
-      this.smallSize = true
-    }
 
     if(!links) { 
       this.noBtns = true;
@@ -91,12 +62,8 @@ export class Card {
         <div class={
           `card 
           ${this.noBtns ? 'noBtns' : ""}
-          ${!this.hasImg ? 'onlyBody' : ""}
           ${this.direction} 
-          ${this.alignment} 
-          ${this.largeSize ? 'largeSize' : ""} 
-          ${this.smallSize ? 'smallSize' : ""} 
-          ${this.hasAll ? 'hasAll' : ""}`
+          ${this.alignment}`
         }>
          
         {this.direction === 'horizontal' &&
