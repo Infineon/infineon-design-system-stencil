@@ -12,9 +12,7 @@ import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
-
 import Card from './components/card/Card'
-
 import IconButton from './components/IconButton/IconButton';
 import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
@@ -80,9 +78,9 @@ function App() {
                   <Tag />
                   <br />
 
-      <h2>Card</h2>
-      <Card />
-      <br />
+                  <h2>Card</h2>
+                  <Card />
+                  <br />
 
                   <h2>Number indicator</h2>
                   <NumberIndicator />

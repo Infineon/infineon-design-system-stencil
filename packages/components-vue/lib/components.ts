@@ -65,7 +65,9 @@ export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', un
 ]);
 
 
-export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined);
+export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined, [
+  'isHovered'
+]);
 
 
 export const IfxCardImage = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', undefined, [
