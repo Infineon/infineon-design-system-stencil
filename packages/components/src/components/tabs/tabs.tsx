@@ -51,7 +51,6 @@ export class IfxTabs {
   // needed for smooth border transition
   reRenderBorder() {
     const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
-    console.log('here')
     if (borderElement && this.tabHeaderRefs[this.activeTabIndex]) {
       if (this.orientation === 'horizontal') {
 
@@ -84,7 +83,7 @@ export class IfxTabs {
     });
   }
 
-  setDefaultOrientation() { 
+  setDefaultOrientation() {
     const validOrientations = ['horizontal', 'vertical'];
     const lowercaseOrientation = this.orientation.toLowerCase();
 
@@ -98,11 +97,11 @@ export class IfxTabs {
     this.onSlotChange();
   }
 
-  componentDidLoad() { 
+  componentDidLoad() {
     this.reRenderBorder()
   }
 
-  componentDidUpdate() { 
+  componentDidUpdate() {
     this.reRenderBorder()
   }
 

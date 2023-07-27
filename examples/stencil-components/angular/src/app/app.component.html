@@ -125,4 +125,9 @@
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
   </ifx-sidebar>
   <br />
+
+  <h2>Switch</h2>
+  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+  <br />
+
 </div>
