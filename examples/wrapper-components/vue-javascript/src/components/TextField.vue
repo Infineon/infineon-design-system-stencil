@@ -1,10 +1,12 @@
 <template>
   <div>
+
     <h2>Text Input</h2>
     <h3>Using v-model</h3>
+    <h2>Text field</h2>
     <div>
-      <ifx-text-input v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
-        errorMessage="">Label</ifx-text-input>
+      <ifx-text-field v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
+        errorMessage="">Label</ifx-text-field>
     </div>
     <p>Text field value: {{ inputValue }}</p>
     <br />
@@ -23,7 +25,7 @@ onMounted(() => {
 })
 
 function updateTextInput() {
-  console.log("updating text input from parent component")
+  console.log("updating Text field from parent component")
   inputValue.value = inputValue.value + "+1";
 
 }

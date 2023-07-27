@@ -1,3 +1,63 @@
+# v18.6.0 (Tue Jul 25 2023)
+
+#### 🚀 Enhancement
+
+- added icon button doc [#302](https://github.com/Infineon/infineon-design-system-stencil/pull/302) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 4
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.6 (Tue Jul 25 2023)
+
+#### 🐛 Bug Fix
+
+- 306 test wrapper components with vite [#307](https://github.com/Infineon/infineon-design-system-stencil/pull/307) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.5 (Mon Jul 24 2023)
+
+#### 🐛 Bug Fix
+
+- added text field doc [#298](https://github.com/Infineon/infineon-design-system-stencil/pull/298) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.4 (Mon Jul 24 2023)
+
+#### 🐛 Bug Fix
+
+- 251 fix icon button styling [#268](https://github.com/Infineon/infineon-design-system-stencil/pull/268) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/angular [#295](https://github.com/Infineon/infineon-design-system-stencil/pull/295) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/react-typescript [#296](https://github.com/Infineon/infineon-design-system-stencil/pull/296) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.3 (Fri Jul 21 2023)
 
 #### 🐛 Bug Fix

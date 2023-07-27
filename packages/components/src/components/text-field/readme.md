@@ -1,4 +1,4 @@
-# ifx-text-input
+# ifx-text-field
 
 
 
@@ -35,8 +35,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-text-input --> ifx-icon
-  style ifx-text-input fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-text-field --> ifx-icon
+  style ifx-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

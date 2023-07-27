@@ -43,7 +43,7 @@
  - [ifx-search-field](../search-field)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
- - [ifx-text-input](../text-input)
+ - [ifx-text-field](../text-field)
 
 ### Graph
 ```mermaid
@@ -67,7 +67,7 @@ graph TD;
   ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
-  ifx-text-input --> ifx-icon
+  ifx-text-field --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

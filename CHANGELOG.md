@@ -39,7 +39,7 @@
 
 #### 🐛 Bug Fix
 
-- 127 text input [#130](https://github.com/Infineon/infineon-design-system-stencil/pull/130) ([@tishoyanchev](https://github.com/tishoyanchev))
+- 127 Text field [#130](https://github.com/Infineon/infineon-design-system-stencil/pull/130) ([@tishoyanchev](https://github.com/tishoyanchev))
 
 #### Authors: 1
 

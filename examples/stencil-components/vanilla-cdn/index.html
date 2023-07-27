@@ -89,9 +89,9 @@
 
     <form id="another-form">
       <h2>Text Field</h2>
-      <ifx-text-input id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-field id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Text
-        field</ifx-text-input>
+        field</ifx-text-field>
       <br />
 
     </form>
@@ -179,7 +179,7 @@
     disabledSpan.textContent = `Disabled: ${disabled}`;
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
-    textInputSpan.textContent = `Text Input: ${textInputValue}`;
+    textInputSpan.textContent = `Text field: ${textInputValue}`;
   }
 
   function increaseNumber() {
@@ -226,7 +226,7 @@
 
 
     textInput.addEventListener('ifxInput', (event) => {
-      console.log("Text input: ", event.detail);
+      console.log("Text field: ", event.detail);
       textInputValue = event.detail;
       updateValues();
     });
