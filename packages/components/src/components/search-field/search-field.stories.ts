@@ -12,7 +12,7 @@ export default {
   },
   argTypes: {
     size: {
-      options: ['s', 'm', 'l'],
+      options: ['s', 'm'],
       control: { type: 'radio' },
     },
     onIfxInput: {

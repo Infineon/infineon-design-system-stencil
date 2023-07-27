@@ -1,4 +1,4 @@
-# ifx-navbar
+# ifx-navbar-menu-item
 
 
 
