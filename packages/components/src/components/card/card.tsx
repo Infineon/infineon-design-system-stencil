@@ -11,7 +11,7 @@ export class Card {
   @State() noBtns: boolean;
   @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
   @State() alignment: string;
-  @State() hasImg: boolean;
+  @State() noImg: boolean;
   @Prop() href: string = "";
   @Prop() target: string = "_self";
 
@@ -21,7 +21,13 @@ export class Card {
   }
 
   handleComponentAdjustment() { 
+    const image = this.el.querySelector('ifx-card-image')
     const links = this.el.querySelector('ifx-card-links')
+
+    if(!image) { 
+      this.noImg = true;
+      console.log('no image')
+    } else this.noImg = false;
 
     if(!links) { 
       this.noBtns = true;
@@ -68,7 +74,7 @@ export class Card {
          
         {this.direction === 'horizontal' &&
            <div class="horizontal">
-              <a class={`card-img ${!this.hasImg ? 'noImage' : ""}`} href={this.href}>
+              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.href}>
                 <slot name="img" />
               </a>
 
@@ -76,14 +82,16 @@ export class Card {
                 <a class='upper-body' href={this.href}>
                     <slot />
                 </a>
-                <slot name='buttons' />
+                <div>
+                  <slot name='buttons' />
+                </div>
               </div>
          </div>}
 
          {this.direction === 'vertical' && 
           <div class="vertical">
             <a class='upper__body-wrapper' href={this.href} target={this.target}>
-              <div class={`card-img ${!this.hasImg ? 'noImage' : ""}`}>
+              <div class='card-img'>
                 <slot name="img" />
               </div>
 

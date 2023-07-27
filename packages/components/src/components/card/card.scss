@@ -35,10 +35,15 @@
   & .horizontal { 
     display: flex;
     flex-direction: row;
+    min-height: 218px;
 
       & .card-img {
         flex: 1;
         text-decoration: none;
+
+        &.noImage { 
+          display: none;
+        }
 
         & ::slotted([slot=img]) {
           width: 100%;
@@ -48,6 +53,8 @@
 
       & .lower__body-wrapper { 
         flex: 1;
+        display: grid;
+        grid-template-rows: 1fr auto;
 
         & .upper-body { 
           display: flex;
