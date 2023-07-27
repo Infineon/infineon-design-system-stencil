@@ -1,3 +1,16 @@
+# v18.7.0 (Thu Jul 27 2023)
+
+#### 🚀 Enhancement
+
+- 233 review switch [#309](https://github.com/Infineon/infineon-design-system-stencil/pull/309) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.6.0 (Tue Jul 25 2023)
 
 #### 🚀 Enhancement
