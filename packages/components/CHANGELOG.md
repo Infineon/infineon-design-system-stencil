@@ -1,3 +1,31 @@
+# v18.6.0 (Tue Jul 25 2023)
+
+#### 🚀 Enhancement
+
+- added icon button doc [#302](https://github.com/Infineon/infineon-design-system-stencil/pull/302) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 4
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.5.6 (Tue Jul 25 2023)
+
+#### 🐛 Bug Fix
+
+- 306 test wrapper components with vite [#307](https://github.com/Infineon/infineon-design-system-stencil/pull/307) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v18.5.5 (Mon Jul 24 2023)
 
 #### 🐛 Bug Fix
