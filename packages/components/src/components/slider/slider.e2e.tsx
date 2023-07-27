@@ -62,10 +62,10 @@ describe('ifx-slider', () => {
         expect(element.textContent).toEqual('30%');
     });
 
-    it('emits the ifxChanged event when the input changes', async () => {
+    it('emits the ifxChange event when the input changes', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider value="50"></ifx-slider>');
-        const spy = await page.spyOnEvent('ifxChanged');
+        const spy = await page.spyOnEvent('ifxChange');
 
         const input = await page.find('ifx-slider >>> input');
         await input.press('ArrowRight');

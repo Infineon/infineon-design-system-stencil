@@ -10,6 +10,8 @@ export class AppComponent {
   checkboxChecked = false;
   checkboxError = false;
   checkboxDisabled = false;
+  switchChecked = false;
+  switchDisabled = false;
   radioError = false;
   radioDisabled = false;
   radioChecked = false;
@@ -47,6 +49,13 @@ export class AppComponent {
     this.checkboxChecked = !this.checkboxChecked;
   }
 
+  toggleSwitchValue() {
+    console.log("switch value change")
+    this.switchChecked = !this.switchChecked;
+  }
+  toggleSwitchDisabled() {
+    this.switchDisabled = !this.switchDisabled;
+  }
   toggleRadioBtnDisabled() {
     this.radioDisabled = !this.radioDisabled;
   }

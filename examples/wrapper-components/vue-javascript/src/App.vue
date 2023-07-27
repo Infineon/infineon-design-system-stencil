@@ -18,6 +18,7 @@
   <NumberIndicator />
   <Sidebar />
   <IconButton />
+  <Switch />
 </template>
 
 
@@ -38,6 +39,7 @@ import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
 import IconButton from './components/IconButton.vue'
+import Switch from './components/Switch.vue'
 
 </script>
 
