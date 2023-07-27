@@ -13,6 +13,10 @@ import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
 import SearchField from './components/SearchField/SearchField';
+import IconButton from './components/IconButton/IconButton';
+import Tab from './components/Tab/Tab';
+import Tag from './components/Tag/Tag';
+import Switch from './components/Switch/Switch';
 
 
 
@@ -79,7 +83,11 @@ function App() {
       <br />
 
 
+                  <h2>Switch</h2>
+                  <Switch />
+                  <br />
 
+            </div>
     </div>
   )
 }
