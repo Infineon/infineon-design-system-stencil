@@ -8,7 +8,7 @@ import { Component, h, Host, Element, Prop, State, Listen } from '@stencil/core'
 
 export class Card {
   @Element() el;
-  @State() hasBtn: boolean;
+  @State() noBtns: boolean;
   @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
   @State() alignment: string;
   @State() hasDesc: boolean;
@@ -18,7 +18,6 @@ export class Card {
   @State() hasImg: boolean;
   @Prop() href: string = "";
   @Prop() target: string = "_self";
-  @State() isHovered: boolean = false;
 
   @Listen('imgPosition')
   setImgPosition(event) { 
@@ -31,6 +30,7 @@ export class Card {
     const overline = this.el.querySelector('ifx-card-overline')
     const headline = this.el.querySelector('ifx-card-headline')
     const button = this.el.querySelector('ifx-link') || this.el.querySelector('ifx-button')
+    const links = this.el.querySelector('ifx-card-links')
  
     if(!img) { 
       this.hasImg = false;
@@ -40,9 +40,9 @@ export class Card {
       this.hasDesc = true;
     }
 
-    if(button) { 
-      this.hasBtn = true;
-    } else this.hasBtn = false;
+    // if(button) { 
+    //   this.hasBtn = true;
+    // } else this.hasBtn = false;
 
     if (overline && headline && desc && button) {
       this.hasAll = true;
@@ -51,17 +51,24 @@ export class Card {
     } else {
       this.smallSize = true
     }
+
+    if(!links) { 
+      this.noBtns = true;
+    } else this.noBtns = false;
   }
 
   handleHovering() { 
     const card = this.el.shadowRoot.querySelector('.card')
     card.addEventListener('mouseover', (ev) => { 
+      this.el.querySelector('ifx-card-headline').isHovered = true;
       if(ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') { 
         this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+        this.el.querySelector('ifx-card-headline').isHovered = false;
       } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
     })
 
     card.addEventListener('mouseout', () => { 
+      this.el.querySelector('ifx-card-headline').isHovered = false;
       this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
     })
   }
@@ -83,7 +90,7 @@ export class Card {
       <Host>
         <div class={
           `card 
-          ${this.hasBtn ? 'hasBtn' : ""}
+          ${this.noBtns ? 'noBtns' : ""}
           ${!this.hasImg ? 'onlyBody' : ""}
           ${this.direction} 
           ${this.alignment} 

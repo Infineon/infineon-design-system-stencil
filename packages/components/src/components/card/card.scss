@@ -13,6 +13,14 @@
   width: 22rem;
   height: auto;
 
+  &.noBtns { 
+    & .vertical { 
+      & .lower__body-wrapper { 
+        padding-bottom: 24px;
+      }
+    }
+  }
+
   &:hover { 
     cursor: pointer;
     border-color: #0A8276;
