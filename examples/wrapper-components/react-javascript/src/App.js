@@ -31,6 +31,18 @@ function App() {
       <Alert />
       <br />
 
+      <h2>IconButton</h2>
+      <IconButton />
+      <br />
+
+      <h2>Tab</h2>
+      <Tab />
+      <br />
+
+      <h2>Tag</h2>
+      <Tag />
+      <br />
+
       <h2>Button</h2>
       <Button />
       <br />
@@ -82,13 +94,12 @@ function App() {
       <Sidebar />
       <br />
 
+      <h2>Switch</h2>
+      <Switch />
+      <br />
 
-                  <h2>Switch</h2>
-                  <Switch />
-                  <br />
-
-            </div>
     </div>
+
   )
 }
 export default App;
