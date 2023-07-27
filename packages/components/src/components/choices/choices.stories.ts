@@ -1,6 +1,8 @@
 
 export default {
   title: 'Components/Choices',
+  tags: ['autodocs'],
+
   decorators: [(Story, context) => {
     const story = Story();
     const el = document.createElement('div');
@@ -10,15 +12,20 @@ export default {
       const component = el.querySelector('ifx-choices');
 
       console.log("choices ", context.args.choices)
-      const choices = context.args.choices?.split(',').map((choice) => ({
-        value: choice.trim(),
-        label: choice.trim(),
-      }));
-      if (context.args.type === 'single' || context.args.type === 'multiple') {
-        component.setChoices(choices, 'value', 'label', true);
+      const choicesStr = context.args.choices;
+      if (typeof choicesStr === 'string') {
+        const choices = choicesStr.split(',').map((choice) => ({
+          value: choice.trim(),
+          label: choice.trim(),
+        }));
+        if (context.args.type === 'single' || context.args.type === 'multiple') {
+          component.setChoices(choices, 'value', 'label', true);
+        }
+      } else {
+        console.error("Invalid choices input:", choicesStr);
       }
+
       component.addEventListener('change', (event: CustomEvent) => {
-        console.log('Change Event:', event.detail);
         context.args.onChange(event);
       });
     }, 0);
@@ -26,16 +33,31 @@ export default {
 
     return el;
   }],
+  args: {
+    searchEnabled: true,
+    removeItemButton: false,
+    disabled: false,
+  },
 
   argTypes: {
-    type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
+    // type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
     value: { control: 'text' },
     name: { control: 'text' },
-    removeItemButton: { control: { type: 'boolean' } },
+    removeItemButton: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
+    searchEnabled: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
     searchPlaceholderValue: { control: { type: 'text' } },
+    disabled: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
     choices: { control: 'text', options: ['Choice 1', 'Choice 2', 'Choice 3'] },
     onChange: { action: 'change' },
-
   },
 };
 
@@ -46,8 +68,9 @@ const Template = (args) => {
       value="${args.value}"
       name="${args.name}"
       remove-item-button="${args.removeItemButton}"
+      search-enabled="${args.searchEnabled}"
       search-placeholder-value="${args.searchPlaceholderValue}"
-       choices="${args.choices}">
+      choices="${args.choices}">
      </ifx-choices>`
   );
 };
@@ -67,7 +90,10 @@ Single.args = {
   type: 'single',
   value: 'Placeholder',
   name: 'single',
+  removeItemButton: true,
   searchPlaceholderValue: 'Search...',
+  searchEnabled: true,
+  disabled: false,
   choices: 'Choice 1, Choice 2, Choice 3',
 
 };
@@ -78,7 +104,9 @@ SingleWithIcon.args = {
   value: 'Placeholder',
   name: 'single',
   searchPlaceholderValue: 'Search...',
-  choices: "Choice 1, <ifx-icon icon='chevron-down-16'></ifx-icon> Choice 2, <ifx-icon icon='chevron-down-16'></ifx-icon> Choice 3",
+  searchEnabled: true,
+  disabled: false,
+  choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
 
 };
 
@@ -89,6 +117,7 @@ Multiple.args = {
   value: 'Placeholder',
   name: 'multi',
   removeItemButton: true,
+  disabled: false,
   choices: 'Choice 1, Choice 2, Choice 3'
 
 };

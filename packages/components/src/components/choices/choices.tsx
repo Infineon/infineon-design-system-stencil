@@ -22,7 +22,13 @@ import {
   CustomAddItemText
 } from './interfaces';
 import { getValues, filterObject, isDefined } from './utils';
+// import { Choice } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/choice';
+// import { Group } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/group';
+// import { Item } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/item';
+// import { PassedElementType } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/passed-element-type';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// type TemplateOptions = Record<'classNames' | 'allowHTML', any>;
 @Component({
   tag: 'ifx-choices',
   styleUrl: 'choices.scss',
@@ -84,7 +90,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private element;
 
 
-  @Watch('type')
+  @Watch('type') //not needed anymore cause multi and single select will be separate components
   onTypeChange(newValue: string) {
     this.removeItemButton = newValue !== 'single';
   }
@@ -173,6 +179,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   public async setChoices(choices: Array<any>, value: string, label: string, replaceChoices?: boolean) {
+    // const predefinedChoices = [
+    //   { value: 'Choice 1', label: 'Choice 1' },
+    //   { value: 'Choice 2', label: 'Choice 2' },
+    //   { value: 'Choice 3', label: 'Choice 3' },
+    // ];
+    // console.log("setting choices: ", choices, predefinedChoices);
     this.choice.setChoices(choices, value, label, replaceChoices);
 
     return this;
@@ -239,11 +251,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const attributesSingle = {
       'data-selector': 'root',
       'name': this.name || null,
-      'remove-item-button': false,
+      // 'remove-item-button': false,
     };
     const attributesDefault = {
       'data-selector': 'root',
       'name': this.name || null,
+
     };
     const containerClass = `ifx-choices__container ifx-choices__selected-item`;
     // destroy choices element to restore previous dom structure
@@ -257,6 +270,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             <select {...attributesSingle} onChange={() => this.closeDropdownMenu()}>
               {this.value ? this.createSelectOptions(this.value) : null}
             </select>
+
             <div class="ifx-choices__icon-wrapper">
               <ifx-icon
                 icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
@@ -337,13 +351,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-
-
   private init() {
-
     this.root.addEventListener('click', this.toggleDropdownMenu.bind(this))
-
     const props = {
+      type: this.type,
       allowHTML: true, // Set allowHTML to true
       silent: this.silent,
       items: this.items,
@@ -388,12 +399,71 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       addItemFilter: this.addItemFilter,
       customAddItemText: this.customAddItemText
     };
+
     const settings = filterObject(props, isDefined);
 
     //type check
     const element = this.root.querySelector('[data-selector="root"]');
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
-      this.choice = new ChoicesJs(element, settings);
+      // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
+      this.choice = new ChoicesJs(element, Object.assign({}, settings, {
+        callbackOnCreateTemplates: function (template) {
+          return {
+            //modifying the selected item template
+            item: ({ classNames }, data) => {
+              let removeButtonHTML = '';
+              if (props.removeItemButton) {
+                const REMOVE_ITEM_TEXT = 'Remove item';
+                let buttonClass = '';
+                if (props.type === 'single') {
+                  buttonClass = 'single-select'; // replace with your actual class
+                } else if (this.type === 'multiple') {
+                  buttonClass = ''; // replace with your actual class
+                }
+
+                //replace this with the actual ifx icon / icon-button
+                removeButtonHTML = `
+                  <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
+                    ${REMOVE_ITEM_TEXT}
+                  </button>
+                `;
+              }
+
+              return template(`
+                <div class="${classNames.item} ${data.highlighted
+                  ? classNames.highlightedState
+                  : classNames.itemSelectable
+                } ${data.placeholder ? classNames.placeholder : ''
+                }" data-item data-id="${data.id}" data-value="${data.value}" ${data.active ? 'aria-selected="true"' : ''
+                } ${data.disabled ? 'aria-disabled="true"' : ''}>
+                ${data.label}
+                ${removeButtonHTML}
+
+                </div>
+              `);
+            },
+            //modifying the template of each item in the options list
+            choice: ({ classNames }, data) => {
+              // console.log(data);
+              return template(`
+              <div class="${classNames.item} ${classNames.itemChoice} ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable
+                } choice-container" data-select-text="${this.config.itemSelectText}" data-choice ${data.disabled
+                  ? 'data-choice-disabled aria-disabled="true"'
+                  : 'data-choice-selectable'
+                } data-id="${data.id}" data-value="${data.value}" ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
+                }">
+                  <span class="choice-label">${data.label}</span>
+                  ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
+              </div>
+              `);
+            },
+          };
+        },
+      })); //.disable()
+
+      console.log("this.choice ", this.choice);
+
+
     } else {
       // handle the case when the element is neither an HTMLInputElement nor an HTMLSelectElement
     }

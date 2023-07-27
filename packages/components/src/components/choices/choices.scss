@@ -10,12 +10,22 @@
 
 .ifx-choices__container {
   position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dddddd;
+  border-radius: 2.5px;
 
   & .ifx-choices__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+
     &:hover {
       cursor: pointer;
     }
   }
+
 
   &.show {
     & .ifx-choices__icon-wrapper {
@@ -32,19 +42,39 @@
 
   & .ifx-choices__icon-wrapper {
     & ifx-icon {
-      position: absolute;
-      top: 35%;
-      right: 17px;
+      // position: absolute;
+      // top: 35%;
+      // right: 17px;
       transition: .3s;
     }
   }
 }
 
 
+/*
+START Select options: item alignment
+*/
+.choice-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.choice-label {
+  /* Additional styles for label if necessary */
+}
+
+.choice-icon {
+  /* Additional styles for icon if necessary */
+}
+
+/*
+END Select options: item alignment
+*/
+
 
 .choices {
-  position: relative;
-  margin-bottom: 24px;
+  width: 100%;
   font-size: 16px;
 }
 
@@ -81,7 +111,7 @@
 }
 
 .choices[data-type*='select-one'] .choices__inner {
-  padding-bottom: 7.5px;
+  // padding-bottom: 7.5px;
 }
 
 .choices[data-type*='select-one'] .choices__input {
@@ -169,7 +199,6 @@
   margin-left: 8px;
   padding-left: 16px;
   border-left: 1px solid tokens.$color-default-500;
-  ;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAyMSAyMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0yLjU5Mi4wNDRsMTguMzY0IDE4LjM2NC0yLjU0OCAyLjU0OEwuMDQ0IDIuNTkyeiIvPjxwYXRoIGQ9Ik0wIDE4LjM2NEwxOC4zNjQgMGwyLjU0OCAyLjU0OEwyLjU0OCAyMC45MTJ6Ii8+PC9nPjwvc3ZnPg==);
   background-size: 8px;
   width: 8px;
@@ -186,15 +215,11 @@
 }
 
 .choices__inner {
-  display: inline-block;
-  vertical-align: top;
-  width: 100%;
   background-color: #ffff;
-  padding: 7.5px 7.5px 3.75px;
-  border: 1px solid #dddddd;
-  border-radius: 2.5px;
-  font-size: 14px;
-  min-height: 44px;
+  // padding-left: 7.5px;
+  // padding-top: 7.5px;
+  padding: 7.5px;
+  // min-height: 24px; //min-height to have the same height when the select is empty => maybe remove this and always set to placeholder value when item is removed
   overflow: hidden;
 
 }
@@ -219,9 +244,9 @@
 }
 
 .choices__list--single {
-  display: inline-block;
+  // display: inline-block;
   padding: 4px 16px 4px 4px;
-  width: 100%;
+  // width: 100%;
 }
 
 [dir='rtl'] .choices__list--single {
@@ -231,6 +256,8 @@
 
 .choices__list--single .choices__item {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .choices__list--multiple {
@@ -247,9 +274,7 @@
   margin-right: 3.75px;
   margin-bottom: 3.75px;
   background-color: tokens.$color-default-500;
-  ;
   border: 1px solid tokens.$color-default-500;
-  ;
   color: tokens.$color-text-white;
   word-break: break-all;
   box-sizing: border-box;
@@ -266,9 +291,7 @@
 
 .choices__list--multiple .choices__item.is-highlighted {
   background-color: tokens.$color-gray-200;
-  ;
   border: 1px solid tokens.$color-default-500;
-  ;
 }
 
 .is-disabled .choices__list--multiple .choices__item {
@@ -332,13 +355,15 @@
   text-align: right;
 }
 
+
+
 @media (min-width: 640px) {
   .choices__list--dropdown .choices__item--selectable {
-    padding-right: 100px;
+    // padding-right: 100px; remove padding so the checkmark can be aligned at the very right
   }
 
   .choices__list--dropdown .choices__item--selectable:after {
-    content: attr(data-select-text);
+    // content: attr(data-select-text); #press to select text next to select option
     font-size: 12px;
     opacity: 0;
     position: absolute;
@@ -394,6 +419,7 @@
 }
 
 .choices__button {
+  //default button for removing items
   text-indent: -9999px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -404,6 +430,12 @@
   background-position: center;
   cursor: pointer;
   // visibility: hidden; //hide remove button on select menu 
+
+  &.single-select {
+    //different style for the button when used in a single select
+    background-color: black;
+    cursor: pointer;
+  }
 }
 
 .choices__button:focus {
