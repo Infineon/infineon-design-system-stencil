@@ -39,8 +39,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public type?: 'single' | 'multiple' | 'text';
   @Prop() public value: string;
   @Prop() public name: string;
-
-  @Prop() public silent: boolean;
   @Prop() public items: Array<any>;
   @Prop() public choices: Array<any>;
   @Prop() public renderChoiceLimit: number;
@@ -85,7 +83,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Element() private readonly root: HTMLElement;
   @State() ifxChoicesIconIsRotated: boolean = false;
-
   @Event() ifxChange: EventEmitter<CustomEvent>;
 
   private choice;
@@ -99,25 +96,26 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async handleChange() {
-    console.log("onchange: ", this.choice.getValue())
+    console.log("onChange: ", this.choice.getValue())
     if (this.choice.getValue()) {
       this.ifxChange.emit(this.choice.getValue());
     }
     else {
-      this.choice.setValue(this.createSelectOptions(this.value));
+      this.ifxChange.emit(this.choice.getValue());
+      // this.choice.setValue(this.placeholder ? [this.placeholderValue] : null);
     }
     this.closeDropdownMenu();
 
   }
 
 
-  @Listen('removeItem')
-  handleRemoveItem() {
-    if (this.value === null) {
-      console.log("handle remove")
-      this.choice.setChoices([{ value: '', label: 'Your placeholder text', placeholder: true }], 'value', 'label', true);
-    }
-  }
+  // @Listen('removeItem')
+  // handleRemoveItem() {
+  //   if (this.choice.getValue() === undefined) {
+  //     console.log("handle remove")
+  //     this.choice.setChoices([{ value: '', label: 'Your placeholder text', placeholder: true }], 'value', 'label', true);
+  //   }
+  // }
 
   @Method()
   public async highlightItem(item: HTMLElement, runEvent?: boolean) {
@@ -150,7 +148,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   public async removeActiveItemsByValue(value: string) {
     this.choice.removeActiveItemsByValue(value);
-
     return this;
   }
 
@@ -290,13 +287,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         this.element =
           <div class={containerClass} >
             <select {...attributesSingle} onChange={() => this.handleChange()}>
-              {this.value ? this.createSelectOptions(this.value) : null}
+              {this.value ? this.createSelectOptions(this.value) : this.placeholderValue}
             </select>
 
             <div class="ifx-choices__icon-wrapper">
               <ifx-icon
                 icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
-
               ></ifx-icon>
             </div>
           </div>;
@@ -373,11 +369,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private init() {
-    this.root.addEventListener('click', this.toggleDropdownMenu.bind(this))
+    // this.root.addEventListener('click', this.toggleDropdownMenu.bind(this))
     const props = {
       type: this.type,
       allowHTML: true, // Set allowHTML to true
-      silent: this.silent,
       items: this.items,
       choices: this.choices,
       renderChoiceLimit: this.renderChoiceLimit,
@@ -399,8 +394,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       shouldSort: this.shouldSort,
       shouldSortItems: this.shouldSortItems,
       sorter: this.sorter,
-      placeholder: true,
-      placeholderValue: this.placeholderValue || (typeof this.placeholder === 'string' && this.placeholder) || ' ',
+      placeholder: this.placeholder,
+      placeholderValue: this.placeholderValue,  //|| (typeof this.placeholder === 'string' && this.placeholder) || ' ',
       searchPlaceholderValue: this.searchPlaceholderValue,
       prependValue: this.prependValue,
       appendValue: this.appendValue,
@@ -437,9 +432,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 const REMOVE_ITEM_TEXT = 'Remove item';
                 let buttonClass = '';
                 if (props.type === 'single') {
-                  buttonClass = 'single-select'; // replace with your actual class
+                  buttonClass = 'single-select';
                 } else if (this.type === 'multiple') {
-                  buttonClass = ''; // replace with your actual class
+                  buttonClass = '';
                 }
 
                 //replace this with the actual ifx icon / icon-button
@@ -449,7 +444,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                   </button>
                 `;
               }
-
               return template(`
                 <div class="${classNames.item} ${data.highlighted
                   ? classNames.highlightedState
@@ -482,7 +476,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         },
       })); //.disable()
 
-      console.log("this.choice ", this.choice);
+      console.log(this.choice.getValue())
 
 
     } else {
@@ -503,6 +497,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  //needed?
   private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
     console.log("values", values)
     return getValues(values).map((value) => <option value={value}>{value}</option>);

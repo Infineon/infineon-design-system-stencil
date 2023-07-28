@@ -37,12 +37,14 @@ const DefaultTemplate = (args) => {
   element.setAttribute('type', args.type);
   element.setAttribute('value', args.value);
   element.setAttribute('name', args.name);
+  element.setAttribute('placeholder', args.placeholder);
+  element.setAttribute('placeholderValue', args.placeholderValue);
   element.setAttribute('remove-item-button', args.removeItemButton);
   element.setAttribute('search-enabled', args.searchEnabled)
   element.setAttribute('search-placeholder-value', args.searchPlaceholderValue)
   element.setAttribute('choices', args.choices);
 
-  console.log("choices ", args.choices)
+  //no other way to set array of values in storybook
   const choicesStr = args.choices;
   if (typeof choicesStr === 'string') {
     const choices = choicesStr.split(',').map((choice) => ({
@@ -65,7 +67,6 @@ const DefaultTemplate = (args) => {
 export const Default = DefaultTemplate.bind({});
 Default.args = {
   type: 'text',
-  value: 'Placeholder',
   name: 'text',
   choices: 'Choice 1, Choice 2, Choice 3',
 
@@ -75,9 +76,10 @@ Default.args = {
 export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
-  value: 'Placeholder',
   name: 'single',
   removeItemButton: true,
+  placeholder: true,
+  placeholderValue: 'Placeholder',
   searchPlaceholderValue: 'Search...',
   searchEnabled: true,
   disabled: false,
@@ -88,10 +90,11 @@ Single.args = {
 export const SingleWithIcon = DefaultTemplate.bind({});
 SingleWithIcon.args = {
   type: 'single',
-  value: 'Placeholder',
   name: 'single',
   searchPlaceholderValue: 'Search...',
   searchEnabled: true,
+  placeholder: true,
+  placeholderValue: 'Placeholder',
   disabled: false,
   choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
 
@@ -101,10 +104,11 @@ SingleWithIcon.args = {
 export const Multiple = DefaultTemplate.bind({});
 Multiple.args = {
   type: 'multiple',
-  value: 'Placeholder',
   name: 'multi',
   removeItemButton: true,
   disabled: false,
+  placeholder: true,
+  placeholderValue: 'Placeholder',
   choices: 'Choice 1, Choice 2, Choice 3'
 
 };

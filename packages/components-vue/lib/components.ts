@@ -99,7 +99,6 @@ export const IfxChoices = /*@__PURE__*/ defineContainer<JSX.IfxChoices, JSX.IfxC
   'type',
   'value',
   'name',
-  'silent',
   'items',
   'choices',
   'renderChoiceLimit',

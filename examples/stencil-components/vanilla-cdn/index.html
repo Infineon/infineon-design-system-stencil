@@ -130,6 +130,12 @@
     </ifx-sidebar>
     <br />
 
+    <h2>Single-Select</h2>
+    <ifx-choices id='single-select' disabled="false" type="single" value="undefined" name="single" placeholder="true"
+      placeholdervalue="Placeholder" remove-item-button="true" search-enabled="true"
+      search-placeholder-value="Search..." choices="Choice 1, Choice 2, Choice 3"></ifx-choices>
+    <br />
+
   </div>
 
 </body>
@@ -150,6 +156,7 @@
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
+  const singleSelect = document.querySelector('#single-select');
 
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -223,6 +230,18 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
+
+    singleSelect.addEventListener('ifxChange', (event) => {
+      console.log("single select value change", event.detail);
+    });
+
+    //set single select valuest
+    const predefinedChoices = [
+      { value: 'Choice 1', label: 'Choice 1' },
+      { value: 'Choice 2', label: 'Choice 2' },
+      { value: 'Choice 3', label: 'Choice 3' },
+    ];
+    singleSelect.setChoices(predefinedChoices, 'value', 'label', true);
   });
 
 
