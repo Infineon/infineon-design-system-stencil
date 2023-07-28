@@ -425,25 +425,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       if (props.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
-            if (props.type === 'single') {
-              // buttonClass = 'single-select'; //no removeItemButton for single select needed
-            }
             return {
               //modifying the selected item template
               item: ({ classNames }, data) => {
-                let removeButtonHTML = '';
-                if (props.removeItemButton) {
-                  const REMOVE_ITEM_TEXT = 'Remove item';
-                  let buttonClass = '';
-                  if (props.type === 'single') {
-                    // buttonClass = 'single-select'; //no removeItemButton for single select needed
-                  } else if (this.type === 'multiple') {
-                    buttonClass = '';
-                    removeButtonHTML = `
-                    <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
-                    </button>`;
-                  }
-                }
+                let removeButtonHTML = ''; //remove button needed in single select?
+                // if (props.removeItemButton) {
+                //   const REMOVE_ITEM_TEXT = 'Remove item';
+                //   let buttonClass = '';
+                //   if (props.type === 'single') {
+                //     // buttonClass = 'single-select'; //no removeItemButton for single select needed
+                //   } else if (this.type === 'multiple') {
+                //     buttonClass = '';
+                //     removeButtonHTML = `
+                //     <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
+                //     </button>`;
+                //   }
+                // }
                 return template(`
                   <div class="${classNames.item} ${data.highlighted
                     ? classNames.highlightedState
@@ -452,7 +449,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                   }" data-item data-id="${data.id}" data-value="${data.value}" ${data.active ? 'aria-selected="true"' : ''
                   } ${data.disabled ? 'aria-disabled="true"' : ''}>
                   ${data.label === 'undefined' ? 'Placeholder' : data.label}
-                  ${removeButtonHTML}
+                   ${removeButtonHTML}
   
                   </div>
                 `);
