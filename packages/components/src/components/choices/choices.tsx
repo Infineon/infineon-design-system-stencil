@@ -1,5 +1,5 @@
-import { h, Component, Element, Method, Prop } from '@stencil/core';
-import { HTMLStencilElement, Listen, State, Watch } from '@stencil/core/internal';
+import { h, Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
+import { HTMLStencilElement, Listen, State } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
 
@@ -86,13 +86,37 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Element() private readonly root: HTMLElement;
   @State() ifxChoicesIconIsRotated: boolean = false;
 
+  @Event() ifxChange: EventEmitter<CustomEvent>;
+
   private choice;
   private element;
 
 
-  @Watch('type') //not needed anymore cause multi and single select will be separate components
-  onTypeChange(newValue: string) {
-    this.removeItemButton = newValue !== 'single';
+  // @Watch('type') //not needed anymore cause multi and single select will be separate components
+  // onTypeChange(newValue: string) {
+  //   this.removeItemButton = newValue !== 'single';
+  // }
+
+  @Method()
+  async handleChange() {
+    console.log("onchange: ", this.choice.getValue())
+    if (this.choice.getValue()) {
+      this.ifxChange.emit(this.choice.getValue());
+    }
+    else {
+      this.choice.setValue(this.createSelectOptions(this.value));
+    }
+    this.closeDropdownMenu();
+
+  }
+
+
+  @Listen('removeItem')
+  handleRemoveItem() {
+    if (this.value === null) {
+      console.log("handle remove")
+      this.choice.setChoices([{ value: '', label: 'Your placeholder text', placeholder: true }], 'value', 'label', true);
+    }
   }
 
   @Method()
@@ -237,8 +261,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
 
-
-
   protected componentDidUpdate() {
     this.init();
   }
@@ -267,7 +289,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'single':
         this.element =
           <div class={containerClass} >
-            <select {...attributesSingle} onChange={() => this.closeDropdownMenu()}>
+            <select {...attributesSingle} onChange={() => this.handleChange()}>
               {this.value ? this.createSelectOptions(this.value) : null}
             </select>
 
@@ -308,7 +330,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   setIfxChoicesIcon(state) {
-    console.log("icon pointing down", this.ifxChoicesIconIsRotated)
     this.ifxChoicesIconIsRotated = state;
   }
 
@@ -483,6 +504,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
+    console.log("values", values)
     return getValues(values).map((value) => <option value={value}>{value}</option>);
   }
 }

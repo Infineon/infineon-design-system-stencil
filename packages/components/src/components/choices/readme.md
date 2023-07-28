@@ -56,6 +56,13 @@
 | `valueComparer`             | --                         |             | `(value1: string, value2: string) => boolean`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | `undefined` |
 
 
+## Events
+
+| Event       | Description | Type                            |
+| ----------- | ----------- | ------------------------------- |
+| `ifxChange` |             | `CustomEvent<CustomEvent<any>>` |
+
+
 ## Methods
 
 ### `ajax(fn: AjaxFn) => Promise<this>`
@@ -125,6 +132,16 @@ Type: `Promise<this>`
 #### Returns
 
 Type: `Promise<string | string[]>`
+
+
+
+### `handleChange() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
 
 
 

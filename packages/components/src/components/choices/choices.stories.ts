@@ -1,38 +1,8 @@
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: 'Components/Choices',
   tags: ['autodocs'],
-
-  decorators: [(Story, context) => {
-    const story = Story();
-    const el = document.createElement('div');
-    el.innerHTML = story;
-
-    setTimeout(() => {
-      const component = el.querySelector('ifx-choices');
-
-      console.log("choices ", context.args.choices)
-      const choicesStr = context.args.choices;
-      if (typeof choicesStr === 'string') {
-        const choices = choicesStr.split(',').map((choice) => ({
-          value: choice.trim(),
-          label: choice.trim(),
-        }));
-        if (context.args.type === 'single' || context.args.type === 'multiple') {
-          component.setChoices(choices, 'value', 'label', true);
-        }
-      } else {
-        console.error("Invalid choices input:", choicesStr);
-      }
-
-      component.addEventListener('change', (event: CustomEvent) => {
-        context.args.onChange(event);
-      });
-    }, 0);
-
-
-    return el;
-  }],
   args: {
     searchEnabled: true,
     removeItemButton: false,
@@ -61,21 +31,38 @@ export default {
   },
 };
 
-const Template = (args) => {
-  return (
-    `<ifx-choices
-      type="${args.type}"
-      value="${args.value}"
-      name="${args.name}"
-      remove-item-button="${args.removeItemButton}"
-      search-enabled="${args.searchEnabled}"
-      search-placeholder-value="${args.searchPlaceholderValue}"
-      choices="${args.choices}">
-     </ifx-choices>`
-  );
-};
+const DefaultTemplate = (args) => {
+  const element = document.createElement('ifx-choices');
+  element.setAttribute('disabled', args.disabled);
+  element.setAttribute('type', args.type);
+  element.setAttribute('value', args.value);
+  element.setAttribute('name', args.name);
+  element.setAttribute('remove-item-button', args.removeItemButton);
+  element.setAttribute('search-enabled', args.searchEnabled)
+  element.setAttribute('search-placeholder-value', args.searchPlaceholderValue)
+  element.setAttribute('choices', args.choices);
 
-export const Default = Template.bind({});
+  console.log("choices ", args.choices)
+  const choicesStr = args.choices;
+  if (typeof choicesStr === 'string') {
+    const choices = choicesStr.split(',').map((choice) => ({
+      value: choice.trim(),
+      label: choice.trim(),
+    }));
+    if (args.type === 'single' || args.type === 'multiple') {
+      element.setChoices(choices, 'value', 'label', true);
+    }
+  } else {
+    console.error("Invalid choices input:", choicesStr);
+  }
+
+  element.addEventListener('ifxChange', action('ifxChange'));
+
+  return element;
+}
+
+
+export const Default = DefaultTemplate.bind({});
 Default.args = {
   type: 'text',
   value: 'Placeholder',
@@ -85,7 +72,7 @@ Default.args = {
 };
 
 
-export const Single = Template.bind({});
+export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
   value: 'Placeholder',
@@ -98,7 +85,7 @@ Single.args = {
 
 };
 
-export const SingleWithIcon = Template.bind({});
+export const SingleWithIcon = DefaultTemplate.bind({});
 SingleWithIcon.args = {
   type: 'single',
   value: 'Placeholder',
@@ -111,7 +98,7 @@ SingleWithIcon.args = {
 };
 
 
-export const Multiple = Template.bind({});
+export const Multiple = DefaultTemplate.bind({});
 Multiple.args = {
   type: 'multiple',
   value: 'Placeholder',
