@@ -422,62 +422,62 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const element = this.root.querySelector('[data-selector="root"]');
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
-      this.choice = new ChoicesJs(element, Object.assign({}, settings, {
-        callbackOnCreateTemplates: function (template) {
-          return {
-            //modifying the selected item template
-            item: ({ classNames }, data) => {
-              let removeButtonHTML = '';
-              if (props.removeItemButton) {
-                const REMOVE_ITEM_TEXT = 'Remove item';
-                let buttonClass = '';
-                if (props.type === 'single') {
-                  buttonClass = 'single-select';
-                } else if (this.type === 'multiple') {
-                  buttonClass = '';
+      if (props.type === 'single') {
+        this.choice = new ChoicesJs(element, Object.assign({}, settings, {
+          callbackOnCreateTemplates: function (template) {
+            if (props.type === 'single') {
+              // buttonClass = 'single-select'; //no removeItemButton for single select needed
+            }
+            return {
+              //modifying the selected item template
+              item: ({ classNames }, data) => {
+                let removeButtonHTML = '';
+                if (props.removeItemButton) {
+                  const REMOVE_ITEM_TEXT = 'Remove item';
+                  let buttonClass = '';
+                  if (props.type === 'single') {
+                    // buttonClass = 'single-select'; //no removeItemButton for single select needed
+                  } else if (this.type === 'multiple') {
+                    buttonClass = '';
+                    removeButtonHTML = `
+                    <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
+                    </button>`;
+                  }
                 }
-
-                //replace this with the actual ifx icon / icon-button
-                removeButtonHTML = `
-                  <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
-                    ${REMOVE_ITEM_TEXT}
-                  </button>
-                `;
-              }
-              return template(`
-                <div class="${classNames.item} ${data.highlighted
-                  ? classNames.highlightedState
-                  : classNames.itemSelectable
-                } ${data.placeholder ? classNames.placeholder : ''
-                }" data-item data-id="${data.id}" data-value="${data.value}" ${data.active ? 'aria-selected="true"' : ''
-                } ${data.disabled ? 'aria-disabled="true"' : ''}>
-                ${data.label}
-                ${removeButtonHTML}
-
+                return template(`
+                  <div class="${classNames.item} ${data.highlighted
+                    ? classNames.highlightedState
+                    : classNames.itemSelectable
+                  } ${data.value === 'undefined' ? classNames.placeholder : ''
+                  }" data-item data-id="${data.id}" data-value="${data.value}" ${data.active ? 'aria-selected="true"' : ''
+                  } ${data.disabled ? 'aria-disabled="true"' : ''}>
+                  ${data.label === 'undefined' ? 'Placeholder' : data.label}
+                  ${removeButtonHTML}
+  
+                  </div>
+                `);
+              },
+              //modifying the template of each item in the options list
+              choice: ({ classNames }, data) => {
+                return template(`
+                <div class="${classNames.item} ${classNames.itemChoice} ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable
+                  } choice-container" data-select-text="${this.config.itemSelectText}" data-choice ${data.disabled
+                    ? 'data-choice-disabled aria-disabled="true"'
+                    : 'data-choice-selectable'
+                  } data-id="${data.id}" data-value="${data.value}" ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
+                  }">
+                    <span class="choice-label">${data.label}</span>
+                    ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
                 </div>
-              `);
-            },
-            //modifying the template of each item in the options list
-            choice: ({ classNames }, data) => {
-              // console.log(data);
-              return template(`
-              <div class="${classNames.item} ${classNames.itemChoice} ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable
-                } choice-container" data-select-text="${this.config.itemSelectText}" data-choice ${data.disabled
-                  ? 'data-choice-disabled aria-disabled="true"'
-                  : 'data-choice-selectable'
-                } data-id="${data.id}" data-value="${data.value}" ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
-                }">
-                  <span class="choice-label">${data.label}</span>
-                  ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
-              </div>
-              `);
-            },
-          };
-        },
-      })); //.disable()
+                `);
+              },
+            };
+          },
+        }));
 
-      console.log(this.choice.getValue())
-
+      } else { //multiselect - no custom template right now
+        this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
+      }
 
     } else {
       // handle the case when the element is neither an HTMLInputElement nor an HTMLSelectElement

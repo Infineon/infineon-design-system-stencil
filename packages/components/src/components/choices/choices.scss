@@ -431,11 +431,15 @@ END Select options: item alignment
   cursor: pointer;
   // visibility: hidden; //hide remove button on select menu 
 
-  &.single-select {
-    //different style for the button when used in a single select
-    background-color: black;
-    cursor: pointer;
-  }
+  // &.single-select { //currently not needed
+  //   //different style for the button when used in a single select
+  //   // background-color: black;
+  //   cursor: pointer;
+
+  //   & ifx-icon {
+  //     display: flex;
+  //   }
+  // }
 }
 
 .choices__button:focus {
