@@ -16,7 +16,7 @@ export class IfxSlider {
   @Prop() leftText: string;
   @Prop() rightText: string;
   @State() internalValue: number = 0;
-  @Event() ifxChanged: EventEmitter<number>;
+  @Event() ifxChange: EventEmitter<number>;
 
   private inputRef: HTMLInputElement;
 
@@ -29,7 +29,7 @@ export class IfxSlider {
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.internalValue = parseInt(target.value);
-    this.ifxChanged.emit(this.internalValue);
+    this.ifxChange.emit(this.internalValue);
     this.updateValuePercent();
   }
 

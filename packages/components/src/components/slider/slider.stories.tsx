@@ -49,7 +49,7 @@ const Template = (args) => {
   if (args.rightText) {
     sliderElement.setAttribute('right-text', args.rightText);
   }
-  sliderElement.addEventListener('ifxChanged', action('ifxChanged'));
+  sliderElement.addEventListener('ifxChange', action('ifxChange'));
 
   return sliderElement;
 };

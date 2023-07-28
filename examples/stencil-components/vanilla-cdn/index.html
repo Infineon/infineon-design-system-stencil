@@ -130,6 +130,9 @@
     </ifx-sidebar>
     <br />
 
+    <h2>Switch</h2>
+    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+    <br />
     <h2>Single-Select</h2>
     <ifx-choices id='single-select' disabled="false" type="single" value="undefined" name="single" placeholder="true"
       placeholdervalue="Placeholder" remove-item-button="true" search-enabled="true"
@@ -147,6 +150,7 @@
   let textInputValue = "";
   let radioChecked = false;
   let number = 1;
+  let switchChecked = false;
 
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
@@ -156,6 +160,7 @@
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
+  const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
 
 
@@ -175,6 +180,7 @@
     errorSpan.textContent = `Error: ${error}`;
     valueSpan.textContent = `Value: ${checked}`;
     textInputSpan.textContent = `Text field: ${textInputValue}`;
+    switchToggle.setAttribute('value', switchChecked);
   }
 
   function increaseNumber() {
@@ -194,13 +200,19 @@
   document.addEventListener('DOMContentLoaded', (event) => {
     form.addEventListener('submit', () => {
       event.preventDefault();
-      console.log('Form submitted. Checkbox value:', checked);
+      console.log('Form submitted. \nCheckbox value:', checked, '\nSwitchToggle value', switchChecked);
     });
 
 
     checkbox.addEventListener('ifxChange', (event) => {
       console.log("checked value change", event.detail);
       checked = !checked;
+      updateValues();
+    });
+
+    switchToggle.addEventListener('ifxChange', (event) => {
+      console.log("switchToggle value change", event.detail);
+      switchChecked = !switchChecked;
       updateValues();
     });
 
@@ -230,6 +242,8 @@
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
     });
+
+
 
     singleSelect.addEventListener('ifxChange', (event) => {
       console.log("single select value change", event.detail);
