@@ -1,12 +1,11 @@
 import { action } from "@storybook/addon-actions";
 
 export default {
-  title: 'Components/Choices',
+  title: 'Components/Select',
   tags: ['autodocs'],
   args: {
     searchEnabled: true,
     removeItemButton: false,
-    disabled: false,
     placeholder: true,
     placeholderValue: 'Placeholder',
     error: false,
@@ -32,18 +31,14 @@ export default {
       control: { type: 'radio' },
     },
     searchPlaceholderValue: { control: { type: 'text' } },
-    disabled: {
-      options: [true, false],
-      control: { type: 'radio' },
-    },
+
     choices: { control: 'text', options: ['Choice 1', 'Choice 2', 'Choice 3'] },
     onChange: { action: 'change' },
   },
 };
 
-const DefaultTemplate = ({ disabled, type, value, name, error, errorMessage, placeholder, placeholderValue, removeItemButton, searchEnabled, searchPlaceholderValue, choices }) => {
+const DefaultTemplate = ({ type, value, name, error, errorMessage, placeholder, placeholderValue, removeItemButton, searchEnabled, searchPlaceholderValue, choices }) => {
   const element = document.createElement('ifx-choices');
-  element.setAttribute('disabled', disabled);
   element.setAttribute('type', type);
   element.setAttribute('value', value);
   element.setAttribute('name', name);
@@ -102,7 +97,6 @@ Single.args = {
 //   searchEnabled: true,
 //   placeholder: true,
 //   placeholderValue: 'Placeholder',
-//   disabled: false,
 //   choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
 
 // };

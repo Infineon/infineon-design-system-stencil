@@ -49,7 +49,6 @@ export const IfxProgressBar = /*@__PURE__*/createReactComponent<JSX.IfxProgressB
 export const IfxRadioButton = /*@__PURE__*/createReactComponent<JSX.IfxRadioButton, HTMLIfxRadioButtonElement>('ifx-radio-button');
 export const IfxSearchBar = /*@__PURE__*/createReactComponent<JSX.IfxSearchBar, HTMLIfxSearchBarElement>('ifx-search-bar');
 export const IfxSearchInput = /*@__PURE__*/createReactComponent<JSX.IfxSearchInput, HTMLIfxSearchInputElement>('ifx-search-input');
-export const IfxSelectInput = /*@__PURE__*/createReactComponent<JSX.IfxSelectInput, HTMLIfxSelectInputElement>('ifx-select-input');
 export const IfxSidebar = /*@__PURE__*/createReactComponent<JSX.IfxSidebar, HTMLIfxSidebarElement>('ifx-sidebar');
 export const IfxSidebarItem = /*@__PURE__*/createReactComponent<JSX.IfxSidebarItem, HTMLIfxSidebarItemElement>('ifx-sidebar-item');
 export const IfxSlider = /*@__PURE__*/createReactComponent<JSX.IfxSlider, HTMLIfxSliderElement>('ifx-slider');

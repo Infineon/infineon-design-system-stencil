@@ -1,5 +1,5 @@
 export default {
-  title: "Components/MultiSelectInput",
+  title: "Not reviewed/MultiSelectInput",
   tags: ['autodocs'],
 
   args: {
