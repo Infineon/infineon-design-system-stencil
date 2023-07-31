@@ -13,6 +13,11 @@ export default {
     // type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
     value: { control: 'text' },
     name: { control: 'text' },
+    error: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
+    errorMessage: { control: 'text' },
     removeItemButton: {
       options: [true, false],
       control: { type: 'radio' },
@@ -37,6 +42,8 @@ const DefaultTemplate = (args) => {
   element.setAttribute('type', args.type);
   element.setAttribute('value', args.value);
   element.setAttribute('name', args.name);
+  element.setAttribute('error', args.error);
+  element.setAttribute('errorMessage', args.errorMessage);
   element.setAttribute('placeholder', args.placeholder);
   element.setAttribute('placeholderValue', args.placeholderValue);
   element.setAttribute('remove-item-button', args.removeItemButton);
@@ -77,6 +84,8 @@ export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
   name: 'single',
+  error: false,
+  errorMessage: 'Single select error',
   removeItemButton: true,
   placeholder: true,
   placeholderValue: 'Placeholder',

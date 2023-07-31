@@ -1,7 +1,10 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
 import { HTMLStencilElement, Listen, State } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
-
+// import { Choice } from '../../../../../node_modules/choices.js/src/scripts/interfaces/choice';
+// import { Group } from '../../../../../node_modules/choices.js/src/scripts/interfaces/group';
+// import { Item } from '../../../../../node_modules/choices.js/src/scripts/interfaces/item';
+// import { PassedElementType } from '../../../../../node_modules/choices.js/src/scripts/interfaces/passed-element-type';
 
 import {
   AjaxFn,
@@ -22,17 +25,14 @@ import {
   CustomAddItemText
 } from './interfaces';
 import { getValues, filterObject, isDefined } from './utils';
-// import { Choice } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/choice';
-// import { Group } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/group';
-// import { Item } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/item';
-// import { PassedElementType } from '../../../../../node_modules/choices.js/public/types/src/scripts/interfaces/passed-element-type';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 // type TemplateOptions = Record<'classNames' | 'allowHTML', any>;
+
 @Component({
   tag: 'ifx-choices',
   styleUrl: 'choices.scss',
-  // shadow: true,
+  // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
@@ -80,13 +80,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public callbackOnInit: OnInit;
   @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
   @Prop() public valueComparer: ValueCompareFunction;
-
-  @Element() private readonly root: HTMLElement;
+  //custom ifx props
+  @Prop() error: boolean = false;
+  @Prop() errorMessage: string = "Error";
   @State() ifxChoicesIconIsRotated: boolean = false;
   @Event() ifxChange: EventEmitter<CustomEvent>;
+  @Element() private readonly root: HTMLElement;
 
   private choice;
   private element;
+
 
 
   // @Watch('type') //not needed anymore cause multi and single select will be separate components
@@ -168,7 +171,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   public async showDropdown(focusInput?: boolean) {
     this.choice.showDropdown(focusInput);
-
     return this;
   }
 
@@ -277,7 +279,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       'name': this.name || null,
 
     };
-    const containerClass = `ifx-choices__container ifx-choices__selected-item`;
+    // const containerClass = `ifx-choices__wrapper ifx-choices__selected-item`;
+    const choicesContainerClass = `ifx-choices__wrapper`;
+
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
     this.destroy();
@@ -285,28 +289,44 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     switch (this.type) {
       case 'single':
         this.element =
-          <div class={containerClass} >
-            <select {...attributesSingle} onChange={() => this.handleChange()}>
-              {this.value ? this.createSelectOptions(this.value) : this.placeholderValue}
-            </select>
+          <div class={`ifx-select-container`}>
+            <div class={`${choicesContainerClass}`} onClick={() => this.toggleIfxChoicesIcon()} >
+              <select {...attributesSingle} onChange={() => this.handleChange()}>
+                {this.value ? this.createSelectOptions(this.value) : this.placeholderValue}
+              </select>
 
-            <div class="ifx-choices__icon-wrapper">
-              <ifx-icon
-                icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
-              ></ifx-icon>
+              <div class="ifx-choices__icon-wrapper-up" onClick={() => this.toggleIfxChoicesIcon()}>
+
+                <ifx-icon
+                  icon='chevronup-16'></ifx-icon>
+              </div>
+              <div class="ifx-choices__icon-wrapper-down" onClick={() => this.toggleIfxChoicesIcon()}>
+
+                <ifx-icon
+                  icon='chevron-down-16'></ifx-icon>
+              </div>
             </div>
+            {
+              this.error ?
+                <div class="ifx-error-message-wrapper">
+                  <span>{this.errorMessage}</span>
+                </div> : null
+            }
           </div>;
         break;
       case 'multiple':
         this.element =
-          <div class={containerClass} >
-            <select {...attributesDefault} multiple onChange={() => this.closeDropdownMenu()}>
-              {this.value ? this.createSelectOptions(this.value) : null}
-            </select>
-            <div class="ifx-choices__icon-wrapper">
-              <ifx-icon
-                icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
-              ></ifx-icon>
+          <div class={`ifx-select-container`}>
+
+            <div class={choicesContainerClass} >
+              <select {...attributesDefault} multiple onChange={() => this.closeDropdownMenu()}>
+                {this.value ? this.createSelectOptions(this.value) : null}
+              </select>
+              <div class="ifx-choices__icon-wrapper">
+                <ifx-icon
+                  icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
+                ></ifx-icon>
+              </div>
             </div>
           </div>;
         break;
@@ -325,13 +345,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.showDropdown(!this.ifxChoicesIconIsRotated);
   }
 
-  setIfxChoicesIcon(state) {
-    this.ifxChoicesIconIsRotated = state;
-  }
 
 
   getIfxChoicesContainer() {
-    let ifxChoicesContainer = this.root.querySelector('.ifx-choices__container');
+    let ifxChoicesContainer = this.root.querySelector('.ifx-choices_wrapper ');
     return ifxChoicesContainer
   }
 
@@ -363,8 +380,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
+    const ifxChoicesContainer = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+
     if (!path.includes(this.root)) {
       this.closeDropdownMenu();
+      console.log("remove active")
+      this.handleClassList(ifxChoicesContainer, 'remove', 'active');
     }
   }
 
@@ -441,6 +462,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 //     </button>`;
                 //   }
                 // }
+
                 return template(`
                   <div class="${classNames.item} ${data.highlighted
                     ? classNames.highlightedState
@@ -472,6 +494,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
+        this.addEventListenersToHandleCustomFocusAndActiveState();
+
       } else { //multiselect - no custom template right now
         this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
       }
@@ -481,6 +505,35 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  private addEventListenersToHandleCustomFocusAndActiveState() {
+    const div = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+
+    if (!div) {
+      console.error('.ifx-choices__wrapper not found');
+      return;
+    }
+
+    div.tabIndex = 0;
+
+    div.addEventListener('focus', function () {
+      this.classList.add('focus');
+    });
+
+    div.addEventListener('blur', function () {
+      this.classList.remove('focus');
+    });
+
+    div.addEventListener('click', function () {
+      this.classList.add('active');
+    });
+
+    // div.addEventListener('mouseup', function () {
+    //   console.log("remove active from mouseup")
+    //   this.classList.remove('active');
+    // });
+
+
+  }
 
 
   private destroy() {
