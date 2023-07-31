@@ -116,7 +116,7 @@ export type ValueCompareFunction = (value1: string, value2: string) => boolean;
 export interface IChoicesProps {
   silent?: boolean;
   items?: Array<any>;
-  choices?: Array<any>;
+  choices?: Array<any> | string;
   renderChoiceLimit?: number;
   maxItemCount?: number;
   addItems?: boolean;

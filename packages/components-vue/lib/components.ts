@@ -140,8 +140,10 @@ export const IfxChoices = /*@__PURE__*/ defineContainer<JSX.IfxChoices, JSX.IfxC
   'callbackOnInit',
   'callbackOnCreateTemplates',
   'valueComparer',
-  'error',
-  'errorMessage',
+  'ifxError',
+  'ifxErrorMessage',
+  'ifxPlaceholderValue',
+  'ifxChoices',
   'ifxChange'
 ],
 'value', 'change');

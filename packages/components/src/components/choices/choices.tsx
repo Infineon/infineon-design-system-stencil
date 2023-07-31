@@ -40,7 +40,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public value: string;
   @Prop() public name: string;
   @Prop() public items: Array<any>;
-  @Prop() public choices: Array<any>;
+  @Prop() public choices: Array<any> | string;
   @Prop() public renderChoiceLimit: number;
   @Prop() public maxItemCount: number;
   @Prop() public addItems: boolean;
@@ -81,11 +81,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
   @Prop() public valueComparer: ValueCompareFunction;
   //custom ifx props
-  @Prop() error: boolean = false;
-  @Prop() errorMessage: string = "Error";
+  @Prop() ifxError: boolean = false;
+  @Prop() ifxErrorMessage: string = "Error";
+  @Prop() ifxPlaceholderValue: string = "Error";
   @State() ifxChoicesIconIsRotated: boolean = false;
   @Event() ifxChange: EventEmitter<CustomEvent>;
   @Element() private readonly root: HTMLElement;
+  @Prop() ifxChoices: Array<any> | string;
 
   private choice;
   private element;
@@ -96,6 +98,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   // onTypeChange(newValue: string) {
   //   this.removeItemButton = newValue !== 'single';
   // }
+
 
   @Method()
   async handleChange() {
@@ -201,15 +204,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   @Method()
-  public async setChoices(choices: Array<any>, value: string, label: string, replaceChoices?: boolean) {
+  public async setChoices(choices: Array<any> | string, value: string, label: string, replaceChoices?: boolean) {
+    // Required format
     // const predefinedChoices = [
     //   { value: 'Choice 1', label: 'Choice 1' },
     //   { value: 'Choice 2', label: 'Choice 2' },
     //   { value: 'Choice 3', label: 'Choice 3' },
     // ];
-    // console.log("setting choices: ", choices, predefinedChoices);
-    this.choice.setChoices(choices, value, label, replaceChoices);
+    if (typeof choices === 'string') {
+      const listOfChoices = choices.split(',').map((choice) => ({
+        value: choice.trim(),
+        label: choice.trim(),
+      }));
 
+      console.log("transformed choices string to array: ");
+      this.choice.setChoices(listOfChoices, value, label, replaceChoices);
+    }
     return this;
   }
 
@@ -269,6 +279,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   protected render(): any {
+
     const attributesSingle = {
       'data-selector': 'root',
       'name': this.name || null,
@@ -292,7 +303,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           <div class={`ifx-select-container`}>
             <div class={`${choicesContainerClass}`} onClick={() => this.toggleIfxChoicesIcon()} >
               <select {...attributesSingle} onChange={() => this.handleChange()}>
-                {this.value ? this.createSelectOptions(this.value) : this.placeholderValue}
+                {this.createSelectOptions(this.value)}
               </select>
 
               <div class="ifx-choices__icon-wrapper-up" onClick={() => this.toggleIfxChoicesIcon()}>
@@ -307,9 +318,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               </div>
             </div>
             {
-              this.error ?
+              this.ifxError ?
                 <div class="ifx-error-message-wrapper">
-                  <span>{this.errorMessage}</span>
+                  <span>{this.ifxErrorMessage}</span>
                 </div> : null
             }
           </div>;
@@ -320,7 +331,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
             <div class={choicesContainerClass} >
               <select {...attributesDefault} multiple onChange={() => this.closeDropdownMenu()}>
-                {this.value ? this.createSelectOptions(this.value) : null}
+                {this.createSelectOptions(this.value)}
               </select>
               <div class="ifx-choices__icon-wrapper">
                 <ifx-icon
@@ -443,7 +454,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const element = this.root.querySelector('[data-selector="root"]');
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
-      if (props.type === 'single') {
+      if (this.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
             return {
@@ -495,6 +506,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         }));
 
         this.addEventListenersToHandleCustomFocusAndActiveState();
+        this.setChoices(this.ifxChoices, "value", "label", true)
 
       } else { //multiselect - no custom template right now
         this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
@@ -547,9 +559,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  //needed?
   private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
-    console.log("values", values)
-    return getValues(values).map((value) => <option value={value}>{value}</option>);
+    console.log("select - initial value", values, this.ifxPlaceholderValue);
+    if (this.value !== 'undefined') {
+      return getValues(values).map((value) => <option value={value}>{value}</option>)
+    }
+    else {
+      return <option value={this.ifxPlaceholderValue}>{this.ifxPlaceholderValue}</option>;
+    }
   }
 }
