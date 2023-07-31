@@ -1,10 +1,6 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
 import { HTMLStencilElement, Listen, State } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
-// import { Choice } from '../../../../../node_modules/choices.js/src/scripts/interfaces/choice';
-// import { Group } from '../../../../../node_modules/choices.js/src/scripts/interfaces/group';
-// import { Item } from '../../../../../node_modules/choices.js/src/scripts/interfaces/item';
-// import { PassedElementType } from '../../../../../node_modules/choices.js/src/scripts/interfaces/passed-element-type';
 
 import {
   AjaxFn,
@@ -347,6 +343,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           <input type="text" value={this.value} {...attributesDefault} />;
         break;
     }
+
+    console.log("post render element: ", this.element, this.choice);
 
     return this.element;
   }

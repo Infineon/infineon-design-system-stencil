@@ -27,8 +27,8 @@
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",
-    "dev:stencil": "stencil build --serve --watch",
-    "index": "stencil build --watch --dev",
+    "dev:stencil": "stencil build --watch",
+    "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook"
   },
   "dependencies": {
