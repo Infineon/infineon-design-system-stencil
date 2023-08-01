@@ -1,3 +1,28 @@
+# v19.0.0 (Tue Aug 01 2023)
+
+#### 💥 Breaking Change
+
+- 165 rework card component resolve overflow icon and image boolean issues implement new structure [#201](https://github.com/Infineon/infineon-design-system-stencil/pull/201) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.7.1 (Tue Aug 01 2023)
+
+#### 🐛 Bug Fix
+
+- updated navbar [#330](https://github.com/Infineon/infineon-design-system-stencil/pull/330) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.7.0 (Thu Jul 27 2023)
 
 #### 🚀 Enhancement

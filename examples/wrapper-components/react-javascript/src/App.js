@@ -17,9 +17,7 @@ import IconButton from './components/IconButton/IconButton';
 import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
-
-
-
+import Card from './components/Card/Card';
 
 function App() {
   return (
@@ -45,6 +43,10 @@ function App() {
 
       <h2>Button</h2>
       <Button />
+      <br />
+
+      <h2>Card</h2>
+      <Card />
       <br />
 
       <h2>Progress Bar</h2>

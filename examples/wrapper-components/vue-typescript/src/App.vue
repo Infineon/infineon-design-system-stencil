@@ -22,6 +22,7 @@
   <Sidebar />
   <Tabs />
   <IconButton />
+  <Card />
 </template>
 
 
@@ -44,6 +45,7 @@ import Tabs from './components/Tabs.vue'
 import RadioButton from './components/RadioButton.vue'
 import Tag from './components/Tag.vue'
 import Navbar from './components/Navbar.vue'
+import Card from './components/Card.vue'
 
 
 </script>
