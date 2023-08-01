@@ -11,6 +11,26 @@
 
   <style defer>
 
+    .test-wrapper { 
+      display: flex;
+      flex-direction: row;
+    
+    }
+
+    .one { 
+      background: red;
+      padding: 10px;
+      width: 200px;
+    }
+
+    .two { 
+      width: 100%;
+      background: blue;
+      padding: 10px;
+      color: white;
+    }
+
+
   </style>
 
   <script defer>
@@ -21,6 +41,33 @@
 
 <body>
 
+  <div class="test-wrapper">
+    <!-- <div class="one">ITEM ONE</div>
+    <div class="two">ITEM TWO Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptatibus eius iure pariatur quasi, non, minima sint ab qui aliquid, distinctio facilis a iusto illo nam nisi aliquam ex! Quod, maiores fugit accusamus quibusdam tempora labore commodi nisi voluptatum asperiores ad fugiat ipsum quidem, veniam est debitis et! Minus quaerat, nisi nobis magni neque, minima cum, porro nemo aspernatur labore dolorem maxime? Voluptatem nam perspiciatis possimus eius minus quidem, consequatur non ab voluptatibus expedita doloremque sequi suscipit eaque dignissimos pariatur illum eligendi repellat molestiae esse nulla. Natus nisi eius sequi unde eligendi, mollitia laborum? Quasi vitae illo magni labore fuga?</div> -->
+    <!-- <ifx-sidebar application-name="Infineon">
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+    </ifx-sidebar> -->
+
+    <ifx-navbar application-name="Application name" fixed="false" show-logo="true">
+      <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+   
+      <ifx-dropdown-menu slot="dropdown-menu">
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+  
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+  
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+    </ifx-navbar>
+  </div>
 
 
 </body>
