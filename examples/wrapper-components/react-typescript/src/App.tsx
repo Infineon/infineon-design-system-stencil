@@ -8,7 +8,7 @@ import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 
-import Card from './Components/Card/Card';
+import Card from './components/Card/Card';
 
 import Sidebar from './components/Sidebar/Sidebar';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
