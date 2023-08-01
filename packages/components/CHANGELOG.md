@@ -1,3 +1,15 @@
+# v18.7.1 (Tue Aug 01 2023)
+
+#### 🐛 Bug Fix
+
+- updated navbar [#330](https://github.com/Infineon/infineon-design-system-stencil/pull/330) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.7.0 (Thu Jul 27 2023)
 
 #### 🚀 Enhancement
