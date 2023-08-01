@@ -2,6 +2,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  vertical-align: bottom;
+}
 
 .btn {
   display: inline-flex;
