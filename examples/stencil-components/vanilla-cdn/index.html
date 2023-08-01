@@ -130,9 +130,37 @@
     </ifx-sidebar>
     <br />
 
+    <h2>Card</h2>
+    <ifx-card href="http://google.com" target="_blank" direction="vertical">
+      <ifx-card-image position="right"
+        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt=""
+        slot="img"></ifx-card-image>
+
+      <ifx-card-overline>Overline</ifx-card-overline>
+      <ifx-card-headline>Headline</ifx-card-headline>
+      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am
+        typing even more text. And more and more. This is a long description in order to test if the text will overflow
+        its container or not. So I am typing even more text. And more and more. This is a long description in order to
+        test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a
+        long description in order to test if the text will overflow its container or not. So I am typing even more text.
+        And more and more.This is a long description in order to test if the text will overflow its container or not. So
+        I am typing even more text. And more and more. This is a long description in order to test if the text will
+        overflow its container or not. So I am typing even more text. And more and more.This is a long description in
+        order to test if the text will overflow its container or not. So I am typing even more text. And more and more.
+        This is a long description in order to test if the text will overflow its container or not. So I am typing even
+        more text. And more and more.</ifx-card-text>
+
+      <ifx-card-links slot="buttons">
+        <ifx-button id="cardBtn" color="primary">Button</ifx-button>
+        <ifx-button color="secondary">Button</ifx-button>
+      </ifx-card-links>
+    </ifx-card>
+    <br />
+
     <h2>Switch</h2>
     <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
     <br />
+
   </div>
 
 </body>
@@ -155,7 +183,7 @@
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
   const switchToggle = document.querySelector('#switch');
-
+  const cardBtn = document.querySelector('#cardBtn');
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
   const toggleErrorButton = document.querySelector("#toggleError");
@@ -234,6 +262,11 @@
     radioBtn.addEventListener('ifxChange', (event) => {
       console.log("radio btn value change", event.detail);
       radioChecked = !radioChecked;
+    });
+
+
+    cardBtn.addEventListener('click', () => {
+      console.log("card button click event");
     });
 
 

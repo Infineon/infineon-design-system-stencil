@@ -1,4 +1,4 @@
- import './App.css'
+import './App.css'
 import Button from './components/Button/button';
 import TextField from './components/TextField/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
@@ -7,9 +7,13 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
+
+import Card from './components/Card/Card';
+
 import Sidebar from './components/Sidebar/Sidebar';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
+
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
@@ -44,13 +48,17 @@ function App() {
          <Accordion />
          <br />
 
-      <h2>Radio Button</h2>
-      <RadioButton />
-      <br />
+         <h2>Radio Button</h2>
+         <RadioButton />
+         <br />
 
-      <h2>Tabs</h2>
-      <Tabs />
-      <br/>
+         <h2>Tabs</h2>
+         <Tabs />
+         <br/>
+
+         <h2>Card</h2>
+         <Card />
+         <br/>
 
       <h2>Number indicator</h2>
       <NumberIndicator />
