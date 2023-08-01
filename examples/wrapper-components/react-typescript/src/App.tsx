@@ -56,7 +56,7 @@ function App() {
          <Tabs />
          <br/>
 
-         <h2>Tabs</h2>
+         <h2>Card</h2>
          <Card />
          <br/>
 

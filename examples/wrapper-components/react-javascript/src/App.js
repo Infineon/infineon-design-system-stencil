@@ -12,7 +12,7 @@ import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
-import Card from './components/card/Card'
+import Card from './components/Card/Card'
 import IconButton from './components/IconButton/IconButton';
 import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
