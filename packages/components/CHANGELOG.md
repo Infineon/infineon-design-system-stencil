@@ -1,3 +1,25 @@
+# v19.1.0 (Tue Aug 01 2023)
+
+#### 🚀 Enhancement
+
+- 188 review search input [#219](https://github.com/Infineon/infineon-design-system-stencil/pull/219) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🐛 Bug Fix
+
+- added height 100% to sidebar host [#335](https://github.com/Infineon/infineon-design-system-stencil/pull/335) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/vue-typescript [#342](https://github.com/Infineon/infineon-design-system-stencil/pull/342) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v19.0.0 (Tue Aug 01 2023)
 
 #### 💥 Breaking Change
