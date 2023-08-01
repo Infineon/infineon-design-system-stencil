@@ -149,7 +149,6 @@ END Select options: item alignment
 
   .choices[data-type*='select-one'] {
     cursor: pointer;
-
   }
 
   .choices[data-type*='select-one'] .choices__inner {
@@ -225,6 +224,18 @@ END Select options: item alignment
     margin-right: 0;
   }
 
+  .choices[data-type*='select-multiple'] {
+    cursor: pointer;
+  }
+
+  .choices[data-type*='select-multiple'] .choices__input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+    background-color: #ffffff;
+    margin: 0;
+  }
 
   .choices[data-type*='select-multiple'] .choices__inner,
   .choices[data-type*='text'] .choices__inner {
@@ -257,11 +268,6 @@ END Select options: item alignment
   }
 
   .choices__inner {
-    // background-color: #ffff;
-    // padding-left: 7.5px;
-    // padding-top: 7.5px;
-    // padding: 7.5px;
-    // min-height: 24px; //min-height to have the same height when the select is empty => maybe remove this and always set to placeholder value when item is removed
     overflow: hidden;
     font-size: 16px;
     line-height: 24px;
@@ -304,12 +310,10 @@ END Select options: item alignment
     width: 100%;
     display: flex;
     justify-content: space-between;
-
-
   }
 
   .choices__list--multiple {
-    display: inline;
+    // display: inline;
   }
 
   .choices__list--multiple .choices__item {
