@@ -10,6 +10,10 @@ import Tag from './components/Tag/Tag';
 
 import Card from './components/Card/Card';
 
+import Spinner from './components/Spinner'
+import NumberIndicator from './components/NumberIndicator/NumberIndicator'
+import Link from './components/Link/Link';
+import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
@@ -20,7 +24,7 @@ function App() {
 
   return (
       <div>
-               <Navbar />      
+            <Navbar />      
 
          <h1 className="header">Stencil Framework integration - React + TS </h1>
 
@@ -60,6 +64,23 @@ function App() {
          <Card />
          <br/>
 
+
+      <h2>Spinner</h2>
+      <Spinner />
+      <br />
+      
+      <h2>Link</h2>
+      <Link />
+      <br />
+
+      <h2>Number Indicator</h2>
+      <NumberIndicator />
+      <br />
+      
+      <h2>Search Field</h2>
+      <SearchField />
+      <br />
+      
       <h2>Number indicator</h2>
       <NumberIndicator />
       <br />
@@ -74,5 +95,4 @@ function App() {
       </div>
    )
 }
-
 export default App

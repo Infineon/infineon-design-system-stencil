@@ -8,6 +8,8 @@
   <RadioButton />
   <ProgressBar />
   <Search />
+  <SearchField />
+  <TextInput />
   <TextField />
   <Tag />
   <Tabs />
@@ -21,7 +23,8 @@
 </template>
 
 
-<script type="module" setup>
+<script lang="ts" setup>
+import SearchField from './components/SearchField.vue'
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'

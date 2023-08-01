@@ -42,6 +42,7 @@
     </ifx-button>
   </div>
   <br />
+  <br />
   <h2>Progress bar</h2>
   <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
   <div>
@@ -52,12 +53,14 @@
     </ifx-button>
   </div>
   <br />
+  <br />
 
   <h2>Checkbox</h2>
 
   <form (ngSubmit)="handleSubmit()">
     <ifx-checkbox [disabled]="checkboxDisabled" [value]="checkboxChecked" [error]="checkboxError" name="name"
       (ifxChange)="toggleCheckboxValue()">label</ifx-checkbox>
+    <br />
     <br />
 
     <ifx-button type="submit">Submit</ifx-button>
@@ -71,18 +74,20 @@
   <span>Error: {{ checkboxError }} </span>
   <span>Value: {{ checkboxChecked }}</span>
   <br />
-
+  <br />
 
   <h2>Text Field</h2>
   <form (ngSubmit)="handleSubmit()">
-    <ifx-text-field (ifxInput)="handleIfxInput($event)" [error]="false" [disabled]="false" [success]="false"
+    <ifx-text-input (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
       placeholder="Placeholder" [errorMessage]="">Text
-      field</ifx-text-field>
+      field</ifx-text-input>
+    <br />
     <br />
 
     <ifx-button type="submit">Submit</ifx-button>
   </form>
   <span>Text field value: {{ textFieldValue }}</span>
+  <br />
   <br />
 
   <h2>Radio Button</h2>
@@ -100,9 +105,11 @@
   <span>Value: {{ radioChecked }}</span>
   <span>Radio button value: {{ radioButtonValue }}</span>
   <br />
+  <br />
 
   <h2>Spinner</h2>
   <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+  <br />
   <br />
 
   <h2>Link</h2>
@@ -110,11 +117,25 @@
     Link
   </ifx-link>
   <br />
+  <br />
 
-  <h2>Number indicator</h2>
+  <h2>Number Indicator</h2>
   <ifx-number-indicator inverted='false'> {{ numberIndicator }}</ifx-number-indicator>
   <button (click)="increaseNumber()">+</button>
   <button (click)="decreaseNumber()">-</button>
+  <br />
+  <br />
+
+  <h2>Search Field</h2>
+  <ifx-search-field size="m" disabled="false" show-delete-icon="true"
+    (ifxInput)="handleSearchField($event)"></ifx-search-field>
+  <br />
+  <br />
+
+  <h2>Search Bar</h2>
+  <ifx-search-bar size="m" disabled="false" show-close-button="true"
+    (ifxInput)="handleSearchBar($event)"></ifx-search-bar>
+  <br />
   <br />
 
   <h2>Sidebar</h2>

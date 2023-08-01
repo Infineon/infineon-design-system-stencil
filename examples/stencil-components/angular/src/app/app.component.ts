@@ -16,6 +16,8 @@ export class AppComponent {
   radioDisabled = false;
   radioChecked = false;
   textFieldValue = '';
+  searchFieldValue = '';
+  searchBarValue = '';
   radioButtonValue = false;
   numberIndicator = 1;
 
@@ -66,9 +68,22 @@ export class AppComponent {
   }
 
 
-  handleIfxInput(event: CustomEvent) {
+  handleTextInput(event: CustomEvent) {
     console.log("textInput value change")
     this.textFieldValue = event.detail;
+
+  }
+
+
+  handleSearchField(event: CustomEvent) {
+    console.log("searchField value change: ", event.detail)
+    this.searchFieldValue = event.detail;
+
+  }
+
+  handleSearchBar(event: CustomEvent) {
+    console.log("searchBar value change: ", event.detail)
+    this.searchBarValue = event.detail;
 
   }
 

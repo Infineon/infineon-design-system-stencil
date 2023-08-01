@@ -113,6 +113,7 @@
       Link
     </ifx-link>
     <br />
+    <br />
 
     <h2>Number Indicator</h2>
     <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
@@ -156,10 +157,19 @@
       </ifx-card-links>
     </ifx-card>
     <br />
-
-    <h2>Switch</h2>
-    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
     <br />
+
+    <h2>Search field</h2>
+    <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
+    <br />
+
+    <h2>Search bar</h2>
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-field>
+      <br />
+
+      <h2>Switch</h2>
+      <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+      <br />
 
   </div>
 
@@ -182,6 +192,10 @@
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
+
+  const searchField = document.querySelector('#search-field');
+  const searchBar = document.querySelector('#search-bar');
+
   const switchToggle = document.querySelector('#switch');
   const cardBtn = document.querySelector('#cardBtn');
 
@@ -269,6 +283,14 @@
       console.log("card button click event");
     });
 
+
+    searchField.addEventListener('ifxInput', (event) => {
+      console.log("search field value", event.detail);
+    });
+
+    searchBar.addEventListener('ifxInput', (event) => {
+      console.log("search bar value", event.detail);
+    });
 
   });
 
