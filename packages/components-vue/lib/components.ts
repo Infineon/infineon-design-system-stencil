@@ -244,7 +244,8 @@ export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMult
 
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
-  'fixed'
+  'fixed',
+  'showLogo'
 ]);
 
 
