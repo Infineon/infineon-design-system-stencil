@@ -5,23 +5,28 @@ export default {
   tags: ['autodocs'],
   args: {
     searchEnabled: true,
-    removeItemButton: false,
+    searchPlaceholderValue: 'Search...',
+    // removeItemButton: false,
     placeholder: true,
     placeholderValue: 'Placeholder',
     error: false,
     errorMessage: 'Some error',
+    disabled: false,
     choices: 'Choice 1, Choice 2, Choice 3',
   },
 
   argTypes: {
-    // type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
+    type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
     value: { control: 'text' },
-    // name: { control: 'text' },
     error: {
       options: [true, false],
       control: { type: 'radio' },
     },
     errorMessage: { control: 'text' },
+    disabled: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
     // removeItemButton: {
     //   options: [true, false],
     //   control: { type: 'radio' },
@@ -37,18 +42,19 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ type, value, name, error, errorMessage, placeholder, placeholderValue, removeItemButton, searchEnabled, searchPlaceholderValue, choices }) => {
+const DefaultTemplate = ({ type, value, name, disabled, error, errorMessage, placeholder, placeholderValue, removeItemButton, searchEnabled, searchPlaceholderValue, choices }) => {
   const element = document.createElement('ifx-choices');
   element.setAttribute('type', type);
   element.setAttribute('value', value);
   element.setAttribute('name', name);
-  element.setAttribute('ifx-error', error);
-  element.setAttribute('ifx-error-message', errorMessage);
   element.setAttribute('placeholder', placeholder);
-  element.setAttribute('ifx-placeholder-value', placeholderValue);
   element.setAttribute('remove-item-button', removeItemButton);
   element.setAttribute('search-enabled', searchEnabled)
   element.setAttribute('search-placeholder-value', searchPlaceholderValue)
+  element.setAttribute('ifx-disabled', disabled);
+  element.setAttribute('ifx-error', error);
+  element.setAttribute('ifx-error-message', errorMessage);
+  element.setAttribute('ifx-placeholder-value', placeholderValue);
   element.setAttribute('ifx-choices', choices);
 
   //no other way to set array of values in storybook
@@ -83,9 +89,6 @@ const DefaultTemplate = ({ type, value, name, error, errorMessage, placeholder, 
 export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
-  name: 'single',
-  searchPlaceholderValue: 'Search...',
-  searchEnabled: true,
 
 };
 
@@ -102,11 +105,10 @@ Single.args = {
 // };
 
 
-export const Multiple = DefaultTemplate.bind({});
-Multiple.args = {
+export const Chips = DefaultTemplate.bind({});
+Chips.args = {
   type: 'multiple',
-  name: 'multi',
-  removeItemButton: true,
+  // removeItemButton: true,
 
 };
 

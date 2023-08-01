@@ -79,8 +79,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   //custom ifx props
   @Prop() ifxError: boolean = false;
   @Prop() ifxErrorMessage: string = "Error";
+  @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Error";
-  @State() ifxChoicesIconIsRotated: boolean = false;
+  @State() ifxChoicesIsOpen: boolean = false;
   @Event() ifxChange: EventEmitter<CustomEvent>;
   @Element() private readonly root: HTMLElement;
   @Prop() ifxChoices: Array<any> | string;
@@ -89,27 +90,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private element;
 
 
-
-  // @Watch('type') //not needed anymore cause multi and single select will be separate components
-  // onTypeChange(newValue: string) {
-  //   this.removeItemButton = newValue !== 'single';
-  // }
-
-
   @Method()
   async handleChange() {
-    console.log("onChange: ", this.choice.getValue())
+    console.log("ifxChange event: ", this.choice.getValue())
     if (this.choice.getValue()) {
       this.ifxChange.emit(this.choice.getValue());
     }
     else {
       this.ifxChange.emit(this.choice.getValue());
-      // this.choice.setValue(this.placeholder ? [this.placeholderValue] : null);
     }
     this.closeDropdownMenu();
 
   }
-
 
   // @Listen('removeItem')
   // handleRemoveItem() {
@@ -263,11 +255,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected componentDidLoad() {
     this.init();
+    this.addEventListenersToHandleCustomFocusAndActiveState();
+
   }
 
 
   protected componentDidUpdate() {
     this.init();
+
   }
 
   protected disconnectedCallback() {
@@ -275,7 +270,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   protected render(): any {
-
     const attributesSingle = {
       'data-selector': 'root',
       'name': this.name || null,
@@ -286,7 +280,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       'name': this.name || null,
 
     };
-    // const containerClass = `ifx-choices__wrapper ifx-choices__selected-item`;
     const choicesContainerClass = `ifx-choices__wrapper`;
 
     // destroy choices element to restore previous dom structure
@@ -297,17 +290,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'single':
         this.element =
           <div class={`ifx-select-container`}>
-            <div class={`${choicesContainerClass}`} onClick={() => this.toggleIfxChoicesIcon()} >
+            <div class={`${choicesContainerClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesSingle} onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
               </select>
 
-              <div class="ifx-choices__icon-wrapper-up" onClick={() => this.toggleIfxChoicesIcon()}>
-
+              <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
                   icon='chevronup-16'></ifx-icon>
               </div>
-              <div class="ifx-choices__icon-wrapper-down" onClick={() => this.toggleIfxChoicesIcon()}>
+              <div class="ifx-choices__icon-wrapper-down" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
 
                 <ifx-icon
                   icon='chevron-down-16'></ifx-icon>
@@ -331,7 +323,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               </select>
               <div class="ifx-choices__icon-wrapper">
                 <ifx-icon
-                  icon='chevron-down-16' onClick={() => this.toggleIfxChoicesIcon()}
+                  icon='chevron-down-16' onClick={() => this.toggleDropdown()}
                 ></ifx-icon>
               </div>
             </div>
@@ -344,14 +336,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         break;
     }
 
-    console.log("post render element: ", this.element, this.choice);
 
     return this.element;
   }
 
 
-  toggleIfxChoicesIcon() {
-    this.showDropdown(!this.ifxChoicesIconIsRotated);
+  toggleDropdown() {
+    console.log("disabled ", this.ifxDisabled);
+    this.showDropdown(!this.ifxChoicesIsOpen);
   }
 
 
@@ -369,6 +361,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdownMenu(e) {
+    console.log("toggle dropdown menu")
     const target = e.composedPath()[0].closest('span')
 
     if (target) {
@@ -386,6 +379,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.handleClassList(ifxChoicesContainer, 'remove', 'show')
   }
 
+
+
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -393,13 +388,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
     if (!path.includes(this.root)) {
       this.closeDropdownMenu();
-      console.log("remove active")
       this.handleClassList(ifxChoicesContainer, 'remove', 'active');
     }
   }
 
   private init() {
-    // this.root.addEventListener('click', this.toggleDropdownMenu.bind(this))
     const props = {
       type: this.type,
       allowHTML: true, // Set allowHTML to true
@@ -503,11 +496,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        this.addEventListenersToHandleCustomFocusAndActiveState();
         this.setChoices(this.ifxChoices, "value", "label", true)
+
 
       } else { //multiselect - no custom template right now
         this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
+        this.setChoices(this.ifxChoices, "value", "label", true)
+      }
+
+      if (this.ifxDisabled) {
+        this.choice.disable();
+      } else {
+        this.choice.enable();
       }
 
     } else {
@@ -534,15 +534,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     });
 
     div.addEventListener('click', function () {
-      this.classList.add('active');
+      if (!this.classList.contains('disabled')) {
+        this.classList.add('active');
+      }
     });
-
-    // div.addEventListener('mouseup', function () {
-    //   console.log("remove active from mouseup")
-    //   this.classList.remove('active');
-    // });
-
-
   }
 
 
@@ -563,7 +558,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       return getValues(values).map((value) => <option value={value}>{value}</option>)
     }
     else {
-      return <option value={this.ifxPlaceholderValue}>{this.ifxPlaceholderValue}</option>;
+      return this.placeholder !== "false" ? <option value={this.ifxPlaceholderValue}>{this.ifxPlaceholderValue}</option> : <option></option>;
     }
   }
 }

@@ -14,7 +14,6 @@
     line-height: 16px;
   }
 
-
   .ifx-choices__wrapper {
     position: relative;
     display: flex;
@@ -22,6 +21,16 @@
     border: 1px solid #8D8786;
     border-radius: 2.5px;
     padding: 8px 16px 8px 16px;
+
+
+    &.disabled {
+      background: #EEEDED;
+      border-color: #575352;
+      cursor: not-allowed;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
     &:hover:not(.focus, :focus) {
       border-color: #3C3A39;
@@ -40,7 +49,6 @@
     }
 
     &:focus-visible:not(.active, :active) {
-
       outline: none;
 
       &::before {
@@ -67,6 +75,7 @@
         border: 2px solid #0A8276;
       }
     }
+
 
     & .ifx-choices__icon-wrapper-up {
       display: none;
@@ -545,36 +554,5 @@ END Select options: item alignment
 
   /*=====  End of Choices  ======*/
 
-  .select {
-    padding: 1rem 0;
-  }
 
-  .submit {
-    text-align: center;
-  }
-
-  .btn {
-    background-color: tokens.$color-default-500;
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 1rem;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-
-  .btn:hover {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .5);
-  }
-
-  .values-container {
-    background-color: #f9f9f9;
-    padding: .5rem;
-    margin-top: 1rem;
-  }
-
-  .values-container .values-container__text {
-    word-break: break-all;
-    margin: 0;
-  }
 }

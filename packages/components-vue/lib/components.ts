@@ -142,6 +142,7 @@ export const IfxChoices = /*@__PURE__*/ defineContainer<JSX.IfxChoices, JSX.IfxC
   'valueComparer',
   'ifxError',
   'ifxErrorMessage',
+  'ifxDisabled',
   'ifxPlaceholderValue',
   'ifxChoices',
   'ifxChange'
