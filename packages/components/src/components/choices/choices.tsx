@@ -321,10 +321,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               <select {...attributesDefault} multiple onChange={() => this.closeDropdownMenu()}>
                 {this.createSelectOptions(this.value)}
               </select>
-              <div class="ifx-choices__icon-wrapper">
+              <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
-                  icon='chevron-down-16' onClick={() => this.toggleDropdown()}
-                ></ifx-icon>
+                  icon='chevronup-16'></ifx-icon>
+              </div>
+              <div class="ifx-choices__icon-wrapper-down" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
+
+                <ifx-icon
+                  icon='chevron-down-16'></ifx-icon>
               </div>
             </div>
           </div>;
@@ -552,8 +556,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
-    console.log("select - initial value", values, this.ifxPlaceholderValue);
+    // console.log("select - initial value", values, this.ifxPlaceholderValue);
     if (this.value !== 'undefined') {
       return getValues(values).map((value) => <option value={value}>{value}</option>)
     }

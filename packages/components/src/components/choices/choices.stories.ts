@@ -95,18 +95,12 @@ Single.args = {
 // export const SingleWithIcon = DefaultTemplate.bind({});
 // SingleWithIcon.args = {
 //   type: 'single',
-//   name: 'single',
-//   searchPlaceholderValue: 'Search...',
-//   searchEnabled: true,
-//   placeholder: true,
-//   placeholderValue: 'Placeholder',
 //   choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
-
 // };
 
 
-export const Chips = DefaultTemplate.bind({});
-Chips.args = {
+export const Multiselect = DefaultTemplate.bind({});
+Multiselect.args = {
   type: 'multiple',
   // removeItemButton: true,
 

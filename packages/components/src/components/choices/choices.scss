@@ -514,7 +514,11 @@ END Select options: item alignment
     border-radius: 0;
     max-width: 100%;
     padding: 4px 0 4px 2px;
+  }
 
+
+  .choices__input--cloned {
+    background-color: transparent;
   }
 
   /* clears the 'X' for the input type=search from Internet Explorer */
