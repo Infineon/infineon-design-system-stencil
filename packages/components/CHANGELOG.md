@@ -1,3 +1,16 @@
+# v19.1.1 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- 270 documentation navbar [#326](https://github.com/Infineon/infineon-design-system-stencil/pull/326) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v19.1.0 (Tue Aug 01 2023)
 
 #### 🚀 Enhancement
