@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -6,38 +6,59 @@ import { Component, h, Prop, Event, EventEmitter } from '@stencil/core';
   shadow: true,
 })
 export class SearchBar {
-
-  @Prop() icon: string;
   @Prop() showCloseButton: boolean = true;
-  @Prop({ mutable: true }) isOpen: boolean = true;
-  @Prop() hideLabel: boolean = false;
-  @Prop() size: string = "";
-  @Prop({ mutable: true }) value: string = '';
+  @Prop() isOpen: boolean = true;
+  @Prop() disabled: boolean = false;
+  @State() internalState: boolean;
+  @Prop({ mutable: true }) value: string;
   @Event() ifxInput: EventEmitter;
 
-  handleClick = () => {
-    this.isOpen = !this.isOpen;
+  @Watch('isOpen')
+  handlePropChange() {
+    this.internalState = this.isOpen;
+  }
+
+  handleCloseButton = () => {
+    this.internalState = !this.internalState;
+  }
+
+  handleSearchInput(event: CustomEvent) {
+    console.log("search field event in search bar", event)
+    this.value = event.detail.detail;
+    this.ifxInput.emit(event.detail);
+  }
+
+  setInitialState() {
+    this.internalState = this.isOpen;
+  }
+
+  componentWillLoad() {
+    this.setInitialState();
   }
 
   handleInput(event: CustomEvent) {
     this.value = event.detail;
   }
 
+  handleFocus = () => {
+    this.internalState = true;
+  }
+
+
   render() {
     return (
-      <div class={`search-bar ${!this.isOpen ? 'closed' : ""} ${this.size === 'large' ? 'large' : ""}`}>
-        {this.isOpen ? (
+      <div class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
+        {this.internalState ? (
           <div class="search-bar-wrapper">
-            <ifx-search-input value={this.value} onIfxInput={this.handleInput.bind(this)}>
+            <ifx-search-field disabled={this.disabled} value={this.value} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
-            </ifx-search-input>
+            </ifx-search-field>
             {this.showCloseButton &&
-              <ifx-link onClick={this.handleClick}>Close</ifx-link>}
+              <a href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>}
           </div>
         ) : (
-          <div class="search-bar__icon-wrapper" onClick={this.handleClick}>
+          <div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
             <ifx-icon icon="search-16"></ifx-icon>
-            <a href="javascript:void(0)">Search</a>
           </div>
         )}
       </div>

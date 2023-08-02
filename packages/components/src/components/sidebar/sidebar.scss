@@ -1,5 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+:host { 
+  height: 100%;
+}
+
 .sidebar__container {
   box-sizing: border-box;
   display: inline-flex;

@@ -1,4 +1,4 @@
- import './App.css'
+import './App.css'
 import Button from './components/Button/button';
 import TextField from './components/TextField/TextField';
 import ProgressBar from './components/ProgressBar/ProgressBar';
@@ -7,16 +7,24 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
+
+import Card from './components/Card/Card';
+
+import Spinner from './components/Spinner'
+import NumberIndicator from './components/NumberIndicator/NumberIndicator'
+import Link from './components/Link/Link';
+import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
 import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
+
 import Navbar from './components/Navbar/Navbar';
 
 function App() {
 
   return (
       <div>
-               <Navbar />      
+            <Navbar />      
 
          <h1 className="header">Stencil Framework integration - React + TS </h1>
 
@@ -44,14 +52,35 @@ function App() {
          <Accordion />
          <br />
 
-      <h2>Radio Button</h2>
-      <RadioButton />
+         <h2>Radio Button</h2>
+         <RadioButton />
+         <br />
+
+         <h2>Tabs</h2>
+         <Tabs />
+         <br/>
+
+         <h2>Card</h2>
+         <Card />
+         <br/>
+
+
+      <h2>Spinner</h2>
+      <Spinner />
+      <br />
+      
+      <h2>Link</h2>
+      <Link />
       <br />
 
-      <h2>Tabs</h2>
-      <Tabs />
-      <br/>
-
+      <h2>Number Indicator</h2>
+      <NumberIndicator />
+      <br />
+      
+      <h2>Search Field</h2>
+      <SearchField />
+      <br />
+      
       <h2>Number indicator</h2>
       <NumberIndicator />
       <br />
@@ -66,5 +95,4 @@ function App() {
       </div>
    )
 }
-
 export default App

@@ -1,26 +1,13 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-
-// :host {
-//   display: block;
-//   width: 100%;
-// }
-
-.search-input {
-  background: #FFFFFF;
-  flex-direction: row;
-  align-items: center;
-  //padding: 16px 16px;
-  flex: 1;
+.search-field {
+  background-color: tokens.$color-bg-white;
   width: 100%;
 
-  &.inside-dropdown {
-    max-width: calc(224px - 32px);
-  }
-
-  .search-input__wrapper {
-    height: 40px;
+  .search-field__wrapper {
     box-sizing: border-box;
+    //height: 48px;
+    height: 40px;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
@@ -32,35 +19,44 @@
     align-self: stretch;
     flex-grow: 0;
     position: relative;
-
     width: 100%;
+    outline: none;
 
-    &.search-input__wrapper-s {
-      height: 40px;
-    }
-
-    &.search-input__wrapper-outline-light {
-      border: 1px solid #8D8786;
-    }
-
-    &.search-input__wrapper-outline-dark {
-      border: 1px solid #3C3A39;
-    }
-
-    &.search-input__wrapper-outline-green {
+    &.focused {
       border: 1px solid #0A8276;
     }
 
-    ::slotted(.search-icon) {
-      left: 12px;
+    &.search-field__wrapper-s {
+      height: 36px;
     }
+
+    &.search-field__wrapper-m {
+      height: 40px;
+    }
+
+    // &:not(.search-field__wrapper-s):not(.search-field__wrapper-m) {
+    //   height: 48px;
+    // }
+
+    &:hover:not(.focused, :focus) {
+      border: 1px solid #3C3A39;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid #0A8276;
+    }
+
+    // ::slotted(.search-icon) {
+    //   left: 12px;
+    // }
 
     .delete-icon {
       right: 12px;
+      cursor: pointer;
     }
 
     input[type='text'] {
-      //line-height: 24px;
       font-family: tokens.$font-family-body;
       font-style: normal;
       font-weight: 400;
@@ -68,7 +64,8 @@
       color: #8D8786;
       border: none;
       width: 100%;
-      //min-width: calc(224px - 56px);
+      outline: none;
+      height: 100%;
 
       &:focus {
         outline: none;
@@ -82,8 +79,5 @@
     &:has(input[disabled]) {
       background-color: #EEEDED;
     }
-
-
   }
-
 }

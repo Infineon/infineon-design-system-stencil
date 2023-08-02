@@ -8,6 +8,8 @@
   <RadioButton />
   <ProgressBar />
   <Search />
+  <SearchField />
+  <TextInput />
   <TextField />
   <Tag />
   <Tabs />
@@ -16,10 +18,13 @@
   <NumberIndicator />
   <Sidebar />
   <IconButton />
+  <Card />
+  <Switch />
 </template>
 
 
-<script type="module" setup>
+<script lang="ts" setup>
+import SearchField from './components/SearchField.vue'
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
@@ -34,7 +39,9 @@ import Link from './components/Link.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
+import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
+import Switch from './components/Switch.vue'
 
 </script>
 
