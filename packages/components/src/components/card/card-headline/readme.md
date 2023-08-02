@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type      | Default     |
-| ----------- | ----------- | ----------- | --------- | ----------- |
-| `direction` | `direction` |             | `string`  | `undefined` |
-| `hasDesc`   | `has-desc`  |             | `boolean` | `undefined` |
+| Property    | Attribute    | Description | Type      | Default |
+| ----------- | ------------ | ----------- | --------- | ------- |
+| `isHovered` | `is-hovered` |             | `boolean` | `false` |
 
 
 ----------------------------------------------

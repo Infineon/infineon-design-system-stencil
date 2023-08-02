@@ -6,7 +6,7 @@ export default {
 
 
 const DefaultTemplate = () =>
-  `<ifx-navbar application-name="Application name">
+  `<ifx-navbar application-name="Application name" fixed="false">
     <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
     <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
  

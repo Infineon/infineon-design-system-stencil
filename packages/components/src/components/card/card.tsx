@@ -1,4 +1,4 @@
-import { Component, h, Host, Element, Prop, State } from '@stencil/core';
+import { Component, h, Host, Element, Prop, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card',
@@ -8,57 +8,102 @@ import { Component, h, Host, Element, Prop, State } from '@stencil/core';
 
 export class Card {
   @Element() el;
-  @State() hasBtn: boolean;
+  @State() noBtns: boolean;
   @Prop() direction: 'horizontal' | 'vertical' = 'vertical';
-  @Prop() alignment: string;
-  @State() hasDesc: boolean;
-  @Prop({ mutable: true }) hasAll: boolean;
-  @Prop({ mutable: true }) largeSize: boolean;
-  @Prop({ mutable: true }) smallSize: boolean;
+  @State() alignment: string;
+  @State() noImg: boolean;
+  @Prop() href: string = "";
+  @Prop() target: string = "_self";
 
-  componentWillLoad() {
-    const desc = this.el.querySelector('ifx-card-text')
-    const overline = this.el.querySelector('ifx-card-overline')
-    const headline = this.el.querySelector('ifx-card-headline')
-    const link = this.el.querySelector('ifx-link')
-
-    if (desc) {
-      this.hasDesc = true;
-    }
-
-    if (overline && headline && desc && link) {
-      this.hasAll = true;
-    } else if (this.hasDesc || (overline && headline && link)) {
-      this.largeSize = true
-    } else {
-      this.smallSize = true
-    }
+  @Listen('imgPosition')
+  setImgPosition(event) { 
+    this.alignment = event.detail
   }
 
+  handleComponentAdjustment() { 
+    const image = this.el.querySelector('ifx-card-image')
+    const links = this.el.querySelector('ifx-card-links')
 
+    if(!image) { 
+      this.noImg = true;
+      console.log('no image')
+    } else this.noImg = false;
+
+    if(!links) { 
+      this.noBtns = true;
+    } else this.noBtns = false;
+  }
+
+  handleHovering() { 
+    const card = this.el.shadowRoot.querySelector('.card')
+    card.addEventListener('mouseover', (ev) => { 
+      this.el.querySelector('ifx-card-headline').isHovered = true;
+      if(ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') { 
+        this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+        this.el.querySelector('ifx-card-headline').isHovered = false;
+      } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
+    })
+
+    card.addEventListener('mouseout', () => { 
+      this.el.querySelector('ifx-card-headline').isHovered = false;
+      this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+    })
+  }
+  
+  componentWillLoad() {
+    this.handleComponentAdjustment()
+  }
+
+  componentDidLoad() { 
+    this.handleHovering()
+  }
+
+  componentWillUpdate() { 
+    this.handleComponentAdjustment()
+  }
 
   render() {
     return (
       <Host>
         <div class={
           `card 
+          ${this.noBtns ? 'noBtns' : ""}
           ${this.direction} 
-          ${this.alignment} 
-          ${this.largeSize ? 'largeSize' : ""} 
-          ${this.smallSize ? 'smallSize' : ""} 
-          ${this.hasAll ? 'hasAll' : ""}`
+          ${this.alignment}`
         }>
-          <div class="card-img">
-            <slot name="img" />
-          </div>
+         
+        {this.direction === 'horizontal' &&
+           <div class="horizontal">
+              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.href}>
+                <slot name="img" />
+              </a>
 
+              <div class='lower__body-wrapper'>
+                <a class='upper-body' href={this.href}>
+                    <slot />
+                </a>
+                <div>
+                  <slot name='buttons' />
+                </div>
+              </div>
+         </div>}
 
-          <div class='card-body'>
-            <slot name='overline' />
-            <slot name='headline' />
-            <slot name='text' />
-            <slot name="btn" />
-          </div>
+         {this.direction === 'vertical' && 
+          <div class="vertical">
+            <a class='upper__body-wrapper' href={this.href} target={this.target}>
+              <div class='card-img'>
+                <slot name="img" />
+              </div>
+
+              <div class='upper-body'>
+                <slot />
+              </div>
+            </a>
+
+            <div class='lower__body-wrapper'>
+              <slot name='buttons' />
+            </div>
+          </div>}
         </div>
       </Host>
     );

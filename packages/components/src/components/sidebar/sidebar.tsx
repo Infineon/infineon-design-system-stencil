@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar',
@@ -6,7 +6,7 @@ import { Component, h } from '@stencil/core';
   shadow: true
 })
 export class Sidebar {
-
+  @Prop() applicationName: string = 'Application name'
 
   render() {
     return (
@@ -27,7 +27,7 @@ export class Sidebar {
                   </defs>
                 </svg>
               </div>
-              <div class='sidebar__nav-bar-logo-text'>Application name</div>
+              <div class='sidebar__nav-bar-logo-text'>{this.applicationName}</div>
             </div>
           </div>
           <div class="sidebar__nav-container">

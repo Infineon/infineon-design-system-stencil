@@ -1,0 +1,252 @@
+name: Deploy canary releases and update example apps on Github pages
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize # canary on new commit
+
+jobs:
+  stencil-library-release:
+    outputs:
+      CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0 # fetch all tags for ship-it
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies for all packages, build and deploy Stencil core package
+        id: build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          npm install
+          npm run build:components
+          cd packages/components
+          CANARY_VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $CANARY_VERSION"
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+          echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
+          auto shipit
+
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: sleep 10s
+        shell: bash
+
+      - name: Update Dependencies in Vue and React packages
+        id: update-wrapper-dependencies
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "CANARY_VERSION: $CANARY_VERSION"
+          echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-vue
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-react
+  
+      - name: Build and deploy Vue and React packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          lerna version $CANARY_VERSION --no-git-tag-version --y
+          npm run build:components-react
+          npm run build:components-vue
+          cd packages/components-react
+          npm publish --tag canary
+          cd ../components-vue
+          npm publish --tag canary
+        
+  #deploy gh-pages previews for example applications:
+  deploy-preview-vue:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  
+  
+      - name: Install and Build
+        run: |
+          cd examples/wrapper-components/vue-javascript
+          npm i
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm run build
+
+      - name: Deploy preview
+        id: preview       
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./examples/wrapper-components/vue-javascript/dist
+          umbrella-dir: pr-preview-vue-example
+          token: ${{ secrets.GH_TOKEN }}
+  
+  
+  deploy-preview-react:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  
+      - name: Install and Build
+        run: |
+          cd examples/wrapper-components/react-javascript
+          npm i
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-react@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm run build
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/wrapper-components/react-javascript/build
+          umbrella-dir: pr-preview-react-example
+          token: ${{ secrets.GH_TOKEN }}
+   
+  deploy-preview-angular:
+    needs: stencil-library-release  
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+          
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  
+      - name: Install and Build
+        run: |
+          cd examples/stencil-components/angular
+          npm i
+          npm i @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm run build
+           
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/stencil-components/angular/dist
+          umbrella-dir: pr-preview-angular-example
+          token: ${{ secrets.GH_TOKEN }}
+  
+  
+  deploy-preview-vanilla:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+ 
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  
+
+      - name: Update CDN Link in Vanilla example app & build
+        run: | 
+          cd examples/stencil-components/vanilla-cdn
+          npm install
+          npm run update-link
+          npm run build
+            
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/stencil-components/vanilla-cdn/dist
+          umbrella-dir: pr-preview-vanilla-example
+          token: ${{ secrets.GH_TOKEN }}
+  
+  update-pr-comment: 
+    needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Update comment in PR
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const vueUrl = "${{ needs.deploy-preview-vue.outputs.deployment-url }}";
+            const reactUrl = "${{ needs.deploy-preview-react.outputs.deployment-url }}";
+            const angularUrl = "${{ needs.deploy-preview-angular.outputs.deployment-url }}";
+            const vanillaUrl = "${{ needs.deploy-preview-vanilla.outputs.deployment-url }}";
+            const newText = `PR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
+  
+            const {data: comments} = await github.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
+            if (autoComment) {
+              const existingText = autoComment.body;
+              if (!existingText.includes(newText)) {
+                await github.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: autoComment.id,
+                  body: `${existingText}\n${newText}`
+                });
+              } 
+            } else {
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: newText
+              });
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

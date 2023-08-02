@@ -26,5 +26,6 @@ module.exports = {
   docs: {
     autodocs: 'tag',
     defaultName: 'Development',
+
   }
 };

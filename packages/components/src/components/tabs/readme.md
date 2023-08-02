@@ -1,4 +1,4 @@
-# ifx-tag
+# ifx-tabs
 
 
 
@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type                         | Default        |
-| ------------- | ------------- | ----------- | ---------------------------- | -------------- |
-| `orientation` | `orientation` |             | `"horizontal" \| "vertical"` | `'horizontal'` |
-| `small`       | `small`       |             | `boolean`                    | `false`        |
-| `tabs`        | --            |             | `string[]`                   | `[]`           |
+| Property      | Attribute     | Description | Type       | Default |
+| ------------- | ------------- | ----------- | ---------- | ------- |
+| `orientation` | `orientation` |             | `string`   | `""`    |
+| `small`       | `small`       |             | `boolean`  | `false` |
+| `tabs`        | --            |             | `string[]` | `[]`    |
 
 
 ## Events
 
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `tabChange` |             | `CustomEvent<any>` |
+| Event         | Description | Type               |
+| ------------- | ----------- | ------------------ |
+| `ifxTabIndex` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

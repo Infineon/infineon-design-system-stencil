@@ -1,9 +1,6 @@
 //ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 
-export type TabOrientation = 'horizontal' | 'vertical';
-
-
 @Component({
   tag: 'ifx-tabs',
   styleUrl: 'tabs.scss',
@@ -13,19 +10,14 @@ export type TabOrientation = 'horizontal' | 'vertical';
 export class IfxTabs {
   @Element() el: HTMLElement;
   @Prop() tabs: string[] = [];
-  @Prop() orientation: TabOrientation = 'horizontal';
+  @Prop() orientation: string = ""
+  @State() internalOrientation: string;
   @Prop() small: boolean = false;
   @State() activeTabIndex: number = 0;
-
-  @State()
-  tabRefs: HTMLElement[] = [];
-  @State()
-  tabHeaderRefs: HTMLElement[] = [];
-  @State()
-  tabTitles: string[] = [];
-
-
-  @Event() tabChange: EventEmitter;
+  @State() tabRefs: HTMLElement[] = [];
+  @State() tabHeaderRefs: HTMLElement[] = [];
+  @State() tabTitles: string[] = [];
+  @Event() ifxTabIndex: EventEmitter;
 
   // changing tab
   setActiveTab(index: number) {
@@ -38,7 +30,7 @@ export class IfxTabs {
       }
 
 
-      this.tabChange.emit({ oldTabIndex: this.activeTabIndex, newTabIndex: index });
+      this.ifxTabIndex.emit({ previousTab: this.activeTabIndex, currentTab: index });
       this.activeTabIndex = index;
 
       const newActiveTab = this.tabRefs[index] as HTMLIfxTabElement;
@@ -59,9 +51,9 @@ export class IfxTabs {
   // needed for smooth border transition
   reRenderBorder() {
     const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
-
     if (borderElement && this.tabHeaderRefs[this.activeTabIndex]) {
       if (this.orientation === 'horizontal') {
+
         borderElement.style.left = `${this.tabHeaderRefs[this.activeTabIndex].offsetLeft}px`;
         borderElement.style.width = `${this.tabHeaderRefs[this.activeTabIndex].offsetWidth}px`;
         borderElement.style.top = '';
@@ -91,18 +83,31 @@ export class IfxTabs {
     });
   }
 
-  // initially get all the slots
-  componentDidLoad() {
+  setDefaultOrientation() {
+    const validOrientations = ['horizontal', 'vertical'];
+    const lowercaseOrientation = this.orientation.toLowerCase();
+
+    if (!validOrientations.includes(lowercaseOrientation)) {
+      this.internalOrientation = 'horizontal';
+    } else this.internalOrientation = this.orientation;
+  }
+
+  componentWillLoad() {
+    this.setDefaultOrientation()
     this.onSlotChange();
   }
 
-  componentDidRender() {
+  componentDidLoad() {
+    this.reRenderBorder()
+  }
+
+  componentDidUpdate() {
     this.reRenderBorder()
   }
 
   render() {
     return (
-      <div class={`tabs ${this.orientation} ${this.small ? 'small' : ''}`}>
+      <div class={`tabs ${this.internalOrientation} ${this.small ? 'small' : ''}`}>
         <ul class="tabs-list">
           {this.tabTitles.map((tabTitle, index) => (
             <li

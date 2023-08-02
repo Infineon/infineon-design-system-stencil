@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { defineCustomElements } from '@infineon/infineon-design-system-react';
 import App from './App.tsx'
-import './index.css'
+// import './index.css'
 
 defineCustomElements(window)
 

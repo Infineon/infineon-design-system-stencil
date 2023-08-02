@@ -8,13 +8,19 @@ export const config: Config = {
   plugins: [
     sass()
   ],
+  extras: {
+    cloneNodeFix: true,
+    enableImportInjection: true,
+  },
   outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
     },
+    ...frameworkTargets,
     {
       type: 'dist-custom-elements',
+      // generateTypeDeclarations: true,
     },
     {
       type: 'docs-readme',
@@ -22,7 +28,6 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-    },
-    ...frameworkTargets,
+    }
   ],
 };

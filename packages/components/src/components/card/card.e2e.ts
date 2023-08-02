@@ -22,12 +22,12 @@ describe('ifx-card', () => {
 
   it('should set correct alignment', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-card alignment="center"></ifx-card>');
+    await page.setContent('<ifx-card-image position="left"></ifx-card-image>');
 
-    const element = await page.find('ifx-card');
-    const alignment = await element.getProperty('alignment');
+    const element = await page.find('ifx-card-image');
+    const alignment = await element.getProperty('position');
 
-    expect(alignment).toBe('center');
+    expect(alignment).toBe('left');
   });
 
 });

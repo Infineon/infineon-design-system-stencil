@@ -13,6 +13,13 @@
 | `ifxIcon` | `ifx-icon` |             | `any`    | `undefined` |
 
 
+## Events
+
+| Event          | Description | Type                   |
+| -------------- | ----------- | ---------------------- |
+| `consoleError` |             | `CustomEvent<boolean>` |
+
+
 ## Dependencies
 
 ### Used by
@@ -32,11 +39,11 @@
  - [ifx-multi-select-input-item](../multi-select-input)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
- - [ifx-range](../range)
  - [ifx-search-bar](../search-bar)
- - [ifx-search-input](../search-input)
+ - [ifx-search-field](../search-field)
  - [ifx-sidebar-item](../sidebar)
- - [ifx-text-input](../text-input)
+ - [ifx-slider](../slider)
+ - [ifx-text-field](../text-field)
 
 ### Graph
 ```mermaid
@@ -56,11 +63,11 @@ graph TD;
   ifx-multi-select-input-item --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-menu-item --> ifx-icon
-  ifx-range --> ifx-icon
   ifx-search-bar --> ifx-icon
-  ifx-search-input --> ifx-icon
+  ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon
-  ifx-text-input --> ifx-icon
+  ifx-slider --> ifx-icon
+  ifx-text-field --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
