@@ -71,7 +71,7 @@ const DefaultTemplate = ({ type, value, name, disabled, error, errorMessage, pla
   //   console.error("Invalid choices input:", choicesStr);
   // }
 
-  element.addEventListener('ifxChange', action('ifxChange'));
+  element.addEventListener('ifxSelect', action('ifxSelect'));
 
   return element;
 }
@@ -102,6 +102,7 @@ Single.args = {
 export const Multiselect = DefaultTemplate.bind({});
 Multiselect.args = {
   type: 'multiple',
+  placeholder: false,
   // removeItemButton: true,
 
 };

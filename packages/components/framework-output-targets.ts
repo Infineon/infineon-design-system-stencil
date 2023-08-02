@@ -15,7 +15,7 @@ const vueComponentModels: ComponentModelConfig[] = [
   },
   {
     elements: ['ifx-choices'],
-    event: 'ifxChange',
+    event: 'ifxSelect',
     targetAttr: 'value',
   },
 ];

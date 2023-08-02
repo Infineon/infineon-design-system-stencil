@@ -25,6 +25,7 @@
 
     &.disabled {
       background: #EEEDED;
+      color: #575352;
       border-color: #575352;
       cursor: not-allowed;
       -webkit-user-select: none;
@@ -64,7 +65,7 @@
     }
 
     &:focus:not(.active, :active) {
-      &::before {
+      &:not(.disabled)::before {
         content: '';
         position: absolute;
         width: calc(100% + 4px);
@@ -72,7 +73,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid #0A8276;
       }
     }
 
@@ -141,6 +141,7 @@ END Select options: item alignment
 
   .choices.is-disabled .choices__item {
     cursor: not-allowed;
+    color: #575352;
   }
 
   .choices [hidden] {
@@ -231,9 +232,6 @@ END Select options: item alignment
   .choices[data-type*='select-multiple'] .choices__input {
     display: block;
     width: 100%;
-    padding: 10px;
-    border-bottom: 1px solid #dddddd;
-    background-color: #ffffff;
     margin: 0;
   }
 
@@ -312,6 +310,13 @@ END Select options: item alignment
     justify-content: space-between;
   }
 
+
+  .disabled>.choices__list--single .choices__item[data-value=''] {
+    color: #8D8786;
+    /* Placeholder font color */
+
+  }
+
   .choices__list--multiple {
     // display: inline;
   }
@@ -336,6 +341,7 @@ END Select options: item alignment
     padding-right: 5px;
   }
 
+
   [dir='rtl'] .choices__list--multiple .choices__item {
     margin-right: 0;
     margin-left: 3.75px;
@@ -346,23 +352,16 @@ END Select options: item alignment
     border: 1px solid tokens.$color-default-500;
   }
 
-  .is-disabled .choices__list--multiple .choices__item {
-    background-color: #aaaaaa;
-    border: 1px solid #919191;
-  }
 
   .choices__list--dropdown {
     visibility: hidden;
-    // z-index: 1;
     box-sizing: border-box;
     position: absolute;
     width: 100%;
     background-color: #fff;
-    // border: 1px solid #dddddd;
     top: 100%;
     margin-top: -1px;
-    // border-bottom-left-radius: 2.5px;
-    // border-bottom-right-radius: 2.5px;
+
     overflow: hidden;
     word-break: break-all;
     will-change: visibility;
@@ -505,8 +504,6 @@ END Select options: item alignment
   .choices__single-button:focus {
     outline: none;
   }
-
-
 
   .choices__input {
     display: inline-block;
