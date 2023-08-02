@@ -11,7 +11,7 @@ export default {
 
 const DefaultTemplate = (args) =>
   `<ifx-select-input>
-    <ifx-text-input icon="true" readonly="true" slot="text-input"></ifx-text-input>
+    <ifx-text-field icon="true" readonly="true" slot="text-input"></ifx-text-field>
     <ifx-dropdown-menu slot="menu">
       <ifx-dropdown-item value="Item1">Item1</ifx-dropdown-item>
       <ifx-dropdown-item value="Item2">Item2</ifx-dropdown-item>

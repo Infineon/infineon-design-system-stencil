@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 
 
 export default {
@@ -5,16 +6,21 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    width: '100%',
     showCloseButton: true,
+    disabled: false,
+
   },
   argTypes: {
-    onIfxInput: { action: 'ifxInput' },
-    width: {
-      options: ['40%', '60%', '80%', '100%'],
-      control: { type: 'radio' },
-    },
-    showCloseButton: {
+    onIfxInput: {
+      action: 'ifxInput',
+      description: 'Custom event',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+        },
+      },
+    }, showCloseButton: {
       control: { type: 'boolean' },
     },
   },
@@ -22,20 +28,16 @@ export default {
 
 
 
-const Template = (args) => {
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<ifx-search-bar  style="width: ${args.width}" show-close-button="${args.showCloseButton}"></ifx-search-bar>`;
+const DefaultTemplate = ({ isOpen, showCloseButton, disabled }) => {
+  const element = document.createElement('ifx-search-bar');
+  element.setAttribute('is-open', isOpen);
+  element.setAttribute('disabled', disabled);
+  element.setAttribute('show-close-button', showCloseButton);
+  element.addEventListener('ifxInput', action('ifxInput'));
 
-  const inputElement = wrapper.querySelector('ifx-search-bar');
-  inputElement.addEventListener('ifxChange', (event) => {
-    // console.log('Storybook Search-Input:', event);
-    args.onIfxChange(event);
-
-  });
-
-  return wrapper.innerHTML;
+  return element;
 };
 
-export const Default = Template.bind({});
+export const Default = DefaultTemplate.bind({});
 Default.args = {
 };

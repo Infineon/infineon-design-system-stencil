@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
+:host { 
+  pointer-events: none;
+}
+
 .card-overline {
   font-size: tokens.$font-size-m;
   font-weight: tokens.$font-weight-regular;
@@ -14,4 +18,5 @@
   text-overflow: ellipsis;
 
   word-break: break-all;
+
 }

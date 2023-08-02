@@ -102,7 +102,7 @@ export class SelectInput {
   }
 
   getTextField() {
-    let textField = this.el.querySelector('ifx-text-input');
+    let textField = this.el.querySelector('ifx-text-field');
     return textField
   }
 
@@ -122,7 +122,7 @@ export class SelectInput {
   }
 
   componentDidRender() {
-    let textInput = this.el.querySelector('ifx-text-input');
+    let textInput = this.el.querySelector('ifx-text-field');
     if (textInput) {
       const textInputElement = textInput.shadowRoot.querySelector('input');
       if (!textInputElement.classList.contains('disabled')) {

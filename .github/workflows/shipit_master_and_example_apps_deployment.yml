@@ -1,0 +1,216 @@
+name: Deploy Stencil Web components Library to NPM
+
+on:
+  push:
+    branches:
+     - master
+ 
+env:
+  VERSION: ''
+
+jobs:
+  stencil-library-release:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all tags for ship-it
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
+
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Build stencil
+        id: build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        run: | 
+          npm install
+          npm run build:components
+          cd packages/components
+          VERSION=$(auto shipit --dry-run --quiet)
+          echo "Publishing: $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          auto shipit
+
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: sleep 10s
+        shell: bash
+
+      - name: Update Dependencies in Vue and React packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          echo "VERSION: $VERSION"
+          echo "Installing Stencil library for Vue and React: $VERSION"
+          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-vue
+          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-react        
+
+      - name: Build and deploy Vue and React packages
+        id: build-and-deploy-wrappers
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: | 
+          lerna version $VERSION --no-git-tag-version --y
+          npm run build:components-react
+          npm run build:components-vue          
+          cd packages/components-react
+          npm publish
+          cd ../components-vue
+          npm publish
+
+
+#deploy gh-pages for example applications based on the master branch:
+  deploy-master-vue:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  
+  
+      - name: Install and Build
+        run: |
+          cd examples/wrapper-components/vue-javascript
+          npm i
+          echo "Installing package with version: ${{ needs.stencil-library-release.outputs.VERSION }}"
+          npm install @infineon/infineon-design-system-vue@latest
+          npm run build
+
+      - name: Deploy Vue Example🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: examples/wrapper-components/vue-javascript/dist/ # The folder the action should deploy.
+          target-folder: vue-example
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
+          force: false
+  
+  deploy-master-react:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  
+      - name: Install and Build
+        run: |
+          cd examples/wrapper-components/react-javascript
+          npm i
+          echo "Installing package with version: ${{ needs.stencil-library-release.outputs.VERSION }}"
+          npm i @infineon/infineon-design-system-react@latest
+          npm run build
+
+      - name: Deploy React Example🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: examples/wrapper-components/react-javascript/build/ # The folder the action should deploy.
+          target-folder: react-example
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
+          force: false
+   
+  deploy-master-angular:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+          
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  
+      - name: Install and Build
+        run: |
+          cd examples/stencil-components/angular
+          npm i
+          npm i @infineon/infineon-design-system-stencil@latest
+          npm run build
+           
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: examples/stencil-components/angular/dist/ # The folder the action should deploy.
+          target-folder: angular-example
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
+          force: false
+  
+  deploy-master-vanilla:
+    needs: stencil-library-release  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+ 
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Update CDN Link in Vanilla example app & build
+        run: | 
+          cd examples/stencil-components/vanilla-cdn
+          npm install
+          npm run update-link
+          npm run build
+            
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: examples/stencil-components/vanilla-cdn/dist # The folder the action should deploy.
+          target-folder: vanilla-example
+          clean-exclude: |
+            pr-preview/
+            pr-preview-vue-example/
+            pr-preview-react-example/
+            pr-preview-angular-example/
+            pr-preview-vanilla-example/
+          force: false
+  

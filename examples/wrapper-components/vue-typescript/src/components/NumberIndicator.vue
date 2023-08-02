@@ -7,6 +7,8 @@
     <ifx-number-indicator inverted="false">1</ifx-number-indicator>
     <button @click="increaseNumber">+</button>
     <button @click="decreaseNumber">-</button>
+    <br />
+    <br />
   </div>
 </template>
 

@@ -5,8 +5,9 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
+import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-
+defineCustomElements();
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
@@ -59,25 +60,31 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
   'direction',
-  'alignment',
-  'hasAll',
-  'largeSize',
-  'smallSize'
+  'href',
+  'target'
 ]);
 
 
 export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined, [
-  'direction',
-  'hasDesc'
+  'isHovered'
 ]);
+
+
+export const IfxCardImage = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', undefined, [
+  'src',
+  'alt',
+  'position',
+  'imgPosition'
+]);
+
+
+export const IfxCardLinks = /*@__PURE__*/ defineContainer<JSX.IfxCardLinks>('ifx-card-links', undefined);
 
 
 export const IfxCardOverline = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', undefined);
 
 
-export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined, [
-  'hasBtn'
-]);
+export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined);
 
 
 export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
@@ -242,7 +249,9 @@ export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMult
 
 
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
-  'applicationName'
+  'applicationName',
+  'fixed',
+  'showLogo'
 ]);
 
 
@@ -275,38 +284,20 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 ]);
 
 
-export const IfxRange = /*@__PURE__*/ defineContainer<JSX.IfxRange>('ifx-range', undefined, [
-  'min',
-  'max',
-  'value',
-  'disabled',
-  'showPercentage',
-  'leftIcon',
-  'rightIcon',
-  'leftText',
-  'rightText',
-  'ifxChanged'
-]);
-
-
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
-  'icon',
   'showCloseButton',
   'isOpen',
-  'hideLabel',
-  'size',
+  'disabled',
   'value',
   'ifxInput'
 ],
 'value', 'ifxInput');
 
 
-export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
+export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', undefined, [
   'value',
-  'width',
   'showDeleteIcon',
   'disabled',
-  'borderColor',
   'size',
   'ifxInput'
 ],
@@ -328,6 +319,20 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 ]);
 
 
+export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
+  'min',
+  'max',
+  'value',
+  'disabled',
+  'showPercentage',
+  'leftIcon',
+  'rightIcon',
+  'leftText',
+  'rightText',
+  'ifxChange'
+]);
+
+
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
   'variant'
@@ -344,6 +349,7 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [
   'value',
   'name',
+  'disabled',
   'ifxChange'
 ]);
 
@@ -366,7 +372,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined);
 
 
-export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.IfxTextInput["value"]>('ifx-text-input', undefined, [
+export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', undefined, [
   'placeholder',
   'value',
   'error',
@@ -376,6 +382,5 @@ export const IfxTextInput = /*@__PURE__*/ defineContainer<JSX.IfxTextInput, JSX.
   'readonly',
   'icon',
   'ifxInput'
-],
-'value', 'ifxInput');
+]);
 

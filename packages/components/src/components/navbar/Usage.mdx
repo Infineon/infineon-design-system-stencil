@@ -1,8 +1,9 @@
 import { Meta } from '@storybook/blocks';
 import * as NavbarStories from './navbar.stories';
 
-import HeaderDefaultAnatomySmall from '../../../public-storybook/images/navbar/header-default-anatomy_=720px.png';
-import HeaderDefaultAnatomyLarge from '../../../public-storybook/images/navbar/header-default-anatomy_=1440px.png';
+import ButtonGroupingByImportance from '../../../public-storybook/images/button/button-grouping-by-importance.png';
+import HeaderDefaultAnatomySmall from '../../../public-storybook/images/navbar/header-default-anatomy_720px.png';
+import HeaderDefaultAnatomyLarge from '../../../public-storybook/images/navbar/header-default-anatomy_1440px.png';
 import HeaderMainItemsExample from '../../../public-storybook/images/navbar/header-main-items-example.png';
 import HeaderMobileNavigation from '../../../public-storybook/images/navbar/header-mobile-navigation.png';
 import HeaderOverviewBreakpoints from '../../../public-storybook/images/navbar/header-overview-breakpoints.png';
@@ -33,7 +34,7 @@ Show the separator after the application name if a main navigation is to be show
 
 
 **Main navigation (4)**\
-The main navigation enables users to find the information they are looking for. To sustain usability we recommend a **maximum of 7 menu items**.
+The main navigation enables users to find the information they are looking for. To sustain usability we recommend a **maximum of seven menu items**.
 
 
 **Search field (5)**\
@@ -124,56 +125,38 @@ The profile icon is a key item of many websites, so it should be easily accessib
 Depending on the context, the button can be used for a variety of functions such as initiating an action. Place it **rightmost** for easy accessibility.
 
 
+
 ### Placement by priority
+
 The table below gives you an overview and guidance how to prioritize your secondary navigation items.
 
-| Breakpoint | Logo      | Application name | Main navigation | Secondary navigation | Search field |
-|------------|-----------|------------------|-----------------|----------------------|--------------|
-| ≥1440px    | Mandatory | High             | High            | High                 | High         |
-| ≥1200px    | Mandatory | High             | High            | High                 | Low          |
-| ≥1024px    | Mandatory | High             | n/c             | High                 | n/c          |
-| ≥720px     | Mandatory | Low              | n/c             | High                 | n/c          |
-| <720px     | Mandatory | Low              | n/c             | High                 | n/c          |
+  | Breakpoint | Logo      | Application name | Main navigation | Secondary navigation | Search field |
+  |------------|-----------|------------------|-----------------|----------------------|--------------|
+  | ≥1440px    | Mandatory | High             | High            | High                 | High         |
+  | ≥1200px    | Mandatory | High             | High            | High                 | Low          |
+  | ≥1024px    | Mandatory | High             | n/c             | High                 | n/c          |
+  | ≥720px     | Mandatory | Low              | n/c             | High                 | n/c          |
+  | \<720px    | Mandatory | Low              | n/c             | High                 | n/c          |
 
-## Breakpoints
-<img src={HeaderOverviewBreakpoints} alt="Header Breakpoints" />
-
-**≥1440px**\
-A large header with lots of space and the possibility to display each element.
-
-
-**≥1200px**\
-At this width you can decide by priority what to display. 
-
-
-**≥1024px**\
-At this width you should change your visible search bar into an icon with a label localized in the secondary navigation. Furthermore it is possible to move less important text links into a collapsible "More" text link.
-
-
-**≥720px**\
-At this width the header is simplified even further. Text links are moved into the burger menu.
-
-
-**<720px**\
-At his width you should use the most crucial functions in the secondary navigation. Avoid using a "Search "label after the icon.
 
 ## Mobile Navigation
-Below the breakpoint of 1024px the navbar becomes mobile. This ensures that users with smaller devices like tablets or smartphones get the same user experience as the ones with larger devices.
-> By triggering the burger menu icon the menu icon becomes a cross icon. To apply the focus on usability and clarity all other elements except the logo and/or the application name become invisible.
+  Below the breakpoint of 1024px the navbar becomes mobile. This ensures that users with smaller devices like tablets or smartphones get the same user experience as the ones with larger devices.
+  By triggering the burger menu icon the menu icon becomes a cross icon. To apply the focus on usability and clarity all other elements except the logo and/or the application name become invisible.
 
-<img src={HeaderMobileNavigation} alt="Header Mobile Navigation" />
+  <img src={HeaderMobileNavigation} alt="Header Mobile Navigation" />
 
 ## Sticky header
-In some situations our websites and applications provide a lot of content on a page and space on a screen is crucial. In those cases, we recommend to use a hidden header that only appears and stays sticky when the user scrolls/swipes up.
+  In some situations our websites and applications provide a lot of content on a page and space on a screen is crucial. In those cases, we recommend to use a hidden header that only appears and stays sticky when the user scrolls/swipes up.
 
-### When to use
-- If the header contains important navigation or branding elements that the user needs to access quickly.
+  ### When to use
+  - If the header contains important navigation or branding elements that the user needs to access quickly.
 
-### When not to use
-- If a website or application only has a few pages or a small amount of content.
-- If a page has a specific goal, such as completing a form or making a purchase, a sticky header can be distracting and take the user's attention away from the task. In this case, it may be better to deactivate the sticky behaviour or remove the entire header.<img src={ButtonGroupingByImportance} alt="Button Group By Importance" />
+  ### When not to use
+  - If a website or application only has a few pages or a small amount of content.
+  - If a page has a specific goal, such as completing a form or making a purchase, a sticky header can be distracting and take the user's attention away from the task. In this case, it may be better to deactivate the sticky behaviour or remove the entire header.<img src={ButtonGroupingByImportance} alt="Button Group By Importance"/>
 
 
-***
-Check out the Figma component: **[Navbar](https://www.figma.com/file/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?type=design&node-id=19241-12529&mode=design&t=2lNZOOqATnlJOKBG-4)**
-***
+
+  ***
+  Check out the Figma component: **[Navbar](https://www.figma.com/file/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?type=design&node-id=19241-12529&mode=design&t=2lNZOOqATnlJOKBG-4)**
+  ***

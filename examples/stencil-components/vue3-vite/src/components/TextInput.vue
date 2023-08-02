@@ -2,9 +2,9 @@
   <div class="app">
     <h2>Alert</h2>
     <div>
-      <ifx-text-input @ifxInput="handleIfxInput" error="false" disabled="false" success="false" placeholder="Placeholder"
+      <ifx-text-field @ifxInput="handleIfxInput" error="false" disabled="false" success="false" placeholder="Placeholder"
         errormessage="">Text
-        field</ifx-text-input>
+        field</ifx-text-field>
     </div>
     <p>Text field event: {{ input }}</p>
     <br />

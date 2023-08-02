@@ -110,6 +110,8 @@ typings/
 .angular
 
 packages/components/src/components.d.ts
+packages/components-vue/lib/components.ts
 packages/components-vue/lib/components.d.ts
+
 
 .angular

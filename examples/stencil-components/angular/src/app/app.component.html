@@ -1,5 +1,27 @@
 <div>
+  <ifx-navbar application-name="Application name" fixed="false">
+    <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
+
+    <ifx-dropdown-menu slot="dropdown-menu">
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+
+    <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+  </ifx-navbar>
+
+
   <h1>Using Stencil web components in an Angular application</h1>
+
+  <h2>Alert</h2>
+  <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+  <br />
 
   <h2>Tabs</h2>
   <ifx-tabs orientation="horizontal">
@@ -7,7 +29,7 @@
     <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
     <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
   </ifx-tabs>
-
+  <br />
 
   <h2>Tag</h2>
   <ifx-tag>tag</ifx-tag>
@@ -20,6 +42,7 @@
     </ifx-button>
   </div>
   <br />
+  <br />
   <h2>Progress bar</h2>
   <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
   <div>
@@ -30,12 +53,14 @@
     </ifx-button>
   </div>
   <br />
+  <br />
 
   <h2>Checkbox</h2>
 
   <form (ngSubmit)="handleSubmit()">
     <ifx-checkbox [disabled]="checkboxDisabled" [value]="checkboxChecked" [error]="checkboxError" name="name"
       (ifxChange)="toggleCheckboxValue()">label</ifx-checkbox>
+    <br />
     <br />
 
     <ifx-button type="submit">Submit</ifx-button>
@@ -48,18 +73,21 @@
   <span>Disabled: {{ checkboxDisabled }} </span>
   <span>Error: {{ checkboxError }} </span>
   <span>Value: {{ checkboxChecked }}</span>
+  <br />
+  <br />
 
-
-  <h2>Text Input</h2>
+  <h2>Text Field</h2>
   <form (ngSubmit)="handleSubmit()">
-    <ifx-text-input (ifxInput)="handleIfxInput($event)" [error]="false" [disabled]="false" [success]="false"
+    <ifx-text-input (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
       placeholder="Placeholder" [errorMessage]="">Text
       field</ifx-text-input>
+    <br />
     <br />
 
     <ifx-button type="submit">Submit</ifx-button>
   </form>
   <span>Text field value: {{ textFieldValue }}</span>
+  <br />
   <br />
 
   <h2>Radio Button</h2>
@@ -77,9 +105,11 @@
   <span>Value: {{ radioChecked }}</span>
   <span>Radio button value: {{ radioButtonValue }}</span>
   <br />
+  <br />
 
   <h2>Spinner</h2>
   <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+  <br />
   <br />
 
   <h2>Link</h2>
@@ -87,11 +117,25 @@
     Link
   </ifx-link>
   <br />
+  <br />
 
-  <h2>Number indicator</h2>
+  <h2>Number Indicator</h2>
   <ifx-number-indicator inverted='false'> {{ numberIndicator }}</ifx-number-indicator>
   <button (click)="increaseNumber()">+</button>
   <button (click)="decreaseNumber()">-</button>
+  <br />
+  <br />
+
+  <h2>Search Field</h2>
+  <ifx-search-field size="m" disabled="false" show-delete-icon="true"
+    (ifxInput)="handleSearchField($event)"></ifx-search-field>
+  <br />
+  <br />
+
+  <h2>Search Bar</h2>
+  <ifx-search-bar size="m" disabled="false" show-close-button="true"
+    (ifxInput)="handleSearchBar($event)"></ifx-search-bar>
+  <br />
   <br />
 
   <h2>Sidebar</h2>
@@ -102,4 +146,24 @@
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
   </ifx-sidebar>
   <br />
+
+  <h2>Card</h2>
+  <ifx-card href="http://google.com" target="_blank" direction="vertical">
+    <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
+   
+      <ifx-card-overline>Overline</ifx-card-overline>
+      <ifx-card-headline>Headline</ifx-card-headline>
+      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.</ifx-card-text>
+
+      <ifx-card-links slot="buttons">
+        <ifx-button color="primary">Button</ifx-button>
+        <ifx-button color="secondary">Button</ifx-button>
+      </ifx-card-links>
+  </ifx-card>
+  <br />
+
+  <h2>Switch</h2>
+  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+  <br />
+
 </div>

@@ -1,6 +1,6 @@
-@use "../../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "~@infineon/design-system-tokens/dist/tokens";
 
-.list-group-notification { 
+.list-group-notification {
   width: 350px;
   height: 88px;
   padding: 16px;
@@ -16,19 +16,19 @@
     text-overflow: ellipsis;
   }
 
-  &.flush { 
+  &.flush {
     border: none;
     border-bottom: 1px solid tokens.$color-gray-200;
   }
 
-  & .heading__section { 
+  & .heading__section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
     color: tokens.$color-default-500;
   }
 
-  & .heading__section-title { 
+  & .heading__section-title {
     flex: 1;
     margin: 0;
     font-family: "Source Sans Pro";
