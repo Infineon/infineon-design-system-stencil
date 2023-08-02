@@ -1,6 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  width: 100%;
+}
 
 
 .navbar__wrapper {
@@ -303,6 +306,14 @@
             align-items: center;
             padding: 0px 8px;
             gap: 8px;
+
+            & a {
+              & span { 
+                &:hover { 
+                  color: #0A8276;
+                }
+              }
+            }
           }
 
           & .hidden {

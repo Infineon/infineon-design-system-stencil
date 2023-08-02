@@ -60,25 +60,31 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
 
 export const IfxCard = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
   'direction',
-  'alignment',
-  'hasAll',
-  'largeSize',
-  'smallSize'
+  'href',
+  'target'
 ]);
 
 
 export const IfxCardHeadline = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined, [
-  'direction',
-  'hasDesc'
+  'isHovered'
 ]);
+
+
+export const IfxCardImage = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', undefined, [
+  'src',
+  'alt',
+  'position',
+  'imgPosition'
+]);
+
+
+export const IfxCardLinks = /*@__PURE__*/ defineContainer<JSX.IfxCardLinks>('ifx-card-links', undefined);
 
 
 export const IfxCardOverline = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', undefined);
 
 
-export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined, [
-  'hasBtn'
-]);
+export const IfxCardText = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined);
 
 
 export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
@@ -244,7 +250,8 @@ export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMult
 
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
-  'fixed'
+  'fixed',
+  'showLogo'
 ]);
 
 
@@ -278,23 +285,19 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 
 
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
-  'icon',
   'showCloseButton',
   'isOpen',
-  'hideLabel',
-  'size',
+  'disabled',
   'value',
   'ifxInput'
 ],
 'value', 'ifxInput');
 
 
-export const IfxSearchInput = /*@__PURE__*/ defineContainer<JSX.IfxSearchInput, JSX.IfxSearchInput["value"]>('ifx-search-input', undefined, [
+export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', undefined, [
   'value',
-  'width',
   'showDeleteIcon',
   'disabled',
-  'borderColor',
   'size',
   'ifxInput'
 ],
@@ -369,7 +372,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined);
 
 
-export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.IfxTextField["value"]>('ifx-text-field', undefined, [
+export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', undefined, [
   'placeholder',
   'value',
   'error',
@@ -379,6 +382,5 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.
   'readonly',
   'icon',
   'ifxInput'
-],
-'value', 'ifxInput');
+]);
 
