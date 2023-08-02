@@ -22,9 +22,9 @@
 
 ## Events
 
-| Event        | Description | Type                  |
-| ------------ | ----------- | --------------------- |
-| `ifxChanged` |             | `CustomEvent<number>` |
+| Event       | Description | Type                  |
+| ----------- | ----------- | --------------------- |
+| `ifxChange` |             | `CustomEvent<number>` |
 
 
 ## Dependencies

@@ -10,6 +10,13 @@
   order: 0;
   flex-grow: 0;
 
+  &:hover { 
+    color: #0A8276;
+    & a { 
+      color: #0A8276;
+    }
+  }
+
   &.remove {
     display: none;
   }

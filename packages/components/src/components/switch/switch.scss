@@ -16,7 +16,27 @@
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  outline: none;
+
+  &:focus {
+    outline: 4px solid #0A8276;
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0A8276;
+    outline-offset: 2px;
+  }
+
+  &.disabled {
+    cursor: default;
+  }
 }
+
 
 .switch {
   position: absolute;
@@ -27,6 +47,12 @@
   background-color: tokens.$color-gray-500;
   border-radius: 50%;
   transition: transform 0.3s ease;
+
+  &.disabled {
+    background-color: #BFBBBB;
+    border-color: #BFBBBB;
+    cursor: default;
+  }
 }
 
 .container:hover .toggle-switch {
@@ -36,10 +62,20 @@
 .switch.checked {
   transform: translateX(25px);
   background-color: tokens.$color-bg-white;
+
+  &.disabled {
+    cursor: default;
+  }
+
 }
 
 .container.checked {
   background-color: tokens.$color-default-500;
-  /* Ocean color */
   border-color: tokens.$color-default-500;
+
+  &.disabled {
+    background-color: #BFBBBB;
+    border-color: #BFBBBB;
+    cursor: default;
+  }
 }
