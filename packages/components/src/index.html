@@ -15,15 +15,20 @@
 
   <script defer>
 
+    const myfunc = () => { 
+      console.log('here')
+    }
+
   </script>
 
 </head>
 
 <body>
 
-  <ifx-button color="primary">Link</ifx-button>
-  <ifx-button href="https://google.com" color="primary">Link</ifx-button>
-
+  <ifx-button disabled="false" variant="solid" size="m" target="_blank" color="secondary" href="https://google.com">
+    Button
+    <ifx-icon icon='calendar16'></ifx-icon>
+  </ifx-button>
 
 </body>
 
