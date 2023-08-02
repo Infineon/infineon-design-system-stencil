@@ -113,6 +113,7 @@
       Link
     </ifx-link>
     <br />
+    <br />
 
     <h2>Number Indicator</h2>
     <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
@@ -130,14 +131,52 @@
     </ifx-sidebar>
     <br />
 
-    <h2>Switch</h2>
-    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+    <h2>Card</h2>
+    <ifx-card href="http://google.com" target="_blank" direction="vertical">
+      <ifx-card-image position="right"
+        src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt=""
+        slot="img"></ifx-card-image>
+
+      <ifx-card-overline>Overline</ifx-card-overline>
+      <ifx-card-headline>Headline</ifx-card-headline>
+      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am
+        typing even more text. And more and more. This is a long description in order to test if the text will overflow
+        its container or not. So I am typing even more text. And more and more. This is a long description in order to
+        test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a
+        long description in order to test if the text will overflow its container or not. So I am typing even more text.
+        And more and more.This is a long description in order to test if the text will overflow its container or not. So
+        I am typing even more text. And more and more. This is a long description in order to test if the text will
+        overflow its container or not. So I am typing even more text. And more and more.This is a long description in
+        order to test if the text will overflow its container or not. So I am typing even more text. And more and more.
+        This is a long description in order to test if the text will overflow its container or not. So I am typing even
+        more text. And more and more.</ifx-card-text>
+
+      <ifx-card-links slot="buttons">
+        <ifx-button id="cardBtn" color="primary">Button</ifx-button>
+        <ifx-button color="secondary">Button</ifx-button>
+      </ifx-card-links>
+    </ifx-card>
+    <br />
     <br />
     <h2>Single-Select</h2>
     <ifx-choices type="single" value="undefined" name="single" ifx-error="false" ifx-error-message="Some error"
       placeholder="true" ifx-placeholder-value="Placeholder" remove-item-button="false" search-enabled="true"
       search-placeholder-value="Search..." ifx-choices="Choice 1, Choice 2, Choice 3"></ifx-choices>
     <br />
+
+
+    <h2>Search field</h2>
+    <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
+    <br />
+
+    <h2>Search bar</h2>
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-field>
+      <br />
+
+
+      <h2>Switch</h2>
+      <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+      <br />
 
   </div>
 
@@ -163,6 +202,10 @@
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
 
+  const searchField = document.querySelector('#search-field');
+  const searchBar = document.querySelector('#search-bar');
+
+  const cardBtn = document.querySelector('#cardBtn');
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
   const toggleErrorButton = document.querySelector("#toggleError");
@@ -256,7 +299,22 @@
       { value: 'Choice 3', label: 'Choice 3' },
     ];
     singleSelect.setChoices(predefinedChoices, 'value', 'label', true);
+    cardBtn.addEventListener('click', () => {
+      console.log("card button click event");
+    });
+
+
+    searchField.addEventListener('ifxInput', (event) => {
+      console.log("search field value", event.detail);
+    });
+
+    searchBar.addEventListener('ifxInput', (event) => {
+      console.log("search bar value", event.detail);
+    });
+
+
   });
+
 
 
   updateValues();

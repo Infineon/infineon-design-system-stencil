@@ -1,3 +1,63 @@
+# v19.1.1 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- 270 documentation navbar [#326](https://github.com/Infineon/infineon-design-system-stencil/pull/326) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v19.1.0 (Tue Aug 01 2023)
+
+#### 🚀 Enhancement
+
+- 188 review search input [#219](https://github.com/Infineon/infineon-design-system-stencil/pull/219) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🐛 Bug Fix
+
+- added height 100% to sidebar host [#335](https://github.com/Infineon/infineon-design-system-stencil/pull/335) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/wrapper-components/vue-typescript [#342](https://github.com/Infineon/infineon-design-system-stencil/pull/342) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v19.0.0 (Tue Aug 01 2023)
+
+#### 💥 Breaking Change
+
+- 165 rework card component resolve overflow icon and image boolean issues implement new structure [#201](https://github.com/Infineon/infineon-design-system-stencil/pull/201) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v18.7.1 (Tue Aug 01 2023)
+
+#### 🐛 Bug Fix
+
+- updated navbar [#330](https://github.com/Infineon/infineon-design-system-stencil/pull/330) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v18.7.0 (Thu Jul 27 2023)
 
 #### 🚀 Enhancement

@@ -1,4 +1,4 @@
-# ifx-list-group
+# ifx-list-notification
 
 
 
