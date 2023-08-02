@@ -1,3 +1,16 @@
+# v19.1.3 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- changed image width and text [#317](https://github.com/Infineon/infineon-design-system-stencil/pull/317) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v19.1.2 (Wed Aug 02 2023)
 
 #### 🐛 Bug Fix
