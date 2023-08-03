@@ -6,7 +6,6 @@ export default {
   args: {
     searchEnabled: true,
     searchPlaceholderValue: 'Search...',
-    // removeItemButton: false,
     placeholder: true,
     placeholderValue: 'Placeholder',
     error: false,
@@ -27,10 +26,6 @@ export default {
       options: [true, false],
       control: { type: 'radio' },
     },
-    // removeItemButton: {
-    //   options: [true, false],
-    //   control: { type: 'radio' },
-    // },
     searchEnabled: {
       options: [true, false],
       control: { type: 'radio' },
@@ -56,21 +51,6 @@ const DefaultTemplate = ({ type, value, name, disabled, error, errorMessage, pla
   element.setAttribute('ifx-error-message', errorMessage);
   element.setAttribute('ifx-placeholder-value', placeholderValue);
   element.setAttribute('ifx-choices', choices);
-
-  //no other way to set array of values in storybook
-  // const choicesStr = args.choices;
-  // if (typeof choicesStr === 'string') {
-  //   const choices = choicesStr.split(',').map((choice) => ({
-  //     value: choice.trim(),
-  //     label: choice.trim(),
-  //   }));
-  //   if (args.type === 'single' || args.type === 'multiple') {
-  //     element.setChoices(choices, 'value', 'label', true);
-  //   }
-  // } else {
-  //   console.error("Invalid choices input:", choicesStr);
-  // }
-
   element.addEventListener('ifxSelect', action('ifxSelect'));
 
   return element;
@@ -82,7 +62,6 @@ const DefaultTemplate = ({ type, value, name, disabled, error, errorMessage, pla
 //   type: 'text',
 //   name: 'text',
 //   choices: 'Choice 1, Choice 2, Choice 3',
-
 // };
 
 
@@ -99,12 +78,12 @@ Single.args = {
 // };
 
 
-export const Multiselect = DefaultTemplate.bind({});
-Multiselect.args = {
-  type: 'multiple',
-  // removeItemButton: true,
+// export const MultiselectCombobox = DefaultTemplate.bind({});
+// MultiselectCombobox.args = {
+//   type: 'multiple',
+//   // removeItemButton: true,
 
-};
+// };
 
 
 
