@@ -12,7 +12,8 @@ export default {
     disabled: false,
     icon: "",
     iconPosition: 'left',
-    href: "",
+    href: false,
+    url: "",
     target: '_blank'
   },
 
@@ -48,7 +49,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" color="${args.color}" href="${args.href}">
+  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" color="${args.color}" ${args.href ? `href="${args.url}"` : ""}>
   ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
 </ifx-button>`;
 
