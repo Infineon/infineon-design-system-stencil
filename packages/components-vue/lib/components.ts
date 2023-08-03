@@ -102,39 +102,46 @@ export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', un
 
 
 export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
-  'label',
-  'size',
+  'placement',
+  'defaultOpen',
+  'noAppendToBody',
   'disabled',
-  'icon',
-  'search',
-  'filter'
+  'noCloseOnOutsideClick',
+  'noCloseOnMenuClick',
+  'ifxOpen',
+  'ifxClose'
 ]);
 
 
-export const IfxDropdownDivider = /*@__PURE__*/ defineContainer<JSX.IfxDropdownDivider>('ifx-dropdown-divider', undefined);
-
-
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
-  'label',
-  'size',
-  'disabled',
   'icon',
-  'checkable',
-  'value',
-  'url',
-  'target',
-  'itemValues'
+  'href',
+  'target'
 ]);
 
 
 export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu>('ifx-dropdown-menu', undefined, [
-  'label',
+  'isOpen'
+]);
+
+
+export const IfxDropdownSeparator = /*@__PURE__*/ defineContainer<JSX.IfxDropdownSeparator>('ifx-dropdown-separator', undefined);
+
+
+export const IfxDropdownTrigger = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTrigger>('ifx-dropdown-trigger', undefined, [
+  'isOpen'
+]);
+
+
+export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
+  'icon',
+  'isOpen',
+  'variant',
+  'color',
   'size',
   'disabled',
-  'icon',
-  'search',
-  'filter',
-  'selectValues'
+  'position',
+  'hideChevron'
 ]);
 
 

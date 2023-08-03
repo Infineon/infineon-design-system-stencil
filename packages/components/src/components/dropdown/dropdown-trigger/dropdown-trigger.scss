@@ -1,5 +1,6 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 :host {
-    display: inline-block;
+  display: inline-block;
+  cursor: pointer;
 }

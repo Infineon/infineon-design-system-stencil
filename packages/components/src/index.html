@@ -21,6 +21,25 @@
 
 <body>
 
+  <ifx-dropdown placement="bottom-start" no-append-to-body="true">
+    <ifx-dropdown-trigger-button icon="calendar16">
+      dropdown
+    </ifx-dropdown-trigger-button>
+    <!-- <ifx-dropdown-trigger>
+      <ifx-icon icon="calendar16"></ifx-icon>
+    </ifx-dropdown-trigger> -->
+    <ifx-dropdown-menu is-open="false">
+      <ifx-dropdown-item target="_blank" href="https://www.google.de">Link Item</ifx-dropdown-item>
+      <ifx-dropdown-separator></ifx-dropdown-separator>
+      <ifx-dropdown-item href="javascript:void(0)">Console log from click event</ifx-dropdown-item>
+      <ifx-dropdown-item icon="c-check-16">Item with Icon</ifx-dropdown-item>
+      <ifx-dropdown-separator></ifx-dropdown-separator>
+      <ifx-dropdown-item>Boring Item</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
+
+
+
 </body>
 
 </html>

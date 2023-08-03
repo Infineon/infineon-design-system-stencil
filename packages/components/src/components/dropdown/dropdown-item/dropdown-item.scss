@@ -1,0 +1,18 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
+.dropdown-item {
+  text-decoration: none;
+  color: tokens.$color-text-black;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+.dropdown-item:hover {
+  background-color: tokens.$color-gray-200;
+}

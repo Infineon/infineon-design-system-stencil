@@ -24,10 +24,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ifx-dropdown-item](../dropdown-item)
-
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -36,7 +32,6 @@
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
-  ifx-dropdown-item --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

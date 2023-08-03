@@ -1,4 +1,4 @@
-# ifx-dropdown-divider
+# ifx-dropdown-separator
 
 
 
