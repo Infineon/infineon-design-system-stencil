@@ -4,6 +4,7 @@ export default {
   title: 'Components/Select',
   tags: ['autodocs'],
   args: {
+    size: "medium (40px)",
     searchEnabled: true,
     searchPlaceholderValue: 'Search...',
     placeholder: true,
@@ -17,6 +18,10 @@ export default {
   argTypes: {
     type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
     value: { control: 'text' },
+    size: {
+      options: ['small (36px)', 'medium (40px)'],
+      control: { type: 'radio' },
+    },
     error: {
       options: [true, false],
       control: { type: 'radio' },
@@ -37,13 +42,12 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ type, value, name, disabled, error, errorMessage, placeholder, placeholderValue, removeItemButton, searchEnabled, searchPlaceholderValue, choices }) => {
+const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, choices }) => {
   const element = document.createElement('ifx-choices');
   element.setAttribute('type', type);
   element.setAttribute('value', value);
-  element.setAttribute('name', name);
+  element.setAttribute('ifx-size', size);
   element.setAttribute('placeholder', placeholder);
-  element.setAttribute('remove-item-button', removeItemButton);
   element.setAttribute('search-enabled', searchEnabled)
   element.setAttribute('search-placeholder-value', searchPlaceholderValue)
   element.setAttribute('ifx-disabled', disabled);

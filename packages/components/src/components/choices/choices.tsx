@@ -85,6 +85,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Element() private readonly root: HTMLElement;
   @Prop() ifxChoices: Array<any> | string;
+  @Prop() ifxSize: string = 'm';
+
 
   private choice;
   private element;
@@ -269,7 +271,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
   }
 
+
+  getSizeClass() {
+    return `${this.ifxSize}` === "small (36px)"
+      ? "small-select"
+      : "medium-select";
+  }
+
   protected render(): any {
+
     const attributesSingle = {
       'data-selector': 'root',
       'name': this.name || null,
@@ -280,7 +290,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       'name': this.name || null,
 
     };
-    const choicesContainerClass = `ifx-choices__wrapper`;
+    const choicesContainerClass = `ifx-choices__wrapper ${this.getSizeClass()}`;
 
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
@@ -290,7 +300,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'single':
         this.element =
           <div class={`ifx-select-container`}>
-            <div class={`${choicesContainerClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
+            <div class={`${choicesContainerClass} ${this.ifxDisabled ? 'disabled' : ""} ${this.ifxError ? 'error' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesSingle} onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
               </select>
@@ -486,15 +496,21 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               },
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
+                let choiceSize = this.ifxSize === "small (36px)" ? "small-select" : "medium-select";
                 return template(`
-                <div class="${classNames.item} ${classNames.itemChoice} ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable
-                  } choice-container" data-select-text="${this.config.itemSelectText}" data-choice ${data.disabled
-                    ? 'data-choice-disabled aria-disabled="true"'
-                    : 'data-choice-selectable'
-                  } data-id="${data.id}" data-value="${data.value}" ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
-                  }">
-                    <span class="choice-label">${data.label}</span>
-                    ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
+                <div class="${classNames.item} 
+                ${classNames.itemChoice} 
+                ${choiceSize} 
+                ${data.selected ? 'selected' : ''} 
+                ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
+                choice-container" 
+                data-select-text="${this.config.itemSelectText}"
+                data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'} 
+                data-id="${data.id}" 
+                data-value="${data.value}" 
+                ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}">
+                <span class="choice-label">${data.label}</span>
+                ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
                 </div>
                 `);
               },
