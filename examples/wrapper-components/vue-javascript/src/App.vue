@@ -16,8 +16,8 @@
   <Spinner />
   <Sidebar />
   <Switch />
-  <Tag />
   <Tabs />
+  <Tag />
   <TextField />
 </template>
 
