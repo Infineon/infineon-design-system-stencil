@@ -1,3 +1,15 @@
+# v19.1.6 (Thu Aug 03 2023)
+
+#### 🐛 Bug Fix
+
+- 340 update the button component [#345](https://github.com/Infineon/infineon-design-system-stencil/pull/345) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v19.1.5 (Wed Aug 02 2023)
 
 #### 🐛 Bug Fix
