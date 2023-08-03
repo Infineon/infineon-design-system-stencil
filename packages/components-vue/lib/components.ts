@@ -50,11 +50,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'color',
   'size',
   'disabled',
-  'icon',
-  'position',
   'href',
-  'target',
-  'type'
+  'target'
 ]);
 
 

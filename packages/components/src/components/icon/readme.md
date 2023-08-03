@@ -27,7 +27,6 @@
  - [ifx-accordion-item](../accordion)
  - [ifx-alert](../alert)
  - [ifx-breadcrumb-item-label](../breadcrumb)
- - [ifx-button](../button)
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
  - [ifx-dropdown-item](../dropdown-item)
@@ -51,7 +50,6 @@ graph TD;
   ifx-accordion-item --> ifx-icon
   ifx-alert --> ifx-icon
   ifx-breadcrumb-item-label --> ifx-icon
-  ifx-button --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
   ifx-dropdown-item --> ifx-icon
