@@ -100,7 +100,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.ifxSelect.emit(this.choice.getValue());
     }
     this.closeDropdownMenu();
-
   }
 
   // @Listen('removeItem')
@@ -503,12 +502,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
+        console.log("choices", this.ifxChoices)
         this.setChoices(this.ifxChoices, "value", "label", true)
 
 
       } else { //multiselect
         // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
+          removeItemButton: true,
           callbackOnCreateTemplates: function (template) {
             return {
               //modifying the template of each item in the options list
@@ -568,6 +569,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         this.classList.add('active');
       }
     });
+
+    // let initialChoices;
+    // if (typeof this.ifxChoices === 'string') {
+    //   initialChoices = this.ifxChoices.split(',').map((choice) => ({
+    //     value: choice.trim(),
+    //     label: choice.trim(),
+    //   }));
+    // }
+    // this.choice.passedElement.element.addEventListener('choice', (event) => {
+    //   console.log("event", event)
+    // });
+
   }
 
 

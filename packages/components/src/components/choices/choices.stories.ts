@@ -102,7 +102,6 @@ Single.args = {
 export const Multiselect = DefaultTemplate.bind({});
 Multiselect.args = {
   type: 'multiple',
-  placeholder: false,
   // removeItemButton: true,
 
 };

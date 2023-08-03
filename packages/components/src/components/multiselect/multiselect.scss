@@ -1,0 +1,28 @@
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.input {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: white;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.option.selected {
+  background-color: #eee;
+}
