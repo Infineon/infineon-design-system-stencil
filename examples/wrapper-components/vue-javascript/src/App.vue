@@ -4,22 +4,21 @@
   <h1>Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
+  <Card />
   <Checkbox />
-  <RadioButton />
-  <ProgressBar />
-  <Search />
-  <SearchField />
-  <TextInput />
-  <TextField />
-  <Tag />
-  <Tabs />
-  <Spinner />
+  <IconButton />
   <Link />
   <NumberIndicator />
+  <ProgressBar />
+  <RadioButton />
+  <Search />
+  <SearchField />
+  <Spinner />
   <Sidebar />
-  <IconButton />
-  <Card />
   <Switch />
+  <Tag />
+  <Tabs />
+  <TextField />
 </template>
 
 
