@@ -44,6 +44,7 @@ export default {
 
 const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, choices }) => {
   const element = document.createElement('ifx-choices');
+  console.log("size ", size)
   element.setAttribute('type', type);
   element.setAttribute('value', value);
   element.setAttribute('ifx-size', size);

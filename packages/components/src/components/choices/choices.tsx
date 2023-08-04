@@ -85,7 +85,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Element() private readonly root: HTMLElement;
   @Prop() ifxChoices: Array<any> | string;
-  @Prop() ifxSize: string = 'm';
+  @Prop() ifxSize: string = 'medium (40px)';
 
 
   private choice;
@@ -272,11 +272,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
 
-  getSizeClass() {
-    return `${this.ifxSize}` === "small (36px)"
-      ? "small-select"
-      : "medium-select";
-  }
+
 
   protected render(): any {
 
@@ -290,7 +286,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       'name': this.name || null,
 
     };
-    const choicesContainerClass = `ifx-choices__wrapper ${this.getSizeClass()}`;
+    const choicesWrapperClass = `ifx-choices__wrapper ${this.getSizeClass()}`;
 
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
@@ -299,8 +295,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     switch (this.type) {
       case 'single':
         this.element =
-          <div class={`ifx-select-container`}>
-            <div class={`${choicesContainerClass} ${this.ifxDisabled ? 'disabled' : ""} ${this.ifxError ? 'error' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
+          <div class={`ifx-select-container ${this.getSizeClass()}`}>
+            <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""} ${this.ifxError ? 'error' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesSingle} onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
               </select>
@@ -326,7 +322,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'multiple':
         this.element =
           <div class={`ifx-select-container`}>
-            <div class={`${choicesContainerClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
+            <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesDefault} multiple onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
               </select>
@@ -411,6 +407,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+
+  getSizeClass() {
+    return `${this.ifxSize}` === "small (36px)"
+      ? "small-select"
+      : "medium-select";
+  }
+
+
   private init() {
     const props = {
       type: this.type,
@@ -464,6 +468,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const element = this.root.querySelector('[data-selector="root"]');
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
+      const self = this; // save the context of this in a variable outside of the function to access it in the following
+
       if (this.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
@@ -494,13 +500,25 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                   </div>
                 `);
               },
+              input: ({ classNames }) => {
+                return template(`
+                <input type="search" name="search_terms" 
+                class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                role="textbox"
+                aria-autocomplete="list"
+                aria-label="${this.placeholderValue}"   >     
+                `)
+              },
+
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
-                let choiceSize = this.ifxSize === "small (36px)" ? "small-select" : "medium-select";
                 return template(`
                 <div class="${classNames.item} 
                 ${classNames.itemChoice} 
-                ${choiceSize} 
+                ${self.getSizeClass()}
                 ${data.selected ? 'selected' : ''} 
                 ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
                 choice-container" 
@@ -518,7 +536,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        console.log("choices", this.ifxChoices)
+        // console.log("choices", this.ifxChoices)
         this.setChoices(this.ifxChoices, "value", "label", true)
 
 
