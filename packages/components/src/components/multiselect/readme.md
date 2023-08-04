@@ -7,9 +7,12 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                                            | Default     |
-| --------- | --------- | ----------- | ----------------------------------------------- | ----------- |
-| `options` | `options` |             | `string \| { value: string; label: string; }[]` | `undefined` |
+| Property       | Attribute        | Description | Type                                            | Default           |
+| -------------- | ---------------- | ----------- | ----------------------------------------------- | ----------------- |
+| `disabled`     | `disabled`       |             | `boolean`                                       | `false`           |
+| `maxItemCount` | `max-item-count` |             | `number`                                        | `5`               |
+| `options`      | `options`        |             | `string \| { value: string; label: string; }[]` | `undefined`       |
+| `size`         | `size`           |             | `string`                                        | `'medium (40px)'` |
 
 
 ## Events
@@ -25,11 +28,13 @@
 ### Depends on
 
 - [ifx-checkbox](../checkbox)
+- [ifx-icon](../icon)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-multiselect --> ifx-checkbox
+  ifx-multiselect --> ifx-icon
   ifx-checkbox --> ifx-icon
   style ifx-multiselect fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -15,15 +15,16 @@ export class Checkbox {
   @Prop() error: boolean = false;
   @Prop() name: string = '';
   @State() internalValue: boolean;
+
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
       this.internalValue = !this.internalValue;
-      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
-      this.ifxChange.emit(this.internalValue);
+      this.ifxChange.emit(this.el); // Emit the Checkbox element
     }
   }
+
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
@@ -43,8 +44,21 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalValue = this.internalValue || false
+    this.internalValue = this.value;
   }
+
+
+  // componentDidRender() {
+  //   /* 
+  //   This lifecycle method is the appropriate place to perform post-render actions such as updating DOM properties. 
+  //   When a child component is being re-rendered inside a parent component, the value of the child component 
+  //   is not technically changing, but it's being reset when the parent component re-renders. 
+  //   So the @Watch decorator in the child component doesn't trigger because the property isn't changing 
+  //   from its initial value. But componentDidRender() runs after every render regardless of whether or not any changes have occurred. 
+  //  */
+  //    this.inputElement.checked = this.internalValue;
+  // }
+
 
   render() {
     const slot = this.el.innerHTML;

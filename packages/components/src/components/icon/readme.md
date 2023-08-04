@@ -29,7 +29,7 @@
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
- - [ifx-choices](../choices)
+ - [ifx-choices](../select)
  - [ifx-dropdown-item](../dropdown-item)
  - [ifx-example](../template-story-with-markdown)
  - [ifx-icon-button](../icon-button)
@@ -37,6 +37,7 @@
  - [ifx-modal](../modal)
  - [ifx-multi-select-input](../multi-select-input)
  - [ifx-multi-select-input-item](../multi-select-input)
+ - [ifx-multiselect](../multiselect)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
  - [ifx-search-bar](../search-bar)
@@ -61,6 +62,7 @@ graph TD;
   ifx-modal --> ifx-icon
   ifx-multi-select-input --> ifx-icon
   ifx-multi-select-input-item --> ifx-icon
+  ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-menu-item --> ifx-icon
   ifx-search-bar --> ifx-icon

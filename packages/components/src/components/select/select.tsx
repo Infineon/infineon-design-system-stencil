@@ -27,7 +27,7 @@ import { getValues, filterObject, isDefined } from './utils';
 
 @Component({
   tag: 'ifx-choices',
-  styleUrl: 'choices.scss',
+  styleUrl: 'select.scss',
   // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 
 })
@@ -271,9 +271,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
   }
 
-
-
-
   protected render(): any {
 
     const attributesSingle = {
@@ -303,11 +300,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
+                  key='icon-up'
                   icon='chevronup-16'></ifx-icon>
               </div>
               <div class="ifx-choices__icon-wrapper-down" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
 
                 <ifx-icon
+                  key='icon-down'
                   icon='chevron-down-16'></ifx-icon>
               </div>
             </div>
