@@ -1,3 +1,67 @@
+# v19.1.6 (Thu Aug 03 2023)
+
+#### 🐛 Bug Fix
+
+- 340 update the button component [#345](https://github.com/Infineon/infineon-design-system-stencil/pull/345) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.5 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- added doc [#323](https://github.com/Infineon/infineon-design-system-stencil/pull/323) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.4 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- added doc [#321](https://github.com/Infineon/infineon-design-system-stencil/pull/321) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.3 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- changed image width and text [#317](https://github.com/Infineon/infineon-design-system-stencil/pull/317) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.2 (Wed Aug 02 2023)
+
+#### 🐛 Bug Fix
+
+- chenged text and images [#315](https://github.com/Infineon/infineon-design-system-stencil/pull/315) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v19.1.1 (Wed Aug 02 2023)
 
 #### 🐛 Bug Fix

@@ -2,13 +2,15 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  vertical-align: bottom;
+}
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 80px;
-  min-height: 40px;
+  height: 40px;
   padding: 0px 16px;
   gap: 8px;
   color: #FFFFFF;
@@ -97,8 +99,7 @@
 
   &.btn-s {
     font-size: tokens.$font-size-s;
-    min-width: 71px;
-    min-height: 32px;
+    height: 32px;
     line-height: 16px;
   }
 
