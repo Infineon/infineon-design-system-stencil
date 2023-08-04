@@ -92,7 +92,11 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
 
     return (
-      <div class={`option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`} onClick={() => !disableCheckbox && this.handleOptionClick(option)}>
+      <div class={`option ${isSelected ? 'selected' : ''} 
+      ${this.getSizeClass()}`}
+        onClick={() => !disableCheckbox && this.handleOptionClick(option)}
+        tabindex="0"
+      >
         <ifx-checkbox id={uniqueId} value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId}>{option.label}</label>  {/* Use the unique ID here */}
       </div>
@@ -103,7 +107,7 @@ export class Multiselect {
 
   render() {
     return (
-      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} ref={el => this.dropdownElement = el as HTMLElement}>
+      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} tabindex="0" ref={el => this.dropdownElement = el as HTMLElement}>
         <div class={`ifx-multiselect-wrapper ${this.getSizeClass()} ${this.dropdownOpen ? 'active' : ''} ${this.dropdownFlipped ? 'is-flipped' : ''}`}>
           <div class="input" onClick={() => this.toggleDropdown()}>
             Placeholder
