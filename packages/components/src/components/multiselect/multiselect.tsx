@@ -15,7 +15,7 @@ export class Multiselect {
 
   @State() dropdownOpen = false;
   @State() dropdownFlipped = false;
-  @Prop() maxItemCount: number = 5;
+  @Prop() maxItemCount: number = 10;
 
   @Event() ifxSelect: EventEmitter;
   @Event() ifxMultiselectIsOpen: EventEmitter;
@@ -85,6 +85,12 @@ export class Multiselect {
     }, 0);
   }
 
+  clearSelection() {
+    this.persistentSelectedOptions = [];
+    this.listOfOptions = this.listOfOptions.map(option => ({ ...option, selected: false }));
+    this.ifxSelect.emit(this.persistentSelectedOptions); // if you want to emit empty selection after clearing
+  }
+
 
   renderOption(option, index) {
     const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
@@ -106,30 +112,45 @@ export class Multiselect {
 
 
   render() {
+    // Create a label for the selected options
+    const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
+
     return (
       <div class={`ifx-multiselect-container ${this.getSizeClass()}`} tabindex="0" ref={el => this.dropdownElement = el as HTMLElement}>
         <div class={`ifx-multiselect-wrapper ${this.getSizeClass()} ${this.dropdownOpen ? 'active' : ''} ${this.dropdownFlipped ? 'is-flipped' : ''}`}>
-          <div class="input" onClick={() => this.toggleDropdown()}>
-            Placeholder
+          <div class="ifx-multiselect-input" onClick={() => this.toggleDropdown()} >
+            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
           </div>
           {this.dropdownOpen && (
             <div class="dropdown-menu">
               {this.listOfOptions.map((option, index) => this.renderOption(option, index))}
             </div>
           )}
-          <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
-            <ifx-icon
-              key='icon-up'
-              icon='chevronup-16'></ifx-icon>
-          </div>
-          <div class="icon-wrapper-down" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
-            <ifx-icon
-              key='icon-down'
-              icon='chevron-down-16'></ifx-icon>
+          <div class="icon-container">
+
+            {/* Clear Button - will show only if there's a selection */}
+            {this.persistentSelectedOptions.length > 0 && (
+              <div class="clear-button" onClick={() => this.clearSelection()}>
+                <ifx-icon
+                  key='icon-clear'
+                  icon='deletex16'></ifx-icon>
+              </div>
+            )}
+            <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
+              <ifx-icon
+                key='icon-up'
+                icon='chevronup-16'></ifx-icon>
+            </div>
+            <div class="icon-wrapper-down" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
+              <ifx-icon
+                key='icon-down'
+                icon='chevron-down-16'></ifx-icon>
+            </div>
           </div>
 
         </div>
       </div>
     );
   }
+
 }

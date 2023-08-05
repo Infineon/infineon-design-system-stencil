@@ -10,7 +10,7 @@
 | Property       | Attribute        | Description | Type                                            | Default           |
 | -------------- | ---------------- | ----------- | ----------------------------------------------- | ----------------- |
 | `disabled`     | `disabled`       |             | `boolean`                                       | `false`           |
-| `maxItemCount` | `max-item-count` |             | `number`                                        | `5`               |
+| `maxItemCount` | `max-item-count` |             | `number`                                        | `10`              |
 | `options`      | `options`        |             | `string \| { value: string; label: string; }[]` | `undefined`       |
 | `size`         | `size`           |             | `string`                                        | `'medium (40px)'` |
 

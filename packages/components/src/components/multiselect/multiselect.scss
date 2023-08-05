@@ -46,6 +46,7 @@
   .ifx-multiselect-wrapper {
     box-sizing: border-box;
     position: relative;
+    // justify-content: flex-start;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
@@ -83,10 +84,6 @@
     &:hover:not(.focus, :focus) {
       border-color: #8D8786;
     }
-
-    // &:focus {
-    //   outline: none;
-    // }
 
     &.active {
       border: 2px solid #0A8276 !important; // Active border color
@@ -144,10 +141,26 @@
 
   }
 
-  .input {
-    width: 100%;
+  .ifx-multiselect-input {
+    // width: 100%;
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  .icon-container {
+    margin-left: auto;
+    align-items: center;
     display: flex;
-    justify-content: space-between;
+  }
+
+
+  .clear-button {
+    /* Your Styles */
+
+    margin-right: 10px; // Space between clear button and icons
   }
 
   .dropdown-menu {
