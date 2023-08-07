@@ -12,11 +12,8 @@
 | `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
 | `disabled` | `disabled` |             | `boolean`                                                        | `false`     |
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
-| `icon`     | `icon`     |             | `string`                                                         | `undefined` |
-| `position` | `position` |             | `string`                                                         | `'left'`    |
 | `size`     | `size`     |             | `string`                                                         | `'m'`       |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `type`     | `type`     |             | `string`                                                         | `'button'`  |
 | `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
 
 
@@ -40,15 +37,12 @@ Type: `Promise<void>`
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-modal](../modal)
 
-### Depends on
-
-- [ifx-icon](../icon)
-
 ### Graph
 ```mermaid
 graph TD;
   ifx-button --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-button
+
   ifx-modal --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

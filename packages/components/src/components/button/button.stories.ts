@@ -11,8 +11,9 @@ export default {
     size: "m",
     disabled: false,
     icon: "",
-    position: 'left',
-    href: "",
+    iconPosition: 'left',
+    href: false,
+    url: "",
     target: '_blank'
   },
 
@@ -33,7 +34,7 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    position: {
+    iconPosition: {
       options: ['left', 'right'],
       control: { type: 'radio' }
     },
@@ -48,9 +49,9 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button type="${args.type}" variant="${args.variant}" icon="${args.icon}" position="${args.position}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
-  ${args.label}
-  </ifx-button>`;
+  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" color="${args.color}" ${args.href ? `href="${args.url}"` : ""}>
+  ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
+</ifx-button>`;
 
 
 export const Default = DefaultTemplate.bind({});
