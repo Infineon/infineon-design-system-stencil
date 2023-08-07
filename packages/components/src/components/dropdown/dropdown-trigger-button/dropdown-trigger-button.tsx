@@ -9,7 +9,6 @@ import { IOpenable } from '../IOpenable';
 })
 
 export class DropdownItem implements IOpenable {
-  @Prop() icon: string;
   @Prop() isOpen: boolean = false;
   @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
@@ -19,7 +18,7 @@ export class DropdownItem implements IOpenable {
 
   render() {
     return (
-      <ifx-button icon={this.icon}
+      <ifx-button
         variant={this.variant}
         color={this.color}
         size={this.size}

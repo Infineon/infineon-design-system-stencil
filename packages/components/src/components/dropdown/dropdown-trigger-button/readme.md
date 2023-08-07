@@ -12,7 +12,6 @@
 | `color`     | `color`      |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
 | `disabled`  | `disabled`   |             | `boolean`                                                        | `undefined` |
 | `hideArrow` | `hide-arrow` |             | `boolean`                                                        | `false`     |
-| `icon`      | `icon`       |             | `string`                                                         | `undefined` |
 | `isOpen`    | `is-open`    |             | `boolean`                                                        | `false`     |
 | `size`      | `size`       |             | `"m" \| "s"`                                                     | `'m'`       |
 | `variant`   | `variant`    |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
