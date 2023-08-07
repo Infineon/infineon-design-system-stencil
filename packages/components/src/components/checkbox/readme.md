@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
-| `error`    | `error`    |             | `boolean` | `false` |
-| `name`     | `name`     |             | `string`  | `''`    |
-| `value`    | `value`    |             | `boolean` | `false` |
+| Property        | Attribute       | Description | Type      | Default |
+| --------------- | --------------- | ----------- | --------- | ------- |
+| `disabled`      | `disabled`      |             | `boolean` | `false` |
+| `error`         | `error`         |             | `boolean` | `false` |
+| `indeterminate` | `indeterminate` |             | `boolean` | `false` |
+| `name`          | `name`          |             | `string`  | `''`    |
+| `value`         | `value`         |             | `boolean` | `false` |
 
 
 ## Events

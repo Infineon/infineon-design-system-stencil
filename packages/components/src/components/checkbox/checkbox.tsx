@@ -15,15 +15,21 @@ export class Checkbox {
   @Prop() error: boolean = false;
   @Prop() name: string = '';
   @State() internalValue: boolean;
-
+  @Prop() indeterminate: boolean = false;
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
-      this.internalValue = !this.internalValue;
-      this.ifxChange.emit(this.el); // Emit the Checkbox element
+      if (this.inputElement.indeterminate) {
+        this.internalValue = true;
+        this.indeterminate = false;
+      } else {
+        this.internalValue = !this.internalValue;
+      }
+      this.ifxChange.emit(this.el);
     }
   }
+
 
 
   @Watch('value')
@@ -47,17 +53,9 @@ export class Checkbox {
     this.internalValue = this.value;
   }
 
-
-  // componentDidRender() {
-  //   /* 
-  //   This lifecycle method is the appropriate place to perform post-render actions such as updating DOM properties. 
-  //   When a child component is being re-rendered inside a parent component, the value of the child component 
-  //   is not technically changing, but it's being reset when the parent component re-renders. 
-  //   So the @Watch decorator in the child component doesn't trigger because the property isn't changing 
-  //   from its initial value. But componentDidRender() runs after every render regardless of whether or not any changes have occurred. 
-  //  */
-  //    this.inputElement.checked = this.internalValue;
-  // }
+  componentDidRender() {
+    this.inputElement.indeterminate = this.indeterminate;
+  }
 
 
   render() {
@@ -86,11 +84,12 @@ export class Checkbox {
           onClick={this.handleCheckbox.bind(this)}
           onKeyDown={this.handleKeydown.bind(this)}
           role="checkbox"  // role attribute
-          aria-value={this.internalValue} // aria attribute
-          aria-disabled={this.disabled} // aria attribute
+          aria-value={this.internalValue}
+          aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
         ${this.internalValue ? 'checked' : ""} 
+        ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}
         ${this.error ? 'error' : ""}`}>
           {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}

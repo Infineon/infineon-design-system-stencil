@@ -17,6 +17,7 @@
 
     & .checkbox__wrapper {
         display: flex;
+        position: relative; //needs to be added for the indeterminate state of the checkbox
         justify-content: center;
         align-items: center;
         width: 20px;
@@ -87,6 +88,21 @@
                 flex-grow: 0;
             }
         }
+
+        &.indeterminate {
+            &:before {
+                content: "";
+                display: block;
+                width: 70%; // Adjust as needed for the width of the minus sign
+                height: 2px; // Adjust for thickness of the minus sign
+                background-color: #08665C; // Color of the minus sign
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
     }
 
     & .label {

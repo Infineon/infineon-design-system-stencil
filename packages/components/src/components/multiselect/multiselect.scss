@@ -175,5 +175,13 @@
     &.selected {
       // color: #0A8276;
     }
+
+    &.sub-option {
+      padding-left: 20px;
+      /* or however much indentation you want */
+    }
   }
+
+
+
 }
