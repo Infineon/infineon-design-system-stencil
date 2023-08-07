@@ -140,8 +140,7 @@ export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDro
   'color',
   'size',
   'disabled',
-  'position',
-  'hideChevron'
+  'hideArrow'
 ]);
 
 

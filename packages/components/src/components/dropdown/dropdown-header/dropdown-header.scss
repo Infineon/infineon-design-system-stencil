@@ -1,0 +1,20 @@
+@use "../../../global/font.scss";
+
+.dropdown-header { 
+  display: flex;
+  padding: 8px 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-bottom: 1px solid #EEEDED;
+
+
+  & span { 
+    color: #575352;
+    font-family: Source Sans 3;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+  }
+} 

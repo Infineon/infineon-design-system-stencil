@@ -39,7 +39,11 @@ export default {
 
     },
     label: { description: 'The visible name or label for the dropdown button' },
-    size: { description: 'The size of the dropdown. Accepted values are "s" for small and "m" for medium' },
+    size: {
+      description: 'The size of the dropdown. Accepted values are "s" for small and "m" for medium',
+      options: ['s', 'm'],
+      control: { type: 'radio' },
+    },
     disabled: { description: 'Determines if the dropdown button should be disabled' },
     variant: {
       description: 'The visual style of the dropdown button. Accepted values are "solid", "outline", "outline-text"',
@@ -53,12 +57,10 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed on the dropdown button',
-
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
     },
     defaultOpen: { description: 'Determines if the dropdown should be open by default' },
-    position: { description: 'The position of the dropdown. Accepted values are "left" and "right"' },
     noCloseOnOutsideClick: { description: 'Determines if the dropdown should not close when a click outside the dropdown happens' },
     noCloseOnMenuClick: { description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens' },
     noAppendToBody: { description: 'Determines if the dropdown should not be appended to the body' },
