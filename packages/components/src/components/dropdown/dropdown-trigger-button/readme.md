@@ -30,7 +30,6 @@
 graph TD;
   ifx-dropdown-trigger-button --> ifx-button
   ifx-dropdown-trigger-button --> ifx-icon
-  ifx-button --> ifx-icon
   style ifx-dropdown-trigger-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

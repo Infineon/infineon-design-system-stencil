@@ -110,6 +110,9 @@ export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-d
 ]);
 
 
+export const IfxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IfxDropdownHeader>('ifx-dropdown-header', undefined);
+
+
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
   'icon',
   'href',
@@ -118,7 +121,9 @@ export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem
 
 
 export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu>('ifx-dropdown-menu', undefined, [
-  'isOpen'
+  'isOpen',
+  'size',
+  'menuSize'
 ]);
 
 

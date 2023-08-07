@@ -40,9 +40,7 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  ifx-button --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-button
-
   ifx-modal --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

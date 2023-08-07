@@ -25,6 +25,7 @@ export const IfxCardText = /*@__PURE__*/createReactComponent<JSX.IfxCardText, HT
 export const IfxCheckbox = /*@__PURE__*/createReactComponent<JSX.IfxCheckbox, HTMLIfxCheckboxElement>('ifx-checkbox');
 export const IfxChip = /*@__PURE__*/createReactComponent<JSX.IfxChip, HTMLIfxChipElement>('ifx-chip');
 export const IfxDropdown = /*@__PURE__*/createReactComponent<JSX.IfxDropdown, HTMLIfxDropdownElement>('ifx-dropdown');
+export const IfxDropdownHeader = /*@__PURE__*/createReactComponent<JSX.IfxDropdownHeader, HTMLIfxDropdownHeaderElement>('ifx-dropdown-header');
 export const IfxDropdownItem = /*@__PURE__*/createReactComponent<JSX.IfxDropdownItem, HTMLIfxDropdownItemElement>('ifx-dropdown-item');
 export const IfxDropdownMenu = /*@__PURE__*/createReactComponent<JSX.IfxDropdownMenu, HTMLIfxDropdownMenuElement>('ifx-dropdown-menu');
 export const IfxDropdownSeparator = /*@__PURE__*/createReactComponent<JSX.IfxDropdownSeparator, HTMLIfxDropdownSeparatorElement>('ifx-dropdown-separator');

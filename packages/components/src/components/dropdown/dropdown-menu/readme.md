@@ -10,6 +10,14 @@
 | Property | Attribute | Description | Type      | Default |
 | -------- | --------- | ----------- | --------- | ------- |
 | `isOpen` | `is-open` |             | `boolean` | `false` |
+| `size`   | `size`    |             | `string`  | `'l'`   |
+
+
+## Events
+
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `menuSize` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------
