@@ -46,7 +46,6 @@
   .ifx-multiselect-wrapper {
     box-sizing: border-box;
     position: relative;
-    // justify-content: flex-start;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
@@ -142,7 +141,6 @@
   }
 
   .ifx-multiselect-input {
-    // width: 100%;
     flex-grow: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -150,20 +148,18 @@
   }
 
 
-  .icon-container {
+  .ifx-multiselect-icon-container {
     margin-left: auto;
     align-items: center;
     display: flex;
   }
 
 
-  .clear-button {
-    /* Your Styles */
-
+  .ifx-clear-button {
     margin-right: 10px; // Space between clear button and icons
   }
 
-  .dropdown-menu {
+  .ifx-multiselect-dropdown-menu {
     position: absolute;
     top: 100%;
     left: 0;
@@ -176,6 +172,8 @@
     max-height: 300px;
     /* Adjust based on your design */
     overflow-y: auto;
+    z-index: var(--dynamic-z-index, 1); // Fallback to 1
+
   }
 
   .option {

@@ -7,12 +7,14 @@
 
 ## Properties
 
-| Property       | Attribute        | Description | Type                                            | Default           |
-| -------------- | ---------------- | ----------- | ----------------------------------------------- | ----------------- |
-| `disabled`     | `disabled`       |             | `boolean`                                       | `false`           |
-| `maxItemCount` | `max-item-count` |             | `number`                                        | `10`              |
-| `options`      | `options`        |             | `string \| { value: string; label: string; }[]` | `undefined`       |
-| `size`         | `size`           |             | `string`                                        | `'medium (40px)'` |
+| Property       | Attribute        | Description | Type                                                               | Default           |
+| -------------- | ---------------- | ----------- | ------------------------------------------------------------------ | ----------------- |
+| `disabled`     | `disabled`       |             | `boolean`                                                          | `false`           |
+| `error`        | `error`          |             | `boolean`                                                          | `false`           |
+| `errorMessage` | `error-message`  |             | `string`                                                           | `"Error"`         |
+| `maxItemCount` | `max-item-count` |             | `number`                                                           | `10`              |
+| `options`      | `options`        |             | `string \| { value: string; label: string; selected: boolean; }[]` | `undefined`       |
+| `size`         | `size`           |             | `string`                                                           | `'medium (40px)'` |
 
 
 ## Events

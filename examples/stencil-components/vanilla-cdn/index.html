@@ -120,7 +120,7 @@
     <button onClick="increaseNumber()">+</button>
     <button onClick="decreaseNumber()">-</button>
     <br />
-
+    <br />
 
     <h2>Sidebar</h2>
     <ifx-sidebar application-name="Application Name">
@@ -130,6 +130,23 @@
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
     </ifx-sidebar>
     <br />
+    <br />
+
+    <h2>Multi-Select</h2>
+    <ifx-multiselect
+      options="Choice 1, Choice 2, Choice 3, Choice 4, Choice 5, Choice 6, Choice 7, Choice 8, Choice 9, Choice 10"
+      size="medium (40px)"></ifx-multiselect>
+    <br />
+    <br />
+
+    <h2>Single-Select</h2>
+    <ifx-choices id="single-select" type="single" value="undefined" name="single" ifx-error="false"
+      ifx-error-message="Some error" placeholder="true" ifx-placeholder-value="Placeholder" remove-item-button="false"
+      search-enabled="true" search-placeholder-value="Search..."
+      ifx-choices="Choice 1, Choice 2, Choice 3"></ifx-choices>
+    <br />
+    <br />
+
 
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
@@ -158,25 +175,24 @@
     </ifx-card>
     <br />
     <br />
-    <h2>Single-Select</h2>
-    <ifx-choices type="single" value="undefined" name="single" ifx-error="false" ifx-error-message="Some error"
-      placeholder="true" ifx-placeholder-value="Placeholder" remove-item-button="false" search-enabled="true"
-      search-placeholder-value="Search..." ifx-choices="Choice 1, Choice 2, Choice 3"></ifx-choices>
-    <br />
-
 
     <h2>Search field</h2>
     <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
     <br />
+    <br />
 
     <h2>Search bar</h2>
-    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-field>
-      <br />
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
+    <br />
+    <br />
+
+    <h2>Switch</h2>
+    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+    <br />
+    <br />
 
 
-      <h2>Switch</h2>
-      <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
-      <br />
+
 
   </div>
 
