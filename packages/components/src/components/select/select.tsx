@@ -79,6 +79,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   //custom ifx props
   @Prop() ifxError: boolean = false;
   @Prop() ifxErrorMessage: string = "Error";
+  @Prop() ifxLabel: string = "";
   @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Placeholder";
   @State() ifxChoicesIsOpen: boolean = false;
@@ -293,6 +294,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'single':
         this.element =
           <div class={`ifx-select-container ${this.getSizeClass()}`}>
+            {
+              this.ifxLabel ?
+                <div class="ifx-label-wrapper">
+                  <span>{this.ifxLabel}</span>
+                </div> : null
+            }
             <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""} ${this.ifxError ? 'error' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesSingle} onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}

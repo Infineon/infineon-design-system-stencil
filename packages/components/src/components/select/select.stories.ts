@@ -11,6 +11,7 @@ export default {
     placeholderValue: 'Placeholder',
     error: false,
     errorMessage: 'Some error',
+    label: '',
     disabled: false,
     choices: 'Choice 1, Choice 2, Choice 3',
   },
@@ -27,6 +28,7 @@ export default {
       control: { type: 'radio' },
     },
     errorMessage: { control: 'text' },
+    label: { control: 'text' },
     disabled: {
       options: [true, false],
       control: { type: 'radio' },
@@ -42,7 +44,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, choices }) => {
+const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, label, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, choices }) => {
   const element = document.createElement('ifx-choices');
   console.log("size ", size)
   element.setAttribute('type', type);
@@ -54,6 +56,7 @@ const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, pla
   element.setAttribute('ifx-disabled', disabled);
   element.setAttribute('ifx-error', error);
   element.setAttribute('ifx-error-message', errorMessage);
+  element.setAttribute('label', label);
   element.setAttribute('ifx-placeholder-value', placeholderValue);
   element.setAttribute('ifx-choices', choices);
   element.addEventListener('ifxSelect', action('ifxSelect'));

@@ -9,6 +9,7 @@ export default {
     max: 5,
     error: false,
     errorMessage: 'Some error',
+    label: '',
     disabled: false,
 
   },
@@ -29,15 +30,17 @@ export default {
       control: { type: 'radio' },
     },
     errorMessage: { control: 'text' },
+    label: { control: 'text' },
   }
 };
 
-const DefaultTemplate = ({ options, size, error, errorMessage, disabled }) => {
+const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled }) => {
   const element = document.createElement('ifx-multiselect');
   element.setAttribute('options', options);
   element.setAttribute('size', size);
   element.setAttribute('error', error);
   element.setAttribute('error-message', errorMessage);
+  element.setAttribute('label', label);
   element.setAttribute('disabled', disabled);
   element.addEventListener('ifxSelect', action('ifxSelect'));
 

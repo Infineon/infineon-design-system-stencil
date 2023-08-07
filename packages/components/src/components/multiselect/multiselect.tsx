@@ -11,6 +11,7 @@ export class Multiselect {
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = "Error";
+  @Prop() label: string = "";
   @State() persistentSelectedOptions: { value: string, label: string, selected: boolean }[] = [];
   @State() listOfOptions: { value: string, label: string, selected: boolean }[] = []; // added selected
   @State() dropdownOpen = false;
@@ -162,6 +163,12 @@ export class Multiselect {
 
     return (
       <div class={`ifx-multiselect-container ${this.getSizeClass()}`} tabindex="0" ref={el => this.dropdownElement = el as HTMLElement}>
+        {
+          this.label ?
+            <div class="ifx-label-wrapper">
+              <span>{this.label}</span>
+            </div> : null
+        }
         <div class={`ifx-multiselect-wrapper 
         ${this.getSizeClass()} 
         ${this.dropdownOpen ? 'active' : ''} 

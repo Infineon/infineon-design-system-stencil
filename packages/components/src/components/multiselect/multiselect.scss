@@ -1,6 +1,9 @@
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
   &.small-select {
     height: 36px;
@@ -25,16 +28,9 @@
     }
   }
 
-  &:focus:not(.active, :active) {
-    &:not(.disabled)::before {
-      content: '';
-      position: absolute;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+  .ifx-label-wrapper {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .ifx-error-message-wrapper {
@@ -49,9 +45,6 @@
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
-    border-radius: 2.5px;
-    font-weight: 400;
-    font-style: normal;
     width: 100%;
 
     &.small-select {
@@ -96,32 +89,6 @@
       }
     }
 
-    &:focus-visible:not(.active, :active) {
-      outline: none;
-
-      &::before {
-        content: '';
-        position: absolute;
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: 2px solid #0A8276;
-      }
-    }
-
-    &:focus:not(.active, :active) {
-      &:not(.disabled)::before {
-        content: '';
-        position: absolute;
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
 
     & .icon-wrapper-up {
       display: none;
@@ -165,8 +132,7 @@
     left: 0;
     width: 100%;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-top: 5px;
+    margin-top: 2px;
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     max-height: 300px;
