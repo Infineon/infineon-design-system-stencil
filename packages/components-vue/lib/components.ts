@@ -116,7 +116,8 @@ export const IfxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IfxDropdownHe
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
   'icon',
   'href',
-  'target'
+  'target',
+  'hide'
 ]);
 
 

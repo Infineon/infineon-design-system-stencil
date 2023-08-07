@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `href`   | `href`    |             | `string` | `""`        |
-| `icon`   | `icon`    |             | `string` | `undefined` |
-| `target` | `target`  |             | `string` | `"_self"`   |
+| Property | Attribute | Description | Type      | Default     |
+| -------- | --------- | ----------- | --------- | ----------- |
+| `hide`   | `hide`    |             | `boolean` | `false`     |
+| `href`   | `href`    |             | `string`  | `""`        |
+| `icon`   | `icon`    |             | `string`  | `undefined` |
+| `target` | `target`  |             | `string`  | `"_self"`   |
 
 
 ## Dependencies
