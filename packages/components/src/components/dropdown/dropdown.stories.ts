@@ -92,13 +92,12 @@ const DefaultTemplate = (args) => {
     ${args.noAppendToBody ? 'no-append-to-body' : ''}
   >
     <ifx-dropdown-trigger-button
-      size="${args.size}"
       variant="${args.variant}"
       color="${args.color}"
       icon="${args.icon}"
       type="${args.type}"
     >${args.label}</ifx-dropdown-trigger-button>
-    <ifx-dropdown-menu>
+    <ifx-dropdown-menu size="${args.size}">
       <ifx-dropdown-item target="_blank" href="https://www.google.de">Link Item</ifx-dropdown-item>
       <ifx-dropdown-separator></ifx-dropdown-separator>
       <ifx-dropdown-item href="javascript:void(0)">Console log from click event</ifx-dropdown-item>

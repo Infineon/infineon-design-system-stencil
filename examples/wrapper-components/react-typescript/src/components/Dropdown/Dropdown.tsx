@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { IfxDropdown, IfxDropdownMenu, IfxDropdownItem, IfxDropdownSeparator, IfxDropdownHeader, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
 
 function Dropdown() {
