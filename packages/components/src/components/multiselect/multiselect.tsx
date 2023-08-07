@@ -169,7 +169,7 @@ export class Multiselect {
         ${this.error ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           onClick={() => this.positionDropdown()} >
-          <div class="ifx-multiselect-input" onClick={() => this.toggleDropdown()} >
+          <div class="ifx-multiselect-input" onClick={this.disabled ? undefined : () => this.toggleDropdown()} >
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
           </div>
           {this.dropdownOpen && (
