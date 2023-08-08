@@ -7,18 +7,15 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
-
 import Card from './components/Card/Card';
-
 import Spinner from './components/Spinner'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
-import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
-
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -92,6 +89,11 @@ function App() {
       <h2>IconButton</h2>
       <IconButton />
       <br />
+
+      <h2>Footer</h2>
+      <Footer />
+      <br />
+
       </div>
    )
 }
