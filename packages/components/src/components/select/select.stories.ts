@@ -1,7 +1,25 @@
 import { action } from "@storybook/addon-actions";
 
+let options = [{
+  value: "a",
+  label: "option a",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "c",
+  label: "option c",
+  selected: false,
+}];
+
+let jsonOptions = JSON.stringify(options);
+
 export default {
-  title: 'Components/Select',
+  title: 'Components/Single Select',
   tags: ['autodocs'],
   args: {
     size: "medium (40px)",
@@ -13,11 +31,15 @@ export default {
     errorMessage: 'Some error',
     label: '',
     disabled: false,
-    choices: 'Choice 1, Choice 2, Choice 3',
+    type: 'single',
+    options: jsonOptions,
   },
 
   argTypes: {
-    type: { control: { type: 'select', options: ['single', 'multiple', 'text'] } },
+    type: {
+      control: { type: 'radio' },
+      options: ['single', 'text']
+    },
     value: { control: 'text' },
     size: {
       options: ['small (36px)', 'medium (40px)'],
@@ -38,13 +60,11 @@ export default {
       control: { type: 'radio' },
     },
     searchPlaceholderValue: { control: { type: 'text' } },
-
-    choices: { control: 'text', options: ['Choice 1', 'Choice 2', 'Choice 3'] },
     onChange: { action: 'change' },
   },
 };
 
-const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, label, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, choices }) => {
+const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, label, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, options }) => {
   const element = document.createElement('ifx-choices');
   console.log("size ", size)
   element.setAttribute('type', type);
@@ -58,19 +78,11 @@ const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, lab
   element.setAttribute('ifx-error-message', errorMessage);
   element.setAttribute('ifx-label', label);
   element.setAttribute('ifx-placeholder-value', placeholderValue);
-  element.setAttribute('ifx-choices', choices);
+  element.setAttribute('ifx-choices', options);
   element.addEventListener('ifxSelect', action('ifxSelect'));
 
   return element;
 }
-
-
-// export const Default = DefaultTemplate.bind({});
-// Default.args = {
-//   type: 'text',
-//   name: 'text',
-//   choices: 'Choice 1, Choice 2, Choice 3',
-// };
 
 
 export const Single = DefaultTemplate.bind({});
@@ -78,6 +90,26 @@ Single.args = {
   type: 'single',
 
 };
+
+export const Text = DefaultTemplate.bind({});
+Text.args = {
+  type: 'text',
+  name: 'text',
+  value: 'Placeholder',
+  allowHTML: true,
+  delimiter: ',',
+  editItems: true,
+  maxItemCount: 5,
+};
+
+// export const Text = DefaultTemplate.bind({});
+// Text.args = {
+//   type: 'multiple',
+//   name: 'multiple',
+//   choices: 'Choice 1, Choice 2, Choice 3',
+// };
+
+
 
 // export const SingleWithIcon = DefaultTemplate.bind({});
 // SingleWithIcon.args = {
@@ -90,7 +122,6 @@ Single.args = {
 // MultiselectCombobox.args = {
 //   type: 'multiple',
 //   // removeItemButton: true,
-
 // };
 
 

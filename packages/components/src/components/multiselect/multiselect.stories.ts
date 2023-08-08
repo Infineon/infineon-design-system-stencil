@@ -1,10 +1,40 @@
 import { action } from "@storybook/addon-actions";
 
+let options = [{
+  value: "a",
+  label: "option a",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "c",
+  label: "option c",
+  selected: false,
+  children: [
+    {
+      value: "c1",
+      label: "option c1",
+      selected: false
+    },
+    {
+      value: "c2",
+      label: "option c2",
+      selected: false
+    }
+  ]
+}];
+
+let jsonOptions = JSON.stringify(options);
+
 export default {
-  title: 'Components/Multiselect',
+  title: 'Components/Multi Select',
   tags: ['autodocs'],
   args: {
-    options: 'Choice 1, Choice 2, Choice 3, Choice 4, Choice 5, Choice 6, Choice 7, Choice 8, Choice 9, Choice 10',
+    options: jsonOptions,
     size: "medium (40px)",
     max: 5,
     error: false,

@@ -33,42 +33,42 @@ export class Multiselect {
 
   @Watch('options')
   handleOptionsChange() {
-    // this.listOfOptions = typeof this.options === 'string'
-    //   ? this.options.split(',').map((option) => ({ value: option.trim(), label: option.trim(), selected: false })) // added selected
-    //   : this.options.map(option => ({ ...option }));
+    this.listOfOptions = typeof this.options === 'string'
+      ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
+      : this.options.map(option => ({ ...option }));
 
-    this.listOfOptions = [{
-      value: "a",
-      label: "option a",
-      selected: false
-    },
-    {
-      value: "b",
-      label: "option b",
-      selected: false
-    },
-    {
-      value: "c",
-      label: "option c",
-      selected: false,
-      children: [
-        {
-          value: "c1",
-          label: "option c1",
-          selected: false
-        },
-        {
-          value: "c2",
-          label: "option c2",
-          selected: false
-        }
-      ]
-    },
-    {
-      value: "d",
-      label: "option d",
-      selected: false
-    }];
+    // this.listOfOptions = [{
+    //   value: "a",
+    //   label: "option a",
+    //   selected: false
+    // },
+    // {
+    //   value: "b",
+    //   label: "option b",
+    //   selected: false
+    // },
+    // {
+    //   value: "c",
+    //   label: "option c",
+    //   selected: false,
+    //   children: [
+    //     {
+    //       value: "c1",
+    //       label: "option c1",
+    //       selected: false
+    //     },
+    //     {
+    //       value: "c2",
+    //       label: "option c2",
+    //       selected: false
+    //     }
+    //   ]
+    // },
+    // {
+    //   value: "d",
+    //   label: "option d",
+    //   selected: false
+    // }];
     // Update persistentSelectedOptions based on initially selected states
     const initiallySelected = this.listOfOptions.filter(option => option.selected);
     this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];

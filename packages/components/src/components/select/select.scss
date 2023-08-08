@@ -520,6 +520,10 @@ END Select options: item alignment
     opacity: 0.5;
   }
 
+  // .choices[data-type*='select-one'] .choices__item .choices__item--choice {
+
+  // }
+
   .choices__heading {
     font-weight: 600;
     font-size: 12px;
@@ -573,7 +577,6 @@ END Select options: item alignment
     border: 0;
     border-radius: 0;
     max-width: 100%;
-    padding: 8px 16px;
   }
 
 
