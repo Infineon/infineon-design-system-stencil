@@ -56,7 +56,7 @@ const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, lab
   element.setAttribute('ifx-disabled', disabled);
   element.setAttribute('ifx-error', error);
   element.setAttribute('ifx-error-message', errorMessage);
-  element.setAttribute('label', label);
+  element.setAttribute('ifx-label', label);
   element.setAttribute('ifx-placeholder-value', placeholderValue);
   element.setAttribute('ifx-choices', choices);
   element.addEventListener('ifxSelect', action('ifxSelect'));

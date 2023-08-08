@@ -328,6 +328,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       case 'multiple':
         this.element =
           <div class={`ifx-select-container`}>
+            {
+              this.ifxLabel ?
+                <div class="ifx-label-wrapper">
+                  <span>{this.ifxLabel}</span>
+                </div> : null
+            }
             <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesDefault} multiple onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
