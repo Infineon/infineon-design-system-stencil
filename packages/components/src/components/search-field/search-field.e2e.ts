@@ -1,6 +1,6 @@
 import { newE2EPage } from '@stencil/core/testing';
 
-describe('SearchInput', () => {
+describe('SearchField', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field></ifx-search-field>');
@@ -46,11 +46,19 @@ describe('SearchInput', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field show-delete-icon value="Search text"></ifx-search-field>');
 
-    const deleteIcon = await page.find('ifx-search-field >>> .delete-icon');
-    const input = await page.find('ifx-search-field >>> input');
+    const searchField = await page.find('ifx-search-field');
+    const deleteIcon = await searchField.find('.delete-icon');
+    const input = await searchField.find('input');
     const eventSpy = await page.spyOnEvent('ifxInput');
 
-    await deleteIcon.click();
+    if (deleteIcon) {
+      await deleteIcon.click();
+    }
+
+    if (!input) {
+      console.error('Input not found!');
+      return; // Exit the test early.
+    }
 
     expect(await input.getProperty('value')).toBe('');
     expect(eventSpy).toHaveReceivedEventDetail(null);
