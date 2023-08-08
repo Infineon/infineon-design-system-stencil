@@ -90,7 +90,7 @@ export class Navbar {
   componentDidLoad() {
     //window.addEventListener('resize', this.handleMenuItems.bind(this));
 
-    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
+    const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
 
     if (!dropdownMenu) {
       const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
@@ -116,8 +116,8 @@ export class Navbar {
   }
 
   componentWillLoad() {
-    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-menu-item"]')
+    const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
     if (!leftMenuItems.length && !dropdownMenu) {
       this.hasLeftMenuItems = false;
     }
@@ -153,7 +153,7 @@ export class Navbar {
              </div>}
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
-                  <slot name='left-menu-item' />
+                  <slot name='left-item' />
                   <div class="navbar__container-left-content-navigation-dropdown-menu">
                     <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
                       <a href="javascript:void(0)">
@@ -161,7 +161,7 @@ export class Navbar {
                         <ifx-icon icon="chevron-down-12"></ifx-icon>
                       </a>
                       <div class="navbar__dropdown-wrapper">
-                        <slot name='dropdown-menu' />
+                        <slot name='menu' />
                         {/* <ifx-dropdown-menu></ifx-dropdown-menu> */}
                       </div>
                     </div>
@@ -182,8 +182,8 @@ export class Navbar {
                     </div>
                   </div>
                   <div class="navbar__container-right-content-navigation-item">
-                    <slot name='right-menu-item' />
-                    <slot name='right-menu-profile-item' />
+                    <slot name='right-item' />
+                    <slot name='right-profile-item' />
                   </div>
                   {/* <div class="navbar__container-right-content-navigation-item tablet">
                     <div class="navbar__container-right-content-navigation-item-icon-wrapper">
