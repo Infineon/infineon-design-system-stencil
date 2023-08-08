@@ -204,6 +204,30 @@ export class Multiselect {
     this.zIndex = Multiselect.globalZIndex++;
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+    if (this.disabled) return; // If it's disabled, don't do anything.
+
+    if (event.code === 'Enter' || event.code === 'Space') {
+      this.toggleDropdown();
+
+      if (event.code === 'Space') {
+        event.preventDefault(); // Prevent the default behavior (page scrolling) on Space key.
+      }
+    }
+  }
+
+  handleWrapperClick(event: MouseEvent) {
+    console.log("wrapper clicked")
+    // This is your existing logic for positioning the dropdown
+    this.positionDropdown();
+
+    // Check if the event target is the wrapper itself and not a child element.
+    if (event.currentTarget === event.target) {
+      this.toggleDropdown();
+    }
+  }
+
+
   clearSelection() {
     this.persistentSelectedOptions = [];
     this.listOfOptions = this.listOfOptions.map(option => ({ ...option, selected: false }));
@@ -284,7 +308,7 @@ export class Multiselect {
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
 
     return (
-      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} tabindex="0" ref={el => this.dropdownElement = el as HTMLElement}>
+      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
           this.label ?
             <div class="ifx-label-wrapper">
@@ -297,7 +321,9 @@ export class Multiselect {
         ${this.dropdownFlipped ? 'is-flipped' : ''}
         ${this.error ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
-          onClick={() => this.positionDropdown()} >
+          tabindex="0"
+          onClick={(event) => this.handleWrapperClick(event)}
+          onKeyDown={(event) => this.handleKeyDown(event)} >
           <div class="ifx-multiselect-input" onClick={this.disabled ? undefined : () => this.toggleDropdown()} >
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
           </div>

@@ -13,20 +13,7 @@
     height: 40px;
   }
 
-  &:focus-visible:not(.active, :active) {
-    outline: none;
 
-    &::before {
-      content: '';
-      position: absolute;
-      width: calc(100% + 4px);
-      height: calc(100% + 4px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px solid #0A8276;
-    }
-  }
 
   .ifx-label-wrapper {
     font-size: 16px;
@@ -57,6 +44,23 @@
       line-height: 24px;
       padding: 8px 16px;
       font-size: 16px;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible:not(.active):not(:active) {
+      &::before {
+        content: '';
+        position: absolute;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid #0A8276;
+      }
     }
 
     &.disabled {
@@ -177,7 +181,7 @@
     }
 
     &.sub-option {
-      padding-left: 20px;
+      padding-left: 30px;
       /* or however much indentation you want */
     }
   }
