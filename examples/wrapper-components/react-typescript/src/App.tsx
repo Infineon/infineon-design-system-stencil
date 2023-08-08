@@ -7,15 +7,12 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
-
 import Card from './components/Card/Card';
-
 import Spinner from './components/Spinner'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
-import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
 
 import Navbar from './components/Navbar/Navbar';

@@ -37,7 +37,7 @@
  - [ifx-multi-select-input](../multi-select-input)
  - [ifx-multi-select-input-item](../multi-select-input)
  - [ifx-navbar](../navbar)
- - [ifx-navbar-menu-item](../navbar)
+ - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-sidebar-item](../sidebar)
@@ -60,7 +60,7 @@ graph TD;
   ifx-multi-select-input --> ifx-icon
   ifx-multi-select-input-item --> ifx-icon
   ifx-navbar --> ifx-icon
-  ifx-navbar-menu-item --> ifx-icon
+  ifx-navbar-item --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon

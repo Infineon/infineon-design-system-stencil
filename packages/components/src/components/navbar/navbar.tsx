@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -49,6 +49,18 @@ export class Navbar {
     this[menu] = !this[menu];
   }
 
+  @Listen('mousedown', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    const path = event.composedPath();
+    if (!path.includes(this.el)) {
+      const dropdownWrapper = this.el.shadowRoot.querySelector('.navbar__dropdown-wrapper')
+      dropdownWrapper.classList.remove('open')
+      const iconWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('a')
+      iconWrapper.classList.remove('open')
+    }
+  }
+
+
   // handleMenuItems() { 
   //   const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
   //   const navbar = this.el.closest('ifx-navbar')
@@ -88,17 +100,11 @@ export class Navbar {
   // }
 
   componentDidLoad() {
-    //window.addEventListener('resize', this.handleMenuItems.bind(this));
-
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
-
     if (!dropdownMenu) {
       const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
-
       moreMenu.style.display = 'none'
     }
-
-
 
     // if(window.matchMedia("(max-width: 1200px)").matches) { 
     //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
