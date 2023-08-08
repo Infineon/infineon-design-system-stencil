@@ -393,9 +393,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             ${this.ifxDisabled ? 'disabled' : ""} 
             ${this.ifxError ? 'error' : ""}`}
               onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}
-              onKeyDown={(event) => this.handleKeyDown(event)} >
+            // onKeyDown={(event) => this.handleKeyDown(event)} 
+            >
 
-              <select {...attributesSingle} onChange={() => this.handleChange()}>
+              <select {...attributesSingle} data-trigger
+                onChange={() => this.handleChange()}>
                 {this.createSelectOptions(this.value)}
               </select>
 
@@ -731,7 +733,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
     div.addEventListener('focus', function () {
       if (!this.classList.contains('disabled')) {
+        console.log("focussing")
         this.classList.add('focus');
+        let choices = this.querySelector('.choices');
+        if (choices) {
+          choices.classList.add('is-focused');
+        }
       }
     });
 

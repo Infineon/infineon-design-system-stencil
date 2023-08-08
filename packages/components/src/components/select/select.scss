@@ -154,6 +154,10 @@ END Select options: item alignment
     outline: none;
   }
 
+  .choices &.is-focused {
+    outline: none;
+  }
+
   .choices:last-child {
     margin-bottom: 0;
   }
