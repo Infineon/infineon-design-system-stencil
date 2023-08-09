@@ -23,7 +23,7 @@ export class Multiselect {
   @Prop() maxItemCount: number = 10;
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
-  // private currentIndex: number = 0; //needed for option selection using keyboard
+  private currentIndex: number = 0; //needed for option selection using keyboard
   // this.currentIndex = this.placeholder ? this.currentIndex = 1 : this.currentIndex = 0;
 
 
@@ -57,7 +57,6 @@ export class Multiselect {
   }
 
   handleOptionClick(option: Option) {
-    console.log("option click");
 
     // 1. Prevent action if disabled
     if (this.persistentSelectedOptions.length >= this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
@@ -175,20 +174,59 @@ export class Multiselect {
     this.zIndex = Multiselect.globalZIndex++;
   }
 
+
+  waitForElement(querySelectorFunc: Function, callback: Function, maxTries = 50) {
+    let tries = 0;
+    function request() {
+      requestAnimationFrame(() => {
+        const elements = querySelectorFunc();
+        if (elements.length > 0 || tries > maxTries) {
+          callback(elements);
+        } else {
+          tries++;
+          request();
+        }
+      });
+    }
+    request();
+  }
+
+
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled) return; // If it's disabled, don't do anything.
 
-    if (event.code === 'Enter' || event.code === 'Space') {
-      this.toggleDropdown();
+    const options = this.dropdownElement.querySelectorAll('.option');
 
-      if (event.code === 'Space') {
-        event.preventDefault(); // Prevent the default behavior (page scrolling) on Space key.
-      }
+    switch (event.code) {
+      case 'Enter' || 'Space':
+        if (this.dropdownOpen) {
+          this.selectItem(options);
+        } else {
+          this.toggleDropdown();
+          // Wait a bit for the dropdown to finish rendering
+          this.waitForElement(() => {
+            return this.dropdownElement.querySelectorAll('.option');
+          }, (options) => {
+            this.updateHighlightedOption(options);
+          });
+        }
+        break;
+      case 'ArrowDown':
+        this.handleArrowDown(options);
+        if (this.dropdownOpen) {
+          this.updateHighlightedOption(options);
+        }
+        break;
+      case 'ArrowUp':
+        this.handleArrowUp(options);
+        if (this.dropdownOpen) {
+          this.updateHighlightedOption(options);
+        }
+        break;
     }
   }
 
   handleWrapperClick(event: MouseEvent) {
-    console.log("wrapper clicked")
     // This is your existing logic for positioning the dropdown
     this.positionDropdown();
 
@@ -226,99 +264,56 @@ export class Multiselect {
     }
   }
 
-  // // The main key handler function
-  // handleKeyDown(event: KeyboardEvent) {
-  //   if (this.ifxDisabled) return;
 
-  //   const options = this.root.querySelectorAll('.choices__item');
-
-  //   const dropdown = this.root.querySelector('.choices');
-  //   const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
-
-  //   switch (event.code) {
-  //     case 'Enter':
-  //       if (isOpen) {
-  //         this.selectItem(options);
-  //         // this.toggleDropdown();
-  //       } else {
-  //         this.toggleDropdown();
-  //       }
-  //       break;
-  //     case 'Space':
-  //       this.toggleDropdown();
-  //       if (event.code === 'Space') {
-  //         event.preventDefault(); // Prevents scrolling
-  //       }
-  //       break;
-  //     case 'ArrowDown':
-  //       this.handleArrowDown(options);
-  //       if (isOpen) {
-  //         this.updateHighlightedOption(options);
-  //       }
-  //       break;
-  //     case 'ArrowUp':
-  //       this.handleArrowUp(options);
-  //       if (isOpen) {
-  //         this.updateHighlightedOption(options);
-  //       }
-  //       break;
-  //   }
-
-  // If dropdown is open, update the display based on the state.
-  // const dropdown = this.root.querySelector('.choices');
-  // const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
-  // if (isOpen) {
-  //   this.updateHighlightedOption(options);
-  // }
-  // }
 
   // Helper function to update highlighted option based on currentIndex
-  // private updateHighlightedOption(options: NodeList) {
-  //   // Clear all highlights
-  //   options.forEach((option: Element) => option.classList.remove('is-highlighted'));
+  private updateHighlightedOption(options: NodeList) {
+    // Clear all highlights
+    options.forEach((option: Element) => option.classList.remove('is-highlighted'));
 
-  //   // Apply highlight to the current option
-  //   if (this.currentIndex >= 0 && this.currentIndex < options.length) {
-  //     (options[this.currentIndex] as Element).classList.add('is-highlighted');
-  //   }
-  // }
+    // Apply highlight to the current option
+    if (this.currentIndex >= 0 && this.currentIndex < options.length) {
+      (options[this.currentIndex] as Element).classList.add('is-highlighted');
+    }
+  }
 
   // Helper function to handle arrow down navigation
-  // private handleArrowDown(options: NodeList) {
-  //   if (this.currentIndex < options.length - 1) {
-  //     this.currentIndex++;
-  //   } else {
-  //     this.currentIndex = 0; // Wrap to the beginning.
-  //   }
-  // }
+  private handleArrowDown(options: NodeList) {
+    if (this.currentIndex < options.length - 1) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0; // Wrap to the beginning.
+    }
+  }
 
   // // Helper function to handle arrow up navigation
-  // private handleArrowUp(options: NodeList) {
-  //   if (this.currentIndex > 0) {
-  //     this.currentIndex--;
-  //   } else {
-  //     this.currentIndex = options.length - 1; // Wrap to the end.
-  //   }
-  // }
+  private handleArrowUp(options: NodeList) {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = options.length - 1; // Wrap to the end.
+    }
+  }
 
-  // private selectItem(options: NodeList) {
-  //   // If there's a previous selection, remove its "selected" class
-  //   const previouslySelected = this.root.querySelector('.choices__item.selected');
-  //   if (previouslySelected) {
-  //     previouslySelected.classList.remove('selected');
-  //   }
+  private selectItem(options: NodeList) {
+    // If there's a previous selection, remove its "selected" class
+    const previouslySelected = this.dropdownElement.querySelector('.option.selected');
+    if (previouslySelected) {
+      previouslySelected.classList.remove('selected');
+    }
 
-  //   // Mark the current item as selected
-  //   const currentOption = options[this.currentIndex] as Element;
-  //   currentOption.classList.add('selected');
-  //   // this.value = currentOption.getAttribute('data-value');
+    // Mark the current item as selected
+    const currentOptionElement = options[this.currentIndex] as Element;
+    currentOptionElement.classList.add('selected');
 
-  //   // Update the internal state
-  //   // const selectElement = this.root.querySelector('select');
-  //   this.value = currentOption.getAttribute('data-value');
-  //   this.choice.setChoiceByValue(this.value);
-  //   this.handleChange();
-  //   // this.toggleDropdown();
+    const currentOptionValue = currentOptionElement.getAttribute('data-value');
+    const currentListOfOptions = typeof this.options === 'string' //passed in string form via storybook
+      ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
+      : this.options.map(option => ({ ...option }));
+
+    const currentOption = this.findInOptions(currentListOfOptions, currentOptionValue); // get the option object based on the currently selected value and the options array
+    this.handleOptionClick(currentOption);
+  }
 
 
 
@@ -331,9 +326,12 @@ export class Multiselect {
 
     return (
       <div>
-        <div class={`option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
+        <div class={`option ${isSelected ? 'selected' : ''} 
+        ${this.getSizeClass()}`}
+          data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
+          role={`${option.children}?.length > 0 ? "option" : "treeitem"`}
         >
           <ifx-checkbox id={uniqueId} value={isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId}>{option.label}</label>
@@ -355,12 +353,30 @@ export class Multiselect {
   }
 
 
+  findInOptions(options: Option[], searchTerm: string): Option | null {
+    for (const option of options) {
+      if (option.value === searchTerm) {
+        return option;
+      }
+      if (option.children) {
+        const foundInChildren = this.findInOptions(option.children, searchTerm);
+        if (foundInChildren) {
+          return foundInChildren;
+        }
+      }
+    }
+    return null;
+  }
+
+
   renderSubOption(option: Option, index: string) {
     const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (
       <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
+        data-value={option.value}
+        role={`${option.children}?.length > 0 ? "option" : "treeitem"`}
         onClick={() => this.handleOptionClick(option)}
         tabindex="0">
         <ifx-checkbox id={uniqueId} value={isSelected}></ifx-checkbox>
@@ -390,7 +406,9 @@ export class Multiselect {
           tabindex="0"
           onClick={(event) => this.handleWrapperClick(event)}
           onKeyDown={(event) => this.handleKeyDown(event)} >
-          <div class="ifx-multiselect-input" onClick={this.disabled ? undefined : () => this.toggleDropdown()} >
+          <div class="ifx-multiselect-input"
+            onClick={this.disabled ? undefined : () => this.toggleDropdown()}
+          >
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
           </div>
           {this.dropdownOpen && (

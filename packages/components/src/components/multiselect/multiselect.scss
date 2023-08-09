@@ -176,6 +176,11 @@
 
     }
 
+    &.is-highlighted {
+      background-color: #EEEDED;
+      ;
+    }
+
     &.selected {
       // color: #0A8276;
     }

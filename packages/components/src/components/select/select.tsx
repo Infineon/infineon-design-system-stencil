@@ -91,7 +91,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async handleChange() {
-    console.log("ifxSelect event: ", this.choice.getValue())
+    // console.log("ifxSelect event: ", this.choice.getValue())
     this.ifxSelect.emit(this.choice.getValue());
     this.closeDropdownMenu();
   }
@@ -646,7 +646,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
     div.addEventListener('focus', function () {
       if (!this.classList.contains('disabled')) {
-        console.log("focussing")
         this.classList.add('focus');
       }
     });
@@ -694,8 +693,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private createSelectOptions(ifxChoices, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
       let optionValueBasedOnAvailableOptions = JSON.parse(ifxChoices).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
-      console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
-      console.log("option value could not be found in available options")
+      // console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
+      console.log("option value could not be found in available options", value)
       return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
     }
     else {
