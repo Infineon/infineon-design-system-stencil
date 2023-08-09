@@ -1,5 +1,5 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
-import { HTMLStencilElement, Listen, State } from '@stencil/core/internal';
+import { HTMLStencilElement, Listen } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
 import {
@@ -20,10 +20,8 @@ import {
   ValueCompareFunction,
   CustomAddItemText
 } from './interfaces';
-import { getValues, filterObject, isDefined } from './utils';
+import { filterObject, isDefined } from './utils';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// type TemplateOptions = Record<'classNames' | 'allowHTML', any>;
 
 @Component({
   tag: 'ifx-choices',
@@ -82,16 +80,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() ifxLabel: string = "";
   @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Placeholder";
-  @State() ifxChoicesIsOpen: boolean = false;
   @Event() ifxSelect: EventEmitter<CustomEvent>;
-  @Element() private readonly root: HTMLElement;
   @Prop() ifxChoices: Array<any> | string;
   @Prop() ifxSize: string = 'medium (40px)';
 
-
+  @Element() private readonly root: HTMLElement;
   private choice;
   private element;
-  private currentIndex: number; //needed for option selection using keyboard
 
 
   @Method()
@@ -191,7 +186,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   public async setChoices(choices: Array<any> | string, value: string, label: string, replaceChoices?: boolean) {
-    const listOfChoices = typeof choices === 'string'
+    const listOfChoices = typeof choices === 'string' //passed in string form via storybook
       ? JSON.parse(choices).map((option) => ({ value: option.value, label: option.label, selected: option.selected }))
       : choices.map(option => ({ ...option }));
 
@@ -258,104 +253,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
   }
 
-  // The main key handler function
-  handleKeyDown(event: KeyboardEvent) {
-    if (this.ifxDisabled) return;
-
-    const options = this.root.querySelectorAll('.choices__item');
-
-    const dropdown = this.root.querySelector('.choices');
-    const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
-
-    switch (event.code) {
-      case 'Enter':
-        if (isOpen) {
-          this.selectItem(options);
-          // this.toggleDropdown();
-        } else {
-          this.toggleDropdown();
-        }
-        break;
-      case 'Space':
-        this.toggleDropdown();
-        if (event.code === 'Space') {
-          event.preventDefault(); // Prevents scrolling
-        }
-        break;
-      case 'ArrowDown':
-        this.handleArrowDown(options);
-        if (isOpen) {
-          this.updateHighlightedOption(options);
-        }
-        break;
-      case 'ArrowUp':
-        this.handleArrowUp(options);
-        if (isOpen) {
-          this.updateHighlightedOption(options);
-        }
-        break;
-    }
-
-    // If dropdown is open, update the display based on the state.
-    // const dropdown = this.root.querySelector('.choices');
-    // const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
-    // if (isOpen) {
-    //   this.updateHighlightedOption(options);
-    // }
-  }
-
-  // Helper function to update highlighted option based on currentIndex
-  private updateHighlightedOption(options: NodeList) {
-    // Clear all highlights
-    options.forEach((option: Element) => option.classList.remove('is-highlighted'));
-
-    // Apply highlight to the current option
-    if (this.currentIndex >= 0 && this.currentIndex < options.length) {
-      (options[this.currentIndex] as Element).classList.add('is-highlighted');
-    }
-  }
-
-  // Helper function to handle arrow down navigation
-  private handleArrowDown(options: NodeList) {
-    if (this.currentIndex < options.length - 1) {
-      this.currentIndex++;
-    } else {
-      this.currentIndex = 0; // Wrap to the beginning.
-    }
-  }
-
-  // Helper function to handle arrow up navigation
-  private handleArrowUp(options: NodeList) {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-    } else {
-      this.currentIndex = options.length - 1; // Wrap to the end.
-    }
-  }
-
-  private selectItem(options: NodeList) {
-    // If there's a previous selection, remove its "selected" class
-    const previouslySelected = this.root.querySelector('.choices__item.selected');
-    if (previouslySelected) {
-      previouslySelected.classList.remove('selected');
-    }
-
-    // Mark the current item as selected
-    const currentOption = options[this.currentIndex] as Element;
-    currentOption.classList.add('selected');
-    // this.value = currentOption.getAttribute('data-value');
-
-    // Update the internal state
-    // const selectElement = this.root.querySelector('select');
-    this.value = currentOption.getAttribute('data-value');
-    this.choice.setChoiceByValue(this.value);
-    this.handleChange();
-    // this.toggleDropdown();
-
-  }
-
-
-
 
   protected render(): any {
 
@@ -364,7 +261,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       'name': this.name || null,
       // 'remove-item-button': false,
     };
-    const attributesDefault = {
+    const attributesMultiple = {
       'data-selector': 'root',
       'name': this.name || null,
     };
@@ -393,21 +290,21 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             ${this.ifxDisabled ? 'disabled' : ""} 
             ${this.ifxError ? 'error' : ""}`}
               onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}
-            // onKeyDown={(event) => this.handleKeyDown(event)} 
+              onKeyDown={(event) => this.handleKeyDown(event)}
             >
 
               <select {...attributesSingle} data-trigger
                 onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.value)}
+                {this.createSelectOptions(this.ifxChoices, this.value)}
               </select>
 
 
-              <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
+              <div class="ifx-choices__icon-wrapper-up">
                 <ifx-icon
                   key='icon-up'
                   icon='chevronup-16'></ifx-icon>
               </div>
-              <div class="ifx-choices__icon-wrapper-down" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
+              <div class="ifx-choices__icon-wrapper-down">
 
                 <ifx-icon
                   key='icon-down'
@@ -432,8 +329,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 </div> : null
             }
             <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
-              <select {...attributesDefault} multiple onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.value)}
+              <select {...attributesMultiple} multiple onChange={() => this.handleChange()}>
+                {this.createSelectOptions(this.ifxChoices, this.value)}
               </select>
               <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
@@ -484,10 +381,27 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdown() {
-    // console.log("disabled ", this.ifxDisabled);
-    this.showDropdown(!this.ifxChoicesIsOpen);
+    // console.log("toggling dropdown");
+    if (this.choice.dropdown.isActive) {
+      this.hideDropdown();
+    } else {
+      this.choice.showDropdown();
+    }
+    const choicesElement = document.querySelector('.choices');
+    choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+    if (this.ifxDisabled) return; // If it's disabled, don't do anything.
+
+    if (event.code === 'Enter' || event.code === 'Space') {
+      this.toggleDropdown();
+
+      if (event.code === 'Space') {
+        event.preventDefault(); // Prevent the default behavior (page scrolling) on Space key.
+      }
+    }
+  }
 
 
   getIfxChoicesContainer() {
@@ -502,18 +416,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
 
-  toggleDropdownMenu(e) {
-    console.log("toggle dropdown menu")
-    const target = e.composedPath()[0].closest('span')
+  // toggleDropdownMenu(e) {
+  //   console.log("toggle dropdown menu")
+  //   const target = e.composedPath()[0].closest('span')
 
-    if (target) {
-      return
-    }
+  //   if (target) {
+  //     return
+  //   }
 
-    const ifxChoicesContainer = this.getIfxChoicesContainer()
-    this.handleClassList(ifxChoicesContainer, 'toggle', 'show')
+  //   const ifxChoicesContainer = this.getIfxChoicesContainer()
+  //   this.handleClassList(ifxChoicesContainer, 'toggle', 'show')
 
-  }
+  // }
 
   closeDropdownMenu() {
     const ifxChoicesContainer = this.getIfxChoicesContainer()
@@ -543,7 +457,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   private init() {
     const props = {
-      type: this.type,
+      // type: this.type,
       allowHTML: true, // Set allowHTML to true
       items: this.items,
       choices: this.choices,
@@ -588,7 +502,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       customAddItemText: this.customAddItemText
     };
 
-    this.currentIndex = this.placeholder ? this.currentIndex = 1 : this.currentIndex = 0;
     const settings = filterObject(props, isDefined);
 
     //type check
@@ -735,10 +648,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       if (!this.classList.contains('disabled')) {
         console.log("focussing")
         this.classList.add('focus');
-        let choices = this.querySelector('.choices');
-        if (choices) {
-          choices.classList.add('is-focused');
-        }
       }
     });
 
@@ -749,6 +658,20 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     div.addEventListener('click', function () {
       if (!this.classList.contains('disabled')) {
         this.classList.add('active');
+      }
+    });
+
+    div.addEventListener('keydown', function (event) {
+      // Check for Enter or Space key presses
+      if (event.code === 'Enter' || event.code === 'Space') {
+        if (!this.classList.contains('disabled')) {
+          this.classList.add('active');
+        }
+
+        // Prevent the default behavior (like page scrolling) on Space key.
+        if (event.code === 'Space') {
+          event.preventDefault();
+        }
       }
     });
 
@@ -768,13 +691,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
-  private createSelectOptions(values: string | Array<string>): Array<HTMLStencilElement> {
-    console.log("select - initial value", values, this.ifxPlaceholderValue);
+  private createSelectOptions(ifxChoices, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
-      return getValues(values).map((value) => <option value={value}>{value}</option>)
+      let optionValueBasedOnAvailableOptions = JSON.parse(ifxChoices).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
+      console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
+      console.log("option value could not be found in available options")
+      return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
     }
     else {
-
       return this.placeholder !== "false" ? <option value="">{this.ifxPlaceholderValue}</option> : <option></option>;
     }
   }

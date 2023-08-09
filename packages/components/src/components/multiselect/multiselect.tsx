@@ -23,6 +23,9 @@ export class Multiselect {
   @Prop() maxItemCount: number = 10;
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
+  // private currentIndex: number = 0; //needed for option selection using keyboard
+  // this.currentIndex = this.placeholder ? this.currentIndex = 1 : this.currentIndex = 0;
+
 
 
   @Event() ifxSelect: EventEmitter;
@@ -33,42 +36,10 @@ export class Multiselect {
 
   @Watch('options')
   handleOptionsChange() {
-    this.listOfOptions = typeof this.options === 'string'
+    this.listOfOptions = typeof this.options === 'string' //passed in string form via storybook
       ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
       : this.options.map(option => ({ ...option }));
 
-    // this.listOfOptions = [{
-    //   value: "a",
-    //   label: "option a",
-    //   selected: false
-    // },
-    // {
-    //   value: "b",
-    //   label: "option b",
-    //   selected: false
-    // },
-    // {
-    //   value: "c",
-    //   label: "option c",
-    //   selected: false,
-    //   children: [
-    //     {
-    //       value: "c1",
-    //       label: "option c1",
-    //       selected: false
-    //     },
-    //     {
-    //       value: "c2",
-    //       label: "option c2",
-    //       selected: false
-    //     }
-    //   ]
-    // },
-    // {
-    //   value: "d",
-    //   label: "option d",
-    //   selected: false
-    // }];
     // Update persistentSelectedOptions based on initially selected states
     const initiallySelected = this.listOfOptions.filter(option => option.selected);
     this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
@@ -254,6 +225,101 @@ export class Multiselect {
       wrapper.classList.add('is-flipped');
     }
   }
+
+  // // The main key handler function
+  // handleKeyDown(event: KeyboardEvent) {
+  //   if (this.ifxDisabled) return;
+
+  //   const options = this.root.querySelectorAll('.choices__item');
+
+  //   const dropdown = this.root.querySelector('.choices');
+  //   const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
+
+  //   switch (event.code) {
+  //     case 'Enter':
+  //       if (isOpen) {
+  //         this.selectItem(options);
+  //         // this.toggleDropdown();
+  //       } else {
+  //         this.toggleDropdown();
+  //       }
+  //       break;
+  //     case 'Space':
+  //       this.toggleDropdown();
+  //       if (event.code === 'Space') {
+  //         event.preventDefault(); // Prevents scrolling
+  //       }
+  //       break;
+  //     case 'ArrowDown':
+  //       this.handleArrowDown(options);
+  //       if (isOpen) {
+  //         this.updateHighlightedOption(options);
+  //       }
+  //       break;
+  //     case 'ArrowUp':
+  //       this.handleArrowUp(options);
+  //       if (isOpen) {
+  //         this.updateHighlightedOption(options);
+  //       }
+  //       break;
+  //   }
+
+  // If dropdown is open, update the display based on the state.
+  // const dropdown = this.root.querySelector('.choices');
+  // const isOpen = dropdown.getAttribute('aria-expanded') === 'true';
+  // if (isOpen) {
+  //   this.updateHighlightedOption(options);
+  // }
+  // }
+
+  // Helper function to update highlighted option based on currentIndex
+  // private updateHighlightedOption(options: NodeList) {
+  //   // Clear all highlights
+  //   options.forEach((option: Element) => option.classList.remove('is-highlighted'));
+
+  //   // Apply highlight to the current option
+  //   if (this.currentIndex >= 0 && this.currentIndex < options.length) {
+  //     (options[this.currentIndex] as Element).classList.add('is-highlighted');
+  //   }
+  // }
+
+  // Helper function to handle arrow down navigation
+  // private handleArrowDown(options: NodeList) {
+  //   if (this.currentIndex < options.length - 1) {
+  //     this.currentIndex++;
+  //   } else {
+  //     this.currentIndex = 0; // Wrap to the beginning.
+  //   }
+  // }
+
+  // // Helper function to handle arrow up navigation
+  // private handleArrowUp(options: NodeList) {
+  //   if (this.currentIndex > 0) {
+  //     this.currentIndex--;
+  //   } else {
+  //     this.currentIndex = options.length - 1; // Wrap to the end.
+  //   }
+  // }
+
+  // private selectItem(options: NodeList) {
+  //   // If there's a previous selection, remove its "selected" class
+  //   const previouslySelected = this.root.querySelector('.choices__item.selected');
+  //   if (previouslySelected) {
+  //     previouslySelected.classList.remove('selected');
+  //   }
+
+  //   // Mark the current item as selected
+  //   const currentOption = options[this.currentIndex] as Element;
+  //   currentOption.classList.add('selected');
+  //   // this.value = currentOption.getAttribute('data-value');
+
+  //   // Update the internal state
+  //   // const selectElement = this.root.querySelector('select');
+  //   this.value = currentOption.getAttribute('data-value');
+  //   this.choice.setChoiceByValue(this.value);
+  //   this.handleChange();
+  //   // this.toggleDropdown();
+
 
 
 
