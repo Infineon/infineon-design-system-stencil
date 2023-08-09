@@ -19,7 +19,7 @@
   font-style: normal;
   font-weight: tokens.$ifxFontWeightSemibold;
   font-size: tokens.$ifxFontSizeM;
-  line-height: 1.25rem;
+  line-height: tokens.$ifxLineHeightS;
   display: inline;
   color: tokens.$ifxColorBaseBlack;
 }
