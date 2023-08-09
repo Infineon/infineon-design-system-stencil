@@ -1,3 +1,15 @@
+# v19.1.7 (Wed Aug 09 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: modal [#357](https://github.com/Infineon/infineon-design-system-stencil/pull/357) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v19.1.6 (Thu Aug 03 2023)
 
 #### 🐛 Bug Fix
