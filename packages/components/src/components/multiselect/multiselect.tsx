@@ -10,7 +10,7 @@ import { Option } from './interfaces';
 
 export class Multiselect {
 
-  @Prop() options: Option[] | string;
+  @Prop() options: Object[] | string;
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
