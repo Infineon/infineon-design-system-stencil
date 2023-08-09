@@ -18,6 +18,9 @@ import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
+import SingleSelect from './components/SingleSelect/SingleSelect';
+import MultiSelect from './components/MultiSelect/MultiSelect';
+
 
 function App() {
   return (
@@ -43,6 +46,14 @@ function App() {
 
       <h2>Button</h2>
       <Button />
+      <br />
+
+      <h2>SingleSelect</h2>
+      <SingleSelect />
+      <br />
+
+      <h2>MultiSelect</h2>
+      <MultiSelect />
       <br />
 
       <h2>Card</h2>

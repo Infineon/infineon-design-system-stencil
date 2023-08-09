@@ -134,16 +134,16 @@
 
     <h2>Multi-Select</h2>
     <ifx-multiselect
-      options="Choice 1, Choice 2, Choice 3, Choice 4, Choice 5, Choice 6, Choice 7, Choice 8, Choice 9, Choice 10"
-      size="medium (40px)"></ifx-multiselect>
+      options="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false,&quot;children&quot;:[{&quot;value&quot;:&quot;c1&quot;,&quot;label&quot;:&quot;option c1&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c2&quot;,&quot;label&quot;:&quot;option c2&quot;,&quot;selected&quot;:false}]}]"
+      size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
     <br />
     <br />
 
     <h2>Single-Select</h2>
-    <ifx-choices id="single-select" type="single" value="undefined" name="single" ifx-error="false"
-      ifx-error-message="Some error" placeholder="true" ifx-placeholder-value="Placeholder" remove-item-button="false"
-      search-enabled="true" search-placeholder-value="Search..."
-      ifx-choices="Choice 1, Choice 2, Choice 3"></ifx-choices>
+    <ifx-choices type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+      search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
+      ifx-label="" ifx-placeholder-value="Placeholder"
+      ifx-choices="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]"></ifx-choices>
     <br />
     <br />
 

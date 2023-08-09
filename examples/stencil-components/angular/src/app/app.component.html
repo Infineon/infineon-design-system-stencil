@@ -146,19 +146,47 @@
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
   </ifx-sidebar>
   <br />
+  <br />
+
+  <h2>Multi-Select</h2>
+  <ifx-multiselect
+    options="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false,&quot;children&quot;:[{&quot;value&quot;:&quot;c1&quot;,&quot;label&quot;:&quot;option c1&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c2&quot;,&quot;label&quot;:&quot;option c2&quot;,&quot;selected&quot;:false}]}]"
+    size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <br />
+  <br />
+
+  <h2>Single-Select</h2>
+  <ifx-choices type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+    search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
+    ifx-label="" ifx-placeholder-value="Placeholder"
+    ifx-choices="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]"></ifx-choices>
+  <br />
+  <br />
+
 
   <h2>Card</h2>
   <ifx-card href="http://google.com" target="_blank" direction="vertical">
-    <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
-   
-      <ifx-card-overline>Overline</ifx-card-overline>
-      <ifx-card-headline>Headline</ifx-card-headline>
-      <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long description in order to test if the text will overflow its container or not. So I am typing even more text. And more and more.</ifx-card-text>
+    <ifx-card-image position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
+      alt="" slot="img"></ifx-card-image>
 
-      <ifx-card-links slot="buttons">
-        <ifx-button color="primary">Button</ifx-button>
-        <ifx-button color="secondary">Button</ifx-button>
-      </ifx-card-links>
+    <ifx-card-overline>Overline</ifx-card-overline>
+    <ifx-card-headline>Headline</ifx-card-headline>
+    <ifx-card-text>This is a long description in order to test if the text will overflow its container or not. So I am
+      typing even more text. And more and more. This is a long description in order to test if the text will overflow
+      its container or not. So I am typing even more text. And more and more. This is a long description in order to
+      test if the text will overflow its container or not. So I am typing even more text. And more and more. This is a
+      long description in order to test if the text will overflow its container or not. So I am typing even more text.
+      And more and more.This is a long description in order to test if the text will overflow its container or not. So I
+      am typing even more text. And more and more. This is a long description in order to test if the text will overflow
+      its container or not. So I am typing even more text. And more and more.This is a long description in order to test
+      if the text will overflow its container or not. So I am typing even more text. And more and more. This is a long
+      description in order to test if the text will overflow its container or not. So I am typing even more text. And
+      more and more.</ifx-card-text>
+
+    <ifx-card-links slot="buttons">
+      <ifx-button color="primary">Button</ifx-button>
+      <ifx-button color="secondary">Button</ifx-button>
+    </ifx-card-links>
   </ifx-card>
   <br />
 
