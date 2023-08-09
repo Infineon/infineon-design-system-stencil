@@ -1,3 +1,16 @@
+# v19.1.9 (Wed Aug 09 2023)
+
+#### 🐛 Bug Fix
+
+- Added card usage.mdx, added documentation & images [#363](https://github.com/Infineon/infineon-design-system-stencil/pull/363) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v19.1.8 (Wed Aug 09 2023)
 
 #### 🐛 Bug Fix
