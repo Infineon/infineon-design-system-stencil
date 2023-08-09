@@ -416,19 +416,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
 
-  // toggleDropdownMenu(e) {
-  //   console.log("toggle dropdown menu")
-  //   const target = e.composedPath()[0].closest('span')
-
-  //   if (target) {
-  //     return
-  //   }
-
-  //   const ifxChoicesContainer = this.getIfxChoicesContainer()
-  //   this.handleClassList(ifxChoicesContainer, 'toggle', 'show')
-
-  // }
-
   closeDropdownMenu() {
     const ifxChoicesContainer = this.getIfxChoicesContainer()
     this.handleClassList(ifxChoicesContainer, 'remove', 'show')
