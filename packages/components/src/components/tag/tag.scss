@@ -4,26 +4,26 @@
 .container {
   display: inline-flex;
   align-items: center;
-  padding: tokens.$spacing-xxs tokens.$spacing-m;
-  border: 1px solid tokens.$color-gray-300;
-  border-radius: tokens.$border-radius-pill;
+  padding: tokens.$ifxSpace25 tokens.$ifxSpace200;
+  border: 1px solid tokens.$ifxColorEngineering300;
+  border-radius: tokens.$ifxBorderRadiusRound;
   text-decoration: none;
 
   &:hover {
-    border-color: tokens.$color-black;
+    border-color: tokens.$ifxColorBaseBlack;
   }
 
   :active {
-    border-color: tokens.$color-black;
-    background-color: tokens.$color-gray-100;
+    border-color: tokens.$ifxColorBaseBlack;
+    background-color: tokens.$ifxColorEngineering100;
   }
 
   & .label {
     margin: 0;
-    font-weight: tokens.$font-weight-regular;
-    font-size: tokens.$font-size-m;
+    font-weight: tokens.$ifxFontWeightRegular;
+    font-size: tokens.$ifxFontSizeM;
     line-height: 1.5rem;
-    color: tokens.$color-text-black;
+    color: tokens.$ifxColorBaseBlack;
   }
 }
 

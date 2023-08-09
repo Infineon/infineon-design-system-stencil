@@ -4,10 +4,10 @@
 .container { 
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: tokens.$ifxSpace250;
   flex-wrap: wrap;
   text-decoration: none;
-  color: tokens.$color-text-black;
+  color: tokens.$ifxColorBaseBlack;
   padding: 0px 24px 24px 24px;
  
   /* wraps text at spaces and within words */

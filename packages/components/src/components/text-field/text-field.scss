@@ -45,11 +45,11 @@
     & label {
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
       display: flex;
       align-items: center;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -75,11 +75,11 @@
       align-items: center;
       padding: 8px 16px;
       gap: 6px;
-      height: 40px;
-      background-color: tokens.$color-text-white;
-      color: tokens.$color-text-black;
+      height: tokens.$ifxSize500;
+      background-color: tokens.$ifxColorBaseWhite;
+      color: tokens.$ifxColorBaseBlack;
       border: 1px solid #8D8786;
-      border-radius: 1px;
+      border-radius: tokens.$ifxBorderRadius12;
       flex: none;
       order: 0;
       align-self: stretch;
@@ -114,8 +114,8 @@
       &::placeholder {
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: tokens.$ifxFontSizeM;
+        line-height: tokens.$ifxLineHeightM;
         color: #8D8786;
         flex: none;
         order: 1;
@@ -140,8 +140,8 @@
     & .textInput__bottom-wrapper-error {
       font-style: normal;
       font-weight: 400;
-      font-size: 12px;
-      line-height: 16px;
+      font-size: tokens.$ifxFontSizeXs;
+      line-height: tokens.$ifxLineHeightXs;
       letter-spacing: 0.2px;
       color: #CD002F;
       flex: none;

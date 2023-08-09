@@ -17,9 +17,9 @@
   margin-top: 0;
   padding-top: 0;
   font-family: "Source Sans Pro";
-  font-weight: 600;
-  font-size: tokens.$font-size-xl;
-  line-height: 32px;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  font-size: tokens.$ifxFontSize3xl;
+  line-height: tokens.$ifxLineHeight3xl;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -31,7 +31,7 @@
   }
 
   &.horizontal {
-    font-size: tokens.$font-size-l;
+    font-size: tokens.$ifxFontSizeXl;
     line-height: 28px;
   }
 

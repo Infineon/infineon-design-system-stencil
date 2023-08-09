@@ -9,7 +9,7 @@
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #ebe9e9;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   width: 22rem;
   height: auto;
 
@@ -60,7 +60,7 @@
           display: flex;
           flex-direction: column;
           text-decoration: none;
-          color: tokens.$color-text-black;
+          color: tokens.$ifxColorBaseBlack;
           padding: 24px 24px 0px 24px;
         }
       }
@@ -69,7 +69,7 @@
   & .vertical { 
     & .upper__body-wrapper { 
       text-decoration: none;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
 
       & .upper-body { 
         padding: 24px 24px 0px 24px;
