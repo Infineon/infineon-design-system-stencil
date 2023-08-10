@@ -5,35 +5,35 @@
   display: inline-flex;
   align-items: center;
   font-weight: 400;
-  font-size: 16px;
+  font-size: tokens.$ifxFontSizeM;
   text-decoration: none;
-  color: tokens.$color-text-black;
-  gap: 8px;
+  color: tokens.$ifxColorBaseBlack;
+  gap: tokens.$ifxSpace100;
 
   line-height: 1.6;
 
   &.bold {
-    font-weight: 600;
+    font-weight: tokens.$ifxFontWeightSemibold;
   }
 
   &.primary {
-    color: tokens.$color-default-500;
+    color: tokens.$ifxColorOcean500;
   }
 
   &.secondary {
-    color: tokens.$color-highlight-500;
+    color: tokens.$ifxColorBerry500;
   }
 
   &.warning {
-    color: tokens.$color-warning-500;
+    color: tokens.$ifxColorOrange500;
   }
 
   &.danger {
-    color: tokens.$color-danger-500;
+    color: tokens.$ifxColorRed500;
   }
 
   &.success {
-    color: tokens.$color-success-500;
+    color: tokens.$ifxColorGreen500;
   }
 
   &.underline {

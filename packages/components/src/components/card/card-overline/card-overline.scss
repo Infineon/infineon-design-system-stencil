@@ -1,14 +1,14 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
-:host { 
+:host {
   pointer-events: none;
 }
 
 .card-overline {
-  font-size: tokens.$font-size-m;
-  font-weight: tokens.$font-weight-regular;
-  color: tokens.$color-gray-500;
+  font-size: tokens.$ifxFontSizeM;
+  font-weight: tokens.$ifxFontWeightRegular;
+  color: tokens.$ifxColorEngineering500;
   padding-bottom: 4px;
 
   display: -webkit-box;

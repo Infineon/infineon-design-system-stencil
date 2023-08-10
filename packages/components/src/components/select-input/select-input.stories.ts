@@ -1,6 +1,6 @@
 
 export default {
-  title: "Components/SelectInput",
+  title: "Not reviewed/SelectInput",
   tags: ['autodocs'],
 
   args: {

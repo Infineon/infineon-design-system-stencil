@@ -4,20 +4,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: tokens.$ifxSize500;
   width: 350px;
   padding: 8px 16px;
-  background-color: tokens.$color-bg-white;
-  border: 1px solid tokens.$color-gray-200;
+  background-color: tokens.$ifxColorBaseWhite;
+  border: 1px solid tokens.$ifxColorEngineering200;
   border-radius: 1px 1px 0px 0px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightM;
 
   &.flush {
     border: none;
-    border-bottom: 1px solid tokens.$color-gray-200;
+    border-bottom: 1px solid tokens.$ifxColorEngineering200;
 
     &.bulletpoint {
       padding: 8px;
@@ -28,18 +28,18 @@
     & .list-group-item-content::before {
       content: "•";
       display: inline-block;
-      font-size: 18px;
+      font-size: tokens.$ifxFontSizeL;
       padding-right: 10px;
     }
   }
 
   &:hover:not(.show) {
-    background-color: tokens.$color-gray-200;
+    background-color: tokens.$ifxColorEngineering200;
   }
 
   &:active:not(.show) {
-    background-color: tokens.$color-default-500;
-    color: tokens.$color-text-white;
+    background-color: tokens.$ifxColorOcean500;
+    color: tokens.$ifxColorBaseWhite;
   }
 
   &.show {
