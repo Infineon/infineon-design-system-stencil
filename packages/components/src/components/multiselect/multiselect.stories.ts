@@ -40,7 +40,6 @@ export default {
     errorMessage: 'Some error',
     label: '',
     disabled: false,
-    options: jsonOptions,
 
 
   },
@@ -64,16 +63,16 @@ export default {
     },
     errorMessage: { control: 'text' },
     label: { control: 'text' },
-    options: {
-      description: 'Takes an array of objects in the following format',
-    }
+    // options: {
+    //   description: 'Takes an array of objects in the following format',
+    // }
 
   }
 };
 
 const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled, max }) => {
   const element = document.createElement('ifx-multiselect');
-  element.setAttribute('options', options);
+  element.setAttribute('options', JSON.stringify(options));
   element.setAttribute('size', size);
   element.setAttribute('error', error);
   element.setAttribute('error-message', errorMessage);
@@ -87,6 +86,9 @@ const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled, 
 
 
 export const Default = DefaultTemplate.bind({});
+Default.args = {
+  options: options
+}
 
 
 
