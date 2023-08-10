@@ -34,13 +34,14 @@ export default {
   title: 'Components/Multi Select',
   tags: ['autodocs'],
   args: {
-    options: jsonOptions,
     size: "medium (40px)",
     max: 5,
     error: false,
     errorMessage: 'Some error',
     label: '',
     disabled: false,
+    options: jsonOptions,
+
 
   },
   argTypes: {
@@ -50,6 +51,8 @@ export default {
     },
     max: {
       control: { type: 'number' },
+      description: 'Maximum selectable items',
+
     },
     disabled: {
       options: [true, false],
@@ -61,10 +64,14 @@ export default {
     },
     errorMessage: { control: 'text' },
     label: { control: 'text' },
+    options: {
+      description: 'Takes an array of objects in the following format',
+    }
+
   }
 };
 
-const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled }) => {
+const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled, max }) => {
   const element = document.createElement('ifx-multiselect');
   element.setAttribute('options', options);
   element.setAttribute('size', size);
@@ -72,6 +79,7 @@ const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled }
   element.setAttribute('error-message', errorMessage);
   element.setAttribute('label', label);
   element.setAttribute('disabled', disabled);
+  element.setAttribute('max-item-count', max);
   element.addEventListener('ifxSelect', action('ifxSelect'));
 
   return element;

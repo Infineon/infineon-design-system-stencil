@@ -3,8 +3,9 @@
 <template>
   <div>
     <h2>MultiSelect</h2>
-    <ifx-multiselect :options="options" @ifxSelect="handleMultiSelectChange" size="medium (40px)" :error="error"
-      :erroMessage="errorMessage" error-message="Some error" label="" :disabled="disabled"></ifx-multiselect>
+    <ifx-multiselect :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange" size="medium (40px)"
+      :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
+      :disabled="disabled"></ifx-multiselect>
     <div>
       <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
@@ -51,6 +52,8 @@ let options = ref([{
     }
   ]
 }]);
+
+console.log("options", options)
 
 
 function handleMultiSelectChange(event) {

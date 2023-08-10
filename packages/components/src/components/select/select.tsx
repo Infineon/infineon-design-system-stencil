@@ -81,7 +81,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Placeholder";
   @Event() ifxSelect: EventEmitter<CustomEvent>;
-  @Prop() ifxChoices: Array<any> | string;
+  @Prop() ifxChoices: any[] | string;
   @Prop() ifxSize: string = 'medium (40px)';
 
   @Element() private readonly root: HTMLElement;
@@ -185,10 +185,23 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   @Method()
-  public async setChoices(choices: Array<any> | string, value: string, label: string, replaceChoices?: boolean) {
-    const listOfChoices = typeof choices === 'string' //passed in string form via storybook
-      ? JSON.parse(choices).map((option) => ({ value: option.value, label: option.label, selected: option.selected }))
-      : choices.map(option => ({ ...option }));
+  public async setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) {
+    let listOfChoices;
+    //  = typeof choices === 'string' //passed in string form via storybook
+    //   ? JSON.parse(choices).map((option) => ({ value: option.value, label: option.label, selected: option.selected }))
+    //   : choices.map(option => ({ ...option }));
+
+    if (typeof choices === 'string') {
+      try {
+        listOfChoices = JSON.parse(choices);
+      } catch (err) {
+        console.error('Failed to parse choices:', err);
+      }
+    } else if (Array.isArray(choices) || typeof choices === 'object') {
+      listOfChoices = choices;
+    } else {
+      console.error('Unexpected value for choices:', this.ifxChoices);
+    }
 
     this.choice.setChoices(listOfChoices, value, label, replaceChoices);
 
@@ -563,7 +576,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        // console.log("choices", this.ifxChoices)
         this.setChoices(this.ifxChoices, "value", "label", true)
 
 

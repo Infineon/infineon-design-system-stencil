@@ -1,15 +1,67 @@
-import React from 'react';
-import { IfxMultiselect } from '@infineon/infineon-design-system-react';
+import React, { useState } from 'react';
+import { IfxMultiselect, IfxButton } from '@infineon/infineon-design-system-react';
 
-function Spinner() {
+
+function App() {
+  const [disabled, setDisabled] = useState(false);
+  const [error, setError] = useState(false);
+  const [options] = useState([{
+    value: "a",
+    label: "option a",
+    selected: false
+  },
+  {
+    value: "b",
+    label: "option b",
+    selected: false
+  },
+  {
+    value: "c",
+    label: "option c",
+    selected: false,
+    children: [
+      {
+        value: "c1",
+        label: "option c1",
+        selected: false
+      },
+      {
+        value: "c2",
+        label: "option c2",
+        selected: false
+      }
+    ]
+  }]);
+
+
+  const handleIfxSelect = (e) => {
+    console.log('ifxSelect event emitted with value:', e.detail);
+  }
+
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
+  const toggleError = () => {
+    setError(prevError => !prevError);
+  }
+
+
   return (
     <div>
-      <IfxMultiselect options="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false,&quot;children&quot;:[{&quot;value&quot;:&quot;c1&quot;,&quot;label&quot;:&quot;option c1&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c2&quot;,&quot;label&quot;:&quot;option c2&quot;,&quot;selected&quot;:false}]}]"
-        size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></IfxMultiselect>
+      <IfxMultiselect options={options}
+        size="medium (40px)" onIfxSelect={handleIfxSelect} disabled={disabled} error={error} error-message="Some error" label="" ></IfxMultiselect>
+      <div>
+        <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>
+      </div>
+      <br />
     </div>
-  )
+  );
 }
 
-export default Spinner;
+export default App;
+
 
 

@@ -10,7 +10,7 @@ import { Option } from './interfaces';
 
 export class Multiselect {
 
-  @Prop() options: Object[] | string;
+  @Prop() options: any[] | string;
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
@@ -34,11 +34,26 @@ export class Multiselect {
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
 
+
+
   @Watch('options')
   handleOptionsChange() {
-    this.listOfOptions = typeof this.options === 'string' //passed in string form via storybook
-      ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
-      : this.options.map(option => ({ ...option }));
+    // this.listOfOptions = (typeof this.options === 'string' && (this.options.startsWith('{') || this.options.startsWith('[')))  //passed in string form via storybook
+    //   ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
+    //   : this.options;
+
+
+    if (typeof this.options === 'string') {
+      try {
+        this.listOfOptions = JSON.parse(this.options);
+      } catch (err) {
+        console.error('Failed to parse options:', err);
+      }
+    } else if (Array.isArray(this.options) || typeof this.options === 'object') {
+      this.listOfOptions = this.options;
+    } else {
+      console.error('Unexpected value for options:', this.options);
+    }
 
     // Update persistentSelectedOptions based on initially selected states
     const initiallySelected = this.listOfOptions.filter(option => option.selected);

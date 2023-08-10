@@ -221,7 +221,7 @@ Type: `Promise<this>`
 
 
 
-### `setChoices(choices: Array<any> | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>`
+### `setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>`
 
 
 

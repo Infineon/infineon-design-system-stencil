@@ -1,17 +1,55 @@
-import React from 'react';
-import { IfxChoices } from '@infineon/infineon-design-system-react';
 
-function Spinner() {
+import React, { useState } from 'react';
+import { IfxChoices, IfxButton } from '@infineon/infineon-design-system-react';
+
+
+function App() {
+  const [disabled, setDisabled] = useState(false);
+  const [error, setError] = useState(false);
+  const [options] = useState([{
+    value: "a",
+    label: "option a",
+    selected: false
+  },
+  {
+    value: "b",
+    label: "option b",
+    selected: false
+  },
+  {
+    value: "c",
+    label: "option c",
+    selected: false
+  }]);
+
+  const handleIfxSelect = (e) => {
+    console.log('ifxSelect event emitted with value:', e.detail);
+  }
+
+
+  const toggleDisabled = () => {
+    setDisabled(prevDisabled => !prevDisabled);
+  }
+
+  const toggleError = () => {
+    setError(prevError => !prevError);
+  }
+
   return (
     <div>
-      <IfxChoices type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
-        search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
+      <IfxChoices ifx-choices={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+        search-placeholder-value="Search..." ifx-disabled={disabled} ifx-error={error} ifx-error-message="Some error"
         ifx-label="" ifx-placeholder-value="Placeholder"
-        ifx-choices="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]"></IfxChoices>
+      ></IfxChoices>
+      <div>
+        <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+        <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>
+
+      </div>
     </div>
   )
 }
 
-export default Spinner;
+export default App;
 
 

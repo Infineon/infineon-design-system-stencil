@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property       | Attribute        | Description | Type                 | Default           |
-| -------------- | ---------------- | ----------- | -------------------- | ----------------- |
-| `disabled`     | `disabled`       |             | `boolean`            | `false`           |
-| `error`        | `error`          |             | `boolean`            | `false`           |
-| `errorMessage` | `error-message`  |             | `string`             | `"Error"`         |
-| `label`        | `label`          |             | `string`             | `""`              |
-| `maxItemCount` | `max-item-count` |             | `number`             | `10`              |
-| `options`      | `options`        |             | `Object[] \| string` | `undefined`       |
-| `size`         | `size`           |             | `string`             | `'medium (40px)'` |
+| Property       | Attribute        | Description | Type              | Default           |
+| -------------- | ---------------- | ----------- | ----------------- | ----------------- |
+| `disabled`     | `disabled`       |             | `boolean`         | `false`           |
+| `error`        | `error`          |             | `boolean`         | `false`           |
+| `errorMessage` | `error-message`  |             | `string`          | `"Error"`         |
+| `label`        | `label`          |             | `string`          | `""`              |
+| `maxItemCount` | `max-item-count` |             | `number`          | `10`              |
+| `options`      | `options`        |             | `any[] \| string` | `undefined`       |
+| `size`         | `size`           |             | `string`          | `'medium (40px)'` |
 
 
 ## Events
