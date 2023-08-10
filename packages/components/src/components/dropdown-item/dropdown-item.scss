@@ -3,42 +3,42 @@
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: tokens.$ifxSpace150;
   width: 100%;
   text-align: inherit;
   white-space: nowrap;
   border: 0;
   padding: 8px 16px;
   text-decoration: none;
-  color: tokens.$color-text-black;
+  color: tokens.$ifxColorBaseBlack;
 
   &.primary {
     input[type=checkbox] {
-      accent-color: tokens.$color-default-500;
+      accent-color: tokens.$ifxColorOcean500;
     }
   }
 
   &.secondary {
     input[type=checkbox] {
-      accent-color: tokens.$color-highlight-500;
+      accent-color: tokens.$ifxColorBerry500;
     }
   }
 
   &.success {
     input[type=checkbox] {
-      accent-color: tokens.$color-success-500;
+      accent-color: tokens.$ifxColorGreen500;
     }
   }
 
   &.danger {
     input[type=checkbox] {
-      accent-color: tokens.$color-danger-500;
+      accent-color: tokens.$ifxColorRed500;
     }
   }
 
   &.warning {
     input[type=checkbox] {
-      accent-color: tokens.$color-warning-500;
+      accent-color: tokens.$ifxColorOrange500;
     }
   }
 
@@ -51,30 +51,30 @@
   }
 
   & .form-check-input {
-    border-radius: 1px;
+    border-radius: tokens.$ifxBorderRadius12;
   }
 
 
 
   &:hover {
-    font-weight: 600;
-    background-color: tokens.$color-gray-200;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    background-color: tokens.$ifxColorEngineering200;
 
 
     & svg {
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
 
     }
   }
 
   &.active,
   &:active {
-    font-weight: 600;
-    background-color: transparent;
-    color: tokens.$color-default-500;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    background-color: tokens.$ifxColorBaseTransparent;
+    color: tokens.$ifxColorOcean500;
 
     & svg {
-      color: tokens.$color-default-500;
+      color: tokens.$ifxColorOcean500;
       fill: none;
     }
   }

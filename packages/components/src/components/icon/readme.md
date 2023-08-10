@@ -35,8 +35,6 @@
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
- - [ifx-multi-select-input](../multi-select-input)
- - [ifx-multi-select-input-item](../multi-select-input)
  - [ifx-multiselect](../multiselect)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-menu-item](../navbar)
@@ -60,8 +58,6 @@ graph TD;
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
   ifx-modal --> ifx-icon
-  ifx-multi-select-input --> ifx-icon
-  ifx-multi-select-input-item --> ifx-icon
   ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-menu-item --> ifx-icon
