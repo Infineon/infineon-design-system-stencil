@@ -1,0 +1,181 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.multiSelect {
+  &.dropdown {
+    box-sizing: border-box;
+    width: 300px;
+    border: 1px solid transparent;
+
+    &:active {
+      outline: none;
+      border: 1px solid #0A8276;
+
+    }
+  }
+}
+
+
+.multiSelectInput__container {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  //width: 588px;
+  width: 100%;
+  //height: 64px;
+
+  border: 1px solid #8D8786;
+
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+
+
+  &:focus:not(.success, :active) {
+    outline: 2px solid #0A8276;
+    border: 1px solid #3C3A39;
+    border-radius: tokens.$ifxBorderRadius12;
+    outline-offset: 2px;
+  }
+
+  &:hover:not(:disabled, .success) {
+    border: 1px solid #3C3A39;
+    cursor: pointer; //only when readonly
+  }
+
+  &.success {
+    border: 1px solid #4CA460;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & .prev {
+    position: absolute;
+    //top: 0;
+    //left: 35px;
+    top: 7px;
+    left: 5px;
+    z-index: 1000;
+    cursor: pointer;
+
+    & ifx-icon svg {
+      width: 10px;
+    }
+  }
+
+  & .next {
+    position: absolute;
+    top: 7px;
+    right: 40px;
+    z-index: 1000;
+    cursor: pointer;
+
+    & ifx-icon svg {
+      width: 10px;
+    }
+  }
+
+  & .multiSelectInput__icon-wrapper {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.show {
+    & .multiSelectInput__icon-wrapper {
+      & ifx-icon {
+        transition: .3s;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  & .multiSelectInput__icon-wrapper {
+    & ifx-icon {
+      position: absolute;
+      top: 12px;
+      right: 17px;
+      transition: .3s;
+    }
+  }
+
+  & .multiSelectInput__wrapper {
+    position: relative;
+    //overflow: hidden; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    //padding: 8px;
+    padding: 0px;
+    //gap: 6px;
+    //font-size: tokens.$ifxFontSizeS;
+    height: tokens.$ifxSize500;
+    left: 20px;
+    //width: 250px;
+    width: 220px;
+
+    background-color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorBaseBlack;
+
+    //border: 1px solid #8D8786;
+    border-radius: tokens.$ifxBorderRadius12;
+
+    flex: none;
+    //order: 0;
+    //align-self: stretch;
+    flex-grow: 0;
+
+    // & span { 
+    //   pointer-events: none;
+    // }
+
+    & .multiSelectInput__content {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      width: 220px;
+      gap: 6px;
+      font-size: tokens.$ifxFontSizeS;
+      //height: 100%;
+      overflow: hidden;
+
+      & span {
+        font-style: normal;
+        font-weight: 400;
+        font-size: tokens.$ifxFontSizeM;
+        line-height: tokens.$ifxLineHeightM;
+        pointer-events: none;
+        color: #8D8786;
+
+        flex: none;
+        order: 1;
+        flex-grow: 1;
+      }
+    }
+
+  }
+
+
+  & .textInput__bottom-wrapper-error {
+    font-style: normal;
+    font-weight: 400;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
+
+    letter-spacing: 0.2px;
+
+    color: #CD002F;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+  }
+}

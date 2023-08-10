@@ -114,8 +114,8 @@
       &::placeholder {
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: tokens.$ifxFontSizeM;
+        line-height: tokens.$ifxLineHeightM;
         color: #8D8786;
         flex: none;
         order: 1;
