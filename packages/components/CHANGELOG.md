@@ -1,3 +1,16 @@
+# v20.0.0 (Thu Aug 10 2023)
+
+#### 💥 Breaking Change
+
+- 324 rework update token names to the new ones [#367](https://github.com/Infineon/infineon-design-system-stencil/pull/367) ([@benedikt-ifx](https://github.com/benedikt-ifx) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v19.1.9 (Wed Aug 09 2023)
 
 #### 🐛 Bug Fix
