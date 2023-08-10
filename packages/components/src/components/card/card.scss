@@ -9,75 +9,75 @@
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #ebe9e9;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   width: 22rem;
   height: auto;
 
-  &.noBtns { 
-    & .vertical { 
-      & .lower__body-wrapper { 
+  &.noBtns {
+    & .vertical {
+      & .lower__body-wrapper {
         padding-bottom: 24px;
       }
     }
 
-    & .horizontal { 
-      & .lower__body-wrapper { 
+    & .horizontal {
+      & .lower__body-wrapper {
         padding-bottom: 24px;
       }
     }
   }
 
-  &:hover { 
+  &:hover {
     cursor: pointer;
     border-color: #0A8276;
   }
 
-  & .horizontal { 
+  & .horizontal {
     display: flex;
     flex-direction: row;
     min-height: 218px;
 
-      & .card-img {
-        flex: 1;
+    & .card-img {
+      flex: 1;
+      text-decoration: none;
+
+      &.noImage {
+        display: none;
+      }
+
+      & ::slotted([slot=img]) {
+        width: 100%;
+        vertical-align: bottom;
+      }
+    }
+
+    & .lower__body-wrapper {
+      flex: 1;
+      display: grid;
+      grid-template-rows: 1fr auto;
+
+      & .upper-body {
+        display: flex;
+        flex-direction: column;
         text-decoration: none;
-
-        &.noImage { 
-          display: none;
-        }
-
-        & ::slotted([slot=img]) {
-          width: 100%;
-          vertical-align: bottom;
-        }
+        color: tokens.$ifxColorBaseBlack;
+        padding: 24px 24px 0px 24px;
       }
-
-      & .lower__body-wrapper { 
-        flex: 1;
-        display: grid;
-        grid-template-rows: 1fr auto;
-
-        & .upper-body { 
-          display: flex;
-          flex-direction: column;
-          text-decoration: none;
-          color: tokens.$color-text-black;
-          padding: 24px 24px 0px 24px;
-        }
-      }
+    }
   }
 
-  & .vertical { 
-    & .upper__body-wrapper { 
+  & .vertical {
+    & .upper__body-wrapper {
       text-decoration: none;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
 
-      & .upper-body { 
+      & .upper-body {
         padding: 24px 24px 0px 24px;
       }
     }
 
-    & .lower__body-wrapper { 
-      &:hover { 
+    & .lower__body-wrapper {
+      &:hover {
         border-color: #ebe9e9;
       }
     }
@@ -100,12 +100,12 @@
     }
 
     &.left {
-      & .horizontal { 
+      & .horizontal {
         & .card-img {
           order: 1;
         }
-  
-        & .lower__body-wrapper { 
+
+        & .lower__body-wrapper {
           order: 2;
         }
       }

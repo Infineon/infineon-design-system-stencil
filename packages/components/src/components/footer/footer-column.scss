@@ -4,14 +4,14 @@
 .col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  color: tokens.$color-text-black;
+  gap: tokens.$ifxSpace150;
+  color: tokens.$ifxColorBaseBlack;
 
   & ::slotted([slot=title]) {
     box-sizing: border-box;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     margin: 0;
     padding: 0;
   }
@@ -19,7 +19,7 @@
   & ::slotted([slot=link]) {
     box-sizing: border-box;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
   }
 }

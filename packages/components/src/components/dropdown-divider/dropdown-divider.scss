@@ -1,18 +1,20 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
 .dropdown__divider-container {
-  box-sizing: border-box; 
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 4px 16px;
-  
+
   width: 235px;
   height: 9px;
 
-  & .dropdown__divider-wrapper { 
+  & .dropdown__divider-wrapper {
     width: 203px;
     height: 1px;
 
-    background: #EEEDED;
+    background: tokens.$ifxColorEngineering200;
   }
 }

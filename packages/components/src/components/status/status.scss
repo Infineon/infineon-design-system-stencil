@@ -9,84 +9,84 @@
   display: flex;
   min-height: 1.25em;
   align-items: center;
-  padding: tokens.$spacing-xxs tokens.$spacing-m;
-  border-radius: tokens.$border-radius-pill;
+  padding: tokens.$ifxSpace25 tokens.$ifxSpace200;
+  border-radius: tokens.$ifxBorderRadiusRound;
 }
 
 .text {
   margin: 0;
   padding-left: 5px;
   font-style: normal;
-  font-weight: tokens.$font-weight-semi-bold;
-  font-size: tokens.$font-size-m;
-  line-height: 1.25rem;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightS;
   display: inline;
-  color: tokens.$color-text-black;
+  color: tokens.$ifxColorBaseBlack;
 }
 
 .dot {
   display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: tokens.$border-radius-circle;
+  width: tokens.$ifxSize100;
+  height: tokens.$ifxSize100;
+  border-radius: tokens.$ifxBorderRadiusRound;
 }
 
 .container {
   &.border-orange {
-    border: tokens.$border-width-default solid tokens.$color-warning-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOrange500;
   }
 
   &.border-ocean {
-    border: tokens.$border-width-default solid tokens.$color-default-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
   }
 
   &.border-grey {
-    border: tokens.$border-width-default solid tokens.$color-gray-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorEngineering500;
   }
 
   &.border-grey-200 {
-    border: tokens.$border-width-default solid tokens.$color-gray-200;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorEngineering200;
   }
 
   &.border-red {
-    border: tokens.$border-width-default solid tokens.$color-danger-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorRed500;
   }
 
   &.border-green {
-    border: tokens.$border-width-default solid tokens.$color-success-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorGreen500;
   }
 
   &.border-berry {
-    border: tokens.$border-width-default solid tokens.$color-highlight-500;
+    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorBerry500;
   }
 }
 
 .dot {
   &.orange {
-    background-color: tokens.$color-warning-500;
+    background-color: tokens.$ifxColorOrange500;
   }
 
   &.ocean {
-    background-color: tokens.$color-default-500;
+    background-color: tokens.$ifxColorOcean500;
   }
 
   &.grey {
-    background-color: tokens.$color-gray-500;
+    background-color: tokens.$ifxColorEngineering500;
   }
 
   &.grey-200 {
-    background-color: tokens.$color-gray-200;
+    background-color: tokens.$ifxColorEngineering200;
   }
 
   &.red {
-    background-color: tokens.$color-danger-500;
+    background-color: tokens.$ifxColorRed500;
   }
 
   &.green {
-    background-color: tokens.$color-success-500;
+    background-color: tokens.$ifxColorGreen500;
   }
 
   &.berry {
-    background-color: tokens.$color-highlight-500;
+    background-color: tokens.$ifxColorBerry500;
   }
 }

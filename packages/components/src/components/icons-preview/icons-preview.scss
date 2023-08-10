@@ -1,17 +1,19 @@
-.container { 
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.container {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.html-wrapper { 
+.html-wrapper {
   background: rgb(38, 38, 38);
   padding: 20px;
   color: white;
   font-family: monospace;
   position: relative;
 
-  & button { 
+  & button {
     position: absolute;
     right: 0px;
     bottom: 0px;
@@ -19,32 +21,32 @@
     color: #C9CDCF;
     border: 0 none;
     padding: 4px 10px;
-    font-size: 12px;
+    font-size: tokens.$ifxFontSizeXs;
     font-family: "Nunito Sans";
     font-weight: 700;
-    border-top: 1px solid rgba(255,255,255,.1);
-    border-left: 1px solid rgba(255,255,255,.1);
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    border-left: 1px solid rgba(255, 255, 255, .1);
     margin-left: -1px;
     border-radius: 4px 0 0 0;
     cursor: pointer;
   }
 
-  & .component-name { 
+  & .component-name {
     color: #A8FF60;
   }
 
-  & .attribute-name { 
+  & .attribute-name {
     color: rgb(150, 203, 254);
   }
 
-  & .attribute-value { 
+  & .attribute-value {
     color: rgb(180, 116, 221);
   }
 
-  
+
 }
 
-.preview__container { 
+.preview__container {
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -52,7 +54,7 @@
   flex-wrap: wrap;
   gap: 4px;
 
-  & .preview__container-item { 
+  & .preview__container-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,16 +64,16 @@
     height: 50px;
     position: relative;
 
-    &:active { 
+    &:active {
       border-color: #378375;
     }
 
-    &:hover { 
+    &:hover {
       cursor: pointer;
     }
 
-    &.copied { 
-      &::after { 
+    &.copied {
+      &::after {
         z-index: 10000;
         content: 'copied!';
         position: absolute;

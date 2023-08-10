@@ -1,3 +1,5 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
 .inf__filter-input {
   width: 160px;
   min-height: calc(1.75em + 18px);
@@ -9,11 +11,11 @@
   font-family: "Source Sans Pro";
   font-weight: 400;
   line-height: 1.75;
-  color: #1d1d1d;
+  color: tokens.$ifxColorBaseBlack;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #c5bbbd;
   appearance: none;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
