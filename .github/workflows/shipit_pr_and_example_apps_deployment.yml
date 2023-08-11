@@ -222,24 +222,23 @@ jobs:
             const reactUrl = "${{ needs.deploy-preview-react.outputs.deployment-url }}";
             const angularUrl = "${{ needs.deploy-preview-angular.outputs.deployment-url }}";
             const vanillaUrl = "${{ needs.deploy-preview-vanilla.outputs.deployment-url }}";
-            const newText = `PR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
+            const EXAMPLE_APPS_IDENTIFIER = "--EXAMPLE-APPS-PREVIEW--";
+            const newText = `--EXAMPLE-APPS-PREVIEW--\nPR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
   
             const {data: comments} = await github.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber
             });
-            const autoComment = comments.find(c => c.user.login === 'github-actions[bot]');
-            if (autoComment) {
-              const existingText = autoComment.body;
-              if (!existingText.includes(newText)) {
-                await github.issues.updateComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  comment_id: autoComment.id,
-                  body: `${existingText}\n${newText}`
-                });
-              } 
+            const appsComment = comments.find(c => c.body.startsWith(EXAMPLE_APPS_IDENTIFIER));
+
+            if (appsComment) {
+              await github.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: appsComment.id,
+                body: newText
+              });
             } else {
               await github.issues.createComment({
                 owner: context.repo.owner,
