@@ -14,7 +14,7 @@ import CardSimple from '../../../public-storybook/images/card/card-simple.png';
 import CardStates from '../../../public-storybook/images/card/card-states.png';
 import CardWithButton from '../../../public-storybook/images/card/card-with-button.png';
 import CardWithLink from '../../../public-storybook/images/card/card-with-link.png';
-import CardWithTextLink from '../../../public-storybook/images/card/card-with-text-link.png';
+import CardWithRedirectLink from '../../../public-storybook/images/card/card-with-redirect-link.png';
 
 
 <Meta of={CardStories} />
@@ -57,7 +57,7 @@ The main content area of the card where the text copy is placed. The text should
 
 
 **Additional interactive elements (5)**\
-Another optional elements that can contain additional actions like a button or links related to the card content.
+Another optional elements that can contain additional actions like buttons or links related to the card content.
 
 
 **Card Container (6)**\
@@ -83,32 +83,21 @@ Simple card which is linked to a specific internal page.
 
 
 ### Bold Link
-A prominent link can be added to the vertical card, visually distinguished by being rendered in bold and accompanied by an arrow icon. This link style could be used to  redirect the user to a new page and not the corresponding one. A **maximum of two** text links should be used.
-<img src={CardWithLink} alt="Card with link" />
+The card may contain "text" links that offer additional actions to the user. For example, "Quick view" or "Data sheet" links provide quick access to specific actions related to the card content before clicking on the card itself. A **maximum of three** links are allowed.
+<img src={CardWithLink} alt="Card With Link" />
 
 
-### Text Link
-The card may contain "text" links that offer additional actions to the user. For example, "Quick view" or "Data sheet" links provide quick access to specific actions related to the card content before clicking on the card itself. A **maximum of three** text links should be used.
-> Text Link is not available in the horizontal layout.
+#### Icon right
+A link can be also combined with a right aligned arrow icon. This link variant could be used to redirect the user to a new page and not the corresponding one. A **maximum of three** links are allowed.
 
-<img src={CardWithTextLink} alt="Card with text link" />
+<img src={CardWithRedirectLink} alt="Card With Redirect Link" />
 
 
-### Secondary Button
-A secondary button can be included, which serves as a direct action to improve or modify the content presented in the card. **Only one** button should be used.
-> Secondary Button is not available in the horizontal layout.
-
+### Button
+Buttons can be included, which serves as a direct action to improve or modify the content presented in the card. The primary, secondary and tertiary button can be used. Consider to place the **[buttons by importance](https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-button--usage)**.
+Use cases can be showing a CTA inside a card (e.g. sign-up process) or if you want to differentiate the CTAs being shown (e.g., Sign-up (Primary Button), Remind me later (Secondary Button) , Don’t ask me again (Tertiary)). A **maximum of three** buttons are allowed.
 <img src={CardWithButton} alt="Card with button" />
 
-
-## States
-The card has two different states: default and hover. While hovering over a card the card-border and the card-title is colored in ocean-500.
-
-### Vertical
-<img src={CardStates} alt="Card States" />
-
-### Horizontal
-<img src={CardHorizontalStates} alt="Card Horizontal States" />
 
 ## Action areas
 
@@ -121,6 +110,16 @@ The fist action area is fully hoverable/clickable.
 If the second action area with buttons or links is activated, only these bring their native interactivity.
 <img src={CardSecondActionArea} alt="Card Second First Action Area" width="50%" />
 <img src={CardHorizontalSecondActionArea} alt="Card Horizontal Second First Action Area" />
+
+
+## States
+The card has two different states: default and hover. While hovering over a card the card-border and the card-title is colored in ocean-500. While hovering over the buttons and links, the respective states become active and the whole card keeps its default state.
+
+### Vertical
+<img src={CardStates} alt="Card States" />
+
+### Horizontal
+<img src={CardHorizontalStates} alt="Card Horizontal States" />
 
 ## Mobile
 

@@ -8,7 +8,6 @@
   <Checkbox />
   <RadioButton />
   <ProgressBar />
-
   <SearchField />
   <SearchBar />
   <TextInput />
@@ -23,11 +22,12 @@
   <Tabs />
   <IconButton />
   <Card />
+  <Dropdown />
+  <Footer />
 </template>
 
 
 <script lang="ts" setup>
-
 
 import Alert from './components/Alert.vue'
 import Button from './components/Button.vue'
@@ -46,7 +46,8 @@ import RadioButton from './components/RadioButton.vue'
 import Tag from './components/Tag.vue'
 import Navbar from './components/Navbar.vue'
 import Card from './components/Card.vue'
-
+import Dropdown from './components/Dropdown.vue'
+import Footer from './components/Footer.vue'
 
 </script>
 
