@@ -1,3 +1,15 @@
+# v20.0.2 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- Footer: fixed minor issues + added to example apps [#362](https://github.com/Infineon/infineon-design-system-stencil/pull/362) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.0.1 (Fri Aug 11 2023)
 
 #### 🐛 Bug Fix
