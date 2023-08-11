@@ -21,6 +21,7 @@
   <Card />
   <Switch />
   <Dropdown />
+  <Footer />
 </template>
 
 
@@ -44,6 +45,7 @@ import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
 import Dropdown from './components/Dropdown.vue'
+import Footer from './components/Footer.vue'
 
 </script>
 

@@ -1,6 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/global";
-
+@use "../../global/font.scss";
 
 .textInput__container {
   display: flex;

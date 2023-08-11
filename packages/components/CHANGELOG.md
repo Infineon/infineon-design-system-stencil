@@ -1,3 +1,28 @@
+# v20.0.2 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- Footer: fixed minor issues + added to example apps [#362](https://github.com/Infineon/infineon-design-system-stencil/pull/362) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.0.1 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- 366 documentation card update [#369](https://github.com/Infineon/infineon-design-system-stencil/pull/369) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.0.0 (Thu Aug 10 2023)
 
 #### 💥 Breaking Change
