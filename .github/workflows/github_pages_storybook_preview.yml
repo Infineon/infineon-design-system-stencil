@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "Preview URL: ${{ steps.preview.outputs.deployment-url }}"
 
-      - name: Update comment in PR
+      - name: Update comment in PR # add comment on github
         uses: actions/github-script@v4
         with:
           script: |
