@@ -20,32 +20,6 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
 
-let disabled = ref(false);
-let checkboxValue = ref(false);
-let error = ref(false);
-
-
-function handleCheckboxChange(event) {
-  console.log("updating checkbox value: ", event.detail)
-  checkboxValue.value = event.detail;
-};
-
-const handleSubmit = () => {
-  console.log('Form submitted. Checkbox value:', checkboxValue.value);
-};
-
-const toggleDisabled = () => {
-  disabled.value = !disabled.value;
-};
-
-const toggleError = () => {
-  error.value = !error.value;
-};
-
-const toggleValue = () => {
-  checkboxValue.value = !checkboxValue.value;
-};
 </script>
 
