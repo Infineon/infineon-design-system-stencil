@@ -14,8 +14,8 @@ import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
 import IconButton from './components/IconButton/IconButton';
-
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
@@ -89,6 +89,11 @@ function App() {
       <h2>IconButton</h2>
       <IconButton />
       <br />
+
+      <h2>Footer</h2>
+      <Footer />
+      <br />
+
       </div>
    )
 }

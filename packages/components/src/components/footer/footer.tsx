@@ -6,7 +6,7 @@ import { Component, h, Element, Prop, State, Host } from '@stencil/core';
   shadow: true,
 })
 
-export class Card {
+export class Footer {
   @Element() el;
   @Prop() variant: string = 'default'
   @State() large: boolean = false;
