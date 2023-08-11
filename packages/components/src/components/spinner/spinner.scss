@@ -1,3 +1,5 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
 :host {
   display: inline-block;
 
@@ -5,13 +7,13 @@
 
 .spinner {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: tokens.$ifxSize500;
+  height: tokens.$ifxSize500;
 }
 
 .spinner.s {
-  width: 24px;
-  height: 24px;
+  width: tokens.$ifxSize300;
+  height: tokens.$ifxSize300;
 }
 
 .border {
@@ -29,15 +31,15 @@
   animation: spin 2s linear infinite;
 }
 
-.semiconductor { 
+.semiconductor {
   width: 100%;
   height: 100%;
   animation: spin 2s linear infinite;
 
-  &.s { 
-    & svg { 
-      width: 24px;
-      height: 24px;
+  &.s {
+    & svg {
+      width: tokens.$ifxSize300;
+      height: tokens.$ifxSize300;
     }
   }
 }
