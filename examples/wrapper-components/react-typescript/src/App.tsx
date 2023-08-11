@@ -15,7 +15,7 @@ import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
 import IconButton from './components/IconButton/IconButton';
 import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
+import Dropdown from './components/Dropdown/Dropdown';
 
 function App() {
 
@@ -62,39 +62,38 @@ function App() {
          <br/>
 
 
-      <h2>Spinner</h2>
-      <Spinner />
-      <br />
-      
-      <h2>Link</h2>
-      <Link />
-      <br />
+         <h2>Spinner</h2>
+         <Spinner />
+         <br />
+         
+         <h2>Link</h2>
+         <Link />
+         <br />
 
-      <h2>Number Indicator</h2>
-      <NumberIndicator />
-      <br />
-      
-      <h2>Search Field</h2>
-      <SearchField />
-      <br />
-      
-      <h2>Number indicator</h2>
-      <NumberIndicator />
-      <br />
+         <h2>Number Indicator</h2>
+         <NumberIndicator />
+         <br />
+         
+         <h2>Search Field</h2>
+         <SearchField />
+         <br />
+         
+         <h2>Number indicator</h2>
+         <NumberIndicator />
+         <br />
 
-      <h2>Sidebar</h2>
-      <Sidebar />
-      <br />
+         <h2>Sidebar</h2>
+         <Sidebar />
+         <br />
 
-      <h2>IconButton</h2>
-      <IconButton />
-      <br />
+         <h2>Dropdown</h2>
+         <Dropdown />
+         <br />
 
-      <h2>Footer</h2>
-      <Footer />
-      <br />
-
-      </div>
+         <h2>IconButton</h2>
+         <IconButton />
+         <br />
+         </div>
    )
 }
 export default App

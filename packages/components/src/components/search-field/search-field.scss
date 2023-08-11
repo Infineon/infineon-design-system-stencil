@@ -1,8 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 .search-field {
+  box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
+  padding: 16px;
 
   .search-field__wrapper {
     box-sizing: border-box;

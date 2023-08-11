@@ -18,7 +18,7 @@ import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
-import Footer from './components/Footer/Footer';
+import Dropdown from './components/Dropdown/Dropdown';
 
 function App() {
   return (
@@ -101,9 +101,10 @@ function App() {
       <Switch />
       <br />
 
-      <h2>Footer</h2>
-      <Footer />
+      <h2>Dropdown</h2>
+      <Dropdown />
       <br />
+
     </div>
 
   )
