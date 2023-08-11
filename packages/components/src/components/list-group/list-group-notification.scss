@@ -5,8 +5,8 @@
   height: 88px;
   padding: 16px;
   margin-bottom: 8px;
-  background-color: tokens.$color-bg-white;
-  border: 1px solid tokens.$color-gray-200;
+  background-color: tokens.$ifxColorBaseWhite;
+  border: 1px solid tokens.$ifxColorEngineering200;
 
   & .description__section {
     display: -webkit-box;
@@ -18,23 +18,23 @@
 
   &.flush {
     border: none;
-    border-bottom: 1px solid tokens.$color-gray-200;
+    border-bottom: 1px solid tokens.$ifxColorEngineering200;
   }
 
   & .heading__section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-    color: tokens.$color-default-500;
+    color: tokens.$ifxColorOcean500;
   }
 
   & .heading__section-title {
     flex: 1;
     margin: 0;
     font-family: "Source Sans Pro";
-    font-weight: 600;
+    font-weight: tokens.$ifxFontWeightSemibold;
     line-height: 1.2;
-    font-size: 1rem;
+    font-size: tokens.$ifxFontSizeM;
 
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -46,8 +46,8 @@
   & .heading__section-time {
     flex: none;
     margin-left: 2px;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
     font-weight: 400;
 
     display: -webkit-box;

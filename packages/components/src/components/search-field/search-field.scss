@@ -1,19 +1,19 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 .search-field {
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
 
   .search-field__wrapper {
     box-sizing: border-box;
     //height: 48px;
-    height: 40px;
+    height: tokens.$ifxSize500;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
-    border-radius: 1px;
+    border-radius: tokens.$ifxBorderRadius12;
     padding: 12px 16px;
-    gap: 12px;
+    gap: tokens.$ifxSpace150;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -31,7 +31,7 @@
     }
 
     &.search-field__wrapper-m {
-      height: 40px;
+      height: tokens.$ifxSpace150;
     }
 
     // &:not(.search-field__wrapper-s):not(.search-field__wrapper-m) {
@@ -57,10 +57,10 @@
     }
 
     input[type='text'] {
-      font-family: tokens.$font-family-body;
+      font-family: tokens.$ifxFontFamilyBody;
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
       color: #8D8786;
       border: none;
       width: 100%;

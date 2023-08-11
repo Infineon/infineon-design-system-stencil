@@ -5,7 +5,7 @@
   box-sizing: border-box;
   background: #FFFF;
   box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   margin-top: 8px;
   z-index: 1000;
 
@@ -22,7 +22,7 @@
   min-width: 224px;
   padding: 0;
   border: none;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
 
   &.select {
     //when inside select
@@ -44,7 +44,7 @@
   }
 
   & .form-select {
-    color: tokens.$color-gray-400;
+    color: tokens.$ifxColorEngineering400;
   }
 
 
@@ -62,7 +62,7 @@
     padding: 8px 16px;
     background-color: rgba(0, 0, 0, 0);
     text-decoration: none;
-    color: tokens.$color-text-black;
+    color: tokens.$ifxColorBaseBlack;
 
     & .form-check-label {
 
@@ -75,23 +75,23 @@
 
 
     &:hover {
-      font-weight: 600;
-      background-color: tokens.$color-gray-200;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      background-color: tokens.$ifxColorEngineering200;
 
 
       & svg {
-        color: tokens.$color-text-black;
+        color: tokens.$ifxColorBaseBlack;
       }
     }
 
     &.active,
     &:active {
-      font-weight: 600;
-      background-color: transparent;
-      color: tokens.$color-default-500;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      background-color: tokens.$ifxColorBaseTransparent;
+      color: tokens.$ifxColorOcean500;
 
       & svg {
-        color: tokens.$color-default-500;
+        color: tokens.$ifxColorOcean500;
       }
     }
 

@@ -23,7 +23,7 @@
   padding: 0;
   margin: 0;
   position: relative;
-  font-weight: tokens.$font-weight-semi-bold;
+  font-weight: tokens.$ifxFontWeightSemibold;
 }
 
 .active-border {
@@ -36,7 +36,7 @@
   bottom: 0;
   left: 0;
   height: 2px;
-  background-color: tokens.$color-default-500;
+  background-color: tokens.$ifxColorOcean500;
 }
 
 .tabs.vertical .tabs-list {
@@ -45,11 +45,11 @@
 }
 
 .tab-item.active {
-  color: tokens.$color-default-500;
+  color: tokens.$ifxColorOcean500;
 }
 
 .tab-item {
-  padding: 0.5rem 1rem ;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   position: relative;
 }
@@ -63,7 +63,7 @@
   left: 0;
   top: 0;
   width: 2px;
-  background-color: tokens.$color-default-500;
+  background-color: tokens.$ifxColorOcean500;
 }
 
 
@@ -73,5 +73,5 @@
 }
 
 .tabs.small .tab-item {
-  font-size: 14px; // Add the font-size rule directly here
+  font-size: tokens.$ifxFontSizeS; // Add the font-size rule directly here
 }

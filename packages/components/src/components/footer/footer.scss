@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
 
   & .footer__wrapper {
     display: flex;
@@ -46,7 +46,7 @@
 
       & ::slotted([slot=socials]) {
         display: flex;
-        gap: 32px;
+        gap: tokens.$ifxSpace400;
       }
     }
 
@@ -59,22 +59,22 @@
       & .footer__brand {
         font-style: normal;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        color: tokens.$color-text-black;
+        font-size: tokens.$ifxFontSizeM;
+        line-height: tokens.$ifxLineHeightM;
+        color: tokens.$ifxColorBaseBlack;
       }
 
       & .footer__buttons {
         display: flex;
-        gap: 24px;
+        gap: tokens.$ifxSpace300;
         padding-right: 8px;
 
         & a {
           font-style: normal;
           font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
-          color: tokens.$color-text-black;
+          font-size: tokens.$ifxFontSizeM;
+          line-height: tokens.$ifxLineHeightM;
+          color: tokens.$ifxColorBaseBlack;
           text-decoration: none;
         }
       }

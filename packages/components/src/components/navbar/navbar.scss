@@ -88,7 +88,7 @@
       order: 0;
       align-self: stretch;
       flex-grow: 0;
-      color: tokens.$ifxColorEngineering300;
+      color: #BFBBBB;
 
       & span {
         color: tokens.$ifxColorBaseBlack;
@@ -172,8 +172,8 @@
   align-items: center;
   padding: 8px 40px;
   gap: 16px;
-  background-color: tokens.$color-bg-white;
-  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  background-color: tokens.$ifxColorBaseWhite;
+  border-bottom: 1px solid #EEEDED;
 
   & .navbar__container-left {
     display: flex;
@@ -238,7 +238,6 @@
         flex: none;
         order: 2;
         flex-grow: 0;
-
         display: none;
       }
     }

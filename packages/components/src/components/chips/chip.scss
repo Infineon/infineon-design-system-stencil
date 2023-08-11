@@ -10,9 +10,9 @@
     flex-direction: row;
     align-items: center;
     padding: 8px 16px;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
 
-    background: #FFFFFF;
+    background: tokens.$ifxColorBaseWhite;
 
     border: 1px solid #BFBBBB;
     border-radius: 100px;
@@ -33,13 +33,13 @@
     & .wrapper-label {
       font-style: normal;
       font-weight: 400;
-      font-size: 14px;
-      line-height: 20px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
 
       display: flex;
       align-items: center;
 
-      color: #1D1D1D;
+      color: tokens.$ifxColorBaseBlack;
 
       flex: none;
       order: 0;

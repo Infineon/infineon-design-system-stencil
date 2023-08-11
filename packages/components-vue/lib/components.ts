@@ -234,17 +234,6 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
 ]);
 
 
-export const IfxMultiSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxMultiSelectInput>('ifx-multi-select-input', undefined, [
-  'Placeholder'
-]);
-
-
-export const IfxMultiSelectInputItem = /*@__PURE__*/ defineContainer<JSX.IfxMultiSelectInputItem>('ifx-multi-select-input-item', undefined, [
-  'content',
-  'closed'
-]);
-
-
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
   'fixed',
