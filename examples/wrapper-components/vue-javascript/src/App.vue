@@ -20,6 +20,7 @@
   <IconButton />
   <Card />
   <Switch />
+  <Footer />
 </template>
 
 
@@ -42,6 +43,7 @@ import Navbar from './components/Navbar.vue'
 import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
+import Footer from './components/Footer.vue'
 
 </script>
 
