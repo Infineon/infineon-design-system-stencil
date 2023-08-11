@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
+  height: tokens.$ifxSize500;
   width: 350px;
   padding: 8px 16px;
   background-color: tokens.$ifxColorBaseWhite;
@@ -12,8 +12,8 @@
   border-radius: 1px 1px 0px 0px;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightM;
 
   &.flush {
     border: none;
@@ -28,7 +28,7 @@
     & .list-group-item-content::before {
       content: "•";
       display: inline-block;
-      font-size: 18px;
+      font-size: tokens.$ifxFontSizeL;
       padding-right: 10px;
     }
   }

@@ -9,7 +9,7 @@
   font-family: tokens.$ifxFontFamilyBody;
   font-size: tokens.$ifxFontSizeS;
   align-items: flex-start;
-  //gap: 16px; //this is where the gap comes from
+  //gap: tokens.$ifxSpace200; //this is where the gap comes from
 
 }
 

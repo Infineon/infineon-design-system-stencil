@@ -4,7 +4,7 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: tokens.$ifxSpace250;
   flex-wrap: wrap;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;

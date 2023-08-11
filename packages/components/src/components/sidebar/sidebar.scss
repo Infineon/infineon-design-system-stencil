@@ -44,7 +44,7 @@
         justify-content: center;
         align-items: flex-start;
         padding: 0px;
-        gap: 16px;
+        gap: tokens.$ifxSpace200;
         flex: none;
         order: 0;
         flex-grow: 0;
@@ -61,15 +61,15 @@
 
           & svg {
             width: 91px;
-            height: 40px;
+            height: tokens.$ifxSize500;
           }
         }
 
         & .sidebar__nav-bar-logo-text {
           font-style: normal;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 24px;
+          font-weight: tokens.$ifxFontWeightSemibold;
+          font-size: tokens.$ifxFontSizeM;
+          line-height: tokens.$ifxLineHeightM;
           display: flex;
           align-items: center;
           color: tokens.$ifxColorBaseBlack;
@@ -93,7 +93,7 @@
       order: 1;
       flex-grow: 0;
       width: 100%;
-      gap: 16px;
+      gap: tokens.$ifxSpace200;
 
       max-height: 440px;
       overflow-y: auto;
@@ -123,22 +123,22 @@
       //     justify-content: center;
       //     align-items: center;
       //     padding: 0px;
-      //     gap: 8px;
+      //     gap: tokens.$ifxSpace100;
       //     flex: none;
       //     order: 0;
       //     flex-grow: 0;
 
       //     & ifx-icon { 
-      //       width: 16px;
-      //       height: 16px;
+      //       width: tokens.$ifxSize200;
+      //       height: tokens.$ifxSize200;
       //     }
       //   }
 
       //   & .sidebar__nav-item-label {
       //     font-style: normal;
       //     font-weight: 400;
-      //     font-size: 16px;
-      //     line-height: 24px;
+      //     font-size: tokens.$ifxFontSizeM;
+      //     line-height: tokens.$ifxLineHeightM;
       //     display: flex;
       //     align-items: center;
       //     color: tokens.$ifxColorBaseBlack;
@@ -178,7 +178,7 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 12px 0px;
-      gap: 12px;
+      gap: tokens.$ifxSpace150;
       border-top: 1px solid #EEEDED;
       flex: none;
       order: 0;
@@ -200,8 +200,8 @@
           & a {
             font-style: normal;
             font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: tokens.$ifxFontSizeS;
+            line-height: tokens.$ifxLineHeightS;
             display: flex;
             text-decoration: none;
             align-items: center;
@@ -217,7 +217,7 @@
           flex-direction: row;
           align-items: flex-start;
           padding: 0px;
-          gap: 16px;
+          gap: tokens.$ifxSpace200;
           flex: none;
           order: 0;
           align-self: stretch;
@@ -243,8 +243,8 @@
         & a {
           font-style: normal;
           font-weight: 400;
-          font-size: 14px;
-          line-height: 20px;
+          font-size: tokens.$ifxFontSizeS;
+          line-height: tokens.$ifxLineHeightS;
           text-decoration: none;
           color: #575352;
           flex: none;

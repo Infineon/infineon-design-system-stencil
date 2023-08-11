@@ -5,7 +5,7 @@
   box-sizing: border-box;
   background: #FFFF;
   box-shadow: 0px 0px 16px rgba(29, 29, 29, 0.12);
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   margin-top: 8px;
   z-index: 1000;
 
@@ -22,7 +22,7 @@
   min-width: 224px;
   padding: 0;
   border: none;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
 
   &.select {
     //when inside select
@@ -75,7 +75,7 @@
 
 
     &:hover {
-      font-weight: 600;
+      font-weight: tokens.$ifxFontWeightSemibold;
       background-color: tokens.$ifxColorEngineering200;
 
 
@@ -86,8 +86,8 @@
 
     &.active,
     &:active {
-      font-weight: 600;
-      background-color: transparent;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      background-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorOcean500;
 
       & svg {

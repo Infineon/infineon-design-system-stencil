@@ -12,9 +12,9 @@
   & span {
     color: tokens.$ifxColorBaseWhite;
     text-align: center;
-    font-size: 14px;
+    font-size: tokens.$ifxFontSizeS;
     font-style: normal;
-    font-weight: 600;
+    font-weight: tokens.$ifxFontWeightSemibold;
     line-height: 15px;
   }
 

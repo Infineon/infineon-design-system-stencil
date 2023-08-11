@@ -4,7 +4,7 @@
 .alert {
   display: flex;
   border: 1px solid tokens.$ifxColorOcean500;
-  border-radius: 1px;
+  border-radius: tokens.$ifxBorderRadius12;
   color: tokens.$ifxColorBaseBlack;
   background-color: tokens.$ifxColorBaseWhite;
 
@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
+    min-width: tokens.$ifxSize500;
 
     & a {
       line-height: 0;
@@ -22,7 +22,7 @@
 
   & .icon-wrapper {
     position: relative;
-    min-width: 48px;
+    min-width: tokens.$ifxSize600;
     display: flex;
     justify-content: center;
     align-items: center;

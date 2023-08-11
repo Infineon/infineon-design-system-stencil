@@ -5,7 +5,7 @@
   flex-direction: row;
   align-items: center;
   padding: 0px 8px;
-  gap: 8px;
+  gap: tokens.$ifxSpace100;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -26,8 +26,8 @@
     display: flex;
     align-items: center;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     color: tokens.$ifxColorBaseBlack;
     text-decoration: none;
     flex: none;
@@ -47,7 +47,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -63,8 +63,8 @@
 
   & .navbar__container-right-content-navigation-item-navigation-profile {
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
     background: #0A8276;
     border-radius: 100px;
     flex: none;
@@ -79,13 +79,13 @@
     & a {
       position: absolute;
       width: 22px;
-      height: 20px;
+      height: tokens.$ifxSize250;
       left: calc(50% - 22px/2);
       top: calc(50% - 20px/2);
       font-style: normal;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 20px;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
       text-decoration: none;
       display: flex;
       align-items: center;

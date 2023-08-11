@@ -14,7 +14,7 @@
 .percentage-display {
   font-size: tokens.$ifxFontSizeS;
   color: tokens.$ifxColorEngineering500;
-  margin-left: 8px;
+  margin-left: tokens.$ifxSpace100;
 
   &.disabled {
     // Add the disabled state for the percentage display
@@ -24,13 +24,13 @@
 
 .left-icon,
 .left-text {
-  margin-right: 8px;
+  margin-right: tokens.$ifxSpace100;
 }
 
 .right-icon,
 .right-text,
 .percentage-display {
-  margin-left: 8px;
+  margin-left: tokens.$ifxSpace100;
 }
 
 .ifx-slider {
@@ -56,8 +56,8 @@
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: tokens.$ifxSize250;
+      height: tokens.$ifxSize250;
       border-radius: 50%;
       background: tokens.$ifxColorOcean500;
       cursor: pointer;
@@ -75,8 +75,8 @@
     }
 
     &::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
+      width: tokens.$ifxSize250;
+      height: tokens.$ifxSize250;
       border-radius: 50%;
       background: tokens.$ifxColorOcean500;
       cursor: pointer;

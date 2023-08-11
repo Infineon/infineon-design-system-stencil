@@ -6,17 +6,17 @@
     flex-direction: row;
     align-items: center;
     padding: 0px;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     cursor: pointer;
 
     &.m .radioButton__wrapper {
-        width: 24px;
-        height: 24px;
+        width: tokens.$ifxSize300;
+        height: tokens.$ifxSize300;
     }
 
     .radioButton__wrapper {
-        width: 20px;
-        height: 20px;
+        width: tokens.$ifxSize250;
+        height: tokens.$ifxSize250;
         position: relative;
         display: block;
         border-radius: 50%;
@@ -49,7 +49,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-color: transparent;
+            border-color: tokens.$ifxColorBaseTransparent;
         }
 
         &:hover {
@@ -125,11 +125,11 @@
         display: flex;
         align-items: center;
         width: 25px;
-        height: 20px;
+        height: tokens.$ifxSize250;
         font-style: normal;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
+        font-size: tokens.$ifxFontSizeS;
+        line-height: tokens.$ifxLineHeightS;
         color: tokens.$ifxColorBaseBlack;
         flex: none;
         order: 1;

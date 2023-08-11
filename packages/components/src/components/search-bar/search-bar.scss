@@ -3,7 +3,7 @@
 
 .search-bar {
   box-sizing: border-box;
-  height: 40px;
+  height: tokens.$ifxSize500;
   background-color: tokens.$ifxColorBaseWhite;
   display: flex;
   flex-direction: row;
@@ -19,15 +19,15 @@
   & .search-bar-wrapper {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: tokens.$ifxSpace200;
     width: 100%;
 
     & a {
       text-decoration: none;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
       font-style: normal;
-      font-weight: 600;
-      line-height: 24px;
+      font-weight: tokens.$ifxFontWeightSemibold;
+      line-height: tokens.$ifxLineHeightM;
       color: tokens.$ifxColorOcean500;
       cursor: pointer;
     }

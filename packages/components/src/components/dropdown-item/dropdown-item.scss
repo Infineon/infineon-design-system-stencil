@@ -3,7 +3,7 @@
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: tokens.$ifxSpace150;
   width: 100%;
   text-align: inherit;
   white-space: nowrap;
@@ -51,13 +51,13 @@
   }
 
   & .form-check-input {
-    border-radius: 1px;
+    border-radius: tokens.$ifxBorderRadius12;
   }
 
 
 
   &:hover {
-    font-weight: 600;
+    font-weight: tokens.$ifxFontWeightSemibold;
     background-color: tokens.$ifxColorEngineering200;
 
 
@@ -69,8 +69,8 @@
 
   &.active,
   &:active {
-    font-weight: 600;
-    background-color: transparent;
+    font-weight: tokens.$ifxFontWeightSemibold;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorOcean500;
 
     & svg {

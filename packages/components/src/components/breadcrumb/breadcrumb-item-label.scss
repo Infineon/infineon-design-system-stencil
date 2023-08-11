@@ -3,7 +3,7 @@
 .breadcrumb-item-label-container {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: tokens.$ifxSpace100;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
 
@@ -23,8 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 16px;
-    height: 16px;
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxSize200;
 
     &.hide {
       display: none;

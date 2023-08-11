@@ -73,5 +73,5 @@
 }
 
 .tabs.small .tab-item {
-  font-size: 14px; // Add the font-size rule directly here
+  font-size: tokens.$ifxFontSizeS; // Add the font-size rule directly here
 }

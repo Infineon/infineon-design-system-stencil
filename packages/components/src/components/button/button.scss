@@ -9,20 +9,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
+  height: tokens.$ifxSize500;
   padding: 0px 16px;
-  gap: 8px;
-  color: #FFFFFF;
+  gap: tokens.$ifxSpace100;
+  color: tokens.$ifxColorBaseWhite;
   flex-direction: row;
-  font-weight: 600;
-  border-radius: 1px;
-  line-height: 24px;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  border-radius: tokens.$ifxBorderRadius12;
+  line-height: tokens.$ifxLineHeightM;
   outline: none;
   font-family: tokens.$ifxFontFamilyBody;
   text-decoration: none;
   user-select: none;
   border: 1px solid rgba(0, 0, 0, 0);
-  font-size: 1rem;
+  font-size: tokens.$ifxFontSizeM;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
@@ -98,8 +98,8 @@
 
   &.btn-s {
     font-size: tokens.$ifxFontSizeS;
-    height: 32px;
-    line-height: 16px;
+    height: tokens.$ifxSize400;
+    line-height: tokens.$ifxLineHeightXs;
   }
 
   &.btn-primary,
@@ -137,7 +137,7 @@
 
   &:disabled,
   &.disabled {
-    opacity: 1;
+    opacity: tokens.$ifxOpacity100;
     background-color: tokens.$ifxColorEngineering300;
     border-color: tokens.$ifxColorEngineering300;
     color: tokens.$ifxColorBaseWhite;
@@ -165,7 +165,7 @@
   &.btn-outline-primary:not(:disabled, .disabled) {
 
     &:focus {
-      background-color: transparent;
+      background-color: tokens.$ifxColorBaseTransparent;
     }
 
     &:hover {
@@ -202,7 +202,7 @@
   &.btn-outline-secondary:not(:disabled, .disabled) {
 
     &:focus {
-      background-color: transparent;
+      background-color: tokens.$ifxColorBaseTransparent;
     }
 
     &:hover {
@@ -241,7 +241,7 @@
     color: tokens.$ifxColorBaseBlack;
 
     &:focus {
-      background-color: transparent;
+      background-color: tokens.$ifxColorBaseTransparent;
     }
 
     &:hover {
@@ -277,7 +277,7 @@
   &.btn-outline-danger:not(:disabled, .disabled) {
 
     &:focus {
-      background-color: transparent;
+      background-color: tokens.$ifxColorBaseTransparent;
     }
 
     &:hover {
@@ -302,9 +302,7 @@
 
     &:hover {
       background-color: tokens.$ifxColorOrange500;
-      ;
       border-color: tokens.$ifxColorOrange500;
-      ;
     }
 
     &:active,
@@ -318,14 +316,12 @@
     color: tokens.$ifxColorBaseBlack;
 
     &:focus {
-      background-color: transparent;
+      background-color: tokens.$ifxColorBaseTransparent;
     }
 
     &:hover {
       background-color: tokens.$ifxColorOrange500;
-      ;
       border-color: tokens.$ifxColorOrange500;
-      ;
     }
 
     &:active,
@@ -336,7 +332,7 @@
   }
 
   &.btn-primary-outline-text {
-    background-color: transparent;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorOcean500;
 
     &:hover {
@@ -350,15 +346,15 @@
 
     &:disabled,
     &.disabled {
-      opacity: 1;
-      background-color: transparent;
-      border-color: transparent;
+      opacity: tokens.$ifxOpacity100;
+      background-color: tokens.$ifxColorBaseTransparent;
+      border-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorEngineering300;
     }
   }
 
   &.btn-secondary-outline-text {
-    background-color: transparent;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorBerry500;
 
     &:hover {
@@ -372,15 +368,15 @@
 
     &:disabled,
     &.disabled {
-      opacity: 1;
-      background-color: transparent;
-      border-color: transparent;
+      opacity: tokens.$ifxOpacity100;
+      background-color: tokens.$ifxColorBaseTransparent;
+      border-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorEngineering300;
     }
   }
 
   &.btn-success-outline-text {
-    background-color: transparent;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorGreen500;
 
     &:hover {
@@ -394,15 +390,15 @@
 
     &:disabled,
     &.disabled {
-      opacity: 1;
-      background-color: transparent;
-      border-color: transparent;
+      opacity: tokens.$ifxOpacity100;
+      background-color: tokens.$ifxColorBaseTransparent;
+      border-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorEngineering300;
     }
   }
 
   &.btn-danger-outline-text {
-    background-color: transparent;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorRed500;
 
     &:hover {
@@ -416,21 +412,20 @@
 
     &:disabled,
     &.disabled {
-      opacity: 1;
-      background-color: transparent;
-      border-color: transparent;
+      opacity: tokens.$ifxOpacity100;
+      background-color: tokens.$ifxColorBaseTransparent;
+      border-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorEngineering300;
     }
 
   }
 
   &.btn-warning-outline-text {
-    background-color: transparent;
+    background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorOrange500;
 
     &:hover {
       color: tokens.$ifxColorOrange500;
-      ;
     }
 
     &:active,
@@ -440,9 +435,9 @@
 
     &:disabled,
     &.disabled {
-      opacity: 1;
-      background-color: transparent;
-      border-color: transparent;
+      opacity: tokens.$ifxOpacity100;
+      background-color: tokens.$ifxColorBaseTransparent;
+      border-color: tokens.$ifxColorBaseTransparent;
       color: tokens.$ifxColorEngineering300;
     }
   }

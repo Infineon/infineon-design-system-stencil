@@ -68,7 +68,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 24px;
+    gap: tokens.$ifxSpace300;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -83,7 +83,7 @@
       flex-direction: row;
       align-items: center;
       padding: 0px;
-      gap: 16px;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 0;
       align-self: stretch;
@@ -92,8 +92,8 @@
 
       & span {
         color: tokens.$ifxColorBaseBlack;
-        font-weight: 600;
-        font-size: 18px;
+        font-weight: tokens.$ifxFontWeightSemibold;
+        font-size: tokens.$ifxFontSizeL;
         line-height: 28px;
         display: flex;
         align-items: center;
@@ -110,7 +110,7 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 0px;
-      gap: 16px;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -134,8 +134,8 @@
           text-decoration: none;
           font-style: normal;
           font-weight: 400;
-          font-size: 16px;
-          line-height: 24px;
+          font-size: tokens.$ifxFontSizeM;
+          line-height: tokens.$ifxLineHeightM;
           display: flex;
           align-items: center;
           color: tokens.$ifxColorBaseBlack;
@@ -147,8 +147,8 @@
 
         & a {
           font-style: normal;
-          font-weight: 600;
-          font-size: 18px;
+          font-weight: tokens.$ifxFontWeightSemibold;
+          font-size: tokens.$ifxFontSizeL;
           line-height: 28px;
           display: flex;
           align-items: center;
@@ -171,7 +171,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 40px;
-  gap: 16px;
+  gap: tokens.$ifxSpace200;
   background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid #EEEDED;
 
@@ -180,7 +180,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: 16px;
+    gap: tokens.$ifxSpace200;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -190,7 +190,7 @@
       flex-direction: row;
       align-items: center;
       padding: 0px;
-      gap: 16px;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -200,12 +200,12 @@
         margin: 0;
         padding: 0;
         font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
+        font-weight: tokens.$ifxFontWeightSemibold;
+        font-size: tokens.$ifxFontSizeM;
+        line-height: tokens.$ifxLineHeightM;
         display: flex;
         align-items: center;
-        color: #1D1D1D;
+        color: tokens.$ifxColorBaseBlack;
         flex: none;
         order: 1;
         flex-grow: 0;
@@ -223,7 +223,7 @@
 
         & svg {
           width: 91px;
-          height: 40px;
+          height: tokens.$ifxSize500;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -233,7 +233,7 @@
 
       & .navbar__container-left-logo-divider {
         width: 1px;
-        height: 32px;
+        height: tokens.$ifxSize400;
         background: #EEEDED;
         flex: none;
         order: 2;
@@ -272,7 +272,7 @@
           order: 5;
           flex-grow: 0;
           //width: 256px;
-          //height: 40px;
+          //height: tokens.$ifxSize500;
         }
 
         & .navbar__container-left-content-navigation-item {
@@ -280,7 +280,7 @@
           flex-direction: row;
           align-items: center;
           padding: 0px 8px;
-          gap: 8px;
+          gap: tokens.$ifxSpace100;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -289,8 +289,8 @@
             display: flex;
             align-items: center;
             font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
+            font-size: tokens.$ifxFontSizeM;
+            line-height: tokens.$ifxLineHeightM;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             flex: none;
@@ -305,7 +305,7 @@
             flex-direction: row;
             align-items: center;
             padding: 0px 8px;
-            gap: 8px;
+            gap: tokens.$ifxSpace100;
 
             & a {
               & span {
@@ -335,8 +335,8 @@
             & a {
               text-decoration: none;
               font-weight: 400;
-              font-size: 16px;
-              line-height: 24px;
+              font-size: tokens.$ifxFontSizeM;
+              line-height: tokens.$ifxLineHeightM;
               color: tokens.$ifxColorBaseBlack;
               display: flex;
               align-items: center;
@@ -370,7 +370,7 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -382,12 +382,12 @@
       align-items: center;
       padding: 4px 0px 4px 16px;
       border-left: 1px solid #BFBBBB;
-      gap: 16px;
+      gap: tokens.$ifxSpace200;
       flex: none;
       order: 1;
       flex-grow: 0;
       width: 41px;
-      height: 40px;
+      height: tokens.$ifxSize500;
 
       & .navbar__burger-icon {
         display: flex;
@@ -445,19 +445,19 @@
             justify-content: center;
             align-items: center;
             padding: 0px;
-            gap: 8px;
+            gap: tokens.$ifxSpace100;
             flex: none;
             order: 0;
             flex-grow: 0;
-            //width: 24px;
-            //height: 24px;
+            //width: tokens.$ifxSize300;
+            //height: tokens.$ifxSize300;
             max-width: 200px;
           }
 
           & .navbar__container-right-content-navigation-item-navigation-profile {
             position: relative;
-            width: 24px;
-            height: 24px;
+            width: tokens.$ifxSize300;
+            height: tokens.$ifxSize300;
             background: #0A8276;
             border-radius: 100px;
             flex: none;
@@ -467,13 +467,13 @@
             & a {
               position: absolute;
               width: 22px;
-              height: 20px;
+              height: tokens.$ifxSize250;
               left: calc(50% - 22px/2);
               top: calc(50% - 20px/2);
               font-style: normal;
-              font-weight: 600;
-              font-size: 14px;
-              line-height: 20px;
+              font-weight: tokens.$ifxFontWeightSemibold;
+              font-size: tokens.$ifxFontSizeS;
+              line-height: tokens.$ifxLineHeightS;
               text-decoration: none;
               display: flex;
               align-items: center;
@@ -489,7 +489,7 @@
             justify-content: center;
             align-items: center;
             padding: 0px;
-            gap: 8px;
+            gap: tokens.$ifxSpace100;
             flex: none;
             order: 0;
             flex-grow: 0;
@@ -498,8 +498,8 @@
           & a {
             font-style: normal;
             font-weight: 400;
-            font-size: 14px;
-            line-height: 20px;
+            font-size: tokens.$ifxFontSizeS;
+            line-height: tokens.$ifxLineHeightS;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             display: flex;
@@ -600,7 +600,7 @@
     height: 72px;
 
     & .navbar__container-left {
-      gap: 12px;
+      gap: tokens.$ifxSpace150;
 
       & .navbar__container-left-logo {
         & .navbar__container-left-logo-divider {
@@ -615,7 +615,7 @@
       & .navbar__container-left-logo-default {
         & svg {
           width: 72.8px;
-          height: 32px;
+          height: tokens.$ifxSize400;
         }
       }
 

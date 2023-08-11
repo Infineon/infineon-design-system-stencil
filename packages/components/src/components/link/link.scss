@@ -5,15 +5,15 @@
   display: inline-flex;
   align-items: center;
   font-weight: 400;
-  font-size: 16px;
+  font-size: tokens.$ifxFontSizeM;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
-  gap: 8px;
+  gap: tokens.$ifxSpace100;
 
   line-height: 1.6;
 
   &.bold {
-    font-weight: 600;
+    font-weight: tokens.$ifxFontWeightSemibold;
   }
 
   &.primary {
