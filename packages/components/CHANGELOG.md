@@ -1,3 +1,16 @@
+# v20.0.1 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- 366 documentation card update [#369](https://github.com/Infineon/infineon-design-system-stencil/pull/369) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.0.0 (Thu Aug 10 2023)
 
 #### 💥 Breaking Change
