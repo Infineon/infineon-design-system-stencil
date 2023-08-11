@@ -5,8 +5,8 @@
   height: 88px;
   padding: 16px;
   margin-bottom: 8px;
-  background-color: tokens.$color-bg-white;
-  border: 1px solid tokens.$color-gray-200;
+  background-color: tokens.$ifxColorBaseWhite;
+  border: 1px solid tokens.$ifxColorEngineering200;
 
   & .description__section {
     display: -webkit-box;
@@ -18,14 +18,14 @@
 
   &.flush {
     border: none;
-    border-bottom: 1px solid tokens.$color-gray-200;
+    border-bottom: 1px solid tokens.$ifxColorEngineering200;
   }
 
   & .heading__section {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-    color: tokens.$color-default-500;
+    color: tokens.$ifxColorOcean500;
   }
 
   & .heading__section-title {

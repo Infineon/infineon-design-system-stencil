@@ -3,10 +3,10 @@
 
 * {
   box-sizing: border-box;
-  line-height: tokens.$font-line-height-m;
-  font-family: tokens.$font-family-body;
+  line-height: tokens.$ifxLineHeightM;
+  font-family: tokens.$ifxFontFamilyBody;
 }
 
-ifx-icon:empty { 
+ifx-icon:empty {
   display: none;
 }

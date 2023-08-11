@@ -7,10 +7,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  background-color: tokens.$color-default-500;
+  background-color: tokens.$ifxColorOcean500;
 
   & span {
-    color: tokens.$color-text-white;
+    color: tokens.$ifxColorBaseWhite;
     text-align: center;
     font-size: 14px;
     font-style: normal;
@@ -19,10 +19,10 @@
   }
 
   &.inverted {
-    background-color: tokens.$color-bg-white;
+    background-color: tokens.$ifxColorBaseWhite;
 
     & span {
-      color: tokens.$color-default-500;
+      color: tokens.$ifxColorOcean500;
     }
   }
 }

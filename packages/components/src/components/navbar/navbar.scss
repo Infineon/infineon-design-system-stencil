@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   width: 100%;
 }
 
@@ -44,7 +44,7 @@
   padding: 32px;
   width: 375px;
   height: calc(100vh - 64px);
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   transition: right 1s;
   z-index: 10000;
   flex: none;
@@ -91,7 +91,7 @@
       color: #BFBBBB;
 
       & span {
-        color: tokens.$color-text-black;
+        color: tokens.$ifxColorBaseBlack;
         font-weight: 600;
         font-size: 18px;
         line-height: 28px;
@@ -138,7 +138,7 @@
           line-height: 24px;
           display: flex;
           align-items: center;
-          color: tokens.$color-text-black;
+          color: tokens.$ifxColorBaseBlack;
         }
       }
 
@@ -152,7 +152,7 @@
           line-height: 28px;
           display: flex;
           align-items: center;
-          color: tokens.$color-text-black;
+          color: tokens.$ifxColorBaseBlack;
           flex: none;
           order: 0;
           flex-grow: 1;
@@ -172,7 +172,7 @@
   align-items: center;
   padding: 8px 40px;
   gap: 16px;
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid #EEEDED;
 
   & .navbar__container-left {
@@ -291,7 +291,7 @@
             font-weight: 400;
             font-size: 16px;
             line-height: 24px;
-            color: tokens.$color-text-black;
+            color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             flex: none;
             order: 0;
@@ -308,8 +308,8 @@
             gap: 8px;
 
             & a {
-              & span { 
-                &:hover { 
+              & span {
+                &:hover {
                   color: #0A8276;
                 }
               }
@@ -337,7 +337,7 @@
               font-weight: 400;
               font-size: 16px;
               line-height: 24px;
-              color: tokens.$color-text-black;
+              color: tokens.$ifxColorBaseBlack;
               display: flex;
               align-items: center;
 
@@ -348,7 +348,7 @@
               & ifx-icon {
                 transition: transform 0.3s;
                 transform: rotate(0deg);
-                color: tokens.$color-default-500;
+                color: tokens.$ifxColorOcean500;
               }
 
               &.open {
@@ -479,7 +479,7 @@
               align-items: center;
               justify-content: center;
               text-align: center;
-              color: tokens.$color-text-white;
+              color: tokens.$ifxColorBaseWhite;
             }
           }
 
@@ -500,7 +500,7 @@
             font-weight: 400;
             font-size: 14px;
             line-height: 20px;
-            color: tokens.$color-text-black;
+            color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             display: flex;
             align-items: center;

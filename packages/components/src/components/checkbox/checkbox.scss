@@ -21,7 +21,7 @@
         align-items: center;
         width: 20px;
         height: 20px;
-        background-color: tokens.$color-bg-white;
+        background-color: tokens.$ifxColorBaseWhite;
         border: 1px solid #575352;
         border-radius: 1px;
         flex: none;
@@ -63,7 +63,7 @@
             flex: none;
             order: 0;
             flex-grow: 0;
-            color: tokens.$color-white;
+            color: tokens.$ifxColorBaseWhite;
 
             &:focus-visible {
                 border: 1px solid transparent;
@@ -96,7 +96,7 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
-        color: tokens.$color-text-black;
+        color: tokens.$ifxColorBaseBlack;
         flex: none;
         order: 1;
         flex-grow: 0;

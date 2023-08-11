@@ -4,7 +4,7 @@
 .search-bar {
   box-sizing: border-box;
   height: 40px;
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,7 +28,7 @@
       font-style: normal;
       font-weight: 600;
       line-height: 24px;
-      color: tokens.$color-default-500;
+      color: tokens.$ifxColorOcean500;
       cursor: pointer;
     }
 

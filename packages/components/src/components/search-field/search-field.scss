@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 .search-field {
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
 
   .search-field__wrapper {
@@ -57,7 +57,7 @@
     }
 
     input[type='text'] {
-      font-family: tokens.$font-family-body;
+      font-family: tokens.$ifxFontFamilyBody;
       font-style: normal;
       font-weight: 400;
       font-size: 16px;

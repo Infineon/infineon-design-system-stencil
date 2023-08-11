@@ -7,8 +7,8 @@
   height: 40px;
   width: 350px;
   padding: 8px 16px;
-  background-color: tokens.$color-bg-white;
-  border: 1px solid tokens.$color-gray-200;
+  background-color: tokens.$ifxColorBaseWhite;
+  border: 1px solid tokens.$ifxColorEngineering200;
   border-radius: 1px 1px 0px 0px;
   font-style: normal;
   font-weight: 400;
@@ -17,7 +17,7 @@
 
   &.flush {
     border: none;
-    border-bottom: 1px solid tokens.$color-gray-200;
+    border-bottom: 1px solid tokens.$ifxColorEngineering200;
 
     &.bulletpoint {
       padding: 8px;
@@ -34,12 +34,12 @@
   }
 
   &:hover:not(.show) {
-    background-color: tokens.$color-gray-200;
+    background-color: tokens.$ifxColorEngineering200;
   }
 
   &:active:not(.show) {
-    background-color: tokens.$color-default-500;
-    color: tokens.$color-text-white;
+    background-color: tokens.$ifxColorOcean500;
+    color: tokens.$ifxColorBaseWhite;
   }
 
   &.show {

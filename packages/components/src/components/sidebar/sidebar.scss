@@ -1,6 +1,6 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-:host { 
+:host {
   height: 100%;
 }
 
@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  background-color: tokens.$color-bg-white;
+  background-color: tokens.$ifxColorBaseWhite;
   border-right: 1px solid #EEEDED;
   width: 264px;
   height: 100%;
@@ -32,7 +32,7 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 12px 32px;
-      background-color: tokens.$color-bg-white;
+      background-color: tokens.$ifxColorBaseWhite;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -72,7 +72,7 @@
           line-height: 24px;
           display: flex;
           align-items: center;
-          color: tokens.$color-text-black;
+          color: tokens.$ifxColorBaseBlack;
           flex: none;
           order: 1;
           flex-grow: 0;
@@ -141,7 +141,7 @@
       //     line-height: 24px;
       //     display: flex;
       //     align-items: center;
-      //     color: tokens.$color-text-black;
+      //     color: tokens.$ifxColorBaseBlack;
       //     flex: none;
       //     order: 1;
       //     flex-grow: 1;
@@ -205,7 +205,7 @@
             display: flex;
             text-decoration: none;
             align-items: center;
-            color: tokens.$color-text-black;
+            color: tokens.$ifxColorBaseBlack;
             flex: none;
             order: 0;
             flex-grow: 0;

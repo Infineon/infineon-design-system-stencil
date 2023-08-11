@@ -3,20 +3,20 @@
 
 .alert {
   display: flex;
-  border: 1px solid tokens.$color-default-500;
+  border: 1px solid tokens.$ifxColorOcean500;
   border-radius: 1px;
-  color: tokens.$color-text-black;
-  background-color: tokens.$color-bg-white;
+  color: tokens.$ifxColorBaseBlack;
+  background-color: tokens.$ifxColorBaseWhite;
 
   & .close-icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 40px;
-  
+
     & a {
       line-height: 0;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
     }
   }
 
@@ -26,15 +26,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: tokens.$color-default-500;
+    background-color: tokens.$ifxColorOcean500;
   }
 
   & .alert-text {
     font-size: 16px;
     width: 100%;
     padding: 12px 0px 12px 12px;
-    color: tokens.$color-text-black;
-  
+    color: tokens.$ifxColorBaseBlack;
+
     white-space: pre-wrap;
     /* wraps text at spaces and within words */
     word-wrap: break-word;
@@ -43,48 +43,48 @@
     /* breaks text at arbitrary points when needed */
   }
 
-  &.primary { 
-    border: 1px solid tokens.$color-default-500;
+  &.primary {
+    border: 1px solid tokens.$ifxColorOcean500;
 
     & .icon-wrapper {
-      background-color: tokens.$color-default-500;
-      color: tokens.$color-text-white;
+      background-color: tokens.$ifxColorOcean500;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 
   &.secondary {
-    border: 1px solid tokens.$color-highlight-500;
+    border: 1px solid tokens.$ifxColorBerry500;
 
     & .icon-wrapper {
-      background-color: tokens.$color-highlight-500;
-      color: tokens.$color-text-white;
+      background-color: tokens.$ifxColorBerry500;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 
-  &.success { 
-    border: 1px solid tokens.$color-success-500;
+  &.success {
+    border: 1px solid tokens.$ifxColorGreen500;
 
     & .icon-wrapper {
-      background-color: tokens.$color-success-500;
-      color: tokens.$color-text-white;
+      background-color: tokens.$ifxColorGreen500;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 
   &.danger {
-    border: 1px solid tokens.$color-danger-500;
-  
+    border: 1px solid tokens.$ifxColorRed500;
+
     & .icon-wrapper {
-      background-color: tokens.$color-danger-500;
-      color: tokens.$color-text-white;
+      background-color: tokens.$ifxColorRed500;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 
   &.warning {
-    border: 1px solid tokens.$color-warning-500;
-  
+    border: 1px solid tokens.$ifxColorOrange500;
+
     & .icon-wrapper {
-      background-color: tokens.$color-warning-500;
-      color: tokens.$color-text-white;
+      background-color: tokens.$ifxColorOrange500;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 }

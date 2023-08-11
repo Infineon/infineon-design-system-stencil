@@ -20,7 +20,7 @@
         position: relative;
         display: block;
         border-radius: 50%;
-        background-color: tokens.$color-bg-white;
+        background-color: tokens.$ifxColorBaseWhite;
         border: 1px solid #575352;
 
         &:focus {
@@ -98,7 +98,7 @@
             }
 
             &.disabled {
-                background-color: tokens.$color-bg-white;
+                background-color: tokens.$ifxColorBaseWhite;
                 border-color: #BFBBBB;
 
                 &.disabled::after {
@@ -130,7 +130,7 @@
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
-        color: tokens.$color-text-black;
+        color: tokens.$ifxColorBaseBlack;
         flex: none;
         order: 1;
         flex-grow: 0;

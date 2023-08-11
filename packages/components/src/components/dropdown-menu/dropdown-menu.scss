@@ -44,7 +44,7 @@
   }
 
   & .form-select {
-    color: tokens.$color-gray-400;
+    color: tokens.$ifxColorEngineering400;
   }
 
 
@@ -62,7 +62,7 @@
     padding: 8px 16px;
     background-color: rgba(0, 0, 0, 0);
     text-decoration: none;
-    color: tokens.$color-text-black;
+    color: tokens.$ifxColorBaseBlack;
 
     & .form-check-label {
 
@@ -76,11 +76,11 @@
 
     &:hover {
       font-weight: 600;
-      background-color: tokens.$color-gray-200;
+      background-color: tokens.$ifxColorEngineering200;
 
 
       & svg {
-        color: tokens.$color-text-black;
+        color: tokens.$ifxColorBaseBlack;
       }
     }
 
@@ -88,10 +88,10 @@
     &:active {
       font-weight: 600;
       background-color: transparent;
-      color: tokens.$color-default-500;
+      color: tokens.$ifxColorOcean500;
 
       & svg {
-        color: tokens.$color-default-500;
+        color: tokens.$ifxColorOcean500;
       }
     }
 

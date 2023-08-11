@@ -1,22 +1,22 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
-.container { 
+.container {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
   text-decoration: none;
-  color: tokens.$color-text-black;
+  color: tokens.$ifxColorBaseBlack;
   padding: 0px 24px 24px 24px;
- 
+
   /* wraps text at spaces and within words */
   word-wrap: break-word;
   /* breaks text within a word if necessary */
   overflow-wrap: anywhere;
   /* breaks text at arbitrary points when needed */
 
-  &:hover { 
+  &:hover {
     cursor: initial;
   }
 }

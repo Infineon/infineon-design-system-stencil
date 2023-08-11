@@ -1,6 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/global";
-
+@use "../../global/font.scss";
 
 .textInput__container {
   display: flex;
@@ -49,7 +48,7 @@
       line-height: 24px;
       display: flex;
       align-items: center;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -76,8 +75,8 @@
       padding: 8px 16px;
       gap: 6px;
       height: 40px;
-      background-color: tokens.$color-text-white;
-      color: tokens.$color-text-black;
+      background-color: tokens.$ifxColorBaseWhite;
+      color: tokens.$ifxColorBaseBlack;
       border: 1px solid #8D8786;
       border-radius: 1px;
       flex: none;

@@ -10,9 +10,10 @@
   order: 0;
   flex-grow: 0;
 
-  &:hover { 
+  &:hover {
     color: #0A8276;
-    & a { 
+
+    & a {
       color: #0A8276;
     }
   }
@@ -27,7 +28,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: tokens.$color-text-black;
+    color: tokens.$ifxColorBaseBlack;
     text-decoration: none;
     flex: none;
     order: 0;
@@ -90,7 +91,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: tokens.$color-text-white;
+      color: tokens.$ifxColorBaseWhite;
     }
   }
 }

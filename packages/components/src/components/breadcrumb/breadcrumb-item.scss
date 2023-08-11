@@ -31,7 +31,7 @@
 
     & a {
       text-decoration: none;
-      color: tokens.$color-text-black;
+      color: tokens.$ifxColorBaseBlack;
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
@@ -49,7 +49,7 @@
   & .breadcrumb-divider {
     width: 10px;
     height: 16px;
-    color: tokens.$color-gray-300;
+    color: tokens.$ifxColorEngineering300;
     line-height: 13px;
     font-size: 20px;
 
