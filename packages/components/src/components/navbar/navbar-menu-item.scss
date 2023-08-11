@@ -3,7 +3,7 @@
 
 .navbar__menu-item {
   text-decoration: none;
-  color: tokens.$color-text-black;
+  color: tokens.$ifxColorBaseBlack;
   display: flex;
   align-items: center;
   padding: 8px 16px;
@@ -14,7 +14,7 @@
   }
 
   & span { 
-    color: 1D1D1D;
+    color: tokens.$ifxColorBaseBlack;
     font-family: Source Sans 3;
     font-size: 16px;
     font-style: normal;
@@ -24,11 +24,11 @@
 
   &:hover { 
     cursor: pointer;
-    background-color: tokens.$color-gray-200;
+    background-color: tokens.$ifxColorEngineering200;
   }
 
   &:active { 
-    background-color: tokens.$color-gray-300;
+    background-color: tokens.$ifxColorEngineering300;
   }
 }
 
