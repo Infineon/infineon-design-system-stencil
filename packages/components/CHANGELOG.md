@@ -1,3 +1,16 @@
+# v20.0.4 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- workflow bug fix [#372](https://github.com/Infineon/infineon-design-system-stencil/pull/372) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.0.3 (Fri Aug 11 2023)
 
 #### 🐛 Bug Fix
