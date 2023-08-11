@@ -1,27 +1,38 @@
 
 export default {
   title: "Components/Navbar",
-
+  args: {
+    applicationName: 'Application name',
+    hideLabel: false,
+    icon: "calendar16",
+    navbarItemTarget: "_blank",
+    navbarItemHref: "",
+    navbarMenuHref: "",
+    navbarMenuTarget: "_blank",
+    searchBarIsOpen: false,
+    searchBarShowCloseButton: true,
+    navbarPositionFixed: false
+  },
 };
 
 
-const DefaultTemplate = () =>
-  `<ifx-navbar application-name="Application name" fixed="false">
-  <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank" href="https://google.com">Menu Item1</ifx-navbar-item>
-  <ifx-navbar-item  slot="left-item">Menu Item</ifx-navbar-item>
-  <ifx-navbar-item  slot="left-item">Menu Item</ifx-navbar-item>
+const DefaultTemplate = (args) =>
+  `<ifx-navbar application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
+  <ifx-navbar-item hide-label="${args.hideLabel}" icon="${args.icon}" slot="left-item" target="${args.navbBarItemTarget}" href="${args.navbBarItemHref}">Menu Item 1</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
 
   <ifx-navbar-menu slot="menu">
-    <ifx-navbar-menu-item href="https://google.com" target="_blank">Item 1</ifx-navbar-menu-item>
-    <ifx-navbar-menu-item href="https://google.com">Item 2</ifx-navbar-menu-item>
-    <ifx-navbar-menu-item href="https://google.com">Item 3</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}" target="${args.navbarMenuTarget}">Item 1</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}">Item 2</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}">Item 3</ifx-navbar-menu-item>
   </ifx-navbar-menu>
 
-  <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+  <ifx-search-bar slot="search-bar-right" is-open="${args.searchBarIsOpen}" show-close-button="${args.searchBarShowCloseButton}"></ifx-search-bar>
 
-  <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
-  <ifx-navbar-item hide-label="false" slot="right-item">Right Two</ifx-navbar-item>
-  <ifx-navbar-item hide-label="false" slot="right-profile-item">Tisho</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-item">Right One</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-item">Right Two</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-profile-item">Tisho</ifx-navbar-item>
 </ifx-navbar>`;
 
 
