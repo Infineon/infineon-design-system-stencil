@@ -1,3 +1,4 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
 .dropdown-header { 
@@ -6,11 +7,11 @@
   align-items: center;
   gap: 8px;
   align-self: stretch;
-  border-bottom: 1px solid #EEEDED;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
 
 
   & span { 
-    color: #575352;
+    color: tokens.$ifxColorEngineering500;
     font-family: Source Sans 3;
     font-size: 14px;
     font-style: normal;

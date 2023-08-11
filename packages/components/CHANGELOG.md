@@ -1,3 +1,54 @@
+# v20.0.0 (Thu Aug 10 2023)
+
+#### 💥 Breaking Change
+
+- 324 rework update token names to the new ones [#367](https://github.com/Infineon/infineon-design-system-stencil/pull/367) ([@benedikt-ifx](https://github.com/benedikt-ifx) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v19.1.9 (Wed Aug 09 2023)
+
+#### 🐛 Bug Fix
+
+- Added card usage.mdx, added documentation & images [#363](https://github.com/Infineon/infineon-design-system-stencil/pull/363) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.8 (Wed Aug 09 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: alert changed text position in usage.mdx [#360](https://github.com/Infineon/infineon-design-system-stencil/pull/360) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v19.1.7 (Wed Aug 09 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: modal [#357](https://github.com/Infineon/infineon-design-system-stencil/pull/357) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v19.1.6 (Thu Aug 03 2023)
 
 #### 🐛 Bug Fix

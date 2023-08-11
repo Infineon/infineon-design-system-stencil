@@ -12,9 +12,9 @@
   max-height: 289px;
   min-width: 224px;
   overflow-y: auto;
-  background: tokens.$color-bg-white;
-  box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
-  border: 1px solid #EEEDED;
+  background: tokens.$ifxColorBaseWhite;
+  box-shadow: 0px 6px 9px 0px #1d1d1d1a;
+  border: 1px solid tokens.$ifxColorEngineering200;
   padding: 8px 0px;
 
   &.small { 
