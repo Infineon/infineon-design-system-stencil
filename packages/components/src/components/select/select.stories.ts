@@ -1,22 +1,8 @@
 import { action } from "@storybook/addon-actions";
 
-let options = [{
-  value: "a",
-  label: "option a",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "c",
-  label: "option c",
-  selected: false,
-}];
+let options = "[{value: 'a',label: 'option a',selected: false},{value: 'b',label: 'option b',selected: false},{value: 'c',label: 'option c',selected: false,}]"
 
-let jsonOptions = JSON.stringify(options);
+// let jsonOptions = JSON.stringify(options);
 
 export default {
   title: 'Components/Single Select',
@@ -32,7 +18,7 @@ export default {
     label: '',
     disabled: false,
     type: 'single',
-    options: jsonOptions,
+    options: "",
   },
 
   argTypes: {
@@ -87,6 +73,7 @@ const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, lab
 export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
+  options: options,
 
 
 };
