@@ -144,9 +144,9 @@
     <br />
 
     <h2>Single-Select</h2>
-    <ifx-choices id="single-select" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
+    <ifx-select id="single-select" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
       search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
-      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-choices=''></ifx-choices>
+      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
     <br />
     <br />
 
@@ -351,7 +351,7 @@
 
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
-    singleSelect.setAttribute('ifx-choices', singleSelectOptions);
+    singleSelect.setAttribute('ifx-options', singleSelectOptions);
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
     });
