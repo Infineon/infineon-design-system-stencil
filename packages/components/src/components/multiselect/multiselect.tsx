@@ -438,7 +438,7 @@ export class Multiselect {
               <div class="ifx-clear-button" onClick={() => this.clearSelection()}>
                 <ifx-icon
                   key='icon-clear'
-                  icon='deletex16'></ifx-icon>
+                  icon='delete-16'></ifx-icon>
               </div>
             )}
             <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>

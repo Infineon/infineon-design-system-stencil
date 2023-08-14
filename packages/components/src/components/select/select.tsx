@@ -184,6 +184,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
+
+  isJSONParseable(str) {
+    try {
+      JSON.parse(str);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
   @Method()
   public async setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) {
     let listOfChoices;
@@ -193,7 +202,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
     if (typeof choices === 'string') {
       try {
+        if (!this.isJSONParseable(choices)) { //meaning the input string comes from storybook as a non valid json string to be displayed in a beautified version on storybook
+          choices = choices.replace(/'/g, '"').replace(/"false"/g, 'false').replace(/"true"/g, 'true');
+        }
         listOfChoices = JSON.parse(choices);
+
       } catch (err) {
         console.error('Failed to parse choices:', err);
       }
