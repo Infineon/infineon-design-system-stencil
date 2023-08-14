@@ -27,7 +27,6 @@
 
 ### Used by
 
- - [ifx-dropdown-item](../dropdown-item)
  - [ifx-multiselect](../multiselect)
 
 ### Depends on
@@ -38,7 +37,6 @@
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
-  ifx-dropdown-item --> ifx-checkbox
   ifx-multiselect --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```

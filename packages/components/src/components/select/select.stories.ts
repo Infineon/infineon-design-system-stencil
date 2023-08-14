@@ -88,6 +88,7 @@ export const Single = DefaultTemplate.bind({});
 Single.args = {
   type: 'single',
 
+
 };
 
 export const Text = DefaultTemplate.bind({});

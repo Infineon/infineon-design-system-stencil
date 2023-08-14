@@ -405,16 +405,26 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.ifxDisabled) return; // If it's disabled, don't do anything.
+    if (this.ifxDisabled) return;
 
-    if (event.code === 'Enter' || event.code === 'Space') {
+    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
+
+    // If the event originated from the search input and the key is 'Space', do nothing.
+    if (isSearchInput && event.code === 'Space') {
+      return;
+    }
+
+    if (event.code === 'Enter' || (event.code === 'Space' && !isSearchInput)) {
       this.toggleDropdown();
+    }
 
-      if (event.code === 'Space') {
-        event.preventDefault(); // Prevent the default behavior (page scrolling) on Space key.
-      }
+    // Only prevent default space behavior when it's not from the search input.
+    if (event.code === 'Space' && !isSearchInput) {
+      event.preventDefault();  // Prevent default page scrolling.
     }
   }
+
+
 
 
   getIfxChoicesContainer() {
@@ -659,19 +669,19 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       }
     });
 
-    div.addEventListener('keydown', function (event) {
-      // Check for Enter or Space key presses
-      if (event.code === 'Enter' || event.code === 'Space') {
-        if (!this.classList.contains('disabled')) {
-          this.classList.add('active');
-        }
+    // div.addEventListener('keydown', function (event) {
+    //   // Check for Enter or Space key presses
+    //   if (event.code === 'Enter' || event.code === 'Space') {
+    //     if (!this.classList.contains('disabled')) {
+    //       this.classList.add('active');
+    //     }
 
-        // Prevent the default behavior (like page scrolling) on Space key.
-        if (event.code === 'Space') {
-          event.preventDefault();
-        }
-      }
-    });
+    //     // Prevent the default behavior (like page scrolling) on Space key.
+    //     if (event.code === 'Space') {
+    //       event.preventDefault();
+    //     }
+    //   }
+    // });
 
   }
 
