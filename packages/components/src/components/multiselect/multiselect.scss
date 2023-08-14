@@ -103,12 +103,11 @@
     }
 
     &.is-flipped {
-      .dropdown-menu {
+      .ifx-multiselect-dropdown-menu {
         top: auto;
         bottom: 100%;
       }
     }
-
   }
 
   .ifx-multiselect-input {

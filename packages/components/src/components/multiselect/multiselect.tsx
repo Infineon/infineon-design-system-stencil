@@ -19,7 +19,7 @@ export class Multiselect {
   @State() persistentSelectedOptions: Option[] = [];
   @State() listOfOptions: Option[] = [];
   @State() dropdownOpen = false;
-  @State() dropdownFlipped = false;
+  @State() dropdownFlipped: boolean;
   @Prop() maxItemCount: number = 10;
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
@@ -259,23 +259,16 @@ export class Multiselect {
   }
 
   positionDropdown() {
-    const dropdown = this.el.shadowRoot.querySelector('.dropdown-menu');
-    const wrapper = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper');
+    const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
 
-    if (!dropdown || !wrapper) return;
-
-    const dropdownRect = dropdown.getBoundingClientRect();
-    const wrapperRect = wrapper.getBoundingClientRect();
-
-    const spaceAbove = wrapperRect.top;
     const spaceBelow = window.innerHeight - wrapperRect.bottom;
-
-    // Remove the is-flipped class initially
-    wrapper.classList.remove('is-flipped');
+    const spaceAbove = wrapperRect.top;
 
     // If there's more space above than below the trigger and the dropdown doesn't fit below
-    if (spaceAbove > spaceBelow && dropdownRect.height > spaceBelow) {
-      wrapper.classList.add('is-flipped');
+    if ((spaceAbove > spaceBelow && wrapperRect.height > spaceBelow) || (wrapperRect.bottom > window.innerHeight)) {
+      this.dropdownFlipped = true;
+    } else {
+      this.dropdownFlipped = false;
     }
   }
 
@@ -401,6 +394,8 @@ export class Multiselect {
   }
 
   render() {
+    console.log('Rendering with dropdownFlipped:', this.dropdownFlipped);
+
     // Create a label for the selected options
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
 
