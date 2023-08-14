@@ -1,3 +1,16 @@
+# v20.2.0 (Mon Aug 14 2023)
+
+#### 🚀 Enhancement
+
+- added dropdown-menu doc and images [#348](https://github.com/Infineon/infineon-design-system-stencil/pull/348) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.1.0 (Mon Aug 14 2023)
 
 #### 🚀 Enhancement
