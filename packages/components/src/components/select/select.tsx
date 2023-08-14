@@ -24,7 +24,7 @@ import { filterObject, isDefined } from './utils';
 
 
 @Component({
-  tag: 'ifx-choices',
+  tag: 'ifx-select',
   styleUrl: 'select.scss',
   // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
 
@@ -81,7 +81,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Placeholder";
   @Event() ifxSelect: EventEmitter<CustomEvent>;
-  @Prop() ifxChoices: any[] | string;
+  @Prop() ifxOptions: any[] | string;
   @Prop() ifxSize: string = 'medium (40px)';
 
   @Element() private readonly root: HTMLElement;
@@ -213,7 +213,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     } else if (Array.isArray(choices) || typeof choices === 'object') {
       listOfChoices = choices;
     } else {
-      console.error('Unexpected value for choices:', this.ifxChoices);
+      console.error('Unexpected value for choices:', this.ifxOptions);
     }
 
     this.choice.setChoices(listOfChoices, value, label, replaceChoices);
@@ -321,7 +321,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               <select {...attributesSingle} data-trigger
                 onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.ifxChoices, this.value)}
+                {this.createSelectOptions(this.ifxOptions, this.value)}
               </select>
 
 
@@ -356,7 +356,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             }
             <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesMultiple} multiple onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.ifxChoices, this.value)}
+                {this.createSelectOptions(this.ifxOptions, this.value)}
               </select>
               <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
@@ -533,6 +533,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
       const self = this; // save the context of this in a variable outside of the function to access it in the following
 
+      // this.type = "single"; //for now, only single-select is implemented
       if (this.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
@@ -599,7 +600,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        this.setChoices(this.ifxChoices, "value", "label", true)
+        this.setChoices(this.ifxOptions, "value", "label", true)
 
 
       } else if (this.type === 'multiple') {
@@ -638,7 +639,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        this.setChoices(this.ifxChoices, "value", "label", true)
+        this.setChoices(this.ifxOptions, "value", "label", true)
       } else { //text
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           removeItemButton: true,
@@ -712,9 +713,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
-  private createSelectOptions(ifxChoices, value: string | Array<string>): Array<HTMLStencilElement> {
+  private createSelectOptions(ifxOptions, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
-      let optionValueBasedOnAvailableOptions = JSON.parse(ifxChoices).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
+      let optionValueBasedOnAvailableOptions = JSON.parse(ifxOptions).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
       // console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
       console.log("option value could not be found in available options", value)
       return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>

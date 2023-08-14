@@ -29,7 +29,6 @@
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
- - [ifx-choices](../select)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-example](../template-story-with-markdown)
@@ -41,6 +40,7 @@
  - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
+ - [ifx-select](../select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
  - [ifx-text-field](../text-field)
@@ -53,7 +53,6 @@ graph TD;
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
-  ifx-choices --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
   ifx-example --> ifx-icon
@@ -65,6 +64,7 @@ graph TD;
   ifx-navbar-item --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
+  ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-text-field --> ifx-icon

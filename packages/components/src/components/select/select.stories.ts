@@ -17,16 +17,16 @@ export default {
     errorMessage: 'Some error',
     label: '',
     disabled: false,
-    type: 'single',
+    // type: 'single', //for later implementation
     options: "",
   },
 
   argTypes: {
-    type: {
-      control: { type: 'radio' },
-      options: ['single', 'text']
+    type: { //for later implementation
+      // control: { type: 'radio' },
+      // options: ['single', 'text']
+      control: false,
     },
-    value: { control: 'text' },
     size: {
       options: ['small (36px)', 'medium (40px)'],
       control: { type: 'radio' },
@@ -55,7 +55,7 @@ export default {
 };
 
 const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, label, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, options }) => {
-  const element = document.createElement('ifx-choices');
+  const element = document.createElement('ifx-select');
   element.setAttribute('type', type);
   element.setAttribute('value', value);
   element.setAttribute('ifx-size', size);
@@ -67,7 +67,7 @@ const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, lab
   element.setAttribute('ifx-error-message', errorMessage);
   element.setAttribute('ifx-label', label);
   element.setAttribute('ifx-placeholder-value', placeholderValue);
-  element.setAttribute('ifx-choices', options);
+  element.setAttribute('ifx-options', options);
   element.addEventListener('ifxSelect', action('ifxSelect'));
 
   return element;
@@ -82,16 +82,16 @@ Single.args = {
 
 };
 
-export const Text = DefaultTemplate.bind({});
-Text.args = {
-  type: 'text',
-  name: 'text',
-  value: 'Placeholder',
-  allowHTML: true,
-  delimiter: ',',
-  editItems: true,
-  maxItemCount: 5,
-};
+// export const Text = DefaultTemplate.bind({});
+// Text.args = {
+//   type: 'text',
+//   name: 'text',
+//   value: 'Placeholder',
+//   allowHTML: true,
+//   delimiter: ',',
+//   editItems: true,
+//   maxItemCount: 5,
+// };
 
 // export const Text = DefaultTemplate.bind({});
 // Text.args = {

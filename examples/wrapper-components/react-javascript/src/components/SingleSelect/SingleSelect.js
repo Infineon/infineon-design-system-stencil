@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { IfxChoices, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxSelect, IfxButton } from '@infineon/infineon-design-system-react';
 
 
 function App() {
@@ -37,10 +37,10 @@ function App() {
 
   return (
     <div>
-      <IfxChoices ifx-choices={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+      <IfxSelect ifx-options={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} ifx-size="medium (40px)" placeholder="true" search-enabled="true"
         search-placeholder-value="Search..." ifx-disabled={disabled} ifx-error={error} ifx-error-message="Some error"
         ifx-label="" ifx-placeholder-value="Placeholder"
-      ></IfxChoices>
+      ></IfxSelect>
       <div>
         <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
         <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>

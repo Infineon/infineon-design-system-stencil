@@ -3,9 +3,9 @@
 <template>
   <div>
     <h2>SingleSelect</h2>
-    <ifx-choices type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+    <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
       search-placeholder-value="Search..." :ifx-disabled="disabled" :ifx-error="error" :ifx-error-message="errorMessage"
-      ifx-label="" ifx-placeholder-value="Placeholder" :ifx-choices="JSON.stringify(options)"></ifx-choices>
+      ifx-label="" ifx-placeholder-value="Placeholder" :ifx-options="JSON.stringify(options)"></ifx-select>
     <div>
       <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
@@ -43,11 +43,6 @@ let options = ref([{
   label: "option c",
   selected: false
 }]);
-
-
-function handleMultiSelectChange(event) {
-  console.log("emitting multiselect selected options: ", event.detail)
-};
 
 
 
