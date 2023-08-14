@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host {
+:host { 
   width: 100%;
 }
 
@@ -28,7 +28,7 @@
   &.show {
     height: 100vh;
     bottom: 0;
-    background-color: #1D1D1D33;
+    background-color: tokens.$ifxColorOverlayDark;
     transition: 1s;
     z-index: 1;
   }
@@ -68,7 +68,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: tokens.$ifxSpace300;
+    gap: 24px;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -83,7 +83,7 @@
       flex-direction: row;
       align-items: center;
       padding: 0px;
-      gap: tokens.$ifxSpace200;
+      gap: 16px;
       flex: none;
       order: 0;
       align-self: stretch;
@@ -92,8 +92,8 @@
 
       & span {
         color: tokens.$ifxColorBaseBlack;
-        font-weight: tokens.$ifxFontWeightSemibold;
-        font-size: tokens.$ifxFontSizeL;
+        font-weight: 600;
+        font-size: 18px;
         line-height: 28px;
         display: flex;
         align-items: center;
@@ -110,7 +110,7 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 0px;
-      gap: tokens.$ifxSpace200;
+      gap: 16px;
       flex: none;
       order: 1;
       flex-grow: 0;
@@ -134,8 +134,8 @@
           text-decoration: none;
           font-style: normal;
           font-weight: 400;
-          font-size: tokens.$ifxFontSizeM;
-          line-height: tokens.$ifxLineHeightM;
+          font-size: 16px;
+          line-height: 24px;
           display: flex;
           align-items: center;
           color: tokens.$ifxColorBaseBlack;
@@ -143,12 +143,12 @@
       }
 
       & .navbar__sidebar-content-main-menu-item {
-        color: #BFBBBB;
+        color: tokens.$ifxColorEngineering300;
 
         & a {
           font-style: normal;
-          font-weight: tokens.$ifxFontWeightSemibold;
-          font-size: tokens.$ifxFontSizeL;
+          font-weight: 600;
+          font-size: 18px;
           line-height: 28px;
           display: flex;
           align-items: center;
@@ -171,7 +171,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 40px;
-  gap: tokens.$ifxSpace200;
+  gap: 16px;
   background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid #EEEDED;
 
@@ -180,7 +180,7 @@
     flex-direction: row;
     align-items: center;
     padding: 0;
-    gap: tokens.$ifxSpace200;
+    gap: 16px;
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -190,7 +190,7 @@
       flex-direction: row;
       align-items: center;
       padding: 0px;
-      gap: tokens.$ifxSpace200;
+      gap: 16px;
       flex: none;
       order: 0;
       flex-grow: 0;
@@ -200,9 +200,9 @@
         margin: 0;
         padding: 0;
         font-style: normal;
-        font-weight: tokens.$ifxFontWeightSemibold;
-        font-size: tokens.$ifxFontSizeM;
-        line-height: tokens.$ifxLineHeightM;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
         display: flex;
         align-items: center;
         color: tokens.$ifxColorBaseBlack;
@@ -223,7 +223,7 @@
 
         & svg {
           width: 91px;
-          height: tokens.$ifxSize500;
+          height: 40px;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -233,12 +233,11 @@
 
       & .navbar__container-left-logo-divider {
         width: 1px;
-        height: tokens.$ifxSize400;
-        background: #EEEDED;
+        height: 32px;
+        background: tokens.$ifxColorEngineering200;
         flex: none;
         order: 2;
         flex-grow: 0;
-
         display: none;
       }
     }
@@ -272,7 +271,7 @@
           order: 5;
           flex-grow: 0;
           //width: 256px;
-          //height: tokens.$ifxSize500;
+          //height: 40px;
         }
 
         & .navbar__container-left-content-navigation-item {
@@ -280,7 +279,7 @@
           flex-direction: row;
           align-items: center;
           padding: 0px 8px;
-          gap: tokens.$ifxSpace100;
+          gap: 8px;
           flex: none;
           order: 0;
           flex-grow: 0;
@@ -289,8 +288,8 @@
             display: flex;
             align-items: center;
             font-weight: 400;
-            font-size: tokens.$ifxFontSizeM;
-            line-height: tokens.$ifxLineHeightM;
+            font-size: 16px;
+            line-height: 24px;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             flex: none;
@@ -305,12 +304,12 @@
             flex-direction: row;
             align-items: center;
             padding: 0px 8px;
-            gap: tokens.$ifxSpace100;
+            gap: 8px;
 
             & a {
-              & span {
-                &:hover {
-                  color: #0A8276;
+              & span { 
+                &:hover { 
+                  color: tokens.$ifxColorOcean500;
                 }
               }
             }
@@ -335,8 +334,8 @@
             & a {
               text-decoration: none;
               font-weight: 400;
-              font-size: tokens.$ifxFontSizeM;
-              line-height: tokens.$ifxLineHeightM;
+              font-size: 16px;
+              line-height: 24px;
               color: tokens.$ifxColorBaseBlack;
               display: flex;
               align-items: center;
@@ -370,7 +369,7 @@
     align-items: center;
     justify-content: flex-end;
     padding: 0;
-    gap: tokens.$ifxSpace100;
+    gap: 8px;
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -381,13 +380,13 @@
       justify-content: center;
       align-items: center;
       padding: 4px 0px 4px 16px;
-      border-left: 1px solid #BFBBBB;
-      gap: tokens.$ifxSpace200;
+      border-left: 1px solid tokens.$ifxColorEngineering300;
+      gap: 16px;
       flex: none;
       order: 1;
       flex-grow: 0;
       width: 41px;
-      height: tokens.$ifxSize500;
+      height: 40px;
 
       & .navbar__burger-icon {
         display: flex;
@@ -445,20 +444,20 @@
             justify-content: center;
             align-items: center;
             padding: 0px;
-            gap: tokens.$ifxSpace100;
+            gap: 8px;
             flex: none;
             order: 0;
             flex-grow: 0;
-            //width: tokens.$ifxSize300;
-            //height: tokens.$ifxSize300;
+            //width: 24px;
+            //height: 24px;
             max-width: 200px;
           }
 
           & .navbar__container-right-content-navigation-item-navigation-profile {
             position: relative;
-            width: tokens.$ifxSize300;
-            height: tokens.$ifxSize300;
-            background: #0A8276;
+            width: 24px;
+            height: 24px;
+            background: tokens.$ifxColorOcean500;
             border-radius: 100px;
             flex: none;
             order: 0;
@@ -467,13 +466,13 @@
             & a {
               position: absolute;
               width: 22px;
-              height: tokens.$ifxSize250;
+              height: 20px;
               left: calc(50% - 22px/2);
               top: calc(50% - 20px/2);
               font-style: normal;
-              font-weight: tokens.$ifxFontWeightSemibold;
-              font-size: tokens.$ifxFontSizeS;
-              line-height: tokens.$ifxLineHeightS;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 20px;
               text-decoration: none;
               display: flex;
               align-items: center;
@@ -489,7 +488,7 @@
             justify-content: center;
             align-items: center;
             padding: 0px;
-            gap: tokens.$ifxSpace100;
+            gap: 8px;
             flex: none;
             order: 0;
             flex-grow: 0;
@@ -498,8 +497,8 @@
           & a {
             font-style: normal;
             font-weight: 400;
-            font-size: tokens.$ifxFontSizeS;
-            line-height: tokens.$ifxLineHeightS;
+            font-size: 14px;
+            line-height: 20px;
             color: tokens.$ifxColorBaseBlack;
             text-decoration: none;
             display: flex;
@@ -600,7 +599,7 @@
     height: 72px;
 
     & .navbar__container-left {
-      gap: tokens.$ifxSpace150;
+      gap: 12px;
 
       & .navbar__container-left-logo {
         & .navbar__container-left-logo-divider {
@@ -615,7 +614,7 @@
       & .navbar__container-left-logo-default {
         & svg {
           width: 72.8px;
-          height: tokens.$ifxSize400;
+          height: 32px;
         }
       }
 

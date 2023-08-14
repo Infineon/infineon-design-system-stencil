@@ -36,7 +36,7 @@
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
  - [ifx-navbar](../navbar)
- - [ifx-navbar-menu-item](../navbar)
+ - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-sidebar-item](../sidebar)
@@ -58,7 +58,7 @@ graph TD;
   ifx-icons-preview --> ifx-icon
   ifx-modal --> ifx-icon
   ifx-navbar --> ifx-icon
-  ifx-navbar-menu-item --> ifx-icon
+  ifx-navbar-item --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-sidebar-item --> ifx-icon

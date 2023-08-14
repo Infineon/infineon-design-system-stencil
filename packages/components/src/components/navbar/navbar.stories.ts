@@ -1,27 +1,39 @@
 
 export default {
   title: "Components/Navbar",
-
+  args: {
+    applicationName: 'Application name',
+    hideLabel: false,
+    icon: "calendar16",
+    navbarItemTarget: "_blank",
+    navbarItemHref: "",
+    navbarMenuHref: "",
+    navbarMenuTarget: "_blank",
+    searchBarIsOpen: false,
+    searchBarShowCloseButton: true,
+    navbarPositionFixed: false
+  },
 };
 
 
-const DefaultTemplate = () =>
-  `<ifx-navbar application-name="Application name" fixed="false">
-    <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
-    <ifx-navbar-menu-item  slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
- 
-    <ifx-dropdown-menu slot="dropdown-menu">
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-    </ifx-dropdown-menu>
+const DefaultTemplate = (args) =>
+  `<ifx-navbar application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
+  <ifx-navbar-item hide-label="${args.hideLabel}" icon="${args.icon}" slot="left-item" target="${args.navbBarItemTarget}" href="${args.navbBarItemHref}">Menu Item 1</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
 
-    <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+  <ifx-navbar-menu slot="menu">
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}" target="${args.navbarMenuTarget}">Item 1</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}">Item 2</ifx-navbar-menu-item>
+    <ifx-navbar-menu-item href="${args.navbarMenuHref}">Item 3</ifx-navbar-menu-item>
+  </ifx-navbar-menu>
 
-    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
-    <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
-    <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
-  </ifx-navbar>`;
+  <ifx-search-bar slot="search-bar-right" is-open="${args.searchBarIsOpen}" show-close-button="${args.searchBarShowCloseButton}"></ifx-search-bar>
+
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-item">Right One</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-item">Right Two</ifx-navbar-item>
+  <ifx-navbar-item hide-label="${args.hideLabel}" slot="right-profile-item">Tisho</ifx-navbar-item>
+</ifx-navbar>`;
 
 
 export const Default = DefaultTemplate.bind({});

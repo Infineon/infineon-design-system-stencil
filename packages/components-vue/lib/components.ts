@@ -252,10 +252,22 @@ export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navba
 ]);
 
 
-export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', undefined, [
   'isProfile',
   'hideLabel',
-  'icon'
+  'icon',
+  'href',
+  'target'
+]);
+
+
+export const IfxNavbarMenu = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenu>('ifx-navbar-menu', undefined);
+
+
+export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+  'href',
+  'target',
+  'hide'
 ]);
 
 
