@@ -1,3 +1,20 @@
+# v20.1.0 (Mon Aug 14 2023)
+
+#### 🚀 Enhancement
+
+- 351 implementation navbar submenu v-1 [#364](https://github.com/Infineon/infineon-design-system-stencil/pull/364) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Documnetation: chip [#373](https://github.com/Infineon/infineon-design-system-stencil/pull/373) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.0.4 (Fri Aug 11 2023)
 
 #### 🐛 Bug Fix
