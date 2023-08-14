@@ -137,17 +137,16 @@
     <br />
 
     <h2>Multi-Select</h2>
-    <ifx-multiselect
-      options="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false,&quot;children&quot;:[{&quot;value&quot;:&quot;c1&quot;,&quot;label&quot;:&quot;option c1&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c2&quot;,&quot;label&quot;:&quot;option c2&quot;,&quot;selected&quot;:false}]}]"
+    <ifx-multiselect id="multi-select"
+      options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
       size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
     <br />
     <br />
 
     <h2>Single-Select</h2>
-    <ifx-choices type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
-      search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
-      ifx-label="" ifx-placeholder-value="Placeholder"
-      ifx-choices="[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]"></ifx-choices>
+    <ifx-choices id="single-select" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
+      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
+      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-choices=''></ifx-choices>
     <br />
     <br />
 
@@ -249,7 +248,6 @@
   let radioChecked = false;
   let number = 1;
   let switchChecked = false;
-
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
 
@@ -351,13 +349,9 @@
       console.log("single select value change", event.detail);
     });
 
-    //set single select values
-    const predefinedChoices = [
-      { value: 'Choice 1', label: 'Choice 1' },
-      { value: 'Choice 2', label: 'Choice 2' },
-      { value: 'Choice 3', label: 'Choice 3' },
-    ];
-    singleSelect.setChoices(predefinedChoices, 'value', 'label', true);
+    //set single select values using a json array
+    const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
+    singleSelect.setAttribute('ifx-choices', singleSelectOptions);
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
     });
