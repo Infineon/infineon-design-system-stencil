@@ -156,39 +156,50 @@ export const IfxChoices = /*@__PURE__*/ defineContainer<JSX.IfxChoices>('ifx-cho
 
 
 export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
-  'label',
-  'size',
+  'placement',
+  'defaultOpen',
+  'noAppendToBody',
   'disabled',
-  'icon',
-  'search',
-  'filter'
+  'noCloseOnOutsideClick',
+  'noCloseOnMenuClick',
+  'ifxOpen',
+  'ifxClose'
 ]);
 
 
-export const IfxDropdownDivider = /*@__PURE__*/ defineContainer<JSX.IfxDropdownDivider>('ifx-dropdown-divider', undefined);
+export const IfxDropdownHeader = /*@__PURE__*/ defineContainer<JSX.IfxDropdownHeader>('ifx-dropdown-header', undefined);
 
 
 export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
-  'label',
-  'size',
-  'disabled',
   'icon',
-  'checkable',
-  'value',
-  'url',
+  'href',
   'target',
-  'itemValues'
+  'hide'
 ]);
 
 
 export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu>('ifx-dropdown-menu', undefined, [
-  'label',
+  'isOpen',
+  'size',
+  'menuSize'
+]);
+
+
+export const IfxDropdownSeparator = /*@__PURE__*/ defineContainer<JSX.IfxDropdownSeparator>('ifx-dropdown-separator', undefined);
+
+
+export const IfxDropdownTrigger = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTrigger>('ifx-dropdown-trigger', undefined, [
+  'isOpen'
+]);
+
+
+export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
+  'isOpen',
+  'variant',
+  'color',
   'size',
   'disabled',
-  'icon',
-  'search',
-  'filter',
-  'selectValues'
+  'hideArrow'
 ]);
 
 
@@ -311,10 +322,22 @@ export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navba
 ]);
 
 
-export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', undefined, [
   'isProfile',
   'hideLabel',
-  'icon'
+  'icon',
+  'href',
+  'target'
+]);
+
+
+export const IfxNavbarMenu = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenu>('ifx-navbar-menu', undefined);
+
+
+export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+  'href',
+  'target',
+  'hide'
 ]);
 
 

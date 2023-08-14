@@ -18,6 +18,8 @@
   <Spinner />
   <Sidebar />
   <Switch />
+  <Dropdown />
+  <Footer />
   <Tabs />
   <Tag />
   <TextField />
@@ -43,6 +45,8 @@ import Navbar from './components/Navbar.vue'
 import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
+import Dropdown from './components/Dropdown.vue'
+import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
 

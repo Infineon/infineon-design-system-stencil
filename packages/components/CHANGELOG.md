@@ -1,3 +1,71 @@
+# v20.1.0 (Mon Aug 14 2023)
+
+#### 🚀 Enhancement
+
+- 351 implementation navbar submenu v-1 [#364](https://github.com/Infineon/infineon-design-system-stencil/pull/364) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Documnetation: chip [#373](https://github.com/Infineon/infineon-design-system-stencil/pull/373) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.0.4 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- workflow bug fix [#372](https://github.com/Infineon/infineon-design-system-stencil/pull/372) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.0.3 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- 347 rework dropdown component [#358](https://github.com/Infineon/infineon-design-system-stencil/pull/358) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.0.2 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- Footer: fixed minor issues + added to example apps [#362](https://github.com/Infineon/infineon-design-system-stencil/pull/362) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.0.1 (Fri Aug 11 2023)
+
+#### 🐛 Bug Fix
+
+- 366 documentation card update [#369](https://github.com/Infineon/infineon-design-system-stencil/pull/369) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.0.0 (Thu Aug 10 2023)
 
 #### 💥 Breaking Change

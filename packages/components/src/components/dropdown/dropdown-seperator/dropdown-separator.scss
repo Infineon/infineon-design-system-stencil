@@ -1,0 +1,8 @@
+// dropdown-separator.scss
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.dropdown-separator {
+  height: 1px;
+  background-color: tokens.$ifxColorEngineering200;
+  margin: 8px 16px;
+}
