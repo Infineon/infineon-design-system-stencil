@@ -16,24 +16,26 @@
 
   <div>
     <ifx-navbar application-name="Application name" fixed="false">
-      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
-      <ifx-navbar-menu-item slot="left-menu-item">Menu Item</ifx-navbar-menu-item>
-
-      <ifx-dropdown-menu slot="dropdown-menu">
-        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      </ifx-dropdown-menu>
-
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank" href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item  slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item  slot="left-item">Menu Item</ifx-navbar-item>
+  
+      <ifx-navbar-menu slot="menu">
+        <ifx-navbar-menu-item href="https://google.com" target="_blank">Item 1</ifx-navbar-menu-item>
+        <ifx-navbar-menu-item href="https://google.com">Item 2</ifx-navbar-menu-item>
+        <ifx-navbar-menu-item href="https://google.com">Item 3</ifx-navbar-menu-item>
+      </ifx-navbar-menu>
+  
       <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
-
-      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right One</ifx-navbar-menu-item>
-      <ifx-navbar-menu-item hide-label="false" slot="right-menu-item">Right Two</ifx-navbar-menu-item>
-      <ifx-navbar-menu-item hide-label="false" slot="right-menu-profile-item">Tisho</ifx-navbar-menu-item>
+  
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+      <ifx-navbar-item hide-label="false" slot="right-item">Right Two</ifx-navbar-item>
+      <ifx-navbar-item hide-label="false" slot="right-profile-item">Tisho</ifx-navbar-item>
     </ifx-navbar>
 
 
     <h1>Using Stencil web components in an Vanilla JS</h1>
+    
 
     <h2>Alert</h2>
     <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
@@ -164,11 +166,29 @@
     <br />
 
     <h2>Search bar</h2>
-    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-field>
-      <br />
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
+    <br />
 
       <h2>Switch</h2>
       <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
+      <br />
+
+      <h2>Dropdown</h2>
+      <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+        <ifx-dropdown-trigger-button icon="calendar16">
+          dropdown
+        </ifx-dropdown-trigger-button>
+        <ifx-dropdown-menu size="l">
+         <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+          <ifx-search-field show-delete-icon="false"></ifx-search-field>
+          <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+          <ifx-dropdown-separator></ifx-dropdown-separator>
+          <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
+          <ifx-dropdown-item>Two</ifx-dropdown-item>
+          <ifx-dropdown-item>Three</ifx-dropdown-item>
+          <ifx-dropdown-item>Four</ifx-dropdown-item>
+        </ifx-dropdown-menu>
+      </ifx-dropdown>
       <br />
 
   </div>

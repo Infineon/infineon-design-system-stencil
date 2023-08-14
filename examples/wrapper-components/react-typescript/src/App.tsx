@@ -7,18 +7,15 @@ import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Tabs from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
-
 import Card from './components/Card/Card';
-
 import Spinner from './components/Spinner'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Link from './components/Link/Link';
 import SearchField from './components/SearchField/SearchField'
 import Sidebar from './components/Sidebar/Sidebar';
-import NumberIndicator from './components/NumberIndicator/NumberIndicator';
 import IconButton from './components/IconButton/IconButton';
-
 import Navbar from './components/Navbar/Navbar';
+import Dropdown from './components/Dropdown/Dropdown';
 
 function App() {
 
@@ -65,34 +62,38 @@ function App() {
          <br/>
 
 
-      <h2>Spinner</h2>
-      <Spinner />
-      <br />
-      
-      <h2>Link</h2>
-      <Link />
-      <br />
+         <h2>Spinner</h2>
+         <Spinner />
+         <br />
+         
+         <h2>Link</h2>
+         <Link />
+         <br />
 
-      <h2>Number Indicator</h2>
-      <NumberIndicator />
-      <br />
-      
-      <h2>Search Field</h2>
-      <SearchField />
-      <br />
-      
-      <h2>Number indicator</h2>
-      <NumberIndicator />
-      <br />
+         <h2>Number Indicator</h2>
+         <NumberIndicator />
+         <br />
+         
+         <h2>Search Field</h2>
+         <SearchField />
+         <br />
+         
+         <h2>Number indicator</h2>
+         <NumberIndicator />
+         <br />
 
-      <h2>Sidebar</h2>
-      <Sidebar />
-      <br />
+         <h2>Sidebar</h2>
+         <Sidebar />
+         <br />
 
-      <h2>IconButton</h2>
-      <IconButton />
-      <br />
-      </div>
+         <h2>Dropdown</h2>
+         <Dropdown />
+         <br />
+
+         <h2>IconButton</h2>
+         <IconButton />
+         <br />
+         </div>
    )
 }
 export default App

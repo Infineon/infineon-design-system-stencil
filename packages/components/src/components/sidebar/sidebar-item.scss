@@ -11,15 +11,15 @@
   order: 0;
   flex-grow: 0;
   text-decoration: none;
-  color: #1D1D1D;
+  color: tokens.$ifxColorBaseBlack;
 
   & .sidebar__nav-item-icon-wrapper {
     display: flex;
-    width: 24px;
-    height: 24px;
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: tokens.$ifxSpace100;
     flex-shrink: 0;
 
     &.noIcon {
@@ -27,19 +27,19 @@
     }
 
     & ifx-icon {
-      width: 16px;
-      height: 16px;
+      width: tokens.$ifxSize200;
+      height: tokens.$ifxSize200;
     }
   }
 
   & .sidebar__nav-item-label {
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     display: flex;
     align-items: center;
-    color: tokens.$color-text-black;
+    color: tokens.$ifxColorBaseBlack;
     flex: none;
     order: 1;
     flex-grow: 1;

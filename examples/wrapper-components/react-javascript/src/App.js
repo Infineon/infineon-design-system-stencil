@@ -18,6 +18,7 @@ import Tab from './components/Tab/Tab';
 import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
+import Dropdown from './components/Dropdown/Dropdown';
 
 function App() {
   return (
@@ -98,6 +99,10 @@ function App() {
 
       <h2>Switch</h2>
       <Switch />
+      <br />
+
+      <h2>Dropdown</h2>
+      <Dropdown />
       <br />
 
     </div>
