@@ -47,6 +47,10 @@ export default {
     },
     searchPlaceholderValue: { control: { type: 'text' } },
     onChange: { action: 'change' },
+    options: {
+      description: 'Options should be passed as JSON array, but are passed as string here for a beautified display in the code snippet',
+
+    }
   },
 };
 
