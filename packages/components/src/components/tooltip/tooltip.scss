@@ -1,0 +1,90 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.tooltip__container {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.tooltip-text {
+  background-color: tokens.$ifxColorBaseBlack;
+  border: 1px solid black;
+  color: #fff;
+  text-align: center;
+  padding: 4px 8px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: relative;
+  font-family: Source Sans 3;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: tokens.$ifxColorBaseWhite;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &>svg {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+  }
+}
+
+// For 'top' placement
+.tooltip-text[data-placement="top"]>svg {
+  bottom: -8px;
+  left: 50%;
+  transform: rotate(180deg) translateX(-50%);
+}
+
+// For 'top-start' placement
+.tooltip-text[data-placement="top-start"]>svg {
+  bottom: -8px;
+  right: 10px; // Adjust as needed
+  transform: rotate(180deg)
+}
+
+// For 'top-end' placement
+.tooltip-text[data-placement="top-end"]>svg {
+  bottom: -8px;
+  left: 10px; // Adjust as needed
+  transform: rotate(180deg);
+}
+
+// For 'bottom' placement
+.tooltip-text[data-placement="bottom"]>svg {
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// For 'bottom-start' placement
+.tooltip-text[data-placement="bottom-start"]>svg {
+  top: -8px;
+  left: 10px; // Adjust as needed
+}
+
+// For 'bottom-end' placement
+.tooltip-text[data-placement="bottom-end"]>svg {
+  top: -8px;
+  right: 10px; // Adjust as needed
+}
+
+// For 'left' placement
+.tooltip-text[data-placement="left"]>svg {
+  right: -4px;
+  top: 50%;
+  transform: rotate(90deg) translateY(-50%) translateX(-50%);
+}
+
+// For 'right' placement
+.tooltip-text[data-placement="right"]>svg {
+  left: -4px;
+  top: 50%;
+  transform: rotate(270deg) translateY(-50%) translateX(50%);
+}
