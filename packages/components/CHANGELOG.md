@@ -1,3 +1,15 @@
+# v20.2.1 (Wed Aug 16 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: badge update [#376](https://github.com/Infineon/infineon-design-system-stencil/pull/376) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.2.0 (Mon Aug 14 2023)
 
 #### 🚀 Enhancement
