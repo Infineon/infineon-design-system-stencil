@@ -15,13 +15,19 @@
 
   <script defer>
 
+    window.addEventListener('load', () => { 
+      const myPag = document.getElementById('myPag')
+      myPag.addEventListener('ifxPageChange', (e) => { 
+        //console.log('page', e.detail)
+      })
+    })
   </script>
 
 </head>
 
 <body>
 
-  <ifx-pagination total="50" currentPage="1" per-page="10" surroundingPageCount="2"></ifx-pagination>
+  <ifx-pagination id="myPag" total="50" current-page="1" items-per-page="10" surrounding-page-count="2"></ifx-pagination>
   
 </body>
 
