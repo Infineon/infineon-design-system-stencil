@@ -398,6 +398,7 @@ export const IfxTooltip = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-too
   'header',
   'text',
   'position',
-  'variant'
+  'variant',
+  'icon'
 ]);
 

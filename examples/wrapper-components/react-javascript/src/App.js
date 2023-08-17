@@ -19,6 +19,7 @@ import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
+import Tooltip from './components/Tooltip/Tooltip';
 
 function App() {
   return (
@@ -103,6 +104,10 @@ function App() {
 
       <h2>Dropdown</h2>
       <Dropdown />
+      <br />
+
+      <h2>Tooltip</h2>
+      <Tooltip />
       <br />
 
     </div>

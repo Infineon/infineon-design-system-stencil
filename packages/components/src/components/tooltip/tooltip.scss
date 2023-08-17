@@ -35,7 +35,6 @@
     padding: 12px;
   }
 
-
   .close-button {
     position: absolute;
     top: 12px;
@@ -43,28 +42,27 @@
     cursor: pointer;
   }
 
-  .tooltip-content {
+  .tooltip-dismissable-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
     padding: 12px;
     flex-grow: 1;
-
   }
 
-  .tooltip-header,
-  .tooltip-body {
+  .tooltip-dismissable-header,
+  .tooltip-dismissable-body {
     font-family: "Source Sans 3";
     font-size: 13px;
     font-style: normal;
     line-height: 20px;
   }
 
-  .tooltip-header {
+  .tooltip-dismissable-header {
     font-weight: tokens.$ifxFontWeightSemibold;
   }
 
-  .tooltip-body {
+  .tooltip-dismissable-body {
     font-weight: tokens.$ifxFontWeightRegular;
   }
 }
@@ -74,10 +72,51 @@
   padding: 4px 8px;
   text-align: center;
   flex-grow: 1;
-
 }
 
-.tooltip__container svg {
+
+.tooltip-text-icon {
+  @extend %tooltip-common;
+  width: 310px;
+  padding-left: 36px; // Added this line, adjust as per your icon width
+
+
+  .text-plus-icon_icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    left: 12px;
+    cursor: pointer;
+  }
+
+  .tooltip-text-icon-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    flex-grow: 1;
+  }
+
+  .tooltip-text-icon-header,
+  .tooltip-text-icon-body {
+    font-family: "Source Sans 3";
+    font-size: 13px;
+    font-style: normal;
+    line-height: 20px;
+  }
+
+  .tooltip-text-icon-header {
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+
+  .tooltip-text-icon-body {
+    font-weight: tokens.$ifxFontWeightRegular;
+  }
+}
+
+
+.tooltip__container .tooltip-arrow-svg {
   position: absolute;
   width: 8px;
   height: 8px;
@@ -87,54 +126,54 @@
 %tooltip-arrow-positions {
 
   // For 'top' placement
-  &[data-placement="top"]>svg {
+  &[data-placement="top"]>.tooltip-arrow-svg {
     bottom: -8px;
     left: 50%;
     transform: rotate(180deg) translateX(-50%);
   }
 
   // For 'top-start' placement
-  &[data-placement="top-start"]>svg {
+  &[data-placement="top-start"]>.tooltip-arrow-svg {
     bottom: -8px;
     right: 10px; // Adjust as needed
     transform: rotate(180deg)
   }
 
   // For 'top-end' placement
-  &[data-placement="top-end"]>svg {
+  &[data-placement="top-end"]>.tooltip-arrow-svg {
     bottom: -8px;
     left: 10px; // Adjust as needed
     transform: rotate(180deg);
   }
 
   // For 'bottom' placement
-  &[data-placement="bottom"]>svg {
+  &[data-placement="bottom"]>.tooltip-arrow-svg {
     top: -8px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   // For 'bottom-start' placement
-  &[data-placement="bottom-start"]>svg {
+  &[data-placement="bottom-start"]>.tooltip-arrow-svg {
     top: -8px;
     left: 10px; // Adjust as needed
   }
 
   // For 'bottom-end' placement
-  &[data-placement="bottom-end"]>svg {
+  &[data-placement="bottom-end"]>.tooltip-arrow-svg {
     top: -8px;
     right: 10px; // Adjust as needed
   }
 
   // For 'left' placement
-  &[data-placement="left"]>svg {
+  &[data-placement="left"]>.tooltip-arrow-svg {
     right: -4px;
     top: 50%;
     transform: rotate(90deg) translateY(-50%) translateX(-50%);
   }
 
   // For 'right' placement
-  &[data-placement="right"]>svg {
+  &[data-placement="right"]>.tooltip-arrow-svg {
     left: -4px;
     top: 50%;
     transform: rotate(270deg) translateY(-50%) translateX(50%);
@@ -147,5 +186,9 @@
 }
 
 .tooltip-dismissable {
+  @extend %tooltip-arrow-positions;
+}
+
+.tooltip-text-icon {
   @extend %tooltip-arrow-positions;
 }
