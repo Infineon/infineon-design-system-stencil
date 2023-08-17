@@ -5,14 +5,12 @@
   display: inline-flex;
   flex-direction: column;
   position: relative;
+
 }
 
-.tooltip-text {
+%tooltip-common {
   background-color: tokens.$ifxColorBaseBlack;
   border: 1px solid black;
-  color: #fff;
-  text-align: center;
-  padding: 4px 8px;
   z-index: 1;
   opacity: 0;
   transition: opacity 0.3s;
@@ -27,64 +25,127 @@
   &.visible {
     opacity: 1;
   }
+}
 
-  &>svg {
+.tooltip-dismissable {
+  @extend %tooltip-common;
+  width: 310px;
+
+  &.dismissable {
+    padding: 12px;
+  }
+
+
+  .close-button {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+  }
+
+  .tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    flex-grow: 1;
+
+  }
+
+  .tooltip-header,
+  .tooltip-body {
+    font-family: "Source Sans 3";
+    font-size: 13px;
+    font-style: normal;
+    line-height: 20px;
+  }
+
+  .tooltip-header {
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+
+  .tooltip-body {
+    font-weight: tokens.$ifxFontWeightRegular;
   }
 }
 
-// For 'top' placement
-.tooltip-text[data-placement="top"]>svg {
-  bottom: -8px;
-  left: 50%;
-  transform: rotate(180deg) translateX(-50%);
+.tooltip-compact {
+  @extend %tooltip-common;
+  padding: 4px 8px;
+  text-align: center;
+  flex-grow: 1;
+
 }
 
-// For 'top-start' placement
-.tooltip-text[data-placement="top-start"]>svg {
-  bottom: -8px;
-  right: 10px; // Adjust as needed
-  transform: rotate(180deg)
+.tooltip__container svg {
+  position: absolute;
+  width: 8px;
+  height: 8px;
 }
 
-// For 'top-end' placement
-.tooltip-text[data-placement="top-end"]>svg {
-  bottom: -8px;
-  left: 10px; // Adjust as needed
-  transform: rotate(180deg);
+
+%tooltip-arrow-positions {
+
+  // For 'top' placement
+  &[data-placement="top"]>svg {
+    bottom: -8px;
+    left: 50%;
+    transform: rotate(180deg) translateX(-50%);
+  }
+
+  // For 'top-start' placement
+  &[data-placement="top-start"]>svg {
+    bottom: -8px;
+    right: 10px; // Adjust as needed
+    transform: rotate(180deg)
+  }
+
+  // For 'top-end' placement
+  &[data-placement="top-end"]>svg {
+    bottom: -8px;
+    left: 10px; // Adjust as needed
+    transform: rotate(180deg);
+  }
+
+  // For 'bottom' placement
+  &[data-placement="bottom"]>svg {
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // For 'bottom-start' placement
+  &[data-placement="bottom-start"]>svg {
+    top: -8px;
+    left: 10px; // Adjust as needed
+  }
+
+  // For 'bottom-end' placement
+  &[data-placement="bottom-end"]>svg {
+    top: -8px;
+    right: 10px; // Adjust as needed
+  }
+
+  // For 'left' placement
+  &[data-placement="left"]>svg {
+    right: -4px;
+    top: 50%;
+    transform: rotate(90deg) translateY(-50%) translateX(-50%);
+  }
+
+  // For 'right' placement
+  &[data-placement="right"]>svg {
+    left: -4px;
+    top: 50%;
+    transform: rotate(270deg) translateY(-50%) translateX(50%);
+  }
 }
 
-// For 'bottom' placement
-.tooltip-text[data-placement="bottom"]>svg {
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
+
+.tooltip-compact {
+  @extend %tooltip-arrow-positions;
 }
 
-// For 'bottom-start' placement
-.tooltip-text[data-placement="bottom-start"]>svg {
-  top: -8px;
-  left: 10px; // Adjust as needed
-}
-
-// For 'bottom-end' placement
-.tooltip-text[data-placement="bottom-end"]>svg {
-  top: -8px;
-  right: 10px; // Adjust as needed
-}
-
-// For 'left' placement
-.tooltip-text[data-placement="left"]>svg {
-  right: -4px;
-  top: 50%;
-  transform: rotate(90deg) translateY(-50%) translateX(-50%);
-}
-
-// For 'right' placement
-.tooltip-text[data-placement="right"]>svg {
-  left: -4px;
-  top: 50%;
-  transform: rotate(270deg) translateY(-50%) translateX(50%);
+.tooltip-dismissable {
+  @extend %tooltip-arrow-positions;
 }

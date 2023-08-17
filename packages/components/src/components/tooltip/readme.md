@@ -7,11 +7,26 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                                                                                             | Default  |
-| ---------- | ---------- | ----------- | ---------------------------------------------------------------------------------------------------------------- | -------- |
-| `position` | `position` |             | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `'auto'` |
-| `text`     | `text`     |             | `string`                                                                                                         | `''`     |
+| Property   | Attribute  | Description | Type                                                                                                             | Default     |
+| ---------- | ---------- | ----------- | ---------------------------------------------------------------------------------------------------------------- | ----------- |
+| `header`   | `header`   |             | `string`                                                                                                         | `''`        |
+| `position` | `position` |             | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `'auto'`    |
+| `text`     | `text`     |             | `string`                                                                                                         | `''`        |
+| `variant`  | `variant`  |             | `"compact" \| "dismissable"`                                                                                     | `'compact'` |
 
+
+## Dependencies
+
+### Depends on
+
+- [ifx-icon](../icon)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-tooltip --> ifx-icon
+  style ifx-tooltip fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

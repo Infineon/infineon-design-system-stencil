@@ -395,7 +395,9 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx
 
 
 export const IfxTooltip = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', undefined, [
+  'header',
   'text',
-  'position'
+  'position',
+  'variant'
 ]);
 
