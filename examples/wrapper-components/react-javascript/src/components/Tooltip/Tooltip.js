@@ -3,9 +3,6 @@ import { IfxTooltip } from '@infineon/infineon-design-system-react';
 
 function Tooltip() {
 
-  const handleInput = (event) => {
-    console.log('input', event.detail)
-  }
 
   return (
     <div>
