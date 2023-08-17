@@ -1,9 +1,8 @@
 <template>
   <div>
 
-    <h2>Text Input</h2>
-    <h3>Using v-model</h3>
     <h2>Text field</h2>
+    <h3>Using v-model</h3>
     <div>
       <ifx-text-field v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
         errorMessage="">Label</ifx-text-field>

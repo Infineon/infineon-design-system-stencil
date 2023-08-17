@@ -99,7 +99,6 @@ export class Tooltip {
     const tooltipDismissable = {
       'tooltip-dismissable': true,
       'visible': this.tooltipVisible,
-      'dismissable': this.variant === 'dismissable'
     };
 
     const tooltipCompact = {

@@ -31,10 +31,6 @@
   @extend %tooltip-common;
   width: 310px;
 
-  &.dismissable {
-    padding: 12px;
-  }
-
   .close-button {
     position: absolute;
     top: 12px;
