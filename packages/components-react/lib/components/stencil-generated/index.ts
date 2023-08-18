@@ -61,6 +61,7 @@ export const IfxSpinner = /*@__PURE__*/createReactComponent<JSX.IfxSpinner, HTML
 export const IfxStatus = /*@__PURE__*/createReactComponent<JSX.IfxStatus, HTMLIfxStatusElement>('ifx-status');
 export const IfxSwitch = /*@__PURE__*/createReactComponent<JSX.IfxSwitch, HTMLIfxSwitchElement>('ifx-switch');
 export const IfxTab = /*@__PURE__*/createReactComponent<JSX.IfxTab, HTMLIfxTabElement>('ifx-tab');
+export const IfxTable = /*@__PURE__*/createReactComponent<JSX.IfxTable, HTMLIfxTableElement>('ifx-table');
 export const IfxTabs = /*@__PURE__*/createReactComponent<JSX.IfxTabs, HTMLIfxTabsElement>('ifx-tabs');
 export const IfxTag = /*@__PURE__*/createReactComponent<JSX.IfxTag, HTMLIfxTagElement>('ifx-tag');
 export const IfxTextField = /*@__PURE__*/createReactComponent<JSX.IfxTextField, HTMLIfxTextFieldElement>('ifx-text-field');

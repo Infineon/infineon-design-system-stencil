@@ -370,6 +370,9 @@ export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undef
 ]);
 
 
+export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined);
+
+
 export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
   'tabs',
   'orientation',

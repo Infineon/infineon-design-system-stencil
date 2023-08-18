@@ -20,5 +20,9 @@
     "lerna": "^7.0.0",
     "nx": "^16.2.1",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@revolist/revogrid": "^4.6.0-next.4",
+    "ag-grid-community": "^30.0.6"
   }
 }
