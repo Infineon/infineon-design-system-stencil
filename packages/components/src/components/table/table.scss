@@ -1,2 +1,53 @@
 @import "~ag-grid-community/styles/ag-grid.css";
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
+
+
+// .icon-wrapper ifx-icon {
+//   /* styles for the icon */
+//   pointer-events: none;
+// }
+
+// .icon-container {
+//   position: relative;
+//   width: 16px; // or whatever your icon width is
+//   height: 16px; // or whatever your icon height is
+//   overflow: hidden;
+// }
+
+// .unsorted-icon-wrapper {
+//   display: block;
+// }
+
+// .ascending-icon-wrapper,
+// .descending-icon-wrapper {
+//   display: none;
+// }
+
+
+
+/* For ascending sort */
+// .ag-icon-asc {
+//   /* hides the original icon visually */
+// opacity: 0;
+// width: 0px;
+// background-image: url('path-to-your-up-icon.svg') !important;
+// background-size: cover !important;
+// }
+
+/* For descending sort */
+// .ag-icon-desc {
+// /* hides the original icon visually */
+// opacity: 0;
+// width: 0px;
+// background-image: url('path-to-your-down-icon.svg') !important;
+// background-size: cover !important;
+// }
+
+/* For no sort (if you want to customize this as well) */
+// .ag-header-icon.ag-sort-none-icon {
+// /* hides the original icon visually */
+// opacity: 0;
+// width: 0px;
+// background-image: url('path-to-your-neutral-icon.svg') !important;
+// background-size: cover !important;
+// }
