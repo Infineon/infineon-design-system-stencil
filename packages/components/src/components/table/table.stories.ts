@@ -1,5 +1,5 @@
 const columnDefs = [
-  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc' },
+  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price', }
 ];
@@ -9,12 +9,43 @@ const rowData = [
   { make: 'Porsche', model: 'Boxster', price: 72000 }
 ];
 
+const columnDefsDragAndDrop = [
+  { valueGetter: '"Drag"', dndSource: true },
+  { field: 'id' },
+  { field: 'color' },
+  { field: 'value1' },
+  { field: 'value2' },
+];
+
+var rowIdSequence = 100;
+function getRowDataDragAndDrop() {
+  var rowDataDragAndDrop = [];
+  [
+    'Red',
+    'Green',
+    'Blue',
+    'Red',
+    'Green',
+    'Blue',
+    'Red',
+    'Green',
+    'Blue',
+  ].forEach(function (color) {
+    var newDataItem = {
+      id: rowIdSequence++,
+      color: color,
+      value1: Math.floor(Math.random() * 100),
+      value2: Math.floor(Math.random() * 100),
+    };
+    rowDataDragAndDrop.push(newDataItem);
+  });
+  return rowDataDragAndDrop;
+}
+
 
 export default {
   title: 'Components/Table',
   tags: ['autodocs'],
-  args: {
-  },
   argTypes: {
     columnDefs: {
       table: {
@@ -37,4 +68,11 @@ export const Default = DefaultTemplate.bind({});
 Default.args = {
   columnDefs: columnDefs,
   rowData: rowData,
+}
+
+
+export const DragAndDrop = DefaultTemplate.bind({});
+DragAndDrop.args = {
+  columnDefs: columnDefsDragAndDrop,
+  rowData: getRowDataDragAndDrop(),
 }
