@@ -1,3 +1,16 @@
+# v20.5.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: link [#399](https://github.com/Infineon/infineon-design-system-stencil/pull/399) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.4.0 (Tue Aug 22 2023)
 
 #### 🚀 Enhancement
