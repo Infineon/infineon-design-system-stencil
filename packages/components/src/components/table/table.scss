@@ -1,53 +1,60 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
 @import "~ag-grid-community/styles/ag-grid.css";
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
 
-// .icon-wrapper ifx-icon {
-//   /* styles for the icon */
-//   pointer-events: none;
-// }
+.ag-root-wrapper {
+  border: none;
+}
 
-// .icon-container {
-//   position: relative;
-//   width: 16px; // or whatever your icon width is
-//   height: 16px; // or whatever your icon height is
-//   overflow: hidden;
-// }
 
-// .unsorted-icon-wrapper {
-//   display: block;
-// }
+.ag-header {
+  background-color: tokens.$ifxColorEngineering100;
+  border-bottom: none;
+}
 
-// .ascending-icon-wrapper,
-// .descending-icon-wrapper {
-//   display: none;
-// }
+.ag-header-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+  gap: 4px;
+}
 
 
 
-/* For ascending sort */
-// .ag-icon-asc {
-//   /* hides the original icon visually */
-// opacity: 0;
-// width: 0px;
-// background-image: url('path-to-your-up-icon.svg') !important;
-// background-size: cover !important;
-// }
+.ag-header-cell-text {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: tokens.$ifxColorBaseBlack;
+}
 
-/* For descending sort */
-// .ag-icon-desc {
-// /* hides the original icon visually */
-// opacity: 0;
-// width: 0px;
-// background-image: url('path-to-your-down-icon.svg') !important;
-// background-size: cover !important;
-// }
 
-/* For no sort (if you want to customize this as well) */
-// .ag-header-icon.ag-sort-none-icon {
-// /* hides the original icon visually */
-// opacity: 0;
-// width: 0px;
-// background-image: url('path-to-your-neutral-icon.svg') !important;
-// background-size: cover !important;
-// }
+.ag-row {
+  background-color: tokens.$ifxColorBaseWhite;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  font-size: 13;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+
+}
+
+.ag-row-odd {
+  background-color: tokens.$ifxColorBaseWhite;
+}
+
+.ag-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.ag-ltr .ag-sort-indicator-icon {
+  padding-left: 0px;
+}
+
+.unsort-icon-custom-color {
+  color: tokens.$ifxColorEngineering400;
+}

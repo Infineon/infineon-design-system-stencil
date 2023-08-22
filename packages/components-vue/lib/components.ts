@@ -374,7 +374,9 @@ export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table',
   'cols',
   'rows',
   'columnDefs',
-  'rowData'
+  'rowData',
+  'rowHeight',
+  'uniqueKey'
 ]);
 
 

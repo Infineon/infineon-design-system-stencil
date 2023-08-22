@@ -1,5 +1,6 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { Grid, GridOptions } from 'ag-grid-community';
+import { ButtonCellRenderer } from './buttonCellRenderer';
 
 
 @Component({
@@ -13,8 +14,12 @@ export class Table {
   @Prop() rows: any[] | string;
   @Prop() columnDefs: any[] = [];
   @Prop() rowData: any[] = [];
+  @Prop() rowHeight: string = 'default'; //default or compact
+  @Prop() uniqueKey: string;
+
 
   componentWillLoad() {
+    this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     if (typeof this.rows === 'string' && typeof this.cols === 'string') {
       try {
         this.columnDefs = JSON.parse(this.cols);
@@ -29,16 +34,18 @@ export class Table {
     } else {
       console.error('Unexpected value for cols and rows:', this.rows, this.cols);
     }
-    console.log("cols n rows: ", this.columnDefs)
-    console.log("draggable: ", this.columnDefs.some(col => col.dndSource === true))
+    this.setButtonRenderer();
+
 
     this.gridOptions = {
+      rowHeight: this.rowHeight === 'default' ? 40 : 32,
+      headerHeight: 40,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
-        sortUnSort: '<ifx-icon icon="arrowtrianglevertikal16"></ifx-icon>'
+        sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowtrianglevertikal16"></ifx-icon></a>'
       },
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
@@ -57,7 +64,7 @@ export class Table {
   }
 
   componentDidLoad() {
-    new Grid(document.getElementById('ifxTable'), this.gridOptions);
+    new Grid(document.getElementById(`ifxTable-${this.uniqueKey}`), this.gridOptions);
     if (this.gridOptions.api) {
       this.gridOptions.api.sizeColumnsToFit();
     }
@@ -65,15 +72,44 @@ export class Table {
 
 
   render() {
-    if (this.gridOptions.rowDragManaged) {
-      console.log("draggable table render")
-    }
+    // if (this.gridOptions.rowDragManaged) {
+    //   // console.log("draggable table render")
+    // }
     return (
-      <div id="ifxTable" class="ag-theme-alpine" style={{ height: '400px', width: '100%' }}></div>
+      <div id={`ifxTable-${this.uniqueKey}`} class="ag-theme-alpine" style={{ height: '400px', width: '100%' }}></div>
     );
 
 
   }
+
+
+  hasButtonCol(): boolean {
+    return this.columnDefs.some(column => column.field === 'button');
+  }
+
+
+
+  setButtonRenderer() {
+    const buttonColumn = this.columnDefs.find(column => column.field === 'button');
+    if (buttonColumn) {
+      buttonColumn.cellRenderer = ButtonCellRenderer;
+    }
+  }
+
+  // setIconButtonRenderer() {
+  //   const iconButtonColumn = this.columnDefs.find(column => column.field === 'iconButton');
+  //   if (iconButtonColumn) {
+  //     iconButtonColumn.cellRenderer = IconButtonCellRenderer;
+  //   }
+  // }
+
+  // setLinkRenderer() {
+  //   const linkColumn = this.columnDefs.find(column => column.field === 'link');
+  //   if (linkColumn) {
+  //     linkColumn.cellRenderer = LinkCellRenderer;
+  //   }
+  // }
+
 
 
   onDragOver(event) {
