@@ -183,9 +183,6 @@ export class Pagination {
 
 
 
-
-
-
   newFunc() { 
     let self = this;
     var CLASS_DISABLED = "disabled",
@@ -220,7 +217,6 @@ export class Pagination {
         var parent = this.closest(".pagination");
         var currActive = parseInt(parent.dataset[DATA_KEY], 10);
 
-        //currActive +1 ..
         currActive += 1 * (this.classList.contains("prev") ? -1 : 1);
 
         parent.dataset[DATA_KEY] = currActive; //currActive
@@ -231,7 +227,14 @@ export class Pagination {
     function changePage() {
       var listItems = this.querySelectorAll("li");
       var currActive = parseInt(this.dataset[DATA_KEY], 10);
-      console.log('currActive', currActive)
+
+      let currentPage = currActive+1;
+      let totalPages = self.numberOfPages.length;
+      let prevPage = currActive;
+      let nextPage = currActive+2;
+
+      self.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
+      
       
       listItems.forEach(function(item) {
         item.classList.remove(CLASS_ACTIVE);
