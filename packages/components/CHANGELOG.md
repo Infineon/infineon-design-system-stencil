@@ -1,3 +1,16 @@
+# v20.3.0 (Fri Aug 18 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: Chip changed image in usage.mdx [#380](https://github.com/Infineon/infineon-design-system-stencil/pull/380) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: number indicator [#381](https://github.com/Infineon/infineon-design-system-stencil/pull/381) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.2.1 (Wed Aug 16 2023)
 
 #### 🐛 Bug Fix
