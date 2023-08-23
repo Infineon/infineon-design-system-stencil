@@ -18,154 +18,18 @@ export class Pagination {
   @Prop() surroundingPageCount: number = 1;
   @State() visiblePageIndices: Array<number | string> = [];
 
-  @Watch('internalPage')
-  handleSurroundingPages() { 
-    //this.calculateVisiblePageIndices()
+
+  @Watch('ifxSelect')
+  setItemsPerPage(e) { 
+    //this.itemsPerPage = e.detail;
   }
 
-  handleEventEmission(currentItem, pageItemsArray) { 
-    let currentPage = parseInt(currentItem.childNodes[0].textContent);
-    let totalPages = pageItemsArray.length;
-    let prevPage = isNaN(parseInt(pageItemsArray[currentPage-2]?.childNodes[0].textContent)) ? false : parseInt(pageItemsArray[currentPage-2]?.childNodes[0].textContent);
-    let nextPage = isNaN(parseInt(pageItemsArray[currentPage]?.childNodes[0].textContent)) ? false : parseInt(pageItemsArray[currentPage]?.childNodes[0].textContent)
-
-    this.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
-  }
-
-  toggleActiveClass(currentItem, pageItemsArray) {
-    for(let i = 0; i < pageItemsArray.length; i++) { 
-      let pageNumberItem = (pageItemsArray[i] as HTMLElement);
-      pageNumberItem.classList.remove('active')
-    }
-    currentItem.classList.add('active')
-    this.handleEventEmission(currentItem, pageItemsArray)
-  }
-
-  getArrayOfPageItems() { 
-    const pageItemsWrapper = this.el.shadowRoot.querySelector('.page__numbers-wrapper');
-    let pageItemsArray = Array.from(pageItemsWrapper.children)
-    return pageItemsArray;
-  }
-
-  // calculateVisiblePageIndices() {
-
-  //   if(this.visiblePageIndices.length < 1) { 
-  //     if(this.numberOfPages.length > 7 ) { 
-  //       //truncate
-  //       for(let i = 0; i < 7; i++) { 
-  //         this.visiblePageIndices.push(i)
-  //       }
-  //     }
-  //   }
-
-  //     //do the algorithm here.
-  //     let firstPageItem = 1;
-  //     //let lastPageItem = this.visiblePageIndices.length;
-  //     let currentPageItem = this.internalPage;
-  //     let numberOfSurroundingPageItems = this.surroundingPageCount;
-  //     let leftSideArray = []
-
-  //     if((firstPageItem+1) < (currentPageItem-numberOfSurroundingPageItems)) { 
-  //       leftSideArray = this.visiblePageIndices.slice(2, currentPageItem-numberOfSurroundingPageItems)
-  //     }
-
-  //     //now we need to replace that spot with an ellipsis. 
-  //     console.log(leftSideArray)
-  //   //[firstPage, leftArray, currentITem, rightArray, lastPage]
-  //     // const startIdx = this.visiblePageIndices.indexOf(leftSideArray[0]);
-  //     // const endIdx = this.visiblePageIndices.indexOf(leftSideArray[leftSideArray.length - 1]);
-      
-  //     // const newArray = this.visiblePageIndices.slice(0, startIdx).concat('...', this.visiblePageIndices.slice(endIdx + 1));
-
-  //     //new array must be from the leftarray.length to -1 in slice 
-  //     //visiblepageindicies.slie(leftSidearray.length, -1) this will give us the 
-  //     //if leftsideArray is [2,3] and we are currentyly on page 5, and surrounding is 1, therefore, we have to 
-  //     //remove from firsPage to 3, but we don't even need to remove, we just creat ea new array, that contains
-  //     //[firstpage, ..., result of total.slice(LeftSideArray.length(3), -1)]
-  //     //[1,..., 4,5,6,7]
-
-      
-  //     let slicedArray = this.visiblePageIndices.slice(leftSideArray.length, -1)
-      
-  //     console.log(slicedArray)
-  //     let newArray = [firstPageItem, '...', ...slicedArray]
-   
-  //     //console.log('new array', newArray)
-
-  //   // const visiblePages = this.numberOfPages.flatMap((label, i) => {
-  //   //   if (this.internalPage === label) { 
-  //   //     const currentItem = label;
-  //   //     const leftSide = this.numberOfPages[currentItem - this.surroundingPageCount-1]; 
-  //   //     const rightSide = this.numberOfPages[currentItem + this.surroundingPageCount-1];
-
-  //   //     return [leftSide, currentItem, rightSide];
-  //   //   } else {
-  //   //     return null; 
-  //   //   }
-  //   // }).filter((pageInfo) => pageInfo !== null);
-    
-  //   //console.log('result', visiblePages)
-  // }
-
- 
-  handleNavPageButtons(action) { 
-    let pageItemsArray = this.getArrayOfPageItems()
-
-    if(this.internalPage > pageItemsArray.length) { 
-      this.internalPage = pageItemsArray.length;
-    } 
-
-    if (action === 'increment') {
-      this.internalPage += 1;
-    } else if(action === 'decrement') {
-      this.internalPage -= 1;
-    }
-  }
-
-  addEventListeners(pageItemsArray, navPageButtons) { 
-    let navPageButtonsArray = Array.from(navPageButtons)
-    let navPageLeftButton =  navPageButtonsArray[0] as HTMLElement;
-    let navPageRightButton =  navPageButtonsArray[1] as HTMLElement;
- 
-    for(let i = 0; i < pageItemsArray.length; i++) { 
-      let pageNumberItem = (pageItemsArray[i] as HTMLElement);
-      pageNumberItem.addEventListener('click', () => {
-        let currentPage = parseInt(pageNumberItem.childNodes[0].textContent);
-        this.internalPage = currentPage === 0 ? currentPage + 1 : currentPage;
-        this.toggleActiveClass(pageNumberItem, pageItemsArray)
-      })
-    }
-    
-    let currentPageIndex = this.internalPage-1;
-
-    if(this.internalPage > pageItemsArray.length) { 
-      currentPageIndex = pageItemsArray.length-1;
-    } 
-  
-    this.toggleActiveClass(pageItemsArray[currentPageIndex], pageItemsArray)
-
-    navPageLeftButton.addEventListener('click', () => {
-      if (this.internalPage-1 > 0) {
-        this.handleNavPageButtons('decrement');
-        this.toggleActiveClass(pageItemsArray[this.internalPage-1], pageItemsArray);
-      }
-    });
-  
-    navPageRightButton.addEventListener('click', () => {
-      if (this.internalPage < pageItemsArray.length) {
-        this.handleNavPageButtons('increment');
-        const index = this.internalPage === 0 ? this.internalPage : this.internalPage-1
-        this.toggleActiveClass(pageItemsArray[index], pageItemsArray);
-      }
-    });
+  exampleFunction() { 
+    console.log('test')
   }
 
   componentDidLoad() { 
-   let pageItemsArray = this.getArrayOfPageItems()
-   const navPageButtons = this.el.shadowRoot.querySelectorAll('.items__total-button');
-   //this.addEventListeners(pageItemsArray, navPageButtons)
-   //console.log(this.numberOfPages)
-   this.newFunc()
+   this.calculateVisiblePageIndices()
   }
 
   componentWillLoad() { 
@@ -177,13 +41,10 @@ export class Pagination {
     const itemsPerPage = this.itemsPerPage;
     const totalPageNumber = total / itemsPerPage;
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
-
-    //this.calculateVisiblePageIndices()
   }
 
 
-
-  newFunc() { 
+  calculateVisiblePageIndices() { 
     let self = this;
     var CLASS_DISABLED = "disabled",
     CLASS_ACTIVE = "active",
@@ -191,15 +52,12 @@ export class Pagination {
     DATA_KEY = "pagination";
 
     var paginationElements = this.el.shadowRoot.querySelectorAll(".pagination");
-    //console.log(paginationElements)
     paginationElements.forEach(initPagination);
 
     function initPagination(element) {
       
-      element.dataset[DATA_KEY] = Array.from(element.querySelectorAll("li")).indexOf(element.querySelector(".active")); //original
+      element.dataset[DATA_KEY] = Array.from(element.querySelectorAll("li")).indexOf(element.querySelector(".active")); 
     
-      //element.dataset[DATA_KEY] = self.internalPage; //test new
-      
       element.querySelector(".prev").addEventListener("click", navigateSinglePage);
       element.querySelector(".next").addEventListener("click", navigateSinglePage);
       var listItems = element.querySelectorAll("li");
@@ -219,7 +77,7 @@ export class Pagination {
 
         currActive += 1 * (this.classList.contains("prev") ? -1 : 1);
 
-        parent.dataset[DATA_KEY] = currActive; //currActive
+        parent.dataset[DATA_KEY] = currActive;
         changePage.apply(parent);
       }
     }
@@ -234,15 +92,14 @@ export class Pagination {
       let nextPage = currActive+2;
 
       self.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
-      
-      
+
       listItems.forEach(function(item) {
         item.classList.remove(CLASS_ACTIVE);
         item.classList.remove(CLASS_SIBLING_ACTIVE);
       });
       
       listItems[currActive].classList.add(CLASS_ACTIVE);
-        
+
       if (currActive === 0) {
         this.querySelector(".prev").classList.add(CLASS_DISABLED);
       } else {
@@ -272,31 +129,16 @@ export class Pagination {
           </div>
         </div>
         <div class='items__total-wrapper'>
-          {/* <div class='items__total-button'>
-            <ifx-icon-button variant='outline' class="prev disabled" color='primary' icon='arrow-left-24'></ifx-icon-button>
-          </div> */}
           <div class='page__numbers-wrapper'>
-
           <div class="pagination">
-            {/* <a href="#" class="prev disabled">Previous</a> */}
             <ifx-icon-button variant='outline' class="prev disabled" color='primary' icon='arrow-left-24'></ifx-icon-button>
             <ol>
               {this.numberOfPages.map((item, i) => 
               <li class={`${this.internalPage === item? 'active' : ""}`}><a href={undefined}>{item}</a></li>)}
             </ol>
-            {/* <a href="#" class="next">Next</a> */}
             <ifx-icon-button class="next" variant='outline' color='primary' icon='arrow-right-24'></ifx-icon-button>
           </div>
-            
-          {/* {this.numberOfPages.map((_, i) => 
-            <div class='page__number-item'>
-              <span>{i+1}</span>
-            </div>)} */}
-
           </div>
-           {/* <div class='items__total-button'>
-            <ifx-icon-button class="next" variant='outline' color='primary' icon='arrow-right-24'></ifx-icon-button>
-           </div> */}
         </div>
       </div>
     );
