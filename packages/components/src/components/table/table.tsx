@@ -1,5 +1,5 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import { Grid, GridOptions } from 'ag-grid-community';
+import { FirstDataRenderedEvent, Grid, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 
 
@@ -16,6 +16,10 @@ export class Table {
   @Prop() rowData: any[] = [];
   @Prop() rowHeight: string = 'default'; //default or compact
   @Prop() uniqueKey: string;
+  @Prop() tableHeight: string = 'auto';
+  @Prop() pagination: boolean = false;
+  @Prop() paginationPageSize: number = 10;
+
 
 
   componentWillLoad() {
@@ -40,6 +44,10 @@ export class Table {
     this.gridOptions = {
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
       headerHeight: 40,
+      defaultColDef: {
+        resizable: true,
+      },
+      onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
       icons: {
@@ -49,8 +57,15 @@ export class Table {
       },
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
+      pagination: this.pagination,
+      paginationPageSize: this.paginationPageSize,
     };
 
+  }
+
+
+  onFirstDataRendered(params: FirstDataRenderedEvent) {
+    params.api.sizeColumnsToFit();
   }
 
 
@@ -76,7 +91,12 @@ export class Table {
     //   // console.log("draggable table render")
     // }
     return (
-      <div id={`ifxTable-${this.uniqueKey}`} class="ag-theme-alpine" style={{ height: '400px', width: '100%' }}></div>
+      <div id="grid-wrapper" class={{ 'auto-height': this.tableHeight === 'auto' ? true : false }}>
+
+        <div id={`ifxTable-${this.uniqueKey}`} class="ag-theme-alpine" style={{
+          'height': `${this.tableHeight}`, width: '100%'
+        }}></div >
+      </div >
     );
 
 

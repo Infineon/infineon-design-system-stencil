@@ -76,11 +76,22 @@ const rowDataWithButtonCol = [
 
 export default {
   title: 'Components/Table',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
+    tableHeight: 'auto',
+    pagination: false,
+    paginationPageSize: 10,
     rowHeight: 40,
   },
   argTypes: {
+    tableHeight: {
+      table: {
+        type: {
+          summary: 'Options',
+          detail: 'Default: "auto"\nExample for fixed height: "400px"',
+        }
+      },
+    },
     rowHeight: {
       options: ['compact', 'default'],
       control: { type: 'radio' },
@@ -108,16 +119,36 @@ export default {
 const DefaultTemplate = (args) => `<ifx-table 
 row-height='${args.rowHeight}'
 cols='${JSON.stringify(args.columnDefs)}' 
-rows='${JSON.stringify(args.rowData)}'>
+rows='${JSON.stringify(args.rowData)}'
+table-height='${args.tableHeight}'
+pagination='${args.pagination}'
+pagination-page-size='${args.paginationPageSize}'>
 </ifx-table>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
+  tableHeight: 'auto',
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
 };
 
+export const FixedHeight = DefaultTemplate.bind({});
+FixedHeight.args = {
+  tableHeight: '400px',
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+};
+
+export const Pagination = DefaultTemplate.bind({});
+Pagination.args = {
+  pagination: true,
+  paginationPageSize: 10,
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+};
 
 
 export const IncludesButtons = DefaultTemplate.bind({});

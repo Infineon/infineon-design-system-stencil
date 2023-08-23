@@ -5,6 +5,13 @@
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
 
+
+.auto-height .ag-theme-alpine .ag-root-wrapper-body {
+  height: auto !important;
+}
+
+
+
 .ag-root-wrapper {
   border: none;
 }
@@ -30,6 +37,28 @@
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
 }
+
+.ag-theme-alpine .ag-row-focus {
+  background-color: inherit !important;
+  /* Reset the hover color to the row's original color */
+}
+
+.ag-theme-alpine .ag-row-hover {
+  background-color: inherit !important;
+  /* Reset the hover color to the row's original color */
+}
+
+.ag-theme-alpine .ag-cell-focus {
+  border: none !important;
+  outline: none !important;
+
+}
+
+.ag-theme-alpine .ag-cell-focus {
+  border: none !important;
+  background-color: inherit !important;
+}
+
 
 
 .ag-row {
