@@ -127,7 +127,6 @@ pagination-page-size='${args.paginationPageSize}'>
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
-  tableHeight: 'auto',
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
