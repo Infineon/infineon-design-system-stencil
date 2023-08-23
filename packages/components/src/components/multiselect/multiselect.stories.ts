@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
 
-let options = [{
+const options = [{
   value: "a",
   label: "option a",
   selected: false
@@ -63,26 +63,29 @@ export default {
     },
     errorMessage: { control: 'text' },
     label: { control: 'text' },
-    // options: {
-    //   description: 'Takes an array of objects in the following format',
-    // }
-
+    options: {
+      description: 'Takes an array of objects in the following format',
+    }
   }
 };
 
-const DefaultTemplate = ({ options, size, error, errorMessage, label, disabled, max }) => {
-  const element = document.createElement('ifx-multiselect');
-  element.setAttribute('options', JSON.stringify(options));
-  element.setAttribute('size', size);
-  element.setAttribute('error', error);
-  element.setAttribute('error-message', errorMessage);
-  element.setAttribute('label', label);
-  element.setAttribute('disabled', disabled);
-  element.setAttribute('max-item-count', max);
-  element.addEventListener('ifxSelect', action('ifxSelect'));
+const DefaultTemplate = (args) => {
+  const template = `<ifx-multiselect 
+  options='${JSON.stringify(args.options)}' 
+  size='${args.size}'
+  error='${args.error}'
+  error-message='${args.errorMessage}'
+  label='${args.label}'
+  disabled='${args.disabled}'
+  max-item-count='${args.max}'>
+</ifx-multiselect>`;
 
-  return element;
-}
+  setTimeout(() => {
+    document.querySelector('ifx-multiselect').addEventListener('ifxSelect', action('ifxSelect'));
+  }, 0);
+
+  return template;
+};
 
 
 export const Default = DefaultTemplate.bind({});

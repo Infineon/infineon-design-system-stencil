@@ -19,12 +19,22 @@
   .ifx-label-wrapper {
     font-size: 16px;
     line-height: 24px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .ifx-error-message-wrapper {
     color: #CD002F;
     font-size: 12px;
     line-height: 16px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .ifx-choices__wrapper {
@@ -70,7 +80,10 @@
       border: 2px solid #0A8276 !important; // Active border color
 
       & .ifx-choices__icon-wrapper-up {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        ;
       }
 
       & .ifx-choices__icon-wrapper-down {
@@ -115,7 +128,9 @@
     }
 
     & .ifx-choices__icon-wrapper-down {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         cursor: pointer;

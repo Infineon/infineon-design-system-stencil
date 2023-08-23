@@ -1,8 +1,22 @@
 import { action } from "@storybook/addon-actions";
 
 //use string instead of json format here to avoid ugly formatting in the storybook code snippet
-let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
-// let jsonOptions = JSON.stringify(options);
+// let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
+const options = [{
+  value: "a",
+  label: "option a",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "c",
+  label: "option c",
+  selected: false
+}];
 
 export default {
   title: 'Components/Single Select',
@@ -18,13 +32,11 @@ export default {
     label: '',
     disabled: false,
     // type: 'single', //for later implementation
-    options: "",
   },
 
   argTypes: {
     type: { //for later implementation
       // control: { type: 'radio' },
-      // options: ['single', 'text']
       control: false,
     },
     size: {
@@ -48,30 +60,34 @@ export default {
     searchPlaceholderValue: { control: { type: 'text' } },
     onChange: { action: 'change' },
     options: {
-      description: 'Options should be passed as JSON array, but are passed as string here for a beautified display in the code snippet',
-
+      description: 'Takes an array of objects in the following format',
     }
   },
 };
 
-const DefaultTemplate = ({ size, type, value, disabled, error, errorMessage, label, placeholder, placeholderValue, searchEnabled, searchPlaceholderValue, options }) => {
-  const element = document.createElement('ifx-select');
-  element.setAttribute('type', type);
-  element.setAttribute('value', value);
-  element.setAttribute('ifx-size', size);
-  element.setAttribute('placeholder', placeholder);
-  element.setAttribute('search-enabled', searchEnabled)
-  element.setAttribute('search-placeholder-value', searchPlaceholderValue)
-  element.setAttribute('ifx-disabled', disabled);
-  element.setAttribute('ifx-error', error);
-  element.setAttribute('ifx-error-message', errorMessage);
-  element.setAttribute('ifx-label', label);
-  element.setAttribute('ifx-placeholder-value', placeholderValue);
-  element.setAttribute('ifx-options', options);
-  element.addEventListener('ifxSelect', action('ifxSelect'));
+const DefaultTemplate = (args) => {
 
-  return element;
+  const template = `<ifx-select 
+  type='${args.type}'
+  value='${args.value}'
+  ifx-size='${args.size}'
+  placeholder='${args.placeholder}'
+  search-enabled='${args.searchEnabled}'
+  search-placeholder-value='${args.searchPlaceholderValue}'
+  ifx-disabled='${args.disabled}'
+  ifx-error='${args.error}'
+  ifx-error-message='${args.errorMessage}'
+  ifx-label='${args.label}'
+  ifx-placeholder-value='${args.placeholderValue}'
+  ifx-options='${JSON.stringify(args.options)}' >
+ </ifx-select>`
+  setTimeout(() => {
+    document.querySelector('ifx-select').addEventListener('ifxSelect', action('ifxSelect'));
+  }, 0);
+
+  return template;
 }
+
 
 
 export const Single = DefaultTemplate.bind({});

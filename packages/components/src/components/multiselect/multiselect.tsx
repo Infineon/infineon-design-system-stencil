@@ -394,8 +394,6 @@ export class Multiselect {
   }
 
   render() {
-    console.log('Rendering with dropdownFlipped:', this.dropdownFlipped);
-
     // Create a label for the selected options
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
 
