@@ -22,7 +22,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@revolist/revogrid": "^4.6.0-next.4",
     "ag-grid-community": "^30.0.6"
   }
 }
