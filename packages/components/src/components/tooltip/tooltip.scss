@@ -44,6 +44,9 @@
     gap: 12px;
     padding: 12px;
     flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
 
   }
 
@@ -95,6 +98,9 @@
     gap: 12px;
     padding: 12px;
     flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
   }
 
   .tooltip-extended-header,
