@@ -75,7 +75,7 @@ const rowDataWithButtonCol = [
 
 
 export default {
-  title: 'Components/Table',
+  title: 'Components/Table (advanced)',
   // tags: ['autodocs'],
   args: {
     tableHeight: 'auto',
@@ -125,20 +125,20 @@ pagination='${args.pagination}'
 pagination-page-size='${args.paginationPageSize}'>
 </ifx-table>`;
 
-export const Default = DefaultTemplate.bind({});
-Default.args = {
-  rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
-};
+// export const Default = DefaultTemplate.bind({});
+// Default.args = {
+//   rowHeight: 'default',
+//   columnDefs: columnDefs,
+//   rowData: rowData,
+// };
 
-export const FixedHeight = DefaultTemplate.bind({});
-FixedHeight.args = {
-  tableHeight: '400px',
-  rowHeight: 'default',
-  columnDefs: columnDefs,
-  rowData: rowData,
-};
+// export const FixedHeight = DefaultTemplate.bind({});
+// FixedHeight.args = {
+//   tableHeight: '400px',
+//   rowHeight: 'default',
+//   columnDefs: columnDefs,
+//   rowData: rowData,
+// };
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
