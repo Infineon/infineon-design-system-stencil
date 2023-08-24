@@ -27,7 +27,7 @@
   }
 }
 
-.tooltip-dismissable {
+.tooltip-dismissible {
   @extend %tooltip-common;
   width: 310px;
 
@@ -38,27 +38,28 @@
     cursor: pointer;
   }
 
-  .tooltip-dismissable-content {
+  .tooltip-dismissible-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
     padding: 12px;
     flex-grow: 1;
+
   }
 
-  .tooltip-dismissable-header,
-  .tooltip-dismissable-body {
+  .tooltip-dismissible-header,
+  .tooltip-dismissible-body {
     font-family: "Source Sans 3";
     font-size: 13px;
     font-style: normal;
     line-height: 20px;
   }
 
-  .tooltip-dismissable-header {
+  .tooltip-dismissible-header {
     font-weight: tokens.$ifxFontWeightSemibold;
   }
 
-  .tooltip-dismissable-body {
+  .tooltip-dismissible-body {
     font-weight: tokens.$ifxFontWeightRegular;
   }
 }
@@ -71,13 +72,13 @@
 }
 
 
-.tooltip-text-icon {
+.tooltip-extended {
   @extend %tooltip-common;
   width: 310px;
   padding-left: 36px; // Added this line, adjust as per your icon width
 
 
-  .text-plus-icon_icon {
+  .extended_icon {
     position: absolute;
     width: 24px;
     height: 24px;
@@ -86,7 +87,9 @@
     cursor: pointer;
   }
 
-  .tooltip-text-icon-content {
+
+
+  .tooltip-extended-content {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -94,19 +97,19 @@
     flex-grow: 1;
   }
 
-  .tooltip-text-icon-header,
-  .tooltip-text-icon-body {
+  .tooltip-extended-header,
+  .tooltip-extended-body {
     font-family: "Source Sans 3";
     font-size: 13px;
     font-style: normal;
     line-height: 20px;
   }
 
-  .tooltip-text-icon-header {
+  .tooltip-extended-header {
     font-weight: tokens.$ifxFontWeightSemibold;
   }
 
-  .tooltip-text-icon-body {
+  .tooltip-extended-body {
     font-weight: tokens.$ifxFontWeightRegular;
   }
 }
@@ -181,10 +184,10 @@
   @extend %tooltip-arrow-positions;
 }
 
-.tooltip-dismissable {
+.tooltip-dismissible {
   @extend %tooltip-arrow-positions;
 }
 
-.tooltip-text-icon {
+.tooltip-extended {
   @extend %tooltip-arrow-positions;
 }

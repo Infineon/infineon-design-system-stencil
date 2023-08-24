@@ -11,8 +11,8 @@ function Tooltip() {
         Please hover me</IfxTooltip>
 
       <br />
-      <IfxTooltip header="Dismissable tooltip header" text="Hi, I'm a dismissable tooltip" variant="dismissable"
-        position="auto">I'm the dismissable tooltip reference
+      <IfxTooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+        position="auto">I'm the dismissible tooltip reference
         element - Please click me</IfxTooltip>
     </div>
   );

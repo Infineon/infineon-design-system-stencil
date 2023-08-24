@@ -16,7 +16,7 @@ export default {
       control: { type: 'radio' }
     },
     variant: {
-      options: ['compact', 'dismissable', 'text + icon'],
+      options: ['compact', 'dismissible', 'extended'],
       control: { type: 'radio' }
     },
     header: { control: 'text', if: { arg: 'variant', neq: 'compact' } }
@@ -27,11 +27,11 @@ export default {
 
 const DefaultTemplate = ({ header, text, variant, position, icon }) => {
   const element = document.createElement('ifx-tooltip');
-  if (variant === 'dismissable' || variant === 'text + icon') {
+  if (variant === 'dismissible' || variant === 'extended') {
     element.setAttribute('header', header);
   }
   element.setAttribute('text', text);
-  element.setAttribute('variant', variant === 'text + icon' ? 'textPlusIcon' : variant);
+  element.setAttribute('variant', variant === 'extended' ? 'extended' : variant);
   element.setAttribute('position', position);
   element.setAttribute('icon', icon);
 

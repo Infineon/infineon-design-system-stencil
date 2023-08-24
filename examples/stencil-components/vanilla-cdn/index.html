@@ -193,14 +193,21 @@
     <br />
 
     <h2>Tooltip</h2>
-    <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="right">I'm the compact tooltip reference
+    <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
       element -
       Please hover me</ifx-tooltip>
     <br />
 
-    <ifx-tooltip header="Dismissable tooltip header" text="Hi, I'm a dismissable tooltip" variant="dismissable"
-      position="auto">I'm the dismissable tooltip reference
-      element - Please click me</ifx-tooltip>
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Dismissible tooltip on button click
+      </ifx-button></ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
+      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Extended tooltip on button hover
+      </ifx-button></ifx-tooltip>
     <br />
 
   </div>
