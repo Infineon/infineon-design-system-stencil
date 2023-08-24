@@ -52,8 +52,15 @@ export class Pagination {
     } else this.internalPage = this.currentPage;
 
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
+  }
 
-  
+  handleEventEmission(currActive) { 
+    let currentPage = currActive+1;
+    let totalPages = this.numberOfPages.length;
+    let prevPage = currActive;
+    let nextPage = currActive+2;
+
+    this.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
   }
 
   initPagination(paginationContainer) {
@@ -71,7 +78,7 @@ export class Pagination {
         let listItems = parent.querySelectorAll("li");
 
         parent.dataset[this.DATA_KEY] = Array.from(listItems).indexOf(e.currentTarget) 
-        this.changePage(parent, e, false)
+        this.changePage(parent, false)
       });
     });
   }
@@ -92,59 +99,50 @@ export class Pagination {
       }
 
       parent.dataset[this.DATA_KEY] = currActive;
-      this.changePage(parent, e, initialValue)
+      this.changePage(parent, initialValue)
     }
-  
   }
 
-  changePage(pagination, e, initialValue) {
+  changePage(pagination, initialValue) {
     const paginationContainer = pagination;
     var listItems = paginationContainer.querySelectorAll("li");
     var currActive = parseInt(paginationContainer.dataset[this.DATA_KEY], 10);
    
-    let currentPage = currActive;
-    let totalPages = this.numberOfPages.length;
-    let prevPage = currActive;
-    let nextPage = currActive+2;
-
-    this.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
-
     listItems.forEach((item) => {
       item.classList.remove(this.CLASS_ACTIVE);
       item.classList.remove(this.CLASS_SIBLING_ACTIVE);
     });
     
-    if(typeof e.currentTarget === 'object') { 
-      currentPage = currActive;
-    }
+    // if(typeof e.currentTarget === 'object') { 
+    //   currentPage = currActive;
+    // }
 
     if(initialValue && this.internalPage > 1) { 
-      currentPage = this.internalPage - 1;
-      paginationContainer.dataset[this.DATA_KEY] = currentPage;
+      currActive = this.internalPage - 1;
+      paginationContainer.dataset[this.DATA_KEY] = currActive;
     }
 
-    listItems[currentPage].classList.add(this.CLASS_ACTIVE);
+    this.handleEventEmission(currActive)
 
-    if (currentPage === 0) {
+    listItems[currActive].classList.add(this.CLASS_ACTIVE);
+
+    if (currActive === 0) {
       paginationContainer.querySelector(".prev").classList.add(this.CLASS_DISABLED);
       paginationContainer.querySelector(".prev").disabled = true;
       
-     
     } else {
-      listItems[currentPage - 1].classList.add(this.CLASS_SIBLING_ACTIVE);
+      listItems[currActive - 1].classList.add(this.CLASS_SIBLING_ACTIVE);
       paginationContainer.querySelector(".prev").classList.remove(this.CLASS_DISABLED);
       paginationContainer.querySelector(".prev").disabled = false;
-      
     }
 
-    if (currentPage === (listItems.length - 1)) {
+    if (currActive === (listItems.length - 1)) {
       paginationContainer.querySelector(".next").classList.add(this.CLASS_DISABLED);
       paginationContainer.querySelector(".next").disabled = true;
      
     } else {
       paginationContainer.querySelector(".next").classList.remove(this.CLASS_DISABLED);
       paginationContainer.querySelector(".next").disabled = false;
-    
     }
   }
 
