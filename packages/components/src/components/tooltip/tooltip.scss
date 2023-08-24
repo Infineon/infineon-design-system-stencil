@@ -134,14 +134,14 @@
   // For 'top-start' placement
   &[data-placement="top-start"]>.tooltip-arrow-svg {
     bottom: -8px;
-    right: 10px; // Adjust as needed
+    left: 10px; // Adjust as needed
     transform: rotate(180deg)
   }
 
   // For 'top-end' placement
   &[data-placement="top-end"]>.tooltip-arrow-svg {
     bottom: -8px;
-    left: 10px; // Adjust as needed
+    right: 10px; // Adjust as needed
     transform: rotate(180deg);
   }
 

@@ -12,7 +12,9 @@ export class Tooltip {
   @State() tooltipVisible: boolean = false;
   @Prop() header: string = '';
   @Prop() text: string = '';
-  @Prop({ mutable: true }) position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
+  @Prop() position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
+  @State() internalPosition: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
+
   @Prop() variant: 'compact' | 'dismissible' | 'extended' = 'compact';
   @Prop() icon: string;
 
@@ -38,9 +40,12 @@ export class Tooltip {
 
     const effectivePosition = this.position === 'auto' ? this.determineBestPosition() : this.position;
 
+    // Set the internalPosition
+    this.internalPosition = effectivePosition;
+
     if (this.tooltipEl && this.referenceEl) {
       this.popperInstance = createPopper(this.referenceEl, this.tooltipEl, {
-        placement: effectivePosition,
+        placement: this.internalPosition,
         modifiers: [
           {
             name: 'offset',
@@ -74,10 +79,13 @@ export class Tooltip {
   }
 
   @Watch('position')
-  positionChanged() {
+  positionChanged(newVal: any) {
+    this.internalPosition = newVal;
     this.popperInstance?.destroy();
     this.popperInstance = null; // Force re-initialization on next mouse enter
   }
+
+
 
   onMouseEnter = () => {
     this.initializePopper(); // Lazy initialization
