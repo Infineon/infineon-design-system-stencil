@@ -1,3 +1,16 @@
+# v20.9.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Component: Single-Select using ChoicesJs +Multiselect [#328](https://github.com/Infineon/infineon-design-system-stencil/pull/328) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.8.0 (Fri Aug 25 2023)
 
 #### 🚀 Enhancement
