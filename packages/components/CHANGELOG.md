@@ -1,3 +1,16 @@
+# v20.9.1 (Fri Aug 25 2023)
+
+#### 🐛 Bug Fix
+
+- 392 code quality spinner missing e2e tests [#411](https://github.com/Infineon/infineon-design-system-stencil/pull/411) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.9.0 (Fri Aug 25 2023)
 
 #### 🚀 Enhancement
