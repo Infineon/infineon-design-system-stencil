@@ -408,10 +408,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   toggleDropdown() {
     // console.log("toggling dropdown");
-    if (this.choice.dropdown.isActive) {
+    const div = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    // this.classList.contains('active')
+
+    if (this.choice.dropdown.isActive || div.classList.contains('active')) {
       this.hideDropdown();
+      div.classList.remove('active');
     } else {
       this.choice.showDropdown();
+      div.classList.add('active');
+
     }
     const choicesElement = document.querySelector('.choices');
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
@@ -677,11 +683,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.classList.remove('focus');
     });
 
-    div.addEventListener('click', function () {
-      if (!this.classList.contains('disabled')) {
-        this.classList.add('active');
-      }
-    });
+    // div.addEventListener('click', function () {
+    //   if (!this.classList.contains('disabled')) {
+    //     if (!this.classList.contains('active')) {
+    //       this.classList.add('active');
+    //     }
+    //     else {
+    //       this.classList.remove('active');
+    //     }
+    //   }
+    // });
 
     // div.addEventListener('keydown', function (event) {
     //   // Check for Enter or Space key presses
