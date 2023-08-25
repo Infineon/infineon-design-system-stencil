@@ -12,6 +12,7 @@ export const config: Config = {
     cloneNodeFix: true,
     enableImportInjection: true,
   },
+
   outputTargets: [
     {
       type: 'dist',
