@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons'
 
 export default {
-  title: 'Components/Dropdown',
+  title: 'Not reviewed/Dropdown',
   args: {
     label: "Dropdown",
     size: "m",

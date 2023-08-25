@@ -20,5 +20,8 @@
     "lerna": "^7.0.0",
     "nx": "^16.2.1",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.4.5"
   }
 }

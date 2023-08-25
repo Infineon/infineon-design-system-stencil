@@ -4,7 +4,7 @@ import { Component, Prop, State, Method, Event, EventEmitter, h } from '@stencil
 @Component({
   tag: 'ifx-modal',
   styleUrl: 'modal.scss',
-  shadow: true,
+  shadow: true
 })
 export class IfxModal {
   @State() showModal: boolean = false;
@@ -53,7 +53,7 @@ export class IfxModal {
         <div class="modal-content-container">
           {this.alertColor && this.alertIcon ? (
             <div class={`modal-border ${this.alertColor}`}>
-              <ifx-icon icon={this.alertIcon}></ifx-icon>
+              <ifx-icon icon={this.alertIcon} />
             </div>
           ) : null}
           <div class="modal-content">

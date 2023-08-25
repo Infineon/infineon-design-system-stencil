@@ -2,12 +2,13 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
-    "declaration": false,
+    "declaration": true,
     "experimentalDecorators": true,
     "lib": [
       "dom",
       "es2017"
     ],
+    "sourceMap": true,
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
@@ -18,7 +19,7 @@
     "allowJs": true
   },
   "include": [
-    "packages/components/src"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"

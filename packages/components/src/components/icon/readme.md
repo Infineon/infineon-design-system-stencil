@@ -35,10 +35,12 @@
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
+ - [ifx-multiselect](../multiselect)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
+ - [ifx-select](../select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
  - [ifx-text-field](../text-field)
@@ -57,10 +59,12 @@ graph TD;
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
   ifx-modal --> ifx-icon
+  ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-item --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
+  ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-text-field --> ifx-icon
