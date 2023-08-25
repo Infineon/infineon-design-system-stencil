@@ -1,5 +1,6 @@
 import { action } from "@storybook/addon-actions";
 
+
 //use string instead of json format here to avoid ugly formatting in the storybook code snippet
 // let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
 const options = [{
@@ -22,7 +23,7 @@ export default {
   title: 'Components/Single Select',
   tags: ['autodocs'],
   args: {
-    size: "medium (40px)",
+    size: "m",
     searchEnabled: true,
     searchPlaceholderValue: 'Search...',
     placeholder: true,
@@ -40,8 +41,13 @@ export default {
       control: false,
     },
     size: {
-      options: ['small (36px)', 'medium (40px)'],
-      control: { type: 'radio' },
+      options: {
+        'small (36px)': 's',
+        'medium (40px)': 'm'
+      },
+      control: {
+        type: 'radio',
+      },
     },
     error: {
       options: [true, false],
@@ -66,7 +72,6 @@ export default {
 };
 
 const DefaultTemplate = (args) => {
-
   const template = `<ifx-select 
   type='${args.type}'
   value='${args.value}'

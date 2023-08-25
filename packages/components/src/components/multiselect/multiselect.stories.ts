@@ -34,7 +34,7 @@ export default {
   title: 'Components/Multi Select',
   tags: ['autodocs'],
   args: {
-    size: "medium (40px)",
+    size: "m",
     max: 5,
     error: false,
     errorMessage: 'Some error',
@@ -45,8 +45,13 @@ export default {
   },
   argTypes: {
     size: {
-      options: ['small (36px)', 'medium (40px)'],
-      control: { type: 'radio' },
+      options: {
+        'small (36px)': 's',
+        'medium (40px)': 'm'
+      },
+      control: {
+        type: 'radio',
+      },
     },
     max: {
       control: { type: 'number' },

@@ -478,7 +478,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   getSizeClass() {
-    return `${this.ifxSize}` === "small (36px)"
+    return `${this.ifxSize}` === "s"
       ? "small-select"
       : "medium-select";
   }

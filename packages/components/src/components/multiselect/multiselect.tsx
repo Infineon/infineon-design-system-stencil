@@ -172,7 +172,7 @@ export class Multiselect {
   }
 
   getSizeClass() {
-    return `${this.size}` === "small (36px)"
+    return `${this.size}` === "s"
       ? "small-select"
       : "medium-select";
   }
