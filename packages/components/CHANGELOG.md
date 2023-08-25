@@ -1,3 +1,16 @@
+# v20.8.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: progress bar [#405](https://github.com/Infineon/infineon-design-system-stencil/pull/405) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: button update [#410](https://github.com/Infineon/infineon-design-system-stencil/pull/410) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.7.0 (Fri Aug 25 2023)
 
 #### 🚀 Enhancement
