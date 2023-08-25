@@ -324,9 +324,6 @@ export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, 
 'value', 'ifxInput');
 
 
-export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);
-
-
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
   'applicationName'
 ]);
