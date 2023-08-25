@@ -13,6 +13,9 @@
     height: 40px;
   }
 
+  &:hover {
+    cursor: pointer;
+  }
 
 
   .ifx-label-wrapper {
@@ -22,7 +25,6 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
-    overflow: hidden;
   }
 
   .ifx-error-message-wrapper {
@@ -33,7 +35,6 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
-    overflow: hidden;
   }
 
   .ifx-multiselect-wrapper {
