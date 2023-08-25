@@ -1,3 +1,123 @@
+# v20.8.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: progress bar [#405](https://github.com/Infineon/infineon-design-system-stencil/pull/405) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: button update [#410](https://github.com/Infineon/infineon-design-system-stencil/pull/410) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.7.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: footer [#404](https://github.com/Infineon/infineon-design-system-stencil/pull/404) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: checkbox update [#408](https://github.com/Infineon/infineon-design-system-stencil/pull/408) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.6.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: modal update [#401](https://github.com/Infineon/infineon-design-system-stencil/pull/401) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.5.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: link [#399](https://github.com/Infineon/infineon-design-system-stencil/pull/399) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.4.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: icon [#395](https://github.com/Infineon/infineon-design-system-stencil/pull/395) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.3.0 (Fri Aug 18 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: Chip changed image in usage.mdx [#380](https://github.com/Infineon/infineon-design-system-stencil/pull/380) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: number indicator [#381](https://github.com/Infineon/infineon-design-system-stencil/pull/381) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.2.1 (Wed Aug 16 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: badge update [#376](https://github.com/Infineon/infineon-design-system-stencil/pull/376) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.2.0 (Mon Aug 14 2023)
+
+#### 🚀 Enhancement
+
+- added dropdown-menu doc and images [#348](https://github.com/Infineon/infineon-design-system-stencil/pull/348) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.1.0 (Mon Aug 14 2023)
+
+#### 🚀 Enhancement
+
+- 351 implementation navbar submenu v-1 [#364](https://github.com/Infineon/infineon-design-system-stencil/pull/364) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Documnetation: chip [#373](https://github.com/Infineon/infineon-design-system-stencil/pull/373) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.0.4 (Fri Aug 11 2023)
 
 #### 🐛 Bug Fix

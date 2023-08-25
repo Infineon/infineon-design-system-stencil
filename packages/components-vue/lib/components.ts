@@ -89,6 +89,7 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
   'value',
   'error',
   'name',
+  'indeterminate',
   'ifxChange'
 ]);
 
@@ -245,6 +246,19 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
 ]);
 
 
+export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', undefined, [
+  'options',
+  'size',
+  'disabled',
+  'error',
+  'errorMessage',
+  'label',
+  'maxItemCount',
+  'ifxSelect',
+  'ifxMultiselectIsOpen'
+]);
+
+
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
   'fixed',
@@ -252,10 +266,22 @@ export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navba
 ]);
 
 
-export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', undefined, [
   'isProfile',
   'hideLabel',
-  'icon'
+  'icon',
+  'href',
+  'target'
+]);
+
+
+export const IfxNavbarMenu = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenu>('ifx-navbar-menu', undefined);
+
+
+export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+  'href',
+  'target',
+  'hide'
 ]);
 
 
@@ -301,7 +327,60 @@ export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, 
 'value', 'ifxInput');
 
 
-export const IfxSelectInput = /*@__PURE__*/ defineContainer<JSX.IfxSelectInput>('ifx-select-input', undefined);
+export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', undefined, [
+  'type',
+  'value',
+  'name',
+  'items',
+  'choices',
+  'renderChoiceLimit',
+  'maxItemCount',
+  'addItems',
+  'removeItems',
+  'removeItemButton',
+  'editItems',
+  'duplicateItemsAllowed',
+  'delimiter',
+  'paste',
+  'searchEnabled',
+  'searchChoices',
+  'searchFields',
+  'searchFloor',
+  'searchResultLimit',
+  'position',
+  'resetScrollPosition',
+  'shouldSort',
+  'shouldSortItems',
+  'sorter',
+  'placeholder',
+  'placeholderValue',
+  'searchPlaceholderValue',
+  'prependValue',
+  'appendValue',
+  'renderSelectedChoices',
+  'loadingText',
+  'noResultsText',
+  'noChoicesText',
+  'itemSelectText',
+  'addItemText',
+  'maxItemText',
+  'uniqueItemText',
+  'classNames',
+  'fuseOptions',
+  'addItemFilter',
+  'customAddItemText',
+  'callbackOnInit',
+  'callbackOnCreateTemplates',
+  'valueComparer',
+  'ifxError',
+  'ifxErrorMessage',
+  'ifxLabel',
+  'ifxDisabled',
+  'ifxPlaceholderValue',
+  'ifxOptions',
+  'ifxSize',
+  'ifxSelect'
+]);
 
 
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
@@ -369,7 +448,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
 export const IfxTag = /*@__PURE__*/ defineContainer<JSX.IfxTag>('ifx-tag', undefined);
 
 
-export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', undefined, [
+export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.IfxTextField["value"]>('ifx-text-field', undefined, [
   'placeholder',
   'value',
   'error',
@@ -379,5 +458,6 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx
   'readonly',
   'icon',
   'ifxInput'
-]);
+],
+'value', 'ifxInput');
 
