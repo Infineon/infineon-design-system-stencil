@@ -75,7 +75,7 @@ const rowDataWithButtonCol = [
 
 
 export default {
-  title: 'Components/Table (advanced)',
+  title: 'Under Development/Table (advanced)',
   // tags: ['autodocs'],
   args: {
     tableHeight: 'auto',
