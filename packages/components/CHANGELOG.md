@@ -1,3 +1,16 @@
+# v20.7.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: footer [#404](https://github.com/Infineon/infineon-design-system-stencil/pull/404) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: checkbox update [#408](https://github.com/Infineon/infineon-design-system-stencil/pull/408) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.6.0 (Tue Aug 22 2023)
 
 #### 🚀 Enhancement
