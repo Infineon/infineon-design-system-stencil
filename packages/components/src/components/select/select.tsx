@@ -409,7 +409,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   toggleDropdown() {
     // console.log("toggling dropdown");
-    const div = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active')) {
       if (this.choice.dropdown.isActive) {
         this.hideDropdown();
