@@ -148,6 +148,11 @@
       search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
       ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
     <br />
+
+    <ifx-select id="single-select2" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
+      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
+      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
+    <br />
     <br />
 
 
@@ -258,6 +263,7 @@
   const numberIndicator = document.querySelector('#number-indicator');
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
+  const singleSelect2 = document.querySelector('#single-select2');
 
   const searchField = document.querySelector('#search-field');
   const searchBar = document.querySelector('#search-bar');
@@ -349,9 +355,17 @@
       console.log("single select value change", event.detail);
     });
 
+    singleSelect2.addEventListener('ifxChange', (event) => {
+      console.log("single select value change", event.detail);
+    });
+
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
     singleSelect.setAttribute('ifx-options', singleSelectOptions);
+    cardBtn.addEventListener('click', () => {
+      console.log("card button click event");
+    });
+    singleSelect2.setAttribute('ifx-options', singleSelectOptions);
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
     });
