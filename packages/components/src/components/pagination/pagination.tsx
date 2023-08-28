@@ -178,7 +178,7 @@ export class Pagination {
             ifx-error-message='Some error'
             ifx-label=''
             ifx-placeholder-value='Placeholder'
-            ifx-options='[{"value":"ten","label":"10","selected":true},{"value":"twelve","label":"20","selected":false},{"value":"thirty","label":"30","selected":false}]' >
+            ifx-options='[{"value":"ten","label":"10","selected":true},{"value":"twenty","label":"20","selected":false},{"value":"thirty","label":"30","selected":false}]' >
           </ifx-select>
           </div>
         </div>
