@@ -1,3 +1,16 @@
+# v20.10.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: breadcrumb [#412](https://github.com/Infineon/infineon-design-system-stencil/pull/412) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tag [#414](https://github.com/Infineon/infineon-design-system-stencil/pull/414) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.9.2 (Mon Aug 28 2023)
 
 #### 🐛 Bug Fix
