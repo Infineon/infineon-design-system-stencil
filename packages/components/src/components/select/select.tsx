@@ -315,6 +315,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             <div class={`${choicesWrapperClass} 
             ${this.ifxDisabled ? 'disabled' : ""} 
             ${this.ifxError ? 'error' : ""}`}
+
               onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}
               onKeyDown={(event) => this.handleKeyDown(event)}
             >
@@ -420,7 +421,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.choice.showDropdown();
       div.classList.add('active');
     }
-    const choicesElement = document.querySelector('.choices');
+    const choicesElement = this.root.querySelector('.choices');
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
   }
 
@@ -469,7 +470,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
-    const ifxChoicesContainer = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    const ifxChoicesContainer = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
 
     if (!path.includes(this.root)) {
       this.closeDropdownMenu();
@@ -665,7 +666,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   private addEventListenersToHandleCustomFocusAndActiveState() {
-    const div = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
 
     if (!div) {
       console.error('.ifx-choices__wrapper not found');

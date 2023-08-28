@@ -1,3 +1,29 @@
+# v20.11.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Code quality: Single-select - replaced document with this.root to not query the document [#420](https://github.com/Infineon/infineon-design-system-stencil/pull/420) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.10.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: breadcrumb [#412](https://github.com/Infineon/infineon-design-system-stencil/pull/412) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tag [#414](https://github.com/Infineon/infineon-design-system-stencil/pull/414) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.9.2 (Mon Aug 28 2023)
 
 #### 🐛 Bug Fix
