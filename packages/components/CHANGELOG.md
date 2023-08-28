@@ -1,3 +1,16 @@
+# v20.9.2 (Mon Aug 28 2023)
+
+#### 🐛 Bug Fix
+
+- e2e tests added for chip component [#415](https://github.com/Infineon/infineon-design-system-stencil/pull/415) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.9.1 (Fri Aug 25 2023)
 
 #### 🐛 Bug Fix
