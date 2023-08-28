@@ -1,4 +1,4 @@
-import { h, Component, Element, Method, Prop, Event, EventEmitter } from '@stencil/core';
+import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { HTMLStencilElement, Listen } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
@@ -83,6 +83,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Prop() ifxOptions: any[] | string;
   @Prop() ifxSize: string = 'medium (40px)';
+  @State() selectedOption: any | null = null;
 
   @Element() private readonly root: HTMLElement;
   private choice;
@@ -90,8 +91,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   @Method()
-  async handleChange() {
+  handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
+    this.selectedOption = this.choice.getValue();
+    console.log("selected option: ", this.selectedOption)
     this.closeDropdownMenu();
   }
 
@@ -321,7 +324,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               <select {...attributesSingle} data-trigger
                 onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.ifxOptions, this.value)}
+                {this.createSelectOptions(this.ifxOptions)}
               </select>
 
 
@@ -356,7 +359,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             }
             <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
               <select {...attributesMultiple} multiple onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.ifxOptions, this.value)}
+                {this.createSelectOptions(this.ifxOptions)}
               </select>
               <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
                 <ifx-icon
@@ -538,7 +541,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
       const self = this; // save the context of this in a variable outside of the function to access it in the following
-
       // this.type = "single"; //for now, only single-select is implemented
       if (this.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
@@ -546,29 +548,38 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             return {
               //modifying the selected item template
               item: ({ classNames }, data) => {
-                let removeButtonHTML = ''; //remove button needed in single select?
-                // if (props.removeItemButton) {
-                //   const REMOVE_ITEM_TEXT = 'Remove item';
-                //   let buttonClass = '';
-                //   if (props.type === 'single') {
-                //     // buttonClass = 'single-select'; //no removeItemButton for single select needed
-                //   } else if (this.type === 'multiple') {
-                //     buttonClass = '';
-                //     removeButtonHTML = `
-                //     <button type="button" class="${classNames.button} ${buttonClass}" aria-label="${REMOVE_ITEM_TEXT}: '${data.value}'" data-button>
-                //     </button>`;
-                //   }
-                // }
-                return template(`
-                <div class="${classNames.item} ${data.highlighted
-                    ? classNames.highlightedState
-                    : classNames.itemSelectable
-                  } ${data.placeholder ? classNames.placeholder : ''
-                  }" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
-                   ${data.label === 'undefined' ? 'Placeholder' : data.label}
-                   ${removeButtonHTML}
-                  </div>
-                `);
+                // console.log("rendering item template ", data)
+                let removeButtonHTML = '';
+
+                if (data.placeholder && !self.selectedOption?.value) {
+                  // For placeholders, use data-id="placeholder"
+                  return template(`
+                    <div class="${classNames.item} ${data.placeholder}" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
+                     ${data.label === 'undefined' ? 'Placeholder' : data.label}
+                     ${removeButtonHTML}
+                    </div>
+                  `);
+                } else {
+                  // For non-placeholder items, use the actual data ID
+                  const div = document.createElement('div');
+                  div.className = `${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}`;
+                  div.setAttribute('data-item', '');
+                  div.setAttribute('data-id', self.selectedOption?.id);
+                  div.setAttribute('data-value', self.selectedOption?.value);
+                  if (data.disabled) {
+                    div.setAttribute('aria-disabled', 'true');
+                  }
+
+                  // Create the choice label
+                  const labelSpan = document.createElement('span');
+                  labelSpan.innerText = self.selectedOption?.label;
+                  div.appendChild(labelSpan);
+
+                  // Add the remove button if needed
+
+
+                  return div;
+                }
               },
               input: ({ classNames }) => {
                 return template(`
@@ -585,26 +596,75 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
-                return template(`
-                <div class="${classNames.item} 
+
+                const div = document.createElement('div');
+                div.className = `${classNames.item} 
                 ${classNames.itemChoice} 
                 ${self.getSizeClass()}
-                ${data.selected ? 'selected' : ''} 
-                ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
-                choice-container" 
-                data-select-text="${this.config.itemSelectText}"
-                data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'} 
-                data-id="${data.id}" 
-                data-value="${data.value}" 
-                ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}">
-                <span class="choice-label">${data.label}</span>
-                ${data.selected ? '<ifx-icon class="choice-icon" icon="check16"></ifx-icon>' : ''} 
-                </div>
-                `);
+                `
+
+                if (data.selected || self.selectedOption?.value === data.value) {
+                  div.classList.add('selected');
+                }
+
+                if (data.placeholder) {
+                  div.classList.add(classNames.placeholder);
+                }
+                if (data.disabled) {
+                  div.classList.add(classNames.itemDisabled);
+                  div.setAttribute('aria-disabled', 'true');
+                } else {
+                  div.classList.add(classNames.itemSelectable);
+                  div.setAttribute('data-choice-selectable', '');
+                }
+                // Set the role attribute based on groupId
+                div.setAttribute('role', data.groupId && data.groupId > 0 ? 'treeitem' : 'option');
+
+                // Set the data attributes for the choice
+                div.setAttribute('data-choice', '');
+                div.setAttribute('data-id', data.id);
+                div.setAttribute('data-value', data.value);
+                div.setAttribute('data-select-text', this.config.itemSelectText);
+
+                // Create the choice label
+                const labelSpan = document.createElement('span');
+                labelSpan.innerText = data.label;
+                div.appendChild(labelSpan);
+
+                // Add the icon element if the choice is selected
+                // console.log("rendering choice template", data.value, data.selected, self.selectedOption?.value)
+                if (data.selected || self.selectedOption?.value === data.value) {
+                  const icon = document.createElement('ifx-icon');
+                  icon.setAttribute('icon', 'check16');
+                  div.appendChild(icon);
+                }
+
+                return div;
+
+                // return template(`
+                // <div class="${classNames.item} 
+                // ${classNames.itemChoice} 
+                // ${self.getSizeClass()}
+                // ${data.selected ? 'selected' : ''} 
+                // ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
+                // choice-container" 
+                // data-select-text="${this.config.itemSelectText}"
+                // data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'} 
+                // data-id="${data.id}" 
+                // data-value="${data.value}" 
+                // ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}">
+
+                // <span class="choice-label">${data.label}</span>
+                // ${data.selected ? '<ifx-icon  icon="check16"></ifx-icon>' : ''} 
+                // </div>
+                // `);
               },
             };
+
           },
-        }));
+
+        }
+        ));
 
         this.setChoices(this.ifxOptions, "value", "label", true)
 
@@ -683,30 +743,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.classList.remove('focus');
     });
 
-    // div.addEventListener('click', function () {
-    //   if (!this.classList.contains('disabled')) {
-    //     if (!this.classList.contains('active')) {
-    //       this.classList.add('active');
-    //     }
-    //     else {
-    //       this.classList.remove('active');
-    //     }
-    //   }
-    // });
 
-    // div.addEventListener('keydown', function (event) {
-    //   // Check for Enter or Space key presses
-    //   if (event.code === 'Enter' || event.code === 'Space') {
-    //     if (!this.classList.contains('disabled')) {
-    //       this.classList.add('active');
-    //     }
-
-    //     // Prevent the default behavior (like page scrolling) on Space key.
-    //     if (event.code === 'Space') {
-    //       event.preventDefault();
-    //     }
-    //   }
-    // });
 
   }
 
@@ -724,14 +761,32 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
-  private createSelectOptions(ifxOptions, value: string | Array<string>): Array<HTMLStencilElement> {
-    if (this.value !== 'undefined') {
-      let optionValueBasedOnAvailableOptions = JSON.parse(ifxOptions).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
-      console.log("option value could not be found in available options", value)
-      return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
+  private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
+    // console.log("createSelectOptions")
+    if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
+      const options = JSON.parse(ifxOptions);
+      const optionValueBasedOnAvailableOptions = options.find(option => option.value === this.value || this.selectedOption?.value);
+
+      if (optionValueBasedOnAvailableOptions) {
+        return [
+          <option value={optionValueBasedOnAvailableOptions.value}>
+            {optionValueBasedOnAvailableOptions.label}
+          </option>
+        ];
+      }
     }
-    else {
-      return this.placeholder !== "false" ? <option value="">{this.ifxPlaceholderValue}</option> : <option></option>;
-    }
+
+    // Assign a unique id for the placeholder
+
+    return this.placeholder !== "false" ? [
+      <option value="">
+        {this.ifxPlaceholderValue}
+      </option>
+    ] : [
+      <option></option>
+    ];
   }
+
+
+
 }

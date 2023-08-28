@@ -147,19 +147,19 @@
   /*
 START Select options: item alignment
 */
-  .choice-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  // .choice-container {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  // }
 
-  .choice-label {
-    /* Additional styles for label if necessary */
-  }
+  // .choice-label {
+  //   /* Additional styles for label if necessary */
+  // }
 
-  .choice-icon {
-    /* Additional styles for icon if necessary */
-  }
+  // .choice-icon {
+  //   /* Additional styles for icon if necessary */
+  // }
 
   /*
 END Select options: item alignment
@@ -463,6 +463,7 @@ END Select options: item alignment
     gap: 8px;
     align-items: center;
     display: flex;
+    justify-content: space-between;
     font-style: normal;
     font-weight: 400;
 
