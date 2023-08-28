@@ -727,7 +727,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private createSelectOptions(ifxOptions, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
       let optionValueBasedOnAvailableOptions = JSON.parse(ifxOptions).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
-      // console.log("option value could not be found in available options", value)
+      console.log("option value could not be found in available options", value)
       return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
     }
     else {
