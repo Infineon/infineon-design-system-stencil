@@ -1,3 +1,16 @@
+# v20.11.1 (Mon Aug 28 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-Select - fix for the lost focus when toggling the dropdown and the select is a… [#421](https://github.com/Infineon/infineon-design-system-stencil/pull/421) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.11.0 (Mon Aug 28 2023)
 
 #### 🚀 Enhancement
