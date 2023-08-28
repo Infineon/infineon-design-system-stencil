@@ -1,3 +1,16 @@
+# v20.12.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: button update [#425](https://github.com/Infineon/infineon-design-system-stencil/pull/425) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: modal update [#428](https://github.com/Infineon/infineon-design-system-stencil/pull/428) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.11.1 (Mon Aug 28 2023)
 
 #### 🐛 Bug Fix
