@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-pagination',
@@ -12,7 +12,7 @@ export class Pagination {
   @Event() ifxPrevPage: EventEmitter;
   @Prop() currentPage: number = 0;
   @State() internalPage: number = 1;
-  @Prop() itemsPerPage: number = 1;
+  @State() itemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
   @Prop() surroundingPageCount: number = 1;
@@ -26,9 +26,9 @@ export class Pagination {
   private CLASS_SIBLING_ACTIVE = "active-sibling"
   private DATA_KEY = "pagination";
 
-  @Watch('ifxSelect')
-  setItemsPerPage() { 
-    //this.itemsPerPage = e.detail;
+  @Listen('ifxSelect')
+  setItemsPerPage(e) { 
+    this.itemsPerPage = parseInt(e.detail.label)
   }
 
   componentDidLoad() { 
@@ -39,7 +39,7 @@ export class Pagination {
    this.navigateSinglePage(leftArrow, true) 
   }
 
-  componentWillLoad() { 
+  calculateNumberOfPages() { 
     const total = this.total <= this.itemsPerPage ? this.itemsPerPage : this.total;
     const itemsPerPage = this.itemsPerPage;
     const totalPageNumber = total / itemsPerPage;
@@ -52,6 +52,14 @@ export class Pagination {
     } else this.internalPage = this.currentPage;
 
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
+  }
+
+  componentWillLoad() { 
+   this.calculateNumberOfPages()
+  }
+
+  componentWillUpdate() { 
+    this.calculateNumberOfPages()
   }
 
   handleEventEmission(currActive) { 
@@ -158,11 +166,20 @@ export class Pagination {
         <div class='items__per-page-wrapper'>
           <div class='items__per-page-label'>Results per Page</div>
           <div class='items__per-page-field'>
-           <select name="items-per-page" id="items-per-page">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-           </select>
+           <ifx-select 
+            type='single'
+            value='undefined'
+            ifx-size='s'
+            placeholder='false'
+            search-enabled='false'
+            search-placeholder-value='Search...'
+            ifx-disabled='false'
+            ifx-error='false'
+            ifx-error-message='Some error'
+            ifx-label=''
+            ifx-placeholder-value='Placeholder'
+            ifx-options='[{"value":"ten","label":"10","selected":true},{"value":"twelve","label":"20","selected":false},{"value":"thirty","label":"30","selected":false}]' >
+          </ifx-select>
           </div>
         </div>
         <div class='items__total-wrapper'>

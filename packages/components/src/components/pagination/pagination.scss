@@ -23,11 +23,16 @@
 
     & .items__per-page-field { 
       display: flex;
-      width: 92px;
+      //width: 92px;
+      //width: 100%;
       flex-direction: column;
       align-items: flex-start;
-      border: 1px solid #575352;
-      background: #FFF;
+      //border: 1px solid #575352;
+      //background: #FFF;
+
+      & ifx-select { 
+        width: 92px;
+      }
     }
   }
 
