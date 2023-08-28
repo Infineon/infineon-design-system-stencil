@@ -91,7 +91,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async handleChange() {
-    // console.log("ifxSelect event: ", this.choice.getValue())
     this.ifxSelect.emit(this.choice.getValue());
     this.closeDropdownMenu();
   }
@@ -408,7 +407,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdown() {
-    // console.log("toggling dropdown");
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active')) {
       if (this.choice.dropdown.isActive) {
@@ -729,8 +727,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private createSelectOptions(ifxOptions, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
       let optionValueBasedOnAvailableOptions = JSON.parse(ifxOptions).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
-      // console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
-      console.log("option value could not be found in available options", value)
+      // console.log("option value could not be found in available options", value)
       return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
     }
     else {
