@@ -409,15 +409,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   toggleDropdown() {
     // console.log("toggling dropdown");
     const div = document.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    // this.classList.contains('active')
-
-    if (this.choice.dropdown.isActive || div.classList.contains('active')) {
-      this.hideDropdown();
-      div.classList.remove('active');
+    if (div.classList.contains('active')) {
+      if (this.choice.dropdown.isActive) {
+        this.hideDropdown();
+        div.classList.remove('active');
+      } else {
+        this.choice.showDropdown();
+      }
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
-
     }
     const choicesElement = document.querySelector('.choices');
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
