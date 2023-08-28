@@ -91,7 +91,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async handleChange() {
-    // console.log("ifxSelect event: ", this.choice.getValue())
     this.ifxSelect.emit(this.choice.getValue());
     this.closeDropdownMenu();
   }
@@ -315,6 +314,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             <div class={`${choicesWrapperClass} 
             ${this.ifxDisabled ? 'disabled' : ""} 
             ${this.ifxError ? 'error' : ""}`}
+
               onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}
               onKeyDown={(event) => this.handleKeyDown(event)}
             >
@@ -407,17 +407,17 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdown() {
-    // console.log("toggling dropdown");
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    // this.classList.contains('active')
-
-    if (this.choice.dropdown.isActive || div.classList.contains('active')) {
-      this.hideDropdown();
-      div.classList.remove('active');
+    if (div.classList.contains('active')) {
+      if (this.choice.dropdown.isActive) {
+        this.hideDropdown();
+        div.classList.remove('active');
+      } else {
+        this.choice.showDropdown();
+      }
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
-
     }
     const choicesElement = this.root.querySelector('.choices');
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
@@ -665,6 +665,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   private addEventListenersToHandleCustomFocusAndActiveState() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+
     if (!div) {
       console.error('.ifx-choices__wrapper not found');
       return;
@@ -726,7 +727,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   private createSelectOptions(ifxOptions, value: string | Array<string>): Array<HTMLStencilElement> {
     if (this.value !== 'undefined') {
       let optionValueBasedOnAvailableOptions = JSON.parse(ifxOptions).map((option) => ({ value: option.value, label: option.label, selected: option.selected })).find(opt => opt.value === this.value)
-      // console.log("create select options", value, this.ifxPlaceholderValue, optionValueBasedOnAvailableOptions?.label);
       console.log("option value could not be found in available options", value)
       return optionValueBasedOnAvailableOptions ? <option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option> : <option value="">{this.ifxPlaceholderValue}</option>
     }
