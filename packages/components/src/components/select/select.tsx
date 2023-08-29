@@ -91,7 +91,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   @Method()
-  handleChange() {
+  async handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
     this.selectedOption = this.choice.getValue();
     this.closeDropdownMenu();
@@ -409,7 +409,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdown() {
-    console.log("toggle")
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
       this.hideDropdown();
