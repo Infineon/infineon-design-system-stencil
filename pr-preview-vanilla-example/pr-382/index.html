@@ -124,7 +124,7 @@
     <button onClick="increaseNumber()">+</button>
     <button onClick="decreaseNumber()">-</button>
     <br />
-
+    <br />
 
     <h2>Sidebar</h2>
     <ifx-sidebar application-name="Application Name">
@@ -134,6 +134,27 @@
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
     </ifx-sidebar>
     <br />
+    <br />
+
+    <h2>Multi-Select</h2>
+    <ifx-multiselect id="multi-select"
+      options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
+      size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+    <br />
+    <br />
+
+    <h2>Single-Select</h2>
+    <ifx-select id="single-select" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
+      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
+      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
+    <br />
+
+    <ifx-select id="single-select2" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
+      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
+      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
+    <br />
+    <br />
+
 
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
@@ -166,14 +187,20 @@
     <h2>Search field</h2>
     <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
     <br />
+    <br />
 
     <h2>Search bar</h2>
     <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
+    <br />
+    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
+    <br />
     <br />
 
     <h2>Switch</h2>
     <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
     <br />
+    <br />
+
 
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
@@ -209,6 +236,59 @@
       position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
         Extended tooltip on button hover
       </ifx-button></ifx-tooltip>
+
+    <h2>Dropdown</h2>
+    <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+      <ifx-dropdown-trigger-button icon="calendar16">
+        dropdown
+      </ifx-dropdown-trigger-button>
+      <ifx-dropdown-menu size="l">
+        <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+        <ifx-search-field show-delete-icon="false"></ifx-search-field>
+        <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+        <ifx-dropdown-separator></ifx-dropdown-separator>
+        <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
+        <ifx-dropdown-item>Two</ifx-dropdown-item>
+        <ifx-dropdown-item>Three</ifx-dropdown-item>
+        <ifx-dropdown-item>Four</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-dropdown>
+    <br />
+    <h2>Dropdown</h2>
+    <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+      <ifx-dropdown-trigger-button icon="calendar16">
+        dropdown
+      </ifx-dropdown-trigger-button>
+      <ifx-dropdown-menu size="l">
+        <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+        <ifx-search-field show-delete-icon="false"></ifx-search-field>
+        <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+        <ifx-dropdown-separator></ifx-dropdown-separator>
+        <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
+        <ifx-dropdown-item>Two</ifx-dropdown-item>
+        <ifx-dropdown-item>Three</ifx-dropdown-item>
+        <ifx-dropdown-item>Four</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-dropdown>
+    <br />
+
+
+    <h2>Tooltip</h2>
+    <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
+      element -
+      Please hover me</ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Dismissible tooltip on button click
+      </ifx-button></ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
+      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Extended tooltip on button hover
+      </ifx-button></ifx-tooltip>
     <br />
 
   </div>
@@ -223,7 +303,6 @@
   let radioChecked = false;
   let number = 1;
   let switchChecked = false;
-
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
 
@@ -232,11 +311,13 @@
   const textInput = document.querySelector('#text-input');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
+  const switchToggle = document.querySelector('#switch');
+  const singleSelect = document.querySelector('#single-select');
+  const singleSelect2 = document.querySelector('#single-select2');
 
   const searchField = document.querySelector('#search-field');
   const searchBar = document.querySelector('#search-bar');
 
-  const switchToggle = document.querySelector('#switch');
   const cardBtn = document.querySelector('#cardBtn');
 
   const toggleDisabledButton = document.querySelector("#toggleDisabled");
@@ -319,6 +400,22 @@
     });
 
 
+
+    singleSelect.addEventListener('ifxChange', (event) => {
+      console.log("single select value change", event.detail);
+    });
+
+    singleSelect2.addEventListener('ifxChange', (event) => {
+      console.log("single select value change", event.detail);
+    });
+
+    //set single select values using a json array
+    const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
+    singleSelect.setAttribute('ifx-options', singleSelectOptions);
+    cardBtn.addEventListener('click', () => {
+      console.log("card button click event");
+    });
+    singleSelect2.setAttribute('ifx-options', singleSelectOptions);
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
     });
@@ -332,7 +429,9 @@
       console.log("search bar value", event.detail);
     });
 
+
   });
+
 
 
   updateValues();
