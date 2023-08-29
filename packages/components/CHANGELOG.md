@@ -1,3 +1,16 @@
+# v20.13.0 (Tue Aug 29 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: tag update [#433](https://github.com/Infineon/infineon-design-system-stencil/pull/433) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: link update [#431](https://github.com/Infineon/infineon-design-system-stencil/pull/431) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.12.0 (Mon Aug 28 2023)
 
 #### 🚀 Enhancement
