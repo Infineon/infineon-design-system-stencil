@@ -94,7 +94,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
     this.selectedOption = this.choice.getValue();
-    console.log("selected option: ", this.selectedOption)
     this.closeDropdownMenu();
   }
 
@@ -410,14 +409,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   toggleDropdown() {
+    console.log("toggle")
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    if (div.classList.contains('active')) {
-      if (this.choice.dropdown.isActive) {
-        this.hideDropdown();
-        div.classList.remove('active');
-      } else {
-        this.choice.showDropdown();
-      }
+    if (div.classList.contains('active') || this.choice.dropdown.isActive) {
+      this.hideDropdown();
+      div.classList.remove('active');
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
@@ -449,21 +445,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
 
-  getIfxChoicesContainer() {
-    let ifxChoicesContainer = this.root.querySelector('.ifx-choices_wrapper ');
-    return ifxChoicesContainer
-  }
-
-
-
   handleClassList(el, type, className) {
     el?.classList[type](className)
   }
 
 
+
   closeDropdownMenu() {
-    const ifxChoicesContainer = this.getIfxChoicesContainer()
-    this.handleClassList(ifxChoicesContainer, 'remove', 'show')
+    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    this.handleClassList(ifxChoicesWrapper, 'remove', 'active');
   }
 
 
@@ -474,7 +464,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const ifxChoicesContainer = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
 
     if (!path.includes(this.root)) {
-      this.closeDropdownMenu();
       this.handleClassList(ifxChoicesContainer, 'remove', 'active');
     }
   }
@@ -561,24 +550,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                   `);
                 } else {
                   // For non-placeholder items, use the actual data ID
-                  const div = document.createElement('div');
-                  div.className = `${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}`;
-                  div.setAttribute('data-item', '');
-                  div.setAttribute('data-id', self.selectedOption?.id);
-                  div.setAttribute('data-value', self.selectedOption?.value);
-                  if (data.disabled) {
-                    div.setAttribute('aria-disabled', 'true');
-                  }
-
-                  // Create the choice label
-                  const labelSpan = document.createElement('span');
-                  labelSpan.innerText = self.selectedOption?.label;
-                  div.appendChild(labelSpan);
-
-                  // Add the remove button if needed
-
-
-                  return div;
+                  return template(`
+                  <div class="${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}" 
+                       data-item 
+                       data-id="${self.selectedOption?.id}" 
+                       data-value="${self.selectedOption?.value}" 
+                       ${data.disabled ? 'aria-disabled="true"' : ''}>
+                    <span>${self.selectedOption?.label}</span>
+                    <!-- Add your remove button here if needed -->
+                  </div>
+                `)
                 }
               },
               input: ({ classNames }) => {
@@ -596,68 +577,19 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
-
-                const div = document.createElement('div');
-                div.className = `${classNames.item} 
-                ${classNames.itemChoice} 
-                ${self.getSizeClass()}
-                `
-
-                if (data.selected || self.selectedOption?.value === data.value) {
-                  div.classList.add('selected');
-                }
-
-                if (data.placeholder) {
-                  div.classList.add(classNames.placeholder);
-                }
-                if (data.disabled) {
-                  div.classList.add(classNames.itemDisabled);
-                  div.setAttribute('aria-disabled', 'true');
-                } else {
-                  div.classList.add(classNames.itemSelectable);
-                  div.setAttribute('data-choice-selectable', '');
-                }
-                // Set the role attribute based on groupId
-                div.setAttribute('role', data.groupId && data.groupId > 0 ? 'treeitem' : 'option');
-
-                // Set the data attributes for the choice
-                div.setAttribute('data-choice', '');
-                div.setAttribute('data-id', data.id);
-                div.setAttribute('data-value', data.value);
-                div.setAttribute('data-select-text', this.config.itemSelectText);
-
-                // Create the choice label
-                const labelSpan = document.createElement('span');
-                labelSpan.innerText = data.label;
-                div.appendChild(labelSpan);
-
-                // Add the icon element if the choice is selected
-                // console.log("rendering choice template", data.value, data.selected, self.selectedOption?.value)
-                if (data.selected || self.selectedOption?.value === data.value) {
-                  const icon = document.createElement('ifx-icon');
-                  icon.setAttribute('icon', 'check16');
-                  div.appendChild(icon);
-                }
-
-                return div;
-
-                // return template(`
-                // <div class="${classNames.item} 
-                // ${classNames.itemChoice} 
-                // ${self.getSizeClass()}
-                // ${data.selected ? 'selected' : ''} 
-                // ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
-                // choice-container" 
-                // data-select-text="${this.config.itemSelectText}"
-                // data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'} 
-                // data-id="${data.id}" 
-                // data-value="${data.value}" 
-                // ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'}">
-
-                // <span class="choice-label">${data.label}</span>
-                // ${data.selected ? '<ifx-icon  icon="check16"></ifx-icon>' : ''} 
-                // </div>
-                // `);
+                return template(`
+                <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
+                ${data.selected || self.selectedOption?.value === data.value ? 'selected' : ''} 
+                ${data.placeholder ? classNames.placeholder : ''} 
+                ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
+                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
+                     data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
+                     data-value="${data.value}"
+                     data-select-text="${this.config.itemSelectText}">
+                  <span>${data.label}</span>
+                  ${data.selected || self.selectedOption?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
+                </div>
+              `)
               },
             };
 
