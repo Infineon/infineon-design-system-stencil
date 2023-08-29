@@ -148,6 +148,23 @@
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
   </ifx-sidebar>
   <br />
+  <br />
+
+  <h2>Multi-Select</h2>
+  <ifx-multiselect
+    options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
+    size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <br />
+  <br />
+
+  <h2>Single-Select</h2>
+  <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+    search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
+    ifx-label="" ifx-placeholder-value="Placeholder"
+    ifx-options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]'></ifx-select>
+  <br />
+  <br />
+
 
   <h2>Card</h2>
   <ifx-card href="http://google.com" target="_blank" direction="vertical">

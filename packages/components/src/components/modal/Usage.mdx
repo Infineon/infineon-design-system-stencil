@@ -52,7 +52,7 @@ If required, buttons can be displayed to confirm an action by the user. The prim
 
 
 **Backdrop (7)**\
-The backdrop is a semi-transparent overlay that covers the rest of the page when the modal is open. Clicking on the backdrop dismisses the modal.
+The backdrop is a semi-transparent overlay `color-overlay-dark` that covers the rest of the page when the modal is open. Clicking on the backdrop dismisses the modal.
 
 
 ## Variants
@@ -62,7 +62,9 @@ The default variant is a simple, clean, and unobtrusive design suitable for gene
 <img src={ModalDefaultDesktop} alt="Modal Default Desktop" />
 
 ### Alert
-The alert variant is designed for important messages, warnings, errors, or critical actions that require users' immediate attention.
+The alert variant is designed for important messages and errors, or critical actions that require users' immediate attention.
+> Consider that with a modal error status, the buttons should also have the error variant.
+
 <img src={ModalAlertDesktop} alt="Modal Alert Desktop" />
 
 #### Status

@@ -15,15 +15,22 @@ export class Checkbox {
   @Prop() error: boolean = false;
   @Prop() name: string = '';
   @State() internalValue: boolean;
+  @Prop() indeterminate: boolean = false;
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
-      this.internalValue = !this.internalValue;
-      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
-      this.ifxChange.emit(this.internalValue);
+      if (this.inputElement.indeterminate) {
+        this.internalValue = true;
+        this.indeterminate = false;
+      } else {
+        this.internalValue = !this.internalValue;
+      }
+      this.ifxChange.emit(this.el);
     }
   }
+
+
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
@@ -43,8 +50,13 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalValue = this.internalValue || false
+    this.internalValue = this.value;
   }
+
+  componentDidRender() {
+    this.inputElement.indeterminate = this.indeterminate;
+  }
+
 
   render() {
     const slot = this.el.innerHTML;
@@ -72,11 +84,12 @@ export class Checkbox {
           onClick={this.handleCheckbox.bind(this)}
           onKeyDown={this.handleKeydown.bind(this)}
           role="checkbox"  // role attribute
-          aria-value={this.internalValue} // aria attribute
-          aria-disabled={this.disabled} // aria attribute
+          aria-value={this.internalValue}
+          aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
         ${this.internalValue ? 'checked' : ""} 
+        ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}
         ${this.error ? 'error' : ""}`}>
           {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}

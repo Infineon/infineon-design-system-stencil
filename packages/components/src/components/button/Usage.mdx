@@ -57,9 +57,10 @@ Use for actions that are not as important as primary or secondary actions. The t
 #### States
 <img src={TertiaryButtonStates} alt="Tertiary Button States" />
 
-### Error
-Should be used for actions that result in a destructive action, such as deleting a record. The error button has a high-contrast, attention-grabbing style — try to limit its use per page as much as possible.
-To make it easier for users to cancel a destructive action, it is recommended to include a secondary button alongside the error button on modal components. For instance, if a table is being deleted, users can use the "Cancel" button to close the modal.
+### Danger
+Should be used for actions that result in a destructive action, such as deleting a record. The danger button has a high-contrast, attention-grabbing style — try to limit its use per page as much as possible.
+To make it easier for users to cancel a destructive action, it is recommended to include a secondary button alongside the danger button on modal components. For instance, if a table is being deleted, users can use the "Cancel" button to close the modal.
+> A tertiary button variant for danger does not exist in our DDS.
 <img src={ButtonVariantError} alt="Button Variant Error" />
 
 
@@ -91,8 +92,8 @@ This is our large default button size.
 ### 48px
 Our call-to-action button. Primarily used at the top/bottom of a page to highlight an action.
 
-## Light version
-To work on $brand-500 backgrounds there are also light versions of the primary, secondary and tertiary buttons available. The use of the destructive button on $brand-500 backgrounds is not allowed.
+## Inverse version
+To work on `$ocean-500` backgrounds there are also inverted versions of the primary, secondary and tertiary buttons available. Do not a destructive button on `$ocean-500` backgrounds.
 
 ## Grouping buttons
 Button grouping is used to organize related actions or tasks. It helps users to identify and differentiate between the actions they can perform on a page or screen. Grouping buttons also improves the visual hierarchy of a design, making it more scannable and user-friendly.
@@ -106,6 +107,7 @@ There are several ways to group buttons in your layout:
 - Top (important) to bottom (less important) for less horizontal space.
 - Try to limit the number of buttons for vertical grouping by three. Instead group them horizontally.
 - In a modal dialog it is important to align button groups on the bottom right corner. In addition switch the importance left (less important) and right (important) to show a progress.
+
 
 ***
 Check out the Figma component: **[Button](https://www.figma.com/file/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?type=design&node-id=2610-6235&mode=design&t=xVWOPkYnUvh53BSW-4)**
