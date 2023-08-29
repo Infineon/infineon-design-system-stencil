@@ -82,7 +82,11 @@
 
 .ag-ltr .ag-sort-indicator-icon {
   padding-left: 0px;
+  vertical-align: bottom;
+  line-height: 12px;
+
 }
+
 
 .unsort-icon-custom-color {
   color: tokens.$ifxColorEngineering400;
