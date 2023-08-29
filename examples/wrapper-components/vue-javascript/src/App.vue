@@ -4,24 +4,25 @@
   <h1>Stencil Framework integration - Vue + JS </h1>
   <Alert />
   <Button />
+  <Card />
+  <SingleSelect />
+  <MultiSelect />
   <Checkbox />
-  <RadioButton />
-  <ProgressBar />
-  <Search />
-  <SearchField />
-  <TextInput />
-  <TextField />
-  <Tag />
-  <Tabs />
-  <Spinner />
+  <IconButton />
   <Link />
   <NumberIndicator />
+  <ProgressBar />
+  <RadioButton />
+  <Search />
+  <SearchField />
+  <Spinner />
   <Sidebar />
-  <IconButton />
-  <Card />
   <Switch />
   <Dropdown />
   <Footer />
+  <Tabs />
+  <Tag />
+  <TextField />
 </template>
 
 
@@ -46,6 +47,8 @@ import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
 import Dropdown from './components/Dropdown.vue'
 import Footer from './components/Footer.vue'
+import SingleSelect from './components/SingleSelect.vue'
+import MultiSelect from './components/MultiSelect.vue'
 
 </script>
 

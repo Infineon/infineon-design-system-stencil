@@ -1,3 +1,159 @@
+# v20.12.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: button update [#425](https://github.com/Infineon/infineon-design-system-stencil/pull/425) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: modal update [#428](https://github.com/Infineon/infineon-design-system-stencil/pull/428) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.11.1 (Mon Aug 28 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-Select - fix for the lost focus when toggling the dropdown and the select is a… [#421](https://github.com/Infineon/infineon-design-system-stencil/pull/421) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.11.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Code quality: Single-select - replaced document with this.root to not query the document [#420](https://github.com/Infineon/infineon-design-system-stencil/pull/420) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.10.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: breadcrumb [#412](https://github.com/Infineon/infineon-design-system-stencil/pull/412) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tag [#414](https://github.com/Infineon/infineon-design-system-stencil/pull/414) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.9.2 (Mon Aug 28 2023)
+
+#### 🐛 Bug Fix
+
+- e2e tests added for chip component [#415](https://github.com/Infineon/infineon-design-system-stencil/pull/415) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.9.1 (Fri Aug 25 2023)
+
+#### 🐛 Bug Fix
+
+- 392 code quality spinner missing e2e tests [#411](https://github.com/Infineon/infineon-design-system-stencil/pull/411) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.9.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Component: Single-Select using ChoicesJs +Multiselect [#328](https://github.com/Infineon/infineon-design-system-stencil/pull/328) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.8.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: progress bar [#405](https://github.com/Infineon/infineon-design-system-stencil/pull/405) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: button update [#410](https://github.com/Infineon/infineon-design-system-stencil/pull/410) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.7.0 (Fri Aug 25 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: footer [#404](https://github.com/Infineon/infineon-design-system-stencil/pull/404) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: checkbox update [#408](https://github.com/Infineon/infineon-design-system-stencil/pull/408) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.6.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: modal update [#401](https://github.com/Infineon/infineon-design-system-stencil/pull/401) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.5.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: link [#399](https://github.com/Infineon/infineon-design-system-stencil/pull/399) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.4.0 (Tue Aug 22 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: icon [#395](https://github.com/Infineon/infineon-design-system-stencil/pull/395) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.3.0 (Fri Aug 18 2023)
 
 #### 🚀 Enhancement

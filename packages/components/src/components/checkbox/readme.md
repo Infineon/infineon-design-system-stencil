@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
-| `error`    | `error`    |             | `boolean` | `false` |
-| `name`     | `name`     |             | `string`  | `''`    |
-| `value`    | `value`    |             | `boolean` | `false` |
+| Property        | Attribute       | Description | Type      | Default |
+| --------------- | --------------- | ----------- | --------- | ------- |
+| `disabled`      | `disabled`      |             | `boolean` | `false` |
+| `error`         | `error`         |             | `boolean` | `false` |
+| `indeterminate` | `indeterminate` |             | `boolean` | `false` |
+| `name`          | `name`          |             | `string`  | `''`    |
+| `value`         | `value`         |             | `boolean` | `false` |
 
 
 ## Events
@@ -24,6 +25,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-multiselect](../multiselect)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -32,6 +37,7 @@
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
+  ifx-multiselect --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
