@@ -325,7 +325,7 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'value',
   'ifxInput'
 ],
-  'value', 'ifxInput');
+'value', 'ifxInput');
 
 
 export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', undefined, [
@@ -335,7 +335,7 @@ export const IfxSearchField = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, 
   'size',
   'ifxInput'
 ],
-  'value', 'ifxInput');
+'value', 'ifxInput');
 
 
 export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', undefined, [
@@ -483,5 +483,5 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.
   'icon',
   'ifxInput'
 ],
-  'value', 'ifxInput');
+'value', 'ifxInput');
 
