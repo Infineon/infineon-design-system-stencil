@@ -1,3 +1,42 @@
+# v20.13.0 (Tue Aug 29 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: tag update [#433](https://github.com/Infineon/infineon-design-system-stencil/pull/433) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: link update [#431](https://github.com/Infineon/infineon-design-system-stencil/pull/431) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.12.0 (Mon Aug 28 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: button update [#425](https://github.com/Infineon/infineon-design-system-stencil/pull/425) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: modal update [#428](https://github.com/Infineon/infineon-design-system-stencil/pull/428) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.11.1 (Mon Aug 28 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-Select - fix for the lost focus when toggling the dropdown and the select is a… [#421](https://github.com/Infineon/infineon-design-system-stencil/pull/421) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.11.0 (Mon Aug 28 2023)
 
 #### 🚀 Enhancement
