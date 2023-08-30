@@ -15,11 +15,7 @@ export class Pagination {
   @State() itemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
-  @State() visiblePageIndices: Array<number | string> = [];
-  @State() isLeftBtnDisabled: boolean = false;
-  @State() isRightBtnDisabled: boolean = false;
-  @State() currItem: number = 1;;
-  
+ 
   private CLASS_DISABLED = "disabled"
   private CLASS_ACTIVE = "active"
   private CLASS_SIBLING_ACTIVE = "active-sibling"
@@ -49,7 +45,6 @@ export class Pagination {
       this.internalPage = 1;
     } else if(this.currentPage > totalPageNumber) {
       this.internalPage = totalPageNumber;
-      this.currItem = this.internalPage;
     } else this.internalPage = this.currentPage;
 
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
@@ -78,8 +73,8 @@ export class Pagination {
   handleEventEmission(currActive) { 
     let currentPage = currActive+1;
     let totalPages = this.numberOfPages.length;
-    let prevPage = currActive;
-    let nextPage = currActive+2;
+    let prevPage = currActive === 0 ? null : currActive;
+    let nextPage = currActive+2 > totalPages ? null : currActive+2;
 
     this.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
   }

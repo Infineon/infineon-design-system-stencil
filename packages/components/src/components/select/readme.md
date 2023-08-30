@@ -274,6 +274,10 @@ Type: `Promise<this>`
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-pagination](../pagination)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -282,6 +286,7 @@ Type: `Promise<this>`
 ```mermaid
 graph TD;
   ifx-select --> ifx-icon
+  ifx-pagination --> ifx-select
   style ifx-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

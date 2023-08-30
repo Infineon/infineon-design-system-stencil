@@ -18,18 +18,14 @@
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
-      line-height: 20px; /* 142.857% */
+      line-height: 20px; 
     }
 
     & .items__per-page-field { 
       display: flex;
-      //width: 92px;
-      //width: 100%;
       flex-direction: column;
       align-items: flex-start;
-      //border: 1px solid #575352;
-      //background: #FFF;
-
+  
       & ifx-select { 
         width: 92px;
       }
@@ -108,13 +104,7 @@
 }
 
 
-
-///////// BEGIN: For demo only
-
 .pagination {
-  //margin: 20px 0 0;
-  //font-size: 0;
-  //text-align: center;
   display: flex;
 
   & ifx-icon-button:first-of-type  { 
@@ -128,46 +118,8 @@
   a {
   padding: 6px;
   border-radius: 100px;
-  // &.active { //this does not work because there is no active class applied to <a>
-  //   background-color: #0A8276; 
-
-  //   & a {
-  //     color: #fff;
-  //   }
-  // }
-
-  // &:active:not(.active) {
-  //  background-color: #575352;
-  // }
-
-  &:hover { 
-   // background-color: #EEEDED;
-  }
-
-  // &:hover:not(.active) { 
-  //   background-color: #ddd;
-  // }
-
-  // &:active:not(.active) { 
-  //   background-color: #575352;
-  // }
-
-
-  // padding: 6px;
-  // text-decoration: none;
-  // color: #000;
-  // display: inline-block;
-  // background: #ccc;
-  // border: 1px solid #000;
-  // border-radius: 3px;
-  // padding: 5px 10px;
-  // font-size: 14px;
-
-  // &:hover {
-  //   text-decoration: underline;
-  //   background-color: red;
-  // }
 }
+
 ol {
   list-style-type: none;
   padding: 0;
@@ -178,11 +130,9 @@ ol {
 }
 li {
   display: flex;
-  //padding: 6px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //gap: 10px;
   border-radius: 100px;
 
   &:hover:not(.active) { 
@@ -193,7 +143,6 @@ li {
 
   &:active:not(.active) {
     & a { 
-
       background-color: #575352;
       color: #fff;
     }
@@ -211,15 +160,6 @@ li {
     cursor: pointer;
   }
 
-  // &:hover:not(.active) {
-  //   //background-color: #ddd; //on hover over <li> but not if the <li> has :after 
-  // }
-
-
-  // &:active:not(.active) {
-  //   background-color: #575352;
-  // }
-
   & a {
     text-decoration: none;
     display: flex;
@@ -235,17 +175,12 @@ li {
     font-weight: 400;
     line-height: 20px;
   }
-
-
 }
 
 .prev, .next {
   &.disabled {
     cursor: default;
-    //background: #ccc;
-    //color: #888;
-    //border-color: #888;
-    
+   
     &:hover {
       cursor: default;
       text-decoration: none;
@@ -258,22 +193,20 @@ li {
 .next {
   margin-left: 2.5px;
 }
-///////// END: For demo only
+
 
 @mixin ellipsis($before:true) {
   content: "\2026";
   font-size: 13px;
   display: inline-block;
   @if($before) {
-    //margin-right: 2.5px;
     margin-right: 6px;
   } @else {
-    //margin-left: 2.5px;
     margin-left: 6px;
   }
 }
 
-// Too much to override, just do the difference
+
 // @media(max-width:460px) {
 //   li {
     

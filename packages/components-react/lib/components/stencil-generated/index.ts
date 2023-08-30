@@ -50,6 +50,7 @@ export const IfxNavbarItem = /*@__PURE__*/createReactComponent<JSX.IfxNavbarItem
 export const IfxNavbarMenu = /*@__PURE__*/createReactComponent<JSX.IfxNavbarMenu, HTMLIfxNavbarMenuElement>('ifx-navbar-menu');
 export const IfxNavbarMenuItem = /*@__PURE__*/createReactComponent<JSX.IfxNavbarMenuItem, HTMLIfxNavbarMenuItemElement>('ifx-navbar-menu-item');
 export const IfxNumberIndicator = /*@__PURE__*/createReactComponent<JSX.IfxNumberIndicator, HTMLIfxNumberIndicatorElement>('ifx-number-indicator');
+export const IfxPagination = /*@__PURE__*/createReactComponent<JSX.IfxPagination, HTMLIfxPaginationElement>('ifx-pagination');
 export const IfxProgressBar = /*@__PURE__*/createReactComponent<JSX.IfxProgressBar, HTMLIfxProgressBarElement>('ifx-progress-bar');
 export const IfxRadioButton = /*@__PURE__*/createReactComponent<JSX.IfxRadioButton, HTMLIfxRadioButtonElement>('ifx-radio-button');
 export const IfxSearchBar = /*@__PURE__*/createReactComponent<JSX.IfxSearchBar, HTMLIfxSearchBarElement>('ifx-search-bar');

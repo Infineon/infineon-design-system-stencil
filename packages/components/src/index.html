@@ -18,7 +18,7 @@
     window.addEventListener('load', () => { 
       const myPag = document.getElementById('myPag')
       myPag.addEventListener('ifxPageChange', (e) => { 
-        //console.log('page', e.detail)
+        console.log('page', e.detail)
       })
     })
   </script>
@@ -28,7 +28,7 @@
 <body>
 
   
-  <ifx-pagination id="myPag" total="500" current-page="1"></ifx-pagination>
+  <ifx-pagination id="myPag" total="500" current-page="5"></ifx-pagination>
   
 
 
