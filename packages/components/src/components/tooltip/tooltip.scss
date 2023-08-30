@@ -12,7 +12,7 @@
   background-color: tokens.$ifxColorBaseBlack;
   border: 1px solid black;
   z-index: 1;
-  opacity: 0;
+  display: none;
   transition: opacity 0.3s;
   position: relative;
   font-family: Source Sans 3;
@@ -23,9 +23,11 @@
   color: tokens.$ifxColorBaseWhite;
 
   &.visible {
-    opacity: 1;
+    display: block;
   }
 }
+
+
 
 .tooltip-dismissible {
   @extend %tooltip-common;
@@ -170,15 +172,15 @@
     right: 10px; // Adjust as needed
   }
 
-  // For 'left' placement
-  &[data-placement="left"]>.tooltip-arrow-svg {
+  // For 'right' placement
+  &[data-placement="right"]>.tooltip-arrow-svg {
     right: -4px;
     top: 50%;
     transform: rotate(90deg) translateY(-50%) translateX(-50%);
   }
 
-  // For 'right' placement
-  &[data-placement="right"]>.tooltip-arrow-svg {
+  // For 'left' placement
+  &[data-placement="left"]>.tooltip-arrow-svg {
     left: -4px;
     top: 50%;
     transform: rotate(270deg) translateY(-50%) translateX(50%);

@@ -44,6 +44,7 @@ export class Tooltip {
     this.internalPosition = effectivePosition;
 
     if (this.tooltipEl && this.referenceEl) {
+
       this.popperInstance = createPopper(this.referenceEl, this.tooltipEl, {
         placement: this.internalPosition,
         modifiers: [
@@ -61,22 +62,27 @@ export class Tooltip {
           }
         ]
       });
+
     }
 
     // Add this line to set the 'data-placement' attribute on the tooltip
     this.tooltipEl.setAttribute('data-placement', effectivePosition);
+
+
   }
 
   determineBestPosition() {
     // This is a simplified version, you can enhance this based on available viewport space.
-    const rect = this.el.getBoundingClientRect();
-    if (rect.top > window.innerHeight / 2) {
+    const rect = this.referenceEl.getBoundingClientRect();
+    const yOffset = window.scrollY; // Get current scroll position
+
+    if (rect.top + yOffset > window.innerHeight / 2) {
       return 'top';
     } else {
       return 'bottom';
     }
-    // Add more conditions for left and right if needed.
   }
+
 
   @Watch('position')
   positionChanged(newVal: any) {
@@ -88,13 +94,31 @@ export class Tooltip {
 
 
   onMouseEnter = () => {
-    this.initializePopper(); // Lazy initialization
+    // Enable the event listeners immediately
+    this.popperInstance?.setOptions((options) => ({
+      ...options,
+      modifiers: [
+        ...options.modifiers,
+        { name: 'eventListeners', enabled: true },
+      ],
+    }));
+
+    // Initialize the popper instance
+    this.initializePopper();
+
+    // Make the tooltip visible
     this.tooltipVisible = true;
+    this.tooltipEl.style.display = 'block';
+
+    // Update the popper instance immediately after initialization
     this.popperInstance?.update();
   }
 
+
   onMouseLeave = () => {
     this.tooltipVisible = false;
+    this.tooltipEl.style.display = 'none';
+
   }
 
   disconnectedCallback() {
@@ -105,6 +129,7 @@ export class Tooltip {
     if (this.variant.toLowerCase() === 'dismissible') {
       this.initializePopper();
       this.tooltipVisible = !this.tooltipVisible;
+      this.tooltipEl.style.display = this.tooltipVisible ? 'block' : 'none';
       this.popperInstance?.update();
     }
   }
