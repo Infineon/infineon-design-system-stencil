@@ -20,7 +20,7 @@ const options = [{
 }];
 
 export default {
-  title: 'Components/Single Select',
+  title: 'Components/Select/Single Select',
   tags: ['autodocs'],
   args: {
     size: "m",
