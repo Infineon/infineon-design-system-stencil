@@ -23,6 +23,7 @@
   <Tabs />
   <Tag />
   <TextField />
+  <Pagination />
 </template>
 
 
@@ -49,6 +50,7 @@ import Dropdown from './components/Dropdown.vue'
 import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
+import Pagination from './components/Pagination.vue'
 
 </script>
 

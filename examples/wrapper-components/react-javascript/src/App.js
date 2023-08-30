@@ -21,6 +21,7 @@ import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
 import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
+import Pagination from './components/Pagination/Pagination';
 
 
 function App() {
@@ -112,9 +113,15 @@ function App() {
       <Switch />
       <br />
 
+      <h2>Pagination</h2>
+      <Pagination />
+      <br />
+
       <h2>Dropdown</h2>
       <Dropdown />
       <br />
+
+
 
     </div>
 
