@@ -10,10 +10,7 @@
   <script nomodule src="/build/infineon-design-system-stencil.js"></script>
 
   <style defer>
-    .wrapper { 
-      
-      width: 600px;
-    }
+ 
   </style>
 
   <script defer>
@@ -21,7 +18,7 @@
     window.addEventListener('load', () => { 
       const myPag = document.getElementById('myPag')
       myPag.addEventListener('ifxPageChange', (e) => { 
-        console.log('page', e.detail)
+        //console.log('page', e.detail)
       })
     })
   </script>
@@ -30,28 +27,11 @@
 
 <body>
 
-  <div class="wrapper">
-    <ifx-pagination id="myPag" total="500" current-page="1" surrounding-page-count="1"></ifx-pagination>
-  </div>
-
-
-  <!-- items-per-page="20" -->
-
-  <!-- <ifx-select 
-  type='single'
-  value='undefined'
-  ifx-size='m'
-  placeholder='true'
-  search-enabled='true'
-  search-placeholder-value='Search...'
-  ifx-disabled='false'
-  ifx-error='false'
-  ifx-error-message='Some error'
-  ifx-label=''
-  ifx-placeholder-value='Placeholder'
-  ifx-options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]' >
- </ifx-select> -->
   
+  <ifx-pagination id="myPag" total="500" current-page="1"></ifx-pagination>
+  
+
+
 </body>
 
 </html>

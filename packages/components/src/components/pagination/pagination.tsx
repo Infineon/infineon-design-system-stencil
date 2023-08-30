@@ -15,7 +15,6 @@ export class Pagination {
   @State() itemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
-  @Prop() surroundingPageCount: number = 1;
   @State() visiblePageIndices: Array<number | string> = [];
   @State() isLeftBtnDisabled: boolean = false;
   @State() isRightBtnDisabled: boolean = false;
@@ -33,13 +32,15 @@ export class Pagination {
 
   componentDidLoad() { 
    this.calculateVisiblePageIndices()
-
    var paginationElement = this.el.shadowRoot.querySelector(".pagination");
    let leftArrow = paginationElement.querySelector('.prev')
    this.navigateSinglePage(leftArrow, true) 
   }
 
   calculateNumberOfPages() { 
+    if(isNaN(this.currentPage)) { 
+      this.currentPage = 1;
+    }
     const total = this.total <= this.itemsPerPage ? this.itemsPerPage : this.total;
     const itemsPerPage = this.itemsPerPage;
     const totalPageNumber = total / itemsPerPage;
@@ -55,7 +56,19 @@ export class Pagination {
   }
 
   componentWillLoad() { 
-   this.calculateNumberOfPages()
+    this.calculateNumberOfPages()
+  }
+
+  componentDidUpdate() { 
+    var paginationElement = this.el.shadowRoot.querySelector(".pagination");
+    var listItems = paginationElement.querySelectorAll("li");
+    this.addEventListenersToPageItems(listItems, paginationElement)
+
+    if(paginationElement.dataset[this.DATA_KEY] < this.numberOfPages) { 
+      paginationElement.dataset[this.DATA_KEY] = paginationElement.dataset[this.DATA_KEY];
+    } else paginationElement.dataset[this.DATA_KEY] = 0;
+
+    this.changePage(paginationElement, false)
   }
 
   componentWillUpdate() { 
@@ -71,6 +84,17 @@ export class Pagination {
     this.ifxPageChange.emit({currentPage, totalPages, prevPage, nextPage})
   }
 
+  addEventListenersToPageItems(listItems, paginationContainer) { 
+    listItems.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        var parent = paginationContainer;
+        let listItems = parent.querySelectorAll("li");
+        parent.dataset[this.DATA_KEY] = Array.from(listItems).indexOf(e.currentTarget) 
+        this.changePage(parent, false)
+      });
+    });
+  }
+
   initPagination(paginationContainer) {
     var listItems = paginationContainer.querySelectorAll("li");
    
@@ -79,16 +103,7 @@ export class Pagination {
     paginationContainer.querySelector(".prev").addEventListener("click", (e) => this.navigateSinglePage(e, false));
     paginationContainer.querySelector(".next").addEventListener("click", (e) => this.navigateSinglePage(e, false));
 
-    
-    listItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        var parent = paginationContainer;
-        let listItems = parent.querySelectorAll("li");
-
-        parent.dataset[this.DATA_KEY] = Array.from(listItems).indexOf(e.currentTarget) 
-        this.changePage(parent, false)
-      });
-    });
+    this.addEventListenersToPageItems(listItems, paginationContainer)
   }
 
   navigateSinglePage(e, initialValue) {
@@ -101,11 +116,11 @@ export class Pagination {
       var parent = el.closest(".pagination");
       var currActive = parseInt(parent.dataset[this.DATA_KEY], 10);
       currActive += 1 * (el.classList.contains("prev") ? -1 : 1);
-
+      
       if(currActive === -1) { 
         currActive = 0;
       }
-
+     
       parent.dataset[this.DATA_KEY] = currActive;
       this.changePage(parent, initialValue)
     }
@@ -115,23 +130,19 @@ export class Pagination {
     const paginationContainer = pagination;
     var listItems = paginationContainer.querySelectorAll("li");
     var currActive = parseInt(paginationContainer.dataset[this.DATA_KEY], 10);
-   
+
     listItems.forEach((item) => {
       item.classList.remove(this.CLASS_ACTIVE);
       item.classList.remove(this.CLASS_SIBLING_ACTIVE);
     });
     
-    // if(typeof e.currentTarget === 'object') { 
-    //   currentPage = currActive;
-    // }
-
     if(initialValue && this.internalPage > 1) { 
-      currActive = this.internalPage - 1;
+      currActive = Math.floor(this.internalPage - 1);
       paginationContainer.dataset[this.DATA_KEY] = currActive;
     }
-
+  
     this.handleEventEmission(currActive)
-
+    
     listItems[currActive].classList.add(this.CLASS_ACTIVE);
 
     if (currActive === 0) {
@@ -157,7 +168,6 @@ export class Pagination {
   calculateVisiblePageIndices() { 
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
     this.initPagination(paginationElement)
-
   }
 
   render() {
@@ -175,7 +185,7 @@ export class Pagination {
             search-placeholder-value='Search...'
             ifx-disabled='false'
             ifx-error='false'
-            ifx-error-message='Some error'
+            ifx-error-message='Error'
             ifx-label=''
             ifx-placeholder-value='Placeholder'
             ifx-options='[{"value":"ten","label":"10","selected":true},{"value":"twenty","label":"20","selected":false},{"value":"thirty","label":"30","selected":false}]' >
