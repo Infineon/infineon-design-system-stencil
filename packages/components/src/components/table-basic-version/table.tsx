@@ -55,8 +55,8 @@ export class Table {
       },
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
-
     };
+    console.log("grid options ", this.gridOptions);
 
   }
 
