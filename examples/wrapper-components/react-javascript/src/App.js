@@ -22,6 +22,7 @@ import Dropdown from './components/Dropdown/Dropdown';
 import Tooltip from './components/Tooltip/Tooltip';
 import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
+import BasicTable from './components/BasicTable/BasicTable';
 
 
 function App() {
@@ -119,6 +120,9 @@ function App() {
 
       <h2>Tooltip</h2>
       <Tooltip />
+
+      <h2>Basic Table</h2>
+      <BasicTable />
       <br />
 
     </div>
