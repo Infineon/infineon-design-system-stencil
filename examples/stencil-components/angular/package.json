@@ -23,7 +23,7 @@
     "@angular/platform-browser": "~15.2.8",
     "@angular/platform-browser-dynamic": "~15.2.8",
     "@angular/router": "~15.2.8",
-    "@infineon/infineon-design-system-stencil": "^19.1.6",
+    "@infineon/infineon-design-system-stencil": "*",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.3",
     "tslib": "^1.14.1",
