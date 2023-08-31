@@ -4,7 +4,6 @@ const columnDefs = [
   { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
   { headerName: 'Age', field: 'age' }
-
 ];
 const rowData = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
