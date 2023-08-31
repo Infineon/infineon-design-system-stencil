@@ -172,15 +172,15 @@
     right: 10px; // Adjust as needed
   }
 
-  // For 'right' placement
-  &[data-placement="right"]>.tooltip-arrow-svg {
+  // For 'left' placement
+  &[data-placement="left"]>.tooltip-arrow-svg {
     right: -4px;
     top: 50%;
     transform: rotate(90deg) translateY(-50%) translateX(-50%);
   }
 
-  // For 'left' placement
-  &[data-placement="left"]>.tooltip-arrow-svg {
+  // For 'right' placement
+  &[data-placement="right"]>.tooltip-arrow-svg {
     left: -4px;
     top: 50%;
     transform: rotate(270deg) translateY(-50%) translateX(50%);

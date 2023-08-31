@@ -75,14 +75,29 @@ export class Tooltip {
     // This is a simplified version, you can enhance this based on available viewport space.
     const rect = this.referenceEl.getBoundingClientRect();
     const yOffset = window.scrollY; // Get current scroll position
+    const xOffset = window.scrollX; // Get current horizontal scroll position
 
-    if (rect.top + yOffset > window.innerHeight / 2) {
-      return 'top';
+    const verticalHalfwayPoint = rect.top + yOffset + rect.height / 2;
+    const horizontalHalfwayPoint = rect.left + xOffset + rect.width / 2;
+
+    if (this.position === 'auto') {
+      if (verticalHalfwayPoint > window.innerHeight / 2) {
+        if (horizontalHalfwayPoint > window.innerWidth / 2) {
+          return 'top-end';
+        } else {
+          return 'top-start';
+        }
+      } else {
+        if (horizontalHalfwayPoint > window.innerWidth / 2) {
+          return 'bottom-end';
+        } else {
+          return 'bottom-start';
+        }
+      }
     } else {
-      return 'bottom';
+      return this.position;
     }
   }
-
 
   @Watch('position')
   positionChanged(newVal: any) {
