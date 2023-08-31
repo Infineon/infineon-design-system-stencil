@@ -44,6 +44,7 @@
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
  - [ifx-text-field](../text-field)
+ - [ifx-tooltip](../tooltip)
 
 ### Graph
 ```mermaid
@@ -68,6 +69,7 @@ graph TD;
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-text-field --> ifx-icon
+  ifx-tooltip --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

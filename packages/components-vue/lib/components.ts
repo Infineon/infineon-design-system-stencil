@@ -485,3 +485,12 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.
 ],
 'value', 'ifxInput');
 
+
+export const IfxTooltip = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', undefined, [
+  'header',
+  'text',
+  'position',
+  'variant',
+  'icon'
+]);
+
