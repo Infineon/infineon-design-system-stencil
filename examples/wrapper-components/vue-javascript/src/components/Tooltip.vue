@@ -19,11 +19,10 @@
       <br />
 
       <ifx-tooltip header="Text + icon tooltip header" text="Hi, I'm a tooltip with text and an icon" icon="c-info-24"
-        variant="extended" position="bottom">I'm the text+icon tooltip reference
+        variant="extended" position="auto">I'm the text+icon tooltip reference
         element - Please hover me</ifx-tooltip>
-      <br />
-    </div>
 
+    </div>
     <br />
     <br />
   </div>
