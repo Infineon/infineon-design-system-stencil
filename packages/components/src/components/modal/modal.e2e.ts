@@ -17,8 +17,8 @@ describe('ifx-modal', () => {
 
     // Close the modal
     await modal.callMethod('close');
-    // let modalContainerOpen = await page.find('ifx-modal >>> .modal-container');
-    expect(modalContainerOpen).not.toHaveClass('open');
+    let modalContainerClosed = await page.find('ifx-modal >>> .modal-container');
+    expect(modalContainerClosed).not.toHaveClass('open');
 
   });
 
