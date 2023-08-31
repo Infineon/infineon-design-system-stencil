@@ -38,23 +38,7 @@ describe('ifx-modal', () => {
     await modal.callMethod('close');
     expect(closeEvent).toHaveReceivedEvent();
 
-    //   // Click OK button
-    //   const okButtonClickEvent = await modal.spyOnEvent('okButtonClick');
-    //   await modal.callMethod('open');
-    //   const okButton = await page.find('ifx-modal >>> ifx-button');
-    //   const variant = await okButton.getProperty('variant');
 
-    //   expect(variant).toBe('outline');
-
-    //   await okButton.click();
-    //   expect(okButtonClickEvent).toHaveReceivedEvent();
-
-    //   // Click Cancel button
-    //   const cancelButtonClickEvent = await modal.spyOnEvent('cancelButtonClick');
-    //   const cancelButton = await modal.find('ifx-button');
-    //   await cancelButton.click();
-    //   await page.waitForChanges();
-    //   expect(cancelButtonClickEvent).toHaveReceivedEvent();
   });
 
 
