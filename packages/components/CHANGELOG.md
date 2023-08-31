@@ -1,3 +1,18 @@
+# v20.15.0 (Thu Aug 31 2023)
+
+#### 🚀 Enhancement
+
+- Code Quality: Modal - tests added [#438](https://github.com/Infineon/infineon-design-system-stencil/pull/438) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- 195 implementation tooltip [#382](https://github.com/Infineon/infineon-design-system-stencil/pull/382) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.14.0 (Thu Aug 31 2023)
 
 #### 🚀 Enhancement
