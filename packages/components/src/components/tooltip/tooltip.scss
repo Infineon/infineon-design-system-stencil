@@ -23,7 +23,11 @@
   color: tokens.$ifxColorBaseWhite;
 
   &.visible {
-    display: block;
+    //display: block;
+    display: flex!important;
+    align-items: center;
+
+    min-width: 100px;
   }
 }
 
@@ -80,11 +84,13 @@
 .tooltip-extended {
   @extend %tooltip-common;
   width: 310px;
-  padding-left: 36px; // Added this line, adjust as per your icon width
+  //padding-left: 36px; // Added this line, adjust as per your icon width
+  padding-left: 12px; // Added this line, adjust as per your icon width
 
 
   .extended_icon {
-    position: absolute;
+    //position: absolute;
+    position: static;
     width: 24px;
     height: 24px;
     top: 12px;
