@@ -1,3 +1,27 @@
+# v20.14.0 (Thu Aug 31 2023)
+
+#### 🚀 Enhancement
+
+- Table using agGrid library [#396](https://github.com/Infineon/infineon-design-system-stencil/pull/396) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- Documentation: status [#435](https://github.com/Infineon/infineon-design-system-stencil/pull/435) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🔩 Dependency Updates
+
+- Bump @adobe/css-tools from 4.2.0 to 4.3.1 in /examples/stencil-components/react [#436](https://github.com/Infineon/infineon-design-system-stencil/pull/436) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @adobe/css-tools from 4.2.0 to 4.3.1 in /examples/wrapper-components/react-javascript [#437](https://github.com/Infineon/infineon-design-system-stencil/pull/437) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.13.0 (Tue Aug 29 2023)
 
 #### 🚀 Enhancement
