@@ -1,0 +1,20 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as TableStories from './table.stories';
+ 
+<Meta of={TableStories} />
+
+# Table
+
+<Canvas of={TableStories.Default} sourceState="shown" />
+
+<Controls />
+
+
+## Stories
+
+### Default
+<Canvas of={TableStories.Default} sourceState="shown" />
+
+### Fixed table height
+<Canvas of={TableStories.FixedHeight} sourceState="shown" />
+

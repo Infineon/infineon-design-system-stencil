@@ -31,6 +31,17 @@ export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert',
 export const IfxBadge = /*@__PURE__*/ defineContainer<JSX.IfxBadge>('ifx-badge', undefined);
 
 
+export const IfxBasicTable = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('ifx-basic-table', undefined, [
+  'cols',
+  'rows',
+  'columnDefs',
+  'rowData',
+  'rowHeight',
+  'uniqueKey',
+  'tableHeight'
+]);
+
+
 export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined);
 
 
@@ -434,6 +445,19 @@ export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undef
   'header',
   'tabBecameActive',
   'tabBecameInactive'
+]);
+
+
+export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
+  'cols',
+  'rows',
+  'columnDefs',
+  'rowData',
+  'rowHeight',
+  'uniqueKey',
+  'tableHeight',
+  'pagination',
+  'paginationPageSize'
 ]);
 
 
