@@ -93,8 +93,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   async handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
-    this.selectedOption = this.choice.getValue();
-    this.setPreSelected(this.selectedOption.value);
+    this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
+    this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
     this.closeDropdownMenu();
   }
 
