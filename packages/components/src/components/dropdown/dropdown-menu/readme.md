@@ -17,6 +17,7 @@
 
 | Event      | Description | Type               |
 | ---------- | ----------- | ------------------ |
+| `ifxValue` |             | `CustomEvent<any>` |
 | `menuSize` |             | `CustomEvent<any>` |
 
 

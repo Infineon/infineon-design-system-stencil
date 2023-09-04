@@ -14,11 +14,18 @@ export class DropdownMenu {
   @Element() el;
   @Event() menuSize: EventEmitter;
   @State() filteredItems: HTMLIfxDropdownItemElement[] = [];
+  @Event() ifxValue: EventEmitter;
 
   @Listen('ifxInput')
   handleMenuFilter(event: CustomEvent) { 
     const searchValue = event.detail;
     this.filterDropdownItems(searchValue)
+  }
+
+  @Listen('ifxDropdownItemValue')
+  handleDropdownItemValueEmission(e) { 
+    const optionValue = e.detail;
+    this.ifxValue.emit(optionValue)
   }
 
   filterDropdownItems(searchValue: string) {

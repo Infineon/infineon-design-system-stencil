@@ -2,12 +2,16 @@ import React from 'react';
 import { IfxDropdown, IfxDropdownMenu, IfxDropdownItem, IfxDropdownSeparator, IfxDropdownHeader, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-react';
 
 function Dropdown() {
+
+  const handleValue = (e) => { 
+    console.log('selected dropdown option', e.detail)
+  }
   return (
     <IfxDropdown placement="bottom-start" no-close-on-menu-click="true">
     <IfxDropdownTriggerButton icon="calendar16">
       dropdown
     </IfxDropdownTriggerButton>
-    <IfxDropdownMenu size="l">
+    <IfxDropdownMenu size="l" onIfxValue={handleValue}>
      <IfxDropdownHeader>Header Text</IfxDropdownHeader>
       <IfxDropdownItem target="_blank" href="https://www.google.de">lorem10</IfxDropdownItem>
       <IfxDropdownSeparator></IfxDropdownSeparator>
