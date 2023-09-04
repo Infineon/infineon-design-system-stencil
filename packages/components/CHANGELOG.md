@@ -1,3 +1,16 @@
+# v20.15.2 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search field [#452](https://github.com/Infineon/infineon-design-system-stencil/pull/452) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.15.1 (Mon Sep 04 2023)
 
 #### 🐛 Bug Fix
