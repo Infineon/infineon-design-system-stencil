@@ -28,7 +28,6 @@ const options = [{
   ]
 }];
 
-// let jsonOptions = JSON.stringify(options);
 
 export default {
   title: 'Components/Select/Multi Select',

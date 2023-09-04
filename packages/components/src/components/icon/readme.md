@@ -35,7 +35,7 @@
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
- - [ifx-multiselect](../select/multiselect)
+ - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
