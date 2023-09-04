@@ -1,0 +1,207 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.tooltip__container {
+  display: inline-flex;
+  flex-direction: column;
+  position: relative;
+
+}
+
+%tooltip-common {
+  background-color: tokens.$ifxColorBaseBlack;
+  border: 1px solid black;
+  z-index: 1;
+  display: none;
+  transition: opacity 0.3s;
+  position: relative;
+  font-family: Source Sans 3;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: tokens.$ifxColorBaseWhite;
+
+  &.visible {
+    //display: block;
+    display: flex!important;
+    align-items: center;
+
+    min-width: 100px;
+  }
+}
+
+
+
+.tooltip-dismissible {
+  @extend %tooltip-common;
+  width: 310px;
+
+  .close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+  }
+
+  .tooltip-dismissible-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+
+  }
+
+  .tooltip-dismissible-header,
+  .tooltip-dismissible-body {
+    font-family: "Source Sans 3";
+    font-size: 13px;
+    font-style: normal;
+    line-height: 20px;
+  }
+
+  .tooltip-dismissible-header {
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+
+  .tooltip-dismissible-body {
+    font-weight: tokens.$ifxFontWeightRegular;
+  }
+}
+
+.tooltip-compact {
+  @extend %tooltip-common;
+  padding: 4px 8px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+
+.tooltip-extended {
+  @extend %tooltip-common;
+  width: 310px;
+  //padding-left: 36px; // Added this line, adjust as per your icon width
+  padding-left: 12px; // Added this line, adjust as per your icon width
+
+
+  .extended_icon {
+    //position: absolute;
+    position: static;
+    width: 24px;
+    height: 24px;
+    top: 12px;
+    left: 12px;
+    cursor: pointer;
+  }
+
+
+
+  .tooltip-extended-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .tooltip-extended-header,
+  .tooltip-extended-body {
+    font-family: "Source Sans 3";
+    font-size: 13px;
+    font-style: normal;
+    line-height: 20px;
+  }
+
+  .tooltip-extended-header {
+    font-weight: tokens.$ifxFontWeightSemibold;
+  }
+
+  .tooltip-extended-body {
+    font-weight: tokens.$ifxFontWeightRegular;
+  }
+}
+
+
+.tooltip__container .tooltip-arrow-svg {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+}
+
+
+%tooltip-arrow-positions {
+
+  // For 'top' placement
+  &[data-placement="top"]>.tooltip-arrow-svg {
+    bottom: -8px;
+    left: 50%;
+    transform: rotate(180deg) translateX(-50%);
+  }
+
+  // For 'top-start' placement
+  &[data-placement="top-start"]>.tooltip-arrow-svg {
+    bottom: -8px;
+    left: 10px; // Adjust as needed
+    transform: rotate(180deg)
+  }
+
+  // For 'top-end' placement
+  &[data-placement="top-end"]>.tooltip-arrow-svg {
+    bottom: -8px;
+    right: 10px; // Adjust as needed
+    transform: rotate(180deg);
+  }
+
+  // For 'bottom' placement
+  &[data-placement="bottom"]>.tooltip-arrow-svg {
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  // For 'bottom-start' placement
+  &[data-placement="bottom-start"]>.tooltip-arrow-svg {
+    top: -8px;
+    left: 10px; // Adjust as needed
+  }
+
+  // For 'bottom-end' placement
+  &[data-placement="bottom-end"]>.tooltip-arrow-svg {
+    top: -8px;
+    right: 10px; // Adjust as needed
+  }
+
+  // For 'left' placement
+  &[data-placement="left"]>.tooltip-arrow-svg {
+    right: -4px;
+    top: 50%;
+    transform: rotate(90deg) translateY(-50%) translateX(-50%);
+  }
+
+  // For 'right' placement
+  &[data-placement="right"]>.tooltip-arrow-svg {
+    left: -4px;
+    top: 50%;
+    transform: rotate(270deg) translateY(-50%) translateX(50%);
+  }
+}
+
+
+.tooltip-compact {
+  @extend %tooltip-arrow-positions;
+}
+
+.tooltip-dismissible {
+  @extend %tooltip-arrow-positions;
+}
+
+.tooltip-extended {
+  @extend %tooltip-arrow-positions;
+}

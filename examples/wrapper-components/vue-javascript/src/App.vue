@@ -3,6 +3,7 @@
   <Navbar />
   <h1>Stencil Framework integration - Vue + JS </h1>
   <Alert />
+  <BasicTable />
   <Button />
   <Card />
   <SingleSelect />
@@ -19,6 +20,7 @@
   <Sidebar />
   <Switch />
   <Dropdown />
+  <Tooltip />
   <Footer />
   <Tabs />
   <Tag />
@@ -46,9 +48,11 @@ import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
 import Dropdown from './components/Dropdown.vue'
+import Tooltip from './components/Tooltip.vue'
 import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
+import BasicTable from './components/BasicTable.vue'
 
 </script>
 

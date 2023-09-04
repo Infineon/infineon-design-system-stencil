@@ -31,6 +31,17 @@ export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert',
 export const IfxBadge = /*@__PURE__*/ defineContainer<JSX.IfxBadge>('ifx-badge', undefined);
 
 
+export const IfxBasicTable = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('ifx-basic-table', undefined, [
+  'cols',
+  'rows',
+  'columnDefs',
+  'rowData',
+  'rowHeight',
+  'uniqueKey',
+  'tableHeight'
+]);
+
+
 export const IfxBreadcrumb = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined);
 
 
@@ -437,6 +448,19 @@ export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undef
 ]);
 
 
+export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
+  'cols',
+  'rows',
+  'columnDefs',
+  'rowData',
+  'rowHeight',
+  'uniqueKey',
+  'tableHeight',
+  'pagination',
+  'paginationPageSize'
+]);
+
+
 export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
   'tabs',
   'orientation',
@@ -460,4 +484,13 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.
   'ifxInput'
 ],
 'value', 'ifxInput');
+
+
+export const IfxTooltip = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', undefined, [
+  'header',
+  'text',
+  'position',
+  'variant',
+  'icon'
+]);
 
