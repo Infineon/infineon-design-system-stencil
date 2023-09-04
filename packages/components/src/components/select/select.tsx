@@ -272,7 +272,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected componentDidUpdate() {
     this.init();
-
   }
 
   protected disconnectedCallback() {
