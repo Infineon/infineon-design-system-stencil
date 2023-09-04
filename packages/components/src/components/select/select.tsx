@@ -30,7 +30,7 @@ import { filterObject, isDefined } from './utils';
 
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
-  @Prop() public type?: 'single' | 'multiple' | 'text';
+  @Prop() public type?: string = 'single' // | 'multiple' | 'text';
   @Prop() public value: string;
   @Prop() public name: string;
   @Prop() public items: Array<any>;
@@ -476,7 +476,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   private init() {
     const props = {
-      // type: this.type,
+      type: this.type,
       allowHTML: true, // Set allowHTML to true
       items: this.items,
       choices: this.choices,
@@ -528,21 +528,20 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
       const self = this; // save the context of this in a variable outside of the function to access it in the following
-      // this.type = "single"; //for now, only single-select is implemented
+      //for now, only single-select is implemented
       if (this.type === 'single') {
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
             return {
               //modifying the selected item template
               item: ({ classNames }, data) => {
-                // console.log("rendering item template ", data)
                 let removeButtonHTML = '';
 
                 if (data.placeholder && !self.selectedOption?.value) {
                   // For placeholders, use data-id="placeholder"
                   return template(`
-                    <div class="${classNames.item} ${data.placeholder}" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
-                     ${data.label === 'undefined' ? 'Placeholder' : data.label}
+                    <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
+                     ${data.label === undefined ? this.ifxPlaceholderValue : data.label}
                      ${removeButtonHTML}
                     </div>
                   `);
@@ -569,7 +568,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 spellcheck="false"
                 role="textbox"
                 aria-autocomplete="list"
-                aria-label="${this.placeholderValue}"   >     
+                aria-label="${this.searchEnabled ? this.searchPlaceholderValue : ''}"   >     
                 `)
               },
 
@@ -592,14 +591,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             };
 
           },
-
         }
         ));
 
         this.setChoices(this.ifxOptions, "value", "label", true)
 
 
-      } else if (this.type === 'multiple') {
+      } else if (this.type === 'multiple') { //not implemented right now
         // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           removeItemButton: true,
@@ -743,7 +741,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         {this.ifxPlaceholderValue}
       </option>
     ] : [
-      <option></option>
+      <option value="">
+      </option>
     ];
   }
 

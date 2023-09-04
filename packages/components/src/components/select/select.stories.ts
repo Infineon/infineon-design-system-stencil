@@ -36,10 +36,10 @@ export default {
   },
 
   argTypes: {
-    type: { //for later implementation
-      // control: { type: 'radio' },
-      control: false,
-    },
+    // type: { //for later implementation
+    //   // control: { type: 'radio' },
+    //   control: false,
+    // },
     size: {
       options: {
         'small (36px)': 's',
@@ -49,6 +49,15 @@ export default {
         type: 'radio',
       },
     },
+    placeholder: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
+    placeholderValue: { control: 'text' },
+    // value: { for later implementation
+    //   control: 'text',
+    //   description: 'Programmatically set the selected value',
+    // },
     error: {
       options: [true, false],
       control: { type: 'radio' },
@@ -73,8 +82,6 @@ export default {
 
 const DefaultTemplate = (args) => {
   const template = `<ifx-select 
-  type='${args.type}'
-  value='${args.value}'
   ifx-size='${args.size}'
   placeholder='${args.placeholder}'
   search-enabled='${args.searchEnabled}'
@@ -97,7 +104,7 @@ const DefaultTemplate = (args) => {
 
 export const Single = DefaultTemplate.bind({});
 Single.args = {
-  type: 'single',
+  // type: 'single',
   options: options,
 
 
@@ -120,7 +127,6 @@ Single.args = {
 //   name: 'multiple',
 //   choices: 'Choice 1, Choice 2, Choice 3',
 // };
-
 
 
 // export const SingleWithIcon = DefaultTemplate.bind({});
