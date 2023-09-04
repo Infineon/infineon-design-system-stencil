@@ -195,25 +195,23 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       return false;
     }
   }
+
+
   @Method()
   public async setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) {
     let listOfChoices;
-    //  = typeof choices === 'string' //passed in string form via storybook
-    //   ? JSON.parse(choices).map((option) => ({ value: option.value, label: option.label, selected: option.selected }))
-    //   : choices.map(option => ({ ...option }));
-
     if (typeof choices === 'string') {
       try {
         if (!this.isJSONParseable(choices)) { //meaning the input string comes from storybook as a non valid json string to be displayed in a beautified version on storybook
           choices = choices.replace(/'/g, '"').replace(/"false"/g, 'false').replace(/"true"/g, 'true');
         }
-        listOfChoices = JSON.parse(choices);
+        listOfChoices = [...JSON.parse(choices)];
 
       } catch (err) {
         console.error('Failed to parse choices:', err);
       }
     } else if (Array.isArray(choices) || typeof choices === 'object') {
-      listOfChoices = choices;
+      listOfChoices = [...choices];
     } else {
       console.error('Unexpected value for choices:', this.ifxOptions);
     }
@@ -579,7 +577,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               choice: ({ classNames }, data) => {
                 return template(`
                 <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
-                ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self).value === data.value ? 'selected' : ''} 
+                ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
                 ${data.placeholder ? classNames.placeholder : ''} 
                 ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
                      role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
@@ -587,7 +585,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                      data-value="${data.value}"
                      data-select-text="${this.config.itemSelectText}">
                   <span>${data.label}</span>
-                  ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self).value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
+                  ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
                 </div>
               `)
               },
@@ -712,15 +710,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       }
       return obj;
     });
-    this.ifxOptions = newSelection;
+    this.ifxOptions = [...newSelection];
   }
+
 
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
     // console.log("createSelectOptions")
     if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
-      const options = JSON.parse(ifxOptions);
+      let options;
+      if (this.isJSONParseable(ifxOptions)) {
+        options = [...JSON.parse(ifxOptions)];
+      }
+      else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
+        options = [...ifxOptions];
+      }
       const optionValueBasedOnAvailableOptions = options.find(option => option.value === this.value || this.selectedOption?.value);
 
       if (optionValueBasedOnAvailableOptions) {
@@ -733,7 +738,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
 
     // Assign a unique id for the placeholder
-
     return this.placeholder !== "false" ? [
       <option value="">
         {this.ifxPlaceholderValue}
