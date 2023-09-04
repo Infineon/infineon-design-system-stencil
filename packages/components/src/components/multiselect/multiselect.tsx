@@ -71,11 +71,18 @@ export class Multiselect {
     this.handleOptionsChange();
   }
 
+
+
   handleOptionClick(option: Option) {
+    this.error = false;
 
     // 1. Prevent action if disabled
-    if (this.persistentSelectedOptions.length >= this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
+    //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
+    let newOptionsLength = option.children ? option.children.length : 1;
+    if (this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
       console.error('Max item count reached');
+      this.error = true;
+      this.errorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
 
@@ -339,7 +346,7 @@ export class Multiselect {
           data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
-          role={`${option.children}?.length > 0 ? "option" : "treeitem"`}
+          role={`${option.children?.length > 0 ? "treeitem" : "option"}`}
         >
           <ifx-checkbox id={uniqueId} value={isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId}>{option.label}</label>
@@ -379,15 +386,16 @@ export class Multiselect {
 
   renderSubOption(option: Option, index: string) {
     const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
+    const disableCheckbox = !isSelected && this.persistentSelectedOptions.length >= this.maxItemCount;
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (
       <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
         data-value={option.value}
-        role={`${option.children}?.length > 0 ? "option" : "treeitem"`}
-        onClick={() => this.handleOptionClick(option)}
+        role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
+        onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
-        <ifx-checkbox id={uniqueId} value={isSelected}></ifx-checkbox>
+        <ifx-checkbox id={uniqueId} value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId}>{option.label}</label>
       </div>
     );
