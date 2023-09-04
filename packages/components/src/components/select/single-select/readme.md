@@ -276,7 +276,7 @@ Type: `Promise<this>`
 
 ### Depends on
 
-- [ifx-icon](../icon)
+- [ifx-icon](../../icon)
 
 ### Graph
 ```mermaid

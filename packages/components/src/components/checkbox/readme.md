@@ -27,7 +27,7 @@
 
 ### Used by
 
- - [ifx-multiselect](../multiselect)
+ - [ifx-multiselect](../select/multiselect)
 
 ### Depends on
 
