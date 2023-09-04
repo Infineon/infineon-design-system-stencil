@@ -1,3 +1,15 @@
+# v20.15.1 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: switch update [#450](https://github.com/Infineon/infineon-design-system-stencil/pull/450) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.15.0 (Thu Aug 31 2023)
 
 #### 🚀 Enhancement
