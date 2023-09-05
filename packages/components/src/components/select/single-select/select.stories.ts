@@ -94,7 +94,7 @@ const DefaultTemplate = (args) => {
   ifx-options='${JSON.stringify(args.options)}' >
  </ifx-select>`
   setTimeout(() => {
-    document.querySelector('ifx-select').addEventListener('ifxSelect', action('ifxSelect'));
+    document.querySelector('ifx-select')?.addEventListener('ifxSelect', action('ifxSelect'));
   }, 0);
 
   return template;
