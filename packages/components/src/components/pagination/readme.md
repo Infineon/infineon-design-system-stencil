@@ -26,7 +26,7 @@
 
 ### Depends on
 
-- [ifx-select](../select)
+- [ifx-select](../select/single-select)
 - [ifx-icon-button](../icon-button)
 
 ### Graph

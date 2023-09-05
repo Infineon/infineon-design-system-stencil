@@ -276,7 +276,7 @@ Type: `Promise<this>`
 
 ### Used by
 
- - [ifx-pagination](../pagination)
+ - [ifx-pagination](../../pagination)
 
 ### Depends on
 
