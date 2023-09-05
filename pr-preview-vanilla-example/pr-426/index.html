@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@18.5.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@20.13.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
 
 
@@ -204,8 +204,6 @@
     <h2>Pagination</h2>
     <ifx-pagination total="500" current-page="1"></ifx-pagination>
     <br />
-    <br />
-
 
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
@@ -225,6 +223,22 @@
     </ifx-dropdown>
     <br />
 
+    <h2>Tooltip</h2>
+    <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
+      element -
+      Please hover me</ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Dismissible tooltip on button click
+      </ifx-button></ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
+      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Extended tooltip on button hover
+      </ifx-button></ifx-tooltip>
 
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
@@ -243,6 +257,58 @@
       </ifx-dropdown-menu>
     </ifx-dropdown>
     <br />
+    <h2>Dropdown</h2>
+    <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+      <ifx-dropdown-trigger-button icon="calendar16">
+        dropdown
+      </ifx-dropdown-trigger-button>
+      <ifx-dropdown-menu size="l">
+        <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+        <ifx-search-field show-delete-icon="false"></ifx-search-field>
+        <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+        <ifx-dropdown-separator></ifx-dropdown-separator>
+        <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
+        <ifx-dropdown-item>Two</ifx-dropdown-item>
+        <ifx-dropdown-item>Three</ifx-dropdown-item>
+        <ifx-dropdown-item>Four</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-dropdown>
+    <br />
+
+
+    <h2>Tooltip</h2>
+    <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
+      element -
+      Please hover me</ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Dismissible tooltip on button click
+      </ifx-button></ifx-tooltip>
+    <br />
+
+    <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
+      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+        Extended tooltip on button hover
+      </ifx-button></ifx-tooltip>
+    <br />
+
+
+    <h2>
+      Table
+    </h2>
+    <ifx-basic-table row-height='default'
+      cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
+      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
+      table-height='auto'>
+    </ifx-basic-table>
+    <br />
+    <ifx-table row-height='default'
+      cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
+      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":"something about Toyota"},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":"something about Ford"},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"outline","size":"s","target":"_blank","color":"secondary","text":"Button"}}]'
+      table-height='auto' pagination='false' pagination-page-size='10'>
+    </ifx-table>
 
   </div>
 
