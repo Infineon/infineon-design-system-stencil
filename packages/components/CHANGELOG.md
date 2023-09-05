@@ -1,3 +1,17 @@
+# v20.15.4 (Tue Sep 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Multiselect [#456](https://github.com/Infineon/infineon-design-system-stencil/pull/456) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.15.3 (Tue Sep 05 2023)
 
 #### 🐛 Bug Fix
