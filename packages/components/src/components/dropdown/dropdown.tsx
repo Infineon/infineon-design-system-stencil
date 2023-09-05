@@ -41,6 +41,7 @@ export class Dropdown {
   // Custom events for opening and closing dropdown
   @Event() ifxOpen: EventEmitter;
   @Event() ifxClose: EventEmitter;
+  @Event() ifxDropdown: EventEmitter;
 
   // determine if dropdown is disabled
   @Prop() disabled: boolean;
@@ -55,6 +56,8 @@ export class Dropdown {
   @State() menu: HTMLElement
   // Popper instance for positioning
   popperInstance: any;
+
+
 
   componentWillLoad() {
     //maybe not needed
@@ -86,6 +89,8 @@ export class Dropdown {
     this.updateSlotContent();
   }
 
+
+
   // handling assignment of trigger and menu
   updateSlotContent() {
     // Get dropdown trigger. name has to start with ifx-dropdown-trigger
@@ -102,10 +107,12 @@ export class Dropdown {
       }
       // Get new menu and add to body
       this.menu = this.el.querySelector('ifx-dropdown-menu');
+
       // event handler for closing dropdown on menu click
       document.body.append(this.menu);
     } else {
       this.menu = this.el.querySelector('ifx-dropdown-menu');
+
     }
     this.menu.removeEventListener('click', this.menuClickHandler.bind(this));
     this.menu.addEventListener('click', this.menuClickHandler.bind(this));
@@ -175,6 +182,13 @@ export class Dropdown {
 
       this.ifxOpen.emit();
     }
+  }
+
+
+  @Listen('ifxDropdownMenu')
+  handleDropdownMenuEvents(event: CustomEvent) {
+    this.ifxDropdown.emit(event.detail)
+    console.log('Selected item received in higher-level parent:');
   }
 
   @Listen('mousedown', { target: 'document' })

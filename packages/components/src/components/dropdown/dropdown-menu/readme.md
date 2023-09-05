@@ -15,10 +15,10 @@
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxValue` |             | `CustomEvent<any>` |
-| `menuSize` |             | `CustomEvent<any>` |
+| Event             | Description | Type                            |
+| ----------------- | ----------- | ------------------------------- |
+| `ifxDropdownMenu` |             | `CustomEvent<CustomEvent<any>>` |
+| `menuSize`        |             | `CustomEvent<any>`              |
 
 
 ----------------------------------------------

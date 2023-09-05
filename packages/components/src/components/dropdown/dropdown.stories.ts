@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons'
 
 export default {
-  title: 'Not reviewed/Dropdown',
+  title: 'Components/Dropdown',
   args: {
     label: "Dropdown",
     size: "m",
@@ -110,6 +110,7 @@ const DefaultTemplate = (args) => {
   const dropdown = wrapper.firstChild;
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
   dropdown.addEventListener('ifxClose', action('ifxClose'));
+  dropdown.addEventListener('ifxDropdown', action('ifxDropdown'));
 
   return wrapper;
 };

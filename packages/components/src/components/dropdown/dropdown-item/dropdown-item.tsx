@@ -13,16 +13,16 @@ export class DropdownItem {
   @Prop() target: string = "_self"
   @Prop() hide: boolean = false;
   @State() size: string = 'l'
-  @Event() ifxDropdownItemValue: EventEmitter;
+  @Event() ifxDropdownItem: EventEmitter;
   @Element() el;
 
   @Listen('menuSize', { target: 'body' })
-  handleMenuSize(event: CustomEvent) { 
+  handleMenuSize(event: CustomEvent) {
     this.size = event.detail;
   }
 
-  handleEventEmission() { 
-    this.ifxDropdownItemValue.emit(this.el.textContent)
+  handleEventEmission() {
+    this.ifxDropdownItem.emit(this.el.textContent)
   }
 
   render() {

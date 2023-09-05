@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event                  | Description | Type               |
-| ---------------------- | ----------- | ------------------ |
-| `ifxDropdownItemValue` |             | `CustomEvent<any>` |
+| Event             | Description | Type               |
+| ----------------- | ----------- | ------------------ |
+| `ifxDropdownItem` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

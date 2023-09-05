@@ -118,7 +118,8 @@ export const IfxDropdown = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-d
   'noCloseOnOutsideClick',
   'noCloseOnMenuClick',
   'ifxOpen',
-  'ifxClose'
+  'ifxClose',
+  'ifxDropdown'
 ]);
 
 
@@ -130,7 +131,7 @@ export const IfxDropdownItem = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem
   'href',
   'target',
   'hide',
-  'ifxDropdownItemValue'
+  'ifxDropdownItem'
 ]);
 
 
@@ -138,7 +139,7 @@ export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu
   'isOpen',
   'size',
   'menuSize',
-  'ifxValue'
+  'ifxDropdownMenu'
 ]);
 
 
