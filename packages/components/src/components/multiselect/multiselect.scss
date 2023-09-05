@@ -130,6 +130,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &.placeholder {
+      opacity: 0.5;
+    }
+
   }
 
 

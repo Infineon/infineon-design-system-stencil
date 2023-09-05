@@ -38,11 +38,6 @@ export class Multiselect {
 
   @Watch('options')
   handleOptionsChange() {
-    // this.listOfOptions = (typeof this.options === 'string' && (this.options.startsWith('{') || this.options.startsWith('[')))  //passed in string form via storybook
-    //   ? JSON.parse(this.options).map((option) => ({ value: option.value, label: option.label, children: option.children, selected: option.selected })) // added selected
-    //   : this.options;
-
-
     if (typeof this.options === 'string') {
       try {
         this.listOfOptions = JSON.parse(this.options);
@@ -74,7 +69,7 @@ export class Multiselect {
 
 
   handleOptionClick(option: Option) {
-    this.error = false;
+    this.error = false; //reset potential previous errors
 
     // 1. Prevent action if disabled
     //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
@@ -422,7 +417,9 @@ export class Multiselect {
           tabindex="0"
           onClick={(event) => this.handleWrapperClick(event)}
           onKeyDown={(event) => this.handleKeyDown(event)} >
-          <div class="ifx-multiselect-input"
+          <div class={`ifx-multiselect-input 
+          ${this.persistentSelectedOptions.length === 0 ? 'placeholder' : ""}
+          `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           >
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
