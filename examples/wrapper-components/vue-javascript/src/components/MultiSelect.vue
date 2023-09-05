@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <h2>MultiSelect</h2>

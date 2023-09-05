@@ -30,8 +30,8 @@
 
 ### Depends on
 
-- [ifx-checkbox](../checkbox)
-- [ifx-icon](../icon)
+- [ifx-checkbox](../../checkbox)
+- [ifx-icon](../../icon)
 
 ### Graph
 ```mermaid

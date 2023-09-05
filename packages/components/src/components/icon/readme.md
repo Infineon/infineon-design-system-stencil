@@ -35,15 +35,16 @@
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)
- - [ifx-multiselect](../multiselect)
+ - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-item](../navbar)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
- - [ifx-select](../select)
+ - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
  - [ifx-text-field](../text-field)
+ - [ifx-tooltip](../tooltip)
 
 ### Graph
 ```mermaid
@@ -68,6 +69,7 @@ graph TD;
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-text-field --> ifx-icon
+  ifx-tooltip --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

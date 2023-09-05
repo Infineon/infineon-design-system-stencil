@@ -1,3 +1,80 @@
+# v20.15.3 (Tue Sep 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-select - option selected directly after the component has rendered now also di… [#430](https://github.com/Infineon/infineon-design-system-stencil/pull/430) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.15.2 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search field [#452](https://github.com/Infineon/infineon-design-system-stencil/pull/452) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.15.1 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: switch update [#450](https://github.com/Infineon/infineon-design-system-stencil/pull/450) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.15.0 (Thu Aug 31 2023)
+
+#### 🚀 Enhancement
+
+- Code Quality: Modal - tests added [#438](https://github.com/Infineon/infineon-design-system-stencil/pull/438) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- 195 implementation tooltip [#382](https://github.com/Infineon/infineon-design-system-stencil/pull/382) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.14.0 (Thu Aug 31 2023)
+
+#### 🚀 Enhancement
+
+- Table using agGrid library [#396](https://github.com/Infineon/infineon-design-system-stencil/pull/396) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- Documentation: status [#435](https://github.com/Infineon/infineon-design-system-stencil/pull/435) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🔩 Dependency Updates
+
+- Bump @adobe/css-tools from 4.2.0 to 4.3.1 in /examples/stencil-components/react [#436](https://github.com/Infineon/infineon-design-system-stencil/pull/436) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @adobe/css-tools from 4.2.0 to 4.3.1 in /examples/wrapper-components/react-javascript [#437](https://github.com/Infineon/infineon-design-system-stencil/pull/437) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.13.0 (Tue Aug 29 2023)
 
 #### 🚀 Enhancement

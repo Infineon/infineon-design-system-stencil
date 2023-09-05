@@ -28,10 +28,9 @@ const options = [{
   ]
 }];
 
-// let jsonOptions = JSON.stringify(options);
 
 export default {
-  title: 'Components/Multi Select',
+  title: 'Components/Select/Multi Select',
   tags: ['autodocs'],
   args: {
     size: "m",

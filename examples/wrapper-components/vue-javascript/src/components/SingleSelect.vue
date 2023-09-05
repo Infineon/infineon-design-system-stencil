@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <h2>SingleSelect</h2>
@@ -21,9 +19,6 @@
     <br />
   </div>
 </template>
-
- 
-
 
 
 
