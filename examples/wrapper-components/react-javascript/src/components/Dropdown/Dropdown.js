@@ -11,7 +11,7 @@ function Dropdown() {
     <IfxDropdownTriggerButton icon="calendar16">
       dropdown
     </IfxDropdownTriggerButton>
-    <IfxDropdownMenu size="l" onIfxValue={handleValue}>
+    <IfxDropdownMenu size="l" onIfxDropdownMenu={handleValue}>
      <IfxDropdownHeader>Header Text</IfxDropdownHeader>
       <IfxDropdownItem target="_blank" href="https://www.google.de">lorem10</IfxDropdownItem>
       <IfxDropdownSeparator></IfxDropdownSeparator>
