@@ -1,3 +1,16 @@
+# v20.15.3 (Tue Sep 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-select - option selected directly after the component has rendered now also di… [#430](https://github.com/Infineon/infineon-design-system-stencil/pull/430) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.15.2 (Mon Sep 04 2023)
 
 #### 🐛 Bug Fix
