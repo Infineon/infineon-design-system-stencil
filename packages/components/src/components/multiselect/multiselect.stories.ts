@@ -35,7 +35,7 @@ export default {
   tags: ['autodocs'],
   args: {
     size: "m",
-    max: 5,
+    // max: 5,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -53,11 +53,10 @@ export default {
         type: 'radio',
       },
     },
-    max: {
-      control: { type: 'number' },
-      description: 'Maximum selectable items',
-
-    },
+    // max: {
+    //   control: { type: 'number' },
+    //   description: 'Maximum selectable items',
+    // },
     disabled: {
       options: [true, false],
       control: { type: 'radio' },
@@ -81,8 +80,7 @@ const DefaultTemplate = (args) => {
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'
-  disabled='${args.disabled}'
-  max-item-count='${args.max}'>
+  disabled='${args.disabled}'>
 </ifx-multiselect>`;
 
   setTimeout(() => {

@@ -20,7 +20,7 @@ export class Multiselect {
   @State() listOfOptions: Option[] = [];
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
-  @Prop() maxItemCount: number = 10;
+  @Prop() maxItemCount: number;
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
   private currentIndex: number = 0; //needed for option selection using keyboard
@@ -74,7 +74,7 @@ export class Multiselect {
     // 1. Prevent action if disabled
     //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
     let newOptionsLength = option.children ? option.children.length : 1;
-    if (this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
+    if (this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
       console.error('Max item count reached');
       this.error = true;
       this.errorMessage = "Please consider the maximum number of items to choose from";
@@ -330,7 +330,7 @@ export class Multiselect {
 
   renderOption(option: Option, index: number) {
     const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
-    const disableCheckbox = !isSelected && this.persistentSelectedOptions.length >= this.maxItemCount;
+    const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
     const isIndeterminate = this.isOptionIndeterminate(option);
 
@@ -381,7 +381,7 @@ export class Multiselect {
 
   renderSubOption(option: Option, index: string) {
     const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
-    const disableCheckbox = !isSelected && this.persistentSelectedOptions.length >= this.maxItemCount;
+    const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (

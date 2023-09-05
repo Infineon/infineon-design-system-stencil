@@ -13,7 +13,7 @@
 | `error`        | `error`          |             | `boolean`         | `false`           |
 | `errorMessage` | `error-message`  |             | `string`          | `"Error"`         |
 | `label`        | `label`          |             | `string`          | `""`              |
-| `maxItemCount` | `max-item-count` |             | `number`          | `10`              |
+| `maxItemCount` | `max-item-count` |             | `number`          | `undefined`       |
 | `options`      | `options`        |             | `any[] \| string` | `undefined`       |
 | `size`         | `size`           |             | `string`          | `'medium (40px)'` |
 
