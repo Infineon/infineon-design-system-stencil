@@ -3,6 +3,7 @@
 <template>
   <Navbar />
   <h1>Stencil Framework integration - Vue + TS </h1>
+  <Breadcrumbs />
   <Alert />
   <Button />
   <Checkbox />
@@ -48,6 +49,7 @@ import Navbar from './components/Navbar.vue'
 import Card from './components/Card.vue'
 import Dropdown from './components/Dropdown.vue'
 import Footer from './components/Footer.vue'
+import Breadcrumbs from './components/Breadcrumbs.vue'
 
 </script>
 

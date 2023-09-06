@@ -21,6 +21,34 @@
 
   <h1>Using Stencil web components in an Angular application</h1>
 
+  <h2>Breadcrumb</h2>
+    <ifx-breadcrumb>
+      <ifx-breadcrumb-item>
+        <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 1</ifx-breadcrumb-item-label>
+        <ifx-dropdown-menu>
+          <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+        </ifx-dropdown-menu>
+      </ifx-breadcrumb-item>
+    
+      <ifx-breadcrumb-item>
+        <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
+        <ifx-dropdown-menu>
+        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+        </ifx-dropdown-menu>
+      </ifx-breadcrumb-item>
+    
+      <ifx-breadcrumb-item>
+        <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
+      </ifx-breadcrumb-item>
+    </ifx-breadcrumb>
+    <br />
+
   <h2>Alert</h2>
   <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
   <br />
