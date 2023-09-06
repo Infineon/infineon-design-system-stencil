@@ -12,6 +12,8 @@ export class SearchBar {
   @State() internalState: boolean;
   @Prop({ mutable: true }) value: string;
   @Event() ifxInput: EventEmitter;
+  @Event() ifxSearchBarIsOpen: EventEmitter;
+  
 
   @Watch('isOpen')
   handlePropChange() {
@@ -20,6 +22,7 @@ export class SearchBar {
 
   handleCloseButton = () => {
     this.internalState = !this.internalState;
+    this.ifxSearchBarIsOpen.emit(this.internalState)
   }
 
   handleSearchInput(event: CustomEvent) {

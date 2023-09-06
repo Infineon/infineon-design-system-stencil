@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  width: 100%; //revert
+}
+
 .search-bar {
   box-sizing: border-box;
   height: tokens.$ifxSize500;
