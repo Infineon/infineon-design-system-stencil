@@ -52,17 +52,10 @@ export default {
         type: 'radio',
       },
     },
-<<<<<<< HEAD
-    max: {
-      control: { type: 'number' },
-      description: 'Maximum selectable items',
-    },
-=======
     // max: {
     //   control: { type: 'number' },
     //   description: 'Maximum selectable items',
     // },
->>>>>>> master
     disabled: {
       options: [true, false],
       control: { type: 'radio' },
