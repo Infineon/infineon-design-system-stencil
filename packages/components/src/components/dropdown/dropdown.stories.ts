@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons'
 
 export default {
-  title: 'Not reviewed/Dropdown',
+  title: 'Components/Dropdown',
   args: {
     label: "Dropdown",
     size: "m",
@@ -66,18 +66,22 @@ export default {
     noAppendToBody: { description: 'Determines if the dropdown should not be appended to the body' },
     ifxOpen: {
       action: 'ifxOpen',
-      table: {
-        type: { summary: 'Event' },
-        description: 'Event that is emitted when the dropdown opens'
-      }
+      description: 'Custom event that is emitted when the dropdown opens'
     },
     ifxClose: {
       action: 'ifxClose',
-      table: {
-        type: { summary: 'Event' },
-        description: 'Event that is emitted when the dropdown closes'
-      }
+      description: 'Custom event emitted when dropdown closes'
     },
+    ifxDropdownMenuItem: {
+      action: 'ifxDropdownMenuItem',
+      description: 'Custom event emitted when an item is selected',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxDropdownMenuItem={handleChange}\nVue:@ifxDropdownMenuItem="handleChange"\nAngular:(ifxDropdownMenuItem)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenuItem", (event) => {//handle change});',
+        },
+      },
+    }
   },
 }
 
@@ -107,9 +111,12 @@ const DefaultTemplate = (args) => {
     </ifx-dropdown-menu>
   </ifx-dropdown>`;
 
-  const dropdown = wrapper.firstChild;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
+
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
   dropdown.addEventListener('ifxClose', action('ifxClose'));
+  dropdownMenu.addEventListener('ifxDropdownMenuItem', action('ifxDropdownMenuItem'));
 
   return wrapper;
 };
@@ -141,9 +148,12 @@ const LabelTriggerTemplate = (args) => {
     </ifx-dropdown-menu>
   </ifx-dropdown>`;
 
-  const dropdown = wrapper.firstChild;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
+
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
   dropdown.addEventListener('ifxClose', action('ifxClose'));
+  dropdownMenu.addEventListener('ifxDropdownMenuItem', action('ifxDropdownMenuItem'));
 
   return wrapper;
 };

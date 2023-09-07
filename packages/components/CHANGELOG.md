@@ -1,3 +1,85 @@
+# v20.16.2 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search bar [#471](https://github.com/Infineon/infineon-design-system-stencil/pull/471) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tooltip [#469](https://github.com/Infineon/infineon-design-system-stencil/pull/469) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.16.1 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: select [#466](https://github.com/Infineon/infineon-design-system-stencil/pull/466) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.16.0 (Tue Sep 05 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: table [#447](https://github.com/Infineon/infineon-design-system-stencil/pull/447) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- 444 documentation table [#460](https://github.com/Infineon/infineon-design-system-stencil/pull/460) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.15.4 (Tue Sep 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Multiselect [#456](https://github.com/Infineon/infineon-design-system-stencil/pull/456) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.15.3 (Tue Sep 05 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Single-select - option selected directly after the component has rendered now also di… [#430](https://github.com/Infineon/infineon-design-system-stencil/pull/430) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.15.2 (Mon Sep 04 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search field [#452](https://github.com/Infineon/infineon-design-system-stencil/pull/452) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.15.1 (Mon Sep 04 2023)
 
 #### 🐛 Bug Fix

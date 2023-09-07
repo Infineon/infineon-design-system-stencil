@@ -15,6 +15,13 @@
 | `target` | `target`  |             | `string`  | `"_self"`   |
 
 
+## Events
+
+| Event             | Description | Type               |
+| ----------------- | ----------- | ------------------ |
+| `ifxDropdownItem` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Depends on
