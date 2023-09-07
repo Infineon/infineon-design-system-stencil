@@ -1,6 +1,6 @@
 // @import '~choices.js/public/assets/styles/choices.css';
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use "../../../global/font.scss";
 
 /*===============================
 =            Choices            =
@@ -81,7 +81,7 @@
     }
 
     &.active {
-      border: 2px solid #0A8276 !important; // Active border color
+      border: 1px solid #0A8276 !important; // Active border color
 
       & .ifx-choices__icon-wrapper-up {
         display: flex;
@@ -106,7 +106,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid #0A8276;
+        border: 3px solid #0A8276;
       }
     }
 
@@ -147,19 +147,19 @@
   /*
 START Select options: item alignment
 */
-  .choice-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  // .choice-container {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  // }
 
-  .choice-label {
-    /* Additional styles for label if necessary */
-  }
+  // .choice-label {
+  //   /* Additional styles for label if necessary */
+  // }
 
-  .choice-icon {
-    /* Additional styles for icon if necessary */
-  }
+  // .choice-icon {
+  //   /* Additional styles for icon if necessary */
+  // }
 
   /*
 END Select options: item alignment
@@ -463,6 +463,7 @@ END Select options: item alignment
     gap: 8px;
     align-items: center;
     display: flex;
+    justify-content: space-between;
     font-style: normal;
     font-weight: 400;
 
@@ -516,6 +517,14 @@ END Select options: item alignment
 
 
   .choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #EEEDED;
+
+    &.selected {
+      color: #0A8276;
+    }
+  }
+
+  .choices__list--dropdown .choices__item--selectable:hover {
     background-color: #EEEDED;
 
     &.selected {
