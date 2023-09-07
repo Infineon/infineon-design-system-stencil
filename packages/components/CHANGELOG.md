@@ -1,3 +1,15 @@
+# v20.16.4 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Search-field height issue [#474](https://github.com/Infineon/infineon-design-system-stencil/pull/474) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.16.3 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix
