@@ -68,9 +68,12 @@ export class BreadcrumbItem {
 
   componentDidLoad() { 
     const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
+  
     if(!dropdownMenu) { 
       const iconMenuWrapper = this.getMenuIconWrapper();
       this.handleClassList(iconMenuWrapper, 'toggle', 'hide')
+    } else { 
+      dropdownMenu.isOpen = true;
     }
   }
 
