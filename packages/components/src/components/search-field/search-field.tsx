@@ -83,9 +83,7 @@ export class SearchField {
   getSizeClass() {
     return `${this.size}` === "s"
       ? "search-field__wrapper-s"
-      : `${this.size}` === "m"
-        ? "search-field__wrapper-m"
-        : "";
+      : "";
   }
 
 
