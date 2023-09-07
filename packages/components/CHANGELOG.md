@@ -1,3 +1,16 @@
+# v20.16.1 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: select [#466](https://github.com/Infineon/infineon-design-system-stencil/pull/466) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.16.0 (Tue Sep 05 2023)
 
 #### 🚀 Enhancement
