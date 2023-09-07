@@ -1,3 +1,15 @@
+# v20.16.5 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- added z-index to dropdown-menu [#472](https://github.com/Infineon/infineon-design-system-stencil/pull/472) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.16.4 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix
