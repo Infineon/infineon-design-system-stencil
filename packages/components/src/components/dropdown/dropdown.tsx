@@ -184,12 +184,12 @@ export class Dropdown {
     }
   }
 
-
-  @Listen('ifxDropdownMenu')
-  handleDropdownMenuEvents(event: CustomEvent) {
-    this.ifxDropdown.emit(event.detail)
-    console.log('Selected item received in higher-level parent:');
-  }
+  //emitted by and listening to it from the dropdown menu right now
+  // @Listen('ifxDropdownMenu')
+  // handleDropdownMenuEvents(event: CustomEvent) {
+  //   this.ifxDropdown.emit(event.detail)
+  //   console.log('Selected item received in higher-level parent:');
+  // }
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {

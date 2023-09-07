@@ -139,7 +139,7 @@ export const IfxDropdownMenu = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu
   'isOpen',
   'size',
   'menuSize',
-  'ifxDropdownMenu'
+  'ifxDropdownMenuItem'
 ]);
 
 

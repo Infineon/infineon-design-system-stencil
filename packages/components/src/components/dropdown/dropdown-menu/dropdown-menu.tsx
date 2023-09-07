@@ -15,7 +15,7 @@ export class DropdownMenu {
 
   @Event() menuSize: EventEmitter;
   @State() filteredItems: HTMLIfxDropdownItemElement[] = [];
-  @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
+  @Event() ifxDropdownMenuItem: EventEmitter<CustomEvent>;
 
   @Listen('ifxInput')
   handleMenuFilter(event: CustomEvent) {
@@ -25,7 +25,7 @@ export class DropdownMenu {
 
   @Listen('ifxDropdownItem')
   handleDropdownItemValueEmission(event: CustomEvent) {
-    this.ifxDropdownMenu.emit(event.detail)
+    this.ifxDropdownMenuItem.emit(event.detail)
   }
 
   filterDropdownItems(searchValue: string) {
