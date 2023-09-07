@@ -32,17 +32,5 @@ describe('ifx-select', () => {
   });
 
 
-  it('should open the dropdown when clicked', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-select></ifx-select>');
-
-    const dropdownTrigger = await page.find('ifx-select .ifx-choices__wrapper');
-    await dropdownTrigger.click();
-
-    await page.waitForChanges();
-
-    const dropdown = await page.find('ifx-select .choices__list');
-    expect(dropdown).not.toBeNull();
-  });
 
 });

@@ -1,3 +1,7 @@
+// @import '~choices.js/public/assets/styles/choices.css';
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
@@ -130,6 +134,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    &.placeholder {
+      opacity: 0.5;
+    }
+
   }
 
 
