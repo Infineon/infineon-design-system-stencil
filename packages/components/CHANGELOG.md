@@ -1,3 +1,17 @@
+# v20.16.2 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search bar [#471](https://github.com/Infineon/infineon-design-system-stencil/pull/471) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tooltip [#469](https://github.com/Infineon/infineon-design-system-stencil/pull/469) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.16.1 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix
