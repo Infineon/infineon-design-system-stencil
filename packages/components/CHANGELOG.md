@@ -1,3 +1,16 @@
+# v20.16.3 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- added events on dropdown-menu [#455](https://github.com/Infineon/infineon-design-system-stencil/pull/455) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.16.2 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix
