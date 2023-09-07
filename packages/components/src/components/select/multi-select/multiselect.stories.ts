@@ -31,7 +31,7 @@ const options = [{
 
 export default {
   title: 'Components/Select/Multi Select',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
     size: "m",
     max: 5,
@@ -55,7 +55,6 @@ export default {
     max: {
       control: { type: 'number' },
       description: 'Maximum selectable items',
-
     },
     disabled: {
       options: [true, false],
