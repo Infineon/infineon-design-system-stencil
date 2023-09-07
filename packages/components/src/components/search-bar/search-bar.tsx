@@ -22,11 +22,6 @@ export class SearchBar {
     this.internalState = !this.internalState;
   }
 
-  handleSearchInput(event: CustomEvent) {
-    console.log("search field event in search bar", event)
-    this.value = event.detail.detail;
-    this.ifxInput.emit(event.detail);
-  }
 
   setInitialState() {
     this.internalState = this.isOpen;
