@@ -17,9 +17,10 @@
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxInput` |             | `CustomEvent<any>` |
+| Event                | Description | Type               |
+| -------------------- | ----------- | ------------------ |
+| `ifxInput`           |             | `CustomEvent<any>` |
+| `ifxSearchBarIsOpen` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

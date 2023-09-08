@@ -282,7 +282,8 @@ export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('i
   'hideLabel',
   'icon',
   'href',
-  'target'
+  'target',
+  'hideComponent'
 ]);
 
 
@@ -323,7 +324,8 @@ export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.
   'isOpen',
   'disabled',
   'value',
-  'ifxInput'
+  'ifxInput',
+  'ifxSearchBarIsOpen'
 ],
 'value', 'ifxInput');
 
