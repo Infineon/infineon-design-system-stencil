@@ -30,7 +30,6 @@ export class Button {
     this.focusableElement.focus();
   }
 
-
   componentWillLoad() {
     if (this.el.closest('form')) {
       if (this.el.href) {
@@ -79,18 +78,25 @@ export class Button {
   }
 
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "s"
-      : "";
+    if (`${this.size}` === "xs") {
+      return "xs"
+    }
+    else if (`${this.size}` === "s") {
+      return "s"
+    }
+    else if (`${this.size}` === "l") {
+      return "l"
+    }
+    else return "";
   }
 
   getClassNames() {
-    console.log("test")
     return classNames(
       'btn',
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
-      this.disabled ? 'disabled' : ''
+      this.disabled ? 'disabled' : '',
+
     );
   }
 }

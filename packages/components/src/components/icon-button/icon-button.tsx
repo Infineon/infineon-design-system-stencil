@@ -67,9 +67,16 @@ export class IconButton {
   }
 
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "s"
-      : "";
+    if (`${this.size}` === "xs") {
+      return "xs"
+    }
+    else if (`${this.size}` === "s") {
+      return "s"
+    }
+    else if (`${this.size}` === "l") {
+      return "l"
+    }
+    else return "";
   }
 
   getClassNames() {

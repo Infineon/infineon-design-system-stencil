@@ -24,11 +24,15 @@
   border: 1px solid rgba(0, 0, 0, 0);
   font-size: tokens.$ifxFontSizeM;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+
 }
 
 .btn:not(.disabled) {
   cursor: pointer;
 }
+
+
 
 .btn-primary {
   color: tokens.$ifxColorBaseWhite;
@@ -96,10 +100,32 @@
     display: none;
   }
 
-  &.btn-s {
+
+
+
+  &.btn-xs {
     font-size: tokens.$ifxFontSizeS;
     height: tokens.$ifxSize400;
     line-height: tokens.$ifxLineHeightXs;
+  }
+
+  &.btn-s {
+    font-size: tokens.$ifxFontSizeS;
+    height: tokens.$ifxSize450;
+    line-height: tokens.$ifxLineHeightS;
+  }
+
+  // &.btn-m { //default
+  //   font-size: tokens.$ifxFontSizeM;
+  //   height: tokens.$ifxSize400;
+  //   line-height: tokens.$ifxLineHeightM;
+  // }
+
+
+  &.btn-l {
+    font-size: tokens.$ifxFontSizeXl;
+    height: tokens.$ifxSize600;
+    line-height: tokens.$ifxLineHeightXl;
   }
 
   &.btn-primary,

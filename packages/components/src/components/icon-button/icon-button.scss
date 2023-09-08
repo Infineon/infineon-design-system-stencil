@@ -88,7 +88,7 @@
 
 .btn {
 
-  &.btn-s {
+  &.btn-xs {
     font-size: tokens.$ifxFontSizeS;
     min-width: 71px;
     min-height: tokens.$ifxSize400;
@@ -111,11 +111,20 @@
       border-radius: tokens.$ifxBorderRadius12;
     }
 
-    &.btn-s {
+    &.btn-xs {
       width: tokens.$ifxSize400;
       height: tokens.$ifxSize400;
     }
 
+    &.btn-s {
+      width: tokens.$ifxSize450;
+      height: tokens.$ifxSize450;
+    }
+
+    &.btn-l {
+      width: tokens.$ifxSize600;
+      height: tokens.$ifxSize600;
+    }
   }
 
   &.btn-primary,
