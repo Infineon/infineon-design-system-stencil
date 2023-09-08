@@ -1,3 +1,15 @@
+# v20.16.7 (Fri Sep 08 2023)
+
+#### 🐛 Bug Fix
+
+- Select Focus state issue [#476](https://github.com/Infineon/infineon-design-system-stencil/pull/476) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.16.6 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix
