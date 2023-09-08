@@ -75,7 +75,8 @@ export class Pagination {
     let totalPages = this.numberOfPages.length;
     let prevPage = currActive === 0 ? null : currActive;
     let nextPage = currActive + 2 > totalPages ? null : currActive + 2;
-    this.ifxPageChange.emit({ currentPage, totalPages, prevPage, nextPage })
+    let itemsPerPage = this.itemsPerPage
+    this.ifxPageChange.emit({ currentPage, totalPages, prevPage, nextPage, itemsPerPage })
   }
 
   addEventListenersToPageItems(listItems, paginationContainer) {

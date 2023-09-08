@@ -1,66 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { IfxPagination } from '@infineon/infineon-design-system-react'; // Import your Stencil component
-import data from './mock-data.json';
-
-let ITEMS_PER_PAGE = 10;
+import React, { useState } from 'react';
+import { IfxPagination } from '@infineon/infineon-design-system-react';
+import data from './mock-data.json'
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentData, setCurrentData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(10)
 
-  useEffect(() => {
-    // Calculate the start and end indices for the current page
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
+  const rows = data.map((item) => ({ firstName: item.first_name, lastName: item.last_name, email: item.email, phone: item.phone }));
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = rows.slice(indexOfFirstPost, indexOfLastPost)
 
-    // Slice the data to get the current page's items
-    const currentPageData = data.slice(startIndex, endIndex);
-    console.log("curr", currentPageData.length)
-
-    // Update the current data
-    setCurrentData(currentPageData);
-
-    // Update the total pages based on the data length
-    setTotalPages(Math.ceil(data.length / ITEMS_PER_PAGE));
-    console.log("total", totalPages)
-
-  }, [currentPage, totalPages]);
-
-
-
-  const handlePageChange = (event) => {
-    // Update the current page when the pagination component emits a page change event
-    setCurrentPage(event.detail.currentPage);
-  };
+  const handlePageChange = (e) => { 
+    setCurrentPage(e.detail.currentPage)
+    if(e.detail.itemsPerPage !== 10) { 
+      setPostsPerPage(e.detail.itemsPerPage)
+    }
+  }
+  
 
   return (
     <div>
-      <table>
-        <thead>
+     <table border="1">
+      <thead>
           <tr>
-            <th>ID</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
           </tr>
         </thead>
         <tbody>
-          {currentData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.first_name}</td>
-              <td>{item.last_name}</td>
-              <td>{item.email}</td>
-              <td>{item.phone}</td>
+          {currentPosts.map((item, i) => 
+            <tr key={i}>
+                <td>{item.firstName}</td>
+                <td>{item.lastName}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
       <IfxPagination
-        currentPage={currentPage}
-        total={totalPages}
+        currentPage={1}
+        total={rows.length}
         onIfxPageChange={handlePageChange}
       />
     </div>
