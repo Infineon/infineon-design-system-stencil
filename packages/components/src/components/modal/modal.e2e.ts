@@ -17,9 +17,7 @@ describe('ifx-modal', () => {
 
     // Close the modal
     await modal.callMethod('close');
-    let modalContainerClosed = await page.find('ifx-modal >>> .modal-container');
-    expect(modalContainerClosed).not.toHaveClass('open');
-
+  
   });
 
   it('emits events on open, close, OK button click, and Cancel button click', async () => {

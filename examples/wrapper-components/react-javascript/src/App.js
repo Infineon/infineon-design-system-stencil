@@ -24,6 +24,7 @@ import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
 import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 
 
 
@@ -32,6 +33,10 @@ function App() {
     <div>
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
+
+      <h2>Breadcrumbs</h2>
+      <Breadcrumbs />
+      <br />
 
       <h2>Alert</h2>
       <Alert />

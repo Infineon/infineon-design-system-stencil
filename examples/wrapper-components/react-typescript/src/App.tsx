@@ -17,17 +17,23 @@ import IconButton from './components/IconButton/IconButton';
 import Navbar from './components/Navbar/Navbar';
 import Dropdown from './components/Dropdown/Dropdown';
 import Pagination from './components/Pagination/Pagination';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+
 
 function App() {
 
   return (
       <div>
-            <Navbar />      
+         <Navbar />      
 
          <h1 className="header">Stencil Framework integration - React + TS </h1>
 
          <h2>Tag</h2>
          <Tag />
+         <br />
+
+         <h2>Breadcrumbs</h2>
+         <Breadcrumbs />
          <br />
 
          <h2>Search Bar</h2>
