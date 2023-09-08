@@ -1,3 +1,80 @@
+# v20.16.6 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- added dropdown-menu to breadcrumb [#453](https://github.com/Infineon/infineon-design-system-stencil/pull/453) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.16.5 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- added z-index to dropdown-menu [#472](https://github.com/Infineon/infineon-design-system-stencil/pull/472) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.16.4 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Search-field height issue [#474](https://github.com/Infineon/infineon-design-system-stencil/pull/474) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.16.3 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- added events on dropdown-menu [#455](https://github.com/Infineon/infineon-design-system-stencil/pull/455) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.16.2 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: search bar [#471](https://github.com/Infineon/infineon-design-system-stencil/pull/471) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: tooltip [#469](https://github.com/Infineon/infineon-design-system-stencil/pull/469) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.16.1 (Thu Sep 07 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: select [#466](https://github.com/Infineon/infineon-design-system-stencil/pull/466) ([@SergejLust](https://github.com/SergejLust) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.16.0 (Tue Sep 05 2023)
 
 #### 🚀 Enhancement
