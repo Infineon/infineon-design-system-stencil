@@ -19,10 +19,11 @@
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxClose` |             | `CustomEvent<any>` |
-| `ifxOpen`  |             | `CustomEvent<any>` |
+| Event         | Description | Type               |
+| ------------- | ----------- | ------------------ |
+| `ifxClose`    |             | `CustomEvent<any>` |
+| `ifxDropdown` |             | `CustomEvent<any>` |
+| `ifxOpen`     |             | `CustomEvent<any>` |
 
 
 ## Methods

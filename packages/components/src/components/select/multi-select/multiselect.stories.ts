@@ -31,7 +31,7 @@ const options = [{
 
 export default {
   title: 'Components/Select/Multi Select',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
     size: "m",
     // max: 5,
