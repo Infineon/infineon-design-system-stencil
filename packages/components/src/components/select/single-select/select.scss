@@ -107,6 +107,8 @@
         left: 50%;
         transform: translate(-50%, -50%);
         border: 3px solid #0A8276;
+
+        border-radius: 3px;
       }
     }
 
@@ -251,7 +253,6 @@ END Select options: item alignment
 
   .choices[data-type*='select-one'] .choices__single-button:focus {
     box-shadow: 0px 0px 0px 2px tokens.$ifxColorOcean500;
-    ;
   }
 
   .choices[data-type*='select-one'] .choices__item[data-value=''] .choices__single-button {
