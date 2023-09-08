@@ -14,7 +14,7 @@
 | `href`     | `href`     |             | `string`                                                         | `undefined` |
 | `size`     | `size`     |             | `string`                                                         | `'m'`       |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
+| `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"`                         | `'primary'` |
 
 
 ## Methods

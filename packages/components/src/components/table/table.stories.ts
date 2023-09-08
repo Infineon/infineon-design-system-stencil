@@ -29,7 +29,7 @@ const rowDataWithButtonCol = [
   {
     make: 'Porsche', model: 'Boxster', price: 72000, button: {
       disabled: false,
-      variant: "outline",
+      variant: "secondary",
       size: "s",
       target: "_blank",
       color: "secondary",

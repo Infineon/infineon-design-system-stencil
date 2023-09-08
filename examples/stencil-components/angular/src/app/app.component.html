@@ -22,32 +22,32 @@
   <h1>Using Stencil web components in an Angular application</h1>
 
   <h2>Breadcrumb</h2>
-    <ifx-breadcrumb>
-      <ifx-breadcrumb-item>
-        <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 1</ifx-breadcrumb-item-label>
-        <ifx-dropdown-menu>
-          <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
-          <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
-          <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
-          <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
-        </ifx-dropdown-menu>
-      </ifx-breadcrumb-item>
-    
-      <ifx-breadcrumb-item>
-        <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
-        <ifx-dropdown-menu>
+  <ifx-breadcrumb>
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 1</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu>
         <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
         <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
         <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
         <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
-        </ifx-dropdown-menu>
-      </ifx-breadcrumb-item>
-    
-      <ifx-breadcrumb-item>
-        <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
-      </ifx-breadcrumb-item>
-    </ifx-breadcrumb>
-    <br />
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu>
+        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
+    </ifx-breadcrumb-item>
+  </ifx-breadcrumb>
+  <br />
 
   <h2>Alert</h2>
   <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
@@ -96,9 +96,9 @@
     <ifx-button type="submit">Submit</ifx-button>
   </form>
 
-  <ifx-button variant="outline" (click)="toggleCheckboxDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="outline" (click)="toggleCheckboxError()">Toggle Error</ifx-button>
-  <ifx-button variant="outline" (click)="toggleCheckboxValue()">Toggle Value</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxValue()">Toggle Value</ifx-button>
 
   <span>Disabled: {{ checkboxDisabled }} </span>
   <span>Error: {{ checkboxError }} </span>
@@ -127,9 +127,9 @@
       Text
     </ifx-radio-button>
   </form>
-  <ifx-button variant="outline" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="outline" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
-  <ifx-button variant="outline" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
   <span>Disabled: {{ radioDisabled }} </span>
   <span>Error: {{ radioError }} </span>
   <span>Value: {{ radioChecked }}</span>
@@ -309,7 +309,7 @@
     cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
     rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
     table-height='auto'>
-  </ifx-basic-table> 
+  </ifx-basic-table>
   <br />
 
 </div>

@@ -32,7 +32,7 @@
   border-color: tokens.$ifxColorOcean500;
 }
 
-.btn-outline-primary {
+.btn-secondary-primary {
   background-color: tokens.$ifxColorBaseWhite;
   color: tokens.$ifxColorOcean500;
   border-color: tokens.$ifxColorOcean500;
@@ -44,7 +44,7 @@
   border-color: tokens.$ifxColorBerry500;
 }
 
-.btn-outline-secondary {
+.btn-secondary-secondary {
   background-color: tokens.$ifxColorBaseWhite;
   color: tokens.$ifxColorBerry500;
   border-color: tokens.$ifxColorBerry500;
@@ -56,7 +56,7 @@
   border-color: tokens.$ifxColorGreen500;
 }
 
-.btn-outline-success {
+.btn-secondary-success {
   background-color: tokens.$ifxColorBaseWhite;
   border-color: tokens.$ifxColorGreen500;
 }
@@ -67,7 +67,7 @@
   border-color: tokens.$ifxColorRed500;
 }
 
-.btn-outline-danger {
+.btn-secondary-danger {
   background-color: tokens.$ifxColorBaseWhite;
   color: tokens.$ifxColorRed500;
   border-color: tokens.$ifxColorRed500;
@@ -79,7 +79,7 @@
   border-color: tokens.$ifxColorOrange500;
 }
 
-.btn-outline-warning {
+.btn-secondary-warning {
   background-color: tokens.$ifxColorBaseWhite;
   border-color: tokens.$ifxColorOrange500;
 }
@@ -119,16 +119,16 @@
   }
 
   &.btn-primary,
-  &.btn-outline-primary,
+  &.btn-secondary-primary,
   &.btn-secondary,
-  &.btn-outline-secondary,
+  &.btn-secondary-secondary,
   &.btn-success,
-  &.btn-outline-success,
+  &.btn-secondary-success,
   &.btn-danger,
-  &.btn-outline-danger,
+  &.btn-secondary-danger,
   &.btn-warning,
-  &.btn-outline-warning,
-  &.btn-outline-text {
+  &.btn-secondary-warning,
+  &.btn-tertiary {
     &:focus {
       box-shadow: none;
 
@@ -136,16 +136,16 @@
   }
 
   &.btn-primary,
-  &.btn-outline-primary,
+  &.btn-secondary-primary,
   &.btn-secondary,
-  &.btn-outline-secondary,
+  &.btn-secondary-secondary,
   &.btn-success,
-  &.btn-outline-success,
+  &.btn-secondary-success,
   &.btn-danger,
-  &.btn-outline-danger,
+  &.btn-secondary-danger,
   &.btn-warning,
-  &.btn-outline-warning,
-  &.btn-outline-text {
+  &.btn-secondary-warning,
+  &.btn-tertiary {
     &:focus-visible {
       box-shadow: 0 0 0 3px #B4DDD8;
     }
@@ -178,7 +178,7 @@
     }
   }
 
-  &.btn-outline-primary:not(:disabled, .disabled) {
+  &.btn-secondary-primary:not(:disabled, .disabled) {
 
     &:focus {
       background-color: tokens.$ifxColorBaseTransparent;
@@ -215,7 +215,7 @@
     }
   }
 
-  &.btn-outline-secondary:not(:disabled, .disabled) {
+  &.btn-secondary-secondary:not(:disabled, .disabled) {
 
     &:focus {
       background-color: tokens.$ifxColorBaseTransparent;
@@ -253,7 +253,7 @@
     }
   }
 
-  &.btn-outline-success:not(:disabled, .disabled) {
+  &.btn-secondary-success:not(:disabled, .disabled) {
     color: tokens.$ifxColorBaseBlack;
 
     &:focus {
@@ -290,7 +290,7 @@
     }
   }
 
-  &.btn-outline-danger:not(:disabled, .disabled) {
+  &.btn-secondary-danger:not(:disabled, .disabled) {
 
     &:focus {
       background-color: tokens.$ifxColorBaseTransparent;
@@ -328,7 +328,7 @@
     }
   }
 
-  &.btn-outline-warning:not(:disabled, .disabled) {
+  &.btn-secondary-warning:not(:disabled, .disabled) {
     color: tokens.$ifxColorBaseBlack;
 
     &:focus {
@@ -347,7 +347,7 @@
     }
   }
 
-  &.btn-primary-outline-text {
+  &.btn-primary-tertiary {
     background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorOcean500;
 
@@ -369,7 +369,7 @@
     }
   }
 
-  &.btn-secondary-outline-text {
+  &.btn-secondary-tertiary {
     background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorBerry500;
 
@@ -391,7 +391,7 @@
     }
   }
 
-  &.btn-success-outline-text {
+  &.btn-success-tertiary {
     background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorGreen500;
 
@@ -413,7 +413,7 @@
     }
   }
 
-  &.btn-danger-outline-text {
+  &.btn-danger-tertiary {
     background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorRed500;
 
@@ -436,7 +436,7 @@
 
   }
 
-  &.btn-warning-outline-text {
+  &.btn-warning-tertiary {
     background-color: tokens.$ifxColorBaseTransparent;
     color: tokens.$ifxColorOrange500;
 

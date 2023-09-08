@@ -5,7 +5,7 @@ export default {
 
   args: {
     label: "Button",
-    variant: "solid",
+    variant: "primary",
     color: "primary",
     type: "button",
     size: "m",
@@ -19,7 +19,7 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['solid', 'outline', 'outline-text'],
+      options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
     },
     color: {

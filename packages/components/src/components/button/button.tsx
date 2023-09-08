@@ -8,7 +8,7 @@ import classNames from 'classnames';
 })
 
 export class Button {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
   @Prop() size: string = 'm';
   @Prop() disabled: boolean = false;
@@ -16,7 +16,7 @@ export class Button {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
- 
+
   private focusableElement: HTMLElement;
   private nativeButton: HTMLButtonElement;
 
@@ -33,14 +33,14 @@ export class Button {
 
   componentWillLoad() {
     if (this.el.closest('form')) {
-      if(this.el.href) {
+      if (this.el.href) {
         this.el.internalHref = undefined;
       }
       this.nativeButton = document.createElement('button');
       this.nativeButton.type = 'submit';
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
-    } else { 
+    } else {
       this.internalHref = this.href;
     }
   }
@@ -55,26 +55,26 @@ export class Button {
   render() {
     return (
       <Host>
-          <a
-            ref={(el) => (this.focusableElement = el)}
-            class={this.getClassNames()}
-            href={!this.disabled ? this.internalHref : undefined}
-            target={this.target}
-            onClick={this.handleClick.bind(this)}
-            rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
-          >
-            <slot></slot>
-          </a>
+        <a
+          ref={(el) => (this.focusableElement = el)}
+          class={this.getClassNames()}
+          href={!this.disabled ? this.internalHref : undefined}
+          target={this.target}
+          onClick={this.handleClick.bind(this)}
+          rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
+        >
+          <slot></slot>
+        </a>
       </Host>
     );
   }
 
 
   getVariantClass() {
-    return `${this.variant}` === "outline"
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text'
-        ? `${this.color}-outline-text`
+    return `${this.variant}` === "secondary"
+      ? `secondary-${this.color}`
+      : `${this.variant}` === 'tertiary'
+        ? `${this.color}-tertiary`
         : `${this.color}`;
   }
 
@@ -85,6 +85,7 @@ export class Button {
   }
 
   getClassNames() {
+    console.log("test")
     return classNames(
       'btn',
       this.size && `btn-${this.getSizeClass()}`,

@@ -15,7 +15,7 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['solid', 'outline'],
+      options: ['primary', 'secondary'],
       control: { type: 'radio' },
     },
     color: {

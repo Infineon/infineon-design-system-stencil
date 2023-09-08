@@ -59,10 +59,10 @@ export class IconButton {
 
 
   getVariantClass() {
-    return `${this.variant}` === "outline"
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text'
-        ? `${this.color}-outline-text`
+    return `${this.variant}` === "secondary"
+      ? `secondary-${this.color}`
+      : `${this.variant}` === 'tertiary'
+        ? `${this.color}-tertiary`
         : `${this.color}`;
   }
 
