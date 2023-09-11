@@ -14,7 +14,7 @@
 | `hideArrow` | `hide-arrow` |             | `boolean`                                                        | `false`     |
 | `isOpen`    | `is-open`    |             | `boolean`                                                        | `false`     |
 | `size`      | `size`       |             | `"m" \| "s"`                                                     | `'m'`       |
-| `variant`   | `variant`    |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
+| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"`                         | `'primary'` |
 
 
 ## Dependencies

@@ -3,9 +3,8 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    variant: "solid",
+    variant: "primary",
     size: 'm',
-    color: "primary",
     disabled: false,
     icon: "c-info-24",
     href: "",
@@ -15,22 +14,19 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['solid', 'outline'],
+      options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
     },
-    color: {
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'radio' },
-    },
+
     size: {
-      options: ['s', 'm'],
+      options: ['s', 'm', 'l'],
       control: { type: 'radio' },
     },
     target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    shape: {
+    style: {
       options: ['round', 'square'],
       control: { type: 'radio' }
     }
@@ -40,7 +36,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-icon-button shape="${args.shape}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}" color="${args.color}" size="${args.size}" disabled="${args.disabled}">
+  `<ifx-icon-button shape="${args.shape}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}"  size="${args.size}" disabled="${args.disabled}">
   </ifx-icon-button>`;
 
 
