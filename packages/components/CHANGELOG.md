@@ -1,3 +1,17 @@
+# v20.17.2 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- radio-button design review updates [#492](https://github.com/Infineon/infineon-design-system-stencil/pull/492) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.17.1 (Mon Sep 11 2023)
 
 #### 🐛 Bug Fix
