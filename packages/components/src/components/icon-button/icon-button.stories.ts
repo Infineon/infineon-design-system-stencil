@@ -9,7 +9,7 @@ export default {
     icon: "c-info-24",
     href: "",
     target: '_blank',
-    shape: 'round'
+    style: 'round'
   },
 
   argTypes: {
@@ -26,7 +26,7 @@ export default {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    shape: {
+    style: {
       options: ['round', 'square'],
       control: { type: 'radio' }
     }
@@ -36,7 +36,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-icon-button shape="${args.shape}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}"  size="${args.size}" disabled="${args.disabled}">
+  `<ifx-icon-button style="${args.style}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}"  size="${args.size}" disabled="${args.disabled}">
   </ifx-icon-button>`;
 
 

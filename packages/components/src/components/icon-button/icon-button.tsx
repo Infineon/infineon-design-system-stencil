@@ -14,7 +14,7 @@ export class IconButton {
   @Prop() icon: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
-  @Prop() shape: string = 'round';
+  @Prop() style: string = 'round';
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -25,8 +25,8 @@ export class IconButton {
   }
 
   componentWillLoad() {
-    if (this.shape === '') {
-      this.shape = 'round';
+    if (this.style === '') {
+      this.style = 'round';
     }
   }
 
@@ -81,7 +81,7 @@ export class IconButton {
   getClassNames() {
     return classNames(
       'btn icon-button',
-      `btn-${this.shape}`,
+      `btn-${this.style}`,
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
       this.disabled ? 'disabled' : ''
