@@ -1,3 +1,16 @@
+# v20.17.1 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- button+icon-button updated based on DesignReview [#479](https://github.com/Infineon/infineon-design-system-stencil/pull/479) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.17.0 (Mon Sep 11 2023)
 
 #### 🚀 Enhancement
