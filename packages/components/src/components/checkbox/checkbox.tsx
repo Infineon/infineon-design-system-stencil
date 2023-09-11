@@ -14,6 +14,7 @@ export class Checkbox {
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @Prop() name: string = '';
+  @Prop() size: string = 'm';
   @State() internalValue: boolean;
   @Prop() indeterminate: boolean = false;
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
@@ -26,7 +27,7 @@ export class Checkbox {
       } else {
         this.internalValue = !this.internalValue;
       }
-      this.ifxChange.emit(this.el);
+      this.ifxChange.emit(this.internalValue);
     }
   }
 
@@ -55,6 +56,18 @@ export class Checkbox {
 
   componentDidRender() {
     this.inputElement.indeterminate = this.indeterminate;
+  }
+
+  getCheckedClassName() {
+    if (this.error) {
+      if (this.internalValue) {
+        return "checked error"
+      } else {
+        return "error"
+      }
+    } else if (this.internalValue) {
+      return "checked";
+    } else return ""
   }
 
 
@@ -88,14 +101,15 @@ export class Checkbox {
           aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
-        ${this.internalValue ? 'checked' : ""} 
+          ${this.getCheckedClassName()}
+        ${this.size === "m" ? "checkbox-m" : ""}
         ${this.indeterminate ? 'indeterminate' : ""}
-        ${this.disabled ? 'disabled' : ""}
-        ${this.error ? 'error' : ""}`}>
+        ${this.disabled ? 'disabled' : ""}`}
+        >
           {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
         {hasSlot &&
-          <div id="label" class={`label ${this.error ? 'error' : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
+          <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
             <slot />
           </div>}
       </div>
