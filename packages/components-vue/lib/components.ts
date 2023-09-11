@@ -205,7 +205,6 @@ export const IfxIcon = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', un
 
 export const IfxIconButton = /*@__PURE__*/ defineContainer<JSX.IfxIconButton>('ifx-icon-button', undefined, [
   'variant',
-  'color',
   'size',
   'disabled',
   'icon',
