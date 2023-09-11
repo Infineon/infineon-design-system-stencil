@@ -100,6 +100,7 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
   'value',
   'error',
   'name',
+  'size',
   'indeterminate',
   'ifxChange'
 ]);
