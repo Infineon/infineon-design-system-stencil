@@ -58,7 +58,7 @@ export const IfxBreadcrumbItemLabel = /*@__PURE__*/ defineContainer<JSX.IfxBread
 
 export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', undefined, [
   'variant',
-  'color',
+  'theme',
   'size',
   'disabled',
   'href',

@@ -9,7 +9,7 @@ import classNames from 'classnames';
 
 export class Button {
   @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
+  @Prop() theme: 'default' | 'danger' | 'inverse' = 'default';
   @Prop() size: string = 'm';
   @Prop() disabled: boolean = false;
   @State() internalHref: string;
@@ -28,6 +28,31 @@ export class Button {
   @Method()
   async setFocus() {
     this.focusableElement.focus();
+  }
+
+  protected componentDidLoad() {
+    this.addEventListenersToHandleCustomFocusAndActiveState();
+  }
+
+  private addEventListenersToHandleCustomFocusAndActiveState() {
+    const element = this.el.shadowRoot.firstChild;
+
+    if (!element) {
+      console.error('element not found');
+      return;
+    }
+
+    element.tabIndex = 0;
+
+    element.addEventListener('focus', () => {
+      if (!this.disabled) {
+        element.classList.add('focus');
+      }
+    });
+
+    element.addEventListener('blur', () => {
+      element.classList.remove('focus');
+    });
   }
 
   componentWillLoad() {
@@ -50,6 +75,13 @@ export class Button {
     }
   }
 
+  handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
+    if (this.disabled) {
+      event.preventDefault();
+      this.focusableElement.blur();
+    }
+  }
+
 
   render() {
     return (
@@ -61,6 +93,8 @@ export class Button {
           target={this.target}
           onClick={this.handleClick.bind(this)}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
+          onFocus={(event) => this.handleFocus(event)}
+
         >
           <slot></slot>
         </a>
@@ -71,10 +105,10 @@ export class Button {
 
   getVariantClass() {
     return `${this.variant}` === "secondary"
-      ? `secondary-${this.color}`
+      ? `secondary-${this.theme}`
       : `${this.variant}` === 'tertiary'
-        ? `${this.color}-tertiary`
-        : `${this.color}`;
+        ? `tertiary-${this.theme}`
+        : `${this.theme}`;
   }
 
   getSizeClass() {

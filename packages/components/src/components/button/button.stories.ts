@@ -6,7 +6,7 @@ export default {
   args: {
     label: "Button",
     variant: "primary",
-    color: "primary",
+    theme: "default",
     type: "button",
     size: "m",
     disabled: false,
@@ -22,8 +22,8 @@ export default {
       options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
     },
-    color: {
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
+    theme: {
+      options: ['default', 'danger', 'inverse'],
       control: { type: 'radio' },
     },
     type: {
@@ -49,7 +49,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" color="${args.color}" ${args.href ? `href="${args.url}"` : ""}>
+  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""}>
   ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
 </ifx-button>`;
 
