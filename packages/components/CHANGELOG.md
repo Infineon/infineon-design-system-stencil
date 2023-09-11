@@ -1,3 +1,16 @@
+# v20.17.3 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- checkbox sizes added;font changed;error state fix [#491](https://github.com/Infineon/infineon-design-system-stencil/pull/491) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.17.2 (Mon Sep 11 2023)
 
 #### 🐛 Bug Fix
