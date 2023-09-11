@@ -4,7 +4,7 @@ export default {
 
   args: {
     size: "m",
-    variant: 'border'
+    variant: 'default'
   },
   argTypes: {
     size: {
@@ -13,7 +13,7 @@ export default {
       control: { type: 'radio' },
     },
     variant: {
-      options: ['border', 'semiconductor'],
+      options: ['default', 'brand'],
       control: { type: 'radio' }
     }
   },
