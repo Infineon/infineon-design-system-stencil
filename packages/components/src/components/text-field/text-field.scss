@@ -84,6 +84,10 @@
       align-self: stretch;
       flex-grow: 0;
 
+      &.input-s {
+        height: tokens.$ifxSize450;
+      }
+
       &.error {
         border: 1px solid #CD002F;
 
@@ -136,17 +140,28 @@
       }
     }
 
-    & .textInput__bottom-wrapper-error {
+    & .textInput__bottom-wrapper-caption {
       font-style: normal;
       font-weight: 400;
       font-size: tokens.$ifxFontSizeXs;
       line-height: tokens.$ifxLineHeightXs;
       letter-spacing: 0.2px;
-      color: #CD002F;
+      color: tokens.$ifxColorBaseBlack;
       flex: none;
       order: 1;
       align-self: stretch;
       flex-grow: 0;
+
+      &.error {
+        color: #CD002F;
+
+      }
+
+      &.disabled {
+        color: tokens.$ifxColorEngineering500;
+
+      }
     }
+
   }
 }

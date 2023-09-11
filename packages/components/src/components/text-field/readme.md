@@ -7,16 +7,18 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type      | Default         |
-| -------------- | --------------- | ----------- | --------- | --------------- |
-| `disabled`     | `disabled`      |             | `boolean` | `false`         |
-| `error`        | `error`         |             | `boolean` | `false`         |
-| `errorMessage` | `error-message` |             | `string`  | `""`            |
-| `icon`         | `icon`          |             | `boolean` | `false`         |
-| `placeholder`  | `placeholder`   |             | `string`  | `"Placeholder"` |
-| `readonly`     | `readonly`      |             | `boolean` | `false`         |
-| `success`      | `success`       |             | `boolean` | `false`         |
-| `value`        | `value`         |             | `string`  | `''`            |
+| Property      | Attribute      | Description | Type      | Default         |
+| ------------- | -------------- | ----------- | --------- | --------------- |
+| `captionText` | `caption-text` |             | `string`  | `""`            |
+| `disabled`    | `disabled`     |             | `boolean` | `false`         |
+| `error`       | `error`        |             | `boolean` | `false`         |
+| `icon`        | `icon`         |             | `boolean` | `false`         |
+| `label`       | `label`        |             | `string`  | `"Placeholder"` |
+| `placeholder` | `placeholder`  |             | `string`  | `"Placeholder"` |
+| `readonly`    | `readonly`     |             | `boolean` | `false`         |
+| `size`        | `size`         |             | `string`  | `'m'`           |
+| `success`     | `success`      |             | `boolean` | `false`         |
+| `value`       | `value`        |             | `string`  | `''`            |
 
 
 ## Events

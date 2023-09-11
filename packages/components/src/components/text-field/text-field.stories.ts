@@ -5,30 +5,38 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    error: false,
     disabled: false,
+    size: "m",
     success: false,
+    label: "Label",
     placeholder: 'Placeholder',
-    errorMessage: "",
+    error: false,
+    caption: "Caption",
     readonly: false
   },
   argTypes: {
+    size: {
+      description: "Size options: s (36px) and m (40px) - default: m",
+      options: ['s', 'm'],
+      control: { type: 'radio' },
+    },
     onIfxInput: { action: 'ifxInput' },
   }
 };
 
 
-const DefaultTemplate = ({ error, disabled, success, placeholder, errorMessage, readonly }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, readonly }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
+  element.setAttribute('size', size);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
-  element.setAttribute('error-message', errorMessage);
+  element.setAttribute('caption', caption);
   element.setAttribute('readonly', readonly);
   element.addEventListener('ifxInput', action('ifxInput'));
 
-  const slotContent = document.createTextNode('Text field');
+  const slotContent = document.createTextNode(label);
   element.appendChild(slotContent);
 
   return element;

@@ -40,8 +40,8 @@ describe('ifx-text-field', () => {
 
   it('renders with error', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-text-field error error-message="Invalid input"></ifx-text-field>');
-    const errorDiv = await page.find('ifx-text-field >>> .textInput__bottom-wrapper-error');
+    await page.setContent('<ifx-text-field error caption="Invalid input"></ifx-text-field>');
+    const errorDiv = await page.find('ifx-text-field >>> .textInput__bottom-wrapper-caption.error');
     expect(errorDiv.innerText).toBe('Invalid input');
   });
 
