@@ -85,14 +85,14 @@
     <br />
 
     <h2>Button</h2>
-    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+    <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="false" icon="false">
       Button
     </ifx-button>
     <br />
 
     <h2>Progress bar</h2>
     <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
-    <ifx-button onclick="updateProgress()" variant="secondary" href="" target="_blank" color="primary" size="s"
+    <ifx-button onclick="updateProgress()" variant="secondary" href="" target="_blank" theme="default" size="s"
       disabled="false" icon="false">
       Update Progress
     </ifx-button>
@@ -204,8 +204,8 @@
         more text. And more and more.</ifx-card-text>
 
       <ifx-card-links slot="buttons">
-        <ifx-button id="cardBtn" color="primary">Button</ifx-button>
-        <ifx-button color="secondary">Button</ifx-button>
+        <ifx-button id="cardBtn" theme="default">Button</ifx-button>
+        <ifx-button theme="danger">Button</ifx-button>
       </ifx-card-links>
     </ifx-card>
     <br />
@@ -254,13 +254,13 @@
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
-      position="right"> <ifx-button variant="secondary" color="primary" size="m" disabled="false" icon="false">
+      position="right"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Dismissible tooltip on button click
       </ifx-button></ifx-tooltip>
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
-      position="auto"> <ifx-button variant="secondary" color="primary" size="m" disabled="false" icon="false">
+      position="auto"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Extended tooltip on button hover
       </ifx-button></ifx-tooltip>
 
@@ -307,13 +307,13 @@
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
-      position="right"> <ifx-button variant="secondary" color="primary" size="m" disabled="false" icon="false">
+      position="right"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Dismissible tooltip on button click
       </ifx-button></ifx-tooltip>
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
-      position="auto"> <ifx-button variant="secondary" color="primary" size="m" disabled="false" icon="false">
+      position="auto"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Extended tooltip on button hover
       </ifx-button></ifx-tooltip>
     <br />
@@ -330,7 +330,7 @@
     <br />
     <ifx-table row-height='default'
       cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
-      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":"something about Toyota"},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":"something about Ford"},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","color":"secondary","text":"Button"}}]'
+      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":"something about Toyota"},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":"something about Ford"},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","theme":"danger","text":"Button"}}]'
       table-height='auto' pagination='false' pagination-page-size='10'>
     </ifx-table>
 

@@ -5,9 +5,9 @@
       search-placeholder-value="Search..." :ifx-disabled="disabled" :ifx-error="error" :ifx-error-message="errorMessage"
       ifx-label="" ifx-placeholder-value="Placeholder" :ifx-options="JSON.stringify(options)"></ifx-select>
     <div>
-      <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" color="primary" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
     </div>
     <br />
 

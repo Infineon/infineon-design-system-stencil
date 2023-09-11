@@ -5,9 +5,9 @@
       :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
       :disabled="disabled"></ifx-multiselect>
     <div>
-      <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" color="primary" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
     </div>
     <br />
     <br />

@@ -67,7 +67,7 @@
 
   <h2>Button</h2>
   <div>
-    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" [disabled]="false" [icon]="false">
+    <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" [disabled]="false" [icon]="false">
       Button
     </ifx-button>
   </div>
@@ -77,7 +77,7 @@
   <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
   <div>
     <br />
-    <ifx-button variant="solid" icon="" position="left" href="" target="_blank" color="primary" size="m"
+    <ifx-button variant="primary" icon="" position="left" href="" target="_blank" theme="default" size="m"
       [disabled]="false" (click)="updateProgressOnClick()">
       Update progress
     </ifx-button>
@@ -214,8 +214,8 @@
       more and more.</ifx-card-text>
 
     <ifx-card-links slot="buttons">
-      <ifx-button color="primary">Button</ifx-button>
-      <ifx-button color="secondary">Button</ifx-button>
+      <ifx-button theme="default">Button</ifx-button>
+      <ifx-button theme="danger">Button</ifx-button>
     </ifx-card-links>
   </ifx-card>
   <br />
