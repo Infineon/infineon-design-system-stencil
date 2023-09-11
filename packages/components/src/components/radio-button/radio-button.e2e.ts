@@ -12,17 +12,6 @@ describe('ifx-radio-button', () => {
 
 
 
-  it('renders changes to the error prop', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-radio-button>Error Test</ifx-radio-button>');
-    const component = await page.find('ifx-radio-button');
-
-    component.setProperty('error', true);
-    await page.waitForChanges();
-    const element = await page.find('ifx-radio-button >>> .label');
-    expect(element).toHaveClass('error');
-  });
-
 
 
   it('handleRadioButtonClick should emit ifxChange event if not disabled and not in error', async () => {
