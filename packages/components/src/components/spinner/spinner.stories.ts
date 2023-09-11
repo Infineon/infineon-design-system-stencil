@@ -8,12 +8,13 @@ export default {
   },
   argTypes: {
     size: {
+      description: "Size options: s (24px) and m (40px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    variant: { 
+    variant: {
       options: ['border', 'semiconductor'],
-      control: { type: 'radio'}
+      control: { type: 'radio' }
     }
   },
 }
