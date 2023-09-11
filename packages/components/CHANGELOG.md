@@ -1,3 +1,16 @@
+# v20.16.8 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: navbar update [#485](https://github.com/Infineon/infineon-design-system-stencil/pull/485) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: button update [#487](https://github.com/Infineon/infineon-design-system-stencil/pull/487) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.16.7 (Fri Sep 08 2023)
 
 #### 🐛 Bug Fix
