@@ -1,3 +1,15 @@
+# v20.17.5 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar update for the search-bar [#465](https://github.com/Infineon/infineon-design-system-stencil/pull/465) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.17.4 (Mon Sep 11 2023)
 
 #### 🐛 Bug Fix
