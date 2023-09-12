@@ -13,10 +13,10 @@ function Dropdown() {
     </IfxDropdownTriggerButton>
     <IfxDropdownMenu size="l" onIfxDropdownMenu={handleValue}>
      <IfxDropdownHeader>Header Text</IfxDropdownHeader>
-      <IfxDropdownItem target="_blank" href="https://www.google.de">lorem10</IfxDropdownItem>
+      <IfxDropdownItem>Menu Item</IfxDropdownItem>
       <IfxDropdownSeparator></IfxDropdownSeparator>
-      <IfxDropdownItem icon="calendar16">Link Item</IfxDropdownItem>
-      <IfxDropdownItem>Menu Item lorem10</IfxDropdownItem>
+      <IfxDropdownItem>Menu Item</IfxDropdownItem>
+      <IfxDropdownItem>Menu Item</IfxDropdownItem>
     </IfxDropdownMenu>
   </IfxDropdown>
   );

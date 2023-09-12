@@ -50,11 +50,6 @@ export default {
       options: ['solid', 'outline', 'outline-text'],
       control: { type: 'radio' },
     },
-    color: {
-      description: 'The color scheme of the dropdown button. Accepted values are "primary", "secondary", "success", "danger", "warning"',
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'radio' },
-    },
     icon: {
       description: 'The icon to be displayed on the dropdown button',
       options: Object.values(icons).map(i => i['name']),
@@ -97,17 +92,17 @@ const DefaultTemplate = (args) => {
   >
     <ifx-dropdown-trigger-button
       variant="${args.variant}"
-      color="${args.color}"
+      color="primary"
       icon="${args.icon}"
       type="${args.type}"
     >${args.label}</ifx-dropdown-trigger-button>
     <ifx-dropdown-menu size="${args.size}">
-      <ifx-dropdown-item target="_blank" href="https://www.google.de">Link Item</ifx-dropdown-item>
+      <ifx-dropdown-header>Header</ifx-dropdown-header>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
       <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item href="javascript:void(0)">Console log from click event</ifx-dropdown-item>
-      <ifx-dropdown-item icon="c-check-16">Item with Icon</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item>Boring Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>`;
 
