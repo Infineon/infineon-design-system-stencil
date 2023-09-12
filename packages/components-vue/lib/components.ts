@@ -323,7 +323,6 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 
 
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
-  'showCloseButton',
   'isOpen',
   'disabled',
   'value',
