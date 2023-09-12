@@ -6,7 +6,6 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    showCloseButton: true,
     disabled: false,
 
   },
@@ -20,19 +19,16 @@ export default {
           detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
-    }, showCloseButton: {
-      control: { type: 'boolean' },
     },
   },
 };
 
 
 
-const DefaultTemplate = ({ isOpen, showCloseButton, disabled }) => {
+const DefaultTemplate = ({ isOpen, disabled }) => {
   const element = document.createElement('ifx-search-bar');
   element.setAttribute('is-open', isOpen);
   element.setAttribute('disabled', disabled);
-  element.setAttribute('show-close-button', showCloseButton);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   return element;
