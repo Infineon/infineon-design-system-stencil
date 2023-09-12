@@ -1,3 +1,20 @@
+# v20.19.0 (Tue Sep 12 2023)
+
+#### 🚀 Enhancement
+
+- Sidebar: updated in accordance with design review [#503](https://github.com/Infineon/infineon-design-system-stencil/pull/503) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Documentation: link update V2 [#495](https://github.com/Infineon/infineon-design-system-stencil/pull/495) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.18.0 (Tue Sep 12 2023)
 
 #### 🚀 Enhancement
