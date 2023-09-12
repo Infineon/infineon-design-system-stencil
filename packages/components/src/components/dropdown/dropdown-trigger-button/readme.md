@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type                                     | Default     |
-| ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `color`     | `color`      |             | `"primary"`                              | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean`                                | `undefined` |
-| `hideArrow` | `hide-arrow` |             | `boolean`                                | `false`     |
-| `isOpen`    | `is-open`    |             | `boolean`                                | `false`     |
-| `size`      | `size`       |             | `"m" \| "s"`                             | `'m'`       |
-| `variant`   | `variant`    |             | `"outline" \| "outline-text" \| "solid"` | `'solid'`   |
+| Property    | Attribute    | Description | Type                                 | Default     |
+| ----------- | ------------ | ----------- | ------------------------------------ | ----------- |
+| `disabled`  | `disabled`   |             | `boolean`                            | `undefined` |
+| `hideArrow` | `hide-arrow` |             | `boolean`                            | `false`     |
+| `isOpen`    | `is-open`    |             | `boolean`                            | `false`     |
+| `size`      | `size`       |             | `"m" \| "s"`                         | `'m'`       |
+| `theme`     | `theme`      |             | `"danger" \| "default" \| "inverse"` | `'default'` |
+| `variant`   | `variant`    |             | `"primary"`                          | `undefined` |
 
 
 ## Dependencies
