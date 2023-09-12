@@ -7,11 +7,12 @@ export default {
   args: {
     showDeleteIcon: true,
     disabled: false,
-    size: "l",
+    size: "m",
 
   },
   argTypes: {
     size: {
+      description: "Size options: s (36px) and m (40px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
