@@ -52,14 +52,20 @@ export class Switch {
         onClick={() => this.toggle()}
         onKeyDown={(event) => this.handleKeyDown(event)}
       >
-        <input type="checkbox" hidden
-          name={this.name}
-          disabled={this.disabled}
-          value={`${this.internalValue}`} />
-        <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
-
-      </div>
-    );
+        <div class="switch_checkbox-wrapper">
+          <input type="checkbox" hidden
+            name={this.name}
+            disabled={this.disabled}
+            value={`${this.internalValue}`} />
+          <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
+        </div>
+        <div class={`switch_label-wrapper ${this.disabled ? 'disabled' : ''}`} >
+          <label htmlFor="switch">
+            <slot />
+          </label>
+        </div>
+      </div >
+    )
 
   }
 }
