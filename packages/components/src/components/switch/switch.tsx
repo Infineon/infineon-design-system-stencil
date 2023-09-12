@@ -27,7 +27,7 @@ export class Switch {
 
 
   toggle() {
-    // if (this.disabled) return;
+    if (this.disabled) return;
     this.internalValue = !this.internalValue;
     this.ifxChange.emit(this.internalValue);
   }
