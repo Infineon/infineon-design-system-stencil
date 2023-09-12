@@ -671,8 +671,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.classList.remove('focus');
     });
 
-
-
   }
 
 

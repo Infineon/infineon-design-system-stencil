@@ -7,10 +7,12 @@
 
 
 .navbar__wrapper {
-  height: 64px;
+  //height: 64px;
+  height: 63px;
   position: sticky;
   overflow: hidden;
   z-index: 1000000;
+  border-bottom: 1px solid #EEEDED;
 }
 
 .navbar__main-container {
@@ -173,7 +175,7 @@
   padding: 8px 40px;
   gap: 16px;
   background-color: tokens.$ifxColorBaseWhite;
-  border-bottom: 1px solid #EEEDED;
+  border-bottom: 1px solid #EEEDED; 
 
   & .navbar__container-left {
     display: flex;
@@ -184,6 +186,10 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    &.searchOpened { 
+      display: none;
+    }
 
     & .navbar__container-left-logo {
       display: flex;
@@ -450,7 +456,7 @@
             flex-grow: 0;
             //width: 24px;
             //height: 24px;
-            max-width: 200px;
+            //max-width: 200px;
           }
 
           & .navbar__container-right-content-navigation-item-navigation-profile {
@@ -511,6 +517,34 @@
       }
     }
   }
+
+  &.searchOpened { 
+    justify-content: initial;
+
+    & .navbar__container-right { 
+      flex-grow: 0;
+      flex: auto;
+      justify-content: initial;
+    }
+
+    & .navbar__container-right-content {
+      width: 100%;
+
+      & .navbar__container-right-content-navigation-group { 
+        justify-content: initial;
+        width: 100%;
+
+        & .navbar__container-right-content-navigation-item-search-bar { 
+          padding: 0;
+          width: 100%;
+
+          & .navbar__container-right-content-navigation-item-search-bar-icon-wrapper {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -549,12 +583,14 @@
 
   //tablet
   .navbar__wrapper {
-    height: 64px;
+    //height: 64px;
+    height: 63px;
   }
 
   .navbar__container {
     padding: 0px 16px;
-    height: 64px;
+    //height: 64px;
+    height: 63px;
     gap: initial;
 
     & .navbar__container-left {
@@ -595,7 +631,8 @@
   }
 
   .navbar__container {
-    padding: 4px 24px;
+    //padding: 4px 24px;
+    padding: 0px 24px;
     height: 72px;
 
     & .navbar__container-left {
@@ -685,7 +722,8 @@
   }
 
   .navbar__container {
-    padding: 8px 32px;
+    //padding: 8px 32px;
+    padding: 0px 32px;
     height: 80px;
 
     & .navbar__container-left {
@@ -723,7 +761,8 @@
   }
 
   .navbar__container {
-    padding: 8px 40px;
+    //padding: 8px 40px;
+    padding: 0px 40px;
     height: 80px;
 
     & .navbar__container-left {

@@ -7,19 +7,19 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type      | Default     |
-| ----------------- | ------------------- | ----------- | --------- | ----------- |
-| `disabled`        | `disabled`          |             | `boolean` | `false`     |
-| `isOpen`          | `is-open`           |             | `boolean` | `true`      |
-| `showCloseButton` | `show-close-button` |             | `boolean` | `true`      |
-| `value`           | `value`             |             | `string`  | `undefined` |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `disabled` | `disabled` |             | `boolean` | `false`     |
+| `isOpen`   | `is-open`  |             | `boolean` | `true`      |
+| `value`    | `value`    |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxInput` |             | `CustomEvent<any>` |
+| Event                | Description | Type               |
+| -------------------- | ----------- | ------------------ |
+| `ifxInput`           |             | `CustomEvent<any>` |
+| `ifxSearchBarIsOpen` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

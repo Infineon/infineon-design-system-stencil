@@ -8,7 +8,7 @@ import classNames from 'classnames';
 })
 
 export class Example {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
   @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
   @Prop() size: string = 'm';
   @Prop() disabled: boolean = false;
@@ -93,10 +93,10 @@ export class Example {
 
 
   getVariantClass() {
-    return `${this.variant}` === "outline"
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text'
-        ? `${this.color}-outline-text`
+    return `${this.variant}` === "secondary"
+      ? `secondary-${this.color}`
+      : `${this.variant}` === 'tertiary'
+        ? `${this.color}-tertiary`
         : `${this.color}`;
   }
 

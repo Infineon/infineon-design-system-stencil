@@ -7,14 +7,14 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                                             | Default     |
-| ---------- | ---------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `color`    | `color`    |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
-| `disabled` | `disabled` |             | `boolean`                                                        | `false`     |
-| `href`     | `href`     |             | `string`                                                         | `undefined` |
-| `size`     | `size`     |             | `string`                                                         | `'m'`       |
-| `target`   | `target`   |             | `string`                                                         | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
+| Property   | Attribute  | Description | Type                                     | Default     |
+| ---------- | ---------- | ----------- | ---------------------------------------- | ----------- |
+| `disabled` | `disabled` |             | `boolean`                                | `false`     |
+| `href`     | `href`     |             | `string`                                 | `undefined` |
+| `size`     | `size`     |             | `string`                                 | `'m'`       |
+| `target`   | `target`   |             | `string`                                 | `'_self'`   |
+| `theme`    | `theme`    |             | `"danger" \| "default" \| "inverse"`     | `'default'` |
+| `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"` | `'primary'` |
 
 
 ## Methods

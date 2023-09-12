@@ -66,7 +66,7 @@ export class IfxModal {
             </div>
             <div class="modal-footer">
               <slot name="buttons">
-                <ifx-button variant='outline' onClick={() => this.handleOkButtonClick()}>OK</ifx-button>
+                <ifx-button variant='secondary' onClick={() => this.handleOkButtonClick()}>OK</ifx-button>
                 <ifx-button onClick={() => this.handleCancelButtonClick()}>Cancel</ifx-button>
               </slot>
             </div>

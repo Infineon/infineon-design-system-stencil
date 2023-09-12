@@ -34,7 +34,7 @@ export class RadioButton {
 
 
   handleRadioButtonClick() {
-    if (!this.disabled) {
+    if (!this.disabled && !this.error) {
       this.internalValue = !this.internalValue;
       this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
       this.ifxChange.emit(this.internalValue);
@@ -48,13 +48,16 @@ export class RadioButton {
         onClick={this.handleRadioButtonClick.bind(this)}
       >
         <div
-          class={`radioButton__wrapper ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''} ${this.error ? 'error' : ''}`}
+          class={`radioButton__wrapper 
+          ${this.internalValue ? 'checked' : ''} 
+          ${this.disabled ? 'disabled' : ''} 
+          ${this.error ? 'error' : ''}`}
           tabIndex={this.disabled ? -1 : 0}
         >
           {this.internalValue && <div class="radioButton__wrapper-mark"></div>}
         </div>
         {this.hasSlot && (
-          <div class={`label ${this.error ? 'error' : ''} ${this.disabled ? 'disabled' : ''}`}>
+          <div class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ''}`}>
             <slot />
           </div>
         )}

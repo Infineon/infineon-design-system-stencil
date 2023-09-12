@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                             | Default     |
-| -------- | --------- | ----------- | ---------------------------------------------------------------- | ----------- |
-| `color`  | `color`   |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `undefined` |
-| `icon`   | `icon`    |             | `string`                                                         | `undefined` |
+| Property | Attribute | Description | Type                                                | Default     |
+| -------- | --------- | ----------- | --------------------------------------------------- | ----------- |
+| `color`  | `color`   |             | `"danger" \| "primary" \| "secondary" \| "warning"` | `undefined` |
+| `icon`   | `icon`    |             | `string`                                            | `undefined` |
 
 
 ## Events

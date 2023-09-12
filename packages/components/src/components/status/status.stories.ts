@@ -14,7 +14,7 @@ export default {
       attr: 'border',
     },
     color: {
-      options: ['orange', 'ocean', 'grey', 'grey-200', 'red', 'green', 'berry'],
+      options: ['orange', 'ocean', 'grey', 'light-grey', 'red', 'green', 'berry'],
       control: { type: 'radio' },
     },
   },

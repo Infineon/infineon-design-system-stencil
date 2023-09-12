@@ -49,17 +49,17 @@
           <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
         </ifx-dropdown-menu>
       </ifx-breadcrumb-item>
-    
+
       <ifx-breadcrumb-item>
         <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
         <ifx-dropdown-menu>
-        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+          <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
         </ifx-dropdown-menu>
       </ifx-breadcrumb-item>
-    
+
       <ifx-breadcrumb-item>
         <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
       </ifx-breadcrumb-item>
@@ -85,14 +85,14 @@
     <br />
 
     <h2>Button</h2>
-    <ifx-button variant="solid" href="" target="_blank" color="primary" size="m" disabled="false" icon="false">
+    <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="false" icon="false">
       Button
     </ifx-button>
     <br />
 
     <h2>Progress bar</h2>
     <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
-    <ifx-button onclick="updateProgress()" variant="outline" href="" target="_blank" color="primary" size="s"
+    <ifx-button onclick="updateProgress()" variant="secondary" href="" target="_blank" theme="default" size="s"
       disabled="false" icon="false">
       Update Progress
     </ifx-button>
@@ -103,7 +103,7 @@
     <form id="form">
       <ifx-checkbox id="checkbox" name="name">label</ifx-checkbox>
       <br />
-      <ifx-button type="submit" variant="outline">Submit</ifx-button>
+      <ifx-button type="submit" variant="secondary">Submit</ifx-button>
 
     </form>
 
@@ -204,8 +204,8 @@
         more text. And more and more.</ifx-card-text>
 
       <ifx-card-links slot="buttons">
-        <ifx-button id="cardBtn" color="primary">Button</ifx-button>
-        <ifx-button color="secondary">Button</ifx-button>
+        <ifx-button id="cardBtn" theme="default">Button</ifx-button>
+        <ifx-button theme="danger">Button</ifx-button>
       </ifx-card-links>
     </ifx-card>
     <br />
@@ -238,14 +238,14 @@
         dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu size="l">
-        <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+       <ifx-dropdown-header>Header Text</ifx-dropdown-header>
         <ifx-search-field show-delete-icon="false"></ifx-search-field>
-        <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
         <ifx-dropdown-separator></ifx-dropdown-separator>
-        <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
-        <ifx-dropdown-item>Two</ifx-dropdown-item>
-        <ifx-dropdown-item>Three</ifx-dropdown-item>
-        <ifx-dropdown-item>Four</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+        <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
       </ifx-dropdown-menu>
     </ifx-dropdown>
     <br />
@@ -257,13 +257,13 @@
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
-      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+      position="right"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Dismissible tooltip on button click
       </ifx-button></ifx-tooltip>
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
-      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+      position="auto"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Extended tooltip on button hover
       </ifx-button></ifx-tooltip>
 
@@ -310,13 +310,13 @@
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
-      position="right"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+      position="right"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Dismissible tooltip on button click
       </ifx-button></ifx-tooltip>
     <br />
 
     <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm an extended tooltip" variant="extended"
-      position="auto"> <ifx-button variant="outline" color="primary" size="m" disabled="false" icon="false">
+      position="auto"> <ifx-button variant="secondary" theme="default" size="m" disabled="false" icon="false">
         Extended tooltip on button hover
       </ifx-button></ifx-tooltip>
     <br />
@@ -333,7 +333,7 @@
     <br />
     <ifx-table row-height='default'
       cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
-      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":"something about Toyota"},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":"something about Ford"},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"outline","size":"s","target":"_blank","color":"secondary","text":"Button"}}]'
+      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":"something about Toyota"},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":"something about Ford"},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","theme":"danger","text":"Button"}}]'
       table-height='auto' pagination='false' pagination-page-size='10'>
     </ifx-table>
 

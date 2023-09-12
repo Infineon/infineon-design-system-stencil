@@ -6,7 +6,6 @@
 }
 
 
-
 .checkbox__container {
     box-sizing: border-box;
     display: inline-flex;
@@ -28,6 +27,12 @@
         flex: none;
         order: 0;
         flex-grow: 0;
+
+        &.checkbox-m {
+            height: tokens.$ifxSize300;
+            width: tokens.$ifxSize300;
+        }
+
 
         &.error {
             border-color: #CD002F;
@@ -65,6 +70,10 @@
             order: 0;
             flex-grow: 0;
             color: tokens.$ifxColorBaseWhite;
+
+            &.error {
+                background-color: #CD002F;
+            }
 
             &:focus-visible {
                 border: 1px solid transparent;
@@ -106,8 +115,8 @@
     }
 
     & .label {
-        width: 25px;
         height: tokens.$ifxSize250;
+        font-family: tokens.$ifxFontFamilyBody;
         font-style: normal;
         font-weight: 400;
         font-size: tokens.$ifxFontSizeS;
@@ -117,12 +126,14 @@
         order: 1;
         flex-grow: 0;
 
-        &.disabled {
-            color: #BFBBBB;
+        &.label-m {
+            height: tokens.$ifxSize300;
+            font-size: tokens.$ifxFontSizeM;
+            line-height: tokens.$ifxLineHeightM;
         }
 
-        &.error {
-            color: #CD002F;
+        &.disabled {
+            color: #BFBBBB;
         }
     }
 

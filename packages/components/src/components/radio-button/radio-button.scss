@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 .radioButton__container {
     box-sizing: border-box;
@@ -53,7 +54,7 @@
         }
 
         &:hover {
-            border-color: #0A8276;
+            background-color: tokens.$ifxColorEngineering200;
         }
 
         &.disabled {
@@ -90,10 +91,10 @@
 
 
             &:hover {
-                border-color: #08665C;
+                border-color: tokens.$ifxColorOcean600;
 
                 & .radioButton__wrapper-mark {
-                    background-color: #08665C;
+                    background-color: tokens.$ifxColorOcean600;
                 }
             }
 
@@ -124,7 +125,6 @@
     .label {
         display: flex;
         align-items: center;
-        width: 25px;
         height: tokens.$ifxSize250;
         font-style: normal;
         font-weight: 400;
@@ -135,13 +135,17 @@
         order: 1;
         flex-grow: 0;
 
+        &.label-m {
+            height: tokens.$ifxSize300;
+            font-size: tokens.$ifxFontSizeM;
+            line-height: tokens.$ifxLineHeightM;
+        }
+
         &.disabled {
             color: #BFBBBB;
         }
 
-        &.error {
-            color: #CD002F;
-        }
+
 
         &:hover {
             cursor: pointer;

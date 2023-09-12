@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 .breadcrumb-parent {
   display: flex;
@@ -49,7 +50,7 @@
   & .breadcrumb-divider {
     width: 10px;
     height: tokens.$ifxSize200;
-    color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorEngineering200;
     line-height: 13px;
     font-size: tokens.$ifxFontSizeXl;
 

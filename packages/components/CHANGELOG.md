@@ -1,3 +1,177 @@
+# v20.19.3 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- Dropdown Menu: Updated in accordance with design review [#511](https://github.com/Infineon/infineon-design-system-stencil/pull/511) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.19.2 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- search-bar design review updates implemented [#507](https://github.com/Infineon/infineon-design-system-stencil/pull/507) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.19.1 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- design review changes: status [#505](https://github.com/Infineon/infineon-design-system-stencil/pull/505) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.19.0 (Tue Sep 12 2023)
+
+#### 🚀 Enhancement
+
+- Sidebar: updated in accordance with design review [#503](https://github.com/Infineon/infineon-design-system-stencil/pull/503) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Documentation: link update V2 [#495](https://github.com/Infineon/infineon-design-system-stencil/pull/495) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.18.0 (Tue Sep 12 2023)
+
+#### 🚀 Enhancement
+
+- Breadcrumb: updated in accordance with design review [#500](https://github.com/Infineon/infineon-design-system-stencil/pull/500) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Alert: updated in accordance to design review [#498](https://github.com/Infineon/infineon-design-system-stencil/pull/498) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.17.5 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar update for the search-bar [#465](https://github.com/Infineon/infineon-design-system-stencil/pull/465) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.17.4 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- 291 design review component spinner [#494](https://github.com/Infineon/infineon-design-system-stencil/pull/494) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.17.3 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- checkbox sizes added;font changed;error state fix [#491](https://github.com/Infineon/infineon-design-system-stencil/pull/491) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.17.2 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- radio-button design review updates [#492](https://github.com/Infineon/infineon-design-system-stencil/pull/492) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.17.1 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- button+icon-button updated based on DesignReview [#479](https://github.com/Infineon/infineon-design-system-stencil/pull/479) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.17.0 (Mon Sep 11 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: content update [#478](https://github.com/Infineon/infineon-design-system-stencil/pull/478) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🐛 Bug Fix
+
+- Documentation: link update [#489](https://github.com/Infineon/infineon-design-system-stencil/pull/489) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.16.8 (Mon Sep 11 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: navbar update [#485](https://github.com/Infineon/infineon-design-system-stencil/pull/485) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: button update [#487](https://github.com/Infineon/infineon-design-system-stencil/pull/487) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v20.16.7 (Fri Sep 08 2023)
+
+#### 🐛 Bug Fix
+
+- Select Focus state issue [#476](https://github.com/Infineon/infineon-design-system-stencil/pull/476) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.16.6 (Thu Sep 07 2023)
 
 #### 🐛 Bug Fix

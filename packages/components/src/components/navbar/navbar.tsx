@@ -18,6 +18,28 @@ export class Navbar {
   @State() hasLeftMenuItems: boolean = true;
   @Prop() fixed: boolean = true;
   @Prop() showLogo: boolean = true;
+  @State() searchBarIsOpen: boolean = false;
+
+  @Listen('ifxSearchBarIsOpen')
+  handleSearchBarToggle(e) { 
+    this.searchBarIsOpen = !this.searchBarIsOpen;
+    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
+    const navbarContainerLeftSide = this.el.shadowRoot.querySelector('.navbar__container-left')
+    console.log(navbarContainerLeftSide)
+
+    if(e.detail) { 
+      for(let i = 0; i < navbarItems.length; i++) {
+        navbarItems[i].hideComponent = true;
+      }
+      moreMenu.style.display = 'none'
+    } else { 
+      for(let i = 0; i < navbarItems.length; i++) {
+        navbarItems[i].hideComponent = false;
+      }
+      moreMenu.style.display = 'flex'
+    }
+  }
 
   toggleClass(el, className) {
     el.classList.toggle(className)
@@ -134,8 +156,8 @@ export class Navbar {
     return (
       <div class="navbar__wrapper">
         <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
-          <div class="navbar__container">
-            <div class="navbar__container-left">
+          <div class={`navbar__container ${this.searchBarIsOpen ? "searchOpened" : ""}`}>
+            <div class={`navbar__container-left ${this.searchBarIsOpen ? 'searchOpened' : ""}`}>
               {this.showLogo &&
                <div class="navbar__container-left-logo">
                <div class="navbar__container-left-logo-default">

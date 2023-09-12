@@ -17,7 +17,7 @@
 | `size`     | `size`     |             | `string`                                                         | `'m'`       |
 | `target`   | `target`   |             | `string`                                                         | `'_self'`   |
 | `type`     | `type`     |             | `string`                                                         | `'button'`  |
-| `variant`  | `variant`  |             | `"outline" \| "outline-text" \| "solid"`                         | `'solid'`   |
+| `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"`                         | `'primary'` |
 
 
 ## Methods

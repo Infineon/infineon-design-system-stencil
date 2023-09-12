@@ -4,9 +4,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 80px;
   min-height: tokens.$ifxSize500;
-  padding: 0px 16px;
+  padding: 8px;
   gap: tokens.$ifxSpace100;
   color: tokens.$ifxColorBaseWhite;
   flex-direction: row;
@@ -29,71 +28,45 @@
 .btn-primary {
   color: tokens.$ifxColorBaseWhite;
   background-color: tokens.$ifxColorOcean500;
-  border-color: tokens.$ifxColorOcean500;
+
+  &:disabled,
+  &.disabled {
+    background-color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorBaseWhite;
+    pointer-events: none;
+
+  }
 }
 
-.btn-outline-primary {
-  background-color: tokens.$ifxColorBaseWhite;
-  color: tokens.$ifxColorOcean500;
-  border-color: tokens.$ifxColorOcean500;
-}
 
 .btn-secondary {
-  color: tokens.$ifxColorBaseWhite;
-  background-color: tokens.$ifxColorBerry500;
-  border-color: tokens.$ifxColorBerry500;
-}
-
-.btn-outline-secondary {
+  color: tokens.$ifxColorOcean500;
   background-color: tokens.$ifxColorBaseWhite;
-  color: tokens.$ifxColorBerry500;
-  border-color: tokens.$ifxColorBerry500;
+  border-color: tokens.$ifxColorOcean500;
+
+  &:disabled,
+  &.disabled {
+    background-color: tokens.$ifxColorBaseWhite;
+    border: 1px solid tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
+
+  }
 }
 
-.btn-success {
+.btn-tertiary {
+  background-color: tokens.$ifxColorBaseTransparent;
   color: tokens.$ifxColorBaseBlack;
-  background-color: tokens.$ifxColorGreen500;
-  border-color: tokens.$ifxColorGreen500;
-}
 
-.btn-outline-success {
-  background-color: tokens.$ifxColorBaseWhite;
-  border-color: tokens.$ifxColorGreen500;
+  &:disabled,
+  &.disabled {
+    color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
+  }
 }
-
-.btn-danger {
-  color: tokens.$ifxColorBaseWhite;
-  background-color: tokens.$ifxColorRed500;
-  border-color: tokens.$ifxColorRed500;
-}
-
-.btn-outline-danger {
-  background-color: tokens.$ifxColorBaseWhite;
-  color: tokens.$ifxColorRed500;
-  border-color: tokens.$ifxColorRed500;
-}
-
-.btn-warning {
-  color: tokens.$ifxColorBaseBlack;
-  background-color: tokens.$ifxColorOrange500;
-  border-color: tokens.$ifxColorOrange500;
-}
-
-.btn-outline-warning {
-  background-color: tokens.$ifxColorBaseWhite;
-  border-color: tokens.$ifxColorOrange500;
-}
-
 
 
 .btn {
-
-  &.btn-s {
-    font-size: tokens.$ifxFontSizeS;
-    min-width: 71px;
-    min-height: tokens.$ifxSize400;
-    line-height: tokens.$ifxLineHeightXs;
-  }
 
   &.icon-button {
     min-width: initial;
@@ -114,56 +87,21 @@
     &.btn-s {
       width: tokens.$ifxSize400;
       height: tokens.$ifxSize400;
+      padding: 8px;
     }
 
-  }
 
-  &.btn-primary,
-  &.btn-outline-primary,
-  &.btn-secondary,
-  &.btn-outline-secondary,
-  &.btn-success,
-  &.btn-outline-success,
-  &.btn-danger,
-  &.btn-outline-danger,
-  &.btn-warning,
-  &.btn-outline-warning,
-  &.btn-outline-text {
-    &:focus {
-      box-shadow: none;
-
+    &.btn-l {
+      width: tokens.$ifxSize600;
+      height: tokens.$ifxSize600;
+      padding: 8px;
     }
   }
-
-  &.btn-primary,
-  &.btn-outline-primary,
-  &.btn-secondary,
-  &.btn-outline-secondary,
-  &.btn-success,
-  &.btn-outline-success,
-  &.btn-danger,
-  &.btn-outline-danger,
-  &.btn-warning,
-  &.btn-outline-warning,
-  &.btn-outline-text {
-    &:focus-visible {
-      box-shadow: 0 0 0 3px #B4DDD8;
-    }
-  }
-
-  &:disabled,
-  &.disabled {
-    opacity: tokens.$ifxOpacity100;
-    background-color: tokens.$ifxColorEngineering300;
-    border-color: tokens.$ifxColorEngineering300;
-    color: tokens.$ifxColorBaseWhite;
-  }
-
 
   &.btn-primary:not(:disabled, .disabled) {
-    &:focus {
-      background-color: tokens.$ifxColorOcean500;
-      border-color: tokens.$ifxColorOcean500;
+    &:focus:not(:active, .active) {
+      outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
     }
 
     &:hover {
@@ -178,283 +116,40 @@
     }
   }
 
-  &.btn-outline-primary:not(:disabled, .disabled) {
-
-    &:focus {
-      background-color: tokens.$ifxColorBaseTransparent;
-    }
-
-    &:hover {
-      color: tokens.$ifxColorBaseWhite;
-      background-color: tokens.$ifxColorOcean600;
-      border-color: tokens.$ifxColorOcean600;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorOcean700;
-      border-color: tokens.$ifxColorOcean700;
-    }
-  }
 
   &.btn-secondary:not(:disabled, .disabled) {
-    &:focus {
-      background-color: tokens.$ifxColorBerry500;
-      border-color: tokens.$ifxColorBerry500;
+    &:focus:not(:active, .active) {
+      outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
     }
 
     &:hover {
-      background-color: tokens.$ifxColorBerry500;
-      border-color: tokens.$ifxColorBerry500;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorBerry500;
-      border-color: tokens.$ifxColorBerry500;
-    }
-  }
-
-  &.btn-outline-secondary:not(:disabled, .disabled) {
-
-    &:focus {
-      background-color: tokens.$ifxColorBaseTransparent;
-    }
-
-    &:hover {
+      background-color: tokens.$ifxColorOcean600;
+      border-color: tokens.$ifxColorOcean600;
       color: tokens.$ifxColorBaseWhite;
-      background-color: tokens.$ifxColorBerry500;
-      border-color: tokens.$ifxColorBerry500;
     }
 
     &:active,
     &.active {
-      background-color: tokens.$ifxColorBerry500;
-      border-color: tokens.$ifxColorBerry500;
+      background-color: tokens.$ifxColorOcean700;
+      border-color: tokens.$ifxColorOcean700;
     }
   }
 
-  &.btn-success:not(:disabled, .disabled) {
-
-    &:focus {
-      background-color: tokens.$ifxColorGreen500;
-      border-color: tokens.$ifxColorGreen500;
+  &.btn-tertiary:not(:disabled, .disabled) {
+    &:focus:not(:active, .active) {
+      outline: none;
+      color: tokens.$ifxColorBaseBlack;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
     }
 
     &:hover {
-      background-color: tokens.$ifxColorGreen500;
-      border-color: tokens.$ifxColorGreen500;
+      color: tokens.$ifxColorOcean500;
     }
 
     &:active,
     &.active {
-      background-color: tokens.$ifxColorGreen500;
-      border-color: tokens.$ifxColorGreen500;
-    }
-  }
-
-  &.btn-outline-success:not(:disabled, .disabled) {
-    color: tokens.$ifxColorBaseBlack;
-
-    &:focus {
-      background-color: tokens.$ifxColorBaseTransparent;
-    }
-
-    &:hover {
-      background-color: tokens.$ifxColorGreen500;
-      border-color: tokens.$ifxColorGreen500;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorGreen500;
-      border-color: tokens.$ifxColorGreen500;
-    }
-  }
-
-  &.btn-danger:not(:disabled, .disabled) {
-    &:focus {
-      background-color: tokens.$ifxColorRed500;
-      border-color: tokens.$ifxColorRed500;
-    }
-
-    &:hover {
-      background-color: tokens.$ifxColorRed600;
-      border-color: tokens.$ifxColorRed600;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorRed700;
-      border-color: tokens.$ifxColorRed700;
-    }
-  }
-
-  &.btn-outline-danger:not(:disabled, .disabled) {
-
-    &:focus {
-      background-color: tokens.$ifxColorBaseTransparent;
-    }
-
-    &:hover {
-      color: tokens.$ifxColorBaseWhite;
-      background-color: tokens.$ifxColorRed600;
-      border-color: tokens.$ifxColorRed600;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorRed700;
-      border-color: tokens.$ifxColorRed700;
-    }
-  }
-
-  &.btn-warning:not(:disabled, .disabled) {
-
-    &:focus {
-      background-color: tokens.$ifxColorOrange500;
-      border-color: tokens.$ifxColorOrange500;
-    }
-
-    &:hover {
-      background-color: tokens.$ifxColorOrange500;
-      border-color: tokens.$ifxColorOrange500;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorOrange500;
-      border-color: tokens.$ifxColorOrange500;
-    }
-  }
-
-  &.btn-outline-warning:not(:disabled, .disabled) {
-    color: tokens.$ifxColorBaseBlack;
-
-    &:focus {
-      background-color: tokens.$ifxColorBaseTransparent;
-    }
-
-    &:hover {
-      background-color: tokens.$ifxColorOrange500;
-      border-color: tokens.$ifxColorOrange500;
-    }
-
-    &:active,
-    &.active {
-      background-color: tokens.$ifxColorOrange500;
-      border-color: tokens.$ifxColorOrange500;
-    }
-  }
-
-  &.btn-primary-outline-text {
-    background-color: tokens.$ifxColorBaseTransparent;
-    color: tokens.$ifxColorOcean500;
-
-    &:hover {
       color: tokens.$ifxColorOcean600;
-    }
-
-    &:active,
-    &.active {
-      color: tokens.$ifxColorOcean700;
-    }
-
-    &:disabled,
-    &.disabled {
-      opacity: tokens.$ifxOpacity100;
-      background-color: tokens.$ifxColorBaseTransparent;
-      border-color: tokens.$ifxColorBaseTransparent;
-      color: tokens.$ifxColorEngineering300;
-    }
-  }
-
-  &.btn-secondary-outline-text {
-    background-color: tokens.$ifxColorBaseTransparent;
-    color: tokens.$ifxColorBerry500;
-
-    &:hover {
-      color: tokens.$ifxColorBerry500;
-    }
-
-    &:active,
-    &.active {
-      color: tokens.$ifxColorBerry500;
-    }
-
-    &:disabled,
-    &.disabled {
-      opacity: tokens.$ifxOpacity100;
-      background-color: tokens.$ifxColorBaseTransparent;
-      border-color: tokens.$ifxColorBaseTransparent;
-      color: tokens.$ifxColorEngineering300;
-    }
-  }
-
-  &.btn-success-outline-text {
-    background-color: tokens.$ifxColorBaseTransparent;
-    color: tokens.$ifxColorGreen500;
-
-    &:hover {
-      color: tokens.$ifxColorGreen500;
-    }
-
-    &:active,
-    &.active {
-      color: tokens.$ifxColorGreen500;
-    }
-
-    &:disabled,
-    &.disabled {
-      opacity: tokens.$ifxOpacity100;
-      background-color: tokens.$ifxColorBaseTransparent;
-      border-color: tokens.$ifxColorBaseTransparent;
-      color: tokens.$ifxColorEngineering300;
-    }
-  }
-
-  &.btn-danger-outline-text {
-    background-color: tokens.$ifxColorBaseTransparent;
-    color: tokens.$ifxColorRed500;
-
-    &:hover {
-      color: tokens.$ifxColorRed600;
-    }
-
-    &:active,
-    &.active {
-      color: tokens.$ifxColorRed700;
-    }
-
-    &:disabled,
-    &.disabled {
-      opacity: tokens.$ifxOpacity100;
-      background-color: tokens.$ifxColorBaseTransparent;
-      border-color: tokens.$ifxColorBaseTransparent;
-      color: tokens.$ifxColorEngineering300;
-    }
-
-  }
-
-  &.btn-warning-outline-text {
-    background-color: tokens.$ifxColorBaseTransparent;
-    color: tokens.$ifxColorOrange500;
-
-    &:hover {
-      color: tokens.$ifxColorOrange500;
-    }
-
-    &:active,
-    &.active {
-      color: tokens.$ifxColorOrange500;
-    }
-
-    &:disabled,
-    &.disabled {
-      opacity: tokens.$ifxOpacity100;
-      background-color: tokens.$ifxColorBaseTransparent;
-      border-color: tokens.$ifxColorBaseTransparent;
-      color: tokens.$ifxColorEngineering300;
     }
   }
 }

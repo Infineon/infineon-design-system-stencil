@@ -61,15 +61,6 @@
     }
   }
 
-  &.success {
-    border: 1px solid tokens.$ifxColorGreen500;
-
-    & .icon-wrapper {
-      background-color: tokens.$ifxColorGreen500;
-      color: tokens.$ifxColorBaseWhite;
-    }
-  }
-
   &.danger {
     border: 1px solid tokens.$ifxColorRed500;
 

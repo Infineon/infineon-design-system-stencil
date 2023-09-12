@@ -58,7 +58,7 @@ export const IfxBreadcrumbItemLabel = /*@__PURE__*/ defineContainer<JSX.IfxBread
 
 export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', undefined, [
   'variant',
-  'color',
+  'theme',
   'size',
   'disabled',
   'href',
@@ -100,6 +100,7 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
   'value',
   'error',
   'name',
+  'size',
   'indeterminate',
   'ifxChange'
 ]);
@@ -153,8 +154,8 @@ export const IfxDropdownTrigger = /*@__PURE__*/ defineContainer<JSX.IfxDropdownT
 
 export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
   'isOpen',
+  'theme',
   'variant',
-  'color',
   'size',
   'disabled',
   'hideArrow'
@@ -205,7 +206,6 @@ export const IfxIcon = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', un
 
 export const IfxIconButton = /*@__PURE__*/ defineContainer<JSX.IfxIconButton>('ifx-icon-button', undefined, [
   'variant',
-  'color',
   'size',
   'disabled',
   'icon',
@@ -285,7 +285,8 @@ export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('i
   'hideLabel',
   'icon',
   'href',
-  'target'
+  'target',
+  'hideComponent'
 ]);
 
 
@@ -331,11 +332,11 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 
 
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
-  'showCloseButton',
   'isOpen',
   'disabled',
   'value',
-  'ifxInput'
+  'ifxInput',
+  'ifxSearchBarIsOpen'
 ],
 'value', 'ifxInput');
 

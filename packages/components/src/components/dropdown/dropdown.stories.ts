@@ -7,9 +7,14 @@ export default {
     label: "Dropdown",
     size: "m",
     disabled: false,
+    search: false,
+    header: false,
+    separator: false,
     variant: "solid",
-    color: "primary",
+    url: "",
+    target: "_self",
     icon: "c-check-16",
+    dropdownMenuItemIcon: false,
     defaultOpen: false,
     noCloseOnOutsideClick: false,
     noCloseOnMenuClick: false,
@@ -46,15 +51,16 @@ export default {
     },
     disabled: { description: 'Determines if the dropdown button should be disabled' },
     variant: {
-      description: 'The visual style of the dropdown button. Accepted values are "solid", "outline", "outline-text"',
-      options: ['solid', 'outline', 'outline-text'],
+      description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
+      options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
     },
-    color: {
-      description: 'The color scheme of the dropdown button. Accepted values are "primary", "secondary", "success", "danger", "warning"',
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
+
+    target: {
+      options: ['_self', '_blank'],
       control: { type: 'radio' },
     },
+
     icon: {
       description: 'The icon to be displayed on the dropdown button',
       options: Object.values(icons).map(i => i['name']),
@@ -87,29 +93,21 @@ export default {
 
 const DefaultTemplate = (args) => {
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<ifx-dropdown
-    placement="${args.placement}"
-    ${args.defaultOpen ? 'default-open' : ''}
-    ${args.noCloseOnOutsideClick ? 'no-close-on-outside-click' : ''}
-    ${args.noCloseOnMenuClick ? 'no-close-on-menu-click' : ''}
-    ${args.disabled ? 'disabled' : ''}
-    ${args.noAppendToBody ? 'no-append-to-body' : ''}
-  >
-    <ifx-dropdown-trigger-button
-      variant="${args.variant}"
-      color="${args.color}"
-      icon="${args.icon}"
-      type="${args.type}"
-    >${args.label}</ifx-dropdown-trigger-button>
-    <ifx-dropdown-menu size="${args.size}">
-      <ifx-dropdown-item target="_blank" href="https://www.google.de">Link Item</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item href="javascript:void(0)">Console log from click event</ifx-dropdown-item>
-      <ifx-dropdown-item icon="c-check-16">Item with Icon</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item>Boring Item</ifx-dropdown-item>
-    </ifx-dropdown-menu>
-  </ifx-dropdown>`;
+  wrapper.innerHTML = `<ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+  <ifx-dropdown-trigger-button variant="${args.variant}">
+    dropdown
+  </ifx-dropdown-trigger-button>
+  <ifx-dropdown-menu size="${args.size}">
+    ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ""}
+    ${args.search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ""}
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+    ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ""}
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+  </ifx-dropdown-menu>
+</ifx-dropdown>`;
 
   const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
@@ -139,12 +137,10 @@ const LabelTriggerTemplate = (args) => {
     </ifx-dropdown-trigger>
     Some more text
     <ifx-dropdown-menu>
-      <ifx-dropdown-item target="_blank" href="https://www.google.de">Link Item</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item href="javascript:void(0)">Console log from click event</ifx-dropdown-item>
-      <ifx-dropdown-item icon="c-check-16">Item with Icon</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item>Boring Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
+      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
     </ifx-dropdown-menu>
   </ifx-dropdown>`;
 

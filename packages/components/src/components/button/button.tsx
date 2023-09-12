@@ -8,15 +8,15 @@ import classNames from 'classnames';
 })
 
 export class Button {
-  @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
-  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
+  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
+  @Prop() theme: 'default' | 'danger' | 'inverse' = 'default';
   @Prop() size: string = 'm';
   @Prop() disabled: boolean = false;
   @State() internalHref: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Element() el;
- 
+
   private focusableElement: HTMLElement;
   private nativeButton: HTMLButtonElement;
 
@@ -30,17 +30,41 @@ export class Button {
     this.focusableElement.focus();
   }
 
+  protected componentDidLoad() {
+    this.addEventListenersToHandleCustomFocusAndActiveState();
+  }
+
+  private addEventListenersToHandleCustomFocusAndActiveState() {
+    const element = this.el.shadowRoot.firstChild;
+
+    if (!element) {
+      console.error('element not found');
+      return;
+    }
+
+    element.tabIndex = 0;
+
+    element.addEventListener('focus', () => {
+      if (!this.disabled) {
+        element.classList.add('focus');
+      }
+    });
+
+    element.addEventListener('blur', () => {
+      element.classList.remove('focus');
+    });
+  }
 
   componentWillLoad() {
     if (this.el.closest('form')) {
-      if(this.el.href) {
+      if (this.el.href) {
         this.el.internalHref = undefined;
       }
       this.nativeButton = document.createElement('button');
       this.nativeButton.type = 'submit';
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
-    } else { 
+    } else {
       this.internalHref = this.href;
     }
   }
@@ -51,37 +75,53 @@ export class Button {
     }
   }
 
+  handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
+    if (this.disabled) {
+      event.preventDefault();
+      this.focusableElement.blur();
+    }
+  }
+
 
   render() {
     return (
       <Host>
-          <a
-            ref={(el) => (this.focusableElement = el)}
-            class={this.getClassNames()}
-            href={!this.disabled ? this.internalHref : undefined}
-            target={this.target}
-            onClick={this.handleClick.bind(this)}
-            rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
-          >
-            <slot></slot>
-          </a>
+        <a
+          ref={(el) => (this.focusableElement = el)}
+          class={this.getClassNames()}
+          href={!this.disabled ? this.internalHref : undefined}
+          target={this.target}
+          onClick={this.handleClick.bind(this)}
+          rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
+          onFocus={(event) => this.handleFocus(event)}
+
+        >
+          <slot></slot>
+        </a>
       </Host>
     );
   }
 
 
   getVariantClass() {
-    return `${this.variant}` === "outline"
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text'
-        ? `${this.color}-outline-text`
-        : `${this.color}`;
+    return `${this.variant}` === "secondary"
+      ? `secondary-${this.theme}`
+      : `${this.variant}` === 'tertiary'
+        ? `tertiary-${this.theme}`
+        : `${this.theme}`;
   }
 
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "s"
-      : "";
+    if (`${this.size}` === "xs") {
+      return "xs"
+    }
+    else if (`${this.size}` === "s") {
+      return "s"
+    }
+    else if (`${this.size}` === "l") {
+      return "l"
+    }
+    else return "";
   }
 
   getClassNames() {
@@ -89,7 +129,8 @@ export class Button {
       'btn',
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
-      this.disabled ? 'disabled' : ''
+      this.disabled ? 'disabled' : '',
+
     );
   }
 }
