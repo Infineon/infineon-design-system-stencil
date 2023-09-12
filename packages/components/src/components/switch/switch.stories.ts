@@ -7,6 +7,7 @@ export default {
   args: {
     value: false,
     disabled: false,
+    label: "Switch"
 
   },
   argTypes: {
@@ -32,9 +33,23 @@ const DefaultTemplate = (args) => {
   element.setAttribute('value', args.value);
 
   // Add the event listener
-  element.addEventListener('ifxChange', action('ifxChange'));
+  // element.addEventListener('ifxChange', action('ifxChange'));
+  // Inside your story, add an event listener for the custom event
+  element.addEventListener('ifxChange', (event: Event) => {
+    const customEvent = event as CustomEvent;
+    const newValue = customEvent.detail;
 
-  // Return the element
+    action('ifxChange')(customEvent);
+
+    args.value = newValue;
+
+
+  });
+
+
+  const slotContent = document.createTextNode(args.label);
+  element.appendChild(slotContent);
+
   return element;
 
 };
