@@ -1,4 +1,6 @@
 
+import { icons } from '@infineon/infineon-icons'
+
 export default {
   title: "Components/Button",
   tags: ['autodocs'],
@@ -10,7 +12,6 @@ export default {
     type: "button",
     size: "m",
     disabled: false,
-    icon: "",
     iconPosition: 'left',
     href: false,
     url: "",
@@ -18,6 +19,10 @@ export default {
   },
 
   argTypes: {
+    icon: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' },
+    },
     variant: {
       options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
