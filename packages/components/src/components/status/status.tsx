@@ -10,7 +10,7 @@ export class Status {
 
   @Prop() label: string;
   @Prop() border: boolean = false;
-  @Prop() color: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' = 'orange';
+  @Prop() color: 'orange' | 'ocean' | 'grey' | 'light-grey' | 'red' | 'green' | 'berry' = 'orange';
 
   render() {
     const borderClass = this.border ? `border-${this.color}` : '';

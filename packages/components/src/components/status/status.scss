@@ -9,13 +9,13 @@
   display: flex;
   min-height: 1.25em;
   align-items: center;
-  padding: tokens.$ifxSpace25 tokens.$ifxSpace200;
+  padding: 0 tokens.$ifxSpace100;
   border-radius: tokens.$ifxBorderRadiusRound;
 }
 
 .text {
   margin: 0;
-  padding-left: 5px;
+  padding-left: tokens.$ifxSpace50;
   font-style: normal;
   font-weight: tokens.$ifxFontWeightSemibold;
   font-size: tokens.$ifxFontSizeM;
@@ -33,31 +33,31 @@
 
 .container {
   &.border-orange {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOrange500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOrange500;
   }
 
   &.border-ocean {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorOcean500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean500;
   }
 
   &.border-grey {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorEngineering500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering500;
   }
 
-  &.border-grey-200 {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorEngineering200;
+  &.border-light-grey {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
   }
 
   &.border-red {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorRed500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorRed500;
   }
 
   &.border-green {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorGreen500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorGreen500;
   }
 
   &.border-berry {
-    border: tokens.$ifxBorderWidth25 solid tokens.$ifxColorBerry500;
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorBerry500;
   }
 }
 
@@ -74,8 +74,8 @@
     background-color: tokens.$ifxColorEngineering500;
   }
 
-  &.grey-200 {
-    background-color: tokens.$ifxColorEngineering200;
+  &.light-grey {
+    background-color: tokens.$ifxColorEngineering300;
   }
 
   &.red {
