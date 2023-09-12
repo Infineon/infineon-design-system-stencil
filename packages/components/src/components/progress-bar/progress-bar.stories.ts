@@ -13,6 +13,7 @@ export default {
       control: { type: 'range', min: 0, max: 100 },
     },
     size: {
+      description: "Size options: s (36px) and m (40px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
