@@ -17,6 +17,7 @@ export class SearchField {
   @State() insideDropdown: boolean = false;
 
   @Prop() showDeleteIcon: boolean = false;
+  @State() showDeleteIconInternalState: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
@@ -41,17 +42,24 @@ export class SearchField {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
     this.ifxInput.emit(this.value);
-
+    
   };
 
   handleDelete = () => {
     this.inputElement.value = '';
+    this.value = "";
     this.ifxInput.emit(null);
   }
 
   focusInput() {
     this.inputElement.focus();
     this.isFocused = true;
+  }
+
+  componentWillUpdate() { 
+    if(this.value !== "") { 
+      this.showDeleteIconInternalState = true;
+    } else this.showDeleteIconInternalState = false;
   }
 
   render() {
@@ -71,7 +79,7 @@ export class SearchField {
             disabled={this.disabled}
             value={this.value} // bind the value property to input element
           />
-          {this.showDeleteIcon ? (
+          {this.showDeleteIcon && this.showDeleteIconInternalState ? (
             <ifx-icon icon="cremove16" class="delete-icon" onClick={this.handleDelete}>
             </ifx-icon>
           ) : null}
