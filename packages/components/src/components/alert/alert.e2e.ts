@@ -12,12 +12,12 @@ describe('ifx-alert', () => {
 
   it('should set the correct color', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-alert color="success"></ifx-alert>');
+    await page.setContent('<ifx-alert color="primary"></ifx-alert>');
 
     const element = await page.find('ifx-alert');
     const color = await element.getProperty('color');
 
-    expect(color).toBe('success');
+    expect(color).toBe('primary');
   });
 
   it('should set the correct icon', async () => {
