@@ -1,3 +1,15 @@
+# v20.19.3 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- Dropdown Menu: Updated in accordance with design review [#511](https://github.com/Infineon/infineon-design-system-stencil/pull/511) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.19.2 (Tue Sep 12 2023)
 
 #### 🐛 Bug Fix
