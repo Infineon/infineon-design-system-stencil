@@ -154,8 +154,8 @@ export const IfxDropdownTrigger = /*@__PURE__*/ defineContainer<JSX.IfxDropdownT
 
 export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
   'isOpen',
+  'theme',
   'variant',
-  'color',
   'size',
   'disabled',
   'hideArrow'

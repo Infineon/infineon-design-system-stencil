@@ -10,8 +10,9 @@ import { IOpenable } from '../IOpenable';
 
 export class DropdownItem implements IOpenable {
   @Prop() isOpen: boolean = false;
-  @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
-  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' = 'primary';
+
+  @Prop() theme: 'default' | 'danger' | 'inverse' = 'default';
+  @Prop() variant: 'primary';
   @Prop() size: 's' | 'm' = 'm';
   @Prop() disabled: boolean;
   @Prop() hideArrow: boolean = false;
@@ -20,7 +21,7 @@ export class DropdownItem implements IOpenable {
     return (
       <ifx-button
         variant={this.variant}
-        color={this.color}
+        theme={this.theme}
         size={this.size}
         disabled={this.disabled}
         class="dropdown-trigger-button"
