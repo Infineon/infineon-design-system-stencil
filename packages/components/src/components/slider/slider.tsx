@@ -83,7 +83,7 @@ export class IfxSlider {
           <span
             class={`percentage-display${this.disabled ? ' disabled' : ''}`}
           >
-            {this.value}%
+            {this.internalValue}%
           </span>
         )}
       </div>
