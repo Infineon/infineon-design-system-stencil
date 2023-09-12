@@ -12,7 +12,9 @@ export default {
     placeholder: 'Placeholder',
     error: false,
     caption: "Caption",
-    readonly: false
+    icon: "calendar-16",
+    required: true,
+    optional: false,
   },
   argTypes: {
     size: {
@@ -25,15 +27,17 @@ export default {
 };
 
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, readonly }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
+  element.setAttribute('icon', icon);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
   element.setAttribute('caption', caption);
-  element.setAttribute('readonly', readonly);
+  element.setAttribute('required', required);
+  element.setAttribute('optional', optional);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   const slotContent = document.createTextNode(label);

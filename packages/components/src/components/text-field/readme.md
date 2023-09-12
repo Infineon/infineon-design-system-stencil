@@ -7,18 +7,19 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type      | Default         |
-| ------------- | -------------- | ----------- | --------- | --------------- |
-| `captionText` | `caption-text` |             | `string`  | `""`            |
-| `disabled`    | `disabled`     |             | `boolean` | `false`         |
-| `error`       | `error`        |             | `boolean` | `false`         |
-| `icon`        | `icon`         |             | `boolean` | `false`         |
-| `label`       | `label`        |             | `string`  | `"Placeholder"` |
-| `placeholder` | `placeholder`  |             | `string`  | `"Placeholder"` |
-| `readonly`    | `readonly`     |             | `boolean` | `false`         |
-| `size`        | `size`         |             | `string`  | `'m'`           |
-| `success`     | `success`      |             | `boolean` | `false`         |
-| `value`       | `value`        |             | `string`  | `''`            |
+| Property      | Attribute     | Description | Type      | Default         |
+| ------------- | ------------- | ----------- | --------- | --------------- |
+| `caption`     | `caption`     |             | `string`  | `""`            |
+| `disabled`    | `disabled`    |             | `boolean` | `false`         |
+| `error`       | `error`       |             | `boolean` | `false`         |
+| `icon`        | `icon`        |             | `string`  | `""`            |
+| `label`       | `label`       |             | `string`  | `""`            |
+| `optional`    | `optional`    |             | `boolean` | `false`         |
+| `placeholder` | `placeholder` |             | `string`  | `"Placeholder"` |
+| `required`    | `required`    |             | `boolean` | `false`         |
+| `size`        | `size`        |             | `string`  | `'m'`           |
+| `success`     | `success`     |             | `boolean` | `false`         |
+| `value`       | `value`       |             | `string`  | `''`            |
 
 
 ## Events
