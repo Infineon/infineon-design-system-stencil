@@ -1,3 +1,17 @@
+# v20.19.6 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- design review change: progress-bar [#509](https://github.com/Infineon/infineon-design-system-stencil/pull/509) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.19.5 (Tue Sep 12 2023)
 
 #### 🐛 Bug Fix
