@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 /* switch.css */
 :host {
@@ -45,6 +46,12 @@
 
 .switch_label-wrapper {
   margin-left: 46px; //(container witdth - switch width) + label gap (label starts where switch class ends)
+  
+  & label { 
+    &:hover { 
+      cursor: pointer;
+    }
+  }
 
   &.disabled {
     color: tokens.$ifxColorEngineering300;
