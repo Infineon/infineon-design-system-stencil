@@ -1,3 +1,16 @@
+# v20.18.0 (Tue Sep 12 2023)
+
+#### 🚀 Enhancement
+
+- Breadcrumb: updated in accordance with design review [#500](https://github.com/Infineon/infineon-design-system-stencil/pull/500) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Alert: updated in accordance to design review [#498](https://github.com/Infineon/infineon-design-system-stencil/pull/498) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.17.5 (Mon Sep 11 2023)
 
 #### 🐛 Bug Fix
