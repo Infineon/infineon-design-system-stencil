@@ -154,8 +154,8 @@ export const IfxDropdownTrigger = /*@__PURE__*/ defineContainer<JSX.IfxDropdownT
 
 export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
   'isOpen',
+  'theme',
   'variant',
-  'color',
   'size',
   'disabled',
   'hideArrow'
@@ -323,7 +323,6 @@ export const IfxRadioButton = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>(
 
 
 export const IfxSearchBar = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar, JSX.IfxSearchBar["value"]>('ifx-search-bar', undefined, [
-  'showCloseButton',
   'isOpen',
   'disabled',
   'value',
