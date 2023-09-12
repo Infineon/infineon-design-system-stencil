@@ -51,8 +51,8 @@ export default {
     },
     disabled: { description: 'Determines if the dropdown button should be disabled' },
     variant: {
-      description: 'The visual style of the dropdown button. Accepted values are "solid", "outline", "outline-text"',
-      options: ['solid', 'outline', 'outline-text'],
+      description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
+      options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
     },
 

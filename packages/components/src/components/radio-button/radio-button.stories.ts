@@ -24,6 +24,7 @@ export default {
       action: 'ifxChange'
     },
     size: {
+      description: "Size options: s (20px) and m (24px) - default: s",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },

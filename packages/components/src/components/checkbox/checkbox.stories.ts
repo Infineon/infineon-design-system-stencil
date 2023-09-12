@@ -8,10 +8,19 @@ export default {
     disabled: false,
     value: false,
     label: 'Text',
+    size: 's',
     indeterminate: false,
   },
 
-  argTypes: { onIfxChange: { action: 'checked' } },
+  argTypes: {
+    size: {
+      options: ['s', 'm'],
+      control: { type: 'radio' },
+    },
+    onIfxChange: {
+      action: 'ifxChange'
+    }
+  },
 
 };
 
@@ -21,12 +30,14 @@ const DefaultTemplate = ({
   disabled,
   value,
   indeterminate,
+  size,
   label
 }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
   checkbox.setAttribute('disabled', disabled);
   checkbox.setAttribute('value', value);
+  checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
 
   checkbox.addEventListener('ifxChange', action('ifxChange'));

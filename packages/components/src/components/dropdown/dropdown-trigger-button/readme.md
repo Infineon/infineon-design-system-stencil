@@ -7,6 +7,7 @@
 
 ## Properties
 
+
 | Property    | Attribute    | Description | Type                                     | Default     |
 | ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
 | `color`     | `color`      |             | `"primary"`                              | `undefined` |
@@ -15,6 +16,16 @@
 | `isOpen`    | `is-open`    |             | `boolean`                                | `false`     |
 | `size`      | `size`       |             | `"m" \| "s"`                             | `'m'`       |
 | `variant`   | `variant`    |             | `"outline" \| "outline-text" \| "solid"` | `'solid'`   |
+
+| Property    | Attribute    | Description | Type                                                             | Default     |
+| ----------- | ------------ | ----------- | ---------------------------------------------------------------- | ----------- |
+| `color`     | `color`      |             | `"danger" \| "primary" \| "secondary" \| "success" \| "warning"` | `'primary'` |
+| `disabled`  | `disabled`   |             | `boolean`                                                        | `undefined` |
+| `hideArrow` | `hide-arrow` |             | `boolean`                                                        | `false`     |
+| `isOpen`    | `is-open`    |             | `boolean`                                                        | `false`     |
+| `size`      | `size`       |             | `"m" \| "s"`                                                     | `'m'`       |
+| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"`                         | `'primary'` |
+
 
 
 ## Dependencies

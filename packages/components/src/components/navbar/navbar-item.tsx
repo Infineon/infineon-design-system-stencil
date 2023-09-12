@@ -13,7 +13,8 @@ export class NavbarItem {
   @Prop() hideLabel: boolean = false;
   @Prop() icon: string = "image-16"
   @Prop() href: string = ""
-  @Prop() target: string = "_self"
+  @Prop() target: string = "_self";
+  @Prop() hideComponent: boolean = false;
 
   componentWillLoad() {
     const menuItem = this.el;
@@ -28,7 +29,7 @@ export class NavbarItem {
 
   render() {
     return (
-      <div class={`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""}`}>
+      <div class={`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""} ${this.hideComponent ? 'hideElement' : ""}`}>
         <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon && !this.isProfile ? "removeWrapper" : ""} ${this.isProfile ? "hide" : ""}`}>
           {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
         </div>

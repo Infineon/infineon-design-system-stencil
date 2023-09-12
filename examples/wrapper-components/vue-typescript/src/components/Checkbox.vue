@@ -8,15 +8,15 @@
         name="name">label</ifx-checkbox>
       <br />
 
-      <ifx-button color="primary" type="submit">Submit</ifx-button>
+      <ifx-button theme="default" type="submit">Submit</ifx-button>
     </form>
     <br />
     <div>
-      <ifx-button variant="outline" color="primary" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" color="primary" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
 
-      <ifx-button variant="outline" color="primary" @click="toggleValue">Toggle Value</ifx-button>
+      <ifx-button variant="secondary" theme="default" @click="toggleValue">Toggle Value</ifx-button>
 
     </div>
     <br />

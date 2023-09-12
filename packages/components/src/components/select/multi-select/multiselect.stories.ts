@@ -68,7 +68,9 @@ export default {
     label: { control: 'text' },
     options: {
       description: 'Takes an array of objects in the following format',
-    }
+    },
+    onIfxSelect: { action: 'ifxSelect' },
+
   }
 };
 

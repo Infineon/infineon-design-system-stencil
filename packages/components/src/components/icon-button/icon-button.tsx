@@ -9,7 +9,6 @@ import classNames from 'classnames';
 
 export class IconButton {
   @Prop() variant: 'solid' | 'outline';
-  @Prop() color: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
   @Prop() size: string;
   @Prop() disabled: boolean;
   @Prop() icon: string;
@@ -59,17 +58,24 @@ export class IconButton {
 
 
   getVariantClass() {
-    return `${this.variant}` === "outline"
-      ? `outline-${this.color}`
-      : `${this.variant}` === 'outline-text'
-        ? `${this.color}-outline-text`
-        : `${this.color}`;
+    return `${this.variant}` === "secondary"
+      ? `secondary`
+      : `${this.variant}` === 'tertiary'
+        ? `tertiary`
+        : `primary`;
   }
 
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "s"
-      : "";
+    if (`${this.size}` === "xs") {
+      return "xs"
+    }
+    else if (`${this.size}` === "s") {
+      return "s"
+    }
+    else if (`${this.size}` === "l") {
+      return "l"
+    }
+    else return "";
   }
 
   getClassNames() {

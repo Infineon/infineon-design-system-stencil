@@ -26,20 +26,20 @@ describe('ifx-button', () => {
 
   it('should set correct variant', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-button variant="outline"></ifx-button>');
+    await page.setContent('<ifx-button variant="secondary"></ifx-button>');
 
     const element = await page.find('ifx-button');
     const variant = await element.getProperty('variant');
 
-    expect(variant).toBe('outline');
+    expect(variant).toBe('secondary');
   });
 
-  it('should set correct color', async () => {
+  it('should set correct theme', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-button color="danger"></ifx-button>');
+    await page.setContent('<ifx-button theme="danger"></ifx-button>');
 
     const element = await page.find('ifx-button');
-    const color = await element.getProperty('color');
+    const color = await element.getProperty('theme');
 
     expect(color).toBe('danger');
   });

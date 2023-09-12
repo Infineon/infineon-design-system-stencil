@@ -73,7 +73,7 @@ export default {
       control: { type: 'radio' },
     },
     searchPlaceholderValue: { control: { type: 'text' } },
-    onChange: { action: 'change' },
+    onIfxSelect: { action: 'ifxSelect' },
     options: {
       description: 'Takes an array of objects in the following format',
     }

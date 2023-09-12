@@ -4,16 +4,17 @@ export default {
 
   args: {
     size: "m",
-    variant: 'border'
+    variant: 'default'
   },
   argTypes: {
     size: {
+      description: "Size options: s (24px) and m (40px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    variant: { 
-      options: ['border', 'semiconductor'],
-      control: { type: 'radio'}
+    variant: {
+      options: ['default', 'brand'],
+      control: { type: 'radio' }
     }
   },
 }

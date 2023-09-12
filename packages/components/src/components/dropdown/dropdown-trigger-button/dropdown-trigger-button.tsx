@@ -10,6 +10,7 @@ import { IOpenable } from '../IOpenable';
 
 export class DropdownItem implements IOpenable {
   @Prop() isOpen: boolean = false;
+
   @Prop() variant: 'solid' | 'outline' | 'outline-text' = 'solid';
   @Prop() color: 'primary';
   @Prop() size: 's' | 'm' = 'm';
