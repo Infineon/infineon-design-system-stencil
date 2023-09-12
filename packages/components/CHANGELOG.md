@@ -1,3 +1,16 @@
+# v20.19.2 (Tue Sep 12 2023)
+
+#### 🐛 Bug Fix
+
+- search-bar design review updates implemented [#507](https://github.com/Infineon/infineon-design-system-stencil/pull/507) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.19.1 (Tue Sep 12 2023)
 
 #### 🐛 Bug Fix
