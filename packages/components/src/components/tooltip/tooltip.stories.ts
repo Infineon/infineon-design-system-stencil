@@ -1,3 +1,4 @@
+import { icons } from '@infineon/infineon-icons'
 
 export default {
   title: "Components/Tooltip",
@@ -9,8 +10,13 @@ export default {
     variant: 'compact',
     icon: "c-info-24",
 
+
   },
   argTypes: {
+    icon: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' },
+    },
     position: {
       options: ['auto', 'bottom-start', 'top-start', 'left', 'bottom-end', 'top-end', 'right', 'bottom', 'top'],
       control: { type: 'radio' }
