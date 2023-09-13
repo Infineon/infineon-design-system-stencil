@@ -1,3 +1,16 @@
+# v20.21.0 (Wed Sep 13 2023)
+
+#### 🚀 Enhancement
+
+- 247 implementation pagination [#426](https://github.com/Infineon/infineon-design-system-stencil/pull/426) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.20.1 (Wed Sep 13 2023)
 
 #### 🐛 Bug Fix
