@@ -1,3 +1,17 @@
+# v20.20.1 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- Design Review update: Text-field [#497](https://github.com/Infineon/infineon-design-system-stencil/pull/497) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.20.0 (Wed Sep 13 2023)
 
 #### 🚀 Enhancement
