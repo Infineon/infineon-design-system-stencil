@@ -1,3 +1,23 @@
+# v20.20.0 (Wed Sep 13 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: navbar update [#514](https://github.com/Infineon/infineon-design-system-stencil/pull/514) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: footer update [#516](https://github.com/Infineon/infineon-design-system-stencil/pull/516) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🐛 Bug Fix
+
+- design review changes: search field [#508](https://github.com/Infineon/infineon-design-system-stencil/pull/508) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 4
+
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.19.6 (Tue Sep 12 2023)
 
 #### 🐛 Bug Fix
