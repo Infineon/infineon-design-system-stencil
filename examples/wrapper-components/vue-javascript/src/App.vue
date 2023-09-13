@@ -26,6 +26,7 @@
   <Tabs />
   <Tag />
   <TextField />
+  <Pagination />
 </template>
 
 
@@ -53,8 +54,12 @@ import Tooltip from './components/Tooltip.vue'
 import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
+
+import Pagination from './components/Pagination.vue'
+
 import BasicTable from './components/BasicTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
+
 
 </script>
 

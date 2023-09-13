@@ -33,6 +33,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-pagination](../pagination)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -41,6 +45,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-icon-button --> ifx-icon
+  ifx-pagination --> ifx-icon-button
   style ifx-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
