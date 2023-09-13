@@ -16,7 +16,7 @@ export default {
 
 const Template = (args) => {
   const accordionElement = document.createElement('ifx-accordion');
-  accordionElement.setAttribute('autoCollapse', args.autoCollapse)
+  accordionElement.setAttribute('auto-collapse', args.autoCollapse)
   for (let i = 0; i < args.amountOfItems; i++) {
     const item = document.createElement('ifx-accordion-item');
     item.setAttribute('caption', `Label`);
