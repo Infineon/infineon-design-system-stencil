@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 /* switch.css */
 :host {
@@ -7,13 +8,16 @@
 }
 
 .container {
-  display: inline-block;
+  padding: tokens.$ifxSpace50;
+  display: flex;
+  align-items: center;
   position: relative;
-  width: 50px;
-  height: 25px;
+  width: tokens.$ifxSpace500;
+  // gap: tokens.$ifxSpace200;
+  height: 20px;
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering500;
-  border-radius: 25px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
@@ -35,39 +39,60 @@
   &.disabled {
     cursor: default;
   }
+
+
 }
 
 
-.switch {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 21px;
-  height: 21px;
-  background-color: tokens.$ifxColorEngineering500;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
+.switch_label-wrapper {
+  margin-left: 46px; //(container witdth - switch width) + label gap (label starts where switch class ends)
+  
+  & label { 
+    &:hover { 
+      cursor: pointer;
+    }
+  }
 
   &.disabled {
-    background-color: #BFBBBB;
-    border-color: #BFBBBB;
-    cursor: default;
+    color: tokens.$ifxColorEngineering300;
   }
+}
+
+
+.switch_checkbox-wrapper {
+
+  .switch {
+    // position: absolute;
+    width: tokens.$ifxSpace200;
+    height: tokens.$ifxSpace200;
+    background-color: tokens.$ifxColorEngineering500;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+
+    &.disabled {
+      background-color: #BFBBBB;
+      border-color: #BFBBBB;
+      cursor: default;
+    }
+  }
+
+  .switch.checked {
+    transform: translateX(20px);
+    background-color: tokens.$ifxColorBaseWhite;
+
+    &.disabled {
+      cursor: default;
+    }
+
+  }
+
 }
 
 .container:hover .toggle-switch {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.switch.checked {
-  transform: translateX(25px);
-  background-color: tokens.$ifxColorBaseWhite;
 
-  &.disabled {
-    cursor: default;
-  }
-
-}
 
 .container.checked {
   background-color: tokens.$ifxColorOcean500;
