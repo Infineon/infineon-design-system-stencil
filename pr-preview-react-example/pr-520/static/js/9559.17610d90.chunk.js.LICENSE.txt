@@ -3,5 +3,3 @@
   	Licensed under the MIT License (MIT), see
   	http://jedwatson.github.io/classnames
   */
-
-/*! choices.js v10.2.0 | © 2022 Josh Johnson | https://github.com/jshjohnson/Choices#readme */
