@@ -12,6 +12,7 @@ export class Accordion {
 
   @Listen('ifxItemOpen')
   async onItemOpen(event: CustomEvent) {
+    console.log('here', this.autoCollapse)
     if(this.autoCollapse) { 
       const items = Array.from(this.el.querySelectorAll('ifx-accordion-item'));
       for (const item of items) {
