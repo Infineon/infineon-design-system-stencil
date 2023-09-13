@@ -147,6 +147,18 @@
     <br />
     <br />
 
+    <h2>Modal</h2>
+    <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
+        <div slot="content">
+          <span>Hello. Welcome. What a pleasure it is to have you.</span>
+        </div>
+        <div slot="buttons"><ifx-button variant="secondary" onclick="modal.close()">Button
+            1</ifx-button><ifx-button onclick="handleModalButton2Click()">Button 2</ifx-button></div>
+      </ifx-modal><ifx-button id="open-modal-btn">Open Modal</ifx-button>
+    </div>
+    <br />
+    <br />
+
     <h2>Number Indicator</h2>
     <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
     <button onClick="increaseNumber()">+</button>
@@ -239,7 +251,7 @@
         dropdown
       </ifx-dropdown-trigger-button>
       <ifx-dropdown-menu size="l">
-       <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+        <ifx-dropdown-header>Header Text</ifx-dropdown-header>
         <ifx-search-field show-delete-icon="false"></ifx-search-field>
         <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
         <ifx-dropdown-separator></ifx-dropdown-separator>
@@ -361,6 +373,8 @@
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
   const singleSelect2 = document.querySelector('#single-select2');
+  const openModalBtn = document.querySelector("#open-modal-btn");
+  const modal = document.querySelector("#modal");
 
   const searchField = document.querySelector('#search-field');
   const searchBar = document.querySelector('#search-bar');
@@ -374,6 +388,7 @@
   const errorSpan = document.querySelector("#errorSpan");
   const valueSpan = document.querySelector("#valueSpan");
   const textInputSpan = document.querySelector("#textInputSpan");
+
 
   function updateValues() {
     checkbox.setAttribute('disabled', disabled);
@@ -446,7 +461,9 @@
       radioChecked = !radioChecked;
     });
 
-
+    openModalBtn.addEventListener('click', (event) => {
+      modal.open();
+    });
 
     singleSelect.addEventListener('ifxChange', (event) => {
       console.log("single select value change", event.detail);
@@ -479,7 +496,10 @@
 
   });
 
-
+  function handleModalButton2Click() {
+    console.log("Modal Button 2 clicked")
+    modal.close();
+  }
 
   updateValues();
 
