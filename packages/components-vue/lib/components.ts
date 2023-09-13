@@ -480,11 +480,14 @@ export const IfxTextField = /*@__PURE__*/ defineContainer<JSX.IfxTextField, JSX.
   'placeholder',
   'value',
   'error',
-  'errorMessage',
+  'label',
+  'icon',
+  'caption',
+  'size',
+  'required',
+  'optional',
   'success',
   'disabled',
-  'readonly',
-  'icon',
   'ifxInput'
 ],
 'value', 'ifxInput');

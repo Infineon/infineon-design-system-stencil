@@ -22,12 +22,6 @@ describe('ifx-text-field', () => {
     expect(await input.getProperty('disabled')).toBeTruthy();
   });
 
-  it('renders readonly', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-text-field readonly></ifx-text-field>');
-    const input = await page.find('ifx-text-field >>> input');
-    expect(await input.getAttribute('readonly')).not.toBeNull();
-  });
 
   it('handles value change', async () => {
     const page = await newE2EPage();
@@ -40,8 +34,8 @@ describe('ifx-text-field', () => {
 
   it('renders with error', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-text-field error error-message="Invalid input"></ifx-text-field>');
-    const errorDiv = await page.find('ifx-text-field >>> .textInput__bottom-wrapper-error');
+    await page.setContent('<ifx-text-field error caption="Invalid input"></ifx-text-field>');
+    const errorDiv = await page.find('ifx-text-field >>> .textInput__bottom-wrapper-caption.error');
     expect(errorDiv.innerText).toBe('Invalid input');
   });
 
@@ -54,8 +48,10 @@ describe('ifx-text-field', () => {
 
   it('renders with icon', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-text-field icon></ifx-text-field>');
+    await page.setContent('<ifx-text-field icon="chevron-down-16"></ifx-text-field>'); // Set the icon attribute with a valid icon name
+    await page.waitForChanges(); // Wait for any potential asynchronous updates
     const icon = await page.find('ifx-text-field >>> ifx-icon');
     expect(icon).not.toBeNull();
   });
+
 });

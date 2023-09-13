@@ -4,7 +4,7 @@
     <h3>Using v-model</h3>
     <div>
       <ifx-text-field v-model="input" error="true" disabled="false" success="false" placeholder="Placeholder"
-        errorMessage="some error message">Label</ifx-text-field>
+        caption="some error message">Label</ifx-text-field>
 
     </div>
     <p>Text field value: {{ inputValue }}</p>

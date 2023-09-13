@@ -12,11 +12,14 @@ export class TextField {
   @Prop() placeholder: string = "Placeholder"
   @Prop({ mutable: true }) value: string = '';
   @Prop() error: boolean = false;
-  @Prop() errorMessage: string = ""
+  @Prop() label: string = "";
+  @Prop() icon: string = "";
+  @Prop() caption: string = "";
+  @Prop() size: string = 'm';
+  @Prop() required: boolean = false;
+  @Prop() optional: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
-  @Prop() readonly: boolean = false;
-  @Prop() icon: boolean = false;
   @Event() ifxInput: EventEmitter<String>;
 
 
@@ -39,27 +42,44 @@ export class TextField {
       <div class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
           <label htmlFor="text-field">
-            <slot />
+            <slot></slot>
+            {this.optional && this.required ? (
+              <span class="optional-required">(optional) *</span>
+            ) : this.optional ? (
+              <span class="optional">(optional)</span>
+            ) : this.required ? (
+              <span class="required">*</span>
+            ) : null}
           </label>
         </div>
+
         <div class="textInput__bottom-wrapper">
-          <input
-            ref={(el) => (this.inputElement = el)}
-            readonly={this.readonly}
-            disabled={this.disabled}
-            type="text"
-            id='text-field'
-            value={this.value}
-            onInput={() => this.handleInput()}
-            placeholder={this.placeholder}
-            class={`${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} />
-          {this.error &&
-            <div class="textInput__bottom-wrapper-error">
-              {this.errorMessage}
+          <div class="input-container">
+            {this.icon && (
+              <ifx-icon icon={this.icon} />
+            )}
+            <input
+              ref={(el) => (this.inputElement = el)}
+              disabled={this.disabled}
+              type="text"
+              id='text-field'
+              value={this.value}
+              onInput={() => this.handleInput()}
+              placeholder={this.placeholder}
+              class={
+                `${this.icon ? 'icon' : ""}
+                ${this.error ? 'error' : ""} 
+              ${this.size === "s" ? "input-s" : ""}
+              ${this.success ? "success" : ""}`} />
+          </div>
+          {this.caption && !this.error &&
+            <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>
+              {this.caption}
             </div>}
-
-          {this.icon && <ifx-icon icon='chevron-down-16'></ifx-icon>}
-
+          {this.error &&
+            <div class="textInput__bottom-wrapper-caption error">
+              {this.caption}
+            </div>}
         </div>
       </div>
     );
