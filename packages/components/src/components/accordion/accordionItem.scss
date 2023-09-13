@@ -20,7 +20,8 @@
 .accordion-title {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+  gap: tokens.$ifxSpace150;
   color: tokens.$ifxColorOcean500;
   border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
@@ -28,22 +29,30 @@
 
 .accordion-caption {
   font-weight: tokens.$ifxFontWeightSemibold;
-  font-size: tokens.$ifxFontSizeM;
+  font-size: tokens.$ifxFontSizeL;
 }
 
 .accordion-content {
+  gap: tokens.$ifxSpace100;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
+  line-height: 24px;
+  font-size: tokens.$ifxFontSizeM;
+  font-weight: 400;
+  font-family: tokens.$ifxFontFamilyBody;
 }
 
 .inner-content {
-  padding: 24px;
-  white-space: pre-wrap;
+  background-color: tokens.$ifxColorBaseWhite;
+  padding: tokens.$ifxSpace300;
+  // white-space: pre-wrap;
   /* wraps text at spaces and within words */
   word-wrap: break-word;
   /* breaks text within a word if necessary */
   overflow-wrap: anywhere;
+  align-self: stretch;
+
   /* breaks text at arbitrary points when needed */
 }
 
@@ -51,7 +60,6 @@
   font-weight: bold;
   display: inline-block;
   transition: transform 0.3s;
-  margin-right: 0.5rem;
 }
 
 .accordion-item.open .accordion-icon {
