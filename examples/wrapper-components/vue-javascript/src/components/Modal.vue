@@ -23,7 +23,6 @@ import { ref, computed } from 'vue';
 const modalRef = ref();
 
 const modal = computed(() => {
-  console.log("modal", modalRef?.value)
   return modalRef.value;
 });
 
