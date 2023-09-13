@@ -1,4 +1,3 @@
-//ifxModal.tsx
 import { Component, Prop, State, Method, Event, EventEmitter, h } from '@stencil/core';
 
 @Component({
@@ -16,6 +15,8 @@ export class IfxModal {
   @Event() modalClose: EventEmitter;
   @Event() okButtonClick: EventEmitter;
   @Event() cancelButtonClick: EventEmitter;
+
+  @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
 
   @Prop() alertColor: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' | '' = '';
   @Prop() alertIcon: string = '';
@@ -47,19 +48,21 @@ export class IfxModal {
   }
 
   render() {
+    const isAlertVariant = this.variant !== 'default';
     return (
       <div class={`modal-container ${this.showModal ? 'open' : ''}`}>
         <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div>
-        <div class="modal-content-container">
-          {this.alertColor && this.alertIcon ? (
-            <div class={`modal-border ${this.alertColor}`}>
-              <ifx-icon icon={this.alertIcon} />
+        <div class={`modal-content-container`}>
+          {isAlertVariant ? (
+            <div class={`modal-icon-container ${this.variant === 'alert-brand' ? '' : 'danger'}`}>
+              {this.alertIcon ? <ifx-icon icon={this.alertIcon} /> : null}
             </div>
           ) : null}
           <div class="modal-content">
             <div class="modal-header">
               <h2>{this.caption}</h2>
-              <button onClick={() => this.close()}>&times;</button>
+              <ifx-icon-button icon="cross-24" variant="tertiary" onClick={() => this.close()}></ifx-icon-button>
+              {/* <button onClick={() => this.close()}>&times;</button> */}
             </div>
             <div class="modal-body">
               <slot name="content" />

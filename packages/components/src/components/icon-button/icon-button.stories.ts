@@ -32,7 +32,7 @@ export default {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
     },
-    style: {
+    shape: {
       options: ['round', 'square'],
       control: { type: 'radio' }
     }

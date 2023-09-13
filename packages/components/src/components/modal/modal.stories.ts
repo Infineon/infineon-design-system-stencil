@@ -21,10 +21,9 @@ export default {
       control: { type: 'select' },
       description: 'When specified together with alertIcon then an border to the right is shown',
     },
-    alertColor: {
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'select' },
-      description: 'When specified together with alertColor then an border to the right is shown',
+    variant: {
+      options: ['default', 'alert-brand', 'alert-danger'],
+      control: { type: 'radio' },
     },
   },
 };
@@ -32,16 +31,15 @@ export default {
 const Template = ({
   caption,
   closeOnOverlayClick,
-  alertIcon,
-  alertColor
+  variant,
+  alertIcon
 }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
+  modal.setAttribute('variant', variant);
+
   if (alertIcon) {
     modal.setAttribute('alert-icon', alertIcon);
-  }
-  if (alertColor) {
-    modal.setAttribute('alert-color', alertColor);
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
 
@@ -75,12 +73,14 @@ export const Default = Template.bind({});
 Default.args = {
   caption: 'Modal Title',
   closeOnOverlayClick: false,
+  variant: "default",
 };
 
 export const Alert = Template.bind({});
 Alert.args = {
-  caption: 'Alert Modal Title',
+  caption: 'Alert-Brand Modal Title',
   closeOnOverlayClick: true,
-  alertIcon: 'test',
-  alertColor: 'primary'
+  alertIcon: 'arrowdoen24',
+  variant: "alert-brand",
+
 };
