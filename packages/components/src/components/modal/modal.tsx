@@ -13,13 +13,14 @@ export class IfxModal {
 
   @Event() modalOpen: EventEmitter;
   @Event() modalClose: EventEmitter;
-  @Event() okButtonClick: EventEmitter;
-  @Event() cancelButtonClick: EventEmitter;
+  @Event() closeButtonClick: EventEmitter;
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
 
   @Prop() alertColor: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' | '' = '';
   @Prop() alertIcon: string = '';
+  @Prop() okButtonLabel: string = 'OK';
+  @Prop() cancelButtonLabel: string = 'Cancel';
 
   @Method()
   async open() {
@@ -31,7 +32,13 @@ export class IfxModal {
   async close() {
     this.showModal = false;
     this.modalClose.emit();
+    this.handleCloseButtonClick();
   }
+
+  handleCloseButtonClick() {
+    this.closeButtonClick.emit();
+  }
+
 
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
@@ -39,13 +46,6 @@ export class IfxModal {
     }
   }
 
-  handleOkButtonClick() {
-    this.okButtonClick.emit();
-  }
-
-  handleCancelButtonClick() {
-    this.cancelButtonClick.emit();
-  }
 
   render() {
     const isAlertVariant = this.variant !== 'default';
@@ -62,15 +62,14 @@ export class IfxModal {
             <div class="modal-header">
               <h2>{this.caption}</h2>
               <ifx-icon-button icon="cross-24" variant="tertiary" onClick={() => this.close()}></ifx-icon-button>
-              {/* <button onClick={() => this.close()}>&times;</button> */}
             </div>
             <div class="modal-body">
               <slot name="content" />
             </div>
             <div class="modal-footer">
               <slot name="buttons">
-                <ifx-button variant='secondary' onClick={() => this.handleOkButtonClick()}>OK</ifx-button>
-                <ifx-button onClick={() => this.handleCancelButtonClick()}>Cancel</ifx-button>
+                <ifx-button variant='secondary'>{this.cancelButtonLabel}</ifx-button>
+                <ifx-button>{this.okButtonLabel}</ifx-button>
               </slot>
             </div>
           </div>

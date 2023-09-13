@@ -25,6 +25,7 @@ import MultiSelect from './components/MultiSelect/MultiSelect';
 import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+import Modal from './components/Modal/Modal';
 
 
 
@@ -34,65 +35,71 @@ function App() {
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
 
-      <h2>Breadcrumbs</h2>
-      <Breadcrumbs />
+      <h2>Accordion</h2>
+      <Accordion />
       <br />
 
       <h2>Alert</h2>
       <Alert />
       <br />
 
-      <h2>IconButton</h2>
-      <IconButton />
-      <br />
-
-      <h2>Tab</h2>
-      <Tab />
-      <br />
-
-      <h2>Tag</h2>
-      <Tag />
+      <h2>Breadcrumbs</h2>
+      <Breadcrumbs />
       <br />
 
       <h2>Button</h2>
       <Button />
       <br />
 
-      <h2>SingleSelect</h2>
-      <SingleSelect />
-      <br />
-
-      <h2>MultiSelect</h2>
-      <MultiSelect />
-      <br />
-
       <h2>Card</h2>
       <Card />
-      <br />
-
-      <h2>Progress Bar</h2>
-      <ProgressBar />
-      <br />
-
-      <h2>Text Field</h2>
-      <TextField />
-      <br />
-
-      <h2>Accordion</h2>
-      <Accordion />
-      <br />
-
-      <h2>Radio Button</h2>
-      <RadioButton />
       <br />
 
       <h2>Checkbox</h2>
       <Checkbox />
       <br />
 
+      <h2>Dropdown</h2>
+      <Dropdown />
+      <br />
+
+      <h2>IconButton</h2>
+      <IconButton />
+      <br />
+
       <h2>Link</h2>
       <Link />
       <br />
+
+      <h2>Modal</h2>
+      <Modal />
+      <br />
+
+      <h2>MultiSelect</h2>
+      <MultiSelect />
+      <br />
+
+      <h2>Number indicator</h2>
+      <NumberIndicator />
+      <br />
+
+      <h2>Pagination</h2>
+      <Pagination />
+      <br />
+
+      <h2>Progress Bar</h2>
+      <ProgressBar />
+      <br />
+
+      <h2>Radio Button</h2>
+      <RadioButton />
+      <br />
+
+
+      <h2>SingleSelect</h2>
+      <SingleSelect />
+      <br />
+
 
       <h2>Spinner</h2>
       <Link />
@@ -109,9 +116,6 @@ function App() {
       <Spinner />
       <br />
 
-      <h2>Number indicator</h2>
-      <NumberIndicator />
-      <br />
 
       <h2>Sidebar</h2>
       <Sidebar />
@@ -121,18 +125,22 @@ function App() {
       <Switch />
       <br />
 
-      <h2>Pagination</h2>
-      <Pagination />
+      <h2>Tab</h2>
+      <Tab />
       <br />
 
-      <h2>Dropdown</h2>
-      <Dropdown />
+      <h2>Tag</h2>
+      <Tag />
+      <br />
+
+      <h2>Text Field</h2>
+      <TextField />
       <br />
 
       <h2>Tooltip</h2>
       <Tooltip />
 
-      <h2>Basic Table</h2>
+      <h2>Table (basic)</h2>
       <BasicTable />
       <br />
 

@@ -11,19 +11,20 @@
 | --------------------- | ------------------------ | ----------- | ---------------------------------------------------------------------------------- | --------------- |
 | `alertColor`          | `alert-color`            |             | `"" \| "berry" \| "green" \| "grey" \| "grey-200" \| "ocean" \| "orange" \| "red"` | `''`            |
 | `alertIcon`           | `alert-icon`             |             | `string`                                                                           | `''`            |
+| `cancelButtonLabel`   | `cancel-button-label`    |             | `string`                                                                           | `'Cancel'`      |
 | `caption`             | `caption`                |             | `string`                                                                           | `'Modal Title'` |
 | `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean`                                                                          | `true`          |
+| `okButtonLabel`       | `ok-button-label`        |             | `string`                                                                           | `'OK'`          |
 | `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"`                                     | `'default'`     |
 
 
 ## Events
 
-| Event               | Description | Type               |
-| ------------------- | ----------- | ------------------ |
-| `cancelButtonClick` |             | `CustomEvent<any>` |
-| `modalClose`        |             | `CustomEvent<any>` |
-| `modalOpen`         |             | `CustomEvent<any>` |
-| `okButtonClick`     |             | `CustomEvent<any>` |
+| Event              | Description | Type               |
+| ------------------ | ----------- | ------------------ |
+| `closeButtonClick` |             | `CustomEvent<any>` |
+| `modalClose`       |             | `CustomEvent<any>` |
+| `modalOpen`        |             | `CustomEvent<any>` |
 
 
 ## Methods

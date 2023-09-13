@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 :host {
   display: block;
@@ -116,20 +117,30 @@
 .modal-footer {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   padding-top: 16px;
   padding-bottom: 32px;
   padding-right: 24px;
   gap: 1em;
   height: 88px;
   box-sizing: border-box;
+
 }
+
+.modal-footer ::slotted(*) {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
 
 .modal-border {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: tokens.$ifxSize500;
+  width: 100%;
   font-size: 1.5em;
+  flex-grow: 1;
 
   &.primary {
     background-color: tokens.$ifxColorOcean500;
@@ -177,77 +188,5 @@
 
   &.berry {
     background-color: tokens.$ifxColorBerry500;
-  }
-}
-
-/* Add styling for the default variant */
-.modal-content.default .modal-header,
-.modal-content.default .modal-body,
-.modal-content.default .modal-footer {
-  width: 100%;
-  height: auto;
-  /* Change the height to auto */
-  box-sizing: border-box;
-}
-
-.modal-content.default .modal-icon-container {
-  display: none;
-}
-
-/* Add mobile size here */
-@media screen and (max-width: 767px) {
-
-  .modal-content.default .modal-header,
-  .modal-content.default .modal-body,
-  .modal-content.default .modal-footer {
-    width: 100%;
-    height: auto;
-    /* Change the height to auto */
-    box-sizing: border-box;
-  }
-
-  .modal-content.default .modal-header {
-    padding: 24px;
-  }
-
-  .modal-content.default .modal-footer {
-    padding: 24px;
-  }
-}
-
-/* Add styling for the alert variant */
-.modal-content.alert .modal-header,
-.modal-content.alert .modal-body,
-.modal-content.alert .modal-footer {
-  width: 100%;
-  height: auto;
-  /* Change the height to auto */
-  box-sizing: border-box;
-}
-
-.modal-content.alert .modal-icon-container {
-  display: flex;
-}
-
-.modal-content.alert .modal-content {
-  display: flex;
-  flex-direction: row;
-}
-
-.modal-content.alert .modal-icon-container {
-  width: 80px;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Add mobile size here */
-@media screen and (max-width: 767px) {
-  .modal-content.alert .modal-content {
-    flex-direction: column;
-  }
-
-  .modal-content.alert .modal-icon-container {
-    width: 100%;
-    justify-content: flex-start;
   }
 }

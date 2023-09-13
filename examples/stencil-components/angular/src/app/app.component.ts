@@ -21,6 +21,7 @@ export class AppComponent {
   radioButtonValue = false;
   numberIndicator = 1;
 
+
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
   }
@@ -75,10 +76,26 @@ export class AppComponent {
   }
 
 
+  handleModalButton1Click() {
+    const modal = document.querySelector('ifx-modal') as HTMLIfxModalElement;
+    console.log("modal button 1 click ")
+  }
+
+  handleModalButton2Click() {
+    const modal = document.querySelector('ifx-modal') as HTMLIfxModalElement;
+    modal.close();
+  }
+
+  handleModalOpen() {
+    const modal = document.querySelector('ifx-modal') as HTMLIfxModalElement;
+    console.log("modal open btn click ")
+    modal.open();
+  }
+
+
   handleSearchField(event: CustomEvent) {
     console.log("searchField value change: ", event.detail)
     this.searchFieldValue = event.detail;
-
   }
 
   handleSearchBar(event: CustomEvent) {
