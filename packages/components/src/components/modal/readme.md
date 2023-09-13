@@ -7,15 +7,14 @@
 
 ## Properties
 
-| Property              | Attribute                | Description | Type                                                                               | Default         |
-| --------------------- | ------------------------ | ----------- | ---------------------------------------------------------------------------------- | --------------- |
-| `alertColor`          | `alert-color`            |             | `"" \| "berry" \| "green" \| "grey" \| "grey-200" \| "ocean" \| "orange" \| "red"` | `''`            |
-| `alertIcon`           | `alert-icon`             |             | `string`                                                                           | `''`            |
-| `cancelButtonLabel`   | `cancel-button-label`    |             | `string`                                                                           | `'Cancel'`      |
-| `caption`             | `caption`                |             | `string`                                                                           | `'Modal Title'` |
-| `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean`                                                                          | `true`          |
-| `okButtonLabel`       | `ok-button-label`        |             | `string`                                                                           | `'OK'`          |
-| `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"`                                     | `'default'`     |
+| Property              | Attribute                | Description | Type                                           | Default         |
+| --------------------- | ------------------------ | ----------- | ---------------------------------------------- | --------------- |
+| `alertIcon`           | `alert-icon`             |             | `string`                                       | `''`            |
+| `cancelButtonLabel`   | `cancel-button-label`    |             | `string`                                       | `'Cancel'`      |
+| `caption`             | `caption`                |             | `string`                                       | `'Modal Title'` |
+| `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean`                                      | `true`          |
+| `okButtonLabel`       | `ok-button-label`        |             | `string`                                       | `'OK'`          |
+| `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"` | `'default'`     |
 
 
 ## Events
