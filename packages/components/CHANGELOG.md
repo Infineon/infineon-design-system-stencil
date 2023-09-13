@@ -1,3 +1,20 @@
+# v20.21.1 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: pagination [#519](https://github.com/Infineon/infineon-design-system-stencil/pull/519) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/vanilla-cdn [#517](https://github.com/Infineon/infineon-design-system-stencil/pull/517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.21.0 (Wed Sep 13 2023)
 
 #### 🚀 Enhancement
