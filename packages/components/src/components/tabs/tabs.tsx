@@ -12,11 +12,12 @@ export class IfxTabs {
   @Prop() tabs: string[] = [];
   @Prop() orientation: string = ""
   @State() internalOrientation: string;
-  @Prop() small: boolean = false;
   @State() activeTabIndex: number = 0;
   @State() tabRefs: HTMLElement[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
   @State() tabTitles: string[] = [];
+  @State() disabledTabs: string[] = [];
+  @State() tabObjects: any[] = [];
   @Event() ifxTabIndex: EventEmitter;
 
   // changing tab
@@ -77,6 +78,15 @@ export class IfxTabs {
   onSlotChange() {
     const tabs = this.el.querySelectorAll('ifx-tab');
     this.tabTitles = Array.from(tabs).map((tab) => tab.getAttribute('header'));
+    this.disabledTabs = Array.from(tabs).map((tab) => tab.getAttribute('disabled'));
+
+    this.tabObjects = this.tabTitles.map((header, index) => {
+      return {
+        header: header,
+        disabled: (this.disabledTabs[index] === 'true') // set disabled property based on the corresponding value in the disabledTabs array
+      }
+    });
+
     this.tabRefs = Array.from(tabs);
     this.tabRefs.forEach((tab, index) => {
       tab.setAttribute('slot', `tab-${index}`);
@@ -106,16 +116,17 @@ export class IfxTabs {
   }
 
   render() {
+
     return (
-      <div class={`tabs ${this.internalOrientation} ${this.small ? 'small' : ''}`}>
+      <div class={`tabs ${this.internalOrientation}`}>
         <ul class="tabs-list">
-          {this.tabTitles.map((tabTitle, index) => (
+          {this.tabObjects.map((tab, index) => (
             <li
-              class={`tab-item ${index === this.activeTabIndex ? 'active' : ''}`}
+              class={`tab-item ${index === this.activeTabIndex ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               onClick={() => this.setActiveTab(index)}
             >
-              {tabTitle}
+              {tab.header}
             </li>
           ))}
           <div class="active-border"></div>

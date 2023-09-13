@@ -8,6 +8,7 @@ import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core'
 export class IfxTab {
   @Element() el: HTMLElement;
   @Prop() header: string;
+  @Prop() disabled: boolean;
 
   @Event({ eventName: 'tabBecameActive' }) tabBecameActive: EventEmitter;
   @Event({ eventName: 'tabBecameInactive' }) tabBecameInactive: EventEmitter;

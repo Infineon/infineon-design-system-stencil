@@ -44,15 +44,33 @@
   border-bottom: none;
 }
 
+.tabs.vertical .tab-content {
+  padding-top: 0px;
+  padding-left: 32px;
+}
+
 .tab-item.active {
   color: tokens.$ifxColorOcean500;
 }
 
-.tab-item {
-  padding: 0.5rem 1rem;
+.tab-item.disabled {
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
+  color: tokens.$ifxColorEngineering300;
+  pointer-events: none;
 }
+
+.tab-item:not(:disabled, .disabled) {
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: tokens.$ifxColorOcean500;
+  }
+}
+
 
 .tabs.vertical .tab-item {
   border-right: 2px solid transparent;
@@ -68,10 +86,11 @@
 
 
 .tab-content {
-  padding: 1rem;
+  padding-top: 24px;
+  padding-left: 0px;
   flex-grow: 1;
 }
 
 .tabs.small .tab-item {
-  font-size: tokens.$ifxFontSizeS; // Add the font-size rule directly here
+  font-size: tokens.$ifxFontSizeS;
 }

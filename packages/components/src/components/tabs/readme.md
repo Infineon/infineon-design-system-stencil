@@ -10,7 +10,6 @@
 | Property      | Attribute     | Description | Type       | Default |
 | ------------- | ------------- | ----------- | ---------- | ------- |
 | `orientation` | `orientation` |             | `string`   | `""`    |
-| `small`       | `small`       |             | `boolean`  | `false` |
 | `tabs`        | --            |             | `string[]` | `[]`    |
 
 
