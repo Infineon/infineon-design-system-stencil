@@ -1,3 +1,46 @@
+# v20.21.3 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- Link: Updated in accordance with design view [#522](https://github.com/Infineon/infineon-design-system-stencil/pull/522) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.21.2 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- accordion design changes implemented [#521](https://github.com/Infineon/infineon-design-system-stencil/pull/521) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.21.1 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: pagination [#519](https://github.com/Infineon/infineon-design-system-stencil/pull/519) ([@SergejLust](https://github.com/SergejLust))
+
+#### 🔩 Dependency Updates
+
+- Bump semver from 5.7.1 to 5.7.2 in /examples/stencil-components/vanilla-cdn [#517](https://github.com/Infineon/infineon-design-system-stencil/pull/517) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.21.0 (Wed Sep 13 2023)
 
 #### 🚀 Enhancement
