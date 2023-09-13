@@ -25,6 +25,7 @@
   <Card />
   <Dropdown />
   <Footer />
+  <Pagination />
 </template>
 
 
@@ -49,7 +50,9 @@ import Navbar from './components/Navbar.vue'
 import Card from './components/Card.vue'
 import Dropdown from './components/Dropdown.vue'
 import Footer from './components/Footer.vue'
+import Pagination from './components/Pagination.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
+
 
 </script>
 

@@ -306,6 +306,15 @@ export const IfxNumberIndicator = /*@__PURE__*/ defineContainer<JSX.IfxNumberInd
 ]);
 
 
+export const IfxPagination = /*@__PURE__*/ defineContainer<JSX.IfxPagination>('ifx-pagination', undefined, [
+  'currentPage',
+  'total',
+  'ifxPageChange',
+  'ifxNextPage',
+  'ifxPrevPage'
+]);
+
+
 export const IfxProgressBar = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', undefined, [
   'value',
   'label',

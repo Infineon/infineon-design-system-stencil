@@ -22,8 +22,10 @@ import Dropdown from './components/Dropdown/Dropdown';
 import Tooltip from './components/Tooltip/Tooltip';
 import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
+import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+
 
 
 function App() {
@@ -117,6 +119,10 @@ function App() {
 
       <h2>Switch</h2>
       <Switch />
+      <br />
+
+      <h2>Pagination</h2>
+      <Pagination />
       <br />
 
       <h2>Dropdown</h2>

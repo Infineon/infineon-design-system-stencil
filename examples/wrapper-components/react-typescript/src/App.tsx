@@ -16,7 +16,9 @@ import Sidebar from './components/Sidebar/Sidebar';
 import IconButton from './components/IconButton/IconButton';
 import Navbar from './components/Navbar/Navbar';
 import Dropdown from './components/Dropdown/Dropdown';
+import Pagination from './components/Pagination/Pagination';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+
 
 function App() {
 
@@ -93,6 +95,10 @@ function App() {
 
          <h2>Dropdown</h2>
          <Dropdown />
+         <br />
+
+         <h2>Pagination</h2>
+         <Pagination />
          <br />
 
          <h2>IconButton</h2>
