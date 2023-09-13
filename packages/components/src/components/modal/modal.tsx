@@ -17,7 +17,6 @@ export class IfxModal {
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
 
-  @Prop() alertColor: 'orange' | 'ocean' | 'grey' | 'grey-200' | 'red' | 'green' | 'berry' | '' = '';
   @Prop() alertIcon: string = '';
   @Prop() okButtonLabel: string = 'OK';
   @Prop() cancelButtonLabel: string = 'Cancel';
@@ -68,8 +67,8 @@ export class IfxModal {
             </div>
             <div class="modal-footer">
               <slot name="buttons">
-                <ifx-button variant='secondary'>{this.cancelButtonLabel}</ifx-button>
                 <ifx-button>{this.okButtonLabel}</ifx-button>
+                <ifx-button variant='secondary'>{this.cancelButtonLabel}</ifx-button>
               </slot>
             </div>
           </div>

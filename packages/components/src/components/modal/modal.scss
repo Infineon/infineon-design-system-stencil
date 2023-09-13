@@ -112,11 +112,19 @@
   height: 56px;
   box-sizing: border-box;
   flex: 1;
+
+  & slot[name=content] { 
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .modal-footer {
   display: flex;
-  justify-content: flex-end;
+  //justify-content: flex-end;
   align-items: center;
   padding-top: 16px;
   padding-bottom: 32px;
@@ -125,11 +133,12 @@
   height: 88px;
   box-sizing: border-box;
 
+  margin-left: auto;
 }
 
 .modal-footer ::slotted(*) {
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   gap: 24px;
 }
 
