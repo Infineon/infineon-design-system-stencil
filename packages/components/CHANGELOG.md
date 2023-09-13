@@ -1,3 +1,17 @@
+# v20.21.2 (Wed Sep 13 2023)
+
+#### 🐛 Bug Fix
+
+- accordion design changes implemented [#521](https://github.com/Infineon/infineon-design-system-stencil/pull/521) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.21.1 (Wed Sep 13 2023)
 
 #### 🐛 Bug Fix
