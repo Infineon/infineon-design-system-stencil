@@ -1,5 +1,4 @@
 import { Component, Prop, h } from "@stencil/core";
-import { mainColors } from '../../global/colorNames';
 import classNames from 'classnames';
 
 @Component({
@@ -11,9 +10,8 @@ import classNames from 'classnames';
 export class Link {
   @Prop() href: string
   @Prop() target: string = '_self';
-  @Prop() color: mainColors = undefined;
-  @Prop() bold: boolean = true;
-  @Prop() underline: boolean = true
+  @Prop() size: string;
+  @Prop() variant: string  = 'bold';
 
   render() {
     return (
@@ -23,12 +21,49 @@ export class Link {
     )
   }
 
+  getSizeClass() {
+    const small = this.size === 's' ? 'small' : null;
+    const medium = this.size === 'm' ? 'medium' : null;
+    const large = this.size === 'l' ? 'large' : null;
+    const extraLarge = this.size === 'xl' ? 'extraLarge' : null;
+
+    if(small) {
+      return small;
+    } else if(medium) {
+      return medium;
+    } else if(large) {
+      return large;
+    } else if(extraLarge && this.variant === 'underlined') { 
+      return 'large';
+    } else if(extraLarge && this.variant !== 'underlined') { 
+      return extraLarge;
+    } else return "";
+  }
+
+  getVariantClass() { 
+    const bold = this.variant === 'bold' ? 'bold' : null;
+    const title = this.variant === 'title' ? 'title' : null;
+    const underlined = this.variant === 'underlined' ? 'underlined' : null;
+    const menu = this.variant === 'menu' ? 'menu' : null;
+
+    if(bold) { 
+      return bold
+    } else if(title) { 
+      return title;
+    } else if(underlined) { 
+      return underlined;
+    } else if(menu) { 
+      return menu;
+    } else return bold;
+  }
+
   linkClassNames() {
     return classNames(
       'link',
-      this.color,
-      this.bold && 'bold',
-      this.underline && 'underline',
+      'primary',
+      this.getVariantClass(),
+      this.getSizeClass()
     );
   }
 }
+
