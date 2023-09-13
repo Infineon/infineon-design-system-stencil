@@ -44,6 +44,15 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 [Stencil web components][Stencil-url]
 
+
+### Example applications demonstrating the usage of IFX Web Components
+
+- [Angular][Angular-example]
+- [React + Javascript][React-example]
+- [Vanilla][Vanilla-example]
+- [Vue + Javascript][Vue-example]
+
+
 <p align="right"><a href="#tableContent">back to top</a></p>
 
 
@@ -310,3 +319,7 @@ dds@infineon.com <br />
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
 [Stencil-url]: https://stenciljs.com/
+[Vue-example]: https://infineon.github.io/infineon-design-system-stencil/vue-example
+[React-example]: https://infineon.github.io/infineon-design-system-stencil/react-example
+[Angular-example]: https://infineon.github.io/infineon-design-system-stencil/angular-example
+[Vanilla-example]: https://infineon.github.io/infineon-design-system-stencil/vanilla-example
