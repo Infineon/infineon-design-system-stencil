@@ -1,3 +1,17 @@
+# v20.22.2 (Thu Sep 14 2023)
+
+#### 🐛 Bug Fix
+
+- Design review changes: Tag [#528](https://github.com/Infineon/infineon-design-system-stencil/pull/528) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.22.1 (Thu Sep 14 2023)
 
 #### 🐛 Bug Fix
