@@ -275,9 +275,9 @@ For Vue: <b>main.js/main.ts</b> <br />
 For Angular: <b>main.ts</b>
 
 ```bash
-import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
+import { defineCustomElement as defineCustomElementIfxIcon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
 
-defineCustomElementIfxTag(window);
+defineCustomElementIfxIcon(window);
 ```
 
 <p align="right"><a href="#tableContent">back to top</a></p>
