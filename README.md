@@ -15,16 +15,23 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#examples">Example applications demonstrating the usage of the IFX web components</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation">Installation</a><li>
+        <ul>
+        <li><a href="#angular">Angular</a></li>
+        <li><a href="#react/vue">React/Vue</a></li>
+        <li><a href="#vanilla">Vanilla</a></li>
+      </ul>
       </ul>
     </li>
     <li><a href="#usage-of-components">Usage</a></li>
+      <li><a href="#project-structure">Project structure</a></li>
       <li><a href="#local-development">Local development</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -56,157 +63,6 @@ Use it to build & run storybook and distribute the Stencil web components.
 <p align="right"><a href="#tableContent">back to top</a></p>
 
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Prerequisites
-
-- [Node](https://nodejs.org/en/) v14 or older.
-- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or older, or [Npm](https://www.npmjs.com/) v6.14.13 or older.
-
-### Installation on React, Vue or Angular
-
-#### With NPM
-
-1. ```npm install --save @infineon/infineon-design-system-stencil```
-
-#### With Yarn
-
-1. ```yarn add @infineon/infineon-design-system-stencil```
-
-#### Import the module inside your entry point file.
-
-For React: <b>index.js</b> <br />
-For Vue: <b>main.js</b> <br />
-For Angular: <b>main.ts</b>
-
-```bash
-import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
-
-defineCustomElements(window);
-```
-
-##### Additional steps for Angular
-
-Inside <b>app.modules.ts</b> file:
-
-```bash
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-@NgModule({
- ...
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
- ...
-})
-```
-
-
-##### Additional steps for Vue (when using the plain Stencil components)
-
-Inside <b>vite.config.js</b> file:
-
-```bash
-import vue from '@vitejs/plugin-vue';
-import { defineConfig } from 'vite';
-
-export default defineConfig({
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          // treat all tags starting with 'ifx-' as custom elements
-          isCustomElement: (tag) => tag.startsWith('ifx-')
-        }
-      }
-    }),
-    ...
-  ]
-});
-```
-
-##### Additional steps for React (when using the plain Stencil components)
-
-To listen to custom events emitted from the Stencil components, you might need to attach an EventListener.
-
-```bash
-import React, { useEffect, useRef } from 'react';
-
-function App() {
-  const checkboxRef = useRef();
-
-  useEffect(() => {
-    const checkbox = checkboxRef.current;
-    checkbox.addEventListener("ifxChange", toggleValue);
-    return () => {
-      checkbox.removeEventListener("ifxChange", toggleValue);
-    };
-  });
-
-  ...
-  
-   return (
-      <ifx-checkbox ref={checkboxRef} disabled={disabled} value={checked} error={error} name="name" onIfxChange={toggleValue}>label</ifx-checkbox>
-  );
-}
-
-export default App;
-```
-
-#### Installation of SASS
-<!-- For React projects only, run:  -->
-```bash
-npm install sass
-```
-
- <br>
-
-## Usage of components
-
-Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
-
-https://infineon.github.io/infineon-design-system-stencil
-
-
-<p align="right"><a href="#tableContent">back to top</a></p>
-
- <br>
-
-## Using only the Icons
-
-For the case in which you only want to use our icons, please follow these steps:
-
-1. install the package by following the instructions explained above
-2. Import only the ifx-icon component inside your entry point file as explained below;
-
-For React: <b>index.js</b> <br />
-For Vue: <b>main.js</b> <br />
-For Angular: <b>main.ts</b>
-
-```bash
-import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
-
-defineCustomElementIfxTag(window);
-```
-
- <br>
-
-## Local development
-
-Please note that the current version of storybook does not support the latest Node version. Please use Node version < 17.
-### Installation
-
-```bash
-git clone https://github.com/Infineon/infineon-design-system-stencil.git
-```
-
-Install all the modules and dependencies listed on the ```package.json``` file with:
-
-```bash
-yarn/npm install
-```
-
 ## Project structure 
 
 ### Overall structure
@@ -223,7 +79,233 @@ A Stencil Wrapper Component is a component that wraps around a Stencil Web Compo
 
 Our Wrapper Components are built automatically every time ```npm run stencil:build``` is executed.
 
+<p align="right"><a href="#tableContent">back to top</a></p>
+
  <br>
+
+---
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+- [Node](https://nodejs.org/en/) v14 or older.
+- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or older, or [Npm](https://www.npmjs.com/) v6.14.13 or older.
+
+### Installation of the component libraray
+
+---
+#### Angular
+
+**1.**
+
+- **with NPM**
+
+```npm install --save @infineon/infineon-design-system-stencil```
+
+- **with Yarn**
+
+```yarn add @infineon/infineon-design-system-stencil```
+
+**2. Installation of SASS**
+```bash
+npm install sass
+```
+
+**3. Import the module inside your entry point file**
+
+```bash
+#main.ts
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+
+defineCustomElements(window);
+```
+**4. Additional steps only for Angular**
+
+Inside <b>app.modules.ts</b> file:
+
+```bash
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+ ...
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+ ...
+})
+```
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
+
+#### React
+
+React Wrappers: Similarly to Vue, a React wrapper provides a React interface to a Stencil web component, making the web component feel more like a typical React component. This includes proper handling of props, state, and events within the context of a React application.
+
+**1. Installation**
+
+**- with NPM**
+
+```npm install @infineon/infineon-design-system-react```
+
+**- with Yarn**
+
+```yarn add @infineon/infineon-design-system-react```
+
+**2. Installation of SASS**
+```bash
+npm install sass
+```
+
+**3. Import the module inside your entry point file**
+
+```js
+import { defineCustomElements } from '@infineon/infineon-design-system-react';
+//...
+
+defineCustomElements(window)
+```
+
+In React, there isn't a built-in mechanism to globally register components like in Vue. Therefore, components need to be imported in the file that they are being used in.
+
+**4. Usage**
+
+```js
+import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-react';
+//...
+<IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }} show-close-button="true"></IfxSearchBar>
+```
+
+**React + Javascript specific**
+
+It may be necessary to add the following to your .env file at project root:
+
+``GENERATE_SOURCEMAP=false``
+
+This can also be achieved by updating your start script in the ``package.json`` accordingly.
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
+
+#### Vanilla
+
+Include the following script tag in your index.html
+
+```bash
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>'
+
+```
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
+
+#### Vue
+
+**1. Installation**
+
+**- with NPM**
+
+```npm install @infineon/infineon-design-system-vue```
+
+**- with Yarn**
+
+```yarn add @infineon/infineon-design-system-vue```
+
+**2. Installation of SASS**
+```bash
+npm install sass
+```
+
+**3. Import the module inside your entry point file**
+
+```js
+//main.js/main.ts
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+//...
+
+createApp(App).use(ComponentLibrary).mount('#app');
+```
+
+In Vue, this registers the components globally.
+
+**4. Usage**
+
+```js
+<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
+```
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
+
+## General usage of IFX web components
+
+Explore our currently available web components in Storybook. You will also find the code snippets needed to include them in your application.
+
+https://infineon.github.io/infineon-design-system-stencil
+
+
+ <br>
+
+---
+
+## Using only the Icons
+
+For the case in which you only want to use our icons, please follow these steps:
+
+
+1. install the package by following the instructions for the respective framework
+2. Import only the ifx-icon component inside your entry point file as explained below;
+
+For React: <b>index.js/index.ts</b> <br />
+For Vue: <b>main.js/main.ts</b> <br />
+For Angular: <b>main.ts</b>
+
+```bash
+import { defineCustomElement as defineCustomElementIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon";
+
+defineCustomElementIfxTag(window);
+```
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
+
+## Local development
+
+Please note that the current version of storybook does not support the latest Node version. Please use Node version < 17.
+### Installation
+
+```bash
+git clone https://github.com/Infineon/infineon-design-system-stencil.git
+```
+
+Install all the modules and dependencies listed on the ```package.json``` file with:
+
+```bash
+yarn/npm install
+```
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
+ <br>
+
+---
 
 ### Build Storybook
 
@@ -245,7 +327,12 @@ To run storybook locally (automatically rebuilds on changes), run:
 yarn/npm run storybook
 ```
 
+
+<p align="right"><a href="#tableContent">back to top</a></p>
+
  <br>
+
+---
 
 ### Example applications
 
@@ -265,7 +352,11 @@ cd examples/wrapper-components
 
 and go to the application folder you want to use for testing. (React-Ts, React-Js, Vue-Ts, Vue-Js). Again, follow the instructions described in the ```readme.md``` in each of these folders.
 
+<p align="right"><a href="#tableContent">back to top</a></p>
+
  <br>
+
+---
 
 ### Contributing
 
