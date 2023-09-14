@@ -14,22 +14,35 @@ Currently this works with the ``IfxProgressBar``, the ``IfxSearchBar`` and the `
 
 ## Installation
 
-### With NPM
+**1.**
 
-1. ```npm install @infineon/infineon-design-system-vue```
+**- with NPM**
 
-#### With Yarn
+```npm install @infineon/infineon-design-system-vue```
 
-1. ```yarn add @infineon/infineon-design-system-vue```
+**- with Yarn**
 
-#### Import the module inside your entry point file.
+```yarn add @infineon/infineon-design-system-vue```
 
-``import { ComponentLibrary } from '@infineon/infineon-design-system-vue';``
+**2. Installation of SASS**
+```bash
+npm install sass
+```
 
-``createApp(App).use(ComponentLibrary).mount('#app');``
+**3. Import the module inside your entry point file**
+
+```js
+//main.js/main.ts
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+//...
+
+createApp(App).use(ComponentLibrary).mount('#app');
+```
 
 In Vue, this registers the components globally.
 
-#### Usage
+## Usage
 
-``<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>``
+```js
+<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
+```
