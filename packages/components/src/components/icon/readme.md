@@ -43,6 +43,7 @@
  - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
+ - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
 
@@ -68,6 +69,7 @@ graph TD;
   ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
+  ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
