@@ -11,6 +11,7 @@
   gap: tokens.$ifxSpace100;
 
   &:hover {
+    cursor: pointer;
     border-color: tokens.$ifxColorEngineering400;
   }
 
@@ -35,10 +36,5 @@
       line-height: 20px;
       color: tokens.$ifxColorBaseBlack;
     }
-  }
-
-  & ifx-icon {
-    margin-right: tokens.$ifxSpace200;
-    ;
   }
 }

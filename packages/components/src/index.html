@@ -15,46 +15,11 @@
 
   <script defer>
 
-    const handleOkay = () => { 
-      console.log('here')
-    }
-
-    window.addEventListener('load', () => {
-      const myButton = document.getElementById('open')
-      const myModal = document.querySelector('ifx-modal')
-      myButton.addEventListener('click', () => { 
-        myModal.open()
-      })
-      myModal.addEventListener('modalClose', () => {
-        console.log('modal has closed')
-      })
-      myModal.addEventListener('modalOpen', () => {
-        console.log('modal has opened')
-      })
-      myModal.addEventListener('closeButtonClick', () => {
-        console.log('closeButtonClicked')
-      })
-    })
-
   </script>
 
 </head>
 
 <body>
-
-  <ifx-modal caption="Modal Title" alert-icon="calendar16" alert-color="orange" variant="alert-danger" close-on-overlay-click="false">
-    <div slot="content">
-     Lorem ipsum dolor sit amet consectetur adipisicing elit.  orem ipsum dolor sit amet consectetur adipisicing elit. 
-    </div>
-    <div slot="buttons">
-      <ifx-button onclick="handleOkay()" variant="secondary">Okay</ifx-button>
-      <ifx-button>Close</ifx-button>
-
-
-    </div>
-  </ifx-modal>
-  <ifx-button id="open">Open Modal</ifx-button>
- 
 
 </body>
 
