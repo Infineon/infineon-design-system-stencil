@@ -1,3 +1,17 @@
+# v20.21.4 (Thu Sep 14 2023)
+
+#### 🐛 Bug Fix
+
+- Design review changes: Modal [#520](https://github.com/Infineon/infineon-design-system-stencil/pull/520) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.21.3 (Wed Sep 13 2023)
 
 #### 🐛 Bug Fix
