@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-tab',
@@ -7,11 +7,11 @@ import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core'
 })
 export class IfxTab {
   @Element() el: HTMLElement;
-  @Prop() header: string;
-  @Prop() disabled: boolean;
+  //@Prop() header: string;
+  //@Prop() disabled: boolean;
 
-  @Event({ eventName: 'tabBecameActive' }) tabBecameActive: EventEmitter;
-  @Event({ eventName: 'tabBecameInactive' }) tabBecameInactive: EventEmitter;
+  //@Event({ eventName: 'tabBecameActive' }) tabBecameActive: EventEmitter;
+  //@Event({ eventName: 'tabBecameInactive' }) tabBecameInactive: EventEmitter;
 
   render() {
     return <slot />;

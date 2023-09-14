@@ -29,11 +29,9 @@ const Template = (args) => {
       tabContent.setAttribute('disabled', `${args.lastTabDisabled}`);
     }
     tabContent.innerHTML = `
-      
         Content for Tab #${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-     
     `;
     tabContent.addEventListener('tabBecameActive', action(`tabBecameActive (tab #${i})`));
     tabContent.addEventListener('tabBecameInactive', action(`tabBecameInactive (tab #${i})`));
