@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                   | Default     |
-| ---------- | ---------- | ----------- | -------------------------------------- | ----------- |
-| `disabled` | `disabled` |             | `boolean`                              | `undefined` |
-| `href`     | `href`     |             | `string`                               | `undefined` |
-| `icon`     | `icon`     |             | `string`                               | `undefined` |
-| `shape`    | `shape`    |             | `string`                               | `'round'`   |
-| `size`     | `size`     |             | `string`                               | `undefined` |
-| `target`   | `target`   |             | `string`                               | `'_self'`   |
-| `variant`  | `variant`  |             | `"secondary" \| "solid" \| "tertiary"` | `undefined` |
+| Property   | Attribute  | Description | Type                                     | Default     |
+| ---------- | ---------- | ----------- | ---------------------------------------- | ----------- |
+| `disabled` | `disabled` |             | `boolean`                                | `undefined` |
+| `href`     | `href`     |             | `string`                                 | `undefined` |
+| `icon`     | `icon`     |             | `string`                                 | `undefined` |
+| `shape`    | `shape`    |             | `string`                                 | `'round'`   |
+| `size`     | `size`     |             | `string`                                 | `undefined` |
+| `target`   | `target`   |             | `string`                                 | `'_self'`   |
+| `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
 
 
 ## Methods
@@ -35,6 +35,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [ifx-modal](../modal)
  - [ifx-pagination](../pagination)
 
 ### Depends on
@@ -45,6 +46,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-icon-button --> ifx-icon
+  ifx-modal --> ifx-icon-button
   ifx-pagination --> ifx-icon-button
   style ifx-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

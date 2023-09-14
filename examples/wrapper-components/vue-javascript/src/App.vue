@@ -2,37 +2,40 @@
 <template>
   <Navbar />
   <h1>Stencil Framework integration - Vue + JS </h1>
-  <Breadcrumbs />
   <Alert />
-  <BasicTable />
+  <Accordion />
+  <Breadcrumbs />
   <Button />
   <Card />
-  <SingleSelect />
-  <MultiSelect />
   <Checkbox />
+  <Dropdown />
   <IconButton />
   <Link />
+  <Modal />
+  <MultiSelect />
   <NumberIndicator />
+  <Pagination />
   <ProgressBar />
   <RadioButton />
   <Search />
   <SearchField />
+  <SingleSelect />
   <Spinner />
   <Sidebar />
   <Switch />
-  <Dropdown />
-  <Tooltip />
-  <Footer />
+  <Table />
   <Tabs />
   <Tag />
   <TextField />
-  <Pagination />
+  <Tooltip />
+  <Footer />
 </template>
 
 
 <script lang="ts" setup>
 import SearchField from './components/SearchField.vue'
 import Alert from './components/Alert.vue'
+import Accordion from './components/Accordion.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
@@ -54,10 +57,9 @@ import Tooltip from './components/Tooltip.vue'
 import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
-
+import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
-
-import BasicTable from './components/BasicTable.vue'
+import Table from './components/BasicTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
 
 

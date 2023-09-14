@@ -16,17 +16,15 @@
   transition: opacity 0.3s;
   position: relative;
   font-family: Source Sans 3;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   color: tokens.$ifxColorBaseWhite;
 
   &.visible {
-    //display: block;
-    display: flex!important;
+    display: flex !important;
     align-items: center;
-
     min-width: 100px;
   }
 }
@@ -39,8 +37,8 @@
 
   .close-button {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: tokens.$ifxSpace150;
+    right: tokens.$ifxSpace150;
     cursor: pointer;
     //order: 2;
     //padding-right: 12px;
@@ -49,8 +47,8 @@
   .tooltip-dismissible-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    gap: tokens.$ifxSpace150;
+    padding: tokens.$ifxSpace150;
     flex-grow: 1;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -61,7 +59,7 @@
   .tooltip-dismissible-header,
   .tooltip-dismissible-body {
     font-family: "Source Sans 3";
-    font-size: 13px;
+    font-size: 14px;
     font-style: normal;
     line-height: 20px;
   }
@@ -87,16 +85,13 @@
   @extend %tooltip-common;
   width: 310px;
   //padding-left: 36px; // Added this line, adjust as per your icon width
-  padding-left: 12px; // Added this line, adjust as per your icon width
+  padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
 
 
   .extended_icon {
-    //position: absolute;
-    position: static;
-    width: 24px;
-    height: 24px;
-    top: 12px;
-    left: 12px;
+    display: flex;
+    align-self: flex-start;
+    padding-top: tokens.$ifxSpace150;
     cursor: pointer;
   }
 
@@ -105,8 +100,8 @@
   .tooltip-extended-content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 12px;
+    gap: tokens.$ifxSpace150;
+    padding: tokens.$ifxSpace150;
     flex-grow: 1;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -116,7 +111,7 @@
   .tooltip-extended-header,
   .tooltip-extended-body {
     font-family: "Source Sans 3";
-    font-size: 13px;
+    font-size: 14px;
     font-style: normal;
     line-height: 20px;
   }

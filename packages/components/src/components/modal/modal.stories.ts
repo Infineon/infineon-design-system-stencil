@@ -1,11 +1,10 @@
-// ifx-modal.stories.js
 import { action } from '@storybook/addon-actions';
-import { icons } from '@infineon/infineon-icons'
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Modal',
   component: 'ifx-modal',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   argTypes: {
     caption: {
@@ -21,10 +20,9 @@ export default {
       control: { type: 'select' },
       description: 'When specified together with alertIcon then an border to the right is shown',
     },
-    alertColor: {
-      options: ['primary', 'secondary', 'success', 'danger', 'warning'],
-      control: { type: 'select' },
-      description: 'When specified together with alertColor then an border to the right is shown',
+    variant: {
+      options: ['default', 'alert-brand', 'alert-danger'],
+      control: { type: 'radio' },
     },
   },
 };
@@ -32,30 +30,48 @@ export default {
 const Template = ({
   caption,
   closeOnOverlayClick,
-  alertIcon,
-  alertColor
+  variant,
+  alertIcon
 }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
+  modal.setAttribute('variant', variant);
+
   if (alertIcon) {
     modal.setAttribute('alert-icon', alertIcon);
-  }
-  if (alertColor) {
-    modal.setAttribute('alert-color', alertColor);
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
 
   modal.addEventListener('modalOpen', action('modalOpen'));
   modal.addEventListener('modalClose', action('modalClose'));
-  modal.addEventListener('okButtonClick', action('okButtonClick'));
-  modal.addEventListener('cancelButtonClick', action('cancelButtonClick'));
+  modal.addEventListener('closeButtonClick', action('closeButtonClick'));
 
   const content = document.createElement('div');
   content.setAttribute('slot', 'content');
   content.innerHTML = `
-    <span>This is the content of the modal.</span>
+    <span>Modal content</span>
   `;
   modal.appendChild(content);
+
+  const buttons = document.createElement('div');
+  buttons.setAttribute('slot', 'buttons');
+
+  const cancelButton = document.createElement('ifx-button');
+  cancelButton.setAttribute('variant', 'secondary');
+  cancelButton.textContent = 'Button';
+  cancelButton.addEventListener('click', () => {
+    modal.close();
+  });
+
+  const primaryButton = document.createElement('ifx-button');
+  primaryButton.textContent = 'Button';
+  primaryButton.addEventListener('click', () => {
+    modal.close();
+  });
+
+  buttons.appendChild(cancelButton);
+  buttons.appendChild(primaryButton);
+  modal.appendChild(buttons);
 
   const openButton = document.createElement('ifx-button');
   openButton.id = 'open';
@@ -75,12 +91,13 @@ export const Default = Template.bind({});
 Default.args = {
   caption: 'Modal Title',
   closeOnOverlayClick: false,
+  variant: 'default',
 };
 
 export const Alert = Template.bind({});
 Alert.args = {
-  caption: 'Alert Modal Title',
+  caption: 'Alert-Brand Modal Title',
   closeOnOverlayClick: true,
-  alertIcon: 'test',
-  alertColor: 'primary'
+  alertIcon: 'arrowdoen24',
+  variant: 'alert-brand',
 };

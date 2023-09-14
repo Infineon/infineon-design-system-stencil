@@ -17,40 +17,16 @@
     <ifx-navbar-item hide-label="false" slot="right-item">Right Two</ifx-navbar-item>
     <ifx-navbar-item hide-label="false" slot="right-profile-item">Tisho</ifx-navbar-item>
   </ifx-navbar>
+  <br />
 
 
   <h1>Using Stencil web components in an Angular application</h1>
-
-  <h2>Breadcrumb</h2>
-  <ifx-breadcrumb>
-    <ifx-breadcrumb-item>
-      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 1</ifx-breadcrumb-item-label>
-      <ifx-dropdown-menu>
-        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
-      </ifx-dropdown-menu>
-    </ifx-breadcrumb-item>
-
-    <ifx-breadcrumb-item>
-      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
-      <ifx-dropdown-menu>
-        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
-        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
-      </ifx-dropdown-menu>
-    </ifx-breadcrumb-item>
-
-    <ifx-breadcrumb-item>
-      <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
-    </ifx-breadcrumb-item>
-  </ifx-breadcrumb>
+  <br />
   <br />
 
   <h2>Alert</h2>
   <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+  <br />
   <br />
 
 
@@ -85,17 +61,38 @@
     </ifx-accordion-item></ifx-accordion>
   <br />
 
-  <h2>Tabs</h2>
-  <ifx-tabs orientation="horizontal">
-    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
-  </ifx-tabs>
+
+
+  <h2>Breadcrumb</h2>
+  <ifx-breadcrumb>
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 1</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu>
+        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="">Breadcrumb 2</ifx-breadcrumb-item-label>
+      <ifx-dropdown-menu>
+        <ifx-dropdown-item url="http://google.com">Google</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://bing.com">Bing</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+        <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+      </ifx-dropdown-menu>
+    </ifx-breadcrumb-item>
+
+    <ifx-breadcrumb-item>
+      <ifx-breadcrumb-item-label slot="label" icon="" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
+    </ifx-breadcrumb-item>
+  </ifx-breadcrumb>
   <br />
 
-  <h2>Tag</h2>
-  <ifx-tag>tag</ifx-tag>
-  <br />
+
+
 
   <h2>Button</h2>
   <div>
@@ -105,125 +102,7 @@
   </div>
   <br />
   <br />
-  <h2>Progress bar</h2>
-  <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
-  <div>
-    <br />
-    <ifx-button variant="primary" icon="" position="left" href="" target="_blank" theme="default" size="m"
-      [disabled]="false" (click)="updateProgressOnClick()">
-      Update progress
-    </ifx-button>
-  </div>
-  <br />
-  <br />
 
-  <h2>Checkbox</h2>
-
-  <form (ngSubmit)="handleSubmit()">
-    <ifx-checkbox [disabled]="checkboxDisabled" [value]="checkboxChecked" [error]="checkboxError" name="name"
-      (ifxChange)="toggleCheckboxValue()">label</ifx-checkbox>
-    <br />
-    <br />
-
-    <ifx-button type="submit">Submit</ifx-button>
-  </form>
-
-  <ifx-button variant="secondary" (click)="toggleCheckboxDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleCheckboxError()">Toggle Error</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleCheckboxValue()">Toggle Value</ifx-button>
-
-  <span>Disabled: {{ checkboxDisabled }} </span>
-  <span>Error: {{ checkboxError }} </span>
-  <span>Value: {{ checkboxChecked }}</span>
-  <br />
-  <br />
-
-  <h2>Text Field</h2>
-  <form (ngSubmit)="handleSubmit()">
-    <ifx-text-input (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
-      placeholder="Placeholder" [errorMessage]="">Text
-      field</ifx-text-input>
-    <br />
-    <br />
-
-    <ifx-button type="submit">Submit</ifx-button>
-  </form>
-  <span>Text field value: {{ textFieldValue }}</span>
-  <br />
-  <br />
-
-  <h2>Radio Button</h2>
-  <form>
-    <ifx-radio-button [error]="radioError" [disabled]="radioDisabled" [value]="radioChecked"
-      (ifxChange)="handleRadioButtonChange($event)">
-      Text
-    </ifx-radio-button>
-  </form>
-  <ifx-button variant="secondary" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
-  <ifx-button variant="secondary" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
-  <span>Disabled: {{ radioDisabled }} </span>
-  <span>Error: {{ radioError }} </span>
-  <span>Value: {{ radioChecked }}</span>
-  <span>Radio button value: {{ radioButtonValue }}</span>
-  <br />
-  <br />
-
-  <h2>Spinner</h2>
-  <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
-  <br />
-  <br />
-
-  <h2>Link</h2>
-  <ifx-link color="primary" href="" target="_blank" underline="false">
-    Link
-  </ifx-link>
-  <br />
-  <br />
-
-  <h2>Number Indicator</h2>
-  <ifx-number-indicator inverted='false'> {{ numberIndicator }}</ifx-number-indicator>
-  <button (click)="increaseNumber()">+</button>
-  <button (click)="decreaseNumber()">-</button>
-  <br />
-  <br />
-
-  <h2>Search Field</h2>
-  <ifx-search-field size="m" disabled="false" show-delete-icon="true"
-    (ifxInput)="handleSearchField($event)"></ifx-search-field>
-  <br />
-  <br />
-
-  <h2>Search Bar</h2>
-  <ifx-search-bar size="m" disabled="false" show-close-button="true"
-    (ifxInput)="handleSearchBar($event)"></ifx-search-bar>
-  <br />
-  <br />
-
-  <h2>Sidebar</h2>
-  <ifx-sidebar application-name="Application Name">
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
-  </ifx-sidebar>
-  <br />
-  <br />
-
-  <h2>Multi-Select</h2>
-  <ifx-multiselect
-    options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
-    size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
-  <br />
-  <br />
-
-  <h2>Single-Select</h2>
-  <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
-    search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
-    ifx-label="" ifx-placeholder-value="Placeholder"
-    ifx-options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]'></ifx-select>
-  <br />
-  <br />
 
 
   <h2>Card</h2>
@@ -251,13 +130,213 @@
     </ifx-card-links>
   </ifx-card>
   <br />
+  <br />
 
-  <h2>Switch</h2>
-  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+  <h2>Checkbox</h2>
+
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-checkbox [disabled]="checkboxDisabled" [value]="checkboxChecked" [error]="checkboxError" name="name"
+      (ifxChange)="toggleCheckboxValue()">label</ifx-checkbox>
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+  </form>
+
+  <ifx-button variant="secondary" (click)="toggleCheckboxDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxValue()">Toggle Value</ifx-button>
+
+  <span>Disabled: {{ checkboxDisabled }} </span>
+  <span>Error: {{ checkboxError }} </span>
+  <span>Value: {{ checkboxChecked }}</span>
+  <br />
+  <br />
+
+
+
+
+  <h2>Dropdown</h2>
+  <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+    <ifx-dropdown-trigger-button icon="calendar16">
+      dropdown
+    </ifx-dropdown-trigger-button>
+    <ifx-dropdown-menu size="l">
+      <ifx-dropdown-header>Header Text</ifx-dropdown-header>
+      <ifx-search-field show-delete-icon="false"></ifx-search-field>
+      <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
+      <ifx-dropdown-separator></ifx-dropdown-separator>
+      <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
+      <ifx-dropdown-item>Two</ifx-dropdown-item>
+      <ifx-dropdown-item>Three</ifx-dropdown-item>
+      <ifx-dropdown-item>Four</ifx-dropdown-item>
+    </ifx-dropdown-menu>
+  </ifx-dropdown>
+  <br />
+  <br />
+
+  <h2>Link</h2>
+  <ifx-link color="primary" href="" target="_blank" underline="false">
+    Link
+  </ifx-link>
+  <br />
+  <br />
+
+  <h2>Modal</h2>
+  <div>
+    <ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
+      <div slot="content">
+        <span>Hello. Welcome. What a pleasure it is to have you.</span>
+      </div>
+      <div slot="buttons">
+        <ifx-button variant="secondary" (click)="handleModalButton1Click()">Console output</ifx-button>
+        <ifx-button (click)="handleModalButton2Click()">Close</ifx-button>
+      </div>
+    </ifx-modal>
+    <ifx-button (click)="handleModalOpen()">Open Modal</ifx-button>
+  </div>
+  <br />
+  <br />
+
+
+  <h2>Multi-Select</h2>
+  <ifx-multiselect
+    options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
+    size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <br />
+  <br />
+
+  <h2>Number Indicator</h2>
+  <ifx-number-indicator inverted='false'> {{ numberIndicator }}</ifx-number-indicator>
+  <button (click)="increaseNumber()">+</button>
+  <button (click)="decreaseNumber()">-</button>
+  <br />
   <br />
 
   <h2>Pagination</h2>
   <ifx-pagination total="500" current-page="1"></ifx-pagination>
+  <br />
+  <br />
+
+
+  <h2>Progress bar</h2>
+  <ifx-progress-bar [value]="progressValue" size="m" show-label="true"></ifx-progress-bar>
+  <div>
+    <br />
+    <ifx-button variant="primary" icon="" position="left" href="" target="_blank" theme="default" size="m"
+      [disabled]="false" (click)="updateProgressOnClick()">
+      Update progress
+    </ifx-button>
+  </div>
+  <br />
+  <br />
+
+
+  <h2>Radio Button</h2>
+  <form>
+    <ifx-radio-button [error]="radioError" [disabled]="radioDisabled" [value]="radioChecked"
+      (ifxChange)="handleRadioButtonChange($event)">
+      Text
+    </ifx-radio-button>
+  </form>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
+  <span>Disabled: {{ radioDisabled }} </span>
+  <span>Error: {{ radioError }} </span>
+  <span>Value: {{ radioChecked }}</span>
+  <span>Radio button value: {{ radioButtonValue }}</span>
+  <br />
+  <br />
+
+  <h2>Spinner</h2>
+  <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+  <br />
+  <br />
+
+  <h2>Search Field</h2>
+  <ifx-search-field size="m" disabled="false" show-delete-icon="true"
+    (ifxInput)="handleSearchField($event)"></ifx-search-field>
+  <br />
+  <br />
+
+  <h2>Search Bar</h2>
+  <ifx-search-bar size="m" disabled="false" show-close-button="true"
+    (ifxInput)="handleSearchBar($event)"></ifx-search-bar>
+  <br />
+  <br />
+
+  <h2>Sidebar</h2>
+  <ifx-sidebar application-name="Application Name">
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+  </ifx-sidebar>
+  <br />
+  <br />
+
+
+
+  <h2>Single-Select</h2>
+  <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+    search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false" ifx-error-message="Some error"
+    ifx-label="" ifx-placeholder-value="Placeholder"
+    ifx-options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]'></ifx-select>
+  <br />
+  <br />
+
+
+  <h2>Switch</h2>
+  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+  <br />
+  <br />
+
+  <h2>Table</h2>
+  <ifx-basic-table row-height='default'
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
+    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
+    table-height='auto'>
+  </ifx-basic-table>
+  <br />
+  <br />
+
+  <h2>Tabs</h2>
+  <ifx-tabs orientation="horizontal">
+    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
+    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
+    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+  </ifx-tabs>
+  <br />
+  <br />
+
+  <h2>Tag</h2>
+  <ifx-tag>tag</ifx-tag>
+  <br />
+  <br />
+
+  <h2>Text Field</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-text-input (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
+      placeholder="Placeholder" [errorMessage]="">Text
+      field</ifx-text-input>
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+  </form>
+  <span>Text field value: {{ textFieldValue }}</span>
+  <br />
+  <br />
+
+  <h2>Tooltip</h2>
+  <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="right">I'm the compact tooltip reference
+    element -
+    Please hover me</ifx-tooltip>
+  <br />
+  <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
+    position="auto">I'm the dismissible tooltip reference element - Please click me</ifx-tooltip>
+  <br />
   <br />
 
   <h2>Footer</h2>
@@ -311,41 +390,5 @@
       </ifx-link>
     </div>
   </ifx-footer>
-
-  <h2>Dropdown</h2>
-  <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
-    <ifx-dropdown-trigger-button icon="calendar16">
-      dropdown
-    </ifx-dropdown-trigger-button>
-    <ifx-dropdown-menu size="l">
-      <ifx-dropdown-header>Header Text</ifx-dropdown-header>
-      <ifx-search-field show-delete-icon="false"></ifx-search-field>
-      <ifx-dropdown-item target="_blank" href="https://www.google.de">First</ifx-dropdown-item>
-      <ifx-dropdown-separator></ifx-dropdown-separator>
-      <ifx-dropdown-item icon="calendar16">One</ifx-dropdown-item>
-      <ifx-dropdown-item>Two</ifx-dropdown-item>
-      <ifx-dropdown-item>Three</ifx-dropdown-item>
-      <ifx-dropdown-item>Four</ifx-dropdown-item>
-    </ifx-dropdown-menu>
-  </ifx-dropdown>
-  <br />
-
-  <h2>Tooltip</h2>
-  <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="right">I'm the compact tooltip reference
-    element -
-    Please hover me</ifx-tooltip>
-  <br />
-
-  <ifx-tooltip header="Dismissible tooltip header" text="Hi, I'm a dismissible tooltip" variant="dismissible"
-    position="auto">I'm the dismissible tooltip reference element - Please click me</ifx-tooltip>
-  <br />
-
-  <h2>Table</h2>
-  <ifx-basic-table row-height='default'
-    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
-    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
-    table-height='auto'>
-  </ifx-basic-table>
-  <br />
 
 </div>

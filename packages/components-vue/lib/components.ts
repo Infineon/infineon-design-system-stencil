@@ -250,12 +250,13 @@ export const IfxListNotification = /*@__PURE__*/ defineContainer<JSX.IfxListNoti
 export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', undefined, [
   'caption',
   'closeOnOverlayClick',
-  'alertColor',
+  'variant',
   'alertIcon',
+  'okButtonLabel',
+  'cancelButtonLabel',
   'modalOpen',
   'modalClose',
-  'okButtonClick',
-  'cancelButtonClick'
+  'closeButtonClick'
 ]);
 
 
