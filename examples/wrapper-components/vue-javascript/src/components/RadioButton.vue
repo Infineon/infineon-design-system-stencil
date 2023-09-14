@@ -1,8 +1,6 @@
 <template>
   <div>
     <h2>Radio Button</h2>
-    <h3>Using v-model</h3>
-
     <form @submit.prevent="handleSubmit">
       <ifx-radio-button :disabled="disabled" @ifxChange="handleChange" :value="radioBtnValue" :error="error"
         name="name">label</ifx-radio-button>

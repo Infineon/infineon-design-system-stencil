@@ -1,8 +1,6 @@
 <template>
   <div>
     <h2>Search-Field</h2>
-    <h3>Using v-model</h3>
-
     <ifx-search-field v-model="searchInput" disabled="false" size='m' show-delete-icon="true"></ifx-search-field>
     <p>Search field: {{ searchInput }}</p>
     <br />
