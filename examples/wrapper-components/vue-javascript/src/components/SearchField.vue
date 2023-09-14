@@ -14,7 +14,7 @@ const searchInput = ref('');
 
 onMounted(() => {
   updateSearchBarAndSearchInput();
-  setInterval(updateSearchBarAndSearchInput, 10000);
+  setInterval(updateSearchBarAndSearchInput, 50000);
 })
 
 

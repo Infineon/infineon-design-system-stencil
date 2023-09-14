@@ -10,11 +10,11 @@
     </form>
     <br />
     <div>
-      <ifx-button variant="outline" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleValue">Toggle Value</ifx-button>
+      <ifx-button variant="secondary" @click="toggleValue">Toggle Value</ifx-button>
 
     </div>
     <br />

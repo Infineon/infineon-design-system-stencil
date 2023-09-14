@@ -4,17 +4,15 @@
   box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
-  padding: 16px;
 
   .search-field__wrapper {
     box-sizing: border-box;
-    //height: 48px;
     height: tokens.$ifxSize500;
     display: flex;
     align-items: center;
     border: 1px solid #8D8786;
     border-radius: tokens.$ifxBorderRadius12;
-    padding: 12px 16px;
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     gap: tokens.$ifxSpace150;
     flex: none;
     order: 0;
@@ -38,7 +36,6 @@
     }
 
 
-
     &:hover:not(.focused, :focus) {
       border: 1px solid #3C3A39;
     }
@@ -47,7 +44,6 @@
       outline: none;
       border: 1px solid #0A8276;
     }
-
 
 
     .delete-icon {
