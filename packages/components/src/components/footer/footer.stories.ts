@@ -3,7 +3,7 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    variant: 'default'
+    variant: 'medium'
   },
 
   argTypes: {
@@ -13,7 +13,7 @@ export default {
 
 
 const DefaultTemplate = () =>
-  `<ifx-footer variant="default">
+  `<ifx-footer variant="medium">
     <div slot="socials">
       <ifx-link href="http://facebook.com/infineon">
         <ifx-icon icon="c-info-16"></ifx-icon>
