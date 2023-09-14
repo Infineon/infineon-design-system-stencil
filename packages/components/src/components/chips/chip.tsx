@@ -9,7 +9,7 @@ import { Component, h, Element, Prop, Listen, State, Event, EventEmitter } from 
 export class Chip {
   @Element() el;
   @Prop() placeholder: string;
-  @State() isEmpty: boolean = true;
+  @State() selectedValue: string = "";
   @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
 
   @Listen('mousedown', { target: 'document' })
@@ -27,6 +27,7 @@ export class Chip {
       const dropdownMenuElement = dropdownMenuComponent.querySelector('.dropdown-menu');
       return dropdownMenuElement
     }
+    return null;
   }
 
   getDropdownWrapper() {
@@ -43,9 +44,9 @@ export class Chip {
     el?.classList[type](className)
   }
 
-  toggleDropdownMenu() {
-    console.log("dropdown menu")
 
+  toggleDropdownMenu() {
+    console.log("toggle")
     const textField = this.getTextField()
     const textFieldElement = textField.querySelector('.wrapper-close-button')
     const chipWrapper = textField.closest('.wrapper');
@@ -56,6 +57,8 @@ export class Chip {
     this.handleClassList(textFieldElement, 'toggle', 'show')
     this.handleClassList(chipWrapper, 'toggle', 'open')
   }
+
+
 
   closeDropdownMenu() {
     const dropdownMenu = this.getDropdownMenu()
@@ -76,21 +79,21 @@ export class Chip {
     }
   }
 
-  uncheckCheckboxes(target) {
-    const dropdownMenuItems = this.getDropdownItems()
-    for (let i = 0; i < dropdownMenuItems.length; i++) {
-      if (dropdownMenuItems[i].shadowRoot.querySelector('a') !== target) {
-        dropdownMenuItems[i].shadowRoot.querySelector('a').querySelector('ifx-checkbox').checked = false;
-      }
-    }
-  }
+  // uncheckCheckboxes(target) {
+  //   const dropdownMenuItems = this.getDropdownItems()
+  //   for (let i = 0; i < dropdownMenuItems.length; i++) {
+  //     if (dropdownMenuItems[i].shadowRoot.querySelector('a') !== target) {
+  //       dropdownMenuItems[i].shadowRoot.querySelector('a').querySelector('ifx-checkbox').checked = false;
+  //     }
+  //   }
+  // }
 
-  returnToDefaultLabel() {
-    console.log("default labe")
-    const textField = this.getTextField()
-    const labelWrapper = textField.querySelector('.wrapper-label');
-    labelWrapper.innerHTML = this.placeholder;
-  }
+  // returnToDefaultLabel() {
+  //   console.log("default labe")
+  //   const textField = this.getTextField()
+  //   const labelWrapper = textField.querySelector('.wrapper-label');
+  //   labelWrapper.innerHTML = this.placeholder;
+  // }
 
   // toggleCheckbox(target) {
   //   console.log("toggle checkbox")
@@ -115,8 +118,10 @@ export class Chip {
 
   @Listen('ifxDropdownItem')
   handleDropdownItemValueEmission(event: CustomEvent) {
-    console.log("event", event)
-    this.ifxDropdownMenu.emit(event.detail)
+    console.log("dropdown item event")
+    this.selectedValue = event.detail;
+    this.ifxDropdownMenu.emit(event.detail);
+    // this.closeDropdownMenu();
   }
 
 
@@ -124,8 +129,7 @@ export class Chip {
     const target = this.getClickedElement(e.composedPath()[0])
     const selectedAnchor = e.target.shadowRoot.querySelector('a');
     console.log("anchor", selectedAnchor)
-    // const isCheckable = e.target.checkable;
-    // this.uncheckCheckboxes(selectedAnchor)
+
 
     // if (!target) {
     //   if (selectedAnchor.querySelector('ifx-checkbox').checked === false) {
@@ -149,24 +153,26 @@ export class Chip {
     return textField
   }
 
-  addItemValueToTextField(value) {
-    const textField = this.getTextField()
-    const labelWrapper = textField.querySelector('.wrapper-label')
-    value.target.setAttribute('target', value.target?.index)
-    labelWrapper.innerHTML = value.value
-  }
+  // addItemValueToTextField(value) {
+  //   const textField = this.getTextField()
+  //   const labelWrapper = textField.querySelector('.wrapper-label')
+  //   value.target.setAttribute('target', value.target?.index)
+  //   labelWrapper.innerHTML = value.value
+  // }
 
   addEventListeners() {
     const dropdownMenu = this.getDropdownMenu();
-    document.addEventListener('click', this.handleOutsideClick.bind(this))
-    dropdownMenu.addEventListener('click', this.addActiveMenuItem)
-    let dropdownMenuComponent = this.el.querySelector('ifx-dropdown-menu');
-    dropdownMenuComponent.addEventListener('selectValues', (event) => {
-      this.addItemValueToTextField(event.detail)
-    })
+    document.addEventListener('click', this.handleOutsideClick.bind(this));
+    dropdownMenu?.addEventListener('click', this.addActiveMenuItem);
+  }
+
+  connectedCallback() {
+    this.addEventListeners();
   }
 
   componentDidRender() {
+    console.log("click")
+
     let textInput = this.getTextField()
     if (textInput) {
       textInput.addEventListener('click', this.toggleDropdownMenu.bind(this))
@@ -179,7 +185,7 @@ export class Chip {
       <div class="dropdown container">
         <div class="wrapper">
           <div class="wrapper-label">
-            {this.placeholder}
+            {this.selectedValue ? this.selectedValue : this.placeholder}
           </div>
           <div class="wrapper-close-button">
             <ifx-icon icon="chevrondown12"></ifx-icon>
