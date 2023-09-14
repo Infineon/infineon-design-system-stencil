@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <h2>Alert</h2>
+    <h2>Accordion</h2>
     <div>
       <ifx-accordion auto-collapse="true" onIfxItemOpen={handleItems}>
         <ifx-accordion-item caption="How to be happy?">
