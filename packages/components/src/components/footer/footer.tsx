@@ -8,41 +8,26 @@ import { Component, h, Element, Prop, State, Host } from '@stencil/core';
 
 export class Footer {
   @Element() el;
-  @Prop() variant: string = 'default'
+  @Prop() variant: string = 'medium'
   @State() large: boolean = false;
-  @State() default: boolean = false;
-  @State() showFacebook: boolean = true
-
-
-  getSvg(name) {
-    const svgObj = {
-      facebook: <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
-    }
-    return svgObj[name]
-  }
-
-  handleSlotChange(val) {
-    if (val === 'facebook') {
-      this.showFacebook = true;
-    }
-  }
+  @State() medium: boolean = false;
 
   componentWillLoad() {
     if (this.variant.toLowerCase() === 'large') {
       this.large = true;
-      this.default = true;
-    } else if (this.variant.toLowerCase() === 'default') {
+      this.medium = true;
+    } else if (this.variant.toLowerCase() === 'medium') {
       this.large = false;
-      this.default = true;
+      this.medium = true;
     } else if (this.variant.toLowerCase() === 'small') {
       this.large = false;
-      this.default = false;
+      this.medium = false;
     } else {
-      this.default = true;
+      this.medium = true;
     }
 
-    const hostElement = this.el.closest('ifx-footer')
-    hostElement.style.width = '100%';
+    // const hostElement = this.el.closest('ifx-footer')
+    // hostElement.style.width = '100%';
   }
 
 
@@ -57,8 +42,8 @@ export class Footer {
                 <slot name="col" />
               </div>}
 
-            {this.default &&
-              <div class="default">
+            {this.medium &&
+              <div class="medium">
                 <div class="footer__logo">
                   <svg width="91" height="40" viewBox="0 0 91 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_2396_2480)">

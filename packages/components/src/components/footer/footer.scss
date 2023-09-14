@@ -1,11 +1,14 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
-// :host { 
-//    width: 100%;
-// }
+:host { 
+  display: block;
+  width: 100%;
+}
 
 .footer__container {
-  width: 100%;
+  //width: 100%;
+  padding: 0px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +19,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
+    //width: 80%;
+    width: 100%;
 
     & .large {
       display: flex;
@@ -30,7 +34,7 @@
       }
     }
 
-    & .default {
+    & .medium {
       display: flex;
       justify-content: space-between;
       align-items: center;
