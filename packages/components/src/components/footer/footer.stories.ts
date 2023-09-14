@@ -37,7 +37,7 @@ const DefaultTemplate = () =>
   </ifx-footer>`;
 
 
-export const Default = DefaultTemplate.bind({});
+export const Medium = DefaultTemplate.bind({});
 
 const SmallTemplate = () =>
   `<ifx-footer variant="small"></ifx-footer>`;
