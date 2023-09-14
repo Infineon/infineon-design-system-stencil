@@ -1,3 +1,16 @@
+# v20.22.0 (Thu Sep 14 2023)
+
+#### 🚀 Enhancement
+
+- getting started + readme updated [#525](https://github.com/Infineon/infineon-design-system-stencil/pull/525) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.21.4 (Thu Sep 14 2023)
 
 #### 🐛 Bug Fix
