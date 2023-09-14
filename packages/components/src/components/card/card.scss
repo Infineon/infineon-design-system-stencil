@@ -10,7 +10,8 @@
   background-clip: border-box;
   border: 1px solid #ebe9e9;
   border-radius: 1px;
-  width: 22rem;
+  //width: 22rem;
+  width: 350px;
   height: auto;
 
   &.noBtns {
@@ -70,6 +71,13 @@
     & .upper__body-wrapper {
       text-decoration: none;
       color: tokens.$ifxColorBaseBlack;
+
+      & .card-img { 
+        height: 190px;
+        &.noImage { 
+          display: none;
+        }
+      }
 
       & .upper-body {
         padding: 24px 24px 0px 24px;

@@ -26,7 +26,6 @@ export class Card {
 
     if(!image) { 
       this.noImg = true;
-      console.log('no image')
     } else this.noImg = false;
 
     if(!links) { 
@@ -91,7 +90,7 @@ export class Card {
          {this.direction === 'vertical' && 
           <div class="vertical">
             <a class='upper__body-wrapper' href={this.href} target={this.target}>
-              <div class='card-img'>
+              <div class={`card-img ${this.noImg ? 'noImage' : ""}`}>
                 <slot name="img" />
               </div>
 
