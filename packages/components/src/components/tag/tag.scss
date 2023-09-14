@@ -4,25 +4,41 @@
 .container {
   display: inline-flex;
   align-items: center;
-  padding: tokens.$ifxSpace25 tokens.$ifxSpace200;
+  padding: tokens.$ifxSpace50 tokens.$ifxSpace200;
   border: 1px solid tokens.$ifxColorEngineering300;
   border-radius: tokens.$ifxBorderRadiusRound;
-  text-decoration: none;
+  background-color: tokens.$ifxColorBaseWhite;
+  gap: tokens.$ifxSpace100;
 
   &:hover {
+    border-color: tokens.$ifxColorEngineering400;
+  }
+
+  &:active,
+  &.active {
     border-color: tokens.$ifxColorBaseBlack;
   }
 
-  :active {
+  &:focus:not(:active, .active) {
+    outline: none;
     border-color: tokens.$ifxColorBaseBlack;
-    background-color: tokens.$ifxColorEngineering100;
   }
 
-  & .label {
-    margin: 0;
-    font-weight: tokens.$ifxFontWeightRegular;
-    font-size: tokens.$ifxFontSizeM;
-    line-height: 1.5rem;
-    color: tokens.$ifxColorBaseBlack;
+  .label-wrapper {
+    text-decoration: none;
+
+    .label {
+      margin: 0;
+      font-weight: tokens.$ifxFontWeightRegular;
+      font-size: tokens.$ifxFontSizeM;
+      font-family: tokens.$ifxFontFamilyBody;
+      line-height: 20px;
+      color: tokens.$ifxColorBaseBlack;
+    }
+  }
+
+  & ifx-icon {
+    margin-right: tokens.$ifxSpace200;
+    ;
   }
 }
