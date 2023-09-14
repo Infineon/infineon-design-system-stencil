@@ -107,7 +107,8 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
 
 
 export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
-  'placeholder'
+  'placeholder',
+  'ifxDropdownMenu'
 ]);
 
 

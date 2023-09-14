@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, Listen, State } from '@stencil/core';
+import { Component, h, Element, Prop, Listen, State, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-chip',
@@ -10,6 +10,7 @@ export class Chip {
   @Element() el;
   @Prop() placeholder: string;
   @State() isEmpty: boolean = true;
+  @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -43,6 +44,8 @@ export class Chip {
   }
 
   toggleDropdownMenu() {
+    console.log("dropdown menu")
+
     const textField = this.getTextField()
     const textFieldElement = textField.querySelector('.wrapper-close-button')
     const chipWrapper = textField.closest('.wrapper');
@@ -83,18 +86,20 @@ export class Chip {
   }
 
   returnToDefaultLabel() {
+    console.log("default labe")
     const textField = this.getTextField()
     const labelWrapper = textField.querySelector('.wrapper-label');
     labelWrapper.innerHTML = this.placeholder;
   }
 
-  toggleCheckbox(target) {
-    this.uncheckCheckboxes(target)
-    target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
-    if (target.querySelector('ifx-checkbox').checked === false) {
-      this.returnToDefaultLabel()
-    }
-  }
+  // toggleCheckbox(target) {
+  //   console.log("toggle checkbox")
+  //   this.uncheckCheckboxes(target)
+  //   target.querySelector('ifx-checkbox').checked = !target.querySelector('ifx-checkbox').checked
+  //   if (target.querySelector('ifx-checkbox').checked === false) {
+  //     this.returnToDefaultLabel()
+  //   }
+  // }
 
   getClickedElement(target) {
     if (target instanceof SVGElement) {
@@ -108,23 +113,31 @@ export class Chip {
     }
   }
 
+  @Listen('ifxDropdownItem')
+  handleDropdownItemValueEmission(event: CustomEvent) {
+    console.log("event", event)
+    this.ifxDropdownMenu.emit(event.detail)
+  }
+
+
   addActiveMenuItem = (e) => {
     const target = this.getClickedElement(e.composedPath()[0])
     const selectedAnchor = e.target.shadowRoot.querySelector('a');
-    const isCheckable = e.target.checkable;
-    this.uncheckCheckboxes(selectedAnchor)
+    console.log("anchor", selectedAnchor)
+    // const isCheckable = e.target.checkable;
+    // this.uncheckCheckboxes(selectedAnchor)
 
-    if (!target) {
-      if (selectedAnchor.querySelector('ifx-checkbox').checked === false) {
-        this.returnToDefaultLabel()
-      }
-      return;
-    }
+    // if (!target) {
+    //   if (selectedAnchor.querySelector('ifx-checkbox').checked === false) {
+    //     this.returnToDefaultLabel()
+    //   }
+    //   return;
+    // }
 
-    if (isCheckable) {
-      this.toggleCheckbox(target)
-      return;
-    }
+    // if (isCheckable) {
+    //   this.toggleCheckbox(target)
+    //   return;
+    // }
 
     this.removeActiveMenuItem()
     this.handleClassList(target, 'add', 'active')
