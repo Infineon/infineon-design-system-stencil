@@ -1,3 +1,15 @@
+# v20.23.0 (Thu Sep 14 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: dropdown menu update [#533](https://github.com/Infineon/infineon-design-system-stencil/pull/533) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.22.3 (Thu Sep 14 2023)
 
 #### 🐛 Bug Fix
