@@ -7,15 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                   | Default     |
-| ---------- | ---------- | ----------- | ---------------------- | ----------- |
-| `disabled` | `disabled` |             | `boolean`              | `undefined` |
-| `href`     | `href`     |             | `string`               | `undefined` |
-| `icon`     | `icon`     |             | `string`               | `undefined` |
-| `shape`    | `shape`    |             | `string`               | `'round'`   |
-| `size`     | `size`     |             | `string`               | `undefined` |
-| `target`   | `target`   |             | `string`               | `'_self'`   |
-| `variant`  | `variant`  |             | `"outline" \| "solid"` | `undefined` |
+| Property   | Attribute  | Description | Type                                   | Default     |
+| ---------- | ---------- | ----------- | -------------------------------------- | ----------- |
+| `disabled` | `disabled` |             | `boolean`                              | `undefined` |
+| `href`     | `href`     |             | `string`                               | `undefined` |
+| `icon`     | `icon`     |             | `string`                               | `undefined` |
+| `shape`    | `shape`    |             | `string`                               | `'round'`   |
+| `size`     | `size`     |             | `string`                               | `undefined` |
+| `target`   | `target`   |             | `string`                               | `'_self'`   |
+| `variant`  | `variant`  |             | `"secondary" \| "solid" \| "tertiary"` | `undefined` |
 
 
 ## Methods

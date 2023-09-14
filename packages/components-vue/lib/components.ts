@@ -221,9 +221,8 @@ export const IfxIconsPreview = /*@__PURE__*/ defineContainer<JSX.IfxIconsPreview
 export const IfxLink = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', undefined, [
   'href',
   'target',
-  'color',
-  'bold',
-  'underline'
+  'size',
+  'variant'
 ]);
 
 
