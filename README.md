@@ -18,6 +18,7 @@
         <li><a href="#examples">Example applications demonstrating the usage of the IFX web components</a></li>
       </ul>
     </li>
+    <li><a href="#project-structure">Project structure</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
@@ -31,8 +32,7 @@
       </ul>
     </li>
     <li><a href="#usage-of-components">Usage</a></li>
-      <li><a href="#project-structure">Project structure</a></li>
-      <li><a href="#local-development">Local development</a></li>
+    <li><a href="#local-development">Local development</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
