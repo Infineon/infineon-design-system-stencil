@@ -16,49 +16,70 @@ export class Card {
   @Prop() target: string = "_self";
 
   @Listen('imgPosition')
-  setImgPosition(event) { 
+  setImgPosition(event) {
     this.alignment = event.detail
   }
 
-  handleComponentAdjustment() { 
+  handleComponentAdjustment() {
     const image = this.el.querySelector('ifx-card-image')
     const links = this.el.querySelector('ifx-card-links')
 
-    if(!image) { 
+    if (!image) {
       this.noImg = true;
-      console.log('no image')
     } else this.noImg = false;
 
-    if(!links) { 
+    if (!links) {
       this.noBtns = true;
     } else this.noBtns = false;
   }
 
-  handleHovering() { 
+  handleHovering() {
     const card = this.el.shadowRoot.querySelector('.card')
-    card.addEventListener('mouseover', (ev) => { 
+    card.addEventListener('mouseover', (ev) => {
       this.el.querySelector('ifx-card-headline').isHovered = true;
-      if(ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') { 
+      if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
         this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
         this.el.querySelector('ifx-card-headline').isHovered = false;
       } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
     })
 
-    card.addEventListener('mouseout', () => { 
+
+    card.addEventListener('mouseout', () => {
       this.el.querySelector('ifx-card-headline').isHovered = false;
       this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
     })
   }
-  
+
   componentWillLoad() {
     this.handleComponentAdjustment()
   }
 
-  componentDidLoad() { 
-    this.handleHovering()
+  componentDidLoad() {
+    this.handleHovering();
+    this.addEventListenersToHandleCustomFocusState();
+
   }
 
-  componentWillUpdate() { 
+
+  private addEventListenersToHandleCustomFocusState() {
+    const element = this.el.shadowRoot.firstChild;
+    if (!element) {
+      console.error('element not found');
+      return;
+    }
+    const upperBodyWrapper = element.querySelector('.upper__body-wrapper');
+    if (!upperBodyWrapper) {
+      console.error('upper body wrapper not found');
+      return;
+    }
+
+    element.tabIndex = -1;
+    upperBodyWrapper.tabIndex = -1;
+
+  }
+
+
+  componentWillUpdate() {
     this.handleComponentAdjustment()
   }
 
@@ -71,39 +92,39 @@ export class Card {
           ${this.direction} 
           ${this.alignment}`
         }>
-         
-        {this.direction === 'horizontal' &&
-           <div class="horizontal">
+
+          {this.direction === 'horizontal' &&
+            <div class="horizontal">
               <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.href}>
                 <slot name="img" />
               </a>
 
               <div class='lower__body-wrapper'>
                 <a class='upper-body' href={this.href}>
-                    <slot />
+                  <slot />
                 </a>
                 <div>
                   <slot name='buttons' />
                 </div>
               </div>
-         </div>}
+            </div>}
 
-         {this.direction === 'vertical' && 
-          <div class="vertical">
-            <a class='upper__body-wrapper' href={this.href} target={this.target}>
-              <div class='card-img'>
-                <slot name="img" />
+          {this.direction === 'vertical' &&
+            <div class="vertical">
+              <a class='upper__body-wrapper' href={this.href} target={this.target}>
+                <div class={`card-img ${this.noImg ? 'noImage' : ""}`}>
+                  <slot name="img" />
+                </div>
+
+                <div class='upper-body'>
+                  <slot />
+                </div>
+              </a>
+
+              <div class='lower__body-wrapper'>
+                <slot name='buttons' />
               </div>
-
-              <div class='upper-body'>
-                <slot />
-              </div>
-            </a>
-
-            <div class='lower__body-wrapper'>
-              <slot name='buttons' />
-            </div>
-          </div>}
+            </div>}
         </div>
       </Host>
     );
