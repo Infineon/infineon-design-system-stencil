@@ -166,17 +166,6 @@ export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDro
 export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
 
 
-export const IfxFilterInput = /*@__PURE__*/ defineContainer<JSX.IfxFilterInput>('ifx-filter-input', undefined, [
-  'label',
-  'size',
-  'disabled',
-  'icon',
-  'search',
-  'filter',
-  'selectValue'
-]);
-
-
 export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', undefined, [
   'variant'
 ]);
