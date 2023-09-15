@@ -1,8 +1,6 @@
 <template>
   <div>
     <h2>Checkbox</h2>
-    <h3>Using v-bind/v-on</h3>
-
     <form @submit.prevent="handleSubmit">
       <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
         name="name">label</ifx-checkbox>

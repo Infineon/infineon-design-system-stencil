@@ -3,7 +3,6 @@
 <template>
   <div>
     <h2>Search-Bar</h2>
-    <h3>Using v-model</h3>
     <ifx-search-bar v-model="searchBarQuery" style="width: 100%" show-close-button="true"></ifx-search-bar>
     <p>Search bar: {{ searchBar }}</p>
     <br />

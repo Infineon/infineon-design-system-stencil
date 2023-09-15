@@ -4,7 +4,6 @@
   <div>
     <h2>Progress bar</h2>
 
-    <h3>Using v-model</h3>
     <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
     <br />
     <ifx-button @click="updateProgress" variant="secondary" href="" target="_blank" theme="default" size="s"
