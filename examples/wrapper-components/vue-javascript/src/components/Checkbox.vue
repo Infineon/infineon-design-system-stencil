@@ -1,12 +1,9 @@
 <template>
   <div>
     <h2>Checkbox</h2>
-    <!-- <h3>Using v-model</h3> -->
 
     <form @submit.prevent="handleSubmit">
-      <!-- <ifx-checkbox :disabled="disabled" v-model="checked" :error="error" name="name">label</ifx-checkbox> -->
 
-      <h3>Using v-bind/v-on</h3>
       <ifx-checkbox :disabled="disabled" @ifxChange="handleCheckboxChange" :value="checkboxValue" :error="error"
         name="name">label</ifx-checkbox>
       <br />

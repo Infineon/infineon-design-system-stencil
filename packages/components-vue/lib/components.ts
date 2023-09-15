@@ -107,7 +107,8 @@ export const IfxCheckbox = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-c
 
 
 export const IfxChip = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
-  'placeholder'
+  'placeholder',
+  'ifxDropdownMenu'
 ]);
 
 
@@ -159,19 +160,6 @@ export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDro
   'size',
   'disabled',
   'hideArrow'
-]);
-
-
-export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-example', undefined, [
-  'variant',
-  'color',
-  'size',
-  'disabled',
-  'icon',
-  'position',
-  'href',
-  'target',
-  'type'
 ]);
 
 

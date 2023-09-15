@@ -1,3 +1,18 @@
+# v20.23.1 (Fri Sep 15 2023)
+
+#### 🐛 Bug Fix
+
+- Design review changes: Chip + other minor fixes [#529](https://github.com/Infineon/infineon-design-system-stencil/pull/529) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+- Card: updated in accordance with design review [#534](https://github.com/Infineon/infineon-design-system-stencil/pull/534) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.23.0 (Thu Sep 14 2023)
 
 #### 🚀 Enhancement

@@ -12,6 +12,13 @@
 | `placeholder` | `placeholder` |             | `string` | `undefined` |
 
 
+## Events
+
+| Event             | Description | Type                            |
+| ----------------- | ----------- | ------------------------------- |
+| `ifxDropdownMenu` |             | `CustomEvent<CustomEvent<any>>` |
+
+
 ## Dependencies
 
 ### Depends on

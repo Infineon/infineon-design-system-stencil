@@ -10,7 +10,7 @@ export default {
     search: false,
     header: false,
     separator: false,
-    variant: "solid",
+    variant: "primary",
     url: "",
     target: "_self",
     icon: "c-check-16",
@@ -93,7 +93,7 @@ export default {
 
 const DefaultTemplate = (args) => {
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
+  wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" disabled="${args.disabled}" no-close-on-menu-click="${args.noCloseOnOutsideClick}">
   <ifx-dropdown-trigger-button variant="${args.variant}">
     dropdown
   </ifx-dropdown-trigger-button>
@@ -125,11 +125,11 @@ const LabelTriggerTemplate = (args) => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"
-    ${args.defaultOpen ? 'default-open' : ''}
-    ${args.noCloseOnOutsideClick ? 'no-close-on-outside-click' : ''}
-    ${args.noCloseOnMenuClick ? 'no-close-on-menu-click' : ''}
-    ${args.disabled ? 'disabled' : ''}
-    ${args.noAppendToBody ? 'no-append-to-body' : ''}
+    default-open="${args.defaultOpen}"
+    no-close-on-outside-click="${args.noCloseOnOutsideClick}"
+    no-close-on-menu-click="${args.noCloseOnOutsideClick}"
+    disabled="${args.disabled}"
+    no-append-to-body="${args.noAppendToBody}"
   >
     Hello World! Click on the text to open the dropdown
     <ifx-dropdown-trigger>

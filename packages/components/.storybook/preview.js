@@ -33,7 +33,6 @@ export const parameters = {
           'FAQ',
         ],
         'Components',
-        'Documentation',
         // 'Contact'
       ]
     }

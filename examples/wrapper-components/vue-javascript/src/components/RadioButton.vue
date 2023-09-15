@@ -1,8 +1,6 @@
 <template>
   <div>
     <h2>Radio Button</h2>
-    <h3>Using v-model</h3>
-
     <form @submit.prevent="handleSubmit">
       <ifx-radio-button :disabled="disabled" @ifxChange="handleChange" :value="radioBtnValue" :error="error"
         name="name">label</ifx-radio-button>
@@ -12,11 +10,11 @@
     </form>
     <br />
     <div>
-      <ifx-button variant="outline" @click="toggleDisabled">Toggle Disabled</ifx-button>
+      <ifx-button variant="secondary" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleError">Toggle Error</ifx-button>
+      <ifx-button variant="secondary" @click="toggleError">Toggle Error</ifx-button>
 
-      <ifx-button variant="outline" @click="toggleValue">Toggle Value</ifx-button>
+      <ifx-button variant="secondary" @click="toggleValue">Toggle Value</ifx-button>
 
     </div>
     <br />

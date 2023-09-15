@@ -32,7 +32,6 @@ export const IfxDropdownMenu = /*@__PURE__*/createReactComponent<JSX.IfxDropdown
 export const IfxDropdownSeparator = /*@__PURE__*/createReactComponent<JSX.IfxDropdownSeparator, HTMLIfxDropdownSeparatorElement>('ifx-dropdown-separator');
 export const IfxDropdownTrigger = /*@__PURE__*/createReactComponent<JSX.IfxDropdownTrigger, HTMLIfxDropdownTriggerElement>('ifx-dropdown-trigger');
 export const IfxDropdownTriggerButton = /*@__PURE__*/createReactComponent<JSX.IfxDropdownTriggerButton, HTMLIfxDropdownTriggerButtonElement>('ifx-dropdown-trigger-button');
-export const IfxExample = /*@__PURE__*/createReactComponent<JSX.IfxExample, HTMLIfxExampleElement>('ifx-example');
 export const IfxFaq = /*@__PURE__*/createReactComponent<JSX.IfxFaq, HTMLIfxFaqElement>('ifx-faq');
 export const IfxFilterInput = /*@__PURE__*/createReactComponent<JSX.IfxFilterInput, HTMLIfxFilterInputElement>('ifx-filter-input');
 export const IfxFooter = /*@__PURE__*/createReactComponent<JSX.IfxFooter, HTMLIfxFooterElement>('ifx-footer');
