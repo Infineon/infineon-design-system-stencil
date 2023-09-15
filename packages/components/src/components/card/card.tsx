@@ -56,14 +56,13 @@ export class Card {
 
   componentDidLoad() {
     this.handleHovering();
-    this.addEventListenersToHandleCustomFocusAndActiveState();
+    this.addEventListenersToHandleCustomFocusState();
 
   }
 
 
-  private addEventListenersToHandleCustomFocusAndActiveState() {
+  private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
-    console.log("ev listeners")
     if (!element) {
       console.error('element not found');
       return;
@@ -74,23 +73,9 @@ export class Card {
       return;
     }
 
-    element.tabIndex = 0;
-    upperBodyWrapper.tabIndex = 0;
+    element.tabIndex = -1;
+    upperBodyWrapper.tabIndex = -1;
 
-    element.addEventListener('focus', () => {
-      element.classList.add('focus');
-    });
-
-    element.addEventListener('blur', () => {
-      element.classList.remove('focus');
-    });
-    upperBodyWrapper.addEventListener('focus', () => {
-      upperBodyWrapper.classList.add('focus');
-    });
-
-    upperBodyWrapper.addEventListener('blur', () => {
-      upperBodyWrapper.classList.remove('focus');
-    });
   }
 
 

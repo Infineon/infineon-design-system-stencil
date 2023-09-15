@@ -51,7 +51,7 @@ export class SearchBar {
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
 
-            <a href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>
+            <a tabindex="-1" href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>
           </div>
         ) : (
           <div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>

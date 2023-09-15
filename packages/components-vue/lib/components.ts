@@ -162,19 +162,6 @@ export const IfxDropdownTriggerButton = /*@__PURE__*/ defineContainer<JSX.IfxDro
 ]);
 
 
-export const IfxExample = /*@__PURE__*/ defineContainer<JSX.IfxExample>('ifx-example', undefined, [
-  'variant',
-  'color',
-  'size',
-  'disabled',
-  'icon',
-  'position',
-  'href',
-  'target',
-  'type'
-]);
-
-
 export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
 
 
