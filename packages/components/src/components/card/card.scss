@@ -72,9 +72,10 @@
       text-decoration: none;
       color: tokens.$ifxColorBaseBlack;
 
-      & .card-img { 
+      & .card-img {
         height: 190px;
-        &.noImage { 
+
+        &.noImage {
           display: none;
         }
       }
@@ -119,4 +120,11 @@
       }
     }
   }
+}
+
+.card:focus,
+.card:focus-visible,
+.focus {
+  outline: none;
+  border-color: #0A8276 !important;
 }
