@@ -2,6 +2,7 @@
 <template>
   <Navbar />
   <h1>Stencil Framework integration - Vue + JS </h1>
+  <Sidebar />
   <Alert />
   <Accordion />
   <Breadcrumbs />
@@ -10,6 +11,7 @@
   <Checkbox />
   <Dropdown />
   <IconButton />
+  <Icon />
   <Link />
   <Modal />
   <MultiSelect />
@@ -17,15 +19,17 @@
   <Pagination />
   <ProgressBar />
   <RadioButton />
-  <Search />
   <SearchField />
+  <SearchBar />
   <SingleSelect />
   <Spinner />
-  <Sidebar />
+  <Status />
   <Switch />
   <Table />
   <Tabs />
   <Tag />
+  <Slider />
+  <Badge />
   <TextField />
   <Tooltip />
   <Footer />
@@ -39,7 +43,6 @@ import Accordion from './components/Accordion.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import ProgressBar from './components/ProgressBar.vue'
-import Search from './components/Search.vue'
 import RadioButton from './components/RadioButton.vue'
 import TextField from './components/TextField.vue'
 import Tag from './components/Tag.vue'
@@ -61,6 +64,11 @@ import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
 import Table from './components/BasicTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
+import SearchBar from './components/SearchBar.vue';
+import Badge from './components/Badge.vue'
+import Icon from './components/Icon.vue';
+import Slider from './components/Slider.vue'
+import Status from './components/Status.vue'
 
 
 </script>
