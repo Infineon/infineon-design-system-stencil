@@ -20,10 +20,8 @@ export class Sidebar {
       console.error('element not found');
       return;
     }
-    console.log("el", element)
     const slot = element.querySelector('slot');
     const assignedNodes = slot.assignedNodes();
-    console.log("el", assignedNodes)
 
     for (let i = 0; i < assignedNodes.length; i++) {
       const node = assignedNodes[i];
