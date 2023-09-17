@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar',
@@ -6,7 +6,40 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class Sidebar {
+  @Element() el;
   @Prop() applicationName: string = 'Application name'
+
+
+  componentDidLoad() {
+    this.addEventListenersToHandleCustomFocusState();
+  }
+
+  private addEventListenersToHandleCustomFocusState() {
+    const element = this.el.shadowRoot.firstChild;
+    if (!element) {
+      console.error('element not found');
+      return;
+    }
+    console.log("el", element)
+    const slot = element.querySelector('slot');
+    const assignedNodes = slot.assignedNodes();
+    console.log("el", assignedNodes)
+
+    for (let i = 0; i < assignedNodes.length; i++) {
+      const node = assignedNodes[i];
+      if (node.nodeName === 'IFX-SIDEBAR-ITEM') {
+        const sidebarItem = node as HTMLIfxSidebarItemElement;
+        sidebarItem.tabIndex = -1;
+      }
+    }
+    element.tabIndex = -1;
+
+    const sidebarFooterWrapperTopLinks = element.querySelector('.sidebar__footer-wrapper');
+    const aElements = sidebarFooterWrapperTopLinks?.querySelectorAll('a');
+    for (let i = 0; i < aElements.length; i++) {
+      aElements[i].tabIndex = -1;
+    }
+  }
 
   render() {
     return (
