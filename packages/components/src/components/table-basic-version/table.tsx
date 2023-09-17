@@ -21,7 +21,6 @@ export class Table {
 
 
   componentWillLoad() {
-    console.log("loading component")
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     if (typeof this.rows === 'string' && typeof this.cols === 'string') {
       try {
