@@ -45,6 +45,8 @@ export class Table {
       defaultColDef: {
         resizable: true,
       },
+      suppressCellFocus: true,
+      suppressRowHoverHighlight: true,
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
@@ -56,7 +58,7 @@ export class Table {
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
     };
-    console.log("grid options ", this.gridOptions);
+    // console.log("grid options ", this.gridOptions);
 
   }
 
@@ -87,8 +89,7 @@ export class Table {
 
     return (
       <div id="grid-wrapper" class={{ 'auto-height': this.tableHeight === 'auto' ? true : false }}>
-
-        <div id={`ifxTable-${this.uniqueKey}`} class="ag-theme-alpine" style={{
+        <div id={`ifxTable-${this.uniqueKey}`} class="ifx-ag-grid ag-theme-alpine" style={{
           'height': `${this.tableHeight}`, width: '100%'
         }}></div >
       </div >
