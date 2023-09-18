@@ -22,19 +22,21 @@ export class Breadcrumb {
     element.tabIndex = -1;
 
     const slot = element.querySelector('slot');
-    const assignedNodes = slot.assignedNodes();
-
-    for (let i = 0; i < assignedNodes.length; i++) {
-      const node = assignedNodes[i];
-      if (node.nodeName === 'IFX-BREADCRUMB-ITEM') {
-        const breadcrumbLabel = node as HTMLIfxBreadcrumbItemElement;
-        if (!breadcrumbLabel.hasAttribute('url')) {
-          breadcrumbLabel.tabIndex = -1;
-          breadcrumbLabel.addEventListener('focus', () => {
-            if (breadcrumbLabel.hasAttribute('url')) {
-              breadcrumbLabel.blur();
-            }
-          });
+    if(slot) { 
+      const assignedNodes = slot.assignedNodes();
+  
+      for (let i = 0; i < assignedNodes.length; i++) {
+        const node = assignedNodes[i];
+        if (node.nodeName === 'IFX-BREADCRUMB-ITEM') {
+          const breadcrumbLabel = node as HTMLIfxBreadcrumbItemElement;
+          if (!breadcrumbLabel.hasAttribute('url')) {
+            breadcrumbLabel.tabIndex = -1;
+            breadcrumbLabel.addEventListener('focus', () => {
+              if (breadcrumbLabel.hasAttribute('url')) {
+                breadcrumbLabel.blur();
+              }
+            });
+          }
         }
       }
     }

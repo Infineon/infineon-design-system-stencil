@@ -11,7 +11,7 @@ export class NavbarItem {
   @Element() el;
   @Prop({ mutable: true }) isProfile: boolean = false;
   @Prop() hideLabel: boolean = false;
-  @Prop() icon: string = "image-16"
+  @Prop() icon: string = ""
   @Prop() href: string = ""
   @Prop() target: string = "_self";
   @Prop() hideComponent: boolean = false;
