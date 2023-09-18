@@ -1,3 +1,15 @@
+# v20.23.2 (Mon Sep 18 2023)
+
+#### 🐛 Bug Fix
+
+- Example apps: updated to latest version [#538](https://github.com/Infineon/infineon-design-system-stencil/pull/538) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.1 (Fri Sep 15 2023)
 
 #### 🐛 Bug Fix
