@@ -90,8 +90,8 @@ Our Wrapper Components are built automatically every time ```npm run stencil:bui
 
 ### Prerequisites
 
-- [Node](https://nodejs.org/en/) v14 or older.
-- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or older, or [Npm](https://www.npmjs.com/) v6.14.13 or older.
+- [Node](https://nodejs.org/en/) > v14 .
+- [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v6.14.13.
 
 ### Installation of the component libraray
 
@@ -288,7 +288,6 @@ defineCustomElementIfxIcon(window);
 
 ## Local development
 
-Please note that the current version of storybook does not support the latest Node version. Please use Node version < 17.
 ### Installation
 
 ```bash
