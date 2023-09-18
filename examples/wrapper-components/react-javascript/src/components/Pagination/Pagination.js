@@ -13,9 +13,7 @@ export default function App() {
 
   const handlePageChange = (e) => { 
     setCurrentPage(e.detail.currentPage)
-    if(e.detail.itemsPerPage !== 10) { 
-      setPostsPerPage(e.detail.itemsPerPage)
-    }
+    setPostsPerPage(e.detail.itemsPerPage)
   }
   
 
