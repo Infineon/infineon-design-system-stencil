@@ -5,11 +5,17 @@
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
 
+.ifx-ag-grid .ag-header-cell:focus {
+  outline: none !important;
+}
+
+.ifx-ag-grid *:not(.ag-header-cell):focus {
+  outline: none;
+}
 
 .auto-height .ag-theme-alpine .ag-root-wrapper-body {
   height: auto !important;
 }
-
 
 
 .ag-root-wrapper {
@@ -20,7 +26,13 @@
 .ag-header {
   background-color: tokens.$ifxColorEngineering100;
   border-bottom: none;
+
+  &.ag-header-active {
+    outline: none !important;
+    border-color: #0A8276 !important;
+  }
 }
+
 
 .ag-header-cell {
   padding-left: 16px;
@@ -33,8 +45,6 @@
   // }
 }
 
-
-
 .ag-header-cell-text {
   font-size: 13px;
   font-style: normal;
@@ -43,13 +53,14 @@
   color: tokens.$ifxColorBaseBlack;
 }
 
+
 .ag-theme-alpine .ag-row-focus {
   background-color: inherit !important;
   /* Reset the hover color to the row's original color */
 }
 
 .ag-theme-alpine .ag-row-hover {
-  background-color: inherit !important;
+  background-color: tokens.$ifxColorBaseWhite; //inherit !important;
   /* Reset the hover color to the row's original color */
 }
 

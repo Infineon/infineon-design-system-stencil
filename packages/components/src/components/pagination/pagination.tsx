@@ -190,12 +190,12 @@ export class Pagination {
         <div class='items__total-wrapper'>
           <div class='page__numbers-wrapper'>
             <div class="pagination">
-              <ifx-icon-button variant='tertiary' class="prev" color='primary' icon='arrow-left-24'></ifx-icon-button>
+              <ifx-icon-button variant='secondary' class="prev" color='primary' icon='arrow-left-24'></ifx-icon-button>
               <ol>
                 {this.numberOfPages.map((item) =>
                   <li class={`${this.internalPage === item ? 'active' : ""}`}><a href={undefined}>{item}</a></li>)}
               </ol>
-              <ifx-icon-button class="next" variant='tertiary' color='primary' icon='arrow-right-24'></ifx-icon-button>
+              <ifx-icon-button class="next" variant='secondary' color='primary' icon='arrow-right-24'></ifx-icon-button>
             </div>
           </div>
         </div>
