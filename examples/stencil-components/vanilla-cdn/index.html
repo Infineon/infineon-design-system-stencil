@@ -185,22 +185,17 @@
 
 
     <h2>Link</h2>
-    <ifx-link color="primary" href="" target="_blank" underline="false">
+    <ifx-link href="" target="_blank" size="m" variant="bold" >
       Link
-    </ifx-link>
+      </ifx-link>
     <br />
     <br />
 
 
     <h2>Modal</h2>
-    <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
-        <div slot="content">
-          <span>Hello. Welcome. What a pleasure it is to have you.</span>
-        </div>
-        <div slot="buttons"><ifx-button variant="secondary" onclick="modal.close()">Button
-            1</ifx-button><ifx-button onclick="handleModalButton2Click()">Button 2</ifx-button></div>
-      </ifx-modal><ifx-button id="open-modal-btn">Open Modal</ifx-button>
-    </div>
+    <div><ifx-modal caption="Modal Title" variant="default" close-on-overlay-click="false"><div slot="content">
+      <span>Modal content</span>
+    </div><div slot="buttons"><ifx-button variant="secondary">Button</ifx-button><ifx-button>Button</ifx-button></div></ifx-modal><ifx-button id="open">Open Modal</ifx-button></div>
     <br />
     <br />
 
@@ -233,11 +228,11 @@
 
 
     <h2>Radio Button</h2>
-    <ifx-radio-button id="radio-btn" size="s" error="false" disabled="false" value="false">Text</ifx-radio-button>
+    <ifx-radio-button error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
     <br />
 
     <h2>Spinner</h2>
-    <ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+    <ifx-spinner variant="default" size="m"></ifx-spinner>
     <br />
 
 
@@ -316,9 +311,7 @@
 
     <form id="another-form">
       <h2>Text Field</h2>
-      <ifx-text-field id="text-input" error="false" disabled="false" success="false" placeholder="Placeholder"
-        caption="">Text
-        field</ifx-text-field>
+      <ifx-text-field error="false" disabled="false" size="m" icon="calendar-16" success="false" placeholder="Placeholder" caption="Caption" required="true" optional="false">Label</ifx-text-field>
       <br />
     </form>
     <span id="textInputSpan"></span>
@@ -349,53 +342,53 @@
 
 
     <h2>Footer</h2>
-    <ifx-footer variant="large">
+    <ifx-footer variant="medium">
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
       </ifx-footer-column>
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
       </ifx-footer-column>
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
-        <ifx-link bold="false" slot="link" href="https://google.com" underline="false">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link" href="https://google.com">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link" href="https://google.com">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link" href="https://google.com">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
       </ifx-footer-column>
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
-        <ifx-link bold="false" slot="link">Footer Link</ifx-link>
+        <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
+        <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
       </ifx-footer-column>
       <div slot="socials">
-        <ifx-link href="http://facebook.com/infineon">
-          <ifx-icon icon="c-info-16"></ifx-icon>
+        <ifx-link variant="title" href="http://facebook.com/infineon">
+          <ifx-icon icon="facebook"></ifx-icon>
         </ifx-link>
-        <ifx-link href="http://youtube.com/infineon">
-          <ifx-icon icon="calendar-16"></ifx-icon>
+        <ifx-link variant="title" href="http://youtube.com/infineon">
+          <ifx-icon icon="youtube"></ifx-icon>
         </ifx-link>
-        <ifx-link href="http://instagram.com/infineon">
-          <ifx-icon icon="fileexe16"></ifx-icon>
+        <ifx-link variant="title" href="http://instagram.com/infineon">
+          <ifx-icon icon="instagram"></ifx-icon>
         </ifx-link>
-        <ifx-link href="http://linkedin.com/infineon">
-          <ifx-icon icon="filegif16"></ifx-icon>
+        <ifx-link variant="title" href="http://linkedin.com/infineon">
+          <ifx-icon icon="linkedin"></ifx-icon>
         </ifx-link>
-        <ifx-link href="http://twitter.com/infineon">
-          <ifx-icon icon="filehtml16"></ifx-icon>
+        <ifx-link variant="title" href="http://twitter.com/infineon">
+          <ifx-icon icon="twitter"></ifx-icon>
         </ifx-link>
-        <ifx-link href="http://xing.com/infineon">
-          <ifx-icon icon="filejpg16"></ifx-icon>
+        <ifx-link variant="title" href="http://xing.com/infineon">
+          <ifx-icon icon="xing"></ifx-icon>
         </ifx-link>
       </div>
     </ifx-footer>

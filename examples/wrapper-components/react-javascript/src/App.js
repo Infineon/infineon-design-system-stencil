@@ -26,7 +26,11 @@ import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Modal from './components/Modal/Modal';
-
+import Badge from './components/Badge/Badge'
+import Footer from './components/Footer/Footer'
+import Icon from './components/Icon/Icon';
+import Slider from './components/Slider/Slider'
+import Status from './components/Status/Status'
 
 
 function App() {
@@ -41,6 +45,10 @@ function App() {
 
       <h2>Alert</h2>
       <Alert />
+      <br />
+
+      <h2>Badge</h2>
+      <Badge />
       <br />
 
       <h2>Breadcrumbs</h2>
@@ -61,6 +69,14 @@ function App() {
 
       <h2>Dropdown</h2>
       <Dropdown />
+      <br />
+
+      <h2>Dropdown</h2>
+      <Dropdown />
+      <br />
+
+      <h2>Icon</h2>
+      <Icon />
       <br />
 
       <h2>IconButton</h2>
@@ -116,6 +132,10 @@ function App() {
       <Spinner />
       <br />
 
+      <h2>Slider</h2>
+      <Slider />
+      <br />
+
 
       <h2>Sidebar</h2>
       <Sidebar />
@@ -123,6 +143,10 @@ function App() {
 
       <h2>Switch</h2>
       <Switch />
+      <br />
+
+      <h2>Status</h2>
+      <Status />
       <br />
 
       <h2>Tab</h2>
@@ -142,6 +166,10 @@ function App() {
 
       <h2>Table (basic)</h2>
       <BasicTable />
+      <br />
+
+      <h2>Footer</h2>
+      <Footer />
       <br />
 
     </div>

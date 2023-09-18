@@ -4,7 +4,7 @@
   <div>
     <h2>Link</h2>
 
-    <ifx-link href="http://google.com" color="secondary" target="_blank" bold="" underline="">link</ifx-link>
+    <ifx-link href="" target="_blank" size="m" variant="bold">link</ifx-link>
     <br />
     <br />
   </div>

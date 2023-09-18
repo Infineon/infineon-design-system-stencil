@@ -19,8 +19,7 @@ function ProgressBar() {
   return (
     <div>
       <IfxProgressBar value={progressValue} showLabel={true}></IfxProgressBar>
-      <IfxButton onClick={updateProgressOnClick} variant="outline" href="" target="_blank" color="primary" size="s"
-        disabled={false} icon={false}>
+      <IfxButton onClick={updateProgressOnClick} theme='default' target="_blank">
         Update Progress
       </IfxButton>
     </div >
