@@ -21,22 +21,27 @@ export class Sidebar {
       return;
     }
     const slot = element.querySelector('slot');
-    const assignedNodes = slot.assignedNodes();
+    if(slot) { 
+      const assignedNodes = slot.assignedNodes();
 
-    for (let i = 0; i < assignedNodes.length; i++) {
-      const node = assignedNodes[i];
-      if (node.nodeName === 'IFX-SIDEBAR-ITEM') {
-        const sidebarItem = node as HTMLIfxSidebarItemElement;
-        sidebarItem.tabIndex = -1;
+      for (let i = 0; i < assignedNodes.length; i++) {
+        const node = assignedNodes[i];
+        if (node.nodeName === 'IFX-SIDEBAR-ITEM') {
+          const sidebarItem = node as HTMLIfxSidebarItemElement;
+          sidebarItem.tabIndex = -1;
+        }
+      }
+
+      element.tabIndex = -1;
+
+      const sidebarFooterWrapperTopLinks = element.querySelector('.sidebar__footer-wrapper');
+      const aElements = sidebarFooterWrapperTopLinks?.querySelectorAll('a');
+      for (let i = 0; i < aElements.length; i++) {
+        aElements[i].tabIndex = -1;
       }
     }
-    element.tabIndex = -1;
+  
 
-    const sidebarFooterWrapperTopLinks = element.querySelector('.sidebar__footer-wrapper');
-    const aElements = sidebarFooterWrapperTopLinks?.querySelectorAll('a');
-    for (let i = 0; i < aElements.length; i++) {
-      aElements[i].tabIndex = -1;
-    }
   }
 
   render() {
