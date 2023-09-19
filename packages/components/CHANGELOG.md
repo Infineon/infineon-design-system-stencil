@@ -1,3 +1,16 @@
+# v20.23.6 (Tue Sep 19 2023)
+
+#### 🐛 Bug Fix
+
+- Documentation: sidebar update [#548](https://github.com/Infineon/infineon-design-system-stencil/pull/548) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: table update [#546](https://github.com/Infineon/infineon-design-system-stencil/pull/546) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v20.23.5 (Tue Sep 19 2023)
 
 #### 🐛 Bug Fix
