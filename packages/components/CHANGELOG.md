@@ -1,3 +1,15 @@
+# v20.23.5 (Tue Sep 19 2023)
+
+#### 🐛 Bug Fix
+
+- Pagination: per-page items fixed [#544](https://github.com/Infineon/infineon-design-system-stencil/pull/544) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.4 (Mon Sep 18 2023)
 
 #### 🐛 Bug Fix
