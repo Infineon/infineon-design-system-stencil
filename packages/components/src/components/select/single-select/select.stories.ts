@@ -21,7 +21,7 @@ const options = [{
 
 export default {
   title: 'Components/Select/Single Select',
-  // tags: ['autodocs'],
+  //tags: ['autodocs'],
   args: {
     size: "m",
     searchEnabled: true,
