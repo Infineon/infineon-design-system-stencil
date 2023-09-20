@@ -2,5 +2,5 @@
 @import "~@infineon/design-system-tokens/dist/_fonts.scss";
 
 * {
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: tokens.$ifxFontFamilyBody, sans-serif;
 }
