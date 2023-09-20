@@ -1,5 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "~@infineon/design-system-tokens/dist/fonts";
+@import "~@infineon/design-system-tokens/dist/fonts";
 
 * {
   font-family: tokens.$ifxFontFamilyBody;
