@@ -32,7 +32,7 @@
     "dev": "run-p dev:stencil dev:storybook"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "^3.3.0",
+    "@infineon/design-system-tokens": "^3.3.1",
     "@infineon/infineon-icons": "^1.1.4",
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "^3.0.0",
