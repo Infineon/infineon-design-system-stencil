@@ -1,3 +1,15 @@
+# v20.23.9 (Thu Sep 28 2023)
+
+#### 🐛 Bug Fix
+
+- Usage - missing Meta informations fix [#557](https://github.com/Infineon/infineon-design-system-stencil/pull/557) ([@radikantchris](https://github.com/radikantchris))
+
+#### Authors: 1
+
+- [@radikantchris](https://github.com/radikantchris)
+
+---
+
 # v20.23.8 (Thu Sep 28 2023)
 
 #### 🐛 Bug Fix
