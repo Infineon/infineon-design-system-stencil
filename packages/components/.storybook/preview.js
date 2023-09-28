@@ -32,6 +32,20 @@ export const parameters = {
           ],
           'FAQ',
         ],
+        'Design',
+        [
+          'Overview',
+          'Foundation',
+          [
+            'Colors',
+            'Grid',
+            'Logo',
+            'Spacing',
+            'States',
+            'Typography',
+            'Border Radius'
+          ],
+        ],
         'Components',
         // 'Contact'
       ]
