@@ -1,3 +1,15 @@
+# v20.23.8 (Thu Sep 28 2023)
+
+#### 🐛 Bug Fix
+
+- fixed typo in buttons / tertiary [#556](https://github.com/Infineon/infineon-design-system-stencil/pull/556) ([@radikantchris](https://github.com/radikantchris))
+
+#### Authors: 1
+
+- [@radikantchris](https://github.com/radikantchris)
+
+---
+
 # v20.23.6 (Tue Sep 19 2023)
 
 #### 🐛 Bug Fix
