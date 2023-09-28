@@ -35,6 +35,7 @@ export const parameters = {
         'Design',
         [
           'Overview',
+          'Icons',
           'Foundation',
           [
             'Colors',
