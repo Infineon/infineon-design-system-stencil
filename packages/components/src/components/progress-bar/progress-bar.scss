@@ -1,11 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-
 :host {
   display: flex;
   width: 100%;
 }
-
 
 .progress-bar {
   height: tokens.$ifxSize200;

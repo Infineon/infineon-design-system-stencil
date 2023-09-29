@@ -1,5 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+:host { 
+  display: flex;
+}
+
 .search-field {
   box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;

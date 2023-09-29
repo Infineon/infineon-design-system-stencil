@@ -2,9 +2,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-// :host {
-//   display: block;
-// }
+:host {
+  display: flex;
+}
 
 .tabs {
   display: flex;

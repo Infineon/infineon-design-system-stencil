@@ -1,5 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+:host { 
+  display: inline-flex;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
