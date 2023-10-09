@@ -1,3 +1,6 @@
+import { icons } from '@infineon/infineon-icons';
+
+
 export default {
   title: "Components/Card",
   tags: ['autodocs'],
@@ -9,7 +12,6 @@ export default {
     button: 'button',
     href: "",
     target: '_blank',
-    icon: 'c-info-16',
     position: 'right'
   },
 
@@ -30,6 +32,10 @@ export default {
     target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
+    }, 
+    iconName: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' }
     }
   }
 };

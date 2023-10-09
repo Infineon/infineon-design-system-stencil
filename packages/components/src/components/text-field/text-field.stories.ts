@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: "Components/Text Field",
@@ -12,7 +13,6 @@ export default {
     placeholder: 'Placeholder',
     error: false,
     caption: "Caption",
-    icon: "calendar-16",
     required: true,
     optional: false,
   },
@@ -23,6 +23,10 @@ export default {
       control: { type: 'radio' },
     },
     onIfxInput: { action: 'ifxInput' },
+    iconName: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' }
+    }
   }
 };
 
