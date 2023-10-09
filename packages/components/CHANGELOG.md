@@ -1,3 +1,25 @@
+# v20.23.10 (Mon Oct 09 2023)
+
+#### 🐛 Bug Fix
+
+- Icons in Storybook: Replaced string with select list [#571](https://github.com/Infineon/infineon-design-system-stencil/pull/571) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump postcss from 8.4.26 to 8.4.31 in /examples/wrapper-components/vue-javascript [#569](https://github.com/Infineon/infineon-design-system-stencil/pull/569) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss from 8.4.29 to 8.4.31 [#570](https://github.com/Infineon/infineon-design-system-stencil/pull/570) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss from 8.4.24 to 8.4.31 in /examples/wrapper-components/vue-typescript [#568](https://github.com/Infineon/infineon-design-system-stencil/pull/568) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss from 8.4.23 to 8.4.31 in /examples/stencil-components/vanilla-cdn [#567](https://github.com/Infineon/infineon-design-system-stencil/pull/567) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss from 8.4.23 to 8.4.31 in /examples/wrapper-components/react-typescript [#566](https://github.com/Infineon/infineon-design-system-stencil/pull/566) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump postcss from 8.4.23 to 8.4.31 in /examples/stencil-components/vue3-vite [#565](https://github.com/Infineon/infineon-design-system-stencil/pull/565) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.9 (Thu Sep 28 2023)
 
 #### 🐛 Bug Fix
