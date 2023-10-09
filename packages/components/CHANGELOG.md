@@ -1,3 +1,15 @@
+# v20.23.12 (Mon Oct 09 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar: assignedNodes error [#564](https://github.com/Infineon/infineon-design-system-stencil/pull/564) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.11 (Mon Oct 09 2023)
 
 #### 🐛 Bug Fix
