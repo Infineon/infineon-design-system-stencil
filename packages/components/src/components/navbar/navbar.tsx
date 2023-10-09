@@ -30,7 +30,6 @@ export class Navbar {
       return;
     }
     element.tabIndex = -1;
-    console.log("ev list")
 
     // Select all a elements in the navbar and set their tabIndex to -1 to make them non-focusable
     const aElements = element.querySelectorAll('a');
@@ -39,19 +38,19 @@ export class Navbar {
     }
 
     const slot = element.querySelector('slot');
-    const assignedNodes = slot.assignedNodes();
-
-    for (let i = 0; i < assignedNodes.length; i++) {
-      const node = assignedNodes[i] as HTMLElement;
-      if (node.nodeName === 'IFX-NAVBAR-ITEM') {
-        const navbarItem = node as HTMLIfxNavbarItemElement;
-
-        // Get all navigation items
-        const aElements = navbarItem?.shadowRoot.querySelectorAll('a');
-        for (let i = 0; i < aElements.length; i++) {
-          aElements[i].tabIndex = -1;
+    if(slot) { 
+      const assignedNodes = slot.assignedNodes();
+      for (let i = 0; i < assignedNodes.length; i++) {
+        const node = assignedNodes[i] as HTMLElement;
+        if (node.nodeName === 'IFX-NAVBAR-ITEM') {
+          const navbarItem = node as HTMLIfxNavbarItemElement;
+  
+          // Get all navigation items
+          const aElements = navbarItem?.shadowRoot.querySelectorAll('a');
+          for (let i = 0; i < aElements.length; i++) {
+            aElements[i].tabIndex = -1;
+          }
         }
-
       }
     }
   }
@@ -62,8 +61,6 @@ export class Navbar {
     this.searchBarIsOpen = !this.searchBarIsOpen;
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
-    const navbarContainerLeftSide = this.el.shadowRoot.querySelector('.navbar__container-left')
-    console.log(navbarContainerLeftSide)
 
     if (e.detail) {
       for (let i = 0; i < navbarItems.length; i++) {
