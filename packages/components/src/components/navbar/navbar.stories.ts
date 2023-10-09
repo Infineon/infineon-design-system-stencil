@@ -1,3 +1,4 @@
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: "Components/Navbar",
@@ -13,6 +14,12 @@ export default {
     searchBarShowCloseButton: true,
     navbarPositionFixed: false
   },
+  argTypes: { 
+    iconName: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' }
+    }
+  }
 };
 
 

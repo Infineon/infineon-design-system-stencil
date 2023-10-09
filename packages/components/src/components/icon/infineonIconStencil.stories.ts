@@ -1,3 +1,5 @@
+import { icons } from '@infineon/infineon-icons';
+
 export default {
   title: 'Components/Icon',
   tags: ['autodocs'],
@@ -6,7 +8,10 @@ export default {
     icon: "c-check-16"
   },
   argTypes: {
-    icon: { control: 'text' }
+    icon: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' }
+    }
   },
 
 
