@@ -1,3 +1,15 @@
+# v20.23.11 (Mon Oct 09 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar: updated border-bottom and aligned the items vertically [#563](https://github.com/Infineon/infineon-design-system-stencil/pull/563) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.10 (Mon Oct 09 2023)
 
 #### 🐛 Bug Fix
