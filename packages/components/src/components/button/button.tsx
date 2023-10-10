@@ -70,6 +70,8 @@ export class Button {
   }
 
   handleClick() {
+    if (this.disabled) return;
+    
     if (this.nativeButton) {
       this.nativeButton.click();
     }
