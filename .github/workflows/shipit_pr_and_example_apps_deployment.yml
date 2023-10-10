@@ -49,24 +49,28 @@ jobs:
         run: sleep 10s
         shell: bash
 
-      - name: Update Dependencies in Vue and React packages
+      - name: Update Dependencies in Angular, Vue and React packages
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-angular
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-vue
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-react
   
-      - name: Build and deploy Vue and React packages
+      - name: Build and deploy Angular, Vue and React packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
+          npm run build:components-angular
           npm run build:components-react
           npm run build:components-vue
-          cd packages/components-react
+          cd packages/components-angular
+          npm publish --tag canary
+          cd ../components-react
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
@@ -160,16 +164,17 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd examples/stencil-components/angular
+          cd examples/wrapper-components/angular-typescript
           npm i
-          npm i @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
            
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/stencil-components/angular/dist
+          source-dir: ./examples/wrapper-components/angular-typescript/dist
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
   
