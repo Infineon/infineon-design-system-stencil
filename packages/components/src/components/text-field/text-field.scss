@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  display: flex;
+}
+
 .textInput__container {
   display: flex;
   flex-direction: column;

@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  display: block;
+}
+
 .alert {
   display: flex;
   border: 1px solid tokens.$ifxColorOcean500;
