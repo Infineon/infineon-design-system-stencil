@@ -1,3 +1,15 @@
+# v20.23.13 (Tue Oct 10 2023)
+
+#### 🐛 Bug Fix
+
+- Ddded display property to the missing components [#560](https://github.com/Infineon/infineon-design-system-stencil/pull/560) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.12 (Mon Oct 09 2023)
 
 #### 🐛 Bug Fix
