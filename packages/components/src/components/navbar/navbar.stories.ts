@@ -15,7 +15,7 @@ export default {
     navbarPositionFixed: false
   },
   argTypes: { 
-    iconName: {
+    icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
     }
