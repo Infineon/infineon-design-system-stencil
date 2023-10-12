@@ -1,0 +1,12 @@
+/**
+          * @ag-grid-community/all-modules - Advanced Data Grid / Data Table supporting Javascript / Typescript / React / Angular / Vue * @version v30.1.0
+          * @link https://www.ag-grid.com/
+          * @license MIT
+          */
+
+/**
+ * @ag-grid-community/core - Advanced Data Grid / Data Table supporting Javascript / Typescript / React / Angular / Vue
+ * @version v30.1.0
+ * @link https://www.ag-grid.com/
+ * @license MIT
+ */
