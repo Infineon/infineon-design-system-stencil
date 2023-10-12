@@ -45,7 +45,7 @@ export default {
     },
     label: { description: 'The visible name or label for the dropdown button' },
     size: {
-      description: 'The size of the dropdown. Accepted values are "s" for small and "m" for medium',
+      description: "Font Size options: s (14px) and m (16px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },

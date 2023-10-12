@@ -25,6 +25,7 @@ export default {
     },
 
     size: {
+      description: "Size options: s (24px), m (40px) and l (48px) - default: m",
       options: ['s', 'm', 'l'],
       control: { type: 'radio' },
     },
