@@ -72,11 +72,23 @@ export default {
     noAppendToBody: { description: 'Determines if the dropdown should not be appended to the body' },
     ifxOpen: {
       action: 'ifxOpen',
-      description: 'Custom event that is emitted when the dropdown opens'
+      description: 'Custom event that is emitted when the dropdown opens',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
+        },
+      },
     },
     ifxClose: {
       action: 'ifxClose',
-      description: 'Custom event emitted when dropdown closes'
+      description: 'Custom event emitted when dropdown closes',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
+        },
+      },
     },
     ifxDropdownMenuItem: {
       action: 'ifxDropdownMenuItem',

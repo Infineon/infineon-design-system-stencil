@@ -11,6 +11,26 @@ export default {
 
   argTypes: {
     amountOfItems: { control: 'number' },
+    ifxItemOpen: {
+      action: 'ifxItemOpen',
+      description: 'Custom event emitted when accordion-item is opened',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onifxItemOpen={handleChange}\nVue:@ifxItemOpen="handleChange"\nAngular:(ifxItemOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxItemOpen", (event) => {//handle change});',
+        },
+      },
+    },
+    ifxItemClose: {
+      action: 'ifxItemClose',
+      description: 'Custom event emitted when accordion-item is closed',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onifxItemClose={handleChange}\nVue:@ifxItemClose="handleChange"\nAngular:(ifxItemClose)="handleChange()"\nVanillaJs:.addEventListener("ifxItemClose", (event) => {//handle change});',
+        },
+      },
+    }
   },
 };
 

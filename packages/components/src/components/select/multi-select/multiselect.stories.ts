@@ -70,7 +70,16 @@ export default {
       description: 'Takes an array of objects in the following format',
     },
     onIfxSelect: { action: 'ifxSelect' },
-
+    ifxSelect: {
+      action: 'ifxSelect',
+      description: 'Custom event emitted when item is selected',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
+        },
+      },
+    },
   }
 };
 

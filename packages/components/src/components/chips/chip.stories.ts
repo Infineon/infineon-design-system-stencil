@@ -8,7 +8,16 @@ export default {
     placeholder: 'Placeholder',
   },
   argTypes: {
-
+    ifxDropdownMenu: {
+      action: 'ifxDropdownMenu',
+      description: 'Custom event emitted when menu item selected',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxDropdownMenu={handleChange}\nVue:@ifxDropdownMenu="handleChange"\nAngular:(ifxDropdownMenu)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenu", (event) => {//handle change});',
+        },
+      },
+    }
   },
 };
 
