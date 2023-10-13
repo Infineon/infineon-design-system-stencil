@@ -44,7 +44,7 @@ export class SearchBar {
 
   render() {
     return (
-      <div class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
+      <div aria-label='a search bar' aria-disabled={this.disabled} class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
             <ifx-search-field disabled={this.disabled} value={this.value} onIfxInput={this.handleInput.bind(this)}>

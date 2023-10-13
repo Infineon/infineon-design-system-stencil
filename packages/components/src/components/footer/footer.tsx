@@ -63,7 +63,7 @@ export class Footer {
   render() {
     return (
       <Host>
-        <div class="footer__container">
+        <div aria-label='a navigation footer' class="footer__container">
           <div class="footer__wrapper">
 
             {this.large &&

@@ -173,7 +173,7 @@ export class Tooltip {
     };
 
     return (
-      <div class="tooltip__container" {...eventHandlers}>
+      <div aria-label="a tooltip showing important information" aria-value={this.header} class="tooltip__container" {...eventHandlers}>
         <slot></slot>
 
         {this.variant.toLowerCase() === 'dismissible' && <div class={tooltipDismissible}>

@@ -9,7 +9,7 @@ export class Badge {
 
   render() {
     return (
-      <div class="badge__container">
+      <div aria-label='badge' class="badge__container">
         <span>
           <slot />
         </span>

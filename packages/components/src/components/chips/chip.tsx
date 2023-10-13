@@ -50,7 +50,7 @@ export class Chip {
 
   render() {
     return (
-      <div class="dropdown container">
+      <div aria-value={this.selectedValue} aria-label='chip with a dropdown menu' class="dropdown container">
         <div class="wrapper" onClick={() => this.toggleMenu()}>
           <div class="wrapper-label">
             {this.selectedValue ? this.selectedValue : this.placeholder}

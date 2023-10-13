@@ -39,7 +39,7 @@ export class TextField {
 
   render() {
     return (
-      <div class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
+      <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
           <label htmlFor="text-field">
             <slot></slot>

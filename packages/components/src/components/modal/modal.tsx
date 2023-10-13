@@ -49,7 +49,7 @@ export class IfxModal {
   render() {
     const isAlertVariant = this.variant !== 'default';
     return (
-      <div class={`modal-container ${this.showModal ? 'open' : ''}`}>
+      <div aria-label='a modal popup covering the entire screen' class={`modal-container ${this.showModal ? 'open' : ''}`}>
         <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div>
         <div class={`modal-content-container`}>
           {isAlertVariant ? (

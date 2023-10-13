@@ -86,7 +86,7 @@ export class Card {
   render() {
     return (
       <Host>
-        <div class={
+        <div aria-labelledby="label" class={
           `card 
           ${this.noBtns ? 'noBtns' : ""}
           ${this.direction} 
