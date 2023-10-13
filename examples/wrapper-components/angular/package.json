@@ -1,14 +1,18 @@
 {
   "name": "angular",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../angular-workspace/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../../ npm run build:library",
+    "link": "cd ../../../packages/angular-workspace/dist/@infineon/infineon-design-system-angular && npm link && cd ../../../../../examples/wrapper-components/angular && npm link @infineon/infineon-design-system-angular",
+    "preview:link": "run-s link start",
+    "test:local": "run-s build:wrapper preview:link"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
     "@angular/common": "^16.2.0",
