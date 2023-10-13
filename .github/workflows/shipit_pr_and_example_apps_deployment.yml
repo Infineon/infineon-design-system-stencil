@@ -166,21 +166,17 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd packages/angular-workspace
-          npm i
-          cd projects/component-library
+          cd examples/wrapper-components/angular
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm run build @infineon/infineon-design-system-stencil
-          cd ../../
-          npm run build my-app
+          npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm run build
            
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./packages/angular-workspace/dist/my-app
+          source-dir: ./examples/wrapper-components/angular/dist
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
   
