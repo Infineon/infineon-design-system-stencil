@@ -167,6 +167,8 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/angular-workspace
+          npm i
+          npm run build @infineon/infineon-design-system-angular
           npm run build my-app
            
       - name: Deploy preview
