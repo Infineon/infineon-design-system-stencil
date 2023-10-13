@@ -55,7 +55,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
-          echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
+          echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           cd packages/angular-workspace/projects/component-library
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           cd ../../../../

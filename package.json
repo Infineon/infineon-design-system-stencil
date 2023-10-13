@@ -16,7 +16,8 @@
     "graph": "nx graph"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/angular-workspace/projects/*"
   ],
   "devDependencies": {
     "@types/node": "^20.2.1",
