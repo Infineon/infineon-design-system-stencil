@@ -13,6 +13,8 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
     ComponentLibraryModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+}

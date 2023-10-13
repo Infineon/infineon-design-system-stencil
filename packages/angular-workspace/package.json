@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm i && npm link && cd ../angular-workspace/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build @infineon/infineon-design-system-angular",
-    "link": "cd ../angular-workspace/projects/component-library && npm link && cd ../my-app && npm link @infineon/infineon-design-system-angular",
+    "link": "cd ../angular-workspace/dist/@infineon/infineon-design-system-angular && npm link && cd ../my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
   },
@@ -29,7 +29,8 @@
     "@angular/router": "^16.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.13.0",
+    "@infineon/infineon-design-system-angular": "20.23.14--canary.585.0f6be85eaf50fa793915a1ccfbad2ce5519ac71e.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.5",
