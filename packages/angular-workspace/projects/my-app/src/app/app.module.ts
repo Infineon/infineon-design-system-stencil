@@ -1,5 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
@@ -10,9 +12,10 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ComponentLibraryModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

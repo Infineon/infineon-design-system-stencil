@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "component-library": {
+    "@infineon/infineon-design-system-angular": {
       "projectType": "library",
-      "root": "projects/component-library",
-      "sourceRoot": "projects/component-library/src",
+      "root": "./",
+      "sourceRoot": "src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/component-library/ng-package.json"
+            "project": "./ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/component-library/tsconfig.lib.prod.json"
+              "tsConfig": "./tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/component-library/tsconfig.lib.json"
+              "tsConfig": "./tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/component-library/tsconfig.spec.json",
+            "tsConfig": "./tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

@@ -68,9 +68,9 @@ jobs:
           npm run build:components-angular
           npm run build:components-react
           npm run build:components-vue
-          cd packages/components-angular
+          cd packages/angular-workspace/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
-          cd ../components-react
+          cd ../../../../components-react
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary

@@ -96,7 +96,7 @@
 
   <h2>Button</h2>
   <div>
-    <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" [disabled]="false" [icon]="false">
+    <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" [disabled]="false">
       Button
     </ifx-button>
   </div>
@@ -317,9 +317,9 @@
 
   <h2>Text Field</h2>
   <form (ngSubmit)="handleSubmit()">
-    <ifx-text-input (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
-      placeholder="Placeholder" [errorMessage]="">Text
-      field</ifx-text-input>
+    <ifx-text-field (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
+      placeholder="Placeholder">Text
+      field</ifx-text-field>
     <br />
     <br />
 

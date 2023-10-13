@@ -1,18 +1,22 @@
 {
-  "name": "angular-typescript",
+  "name": "angular-workspace",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "clean:start": "run-s unlink start",
     "build": "ng build",
-    "lint": "ng lint",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-angular && npm link @infineon/infineon-design-system-stencil && npm run build",
-    "link": "cd ../../../packages/components-angular && npm link && cd ../../examples/wrapper-components/angular-typescript && npm link @infineon/infineon-design-system-angular",
+    "build:library": "ng build @infineon/infineon-design-system-angular",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm i && npm link && cd ../angular-workspace/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build @infineon/infineon-design-system-angular",
+    "link": "cd ../angular-workspace/projects/component-library && npm link && cd ../my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
   },
-  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@angular/animations": "^16.2.0",
     "@angular/common": "^16.2.0",

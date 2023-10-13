@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'my-app';
+
   progressValue = 10;
   checkboxChecked = false;
   checkboxError = false;
@@ -26,13 +28,13 @@ export class AppComponent {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
   }
 
-  handleRadioButtonChange(event: CustomEvent) {
+  handleRadioButtonChange(event: any) {
     console.log('Radio button value: ', event.detail);
     this.radioButtonValue = event.detail;
 
   }
 
-  handleCheckboxChange(event: CustomEvent) {
+  handleCheckboxChange(event: any) {
     console.log('Checkbox value: ', event.detail);
   }
 
@@ -69,7 +71,7 @@ export class AppComponent {
   }
 
 
-  handleTextInput(event: CustomEvent) {
+  handleTextInput(event: any) {
     console.log("textInput value change")
     this.textFieldValue = event.detail;
 
@@ -93,12 +95,12 @@ export class AppComponent {
   }
 
 
-  handleSearchField(event: CustomEvent) {
+  handleSearchField(event: any) {
     console.log("searchField value change: ", event.detail)
     this.searchFieldValue = event.detail;
   }
 
-  handleSearchBar(event: CustomEvent) {
+  handleSearchBar(event: any) {
     console.log("searchBar value change: ", event.detail)
     this.searchBarValue = event.detail;
 
