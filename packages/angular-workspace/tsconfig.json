@@ -2,11 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    // "paths": { //for local use
-    //   "@infineon/infineon-design-system-angular": [
-    //     "dist/@infineon/infineon-design-system-angular"
-    //   ]
-    // },
+    "paths": { //for local use
+      "@infineon/infineon-design-system-angular": [
+        "dist/@infineon/infineon-design-system-angular"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
