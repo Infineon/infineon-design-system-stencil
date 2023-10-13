@@ -13,6 +13,7 @@
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
   },
+  "author": "",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
