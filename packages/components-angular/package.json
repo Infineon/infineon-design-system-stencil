@@ -22,7 +22,7 @@
   "peerDependencies": {
     "@angular/common": "^16.2.0",
     "@angular/core": "^16.2.0",
-    "@infineon/infineon-design-system-stencil": "^20.13.0"
+    "@infineon/infineon-design-system-stencil": "^20.23.13"
   },
   "dependencies": {
     "tslib": "^2.3.0"
