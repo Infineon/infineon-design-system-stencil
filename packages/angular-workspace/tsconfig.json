@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    // "paths": {
+    // "paths": { //for local use
     //   "@infineon/infineon-design-system-angular": [
     //     "dist/@infineon/infineon-design-system-angular"
     //   ]

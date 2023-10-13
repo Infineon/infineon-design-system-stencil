@@ -1,6 +1,7 @@
 {
   "name": "@infineon/infineon-design-system-angular",
   "version": "20.23.13",
+  "description": "Infineon design system Stencil web components for Angular",
   "author": "Verena Lechner",
   "license": "MIT",
   "publishConfig": {
@@ -14,5 +15,11 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "auto": {
+    "plugins": [
+      "npm",
+      "released"
+    ]
+  }
 }
