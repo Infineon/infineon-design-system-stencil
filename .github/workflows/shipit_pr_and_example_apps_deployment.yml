@@ -167,9 +167,6 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/angular-workspace
-          npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build my-app
            
       - name: Deploy preview
