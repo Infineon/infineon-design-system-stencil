@@ -78,13 +78,13 @@ export default {
       action: 'ifxClose',
       description: 'Custom event emitted when dropdown closes'
     },
-    ifxDropdownMenuItem: {
-      action: 'ifxDropdownMenuItem',
+    ifxDropdownItem: {
+      action: 'ifxDropdownItem',
       description: 'Custom event emitted when an item is selected',
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxDropdownMenuItem={handleChange}\nVue:@ifxDropdownMenuItem="handleChange"\nAngular:(ifxDropdownMenuItem)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenuItem", (event) => {//handle change});',
+          detail: 'React: onIfxDropdownItem={handleChange}\nVue:@ifxDropdownItem="handleChange"\nAngular:(ifxDropdownItem)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownItem", (event) => {//handle change});',
         },
       },
     }
@@ -110,11 +110,10 @@ const DefaultTemplate = (args) => {
 </ifx-dropdown>`;
 
   const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
-  const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
   dropdown.addEventListener('ifxClose', action('ifxClose'));
-  dropdownMenu.addEventListener('ifxDropdownMenuItem', action('ifxDropdownMenuItem'));
+  dropdown.addEventListener('ifxDropdownItem', action('ifxDropdownItem'));
 
   return wrapper;
 };
@@ -145,11 +144,10 @@ const LabelTriggerTemplate = (args) => {
   </ifx-dropdown>`;
 
   const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
-  const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
-
+ 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
   dropdown.addEventListener('ifxClose', action('ifxClose'));
-  dropdownMenu.addEventListener('ifxDropdownMenuItem', action('ifxDropdownMenuItem'));
+  dropdown.addEventListener('ifxDropdownItem', action('ifxDropdownItem'));
 
   return wrapper;
 };

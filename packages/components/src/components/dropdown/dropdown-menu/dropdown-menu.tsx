@@ -8,24 +8,17 @@ import { Component, h, Prop, Element, State, Event, EventEmitter, Listen } from 
 })
 
 export class DropdownMenu {
+  @Element() el;
   @Prop() isOpen: boolean = false;
   @Prop() size: string = 'l'
   @State() hideTopPadding: boolean = false;
-  @Element() el;
-
-  @Event() menuSize: EventEmitter;
   @State() filteredItems: HTMLIfxDropdownItemElement[] = [];
-  @Event() ifxDropdownMenuItem: EventEmitter<CustomEvent>;
-
+  @Event() menuSize: EventEmitter;
+ 
   @Listen('ifxInput')
   handleMenuFilter(event: CustomEvent) {
     const searchValue = event.detail;
     this.filterDropdownItems(searchValue)
-  }
-
-  @Listen('ifxDropdownItem')
-  handleDropdownItemValueEmission(event: CustomEvent) {
-    this.ifxDropdownMenuItem.emit(event.detail)
   }
 
   filterDropdownItems(searchValue: string) {

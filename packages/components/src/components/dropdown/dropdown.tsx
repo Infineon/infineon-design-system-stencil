@@ -28,39 +28,29 @@ export type Placement =
 })
 
 export class Dropdown {
+  @Element() el;
   @Prop() placement: Placement = 'bottom-start';
-
-  // isOpen prop
   @Prop() defaultOpen: boolean = false;
-  // internal state for isOpen prop
-  @State() internalIsOpen: boolean = false;
-
-  // isOpen prop
   @Prop() noAppendToBody: boolean = false;
-
-  // Custom events for opening and closing dropdown
   @Event() ifxOpen: EventEmitter;
   @Event() ifxClose: EventEmitter;
   @Event() ifxDropdown: EventEmitter;
-
-  // determine if dropdown is disabled
   @Prop() disabled: boolean;
-
   @Prop() noCloseOnOutsideClick: boolean = false;
   @Prop() noCloseOnMenuClick: boolean = false;
-
-  // Reference to host element
-  @Element() el;
-  // Dropdown trigger and menu
+  @State() internalIsOpen: boolean = false;
   @State() trigger: HTMLElement;
   @State() menu: HTMLElement
   // Popper instance for positioning
   popperInstance: any;
 
 
+  @Listen('ifxDropdownItem')
+  handleDropdownMenuEventsReemission(event: CustomEvent) { 
+    this.ifxDropdown.emit(event.detail)
+  }
 
   componentWillLoad() {
-    //maybe not needed
     this.updateSlotContent();
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
   }
@@ -83,13 +73,10 @@ export class Dropdown {
     }
   }
 
-
   @Listen('slotchange')
   watchHandlerSlot() {
     this.updateSlotContent();
   }
-
-
 
   // handling assignment of trigger and menu
   updateSlotContent() {
@@ -107,9 +94,9 @@ export class Dropdown {
       }
       // Get new menu and add to body
       this.menu = this.el.querySelector('ifx-dropdown-menu');
-
+     
       // event handler for closing dropdown on menu click
-      document.body.append(this.menu);
+      //document.body.append(this.menu);
     } else {
       this.menu = this.el.querySelector('ifx-dropdown-menu');
 
@@ -183,13 +170,6 @@ export class Dropdown {
       this.ifxOpen.emit();
     }
   }
-
-  //emitted by and listening to it from the dropdown menu right now
-  // @Listen('ifxDropdownMenu')
-  // handleDropdownMenuEvents(event: CustomEvent) {
-  //   this.ifxDropdown.emit(event.detail)
-  //   console.log('Selected item received in higher-level parent:');
-  // }
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
