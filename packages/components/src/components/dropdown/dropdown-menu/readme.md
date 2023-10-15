@@ -15,10 +15,9 @@
 
 ## Events
 
-| Event                 | Description | Type                            |
-| --------------------- | ----------- | ------------------------------- |
-| `ifxDropdownMenuItem` |             | `CustomEvent<CustomEvent<any>>` |
-| `menuSize`            |             | `CustomEvent<any>`              |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `menuSize` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

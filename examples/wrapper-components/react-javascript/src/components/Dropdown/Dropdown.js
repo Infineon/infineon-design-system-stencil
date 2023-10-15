@@ -7,11 +7,11 @@ function Dropdown() {
     console.log('selected dropdown option', e.detail)
   }
   return (
-    <IfxDropdown placement="bottom-start" no-close-on-menu-click="true">
+    <IfxDropdown onIfxDropdownItem={handleValue} placement="bottom-start" no-close-on-menu-click="true">
     <IfxDropdownTriggerButton icon="calendar16">
       dropdown
     </IfxDropdownTriggerButton>
-    <IfxDropdownMenu size="l" onIfxDropdownMenu={handleValue}>
+    <IfxDropdownMenu size="l">
      <IfxDropdownHeader>Header Text</IfxDropdownHeader>
       <IfxDropdownItem>Menu Item</IfxDropdownItem>
       <IfxDropdownSeparator></IfxDropdownSeparator>
