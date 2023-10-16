@@ -178,7 +178,7 @@ In React, there isn't a built-in mechanism to globally register components like 
 ```js
 import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-react';
 //...
-<IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }} show-close-button="true"></IfxSearchBar>
+<IfxSearchBar onIfxChange={handleSearch} show-close-button="true"></IfxSearchBar>
 ```
 
 **React + Javascript specific**
