@@ -359,10 +359,10 @@ and go to the application folder you want to use for testing. (React-Ts, React-J
 
 ### Contributing
 
-+ Create an issue with your new feature description on Github
-+ Go to the issue and create a feature from it. (Naming convention: 'feature/name-of-component').
-+ After the feature is ready for testing, create a pull request and request review => On each new pull request, github actions trigger the deployment to a github pages preview url as well as a canary release that can be used to include and test the new feature in another web application
-
++ Clone the repository
++ Create an issue with a proper description (Naming convention: 'name-of-component: feature/bug')
++ Create a pull request with a proper description 
++ Request a review (tishoyanchev || verena-ifx)
 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
