@@ -14,6 +14,7 @@ export default {
 
   argTypes: {
     size: {
+      description: "Size options: s (21px) and m (25px) - default: m",
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
