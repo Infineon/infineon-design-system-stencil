@@ -7,7 +7,6 @@
     "build": "ng build",
     "build:library": "ng build @infineon/infineon-design-system-angular",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm i && npm link && cd ../angular-workspace/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build @infineon/infineon-design-system-angular",
     "link": "cd ../angular-workspace/dist/@infineon/infineon-design-system-angular && npm link && cd ../my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
