@@ -1,3 +1,16 @@
+# v20.23.14 (Mon Oct 16 2023)
+
+#### 🐛 Bug Fix
+
+- README: update [#590](https://github.com/Infineon/infineon-design-system-stencil/pull/590) ([@tishoyanchev](https://github.com/tishoyanchev))
+- added size description to remaining components in storybook [#582](https://github.com/Infineon/infineon-design-system-stencil/pull/582) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.13 (Tue Oct 10 2023)
 
 #### 🐛 Bug Fix
