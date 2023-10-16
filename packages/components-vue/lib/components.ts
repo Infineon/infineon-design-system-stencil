@@ -244,6 +244,7 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
   'error',
   'errorMessage',
   'label',
+  'placeholder',
   'maxItemCount',
   'ifxSelect',
   'ifxMultiselectIsOpen'
