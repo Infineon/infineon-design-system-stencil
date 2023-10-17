@@ -11,13 +11,13 @@
     "build:storybook": "lerna run build:storybook --scope @infineon/infineon-design-system-stencil",
     "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
     "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
-    "build:components-angular": "lerna run build:library --scope angular-workspace",
+    "build:components-angular": "lerna run build:library --scope components-angular",
     "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
     "graph": "nx graph"
   },
   "workspaces": [
     "packages/*",
-    "packages/angular-workspace/projects/*"
+    "packages/components-angular/projects/*"
   ],
   "devDependencies": {
     "@types/node": "^20.2.1",

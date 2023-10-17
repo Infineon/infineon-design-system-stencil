@@ -32,8 +32,8 @@ export const frameworkTargets = [
   angularOutputTarget({
     componentCorePackage: '@infineon/infineon-design-system-stencil',
     outputType: 'component',
-    directivesProxyFile: '../angular-workspace/projects/component-library/src/lib/stencil-generated/components.ts',
-    directivesArrayFile: '../angular-workspace/projects/component-library/src/lib/stencil-generated/index.ts',
+    directivesProxyFile: '../components-angular/projects/component-library/src/lib/stencil-generated/components.ts',
+    directivesArrayFile: '../components-angular/projects/component-library/src/lib/stencil-generated/index.ts',
     // directivesProxyFile: '../components-angular/src/lib/stencil-generated/components.ts',
     // directivesArrayFile: '../components-angular/src/lib/stencil-generated/index.ts',
     valueAccessorConfigs: angularValueAccessorBindings,
