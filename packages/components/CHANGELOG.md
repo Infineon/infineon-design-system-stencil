@@ -1,3 +1,15 @@
+# v20.23.16 (Wed Oct 18 2023)
+
+#### 🐛 Bug Fix
+
+- fixed border-radius for select-component [#591](https://github.com/Infineon/infineon-design-system-stencil/pull/591) ([@MichaelHolley](https://github.com/MichaelHolley))
+
+#### Authors: 1
+
+- Michael Holley ([@MichaelHolley](https://github.com/MichaelHolley))
+
+---
+
 # v20.23.15 (Tue Oct 17 2023)
 
 #### 🐛 Bug Fix
