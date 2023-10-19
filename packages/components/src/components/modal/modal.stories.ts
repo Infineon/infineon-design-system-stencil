@@ -6,10 +6,20 @@ export default {
   component: 'ifx-modal',
   // tags: ['autodocs'],
 
+  args: {
+    opened: false,
+  },
   argTypes: {
     caption: {
       control: 'text',
       description: 'Title for the modal',
+    },
+    opened: {
+      control: {
+        disable: true,
+      },
+      description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
+
     },
     closeOnOverlayClick: {
       control: 'boolean',
@@ -42,9 +52,8 @@ const Template = ({
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
 
-  modal.addEventListener('modalOpen', action('modalOpen'));
-  modal.addEventListener('modalClose', action('modalClose'));
-  modal.addEventListener('closeButtonClick', action('closeButtonClick'));
+  modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
+  modal.addEventListener('ifxModalClose', action('ifxModalClose'));
 
   const content = document.createElement('div');
   content.setAttribute('slot', 'content');
@@ -58,15 +67,15 @@ const Template = ({
 
   const cancelButton = document.createElement('ifx-button');
   cancelButton.setAttribute('variant', 'secondary');
-  cancelButton.textContent = 'Button';
+  cancelButton.textContent = 'Button 1';
   cancelButton.addEventListener('click', () => {
-    modal.close();
+    modal.opened = false;
   });
 
   const primaryButton = document.createElement('ifx-button');
-  primaryButton.textContent = 'Button';
+  primaryButton.textContent = 'Button 2';
   primaryButton.addEventListener('click', () => {
-    modal.close();
+    modal.opened = false;
   });
 
   buttons.appendChild(cancelButton);
@@ -77,12 +86,14 @@ const Template = ({
   openButton.id = 'open';
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
-    modal.open();
+    modal.opened = true;
   });
 
   const storyElement = document.createElement('div');
   storyElement.appendChild(modal);
   storyElement.appendChild(openButton);
+
+
 
   return storyElement;
 };

@@ -5,14 +5,22 @@ import * as ModalStories from './modal.stories';
 
 # Modal
 
-<Canvas of={ModalStories.Default} sourceState="shown" />
+<Canvas of={ModalStories.Default} sourceState="shown"/>
+
 
 <Controls />
 
 **Methods**
 ```
-open()
-close()
+//Example: Usage within an onClick handler
+
+const modal = document.getElementById('modal');
+function openModal() {
+  modal.opened = true;
+}
+function closeModal() {
+  modal.opened = false;
+}
 ```
 
 ## Stories
