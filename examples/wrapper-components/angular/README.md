@@ -6,11 +6,12 @@ This example application demonstrates the usage of the Angular Wrapper Component
 
 ### Using Stencil components from npm package (symlink to local Stencil library)
 
-Current solution using symlinks to test the local Angular wrapper library:
+Current solution using symlinks to test the local Angular wrapper library: (not possible to create symlinks outside of the Angular workspace)
+
 Go to:
 [Angular Components Workspace](../../../packages/components-angular)
 
-Run:
+Within this folder, run:
 
 ```bash
 npm i
