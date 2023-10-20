@@ -17,22 +17,22 @@ describe('ifx-modal', () => {
 
     // Close the modal
     await modal.callMethod('close');
-  
+
   });
 
-  it('emits events on open, close, OK button click, and Cancel button click', async () => {
+  it('emits events on open', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-modal></ifx-modal>');
 
     const modal = await page.find('ifx-modal');
 
     // Open the modal
-    const openEvent = await modal.spyOnEvent('modalOpen');
+    const openEvent = await modal.spyOnEvent('ifxModalOpen');
     await modal.callMethod('open');
     expect(openEvent).toHaveReceivedEvent();
 
     // Close the modal
-    const closeEvent = await modal.spyOnEvent('modalClose');
+    const closeEvent = await modal.spyOnEvent('ifxModalClose');
     await modal.callMethod('close');
     expect(closeEvent).toHaveReceivedEvent();
 
