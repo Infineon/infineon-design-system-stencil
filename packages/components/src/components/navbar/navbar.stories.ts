@@ -5,7 +5,6 @@ export default {
   args: {
     applicationName: 'Application name',
     hideLabel: false,
-    icon: "calendar16",
     navbarItemTarget: "_blank",
     navbarItemHref: "",
     navbarMenuHref: "",
