@@ -18,6 +18,12 @@ export default {
       control: {
         disable: true,
       },
+      table: {
+        type: {
+          summary: 'Example (in VanillaJs)',
+          detail: 'const modal = document.getElementById(\'modal\'); \n\nfunction closeModal() { \nmodal.opened = false; \n}',
+        },
+      },
       description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
 
     },
@@ -92,8 +98,6 @@ const Template = ({
   const storyElement = document.createElement('div');
   storyElement.appendChild(modal);
   storyElement.appendChild(openButton);
-
-
 
   return storyElement;
 };

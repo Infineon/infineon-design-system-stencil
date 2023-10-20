@@ -185,17 +185,20 @@
 
 
     <h2>Link</h2>
-    <ifx-link href="" target="_blank" size="m" variant="bold" >
+    <ifx-link href="" target="_blank" size="m" variant="bold">
       Link
-      </ifx-link>
+    </ifx-link>
     <br />
     <br />
 
 
     <h2>Modal</h2>
-    <div><ifx-modal caption="Modal Title" variant="default" close-on-overlay-click="false"><div slot="content">
-      <span>Modal content</span>
-    </div><div slot="buttons"><ifx-button variant="secondary">Button</ifx-button><ifx-button>Button</ifx-button></div></ifx-modal><ifx-button id="open">Open Modal</ifx-button></div>
+    <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
+        <div slot="content">
+          <span>Modal content</span>
+        </div>
+        <div slot="buttons"><ifx-button variant="secondary">Button</ifx-button><ifx-button>Button</ifx-button></div>
+      </ifx-modal><ifx-button id="open">Open Modal</ifx-button></div>
     <br />
     <br />
 
@@ -311,7 +314,8 @@
 
     <form id="another-form">
       <h2>Text Field</h2>
-      <ifx-text-field error="false" disabled="false" size="m" icon="calendar-16" success="false" placeholder="Placeholder" caption="Caption" required="true" optional="false">Label</ifx-text-field>
+      <ifx-text-field error="false" disabled="false" size="m" icon="calendar-16" success="false"
+        placeholder="Placeholder" caption="Caption" required="true" optional="false">Label</ifx-text-field>
       <br />
     </form>
     <span id="textInputSpan"></span>

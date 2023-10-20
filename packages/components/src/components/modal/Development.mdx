@@ -5,23 +5,13 @@ import * as ModalStories from './modal.stories';
 
 # Modal
 
-<Canvas of={ModalStories.Default} sourceState="shown"/>
+<Canvas withSource="none">
+  <Story height="300px" of={ModalStories.Default}/>
+</Canvas>
 
 
 <Controls />
 
-**Methods**
-```
-//Example: Usage within an onClick handler
-
-const modal = document.getElementById('modal');
-function openModal() {
-  modal.opened = true;
-}
-function closeModal() {
-  modal.opened = false;
-}
-```
 
 ## Stories
 
@@ -29,22 +19,29 @@ function closeModal() {
 <Canvas of={ModalStories.Default} sourceState="shown" />
 
 ### Alert
-<Canvas of={ModalStories.Alert} sourceState="shown" />
+<Canvas withSource="none">
+  <Story height="300px" of={ModalStories.Alert}/>
+</Canvas>
 
 
 ## Notes
 The Modal component is a modal window that appears on top of the app content and allows users to interact with it. 
 
-Example in VanillaJs:
+Example in VanillaJs - Adding functionality to the buttons 
 
 ```js
-<ifx-modal caption="Modal Title" variant="alert-brand" close-on-overlay-click="true">
+<ifx-modal id="my-modal" caption="Modal Title" variant="alert-brand" close-on-overlay-click="true">
   <div slot="content"><span>Modal content</span></div>
   <div slot="buttons">
     <ifx-button variant="secondary" onclick="console.log('Button 1 clicked')">Button 1</ifx-button>
-    <ifx-button onclick="modal.close()">Button 2</ifx-button>
+    <ifx-button onclick="closeModal">Button 2</ifx-button>
   </div>
 </ifx-modal>
+...
+const modal = document.getElementById('my-modal');
+function closeModal() {
+  modal.opened = false;
+}
 ```
 
 For more usage examples within other Javascript frameworks, please check the example applications that are linked in the ```README.md``` of our [Github repository](https://infineon.github.io/infineon-design-system-stencil).
