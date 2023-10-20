@@ -92,7 +92,6 @@ const Template = ({
   openButton.id = "open"
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
-    console.log("click")
     modal.opened = true;
   });
   openButton.addEventListener('keydown', (event) => {

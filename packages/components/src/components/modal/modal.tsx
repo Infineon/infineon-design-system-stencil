@@ -1,5 +1,7 @@
 import { Component, Prop, Element, State, Method, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
+// import { animateTo, KEYFRAMES } from '../../global/utils/animate';
+
 type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 
 export interface BeforeCloseEventDetail {
@@ -28,6 +30,7 @@ export class IfxModal {
   @Prop() okButtonLabel: string = 'OK';
   @Prop() cancelButtonLabel: string = 'Cancel';
   @Element() hostElement: HTMLElement;
+
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxButtonElement;
 
@@ -42,7 +45,6 @@ export class IfxModal {
   }
 
   getFirstFocusableElement(): HTMLElement | null {
-    console.log("foc")
     return this.focusableElements[0];
   }
 
@@ -75,6 +77,7 @@ export class IfxModal {
     try {
       this.attemptFocus(this.getFirstFocusableElement());
       this.ifxModalOpen.emit();
+
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
       this.ifxModalOpen.emit();
@@ -95,7 +98,7 @@ export class IfxModal {
   }
 
   handleKeypress = (event: KeyboardEvent) => {
-    console.log("keyboard event detected")
+    // console.log("keyboard event detected")
     if (!this.showModal) {
       return;
     }
@@ -109,7 +112,7 @@ export class IfxModal {
     const emittedEvents = [];
     emittedEvents.push(this.ifxBeforeClose.emit(trigger));
     const prevented = emittedEvents.some((event) => event.defaultPrevented);
-    console.log("emitted ", emittedEvents, " - prevented ", prevented)
+    // console.log("emitted ", emittedEvents, " - prevented ", prevented)
     if (!prevented) {
       this.opened = false;
     }
@@ -145,7 +148,8 @@ export class IfxModal {
     return (
       <Host>
         <div
-          class={`modal-container ${this.showModal ? 'open' : ''}`}>
+          class={`modal-container ${this.showModal ? 'open' : ''}`}
+        >
           {/* <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div> */}
           <div
             class="modal-overlay"
@@ -157,6 +161,7 @@ export class IfxModal {
             tabindex="0"
           ></div>
           <div class={`modal-content-container`}
+
             role="dialog"
             aria-modal="true"
             aria-label={this.caption}>
