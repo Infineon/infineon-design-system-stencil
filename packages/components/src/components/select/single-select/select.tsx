@@ -722,7 +722,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
       }
-      const optionValueBasedOnAvailableOptions = options.find(option => option.value === this.value || this.ifxSelectedOption?.value);
+      const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.ifxSelectedOption?.value);
 
       if (optionValueBasedOnAvailableOptions) {
         return [

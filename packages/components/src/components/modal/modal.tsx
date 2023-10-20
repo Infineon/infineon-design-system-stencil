@@ -1,6 +1,6 @@
 import { Component, Prop, Element, State, Method, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
-type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY';
+type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 
 export interface BeforeCloseEventDetail {
   trigger: CloseEventTrigger;
@@ -42,6 +42,7 @@ export class IfxModal {
   }
 
   getFirstFocusableElement(): HTMLElement | null {
+    console.log("foc")
     return this.focusableElements[0];
   }
 
@@ -70,6 +71,7 @@ export class IfxModal {
   @Method()
   async open() {
     this.showModal = true;
+
     try {
       this.attemptFocus(this.getFirstFocusableElement());
       this.ifxModalOpen.emit();
@@ -131,7 +133,8 @@ export class IfxModal {
 
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
-      this.close();
+      this.emitBeforeClose('BACKDROP')
+      // this.close();
     }
   }
 
@@ -143,7 +146,11 @@ export class IfxModal {
       <Host>
         <div
           class={`modal-container ${this.showModal ? 'open' : ''}`}>
-          <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div>
+          {/* <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div> */}
+          <div
+            class="modal-overlay"
+            onClick={() => this.handleOverlayClick()}
+          ></div>
           <div
             data-focus-trap-edge
             onFocus={this.handleTopFocus}

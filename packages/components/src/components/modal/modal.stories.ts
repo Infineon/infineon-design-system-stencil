@@ -21,7 +21,7 @@ export default {
       table: {
         type: {
           summary: 'Example (in VanillaJs)',
-          detail: 'const modal = document.getElementById(\'modal\'); \n\nfunction closeModal() { \nmodal.opened = false; \n}',
+          detail: 'const modal = document.getElementById(\'modal\'); \nconst openButton = document.getElementById(\'open\'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}',
         },
       },
       description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
@@ -89,10 +89,16 @@ const Template = ({
   modal.appendChild(buttons);
 
   const openButton = document.createElement('ifx-button');
-  openButton.id = 'open';
+  openButton.id = "open"
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
+    console.log("click")
     modal.opened = true;
+  });
+  openButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      modal.opened = true;
+    }
   });
 
   const storyElement = document.createElement('div');

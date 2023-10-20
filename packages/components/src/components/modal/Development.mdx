@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import { Meta, Primary, Source, Controls, Canvas, Story } from '@storybook/blocks';
 import * as ModalStories from './modal.stories';
  
 <Meta of={ModalStories} />
@@ -8,6 +8,7 @@ import * as ModalStories from './modal.stories';
 <Canvas withSource="none">
   <Story height="300px" of={ModalStories.Default}/>
 </Canvas>
+ <Source dark="true" of={ModalStories.Default} />
 
 
 <Controls />
@@ -36,9 +37,21 @@ Example in VanillaJs - Adding functionality to the buttons
     <ifx-button variant="secondary" onclick="console.log('Button 1 clicked')">Button 1</ifx-button>
     <ifx-button onclick="closeModal">Button 2</ifx-button>
   </div>
+  <ifx-button id="open">Open Modal</ifx-button>
 </ifx-modal>
 ...
 const modal = document.getElementById('my-modal');
+const openButton = document.getElementById('open');
+
+openButton.addEventListener('click', () => {
+    console.log("click")
+    modal.opened = true;
+  });
+  openButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      modal.opened = true;
+    }
+  });
 function closeModal() {
   modal.opened = false;
 }
