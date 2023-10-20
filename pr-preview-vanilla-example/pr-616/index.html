@@ -199,7 +199,7 @@
           <span>Modal content</span>
         </div>
         <div slot="buttons"><ifx-button variant="secondary">Button</ifx-button><ifx-button>Button</ifx-button></div>
-      </ifx-modal><ifx-button id="open">Open Modal</ifx-button></div>
+      </ifx-modal><ifx-button id="open-modal-btn">Open Modal</ifx-button></div>
     <br />
     <br />
 
@@ -232,7 +232,7 @@
 
 
     <h2>Radio Button</h2>
-    <ifx-radio-button error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
+    <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
     <br />
 
     <h2>Spinner</h2>
@@ -253,14 +253,10 @@
 
 
     <h2>Single-Select</h2>
-    <ifx-select id="single-select" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
-      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
-      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
-    <br />
-
-    <ifx-select id="single-select2" type="single" value="undefined" ifx-size="medium (40px)" placeholder="true"
-      search-enabled="true" search-placeholder-value="Search..." ifx-disabled="false" ifx-error="false"
-      ifx-error-message="Some error" ifx-label="" ifx-placeholder-value="Placeholder" ifx-options=''></ifx-select>
+    <ifx-select id="single-select" ifx-size='m' placeholder='true' search-enabled='true'
+      search-placeholder-value='Search...' ifx-disabled='false' ifx-error='false' ifx-error-message='Some error'
+      ifx-label='' ifx-placeholder-value='Placeholder' ifx-options=''>
+    </ifx-select> <br />
     <br />
     <br />
 
@@ -315,7 +311,7 @@
 
     <form id="another-form">
       <h2>Text Field</h2>
-      <ifx-text-field error="false" disabled="false" size="m" icon="calendar-16" success="false"
+      <ifx-text-field id="text-field" error="false" disabled="false" size="m" icon="calendar-16" success="false"
         placeholder="Placeholder" caption="Caption" required="true" optional="false">Label</ifx-text-field>
       <br />
     </form>
@@ -414,12 +410,11 @@
 
   const checkbox = document.querySelector("#checkbox");
   const progressBar = document.querySelector('#progress-bar');
-  const textInput = document.querySelector('#text-input');
+  const textInput = document.querySelector('#text-field');
   const radioBtn = document.querySelector('#radio-btn');
   const numberIndicator = document.querySelector('#number-indicator');
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
-  const singleSelect2 = document.querySelector('#single-select2');
   const openModalBtn = document.querySelector("#open-modal-btn");
   const modal = document.querySelector("#modal");
 
@@ -516,20 +511,14 @@
       console.log("single select value change", event.detail);
     });
 
-    singleSelect2.addEventListener('ifxChange', (event) => {
-      console.log("single select value change", event.detail);
-    });
-
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
     singleSelect.setAttribute('ifx-options', singleSelectOptions);
+
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
     });
-    singleSelect2.setAttribute('ifx-options', singleSelectOptions);
-    cardBtn.addEventListener('click', () => {
-      console.log("card button click event");
-    });
+
 
 
     searchField.addEventListener('ifxInput', (event) => {
