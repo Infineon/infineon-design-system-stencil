@@ -1,3 +1,15 @@
+# v20.24.0 (Mon Oct 23 2023)
+
+#### 🚀 Enhancement
+
+- Accordion: added initial-collapse Prop on accordion-items [#617](https://github.com/Infineon/infineon-design-system-stencil/pull/617) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.19 (Mon Oct 23 2023)
 
 #### 🐛 Bug Fix
