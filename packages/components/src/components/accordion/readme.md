@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type     | Default     |
-| --------- | --------- | ----------- | -------- | ----------- |
-| `caption` | `caption` |             | `string` | `undefined` |
+| Property          | Attribute          | Description | Type      | Default     |
+| ----------------- | ------------------ | ----------- | --------- | ----------- |
+| `caption`         | `caption`          |             | `string`  | `undefined` |
+| `initialCollapse` | `initial-collapse` |             | `boolean` | `true`      |
 
 
 ## Events
