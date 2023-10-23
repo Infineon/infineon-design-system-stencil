@@ -16,6 +16,7 @@ export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
+  'initialCollapse',
   'ifxItemOpen',
   'ifxItemClose'
 ]);
@@ -244,6 +245,7 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
   'error',
   'errorMessage',
   'label',
+  'placeholder',
   'maxItemCount',
   'ifxSelect',
   'ifxMultiselectIsOpen'

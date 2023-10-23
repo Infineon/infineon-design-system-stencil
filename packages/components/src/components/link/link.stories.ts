@@ -16,6 +16,7 @@ export default {
       control: { type: 'radio' }
     },
     size: {
+      description: "Font Size options: s (14px), m (16px), l (18px), xl (20px) - default: m",
       options: ['s', 'm', 'l', 'xl'],
       control: { type: 'radio' }
     },

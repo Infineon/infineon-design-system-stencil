@@ -15,6 +15,7 @@
 | `label`        | `label`          |             | `string`          | `""`              |
 | `maxItemCount` | `max-item-count` |             | `number`          | `undefined`       |
 | `options`      | `options`        |             | `any[] \| string` | `undefined`       |
+| `placeholder`  | `placeholder`    |             | `string`          | `""`              |
 | `size`         | `size`           |             | `string`          | `'medium (40px)'` |
 
 

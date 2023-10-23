@@ -15,7 +15,9 @@ export default {
     caption: "Caption",
     required: true,
     optional: false,
+    icon: 'c-info-16'
   },
+
   argTypes: {
     size: {
       description: "Size options: s (36px) and m (40px) - default: m",
@@ -23,7 +25,7 @@ export default {
       control: { type: 'radio' },
     },
     onIfxInput: { action: 'ifxInput' },
-    iconName: {
+    icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
     }
@@ -54,5 +56,4 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
 
 
 export const Default = DefaultTemplate.bind({});
-
 

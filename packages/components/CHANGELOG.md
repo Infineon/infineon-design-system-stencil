@@ -1,3 +1,90 @@
+# v20.24.0 (Mon Oct 23 2023)
+
+#### 🚀 Enhancement
+
+- Accordion: added initial-collapse Prop on accordion-items [#617](https://github.com/Infineon/infineon-design-system-stencil/pull/617) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.23.19 (Mon Oct 23 2023)
+
+#### 🐛 Bug Fix
+
+- Tooltip: small general update [#593](https://github.com/Infineon/infineon-design-system-stencil/pull/593) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.23.17 (Fri Oct 20 2023)
+
+#### 🐛 Bug Fix
+
+- Icons on Storybook: added default icon on text-field and tag. [#580](https://github.com/Infineon/infineon-design-system-stencil/pull/580) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Navbar: removed the icon string control option. [#579](https://github.com/Infineon/infineon-design-system-stencil/pull/579) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @babel/traverse from 7.22.8 to 7.23.2 in /examples/wrapper-components/react-typescript [#609](https://github.com/Infineon/infineon-design-system-stencil/pull/609) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.8 to 7.23.2 in /examples/wrapper-components/vue-javascript [#608](https://github.com/Infineon/infineon-design-system-stencil/pull/608) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.8 to 7.23.2 in /examples/wrapper-components/vue-typescript [#610](https://github.com/Infineon/infineon-design-system-stencil/pull/610) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.8 to 7.23.2 in /examples/stencil-components/angular [#611](https://github.com/Infineon/infineon-design-system-stencil/pull/611) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.19 to 7.23.2 [#606](https://github.com/Infineon/infineon-design-system-stencil/pull/606) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.15 to 7.23.2 in /examples/wrapper-components/react-javascript [#605](https://github.com/Infineon/infineon-design-system-stencil/pull/605) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.22.10 to 7.23.2 in /examples/stencil-components/vanilla-cdn [#604](https://github.com/Infineon/infineon-design-system-stencil/pull/604) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @babel/traverse from 7.21.4 to 7.23.2 in /examples/stencil-components/react [#603](https://github.com/Infineon/infineon-design-system-stencil/pull/603) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.23.16 (Wed Oct 18 2023)
+
+#### 🐛 Bug Fix
+
+- fixed border-radius for select-component [#591](https://github.com/Infineon/infineon-design-system-stencil/pull/591) ([@MichaelHolley](https://github.com/MichaelHolley))
+
+#### Authors: 1
+
+- Michael Holley ([@MichaelHolley](https://github.com/MichaelHolley))
+
+---
+
+# v20.23.15 (Tue Oct 17 2023)
+
+#### 🐛 Bug Fix
+
+- Feature for multiselect - placeholder prop now modifiable [#595](https://github.com/Infineon/infineon-design-system-stencil/pull/595) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.23.14 (Mon Oct 16 2023)
+
+#### 🐛 Bug Fix
+
+- README: update [#590](https://github.com/Infineon/infineon-design-system-stencil/pull/590) ([@tishoyanchev](https://github.com/tishoyanchev))
+- added size description to remaining components in storybook [#582](https://github.com/Infineon/infineon-design-system-stencil/pull/582) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.13 (Tue Oct 10 2023)
 
 #### 🐛 Bug Fix
