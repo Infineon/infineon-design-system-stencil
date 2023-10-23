@@ -1,3 +1,15 @@
+# v20.24.1 (Mon Oct 23 2023)
+
+#### 🐛 Bug Fix
+
+- Card: disabled href when it's empty [#615](https://github.com/Infineon/infineon-design-system-stencil/pull/615) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.24.0 (Mon Oct 23 2023)
 
 #### 🚀 Enhancement
