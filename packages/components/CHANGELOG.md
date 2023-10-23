@@ -1,3 +1,15 @@
+# v20.23.19 (Mon Oct 23 2023)
+
+#### 🐛 Bug Fix
+
+- Tooltip: small general update [#593](https://github.com/Infineon/infineon-design-system-stencil/pull/593) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.17 (Fri Oct 20 2023)
 
 #### 🐛 Bug Fix
