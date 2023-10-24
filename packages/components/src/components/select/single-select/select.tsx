@@ -595,6 +595,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         }
         ));
 
+        //set select options
         this.setChoices(this.ifxOptions, "value", "label", true)
         //set custom event listener to listen for search input
         self.addSearchEventListener(self, this.choice);
