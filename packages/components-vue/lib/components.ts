@@ -382,7 +382,8 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
   'ifxPlaceholderValue',
   'ifxOptions',
   'ifxSize',
-  'ifxSelect'
+  'ifxSelect',
+  'ifxInput'
 ]);
 
 
