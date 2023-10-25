@@ -32,6 +32,6 @@ jobs:
 
       - name: "do stuff"
         env:
-          VERSION: ${{ github.event }}
+          VERSION: ${{ github.event.client_payload.version }}
         run: |
           echo Now using Infineon-Icons version $VERSION
