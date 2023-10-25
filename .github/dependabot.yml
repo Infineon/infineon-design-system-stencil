@@ -17,15 +17,3 @@ updates:
     directory: "/packages/components-vue"
     schedule:
       interval: "daily"
-  - package-ecosystem: "git"
-    directory: "/packages/components"
-    schedule:
-      interval: "daily"
-    repository: "Infineon/Infineon-Icons"
-    branch: "master"
-  - package-ecosystem: "git"
-    directory: "/packages/components"
-    schedule:
-      interval: "daily"
-    repository: "Infineon/Infineon-Design-System-Tokens"
-    branch: "master"
