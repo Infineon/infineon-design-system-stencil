@@ -2,9 +2,17 @@
 
 name: New Infineon-Icons release
 
-on:
-  repository_dispatch:
-    types: [infineon_icons_release]
+# on:
+#   repository_dispatch:
+#     types: [infineon_icons_release]
+
+on: #just for testing
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize # canary on new commit
+
 
 jobs:
   dostuff:
