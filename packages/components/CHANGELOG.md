@@ -1,3 +1,16 @@
+# v20.25.2 (Wed Oct 25 2023)
+
+#### 🐛 Bug Fix
+
+- dependabot file updated to watch icons and tokens repository [#628](https://github.com/Infineon/infineon-design-system-stencil/pull/628) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.25.1 (Wed Oct 25 2023)
 
 #### 🐛 Bug Fix
