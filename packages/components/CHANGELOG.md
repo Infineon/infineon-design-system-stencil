@@ -1,3 +1,16 @@
+# v20.25.1 (Wed Oct 25 2023)
+
+#### 🐛 Bug Fix
+
+- single select now emits search value [#625](https://github.com/Infineon/infineon-design-system-stencil/pull/625) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.25.0 (Mon Oct 23 2023)
 
 #### 🚀 Enhancement
