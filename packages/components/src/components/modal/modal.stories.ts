@@ -24,36 +24,6 @@ export default {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
     },
-    modalOpen: {
-      action: 'modalOpen',
-      description: 'Custom event emitted when modal opened',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onModalOpen={handleChange}\nVue:@modalOpen="handleChange"\nAngular:(modalOpen)="handleChange()"\nVanillaJs:.addEventListener("modalOpen", (event) => {//handle change});',
-        },
-      },
-    },
-    modalClose: {
-      action: 'modalClose',
-      description: 'Custom event emitted when modal closed',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onModalClose={handleChange}\nVue:@modalClose="handleChange"\nAngular:(modalClose)="handleChange()"\nVanillaJs:.addEventListener("modalClose", (event) => {//handle change});',
-        },
-      },
-    },
-    closeButtonClick: {
-      action: 'closeButtonClick',
-      description: 'Custom event emitted when close button clicked',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onCloseButtonClick={handleChange}\nVue:@closeButtonClick="handleChange"\nAngular:(closeButtonClick)="handleChange()"\nVanillaJs:.addEventListener("closeButtonClick", (event) => {//handle change});',
-        },
-      },
-    }
   },
 };
 
