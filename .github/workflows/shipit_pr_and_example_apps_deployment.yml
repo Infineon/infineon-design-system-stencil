@@ -101,7 +101,7 @@ jobs:
           cd examples/wrapper-components/vue-javascript
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
 
       - name: Deploy preview
