@@ -8,14 +8,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/components"
     schedule:
-      interval: "weekly"
-  - package-ecosystem: "npm"
-    directory: "/packages/components"
-    schedule:
       interval: "daily"
-    update:
-      - package-name: "@infineon/infineon-icons"
-        versions: ">=1.1.7"
   - package-ecosystem: "npm"
     directory: "/packages/components-react"
     schedule:
