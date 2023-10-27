@@ -29,28 +29,34 @@ npm install sass
 
 
 ```js
-import { defineCustomElements } from '@infineon/infineon-design-system-angular';
-//...
+#main.ts
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
-defineCustomElements(window)
+defineCustomElements(window);
 ```
 
-In Angular, there isn't a built-in mechanism to globally register components like in Vue. Therefore, components need to be imported in the file that they are being used in.
+In Angular, you do not have to import each component before using them. 
+
+**4. Additional steps
+
+Inside app.modules.ts file:
+
+```import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+ ...
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+ ...
+})```
 
 ## Usage
 
 ```js
-import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-design-system-angular';
-//...
-<IfxSearchBar onIfxChange={handleSearch} style={{ width: '100%' }} show-close-button="true"></IfxSearchBar>
+
+<ifx-button disabled="false" variant="primary" size="m" target="_blank" theme="default" >
+  Button 
+</ifx-button>
 ```
-
-**Angular + Javascript specific**
-
-It may be necessary to add the following to your .env file at project root:
-
-``GENERATE_SOURCEMAP=false``
-
-This can also be achieved by updating your start script in the ``package.json`` accordingly.
-
 
