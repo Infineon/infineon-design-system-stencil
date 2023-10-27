@@ -27,7 +27,7 @@
     "@babel/types": "^7.22.5",
     "@types/node": "^20.2.5",
     "rimraf": "^5.0.1",
-    "rollup": "^3.26.3",
+    "rollup": "^4.1.4",
     "rollup-plugin-node-resolve": "^5.2.0",
     "typescript": "^5.0.4",
     "vue": "^3.2.47"
