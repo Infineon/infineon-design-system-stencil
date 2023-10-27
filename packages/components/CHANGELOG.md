@@ -1,3 +1,27 @@
+# v20.26.1 (Fri Oct 27 2023)
+
+#### 🐛 Bug Fix
+
+- reverted jest versions due to incompatibility with latest Stencil ver… [#645](https://github.com/Infineon/infineon-design-system-stencil/pull/645) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Revert "Bump @types/jest from 27.5.2 to 29.5.6 in /packages/components" [#643](https://github.com/Infineon/infineon-design-system-stencil/pull/643) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @types/jest from 27.5.2 to 29.5.6 in /packages/components [#636](https://github.com/Infineon/infineon-design-system-stencil/pull/636) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump rollup from 3.29.4 to 4.1.4 in /packages/components-vue [#632](https://github.com/Infineon/infineon-design-system-stencil/pull/632) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @storybook/testing-library from 0.1.0 to 0.2.2 in /packages/components [#630](https://github.com/Infineon/infineon-design-system-stencil/pull/630) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump babel-loader from 8.3.0 to 9.1.3 in /packages/components [#634](https://github.com/Infineon/infineon-design-system-stencil/pull/634) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest from 27.5.1 to 29.7.0 in /packages/components [#633](https://github.com/Infineon/infineon-design-system-stencil/pull/633) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump jest-cli from 27.5.1 to 29.7.0 in /packages/components [#629](https://github.com/Infineon/infineon-design-system-stencil/pull/629) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.26.0 (Fri Oct 27 2023)
 
 #### 🚀 Enhancement
