@@ -2,18 +2,22 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "list:packages": "lerna list --all",
     "storybook": "lerna run dev --scope @infineon/infineon-design-system-stencil",
     "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
+    "prebuild": "node build-utils/scripts/prebuild.js",
     "build:components": "lerna run build:stencil --scope @infineon/infineon-design-system-stencil",
     "test:components": "lerna run test --scope @infineon/infineon-design-system-stencil",
     "build:storybook": "lerna run build:storybook --scope @infineon/infineon-design-system-stencil",
     "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
     "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
+    "build:components-angular": "lerna run build:library --scope components-angular",
     "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
     "graph": "nx graph"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/components-angular/projects/*"
   ],
   "devDependencies": {
     "@types/node": "^20.2.1",

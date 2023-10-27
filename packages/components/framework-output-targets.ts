@@ -1,5 +1,6 @@
 import { ComponentModelConfig, vueOutputTarget } from '@stencil/vue-output-target';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { ValueAccessorConfig, angularOutputTarget } from '@stencil/angular-output-target';
 
 
 const vueComponentModels: ComponentModelConfig[] = [
@@ -15,10 +16,27 @@ const vueComponentModels: ComponentModelConfig[] = [
   },
 ];
 
+const angularValueAccessorBindings: ValueAccessorConfig[] = [
+  {
+    elementSelectors: ['ifx-text-field'],
+    event: 'ifxInput',
+    targetAttr: 'value',
+    type: 'text',
+  },
+];
+
 const excludeComponents = [
 ];
 
 export const frameworkTargets = [
+  angularOutputTarget({
+    componentCorePackage: '@infineon/infineon-design-system-stencil',
+    outputType: 'component',
+    directivesProxyFile: '../components-angular/projects/component-library/src/lib/stencil-generated/components.ts',
+    directivesArrayFile: '../components-angular/projects/component-library/src/lib/stencil-generated/index.ts',
+    valueAccessorConfigs: angularValueAccessorBindings,
+
+  }),
   vueOutputTarget({
     componentCorePackage: '@infineon/infineon-design-system-stencil',
     proxiesFile: '../components-vue/lib/components.ts',

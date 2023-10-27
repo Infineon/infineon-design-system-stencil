@@ -1,0 +1,62 @@
+import { Meta, Description } from '@storybook/addon-docs';
+
+<Meta title="Setup & installation/Framework integration/Angular + Stencil" />
+
+
+# Angular + Stencil
+
+Angular Wrappers: Similarly to Vue and React, an Angular wrapper provides an Angular interface to a Stencil web component, making the web component feel more like a typical Angular component. This includes proper handling of props, state, and events within the context of an Angular application.
+
+## Installation
+
+**1.**
+
+**- with NPM**
+
+```npm install @infineon/infineon-design-system-angular```
+
+**- with Yarn**
+
+```yarn add @infineon/infineon-design-system-angular```
+
+**2. Installation of SASS**
+```bash
+npm install sass
+```
+
+
+**3. Import the module inside your entry point file**
+
+
+```js
+import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
+
+defineCustomElements(window);
+```
+
+**4. Additional steps**
+
+**Inside app.modules.ts file**:
+
+```js
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+ ...
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+ ...
+})
+```
+
+## Usage
+
+```js
+
+<ifx-button disabled="false" variant="primary" size="m" target="_blank" theme="default" >
+  Button 
+</ifx-button>
+```
+
+**Note**: In Angular, you do not have to import each component before using them. 
