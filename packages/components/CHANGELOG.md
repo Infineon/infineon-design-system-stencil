@@ -1,3 +1,17 @@
+# v20.26.0 (Fri Oct 27 2023)
+
+#### 🚀 Enhancement
+
+- angular wrapper support added [#576](https://github.com/Infineon/infineon-design-system-stencil/pull/576) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.25.2 (Wed Oct 25 2023)
 
 #### 🐛 Bug Fix
