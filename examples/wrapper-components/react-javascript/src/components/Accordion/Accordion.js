@@ -11,19 +11,21 @@ function Accordion() {
     <div>
 
 
-      <IfxAccordion auto-collapse="true" onIfxItemOpen={handleItems}>
-        <IfxAccordionItem caption="How to be happy?">
-          I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
-          I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
-          I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
-          I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
-          I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.I have no idea. I have no idea.  I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea. I have no idea.
+      <IfxAccordion auto-collapse={true} onIfxItemOpen={handleItems}>
+        <IfxAccordionItem caption="Label" initialCollapse={false}>
+        Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxAccordionItem>
-        <IfxAccordionItem caption="How to be happy?">
-          I have no idea.
+        <IfxAccordionItem caption="Label">
+        Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxAccordionItem>
-        <IfxAccordionItem caption="How to be happy?">
-          I have no idea.
+        <IfxAccordionItem caption="Label">
+        Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxAccordionItem>
       </IfxAccordion>
     </div>

@@ -8,6 +8,7 @@ import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil
 })
 export class IfxAccordionItem {
   @Prop() caption: string;
+  @Prop() initialCollapse: boolean = true;
   @State() open: boolean = false;
   @Event() ifxItemOpen: EventEmitter;
   @Event() ifxItemClose: EventEmitter;
@@ -22,12 +23,27 @@ export class IfxAccordionItem {
     }
   }
 
-  componentDidUpdate() {
+  openAccordionItem() { 
     if (this.open) {
       this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
     } else {
       this.contentEl.style.maxHeight = '0';
     }
+  }
+
+  componentWillLoad() { 
+    if(!this.initialCollapse) { 
+      this.open = true;
+      this.ifxItemOpen.emit();
+    }
+  }
+
+  componentDidLoad() { 
+    this.openAccordionItem()
+  }
+
+  componentDidUpdate() {
+    this.openAccordionItem()
   }
 
   @Method()

@@ -9,14 +9,17 @@ or update the ```npm start``` script in the package.json to the following: ```"s
 
 ### Using Stencil components from npm package (link to local Stencil library)
 
- ```npm install```
+ ```bash
+ npm install
+ npm run test:local
+ ```
 
- ```npm run test:local```
 
-The application will be served on http://localhost:3000.`
+### To run the application using the latest version of the React Library on NPM:
 
-To run the application using the latest version of the React Library on NPM:
+ ```bash
+ npm install
+ npm run start
+ ```
 
- ```npm install```
-
- ```npm run start```
+ The application will be served on http://localhost:3000.

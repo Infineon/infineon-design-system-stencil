@@ -16,6 +16,7 @@ export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
+  'initialCollapse',
   'ifxItemOpen',
   'ifxItemClose'
 ]);
@@ -383,7 +384,8 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
   'ifxPlaceholderValue',
   'ifxOptions',
   'ifxSize',
-  'ifxSelect'
+  'ifxSelect',
+  'ifxInput'
 ]);
 
 

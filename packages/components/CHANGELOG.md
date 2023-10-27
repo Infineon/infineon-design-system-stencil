@@ -1,3 +1,79 @@
+# v20.26.0 (Fri Oct 27 2023)
+
+#### 🚀 Enhancement
+
+- angular wrapper support added [#576](https://github.com/Infineon/infineon-design-system-stencil/pull/576) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.25.2 (Wed Oct 25 2023)
+
+#### 🐛 Bug Fix
+
+- dependabot file updated to watch icons and tokens repository [#628](https://github.com/Infineon/infineon-design-system-stencil/pull/628) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.25.1 (Wed Oct 25 2023)
+
+#### 🐛 Bug Fix
+
+- single select now emits search value [#625](https://github.com/Infineon/infineon-design-system-stencil/pull/625) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.25.0 (Mon Oct 23 2023)
+
+#### 🚀 Enhancement
+
+- Icons: new version [#622](https://github.com/Infineon/infineon-design-system-stencil/pull/622) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.24.1 (Mon Oct 23 2023)
+
+#### 🐛 Bug Fix
+
+- Card: disabled href when it's empty [#615](https://github.com/Infineon/infineon-design-system-stencil/pull/615) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.24.0 (Mon Oct 23 2023)
+
+#### 🚀 Enhancement
+
+- Accordion: added initial-collapse Prop on accordion-items [#617](https://github.com/Infineon/infineon-design-system-stencil/pull/617) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.23.19 (Mon Oct 23 2023)
 
 #### 🐛 Bug Fix
