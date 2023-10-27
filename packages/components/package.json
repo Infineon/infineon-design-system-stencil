@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^3.0.0",
-    "@infineon/infineon-icons": "^1.1.4",
+    "@infineon/infineon-icons": "^1.1.7",
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "^3.0.0",
     "@storybook/blocks": "^7.0.23",
