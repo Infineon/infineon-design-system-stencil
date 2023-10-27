@@ -1,5 +1,3 @@
-import { icons } from '@infineon/infineon-icons';
-
 
 export default {
   title: "Components/Card",
@@ -32,10 +30,6 @@ export default {
     target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
-    }, 
-    iconName: {
-      options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' }
     }
   }
 };
@@ -59,18 +53,16 @@ const DefaultTemplate = (args) =>
         </ifx-card-text>` : ""}
       ${args.button === 'button'
     ? `<ifx-card-links slot="buttons">
-          <ifx-button color="primary">Button</ifx-button>
-          <ifx-button color="secondary">Button</ifx-button>
-          <ifx-button color="primary">Button</ifx-button>
-          <ifx-button color="secondary">Button</ifx-button>
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>` : ""}
       ${args.button === 'link'
     ? `<ifx-card-links slot="buttons">
-            <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
+            <ifx-link href="https://google.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
             </ifx-link>
-            <ifx-link color="primary" href="https://yahoo.com" target="_blank" underline="false">
+            <ifx-link href="https://yahoo.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
             </ifx-link>

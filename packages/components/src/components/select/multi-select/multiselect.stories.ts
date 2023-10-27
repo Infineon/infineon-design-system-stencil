@@ -39,6 +39,7 @@ export default {
     errorMessage: 'Some error',
     label: '',
     disabled: false,
+    placeholder: 'Placeholder'
 
 
   },
@@ -66,6 +67,7 @@ export default {
     },
     errorMessage: { control: 'text' },
     label: { control: 'text' },
+    placeholder: { control: 'text' },
     options: {
       description: 'Takes an array of objects in the following format',
     },
@@ -90,6 +92,7 @@ const DefaultTemplate = (args) => {
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'
+  placeholder='${args.placeholder}'
   disabled='${args.disabled}'>
 </ifx-multiselect>`;
 

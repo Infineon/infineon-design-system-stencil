@@ -6,6 +6,7 @@ export default {
 
   args: {
     label: "Tag label",
+    icon: 'chevron-up-16',
   },
   argTypes: {
     icon: {
@@ -22,7 +23,3 @@ const DefaultTemplate = (args) =>
 export const Default = DefaultTemplate.bind({});
 
 
-export const WithIcon = DefaultTemplate.bind({});
-WithIcon.args = {
-  icon: 'chevron-up-16',
-}

@@ -73,7 +73,13 @@ export default {
       control: { type: 'radio' },
     },
     searchPlaceholderValue: { control: { type: 'text' } },
-    onIfxSelect: { action: 'ifxSelect' },
+    onIfxSelect: {
+      action: 'ifxSelect',
+    },
+    onIfxInput: {
+      action: 'ifxInput',
+    },
+
     options: {
       description: 'Takes an array of objects in the following format',
     },
@@ -105,6 +111,8 @@ const DefaultTemplate = (args) => {
  </ifx-select>`
   setTimeout(() => {
     document.querySelector('ifx-select')?.addEventListener('ifxSelect', action('ifxSelect'));
+    document.querySelector('ifx-select')?.addEventListener('ifxInput', action('ifxInput'));
+
   }, 0);
 
   return template;

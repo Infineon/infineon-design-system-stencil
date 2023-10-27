@@ -12,7 +12,8 @@
     "skipLibCheck": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "declarationDir": "./dist/types"
+    "declarationDir": "./dist/types",
+    "esModuleInterop": true,
   },
   "include": [
     "lib"
