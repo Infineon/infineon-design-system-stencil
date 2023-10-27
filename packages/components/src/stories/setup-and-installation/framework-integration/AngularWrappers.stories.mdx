@@ -29,19 +29,17 @@ npm install sass
 
 
 ```js
-#main.ts
 import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
 
 defineCustomElements(window);
 ```
 
-In Angular, you do not have to import each component before using them. 
+**4. Additional steps**
 
-**4. Additional steps
+**Inside app.modules.ts file**:
 
-Inside app.modules.ts file:
-
-```import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+```js
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
  ...
@@ -49,7 +47,8 @@ Inside app.modules.ts file:
     CUSTOM_ELEMENTS_SCHEMA
   ],
  ...
-})```
+})
+```
 
 ## Usage
 
@@ -60,3 +59,4 @@ Inside app.modules.ts file:
 </ifx-button>
 ```
 
+**Note**: In Angular, you do not have to import each component before using them. 
