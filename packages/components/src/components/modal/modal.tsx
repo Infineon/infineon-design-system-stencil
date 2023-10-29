@@ -42,6 +42,7 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+
   }
 
   getFirstFocusableElement(): HTMLElement | null {
@@ -63,10 +64,15 @@ export class IfxModal {
 
   attemptFocus(element: HTMLElement | null) {
     if (element == null) {
-      this.closeButton.focus();
+      setTimeout(() => { //wait until DOM is fully loaded
+        this.closeButton.focus();
+      }, 0);
       return;
     }
-    element.focus();
+
+    setTimeout(() => { //wait until DOM is fully loaded
+      element.focus();
+    }, 0);
   }
 
 
@@ -74,14 +80,11 @@ export class IfxModal {
   async open() {
     this.showModal = true;
 
-    try {
-      this.attemptFocus(this.getFirstFocusableElement());
-      this.ifxModalOpen.emit();
+    this.attemptFocus(this.getFirstFocusableElement());
+    this.ifxModalOpen.emit();
 
-      this.hostElement.addEventListener('keydown', this.handleKeypress);
-    } catch (err) {
-      this.ifxModalOpen.emit();
-    }
+    this.hostElement.addEventListener('keydown', this.handleKeypress);
+
   }
 
   @Method()
@@ -112,7 +115,6 @@ export class IfxModal {
     const emittedEvents = [];
     emittedEvents.push(this.ifxBeforeClose.emit(trigger));
     const prevented = emittedEvents.some((event) => event.defaultPrevented);
-    // console.log("emitted ", emittedEvents, " - prevented ", prevented)
     if (!prevented) {
       this.opened = false;
     }
