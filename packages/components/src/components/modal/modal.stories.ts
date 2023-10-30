@@ -42,9 +42,23 @@ export default {
     },
     onIfxModalOpen: {
       action: 'ifxModalOpen',
+      description: 'Custom event emitted when modal opens',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxModalOpen={handleChange}\nVue:@ifxModalOpen="handleChange"\nAngular:(ifxModalOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxModalOpen", (event) => {//handle change});',
+        },
+      },
     },
     onIfxModalClose: {
       action: 'ifxModalClose',
+      description: 'Custom event emitted when modal closes',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxModalClose={handleChange}\nVue:@ifxModalClose="handleChange"\nAngular:(ifxModalClose)="handleChange()"\nVanillaJs:.addEventListener("ifxModalClose", (event) => {//handle change});',
+        },
+      },
     },
   },
 };
