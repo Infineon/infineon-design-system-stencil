@@ -1,4 +1,4 @@
-import { Component, Prop, Element, State, Method, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
+import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
 // import { animateTo, KEYFRAMES } from '../../global/utils/animate';
 
@@ -30,7 +30,7 @@ export class IfxModal {
   @Element() hostElement: HTMLElement;
 
   private focusableElements: HTMLElement[] = [];
-  private closeButton: HTMLButtonElement | HTMLIfxButtonElement;
+  private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
 
   componentDidLoad() {
     // Query all focusable elements and store them in `focusableElements`.
@@ -40,7 +40,6 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
-
   }
 
   getFirstFocusableElement(): HTMLElement | null {
@@ -74,8 +73,7 @@ export class IfxModal {
   }
 
 
-  @Method()
-  async open() {
+  open() {
     this.showModal = true;
 
     this.attemptFocus(this.getFirstFocusableElement());
@@ -85,8 +83,7 @@ export class IfxModal {
 
   }
 
-  @Method()
-  async close() {
+  close() {
     this.showModal = false;
     try {
       this.ifxModalClose.emit();
@@ -101,12 +98,12 @@ export class IfxModal {
       return;
     }
     if (event.key === 'Escape') {
-      this.handleKey('ESCAPE_KEY');
+      this.doBeforeClose('ESCAPE_KEY');
     }
   };
 
 
-  handleKey(trigger: CloseEventTrigger) {
+  doBeforeClose(trigger: CloseEventTrigger) {
     const triggers = [];
     triggers.push(trigger);
     const prevented = triggers.some((event) => event.defaultPrevented);
@@ -129,7 +126,7 @@ export class IfxModal {
 
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
-      this.handleKey('BACKDROP')
+      this.doBeforeClose('BACKDROP')
     }
   }
 
@@ -164,7 +161,7 @@ export class IfxModal {
             <div class="modal-content">
               <div class="modal-header">
                 <h2>{this.caption}</h2>
-                <ifx-icon-button icon="cross-24" variant="tertiary" onClick={() => this.handleKey('CLOSE_BUTTON')}
+                <ifx-icon-button ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON')}
                 ></ifx-icon-button>
               </div>
               <div class="modal-body">
@@ -173,7 +170,7 @@ export class IfxModal {
               <div class="modal-footer">
                 <slot name="buttons">
                   <ifx-button aria-label={this.okButtonLabel}>{this.okButtonLabel}</ifx-button>
-                  <ifx-button ref={(el) => (this.closeButton = el)} variant='secondary' aria-label={this.cancelButtonLabel}>{this.cancelButtonLabel}</ifx-button>
+                  <ifx-button variant='secondary' aria-label={this.cancelButtonLabel}>{this.cancelButtonLabel}</ifx-button>
                 </slot>
               </div>
             </div>

@@ -89,9 +89,9 @@ export class AppComponent {
   }
 
   handleModalOpen() {
-    // const modal = document.querySelector('ifx-modal') as HTMLIfxModalElement;
+    const modal = document.querySelector('ifx-modal') as HTMLIfxModalElement;
     console.log("modal open btn click ")
-    // modal.open();
+    modal.opened = true;
   }
 
 

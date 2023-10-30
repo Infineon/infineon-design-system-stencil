@@ -503,7 +503,7 @@
     });
 
     openModalBtn.addEventListener('click', (event) => {
-      modal.open();
+      modal.opened = true;
     });
 
     singleSelect.addEventListener('ifxChange', (event) => {
@@ -533,7 +533,7 @@
 
   function handleModalButton2Click() {
     console.log("Modal Button 2 clicked")
-    modal.close();
+    modal.opened = false;
   }
 
   updateValues();

@@ -32,13 +32,13 @@ const handleModalBtnClick = () => {
 
 const handleCloseModal = () => {
   if (modal) {
-    modal.value.close();
+    modal.value.opened = false;
   }
 };
 
 const handleOpenModal = () => {
   if (modal) {
-    modal.value.open();
+    modal.value.opened = true;
   }
 };
 

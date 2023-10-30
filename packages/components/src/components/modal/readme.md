@@ -26,29 +26,6 @@
 | `ifxModalOpen`  |             | `CustomEvent<any>` |
 
 
-## Methods
-
-### `close() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `open() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-
 ## Dependencies
 
 ### Depends on
