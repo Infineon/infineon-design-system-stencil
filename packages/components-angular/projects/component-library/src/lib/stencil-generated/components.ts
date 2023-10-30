@@ -797,7 +797,7 @@ export declare interface IfxListNotification extends Components.IfxListNotificat
 
 
 @ProxyCmp({
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'variant'],
+  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'closeOnOverlayClick', 'okButtonLabel', 'variant'],
   methods: ['open', 'close']
 })
 @Component({
@@ -805,23 +805,25 @@ export declare interface IfxListNotification extends Components.IfxListNotificat
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'closeOnOverlayClick', 'okButtonLabel', 'opened', 'variant'],
+  inputs: ['alertIcon', 'cancelButtonLabel', 'caption', 'closeOnOverlayClick', 'okButtonLabel', 'variant'],
 })
 export class IfxModal {
   protected el: HTMLElement;
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
-    proxyOutputs(this, this.el, ['ifxModalOpen', 'ifxModalClose']);
+    proxyOutputs(this, this.el, ['modalOpen', 'modalClose', 'closeButtonClick']);
   }
 }
 
 
 export declare interface IfxModal extends Components.IfxModal {
 
-  ifxModalOpen: EventEmitter<CustomEvent<any>>;
+  modalOpen: EventEmitter<CustomEvent<any>>;
 
-  ifxModalClose: EventEmitter<CustomEvent<any>>;
+  modalClose: EventEmitter<CustomEvent<any>>;
+
+  closeButtonClick: EventEmitter<CustomEvent<any>>;
 }
 
 
