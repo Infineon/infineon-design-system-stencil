@@ -20,12 +20,10 @@
 
 ## Events
 
-| Event                 | Description | Type               |
-| --------------------- | ----------- | ------------------ |
-| `ifxBeforeClose`      |             | `CustomEvent<any>` |
-| `ifxCloseButtonClick` |             | `CustomEvent<any>` |
-| `ifxModalClose`       |             | `CustomEvent<any>` |
-| `ifxModalOpen`        |             | `CustomEvent<any>` |
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `ifxModalClose` |             | `CustomEvent<any>` |
+| `ifxModalOpen`  |             | `CustomEvent<any>` |
 
 
 ## Methods

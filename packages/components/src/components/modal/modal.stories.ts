@@ -40,6 +40,12 @@ export default {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
     },
+    onIfxModalOpen: {
+      action: 'ifxModalOpen',
+    },
+    onIfxModalClose: {
+      action: 'ifxModalClose',
+    },
   },
 };
 
@@ -75,13 +81,13 @@ const Template = ({
   cancelButton.setAttribute('variant', 'secondary');
   cancelButton.textContent = 'Button 1';
   cancelButton.addEventListener('click', () => {
-    modal.opened = false;
+    console.log("Button 1 clicked");
   });
 
   const primaryButton = document.createElement('ifx-button');
   primaryButton.textContent = 'Button 2';
   primaryButton.addEventListener('click', () => {
-    modal.opened = false;
+    console.log("Button 2 clicked");
   });
 
   buttons.appendChild(cancelButton);

@@ -31,17 +31,18 @@ The Modal component is a modal window that appears on top of the app content and
 Example in VanillaJs - Adding functionality to the buttons 
 
 ```js
+<ifx-button id="open">Open Modal</ifx-button>
+...
 <ifx-modal id="my-modal" caption="Modal Title" variant="alert-brand" close-on-overlay-click="true">
   <div slot="content"><span>Modal content</span></div>
   <div slot="buttons">
     <ifx-button variant="secondary" onclick="console.log('Button 1 clicked')">Button 1</ifx-button>
     <ifx-button onclick="closeModal">Button 2</ifx-button>
   </div>
-  <ifx-button id="open">Open Modal</ifx-button>
 </ifx-modal>
 ...
-const modal = document.getElementById('my-modal');
 const openButton = document.getElementById('open');
+const modal = document.getElementById('my-modal');
 
 openButton.addEventListener('click', () => {
     console.log("click")

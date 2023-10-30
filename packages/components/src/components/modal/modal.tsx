@@ -21,8 +21,6 @@ export class IfxModal {
 
   @Event() ifxModalOpen: EventEmitter;
   @Event() ifxModalClose: EventEmitter;
-  @Event() ifxCloseButtonClick: EventEmitter;
-  @Event() ifxBeforeClose: EventEmitter<any>;
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
 
@@ -92,29 +90,26 @@ export class IfxModal {
     this.showModal = false;
     try {
       this.ifxModalClose.emit();
-      this.handleCloseButtonClick();
       this.hostElement.removeEventListener('keydown', this.handleKeypress);
     } catch (err) {
       this.ifxModalClose.emit();
-      this.handleCloseButtonClick();
     }
   }
 
   handleKeypress = (event: KeyboardEvent) => {
-    // console.log("keyboard event detected")
     if (!this.showModal) {
       return;
     }
     if (event.key === 'Escape') {
-      this.emitBeforeClose('ESCAPE_KEY');
+      this.handleKey('ESCAPE_KEY');
     }
   };
 
 
-  emitBeforeClose(trigger: CloseEventTrigger) {
-    const emittedEvents = [];
-    emittedEvents.push(this.ifxBeforeClose.emit(trigger));
-    const prevented = emittedEvents.some((event) => event.defaultPrevented);
+  handleKey(trigger: CloseEventTrigger) {
+    const triggers = [];
+    triggers.push(trigger);
+    const prevented = triggers.some((event) => event.defaultPrevented);
     if (!prevented) {
       this.opened = false;
     }
@@ -131,15 +126,10 @@ export class IfxModal {
     }
   }
 
-  handleCloseButtonClick() {
-    this.ifxCloseButtonClick.emit();
-  }
-
 
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
-      this.emitBeforeClose('BACKDROP')
-      // this.close();
+      this.handleKey('BACKDROP')
     }
   }
 
@@ -152,7 +142,6 @@ export class IfxModal {
         <div
           class={`modal-container ${this.showModal ? 'open' : ''}`}
         >
-          {/* <div class="modal-overlay" onClick={() => this.handleOverlayClick()}></div> */}
           <div
             class="modal-overlay"
             onClick={() => this.handleOverlayClick()}
@@ -175,7 +164,7 @@ export class IfxModal {
             <div class="modal-content">
               <div class="modal-header">
                 <h2>{this.caption}</h2>
-                <ifx-icon-button icon="cross-24" variant="tertiary" onClick={() => this.emitBeforeClose('CLOSE_BUTTON')}
+                <ifx-icon-button icon="cross-24" variant="tertiary" onClick={() => this.handleKey('CLOSE_BUTTON')}
                 ></ifx-icon-button>
               </div>
               <div class="modal-body">

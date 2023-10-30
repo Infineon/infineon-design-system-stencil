@@ -234,9 +234,7 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
   'okButtonLabel',
   'cancelButtonLabel',
   'ifxModalOpen',
-  'ifxModalClose',
-  'ifxCloseButtonClick',
-  'ifxBeforeClose'
+  'ifxModalClose'
 ]);
 
 
