@@ -63,7 +63,7 @@ export class Footer {
   render() {
     return (
       <Host>
-        <div aria-label='a navigation footer' class="footer__container">
+        <div aria-label='Main footer navigation' class="footer__container">
           <div class="footer__wrapper">
 
             {this.large &&
@@ -72,7 +72,7 @@ export class Footer {
               </div>}
 
             {this.medium &&
-              <div class="medium">
+              <div class="medium" aria-label='Follow us on social media'>
                 <div class="footer__logo">
                   <svg width="91" height="40" viewBox="0 0 91 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_2396_2480)">
@@ -95,10 +95,10 @@ export class Footer {
                 © 1999 - 2022 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
-                <a href="#">Terms</a>
-                <a href="#">Imprint</a>
-                <a href="#">Privacy policy</a>
-                <a href="#">Glossary</a>
+                <a aria-label="View our terms of use" href="#">Terms</a>
+                <a aria-label="View our legal notices" href="#">Imprint</a>
+                <a aria-label="View our privacy policy" href="#">Privacy policy</a>
+                <a aria-label="View our glossary" href="#">Glossary</a>
               </div>
             </div>
 
