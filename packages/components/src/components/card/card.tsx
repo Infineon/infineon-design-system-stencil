@@ -31,6 +31,10 @@ export class Card {
     if (!links) {
       this.noBtns = true;
     } else this.noBtns = false;
+
+    if(this.href.trim() === "") { 
+      this.href = undefined;
+    }
   }
 
   handleHovering() {
@@ -62,7 +66,7 @@ export class Card {
 
 
   private addEventListenersToHandleCustomFocusState() {
-    const element = this.el.shadowRoot.firstChild;
+    const element = this.el.shadowRoot;
     if (!element) {
       console.error('element not found');
       return;

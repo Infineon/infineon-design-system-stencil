@@ -106,7 +106,6 @@ typings/
 
 # Local Netlify folder
 .netlify
-
 .angular
 
 packages/components/src/components.d.ts
@@ -116,4 +115,5 @@ packages/components/package-lock.json
 
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
-.angular
+packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
+

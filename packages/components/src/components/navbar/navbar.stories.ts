@@ -5,7 +5,6 @@ export default {
   args: {
     applicationName: 'Application name',
     hideLabel: false,
-    icon: "calendar16",
     navbarItemTarget: "_blank",
     navbarItemHref: "",
     navbarMenuHref: "",
@@ -15,7 +14,7 @@ export default {
     navbarPositionFixed: false
   },
   argTypes: { 
-    iconName: {
+    icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
     }
