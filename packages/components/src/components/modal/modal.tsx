@@ -1,6 +1,6 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
-// import { animateTo, KEYFRAMES } from '../../global/utils/animate';
+import { animationTo, KEYFRAMES } from '../../global/utils/animation';
 
 type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 
@@ -29,6 +29,7 @@ export class IfxModal {
   @Prop() cancelButtonLabel: string = 'Cancel';
   @Element() hostElement: HTMLElement;
 
+  private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
 
@@ -75,19 +76,39 @@ export class IfxModal {
 
   open() {
     this.showModal = true;
-    this.attemptFocus(this.getFirstFocusableElement());
-    this.ifxModalOpen.emit();
+    console.log("attempt focus")
+    try {
+      const anim = animationTo(this.modalContainer, KEYFRAMES.fadeIn, {
+        duration: 200,
+      });
+      anim.addEventListener('finish', () => {
+        this.attemptFocus(this.getFirstFocusableElement());
+        this.ifxModalOpen.emit();
+      });
+      // this.attemptFocus(this.getFirstFocusableElement());
+      // this.ifxModalOpen.emit();
 
-    this.hostElement.addEventListener('keydown', this.handleKeypress);
+      this.hostElement.addEventListener('keydown', this.handleKeypress);
+    } catch (err) {
+      this.ifxModalOpen.emit();
+
+    }
+
 
   }
 
   close() {
-    this.showModal = false;
     try {
-      this.ifxModalClose.emit();
+      const anim = animationTo(this.modalContainer, KEYFRAMES.fadeOut, {
+        duration: 200,
+      });
+      anim.addEventListener('finish', () => {
+        this.showModal = false;
+        this.ifxModalClose.emit();
+      });
       this.hostElement.removeEventListener('keydown', this.handleKeypress);
     } catch (err) {
+      this.showModal = false;
       this.ifxModalClose.emit();
     }
   }
@@ -136,6 +157,7 @@ export class IfxModal {
     return (
       <Host>
         <div
+          ref={(el) => (this.modalContainer = el)}
           class={`modal-container ${this.showModal ? 'open' : ''}`}
         >
           <div
@@ -147,8 +169,8 @@ export class IfxModal {
             onFocus={this.handleTopFocus}
             tabindex="0"
           ></div>
-          <div class={`modal-content-container`}
-
+          <div
+            class={`modal-content-container`}
             role="dialog"
             aria-modal="true"
             aria-label={this.caption}>
