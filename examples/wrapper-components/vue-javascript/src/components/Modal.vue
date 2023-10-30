@@ -13,7 +13,7 @@
           <ifx-button @click="handleCloseModal()">Close</ifx-button>
         </div>
       </ifx-modal>
-      <ifx-button @click="handleOpenModal()">Open Modal</ifx-button>
+      <ifx-button @keyup.enter="handleOpenModal" @click="handleOpenModal()">Open Modal</ifx-button>
     </div>
   </div>
 </template>

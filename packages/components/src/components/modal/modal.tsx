@@ -63,7 +63,7 @@ export class IfxModal {
     if (element == null) {
       setTimeout(() => { //wait until DOM is fully loaded
         this.closeButton.focus();
-      }, 0);
+      },);
       return;
     }
 
@@ -75,7 +75,6 @@ export class IfxModal {
 
   open() {
     this.showModal = true;
-
     this.attemptFocus(this.getFirstFocusableElement());
     this.ifxModalOpen.emit();
 
