@@ -1,6 +1,7 @@
 
 import { defineCustomElements } from '../loader';
-
+import prettier from 'prettier/standalone';
+import prettierBabel from 'prettier/parser-babel';
 
 defineCustomElements();
 
@@ -15,7 +16,12 @@ export const parameters = {
   docs: {
     canvas: {
       sourceState: "shown"
-    }
+    },
+    transformSource: input =>
+      prettier.format(input, {
+        parser: 'babel',
+        plugins: [prettierBabel],
+      }),
   },
   options: {
     storySort: {

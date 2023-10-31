@@ -75,10 +75,25 @@ export class Button {
     }
   }
 
-  handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
+  // handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
+  //   if (this.disabled) {
+  //     event.preventDefault();
+  //     this.focusableElement.blur();
+  //   }
+  // }
+
+
+  handleFocus(event: FocusEvent) {
+    // the anchor element should not be focusable when it's disabled
     if (this.disabled) {
       event.preventDefault();
       this.focusableElement.blur();
+    } else {
+      this.focusableElement.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          this.handleClick();
+        }
+      });
     }
   }
 

@@ -14,39 +14,16 @@
 | `caption`             | `caption`                |             | `string`                                       | `'Modal Title'` |
 | `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean`                                      | `true`          |
 | `okButtonLabel`       | `ok-button-label`        |             | `string`                                       | `'OK'`          |
+| `opened`              | `opened`                 |             | `boolean`                                      | `false`         |
 | `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"` | `'default'`     |
 
 
 ## Events
 
-| Event              | Description | Type               |
-| ------------------ | ----------- | ------------------ |
-| `closeButtonClick` |             | `CustomEvent<any>` |
-| `modalClose`       |             | `CustomEvent<any>` |
-| `modalOpen`        |             | `CustomEvent<any>` |
-
-
-## Methods
-
-### `close() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `open() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `ifxModalClose` |             | `CustomEvent<any>` |
+| `ifxModalOpen`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies

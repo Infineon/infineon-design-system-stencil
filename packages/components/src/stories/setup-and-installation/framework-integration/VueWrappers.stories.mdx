@@ -43,6 +43,29 @@ In Vue, this registers the components globally.
 
 ## Usage
 
+### Components
+
 ```js
 <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
+```
+
+### Assets
+
+To include images or other assets in your web application, there are different possiblities to achieve this in Vue.
+Some of these possibilities are listed below. 
+
+- Assets need to be in the public directory. 
+Images in this directory will be served at the root path, so you only need:
+
+```js
+// '/' + your image path
+<img src="/circle.svg">
+```
+
+- Import files individually
+
+```
+import img from '../assets/coffee_unsplash.jpg'
+
+ <img :src="img">
 ```

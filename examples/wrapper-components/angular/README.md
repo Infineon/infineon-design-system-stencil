@@ -18,6 +18,9 @@ npm i
 npm run test:local
 ```
 
+This runs the application located in ```./projects/my-app``` within the Angular Workspace.
+
+
 ### Using Stencil components from npm registry (use latest version or specify canary version in package.json)
 
 ```bash
