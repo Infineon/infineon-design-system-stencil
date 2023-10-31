@@ -6,10 +6,26 @@ export default {
   component: 'ifx-modal',
   // tags: ['autodocs'],
 
+  args: {
+    opened: false,
+  },
   argTypes: {
     caption: {
       control: 'text',
       description: 'Title for the modal',
+    },
+    opened: {
+      control: {
+        disable: true,
+      },
+      table: {
+        type: {
+          summary: 'Example (in VanillaJs)',
+          detail: 'const modal = document.getElementById(\'modal\'); \nconst openButton = document.getElementById(\'open\'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}',
+        },
+      },
+      description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
+
     },
     closeOnOverlayClick: {
       control: 'boolean',
@@ -23,6 +39,26 @@ export default {
     variant: {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
+    },
+    onIfxModalOpen: {
+      action: 'ifxModalOpen',
+      description: 'Custom event emitted when modal opens',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxModalOpen={handleChange}\nVue:@ifxModalOpen="handleChange"\nAngular:(ifxModalOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxModalOpen", (event) => {//handle change});',
+        },
+      },
+    },
+    onIfxModalClose: {
+      action: 'ifxModalClose',
+      description: 'Custom event emitted when modal closes',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxModalClose={handleChange}\nVue:@ifxModalClose="handleChange"\nAngular:(ifxModalClose)="handleChange()"\nVanillaJs:.addEventListener("ifxModalClose", (event) => {//handle change});',
+        },
+      },
     },
   },
 };
@@ -42,9 +78,8 @@ const Template = ({
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
 
-  modal.addEventListener('modalOpen', action('modalOpen'));
-  modal.addEventListener('modalClose', action('modalClose'));
-  modal.addEventListener('closeButtonClick', action('closeButtonClick'));
+  modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
+  modal.addEventListener('ifxModalClose', action('ifxModalClose'));
 
   const content = document.createElement('div');
   content.setAttribute('slot', 'content');
@@ -58,15 +93,15 @@ const Template = ({
 
   const cancelButton = document.createElement('ifx-button');
   cancelButton.setAttribute('variant', 'secondary');
-  cancelButton.textContent = 'Button';
+  cancelButton.textContent = 'Button 1';
   cancelButton.addEventListener('click', () => {
-    modal.close();
+    console.log("Button 1 clicked");
   });
 
   const primaryButton = document.createElement('ifx-button');
-  primaryButton.textContent = 'Button';
+  primaryButton.textContent = 'Button 2';
   primaryButton.addEventListener('click', () => {
-    modal.close();
+    console.log("Button 2 clicked");
   });
 
   buttons.appendChild(cancelButton);
@@ -74,10 +109,15 @@ const Template = ({
   modal.appendChild(buttons);
 
   const openButton = document.createElement('ifx-button');
-  openButton.id = 'open';
+  openButton.id = "open"
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
-    modal.open();
+    modal.opened = true;
+  });
+  openButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      modal.opened = true;
+    }
   });
 
   const storyElement = document.createElement('div');

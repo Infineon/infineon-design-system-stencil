@@ -27,6 +27,7 @@
   height: 100%;
   background-color: tokens.$ifxColorBaseBlack;
   opacity: 0.5;
+  z-index: 0;
 }
 
 .modal-content-container {
@@ -113,7 +114,7 @@
   box-sizing: border-box;
   flex: 1;
 
-  & slot[name=content] { 
+  & slot[name=content] {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
