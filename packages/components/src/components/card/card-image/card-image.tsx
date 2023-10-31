@@ -12,11 +12,11 @@ export class CardImage {
   @Prop() position: string;
   @Event() imgPosition: EventEmitter;
 
-  handlePosition(position) { 
+  handlePosition(position) {
     this.imgPosition.emit(position)
   }
 
-  componentWillLoad() { 
+  componentWillLoad() {
     this.handlePosition(this.position)
   }
 

@@ -13,7 +13,7 @@
           <ifx-button @click="handleCloseModal()">Close</ifx-button>
         </div>
       </ifx-modal>
-      <ifx-button @click="handleOpenModal()">Open Modal</ifx-button>
+      <ifx-button @keyup.enter="handleOpenModal" @click="handleOpenModal()">Open Modal</ifx-button>
     </div>
   </div>
 </template>
@@ -32,13 +32,13 @@ const handleModalBtnClick = () => {
 
 const handleCloseModal = () => {
   if (modal) {
-    modal.value.close();
+    modal.value.opened = false;
   }
 };
 
 const handleOpenModal = () => {
   if (modal) {
-    modal.value.open();
+    modal.value.opened = true;
   }
 };
 
