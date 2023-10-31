@@ -22,6 +22,13 @@ export class Tooltip {
   referenceEl: HTMLElement;
   popperInstance: any = null;
 
+
+  componentWillLoad() { 
+    if(this.variant.toLowerCase().trim() === "") { 
+      this.variant = 'compact'
+    }
+  }
+
   initializePopper() {
     if (this.popperInstance) return;
 

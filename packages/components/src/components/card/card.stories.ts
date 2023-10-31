@@ -1,3 +1,4 @@
+
 export default {
   title: "Components/Card",
   tags: ['autodocs'],
@@ -9,8 +10,8 @@ export default {
     button: 'button',
     href: "",
     target: '_blank',
-    icon: 'c-info-16',
-    position: 'right'
+    position: 'right',
+    src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
   },
 
   argTypes: {
@@ -36,7 +37,7 @@ export default {
 
 const DefaultTemplate = (args) =>
   `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
-    <ifx-card-image position="${args.position}" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
+    <ifx-card-image position="${args.position}" src="${args.src}" alt="" slot="img"></ifx-card-image>
     ${args.overline
     ? `<ifx-card-overline>
         ${args.overline}
@@ -53,18 +54,16 @@ const DefaultTemplate = (args) =>
         </ifx-card-text>` : ""}
       ${args.button === 'button'
     ? `<ifx-card-links slot="buttons">
-          <ifx-button color="primary">Button</ifx-button>
-          <ifx-button color="secondary">Button</ifx-button>
-          <ifx-button color="primary">Button</ifx-button>
-          <ifx-button color="secondary">Button</ifx-button>
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
           </ifx-card-links>` : ""}
       ${args.button === 'link'
     ? `<ifx-card-links slot="buttons">
-            <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
+            <ifx-link href="https://google.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
             </ifx-link>
-            <ifx-link color="primary" href="https://yahoo.com" target="_blank" underline="false">
+            <ifx-link href="https://yahoo.com" target="_blank">
               <ifx-icon icon="calendar16"></ifx-icon>
               Link
             </ifx-link>
@@ -73,6 +72,7 @@ const DefaultTemplate = (args) =>
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
   position: {
     table: {
       disable: true
@@ -82,7 +82,7 @@ Default.argTypes = {
 
 const HorizontalTemplate = (args) =>
   `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
-    <ifx-card-image position="${args.position}" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></ifx-card-image>
+    <ifx-card-image position="${args.position}" src="${args.src}" alt="" slot="img"></ifx-card-image>
     ${args.overline
     ? `<ifx-card-overline>
         ${args.overline}
@@ -115,6 +115,7 @@ const HorizontalTemplate = (args) =>
 export const Horizontal = HorizontalTemplate.bind({});
 Horizontal.argTypes = {
   direction: 'horizontal',
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
   image: {
     table: {
       disable: true

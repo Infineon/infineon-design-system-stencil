@@ -3,6 +3,7 @@
 
 :host { 
   width: 100%;
+  display: block;
 }
 
 
@@ -13,6 +14,10 @@
   overflow: hidden;
   z-index: 1000000;
   border-bottom: 1px solid #EEEDED;
+  &.fixed { 
+    border-bottom: none;
+  }
+  // border-bottom: 1px solid #EEEDED; //when fixed is false
 }
 
 .navbar__main-container {
@@ -25,6 +30,9 @@
 
   &.fixed {
     position: fixed;
+    & .navbar__container {
+      border-bottom: 1px solid #EEEDED;
+    }
   }
 
   &.show {
@@ -175,7 +183,10 @@
   padding: 8px 40px;
   gap: 16px;
   background-color: tokens.$ifxColorBaseWhite;
-  border-bottom: 1px solid #EEEDED; 
+
+  // &.fixed { 
+  //   border-bottom: 1px solid #EEEDED; //when fixed is true
+  // }
 
   & .navbar__container-left {
     display: flex;
@@ -208,7 +219,7 @@
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
-        line-height: 24px;
+        //line-height: 24px;
         display: flex;
         align-items: center;
         color: tokens.$ifxColorBaseBlack;

@@ -81,6 +81,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() ifxDisabled: boolean = false;
   @Prop() ifxPlaceholderValue: string = "Placeholder";
   @Event() ifxSelect: EventEmitter<CustomEvent>;
+  @Event() ifxInput: EventEmitter<CustomEvent>;
   @Prop() ifxOptions: any[] | string;
   @Prop() ifxSize: string = 'medium (40px)';
   @State() ifxSelectedOption: any | null = null;
@@ -594,7 +595,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         }
         ));
 
+        //set select options
         this.setChoices(this.ifxOptions, "value", "label", true)
+        //set custom event listener to listen for search input
+        self.addSearchEventListener(self, this.choice);
 
 
       } else if (this.type === 'multiple') { //not implemented right now
@@ -670,6 +674,19 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     div.addEventListener('blur', function () {
       this.classList.remove('focus');
     });
+  }
+
+
+
+  private addSearchEventListener(self, choiceElement: ChoicesJs) {
+    choiceElement.passedElement.element.addEventListener(
+      'search',
+      function (event: CustomEvent) {
+        self.ifxInput.emit(event.detail.value)
+      },
+      false,
+    );
+    return choiceElement;
 
   }
 
@@ -722,7 +739,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
       }
-      const optionValueBasedOnAvailableOptions = options.find(option => option.value === this.value || this.ifxSelectedOption?.value);
+      const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.ifxSelectedOption?.value);
 
       if (optionValueBasedOnAvailableOptions) {
         return [

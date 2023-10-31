@@ -1,6 +1,10 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+:host { 
+  display: inline-flex;
+}
+
 .tooltip__container {
   display: inline-flex;
   flex-direction: column;
@@ -25,7 +29,8 @@
   &.visible {
     display: flex !important;
     align-items: center;
-    min-width: 100px;
+    //min-width: 100px;
+    //width: auto;
   }
 }
 
@@ -33,15 +38,19 @@
 
 .tooltip-dismissible {
   @extend %tooltip-common;
-  width: 310px;
+  min-width: 110px;
+  width: auto;
 
   .close-button {
-    position: absolute;
-    top: tokens.$ifxSpace150;
-    right: tokens.$ifxSpace150;
+    //position: absolute;
+    //top: tokens.$ifxSpace150;
+    //right: tokens.$ifxSpace150;
     cursor: pointer;
-    //order: 2;
-    //padding-right: 12px;
+    position: relative;
+    top: 0px;
+    //right: 0px;
+    order: 2;
+    padding-right: 12px;
   }
 
   .tooltip-dismissible-content {
@@ -83,15 +92,19 @@
 
 .tooltip-extended {
   @extend %tooltip-common;
-  width: 310px;
+  min-width: 100px;
+  width: auto;
   //padding-left: 36px; // Added this line, adjust as per your icon width
-  padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
-
+  //padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
+  align-items: center;
+  padding: tokens.$ifxSpace150;
+  gap: 10px;
 
   .extended_icon {
     display: flex;
     align-self: flex-start;
-    padding-top: tokens.$ifxSpace150;
+    align-items: center;
+    //padding-top: tokens.$ifxSpace150;
     cursor: pointer;
   }
 
@@ -101,7 +114,7 @@
     display: flex;
     flex-direction: column;
     gap: tokens.$ifxSpace150;
-    padding: tokens.$ifxSpace150;
+    //padding: tokens.$ifxSpace150;
     flex-grow: 1;
     white-space: pre-wrap;
     word-wrap: break-word;

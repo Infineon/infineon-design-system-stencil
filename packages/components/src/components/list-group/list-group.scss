@@ -1,11 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 
-// :host {
-//   & ifx-list-group { 
-//     width: initial;
-//   }
-// }
+:host  {
+  display: inline-flex;
+}
 
 .list-group-container {
   display: inline-flex;

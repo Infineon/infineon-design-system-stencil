@@ -1,10 +1,10 @@
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: "Components/Navbar",
   args: {
     applicationName: 'Application name',
     hideLabel: false,
-    icon: "calendar16",
     navbarItemTarget: "_blank",
     navbarItemHref: "",
     navbarMenuHref: "",
@@ -13,6 +13,12 @@ export default {
     searchBarShowCloseButton: true,
     navbarPositionFixed: false
   },
+  argTypes: { 
+    icon: {
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' }
+    }
+  }
 };
 
 

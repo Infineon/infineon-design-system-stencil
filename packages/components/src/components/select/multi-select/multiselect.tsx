@@ -17,6 +17,7 @@ export class Multiselect {
   @Prop() errorMessage: string = "Error";
   @Prop() label: string = "";
   @State() persistentSelectedOptions: Option[] = [];
+  @Prop() placeholder: string = "";
   @State() listOfOptions: Option[] = [];
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
@@ -422,7 +423,7 @@ export class Multiselect {
           `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           >
-            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
+            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu" style={{ '--dynamic-z-index': this.zIndex.toString() }}>

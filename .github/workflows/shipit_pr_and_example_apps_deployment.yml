@@ -23,10 +23,10 @@ jobs:
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 18
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies for all packages, build and deploy Stencil core package
@@ -49,24 +49,30 @@ jobs:
         run: sleep 10s
         shell: bash
 
-      - name: Update Dependencies in Vue and React packages
+      - name: Update Dependencies in Angular, Vue and React packages
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
-          echo "Installing Stencil library for Vue and React: $CANARY_VERSION"
+          echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          cd packages/components-angular/projects/component-library
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          cd ../../../../
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-vue
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-react
   
-      - name: Build and deploy Vue and React packages
+      - name: Build and deploy Angular, Vue and React packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
+          npm run build:components-angular
           npm run build:components-react
           npm run build:components-vue
-          cd packages/components-react
+          cd packages/components-angular/dist/@infineon/infineon-design-system-angular
+          npm publish --tag canary
+          cd ../../../../components-react
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
@@ -79,12 +85,12 @@ jobs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
   
-      - name: Use Node.js 16
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -95,7 +101,7 @@ jobs:
           cd examples/wrapper-components/vue-javascript
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm install @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
 
       - name: Deploy preview
@@ -114,12 +120,12 @@ jobs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
   
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -149,10 +155,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
           
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -160,16 +166,17 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd examples/stencil-components/angular
+          cd examples/wrapper-components/angular
           npm i
-          npm i @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build
            
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/stencil-components/angular/dist
+          source-dir: ./examples/wrapper-components/angular/dist
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
   
@@ -183,10 +190,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
  
-      - name: Use Node.js 16
+      - name: Use Node.js 18
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

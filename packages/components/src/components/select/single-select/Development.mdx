@@ -18,6 +18,8 @@ import * as SelectStories from './select.stories';
 
 
 ## Notes
+
+### Options
 The Single Select component takes an array of objects in the following format as input:
 
 ```
@@ -42,3 +44,13 @@ The ``selected`` property can be used to predefine an option as selected.
 (``selected: true``)
 This property is only changed, when a new option is selected, as the single-select only allows for one selected option.
 However, the component only creates a shallow copy of the input array, so the original input array does not change.
+
+### Custom events
+
+This component emits two custom events:
+- ``ìfxInput`` 
+  - Accessing the detail property of this custom event returns the search string
+  - gets emitted every time the user types into the search field
+- ``ifxSelect`` 
+  - Accessing the detail property of this custom event returns an object, containing the ``value`` and ``label`` property of the selected option
+  - gets emitted when an item is selected

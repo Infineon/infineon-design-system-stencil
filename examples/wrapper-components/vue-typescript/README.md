@@ -4,16 +4,18 @@ This example application demonstrates the usage of the React Wrapper Components 
 
 ## Run locally
 
-### Using Stencil components from npm package (link to local Stencil library)
+### Using Vue Wrapper components (link to local Stencil library)
 
- ```npm install```
+ ```bash
+ npm install
+ npm run test:local
+ ```
 
- ```npm run test:local```
+### To run the application using the latest version of the React Library on NPM:
 
-The application will be served on http://localhost:5173.`
-
-To run the application using the latest version of the React Library on NPM:
-
- ```npm install```
-
- ```npm run dev```
+ ```bash
+ npm install
+ npm run dev
+ ```
+ 
+The application will be served on http://localhost:5173.

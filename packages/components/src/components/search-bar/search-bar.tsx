@@ -24,7 +24,6 @@ export class SearchBar {
     this.ifxSearchBarIsOpen.emit(this.internalState)
   }
 
-
   setInitialState() {
     this.internalState = this.isOpen;
   }
