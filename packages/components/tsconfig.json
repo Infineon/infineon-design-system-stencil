@@ -9,7 +9,7 @@
       "dom",
       "es2017"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "module": "esnext",
     "target": "es2017",
     "noUnusedLocals": true,
