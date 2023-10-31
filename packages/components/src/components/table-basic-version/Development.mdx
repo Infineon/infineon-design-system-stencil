@@ -1,14 +1,18 @@
-import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import { Meta, Primary, Source, Controls, Canvas, Story } from '@storybook/blocks';
 import * as TableStories from './table.stories';
  
 <Meta of={TableStories} />
 
 # Table
 
-<Canvas of={TableStories.Default} sourceState="shown" />
+<Canvas withSource="none" of={TableStories.Default} >
+    <Story height="200px" of={TableStories.Default} />
+</Canvas>
+
+ <Source dark="true" of={TableStories.Default} />
+
 
 <Controls />
-
 
 ## Stories
 
