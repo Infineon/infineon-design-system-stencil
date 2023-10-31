@@ -10,7 +10,7 @@
       "es2017"
     ],
     "moduleResolution": "NodeNext",
-    "module": "esnext",
+    "module": "NodeNext",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
