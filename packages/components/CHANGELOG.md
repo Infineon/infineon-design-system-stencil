@@ -1,3 +1,15 @@
+# v20.28.0 (Thu Nov 02 2023)
+
+#### 🚀 Enhancement
+
+- Button: added a type property [#665](https://github.com/Infineon/infineon-design-system-stencil/pull/665) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.27.0 (Tue Oct 31 2023)
 
 #### 🚀 Enhancement
