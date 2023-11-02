@@ -5,7 +5,7 @@ function Modal() {
   const modalRef = useRef();
 
   const handleCloseModal = () => {
-    modalRef.current.close();
+    modalRef.current.opened = false;
   };
 
   const handleModalBtnClick = () => {
@@ -24,7 +24,7 @@ function Modal() {
           <IfxButton onClick={handleCloseModal}>Close</IfxButton>
         </div>
       </IfxModal>
-      <ifx-button onClick={() => modalRef.current.open()}>Open Modal</ifx-button>
+      <ifx-button onClick={() => modalRef.current.opened = true}>Open Modal</ifx-button>
     </div>
   );
 }

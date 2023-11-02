@@ -1,3 +1,17 @@
+# v20.27.0 (Tue Oct 31 2023)
+
+#### 🚀 Enhancement
+
+- Modal should not close when content changes + Vue Readme update [#616](https://github.com/Infineon/infineon-design-system-stencil/pull/616) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.26.1 (Fri Oct 27 2023)
 
 #### 🐛 Bug Fix
