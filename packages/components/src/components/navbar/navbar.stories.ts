@@ -11,7 +11,8 @@ export default {
     navbarMenuTarget: "_blank",
     searchBarIsOpen: false,
     searchBarShowCloseButton: true,
-    navbarPositionFixed: false
+    navbarPositionFixed: false,
+    showLogo: true
   },
   argTypes: { 
     icon: {
@@ -23,7 +24,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-navbar application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
+  `<ifx-navbar show-logo="${args.showLogo}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
   <ifx-navbar-item hide-label="${args.hideLabel}" icon="${args.icon}" slot="left-item" target="${args.navbBarItemTarget}" href="${args.navbBarItemHref}">Menu Item 1</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
