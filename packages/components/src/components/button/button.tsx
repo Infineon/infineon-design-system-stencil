@@ -15,6 +15,7 @@ export class Button {
   @State() internalHref: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
+  @Prop() type: "button" | "submit" | "reset" = "button";
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -61,7 +62,7 @@ export class Button {
         this.el.internalHref = undefined;
       }
       this.nativeButton = document.createElement('button');
-      this.nativeButton.type = 'submit';
+      this.nativeButton.type = this.type;
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
     } else {
