@@ -61,17 +61,12 @@ export class Button {
       if (this.el.href) {
         this.el.internalHref = undefined;
       }
-      if (this.type === "reset") {
-        this.nativeButton = document.createElement('input'); //use a hidden input type reset element instead, so standard inputm fields are also included in the reset function
-        this.nativeButton.type = 'reset';
-        this.nativeButton.style.display = 'none';
-        this.el.closest('form').appendChild(this.nativeButton);
-      } else {
-        this.nativeButton = document.createElement('button');
-        this.nativeButton.type = this.type;
-        this.nativeButton.style.display = 'none';
-        this.el.closest('form').appendChild(this.nativeButton);
-      }
+     
+      this.nativeButton = document.createElement('button');
+      this.nativeButton.type = this.type;
+      this.nativeButton.style.display = 'none';
+      this.el.closest('form').appendChild(this.nativeButton);
+    
     } else {
       this.internalHref = this.href;
     }
@@ -79,7 +74,7 @@ export class Button {
 
   handleClick() {
     if (this.nativeButton) {
-      if (this.type = 'reset') {
+      if (this.type === 'reset') {
         this.resetClickHandler(); //this will reset all ifx-text-fields within a form
       }
       this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
