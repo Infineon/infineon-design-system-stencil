@@ -1,3 +1,16 @@
+# v20.30.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- dependabot update [#642](https://github.com/Infineon/infineon-design-system-stencil/pull/642) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.30.0 (Fri Nov 03 2023)
 
 #### 🚀 Enhancement
