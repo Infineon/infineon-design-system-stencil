@@ -313,6 +313,14 @@
       <ifx-text-field id="text-field" error="false" disabled="false" size="m" icon="calendar-16" success="false"
         placeholder="Placeholder" caption="Caption" required="true" optional="false">Label</ifx-text-field>
       <br />
+      <ifx-button type="submit" theme="default" size="s" disabled="false" icon="false">
+        Submit text field
+      </ifx-button>
+
+      <input type="text">test</input>
+      <ifx-button type="reset" variant="secondary" theme="default" size="s" disabled="false" icon="false">
+        Reset text field
+      </ifx-button>
     </form>
     <span id="textInputSpan"></span>
     <br />
@@ -460,6 +468,15 @@
     form.addEventListener('submit', () => {
       event.preventDefault();
       console.log('Form submitted. \nCheckbox value:', checked, '\nSwitchToggle value', switchChecked);
+    });
+
+    anotherForm.addEventListener('submit', () => {
+      event.preventDefault();
+      console.log('Form submitted. Text field value: ', textInputValue);
+    });
+    anotherForm.addEventListener('reset', () => {
+      event.preventDefault();
+      console.log('Form reset. Text field value: ', textInputValue);
     });
 
 

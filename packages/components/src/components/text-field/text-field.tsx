@@ -1,4 +1,4 @@
-import { Component, h, Event, Element, Prop, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-field',
@@ -21,6 +21,8 @@ export class TextField {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Event() ifxInput: EventEmitter<String>;
+  // @Prop({ reflect: true })
+  // resetOnSubmit: boolean = false;
 
 
   @Watch('value')
@@ -28,6 +30,12 @@ export class TextField {
     if (newValue !== this.inputElement.value) {
       this.inputElement.value = newValue;
     }
+  }
+
+  @Method()
+  async reset() {
+    this.value = '';
+    this.inputElement.value = '';
   }
 
 
