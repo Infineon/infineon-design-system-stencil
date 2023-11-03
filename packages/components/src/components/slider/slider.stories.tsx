@@ -22,6 +22,16 @@ export default {
     },
     leftText: { control: 'text' },
     rightText: { control: 'text' },
+    ifxChange: {
+      action: 'ifxChange',
+      description: 'Custom event emitted on input change',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+        },
+      },
+    }
   },
 };
 
