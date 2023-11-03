@@ -13,7 +13,7 @@ export default {
   },
   argTypes: {
     onIfxChange: {
-      description: 'Custom event',
+      description: 'Custom event emitted when radio button checked and unchecked',
       table: {
         type: {
           summary: 'Framework integration',

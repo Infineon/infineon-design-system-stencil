@@ -12,7 +12,7 @@ export default {
   },
   argTypes: {
     onIfxChange: {
-      description: 'Custom event',
+      description: 'Custom event emitted on change',
       table: {
         type: {
           summary: 'Framework integration',
