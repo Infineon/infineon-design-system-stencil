@@ -10,9 +10,7 @@ export class Badge {
   render() {
     return (
       <div class="badge__container">
-        <span>
-          <slot />
-        </span>
+        <slot />
       </div>
     );
   }
