@@ -1,3 +1,15 @@
+# v20.29.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- Icon-button: fixed tertiary border. [#667](https://github.com/Infineon/infineon-design-system-stencil/pull/667) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.29.0 (Fri Nov 03 2023)
 
 #### 🚀 Enhancement
