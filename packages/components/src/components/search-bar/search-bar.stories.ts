@@ -13,11 +13,21 @@ export default {
   argTypes: {
     onIfxInput: {
       action: 'ifxInput',
-      description: 'Custom event',
+      description: 'Custom event emitted on input',
       table: {
         type: {
           summary: 'Framework integration',
           detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+        },
+      },
+    },
+    ifxSearchBarIsOpen: {
+      action: 'ifxSearchBarIsOpen',
+      description: 'Custom event emitted when search bar is opened',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxSearchBarIsOpen={handleInput}\nVue:@ifxSearchBarIsOpen="handleInput"\nAngular:(ifxSearchBarIsOpen)="handleInput()"\nVanillaJs:.addEventListener("ifxSearchBarIsOpen", (event) => {//handle input});',
         },
       },
     },
