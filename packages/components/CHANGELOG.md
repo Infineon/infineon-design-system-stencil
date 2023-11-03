@@ -1,3 +1,17 @@
+# v20.30.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- reset functionality added to button in combination with text field [#670](https://github.com/Infineon/infineon-design-system-stencil/pull/670) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.29.1 (Fri Nov 03 2023)
 
 #### 🐛 Bug Fix
