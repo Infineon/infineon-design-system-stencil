@@ -13,6 +13,16 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
+    ifxTabIndex: {
+      action: 'ifxTabIndex',
+      description: 'Custom event emitted on tab index change',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxTabIndex={handleChange}\nVue:@ifxTabIndex="handleChange"\nAngular:(ifxTabIndex)="handleChange()"\nVanillaJs:.addEventListener("ifxTabIndex", (event) => {//handle change});',
+        },
+      },
+    }
   },
 };
 

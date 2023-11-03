@@ -18,8 +18,15 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    onIfxChange: {
-      action: 'ifxChange'
+    ifxChange: {
+      action: 'ifxChange',
+      description: 'Custom event emitted when accordion-item is closed',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+        },
+      },
     }
   },
 

@@ -32,7 +32,7 @@ export default {
       control: { type: 'radio' },
     },
     type: {
-      options: ['submit', 'button'],
+      options: ['submit', 'button', 'reset'],
       control: { type: 'radio' },
     },
     size: {
@@ -55,7 +55,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-button disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""}>
+  `<ifx-button type="${args.type}" disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ""}>
   ${args.icon && args.iconPosition.toUpperCase() === "LEFT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""}${args.label}${args.icon && args.iconPosition.toUpperCase() === "RIGHT" ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ""} 
 </ifx-button>`;
 

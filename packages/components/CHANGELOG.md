@@ -1,3 +1,28 @@
+# v20.29.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- Storybook: updated custom events on the controls [#583](https://github.com/Infineon/infineon-design-system-stencil/pull/583) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.28.0 (Thu Nov 02 2023)
+
+#### 🚀 Enhancement
+
+- Button: added a type property [#665](https://github.com/Infineon/infineon-design-system-stencil/pull/665) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.27.0 (Tue Oct 31 2023)
 
 #### 🚀 Enhancement
