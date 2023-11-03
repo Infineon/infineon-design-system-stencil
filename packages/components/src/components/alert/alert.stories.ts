@@ -1,4 +1,5 @@
 import { icons } from '@infineon/infineon-icons';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: "Components/Alert",
@@ -20,14 +21,26 @@ export default {
     iconName: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
-    }
+    },
 
+    ifxClose: {
+      action: 'ifxClose',
+      description: 'Custom event emitted when close button clicked',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
+        },
+      },
+    }
   }
 };
 
 
+
 const DefaultTemplate = (args) =>
   `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ""}">${args.label}</ifx-alert>`;
+
 
 export const Default = DefaultTemplate.bind({});
 
