@@ -19,7 +19,7 @@ export class Button {
   @Element() el;
 
   private focusableElement: HTMLElement;
-  private nativeButton: HTMLButtonElement;
+  private nativeButton: HTMLButtonElement | HTMLInputElement;
 
   @Watch('href')
   setInternalHref(newValue: string) {
@@ -61,10 +61,12 @@ export class Button {
       if (this.el.href) {
         this.el.internalHref = undefined;
       }
+     
       this.nativeButton = document.createElement('button');
       this.nativeButton.type = this.type;
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
+    
     } else {
       this.internalHref = this.href;
     }
@@ -72,8 +74,21 @@ export class Button {
 
   handleClick() {
     if (this.nativeButton) {
-      this.nativeButton.click();
+      if (this.type === 'reset') {
+        this.resetClickHandler(); //this will reset all ifx-text-fields within a form
+      }
+      this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
+
     }
+  }
+
+
+  resetClickHandler() {
+    const formElement = this.el.closest('form');
+    const customElements = formElement.querySelectorAll('ifx-text-field');
+    customElements.forEach(element => {
+      element.reset();
+    });
   }
 
   // handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled

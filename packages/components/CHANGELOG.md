@@ -1,3 +1,55 @@
+# v20.30.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- dependabot update [#642](https://github.com/Infineon/infineon-design-system-stencil/pull/642) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.30.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- reset functionality added to button in combination with text field [#670](https://github.com/Infineon/infineon-design-system-stencil/pull/670) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.29.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- Icon-button: fixed tertiary border. [#667](https://github.com/Infineon/infineon-design-system-stencil/pull/667) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.29.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- Storybook: updated custom events on the controls [#583](https://github.com/Infineon/infineon-design-system-stencil/pull/583) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.28.0 (Thu Nov 02 2023)
 
 #### 🚀 Enhancement

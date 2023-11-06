@@ -18,7 +18,7 @@ export default {
     },
     onIfxInput: {
       action: 'ifxInput',
-      description: 'Custom event',
+      description: 'Custom event emitted on input',
       table: {
         type: {
           summary: 'Framework integration',
