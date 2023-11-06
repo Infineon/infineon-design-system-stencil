@@ -28,7 +28,7 @@ export class DropdownItem implements IOpenable {
       >
         <slot />
         {!this.hideArrow &&
-          <ifx-icon icon="chevron-right-12" class={`icon${this.isOpen ? ' rotate' : ''}`} />
+          <ifx-icon icon="chevron-down-12" class={`icon${this.isOpen ? ' rotate' : ''}`} />
         }
       </ifx-button>
     )
