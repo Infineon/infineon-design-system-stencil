@@ -9,10 +9,8 @@ export class Badge {
 
   render() {
     return (
-      <div aria-label='badge' class="badge__container">
-        <span>
-          <slot />
-        </span>
+      <div class="badge__container">
+        <slot />
       </div>
     );
   }
