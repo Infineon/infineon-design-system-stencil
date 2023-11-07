@@ -1,14 +1,18 @@
-
 import { Meta } from '@storybook/blocks';
 
 import * as SidebarStories from './sidebar.stories';
+
+import SidebarSections from '../../../public-storybook/images/sidebar/sidebar-sections.png';
 import SidebarAnatomy from '../../../public-storybook/images/sidebar/sidebar-anatomy.png';
 import SidebarExpandedAnatomy from '../../../public-storybook/images/sidebar/sidebar-expanded-anatomy.png';
 
-
 <Meta of={SidebarStories} /> 
+
 # Sidebar
 For dashboards or similar functional application we provide a different and usually common variant of navigation. The sidebar gives users an easy access to different sections.
+
+## Placement of sidebar
+<img src={SidebarSections} alt="Sidebar Sections" />
 
 ## Anatomy of default sidebar
 <img src={SidebarAnatomy} alt="Sidebar Anatomy" />
@@ -37,32 +41,24 @@ This menu item opens another subordinate menu. It is always denoted with a chevr
 The footer at the bottom can be displayed optionally. The text links within the footer are displayed in one line and wrapped if they become too long. A dividing line at the top indicates the margin of the footer.
 
 
-**Search field (7)**\
-If needed the search field can be displayed inside the sidebar's navigation bar.
+**Border (7)**\
+A 1px border indicates the right edge of the sidebar at anytime.
 
 
-**Secondary navigation (8)**\
-Crucial functions can be placed here. Please pay attention to the placement by priority.
-
-
-**Border (9)**\
-A 1px border indicates the bottom edge of the navigation bar and the right edge of the sidebar at anytime.
-
-
-**Number Indicator (10)**\
+**Number Indicator (8)**\
 Informs the user about the amount of unseen content inside the menu item's page.
 
 
 ## Anatomy of expanded sidebar navigation
 <img src={SidebarExpandedAnatomy} alt="Sidebar Expanded Anatomy" />
 
-**Subordinated menu (1)**\
-Opens a subordinated menu when you click on the referenced cluster title. It is possible to attach a supportive icon before the menu item-labels.
+**Hidden overflow header (1)**\
+As with the footer, if the content in the sidebar becomes too large, the further overflow is clipped.
 
 
-**Hidden overflow footer(2)**\
-When the content in the sidebar gets too big than the further overflow is clipped.
- 
+**Search field (2)**\
+If needed the search field can be displayed inside the sidebar's navigation bar.
+
 
 **Scroll bar (3)**\
 A scroll bar appears as the sidebar's height increases.
@@ -72,16 +68,34 @@ A scroll bar appears as the sidebar's height increases.
 The chevron-up icon indicates that the menu item is expanded.
 
 
-**Intended subordinate menu (5)**\
+**Subordinated menu (5)**\
+Opens a subordinated menu when you click on the referenced cluster title. It is possible to attach a supportive icon before the menu item-labels.
+
+
+**Intended subordinate menu (6)**\
 Shows another subordinate menu in an intended style. Avoid using icons in this menu-depth. Up to here the maximum available menu-depth is reached.
 
 
-**Navigation bar (6)**\
+**Hidden overflow footer(7)**\
+When the content in the sidebar gets too big than the further overflow is clipped.
+ 
+
+## Anatomy of navigation bar variant
+<img src={NavigationBarVariant} alt="Navigation Bar Variant" />
+
+
+**Navigation bar (1)**\
 Can be displayed optionally. If displayed the navigation bar is sticky.
 
 
-**Hidden overflow header (7)**\
-As with the footer, if the content in the sidebar becomes too large, the further overflow is clipped.
+**Secondary navigation (2)**\
+Crucial functions can be placed here. Please pay attention to the placement by priority.
+
+
+**Border (3)**\
+A 1px border indicates the bottom edge of the navigation bar at anytime.
+
+
 
 ***
 Check out the Figma component: **[Sidebar](https://www.figma.com/file/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?type=design&node-id=39925-19973&mode=design&t=F2eqm8hE80jZouGN-4)**
