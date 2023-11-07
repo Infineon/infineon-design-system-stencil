@@ -11,6 +11,20 @@
 
   <style defer>
 
+    body { 
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html { 
+      height: 100vh;
+    }
+
+    .sidebar_wrapper { 
+      /* height: 100%; */
+      height: 100%;
+    }
+
   </style>
 
   <script defer>
@@ -20,6 +34,27 @@
 </head>
 
 <body>
+
+  <div class="sidebar_wrapper">
+    <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+        Item One
+        <ifx-sidebar-item href="http://yahoo.com" target="_blank">Slotted Item 1</ifx-sidebar-item>
+        <ifx-sidebar-item href="http://google.com" target="_blank">Slotted Item 2</ifx-sidebar-item>
+        <ifx-sidebar-item href="http://baidu.com" target="_blank">Slotted Item 3</ifx-sidebar-item>
+      </ifx-sidebar-item>
+
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+        Item Two
+      </ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+        Item Three
+      </ifx-sidebar-item>
+      <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+        Item Four
+      </ifx-sidebar-item>
+    </ifx-sidebar>
+  </div>
 
 </body>
 

@@ -44,9 +44,12 @@
     flex: none;
     order: 1;
     flex-grow: 1;
+    cursor: pointer;
+
+    //flex-direction: column;
   }
 
-  & .sidebar__nav-item-number {
+  & .sidebar__nav-item-arrow {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -57,3 +60,18 @@
     flex-grow: 0;
   }
 }
+
+ 
+.expandable__submenu { 
+  display: none;
+  list-style-type: none;
+  //padding-left: 12px;
+  //display: flex;
+  flex-direction: column;
+  gap: tokens.$ifxSpace100;
+  
+  &.open { 
+    display: flex;
+  }
+}
+  
