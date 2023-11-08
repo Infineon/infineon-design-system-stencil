@@ -44,6 +44,7 @@ export class RadioButton {
   render() {
     return (
       <div
+        aria-label='a radio button' aria-value={this.value} aria-disabled={this.disabled}
         class={`radioButton__container ${this.size} ${this.disabled ? 'disabled' : ''}`}
         onClick={this.handleRadioButtonClick.bind(this)}
       >

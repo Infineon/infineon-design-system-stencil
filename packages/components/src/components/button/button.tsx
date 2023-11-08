@@ -125,7 +125,8 @@ export class Button {
           onClick={this.handleClick.bind(this)}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           onFocus={(event) => this.handleFocus(event)}
-
+          aria-disabled={this.disabled}
+          aria-labelledby="label"
         >
           <slot></slot>
         </a>
