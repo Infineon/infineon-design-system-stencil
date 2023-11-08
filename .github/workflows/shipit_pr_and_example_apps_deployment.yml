@@ -221,7 +221,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Update comment in PR
-        uses: actions/github-script@v6
+        uses: actions/github-script@v4
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
