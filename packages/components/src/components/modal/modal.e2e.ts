@@ -7,6 +7,7 @@ describe('ifx-modal', () => {
 
     const modal = await page.find('ifx-modal');
     let modalContainer = await page.find('ifx-modal >>> .modal-container');
+    await page.waitForChanges();
     expect(modalContainer).not.toHaveClass('open');
 
     // Open the modal
@@ -14,6 +15,7 @@ describe('ifx-modal', () => {
     await page.waitForChanges();
     expect(await modal.getProperty('opened')).toBe(true);
     let modalContainerOpen = await page.find('ifx-modal >>> .modal-container');
+    await page.waitForChanges();
     expect(modalContainerOpen).toHaveClass('open');
 
     // Close the modal
