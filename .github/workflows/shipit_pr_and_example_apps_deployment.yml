@@ -23,10 +23,10 @@ jobs:
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
-      - name: Use Node.js 18.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies for all packages, build and deploy Stencil core package
@@ -87,10 +87,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
   
-      - name: Use Node.js 18.x
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -122,10 +122,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
   
-      - name: Use Node.js 18
-        uses: actions/setup-node@v4
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -155,10 +155,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
           
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -179,8 +179,7 @@ jobs:
           source-dir: ./examples/wrapper-components/angular/dist
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
-  
-  
+          
   deploy-preview-vanilla:
     needs: stencil-library-release  
     runs-on: ubuntu-latest
@@ -190,10 +189,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
  
-      - name: Use Node.js 18
+      - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
