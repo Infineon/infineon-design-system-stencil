@@ -10,7 +10,7 @@ export class Tag {
 
   render() {
     return (
-      <div class="container">
+      <div aria-label="a tag" class="container">
         {this.icon && (
           <ifx-icon icon={this.icon}></ifx-icon>)}
         <a href="javascript:void(null);" class="label-wrapper" >

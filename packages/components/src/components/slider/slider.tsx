@@ -69,6 +69,9 @@ export class IfxSlider {
           value={this.internalValue}
           ref={(el) => (this.inputRef = el as HTMLInputElement)}
           onInput={(event) => this.handleInputChange(event)}
+          aria-label='a slider'
+          aria-value={this.value}
+          aria-disabled={this.disabled}
         />
         {this.rightIcon && (
           <ifx-icon icon={this.rightIcon} class={`right-icon${this.disabled ? ' disabled' : ''}`} />

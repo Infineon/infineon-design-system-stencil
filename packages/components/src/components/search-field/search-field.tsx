@@ -64,7 +64,7 @@ export class SearchField {
 
   render() {
     return (
-      <div class='search-field'>
+      <div aria-label="a search field for user input" aria-disabled={this.disabled} aria-value={this.value} class='search-field'>
         <div class={this.getWrapperClassNames()}
           tabindex={1}
           onFocus={() => this.focusInput()}
