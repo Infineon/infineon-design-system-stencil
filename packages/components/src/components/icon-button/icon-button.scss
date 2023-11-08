@@ -59,7 +59,7 @@
 }
 
 .btn-tertiary {
-  background-color: tokens.$ifxColorBaseTransparent;
+  background-color: transparent;
   color: tokens.$ifxColorBaseBlack;
 
   &:disabled,
@@ -144,7 +144,7 @@
     &:focus:not(:active, .active) {
       outline: none;
       color: tokens.$ifxColorBaseBlack;
-      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+      box-shadow: 0 0 0 0px tokens.$ifxColorBaseWhite, 0 0 0 2px tokens.$ifxColorOcean500;
     }
 
     &:hover {

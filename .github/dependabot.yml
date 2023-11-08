@@ -9,11 +9,44 @@ updates:
     directory: "/packages/components"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 5
   - package-ecosystem: "npm"
     directory: "/packages/components-react"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    open-pull-requests-limit: 5
   - package-ecosystem: "npm"
     directory: "/packages/components-vue"
     schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/packages/components-angular"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/examples/stencil-components/vanillla-cdn"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/examples/wrapper-components/angular"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/examples/wrapper-components/react-javascript"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "npm"
+    directory: "/examples/wrapper-components/vue-javascript"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
       interval: "daily"
+    open-pull-requests-limit: 5

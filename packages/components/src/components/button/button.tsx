@@ -15,10 +15,11 @@ export class Button {
   @State() internalHref: string;
   @Prop() href: string;
   @Prop() target: string = '_self';
+  @Prop() type: "button" | "submit" | "reset" = "button";
   @Element() el;
 
   private focusableElement: HTMLElement;
-  private nativeButton: HTMLButtonElement;
+  private nativeButton: HTMLButtonElement | HTMLInputElement;
 
   @Watch('href')
   setInternalHref(newValue: string) {
@@ -60,10 +61,12 @@ export class Button {
       if (this.el.href) {
         this.el.internalHref = undefined;
       }
+     
       this.nativeButton = document.createElement('button');
-      this.nativeButton.type = 'submit';
+      this.nativeButton.type = this.type;
       this.nativeButton.style.display = 'none';
       this.el.closest('form').appendChild(this.nativeButton);
+    
     } else {
       this.internalHref = this.href;
     }
@@ -71,8 +74,21 @@ export class Button {
 
   handleClick() {
     if (this.nativeButton) {
-      this.nativeButton.click();
+      if (this.type === 'reset') {
+        this.resetClickHandler(); //this will reset all ifx-text-fields within a form
+      }
+      this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
+
     }
+  }
+
+
+  resetClickHandler() {
+    const formElement = this.el.closest('form');
+    const customElements = formElement.querySelectorAll('ifx-text-field');
+    customElements.forEach(element => {
+      element.reset();
+    });
   }
 
   // handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
@@ -109,7 +125,8 @@ export class Button {
           onClick={this.handleClick.bind(this)}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           onFocus={(event) => this.handleFocus(event)}
-
+          aria-disabled={this.disabled}
+          aria-labelledby="label"
         >
           <slot></slot>
         </a>

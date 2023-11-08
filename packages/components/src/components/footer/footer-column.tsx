@@ -14,7 +14,9 @@ export class Card {
     return (
       <div class="col">
         <slot name="title" />
-        <slot name="link" />
+        <span aria-label='navigation link'>
+          <slot name="link" />
+        </span>
       </div>
     );
   }

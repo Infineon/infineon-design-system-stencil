@@ -15,7 +15,7 @@ export class Link {
 
   render() {
     return (
-      <a href={this.href} target={this.target} class={this.linkClassNames()}>
+      <a aria-label='a navigation link button' href={this.href} target={this.target} class={this.linkClassNames()}>
         <slot></slot>
       </a>
     )

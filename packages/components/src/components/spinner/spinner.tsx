@@ -12,7 +12,7 @@ export class Spinner {
 
   render() {
     return (
-      <div class={this.getClassNames()}>
+      <div aria-label="spinner indicating a loading process" class={this.getClassNames()}>
         <div class={`${this.variant !== 'brand' ? 'border' : ""}`}></div>
         {this.variant === 'brand'
           && <div class={`semiconductor ${this.getSizeClass()}`}>
