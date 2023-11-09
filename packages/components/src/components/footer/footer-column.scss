@@ -17,10 +17,17 @@
     padding: 0;
   }
 
-  & ::slotted([slot=link]) {
-    box-sizing: border-box;
-    font-weight: 400;
-    font-size: tokens.$ifxFontSizeM;
-    line-height: tokens.$ifxLineHeightM;
+  & span { 
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$ifxSpace150;
+    color: tokens.$ifxColorBaseBlack;
+    
+    & ::slotted([slot=link]) {
+      box-sizing: border-box;
+      font-weight: 400;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
+    }
   }
 }

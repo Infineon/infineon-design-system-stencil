@@ -10,7 +10,7 @@ export class NumberIndicator {
 
   render() {
     return (
-      <div class={`numberIndicator__container ${this.inverted ? 'inverted' : ""}`}>
+      <div aria-label='a number indicator' class={`numberIndicator__container ${this.inverted ? 'inverted' : ""}`}>
         <span>
           <slot />
         </span>

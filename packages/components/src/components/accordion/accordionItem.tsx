@@ -59,7 +59,7 @@ export class IfxAccordionItem {
 
   render() {
     return (
-      <div class={`accordion-item ${this.open ? 'open' : ''}`}>
+      <div aria-label={this.caption} class={`accordion-item ${this.open ? 'open' : ''}`}>
         <div class="accordion-title" onClick={() => this.toggleOpen()}>
           <span class="accordion-icon">
             <ifx-icon icon="chevron-down-12" />

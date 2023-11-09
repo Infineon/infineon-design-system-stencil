@@ -202,7 +202,7 @@ export class Dropdown {
 
   render() {
     return (
-      <div class='dropdown'>
+      <div aria-label='dropdown menu' class='dropdown'>
         <slot />
       </div>
     )

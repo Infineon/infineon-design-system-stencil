@@ -190,7 +190,7 @@ export class Navbar {
 
   render() {
     return (
-      <div class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
+      <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
         <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
           <div class={`navbar__container ${this.searchBarIsOpen ? "searchOpened" : ""}`}>
             <div class={`navbar__container-left ${this.searchBarIsOpen ? 'searchOpened' : ""}`}>
