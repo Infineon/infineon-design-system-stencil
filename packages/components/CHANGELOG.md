@@ -1,3 +1,29 @@
+# v20.32.0 (Thu Nov 09 2023)
+
+#### 🚀 Enhancement
+
+- migrate from Stencil 3 to 4 [#656](https://github.com/Infineon/infineon-design-system-stencil/pull/656) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- 703 sidebarusage page not displayed correctly [#704](https://github.com/Infineon/infineon-design-system-stencil/pull/704) ([@radikantchris](https://github.com/radikantchris) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+- Dropdown: v-2 update [#689](https://github.com/Infineon/infineon-design-system-stencil/pull/689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @types/node from 16.18.61 to 20.9.0 in /packages/components [#706](https://github.com/Infineon/infineon-design-system-stencil/pull/706) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puppeteer from 19.11.1 to 21.5.0 in /packages/components [#668](https://github.com/Infineon/infineon-design-system-stencil/pull/668) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@radikantchris](https://github.com/radikantchris)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.31.0 (Wed Nov 08 2023)
 
 #### 🚀 Enhancement
