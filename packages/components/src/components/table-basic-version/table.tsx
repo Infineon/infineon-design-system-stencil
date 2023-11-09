@@ -45,6 +45,7 @@ export class Table {
         resizable: true,
       },
       suppressCellFocus: true,
+      suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
