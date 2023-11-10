@@ -32,24 +32,26 @@ export class Card {
       this.noBtns = true;
     } else this.noBtns = false;
 
-    if(this.href.trim() === "") { 
+    if (this.href.trim() === "") {
       this.href = undefined;
     }
   }
 
   handleHovering() {
     const card = this.el.shadowRoot.querySelector('.card')
+    let cardHeadline = this.el.querySelector('ifx-card-headline');
+
     card.addEventListener('mouseover', (ev) => {
-      this.el.querySelector('ifx-card-headline').isHovered = true;
+      if (cardHeadline != null) cardHeadline.isHovered = true;
       if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
         this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
-        this.el.querySelector('ifx-card-headline').isHovered = false;
+        if (cardHeadline != null) cardHeadline.isHovered = false;
       } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
     })
 
 
     card.addEventListener('mouseout', () => {
-      this.el.querySelector('ifx-card-headline').isHovered = false;
+      if (cardHeadline != null) cardHeadline.isHovered = false;
       this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
     })
   }
