@@ -10,14 +10,14 @@ describe('ifx-alert', () => {
     expect(element).toHaveClass('hydrated');
   });
 
-  it('should set the correct color', async () => {
+  it('should set the correct variant', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-alert color="primary"></ifx-alert>');
+    await page.setContent('<ifx-alert variant="primary"></ifx-alert>');
 
     const element = await page.find('ifx-alert');
-    const color = await element.getProperty('color');
+    const variant = await element.getProperty('variant');
 
-    expect(color).toBe('primary');
+    expect(variant).toBe('primary');
   });
 
   it('should set the correct icon', async () => {
