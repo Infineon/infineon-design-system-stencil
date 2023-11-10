@@ -18,6 +18,18 @@
   width: 350px;
   height: auto;
 
+  // &.borderHovered { 
+  //   border-color: #ebe9e9;
+  // }
+
+  &.linkHovered { 
+    border-color: #ebe9e9;
+  }
+
+  &.cardHovered { 
+    border-color: tokens.$ifxColorOcean500;
+  }
+
   &.noBtns {
     & .vertical {
       & .lower__body-wrapper {
@@ -34,7 +46,7 @@
 
   &:hover {
     cursor: pointer;
-    border-color: #0A8276;
+    //border-color: #0A8276;
   }
 
   & .horizontal {
@@ -132,3 +144,4 @@
   outline: none;
   border-color: #0A8276 !important;
 }
+

@@ -37,15 +37,27 @@ export class Card {
     }
   }
 
+  handleClassList(el, type, className) {
+    el.classList[type](className)
+  }
+
   handleHovering() {
     const card = this.el.shadowRoot.querySelector('.card')
     let cardHeadline = this.el.querySelector('ifx-card-headline');
 
     card.addEventListener('mouseover', (ev) => {
+
+      // const target = ev.target;
+      // const relatedTarget = ev.relatedTarget;
+    
+      // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
+      //   this.handleClassList(card, 'add', 'borderHovered')
+      // }
+
       if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
-        card.style.borderColor = '#ebe9e9';
+        this.handleClassList(card, 'add', 'linkHovered')
       } else {
-        card.style.borderColor = '#0A8276';
+        this.handleClassList(card, 'add', 'cardHovered')
         if (cardHeadline) {
           cardHeadline.isHovered = true;
         }
@@ -57,7 +69,9 @@ export class Card {
       if (cardHeadline) {
         cardHeadline.isHovered = false;
       }
-      card.style.borderColor = '#ebe9e9';
+      //this.handleClassList(card, 'remove', 'borderHovered')
+      this.handleClassList(card, 'remove', 'cardHovered')
+      this.handleClassList(card, 'add', 'linkHovered')
     })
   }
 
