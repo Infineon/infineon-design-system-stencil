@@ -396,7 +396,8 @@ export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sid
 export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
   'icon',
   'href',
-  'target'
+  'target',
+  'numberIndicator'
 ]);
 
 

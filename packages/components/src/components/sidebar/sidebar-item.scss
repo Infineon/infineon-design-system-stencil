@@ -1,18 +1,78 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+
+
 .sidebar__nav-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
-  padding: 0px 4px 0px 0px;
+  //padding: 0px 4px 0px 0px;
+  padding: 8px 0px;
+  
   gap: 4px;
   flex: none;
   order: 0;
   flex-grow: 0;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
+
+  &.open { 
+
+    & .sidebar__nav-item-label { 
+      color: #0A8276;
+      font-family: Source Sans 3;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+
+    & .sidebar__nav-item-indicator { 
+      & .item__arrow-wrapper { 
+        & ifx-icon { 
+          color: #0A8276;
+          transform: rotate(-180deg);
+        }
+      }
+    }
+  }
+
+  &.header__section { 
+    border-top: 1px solid #EEEDED;
+    padding: 20px 0px;
+
+    &.open { 
+      & .sidebar__nav-item-indicator { 
+        & .item__arrow-wrapper { 
+          & ifx-icon { 
+            color: #0A8276;
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+
+    & .sidebar__nav-item-indicator { 
+      & .item__arrow-wrapper { 
+        & ifx-icon { 
+          color: #1D1D1D;
+        }
+      }
+    }
+
+    & .sidebar__nav-item-label { 
+      color: #1D1D1D;
+      font-family: Source Sans 3;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px; 
+
+      
+    }
+  }
 
   & .sidebar__nav-item-icon-wrapper {
     display: flex;
@@ -49,7 +109,7 @@
     //flex-direction: column;
   }
 
-  & .sidebar__nav-item-arrow {
+  & .sidebar__nav-item-indicator {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -68,7 +128,10 @@
   //padding-left: 12px;
   //display: flex;
   flex-direction: column;
-  gap: tokens.$ifxSpace100;
+  padding: 0;
+  margin: 0;
+  padding-left: 12px;
+  //gap: tokens.$ifxSpace100;
   
   &.open { 
     display: flex;

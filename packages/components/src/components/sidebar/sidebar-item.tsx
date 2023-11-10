@@ -10,9 +10,12 @@ export class SidebarItem {
   @Prop() icon: string = ""
   @State() hasIcon: boolean = false;
   @State() hasIconWrapper: boolean = false;
-  @Prop() href: string = ""
-  @Prop() target: string = "_self"
-  @State() expandable: boolean = false;
+  @Prop() href: string = "";
+  @State() internalHref: string = "";
+  @Prop() target: string = "_self";
+  @State() isExpandable: boolean = false;
+  @State() isNested: boolean = true;
+  @Prop() numberIndicator: number;
 
   @Listen('consoleError')
   handleConsoleError(event: CustomEvent<boolean>) { 
@@ -23,13 +26,30 @@ export class SidebarItem {
     }
   }
 
+  getExpandableMenu() { 
+    const expandableSubmenu = this.el.shadowRoot.querySelector('.expandable__submenu')
+    return expandableSubmenu
+  }
+
+  getSidebarMenuItems() { 
+    const sidebarItems = this.el.querySelectorAll('ifx-sidebar-item');
+    return sidebarItems;
+  }
+
+  getSidebarMenuItem() { 
+    const sidebarItem = this.el.shadowRoot.querySelector('.sidebar__nav-item')
+    return sidebarItem;
+  }
+
   toggleSubmenu() { 
-    const sidebarExpandableMenu = this.el.shadowRoot.querySelector('.expandable__submenu')
-    sidebarExpandableMenu.classList.toggle('open')
+    const menuItem = this.getSidebarMenuItem()
+    const expandableMenu = this.getExpandableMenu()
+    expandableMenu.classList.toggle('open')
+    menuItem.classList.toggle('open')
   }
 
   handleExpandableMenu(sidebarItems) { 
-      const sidebarExpandableMenu = this.el.shadowRoot.querySelector('.expandable__submenu')
+      const sidebarExpandableMenu = this.getExpandableMenu();
       sidebarItems.forEach((el: HTMLElement) => { 
           const li = document.createElement('li')
           li.appendChild(el)
@@ -37,27 +57,36 @@ export class SidebarItem {
         })
   }
 
+  checkMenuItemLayer() { 
+    const parentElement = this.el.parentElement;
+    if(parentElement.tagName.toUpperCase() === 'IFX-SIDEBAR') { 
+      this.isNested = false;
+    }
+  }
+
   componentDidLoad() { 
-    const sidebarItems = Array.from(this.el.querySelectorAll('ifx-sidebar-item'));
-    if(this.expandable) { 
+    const sidebarItems = this.getSidebarMenuItems();
+    if(this.isExpandable) { 
       this.handleExpandableMenu(sidebarItems)
     }
   }
 
   componentWillLoad() { 
-    const sidebarItems = Array.from(this.el.querySelectorAll('ifx-sidebar-item'));
+    this.checkMenuItemLayer()
+    this.internalHref = this.href;
+    const sidebarItems = this.getSidebarMenuItems();
     if(sidebarItems.length !== 0) { 
-      this.expandable = true;
-      this.href = undefined;
+      this.isExpandable = true;
+      this.internalHref = undefined;
     } else { 
-      this.expandable = false;
+      this.isExpandable = false;
     }
   }
 
   render() {
     return (
       <div>
-        <a href={this.href} target={this.target} class='sidebar__nav-item'>
+        <a href={this.internalHref} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
@@ -65,14 +94,21 @@ export class SidebarItem {
           <div class="sidebar__nav-item-label" onClick={() => this.toggleSubmenu()}>
             <slot />
           </div>
-          <div class="sidebar__nav-item-arrow">
+          <div class="sidebar__nav-item-indicator">
+            {this.isExpandable && 
+            <span class='item__arrow-wrapper'>
             <ifx-icon icon="chevron-down-12" />
+            </span>
+            }
+            
+            {!this.isExpandable && !this.isNested &&
+            <span class='item__number-indicator'>
+            <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+            </span>}
+            
           </div>
         </a>
-        {this.expandable && 
-        <ul class='expandable__submenu'>
-
-        </ul> }
+        {this.isExpandable && <ul class='expandable__submenu'></ul>}
         
       </div>
     );
