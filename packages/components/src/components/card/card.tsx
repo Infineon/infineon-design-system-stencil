@@ -42,17 +42,16 @@ export class Card {
     let cardHeadline = this.el.querySelector('ifx-card-headline');
 
     card.addEventListener('mouseover', (ev) => {
-      console.log(cardHeadline)
-      if(cardHeadline) cardHeadline.isHovered = true;
+      if(cardHeadline != null) cardHeadline.isHovered = true;
       if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
         this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
-        if(cardHeadline) cardHeadline.isHovered = false;
+        if(cardHeadline != null) cardHeadline.isHovered = false;
       } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
     })
 
 
     card.addEventListener('mouseout', () => {
-      if(cardHeadline) cardHeadline.isHovered = false;
+      if(cardHeadline != null) cardHeadline.isHovered = false;
       this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
     })
   }
