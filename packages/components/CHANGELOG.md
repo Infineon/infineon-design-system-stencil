@@ -1,3 +1,15 @@
+# v20.33.0 (Fri Nov 10 2023)
+
+#### 🚀 Enhancement
+
+- Alert: v-2 [#671](https://github.com/Infineon/infineon-design-system-stencil/pull/671) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.32.0 (Thu Nov 09 2023)
 
 #### 🚀 Enhancement
