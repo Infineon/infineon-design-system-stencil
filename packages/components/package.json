@@ -35,7 +35,7 @@
     "@infineon/design-system-tokens": "^3.0.0",
     "@infineon/infineon-icons": "^1.1.7",
     "@popperjs/core": "^2.11.8",
-    "@stencil/core": "4.5.0",
+    "@stencil/core": "4.7.2",
     "@storybook/blocks": "^7.0.23",
     "@storybook/cli": "^7.0.20",
     "babel-prettier-parser": "^0.10.8",
