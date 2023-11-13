@@ -18,7 +18,7 @@
   flex-grow: 0;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
-
+  
   & .sidebar__nav-item-label { 
     &.expanded { 
       &::before { 
@@ -57,7 +57,14 @@
     border-top: 1px solid #EEEDED;
     padding: 20px 0px;
 
+    display: -webkit-flex;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: horizontal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     & .sidebar__nav-item-label { 
+
       &.expanded { 
         &::before { 
           content: "";
@@ -82,6 +89,7 @@
     }
 
     & .sidebar__nav-item-indicator { 
+      
       & .item__arrow-wrapper { 
         & ifx-icon { 
           color: #1D1D1D;
@@ -132,6 +140,7 @@
     cursor: pointer;
 
     //flex-direction: column;
+    
   }
 
   & .sidebar__nav-item-indicator {

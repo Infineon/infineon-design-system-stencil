@@ -7,7 +7,7 @@ import { Component, h, Element, Prop } from '@stencil/core';
 })
 export class Sidebar {
   @Element() el;
-  @Prop() applicationName: string = 'Application name'
+  @Prop() applicationName: string = ''
 
 
   componentDidLoad() {
@@ -68,15 +68,6 @@ export class Sidebar {
           </div>
           <div class="sidebar__nav-container">
             <slot />
-            {/* <div class="sidebar__nav-item">
-                <div class="sidebar__nav-item-icon-wrapper">
-                  <ifx-icon icon='image-16'></ifx-icon>
-                </div>
-                <div class="sidebar__nav-item-label">Menu Item</div>
-                <div class="sidebar__nav-item-number">
-                  <ifx-number-indicator>7</ifx-number-indicator>
-                </div>
-              </div> */}
           </div>
         </div>
 
