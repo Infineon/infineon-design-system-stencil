@@ -1,3 +1,16 @@
+# v20.34.0 (Mon Nov 13 2023)
+
+#### 🚀 Enhancement
+
+- Table enhancement: Added the suppressDragLeaveHidesColumns property [#710](https://github.com/Infineon/infineon-design-system-stencil/pull/710) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.33.0 (Fri Nov 10 2023)
 
 #### 🚀 Enhancement
