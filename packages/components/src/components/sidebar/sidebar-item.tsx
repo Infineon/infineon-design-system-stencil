@@ -41,11 +41,14 @@ export class SidebarItem {
     return sidebarItem;
   }
 
-  toggleSubmenu() { 
-    const menuItem = this.getSidebarMenuItem()
-    const expandableMenu = this.getExpandableMenu()
-    expandableMenu.classList.toggle('open')
-    menuItem.classList.toggle('open')
+  toggleSubmenu(e) { 
+    if(this.isExpandable) { 
+      e.currentTarget.classList.toggle('expanded')
+      const menuItem = this.getSidebarMenuItem()
+      const expandableMenu = this.getExpandableMenu()
+      expandableMenu.classList.toggle('open')
+      menuItem.classList.toggle('open')
+    }
   }
 
   handleExpandableMenu(sidebarItems) { 
@@ -91,7 +94,7 @@ export class SidebarItem {
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
             </div>}
-          <div class="sidebar__nav-item-label" onClick={() => this.toggleSubmenu()}>
+          <div class="sidebar__nav-item-label" onClick={(e) => this.toggleSubmenu(e)}>
             <slot />
           </div>
           <div class="sidebar__nav-item-indicator">
