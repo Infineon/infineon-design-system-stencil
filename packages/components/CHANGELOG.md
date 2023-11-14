@@ -1,3 +1,15 @@
+# v20.34.2 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Pagination: updated the calculation algorithm [#717](https://github.com/Infineon/infineon-design-system-stencil/pull/717) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.34.1 (Tue Nov 14 2023)
 
 #### 🐛 Bug Fix
