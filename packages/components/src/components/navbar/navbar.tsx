@@ -17,7 +17,7 @@ export class Navbar {
   @Prop() applicationName: string = ""
   @State() hasLeftMenuItems: boolean = true;
   @Prop() fixed: boolean = true;
-  @Prop() showLogo: boolean = true;
+  @Prop() showLogoAndAppname: boolean = true;
   @State() searchBarIsOpen: boolean = false;
 
 
@@ -38,13 +38,13 @@ export class Navbar {
     }
 
     const slot = element.querySelector('slot');
-    if(slot) { 
+    if (slot) {
       const assignedNodes = slot.assignedNodes();
       for (let i = 0; i < assignedNodes.length; i++) {
         const node = assignedNodes[i] as HTMLElement;
         if (node.nodeName === 'IFX-NAVBAR-ITEM') {
           const navbarItem = node as HTMLIfxNavbarItemElement;
-  
+
           // Get all navigation items
           const aElements = navbarItem?.shadowRoot.querySelectorAll('a');
           for (let i = 0; i < aElements.length; i++) {
@@ -194,7 +194,7 @@ export class Navbar {
         <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
           <div class={`navbar__container ${this.searchBarIsOpen ? "searchOpened" : ""}`}>
             <div class={`navbar__container-left ${this.searchBarIsOpen ? 'searchOpened' : ""}`}>
-              {this.showLogo &&
+              {this.showLogoAndAppname &&
                 <div class="navbar__container-left-logo">
                   <div class="navbar__container-left-logo-default">
                     <a href="javascript:void(0)">
