@@ -5,7 +5,15 @@ function Sidebar() {
   return (
     <div >
       <IfxSidebar>
-        <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item One</IfxSidebarItem>
+        <IfxSidebarItem href="http://google.com" target="_blank">
+        Header section
+        <IfxSidebarItem href="http://google.com" target="_blank">
+          Second Layer
+          <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">
+            Third Layer
+          </IfxSidebarItem>
+        </IfxSidebarItem>
+        </IfxSidebarItem>
         <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Two</IfxSidebarItem>
         <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Three</IfxSidebarItem>
         <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Four</IfxSidebarItem>
