@@ -47,6 +47,7 @@ export class Table {
       defaultColDef: {
         resizable: true,
       },
+      suppressDragLeaveHidesColumns: true,
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
       rowData: this.rowData,

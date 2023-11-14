@@ -14,6 +14,7 @@
 | `size`     | `size`     |             | `string`                                 | `'m'`       |
 | `target`   | `target`   |             | `string`                                 | `'_self'`   |
 | `theme`    | `theme`    |             | `"danger" \| "default" \| "inverse"`     | `'default'` |
+| `type`     | `type`     |             | `"button" \| "reset" \| "submit"`        | `"button"`  |
 | `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"` | `'primary'` |
 
 

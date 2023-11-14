@@ -23,7 +23,7 @@ export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionIt
 
 
 export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
-  'color',
+  'variant',
   'icon',
   'ifxClose'
 ]);
@@ -63,7 +63,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'size',
   'disabled',
   'href',
-  'target'
+  'target',
+  'type'
 ]);
 
 

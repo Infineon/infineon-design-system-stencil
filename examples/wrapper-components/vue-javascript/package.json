@@ -1,5 +1,5 @@
 {
-  "name": "vue-wrapper",
+  "name": "vue-wrapper",  
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,11 +12,11 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^20.27.0--canary.616.458dc3540b6fefdbae9c684d15ce990f2c8c7b3f.0",
+    "@infineon/infineon-design-system-vue": "^20.34.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
-    "vue": "^3.3.2"
+    "vue": "^3.3.8"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

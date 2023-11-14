@@ -32,25 +32,46 @@ export class Card {
       this.noBtns = true;
     } else this.noBtns = false;
 
-    if(this.href.trim() === "") { 
+    if (this.href && this.href?.trim() === "") {
       this.href = undefined;
     }
   }
 
+  handleClassList(el, type, className) {
+    el.classList[type](className)
+  }
+
   handleHovering() {
     const card = this.el.shadowRoot.querySelector('.card')
+    let cardHeadline = this.el.querySelector('ifx-card-headline');
+
     card.addEventListener('mouseover', (ev) => {
-      this.el.querySelector('ifx-card-headline').isHovered = true;
+
+      // const target = ev.target;
+      // const relatedTarget = ev.relatedTarget;
+
+      // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
+      //   this.handleClassList(card, 'add', 'borderHovered')
+      // }
+
       if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
-        this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
-        this.el.querySelector('ifx-card-headline').isHovered = false;
-      } else this.el.shadowRoot.querySelector('.card').style.borderColor = '#0A8276';
+        this.handleClassList(card, 'add', 'linkHovered')
+      } else {
+        this.handleClassList(card, 'add', 'cardHovered')
+        if (cardHeadline) {
+          cardHeadline.isHovered = true;
+        }
+      }
     })
 
 
     card.addEventListener('mouseout', () => {
-      this.el.querySelector('ifx-card-headline').isHovered = false;
-      this.el.shadowRoot.querySelector('.card').style.borderColor = '#ebe9e9';
+      if (cardHeadline) {
+        cardHeadline.isHovered = false;
+      }
+      //this.handleClassList(card, 'remove', 'borderHovered')
+      this.handleClassList(card, 'remove', 'cardHovered')
+      this.handleClassList(card, 'add', 'linkHovered')
     })
   }
 
@@ -90,7 +111,7 @@ export class Card {
   render() {
     return (
       <Host>
-        <div class={
+        <div aria-labelledby="label" class={
           `card 
           ${this.noBtns ? 'noBtns' : ""}
           ${this.direction} 

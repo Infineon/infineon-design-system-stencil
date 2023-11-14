@@ -1,3 +1,197 @@
+# v20.34.2 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Pagination: updated the calculation algorithm [#717](https://github.com/Infineon/infineon-design-system-stencil/pull/717) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.34.1 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix card - missing headline check [#716](https://github.com/Infineon/infineon-design-system-stencil/pull/716) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @testing-library/react from 13.4.0 to 14.1.0 in /examples/wrapper-components/react-javascript [#720](https://github.com/Infineon/infineon-design-system-stencil/pull/720) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @testing-library/user-event from 13.5.0 to 14.5.1 in /examples/wrapper-components/react-javascript [#675](https://github.com/Infineon/infineon-design-system-stencil/pull/675) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.30.1 to 20.34.0 in /examples/wrapper-components/react-javascript [#721](https://github.com/Infineon/infineon-design-system-stencil/pull/721) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.30.1 to 20.34.0 in /examples/wrapper-components/vue-javascript [#728](https://github.com/Infineon/infineon-design-system-stencil/pull/728) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump web-vitals from 2.1.4 to 3.5.0 in /examples/wrapper-components/react-javascript [#687](https://github.com/Infineon/infineon-design-system-stencil/pull/687) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/setup-node from 3 to 4 [#708](https://github.com/Infineon/infineon-design-system-stencil/pull/708) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.0 (Mon Nov 13 2023)
+
+#### 🚀 Enhancement
+
+- Table enhancement: Added the suppressDragLeaveHidesColumns property [#710](https://github.com/Infineon/infineon-design-system-stencil/pull/710) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.33.0 (Fri Nov 10 2023)
+
+#### 🚀 Enhancement
+
+- Alert: v-2 [#671](https://github.com/Infineon/infineon-design-system-stencil/pull/671) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.32.0 (Thu Nov 09 2023)
+
+#### 🚀 Enhancement
+
+- migrate from Stencil 3 to 4 [#656](https://github.com/Infineon/infineon-design-system-stencil/pull/656) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- 703 sidebarusage page not displayed correctly [#704](https://github.com/Infineon/infineon-design-system-stencil/pull/704) ([@radikantchris](https://github.com/radikantchris) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+- Dropdown: v-2 update [#689](https://github.com/Infineon/infineon-design-system-stencil/pull/689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @types/node from 16.18.61 to 20.9.0 in /packages/components [#706](https://github.com/Infineon/infineon-design-system-stencil/pull/706) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puppeteer from 19.11.1 to 21.5.0 in /packages/components [#668](https://github.com/Infineon/infineon-design-system-stencil/pull/668) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@radikantchris](https://github.com/radikantchris)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.31.0 (Wed Nov 08 2023)
+
+#### 🚀 Enhancement
+
+- Components General: Added aria assistance attributes [#585](https://github.com/Infineon/infineon-design-system-stencil/pull/585) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🐛 Bug Fix
+
+- Badge: icon variant [#669](https://github.com/Infineon/infineon-design-system-stencil/pull/669) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @angular/cli from 16.2.7 to 16.2.9 in /examples/wrapper-components/angular [#695](https://github.com/Infineon/infineon-design-system-stencil/pull/695) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/router from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#697](https://github.com/Infineon/infineon-design-system-stencil/pull/697) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/platform-browser from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#696](https://github.com/Infineon/infineon-design-system-stencil/pull/696) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/github-script from 4 to 6 [#673](https://github.com/Infineon/infineon-design-system-stencil/pull/673) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/setup-node from 1 to 4 [#672](https://github.com/Infineon/infineon-design-system-stencil/pull/672) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/cache from 2 to 3 [#674](https://github.com/Infineon/infineon-design-system-stencil/pull/674) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.30.0 to 20.30.1 in /examples/wrapper-components/vue-javascript [#691](https://github.com/Infineon/infineon-design-system-stencil/pull/691) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/checkout from 3 to 4 [#676](https://github.com/Infineon/infineon-design-system-stencil/pull/676) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump vue from 3.3.7 to 3.3.8 in /examples/wrapper-components/vue-javascript [#690](https://github.com/Infineon/infineon-design-system-stencil/pull/690) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.30.0 to 20.30.1 in /examples/wrapper-components/react-javascript [#694](https://github.com/Infineon/infineon-design-system-stencil/pull/694) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/platform-browser-dynamic from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#698](https://github.com/Infineon/infineon-design-system-stencil/pull/698) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/animations from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#699](https://github.com/Infineon/infineon-design-system-stencil/pull/699) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.27.0--canary.616.a3a52be4ded1d881c99d7a82fb2c4c5eb1277f79.0 to 20.30.0 in /examples/wrapper-components/react-javascript [#683](https://github.com/Infineon/infineon-design-system-stencil/pull/683) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.27.0--canary.616.a3a52be4ded1d881c99d7a82fb2c4c5eb1277f79.0 to 20.30.0 in /examples/wrapper-components/vue-javascript [#682](https://github.com/Infineon/infineon-design-system-stencil/pull/682) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular-devkit/build-angular from 16.2.7 to 16.2.9 in /examples/wrapper-components/angular [#677](https://github.com/Infineon/infineon-design-system-stencil/pull/677) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/forms from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#679](https://github.com/Infineon/infineon-design-system-stencil/pull/679) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/common from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#681](https://github.com/Infineon/infineon-design-system-stencil/pull/681) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.1.6 to 5.2.2 in /packages/components-angular [#680](https://github.com/Infineon/infineon-design-system-stencil/pull/680) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.5.0 to 1.6.0 in /examples/wrapper-components/react-javascript [#684](https://github.com/Infineon/infineon-design-system-stencil/pull/684) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/compiler-cli from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#686](https://github.com/Infineon/infineon-design-system-stencil/pull/686) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/compiler from 16.2.10 to 16.2.12 in /examples/wrapper-components/angular [#688](https://github.com/Infineon/infineon-design-system-stencil/pull/688) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump zone.js from 0.13.3 to 0.14.1 in /packages/components-angular [#685](https://github.com/Infineon/infineon-design-system-stencil/pull/685) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.30.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- dependabot update [#642](https://github.com/Infineon/infineon-design-system-stencil/pull/642) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.30.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- reset functionality added to button in combination with text field [#670](https://github.com/Infineon/infineon-design-system-stencil/pull/670) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.29.1 (Fri Nov 03 2023)
+
+#### 🐛 Bug Fix
+
+- Icon-button: fixed tertiary border. [#667](https://github.com/Infineon/infineon-design-system-stencil/pull/667) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.29.0 (Fri Nov 03 2023)
+
+#### 🚀 Enhancement
+
+- Storybook: updated custom events on the controls [#583](https://github.com/Infineon/infineon-design-system-stencil/pull/583) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.28.0 (Thu Nov 02 2023)
+
+#### 🚀 Enhancement
+
+- Button: added a type property [#665](https://github.com/Infineon/infineon-design-system-stencil/pull/665) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.27.0 (Tue Oct 31 2023)
 
 #### 🚀 Enhancement

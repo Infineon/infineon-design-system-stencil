@@ -7,7 +7,7 @@ import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 })
 
 export class Alert {
-  @Prop() color: 'primary' | 'secondary' | 'danger' | 'warning';
+  @Prop() variant: 'primary' | 'secondary' | 'danger' | 'warning' | 'info' = 'primary';
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
 
@@ -18,7 +18,23 @@ export class Alert {
  
   render() {
     return (
-      <div class={`alert ${this.color}`}>
+     this.variant === 'info' 
+     ? <div class='alert__info-wrapper'>
+        <div class='info__text-wrapper'>
+          <div class="info__headline-wrapper">
+            <slot name='headline' />
+          </div>
+          <div class="info__description-wrapper">
+            <slot name='desc' />
+          </div>
+        </div>
+        <div class="close-icon-wrapper">
+          <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
+            <ifx-icon icon='cross-16' />
+          </a>
+        </div>
+      </div>
+     : <div class={`alert ${this.variant}`}>
         {this.icon && (
           <div class='icon-wrapper'>
             <ifx-icon icon={this.icon} />

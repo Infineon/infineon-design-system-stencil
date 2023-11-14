@@ -39,7 +39,7 @@ export class Pagination {
     }
     const total = this.total <= this.itemsPerPage ? this.itemsPerPage : this.total;
     const itemsPerPage = this.itemsPerPage;
-    const totalPageNumber = total / itemsPerPage;
+    const totalPageNumber = Math.ceil(total / itemsPerPage);
 
     if (this.currentPage <= 0) {
       this.internalPage = 1;
@@ -167,7 +167,7 @@ export class Pagination {
 
   render() {
     return (
-      <div class="container">
+      <div aria-label='a pagination' aria-value={this.currentPage} class="container">
         <div class='items__per-page-wrapper'>
           <div class='items__per-page-label'>Results per Page</div>
           <div class='items__per-page-field'>

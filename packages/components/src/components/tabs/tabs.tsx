@@ -118,7 +118,7 @@ export class IfxTabs {
   render() {
 
     return (
-      <div class={`tabs ${this.internalOrientation}`}>
+      <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation}`}>
         <ul class="tabs-list">
           {this.tabObjects.map((tab, index) => (
             <li
