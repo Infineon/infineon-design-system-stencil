@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -10,23 +10,19 @@
   display: inline-flex;
   flex-direction: column;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: tokens.$ifxColorBaseWhite;
   background-clip: border-box;
-  border: 1px solid #ebe9e9;
+  border: 1px solid tokens.$ifxColorEngineering200;
   border-radius: 1px;
   //width: 22rem;
   width: 350px;
   height: auto;
 
-  // &.borderHovered { 
-  //   border-color: #ebe9e9;
-  // }
-
-  &.linkHovered { 
-    border-color: #ebe9e9;
+  &.linkHovered {
+    border-color: tokens.$ifxColorEngineering200;
   }
 
-  &.cardHovered { 
+  &.cardHovered {
     border-color: tokens.$ifxColorOcean500;
   }
 
@@ -46,7 +42,6 @@
 
   &:hover {
     cursor: pointer;
-    //border-color: #0A8276;
   }
 
   & .horizontal {
@@ -103,7 +98,7 @@
 
     & .lower__body-wrapper {
       &:hover {
-        border-color: #ebe9e9;
+        border-color: tokens.$ifxColorEngineering200;
       }
     }
   }
@@ -142,6 +137,5 @@
 .card:focus-visible,
 .focus {
   outline: none;
-  border-color: #0A8276 !important;
+  border-color: tokens.$ifxColorOcean500 !important;
 }
-

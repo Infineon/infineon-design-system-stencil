@@ -32,7 +32,7 @@ export class Card {
       this.noBtns = true;
     } else this.noBtns = false;
 
-    if(this.href && this.href.trim() === "") { 
+    if (this.href && this.href?.trim() === "") {
       this.href = undefined;
     }
   }
@@ -49,7 +49,7 @@ export class Card {
 
       // const target = ev.target;
       // const relatedTarget = ev.relatedTarget;
-    
+
       // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
       //   this.handleClassList(card, 'add', 'borderHovered')
       // }
