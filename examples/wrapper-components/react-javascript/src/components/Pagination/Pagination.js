@@ -41,7 +41,7 @@ export default function App() {
       </table>
       <IfxPagination
         currentPage={1}
-        total={rows.length}
+        total={36}
         onIfxPageChange={handlePageChange}
       />
     </div>
