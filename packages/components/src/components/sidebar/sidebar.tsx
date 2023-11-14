@@ -46,7 +46,7 @@ export class Sidebar {
 
   render() {
     return (
-      <div class='sidebar__container'>
+      <div aria-label="a navigation sidebar" aria-value={this.applicationName} class='sidebar__container'>
         <div class='sidebar__top-container'>
           <div class="sidebar__nav-bar">
             <div class="sidebar__nav-bar-logo">

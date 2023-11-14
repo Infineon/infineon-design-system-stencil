@@ -46,7 +46,7 @@ const SmallTemplate = () =>
 export const Small = SmallTemplate.bind({});
 
 const LargeTemplate = () =>
-  `<ifx-footer variant="medium">
+  `<ifx-footer variant="large">
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
     <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>

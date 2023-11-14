@@ -35,6 +35,8 @@ export class IconButton {
       <Host>
         {this.href ? (
           <a
+            aria-disabled={this.disabled}
+            aria-label='a clickable icon button'
             ref={(el) => (this.focusableElement = el)}
             class={this.getClassNames()}
             href={!this.disabled ? this.href : undefined}

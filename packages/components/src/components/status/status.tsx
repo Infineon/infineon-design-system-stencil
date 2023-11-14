@@ -16,7 +16,7 @@ export class Status {
     const borderClass = this.border ? `border-${this.color}` : '';
 
     return (
-      <div class={`container ${borderClass}`}>
+      <div aria-label="a status indicator" aria-value={this.label} class={`container ${borderClass}`}>
         <span class={`dot ${this.color}`}></span>
         <p class="text">{this.label}</p>
       </div>

@@ -90,8 +90,8 @@ Our Wrapper Components are built automatically every time ```npm run stencil:bui
 
 ### Prerequisites
 
-- [Node](https://nodejs.org/en/) > v14 .
-- [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v6.14.13.
+- [Node](https://nodejs.org/en/) > v16 .
+- [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v8.
 
 ### Installation of the component libraray
 

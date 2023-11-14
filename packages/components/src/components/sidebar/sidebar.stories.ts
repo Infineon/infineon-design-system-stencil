@@ -34,9 +34,82 @@ const SubmenuTemplate = (args) =>
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
     Menu Item
     </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  
+  <ifx-sidebar-item>
+  Header Section
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
   </ifx-sidebar-item>
   </ifx-sidebar-item>
 
+  <ifx-sidebar-item>
+  Header Section
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  </ifx-sidebar-item>
 </ifx-sidebar>`;
 
 
