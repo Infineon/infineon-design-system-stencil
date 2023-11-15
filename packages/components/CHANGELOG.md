@@ -1,3 +1,16 @@
+# v20.34.3 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar: added showLogo option to stories [#666](https://github.com/Infineon/infineon-design-system-stencil/pull/666) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.34.2 (Tue Nov 14 2023)
 
 #### 🐛 Bug Fix
