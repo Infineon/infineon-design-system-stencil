@@ -67,6 +67,12 @@ export class SidebarItem {
     }
   }
 
+  setHref() { 
+    if(this.href.toLowerCase().trim() === "") { 
+      this.internalHref = undefined;
+    } else this.internalHref = this.href;
+  }
+
   componentDidLoad() { 
     const sidebarItems = this.getSidebarMenuItems();
     if(this.isExpandable) { 
@@ -76,11 +82,10 @@ export class SidebarItem {
 
   componentWillLoad() { 
     this.checkMenuItemLayer()
-    this.internalHref = this.href;
+    this.setHref()
     const sidebarItems = this.getSidebarMenuItems();
     if(sidebarItems.length !== 0) { 
       this.isExpandable = true;
-      this.internalHref = undefined;
     } else { 
       this.isExpandable = false;
     }
