@@ -1,3 +1,23 @@
+# v20.34.5 (Wed Nov 15 2023)
+
+#### 🐛 Bug Fix
+
+- Enhancement: Updated Vue Example to demonstrate Event usage [#737](https://github.com/Infineon/infineon-design-system-stencil/pull/737) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-react from 20.34.0 to 20.34.3 in /examples/wrapper-components/react-javascript [#734](https://github.com/Infineon/infineon-design-system-stencil/pull/734) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.34.0 to 20.34.3 in /examples/wrapper-components/vue-javascript [#735](https://github.com/Infineon/infineon-design-system-stencil/pull/735) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.6.0 to 1.6.2 in /examples/wrapper-components/react-javascript [#736](https://github.com/Infineon/infineon-design-system-stencil/pull/736) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.34.4 (Wed Nov 15 2023)
 
 #### 🐛 Bug Fix
