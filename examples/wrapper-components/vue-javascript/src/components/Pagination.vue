@@ -1,7 +1,8 @@
 <template>
   <div>
     <h2>Pagination</h2>
-    <ifx-pagination @ifxPageChange="handleChange" total="500" :current-page="current"></ifx-pagination>
+    <ifx-pagination @ifxPageChange="handleChange" @ifxPrevPage="handleChange" @ifxNextPage="handleChange" total="500"
+      :current-page="current"></ifx-pagination>
   </div>
 </template>
 
