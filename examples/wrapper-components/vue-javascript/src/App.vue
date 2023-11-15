@@ -5,6 +5,7 @@
   <Sidebar />
   <Alert />
   <Accordion />
+  <Badge />
   <Breadcrumbs />
   <Button />
   <Card />
@@ -22,14 +23,13 @@
   <SearchField />
   <SearchBar />
   <SingleSelect />
+  <Slider />
   <Spinner />
   <Status />
   <Switch />
   <Table />
   <Tabs />
   <Tag />
-  <Slider />
-  <Badge />
   <TextField />
   <Tooltip />
   <Footer />
