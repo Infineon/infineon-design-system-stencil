@@ -20,7 +20,7 @@
   color: tokens.$ifxColorBaseBlack;
   
   & .sidebar__nav-item-label { 
-    &.expanded { 
+    &.active-section { 
       &::before { 
         content: "";
         position: absolute;
@@ -34,7 +34,7 @@
 
   &.open { 
     & .sidebar__nav-item-label { 
-      color: #0A8276;
+      //color: #0A8276;
       font-family: Source Sans 3;
       font-size: 16px;
       font-style: normal;
@@ -65,7 +65,7 @@
 
     & .sidebar__nav-item-label { 
 
-      &.expanded { 
+      &.active-section { 
         &::before { 
           content: "";
           position: absolute;
@@ -133,11 +133,15 @@
     line-height: tokens.$ifxLineHeightM;
     display: flex;
     align-items: center;
-    color: tokens.$ifxColorBaseBlack;
+    //color: tokens.$ifxColorBaseBlack;
     flex: none;
     order: 1;
     flex-grow: 1;
     cursor: pointer;
+    
+    &.active { 
+      color: #0A8276;
+    }
 
     //flex-direction: column;
     
