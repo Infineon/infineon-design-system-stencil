@@ -1,5 +1,5 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter, Method } from '@stencil/core';
 
 @Component({
   tag: 'ifx-tabs',
@@ -9,10 +9,13 @@ import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter 
 
 export class IfxTabs {
   @Element() el: HTMLElement;
-  @Prop() tabs: string[] = [];
+  // @Prop() tabs: string[] = [];
+  @Prop() tabs: { header: string, disabled?: boolean }[] = [];
   @Prop() orientation: string = ""
   @State() internalOrientation: string;
-  @State() activeTabIndex: number = 0;
+  @Prop() activeTabIndex: number = 0;
+  @State() internalPrevActiveTabIndex: number = 0;
+  @State() internalActiveTabIndex: number = 0;
   @State() tabRefs: HTMLElement[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
   @State() tabTitles: string[] = [];
@@ -20,24 +23,39 @@ export class IfxTabs {
   @State() tabObjects: any[] = [];
   @Event() ifxTabIndex: EventEmitter;
 
+
+  @Watch('activeTabIndex')
+  onActiveTabIndexChange(newIndex: number, oldIndex: number) {
+    // console.log(`watching activeTabIndex - change from ${oldIndex} to ${newIndex}`);
+    this.internalPrevActiveTabIndex = oldIndex;
+    this.internalActiveTabIndex = newIndex;
+    this.activeTabIndex = this.internalActiveTabIndex;
+  }
+
+
   // changing tab
-  setActiveTab(index: number) {
-    if (index < 0 || index >= this.tabHeaderRefs.length) {
+  @Method()
+  async setActiveTab(index: number) {
+    const prevActiveTab = this.activeTabIndex;
+    const nextActiveTab = index;
+
+    if (this.tabObjects[nextActiveTab]?.disabled) {
+      // console.log("current tab is disabled, stay on previous tab: ", prevActiveTab);
+
+      // Reset to previously active tab
+      if (!this.tabObjects[prevActiveTab]?.disabled) {
+        this.internalActiveTabIndex = prevActiveTab;
+        this.activeTabIndex = prevActiveTab;
+        return;
+      }
+    }
+
+    if (nextActiveTab < 0 || nextActiveTab >= this.tabHeaderRefs.length) {
       return;
     } else {
-      const currentActiveTab = this.tabRefs[this.activeTabIndex] as HTMLIfxTabElement;
-      if (currentActiveTab) {
-        this.emitEvent(currentActiveTab, 'tabBecameInactive');
-      }
-
-
-      this.ifxTabIndex.emit({ previousTab: this.activeTabIndex, currentTab: index });
-      this.activeTabIndex = index;
-
-      const newActiveTab = this.tabRefs[index] as HTMLIfxTabElement;
-      if (newActiveTab) {
-        this.emitEvent(newActiveTab, 'tabBecameActive');
-      }
+      this.ifxTabIndex.emit({ previousTab: prevActiveTab, currentTab: nextActiveTab });
+      this.internalActiveTabIndex = nextActiveTab;
+      this.activeTabIndex = nextActiveTab;
     }
   }
   // Helper method to emit events
@@ -52,38 +70,36 @@ export class IfxTabs {
   // needed for smooth border transition
   reRenderBorder() {
     const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
-    if (borderElement && this.tabHeaderRefs[this.activeTabIndex]) {
+    if (borderElement && this.tabHeaderRefs[this.internalActiveTabIndex]) {
       if (this.orientation === 'horizontal') {
 
-        borderElement.style.left = `${this.tabHeaderRefs[this.activeTabIndex].offsetLeft}px`;
-        borderElement.style.width = `${this.tabHeaderRefs[this.activeTabIndex].offsetWidth}px`;
+        borderElement.style.left = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetLeft}px`;
+        borderElement.style.width = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetWidth}px`;
         borderElement.style.top = '';
         borderElement.style.height = '';
       } else {
-        borderElement.style.top = `${this.tabHeaderRefs[this.activeTabIndex].offsetTop}px`;
-        borderElement.style.height = `${this.tabHeaderRefs[this.activeTabIndex].offsetHeight}px`;
+        borderElement.style.top = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetTop}px`;
+        borderElement.style.height = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetHeight}px`;
         borderElement.style.left = '';
         borderElement.style.width = '';
       }
     }
   }
 
-  @Watch('orientation')
-  onOrientationChange() {
-    this.reRenderBorder()
-  }
+  // @Watch('orientation') //not firing
+  // onOrientationChange() {
+  //   this.reRenderBorder()
+  // }
 
   // when a slot is removed / added
   @Listen('slotchange')
   onSlotChange() {
     const tabs = this.el.querySelectorAll('ifx-tab');
-    this.tabTitles = Array.from(tabs).map((tab) => tab.getAttribute('header'));
-    this.disabledTabs = Array.from(tabs).map((tab) => tab.getAttribute('disabled'));
-
-    this.tabObjects = this.tabTitles.map((header, index) => {
+    // console.log("slot change ")
+    this.tabObjects = Array.from(tabs).map((tab) => {
       return {
-        header: header,
-        disabled: (this.disabledTabs[index] === 'true') // set disabled property based on the corresponding value in the disabledTabs array
+        header: tab?.header === null ? tab?.getAttribute('header') !== null : tab.header,
+        disabled: tab?.disabled === true // (tab.getAttribute('disabled') === 'true')
       }
     });
 
@@ -116,24 +132,23 @@ export class IfxTabs {
   }
 
   render() {
-
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation}`}>
         <ul class="tabs-list">
-          {this.tabObjects.map((tab, index) => (
+          {this.tabObjects?.map((tab, index) => (
             <li
-              class={`tab-item ${index === this.activeTabIndex ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
+              class={`tab-item ${index === this.internalActiveTabIndex && !tab.disabled ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               onClick={() => this.setActiveTab(index)}
             >
-              {tab.header}
+              {tab?.header}
             </li>
           ))}
           <div class="active-border"></div>
         </ul>
         <div class="tab-content">
-          {Array.from(this.tabTitles).map((_, index) => (
-            <div style={{ display: index === this.activeTabIndex ? 'block' : 'none' }}>
+          {Array.from(this.tabObjects).map((_, index) => (
+            <div style={{ display: index === this.internalActiveTabIndex ? 'block' : 'none' }}>
               <slot name={`tab-${index}`} />
             </div>
           ))}
@@ -141,4 +156,5 @@ export class IfxTabs {
       </div>
     );
   }
+
 }
