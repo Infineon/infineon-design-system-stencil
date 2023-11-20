@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,23 @@ export class AppComponent {
   searchBarValue = '';
   radioButtonValue = false;
   numberIndicator = 1;
+  @ViewChild('ifxTabs') ifxTabs: IfxTabs | undefined;
 
+
+  ngOnInit() {
+    this.setTab();
+    setInterval(() => this.setTab(), 20000);
+  }
+
+  setTab() {
+    const next = Math.floor(Math.random() * (3));
+    console.log("set next active tab: ", next);
+    this.ifxTabs?.setActiveTab(next);
+  }
+
+  handleChange(event: any) {
+    console.log("emitting active tab index: ", event.detail);
+  };
 
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
@@ -114,5 +131,7 @@ export class AppComponent {
   decreaseNumber() {
     this.numberIndicator = this.numberIndicator - 1;
   }
+
+
 
 }
