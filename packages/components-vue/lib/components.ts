@@ -23,7 +23,7 @@ export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionIt
 
 
 export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
-  'color',
+  'variant',
   'icon',
   'ifxClose'
 ]);
@@ -256,7 +256,7 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
   'fixed',
-  'showLogo'
+  'showLogoAndAppname'
 ]);
 
 

@@ -1,3 +1,136 @@
+# v20.34.5 (Wed Nov 15 2023)
+
+#### 🐛 Bug Fix
+
+- Enhancement: Updated Vue Example to demonstrate Event usage [#737](https://github.com/Infineon/infineon-design-system-stencil/pull/737) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-react from 20.34.0 to 20.34.3 in /examples/wrapper-components/react-javascript [#734](https://github.com/Infineon/infineon-design-system-stencil/pull/734) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.34.0 to 20.34.3 in /examples/wrapper-components/vue-javascript [#735](https://github.com/Infineon/infineon-design-system-stencil/pull/735) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.6.0 to 1.6.2 in /examples/wrapper-components/react-javascript [#736](https://github.com/Infineon/infineon-design-system-stencil/pull/736) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.4 (Wed Nov 15 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix Radio Button [#733](https://github.com/Infineon/infineon-design-system-stencil/pull/733) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.3 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Navbar: added showLogo option to stories [#666](https://github.com/Infineon/infineon-design-system-stencil/pull/666) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.2 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Pagination: updated the calculation algorithm [#717](https://github.com/Infineon/infineon-design-system-stencil/pull/717) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.34.1 (Tue Nov 14 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix card - missing headline check [#716](https://github.com/Infineon/infineon-design-system-stencil/pull/716) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @testing-library/react from 13.4.0 to 14.1.0 in /examples/wrapper-components/react-javascript [#720](https://github.com/Infineon/infineon-design-system-stencil/pull/720) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @testing-library/user-event from 13.5.0 to 14.5.1 in /examples/wrapper-components/react-javascript [#675](https://github.com/Infineon/infineon-design-system-stencil/pull/675) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.30.1 to 20.34.0 in /examples/wrapper-components/react-javascript [#721](https://github.com/Infineon/infineon-design-system-stencil/pull/721) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.30.1 to 20.34.0 in /examples/wrapper-components/vue-javascript [#728](https://github.com/Infineon/infineon-design-system-stencil/pull/728) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump web-vitals from 2.1.4 to 3.5.0 in /examples/wrapper-components/react-javascript [#687](https://github.com/Infineon/infineon-design-system-stencil/pull/687) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump actions/setup-node from 3 to 4 [#708](https://github.com/Infineon/infineon-design-system-stencil/pull/708) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 4
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.0 (Mon Nov 13 2023)
+
+#### 🚀 Enhancement
+
+- Table enhancement: Added the suppressDragLeaveHidesColumns property [#710](https://github.com/Infineon/infineon-design-system-stencil/pull/710) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.33.0 (Fri Nov 10 2023)
+
+#### 🚀 Enhancement
+
+- Alert: v-2 [#671](https://github.com/Infineon/infineon-design-system-stencil/pull/671) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.32.0 (Thu Nov 09 2023)
+
+#### 🚀 Enhancement
+
+- migrate from Stencil 3 to 4 [#656](https://github.com/Infineon/infineon-design-system-stencil/pull/656) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- 703 sidebarusage page not displayed correctly [#704](https://github.com/Infineon/infineon-design-system-stencil/pull/704) ([@radikantchris](https://github.com/radikantchris) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+- Dropdown: v-2 update [#689](https://github.com/Infineon/infineon-design-system-stencil/pull/689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @types/node from 16.18.61 to 20.9.0 in /packages/components [#706](https://github.com/Infineon/infineon-design-system-stencil/pull/706) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump puppeteer from 19.11.1 to 21.5.0 in /packages/components [#668](https://github.com/Infineon/infineon-design-system-stencil/pull/668) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@radikantchris](https://github.com/radikantchris)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.31.0 (Wed Nov 08 2023)
 
 #### 🚀 Enhancement

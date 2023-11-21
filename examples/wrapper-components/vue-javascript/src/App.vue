@@ -23,13 +23,13 @@
   <SearchField />
   <SearchBar />
   <SingleSelect />
+  <Slider />
   <Spinner />
   <Status />
   <Switch />
   <Table />
   <Tabs />
   <Tag />
-  <Slider />
   <TextField />
   <Tooltip />
   <Footer />

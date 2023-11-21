@@ -39,7 +39,7 @@ export class Pagination {
     }
     const total = this.total <= this.itemsPerPage ? this.itemsPerPage : this.total;
     const itemsPerPage = this.itemsPerPage;
-    const totalPageNumber = total / itemsPerPage;
+    const totalPageNumber = Math.ceil(total / itemsPerPage);
 
     if (this.currentPage <= 0) {
       this.internalPage = 1;

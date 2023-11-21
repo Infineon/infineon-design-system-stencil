@@ -5,7 +5,6 @@ import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '
   styleUrl: 'radio-button.scss',
   shadow: true
 })
-
 export class RadioButton {
   @Element() el;
   @Prop() disabled: boolean = false;
@@ -32,9 +31,8 @@ export class RadioButton {
     } else this.hasSlot = false;
   }
 
-
   handleRadioButtonClick() {
-    if (!this.disabled && !this.error) {
+    if (!this.disabled && !this.error && !this.internalValue) {
       this.internalValue = !this.internalValue;
       this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
       this.ifxChange.emit(this.internalValue);

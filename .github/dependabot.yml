@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/packages/components"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     open-pull-requests-limit: 5
   - package-ecosystem: "npm"
     directory: "/packages/components-react"
