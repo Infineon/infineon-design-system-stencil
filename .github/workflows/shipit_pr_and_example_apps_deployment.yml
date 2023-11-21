@@ -168,6 +168,7 @@ jobs:
         run: |
           cd packages/components-angular
           npm i
+          npm uninstall --save @infineon/infineon-design-system-stencil
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm run build my-app
