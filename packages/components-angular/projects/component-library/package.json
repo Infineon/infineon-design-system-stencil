@@ -14,6 +14,9 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
+  "allowedNonPeerDependencies": [
+    "@infineon/infineon-design-system-stencil"
+  ],
   "sideEffects": false,
   "auto": {
     "plugins": [
