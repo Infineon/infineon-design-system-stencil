@@ -176,7 +176,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./packages/components-angular/dist/@infineon/infineon-design-system-angular
+          source-dir: ./packages/components-angular/dist/my-app
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
           
