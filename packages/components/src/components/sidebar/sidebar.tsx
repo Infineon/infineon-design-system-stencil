@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, h, Element, Prop, Listen, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar',
@@ -8,7 +8,81 @@ import { Component, h, Element, Prop } from '@stencil/core';
 export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
+  @Event() ifxSidebar: EventEmitter;
 
+  @Listen('ifxSidebarItem')
+  handleEventEmission(event: CustomEvent) { 
+    //console.log('emitted item', event.detail)
+    this.ifxSidebar.emit(event.detail)
+  }
+
+  getAllSidebarItems(parentElement) {
+ 
+  }
+  
+ 
+  
+
+  @Listen('ifxSidebarActiveItem')
+  handleActiveItem(event: CustomEvent) { 
+    //console.log('event here', event.detail)
+    // if(event.detail.includes(this.el)) {
+     //here we need to create a condition that says make all components false except the clicked one
+    // }
+    
+    const sideBarItemChildren = this.el.querySelectorAll('ifx-sidebar-item');
+
+  
+    sideBarItemChildren.forEach((item) => { 
+      const activeAttribute = item.getAttribute('active')
+      const isActive = activeAttribute === 'true';
+      //console.log('is active layer one', isActive) //headers
+      //console.log('event.detail !== item', event.detail !== item)
+      if(isActive && event.detail !== item) { 
+        item.setAttribute('active', false)
+      } else { 
+        const subChildren = item.shadowRoot.querySelectorAll('ifx-sidebar-item')
+        if(subChildren.length !== 0) { 
+          subChildren.forEach((subItem) => { //2nd layer
+            const activeAttribute = subItem.getAttribute('active')
+            const isActive = activeAttribute === 'true';
+            //console.log('is active layer two', isActive)
+            //console.log('is active', isActive, subItem)
+            //console.log('event.detail !== subItem', event.detail !== subItem)
+            if(isActive && event.detail !== subItem) { 
+              subItem.setAttribute('active', false)
+              //const isOpen = this.handleClassList(menuItem, 'contains', 'open')
+              //const activeMenuItemSection = this.getActiveItemSection()
+              // if(!isOpen) { 
+              //   //this.handleClassList(activeMenuItemSection, 'add', 'active-section')
+              // } else { 
+              //   //this.handleClassList(activeMenuItemSection, 'remove', 'active-section')
+              // }
+            } else { 
+              //here we need to check the children!
+              const subChildrenChildren = subItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
+              if(subChildrenChildren.length !== 0) { 
+                subChildrenChildren.forEach((subChildrenItem) => { //3rd layer
+                  const activeAttribute = subChildrenItem.getAttribute('active')
+                  const isActive = activeAttribute === 'true';
+                  //console.log('is active layer three', isActive)
+                  //console.log('event.detail !== subChildrenItem', event.detail !== subChildrenItem)
+                  if(isActive && event.detail !== subChildrenItem) { 
+                    //console.log('is active', isActive, subChildrenChildren)
+                    //subChildrenItem.setAttribute('active', false)
+                    //console.log('it is now', subChildrenItem.active)
+                    subChildrenItem.setAttribute('active', false)
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+     
+     
+  })
+  }
 
   componentDidLoad() {
     this.addEventListenersToHandleCustomFocusState();

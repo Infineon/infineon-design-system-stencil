@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Listen } from '@stencil/core';
+import { Component, h, Prop, Element, State, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar-item',
@@ -17,6 +17,38 @@ export class SidebarItem {
   @State() isNested: boolean = true;
   @Prop() numberIndicator: number;
   @Prop() active: boolean = false;
+  @State() internalActiveState: boolean = false;
+  @Event() ifxSidebarItem: EventEmitter;
+  @Event() ifxSidebarActiveItem: EventEmitter;
+  @Prop() value: string = ""
+
+  @Watch('active')
+  handleActiveChange(newValue: boolean, oldValue: boolean) { 
+    console.log('invoked')
+    if(newValue !== oldValue) { 
+      //console.log('active changed', this.el)
+      //this.internalActiveState = newValue;
+      let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
+      if(!this.isExpandable && !this.active) { //this I don't understand. Why? What we need to do is if the clicked element is not expandable and if it's not active, then you make it active, and then make every other component not active. This is for when a new item is clicked, and all existing ones are iterated 
+        //over inside the parent, and turned 'false'
+        labelElement.classList.remove('active')
+        //this.internalActiveState = false  
+      }
+
+      if(!this.isExpandable && newValue) {   
+        this.ifxSidebarActiveItem.emit(this.el)
+        //console.log('active changed', this.el)
+        //this.handleActiveState()
+        //let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
+        labelElement.classList.add('active')
+        //console.log('labelElement', labelElement)
+      }
+  
+    }
+    
+   
+    //console.log('internal active state', this.internalActiveState)
+  }
 
   @Listen('consoleError')
   handleConsoleError(event: CustomEvent<boolean>) { 
@@ -27,13 +59,27 @@ export class SidebarItem {
     }
   }
 
+  handleEventEmission() { 
+    this.ifxSidebarItem.emit({value: this.value, component: this.el})
+  }
+
+  handleClassList(el, type, className) {
+    el.classList[type](className)
+    if(type === 'contains') { 
+      return el.classList.contains(className)
+    }
+  }
+
   getExpandableMenu() { 
     const expandableSubmenu = this.el.shadowRoot.querySelector('.expandable__submenu')
     return expandableSubmenu
   }
 
-  getSidebarMenuItems() { 
-    const sidebarItems = this.el.querySelectorAll('ifx-sidebar-item');
+  getSidebarMenuItems(el = this.el) { 
+    const sidebarItems = el.querySelectorAll('ifx-sidebar-item');
+    if(sidebarItems.length === 0) { 
+      return el.shadowRoot.querySelectorAll('ifx-sidebar-item');
+    }
     return sidebarItems;
   }
 
@@ -47,8 +93,8 @@ export class SidebarItem {
       //this.handleActiveState()
       const menuItem = this.getSidebarMenuItem()
       const expandableMenu = this.getExpandableMenu()
-      expandableMenu.classList.toggle('open')
-      menuItem.classList.toggle('open')
+      this.handleClassList(expandableMenu, 'toggle', 'open')
+      this.handleClassList(menuItem, 'toggle', 'open')
       const toggledComponentIsHeader = this.parentElementIsSidebar()
       if(toggledComponentIsHeader) { 
         this.handleBorderIndicatorDisplacement(menuItem)
@@ -72,7 +118,7 @@ export class SidebarItem {
     } else return false;
   }
 
-  checkMenuItemLayer() { 
+  checkIfMenuItemIsNested() { 
     const parentIsSidebar = this.parentElementIsSidebar()
     if(parentIsSidebar) { 
       this.isNested = false;
@@ -80,37 +126,28 @@ export class SidebarItem {
   }
 
   handleBorderIndicatorDisplacement(menuItem) { 
-    const sidebarItem = this.el.closest('ifx-sidebar-item')
-    const sideBarItemChildren = sidebarItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
   
-    sideBarItemChildren.forEach((item) => { 
-      const activeAttribute = item.getAttribute('active')
-      const isActive = activeAttribute === 'true';
-      if(isActive) { 
-        const isOpen = menuItem.classList.contains('open')
-        if(!isOpen) { 
-          //this is empty?
-        }
-      } else {
-        const subChildren = item.shadowRoot.querySelectorAll('ifx-sidebar-item')
-        if(subChildren.length !== 0)
-        subChildren.forEach((subItem) => { 
-          const activeAttribute = subItem.getAttribute('active')
-          const isActive = activeAttribute === 'true';
-          if(isActive) { 
-            const isOpen = menuItem.classList.contains('open')
-            const activeMenuItemSection = this.getActiveItemSection()
-            if(!isOpen) { 
-              activeMenuItemSection.classList.add('active-section')
-            } else { 
-              activeMenuItemSection.classList.remove('active-section')
-            }
+    if(!this.internalActiveState) { 
+      const sideBarItemChildren = this.getSidebarMenuItems()
+      sideBarItemChildren.forEach((item) => { 
+          const subChildren = this.getSidebarMenuItems(item)
+          if(subChildren.length !== 0) { 
+            subChildren.forEach((subItem) => {
+              const activeAttribute = subItem.getAttribute('active')
+              const isActive = activeAttribute === 'true';
+              if(isActive) { 
+                const isOpen = this.handleClassList(menuItem, 'contains', 'open')
+                const activeMenuItemSection = this.getActiveItemSection()
+                if(!isOpen) { 
+                  this.handleClassList(activeMenuItemSection, 'add', 'active-section')
+                } else { 
+                  this.handleClassList(activeMenuItemSection, 'remove', 'active-section')
+                }
+              }
+            })
           }
-        })
-      }
-   
-    })
-
+      })
+    }
   }
 
   setHref() { 
@@ -120,51 +157,52 @@ export class SidebarItem {
   }
 
   getActiveItemSection() { 
-    //grab parent wrapper, if not, return current
     const parentIsSidebar = this.parentElementIsSidebar()
-
     if(parentIsSidebar) { 
       const labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label')
       return labelElement;
     } else { 
+      //console.log('this.el.parentElement', this.el.parentElement)
       const labelElement = this.el.parentElement.shadowRoot.querySelector('.sidebar__nav-item-label')
       return labelElement;
     }
   }
 
   getActiveItem() { 
-    const sidebar = this.el.closest('ifx-sidebar')
-    const sidebarItems = Array.from(sidebar.querySelectorAll('ifx-sidebar-item'))
- 
-    for(let i = 0; i < sidebarItems.length; i++) { 
-      let component = sidebarItems[i] as HTMLElement;
-      const activeAttribute = component.getAttribute('active')
-      const isActive = activeAttribute === 'true';
-      if(isActive) { 
-        let labelElement = component.shadowRoot.querySelector('.sidebar__nav-item-label');
-        return labelElement;
-      }
-    }
+    let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
+    return labelElement;
   }
 
   setActiveClasses() { 
      const activeMenuItemSection = this.getActiveItemSection()
      const activeMenuItem = this.getActiveItem()
-     activeMenuItemSection.classList.add('active-section')
-     activeMenuItem.classList.add('active')
+     this.handleClassList(activeMenuItemSection, 'add', 'active-section')
+     this.handleClassList(activeMenuItem, 'add', 'active')
   }
 
   handleActiveState() { 
-    if(this.active) { 
+    if(this.internalActiveState) { 
+      //console.log('internal active state', this.internalActiveState)
+      //console.log('this el', this.el)
       this.setActiveClasses()
     }
   }
 
   componentWillUpdate() { 
-
+    
+    //console.log('invoked now')
+    //this.handleActiveState()
+    //this.handleActiveState()
+    //console.log('active', this.active)
   }
 
   componentDidLoad() { 
+    const toggledComponentIsHeader = this.parentElementIsSidebar()
+    if(toggledComponentIsHeader) { 
+      const menuItem = this.getSidebarMenuItem()
+      this.handleBorderIndicatorDisplacement(menuItem)
+    }
+
     this.handleActiveState()
     const sidebarItems = this.getSidebarMenuItems();
     if(this.isExpandable) { 
@@ -174,7 +212,8 @@ export class SidebarItem {
 
   componentWillLoad() { 
     //this.handleActiveState()
-    this.checkMenuItemLayer()
+    this.internalActiveState = this.active;
+    this.checkIfMenuItemIsNested()
     this.setHref()
     const sidebarItems = this.getSidebarMenuItems();
     if(sidebarItems.length !== 0) { 
@@ -187,7 +226,7 @@ export class SidebarItem {
   render() {
     return (
       <div>
-        <a href={this.internalHref} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
+        <a href={this.internalHref} onClick={() => this.handleEventEmission()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
