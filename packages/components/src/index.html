@@ -27,39 +27,12 @@
     window.addEventListener('load', () => { 
       const sidebar = document.getElementById('sidebar')
       sidebar.addEventListener('ifxSidebar', (e) => { 
-        e.detail.component.active = true;
         if(e.detail.value === 'thisPage') { 
+          e.detail.component.setAttribute('active', 'true')
           //do something
         }
       })
     })
-
-    const handleSidebarPage = (ev) => { 
-      const clickedPath = ev.composedPath();
-      let clickedItem;
-
-      console.log(ev.target)
-      // const parentItem = ev.target.closest('ifx-sidebar-item');
-      // const childItems = parentItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
-      // for(let i = 0; i < childItems.length; i++) { 
-      //   //childItems[i].setAttribute('active', false);
-      // }
-   
-        //there needs to be a condition here based on the value of the clicked item.
-        // if(e.detail.sidebarItemValue === 'newContent') { 
-        //   e.detail.item.active = true;
-        // }
-
-      for (let i = 0; i < clickedPath.length; i++) {
-        if (clickedPath[i].tagName === 'IFX-SIDEBAR-ITEM') {
-          clickedItem = clickedPath[i];
-          //console.log('clickedItem', clickedItem)
-          clickedItem.setAttribute('active', true);
-          break;
-        }
-      }
-    }
-
 
   </script>
 
@@ -74,7 +47,7 @@
         <ifx-sidebar-item icon="image-16" active="false" >
           Second layer
           <ifx-sidebar-item target="_blank" active="true" icon="image-16">
-          3rd layer Menu Item 
+          3rd layer Menu Item
           </ifx-sidebar-item>
 
           <ifx-sidebar-item target="_blank" active="false" icon="image-16" value="thisPage">
@@ -109,8 +82,8 @@
         <ifx-sidebar-item href="http://google.com" active="false" target="_blank" icon="image-16">
         Sub Menu Item
         </ifx-sidebar-item>
-        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-        Menu Item
+        <ifx-sidebar-item target="_blank" icon="image-16" value="thisPage">
+        This one too
         </ifx-sidebar-item>
         <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
         Menu Item

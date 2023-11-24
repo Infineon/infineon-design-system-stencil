@@ -24,30 +24,16 @@ export class SidebarItem {
 
   @Watch('active')
   handleActiveChange(newValue: boolean, oldValue: boolean) { 
-    console.log('invoked')
     if(newValue !== oldValue) { 
-      //console.log('active changed', this.el)
-      //this.internalActiveState = newValue;
       let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
-      if(!this.isExpandable && !this.active) { //this I don't understand. Why? What we need to do is if the clicked element is not expandable and if it's not active, then you make it active, and then make every other component not active. This is for when a new item is clicked, and all existing ones are iterated 
-        //over inside the parent, and turned 'false'
-        labelElement.classList.remove('active')
-        //this.internalActiveState = false  
+      if(!this.isExpandable && !newValue) {
+        labelElement.classList.remove('active') 
       }
-
       if(!this.isExpandable && newValue) {   
         this.ifxSidebarActiveItem.emit(this.el)
-        //console.log('active changed', this.el)
-        //this.handleActiveState()
-        //let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
         labelElement.classList.add('active')
-        //console.log('labelElement', labelElement)
       }
-  
     }
-    
-   
-    //console.log('internal active state', this.internalActiveState)
   }
 
   @Listen('consoleError')
