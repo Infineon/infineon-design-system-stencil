@@ -8,6 +8,8 @@
 
 
 .ifx-select-container {
+  background-color: tokens.$ifxColorBaseWhite;
+
   &.small-select {
     height: 36px;
   }
