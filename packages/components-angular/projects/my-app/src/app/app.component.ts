@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IfxTabs } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-root',

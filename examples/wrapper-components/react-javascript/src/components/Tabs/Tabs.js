@@ -1,7 +1,7 @@
 import { useRef, useEffect, React } from 'react';
 import { IfxTabs, IfxTab } from '@infineon/infineon-design-system-react';
 
-function Tab() {
+function Tabs() {
   const tabsElement = useRef(null);
   const INTERVAL = 20000;
 
@@ -57,4 +57,4 @@ function Tab() {
   );
 }
 
-export default Tab;
+export default Tabs;

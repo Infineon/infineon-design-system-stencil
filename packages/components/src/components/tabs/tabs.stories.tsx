@@ -48,7 +48,7 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: const tabsElement = useRef(null);\n\nconst handleClick = (index) => {\n  tabsElement.current.setActiveTab(index);\n};\n\n<ifx-tabs ref={tabsElement}>...</ifx-tabs>\n\nVue: const tabsElement = ref(null);\n\nconst handleClick = (index) => {\n tabsElement.value.setActiveTab(index);\n};\n\n<ifx-tabs ref="tabsElement">...</ifx-tabs>',
+          detail: 'Angular:\n//app.component.html\n<ifx-tabs #tabsElement>...</ifx-tabs>\n//app.component.ts\nimport { IfxTabs } from \'@infineon/infineon-design-system-angular\';\n...\n@ViewChild(\'tabsElement\') ifxTabs: IfxTabs | undefined;\nthis.ifxTabs?.setActiveTab(index);\n\nReact:\n//Tabs.js\n<ifx-tabs ref={tabsElement}>...</ifx-tabs>\n...\nconst tabsElement = useRef(null);\ntabsElement.current.setActiveTab(index);\n\nVue:\n//Tabs.vue\n<ifx-tabs ref="tabsElement">...</ifx-tabs>\n...\nconst tabsElement = ref(null);\ntabsElement.value.setActiveTab(index);',
         }
       },
     }
