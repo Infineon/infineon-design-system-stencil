@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.31d6cfe0.css",
-    "main.js": "./static/js/main.bc56aae1.js",
+    "main.js": "./static/js/main.10a9d946.js",
     "polyfills-dom.js": "./static/js/polyfills-dom.58bf3653.chunk.js",
     "polyfills-core-js.js": "./static/js/polyfills-core-js.968987c3.chunk.js",
     "static/js/5811.71321c20.chunk.js": "./static/js/5811.71321c20.chunk.js",
@@ -67,7 +67,7 @@
     "static/js/6947.64aa6a29.chunk.js": "./static/js/6947.64aa6a29.chunk.js",
     "static/js/844.e514e16d.chunk.js": "./static/js/844.e514e16d.chunk.js",
     "index.html": "./index.html",
-    "main.bc56aae1.js.map": "./static/js/main.bc56aae1.js.map",
+    "main.10a9d946.js.map": "./static/js/main.10a9d946.js.map",
     "polyfills-dom.58bf3653.chunk.js.map": "./static/js/polyfills-dom.58bf3653.chunk.js.map",
     "polyfills-core-js.968987c3.chunk.js.map": "./static/js/polyfills-core-js.968987c3.chunk.js.map",
     "5811.71321c20.chunk.js.map": "./static/js/5811.71321c20.chunk.js.map",
@@ -135,6 +135,6 @@
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.bc56aae1.js"
+    "static/js/main.10a9d946.js"
   ]
 }
