@@ -7,12 +7,35 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type     | Default     |
-| ----------------- | ------------------ | ----------- | -------- | ----------- |
-| `href`            | `href`             |             | `string` | `""`        |
-| `icon`            | `icon`             |             | `string` | `""`        |
-| `numberIndicator` | `number-indicator` |             | `number` | `undefined` |
-| `target`          | `target`           |             | `string` | `"_self"`   |
+| Property          | Attribute          | Description | Type      | Default     |
+| ----------------- | ------------------ | ----------- | --------- | ----------- |
+| `active`          | `active`           |             | `boolean` | `false`     |
+| `href`            | `href`             |             | `string`  | `""`        |
+| `icon`            | `icon`             |             | `string`  | `""`        |
+| `numberIndicator` | `number-indicator` |             | `number`  | `undefined` |
+| `target`          | `target`           |             | `string`  | `"_self"`   |
+| `value`           | `value`            |             | `string`  | `""`        |
+
+
+## Events
+
+| Event                  | Description | Type               |
+| ---------------------- | ----------- | ------------------ |
+| `ifxSidebarActiveItem` |             | `CustomEvent<any>` |
+| `ifxSidebarItem`       |             | `CustomEvent<any>` |
+
+
+## Methods
+
+### `setActiveClasses(activeSection?: any) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

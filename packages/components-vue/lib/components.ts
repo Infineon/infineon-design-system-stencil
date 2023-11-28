@@ -389,7 +389,8 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 
 
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
-  'applicationName'
+  'applicationName',
+  'ifxSidebar'
 ]);
 
 
@@ -397,7 +398,11 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'icon',
   'href',
   'target',
-  'numberIndicator'
+  'numberIndicator',
+  'active',
+  'value',
+  'ifxSidebarItem',
+  'ifxSidebarActiveItem'
 ]);
 
 

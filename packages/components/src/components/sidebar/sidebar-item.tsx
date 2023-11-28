@@ -123,26 +123,24 @@ export class SidebarItem {
   }
 
   handleBorderIndicatorDisplacement(menuItem) { 
-    if(!this.internalActiveState) { 
-      const sideBarItemChildren = this.getSidebarMenuItems()
-      sideBarItemChildren.forEach((item) => { 
-          const subChildren = this.getSidebarMenuItems(item)
-          if(subChildren.length !== 0) { 
-            subChildren.forEach((subItem) => {
-              const isActive = this.isActive(subItem)
-              if(isActive) { 
-                const isOpen = this.handleClassList(menuItem, 'contains', 'open')
-                const activeMenuItemSection = this.getActiveItemSection()
-                if(!isOpen) { 
-                  this.handleClassList(activeMenuItemSection, 'add', 'active-section')
-                } else { 
-                  this.handleClassList(activeMenuItemSection, 'remove', 'active-section')
-                }
+    const sideBarItemChildren = this.getSidebarMenuItems()
+    sideBarItemChildren.forEach((item) => { 
+        const subChildren = this.getSidebarMenuItems(item)
+        if(subChildren.length !== 0) { 
+          subChildren.forEach((subItem) => {
+            const isActive = this.isActive(subItem)
+            if(isActive) { 
+              const isOpen = this.handleClassList(menuItem, 'contains', 'open')
+              const activeMenuItemSection = this.getActiveItemSection()
+              if(!isOpen) { 
+                this.handleClassList(activeMenuItemSection, 'add', 'active-section')
+              } else { 
+                this.handleClassList(activeMenuItemSection, 'remove', 'active-section')
               }
-            })
-          }
-      })
-    }
+            }
+          })
+        }
+    })
   }
 
   setHref() { 
