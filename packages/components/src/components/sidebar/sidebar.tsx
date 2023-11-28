@@ -15,19 +15,35 @@ export class Sidebar {
     this.ifxSidebar.emit(event.detail)
   }
 
-  getAllSidebarItems() {
-    const sideBarItemChildren = this.el.querySelectorAll('ifx-sidebar-item');
-    let allItems = []
+  querySidebarItems(el) { 
+    return el.querySelectorAll('ifx-sidebar-item')
+  }
+
+  getAllSidebarItems(el) {
+    //const sideBarItemChildren = this.el.querySelectorAll('ifx-sidebar-item');
+    const sideBarItemChildren = this.querySidebarItems(this.el)
+    let allItems = {list: [], activeSection: ""}
     sideBarItemChildren.forEach((item) => { 
-      allItems.push(item)
-        const subChildren = item.shadowRoot.querySelectorAll('ifx-sidebar-item')
+      allItems.list.push(item)
+        //const subChildren = item.shadowRoot.querySelectorAll('ifx-sidebar-item')
+        const subChildren = this.querySidebarItems(item.shadowRoot)
+        if(el === item) { 
+          allItems.activeSection = item;
+        }
         if(subChildren.length !== 0) { 
-          subChildren.forEach((subItem) => { 
-            allItems.push(subItem)
-              const subChildrenChildren = subItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
+          subChildren.forEach((subItem) => {
+            if(el === subItem) { 
+              allItems.activeSection = item;
+            } 
+            allItems.list.push(subItem)
+              //const subChildrenChildren = subItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
+              const subChildrenChildren = this.querySidebarItems(subItem.shadowRoot)
               if(subChildrenChildren.length !== 0) { 
                 subChildrenChildren.forEach((subChildrenItem) => { 
-                  allItems.push(subChildrenItem)
+                  if(el === subChildrenItem) {
+                    allItems.activeSection = subItem;
+                  }
+                  allItems.list.push(subChildrenItem)
                 })
               }
           })
@@ -39,15 +55,23 @@ export class Sidebar {
   @Listen('ifxSidebarActiveItem')
   handleActiveItem(event: CustomEvent) { 
    const targetComponent = event.detail;
-   const allItems = this.getAllSidebarItems()
+   const allItems = this.getAllSidebarItems(event.detail)
   
-   for(let i = 0; i < allItems.length; i++) { 
-    const iteratedComponent = allItems[i];
+   for(let i = 0; i < allItems.list.length; i++) { 
+    const iteratedComponent = allItems.list[i];
     const activeAttributeValue = iteratedComponent.getAttribute('active');
     const isActive = activeAttributeValue === 'true';
     if(isActive && targetComponent !== iteratedComponent) { 
-      allItems[i].setAttribute('active', 'false')
+      console.log(allItems.list[i])
+      allItems.list[i].setAttribute('active', 'false')
     }
+
+    if(targetComponent !== iteratedComponent) { 
+      let elementLabel = allItems.list[i].shadowRoot.querySelector('.sidebar__nav-item-label');
+      elementLabel.classList.remove('active-section')
+    }
+
+    targetComponent.setActiveClasses(allItems.activeSection)
    }
   }
 

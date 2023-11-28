@@ -18,6 +18,7 @@
   flex-grow: 0;
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
+  cursor: pointer;
   
   & .sidebar__nav-item-label { 
     &.active-section { 
