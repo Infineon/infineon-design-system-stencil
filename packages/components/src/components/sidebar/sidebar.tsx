@@ -20,12 +20,10 @@ export class Sidebar {
   }
 
   getAllSidebarItems(el) {
-    //const sideBarItemChildren = this.el.querySelectorAll('ifx-sidebar-item');
     const sideBarItemChildren = this.querySidebarItems(this.el)
     let allItems = {list: [], activeSection: ""}
     sideBarItemChildren.forEach((item) => { 
       allItems.list.push(item)
-        //const subChildren = item.shadowRoot.querySelectorAll('ifx-sidebar-item')
         const subChildren = this.querySidebarItems(item.shadowRoot)
         if(el === item) { 
           allItems.activeSection = item;
@@ -36,7 +34,6 @@ export class Sidebar {
               allItems.activeSection = item;
             } 
             allItems.list.push(subItem)
-              //const subChildrenChildren = subItem.shadowRoot.querySelectorAll('ifx-sidebar-item')
               const subChildrenChildren = this.querySidebarItems(subItem.shadowRoot)
               if(subChildrenChildren.length !== 0) { 
                 subChildrenChildren.forEach((subChildrenItem) => { 
@@ -51,6 +48,12 @@ export class Sidebar {
     })
     return allItems
   }
+
+  isActive(iteratedComponent) { 
+    const activeAttributeValue = iteratedComponent.getAttribute('active');
+    const isActive = activeAttributeValue === 'true';
+    return isActive
+  }
   
   @Listen('ifxSidebarActiveItem')
   handleActiveItem(event: CustomEvent) { 
@@ -59,10 +62,8 @@ export class Sidebar {
   
    for(let i = 0; i < allItems.list.length; i++) { 
     const iteratedComponent = allItems.list[i];
-    const activeAttributeValue = iteratedComponent.getAttribute('active');
-    const isActive = activeAttributeValue === 'true';
+    const isActive = this.isActive(iteratedComponent)
     if(isActive && targetComponent !== iteratedComponent) { 
-      console.log(allItems.list[i])
       allItems.list[i].setAttribute('active', 'false')
     }
 

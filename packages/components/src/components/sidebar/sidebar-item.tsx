@@ -26,13 +26,13 @@ export class SidebarItem {
   handleActiveChange(newValue: boolean, oldValue: boolean) { 
     this.internalActiveState = this.active;
     if(newValue !== oldValue) { 
-      let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
+      let labelElement = this.getNavItemLabel(this.el.shadowRoot)
       if(!this.isExpandable && !newValue) {
-        labelElement.classList.remove('active') 
+        this.handleClassList(labelElement, 'remove', 'active')
       }
       if(!this.isExpandable && newValue) {   
         this.ifxSidebarActiveItem.emit(this.el)
-        labelElement.classList.add('active')
+        this.handleClassList(labelElement, 'add', 'active')
       }
     }
   }
@@ -60,6 +60,10 @@ export class SidebarItem {
   getExpandableMenu() { 
     const expandableSubmenu = this.el.shadowRoot.querySelector('.expandable__submenu')
     return expandableSubmenu
+  }
+
+  getNavItemLabel(el) { 
+    return el?.querySelector('.sidebar__nav-item-label')
   }
 
   getSidebarMenuItems(el = this.el) { 
@@ -112,6 +116,12 @@ export class SidebarItem {
     }
   }
 
+  isActive(iteratedComponent) { 
+    const activeAttributeValue = iteratedComponent.getAttribute('active');
+    const isActive = activeAttributeValue === 'true';
+    return isActive
+  }
+
   handleBorderIndicatorDisplacement(menuItem) { 
     if(!this.internalActiveState) { 
       const sideBarItemChildren = this.getSidebarMenuItems()
@@ -119,8 +129,7 @@ export class SidebarItem {
           const subChildren = this.getSidebarMenuItems(item)
           if(subChildren.length !== 0) { 
             subChildren.forEach((subItem) => {
-              const activeAttribute = subItem.getAttribute('active')
-              const isActive = activeAttribute === 'true';
+              const isActive = this.isActive(subItem)
               if(isActive) { 
                 const isOpen = this.handleClassList(menuItem, 'contains', 'open')
                 const activeMenuItemSection = this.getActiveItemSection()
@@ -144,29 +153,23 @@ export class SidebarItem {
 
   getActiveItemSection() { 
     const parentIsSidebar = this.parentElementIsSidebar()
-
     if(parentIsSidebar) { 
-      const labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label')
+      const labelElement = this.getNavItemLabel(this.el.shadowRoot)
       return labelElement;
     } else { 
-      const labelElement = this.el.parentElement.shadowRoot?.querySelector('.sidebar__nav-item-label')
+      const labelElement = this.getNavItemLabel(this.el.parentElement.shadowRoot)
       return labelElement;
     }
-  }
-
-  getActiveItem() { 
-    let labelElement = this.el.shadowRoot.querySelector('.sidebar__nav-item-label');
-    return labelElement;
   }
 
   @Method()
   async setActiveClasses(activeSection = null) { 
      const activeMenuItemSection = this.getActiveItemSection()
-     const activeMenuItem = this.getActiveItem()
+     const activeMenuItem = this.getNavItemLabel(this.el.shadowRoot)
      if(activeMenuItemSection) { 
        this.handleClassList(activeMenuItemSection, 'add', 'active-section')
      } else if(activeSection) { 
-      const labelElement = activeSection.shadowRoot.querySelector('.sidebar__nav-item-label')
+      const labelElement = this.getNavItemLabel(activeSection.shadowRoot)
       this.handleClassList(labelElement, 'add', 'active-section')
      }
      this.handleClassList(activeMenuItem, 'add', 'active')
