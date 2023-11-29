@@ -597,6 +597,13 @@
 <br />
 <br />
 
+<h2>Status</h2>
+<ifx-status [label]="Status with border" [color]="orange" [border]="true" />
+<ifx-status [label]="Status without border" [color]="orange" [border]="false" />
+<br />
+<br />
+
+
 <h2>Table</h2>
 <ifx-basic-table row-height='default'
   cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
