@@ -1,15 +1,15 @@
 import { action } from '@storybook/addon-actions';
 
 const tabHeaders = [{
-  header: "a",
+  header: "tab a",
   disabled: false
 },
 {
-  header: "b",
+  header: "tab b",
   disabled: true
 },
 {
-  header: "c",
+  header: "tab c",
   disabled: false,
 }];
 
