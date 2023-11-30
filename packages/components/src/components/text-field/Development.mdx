@@ -1,0 +1,65 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as TextFieldStories from './text-field.stories';
+ 
+<Meta of={TextFieldStories} />
+
+# Text field
+
+<Canvas of={TextFieldStories.Default} sourceState="shown" />
+
+## Props
+
+<Controls />
+
+## Two way data binding
+The text field component listens for events and updates values simultaneously.
+For more information, please refer to our example applications.
+
+<b>Angular</b>
+
+```js
+//app.component.js
+handleTextField(event: any) {
+  console.log("searchField value change: ", event.detail)
+}
+//app.component.html
+<ifx-text-field (ifxInput)="handleTextField($event)"></ifx-search-field>
+```
+
+<b>React</b>
+
+```js
+//MyComponent.js
+const handleText = (event) => {
+  console.log("handling input: ", event.detail)
+};
+...
+<IfxTextField onIfxInput={handleText}></IfxTextField>
+```
+
+<b>Vanilla</b>
+
+```js
+//index.html
+const textField = document.querySelector('#text-field');
+textField.addEventListener('ifxInput', (event) => {
+  console.log("text field value", event.detail);
+});
+<ifx-text-field id="text-field"></ifx-text-field>
+```
+
+<b>Vue</b> (using v-model)
+
+```js
+//MyComponent.vue
+let textValue = ref('');
+...
+<ifx-text-field v-model="textValue"></ifx-text-field>
+```
+
+<b>Vue</b> (combining value binding and event listening)
+```js
+//MyComponent.vue
+<ifx-text-field @ifxInput="event => console.log(event.detail)">
+</ifx-text-field>
+```

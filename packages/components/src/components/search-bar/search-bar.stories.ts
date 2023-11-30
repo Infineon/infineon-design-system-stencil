@@ -3,7 +3,7 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: 'Components/Search Bar',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     disabled: false,
@@ -13,13 +13,7 @@ export default {
   argTypes: {
     onIfxInput: {
       action: 'ifxInput',
-      description: 'Custom event emitted on input',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
-        },
-      },
+      description: 'Custom event emitted on input\n\n(see below for Two Way Data Binding in different JS frameworks)',
     },
     ifxSearchBarIsOpen: {
       action: 'ifxSearchBarIsOpen',

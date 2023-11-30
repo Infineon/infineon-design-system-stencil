@@ -18,13 +18,8 @@ export default {
     },
     onIfxInput: {
       action: 'ifxInput',
-      description: 'Custom event emitted on input',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React:\nonIfxInput={handleInput}\n\nVue:\n@ifxInput="handleInput()"\n\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
-        },
-      },
+      description: 'Custom event emitted on input\n\n(see below for Two Way Data Binding in different JS frameworks)',
+
     },
 
   },
