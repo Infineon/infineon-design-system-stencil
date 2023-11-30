@@ -1,3 +1,23 @@
+# v20.34.6 (Thu Nov 30 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: status padding should be removed when border prop is false [#770](https://github.com/Infineon/infineon-design-system-stencil/pull/770) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @testing-library/react from 14.1.0 to 14.1.2 in /examples/wrapper-components/react-javascript [#749](https://github.com/Infineon/infineon-design-system-stencil/pull/749) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.34.3 to 20.34.5 in /examples/wrapper-components/vue-javascript [#746](https://github.com/Infineon/infineon-design-system-stencil/pull/746) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.34.3 to 20.34.5 in /examples/wrapper-components/react-javascript [#750](https://github.com/Infineon/infineon-design-system-stencil/pull/750) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.34.5 (Wed Nov 15 2023)
 
 #### 🐛 Bug Fix
