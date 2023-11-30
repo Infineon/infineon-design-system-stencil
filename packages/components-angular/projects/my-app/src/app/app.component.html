@@ -593,7 +593,9 @@
 
 
 <h2>Switch</h2>
-<ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+<ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue($event)"></ifx-switch>
+<br>
+<span>Switch value: {{ switchChecked }}</span>
 <br />
 <br />
 

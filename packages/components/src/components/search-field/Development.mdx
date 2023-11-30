@@ -47,19 +47,3 @@ searchField.addEventListener('ifxInput', (event) => {
 });
 <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
 ```
-
-<b>Vue</b> (using v-model)
-
-```js
-//MyComponent.vue
-let searchValue = ref('');
-...
-<ifx-search-field v-model="searchValue" disabled="false" size="m" show-delete-icon="true"></ifx-search-field>
-```
-
-<b>Vue</b> (combining value binding and event listening)
-```js
-//MyComponent.vue
-<ifx-search-field @ifxInput="event => console.log(event.detail)" disabled="false" size="m" show-delete-icon="true">
-</ifx-search-field>
-```

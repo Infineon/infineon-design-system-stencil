@@ -53,4 +53,22 @@ It may be necessary to add the following to your .env file at project root:
 
 This can also be achieved by updating your start script in the ``package.json`` accordingly.
 
+### Events
 
+#### Two way data binding
+
+Two-way binding means that any data-related changes affecting the model are immediately propagated to the matching view(s).
+And any changes made in the view(s) are immediately reflected in the underlying model. 
+When app data changes, so does the UI, and conversely.
+
+
+```js
+//MyComponent.js
+const [radioBtnValue, setRadioBtnValue] = useState(false);
+const handleChange = (event) => {
+  console.log("Updating radio btn value: ", event.detail);
+  setRadioBtnValue(event.detail);
+};
+...
+<IfxRadioButton disabled={disabled} onIfxChange={handleChange} value={radioBtnValue} error={error} name="name">label</IfxRadioButton>
+```
