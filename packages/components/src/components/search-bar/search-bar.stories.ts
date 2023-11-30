@@ -11,7 +11,7 @@ export default {
 
   },
   argTypes: {
-    onIfxInput: {
+    ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input\n\n(see below for Two Way Data Binding in different JS frameworks)',
     },

@@ -16,7 +16,7 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    onIfxInput: {
+    ifxInput: {
       action: 'ifxInput',
       description: 'Custom event',
       table: {
