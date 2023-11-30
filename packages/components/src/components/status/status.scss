@@ -11,27 +11,11 @@
   align-items: center;
   padding: 0 tokens.$ifxSpace100;
   border-radius: tokens.$ifxBorderRadiusRound;
-}
 
-.text {
-  margin: 0;
-  padding-left: tokens.$ifxSpace50;
-  font-style: normal;
-  font-weight: tokens.$ifxFontWeightSemibold;
-  font-size: tokens.$ifxFontSizeM;
-  line-height: tokens.$ifxLineHeightS;
-  display: inline;
-  color: tokens.$ifxColorBaseBlack;
-}
+  &.no-border {
+    padding: 0; // Remove padding when border is not present
+  }
 
-.dot {
-  display: inline-block;
-  width: tokens.$ifxSize100;
-  height: tokens.$ifxSize100;
-  border-radius: tokens.$ifxBorderRadiusRound;
-}
-
-.container {
   &.border-orange {
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOrange500;
   }
@@ -59,7 +43,28 @@
   &.border-berry {
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorBerry500;
   }
+
+
 }
+
+.text {
+  margin: 0;
+  padding-left: tokens.$ifxSpace50;
+  font-style: normal;
+  font-weight: tokens.$ifxFontWeightSemibold;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightS;
+  display: inline;
+  color: tokens.$ifxColorBaseBlack;
+}
+
+.dot {
+  display: inline-block;
+  width: tokens.$ifxSize100;
+  height: tokens.$ifxSize100;
+  border-radius: tokens.$ifxBorderRadiusRound;
+}
+
 
 .dot {
   &.orange {
