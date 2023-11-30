@@ -458,7 +458,7 @@ export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', un
   'tabs',
   'orientation',
   'activeTabIndex',
-  'ifxTabIndex'
+  'ifxTabChange'
 ]);
 
 

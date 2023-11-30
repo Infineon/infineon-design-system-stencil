@@ -20,24 +20,23 @@ export class IfxTabs {
   @State() tabTitles: string[] = [];
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
-  @Event() ifxTabIndex: EventEmitter;
+  @Event() ifxTabChange: EventEmitter;
 
 
   @Watch('activeTabIndex')
   onActiveTabIndexChange(newIndex: number, oldIndex: number) {
     this.internalPrevActiveTabIndex = oldIndex;
     this.internalActiveTabIndex = newIndex;
-    this.activeTabIndex = this.internalActiveTabIndex;
   }
 
 
   // changing tab
   @Method()
   async setActiveTab(index: number) {
-    const prevActiveTab = this.activeTabIndex;
-    const nextActiveTab = index;
+    const prevActiveTab = this.internalActiveTabIndex;
+    this.internalActiveTabIndex = index;
 
-    if (this.tabObjects[nextActiveTab]?.disabled) {
+    if (this.tabObjects[this.internalActiveTabIndex]?.disabled) {
 
       // Reset to previously active tab
       if (!this.tabObjects[prevActiveTab]?.disabled) {
@@ -47,12 +46,11 @@ export class IfxTabs {
       }
     }
 
-    if (nextActiveTab < 0 || nextActiveTab >= this.tabHeaderRefs.length) {
+    if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
       return;
     } else {
-      this.ifxTabIndex.emit({ previousTab: prevActiveTab, currentTab: nextActiveTab });
-      this.internalActiveTabIndex = nextActiveTab;
-      this.activeTabIndex = nextActiveTab;
+      this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
+      this.internalActiveTabIndex = this.internalActiveTabIndex;
     }
   }
   // Helper method to emit events

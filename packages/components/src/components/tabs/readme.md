@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `ifxTabIndex` |             | `CustomEvent<any>` |
+| Event          | Description | Type               |
+| -------------- | ----------- | ------------------ |
+| `ifxTabChange` |             | `CustomEvent<any>` |
 
 
 ## Methods

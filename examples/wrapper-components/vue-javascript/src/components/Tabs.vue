@@ -3,7 +3,7 @@
 <template>
   <div>
     <h2>Tabs</h2>
-    <ifx-tabs @ifxTabIndex="handleChange" ref="tabsElement" orientation="horizontal">
+    <ifx-tabs @ifxTabChange="handleChange" ref="tabsElement" orientation="horizontal">
       <ifx-tab header="a" disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
