@@ -1,0 +1,65 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as SearchFieldStories from './search-field.stories';
+ 
+<Meta of={SearchFieldStories} />
+
+# Search field
+
+<Canvas of={SearchFieldStories.Default} sourceState="shown" />
+
+## Props
+
+<Controls />
+
+## Two way data binding
+The search field component listens for events and updates values simultaneously.
+For more information, please refer to our example applications.
+
+<b>Angular</b>
+
+```js
+//app.component.js
+handleSearchField(event: any) {
+  console.log("searchField value change: ", event.detail)
+}
+//app.component.html
+<ifx-search-field size="m" disabled="false" show-delete-icon="true" (ifxInput)="handleSearchField($event)"></ifx-search-field>
+```
+
+<b>React</b>
+
+```js
+//MyComponent.js
+const handleSearch = (event) => {
+  console.log("handling input: ", event.detail)
+};
+...
+<IfxSearchField disabled="false" size='m' show-delete-icon="true" onIfxInput={handleSearch}></IfxSearchField>
+```
+
+<b>Vanilla</b>
+
+```js
+//index.html
+const searchField = document.querySelector('#search-field');
+searchField.addEventListener('ifxInput', (event) => {
+  console.log("search field value", event.detail);
+});
+<ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
+```
+
+<b>Vue</b> (using v-model)
+
+```js
+//MyComponent.vue
+let searchValue = ref('');
+...
+<ifx-search-field v-model="searchValue" disabled="false" size="m" show-delete-icon="true"></ifx-search-field>
+```
+
+<b>Vue</b> (combining value binding and event listening)
+```js
+//MyComponent.vue
+<ifx-search-field @ifxInput="event => console.log(event.detail)" disabled="false" size="m" show-delete-icon="true">
+</ifx-search-field>
+```

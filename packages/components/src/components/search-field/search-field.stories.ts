@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: 'Components/Search Field',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     showDeleteIcon: true,
@@ -22,7 +22,7 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+          detail: 'React:\nonIfxInput={handleInput}\n\nVue:\n@ifxInput="handleInput()"\n\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
     },
