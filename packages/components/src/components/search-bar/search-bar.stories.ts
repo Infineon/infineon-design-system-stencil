@@ -16,12 +16,12 @@ export default {
       description: 'Custom event emitted on input\n\n(see below for Two Way Data Binding in different JS frameworks)',
     },
     ifxSearchBarIsOpen: {
-      action: 'ifxSearchBarIsOpen',
-      description: 'Custom event emitted when search bar is opened',
+      action: 'ifxInput',
+      description: 'Custom event',
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxSearchBarIsOpen={handleInput}\nVue:@ifxSearchBarIsOpen="handleInput"\nAngular:(ifxSearchBarIsOpen)="handleInput()"\nVanillaJs:.addEventListener("ifxSearchBarIsOpen", (event) => {//handle input});',
+          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
     },
