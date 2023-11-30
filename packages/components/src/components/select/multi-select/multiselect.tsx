@@ -11,6 +11,8 @@ import { Option } from './interfaces';
 export class Multiselect {
 
   @Prop() options: any[] | string;
+  @Prop() batchSize: number = 50;
+
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
@@ -25,7 +27,8 @@ export class Multiselect {
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
   private currentIndex: number = 0; //needed for option selection using keyboard
-  // this.currentIndex = this.placeholder ? this.currentIndex = 1 : this.currentIndex = 0;
+  @State() isLoading: boolean = false;
+  @State() loadedOptions: Option[] = [];
 
 
 
@@ -36,6 +39,56 @@ export class Multiselect {
   dropdownElement!: HTMLElement;
 
 
+  async loadInitialOptions() {
+    this.isLoading = true;
+    // Load the first batch of options (e.g., first 20)
+    this.loadedOptions = await this.fetchOptions(0, this.batchSize);
+    this.isLoading = false;
+  }
+
+  async fetchMoreOptions() {
+    this.isLoading = true;
+    const moreOptions = await this.fetchOptions(this.loadedOptions.length, this.batchSize);
+    this.loadedOptions = [...this.loadedOptions, ...moreOptions];
+    this.isLoading = false;
+  }
+
+
+  handleScroll(event: UIEvent) {
+    const element = event.target as HTMLElement;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      this.fetchMoreOptions();
+    }
+  }
+
+
+  async fetchOptions(startIndex: number, count: number): Promise<Option[]> {
+    let allOptions: Option[] = [];
+
+    // Parse options if it's a string, or use directly if it's an array
+    if (typeof this.options === 'string') {
+      try {
+        allOptions = JSON.parse(this.options);
+      } catch (err) {
+        console.error('Failed to parse options:', err);
+      }
+    } else if (Array.isArray(this.options)) {
+      allOptions = this.options;
+    } else {
+      console.error('Unexpected value for options:', this.options);
+    }
+
+    // Slice the options array based on startIndex and count
+    const slicedOptions = allOptions.slice(startIndex, startIndex + count);
+
+    // Update the state for initially selected options, if needed
+    if (startIndex === 0) { // Assuming you want to do this only for the first batch
+      const initiallySelected = slicedOptions.filter(option => option.selected);
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
+    }
+
+    return slicedOptions;
+  }
 
   @Watch('options')
   handleOptionsChange() {
@@ -426,8 +479,11 @@ export class Multiselect {
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
-            <div class="ifx-multiselect-dropdown-menu" style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              {this.listOfOptions.map((option, index) => this.renderOption(option, index))}
+            <div class="ifx-multiselect-dropdown-menu"
+              onScroll={(event) => this.handleScroll(event)}
+              style={{ '--dynamic-z-index': this.zIndex.toString() }}>
+              {this.loadedOptions.map((option, index) => this.renderOption(option, index))}
+              {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
           <div class="ifx-multiselect-icon-container">

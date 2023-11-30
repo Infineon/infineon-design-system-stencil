@@ -34,7 +34,7 @@ export default {
   // tags: ['autodocs'],
   args: {
     size: "m",
-    // max: 5,
+    batchSize: 50,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -51,6 +51,12 @@ export default {
       },
       control: {
         type: 'radio',
+      },
+    },
+    batchSize: {
+      description: 'Batch size used during lazy loading options',
+      control: {
+        type: 'number',
       },
     },
     // max: {
@@ -88,6 +94,7 @@ export default {
 const DefaultTemplate = (args) => {
   const template = `<ifx-multiselect 
   options='${JSON.stringify(args.options)}' 
+  batch-size='${args.batchSize}'
   size='${args.size}'
   error='${args.error}'
   error-message='${args.errorMessage}'
