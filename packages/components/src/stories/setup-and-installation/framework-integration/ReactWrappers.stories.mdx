@@ -57,10 +57,8 @@ This can also be achieved by updating your start script in the ``package.json`` 
 
 #### Two way data binding
 
-Two-way binding means that any data-related changes affecting the model are immediately propagated to the matching view(s).
-And any changes made in the view(s) are immediately reflected in the underlying model. 
-When app data changes, so does the UI, and conversely.
-
+Two-way binding allows creating synchronization between 2 entities, for example, application data and view. 
+In React, this is achieved by binding the value attribute of the input element to the value state variable using the useState hook, and binding the onChangeevent of the input element to the handleChange function.
 
 ```js
 //MyComponent.js
