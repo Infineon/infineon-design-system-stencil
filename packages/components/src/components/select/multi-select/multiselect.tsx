@@ -1,4 +1,4 @@
-import { Component, Watch, Prop, State, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
 import { Option } from './interfaces';
 
 @Component({
@@ -12,7 +12,6 @@ export class Multiselect {
 
   @Prop() options: any[] | string;
   @Prop() batchSize: number = 50;
-
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
@@ -29,6 +28,7 @@ export class Multiselect {
   private currentIndex: number = 0; //needed for option selection using keyboard
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
+  @State() filteredOptions: Option[] = [];
 
 
 
@@ -94,23 +94,14 @@ export class Multiselect {
     return slicedOptions;
   }
 
-  @Watch('options')
-  handleOptionsChange() {
-    if (typeof this.options === 'string') {
-      try {
-        this.listOfOptions = JSON.parse(this.options);
-      } catch (err) {
-        console.error('Failed to parse options:', err);
-      }
-    } else if (Array.isArray(this.options) || typeof this.options === 'object') {
-      this.listOfOptions = this.options;
+  handleSearch(event: Event) {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    console.log("search term", searchTerm);
+    if (searchTerm === '') {
+      this.filteredOptions = this.loadedOptions;
     } else {
-      console.error('Unexpected value for options:', this.options);
+      this.filteredOptions = this.loadedOptions.filter(option => option.label.toLowerCase().includes(searchTerm))
     }
-
-    // Update persistentSelectedOptions based on initially selected states
-    const initiallySelected = this.listOfOptions.filter(option => option.selected);
-    this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
   }
 
   componentDidLoad() {
@@ -126,8 +117,13 @@ export class Multiselect {
 
   componentWillLoad() {
     this.loadInitialOptions();
+    this.filteredOptions = [...this.loadedOptions];
   }
 
+  @Watch('loadedOptions')
+  loadedOptionsChanged() {
+    this.filteredOptions = [...this.loadedOptions];
+  }
 
 
   handleOptionClick(option: Option) {
@@ -486,7 +482,8 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}
               style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              {this.loadedOptions.map((option, index) => this.renderOption(option, index))}
+              <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event)} placeholder="Search..."></input>
+              {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
