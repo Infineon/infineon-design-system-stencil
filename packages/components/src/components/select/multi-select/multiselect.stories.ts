@@ -11,6 +11,126 @@ const options = [{
   selected: false
 },
 {
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
   value: "c",
   label: "option c",
   selected: false,
@@ -34,7 +154,7 @@ export default {
   // tags: ['autodocs'],
   args: {
     size: "m",
-    batchSize: 50,
+    batchSize: 10,
     error: false,
     errorMessage: 'Some error',
     label: '',

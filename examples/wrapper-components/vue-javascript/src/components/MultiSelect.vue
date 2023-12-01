@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>MultiSelect</h2>
-    <ifx-multiselect :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange" size="medium (40px)"
-      :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
+    <ifx-multiselect batchSize="10" :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange"
+      size="medium (40px)" :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
       :disabled="disabled"></ifx-multiselect>
     <div>
       <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
@@ -26,6 +26,126 @@ let errorMessage = ref("Some error");
 let options = ref([{
   value: "a",
   label: "option a",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
   selected: false
 },
 {

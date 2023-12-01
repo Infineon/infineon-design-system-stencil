@@ -56,10 +56,14 @@ export class Multiselect {
 
   handleScroll(event: UIEvent) {
     const element = event.target as HTMLElement;
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2); //loading more options when the user has scrolled halfway through the current list
+
+    if (element.scrollTop >= halfwayPoint) {
       this.fetchMoreOptions();
     }
   }
+
+
 
 
   async fetchOptions(startIndex: number, count: number): Promise<Option[]> {
@@ -113,6 +117,10 @@ export class Multiselect {
     setTimeout(() => {
       this.positionDropdown();
     }, 500);
+
+    // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
+
+
   }
 
 
@@ -307,7 +315,6 @@ export class Multiselect {
     }
   }
 
-
   clearSelection() {
     this.persistentSelectedOptions = [];
     this.listOfOptions = this.listOfOptions.map(option => ({ ...option, selected: false }));
@@ -316,7 +323,6 @@ export class Multiselect {
 
   positionDropdown() {
     const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
-
     const spaceBelow = window.innerHeight - wrapperRect.bottom;
     const spaceAbove = wrapperRect.top;
 
@@ -350,7 +356,7 @@ export class Multiselect {
     }
   }
 
-  // // Helper function to handle arrow up navigation
+  // Helper function to handle arrow up navigation
   private handleArrowUp(options: NodeList) {
     if (this.currentIndex > 0) {
       this.currentIndex--;
@@ -378,8 +384,6 @@ export class Multiselect {
     const currentOption = this.findInOptions(currentListOfOptions, currentOptionValue); // get the option object based on the currently selected value and the options array
     this.handleOptionClick(currentOption);
   }
-
-
 
 
   renderOption(option: Option, index: number) {
