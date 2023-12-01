@@ -105,6 +105,8 @@
       font-style: normal;
       font-weight: 600;
       line-height: 24px; 
+
+
     }
   }
 
@@ -139,6 +141,15 @@
     order: 1;
     flex-grow: 1;
     cursor: pointer;
+
+    &:focus { 
+      outline: none;
+      color: #08665C;
+    }
+
+    &:hover { 
+      color: #08665C;
+    }
     
     &.active { 
       color: #0A8276;

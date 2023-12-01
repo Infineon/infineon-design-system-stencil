@@ -179,6 +179,12 @@ export class SidebarItem {
     }
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.toggleSubmenu()
+    }
+  }
+
   componentDidLoad() { 
     const toggledComponentIsHeader = this.parentElementIsSidebar()
     if(toggledComponentIsHeader) { 
@@ -213,7 +219,7 @@ export class SidebarItem {
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
             </div>}
-          <div class="sidebar__nav-item-label">
+          <div class="sidebar__nav-item-label" tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)}>
             <slot />
           </div>
           <div class="sidebar__nav-item-indicator">
