@@ -11,121 +11,6 @@ const options = [{
   selected: false
 },
 {
-  value: "c",
-  label: "option c",
-  selected: false
-},
-{
-  value: "d",
-  label: "option d",
-  selected: false
-},
-{
-  value: "e",
-  label: "option e",
-  selected: false
-},
-{
-  value: "f",
-  label: "option f",
-  selected: false
-},
-{
-  value: "g",
-  label: "option g",
-  selected: false
-},
-{
-  value: "h",
-  label: "option h",
-  selected: false
-},
-{
-  value: "i",
-  label: "option i",
-  selected: false
-},
-{
-  value: "j",
-  label: "option j",
-  selected: false
-},
-{
-  value: "k",
-  label: "option k",
-  selected: false
-},
-{
-  value: "l",
-  label: "option l",
-  selected: false
-},
-{
-  value: "m",
-  label: "option m",
-  selected: false
-},
-{
-  value: "n",
-  label: "option n",
-  selected: false
-},
-{
-  value: "o",
-  label: "option o",
-  selected: false
-},
-{
-  value: "p",
-  label: "option p",
-  selected: false
-},
-{
-  value: "q",
-  label: "option q",
-  selected: false
-},
-{
-  value: "r",
-  label: "option r",
-  selected: false
-},
-{
-  value: "s",
-  label: "option s",
-  selected: false
-},
-{
-  value: "t",
-  label: "option t",
-  selected: false
-},
-{
-  value: "u",
-  label: "option u",
-  selected: false
-},
-{
-  value: "v",
-  label: "option v",
-  selected: false
-},
-{
-  value: "w",
-  label: "option w",
-  selected: false
-},
-{
-  value: "x",
-  label: "option x",
-  selected: false
-},
-{
-  value: "y",
-  label: "option y",
-  selected: false
-},
-{
   value: "z",
   label: "option z",
   selected: false,
@@ -150,6 +35,7 @@ export default {
   args: {
     size: "m",
     batchSize: 10,
+    maxItemCount: 10,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -160,6 +46,7 @@ export default {
   },
   argTypes: {
     size: {
+      name: 'Size',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm'
@@ -169,33 +56,47 @@ export default {
       },
     },
     batchSize: {
+      name: 'Batch size',
       description: 'Batch size used during lazy loading options',
       control: {
         type: 'number',
       },
     },
-    // max: {
-    //   control: { type: 'number' },
-    //   description: 'Maximum selectable items',
-    // },
+    maxItemCount: {
+      name: 'Maximum selectable items',
+      control: { type: 'number' },
+      description: 'Number of maximum selectable items',
+    },
     disabled: {
+      name: 'Disabled',
       options: [true, false],
       control: { type: 'radio' },
     },
     error: {
+      name: 'Error',
       options: [true, false],
       control: { type: 'radio' },
     },
-    errorMessage: { control: 'text' },
-    label: { control: 'text' },
-    placeholder: { control: 'text' },
+    errorMessage: {
+      name: 'Error message',
+      control: 'text'
+    },
+    label: {
+      name: 'Label',
+      control: 'text'
+    },
+    placeholder: {
+      name: 'Placeholder',
+      control: 'text'
+    },
     options: {
+      name: 'Options',
       description: 'Takes an array of objects in the following format',
     },
-    onIfxSelect: { action: 'ifxSelect' },
     ifxSelect: {
+      name: 'Custom event: ifxSelect',
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected',
+      description: 'Custom event emitted when item is selected or unselected',
       table: {
         type: {
           summary: 'Framework integration',
@@ -211,6 +112,7 @@ const DefaultTemplate = (args) => {
   options='${JSON.stringify(args.options)}' 
   batch-size='${args.batchSize}'
   size='${args.size}'
+  max-item-count='${args.maxItemCount}'
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'

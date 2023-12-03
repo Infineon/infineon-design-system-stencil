@@ -96,7 +96,6 @@ export class Multiselect {
 
   handleSearch(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
-    console.log("search term", searchTerm);
     if (searchTerm === '') {
       this.filteredOptions = this.loadedOptions;
     } else {
@@ -128,7 +127,6 @@ export class Multiselect {
 
   handleOptionClick(option: Option) {
     this.error = false; //reset potential previous errors
-
     // 1. Prevent action if disabled
     //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
     let newOptionsLength = option.children ? option.children.length : 1;
