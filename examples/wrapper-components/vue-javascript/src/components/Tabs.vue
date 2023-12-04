@@ -53,7 +53,7 @@ function setTab() {
   const next = Math.floor(Math.random() * (3));
   console.log("set next active tab: ", next)
   if (tabsElement.value) {
-    tabsElement.value.setActiveTab(next);
+    tabsElement.value.$el.setActiveTab(next);
   }
 
 }

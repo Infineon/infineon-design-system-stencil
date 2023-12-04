@@ -21,7 +21,7 @@ const progress = computed(() => {
 
 onMounted(() => {
   updateProgress();
-  setInterval(updateProgress, 50000);
+  setInterval(updateProgress, 100000);
 })
 
 function handleChange() {

@@ -11,6 +11,7 @@ export const config: Config = {
   extras: {
     cloneNodeFix: true,
     enableImportInjection: true,
+    experimentalImportInjection: true,
   },
 
   outputTargets: [
