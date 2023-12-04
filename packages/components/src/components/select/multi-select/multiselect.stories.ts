@@ -71,7 +71,6 @@ export default {
     options: {
       description: 'Takes an array of objects in the following format',
     },
-    onIfxSelect: { action: 'ifxSelect' },
     ifxSelect: {
       action: 'ifxSelect',
       description: 'Custom event emitted when item is selected',
