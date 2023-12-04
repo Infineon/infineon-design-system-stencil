@@ -1,3 +1,16 @@
+# v20.36.0 (Mon Dec 04 2023)
+
+#### 🚀 Enhancement
+
+- 700 add to example apps how to apply custom styling using our design tokens [#711](https://github.com/Infineon/infineon-design-system-stencil/pull/711) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.35.0 (Mon Dec 04 2023)
 
 #### 🚀 Enhancement
