@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkangular=self.webpackChunkangular||[]).push([[3976],{3976:(u,t,s)=>{s.r(t),s.d(t,{ifx_tab:()=>e});var n=s(1252);const e=class{constructor(l){(0,n.r)(this,l),this.header=void 0,this.disabled=void 0}render(){return(0,n.h)("slot",null)}get el(){return(0,n.g)(this)}};e.style=":host{display:block}"}}]);
