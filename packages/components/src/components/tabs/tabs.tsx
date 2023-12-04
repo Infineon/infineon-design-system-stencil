@@ -214,8 +214,6 @@ export class IfxTabs {
               tabindex="0"
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
-              // onFocus={(event) => console.log("focussing, ", event.target)}
-
               role="tab"
             >
               {tab?.header}
