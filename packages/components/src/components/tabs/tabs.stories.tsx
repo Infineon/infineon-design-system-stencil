@@ -27,18 +27,14 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
-    // tabHeaders: {
-    //   name: 'Tab Headers',
-    //   type: { name: 'array', required: true },
-    //   description: 'An array of tab headers in the following format to be used in the tabs component'
-    // },
-    ifxTabIndex: {
-      action: 'ifxTabIndex',
-      description: 'Custom event emitted on tab index change',
+
+    ifxTabChange: {
+      action: 'ifxTabChange',
+      description: 'Custom event emitted on tab index change, containing the current and the previous tab',
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxTabIndex={handleChange}\nVue:@ifxTabIndex="handleChange"\nAngular:(ifxTabIndex)="handleChange()"\nVanillaJs:.addEventListener("ifxTabIndex", (event) => {//handle change});',
+          detail: 'React: onIfxTabChange={handleChange}\nVue:@ifxTabChange="handleChange"\nAngular:(ifxTabChange)="handleChange()"\nVanillaJs:.addEventListener("ifxTabChange", (event) => {//handle change});',
         },
       },
     },
@@ -55,19 +51,12 @@ export default {
   },
 };
 
-// function isDisabled(activeTabIndex: string | number, tabHeaders: { [x: string]: { disabled: any; }; }) {
-//   console.log("tab", activeTabIndex, tabHeaders[activeTabIndex].disabled)
-//   if (tabHeaders[activeTabIndex].disabled) {
-//     return true;
-//   }
-//   return false;
-// }
 
 const Template = (args) => {
 
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
-  tabsElement.addEventListener('ifxTabIndex', action(`ifxTabIndex`));
+  tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));
 
   for (let i = 0; i < args.amountOfTabs; i++) {
     const tabContent = document.createElement('ifx-tab');

@@ -10,9 +10,6 @@ export class IfxTab {
   @Prop() header: string;
   @Prop() disabled: boolean;
 
-  //@Event({ eventName: 'tabBecameActive' }) tabBecameActive: EventEmitter;
-  //@Event({ eventName: 'tabBecameInactive' }) tabBecameInactive: EventEmitter;
-
   render() {
     return <slot />;
   }
