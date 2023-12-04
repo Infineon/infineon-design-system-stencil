@@ -60,9 +60,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
           lerna version $VERSION --no-git-tag-version --y
-          npm run build:components-react
-          npm run build:components-vue          
-          cd packages/components-react
+          npm run build:components-angular
+          npm run build:components-vue
+          cd packages/components-angular/dist/@infineon/infineon-design-system-angular     
+          npm publish   
+          cd ../../../../components-react
           npm publish
           cd ../components-vue
           npm publish
@@ -161,15 +163,15 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd examples/stencil-components/angular
+          cd packages/components-angular
           npm i
           npm i @infineon/infineon-design-system-stencil@latest
-          npm run build
+          npm run build my-app
            
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/stencil-components/angular/dist/ # The folder the action should deploy.
+          folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.
           target-folder: angular-example
           clean-exclude: |
             pr-preview/

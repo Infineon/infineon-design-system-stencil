@@ -1,3 +1,87 @@
+# v20.36.0 (Mon Dec 04 2023)
+
+#### 🚀 Enhancement
+
+- 700 add to example apps how to apply custom styling using our design tokens [#711](https://github.com/Infineon/infineon-design-system-stencil/pull/711) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.35.0 (Mon Dec 04 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: improve documentation on storybook for components with data bindings [#773](https://github.com/Infineon/infineon-design-system-stencil/pull/773) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @adobe/css-tools from 4.3.1 to 4.3.2 in /examples/wrapper-components/react-javascript [#774](https://github.com/Infineon/infineon-design-system-stencil/pull/774) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.6 (Thu Nov 30 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix: status padding should be removed when border prop is false [#770](https://github.com/Infineon/infineon-design-system-stencil/pull/770) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @testing-library/react from 14.1.0 to 14.1.2 in /examples/wrapper-components/react-javascript [#749](https://github.com/Infineon/infineon-design-system-stencil/pull/749) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.34.3 to 20.34.5 in /examples/wrapper-components/vue-javascript [#746](https://github.com/Infineon/infineon-design-system-stencil/pull/746) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.34.3 to 20.34.5 in /examples/wrapper-components/react-javascript [#750](https://github.com/Infineon/infineon-design-system-stencil/pull/750) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.5 (Wed Nov 15 2023)
+
+#### 🐛 Bug Fix
+
+- Enhancement: Updated Vue Example to demonstrate Event usage [#737](https://github.com/Infineon/infineon-design-system-stencil/pull/737) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-react from 20.34.0 to 20.34.3 in /examples/wrapper-components/react-javascript [#734](https://github.com/Infineon/infineon-design-system-stencil/pull/734) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.34.0 to 20.34.3 in /examples/wrapper-components/vue-javascript [#735](https://github.com/Infineon/infineon-design-system-stencil/pull/735) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump axios from 1.6.0 to 1.6.2 in /examples/wrapper-components/react-javascript [#736](https://github.com/Infineon/infineon-design-system-stencil/pull/736) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.34.4 (Wed Nov 15 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix Radio Button [#733](https://github.com/Infineon/infineon-design-system-stencil/pull/733) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.34.3 (Tue Nov 14 2023)
 
 #### 🐛 Bug Fix
