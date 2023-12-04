@@ -60,3 +60,25 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 ```
 
 **Note**: In Angular, you do not have to import each component before using them. 
+
+
+### Events
+
+#### Two way data binding
+
+Two-way binding means that any data-related changes affecting the model are immediately propagated to the matching view(s).
+And any changes made in the view(s) are immediately reflected in the underlying model. 
+When app data changes, so does the UI, and conversely.
+
+
+```js
+//app.component.ts
+switchChecked = false;
+switchDisabled = false;
+...
+toggleSwitchValue(event: any) {
+  console.log("switch value change")
+  this.switchChecked = event.detail;
+}
+//app.component.html
+<ifx-<ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue($event)"></ifx-switch>

@@ -69,9 +69,9 @@ export class AppComponent {
     this.checkboxChecked = !this.checkboxChecked;
   }
 
-  toggleSwitchValue() {
+  toggleSwitchValue(event: any) {
     console.log("switch value change")
-    this.switchChecked = !this.switchChecked;
+    this.switchChecked = event.detail;
   }
   toggleSwitchDisabled() {
     this.switchDisabled = !this.switchDisabled;
