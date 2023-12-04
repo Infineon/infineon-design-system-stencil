@@ -27,7 +27,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^20.23.13"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "auto": {
     "plugins": [

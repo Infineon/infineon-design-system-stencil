@@ -30,7 +30,7 @@ export default {
 
     ifxTabChange: {
       action: 'ifxTabChange',
-      description: 'Custom event emitted on tab index change, containing the current and the previous tab',
+      description: 'Custom event emitted on tab index change, containing the current (currentTab) and the previous tab (previousTab)',
       table: {
         type: {
           summary: 'Framework integration',
@@ -53,7 +53,6 @@ export default {
 
 
 const Template = (args) => {
-
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));

@@ -33,6 +33,7 @@ export class IfxTabs {
   // changing tab
   @Method()
   async setActiveTab(index: number) {
+    console.log("setting new tab");
     const prevActiveTab = this.internalActiveTabIndex;
     this.internalActiveTabIndex = index;
 
@@ -52,14 +53,6 @@ export class IfxTabs {
       this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
       this.internalActiveTabIndex = this.internalActiveTabIndex;
     }
-  }
-  // Helper method to emit events
-  emitEvent(element: HTMLElement, eventName: string) {
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
-      composed: true,
-    });
-    element.dispatchEvent(event);
   }
 
   // needed for smooth border transition
@@ -139,8 +132,6 @@ export class IfxTabs {
 
 
     element.addEventListener('keydown', (event: KeyboardEvent) => {
-      console.log('Keydown event fired:', event.key);
-
       const key = event.key;
       switch (key) {
         case 'ArrowLeft':
@@ -150,7 +141,6 @@ export class IfxTabs {
           this.focusNextTab();
           break;
         case 'Tab':
-          console.log('Tab key pressed');
           this.handleTabKeyPress(event);
           break;
         case 'Home':
@@ -158,14 +148,12 @@ export class IfxTabs {
           this.setActiveTab(0);
           const firstTab = this.tabHeaderRefs[0];
           firstTab.focus();
-          console.log('Home key pressed');
           break;
         case 'End':
           event.preventDefault();
           this.setActiveTab(this.tabHeaderRefs.length - 1);
           const lastTab = this.tabHeaderRefs[this.tabHeaderRefs.length - 1];
           lastTab.focus();
-          console.log('End key pressed');
           break;
         default:
           break;
@@ -227,7 +215,7 @@ export class IfxTabs {
               tabindex="0"
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
-              onFocus={(event) => console.log("focussing, ", event.target)}
+              // onFocus={(event) => console.log("focussing, ", event.target)}
 
               role="tab"
             >
