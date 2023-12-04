@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_javascript=self.webpackChunkreact_javascript||[]).push([[987],{987:(t,s,r)=>{r.r(s),r.d(s,{ifx_tab:()=>a});var e=r(3739);const a=class{constructor(t){(0,e.r)(this,t)}render(){return(0,e.h)("slot",null)}get el(){return(0,e.g)(this)}};a.style=":host{display:block}"}}]);
+//# sourceMappingURL=987.49663c58.chunk.js.map
