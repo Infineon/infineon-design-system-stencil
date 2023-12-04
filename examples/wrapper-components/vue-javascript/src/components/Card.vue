@@ -4,7 +4,7 @@
   <div>
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
-      <ifx-card-image position="right" src="/coffee_unsplash.jpg" alt="" slot="img"></ifx-card-image>
+      <ifx-card-image position="right" :src="img" alt="" slot="img"></ifx-card-image>
 
       <ifx-card-overline>Overline</ifx-card-overline>
       <ifx-card-headline>Headline</ifx-card-headline>

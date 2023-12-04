@@ -33,7 +33,6 @@ export class IfxTabs {
   // changing tab
   @Method()
   async setActiveTab(index: number) {
-    console.log("setting new tab");
     const prevActiveTab = this.internalActiveTabIndex;
     this.internalActiveTabIndex = index;
 
