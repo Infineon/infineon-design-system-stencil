@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Element, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar',
@@ -8,6 +8,13 @@ import { Component, h, Element, Prop, Listen, Event, EventEmitter } from '@stenc
 export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
+  @Prop() termsOfUse: string = ""
+  @Prop() imprint: string = ""
+  @Prop() privacyPolicy: string = ""
+  @Prop() target: string = "_blank"
+  @State() internalTermsofUse: string = ""
+  @State() internalImprint: string = ""
+  @State() internalPrivacyPolicy: string = ""
   @Event() ifxSidebar: EventEmitter;
 
   @Listen('ifxSidebarItem')
@@ -76,6 +83,21 @@ export class Sidebar {
    }
   }
 
+
+  componentWillLoad() { 
+    if(!this.termsOfUse) { 
+      this.internalTermsofUse = undefined;
+    } else this.internalTermsofUse = this.termsOfUse
+
+    if(!this.privacyPolicy) { 
+      this.internalPrivacyPolicy = undefined;
+    } else this.internalPrivacyPolicy = this.privacyPolicy
+
+    if(!this.imprint) { 
+      this.internalImprint = undefined;
+    } else this.internalImprint = this.imprint
+  }
+
   render() {
     return (
       <div aria-label="a navigation sidebar" aria-value={this.applicationName} class='sidebar__container'>
@@ -107,15 +129,15 @@ export class Sidebar {
           <div class="sidebar__footer-wrapper">
             <div class='sidebar__footer-wrapper-top-links'>
               <div class="sidebar__footer-wrapper-top-line">
-                <a href="#">Terms of use</a>
-                <a href="#">Imprint</a>
+                <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                <a target={this.target} href={this.internalImprint}>Imprint</a>
               </div>
               <div class="sidebar__footer-wrapper-bottom-line">
-                <a href="#">Privacy policy</a>
+                <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
               </div>
             </div>
             <div class='sidebar__footer-wrapper-bottom-links'>
-              <a href="#">© 1999 - 2023 Infineon Technologies AG</a>
+              <a href={undefined}>© 1999 - 2023 Infineon Technologies AG</a>
             </div>
           </div>
         </div>

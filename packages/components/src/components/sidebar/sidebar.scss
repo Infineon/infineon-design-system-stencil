@@ -212,6 +212,10 @@
             order: 0;
             flex-grow: 0;
 
+            &:hover { 
+              color: #08665C;
+            }
+
             &:focus { 
               outline: none;
               color: #08665C;
@@ -257,6 +261,10 @@
           flex: none;
           order: 1;
           flex-grow: 0;
+
+          &:hover {
+            cursor: initial;
+          }
 
           &:focus { 
             outline: none;
