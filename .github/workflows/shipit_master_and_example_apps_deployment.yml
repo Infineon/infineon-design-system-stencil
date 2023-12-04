@@ -174,7 +174,8 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.          target-folder: angular-example
+          folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.
+          target-folder: angular-example
           clean-exclude: |
             pr-preview/
             pr-preview-vue-example/
