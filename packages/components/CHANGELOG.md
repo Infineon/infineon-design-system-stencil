@@ -1,3 +1,21 @@
+# v20.35.0 (Mon Dec 04 2023)
+
+#### 🚀 Enhancement
+
+- Documentation: improve documentation on storybook for components with data bindings [#773](https://github.com/Infineon/infineon-design-system-stencil/pull/773) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @adobe/css-tools from 4.3.1 to 4.3.2 in /examples/wrapper-components/react-javascript [#774](https://github.com/Infineon/infineon-design-system-stencil/pull/774) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.34.6 (Thu Nov 30 2023)
 
 #### 🐛 Bug Fix
