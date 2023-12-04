@@ -53,4 +53,20 @@ It may be necessary to add the following to your .env file at project root:
 
 This can also be achieved by updating your start script in the ``package.json`` accordingly.
 
+### Events
 
+#### Two way data binding
+
+Two-way binding allows creating synchronization between 2 entities, for example, application data and view. 
+In React, this is achieved by binding the value attribute of the input element to the value state variable using the useState hook, and binding the onChangeevent of the input element to the handleChange function.
+
+```js
+//MyComponent.js
+const [radioBtnValue, setRadioBtnValue] = useState(false);
+const handleChange = (event) => {
+  console.log("Updating radio btn value: ", event.detail);
+  setRadioBtnValue(event.detail);
+};
+...
+<IfxRadioButton disabled={disabled} onIfxChange={handleChange} value={radioBtnValue} error={error} name="name">label</IfxRadioButton>
+```

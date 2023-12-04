@@ -596,9 +596,18 @@
 
 
   <h2>Switch</h2>
-  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue()"></ifx-switch>
+  <ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue($event)"></ifx-switch>
+  <br>
+  <span>Switch value: {{ switchChecked }}</span>
   <br />
   <br />
+
+  <h2>Status</h2>
+  <ifx-status [label]="Status with border" [color]="orange" [border]="true" />
+  <ifx-status [label]="Status without border" [color]="orange" [border]="false" />
+  <br />
+  <br />
+
 
   <h2>Table</h2>
   <ifx-basic-table row-height='default'

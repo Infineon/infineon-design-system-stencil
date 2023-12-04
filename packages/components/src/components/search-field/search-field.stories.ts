@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: 'Components/Search Field',
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     showDeleteIcon: true,
@@ -16,9 +16,9 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    onIfxInput: {
+    ifxInput: {
       action: 'ifxInput',
-      description: 'Custom event emitted on input',
+      description: 'Custom event',
       table: {
         type: {
           summary: 'Framework integration',

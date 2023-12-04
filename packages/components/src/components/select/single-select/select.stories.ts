@@ -73,12 +73,6 @@ export default {
       control: { type: 'radio' },
     },
     searchPlaceholderValue: { control: { type: 'text' } },
-    onIfxSelect: {
-      action: 'ifxSelect',
-    },
-    onIfxInput: {
-      action: 'ifxInput',
-    },
 
     options: {
       description: 'Takes an array of objects in the following format',
