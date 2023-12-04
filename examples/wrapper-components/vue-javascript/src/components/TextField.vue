@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div>
     <form id="another-form">
@@ -20,10 +23,14 @@
   </div>
 </template>
 
+
+
 <script setup>
 import { ref, onMounted } from 'vue';
 
+
 let inputValue = ref("");
+
 
 onMounted(() => {
   updateTextInput();

@@ -4,9 +4,9 @@ This example application demonstrates the usage of the Angular Wrapper Component
 
 ## Run locally
 
-### Using Stencil components from npm package (symlink to local Stencil library)
+### Using web components from local package (symlinks to local Stencil and Angular wrapper library)
 
-Current solution using symlinks to test the local Angular wrapper library: (not possible to create symlinks outside of the Angular workspace)
+Current solution using symlinks to test the local Angular wrapper library: (Using a symlink - the wrapper library - inside of another symlink - the core component library - while being outside of the Angular workspace can cause issues.)
 
 Go to:
 [Angular Components Workspace](../../../packages/components-angular)
@@ -21,7 +21,9 @@ npm run test:local
 This runs the application located in ```./projects/my-app``` within the Angular Workspace.
 
 
-### Using Stencil components from npm registry (use latest version or specify canary version in package.json)
+### Using web components from npm registry (use latest version or specify canary version in package.json)
+
+Within the ``components-angular`` workspace, run:
 
 ```bash
 npm i
