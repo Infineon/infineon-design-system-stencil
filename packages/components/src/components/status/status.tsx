@@ -18,6 +18,7 @@ export class Status {
       <div aria-label="a status indicator" aria-value={this.label} class={containerClass}>
         <span class={`dot ${this.color}`}></span>
         <p class="text">{this.label}</p>
+        <span>test</span>
       </div>
     );
   }
