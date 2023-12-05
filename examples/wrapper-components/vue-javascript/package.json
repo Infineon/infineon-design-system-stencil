@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@infineon/infineon-design-system-vue": "^20.36.0",
-    "@vitejs/plugin-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.5.1",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
     "vue": "^3.3.8"
