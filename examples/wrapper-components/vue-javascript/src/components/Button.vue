@@ -4,8 +4,7 @@
   <div>
     <h2>Button</h2>
     <div>
-      <ifx-button theme='default' @click="handleClick"
-        @mouseover="handleMouseOver">
+      <ifx-button theme='default' @click="handleClick" disabled="true" @mouseover="handleMouseOver">
         Click me
       </ifx-button>
       <div style="background-color:grey">
