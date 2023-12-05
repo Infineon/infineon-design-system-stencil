@@ -16,7 +16,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
-    "vue": "^3.3.8"
+    "vue": "^3.3.10"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
