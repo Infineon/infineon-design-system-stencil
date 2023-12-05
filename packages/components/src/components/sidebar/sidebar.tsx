@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, h, Element, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-sidebar',
@@ -7,41 +7,95 @@ import { Component, h, Element, Prop } from '@stencil/core';
 })
 export class Sidebar {
   @Element() el;
-  @Prop() applicationName: string = 'Application name'
+  @Prop() applicationName: string = ''
+  @Prop() termsOfUse: string = ""
+  @Prop() imprint: string = ""
+  @Prop() privacyPolicy: string = ""
+  @Prop() target: string = "_blank"
+  @State() internalTermsofUse: string = ""
+  @State() internalImprint: string = ""
+  @State() internalPrivacyPolicy: string = ""
+  @Event() ifxSidebar: EventEmitter;
 
-
-  componentDidLoad() {
-    this.addEventListenersToHandleCustomFocusState();
+  @Listen('ifxSidebarItem')
+  handleEventEmission(event: CustomEvent) { 
+    this.ifxSidebar.emit(event.detail)
   }
 
-  private addEventListenersToHandleCustomFocusState() {
-    const element = this.el.shadowRoot.firstChild;
-    if (!element) {
-      console.error('element not found');
-      return;
-    }
-    const slot = element.querySelector('slot');
-    if(slot) { 
-      const assignedNodes = slot.assignedNodes();
+  querySidebarItems(el) { 
+    return el.querySelectorAll('ifx-sidebar-item')
+  }
 
-      for (let i = 0; i < assignedNodes.length; i++) {
-        const node = assignedNodes[i];
-        if (node.nodeName === 'IFX-SIDEBAR-ITEM') {
-          const sidebarItem = node as HTMLIfxSidebarItemElement;
-          sidebarItem.tabIndex = -1;
+  getAllSidebarItems(el) {
+    const sideBarItemChildren = this.querySidebarItems(this.el)
+    let allItems = {list: [], activeSection: ""}
+    sideBarItemChildren.forEach((item) => { 
+      allItems.list.push(item)
+        const subChildren = this.querySidebarItems(item.shadowRoot)
+        if(el === item) { 
+          allItems.activeSection = item;
         }
-      }
+        if(subChildren.length !== 0) { 
+          subChildren.forEach((subItem) => {
+            if(el === subItem) { 
+              allItems.activeSection = item;
+            } 
+            allItems.list.push(subItem)
+              const subChildrenChildren = this.querySidebarItems(subItem.shadowRoot)
+              if(subChildrenChildren.length !== 0) { 
+                subChildrenChildren.forEach((subChildrenItem) => { 
+                  if(el === subChildrenItem) {
+                    allItems.activeSection = subItem;
+                  }
+                  allItems.list.push(subChildrenItem)
+                })
+              }
+          })
+        } 
+    })
+    return allItems
+  }
 
-      element.tabIndex = -1;
-
-      const sidebarFooterWrapperTopLinks = element.querySelector('.sidebar__footer-wrapper');
-      const aElements = sidebarFooterWrapperTopLinks?.querySelectorAll('a');
-      for (let i = 0; i < aElements.length; i++) {
-        aElements[i].tabIndex = -1;
-      }
-    }
+  isActive(iteratedComponent) { 
+    const activeAttributeValue = iteratedComponent.getAttribute('active');
+    const isActive = activeAttributeValue === 'true';
+    return isActive
+  }
   
+  @Listen('ifxSidebarActiveItem')
+  handleActiveItem(event: CustomEvent) { 
+   const targetComponent = event.detail;
+   const allItems = this.getAllSidebarItems(event.detail)
+  
+   for(let i = 0; i < allItems.list.length; i++) { 
+    const iteratedComponent = allItems.list[i];
+    const isActive = this.isActive(iteratedComponent)
+    if(isActive && targetComponent !== iteratedComponent) { 
+      allItems.list[i].setAttribute('active', 'false')
+    }
 
+    if(targetComponent !== iteratedComponent) { 
+      let elementLabel = allItems.list[i].shadowRoot.querySelector('.sidebar__nav-item-label');
+      elementLabel.classList.remove('active-section')
+    }
+
+    targetComponent.setActiveClasses(allItems.activeSection)
+   }
+  }
+
+
+  componentWillLoad() { 
+    if(!this.termsOfUse) { 
+      this.internalTermsofUse = undefined;
+    } else this.internalTermsofUse = this.termsOfUse
+
+    if(!this.privacyPolicy) { 
+      this.internalPrivacyPolicy = undefined;
+    } else this.internalPrivacyPolicy = this.privacyPolicy
+
+    if(!this.imprint) { 
+      this.internalImprint = undefined;
+    } else this.internalImprint = this.imprint
   }
 
   render() {
@@ -68,15 +122,6 @@ export class Sidebar {
           </div>
           <div class="sidebar__nav-container">
             <slot />
-            {/* <div class="sidebar__nav-item">
-                <div class="sidebar__nav-item-icon-wrapper">
-                  <ifx-icon icon='image-16'></ifx-icon>
-                </div>
-                <div class="sidebar__nav-item-label">Menu Item</div>
-                <div class="sidebar__nav-item-number">
-                  <ifx-number-indicator>7</ifx-number-indicator>
-                </div>
-              </div> */}
           </div>
         </div>
 
@@ -84,15 +129,15 @@ export class Sidebar {
           <div class="sidebar__footer-wrapper">
             <div class='sidebar__footer-wrapper-top-links'>
               <div class="sidebar__footer-wrapper-top-line">
-                <a href="#">Terms of use</a>
-                <a href="#">Imprint</a>
+                <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                <a target={this.target} href={this.internalImprint}>Imprint</a>
               </div>
               <div class="sidebar__footer-wrapper-bottom-line">
-                <a href="#">Privacy policy</a>
+                <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
               </div>
             </div>
             <div class='sidebar__footer-wrapper-bottom-links'>
-              <a href="#">© 1999 - 2023 Infineon Technologies AG</a>
+              <a href={undefined}>© 1999 - 2023 Infineon Technologies AG</a>
             </div>
           </div>
         </div>
