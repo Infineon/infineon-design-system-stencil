@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[5071],{5071:(e,l,s)=>{s.r(l),s.d(l,{ifx_tab:()=>n});var t=s(4004);const n=class{constructor(a){(0,t.r)(this,a)}render(){return(0,t.h)("slot",null)}get el(){return(0,t.g)(this)}};n.style=":host{display:block}"}}]);
