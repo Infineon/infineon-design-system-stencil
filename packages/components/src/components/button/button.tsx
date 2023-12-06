@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element, Watch, State } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -54,6 +54,7 @@ export class Button {
     element.addEventListener('blur', () => {
       element.classList.remove('focus');
     });
+
   }
 
   componentWillLoad() {
@@ -93,18 +94,18 @@ export class Button {
     });
   }
 
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Enter') {
+      this.handleClick();
+    }
+  }
 
   handleFocus(event: FocusEvent) {
     // the anchor element should not be focusable when it's disabled
     if (this.disabled) {
       event.preventDefault();
       this.focusableElement.blur();
-    } else {
-      this.focusableElement.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          this.handleClick();
-        }
-      });
     }
   }
 
