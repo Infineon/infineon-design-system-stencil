@@ -12,11 +12,11 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^20.34.5",
+    "@infineon/infineon-design-system-vue": "^20.36.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
-    "vue": "^3.3.8"
+    "vue": "^3.3.10"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
