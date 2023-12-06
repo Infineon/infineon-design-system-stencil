@@ -31,25 +31,25 @@ const SubmenuTemplate = (args) =>
   Header Section
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
+    Menu Item
+    </ifx-sidebar-item active="true">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
@@ -59,25 +59,25 @@ const SubmenuTemplate = (args) =>
   Header Section
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
@@ -87,25 +87,25 @@ const SubmenuTemplate = (args) =>
   Header Section
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
   <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
+    <ifx-sidebar-item>
+    Menu Item
+    </ifx-sidebar-item>
+  </ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16">
+    Menu Item
+    <ifx-sidebar-item>
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
