@@ -15,9 +15,9 @@ export class IfxTabs {
   @Prop() activeTabIndex: number = 0;
   @State() internalPrevActiveTabIndex: number = 0;
   @State() internalActiveTabIndex: number = 0;
+  @State() internalFocusedTabIndex: number = 0;
   @State() tabRefs: HTMLElement[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
-  @State() tabTitles: string[] = [];
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
   @Event() ifxTabChange: EventEmitter;
@@ -35,12 +35,15 @@ export class IfxTabs {
   async setActiveTab(index: number) {
     const prevActiveTab = this.internalActiveTabIndex;
     this.internalActiveTabIndex = index;
+    this.internalFocusedTabIndex = index;
+
 
     if (this.tabObjects[this.internalActiveTabIndex]?.disabled) {
 
       // Reset to previously active tab
       if (!this.tabObjects[prevActiveTab]?.disabled) {
         this.internalActiveTabIndex = prevActiveTab;
+        this.internalFocusedTabIndex = prevActiveTab;
         this.activeTabIndex = prevActiveTab;
         return;
       }
@@ -49,6 +52,7 @@ export class IfxTabs {
     if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
       return;
     } else {
+      console.log("test")
       this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
       this.internalActiveTabIndex = this.internalActiveTabIndex;
     }
@@ -107,7 +111,6 @@ export class IfxTabs {
 
   componentDidLoad() {
     this.reRenderBorder()
-    this.addEventListenersToHandleCustomFocusAndActiveState();
     this.updateTabFocusability();
   }
 
@@ -122,75 +125,54 @@ export class IfxTabs {
     })
   }
 
-  private addEventListenersToHandleCustomFocusAndActiveState() {
-    const element = this.el.shadowRoot?.querySelector('.tabs-list') as HTMLElement;
-    if (!element) {
-      console.error('Tabs list not found');
-      return;
-    }
-
-
-    element.addEventListener('keydown', (event: KeyboardEvent) => {
-      const key = event.key;
-      switch (key) {
-        case 'ArrowLeft':
-          this.focusPreviousTab();
-          break;
-        case 'ArrowRight':
-          this.focusNextTab();
-          break;
-        case 'Tab':
-          this.handleTabKeyPress(event);
-          break;
-        case 'Home':
-          event.preventDefault();
-          this.setActiveTab(0);
-          const firstTab = this.tabHeaderRefs[0];
-          firstTab.focus();
-          break;
-        case 'End':
-          event.preventDefault();
-          this.setActiveTab(this.tabHeaderRefs.length - 1);
-          const lastTab = this.tabHeaderRefs[this.tabHeaderRefs.length - 1];
-          lastTab.focus();
-          break;
-        default:
-          break;
-      }
-
-    });
-
-  }
 
   private focusNextTab() {
-    let nextIndex = this.internalActiveTabIndex + 1;
+    let nextIndex = this.internalFocusedTabIndex + 1;
     while (nextIndex < this.tabHeaderRefs.length && this.tabObjects[nextIndex].disabled) {
       nextIndex++;
     }
-    if (nextIndex < this.tabHeaderRefs.length) {
-      this.setActiveTab(nextIndex);
+    this.internalFocusedTabIndex = nextIndex;
+    if (nextIndex >= 0 && nextIndex < this.tabHeaderRefs.length) {
       this.tabHeaderRefs[nextIndex].focus();
     }
   }
 
   private focusPreviousTab() {
-    let prevIndex = this.internalActiveTabIndex - 1;
-    while (prevIndex >= 0 && this.tabObjects[prevIndex].disabled) {
+    let prevIndex = this.internalFocusedTabIndex - 1;
+    while ((prevIndex >= 0) && (this.tabObjects[prevIndex].disabled)) {
       prevIndex--;
     }
-    if (prevIndex >= 0) {
-      this.setActiveTab(prevIndex);
+    this.internalFocusedTabIndex = prevIndex;
+    if ((prevIndex >= 0) && (prevIndex < this.tabHeaderRefs.length)) {
       this.tabHeaderRefs[prevIndex].focus();
     }
   }
 
-  private handleTabKeyPress(event: KeyboardEvent) {
-    if (!event.shiftKey) {
-      event.preventDefault() //prevent default tabbing behavior
-      const activeContent = this.el.shadowRoot?.querySelector(`.tab-content > div:nth-child(${this.internalActiveTabIndex + 1})`) as HTMLElement;
-      if (activeContent) {
-        activeContent.setAttribute('tabIndex', '0'); //ensure tab content ia focusable
-        activeContent.focus(); //focus on the content of the active tab
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Tab') {
+      if (ev.shiftKey) {
+        // Shift + Tab
+        if (this.internalFocusedTabIndex === 0) {
+          // Allow default behavior to move focus out of component
+          return;
+        } else {
+          ev.preventDefault();
+          this.focusPreviousTab();
+        }
+      } else {
+        // Tab
+        if (this.internalFocusedTabIndex === this.tabHeaderRefs.length - 1) {
+          // Allow default behavior to move focus out of component
+          return;
+        } else {
+          ev.preventDefault();
+          this.focusNextTab();
+        }
+      }
+    } else if (ev.key === 'Enter') {
+      if (this.internalFocusedTabIndex !== -1) {
+        this.setActiveTab(this.internalFocusedTabIndex);
       }
     }
   }
@@ -204,14 +186,8 @@ export class IfxTabs {
             <li
               class={`tab-item ${index === this.internalActiveTabIndex && !tab.disabled ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
-
-              onClick={() => this.setActiveTab(index)}
-              onKeyUp={event => {
-                if (event.key === 'Enter') {
-                  this.setActiveTab(index);
-                }
-              }}
               tabindex="0"
+              onClick={() => this.setActiveTab(index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
               role="tab"
