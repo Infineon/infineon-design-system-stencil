@@ -6,8 +6,42 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    font-family: tokens.$ifxFontFamilyBody
+    gap: tokens.$ifxSize100;
+    max-width: tokens.$ifxSize600+tokens.$ifxSize600+tokens.$ifxSize300;
+    font-family: tokens.$ifxFontFamilyBody;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    color: tokens.$ifxColorEngineering400;
+}
+
+.step.active {
+    color: tokens.$ifxColorBaseBlack;
+    .step-icon{
+        color: white;
+        background-color: tokens.$ifxColorOcean500;
+        
+        .active-inner-icon{
+            width: tokens.$ifxSize200;
+            height: tokens.$ifxSize200;
+            background: white;
+            border-radius:tokens.$ifxBorderRadiusRound;
+        }
+    }
+    
+    .left-connector{
+        background: tokens.$ifxColorOcean500;
+    }
+}
+
+.step.complete{
+    color: tokens.$ifxColorBaseBlack;
+    .step-icon{
+        background-color: tokens.$ifxColorOcean500;
+    }
+    .step-connector{
+        background: tokens.$ifxColorOcean500;
+    }
 }
 
 .step-icon-wrapper{
@@ -19,19 +53,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
-    background-color: tokens.$ifxColorOcean500;
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
+    background-color: tokens.$ifxColorEngineering400;
     color: white;
-    border-radius: 50%;
+    border-radius: tokens.$ifxBorderRadiusRound;
 }
 
 .step-connector{
     height: 2px;
     width: tokens.$ifxSize600;
-    background: tokens.$ifxColorOcean500;
-
-    &.hide-connector{
-        height: 0px;
-    }
+    background: tokens.$ifxColorEngineering400;
 }

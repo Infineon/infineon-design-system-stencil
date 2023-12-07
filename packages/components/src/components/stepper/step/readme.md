@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `label`  | `label`   |             | `string` | `undefined` |
+| Property | Attribute | Description | Type      | Default        |
+| -------- | --------- | ----------- | --------- | -------------- |
+| `active` | `active`  |             | `boolean` | `false`        |
+| `label`  | `label`   |             | `string`  | `undefined`    |
+| `status` | `status`  |             | `string`  | `'incomplete'` |
 
 
 ## Dependencies

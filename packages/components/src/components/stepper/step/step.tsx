@@ -6,23 +6,28 @@ import { Component, h, Prop, Element } from "@stencil/core";
     shadow: true
 })
 
-export class Stepper{
+export class Step{
     @Element() el: HTMLElement;
     @Prop() label: string;
-    
-    // @Prop() firstStep: boolean = false;
-    // @Prop() lastStep: boolean = false;
-    
+    @Prop() status: string = 'incomplete';
+    @Prop() active: boolean = false;   
 
     render(){
         return(
-            <div class = 'step'> 
+            <div class = {`step ${this.status} ${this.active ? 'active' : ''}`}> 
                 <div class='step-icon-wrapper'>
-                    <span class={`left-connector step-connector ${this.el.hasAttribute('first-step') ? 'hide-connector': ''}`}></span>
-                    <div class='step-icon'><ifx-icon icon='check16' /></div> 
-                    <span class={`right-connector step-connector ${this.el.hasAttribute('last-step') ? 'hide-connector': ''}`}></span>
+                    <span class='left-connector step-connector'></span>
+                    <div class='step-icon'>
+                        { 
+                            !this.active && <ifx-icon icon={`${this.status === 'incomplete' ?  'viewreplacement16': 'check16'}`} /> 
+                        }
+                        {
+                            this.active && <span class = 'active-inner-icon'></span>
+                        }
+                    </div> 
+                    <span class='right-connector step-connector'></span>
                 </div>
-                <div class = 'step-label'> { this.label } </div>
+                <slot/>
             </div>
         );
     }

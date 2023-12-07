@@ -428,11 +428,15 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 
 
 export const IfxStep = /*@__PURE__*/ defineContainer<JSX.IfxStep>('ifx-step', undefined, [
-  'label'
+  'label',
+  'status',
+  'active'
 ]);
 
 
-export const IfxStepper = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', undefined);
+export const IfxStepper = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', undefined, [
+  'activeStep'
+]);
 
 
 export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [

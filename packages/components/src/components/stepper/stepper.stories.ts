@@ -1,19 +1,25 @@
 export default{
     title: 'Under Development/Stepper',
     tags: ['autodocs'],
+    args: { 
+        activeStep: 2,
+        amountOfSteps: 4 
+    },
+    argTypes: {
+        activeStep: { control : 'number', description: 'Current active step', default: 1},
+        amountOfSteps: { control : 'number' },
+    }
 }
 
-const DefaultTemplate = () => {
+const DefaultTemplate = (args) => {
     const element = document.createElement('ifx-stepper');
-    const s1 = document.createElement('ifx-step');
-    const s2 = document.createElement('ifx-step');
-    const s3 = document.createElement('ifx-step');
-    s1.setAttribute('label', 'Step 1');
-    s1.setAttribute('first-step', '');
-    s2.setAttribute('label', 'Step Label step label step label');
-    s3.setAttribute('label', 'Step 3');
-    s3.setAttribute('last-step', '');
-    element.append(s1,s2,s3);
+    for(let i = 0; i < args.amountOfSteps; i++){
+        const step = document.createElement('ifx-step');
+        if(i+1 < args.activeStep) step.setAttribute('status', 'complete');
+        step.innerHTML = 'Step ' + (i+1);
+        element.appendChild(step);
+    }
+    element.setAttribute('active-step', args.activeStep);
     return element;
 }
 
