@@ -1,3 +1,15 @@
+# v20.36.3 (Thu Dec 07 2023)
+
+#### 🐛 Bug Fix
+
+- Icon-button: size inconsistency [#739](https://github.com/Infineon/infineon-design-system-stencil/pull/739) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.36.2 (Thu Dec 07 2023)
 
 #### 🐛 Bug Fix
