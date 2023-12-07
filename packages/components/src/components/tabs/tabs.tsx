@@ -52,7 +52,6 @@ export class IfxTabs {
     if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
       return;
     } else {
-      console.log("test")
       this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
       this.internalActiveTabIndex = this.internalActiveTabIndex;
     }
@@ -190,7 +189,6 @@ export class IfxTabs {
               onClick={() => this.setActiveTab(index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
-              role="tab"
             >
               {tab?.header}
             </li>
