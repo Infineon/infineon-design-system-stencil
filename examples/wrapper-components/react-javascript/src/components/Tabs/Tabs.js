@@ -3,6 +3,7 @@ import { IfxTabs, IfxTab } from '@infineon/infineon-design-system-react';
 
 function Tabs() {
   const tabsElement = useRef(null);
+  const tabIndex = useRef(0);
   const INTERVAL = 20000;
 
   useEffect(() => {
@@ -21,11 +22,11 @@ function Tabs() {
   const setTab = () => {
     const next = Math.floor(Math.random() * (3));
     console.log("set next active tab: ", next)
-    tabsElement.current?.setActiveTab(next);
+    tabsElement.current.activeTabIndex = next;
   }
 
   return (
-    <IfxTabs onIfxTabChange={handleChange} ref={tabsElement} orientation="horizontal">
+    <IfxTabs onIfxTabChange={handleChange} activeTabIndex={tabIndex} ref={tabsElement} orientation="horizontal">
       <IfxTab header="a" disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
