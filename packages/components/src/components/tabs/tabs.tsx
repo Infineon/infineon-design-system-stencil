@@ -1,5 +1,5 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-tabs',
@@ -26,36 +26,38 @@ export class IfxTabs {
   @Watch('activeTabIndex')
   onActiveTabIndexChange(newIndex: number, oldIndex: number) {
     this.internalPrevActiveTabIndex = oldIndex;
-    this.internalActiveTabIndex = newIndex;
+    this.internalActiveTabIndex = this.tabObjects[newIndex]?.disabled ? oldIndex : newIndex;
+    this.reRenderBorder();
+    this.ifxTabChange.emit({ previousTab: oldIndex, currentTab: newIndex });
   }
 
 
   // changing tab
-  @Method()
-  async setActiveTab(index: number) {
-    const prevActiveTab = this.internalActiveTabIndex;
-    this.internalActiveTabIndex = index;
-    this.internalFocusedTabIndex = index;
+  // @Method()
+  // async setActiveTab(index: number) {
+  //   const prevActiveTab = this.internalActiveTabIndex;
+  //   this.internalActiveTabIndex = index;
+  //   this.internalFocusedTabIndex = index;
 
 
-    if (this.tabObjects[this.internalActiveTabIndex]?.disabled) {
+  //   if (this.tabObjects[this.internalActiveTabIndex]?.disabled) {
 
-      // Reset to previously active tab
-      if (!this.tabObjects[prevActiveTab]?.disabled) {
-        this.internalActiveTabIndex = prevActiveTab;
-        this.internalFocusedTabIndex = prevActiveTab;
-        this.activeTabIndex = prevActiveTab;
-        return;
-      }
-    }
+  //     // Reset to previously active tab
+  //     if (!this.tabObjects[prevActiveTab]?.disabled) {
+  //       this.internalActiveTabIndex = prevActiveTab;
+  //       this.internalFocusedTabIndex = prevActiveTab;
+  //       this.activeTabIndex = prevActiveTab;
+  //       return;
+  //     }
+  //   }
 
-    if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
-      return;
-    } else {
-      this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
-      this.internalActiveTabIndex = this.internalActiveTabIndex;
-    }
-  }
+  //   if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
+  //     return;
+  //   } else {
+  //     this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
+  //     this.internalActiveTabIndex = this.internalActiveTabIndex;
+  //   }
+  // }
 
   // needed for smooth border transition
   reRenderBorder() {
@@ -91,6 +93,8 @@ export class IfxTabs {
     this.tabRefs = Array.from(tabs);
     this.tabRefs.forEach((tab, index) => {
       tab.setAttribute('slot', `tab-${index}`);
+      // tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
+      tab.setAttribute('tabindex', index === this.internalActiveTabIndex ? '0' : '-1');
     });
   }
 
@@ -106,6 +110,8 @@ export class IfxTabs {
   componentWillLoad() {
     this.setDefaultOrientation()
     this.onSlotChange();
+    this.internalActiveTabIndex = this.activeTabIndex;
+    this.internalFocusedTabIndex = this.internalActiveTabIndex;
   }
 
   componentDidLoad() {
@@ -149,6 +155,7 @@ export class IfxTabs {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
+    console.log("key event ", ev.key)
     if (ev.key === 'Tab') {
       if (ev.shiftKey) {
         // Shift + Tab
@@ -170,8 +177,11 @@ export class IfxTabs {
         }
       }
     } else if (ev.key === 'Enter') {
-      if (this.internalFocusedTabIndex !== -1) {
-        this.setActiveTab(this.internalFocusedTabIndex);
+      if (this.internalFocusedTabIndex !== -1 && !this.tabObjects[this.internalFocusedTabIndex].disabled) {
+        const previouslyActiveTabIndex = this.internalActiveTabIndex;
+        this.internalActiveTabIndex = this.internalFocusedTabIndex;
+        this.ifxTabChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
+        // this.setActiveTab(this.internalFocusedTabIndex);
       }
     }
   }
@@ -186,9 +196,10 @@ export class IfxTabs {
               class={`tab-item ${index === this.internalActiveTabIndex && !tab.disabled ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               tabindex="0"
-              onClick={() => this.setActiveTab(index)}
+              onClick={() => { if (!tab.disabled) this.internalActiveTabIndex = index; }}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
+              role="tab"
             >
               {tab?.header}
             </li>

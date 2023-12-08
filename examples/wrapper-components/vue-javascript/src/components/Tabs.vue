@@ -3,7 +3,7 @@
 <template>
   <div>
     <h2>Tabs</h2>
-    <ifx-tabs @ifxTabChange="handleChange" ref="tabsElement" orientation="horizontal">
+    <ifx-tabs @ifxTabChange="handleChange" ref="tabsElement" :activeTabIndex="2" orientation="horizontal">
       <ifx-tab header="a" :disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
@@ -39,6 +39,7 @@
 import { onMounted, ref } from 'vue'
 
 const tabsElement = ref(null);
+const tabIndex = ref(0);
 
 onMounted(() => {
   setTab();
@@ -53,7 +54,7 @@ function setTab() {
   const next = Math.floor(Math.random() * (3));
   console.log("set next active tab: ", next)
   if (tabsElement.value) {
-    // tabsElement.value.$el.setActiveTab(next);
+    tabIndex.value = next;;
   }
 
 }

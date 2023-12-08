@@ -21,19 +21,6 @@
 | `ifxTabChange` |             | `CustomEvent<any>` |
 
 
-## Methods
-
-### `setActiveTab(index: number) => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
