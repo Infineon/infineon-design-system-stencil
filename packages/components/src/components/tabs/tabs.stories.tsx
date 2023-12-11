@@ -26,7 +26,10 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
-    activeTabIndex: 0,
+    activeTabIndex: {
+      name: 'Active tab index',
+      description: 'Set a tab as active by providing the index (tab can not be disabled)',
+    },
 
     ifxTabChange: {
       action: 'ifxTabChange',
