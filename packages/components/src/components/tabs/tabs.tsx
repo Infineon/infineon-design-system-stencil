@@ -60,8 +60,8 @@ export class IfxTabs {
     const tabs = this.el.querySelectorAll('ifx-tab');
     this.tabObjects = Array.from(tabs).map((tab) => {
       return {
-        header: tab?.header === null ? tab?.getAttribute('header') !== null : tab.header,
-        disabled: tab?.disabled === true // (tab.getAttribute('disabled') === 'true')
+        header: tab?.header,
+        disabled: tab?.disabled === true
       }
     });
 
