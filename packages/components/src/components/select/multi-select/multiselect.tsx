@@ -402,7 +402,7 @@ export class Multiselect {
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
 
     return (
-      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} ref={el => this.dropdownElement = el as HTMLElement}>
+      <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
           this.label ?
             <div class="ifx-label-wrapper">
