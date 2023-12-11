@@ -33,7 +33,8 @@
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "*"
+    "@infineon/design-system-tokens": "^3.3.1",
+    "@infineon/infineon-design-system-stencil": "^20.23.13"
   },
   "auto": {
     "plugins": [

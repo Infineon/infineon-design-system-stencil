@@ -23,7 +23,7 @@
     "build": "PUBLIC_URL=. react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:wrapper": "cd ../../../ && npm i && npm run build:components && cd packages/components && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm run build",
+    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm i @infineon/design-system-tokens && npm run build",
     "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
