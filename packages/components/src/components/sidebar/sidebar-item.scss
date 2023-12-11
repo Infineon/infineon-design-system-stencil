@@ -27,6 +27,8 @@
       color: #08665C;
     }
   }
+
+  
 }
 
 .sidebar__nav-item {
@@ -44,7 +46,24 @@
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
 
-  & .sidebar__nav-item-label { 
+  &.active { //this is new
+    color: #0A8276;
+  }
+
+  // & .sidebar__nav-item-label { 
+  //   &.active-section { 
+  //     &::before { 
+  //       content: "";
+  //       position: absolute;
+  //       left: -44px;
+  //       height: 40px;
+  //       width: 2px;
+  //       background: #0A8276;
+  //     }
+  //   }
+  // }
+
+  
     &.active-section { 
       &::before { 
         content: "";
@@ -55,7 +74,7 @@
         background: #0A8276;
       }
     }
-  }
+  
 
   &.open { 
     & .sidebar__nav-item-label { 
@@ -87,18 +106,31 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    & .sidebar__nav-item-label { 
-      &.active-section { 
-        &::before { 
-          content: "";
-          position: absolute;
-          left: -32px;
-          height: 40px;
-          width: 2px;
-          background: #0A8276;
-        }
+    // & .sidebar__nav-item-label { 
+    //   &.active-section { 
+    //     &::before { 
+    //       content: "";
+    //       position: absolute;
+    //       left: -32px;
+    //       height: 40px;
+    //       width: 2px;
+    //       background: #0A8276;
+    //     }
+    //   }
+    // }
+
+     
+    &.active-section { 
+      &::before { 
+        content: "";
+        position: absolute;
+        left: -32px;
+        height: 40px;
+        width: 2px;
+        background: #0A8276;
       }
     }
+    
 
     &.open { 
       & .sidebar__nav-item-indicator { 
@@ -170,9 +202,9 @@
     //   color: #08665C;
     // }
     
-    &.active { 
-      color: #0A8276;
-    }
+    // &.active { 
+    //   color: #0A8276;
+    // }
 
     //flex-direction: column;
     

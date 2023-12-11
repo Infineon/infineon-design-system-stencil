@@ -26,7 +26,7 @@ export class SidebarItem {
   handleActiveChange(newValue: boolean, oldValue: boolean) { 
     this.internalActiveState = this.active;
     if(newValue !== oldValue) { 
-      let labelElement = this.getNavItemLabel(this.el.shadowRoot)
+      let labelElement = this.getNavItem(this.el.shadowRoot)
       if(!this.isExpandable && !newValue) {
         this.handleClassList(labelElement, 'remove', 'active')
       }
@@ -62,8 +62,8 @@ export class SidebarItem {
     return expandableSubmenu
   }
 
-  getNavItemLabel(el) { 
-    return el?.querySelector('.sidebar__nav-item-label')
+  getNavItem(el) { 
+    return el?.querySelector('.sidebar__nav-item')
   }
 
   getSidebarMenuItems(el = this.el) { 
@@ -152,10 +152,10 @@ export class SidebarItem {
   getActiveItemSection() { 
     const parentIsSidebar = this.parentElementIsSidebar()
     if(parentIsSidebar) { 
-      const labelElement = this.getNavItemLabel(this.el.shadowRoot)
+      const labelElement = this.getNavItem(this.el.shadowRoot)
       return labelElement;
     } else { 
-      const labelElement = this.getNavItemLabel(this.el.parentElement.shadowRoot)
+      const labelElement = this.getNavItem(this.el.parentElement.shadowRoot)
       return labelElement;
     }
   }
@@ -163,11 +163,11 @@ export class SidebarItem {
   @Method()
   async setActiveClasses(activeSection = null) { 
      const activeMenuItemSection = this.getActiveItemSection()
-     const activeMenuItem = this.getNavItemLabel(this.el.shadowRoot)
+     const activeMenuItem = this.getNavItem(this.el.shadowRoot)
      if(activeMenuItemSection) { 
        this.handleClassList(activeMenuItemSection, 'add', 'active-section')
      } else if(activeSection) { 
-      const labelElement = this.getNavItemLabel(activeSection.shadowRoot)
+      const labelElement = this.getNavItem(activeSection.shadowRoot)
       this.handleClassList(labelElement, 'add', 'active-section')
      }
      this.handleClassList(activeMenuItem, 'add', 'active')

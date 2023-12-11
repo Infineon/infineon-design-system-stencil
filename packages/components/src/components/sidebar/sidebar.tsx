@@ -75,7 +75,7 @@ export class Sidebar {
     }
 
     if(targetComponent !== iteratedComponent) { 
-      let elementLabel = allItems.list[i].shadowRoot.querySelector('.sidebar__nav-item-label');
+      let elementLabel = allItems.list[i].shadowRoot.querySelector('.sidebar__nav-item');
       elementLabel.classList.remove('active-section')
     }
 
