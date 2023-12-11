@@ -27,37 +27,12 @@ export class IfxTabs {
   onActiveTabIndexChange(newIndex: number, oldIndex: number) {
     this.internalPrevActiveTabIndex = oldIndex;
     this.internalActiveTabIndex = this.tabObjects[newIndex]?.disabled ? oldIndex : newIndex;
+    this.activeTabIndex = this.internalActiveTabIndex;
     this.reRenderBorder();
     this.ifxTabChange.emit({ previousTab: oldIndex, currentTab: newIndex });
   }
 
 
-  // changing tab
-  // @Method()
-  // async setActiveTab(index: number) {
-  //   const prevActiveTab = this.internalActiveTabIndex;
-  //   this.internalActiveTabIndex = index;
-  //   this.internalFocusedTabIndex = index;
-
-
-  //   if (this.tabObjects[this.internalActiveTabIndex]?.disabled) {
-
-  //     // Reset to previously active tab
-  //     if (!this.tabObjects[prevActiveTab]?.disabled) {
-  //       this.internalActiveTabIndex = prevActiveTab;
-  //       this.internalFocusedTabIndex = prevActiveTab;
-  //       this.activeTabIndex = prevActiveTab;
-  //       return;
-  //     }
-  //   }
-
-  //   if (this.internalActiveTabIndex < 0 || this.internalActiveTabIndex >= this.tabHeaderRefs.length) {
-  //     return;
-  //   } else {
-  //     this.ifxTabChange.emit({ previousTab: prevActiveTab, currentTab: this.internalActiveTabIndex });
-  //     this.internalActiveTabIndex = this.internalActiveTabIndex;
-  //   }
-  // }
 
   // needed for smooth border transition
   reRenderBorder() {
@@ -93,8 +68,7 @@ export class IfxTabs {
     this.tabRefs = Array.from(tabs);
     this.tabRefs.forEach((tab, index) => {
       tab.setAttribute('slot', `tab-${index}`);
-      // tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
-      tab.setAttribute('tabindex', index === this.internalActiveTabIndex ? '0' : '-1');
+      tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
     });
   }
 
@@ -155,7 +129,6 @@ export class IfxTabs {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
-    console.log("key event ", ev.key)
     if (ev.key === 'Tab') {
       if (ev.shiftKey) {
         // Shift + Tab
@@ -181,7 +154,6 @@ export class IfxTabs {
         const previouslyActiveTabIndex = this.internalActiveTabIndex;
         this.internalActiveTabIndex = this.internalFocusedTabIndex;
         this.ifxTabChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
-        // this.setActiveTab(this.internalFocusedTabIndex);
       }
     }
   }
@@ -190,7 +162,7 @@ export class IfxTabs {
   render() {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation}`}>
-        <ul class="tabs-list">
+        <ul role="tablist" class="tabs-list">
           {this.tabObjects?.map((tab, index) => (
             <li
               class={`tab-item ${index === this.internalActiveTabIndex && !tab.disabled ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}

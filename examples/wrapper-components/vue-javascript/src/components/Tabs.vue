@@ -4,7 +4,7 @@
   <div>
     <h2>Tabs</h2>
     <ifx-tabs @ifxTabChange="handleChange" ref="tabsElement" :active-tab-index="tabIndex" orientation="horizontal">
-      <ifx-tab header="a" :disabled="false">
+      <ifx-tab header="tab header a" :disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -13,7 +13,7 @@
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
-      <ifx-tab header="b" :disabled="true">
+      <ifx-tab header="tab header b" :disabled="true">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -22,7 +22,7 @@
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </ifx-tab>
-      <ifx-tab header="c" :disabled="false">
+      <ifx-tab header="tab header c" :disabled="false">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
