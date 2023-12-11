@@ -9,26 +9,39 @@
   &:focus { 
     outline: none;
     & .sidebar__nav-item-icon-wrapper { 
-      color: #08665C;
+      color: tokens.$ifxColorOcean600;
     }
     & .sidebar__nav-item-label { 
       outline: none;
-      color: #08665C;
+      color: tokens.$ifxColorOcean600;
+    }
+    & .sidebar__nav-item-indicator {
+      & .item__arrow-wrapper { 
+        & ifx-icon { 
+          color: tokens.$ifxColorOcean600;
+        }
+      }
     }
   }
 
   &:hover { 
     outline: none;
     & .sidebar__nav-item-icon-wrapper { 
-      color:#08665C;
+      color: tokens.$ifxColorOcean600;
     }
     & .sidebar__nav-item-label { 
       outline: none;
-      color: #08665C;
+      color: tokens.$ifxColorOcean600;
+    }
+
+    & .sidebar__nav-item-indicator {
+      & .item__arrow-wrapper { 
+        & ifx-icon { 
+          color: tokens.$ifxColorOcean600;
+        }
+      }
     }
   }
-
-  
 }
 
 .sidebar__nav-item {
@@ -36,7 +49,6 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  //padding: 0px 4px 0px 0px;
   padding: 8px 0px;
   gap: 4px;
   flex: none;
@@ -46,24 +58,10 @@
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
 
-  &.active { //this is new
-    color: #0A8276;
+  &.active { 
+    color: tokens.$ifxColorOcean500;
   }
 
-  // & .sidebar__nav-item-label { 
-  //   &.active-section { 
-  //     &::before { 
-  //       content: "";
-  //       position: absolute;
-  //       left: -44px;
-  //       height: 40px;
-  //       width: 2px;
-  //       background: #0A8276;
-  //     }
-  //   }
-  // }
-
-  
     &.active-section { 
       &::before { 
         content: "";
@@ -71,14 +69,13 @@
         left: -44px;
         height: 40px;
         width: 2px;
-        background: #0A8276;
+        background: tokens.$ifxColorOcean500;
       }
     }
   
 
   &.open { 
     & .sidebar__nav-item-label { 
-      //color: #0A8276;
       font-family: Source Sans 3;
       font-size: 16px;
       font-style: normal;
@@ -89,7 +86,6 @@
     & .sidebar__nav-item-indicator { 
       & .item__arrow-wrapper { 
         & ifx-icon { 
-          color: #0A8276;
           transform: rotate(-180deg);
         }
       }
@@ -98,7 +94,7 @@
 
   &.header__section { 
     box-sizing: padding-box;
-    border-top: 1px solid #EEEDED;
+    border-top: 1px solid tokens.$ifxColorEngineering200;
     padding: 20px 0px;
     display: -webkit-flex;
     -webkit-line-clamp: 1;
@@ -106,20 +102,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    // & .sidebar__nav-item-label { 
-    //   &.active-section { 
-    //     &::before { 
-    //       content: "";
-    //       position: absolute;
-    //       left: -32px;
-    //       height: 40px;
-    //       width: 2px;
-    //       background: #0A8276;
-    //     }
-    //   }
-    // }
-
-     
     &.active-section { 
       &::before { 
         content: "";
@@ -127,32 +109,22 @@
         left: -32px;
         height: 40px;
         width: 2px;
-        background: #0A8276;
+        background: tokens.$ifxColorOcean500;
       }
     }
     
-
     &.open { 
       & .sidebar__nav-item-indicator { 
         & .item__arrow-wrapper { 
           & ifx-icon { 
-            color: #0A8276;
             transform: rotate(-180deg);
           }
         }
       }
     }
 
-    & .sidebar__nav-item-indicator { 
-      & .item__arrow-wrapper { 
-        & ifx-icon { 
-          color: #1D1D1D;
-        }
-      }
-    }
-
     & .sidebar__nav-item-label { 
-      color: #1D1D1D;
+      color: tokens.$ifxColorBaseBlack;
       font-family: Source Sans 3;
       font-size: 16px;
       font-style: normal;
@@ -187,27 +159,10 @@
     line-height: tokens.$ifxLineHeightM;
     display: flex;
     align-items: center;
-    //color: tokens.$ifxColorBaseBlack;
     flex: none;
     order: 1;
     flex-grow: 1;
     cursor: pointer;
-
-    // &:focus { 
-    //   outline: none;
-    //   color: #08665C;
-    // }
-
-    // &:hover { 
-    //   color: #08665C;
-    // }
-    
-    // &.active { 
-    //   color: #0A8276;
-    // }
-
-    //flex-direction: column;
-    
   }
 
   & .sidebar__nav-item-indicator {
@@ -225,14 +180,11 @@
 .expandable__submenu { 
   display: none;
   list-style-type: none;
-  //padding-left: 12px;
-  //display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
   padding-left: 12px;
-  //gap: tokens.$ifxSpace100;
-  
+
   &.open { 
     display: flex;
   }
