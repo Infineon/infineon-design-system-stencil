@@ -214,12 +214,12 @@ export class SidebarItem {
   render() {
     return (
       <div>
-        <a href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
+        <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
             </div>}
-          <div class="sidebar__nav-item-label" tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)}>
+          <div class="sidebar__nav-item-label">
             <slot />
           </div>
           <div class="sidebar__nav-item-indicator">
