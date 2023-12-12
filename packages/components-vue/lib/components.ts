@@ -5,9 +5,8 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
-import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-defineCustomElements();
+
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
