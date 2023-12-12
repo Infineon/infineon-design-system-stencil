@@ -27,7 +27,6 @@ export class IfxTabs {
   onActiveTabIndexChange(newIndex: number, oldIndex: number) {
     this.internalPrevActiveTabIndex = oldIndex;
     this.internalActiveTabIndex = this.tabObjects[newIndex]?.disabled ? oldIndex : newIndex;
-    this.activeTabIndex = this.internalActiveTabIndex;
     this.reRenderBorder();
     this.ifxTabChange.emit({ previousTab: oldIndex, currentTab: newIndex });
   }
