@@ -18,7 +18,6 @@ export const config: Config = {
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      dir: 'components'
     },
     {
       type: 'dist',
