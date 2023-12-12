@@ -6,17 +6,17 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../components-vue && npm i && npm link @infineon/infineon-design-system-stencil && npm run build",
+    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../components-vue && npm i && npm link @infineon/infineon-design-system-stencil && npm i @infineon/design-system-tokens && npm run build",
     "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
     "preview:link": "run-s link dev",
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^20.34.5",
+    "@infineon/infineon-design-system-vue": "^20.36.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
-    "vue": "^3.3.8"
+    "vue": "^3.3.10"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
