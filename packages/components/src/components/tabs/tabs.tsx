@@ -27,6 +27,7 @@ export class IfxTabs {
   onActiveTabIndexChange(newIndex: number, oldIndex: number) {
     this.internalPrevActiveTabIndex = oldIndex;
     this.internalActiveTabIndex = this.tabObjects[newIndex]?.disabled ? oldIndex : newIndex;
+    this.activeTabIndex = this.internalActiveTabIndex;
     this.reRenderBorder();
     this.ifxTabChange.emit({ previousTab: oldIndex, currentTab: newIndex });
   }
@@ -82,18 +83,21 @@ export class IfxTabs {
 
   componentWillLoad() {
     this.setDefaultOrientation()
-    this.onSlotChange();
     this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
   }
 
   componentDidLoad() {
-    this.reRenderBorder()
-    this.updateTabFocusability();
+    this.onSlotChange();
+    this.updateBorderAndFocus();
   }
 
   componentDidUpdate() {
-    this.reRenderBorder();
+    this.updateBorderAndFocus();
+  }
+
+  private updateBorderAndFocus() {
+    this.reRenderBorder()
     this.updateTabFocusability();
   }
 
@@ -124,6 +128,12 @@ export class IfxTabs {
     if ((prevIndex >= 0) && (prevIndex < this.tabHeaderRefs.length)) {
       this.tabHeaderRefs[prevIndex].focus();
     }
+  }
+
+  private getTabItemClass(index: number) {
+    const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
+    const isDisabled = this.tabObjects[index].disabled;
+    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`;
   }
 
   @Listen('keydown')
@@ -164,7 +174,7 @@ export class IfxTabs {
         <ul role="tablist" class="tabs-list">
           {this.tabObjects?.map((tab, index) => (
             <li
-              class={`tab-item ${index === this.internalActiveTabIndex && !tab.disabled ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
+              class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               tabindex="0"
               onClick={() => { if (!tab.disabled) this.internalActiveTabIndex = index; }}
