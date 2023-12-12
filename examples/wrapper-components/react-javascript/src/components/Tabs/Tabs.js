@@ -2,7 +2,6 @@ import { useRef, useEffect, React } from 'react';
 import { IfxTabs, IfxTab } from '@infineon/infineon-design-system-react';
 
 function Tabs() {
-  const tabsElement = useRef(null);
   const tabIndex = useRef(0);
   const INTERVAL = 20000;
 
@@ -22,12 +21,12 @@ function Tabs() {
   const setTab = () => {
     const next = Math.floor(Math.random() * (3));
     console.log("set next active tab: ", next)
-    tabsElement.current.activeTabIndex = next;
+    tabIndex.current = next;
   }
 
   return (
-    <IfxTabs onIfxTabChange={handleChange} activeTabIndex={tabIndex} ref={tabsElement} orientation="horizontal">
-      <IfxTab header="a" disabled="false">
+    <IfxTabs onIfxTabChange={handleChange} activeTabIndex={tabIndex} orientation="horizontal">
+      <IfxTab header="tab header a" disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -36,7 +35,7 @@ function Tabs() {
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </IfxTab>
-      <IfxTab header="b" disabled="true">
+      <IfxTab header="tab header b" disabled="true">
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -45,7 +44,7 @@ function Tabs() {
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </IfxTab>
-      <IfxTab header="c" disabled="false">
+      <IfxTab header="tab header c" disabled="false">
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur

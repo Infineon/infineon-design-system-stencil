@@ -15,14 +15,14 @@ export const config: Config = {
   },
 
   outputTargets: [
-    {
-      type: 'dist',
-      esmLoaderPath: '../loader',
-    },
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      // generateTypeDeclarations: true,
+      dir: 'components'
+    },
+    {
+      type: 'dist',
+      esmLoaderPath: '../loader',
     },
     {
       type: 'docs-readme',

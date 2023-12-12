@@ -12,6 +12,7 @@
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
+    "@infineon/infineon-design-system-stencil": "^20.37.0--canary.741.44b6704a6228afaa7ed47bf111fac5a76acee4c0.0",
     "@infineon/infineon-design-system-vue": "^20.36.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
