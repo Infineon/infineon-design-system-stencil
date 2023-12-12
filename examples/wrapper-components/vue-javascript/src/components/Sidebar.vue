@@ -1,10 +1,148 @@
 <template>
   <div class="app">
-    <ifx-sidebar application-name="This is a very long application">
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://yahoo.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://bing.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
-    <ifx-sidebar-item href="http://naver.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+    <ifx-sidebar application-name="Application Name" id="sidebar">
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          icon="image-16"
+          active="true"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+  
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+  
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item
+          
+          target="_blank"
+          icon="image-16"
+        >
+          Menu Item
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
   </ifx-sidebar>
   </div>
 </template>

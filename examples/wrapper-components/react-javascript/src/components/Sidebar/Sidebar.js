@@ -3,14 +3,15 @@ import { IfxSidebar, IfxSidebarItem } from '@infineon/infineon-design-system-rea
 
 function Sidebar() {
   return (
-    <div >
-      <IfxSidebar>
-        <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item One</IfxSidebarItem>
-        <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Two</IfxSidebarItem>
-        <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Three</IfxSidebarItem>
-        <IfxSidebarItem href="http://google.com" target="_blank" icon="image-16">Item Four</IfxSidebarItem>
-      </IfxSidebar>
-    </div>
+    <IfxSidebar application-name="Application Name">
+      <IfxSidebarItem>
+        Header Section
+        <IfxSidebarItem>
+        Second Layer Menu
+        </IfxSidebarItem>
+      </IfxSidebarItem>
+    </IfxSidebar>
+  
   )
 }
 
