@@ -51,7 +51,7 @@ function handleChange(event) {
 
 function setTab() {
   const next = Math.floor(Math.random() * (3));
-  console.log("set next active tab: ", next)
+  console.log("setting next active tab: ", next)
   activeTabIndex.value = next;;
 }
 
