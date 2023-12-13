@@ -18,6 +18,7 @@ export const config: Config = {
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
+      dir: 'stencil-components'
     },
     {
       type: 'dist',

@@ -1,37 +1,42 @@
 //ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 
+
 @Component({
   tag: 'ifx-tabs',
   styleUrl: 'tabs.scss',
   shadow: true
 })
-
 export class IfxTabs {
   @Element() el: HTMLElement;
+
   @Prop() tabs: { header: string, disabled?: boolean }[] = [];
-  @Prop() orientation: string = ""
+  @Prop() orientation: string = "horizontal";
+  @Prop({ mutable: true }) activeTabIndex: number = 0;
+
   @State() internalOrientation: string;
-  @Prop() activeTabIndex: number = 0;
-  @State() internalPrevActiveTabIndex: number = 0;
   @State() internalActiveTabIndex: number = 0;
   @State() internalFocusedTabIndex: number = 0;
   @State() tabRefs: HTMLElement[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
+
   @Event() ifxTabChange: EventEmitter;
 
-
-  @Watch('activeTabIndex')
-  onActiveTabIndexChange(newIndex: number, oldIndex: number) {
-    this.internalPrevActiveTabIndex = oldIndex;
-    this.internalActiveTabIndex = this.tabObjects[newIndex]?.disabled ? oldIndex : newIndex;
-    this.activeTabIndex = this.internalActiveTabIndex;
-    this.reRenderBorder();
-    this.ifxTabChange.emit({ previousTab: oldIndex, currentTab: newIndex });
+  componentWillLoad() {
+    this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
+    this.internalActiveTabIndex = this.activeTabIndex;
+    this.internalFocusedTabIndex = this.internalActiveTabIndex;
   }
 
+  @Watch('activeTabIndex')
+  activeTabIndexChanged(newValue: number, oldValue: number) {
+    if (newValue !== oldValue) {
+      this.internalActiveTabIndex = newValue;
+      this.ifxTabChange.emit({ previousTab: oldValue, currentTab: newValue });
+    }
+  }
 
 
   // needed for smooth border transition
@@ -79,12 +84,6 @@ export class IfxTabs {
     if (!validOrientations.includes(lowercaseOrientation)) {
       this.internalOrientation = 'horizontal';
     } else this.internalOrientation = this.orientation;
-  }
-
-  componentWillLoad() {
-    this.setDefaultOrientation()
-    this.internalActiveTabIndex = this.activeTabIndex;
-    this.internalFocusedTabIndex = this.internalActiveTabIndex;
   }
 
   componentDidLoad() {
