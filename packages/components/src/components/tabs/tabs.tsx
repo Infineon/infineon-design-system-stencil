@@ -35,8 +35,19 @@ export class IfxTabs {
     if (newValue !== oldValue) {
       this.internalActiveTabIndex = newValue;
       this.ifxTabChange.emit({ previousTab: oldValue, currentTab: newValue });
+      this.updateTabStyles();
     }
   }
+
+
+  updateTabStyles() {
+    console.log("updating style");
+    this.tabHeaderRefs.forEach((tab, index) => {
+      tab.classList.toggle('active', index === this.internalActiveTabIndex);
+      tab.setAttribute('aria-selected', index === this.internalActiveTabIndex ? 'true' : 'false')
+    });
+  }
+
 
   // needed for smooth border transition
   reRenderBorder() {
@@ -168,7 +179,7 @@ export class IfxTabs {
 
   render() {
     return (
-      <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation}`}>
+      <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation} selected#${this.internalActiveTabIndex}`}>
         <ul role="tablist" class="tabs-list">
           {this.tabObjects?.map((tab, index) => (
             <li
