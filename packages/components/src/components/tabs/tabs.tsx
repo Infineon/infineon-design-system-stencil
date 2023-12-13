@@ -38,7 +38,6 @@ export class IfxTabs {
     }
   }
 
-
   // needed for smooth border transition
   reRenderBorder() {
     const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
