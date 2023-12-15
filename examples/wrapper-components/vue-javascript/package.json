@@ -6,14 +6,14 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:wrapper": "cd ../../.. && npm i && npm run build:components && npm run build:components-vue",
-    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
+    "build:wrapper": "cd ../../../ && npm i && npm run build:components && cd packages/components-vue && npm link ../components && npm run build",
+    "link": "npm i && npm link ../../../packages/components-vue",
     "preview:link": "run-s link dev",
     "test:local": "run-s build:wrapper preview:link"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "*",
-    "@infineon/infineon-design-system-vue": "file:../../../packages/components-vue/dist/",
+    "@infineon/infineon-design-system-vue": "^20.36.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
