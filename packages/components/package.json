@@ -28,7 +28,7 @@
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",
     "dev:stencil": "stencil build --serve --watch",
-    "watch:stencil": "stencil build --docs --watch",
+    "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook"
   },
