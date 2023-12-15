@@ -15,21 +15,29 @@
 
   <script defer>
 
-  </script>
+    const handleContent = () => { 
+      const myAccordion = document.getElementById('myaccordionitem')
 
-</head>
-
-<body>
-
-  <ifx-accordion auto-collapse="false">
-    <ifx-accordion-item initialcollapse="true" caption="Label">
-      Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing
+      console.log('my accordion', myAccordion.shadowRoot.querySelector('slot'))
+      myAccordion.textContent = `Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing
       elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum,
       nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
       adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
       cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit
       amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.`
+    }
+
+
+  </script>
+
+</head>
+
+<body>
+  <button onclick="handleContent()">change content</button>
+  <ifx-accordion auto-collapse="false" id="myaccordion">
+    <ifx-accordion-item initialcollapse="true" caption="Label" id="myaccordionitem">
+      Content for Initial Item. 
     </ifx-accordion-item>
     <ifx-accordion-item caption="Label">
       Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing

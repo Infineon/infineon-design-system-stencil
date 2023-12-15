@@ -57,6 +57,12 @@ export class IfxAccordionItem {
     return this.open;
   }
 
+  handleSlotChange() { 
+    if(this.open) { 
+      this.openAccordionItem()
+    }
+  }
+
   render() {
     return (
       <div aria-label={this.caption} class={`accordion-item ${this.open ? 'open' : ''}`}>
@@ -68,7 +74,7 @@ export class IfxAccordionItem {
         </div>
         <div class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)}>
           <div class="inner-content">
-            <slot />
+            <slot onSlotchange={() => this.handleSlotChange()} />
           </div>
         </div>
       </div>
