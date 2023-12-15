@@ -6,10 +6,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:wrapper": "npm i && cd ../../../ && npm i && npm run build:components && cd packages/components npm link && cd ../components-vue && npm link @infineon/infineon-design-system-stencil && npm i @infineon/design-system-tokens && npm run build",
+    "build:wrapper": "cd ../../../packages/components && npm install && npm run watch:stencil && cd ../components-vue && npm run build",
     "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
     "preview:link": "run-s link dev",
-    "test:local": "run-s build:wrapper preview:link"
+    "test:local": "run-p build:wrapper preview:link"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "*",

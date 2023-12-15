@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 // import './index.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { defineCustomElements } from '@infineon/infineon-design-system-react';
+import App from './App';
 
 defineCustomElements();
 
