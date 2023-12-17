@@ -23,10 +23,10 @@
     "build": "PUBLIC_URL=. react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:wrapper": "cd ../../../packages/components && npm install && npm run watch:stencil && cd ../components-react && npm run build",
-    "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
+    "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-react && npm run build",
+    "link": "cd ../../../packages/components-react && rm -rf node_modules && npm link && cd ../../examples/wrapper-components/react-javascript && rm -rf node_modules && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link start",
-    "test:local": "run-p build:wrapper preview:link"
+    "test:local": "run-s build:wrapper preview:link"
   },
   "eslintConfig": {
     "extends": [

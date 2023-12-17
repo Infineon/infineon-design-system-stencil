@@ -25,7 +25,7 @@ function Tabs() {
   }
 
   return (
-    <IfxTabs onIfxTabChange={handleChange} activeTabIndex={tabIndex} orientation="horizontal">
+    <IfxTabs onIfxTabChange={handleChange} active-tab-index={tabIndex} orientation="horizontal">
       <IfxTab header="tab header a" disabled="false">
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
