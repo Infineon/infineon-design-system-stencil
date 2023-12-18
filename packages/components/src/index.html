@@ -15,58 +15,11 @@
 
   <script defer>
 
-    const handleContent = () => { 
-      const myAccordion = document.getElementById('myaccordionitem')
-
-      console.log('my accordion', myAccordion.shadowRoot.querySelector('slot'))
-      myAccordion.textContent = `Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum,
-      nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.`
-    }
-
-
   </script>
 
 </head>
 
 <body>
-  <button onclick="handleContent()">change content</button>
-  <ifx-accordion auto-collapse="false" id="myaccordion">
-    <ifx-accordion-item initialcollapse="true" caption="Label" id="myaccordionitem">
-      Content for Initial Item. 
-    </ifx-accordion-item>
-    <ifx-accordion-item caption="Label">
-      Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum,
-      nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-    </ifx-accordion-item>
-    <ifx-accordion-item caption="Label">
-      Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum,
-      nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-    </ifx-accordion-item>
-    <ifx-accordion-item caption="Label">
-      Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing
-      elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum,
-      nec egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
-      adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-      cursus ipsum, nec egestas odio sapien eget neque. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-      bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-    </ifx-accordion-item>
-  </ifx-accordion>;
 
 </body>
 
