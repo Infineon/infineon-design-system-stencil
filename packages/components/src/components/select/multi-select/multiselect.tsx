@@ -15,6 +15,7 @@ export class Multiselect {
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
+  @State() internalError: boolean = false;
   @Prop() errorMessage: string = "Error";
   @Prop() label: string = "";
   @State() persistentSelectedOptions: Option[] = [];
@@ -41,6 +42,7 @@ export class Multiselect {
 
   async loadInitialOptions() {
     this.isLoading = true;
+    this.internalError = this.error;
     // Load the first batch of options (e.g., first 20)
     this.loadedOptions = await this.fetchOptions(0, this.batchSize);
     this.isLoading = false;
@@ -119,6 +121,11 @@ export class Multiselect {
     this.filteredOptions = [...this.loadedOptions];
   }
 
+  @Watch('error')
+  updateInternalError() { 
+    this.internalError = this.error;
+  }
+
   @Watch('loadedOptions')
   loadedOptionsChanged() {
     this.filteredOptions = [...this.loadedOptions];
@@ -126,13 +133,13 @@ export class Multiselect {
 
 
   handleOptionClick(option: Option) {
-    this.error = false; //reset potential previous errors
+    this.internalError = false; //reset potential previous errors
     // 1. Prevent action if disabled
     //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
     let newOptionsLength = option.children ? option.children.length : 1;
     if (this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
       console.error('Max item count reached');
-      this.error = true;
+      this.internalError = true;
       this.errorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
@@ -464,7 +471,7 @@ export class Multiselect {
         ${this.getSizeClass()} 
         ${this.dropdownOpen ? 'active' : ''} 
         ${this.dropdownFlipped ? 'is-flipped' : ''}
-        ${this.error ? 'error' : ""}
+        ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           tabindex="0"
           onClick={(event) => this.handleWrapperClick(event)}
@@ -507,7 +514,7 @@ export class Multiselect {
 
         </div>
         {
-          this.error ?
+          this.internalError ?
             <div class="ifx-error-message-wrapper">
               <span>{this.errorMessage}</span>
             </div> : null
