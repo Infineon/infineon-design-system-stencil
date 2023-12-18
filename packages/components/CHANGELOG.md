@@ -1,3 +1,16 @@
+# v20.36.4 (Mon Dec 18 2023)
+
+#### 🐛 Bug Fix
+
+- updated icons-library dependency [#829](https://github.com/Infineon/infineon-design-system-stencil/pull/829) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.36.3 (Thu Dec 07 2023)
 
 #### 🐛 Bug Fix
