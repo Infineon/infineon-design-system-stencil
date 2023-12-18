@@ -59,9 +59,11 @@ jobs:
           cd packages/components-angular/projects/component-library
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           cd ../../../../
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-vue
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION" -w @infineon/infineon-design-system-react
-  
+          cd packages/components-vue
+          rm -rf node_modules
+          cd ../components-react
+          rm -rf node_modules
+     
       - name: Build and deploy Angular, Vue and React packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
