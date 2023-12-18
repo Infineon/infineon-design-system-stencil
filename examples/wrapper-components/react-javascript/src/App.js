@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Alert from './components/Alert/Alert'
 import Link from './components/Link/Link';
 import Button from './components/Button/button';

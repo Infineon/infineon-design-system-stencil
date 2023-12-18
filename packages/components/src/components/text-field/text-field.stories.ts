@@ -3,7 +3,7 @@ import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: "Components/Text Field",
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     disabled: false,
@@ -24,21 +24,20 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
-    onIfxInput: { action: 'ifxInput' },
     icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
     },
     ifxInput: {
       action: 'ifxInput',
-      description: 'Custom event emitted on input change',
+      description: 'Custom event',
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxInput={handleChange}\nVue:@ifxInput="handleChange"\nAngular:(ifxInput)="handleChange()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle change});',
+          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
-    }
+    },
   }
 };
 

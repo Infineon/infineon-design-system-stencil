@@ -1,0 +1,6 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+
+div {
+  background-color: tokens.$ifxColorBaseWhite;
+}

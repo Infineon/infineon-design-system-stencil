@@ -40,7 +40,7 @@ export default {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
     },
-    onIfxModalOpen: {
+    ifxModalOpen: {
       action: 'ifxModalOpen',
       description: 'Custom event emitted when modal opens',
       table: {
@@ -50,7 +50,7 @@ export default {
         },
       },
     },
-    onIfxModalClose: {
+    ifxModalClose: {
       action: 'ifxModalClose',
       description: 'Custom event emitted when modal closes',
       table: {
