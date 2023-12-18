@@ -11,18 +11,18 @@ const options = [{
   selected: false
 },
 {
-  value: "c",
-  label: "option c",
+  value: "z",
+  label: "option z",
   selected: false,
   children: [
     {
-      value: "c1",
-      label: "option c1",
+      value: "z1",
+      label: "option z1",
       selected: false
     },
     {
-      value: "c2",
-      label: "option c2",
+      value: "z2",
+      label: "option z2",
       selected: false
     }
   ]
@@ -34,7 +34,8 @@ export default {
   // tags: ['autodocs'],
   args: {
     size: "m",
-    // max: 5,
+    batchSize: 10,
+    maxItemCount: 10,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -45,6 +46,7 @@ export default {
   },
   argTypes: {
     size: {
+      name: 'Size',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm'
@@ -53,27 +55,48 @@ export default {
         type: 'radio',
       },
     },
-    // max: {
-    //   control: { type: 'number' },
-    //   description: 'Maximum selectable items',
-    // },
+    batchSize: {
+      name: 'Batch size',
+      description: 'Batch size used during lazy loading options',
+      control: {
+        type: 'number',
+      },
+    },
+    maxItemCount: {
+      name: 'Maximum selectable items',
+      control: { type: 'number' },
+      description: 'Number of maximum selectable items',
+    },
     disabled: {
+      name: 'Disabled',
       options: [true, false],
       control: { type: 'radio' },
     },
     error: {
+      name: 'Error',
       options: [true, false],
       control: { type: 'radio' },
     },
-    errorMessage: { control: 'text' },
-    label: { control: 'text' },
-    placeholder: { control: 'text' },
+    errorMessage: {
+      name: 'Error message',
+      control: 'text'
+    },
+    label: {
+      name: 'Label',
+      control: 'text'
+    },
+    placeholder: {
+      name: 'Placeholder',
+      control: 'text'
+    },
     options: {
+      name: 'Options',
       description: 'Takes an array of objects in the following format',
     },
     ifxSelect: {
+      name: 'Custom event: ifxSelect',
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected',
+      description: 'Custom event emitted when item is selected or unselected',
       table: {
         type: {
           summary: 'Framework integration',
@@ -87,7 +110,9 @@ export default {
 const DefaultTemplate = (args) => {
   const template = `<ifx-multiselect 
   options='${JSON.stringify(args.options)}' 
+  batch-size='${args.batchSize}'
   size='${args.size}'
+  max-item-count='${args.maxItemCount}'
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'

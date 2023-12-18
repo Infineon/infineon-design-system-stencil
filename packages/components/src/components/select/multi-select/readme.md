@@ -9,6 +9,7 @@
 
 | Property       | Attribute        | Description | Type              | Default           |
 | -------------- | ---------------- | ----------- | ----------------- | ----------------- |
+| `batchSize`    | `batch-size`     |             | `number`          | `50`              |
 | `disabled`     | `disabled`       |             | `boolean`         | `false`           |
 | `error`        | `error`          |             | `boolean`         | `false`           |
 | `errorMessage` | `error-message`  |             | `string`          | `"Error"`         |
