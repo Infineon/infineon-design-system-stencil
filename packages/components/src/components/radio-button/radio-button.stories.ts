@@ -12,7 +12,7 @@ export default {
     label: 'Text'
   },
   argTypes: {
-    onIfxChange: {
+    ifxChange: {
       description: 'Custom event emitted when radio button checked and unchecked',
       table: {
         type: {

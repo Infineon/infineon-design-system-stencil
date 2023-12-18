@@ -313,10 +313,8 @@ To run Storybook to view and test our Stencil Web Components, we first need to e
 For building the application for the first time (to load fonts, assets and stylesheets) run:
 
 ```bash
-yarn/npm run build:storybook
+yarn/npm run build:components
 ```
-
-This will generate a static Storybook in the ```storybook-static``` directory.
 
 ### Start Storybook
 

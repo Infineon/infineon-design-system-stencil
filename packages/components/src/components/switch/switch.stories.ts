@@ -11,7 +11,7 @@ export default {
 
   },
   argTypes: {
-    onIfxChange: {
+    ifxChange: {
       description: 'Custom event emitted on change',
       table: {
         type: {
