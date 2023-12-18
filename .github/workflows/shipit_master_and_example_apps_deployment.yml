@@ -60,6 +60,10 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
           lerna version $VERSION --no-git-tag-version --y
+          npm run build:components-react
+          npm run build:components-vue          
+          cd packages/components-react
+          npm publish --verbose
           npm run build:components-angular
           npm run build:components-vue
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular     
@@ -67,7 +71,7 @@ jobs:
           cd ../../../../components-react
           npm publish
           cd ../components-vue
-          npm publish
+          npm publish --verbose
 
 
 #deploy gh-pages for example applications based on the master branch:
@@ -163,6 +167,7 @@ jobs:
   
       - name: Install and Build
         run: |
+          cd examples/wrapper-components/angular
           cd packages/components-angular
           npm i
           npm i @infineon/infineon-design-system-stencil@latest

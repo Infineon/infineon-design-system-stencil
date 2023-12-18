@@ -241,6 +241,7 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
 
 export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', undefined, [
   'options',
+  'batchSize',
   'size',
   'disabled',
   'error',
