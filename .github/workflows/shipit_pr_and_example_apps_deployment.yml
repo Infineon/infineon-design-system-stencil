@@ -60,9 +60,9 @@ jobs:
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           cd ../../../../
           cd packages/components-vue
-          rm -rf node_modules
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           cd ../components-react
-          rm -rf node_modules
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
      
       - name: Build and deploy Angular, Vue and React packages
         env:
