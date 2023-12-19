@@ -1,4 +1,5 @@
-import { Component, h, Prop, Element } from "@stencil/core";
+import { Component, h, Prop } from "@stencil/core";
+import stepperState from "../stepperStore";
 
 @Component({
     tag: 'ifx-step',
@@ -7,28 +8,34 @@ import { Component, h, Prop, Element } from "@stencil/core";
 })
 
 export class Step{
-    @Element() el: HTMLElement;
-    @Prop() label: string;
-    @Prop() status: string = 'incomplete';
-    @Prop() active: boolean = false;   
+
+    @Prop() lastStep: boolean = false;
+    @Prop() key: number;
 
     render(){
         return(
-            <div class = {`step ${this.status} ${this.active ? 'active' : ''}`}> 
-                <div class='step-icon-wrapper'>
-                    <span class='left-connector step-connector'></span>
-                    <div class='step-icon'>
-                        { 
-                            !this.active && <ifx-icon icon={`${this.status === 'incomplete' ?  'viewreplacement16': 'check16'}`} /> 
-                        }
-                        {
-                            this.active && <span class = 'active-inner-icon'></span>
-                        }
-                    </div> 
-                    <span class='right-connector step-connector'></span>
+            <div class = {`step-wrapper ${this.key === 1 ? 'first-step': ''} 
+                        ${this.lastStep ? 'last-step': ''}
+                        ${this.key <= stepperState.activeStep ? 'completed': ''}
+                        `}>
+
+                <div class = 'step-icon-wrapper'>
+                    <span class = 'step-connector-l'/>
+                    <div class = 'step-icon'>
+
+                        {(stepperState.showNumber && stepperState.activeStep <= this.key) ? this.key : ''}
+                        {(this.key < stepperState.activeStep) && <ifx-icon icon="check16"></ifx-icon>}
+                        {(!stepperState.showNumber && this.key == stepperState.activeStep) && <span class = 'active-indic'></span>}
+
+                    </div>
+                    <span class = 'step-connector-r'/>
                 </div>
-                <slot/>
+
+                <div class= 'step-label'>
+                    <slot/>
+                </div>
+
             </div>
         );
-    }
+    };
 }

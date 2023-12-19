@@ -24,5 +24,8 @@
     "lerna": "^7.0.0",
     "nx": "^16.2.1",
     "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@stencil/store": "^2.0.12"
   }
 }

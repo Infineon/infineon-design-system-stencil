@@ -1,4 +1,4 @@
-# ifx-step
+# dev-step
 
 
 
@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default        |
-| -------- | --------- | ----------- | --------- | -------------- |
-| `active` | `active`  |             | `boolean` | `false`        |
-| `label`  | `label`   |             | `string`  | `undefined`    |
-| `status` | `status`  |             | `string`  | `'incomplete'` |
+| Property   | Attribute   | Description | Type      | Default     |
+| ---------- | ----------- | ----------- | --------- | ----------- |
+| `key`      | `key`       |             | `number`  | `undefined` |
+| `lastStep` | `last-step` |             | `boolean` | `false`     |
 
 
 ## Dependencies
