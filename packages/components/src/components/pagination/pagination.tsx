@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Prop, State, Listen, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-pagination',
@@ -26,6 +26,19 @@ export class Pagination {
     this.itemsPerPage = parseInt(e.detail.label)
   }
 
+  @Watch('currentPage') 
+  handleCurrentPageChageExternally() { 
+    const paginationContainer =  this.el.shadowRoot.querySelector(".pagination");
+    var currActive = parseInt(paginationContainer.dataset[this.DATA_KEY], 10);
+    console.log('currActive in Watch function', currActive, 'internal page', this.internalPage)
+    if(this.internalPage !== currActive) { 
+      console.log('here')
+      //paginationContainer.dataset[this.DATA_KEY] = this.internalPage;
+      paginationContainer.dataset[this.DATA_KEY] = this.internalPage;
+      this.calculateNumberOfPages()
+    }
+  }
+
   componentDidLoad() {
     this.calculateVisiblePageIndices()
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
@@ -34,6 +47,8 @@ export class Pagination {
   }
 
   calculateNumberOfPages() {
+    console.log('calculateNumberOfPages invoked')
+    //not this
     if (isNaN(this.currentPage)) {
       this.currentPage = 1;
     }
@@ -46,8 +61,8 @@ export class Pagination {
     } else if (this.currentPage > totalPageNumber) {
       this.internalPage = totalPageNumber;
     } else this.internalPage = this.currentPage;
-
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
+    console.log('internal page', this.internalPage)
   }
 
   componentWillLoad() {
@@ -61,8 +76,8 @@ export class Pagination {
 
     if (paginationElement.dataset[this.DATA_KEY] < this.numberOfPages) {
       paginationElement.dataset[this.DATA_KEY] = paginationElement.dataset[this.DATA_KEY];
-    } else paginationElement.dataset[this.DATA_KEY] = 0;
-
+    } else //paginationElement.dataset[this.DATA_KEY] = 0;
+    console.log('paginationElement.dataset[this.DATA_KEY] in componentDidUpdate', paginationElement.dataset[this.DATA_KEY]) //it's 0, and that's why when I change the current page externally, it goes to 0. If I commennt out the = 0 line above, then it seemingly works! At least, the first click. But I need to test this, because if it was 0 before, then there must be a need for it to be 0!
     this.changePage(paginationElement, false)
   }
 
@@ -125,7 +140,7 @@ export class Pagination {
     const paginationContainer = pagination;
     var listItems = paginationContainer.querySelectorAll("li");
     var currActive = parseInt(paginationContainer.dataset[this.DATA_KEY], 10);
-
+    console.log('currActive in changePage', currActive)
     listItems.forEach((item) => {
       item.classList.remove(this.CLASS_ACTIVE);
       item.classList.remove(this.CLASS_SIBLING_ACTIVE);
@@ -161,6 +176,7 @@ export class Pagination {
   }
 
   calculateVisiblePageIndices() {
+    //not this
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
     this.initPagination(paginationElement)
   }

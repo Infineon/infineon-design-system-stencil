@@ -15,11 +15,27 @@
 
   <script defer>
 
+    window.addEventListener('load', () => { 
+      const mypagi = document.getElementById('mypagi')
+      mypagi.addEventListener('ifxPageChange', (e) => { 
+        //console.log(e.detail)
+      })
+    })
+
+    const changeCurrentPage = () => { 
+      const mypagi = document.getElementById('mypagi')
+      const currentPage = parseInt(mypagi.getAttribute('current-page'))
+      //console.log('index html', currentPage)
+      mypagi.setAttribute('current-page', currentPage+1)
+    }
+
   </script>
 
 </head>
 
 <body>
+  <button onclick="changeCurrentPage()">change</button>
+  <ifx-pagination id="mypagi" total="50" current-page="3"></ifx-pagination>
 
 </body>
 
