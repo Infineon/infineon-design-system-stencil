@@ -23,10 +23,13 @@
     "build": "PUBLIC_URL=. react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm i && npm link && cd ../components-react && npm link @infineon/infineon-design-system-stencil && npm i @infineon/design-system-tokens && npm run build",
-    "link": "cd ../../../packages/components-react && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
-    "preview:link": "run-s link start",
-    "test:local": "run-s build:wrapper preview:link"
+    "watch:library": "cd ../../../packages/components && npm run watch:stencil",
+    "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-react && npm run build",
+    "link-clean": "node ../../../utils/os-type.js",
+    "link-clean-win": "cd ../../../packages/components-react && rmdir /s /q node_modules && npm run build && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
+    "link-clean-unix": "cd ../../../packages/components-react && rm -rf node_modules &&  npm run build && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
+    "preview:link": "run-s link-clean start",
+    "test:local": "run-p preview:link watch:library"
   },
   "eslintConfig": {
     "extends": [

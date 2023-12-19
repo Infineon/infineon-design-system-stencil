@@ -14,7 +14,7 @@ import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
 import SearchField from './components/SearchField/SearchField';
 import IconButton from './components/IconButton/IconButton';
-import Tab from './components/Tab/Tab';
+import Tabs from './components/Tabs/Tabs';
 import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
@@ -149,8 +149,8 @@ function App() {
       <Status />
       <br />
 
-      <h2>Tab</h2>
-      <Tab />
+      <h2>Tabs</h2>
+      <Tabs />
       <br />
 
       <h2>Tag</h2>
