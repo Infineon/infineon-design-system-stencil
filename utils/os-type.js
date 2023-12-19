@@ -8,16 +8,13 @@ function createSymlinks() {
 	const os = getOperatingSystem();
 
 	try {
-		execSync(`cd ../../../packages/components-vue`);
 		if (os === 'win32') {
 			console.log("executing on windows: removing node_modules and creating symlink")
-			execSync(`npm run link-win`);
+			execSync(`npm run link-clean-win`);
 		} else {
 			console.log("executing on linux: removing node_modules and creating symlink")
-			execSync(`npm run link-unix`);
+			execSync(`npm run link-clean-unix`);
 		}
-		console.log("adding symlink to example application")
-		execSync(`npm run link-example`);
 	} catch (error) {
 		console.error('An error occurred:', error);
 	}
