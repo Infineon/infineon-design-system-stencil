@@ -1,3 +1,16 @@
+# v20.37.0 (Tue Dec 19 2023)
+
+#### 🚀 Enhancement
+
+- Enhancement: Tab to be set from outside, Keyboard navigation [#741](https://github.com/Infineon/infineon-design-system-stencil/pull/741) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.36.5 (Mon Dec 18 2023)
 
 #### 🐛 Bug Fix
