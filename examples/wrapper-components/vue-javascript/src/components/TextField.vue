@@ -34,7 +34,7 @@ let inputValue = ref("");
 
 onMounted(() => {
   updateTextInput();
-  setInterval(updateTextInput, 50000);
+  setInterval(updateTextInput, 100000);
 })
 
 function updateTextInput() {

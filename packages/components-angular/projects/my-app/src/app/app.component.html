@@ -622,10 +622,10 @@
   <br />
 
   <h2>Tabs</h2>
-  <ifx-tabs orientation="horizontal">
-    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+  <ifx-tabs (tabChange)="handleChange($event)" [tabIndex]="tabIndex" #ifxTabs orientation="horizontal">
+    <ifx-tab header="tab header 1" disabled="false">tab 1 content</ifx-tab>
+    <ifx-tab header="tab header 2" disabled="true">tab 2 content</ifx-tab>
+    <ifx-tab header="tab header 3" disabled="false">tab 3 content</ifx-tab>
   </ifx-tabs>
   <br />
   <br />

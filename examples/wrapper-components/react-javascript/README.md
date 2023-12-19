@@ -11,6 +11,7 @@ or update the ```npm start``` script in the package.json to the following: ```"s
 
  ```bash
  npm install
+ npm run build:wrapper
  npm run test:local
  ```
 
