@@ -1,3 +1,15 @@
+# v20.37.2 (Wed Dec 20 2023)
+
+#### 🐛 Bug Fix
+
+- Modal: height is made adjust-to-content, and not fixed [#843](https://github.com/Infineon/infineon-design-system-stencil/pull/843) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.37.1 (Wed Dec 20 2023)
 
 #### 🐛 Bug Fix
