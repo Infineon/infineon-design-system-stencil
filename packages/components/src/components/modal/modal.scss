@@ -114,6 +114,8 @@
   min-height: 56px;
   box-sizing: border-box;
   flex: 1;
+  max-height: 70vh; 
+  overflow-y: auto; 
 
   // & slot[name=content] {
   //   display: -webkit-box;
