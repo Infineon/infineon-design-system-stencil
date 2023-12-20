@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>MultiSelect</h2>
-    <ifx-multiselect :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange" size="medium (40px)"
-      :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
+    <ifx-multiselect batchSize="10" :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange"
+      size="medium (40px)" :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
       :disabled="disabled"></ifx-multiselect>
     <div>
       <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
@@ -36,16 +36,136 @@ let options = ref([{
 {
   value: "c",
   label: "option c",
+  selected: false
+},
+{
+  value: "d",
+  label: "option d",
+  selected: false
+},
+{
+  value: "b",
+  label: "option b",
+  selected: false
+},
+{
+  value: "e",
+  label: "option e",
+  selected: false
+},
+{
+  value: "f",
+  label: "option f",
+  selected: false
+},
+{
+  value: "g",
+  label: "option g",
+  selected: false
+},
+{
+  value: "h",
+  label: "option h",
+  selected: false
+},
+{
+  value: "i",
+  label: "option i",
+  selected: false
+},
+{
+  value: "j",
+  label: "option j",
+  selected: false
+},
+{
+  value: "k",
+  label: "option k",
+  selected: false
+},
+{
+  value: "l",
+  label: "option l",
+  selected: false
+},
+{
+  value: "m",
+  label: "option m",
+  selected: false
+},
+{
+  value: "n",
+  label: "option n",
+  selected: false
+},
+{
+  value: "o",
+  label: "option o",
+  selected: false
+},
+{
+  value: "p",
+  label: "option p",
+  selected: false
+},
+{
+  value: "q",
+  label: "option q",
+  selected: false
+},
+{
+  value: "r",
+  label: "option r",
+  selected: false
+},
+{
+  value: "s",
+  label: "option s",
+  selected: false
+},
+{
+  value: "t",
+  label: "option t",
+  selected: false
+},
+{
+  value: "u",
+  label: "option u",
+  selected: false
+},
+{
+  value: "v",
+  label: "option v",
+  selected: false
+},
+{
+  value: "w",
+  label: "option w",
+  selected: false
+},
+{
+  value: "x",
+  label: "option x",
+  selected: false
+},
+{
+  value: "y",
+  label: "option y",
+  selected: false
+},
+{
+  value: "z",
+  label: "option z",
   selected: false,
   children: [
     {
-      value: "c1",
-      label: "option c1",
+      value: "z1",
+      label: "option z1",
       selected: false
     },
     {
-      value: "c2",
-      label: "option c2",
+      value: "z2",
+      label: "option z2",
       selected: false
     }
   ]

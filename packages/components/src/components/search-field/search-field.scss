@@ -1,6 +1,6 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-:host { 
+:host {
   display: flex;
 }
 
@@ -28,7 +28,7 @@
     color: tokens.$ifxColorEngineering400;
 
     &.focused {
-      border: 1px solid #0A8276;
+      border: 1px solid tokens.$ifxColorOcean500;
 
       & ifx-icon {
         color: tokens.$ifxColorEngineering500;

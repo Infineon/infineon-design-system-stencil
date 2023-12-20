@@ -5,9 +5,8 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
-import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-defineCustomElements();
+
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
@@ -241,6 +240,7 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
 
 export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', undefined, [
   'options',
+  'batchSize',
   'size',
   'disabled',
   'error',
@@ -447,7 +447,10 @@ export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switc
 ]);
 
 
-export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined);
+export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [
+  'header',
+  'disabled'
+]);
 
 
 export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
@@ -466,7 +469,8 @@ export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table',
 export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
   'tabs',
   'orientation',
-  'ifxTabIndex'
+  'activeTabIndex',
+  'ifxTabChange'
 ]);
 
 

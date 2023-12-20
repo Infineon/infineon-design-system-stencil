@@ -5,9 +5,8 @@ import { createReactComponent } from './react-component-lib';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
-import { applyPolyfills, defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-applyPolyfills().then(() => defineCustomElements());
+
 export const IfxAccordion = /*@__PURE__*/createReactComponent<JSX.IfxAccordion, HTMLIfxAccordionElement>('ifx-accordion');
 export const IfxAccordionItem = /*@__PURE__*/createReactComponent<JSX.IfxAccordionItem, HTMLIfxAccordionItemElement>('ifx-accordion-item');
 export const IfxAlert = /*@__PURE__*/createReactComponent<JSX.IfxAlert, HTMLIfxAlertElement>('ifx-alert');

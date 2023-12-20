@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element, Watch, State } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -31,57 +31,38 @@ export class Button {
     this.focusableElement.focus();
   }
 
-  protected componentDidLoad() {
-    this.addEventListenersToHandleCustomFocusAndActiveState();
+  insertNativeButton() { 
+    this.nativeButton = document.createElement('button');
+    this.nativeButton.type = this.type;
+    this.nativeButton.style.display = 'none';
+    this.el.closest('form').appendChild(this.nativeButton);
   }
 
-  private addEventListenersToHandleCustomFocusAndActiveState() {
-    const element = this.el.shadowRoot.firstChild;
-
-    if (!element) {
-      console.error('element not found');
-      return;
-    }
-
-    element.tabIndex = 0;
-
-    element.addEventListener('focus', () => {
-      if (!this.disabled) {
-        element.classList.add('focus');
-      }
-    });
-
-    element.addEventListener('blur', () => {
-      element.classList.remove('focus');
-    });
-  }
-
-  componentWillLoad() {
+  handleFormAndInternalHref() { 
     if (this.el.closest('form')) {
       if (this.el.href) {
         this.el.internalHref = undefined;
       }
-     
-      this.nativeButton = document.createElement('button');
-      this.nativeButton.type = this.type;
-      this.nativeButton.style.display = 'none';
-      this.el.closest('form').appendChild(this.nativeButton);
-    
+      this.insertNativeButton()
     } else {
       this.internalHref = this.href;
     }
   }
 
-  handleClick() {
-    if (this.nativeButton) {
-      if (this.type === 'reset') {
-        this.resetClickHandler(); //this will reset all ifx-text-fields within a form
-      }
-      this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
-
-    }
+  componentWillLoad() {
+   this.handleFormAndInternalHref()
   }
 
+  handleClick() {
+    if (!this.disabled) {
+      if (this.nativeButton) {
+        if (this.type === 'reset') {
+          this.resetClickHandler(); //this will reset all ifx-text-fields within a form
+        }
+        this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
+      }
+    }
+  }
 
   resetClickHandler() {
     const formElement = this.el.closest('form');
@@ -91,33 +72,26 @@ export class Button {
     });
   }
 
-  // handleFocus(event: FocusEvent) { // the anchor element should not be focusable when it's disabled
-  //   if (this.disabled) {
-  //     event.preventDefault();
-  //     this.focusableElement.blur();
-  //   }
-  // }
-
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Enter') {
+      this.handleClick();
+    }
+  }
 
   handleFocus(event: FocusEvent) {
     // the anchor element should not be focusable when it's disabled
     if (this.disabled) {
       event.preventDefault();
       this.focusableElement.blur();
-    } else {
-      this.focusableElement.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          this.handleClick();
-        }
-      });
     }
   }
-
 
   render() {
     return (
       <Host>
         <a
+          tabIndex={0}
           ref={(el) => (this.focusableElement = el)}
           class={this.getClassNames()}
           href={!this.disabled ? this.internalHref : undefined}

@@ -1,8 +1,7 @@
-/* color palette from <https://github.com/vuejs/theme> */
-@use "../../node_modules/@infineon/design-system-tokens/dist/tokens";
+@use "@infineon/design-system-tokens/dist/tokens";
 
 
-/* semantic color variables for this project */
+/* exemplary semantic color variables for this project */
 
 div {
   background-color: tokens.$ifxColorBaseWhite;
