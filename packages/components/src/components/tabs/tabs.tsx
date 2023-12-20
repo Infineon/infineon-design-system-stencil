@@ -144,6 +144,12 @@ export class IfxTabs {
     return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`;
   }
 
+  private handleClick(tab, index) {
+    this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
+    if (!tab.disabled) this.internalActiveTabIndex = index;
+
+  }
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Tab') {
@@ -185,7 +191,7 @@ export class IfxTabs {
               class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               tabindex="0"
-              onClick={() => { if (!tab.disabled) this.internalActiveTabIndex = index; }}
+              onClick={() => this.handleClick(tab, index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
               role="tab"
