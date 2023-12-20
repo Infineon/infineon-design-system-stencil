@@ -28,12 +28,13 @@
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",
     "dev:stencil": "stencil build --serve --watch",
+    "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^3.0.0",
-    "@infineon/infineon-icons": "^1.1.7",
+    "@infineon/infineon-icons": "^1.1.8",
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "4.5.0",
     "@storybook/blocks": "^7.0.23",

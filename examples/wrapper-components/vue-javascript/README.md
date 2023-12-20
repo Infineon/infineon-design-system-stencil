@@ -9,6 +9,7 @@ This example application demonstrates the usage of the Vue Wrapper Components ba
 
  ```bash
  npm install
+ npm run build:wrapper
  npm run test:local
  ```
 

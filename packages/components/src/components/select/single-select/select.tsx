@@ -304,7 +304,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     switch (this.type) {
       case 'single':
         this.element =
-          <div class={`ifx-select-container ${this.getSizeClass()}`}>
+          <div class={`ifx-select-container`}>
             {
               this.ifxLabel ?
                 <div class="ifx-label-wrapper">
