@@ -1,5 +1,5 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Event, EventEmitter } from '@stencil/core';
 
 
 @Component({
@@ -26,18 +26,15 @@ export class IfxTabs {
 
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
+    if (this.internalActiveTabIndex !== this.activeTabIndex) {
+      this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
+    };
     this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
+    this.updateTabStyles();
   }
 
-  @Watch('activeTabIndex')
-  activeTabIndexChanged(newValue: number, oldValue: number) {
-    if (newValue !== oldValue) {
-      this.internalActiveTabIndex = newValue;
-      this.ifxTabChange.emit({ previousTab: oldValue, currentTab: newValue });
-      this.updateTabStyles();
-    }
-  }
+
 
 
   updateTabStyles() {
@@ -82,7 +79,6 @@ export class IfxTabs {
     this.tabRefs = Array.from(tabs);
     this.tabRefs.forEach((tab, index) => {
       tab.setAttribute('slot', `tab-${index}`);
-      tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
     });
   }
 
@@ -149,6 +145,8 @@ export class IfxTabs {
     if (!tab.disabled) this.internalActiveTabIndex = index;
 
   }
+
+
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
