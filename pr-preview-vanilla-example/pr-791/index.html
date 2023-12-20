@@ -207,7 +207,7 @@
     <br />
 
     <h2>Multi-Select</h2>
-    <ifx-multiselect id="multi-select"
+    <ifx-multiselect id="multi-select" batch-size="20"
       options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
       size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
     <br />
@@ -282,6 +282,15 @@
     <br />
     <br />
 
+
+    <h2>Tabs</h2>
+    <ifx-tabs active-tab-index="2" orientation="horizontal">
+      <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
+      <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
+      <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+    </ifx-tabs>
+    <br />
+    <br />
     <h2>Status</h2>
     <ifx-status label="Status with border" color="orange" border="true" />
     <ifx-status label="Status without border" color="orange" border="false" />
@@ -289,14 +298,6 @@
     <br />
 
 
-    <h2>Tabs</h2>
-    <ifx-tabs orientation="horizontal">
-      <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-      <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-      <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
-    </ifx-tabs>
-    <br />
-    <br />
 
 
     <h2>Tag</h2>
