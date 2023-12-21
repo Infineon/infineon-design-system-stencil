@@ -21,10 +21,6 @@ const DefaultTemplate = (args) => {
     for(let i = 0; i < args.amountOfSteps; i++){
         const step = document.createElement('ifx-step');
         step.innerHTML = `Step ${i+1}`;
-        step.setAttribute('key', `${i+1}`);
-        if(i == args.amountOfSteps-1){
-            step.setAttribute('last-step', 'true');
-        }
         element.appendChild(step);
     }
     return element;

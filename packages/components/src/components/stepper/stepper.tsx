@@ -1,5 +1,4 @@
-import { Component, h, Prop } from "@stencil/core";
-import stepperState from "./stepperStore";
+import { Component, h, Prop, Element } from "@stencil/core";
 
 @Component({
     tag: 'ifx-stepper',
@@ -9,17 +8,30 @@ import stepperState from "./stepperStore";
 
 export class Stepper{
 
-    @Prop() showNumber: boolean = stepperState.showNumber;
-    @Prop() activeStep: number = stepperState.activeStep;
+    @Prop() showNumber: boolean = false;
+    @Prop({mutable: true, reflect: true}) activeStep: number = 1;
+    @Element() el: HTMLElement;
 
-
-    componentWillLoad(){
-        stepperState.showNumber = this.showNumber;
-        stepperState.activeStep = this.activeStep;
+    updateChild(){
+        const steps: NodeListOf<any> = this.el.querySelectorAll('ifx-step');
+        for(let i = 0; i < steps.length; i++){
+            steps[i].stepperState = {activeStep: this.activeStep, showNumber: this.showNumber};
+        }
     }
 
-    componentDidUpdate(){
-        stepperState.activeStep = this.activeStep;
+    componentWillLoad(){
+        const steps: NodeListOf<any> = this.el.querySelectorAll('ifx-step');
+        steps[steps.length-1].lastStep = true;
+        for(let i = 0; i < steps.length; i++){
+            steps[i].stepId = i+1;
+        }
+        this.activeStep = Math.max(1, Math.min(steps.length+1, this.activeStep));
+
+        this.updateChild();
+    }
+
+    componentWillUpdate(){
+        this.updateChild();
     }
 
     render(){

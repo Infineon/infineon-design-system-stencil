@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type      | Default     |
-| ---------- | ----------- | ----------- | --------- | ----------- |
-| `key`      | `key`       |             | `number`  | `undefined` |
-| `lastStep` | `last-step` |             | `boolean` | `false`     |
+| Property       | Attribute       | Description | Type      | Default                              |
+| -------------- | --------------- | ----------- | --------- | ------------------------------------ |
+| `lastStep`     | `last-step`     |             | `boolean` | `false`                              |
+| `stepId`       | `step-id`       |             | `number`  | `1`                                  |
+| `stepperState` | `stepper-state` |             | `any`     | `{activeStep: 1, showNumber: false}` |
 
 
 ## Dependencies

@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default                   |
-| ------------ | ------------- | ----------- | --------- | ------------------------- |
-| `activeStep` | `active-step` |             | `number`  | `stepperState.activeStep` |
-| `showNumber` | `show-number` |             | `boolean` | `stepperState.showNumber` |
+| Property     | Attribute     | Description | Type      | Default |
+| ------------ | ------------- | ----------- | --------- | ------- |
+| `activeStep` | `active-step` |             | `number`  | `1`     |
+| `showNumber` | `show-number` |             | `boolean` | `false` |
 
 
 ----------------------------------------------
