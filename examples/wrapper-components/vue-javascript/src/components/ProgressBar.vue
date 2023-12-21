@@ -23,7 +23,7 @@ const progressValue = ref(50);
 
 onMounted(() => {
   updateProgress();
-  setInterval(updateProgress, 50000);
+  setInterval(updateProgress, 100000);
 })
 
 const progress = computed(() => {

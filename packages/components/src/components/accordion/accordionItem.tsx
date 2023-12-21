@@ -1,5 +1,5 @@
 //ifxAccordionItem
-import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion-item',
@@ -8,37 +8,24 @@ import { Component, Prop, h, State, Event, EventEmitter, Method } from '@stencil
 })
 export class IfxAccordionItem {
   @Prop() caption: string;
+  @Prop({
+    mutable: true,
+  }) open: boolean = false;
   @Prop() initialCollapse: boolean = true;
-  @State() open: boolean = false;
+  @State() internalOpen: boolean = false;
   @Event() ifxItemOpen: EventEmitter;
   @Event() ifxItemClose: EventEmitter;
   private contentEl!: HTMLElement;
 
-  toggleOpen() {
-    this.open = !this.open;
-    if (this.open) {
-      this.ifxItemOpen.emit();
-    } else {
-      this.ifxItemClose.emit();
+
+  componentWillLoad() {
+    this.internalOpen = this.open;
+    if (!this.initialCollapse) {
+      this.internalOpen = true;
     }
   }
 
-  openAccordionItem() { 
-    if (this.open) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
-    } else {
-      this.contentEl.style.maxHeight = '0';
-    }
-  }
-
-  componentWillLoad() { 
-    if(!this.initialCollapse) { 
-      this.open = true;
-      this.ifxItemOpen.emit();
-    }
-  }
-
-  componentDidLoad() { 
+  componentDidLoad() {
     this.openAccordionItem()
   }
 
@@ -48,24 +35,45 @@ export class IfxAccordionItem {
 
   @Method()
   async close() {
-    this.open = false;
+    this.internalOpen = false;
     this.ifxItemClose.emit();
   }
 
   @Method()
   async isOpen(): Promise<boolean> {
-    return this.open;
+    return this.internalOpen;
   }
 
-  handleSlotChange() { 
-    if(this.open) { 
-      this.openAccordionItem()
+  @Watch('open')
+  openChanged(newValue: boolean) {
+    this.internalOpen = newValue;
+  }
+
+  toggleOpen() {
+    this.internalOpen = !this.internalOpen;
+    if (this.internalOpen) {
+      this.ifxItemOpen.emit();
+    } else {
+      this.ifxItemClose.emit();
     }
   }
 
+  openAccordionItem() {
+    if (this.internalOpen) {
+      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+    } else {
+      this.contentEl.style.maxHeight = '0';
+    }
+  }
+
+  handleSlotChange() {
+    if (this.internalOpen) {
+      this.openAccordionItem();
+    }
+  }
   render() {
     return (
-      <div aria-label={this.caption} class={`accordion-item ${this.open ? 'open' : ''}`}>
+      <div aria-label={this.caption} class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
         <div class="accordion-title" onClick={() => this.toggleOpen()}>
           <span class="accordion-icon">
             <ifx-icon icon="chevron-down-12" />

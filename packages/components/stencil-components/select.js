@@ -7020,7 +7020,7 @@ const Choices = /*@__PURE__*/ proxyCustomElement(class Choices extends HTMLEleme
     switch (this.type) {
       case 'single':
         this.element =
-          h("div", { class: `ifx-select-container ${this.getSizeClass()}` }, this.ifxLabel ?
+          h("div", { class: `ifx-select-container` }, this.ifxLabel ?
             h("div", { class: "ifx-label-wrapper" }, h("span", null, this.ifxLabel)) : null, h("div", { class: `${choicesWrapperClass} 
             ${this.ifxDisabled ? 'disabled' : ""} 
             ${this.ifxError ? 'error' : ""}`, onClick: this.ifxDisabled ? undefined : () => this.toggleDropdown(), onKeyDown: (event) => this.handleKeyDown(event) }, h("select", Object.assign({}, attributesSingle, { "data-trigger": true, onChange: () => this.handleChange() }), this.createSelectOptions(this.ifxOptions)), h("div", { class: "ifx-choices__icon-wrapper-up" }, h("ifx-icon", { key: 'icon-up', icon: 'chevronup-16' })), h("div", { class: "ifx-choices__icon-wrapper-down" }, h("ifx-icon", { key: 'icon-down', icon: 'chevron-down-16' }))), this.ifxError ?

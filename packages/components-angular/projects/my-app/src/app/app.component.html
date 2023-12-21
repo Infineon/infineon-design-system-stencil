@@ -514,6 +514,10 @@
   <ifx-multiselect
     options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
     size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <ifx-multiselect
+    options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
+    size="medium (40px)" error="true" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <span>Succeeding element</span>
   <br />
   <br />
 
@@ -622,10 +626,10 @@
   <br />
 
   <h2>Tabs</h2>
-  <ifx-tabs orientation="horizontal">
-    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+  <ifx-tabs (tabChange)="handleChange($event)" [tabIndex]="tabIndex" #ifxTabs orientation="horizontal">
+    <ifx-tab header="tab header 1" disabled="false">tab 1 content</ifx-tab>
+    <ifx-tab header="tab header 2" disabled="true">tab 2 content</ifx-tab>
+    <ifx-tab header="tab header 3" disabled="false">tab 3 content</ifx-tab>
   </ifx-tabs>
   <br />
   <br />

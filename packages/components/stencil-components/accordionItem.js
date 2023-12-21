@@ -11,30 +11,14 @@ const IfxAccordionItem = /*@__PURE__*/ proxyCustomElement(class IfxAccordionItem
     this.ifxItemOpen = createEvent(this, "ifxItemOpen", 7);
     this.ifxItemClose = createEvent(this, "ifxItemClose", 7);
     this.caption = undefined;
-    this.initialCollapse = true;
     this.open = false;
-  }
-  toggleOpen() {
-    this.open = !this.open;
-    if (this.open) {
-      this.ifxItemOpen.emit();
-    }
-    else {
-      this.ifxItemClose.emit();
-    }
-  }
-  openAccordionItem() {
-    if (this.open) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
-    }
-    else {
-      this.contentEl.style.maxHeight = '0';
-    }
+    this.initialCollapse = true;
+    this.internalOpen = false;
   }
   componentWillLoad() {
+    this.internalOpen = this.open;
     if (!this.initialCollapse) {
-      this.open = true;
-      this.ifxItemOpen.emit();
+      this.internalOpen = true;
     }
   }
   componentDidLoad() {
@@ -44,22 +28,53 @@ const IfxAccordionItem = /*@__PURE__*/ proxyCustomElement(class IfxAccordionItem
     this.openAccordionItem();
   }
   async close() {
-    this.open = false;
+    this.internalOpen = false;
     this.ifxItemClose.emit();
   }
   async isOpen() {
-    return this.open;
+    return this.internalOpen;
+  }
+  openChanged(newValue) {
+    this.internalOpen = newValue;
+  }
+  toggleOpen() {
+    this.internalOpen = !this.internalOpen;
+    if (this.internalOpen) {
+      this.ifxItemOpen.emit();
+    }
+    else {
+      this.ifxItemClose.emit();
+    }
+  }
+  openAccordionItem() {
+    if (this.internalOpen) {
+      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+    }
+    else {
+      this.contentEl.style.maxHeight = '0';
+    }
+  }
+  handleSlotChange() {
+    if (this.internalOpen) {
+      this.openAccordionItem();
+    }
   }
   render() {
-    return (h("div", { "aria-label": this.caption, class: `accordion-item ${this.open ? 'open' : ''}` }, h("div", { class: "accordion-title", onClick: () => this.toggleOpen() }, h("span", { class: "accordion-icon" }, h("ifx-icon", { icon: "chevron-down-12" })), h("span", { class: "accordion-caption" }, this.caption)), h("div", { class: "accordion-content", ref: (el) => (this.contentEl = el) }, h("div", { class: "inner-content" }, h("slot", null)))));
+    return (h("div", { "aria-label": this.caption, class: `accordion-item ${this.internalOpen ? 'open' : ''}` }, h("div", { class: "accordion-title", onClick: () => this.toggleOpen() }, h("span", { class: "accordion-icon" }, h("ifx-icon", { icon: "chevron-down-12" })), h("span", { class: "accordion-caption" }, this.caption)), h("div", { class: "accordion-content", ref: (el) => (this.contentEl = el) }, h("div", { class: "inner-content" }, h("slot", { onSlotchange: () => this.handleSlotChange() })))));
   }
+  static get watchers() { return {
+    "open": ["openChanged"]
+  }; }
   static get style() { return accordionItemCss; }
 }, [1, "ifx-accordion-item", {
     "caption": [1],
+    "open": [1028],
     "initialCollapse": [4, "initial-collapse"],
-    "open": [32],
+    "internalOpen": [32],
     "close": [64],
     "isOpen": [64]
+  }, undefined, {
+    "open": ["openChanged"]
   }]);
 function defineCustomElement() {
   if (typeof customElements === "undefined") {

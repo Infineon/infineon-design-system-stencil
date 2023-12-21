@@ -6,10 +6,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../components-vue && npm i && npm link @infineon/infineon-design-system-stencil && npm i @infineon/design-system-tokens && npm run build",
-    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
-    "preview:link": "run-s link dev",
-    "test:local": "run-s build:wrapper preview:link"
+    "watch:library": "cd ../../../packages/components && npm run watch:stencil",
+    "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-vue && npm run build",
+    "link-clean": "node ../../../utils/os-type.js",
+    "link-clean-win": "cd ../../../packages/components-vue && rmdir /s /q node_modules && npm run build && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
+    "link-clean-unix": "cd ../../../packages/components-vue && rm -rf node_modules &&  npm run build && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
+    "preview:link": "run-s link-clean dev",
+    "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
     "@infineon/infineon-design-system-vue": "^20.36.0",

@@ -25,7 +25,6 @@ const IfxTabs$1 = /*@__PURE__*/ proxyCustomElement(class IfxTabs extends HTMLEle
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
   }
   activeTabIndexChanged(newValue, oldValue) {
-    console.log('ACTIVE TAB INDEX');
     if (newValue !== oldValue) {
       this.internalActiveTabIndex = newValue;
       this.ifxTabChange.emit({ previousTab: oldValue, currentTab: newValue });
@@ -33,7 +32,6 @@ const IfxTabs$1 = /*@__PURE__*/ proxyCustomElement(class IfxTabs extends HTMLEle
     }
   }
   updateTabStyles() {
-    console.log("updating style");
     this.tabHeaderRefs.forEach((tab, index) => {
       tab.classList.toggle('active', index === this.internalActiveTabIndex);
       tab.setAttribute('aria-selected', index === this.internalActiveTabIndex ? 'true' : 'false');
@@ -157,7 +155,7 @@ const IfxTabs$1 = /*@__PURE__*/ proxyCustomElement(class IfxTabs extends HTMLEle
   }
   render() {
     var _a;
-    return (h("div", { "aria-label": "navigation tabs", class: `tabs ${this.internalOrientation} selected#${this.internalActiveTabIndex}` }, h("ul", { role: "tablist", class: "tabs-list" }, (_a = this.tabObjects) === null || _a === void 0 ? void 0 :
+    return (h("div", { "aria-label": "navigation tabs", class: `tabs ${this.internalOrientation}` }, h("ul", { role: "tablist", class: "tabs-list" }, (_a = this.tabObjects) === null || _a === void 0 ? void 0 :
       _a.map((tab, index) => (h("li", { class: this.getTabItemClass(index), ref: (el) => (this.tabHeaderRefs[index] = el), tabindex: "0", onClick: () => {
           if (!tab.disabled)
             this.internalActiveTabIndex = index;

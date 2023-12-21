@@ -11,17 +11,18 @@ export const config: Config = {
   extras: {
     cloneNodeFix: true,
     enableImportInjection: true,
+    experimentalImportInjection: true,
   },
 
   outputTargets: [
-    {
-      type: 'dist',
-      esmLoaderPath: '../loader',
-    },
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      // generateTypeDeclarations: true,
+      dir: 'stencil-components'
+    },
+    {
+      type: 'dist',
+      esmLoaderPath: '../loader',
     },
     {
       type: 'docs-readme',
