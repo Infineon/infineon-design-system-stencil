@@ -1,5 +1,5 @@
 //ifxAccordionItem
-import { Component, Prop, h, State, Event, EventEmitter, Method, Watch } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion-item',
@@ -33,16 +33,7 @@ export class IfxAccordionItem {
     this.openAccordionItem()
   }
 
-  @Method()
-  async close() {
-    this.internalOpen = false;
-    this.ifxItemClose.emit();
-  }
 
-  @Method()
-  async isOpen(): Promise<boolean> {
-    return this.internalOpen;
-  }
 
   @Watch('open')
   openChanged(newValue: boolean) {

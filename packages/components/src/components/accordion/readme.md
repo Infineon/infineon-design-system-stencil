@@ -22,29 +22,6 @@
 | `ifxItemOpen`  |             | `CustomEvent<any>` |
 
 
-## Methods
-
-### `close() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `isOpen() => Promise<boolean>`
-
-
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-
-
-
 ## Dependencies
 
 ### Used by

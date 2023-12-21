@@ -21,12 +21,12 @@ function Accordion() {
   return (
     <div>
       <IfxAccordion auto-collapse={true} onIfxItemOpen={handleItems}>
-        <IfxAccordionItem open={true} caption="Label" ref={accordionItemRef}>
+        <IfxAccordionItem initial-collapse={false} open={false} caption="Label" ref={accordionItemRef}>
           Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxAccordionItem>
-        <IfxAccordionItem open={true} caption="Label">
+        <IfxAccordionItem open={false} caption="Label">
           Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -37,6 +37,7 @@ function Accordion() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         </IfxAccordionItem>
       </IfxAccordion>
+      <br />
       <IfxButton onClick={handleButtonClick}>Open the first accordion item</IfxButton>
 
 
