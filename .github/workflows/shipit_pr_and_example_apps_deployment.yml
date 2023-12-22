@@ -170,11 +170,8 @@ jobs:
         run: |
           cd packages/components-angular
           npm i
-          cd projects/component-library
-          npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
           npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          cd ../../
           npm run build my-app
            
       - name: Deploy preview
