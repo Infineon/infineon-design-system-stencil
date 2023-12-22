@@ -42,10 +42,12 @@ export class IfxAccordionItem {
 
   toggleOpen() {
     this.internalOpen = !this.internalOpen;
+    this.open = this.internalOpen;
+
     if (this.internalOpen) {
-      this.ifxItemOpen.emit();
+      this.ifxItemOpen.emit({ isOpen: this.internalOpen });
     } else {
-      this.ifxItemClose.emit();
+      this.ifxItemClose.emit({ isClosed: !this.internalOpen });
     }
   }
 

@@ -12,7 +12,7 @@ function Accordion() {
   async function handleButtonClick() {
     // Get a reference to the ifx-accordion-item component instance
     const accordionItem = accordionItemRef.current;
-    accordionItem.open = true;
+    accordionItem.open = !accordionItem.open;
     console.log("accordion item: ", accordionItem)
   }
 
@@ -38,7 +38,7 @@ function Accordion() {
         </IfxAccordionItem>
       </IfxAccordion>
       <br />
-      <IfxButton onClick={handleButtonClick}>Open the first accordion item</IfxButton>
+      <IfxButton onClick={handleButtonClick}>Open/Close the first accordion item</IfxButton>
 
 
     </div>
