@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IfxTabs } from '@infineon/infineon-design-system-angular';
+import { IfxAccordionItem, IfxTabs } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,9 @@ export class AppComponent {
   searchBarValue = '';
   radioButtonValue = false;
   numberIndicator = 1;
+
   @ViewChild('ifxTabs') ifxTabs: IfxTabs | undefined;
+  @ViewChild('ifxAccordionItem') ifxAccordionItemRef: IfxAccordionItem | undefined;
 
 
   ngOnInit() {
@@ -43,6 +45,24 @@ export class AppComponent {
   handleChange(event: any) {
     console.log("emitting active tab index: ", event.detail);
   };
+
+  handleAccordionItemOpen(event: any) {
+    console.log("An accordion item was opened. Event details:", event);
+  };
+
+  handleAccordionItemClose(event: any) {
+    console.log("An accordion item was closed. Event details:", event);
+  };
+
+  handleAccordionButtonClick() {
+    console.log("accordion item open btn click ")
+    const accordionItem = document.querySelector('ifx-accordion-item') as HTMLIfxAccordionItemElement;
+
+    if (this.ifxAccordionItemRef) {
+      console.log("accordion item: ", accordionItem);
+      this.ifxAccordionItemRef.open = !this.ifxAccordionItemRef.open;
+    }
+  }
 
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
