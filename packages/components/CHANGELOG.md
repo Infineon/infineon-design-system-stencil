@@ -1,3 +1,16 @@
+# v20.37.4 (Wed Dec 27 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix Wrapper libraries not being built based on latest Stencil core component library [#836](https://github.com/Infineon/infineon-design-system-stencil/pull/836) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.37.3 (Wed Dec 27 2023)
 
 #### 🐛 Bug Fix
