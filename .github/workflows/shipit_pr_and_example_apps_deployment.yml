@@ -56,9 +56,9 @@ jobs:
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
           cd ../../../../
           cd packages/components-vue
           npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
