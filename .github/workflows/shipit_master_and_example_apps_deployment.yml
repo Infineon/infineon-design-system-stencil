@@ -62,6 +62,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
+          lerna version $VERSION --no-git-tag-version --y
           npm run build:components-react
           npm run build:components-vue          
           cd packages/components-react
