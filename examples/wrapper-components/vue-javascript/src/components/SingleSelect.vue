@@ -5,6 +5,7 @@
       search-placeholder-value="Search..." :ifx-disabled="disabled" :ifx-error="error" :ifx-error-message="errorMessage"
       ifx-label="" ifx-placeholder-value="Placeholder" :ifx-options="JSON.stringify(options)"></ifx-select>
     <div>
+
       <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
       <ifx-button variant="secondary" theme="default" @click="toggleError">Toggle Error</ifx-button>
@@ -29,7 +30,7 @@ let disabled = ref(false);
 let disabled2 = ref(false);
 
 let error = ref(false);
-let errorMessage = ref("Some error");
+let errorMessage = ref("Some errordfadssssssssssfaaaaaaaaffffffffffffffffff\nddfsafdf");
 
 let options = ref([{
   value: "a",

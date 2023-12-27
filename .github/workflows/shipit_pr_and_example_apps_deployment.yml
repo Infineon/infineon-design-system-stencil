@@ -56,13 +56,14 @@ jobs:
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../../../
           cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../components-react
-          npm install @infineon/infineon-design-system-stencil@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
      
       - name: Build and deploy Angular, Vue and React packages
         env:
@@ -103,7 +104,7 @@ jobs:
           cd examples/wrapper-components/vue-javascript
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-vue@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-vue@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build
 
       - name: Deploy preview
@@ -138,7 +139,7 @@ jobs:
           cd examples/wrapper-components/react-javascript
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-react@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-react@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
@@ -171,7 +172,7 @@ jobs:
           cd packages/components-angular
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-angular@"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          npm i @infineon/infineon-design-system-angular@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build my-app
            
       - name: Deploy preview
