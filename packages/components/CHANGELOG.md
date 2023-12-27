@@ -1,3 +1,16 @@
+# v20.37.3 (Wed Dec 27 2023)
+
+#### 🐛 Bug Fix
+
+- Accordion: height not adjusting on dynamic loading [#823](https://github.com/Infineon/infineon-design-system-stencil/pull/823) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.37.2 (Wed Dec 20 2023)
 
 #### 🐛 Bug Fix
