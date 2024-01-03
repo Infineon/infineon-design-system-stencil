@@ -430,13 +430,15 @@ export const IfxStatus = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-statu
 export const IfxStep = /*@__PURE__*/ defineContainer<JSX.IfxStep>('ifx-step', undefined, [
   'lastStep',
   'stepId',
-  'stepperState'
+  'stepperState',
+  'error'
 ]);
 
 
 export const IfxStepper = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', undefined, [
   'showNumber',
-  'activeStep'
+  'activeStep',
+  'variant'
 ]);
 
 

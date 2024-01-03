@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default |
-| ------------ | ------------- | ----------- | --------- | ------- |
-| `activeStep` | `active-step` |             | `number`  | `1`     |
-| `showNumber` | `show-number` |             | `boolean` | `false` |
+| Property     | Attribute     | Description | Type      | Default     |
+| ------------ | ------------- | ----------- | --------- | ----------- |
+| `activeStep` | `active-step` |             | `number`  | `1`         |
+| `showNumber` | `show-number` |             | `boolean` | `false`     |
+| `variant`    | `variant`     |             | `string`  | `'default'` |
 
 
 ----------------------------------------------
