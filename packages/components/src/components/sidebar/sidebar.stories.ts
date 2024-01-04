@@ -1,3 +1,4 @@
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Components/Sidebar",
@@ -9,109 +10,97 @@ export default {
   },
 
   argTypes: {
-
+    // ifxSidebarItem: {
+    //   action: 'ifxSidebarItem',
+    //   description: 'Custom event emitted when the sidebar is interacted with',
+    // table: {
+    //   type: {
+    //     summary: 'Framework integration',
+    //     detail: 'React: onIfxSidebarActiveItem={handleActiveItemChange}\nVue:@ifxSidebarActiveItem="handleActiveItemChange"\nAngular:(ifxSidebarActiveItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActiveItem", (event) => {//handle change});',
+    //   },
+    // },
+    // },
+    ifxSidebarActiveItem: {
+      action: 'ifxSidebarActiveItem',
+      description: 'Custom event emitted when an item becomes active',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxSidebarActiveItem={handleActiveItemChange}\nVue:@ifxSidebarActiveItem="handleActiveItemChange"\nAngular:(ifxSidebarActiveItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActiveItem", (event) => {//handle change});',
+        },
+      },
+    },
   },
 };
 
 
-const DefaultTemplate = (args) =>
-  `<ifx-sidebar application-name="${args.applicationName}">
-  <ifx-sidebar-item href="http://google.com" target="_blank" icon="${args.icon ? 'image-16' : ""}">Item One</ifx-sidebar-item>
-  <ifx-sidebar-item href="http://google.com" target="_blank" icon="${args.icon ? 'image-16' : ""}">Item Two</ifx-sidebar-item>
-  <ifx-sidebar-item href="http://google.com" target="_blank" icon="${args.icon ? 'image-16' : ""}">Item Three</ifx-sidebar-item>
-  <ifx-sidebar-item href="http://google.com" target="_blank" icon="${args.icon ? 'image-16' : ""}">Item Four</ifx-sidebar-item>
-</ifx-sidebar>`;
+const DefaultTemplate = (args) => {
+  // Create the sidebar element and attach event listener
+  const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
+  sidebarElement.setAttribute('application-name', args.applicationName);
+  sidebarElement.addEventListener('ifxSidebarActiveItem', action(`ifxSidebarActiveItem`));
+  // sidebarElement.addEventListener('ifxSidebarItem', action(`ifxSidebarItem`));
+
+  const items = ["Item One", "Item Two", "Item Three", "Item Four"];
+
+  items.forEach(itemTitle => {
+    const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+    itemElement.setAttribute('href', "http://google.com");
+    itemElement.setAttribute('target', "_blank");
+    if (args.icon) {
+      itemElement.setAttribute('icon', 'image-16');
+    }
+    itemElement.textContent = itemTitle;
+
+    // Append the item to the sidebar
+    sidebarElement.appendChild(itemElement);
+  });
+
+  return sidebarElement;
+};
 
 
 export const Default = DefaultTemplate.bind({});
 
-const SubmenuTemplate = (args) =>
-  `<ifx-sidebar application-name="${args.applicationName}">
-  <ifx-sidebar-item>
-  Header Section
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item active="true">
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  
-  <ifx-sidebar-item>
-  Header Section
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  </ifx-sidebar-item>
 
-  <ifx-sidebar-item>
-  Header Section
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item>
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  </ifx-sidebar-item>
-</ifx-sidebar>`;
 
+const SubmenuTemplate = (args) => {
+  // Create the sidebar element and attach event listener
+  const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
+  sidebarElement.setAttribute('application-name', args.applicationName);
+  sidebarElement.addEventListener('ifxSidebarActiveItem', action('ifxSidebarActiveItem'));
+
+  // Create 3 sections
+  for (let i = 0; i < 3; i++) {
+    const sectionElement = document.createElement('ifx-sidebar-item');
+    sectionElement.textContent = `Header Section ${i + 1}`;
+
+    // In each section, create 3 menu items
+    for (let j = 0; j < 3; j++) {
+      const menuItemElement = document.createElement('ifx-sidebar-item');
+      menuItemElement.setAttribute('icon', args.icon ? 'image-16' : '');
+      menuItemElement.textContent = `Menu Item ${j + 1}`;
+
+      // In the first menu item of each section, create 3 submenu items
+      if (j === 0) {
+        for (let k = 0; k < 3; k++) {
+          const subMenuItemElement = document.createElement('ifx-sidebar-item');
+          subMenuItemElement.textContent = `Sub Menu Item ${k + 1}`;
+          menuItemElement.appendChild(subMenuItemElement);
+        }
+      }
+
+      sectionElement.appendChild(menuItemElement);
+    }
+    sidebarElement.appendChild(sectionElement);
+  }
+  const firstSection = sidebarElement.querySelectorAll('ifx-sidebar-item')[0];
+  const firstMenuItem = firstSection.querySelectorAll('ifx-sidebar-item')[0];
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('active', 'true')
+
+
+  return sidebarElement;
+};
 
 export const WithSubmenu = SubmenuTemplate.bind({});
 
@@ -214,4 +203,5 @@ const NumberIndicatorTemplate = () =>
 
 
 export const WithNumberIndicator = NumberIndicatorTemplate.bind({});
+
 

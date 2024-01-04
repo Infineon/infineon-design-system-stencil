@@ -21,160 +21,197 @@ export class SidebarItem {
   @Event() ifxSidebarItem: EventEmitter;
   @Event() ifxSidebarActiveItem: EventEmitter;
   @Prop() value: string = ""
+  @Prop() handleItemClick: (item: HTMLElement) => void;
+
 
   @Watch('active')
-  handleActiveChange(newValue: boolean, oldValue: boolean) { 
-    this.internalActiveState = this.active;
-    if(newValue !== oldValue) { 
+  handleActiveChange(newValue: boolean, oldValue: boolean) {
+    this.internalActiveState = newValue;
+    if (newValue !== oldValue) {
       let labelElement = this.getNavItem(this.el.shadowRoot)
-      if(!this.isExpandable && !newValue) {
-        this.handleClassList(labelElement, 'remove', 'active')
+      if (!this.isExpandable && !newValue) {
+        this.handleClassList(labelElement, 'remove', 'active');
       }
-      if(!this.isExpandable && newValue) {   
-        this.ifxSidebarActiveItem.emit(this.el)
-        this.handleClassList(labelElement, 'add', 'active')
+      if (!this.isExpandable && newValue) {
+        this.handleClassList(labelElement, 'add', 'active');
       }
     }
   }
 
+
+
   @Listen('consoleError')
-  handleConsoleError(event: CustomEvent<boolean>) { 
-    if(event.detail) { 
+  handleConsoleError(event: CustomEvent<boolean>) {
+    if (event.detail) {
       this.hasIcon = false;
-    } else { 
+    } else {
       this.hasIcon = true;
     }
   }
 
-  handleEventEmission() { 
-    this.ifxSidebarItem.emit({value: this.value, component: this.el})
+  handleEventEmission() {
+    // Get the active item section
+    // const activeItemSection = this.getActiveItemSection();
+    // this.value = this.el.textContent;
+    // console.log(activeItemSection)
+    this.ifxSidebarItem.emit(this.el)
   }
 
   handleClassList(el, type, className) {
     el.classList[type](className)
-    if(type === 'contains') { 
+    if (type === 'contains') {
       return el.classList.contains(className)
     }
   }
 
-  getExpandableMenu() { 
+  getExpandableMenu() {
     const expandableSubmenu = this.el.shadowRoot.querySelector('.expandable__submenu')
     return expandableSubmenu
   }
 
-  getNavItem(el) { 
+  getNavItem(el) {
     return el?.querySelector('.sidebar__nav-item')
   }
 
-  getSidebarMenuItems(el = this.el) { 
+
+
+  getSidebarMenuItems(el = this.el) {
     const sidebarItems = el.querySelectorAll('ifx-sidebar-item');
-    if(sidebarItems.length === 0) { 
+    if (sidebarItems.length === 0) {
       return el.shadowRoot.querySelectorAll('ifx-sidebar-item');
     }
     return sidebarItems;
   }
 
-  getSidebarMenuItem() { 
+  getSidebarMenuItem() {
     const sidebarItem = this.el.shadowRoot.querySelector('.sidebar__nav-item')
     return sidebarItem;
   }
 
-  toggleSubmenu() { 
-    this.handleEventEmission()
-    if(this.isExpandable) { 
-      const menuItem = this.getSidebarMenuItem()
-      const expandableMenu = this.getExpandableMenu()
-      this.handleClassList(expandableMenu, 'toggle', 'open')
-      this.handleClassList(menuItem, 'toggle', 'open')
-      const toggledComponentIsHeader = this.parentElementIsSidebar()
-      if(toggledComponentIsHeader) { 
-        this.handleBorderIndicatorDisplacement(menuItem)
+  toggleSubmenu() {
+    if (this.isExpandable) {
+      const menuItem = this.getSidebarMenuItem();
+      const expandableMenu = this.getExpandableMenu();
+      this.handleClassList(expandableMenu, 'toggle', 'open');
+      this.handleClassList(menuItem, 'toggle', 'open');
+      const toggledComponentIsHeader = this.parentElementIsSidebar();
+
+      if (toggledComponentIsHeader) {
+        // this.handleBorderIndicatorDisplacement(menuItem);
+      }
+    } else {
+      // If the sidebar item is not expandable, it's a leaf item without a submenu.
+      // Emit an event to the parent `ifx-sidebar` component to notify it that a leaf item has been clicked.
+      // if (!this.internalActiveState) {
+      // this.active = true; // This will trigger the watcher and update the classes
+      this.handleActiveChange(true, this.internalActiveState)
+      this.ifxSidebarActiveItem.emit(this.el);
+      // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
+      if (this.handleItemClick) {
+        this.handleItemClick(this.el);
       }
     }
+    // Emit an event with the current component
+    this.handleEventEmission();
   }
 
-  handleExpandableMenu(sidebarItems) { 
+
+
+  handleExpandableMenu(sidebarItems) {
     const sidebarExpandableMenu = this.getExpandableMenu();
-    sidebarItems.forEach((el: HTMLElement) => { 
-        const li = document.createElement('li')
-        li.appendChild(el)
-        sidebarExpandableMenu.appendChild(li)
-      })
+    sidebarItems.forEach((el: HTMLElement) => {
+      const li = document.createElement('li')
+      li.appendChild(el)
+      sidebarExpandableMenu.appendChild(li)
+    })
   }
 
-  parentElementIsSidebar() { 
+  parentElementIsSidebar() {
     const parentElement = this.el.parentElement;
-    if(parentElement.tagName.toUpperCase() === 'IFX-SIDEBAR') { 
+    if (parentElement.tagName.toUpperCase() === 'IFX-SIDEBAR') {
       return true;
     } else return false;
   }
 
-  checkIfMenuItemIsNested() { 
+  checkIfMenuItemIsNested() {
     const parentIsSidebar = this.parentElementIsSidebar()
-    if(parentIsSidebar) { 
+    if (parentIsSidebar) {
       this.isNested = false;
     }
   }
 
-  isActive(iteratedComponent) { 
+  isActive(iteratedComponent) {
     const activeAttributeValue = iteratedComponent.getAttribute('active');
     const isActive = activeAttributeValue === 'true';
     return isActive
   }
 
-  handleBorderIndicatorDisplacement(menuItem) { 
-    const sideBarItemChildren = this.getSidebarMenuItems()
-    sideBarItemChildren.forEach((item) => { 
-        const subChildren = this.getSidebarMenuItems(item)
-        if(subChildren.length !== 0) { 
-          subChildren.forEach((subItem) => {
-            const isActive = this.isActive(subItem)
-            if(isActive) { 
-              const isOpen = this.handleClassList(menuItem, 'contains', 'open')
-              const activeMenuItemSection = this.getActiveItemSection()
-              if(!isOpen) { 
-                this.handleClassList(activeMenuItemSection, 'add', 'active-section')
-              } else { 
-                this.handleClassList(activeMenuItemSection, 'remove', 'active-section')
-              }
-            }
-          })
-        }
-    })
+  getParentSection(el: HTMLElement) {
+    let parentElement = el.parentElement;
+
+    while (parentElement && parentElement.tagName.toUpperCase() !== 'IFX-SIDEBAR') {
+      if (parentElement.tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM') {
+        return parentElement;
+      }
+      parentElement = parentElement.parentElement;
+    }
+
+    return null;
   }
 
-  setHref() { 
-    if(this.href.toLowerCase().trim() === "") { 
+
+
+  handleBorderIndicatorDisplacement(menuItem) {
+    // Recursive function to handle each item
+    const handleItem = (item, menuItem) => {
+      const isActive = this.isActive(item);
+      if (isActive) {
+        const isOpen = this.handleClassList(menuItem, 'contains', 'open');
+        const activeMenuItemSection = this.getActiveItemSection();
+        if (!isOpen) {
+          this.handleClassList(activeMenuItemSection, 'add', 'active-section');
+        } else {
+          this.handleClassList(activeMenuItemSection, 'remove', 'active-section');
+        }
+      }
+
+      // Process each child item
+      const children = this.getSidebarMenuItems(item);
+      children.forEach((child) => handleItem(child, menuItem));
+    }
+
+    // Start with the top-level items
+    const topLevelItems = this.getSidebarMenuItems();
+    topLevelItems.forEach((item) => handleItem(item, menuItem));
+  }
+
+
+  setHref() {
+    if (this.href.toLowerCase().trim() === "") {
       this.internalHref = undefined;
     } else this.internalHref = this.href;
   }
 
-  getActiveItemSection() { 
+  getActiveItemSection() {
     const parentIsSidebar = this.parentElementIsSidebar()
-    if(parentIsSidebar) { 
+    if (parentIsSidebar) {
       const labelElement = this.getNavItem(this.el.shadowRoot)
       return labelElement;
-    } else { 
-      const labelElement = this.getNavItem(this.el.parentElement.shadowRoot)
+    } else {
+      const labelElement = this.getNavItem(this.el.shadowRoot)
       return labelElement;
     }
   }
 
   @Method()
-  async setActiveClasses(activeSection = null) { 
-     const activeMenuItemSection = this.getActiveItemSection()
-     const activeMenuItem = this.getNavItem(this.el.shadowRoot)
-     if(activeMenuItemSection) { 
-       this.handleClassList(activeMenuItemSection, 'add', 'active-section')
-     } else if(activeSection) { 
-      const labelElement = this.getNavItem(activeSection.shadowRoot)
-      this.handleClassList(labelElement, 'add', 'active-section')
-     }
-     this.handleClassList(activeMenuItem, 'add', 'active')
+  async setActiveClasses() {
+    const activeMenuItem = this.getNavItem(this.el.shadowRoot)
+    this.handleClassList(activeMenuItem, 'add', 'active')
   }
 
-  handleActiveState() { 
-    if(this.internalActiveState) { 
+  handleActiveState() {
+    console.log("handling active state")
+    if (this.internalActiveState) {
       this.setActiveClasses()
     }
   }
@@ -185,31 +222,43 @@ export class SidebarItem {
     }
   }
 
-  componentDidLoad() { 
+  componentDidLoad() {
     const toggledComponentIsHeader = this.parentElementIsSidebar()
-    if(toggledComponentIsHeader) { 
-      const menuItem = this.getSidebarMenuItem()
-      this.handleBorderIndicatorDisplacement(menuItem)
+    if (toggledComponentIsHeader) {
+      // const menuItem = this.getSidebarMenuItem()
+      // this.handleBorderIndicatorDisplacement(menuItem)
     }
 
-    this.handleActiveState()
-    if(this.isExpandable) { 
+    this.handleActiveState();
+    if (this.isExpandable) {
       const sidebarItems = this.getSidebarMenuItems();
       this.handleExpandableMenu(sidebarItems)
     }
   }
 
-  componentWillLoad() { 
+  componentWillLoad() {
     this.internalActiveState = this.active;
-    this.checkIfMenuItemIsNested()
+    this.checkIfMenuItemIsNested();
     this.setHref()
     const sidebarItems = this.getSidebarMenuItems();
-    if(sidebarItems.length !== 0) { 
+    if (sidebarItems.length !== 0) {
       this.isExpandable = true;
-    } else { 
+    } else {
       this.isExpandable = false;
     }
   }
+
+  componentWillUpdate() {
+    // If the active prop has been set to true and the internalActiveState has not been set to true yet
+    if (this.active && !this.internalActiveState) {
+      // Set the internal active state to true
+      this.internalActiveState = this.active;
+
+      // Emit the event to notify the parent Sidebar
+      this.ifxSidebarActiveItem.emit(this.el);
+    }
+  }
+
 
   render() {
     return (
@@ -223,21 +272,21 @@ export class SidebarItem {
             <slot />
           </div>
           <div class="sidebar__nav-item-indicator">
-            {this.isExpandable && 
-            <span class='item__arrow-wrapper'>
-            <ifx-icon icon="chevron-down-12" />
-            </span>
+            {this.isExpandable &&
+              <span class='item__arrow-wrapper'>
+                <ifx-icon icon="chevron-down-12" />
+              </span>
             }
-            
+
             {!this.isExpandable && !this.isNested &&
-            <span class='item__number-indicator'>
-            <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
-            </span>}
-            
+              <span class='item__number-indicator'>
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+              </span>}
+
           </div>
         </a>
         {this.isExpandable && <ul class='expandable__submenu'></ul>}
-        
+
       </div>
     );
   }

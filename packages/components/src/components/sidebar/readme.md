@@ -7,14 +7,15 @@
 
 ## Properties
 
-| Property          | Attribute          | Description | Type      | Default     |
-| ----------------- | ------------------ | ----------- | --------- | ----------- |
-| `active`          | `active`           |             | `boolean` | `false`     |
-| `href`            | `href`             |             | `string`  | `""`        |
-| `icon`            | `icon`             |             | `string`  | `""`        |
-| `numberIndicator` | `number-indicator` |             | `number`  | `undefined` |
-| `target`          | `target`           |             | `string`  | `"_self"`   |
-| `value`           | `value`            |             | `string`  | `""`        |
+| Property          | Attribute          | Description | Type                          | Default     |
+| ----------------- | ------------------ | ----------- | ----------------------------- | ----------- |
+| `active`          | `active`           |             | `boolean`                     | `false`     |
+| `handleItemClick` | --                 |             | `(item: HTMLElement) => void` | `undefined` |
+| `href`            | `href`             |             | `string`                      | `""`        |
+| `icon`            | `icon`             |             | `string`                      | `""`        |
+| `numberIndicator` | `number-indicator` |             | `number`                      | `undefined` |
+| `target`          | `target`           |             | `string`                      | `"_self"`   |
+| `value`           | `value`            |             | `string`                      | `""`        |
 
 
 ## Events
@@ -27,7 +28,7 @@
 
 ## Methods
 
-### `setActiveClasses(activeSection?: any) => Promise<void>`
+### `setActiveClasses() => Promise<void>`
 
 
 

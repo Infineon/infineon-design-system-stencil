@@ -1,10 +1,15 @@
 import { Component, h, Element, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
 
+const ACTIVE = 'active';
+const ACTIVE_SECTION = 'active-section';
+const SIDEBAR_ITEM = '.sidebar__nav-item';
+
 @Component({
   tag: 'ifx-sidebar',
   styleUrl: 'sidebar.scss',
   shadow: true
 })
+
 export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
@@ -16,86 +21,214 @@ export class Sidebar {
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
   @Event() ifxSidebar: EventEmitter;
+  @State() activeItem: HTMLElement | null = null;
 
-  @Listen('ifxSidebarItem')
-  handleEventEmission(event: CustomEvent) { 
-    this.ifxSidebar.emit(event.detail)
+  componentDidLoad() {
+    document.addEventListener('click', this.handleClickOutside);
   }
 
-  querySidebarItems(el) { 
+  disconnectedCallback() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  handleClickOutside = (event: MouseEvent) => {
+    if (!this.el.contains(event.target as HTMLElement)) {
+      this.removeActiveClassesRecursively();
+    }
+  }
+
+  getSidebarMenuItems(el = this.el) {
+    const sidebarItems = el.querySelectorAll('ifx-sidebar-item');
+    if (sidebarItems.length === 0) {
+      return el.shadowRoot.querySelectorAll('ifx-sidebar-item');
+    }
+    return sidebarItems;
+  }
+
+
+
+  handleClassList(el, type, className) {
+    el.classList[type](className)
+    if (type === 'contains') {
+      return el.classList.contains(className)
+    }
+  }
+
+
+
+  getActiveItemSection(item) {
+    return this.getNavItem(item.shadowRoot);
+
+  }
+
+
+  getNavItem(el) {
+    return el?.querySelector('.sidebar__nav-item')
+  }
+
+  hasChildren(el) {
+    return el?.querySelector('.item__arrow-wrapper') !== null ? true : false;
+  }
+
+
+
+
+  handleBorderIndicatorDisplacement(clickedItem) {
+    // Recursive function to handle each item
+    const handleItem = (item) => {
+      // Check if current item is active or the one that was clicked
+      const isActive = this.isActive(item) || item === clickedItem;
+
+
+      if (isActive) {
+        const activeMenuItemSection = this.getActiveItemSection(item);
+        const isMenu = this.hasChildren(activeMenuItemSection);
+
+        if (isMenu) {
+          this.handleClassList(activeMenuItemSection, 'add', 'active-section');
+        } else {
+          // item.setAttribute('active', 'true');
+          // this.activeItem = item;
+        }
+      }
+
+      // Recursive call for child items
+      const children = this.getSidebarMenuItems(item);
+      children.forEach(handleItem);
+    };
+
+    // Start with the top-level items
+    const topLevelItems = this.getSidebarMenuItems(this.el);
+    topLevelItems.forEach(handleItem);
+  }
+
+
+
+
+  removeActiveClassesRecursively() {
+    const removeClasses = (root) => {
+      const children = this.querySidebarItems(root);
+      children.forEach((child) => {
+        const sidebarItem = child.shadowRoot.querySelector(SIDEBAR_ITEM);
+        sidebarItem.classList.remove(ACTIVE_SECTION);
+        sidebarItem.classList.remove(ACTIVE);
+        if (child.getAttribute('active')) {
+          child.setAttribute('active', 'false');
+        }
+        removeClasses(child.shadowRoot);
+      });
+    }
+    removeClasses(this.el);
+    if (this.activeItem) {
+      this.activeItem.setAttribute('active', 'false');
+    }
+    this.activeItem = null;
+  }
+
+  hasActiveChild(menuItem) {
+    const children = this.getSidebarMenuItems(menuItem);
+    for (let child of children) {
+      // If the child item is active
+      if (this.isActive(child)) {
+        return true;
+      }
+      // If the child item has children, recurse into them
+      else if (this.hasChildren(child.shadowRoot)) {
+        if (this.hasActiveChild(child.shadowRoot)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  @Listen('ifxSidebarItem')
+  handleSidebarItemInteraction(event: CustomEvent) {
+    // This method can be used to handle the ifxSidebarItem event
+    // Get the element that triggered the event
+    console.log("ifx sidebar item interaction ", event.detail)
+
+    const clickedItem = event.detail;
+
+    // If the clicked item is not a menu OR is a menu that has an active child
+    if (!this.hasChildren(clickedItem.shadowRoot) || this.hasActiveChild(clickedItem.shadowRoot)) {
+      this.handleBorderIndicatorDisplacement(clickedItem);
+    }
+
+    // If the clicked item is a menu and doesn't have any active children
+    if (this.hasChildren(clickedItem.shadowRoot) && !this.hasActiveChild(clickedItem.shadowRoot)) {
+      const clickedItemSection = this.getActiveItemSection(clickedItem);
+      this.handleClassList(clickedItemSection, 'remove', 'active-section');
+      // if (this.activeItem) {
+      //   this.removeActiveClassesRecursively();
+      //   // this.activeItem.setAttribute('active', 'false');
+      //   // const menuItemSection = this.getActiveItemSection(this.activeItem);
+      //   // this.handleClassList(menuItemSection, 'remove', 'active-section');
+      //   // this.handleClassList(menuItemSection, 'remove', 'active');
+      //   // this.activeItem = null;
+      // }
+    }
+
+    // If clickedItem is an opened menu and it contains another menu with 'active-section'
+    if (this.hasChildren(clickedItem.shadowRoot) && this.isOpen(clickedItem.shadowRoot) && this.containsActiveSection(clickedItem)) {
+      const clickedItemSection = this.getActiveItemSection(clickedItem);
+      this.handleClassList(clickedItemSection, 'remove', 'active-section');
+    }
+
+  }
+
+  isOpen(menuItem) {
+    return this.getNavItem(menuItem).classList.contains('open') ? true : false;
+  }
+
+  containsActiveSection(menuItem) {
+    const children = this.getSidebarMenuItems(menuItem);
+    for (let child of children) {
+      if (this.getNavItem(child.shadowRoot).classList.contains('active-section') || (this.hasChildren(child.shadowRoot) && this.containsActiveSection(child.shadowRoot))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+
+  querySidebarItems(el) {
     return el.querySelectorAll('ifx-sidebar-item')
   }
 
-  getAllSidebarItems(el) {
-    const sideBarItemChildren = this.querySidebarItems(this.el)
-    let allItems = {list: [], activeSection: ""}
-    sideBarItemChildren.forEach((item) => { 
-      allItems.list.push(item)
-        const subChildren = this.querySidebarItems(item.shadowRoot)
-        if(el === item) { 
-          allItems.activeSection = item;
-        }
-        if(subChildren.length !== 0) { 
-          subChildren.forEach((subItem) => {
-            if(el === subItem) { 
-              allItems.activeSection = item;
-            } 
-            allItems.list.push(subItem)
-              const subChildrenChildren = this.querySidebarItems(subItem.shadowRoot)
-              if(subChildrenChildren.length !== 0) { 
-                subChildrenChildren.forEach((subChildrenItem) => { 
-                  if(el === subChildrenItem) {
-                    allItems.activeSection = subItem;
-                  }
-                  allItems.list.push(subChildrenItem)
-                })
-              }
-          })
-        } 
-    })
-    return allItems
-  }
-
-  isActive(iteratedComponent) { 
+  isActive(iteratedComponent) {
+    console.log("is active: ", iteratedComponent)
     const activeAttributeValue = iteratedComponent.getAttribute('active');
     const isActive = activeAttributeValue === 'true';
-    return isActive
+    return isActive;
   }
-  
+
   @Listen('ifxSidebarActiveItem')
-  handleActiveItem(event: CustomEvent) { 
-   const targetComponent = event.detail;
-   const allItems = this.getAllSidebarItems(event.detail)
-  
-   for(let i = 0; i < allItems.list.length; i++) { 
-    const iteratedComponent = allItems.list[i];
-    const isActive = this.isActive(iteratedComponent)
-    if(isActive && targetComponent !== iteratedComponent) { 
-      allItems.list[i].setAttribute('active', 'false')
-    }
+  handleSidebarItemActivated(event: CustomEvent) {
+    console.log("ifx sidebar item activation ", event.detail)
 
-    if(targetComponent !== iteratedComponent) { 
-      let elementLabel = allItems.list[i].shadowRoot.querySelector('.sidebar__nav-item');
-      elementLabel.classList.remove('active-section')
-    }
+    this.removeActiveClassesRecursively();
 
-    targetComponent.setActiveClasses(allItems.activeSection)
-   }
+    this.activeItem = event.detail;
+    this.activeItem.setAttribute('active', 'true');
+
+    // this.handleBorderIndicatorDisplacement(event.detail);
+
+    // Get the parent element of the activated item
+    const parent = this.getNavItem(event.detail.parentElement.parentElement.parentElement);
+    console.log("parent", parent)
+    if (parent) {
+      this.handleClassList(parent, 'add', 'active-section');
+    }
   }
 
 
-  componentWillLoad() { 
-    if(!this.termsOfUse) { 
-      this.internalTermsofUse = undefined;
-    } else this.internalTermsofUse = this.termsOfUse
 
-    if(!this.privacyPolicy) { 
-      this.internalPrivacyPolicy = undefined;
-    } else this.internalPrivacyPolicy = this.privacyPolicy
-
-    if(!this.imprint) { 
-      this.internalImprint = undefined;
-    } else this.internalImprint = this.imprint
+  componentWillLoad() {
+    this.internalTermsofUse = this.termsOfUse || 'Not available';
+    this.internalPrivacyPolicy = this.privacyPolicy || 'Not available';
+    this.internalImprint = this.imprint || 'Not available';
   }
 
   render() {
@@ -115,8 +248,7 @@ export class Sidebar {
                       <rect width="91" height="40" fill="white" />
                     </clipPath>
                   </defs>
-                </svg>
-              </div>
+                </svg>              </div>
               <div class='sidebar__nav-bar-logo-text'>{this.applicationName}</div>
             </div>
           </div>
@@ -137,7 +269,7 @@ export class Sidebar {
               </div>
             </div>
             <div class='sidebar__footer-wrapper-bottom-links'>
-              <a href={undefined}>© 1999 - 2023 Infineon Technologies AG</a>
+              <a href='https://www.infineon.com/'>© 1999 - 2023 Infineon Technologies AG</a>
             </div>
           </div>
         </div>
