@@ -51,9 +51,6 @@ export class SidebarItem {
 
   handleEventEmission() {
     // Get the active item section
-    // const activeItemSection = this.getActiveItemSection();
-    // this.value = this.el.textContent;
-    // console.log(activeItemSection)
     this.ifxSidebarItem.emit(this.el)
   }
 
@@ -102,8 +99,6 @@ export class SidebarItem {
     } else {
       // If the sidebar item is not expandable, it's a leaf item without a submenu.
       // Emit an event to the parent `ifx-sidebar` component to notify it that a leaf item has been clicked.
-      // if (!this.internalActiveState) {
-      // this.active = true; // This will trigger the watcher and update the classes
       this.handleActiveChange(true, this.internalActiveState)
       this.ifxSidebarActiveItem.emit(this.el);
       // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
@@ -223,12 +218,6 @@ export class SidebarItem {
   }
 
   componentDidLoad() {
-    const toggledComponentIsHeader = this.parentElementIsSidebar()
-    if (toggledComponentIsHeader) {
-      // const menuItem = this.getSidebarMenuItem()
-      // this.handleBorderIndicatorDisplacement(menuItem)
-    }
-
     this.handleActiveState();
     if (this.isExpandable) {
       const sidebarItems = this.getSidebarMenuItems();

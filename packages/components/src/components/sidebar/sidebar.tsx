@@ -25,6 +25,9 @@ export class Sidebar {
 
   componentDidLoad() {
     document.addEventListener('click', this.handleClickOutside);
+    this.setInitialActiveItem();
+    this.applyActiveSectionToParent(this.el);
+
   }
 
   disconnectedCallback() {
@@ -45,6 +48,29 @@ export class Sidebar {
     return sidebarItems;
   }
 
+  setInitialActiveItem() {
+    // Query all sidebar items. Replace 'itemSelector' with the actual selector for your items
+    const sidebarItems = this.getSidebarMenuItems();
+
+    // Iterate over all items
+    sidebarItems.forEach(item => {
+      // If the clicked item is not a menu OR is a menu that has an active child
+      if (!this.hasChildren(item.shadowRoot) || this.hasActiveChild(item.shadowRoot)) {
+        this.handleBorderIndicatorDisplacement(item);
+      }
+
+      // If the clicked item is a menu and doesn't have any active children
+      if (this.hasChildren(item.shadowRoot) && !this.hasActiveChild(item.shadowRoot)) {
+        const clickedItemSection = this.getActiveItemSection(item);
+        this.handleClassList(clickedItemSection, 'remove', 'active-section');
+      }
+      // If clickedItem is an opened menu and it contains another menu with 'active-section'
+      if (this.hasChildren(item.shadowRoot) && this.isOpen(item.shadowRoot) && this.containsActiveSection(item)) {
+        const clickedItemSection = this.getActiveItemSection(item);
+        this.handleClassList(clickedItemSection, 'remove', 'active-section');
+      }
+    });
+  }
 
 
   handleClassList(el, type, className) {
@@ -55,10 +81,8 @@ export class Sidebar {
   }
 
 
-
   getActiveItemSection(item) {
     return this.getNavItem(item.shadowRoot);
-
   }
 
 
@@ -71,14 +95,11 @@ export class Sidebar {
   }
 
 
-
-
   handleBorderIndicatorDisplacement(clickedItem) {
     // Recursive function to handle each item
     const handleItem = (item) => {
       // Check if current item is active or the one that was clicked
       const isActive = this.isActive(item) || item === clickedItem;
-
 
       if (isActive) {
         const activeMenuItemSection = this.getActiveItemSection(item);
@@ -86,9 +107,6 @@ export class Sidebar {
 
         if (isMenu) {
           this.handleClassList(activeMenuItemSection, 'add', 'active-section');
-        } else {
-          // item.setAttribute('active', 'true');
-          // this.activeItem = item;
         }
       }
 
@@ -101,8 +119,6 @@ export class Sidebar {
     const topLevelItems = this.getSidebarMenuItems(this.el);
     topLevelItems.forEach(handleItem);
   }
-
-
 
 
   removeActiveClassesRecursively() {
@@ -147,8 +163,6 @@ export class Sidebar {
   handleSidebarItemInteraction(event: CustomEvent) {
     // This method can be used to handle the ifxSidebarItem event
     // Get the element that triggered the event
-    console.log("ifx sidebar item interaction ", event.detail)
-
     const clickedItem = event.detail;
 
     // If the clicked item is not a menu OR is a menu that has an active child
@@ -160,14 +174,6 @@ export class Sidebar {
     if (this.hasChildren(clickedItem.shadowRoot) && !this.hasActiveChild(clickedItem.shadowRoot)) {
       const clickedItemSection = this.getActiveItemSection(clickedItem);
       this.handleClassList(clickedItemSection, 'remove', 'active-section');
-      // if (this.activeItem) {
-      //   this.removeActiveClassesRecursively();
-      //   // this.activeItem.setAttribute('active', 'false');
-      //   // const menuItemSection = this.getActiveItemSection(this.activeItem);
-      //   // this.handleClassList(menuItemSection, 'remove', 'active-section');
-      //   // this.handleClassList(menuItemSection, 'remove', 'active');
-      //   // this.activeItem = null;
-      // }
     }
 
     // If clickedItem is an opened menu and it contains another menu with 'active-section'
@@ -175,7 +181,6 @@ export class Sidebar {
       const clickedItemSection = this.getActiveItemSection(clickedItem);
       this.handleClassList(clickedItemSection, 'remove', 'active-section');
     }
-
   }
 
   isOpen(menuItem) {
@@ -186,11 +191,29 @@ export class Sidebar {
     const children = this.getSidebarMenuItems(menuItem);
     for (let child of children) {
       if (this.getNavItem(child.shadowRoot).classList.contains('active-section') || (this.hasChildren(child.shadowRoot) && this.containsActiveSection(child.shadowRoot))) {
+        this.handleClassList(child, 'add', 'active-section')
         return true;
       }
     }
     return false;
   }
+
+  applyActiveSectionToParent(el) {
+    // Get all submenus of the given element
+    const subMenus = this.getSidebarMenuItems(el);
+
+    subMenus.forEach(menu => {
+      // If this submenu has an active child, add active-section class to it
+      if (this.hasActiveChild(menu.shadowRoot)) {
+        const menuItemSection = this.getActiveItemSection(menu);
+        this.handleClassList(menuItemSection, 'add', 'active-section');
+      }
+
+      // Apply to submenu's children
+      this.applyActiveSectionToParent(menu.shadowRoot);
+    });
+  }
+
 
 
   querySidebarItems(el) {
@@ -206,18 +229,14 @@ export class Sidebar {
 
   @Listen('ifxSidebarActiveItem')
   handleSidebarItemActivated(event: CustomEvent) {
-    console.log("ifx sidebar item activation ", event.detail)
 
     this.removeActiveClassesRecursively();
 
     this.activeItem = event.detail;
     this.activeItem.setAttribute('active', 'true');
 
-    // this.handleBorderIndicatorDisplacement(event.detail);
-
     // Get the parent element of the activated item
     const parent = this.getNavItem(event.detail.parentElement.parentElement.parentElement);
-    console.log("parent", parent)
     if (parent) {
       this.handleClassList(parent, 'add', 'active-section');
     }
