@@ -3,7 +3,7 @@ export default{
     tags: ['autodocs'],
     args: { 
         variant: 'default',
-        amountOfSteps: 6,
+        amountOfSteps: 5,
         activeStep: 2,
         errorStep: -1,
         showNumber: false

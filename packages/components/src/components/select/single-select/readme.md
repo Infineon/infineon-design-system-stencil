@@ -76,12 +76,6 @@
 
 
 
-#### Parameters
-
-| Name | Type                      | Description |
-| ---- | ------------------------- | ----------- |
-| `fn` | `(callback: any) => void` |             |
-
 #### Returns
 
 Type: `Promise<this>`
@@ -142,12 +136,6 @@ Type: `Promise<this>`
 
 
 
-#### Parameters
-
-| Name        | Type      | Description |
-| ----------- | --------- | ----------- |
-| `valueOnly` | `boolean` |             |
-
 #### Returns
 
 Type: `Promise<string | string[]>`
@@ -167,12 +155,6 @@ Type: `Promise<void>`
 ### `hideDropdown(blurInput?: boolean) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name        | Type      | Description |
-| ----------- | --------- | ----------- |
-| `blurInput` | `boolean` |             |
 
 #### Returns
 
@@ -194,13 +176,6 @@ Type: `Promise<this>`
 
 
 
-#### Parameters
-
-| Name       | Type          | Description |
-| ---------- | ------------- | ----------- |
-| `item`     | `HTMLElement` |             |
-| `runEvent` | `boolean`     |             |
-
 #### Returns
 
 Type: `Promise<this>`
@@ -210,12 +185,6 @@ Type: `Promise<this>`
 ### `removeActiveItems(excludedId?: number) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name         | Type     | Description |
-| ------------ | -------- | ----------- |
-| `excludedId` | `number` |             |
 
 #### Returns
 
@@ -227,12 +196,6 @@ Type: `Promise<this>`
 
 
 
-#### Parameters
-
-| Name    | Type     | Description |
-| ------- | -------- | ----------- |
-| `value` | `string` |             |
-
 #### Returns
 
 Type: `Promise<this>`
@@ -242,12 +205,6 @@ Type: `Promise<this>`
 ### `removeHighlightedItems(runEvent?: boolean) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name       | Type      | Description |
-| ---------- | --------- | ----------- |
-| `runEvent` | `boolean` |             |
 
 #### Returns
 
@@ -259,12 +216,6 @@ Type: `Promise<this>`
 
 
 
-#### Parameters
-
-| Name    | Type                 | Description |
-| ------- | -------------------- | ----------- |
-| `value` | `string \| string[]` |             |
-
 #### Returns
 
 Type: `Promise<this>`
@@ -274,15 +225,6 @@ Type: `Promise<this>`
 ### `setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name             | Type              | Description |
-| ---------------- | ----------------- | ----------- |
-| `choices`        | `string \| any[]` |             |
-| `value`          | `string`          |             |
-| `label`          | `string`          |             |
-| `replaceChoices` | `boolean`         |             |
 
 #### Returns
 
@@ -294,12 +236,6 @@ Type: `Promise<this>`
 
 
 
-#### Parameters
-
-| Name   | Type    | Description |
-| ------ | ------- | ----------- |
-| `args` | `any[]` |             |
-
 #### Returns
 
 Type: `Promise<this>`
@@ -309,12 +245,6 @@ Type: `Promise<this>`
 ### `showDropdown(focusInput?: boolean) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name         | Type      | Description |
-| ------------ | --------- | ----------- |
-| `focusInput` | `boolean` |             |
 
 #### Returns
 
@@ -335,12 +265,6 @@ Type: `Promise<this>`
 ### `unhighlightItem(item: HTMLElement) => Promise<this>`
 
 
-
-#### Parameters
-
-| Name   | Type          | Description |
-| ------ | ------------- | ----------- |
-| `item` | `HTMLElement` |             |
 
 #### Returns
 
