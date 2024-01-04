@@ -221,13 +221,12 @@ export class Sidebar {
   }
 
   isActive(iteratedComponent) {
-    console.log("is active: ", iteratedComponent)
     const activeAttributeValue = iteratedComponent.getAttribute('active');
     const isActive = activeAttributeValue === 'true';
     return isActive;
   }
 
-  @Listen('ifxSidebarActiveItem')
+  @Listen('ifxSidebarNavigationItem')
   handleSidebarItemActivated(event: CustomEvent) {
 
     this.removeActiveClassesRecursively();

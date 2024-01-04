@@ -10,23 +10,23 @@ export default {
   },
 
   argTypes: {
-    // ifxSidebarItem: {
-    //   action: 'ifxSidebarItem',
-    //   description: 'Custom event emitted when the sidebar is interacted with',
-    // table: {
-    //   type: {
-    //     summary: 'Framework integration',
-    //     detail: 'React: onIfxSidebarActiveItem={handleActiveItemChange}\nVue:@ifxSidebarActiveItem="handleActiveItemChange"\nAngular:(ifxSidebarActiveItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActiveItem", (event) => {//handle change});',
-    //   },
-    // },
-    // },
-    ifxSidebarActiveItem: {
-      action: 'ifxSidebarActiveItem',
-      description: 'Custom event emitted when an item becomes active',
+    ifxSidebarNavigationItem: {
+      action: 'ifxSidebarNavigationItem',
+      description: 'Custom event emitted when a navigation item becomes active after clicking on it',
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxSidebarActiveItem={handleActiveItemChange}\nVue:@ifxSidebarActiveItem="handleActiveItemChange"\nAngular:(ifxSidebarActiveItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActiveItem", (event) => {//handle change});',
+          detail: 'React: onIfxSidebarNavigationItem={handleActiveItemChange}\nVue:@ifxSidebarNavigationItem="handleActiveItemChange"\nAngular:(ifxSidebarNavigationItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarNavigationItem", (event) => {//handle change});',
+        },
+      },
+    },
+    ifxSidebarActionItem: {
+      action: 'ifxSidebarActionItem',
+      description: 'Custom event emitted when an action item is clicked',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail: 'React: onIfxSidebarActionItem={handleActionItemChange}\nVue:@ifxSidebarActionItem="handleActionItemChange"\nAngular:(ifxSidebarActionItem)="handleActionItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActionItem", (event) => {//handle change});',
         },
       },
     },
@@ -38,8 +38,8 @@ const DefaultTemplate = (args) => {
   // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
-  sidebarElement.addEventListener('ifxSidebarActiveItem', action(`ifxSidebarActiveItem`));
-  // sidebarElement.addEventListener('ifxSidebarItem', action(`ifxSidebarItem`));
+  sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
+  sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
@@ -68,7 +68,8 @@ const SubmenuTemplate = (args) => {
   // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
-  sidebarElement.addEventListener('ifxSidebarActiveItem', action('ifxSidebarActiveItem'));
+  sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
+  sidebarElement.addEventListener('ifxSidebarActionItem', action('ifxSidebarActionItem'));
 
   // Create 3 sections
   for (let i = 0; i < 3; i++) {
@@ -96,7 +97,12 @@ const SubmenuTemplate = (args) => {
   }
   const firstSection = sidebarElement.querySelectorAll('ifx-sidebar-item')[0];
   const firstMenuItem = firstSection.querySelectorAll('ifx-sidebar-item')[0];
-  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('active', 'true')
+
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('active', 'true') //first submenu item
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('is-action-item', 'false')
+
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[1].setAttribute('is-action-item', 'true') //2nd submenu item
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[2].setAttribute('is-action-item', 'true') //3rd sub menu item
 
 
   return sidebarElement;

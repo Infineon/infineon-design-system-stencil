@@ -16,16 +16,25 @@ export class SidebarItem {
   @State() isExpandable: boolean = false;
   @State() isNested: boolean = true;
   @Prop() numberIndicator: number;
-  @Prop() active: boolean = false;
+  @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
+  @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
+
   @State() internalActiveState: boolean = false;
   @Event() ifxSidebarItem: EventEmitter;
-  @Event() ifxSidebarActiveItem: EventEmitter;
+  @Event() ifxSidebarNavigationItem: EventEmitter;
+  @Event() ifxSidebarActionItem: EventEmitter;
+
   @Prop() value: string = ""
   @Prop() handleItemClick: (item: HTMLElement) => void;
 
 
   @Watch('active')
   handleActiveChange(newValue: boolean, oldValue: boolean) {
+    // If the item is an action item, ignore the active prop
+    if (this.isActionItem) {
+      this.internalActiveState = false;
+      return;
+    }
     this.internalActiveState = newValue;
     if (newValue !== oldValue) {
       let labelElement = this.getNavItem(this.el.shadowRoot)
@@ -91,20 +100,22 @@ export class SidebarItem {
       const expandableMenu = this.getExpandableMenu();
       this.handleClassList(expandableMenu, 'toggle', 'open');
       this.handleClassList(menuItem, 'toggle', 'open');
-      const toggledComponentIsHeader = this.parentElementIsSidebar();
 
-      if (toggledComponentIsHeader) {
-        // this.handleBorderIndicatorDisplacement(menuItem);
-      }
     } else {
       // If the sidebar item is not expandable, it's a leaf item without a submenu.
       // Emit an event to the parent `ifx-sidebar` component to notify it that a leaf item has been clicked.
-      this.handleActiveChange(true, this.internalActiveState)
-      this.ifxSidebarActiveItem.emit(this.el);
-      // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
-      if (this.handleItemClick) {
-        this.handleItemClick(this.el);
+      if (this.isActionItem) { //its an action item that eg opens an overlay etc and should not influence the active state of the item
+        this.ifxSidebarActionItem.emit(this.el); // emit new event if isActionItem is true
+        return;
+      } else { //its a navigation item which becomes active after clicking it
+        this.handleActiveChange(true, this.internalActiveState)
+        this.ifxSidebarNavigationItem.emit(this.el);
+        // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
+        if (this.handleItemClick) {
+          this.handleItemClick(this.el);
+        }
       }
+
     }
     // Emit an event with the current component
     this.handleEventEmission();
@@ -205,7 +216,6 @@ export class SidebarItem {
   }
 
   handleActiveState() {
-    console.log("handling active state")
     if (this.internalActiveState) {
       this.setActiveClasses()
     }
@@ -244,7 +254,7 @@ export class SidebarItem {
       this.internalActiveState = this.active;
 
       // Emit the event to notify the parent Sidebar
-      this.ifxSidebarActiveItem.emit(this.el);
+      this.ifxSidebarNavigationItem.emit(this.el);
     }
   }
 

@@ -404,10 +404,12 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'target',
   'numberIndicator',
   'active',
+  'isActionItem',
   'value',
   'handleItemClick',
   'ifxSidebarItem',
-  'ifxSidebarActiveItem'
+  'ifxSidebarNavigationItem',
+  'ifxSidebarActionItem'
 ]);
 
 

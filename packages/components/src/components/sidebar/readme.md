@@ -13,6 +13,7 @@
 | `handleItemClick` | --                 |             | `(item: HTMLElement) => void` | `undefined` |
 | `href`            | `href`             |             | `string`                      | `""`        |
 | `icon`            | `icon`             |             | `string`                      | `""`        |
+| `isActionItem`    | `is-action-item`   |             | `boolean`                     | `false`     |
 | `numberIndicator` | `number-indicator` |             | `number`                      | `undefined` |
 | `target`          | `target`           |             | `string`                      | `"_self"`   |
 | `value`           | `value`            |             | `string`                      | `""`        |
@@ -20,10 +21,11 @@
 
 ## Events
 
-| Event                  | Description | Type               |
-| ---------------------- | ----------- | ------------------ |
-| `ifxSidebarActiveItem` |             | `CustomEvent<any>` |
-| `ifxSidebarItem`       |             | `CustomEvent<any>` |
+| Event                      | Description | Type               |
+| -------------------------- | ----------- | ------------------ |
+| `ifxSidebarActionItem`     |             | `CustomEvent<any>` |
+| `ifxSidebarItem`           |             | `CustomEvent<any>` |
+| `ifxSidebarNavigationItem` |             | `CustomEvent<any>` |
 
 
 ## Methods
