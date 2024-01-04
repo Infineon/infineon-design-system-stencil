@@ -26,6 +26,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@stencil/store": "^2.0.12"
+    "@storybook/core-events": "^7.6.6"
   }
 }
