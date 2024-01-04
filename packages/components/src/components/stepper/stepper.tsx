@@ -6,7 +6,7 @@ import { Component, h, Prop, Element } from "@stencil/core";
     shadow: true
 })
 
-export class Stepper{bha
+export class Stepper{
 
     @Prop() showNumber: boolean = false;
     @Prop({mutable: true, reflect: true}) activeStep: number = 1;
@@ -14,6 +14,7 @@ export class Stepper{bha
     @Element() el: HTMLElement;
     private stepsCount: number;
 
+    // Syncing children (steps) with parent state
     updateChildren(){
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         for(let i = 0; i < steps.length; i++){
@@ -23,6 +24,7 @@ export class Stepper{bha
     }
     
     componentWillLoad(){
+        // Adding Step Id's to steps
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         steps[steps.length-1].lastStep = true;
         for(let i = 0; i < steps.length; i++){
@@ -56,6 +58,7 @@ export class Stepper{bha
     };
 
     componentDidRender(){
+        // Updating progress bar in compact version
         if(this.variant == 'compact'){
             const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress')
             progressBar.style.setProperty('--pb', `${(this.activeStep/(this.stepsCount)) * 100}%`);
