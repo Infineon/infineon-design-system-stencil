@@ -1,0 +1,19 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as SidebarStories from './sidebar.stories';
+ 
+<Meta of={SidebarStories} />
+
+# Sidebar
+
+<Canvas of={SidebarStories.Default} sourceState="shown" />
+
+<Controls />
+
+
+## Stories
+
+### With Submenu
+<Canvas of={SidebarStories.WithSubmenu} sourceState="shown" />
+
+### With number indicator
+<Canvas of={SidebarStories.WithNumberIndicator} sourceState="shown" />

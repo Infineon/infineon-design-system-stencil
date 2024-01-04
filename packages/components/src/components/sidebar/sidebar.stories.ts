@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Components/Sidebar",
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
 
   args: {
     icon: true,
@@ -47,6 +47,8 @@ const DefaultTemplate = (args) => {
     const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
     itemElement.setAttribute('href', "http://google.com");
     itemElement.setAttribute('target', "_blank");
+    itemElement.setAttribute('is-action-item', "false");
+
     if (args.icon) {
       itemElement.setAttribute('icon', 'image-16');
     }
@@ -149,17 +151,17 @@ const NumberIndicatorTemplate = () =>
   </ifx-sidebar-item>
   
 
-  <ifx-sidebar-item active="false" active="false">
+  <ifx-sidebar-item>
   Header Section
-  <ifx-sidebar-item icon="image-16" active="false">
+  <ifx-sidebar-item icon="image-16">
     Menu Item
-    <ifx-sidebar-item active="false" target="_blank" icon="image-16">
+    <ifx-sidebar-item active="false" is-action-item="false" target="_blank" icon="image-16">
     Sub Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item target="_blank" icon="image-16" value="thisPage">
+    <ifx-sidebar-item is-action-item="true" icon="image-16" value="thisPage">
     This one too
     </ifx-sidebar-item>
-    <ifx-sidebar-item target="_blank" icon="image-16">
+    <ifx-sidebar-item is-action-item="false" target="_blank" icon="image-16">
     Menu Item
     </ifx-sidebar-item>
   </ifx-sidebar-item>
