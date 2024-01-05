@@ -10,10 +10,24 @@ import * as SidebarStories from './sidebar.stories';
 <Controls />
 
 
+## Notes
+Each Sidebar Item is a navigation item per default (``isActionItem=false``), meaning it becomes active ``active=true`` on selection. 
+The ``active`` property can also be set manually, e.g. in the case of pre-selecting an item.
+Setting ``isActionItem=true`` means turning a navigation item into an action item. Action items do not become active on selection.
+The previously active state is maintained during the action triggered by selecting an action item.
+
+#### Examples:
+
+<b>Navigation item:</b> Loading a new page
+
+<b>Action item:</b> Opening a modal overlay, while staying on the currently active page
+
+
 ## Stories
 
 ### With Submenu
 <Canvas of={SidebarStories.WithSubmenu} sourceState="shown" />
+
 
 ### With number indicator
 <Canvas of={SidebarStories.WithNumberIndicator} sourceState="shown" />

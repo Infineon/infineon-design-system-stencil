@@ -20,6 +20,7 @@ export class SidebarItem {
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
 
   @State() internalActiveState: boolean = false;
+
   @Event() ifxSidebarItem: EventEmitter;
   @Event() ifxSidebarNavigationItem: EventEmitter;
   @Event() ifxSidebarActionItem: EventEmitter;
@@ -110,12 +111,11 @@ export class SidebarItem {
       } else { //its a navigation item which becomes active after clicking it
         this.handleActiveChange(true, this.internalActiveState)
         this.ifxSidebarNavigationItem.emit(this.el);
-        // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
-        if (this.handleItemClick) {
-          this.handleItemClick(this.el);
-        }
       }
-
+      // If the sidebar item is selectable (not expandable), then call the handler function with the current element.
+      if (this.handleItemClick) {
+        this.handleItemClick(this.el);
+      }
     }
     // Emit an event with the current component
     this.handleEventEmission();

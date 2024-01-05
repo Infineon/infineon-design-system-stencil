@@ -12,7 +12,7 @@ export default {
   argTypes: {
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
-      description: 'Custom event emitted when a navigation item becomes active after clicking on it',
+      description: 'Custom event emitted when a navigation item becomes active on selection',
       table: {
         type: {
           summary: 'Framework integration',
@@ -22,7 +22,7 @@ export default {
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
-      description: 'Custom event emitted when an action item is clicked',
+      description: 'Custom event emitted when an action item is selected',
       table: {
         type: {
           summary: 'Framework integration',
@@ -57,6 +57,10 @@ const DefaultTemplate = (args) => {
     // Append the item to the sidebar
     sidebarElement.appendChild(itemElement);
   });
+
+  const thirdItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[2];
+  thirdItem.setAttribute('active', 'true') //first submenu item
+
 
   return sidebarElement;
 };
