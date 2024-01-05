@@ -26,8 +26,10 @@ export default {
 
     position: {
       options: ['left', 'right'],
-      control: { type: 'radio' }
+      control: { type: 'radio'},
+      if: { arg: 'direction', eq: 'horizontal'}
     },
+
     target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
@@ -71,13 +73,8 @@ const DefaultTemplate = (args) =>
   </ifx-card>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-  position: {
-    table: {
-      disable: true
-    }
-  }
+Default.args = {
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
 }
 
 const HorizontalTemplate = (args) =>
@@ -113,17 +110,11 @@ const HorizontalTemplate = (args) =>
 
 
 export const Horizontal = HorizontalTemplate.bind({});
-Horizontal.argTypes = {
+Horizontal.args = {
   direction: 'horizontal',
   src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-  image: {
-    table: {
-      disable: true
-    }
-  },
   button: {
     options: ['link', 'none'],
     control: { type: 'radio' },
   },
 }
-
