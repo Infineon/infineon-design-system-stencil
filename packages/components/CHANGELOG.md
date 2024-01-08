@@ -1,3 +1,16 @@
+# v20.38.1 (Mon Jan 08 2024)
+
+#### 🐛 Bug Fix
+
+- Using CSS Custom Properties to enable overwriting the default font [#857](https://github.com/Infineon/infineon-design-system-stencil/pull/857) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.38.0 (Mon Jan 08 2024)
 
 #### 🚀 Enhancement
