@@ -49,7 +49,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
-          echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
           npm install @infineon/infineon-design-system-stencil@latest
@@ -169,7 +169,6 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd examples/wrapper-components/angular
           cd packages/components-angular
           npm i
           npm i @infineon/infineon-design-system-stencil@latest
