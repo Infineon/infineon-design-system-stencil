@@ -9,10 +9,10 @@
             Menu Item 1
           </ifx-sidebar-item>
           <ifx-sidebar-item is-action-item="true" @click="handleOpenModal" target="_blank" icon="image-16">
-            Menu Item 2
+            Open modal
           </ifx-sidebar-item>
           <ifx-sidebar-item target="_blank" icon="image-16" @click="handleItemClick">
-            Menu Item 3
+            Handle item click
           </ifx-sidebar-item>
         </ifx-sidebar-item>
         <ifx-sidebar-item icon="image-16">

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Element, Prop, State, Listen } from '@stencil/core';
 
 const ACTIVE = 'active';
 const ACTIVE_SECTION = 'active-section';
@@ -20,7 +20,6 @@ export class Sidebar {
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
-  @Event() ifxSidebar: EventEmitter;
   @State() activeItem: HTMLElement | null = null;
 
   componentDidLoad() {
@@ -177,9 +176,9 @@ export class Sidebar {
   }
 
 
-  @Listen('ifxSidebarItem')
+  @Listen('ifxSidebarMenu')
   handleSidebarItemInteraction(event: CustomEvent) {
-    // This method can be used to handle the ifxSidebarItem event
+    // This method can be used to handle the ifxSidebarMenu event
     // Get the element that triggered the event
     const clickedItem = event.detail;
 
@@ -258,6 +257,9 @@ export class Sidebar {
       this.handleClassList(parent, 'add', 'active-section');
     }
   }
+
+
+
 
 
 

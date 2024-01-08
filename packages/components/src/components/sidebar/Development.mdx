@@ -23,6 +23,172 @@ The previously active state is maintained during the action triggered by selecti
 <b>Action item:</b> Opening a modal overlay, while staying on the currently active page
 
 
+## Events
+
+ ``ifxSidebarMenu``: Custom event emitted when a sidebar menu is opened/closed.
+
+ ``ifxSidebarActionItem``: Custom event emitted when an action item is selected.
+
+ ``ifxSidebarNavigationItem``: Custom event emitted when a navigation item becomes active on selection.
+
+Each of these custom events emits the specific element that triggered it.
+
+Due to the possibility to nest sidebar-items and thus create menus and submenus, we need to pay attention to event handling when using the Sidebar web component in React.
+React uses a synthetic event system for performance and cross-browser compatibility reasons. 
+This synthetic event system doesn't play well with the custom events from the Web Components, which are based on the native browser event system.
+To listen to the custom events emitted from the Sidebar component inside a React application, we need to attach the event listener to the specifically to the DOM node representing the Web Component in question. 
+And because direct manipulation of the DOM is considered a side effect in React, we have to use the useEffect hook in function components.
+
+For reasons of completeness, the following provides an overview of how to use the Sidebar with submenus in the different JS-frameworks supported.
+
+#### Angular
+
+```js
+//app.component.html
+  <ifx-sidebar application-name="Application Name">
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Item One
+        <ifx-sidebar-item (ifxSidebarNavigationItem)="handleSidebarNavigationItemClick($event)" target="_blank"
+          icon="image-16">Click me</ifx-sidebar-item>
+        <ifx-sidebar-item icon="image-16" active="true">
+          Menu Item 2
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+  </ifx-sidebar>
+
+//app.component.ts
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title = 'my-app';
+
+  ...
+
+  handleSidebarNavigationItemClick(event: any) {
+    console.log('Sidebar item clicked', event.detail);
+  }
+
+  ...
+}
+```
+
+#### React
+
+The onClick handler in React will only capture 'click' events, and won't capture custom events. 
+That's why we need to use addEventListener to listen for the custom ``ifxSidebarActionItem`` and ``ifxSidebarNavigationItem`` events.
+
+```js
+function Sidebar() {
+  ...
+
+  const sidebarItemRefExampleClick = useRef(null);  // Create a ref for the specific sidebar item
+  useEffect(() => {
+    const sidebarItemElementExampleClick = sidebarItemRefExampleClick.current;
+
+    // Add event listener for 'ifxSidebarActionItem' event on a specific sidebarItemElement
+    const handleNavigationItemClicked = (event) => {
+      console.log("Nested Sidebar navigation item clicked", event.detail);
+    }
+    sidebarItemElementExampleClick.addEventListener('ifxSidebarNavigationItem', handleNavigationItemClicked);
+
+    // Return a cleanup function to remove the event listener
+    return () => {
+      sidebarItemElementExampleClick.removeEventListener('ifxSidebarNavigationItem', handleNavigationItemClicked);
+    };
+  }, []);  // Empty array means the effect will run only on mount and unmount
+  
+  ...
+
+  return (
+    <div>
+      <IfxSidebar application-name="Application Name">
+        <IfxSidebarItem target="_blank" ref={sidebarItemRefExampleClick} icon="image-16">
+          Menu Item 3
+        </IfxSidebarItem>
+      </IfxSidebar>
+   </div>
+  )
+}
+
+export default Sidebar;
+
+```
+
+
+#### Vanilla
+
+In plain JavaScript, to add an event listener to a specific ifx-sidebar-item, we first need to select the specific ifx-sidebar-item. 
+The method to select the item depends on how you can identify it. 
+We can use an id, a class, or a data attribute, among other selectors.
+
+```js
+ <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item>
+        Header Section
+        <ifx-sidebar-item icon="image-16">
+          Menu Item
+          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
+            me</ifx-sidebar-item>
+          <ifx-sidebar-item icon="image-16" active="true">
+            Menu Item 2
+          </ifx-sidebar-item>
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+  </ifx-sidebar>
+
+...
+
+<script>
+  const sidebarItem = document.querySelector('#sidebarItemClickable');
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+   sidebarItem.addEventListener('ifxSidebarNavigationItem', function (event) {
+      console.log('Sidebar item clicked', event.detail);
+    });
+  });
+</script>
+```
+
+#### Vue
+In Vue, we can listen to the custom events directly in the template using the v-on directive (or @ shorthand). 
+Events aren't wrapped in a synthetic event system like in React. 
+Vue uses a model that is closer to the native JavaScript event model, which allows it to handle custom events from Web Components more seamlessly. 
+
+```js
+<template>
+  <div class="app">
+    <ifx-sidebar application-name="Application Name" id="sidebar">
+      <ifx-sidebar-item target="_blank" icon="image-16" @click="handleItemClick">
+        Handle item click
+      </ifx-sidebar-item>
+    </ifx-sidebar>
+  </div>
+</template>
+
+...
+
+<script setup>
+import { ref, computed } from 'vue';
+
+// Define the handleItemClick function in the Vue component
+const handleItemClick = (item) => {
+  console.log("Sidebar item clicked", item.currentTarget);
+};
+
+</script>
+
+```
+
 ## Stories
 
 ### With Submenu

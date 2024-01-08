@@ -24,7 +24,7 @@
 | Event                      | Description | Type               |
 | -------------------------- | ----------- | ------------------ |
 | `ifxSidebarActionItem`     |             | `CustomEvent<any>` |
-| `ifxSidebarItem`           |             | `CustomEvent<any>` |
+| `ifxSidebarMenu`           |             | `CustomEvent<any>` |
 | `ifxSidebarNavigationItem` |             | `CustomEvent<any>` |
 
 

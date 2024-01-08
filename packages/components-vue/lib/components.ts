@@ -393,8 +393,7 @@ export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sid
   'termsOfUse',
   'imprint',
   'privacyPolicy',
-  'target',
-  'ifxSidebar'
+  'target'
 ]);
 
 
@@ -407,7 +406,7 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'isActionItem',
   'value',
   'handleItemClick',
-  'ifxSidebarItem',
+  'ifxSidebarMenu',
   'ifxSidebarNavigationItem',
   'ifxSidebarActionItem'
 ]);

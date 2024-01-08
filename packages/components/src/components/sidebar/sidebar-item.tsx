@@ -21,9 +21,10 @@ export class SidebarItem {
 
   @State() internalActiveState: boolean = false;
 
-  @Event() ifxSidebarItem: EventEmitter;
-  @Event() ifxSidebarNavigationItem: EventEmitter;
-  @Event() ifxSidebarActionItem: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxSidebarMenu: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
+
 
   @Prop() value: string = ""
   @Prop() handleItemClick: (item: HTMLElement) => void;
@@ -61,7 +62,7 @@ export class SidebarItem {
 
   handleEventEmission() {
     // Get the active item section
-    this.ifxSidebarItem.emit(this.el)
+    this.ifxSidebarMenu.emit(this.el)
   }
 
   handleClassList(el, type, className) {
@@ -101,7 +102,8 @@ export class SidebarItem {
       const expandableMenu = this.getExpandableMenu();
       this.handleClassList(expandableMenu, 'toggle', 'open');
       this.handleClassList(menuItem, 'toggle', 'open');
-
+      // Emit an event with the current component
+      this.handleEventEmission();
     } else {
       // If the sidebar item is not expandable, it's a leaf item without a submenu.
       // Emit an event to the parent `ifx-sidebar` component to notify it that a leaf item has been clicked.
@@ -117,8 +119,8 @@ export class SidebarItem {
         this.handleItemClick(this.el);
       }
     }
-    // Emit an event with the current component
-    this.handleEventEmission();
+    // // Emit an event with the current component
+    // this.handleEventEmission();
   }
 
 

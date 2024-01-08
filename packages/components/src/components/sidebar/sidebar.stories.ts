@@ -13,23 +13,16 @@ export default {
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
       description: 'Custom event emitted when a navigation item becomes active on selection',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onIfxSidebarNavigationItem={handleActiveItemChange}\nVue:@ifxSidebarNavigationItem="handleActiveItemChange"\nAngular:(ifxSidebarNavigationItem)="handleActiveItemChange()"\nVanillaJs:.addEventListener("ifxSidebarNavigationItem", (event) => {//handle change});',
-        },
-      },
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
       description: 'Custom event emitted when an action item is selected',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail: 'React: onIfxSidebarActionItem={handleActionItemChange}\nVue:@ifxSidebarActionItem="handleActionItemChange"\nAngular:(ifxSidebarActionItem)="handleActionItemChange()"\nVanillaJs:.addEventListener("ifxSidebarActionItem", (event) => {//handle change});',
-        },
-      },
     },
+    ifxSidebarMenu: {
+      action: 'ifxSidebarMenu',
+      description: 'Custom event emitted when a menu is expanded or closed',
+    },
+
   },
 };
 
@@ -40,6 +33,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.setAttribute('application-name', args.applicationName);
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
+  sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
@@ -76,6 +70,7 @@ const SubmenuTemplate = (args) => {
   sidebarElement.setAttribute('application-name', args.applicationName);
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
   sidebarElement.addEventListener('ifxSidebarActionItem', action('ifxSidebarActionItem'));
+  sidebarElement.addEventListener('ifxSidebarMenu', action('ifxSidebarMenu'));
 
   // Create 3 sections
   for (let i = 0; i < 3; i++) {
