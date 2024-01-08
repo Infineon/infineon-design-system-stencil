@@ -1,3 +1,16 @@
+# v20.38.3 (Mon Jan 08 2024)
+
+#### 🐛 Bug Fix
+
+- bugfix in master .yml [#861](https://github.com/Infineon/infineon-design-system-stencil/pull/861) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.38.2 (Mon Jan 08 2024)
 
 #### 🐛 Bug Fix
