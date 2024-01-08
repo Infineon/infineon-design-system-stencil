@@ -1,3 +1,16 @@
+# v20.38.0 (Mon Jan 08 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: v-2 copy version [#791](https://github.com/Infineon/infineon-design-system-stencil/pull/791) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.37.4 (Wed Dec 27 2023)
 
 #### 🐛 Bug Fix
