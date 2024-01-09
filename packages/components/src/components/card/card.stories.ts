@@ -118,3 +118,10 @@ Horizontal.args = {
     control: { type: 'radio' },
   },
 }
+Horizontal.argTypes = {
+  direction: {
+    table:{
+      disable: true
+    }
+  }
+}
