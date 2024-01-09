@@ -16,6 +16,7 @@ export class Button {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Prop() type: "button" | "submit" | "reset" = "button";
+  @Prop() fullWidth: boolean = false;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -136,7 +137,7 @@ export class Button {
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
       this.disabled ? 'disabled' : '',
-
+      this.fullWidth ? 'fullwidth': ''
     );
   }
 }
