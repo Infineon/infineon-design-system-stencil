@@ -40,7 +40,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  min-height: 218px;
+  height: 218px;
   background-color: #fff;
   border-radius: tokens.$ifxBorderRadiusNone;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@
 @media screen and (min-width: 768px) {
   .modal-content-container {
     width: 540px;
-    min-height: 220px;
+    height: 220px;
   }
 }
 
