@@ -17,7 +17,9 @@ export default{
                     description: 'Current active step', 
                     default: 1 },
         amountOfSteps: { control : 'number' },
-        showNumber: { control: 'boolean' },
+        showNumber: { 
+          control: 'boolean' 
+          if: { arg: 'variant', eq: 'default'}},
         variant: {
             options: ['default', 'compact'],
             control: { type: 'radio' },
