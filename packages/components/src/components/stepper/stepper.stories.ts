@@ -18,7 +18,7 @@ export default{
                     default: 1 },
         amountOfSteps: { control : 'number' },
         showNumber: { 
-          control: 'boolean' 
+          control: 'boolean', 
           if: { arg: 'variant', eq: 'default'}},
         variant: {
             options: ['default', 'compact'],
