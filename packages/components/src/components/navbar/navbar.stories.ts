@@ -24,7 +24,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-navbar show-logo="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
+  `<ifx-navbar show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
   <ifx-navbar-item hide-label="${args.hideLabel}" icon="${args.icon}" slot="left-item" target="${args.navbBarItemTarget}" href="${args.navbBarItemHref}">Menu Item 1</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
@@ -44,5 +44,3 @@ const DefaultTemplate = (args) =>
 
 
 export const Default = DefaultTemplate.bind({});
-
-

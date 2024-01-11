@@ -1,3 +1,105 @@
+# v20.38.4 (Thu Jan 11 2024)
+
+#### 🐛 Bug Fix
+
+- Update navbar.stories.ts Fixed #844 [#856](https://github.com/Infineon/infineon-design-system-stencil/pull/856) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.38.3 (Mon Jan 08 2024)
+
+#### 🐛 Bug Fix
+
+- bugfix in master .yml [#861](https://github.com/Infineon/infineon-design-system-stencil/pull/861) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.38.2 (Mon Jan 08 2024)
+
+#### 🐛 Bug Fix
+
+- bugfix in master .yml [#859](https://github.com/Infineon/infineon-design-system-stencil/pull/859) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.38.1 (Mon Jan 08 2024)
+
+#### 🐛 Bug Fix
+
+- Using CSS Custom Properties to enable overwriting the default font [#857](https://github.com/Infineon/infineon-design-system-stencil/pull/857) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.38.0 (Mon Jan 08 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: v-2 copy version [#791](https://github.com/Infineon/infineon-design-system-stencil/pull/791) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.37.4 (Wed Dec 27 2023)
+
+#### 🐛 Bug Fix
+
+- Bugfix Wrapper libraries not being built based on latest Stencil core component library [#836](https://github.com/Infineon/infineon-design-system-stencil/pull/836) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.37.3 (Wed Dec 27 2023)
+
+#### 🐛 Bug Fix
+
+- Accordion: height not adjusting on dynamic loading [#823](https://github.com/Infineon/infineon-design-system-stencil/pull/823) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.37.2 (Wed Dec 20 2023)
+
+#### 🐛 Bug Fix
+
+- Modal: height is made adjust-to-content, and not fixed [#843](https://github.com/Infineon/infineon-design-system-stencil/pull/843) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.37.1 (Wed Dec 20 2023)
 
 #### 🐛 Bug Fix
