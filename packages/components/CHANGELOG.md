@@ -1,3 +1,15 @@
+# v20.38.5 (Thu Jan 11 2024)
+
+#### 🐛 Bug Fix
+
+- Z index adjusted to web standards [#840](https://github.com/Infineon/infineon-design-system-stencil/pull/840) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.38.4 (Thu Jan 11 2024)
 
 #### 🐛 Bug Fix
