@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@20.23.14/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@20.37.3--canary.823.bf4e6bfd23084911b3ef54c4b280c8a1aa23e84c.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css"> -->
 
 
@@ -246,6 +246,17 @@
 
     <h2>Sidebar</h2>
     <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item>
+        Header Section
+        <ifx-sidebar-item icon="image-16">
+          Menu Item
+          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
+            me</ifx-sidebar-item>
+          <ifx-sidebar-item icon="image-16" active="true">
+            Menu Item 2
+          </ifx-sidebar-item>
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
@@ -447,6 +458,7 @@
   const errorSpan = document.querySelector("#errorSpan");
   const valueSpan = document.querySelector("#valueSpan");
   const textInputSpan = document.querySelector("#textInputSpan");
+  const sidebarItem = document.querySelector('#sidebarItemClickable');
 
 
   function updateValues() {
@@ -553,6 +565,10 @@
 
     searchBar.addEventListener('ifxInput', (event) => {
       console.log("search bar value", event.detail);
+    });
+
+    sidebarItem.addEventListener('ifxSidebarNavigationItem', function (event) {
+      console.log('Sidebar item clicked', event.detail);
     });
 
 
