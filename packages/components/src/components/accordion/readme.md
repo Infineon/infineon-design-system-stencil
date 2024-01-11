@@ -11,6 +11,7 @@
 | ----------------- | ------------------ | ----------- | --------- | ----------- |
 | `caption`         | `caption`          |             | `string`  | `undefined` |
 | `initialCollapse` | `initial-collapse` |             | `boolean` | `true`      |
+| `open`            | `open`             |             | `boolean` | `false`     |
 
 
 ## Events
@@ -19,29 +20,6 @@
 | -------------- | ----------- | ------------------ |
 | `ifxItemClose` |             | `CustomEvent<any>` |
 | `ifxItemOpen`  |             | `CustomEvent<any>` |
-
-
-## Methods
-
-### `close() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `isOpen() => Promise<boolean>`
-
-
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-
 
 
 ## Dependencies

@@ -34,9 +34,6 @@ export class IfxTabs {
     this.updateTabStyles();
   }
 
-
-
-
   updateTabStyles() {
     this.tabHeaderRefs.forEach((tab, index) => {
       tab.classList.toggle('active', index === this.internalActiveTabIndex);
