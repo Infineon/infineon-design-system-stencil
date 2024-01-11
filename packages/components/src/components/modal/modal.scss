@@ -34,19 +34,19 @@
 .modal-content-container {
   position: absolute;
   display: flex;
-  align-items: center;
   justify-content: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
-  height: 218px;
+  min-height: 218px;
   background-color: #fff;
   border-radius: tokens.$ifxBorderRadiusNone;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   box-sizing: border-box;
   font-family: tokens.$ifxFontFamilyBody;
+  align-items: stretch;
 
 }
 
@@ -54,7 +54,7 @@
 @media screen and (min-width: 768px) {
   .modal-content-container {
     width: 540px;
-    height: 220px;
+    min-height: 220px;
   }
 }
 
@@ -71,7 +71,7 @@
   justify-content: center;
   width: 32px;
   background-color: tokens.$ifxColorOcean500;
-  height: 100%;
+  align-self: stretch;
 
   &.danger {
     background-color: tokens.$ifxColorRed500;
