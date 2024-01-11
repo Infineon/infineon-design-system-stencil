@@ -1,3 +1,15 @@
+# v20.38.4 (Thu Jan 11 2024)
+
+#### 🐛 Bug Fix
+
+- Update navbar.stories.ts Fixed #844 [#856](https://github.com/Infineon/infineon-design-system-stencil/pull/856) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.38.3 (Mon Jan 08 2024)
 
 #### 🐛 Bug Fix
