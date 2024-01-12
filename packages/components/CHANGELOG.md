@@ -1,3 +1,15 @@
+# v20.38.7 (Fri Jan 12 2024)
+
+#### 🐛 Bug Fix
+
+- Update card.stories.ts to fix #806 [#855](https://github.com/Infineon/infineon-design-system-stencil/pull/855) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.38.6 (Fri Jan 12 2024)
 
 #### 🐛 Bug Fix
