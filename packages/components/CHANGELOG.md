@@ -1,3 +1,15 @@
+# v20.38.8 (Fri Jan 12 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: inner content height is now flexible [#883](https://github.com/Infineon/infineon-design-system-stencil/pull/883) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.38.7 (Fri Jan 12 2024)
 
 #### 🐛 Bug Fix
