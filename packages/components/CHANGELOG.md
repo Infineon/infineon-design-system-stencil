@@ -1,3 +1,15 @@
+# v20.39.0 (Fri Jan 12 2024)
+
+#### 🚀 Enhancement
+
+- Added background color to progress bar [#882](https://github.com/Infineon/infineon-design-system-stencil/pull/882) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.38.8 (Fri Jan 12 2024)
 
 #### 🐛 Bug Fix
