@@ -26,8 +26,10 @@ export default {
 
     position: {
       options: ['left', 'right'],
-      control: { type: 'radio' }
+      control: { type: 'radio'},
+      if: { arg: 'direction', eq: 'horizontal'}
     },
+
     target: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' }
@@ -71,13 +73,8 @@ const DefaultTemplate = (args) =>
   </ifx-card>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-  position: {
-    table: {
-      disable: true
-    }
-  }
+Default.args = {
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
 }
 
 const HorizontalTemplate = (args) =>
@@ -98,6 +95,11 @@ const HorizontalTemplate = (args) =>
             ${args.description}
             </ifx-card-text>`
     : ""}
+      ${args.button === 'button'
+    ? `<ifx-card-links slot="buttons">
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
+          </ifx-card-links>` : ""}
           ${args.button === 'link'
     ? `<ifx-card-links slot="buttons">
           <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
@@ -113,17 +115,14 @@ const HorizontalTemplate = (args) =>
 
 
 export const Horizontal = HorizontalTemplate.bind({});
-Horizontal.argTypes = {
+Horizontal.args = {
   direction: 'horizontal',
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-  image: {
-    table: {
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
+}
+Horizontal.argTypes = {
+  direction: {
+    table:{
       disable: true
     }
-  },
-  button: {
-    options: ['link', 'none'],
-    control: { type: 'radio' },
-  },
+  }
 }
-
