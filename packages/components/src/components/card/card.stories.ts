@@ -95,6 +95,11 @@ const HorizontalTemplate = (args) =>
             ${args.description}
             </ifx-card-text>`
     : ""}
+      ${args.button === 'button'
+    ? `<ifx-card-links slot="buttons">
+          <ifx-button variant="primary">Button</ifx-button>
+          <ifx-button variant="secondary">Button</ifx-button>
+          </ifx-card-links>` : ""}
           ${args.button === 'link'
     ? `<ifx-card-links slot="buttons">
           <ifx-link color="primary" href="https://google.com" target="_blank" underline="false">
@@ -112,11 +117,7 @@ const HorizontalTemplate = (args) =>
 export const Horizontal = HorizontalTemplate.bind({});
 Horizontal.args = {
   direction: 'horizontal',
-  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg",
-  button: {
-    options: ['link', 'none'],
-    control: { type: 'radio' },
-  },
+  src: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg"
 }
 Horizontal.argTypes = {
   direction: {
