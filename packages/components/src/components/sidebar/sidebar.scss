@@ -22,11 +22,14 @@
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    flex: none;
+    flex: 1 1 auto; 
     order: 0;
-    flex-grow: 0;
     z-index: 0;
     width: 100%;
+    overflow-y: auto; 
+
+    //max-height: 440px;
+    //overflow-y: auto;
 
     & .sidebar__nav-bar {
       box-sizing: border-box;
@@ -86,80 +89,20 @@
     }
 
     & .sidebar__nav-container {
+      scrollbar-gutter: stable;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       padding: 12px 32px;
-      flex: none;
+      flex: 1 1 auto; 
       order: 1;
-      flex-grow: 0;
       width: 100%;
-      gap: tokens.$ifxSpace200;
-
-      max-height: 440px;
-      overflow-y: auto;
+      overflow-y: auto; 
 
       & ::slotted(*) {
         width: 100%;
       }
-
-      // & .sidebar__nav-item { 
-      //   border: 1px solid;
-
-      //   box-sizing: border-box;
-      //   display: flex;
-      //   flex-direction: row;
-      //   align-items: center;
-      //   width: 100%;
-      //   //padding: 8px 4px 8px 0px;
-      //   padding: 20px;
-      //   gap: 4px;
-      //   flex: none;
-      //   order: 0;
-      //   flex-grow: 0;
-
-      //   & .sidebar__nav-item-icon-wrapper {
-      //     display: flex;
-      //     flex-direction: row;
-      //     justify-content: center;
-      //     align-items: center;
-      //     padding: 0px;
-      //     gap: tokens.$ifxSpace100;
-      //     flex: none;
-      //     order: 0;
-      //     flex-grow: 0;
-
-      //     & ifx-icon { 
-      //       width: tokens.$ifxSize200;
-      //       height: tokens.$ifxSize200;
-      //     }
-      //   }
-
-      //   & .sidebar__nav-item-label {
-      //     font-style: normal;
-      //     font-weight: 400;
-      //     font-size: tokens.$ifxFontSizeM;
-      //     line-height: tokens.$ifxLineHeightM;
-      //     display: flex;
-      //     align-items: center;
-      //     color: tokens.$ifxColorBaseBlack;
-      //     flex: none;
-      //     order: 1;
-      //     flex-grow: 1;
-      //   } 
-
-      //   & .sidebar__nav-item-number {
-      //     display: flex;
-      //     flex-direction: row;
-      //     justify-content: center;
-      //     align-items: center;
-      //     padding: 0px 4px;
-      //     flex: none;
-      //     order: 2;
-      //     flex-grow: 0;
-      //   }
-      // }
     }
   }
 
@@ -211,6 +154,15 @@
             flex: none;
             order: 0;
             flex-grow: 0;
+
+            &:hover { 
+              color: #08665C;
+            }
+
+            &:focus { 
+              outline: none;
+              color: #08665C;
+            }
           }
         }
 
@@ -252,9 +204,17 @@
           flex: none;
           order: 1;
           flex-grow: 0;
+
+          &:hover {
+            cursor: initial;
+          }
+
+          &:focus { 
+            outline: none;
+            color: #08665C;
+          }
         }
       }
     }
   }
-
 }

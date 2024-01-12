@@ -110,6 +110,9 @@ export class AppComponent {
     this.radioChecked = !this.radioChecked;
   }
 
+  handleSidebarNavigationItemClick(event: any) {
+    console.log('Sidebar item clicked', event.detail);
+  }
 
   handleTextInput(event: any) {
     console.log("textInput value change")
