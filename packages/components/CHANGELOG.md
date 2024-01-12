@@ -1,3 +1,16 @@
+# v20.38.6 (Fri Jan 12 2024)
+
+#### 🐛 Bug Fix
+
+- Updated scss of modal to fix #875 [#876](https://github.com/Infineon/infineon-design-system-stencil/pull/876) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.38.5 (Thu Jan 11 2024)
 
 #### 🐛 Bug Fix
