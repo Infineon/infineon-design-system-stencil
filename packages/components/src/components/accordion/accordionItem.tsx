@@ -61,6 +61,7 @@ export class IfxAccordionItem {
 
   handleSlotChange() {
     if (this.internalOpen) {
+      console.log('slot changed')
       this.openAccordionItem();
     }
   }
