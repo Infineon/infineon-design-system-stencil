@@ -29,7 +29,7 @@
     "@infineon/infineon-design-system-angular": "^20.37.3--canary.823.2af49d7902ab683af8f2cdaeefe55e5cd45e6f9f.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.5",
