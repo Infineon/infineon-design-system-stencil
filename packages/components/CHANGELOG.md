@@ -1,3 +1,17 @@
+# v20.39.1 (Mon Jan 15 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: tab event emitted also on click [#839](https://github.com/Infineon/infineon-design-system-stencil/pull/839) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.39.0 (Fri Jan 12 2024)
 
 #### 🚀 Enhancement
