@@ -1,3 +1,15 @@
+# v20.39.2 (Mon Jan 15 2024)
+
+#### 🐛 Bug Fix
+
+- Added smooth transition effect to progress bar [#889](https://github.com/Infineon/infineon-design-system-stencil/pull/889) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.39.1 (Mon Jan 15 2024)
 
 #### 🐛 Bug Fix
