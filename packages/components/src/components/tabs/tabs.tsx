@@ -32,8 +32,8 @@ export class IfxTabs {
     this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
     this.updateTabStyles();
+    this.onSlotChange();
   }
-
 
   updateTabStyles() {
     this.tabHeaderRefs.forEach((tab, index) => {
@@ -90,7 +90,6 @@ export class IfxTabs {
   }
 
   componentDidLoad() {
-    this.onSlotChange();
     this.updateBorderAndFocus();
   }
 
