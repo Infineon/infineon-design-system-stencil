@@ -338,8 +338,9 @@
 
 
   <h2>Accordion</h2>
-  <ifx-accordion><ifx-accordion-item caption="Label">
-
+  <ifx-accordion (ifxItemClose)="handleAccordionItemClose($event)" (ifxItemOpen)="handleAccordionItemOpen($event)"
+    auto-collapse="true">
+    <ifx-accordion-item open="true" caption="Label" #ifxAccordionItem>
       Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
       bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
@@ -347,7 +348,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
       cursus ipsum, nec egestas odio sapien eget neque.
 
-    </ifx-accordion-item><ifx-accordion-item caption="Label">
+    </ifx-accordion-item><ifx-accordion-item open="false" caption="Label">
 
       Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
       bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -356,7 +357,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
       cursus ipsum, nec egestas odio sapien eget neque.
 
-    </ifx-accordion-item><ifx-accordion-item caption="Label">
+    </ifx-accordion-item><ifx-accordion-item open="false" caption="Label">
 
       Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
       bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -366,6 +367,8 @@
       cursus ipsum, nec egestas odio sapien eget neque.
 
     </ifx-accordion-item></ifx-accordion>
+  <ifx-button (click)="handleAccordionButtonClick()">Open/Close the first accordion item</ifx-button>
+
   <br />
 
 
@@ -514,6 +517,10 @@
   <ifx-multiselect
     options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
     size="medium (40px)" error="false" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <ifx-multiselect
+    options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
+    size="medium (40px)" error="true" error-message="Some error" label="" disabled="false"></ifx-multiselect>
+  <span>Succeeding element</span>
   <br />
   <br />
 
@@ -579,7 +586,17 @@
 
   <h2>Sidebar</h2>
   <ifx-sidebar application-name="Application Name">
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item (ifxSidebarNavigationItem)="handleSidebarNavigationItemClick($event)" target="_blank"
+          icon="image-16">Click me</ifx-sidebar-item>
+        <ifx-sidebar-item icon="image-16" active="true">
+          Menu Item 2
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
     <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
@@ -622,10 +639,10 @@
   <br />
 
   <h2>Tabs</h2>
-  <ifx-tabs orientation="horizontal">
-    <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-    <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-    <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+  <ifx-tabs (tabChange)="handleChange($event)" [tabIndex]="tabIndex" #ifxTabs orientation="horizontal">
+    <ifx-tab header="tab header 1" disabled="false">tab 1 content</ifx-tab>
+    <ifx-tab header="tab header 2" disabled="true">tab 2 content</ifx-tab>
+    <ifx-tab header="tab header 3" disabled="false">tab 3 content</ifx-tab>
   </ifx-tabs>
   <br />
   <br />

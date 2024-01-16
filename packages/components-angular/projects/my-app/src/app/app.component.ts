@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IfxAccordionItem, IfxTabs } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ export class AppComponent {
   title = 'my-app';
 
   progressValue = 10;
+  tabIndex = 0;
   checkboxChecked = false;
   checkboxError = false;
   checkboxDisabled = false;
@@ -23,6 +25,44 @@ export class AppComponent {
   radioButtonValue = false;
   numberIndicator = 1;
 
+  @ViewChild('ifxTabs') ifxTabs: IfxTabs | undefined;
+  @ViewChild('ifxAccordionItem') ifxAccordionItemRef: IfxAccordionItem | undefined;
+
+
+  ngOnInit() {
+    this.setTab();
+    setInterval(() => this.setTab(), 20000);
+  }
+
+  setTab() {
+    const next = Math.floor(Math.random() * (3));
+    console.log("set next active tab: ", next)
+    if (this.ifxTabs) {
+      this.tabIndex = next;;
+    }
+  }
+
+  handleChange(event: any) {
+    console.log("emitting active tab index: ", event.detail);
+  };
+
+  handleAccordionItemOpen(event: any) {
+    console.log("An accordion item was opened. Event details:", event);
+  };
+
+  handleAccordionItemClose(event: any) {
+    console.log("An accordion item was closed. Event details:", event);
+  };
+
+  handleAccordionButtonClick() {
+    console.log("accordion item open btn click ")
+    const accordionItem = document.querySelector('ifx-accordion-item') as HTMLIfxAccordionItemElement;
+
+    if (this.ifxAccordionItemRef) {
+      console.log("accordion item: ", accordionItem);
+      this.ifxAccordionItemRef.open = !this.ifxAccordionItemRef.open;
+    }
+  }
 
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
@@ -70,6 +110,9 @@ export class AppComponent {
     this.radioChecked = !this.radioChecked;
   }
 
+  handleSidebarNavigationItemClick(event: any) {
+    console.log('Sidebar item clicked', event.detail);
+  }
 
   handleTextInput(event: any) {
     console.log("textInput value change")
@@ -114,5 +157,7 @@ export class AppComponent {
   decreaseNumber() {
     this.numberIndicator = this.numberIndicator - 1;
   }
+
+
 
 }

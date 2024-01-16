@@ -38,7 +38,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          npm i
           npm run build:storybook
 
       - name: Deploy preview

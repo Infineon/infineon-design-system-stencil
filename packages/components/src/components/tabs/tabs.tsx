@@ -1,89 +1,76 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Event, EventEmitter } from '@stencil/core';
+
 
 @Component({
   tag: 'ifx-tabs',
   styleUrl: 'tabs.scss',
   shadow: true
 })
-
 export class IfxTabs {
   @Element() el: HTMLElement;
-  @Prop() tabs: string[] = [];
-  @Prop() orientation: string = ""
+
+  @Prop() tabs: { header: string, disabled?: boolean }[] = [];
+  @Prop() orientation: string = "horizontal";
+  @Prop({ mutable: true }) activeTabIndex: number = 0;
+
   @State() internalOrientation: string;
-  @State() activeTabIndex: number = 0;
+  @State() internalActiveTabIndex: number = 0;
+  @State() internalFocusedTabIndex: number = 0;
   @State() tabRefs: HTMLElement[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
-  @State() tabTitles: string[] = [];
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
-  @Event() ifxTabIndex: EventEmitter;
 
-  // changing tab
-  setActiveTab(index: number) {
-    if (index < 0 || index >= this.tabHeaderRefs.length) {
-      return;
-    } else {
-      const currentActiveTab = this.tabRefs[this.activeTabIndex] as HTMLIfxTabElement;
-      if (currentActiveTab) {
-        this.emitEvent(currentActiveTab, 'tabBecameInactive');
-      }
+  @Event() ifxTabChange: EventEmitter;
 
-
-      this.ifxTabIndex.emit({ previousTab: this.activeTabIndex, currentTab: index });
-      this.activeTabIndex = index;
-
-      const newActiveTab = this.tabRefs[index] as HTMLIfxTabElement;
-      if (newActiveTab) {
-        this.emitEvent(newActiveTab, 'tabBecameActive');
-      }
-    }
+  componentWillLoad() {
+    this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
+    if (this.internalActiveTabIndex !== this.activeTabIndex) {
+      this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
+    };
+    this.internalActiveTabIndex = this.activeTabIndex;
+    this.internalFocusedTabIndex = this.internalActiveTabIndex;
+    this.updateTabStyles();
+    this.onSlotChange();
   }
-  // Helper method to emit events
-  emitEvent(element: HTMLElement, eventName: string) {
-    const event = new CustomEvent(eventName, {
-      bubbles: true,
-      composed: true,
+
+  updateTabStyles() {
+    this.tabHeaderRefs.forEach((tab, index) => {
+      tab.classList.toggle('active', index === this.internalActiveTabIndex);
+      tab.setAttribute('aria-selected', index === this.internalActiveTabIndex ? 'true' : 'false')
     });
-    element.dispatchEvent(event);
   }
+
 
   // needed for smooth border transition
   reRenderBorder() {
     const borderElement = this.el.shadowRoot.querySelector('.active-border') as HTMLElement;
-    if (borderElement && this.tabHeaderRefs[this.activeTabIndex]) {
+    if (borderElement && this.tabHeaderRefs[this.internalActiveTabIndex]) {
       if (this.orientation === 'horizontal') {
 
-        borderElement.style.left = `${this.tabHeaderRefs[this.activeTabIndex].offsetLeft}px`;
-        borderElement.style.width = `${this.tabHeaderRefs[this.activeTabIndex].offsetWidth}px`;
+        borderElement.style.left = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetLeft}px`;
+        borderElement.style.width = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetWidth}px`;
         borderElement.style.top = '';
         borderElement.style.height = '';
       } else {
-        borderElement.style.top = `${this.tabHeaderRefs[this.activeTabIndex].offsetTop}px`;
-        borderElement.style.height = `${this.tabHeaderRefs[this.activeTabIndex].offsetHeight}px`;
+        borderElement.style.top = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetTop}px`;
+        borderElement.style.height = `${this.tabHeaderRefs[this.internalActiveTabIndex].offsetHeight}px`;
         borderElement.style.left = '';
         borderElement.style.width = '';
       }
     }
   }
 
-  @Watch('orientation')
-  onOrientationChange() {
-    this.reRenderBorder()
-  }
 
   // when a slot is removed / added
   @Listen('slotchange')
   onSlotChange() {
     const tabs = this.el.querySelectorAll('ifx-tab');
-    this.tabTitles = Array.from(tabs).map((tab) => tab.getAttribute('header'));
-    this.disabledTabs = Array.from(tabs).map((tab) => tab.getAttribute('disabled'));
-
-    this.tabObjects = this.tabTitles.map((header, index) => {
+    this.tabObjects = Array.from(tabs).map((tab) => {
       return {
-        header: header,
-        disabled: (this.disabledTabs[index] === 'true') // set disabled property based on the corresponding value in the disabledTabs array
+        header: tab?.header,
+        disabled: tab?.disabled === true
       }
     });
 
@@ -102,38 +89,116 @@ export class IfxTabs {
     } else this.internalOrientation = this.orientation;
   }
 
-  componentWillLoad() {
-    this.setDefaultOrientation()
-    this.onSlotChange();
-  }
-
   componentDidLoad() {
-    this.reRenderBorder()
+    this.updateBorderAndFocus();
   }
 
   componentDidUpdate() {
-    this.reRenderBorder()
+    this.updateBorderAndFocus();
   }
 
-  render() {
+  private updateBorderAndFocus() {
+    this.reRenderBorder()
+    this.updateTabFocusability();
+  }
 
+  private updateTabFocusability() {
+    this.tabHeaderRefs.forEach((tab, index) => {
+      tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
+    })
+  }
+
+
+  private focusNextTab() {
+    let nextIndex = this.internalFocusedTabIndex + 1;
+    while (nextIndex < this.tabHeaderRefs.length && this.tabObjects[nextIndex].disabled) {
+      nextIndex++;
+    }
+    this.internalFocusedTabIndex = nextIndex;
+    if (nextIndex >= 0 && nextIndex < this.tabHeaderRefs.length) {
+      this.tabHeaderRefs[nextIndex].focus();
+    }
+  }
+
+  private focusPreviousTab() {
+    let prevIndex = this.internalFocusedTabIndex - 1;
+    while ((prevIndex >= 0) && (this.tabObjects[prevIndex].disabled)) {
+      prevIndex--;
+    }
+    this.internalFocusedTabIndex = prevIndex;
+    if ((prevIndex >= 0) && (prevIndex < this.tabHeaderRefs.length)) {
+      this.tabHeaderRefs[prevIndex].focus();
+    }
+  }
+
+  private getTabItemClass(index: number) {
+    const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
+    const isDisabled = this.tabObjects[index].disabled;
+    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`;
+  }
+
+  private handleClick(tab, index) {
+    this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
+    if (!tab.disabled) this.internalActiveTabIndex = index;
+
+  }
+
+
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Tab') {
+      if (ev.shiftKey) {
+        // Shift + Tab
+        if (this.internalFocusedTabIndex === 0) {
+          // Allow default behavior to move focus out of component
+          return;
+        } else {
+          ev.preventDefault();
+          this.focusPreviousTab();
+        }
+      } else {
+        // Tab
+        if (this.internalFocusedTabIndex === this.tabHeaderRefs.length - 1) {
+          // Allow default behavior to move focus out of component
+          return;
+        } else {
+          ev.preventDefault();
+          this.focusNextTab();
+        }
+      }
+    } else if (ev.key === 'Enter') {
+      if (this.internalFocusedTabIndex !== -1 && !this.tabObjects[this.internalFocusedTabIndex].disabled) {
+        const previouslyActiveTabIndex = this.internalActiveTabIndex;
+        this.internalActiveTabIndex = this.internalFocusedTabIndex;
+        this.ifxTabChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
+      }
+    }
+  }
+
+
+  render() {
     return (
       <div aria-label="navigation tabs" class={`tabs ${this.internalOrientation}`}>
-        <ul class="tabs-list">
-          {this.tabObjects.map((tab, index) => (
+        <ul role="tablist" class="tabs-list">
+          {this.tabObjects?.map((tab, index) => (
             <li
-              class={`tab-item ${index === this.activeTabIndex ? 'active' : ''} ${tab.disabled ? 'disabled' : ''}`}
+              class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
-              onClick={() => this.setActiveTab(index)}
+              tabindex="0"
+              onClick={() => this.handleClick(tab, index)}
+              aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
+              aria-disabled={tab.disabled ? 'true' : 'false'}
+              role="tab"
             >
-              {tab.header}
+              {tab?.header}
             </li>
           ))}
           <div class="active-border"></div>
         </ul>
         <div class="tab-content">
-          {Array.from(this.tabTitles).map((_, index) => (
-            <div style={{ display: index === this.activeTabIndex ? 'block' : 'none' }}>
+          {Array.from(this.tabObjects).map((_, index) => (
+            <div style={{ display: index === this.internalActiveTabIndex ? 'block' : 'none' }}>
               <slot name={`tab-${index}`} />
             </div>
           ))}
@@ -141,4 +206,5 @@ export class IfxTabs {
       </div>
     );
   }
+
 }

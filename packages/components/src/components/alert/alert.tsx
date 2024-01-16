@@ -15,7 +15,6 @@ export class Alert {
     this.ifxClose.emit()
   }
 
- 
   render() {
     return (
      this.variant === 'info' 

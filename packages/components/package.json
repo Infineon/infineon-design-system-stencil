@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "20.23.14",
+  "version": "20.37.3--canary.823.bf4e6bfd23084911b3ef54c4b280c8a1aa23e84c.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://github.com/Infineon/infineon-design-system-stencil#readme",
@@ -28,6 +28,7 @@
     "build:stencil": "stencil build --docs",
     "dev:storybook": "storybook dev -p 6262",
     "dev:stencil": "stencil build --serve --watch",
+    "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook"
   },

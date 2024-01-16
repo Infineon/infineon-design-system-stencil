@@ -5,9 +5,8 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
-import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
 
-defineCustomElements();
+
 
 export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
   'autoCollapse'
@@ -16,6 +15,7 @@ export const IfxAccordion = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx
 
 export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
   'caption',
+  'open',
   'initialCollapse',
   'ifxItemOpen',
   'ifxItemClose'
@@ -390,14 +390,26 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 
 
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
-  'applicationName'
+  'applicationName',
+  'termsOfUse',
+  'imprint',
+  'privacyPolicy',
+  'target'
 ]);
 
 
 export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
   'icon',
   'href',
-  'target'
+  'target',
+  'numberIndicator',
+  'active',
+  'isActionItem',
+  'value',
+  'handleItemClick',
+  'ifxSidebarMenu',
+  'ifxSidebarNavigationItem',
+  'ifxSidebarActionItem'
 ]);
 
 
@@ -436,7 +448,10 @@ export const IfxSwitch = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switc
 ]);
 
 
-export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined);
+export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [
+  'header',
+  'disabled'
+]);
 
 
 export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
@@ -455,7 +470,8 @@ export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table',
 export const IfxTabs = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
   'tabs',
   'orientation',
-  'ifxTabIndex'
+  'activeTabIndex',
+  'ifxTabChange'
 ]);
 
 

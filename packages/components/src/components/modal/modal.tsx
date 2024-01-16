@@ -76,7 +76,6 @@ export class IfxModal {
 
   open() {
     this.showModal = true;
-    console.log("attempt focus")
     try {
       const anim = animationTo(this.modalContainer, KEYFRAMES.fadeIn, {
         duration: 200,
