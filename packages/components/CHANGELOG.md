@@ -1,3 +1,15 @@
+# v20.39.3 (Tue Jan 16 2024)
+
+#### 🐛 Bug Fix
+
+- Card: Card is clickable even without href [#902](https://github.com/Infineon/infineon-design-system-stencil/pull/902) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.39.2 (Mon Jan 15 2024)
 
 #### 🐛 Bug Fix
