@@ -35,7 +35,7 @@ export class Card {
 
     if (this.href.trim() === "") {
       this.internalHref = undefined;
-    }
+    } else this.internalHref = this.href;
   }
 
   handleClassList(el, type, className) {
