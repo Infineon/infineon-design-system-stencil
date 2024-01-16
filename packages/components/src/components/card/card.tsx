@@ -13,6 +13,7 @@ export class Card {
   @State() alignment: string;
   @State() noImg: boolean;
   @Prop() href: string = "";
+  @State() internalHref: string = ""
   @Prop() target: string = "_self";
 
   @Listen('imgPosition')
@@ -32,8 +33,8 @@ export class Card {
       this.noBtns = true;
     } else this.noBtns = false;
 
-    if (this.href && this.href?.trim() === "") {
-      this.href = undefined;
+    if (this.href.trim() === "") {
+      this.internalHref = undefined;
     }
   }
 
@@ -120,12 +121,12 @@ export class Card {
 
           {this.direction === 'horizontal' &&
             <div class="horizontal">
-              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.href}>
+              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.internalHref}>
                 <slot name="img" />
               </a>
 
               <div class='lower__body-wrapper'>
-                <a class='upper-body' href={this.href}>
+                <a class='upper-body' href={this.internalHref}>
                   <slot />
                 </a>
                 <div>
@@ -136,7 +137,7 @@ export class Card {
 
           {this.direction === 'vertical' &&
             <div class="vertical">
-              <a class='upper__body-wrapper' href={this.href} target={this.target}>
+              <a class='upper__body-wrapper' href={this.internalHref} target={this.target}>
                 <div class={`card-img ${this.noImg ? 'noImage' : ""}`}>
                   <slot name="img" />
                 </div>
