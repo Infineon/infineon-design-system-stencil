@@ -3,6 +3,8 @@
 
 :host {
   vertical-align: bottom;
+  display: inline-flex;
+  width: var(--bw, fit-content);
 }
 
 .btn {
@@ -23,10 +25,7 @@
   user-select: none;
   font-size: tokens.$ifxFontSizeM;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
-.btn.fullwidth {
-  width:100%;
+  width: var(--bw, fit-content);
 }
 
 .btn:not(.disabled) {

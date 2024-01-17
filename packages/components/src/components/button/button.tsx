@@ -50,8 +50,17 @@ export class Button {
     }
   }
 
+  handleButtonWidth(){
+    if(this.fullWidth){
+      this.el.style.setProperty('--bw', '100%');
+    }else{
+      this.el.style.setProperty('--bw', 'fit-content');
+    }
+  }
+
   componentWillLoad() {
    this.handleFormAndInternalHref()
+   this.handleButtonWidth()
   }
 
   handleClick() {
@@ -136,8 +145,7 @@ export class Button {
       'btn',
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
-      this.disabled ? 'disabled' : '',
-      this.fullWidth ? 'fullwidth': ''
+      this.disabled ? 'disabled' : ''
     );
   }
 }
