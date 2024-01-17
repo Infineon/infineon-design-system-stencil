@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div>
     <form id="another-form">
@@ -20,14 +23,18 @@
   </div>
 </template>
 
+
+
 <script setup>
 import { ref, onMounted } from 'vue';
 
+
 let inputValue = ref("");
+
 
 onMounted(() => {
   updateTextInput();
-  setInterval(updateTextInput, 50000);
+  setInterval(updateTextInput, 100000);
 })
 
 function updateTextInput() {

@@ -1,4 +1,4 @@
-import { Component, Watch, Prop, State, Event, EventEmitter, Element, h } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
 import { Option } from './interfaces';
 
 @Component({
@@ -11,9 +11,11 @@ import { Option } from './interfaces';
 export class Multiselect {
 
   @Prop() options: any[] | string;
+  @Prop() batchSize: number = 50;
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
+  @State() internalError: boolean = false;
   @Prop() errorMessage: string = "Error";
   @Prop() label: string = "";
   @State() persistentSelectedOptions: Option[] = [];
@@ -25,7 +27,9 @@ export class Multiselect {
   @State() zIndex: number = 1; // default z-index value
   static globalZIndex = 1; // This will be shared among all instances of the component.
   private currentIndex: number = 0; //needed for option selection using keyboard
-  // this.currentIndex = this.placeholder ? this.currentIndex = 1 : this.currentIndex = 0;
+  @State() isLoading: boolean = false;
+  @State() loadedOptions: Option[] = [];
+  @State() filteredOptions: Option[] = [];
 
 
 
@@ -36,48 +40,106 @@ export class Multiselect {
   dropdownElement!: HTMLElement;
 
 
+  async loadInitialOptions() {
+    this.isLoading = true;
+    this.internalError = this.error;
+    // Load the first batch of options (e.g., first 20)
+    this.loadedOptions = await this.fetchOptions(0, this.batchSize);
+    this.isLoading = false;
+  }
 
-  @Watch('options')
-  handleOptionsChange() {
+  async fetchMoreOptions() {
+    this.isLoading = true;
+    const moreOptions = await this.fetchOptions(this.loadedOptions.length, this.batchSize);
+    this.loadedOptions = [...this.loadedOptions, ...moreOptions];
+    this.isLoading = false;
+  }
+
+
+  handleScroll(event: UIEvent) {
+    const element = event.target as HTMLElement;
+    const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2); //loading more options when the user has scrolled halfway through the current list
+
+    if (element.scrollTop >= halfwayPoint) {
+      this.fetchMoreOptions();
+    }
+  }
+
+
+
+
+  async fetchOptions(startIndex: number, count: number): Promise<Option[]> {
+    let allOptions: Option[] = [];
+
+    // Parse options if it's a string, or use directly if it's an array
     if (typeof this.options === 'string') {
       try {
-        this.listOfOptions = JSON.parse(this.options);
+        allOptions = JSON.parse(this.options);
       } catch (err) {
         console.error('Failed to parse options:', err);
       }
-    } else if (Array.isArray(this.options) || typeof this.options === 'object') {
-      this.listOfOptions = this.options;
+    } else if (Array.isArray(this.options)) {
+      allOptions = this.options;
     } else {
       console.error('Unexpected value for options:', this.options);
     }
 
-    // Update persistentSelectedOptions based on initially selected states
-    const initiallySelected = this.listOfOptions.filter(option => option.selected);
-    this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
+    // Slice the options array based on startIndex and count
+    const slicedOptions = allOptions.slice(startIndex, startIndex + count);
+
+    // Update the state for initially selected options, if needed
+    if (startIndex === 0) { // Assuming you want to do this only for the first batch
+      const initiallySelected = slicedOptions.filter(option => option.selected);
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
+    }
+
+    return slicedOptions;
+  }
+
+  handleSearch(event: Event) {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    if (searchTerm === '') {
+      this.filteredOptions = this.loadedOptions;
+    } else {
+      this.filteredOptions = this.loadedOptions.filter(option => option.label.toLowerCase().includes(searchTerm))
+    }
   }
 
   componentDidLoad() {
     setTimeout(() => {
       this.positionDropdown();
     }, 500);
+
+    // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
+
+
   }
 
 
   componentWillLoad() {
-    this.handleOptionsChange();
+    this.loadInitialOptions();
+    this.filteredOptions = [...this.loadedOptions];
+  }
+
+  @Watch('error')
+  updateInternalError() { 
+    this.internalError = this.error;
+  }
+
+  @Watch('loadedOptions')
+  loadedOptionsChanged() {
+    this.filteredOptions = [...this.loadedOptions];
   }
 
 
-
   handleOptionClick(option: Option) {
-    this.error = false; //reset potential previous errors
-
+    this.internalError = false; //reset potential previous errors
     // 1. Prevent action if disabled
     //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
     let newOptionsLength = option.children ? option.children.length : 1;
     if (this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount && !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
       console.error('Max item count reached');
-      this.error = true;
+      this.internalError = true;
       this.errorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
@@ -254,7 +316,6 @@ export class Multiselect {
     }
   }
 
-
   clearSelection() {
     this.persistentSelectedOptions = [];
     this.listOfOptions = this.listOfOptions.map(option => ({ ...option, selected: false }));
@@ -263,7 +324,6 @@ export class Multiselect {
 
   positionDropdown() {
     const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
-
     const spaceBelow = window.innerHeight - wrapperRect.bottom;
     const spaceAbove = wrapperRect.top;
 
@@ -297,7 +357,7 @@ export class Multiselect {
     }
   }
 
-  // // Helper function to handle arrow up navigation
+  // Helper function to handle arrow up navigation
   private handleArrowUp(options: NodeList) {
     if (this.currentIndex > 0) {
       this.currentIndex--;
@@ -325,8 +385,6 @@ export class Multiselect {
     const currentOption = this.findInOptions(currentListOfOptions, currentOptionValue); // get the option object based on the currently selected value and the options array
     this.handleOptionClick(currentOption);
   }
-
-
 
 
   renderOption(option: Option, index: number) {
@@ -402,7 +460,7 @@ export class Multiselect {
     const selectedOptionsLabels = this.persistentSelectedOptions.map(option => option.label).join(', ');
 
     return (
-      <div class={`ifx-multiselect-container ${this.getSizeClass()}`} ref={el => this.dropdownElement = el as HTMLElement}>
+      <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
           this.label ?
             <div class="ifx-label-wrapper">
@@ -413,7 +471,7 @@ export class Multiselect {
         ${this.getSizeClass()} 
         ${this.dropdownOpen ? 'active' : ''} 
         ${this.dropdownFlipped ? 'is-flipped' : ''}
-        ${this.error ? 'error' : ""}
+        ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           tabindex="0"
           onClick={(event) => this.handleWrapperClick(event)}
@@ -426,8 +484,12 @@ export class Multiselect {
             {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
-            <div class="ifx-multiselect-dropdown-menu" style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              {this.listOfOptions.map((option, index) => this.renderOption(option, index))}
+            <div class="ifx-multiselect-dropdown-menu"
+              onScroll={(event) => this.handleScroll(event)}
+              style={{ '--dynamic-z-index': this.zIndex.toString() }}>
+              <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event)} placeholder="Search..."></input>
+              {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
+              {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
           <div class="ifx-multiselect-icon-container">
@@ -435,9 +497,7 @@ export class Multiselect {
             {/* Clear Button - will show only if there's a selection */}
             {this.persistentSelectedOptions.length > 0 && (
               <div class="ifx-clear-button" onClick={() => this.clearSelection()}>
-                <ifx-icon
-                  key='icon-clear'
-                  icon='delete-16'></ifx-icon>
+                <ifx-icon icon="cremove24"></ifx-icon>
               </div>
             )}
             <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
@@ -454,7 +514,7 @@ export class Multiselect {
 
         </div>
         {
-          this.error ?
+          this.internalError ?
             <div class="ifx-error-message-wrapper">
               <span>{this.errorMessage}</span>
             </div> : null

@@ -28,6 +28,10 @@
   font-weight: tokens.$ifxFontWeightSemibold;
 }
 
+.tabs-list:focus-within .active-border {
+  display: none;
+}
+
 .active-border {
   content: "";
   position: absolute;
@@ -51,19 +55,8 @@
   padding-left: 32px;
 }
 
-.tab-item.active {
-  color: tokens.$ifxColorOcean500;
-}
-
-.tab-item.disabled {
-  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
-  cursor: pointer;
-  position: relative;
-  color: tokens.$ifxColorEngineering300;
-  pointer-events: none;
-}
-
-.tab-item:not(:disabled, .disabled) {
+.tab-item {
+  // Reduced padding values
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
@@ -71,8 +64,29 @@
   &:hover {
     color: tokens.$ifxColorOcean500;
   }
-}
 
+  &:active,
+  &.active {
+    color: tokens.$ifxColorOcean500;
+  }
+
+  &:focus,
+  &.focus {
+    outline: none;
+    border-radius: 1px;
+    box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+
+    // Assuming .active-border is a sibling of .tab-item
+    +.active-border {
+      display: none; // Hide the active border when the tab is in focus
+    }
+  }
+
+  &.disabled {
+    color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
+  }
+}
 
 .tabs.vertical .tab-item {
   border-right: 2px solid transparent;

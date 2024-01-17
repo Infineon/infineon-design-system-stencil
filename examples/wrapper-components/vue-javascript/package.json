@@ -1,25 +1,29 @@
 {
-  "name": "vue-wrapper",  
+  "name": "vue-wrapper",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:wrapper": "npm i && cd ../../../packages/components && npm i && npm run build:stencil && npm link && cd ../components-vue && npm i && npm link @infineon/infineon-design-system-stencil && npm run build",
-    "link": "cd ../../../packages/components-vue && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
-    "preview:link": "run-s link dev",
-    "test:local": "run-s build:wrapper preview:link"
+    "watch:library": "cd ../../../packages/components && npm run watch:stencil",
+    "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-vue && npm run build",
+    "link-clean": "node ../../../utils/os-type.js",
+    "link-clean-win": "cd ../../../packages/components-vue && rmdir /s /q node_modules && npm run build && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
+    "link-clean-unix": "cd ../../../packages/components-vue && rm -rf node_modules &&  npm run build && npm link && cd ../../examples/wrapper-components/vue-javascript && npm link @infineon/infineon-design-system-vue",
+    "preview:link": "run-s link-clean dev",
+    "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^20.34.5",
+    "@infineon/infineon-design-system-vue": "^20.36.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "vite": "^4.3.9",
-    "vue": "^3.3.8"
+    "vue": "^3.3.10"
   },
   "devDependencies": {
     "http-server": "^14.1.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.69.5"
   }
 }

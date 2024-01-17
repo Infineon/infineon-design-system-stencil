@@ -17,7 +17,7 @@ const current = computed(() => {
 
 onMounted(() => {
   updatePage();
-  setInterval(updatePage, 10000);
+  setInterval(updatePage, 100000);
 })
 
 function handleChange() {

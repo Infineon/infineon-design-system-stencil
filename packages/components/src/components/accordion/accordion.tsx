@@ -12,12 +12,12 @@ export class Accordion {
 
   @Listen('ifxItemOpen')
   async onItemOpen(event: CustomEvent) {
-    if(this.autoCollapse) { 
+    if (this.autoCollapse) {
       const items = Array.from(this.el.querySelectorAll('ifx-accordion-item'));
       for (const item of items) {
         const itemElement = item as HTMLIfxAccordionItemElement;
-        if (itemElement !== event.target && (await itemElement.isOpen())) {
-          itemElement.close();
+        if (itemElement !== event.target && (await itemElement.open)) {
+          itemElement.open = false;
         }
       }
     }

@@ -9,7 +9,7 @@ export default {
     currentPage: 1
   },
   argTypes: {
-    onIfxPageChange: {
+    ifxPageChange: {
       action: 'ifxPageChange',
       description: 'Custom event emitted page is changed',
       table: {

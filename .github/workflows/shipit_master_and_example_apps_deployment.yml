@@ -49,8 +49,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
-          echo "VERSION: $VERSION"
-          echo "Installing Stencil library for Vue and React: $VERSION"
+          echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          lerna version $VERSION --no-git-tag-version --y
+          cd packages/components-angular/projects/component-library
+          npm install @infineon/infineon-design-system-stencil@"$CANARY_VERSION"
+          cd ../../../../
           npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-vue
           npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-react        
 
@@ -63,9 +66,16 @@ jobs:
           npm run build:components-react
           npm run build:components-vue          
           cd packages/components-react
+          npm publish --verbose
+          npm run build:components-angular
+          npm run build:components-react
+          npm run build:components-vue
+          cd packages/components-angular/dist/@infineon/infineon-design-system-angular     
+          npm publish   
+          cd ../../../../components-react
           npm publish
           cd ../components-vue
-          npm publish
+          npm publish --verbose
 
 
 #deploy gh-pages for example applications based on the master branch:
@@ -161,15 +171,16 @@ jobs:
   
       - name: Install and Build
         run: |
-          cd examples/stencil-components/angular
+          cd examples/wrapper-components/angular
+          cd packages/components-angular
           npm i
           npm i @infineon/infineon-design-system-stencil@latest
-          npm run build
+          npm run build my-app
            
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/stencil-components/angular/dist/ # The folder the action should deploy.
+          folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.
           target-folder: angular-example
           clean-exclude: |
             pr-preview/
