@@ -60,7 +60,10 @@ export class Button {
 
   componentWillLoad() {
    this.handleFormAndInternalHref()
-   this.handleButtonWidth()
+  }
+  
+  componentWillRender(){  
+    this.handleButtonWidth()
   }
 
   handleClick() {
