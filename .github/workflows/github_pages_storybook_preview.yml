@@ -27,7 +27,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Cache dependencies for packages/components
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: packages/components/node_modules
           key: ${{ runner.os }}-npm-packages-components-${{ hashFiles('packages/components/package-lock.json') }}
