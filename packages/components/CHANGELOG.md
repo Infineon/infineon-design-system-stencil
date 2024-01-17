@@ -1,3 +1,65 @@
+# v20.40.0 (Wed Jan 17 2024)
+
+#### 🚀 Enhancement
+
+- Spinner: added an inverted prop [#903](https://github.com/Infineon/infineon-design-system-stencil/pull/903) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.39.3 (Tue Jan 16 2024)
+
+#### 🐛 Bug Fix
+
+- Card: Card is clickable even without href [#902](https://github.com/Infineon/infineon-design-system-stencil/pull/902) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.39.2 (Mon Jan 15 2024)
+
+#### 🐛 Bug Fix
+
+- Added smooth transition effect to progress bar [#889](https://github.com/Infineon/infineon-design-system-stencil/pull/889) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.39.1 (Mon Jan 15 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: tab event emitted also on click [#839](https://github.com/Infineon/infineon-design-system-stencil/pull/839) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.39.0 (Fri Jan 12 2024)
+
+#### 🚀 Enhancement
+
+- Added background color to progress bar [#882](https://github.com/Infineon/infineon-design-system-stencil/pull/882) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.38.8 (Fri Jan 12 2024)
 
 #### 🐛 Bug Fix
