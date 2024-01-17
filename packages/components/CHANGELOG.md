@@ -1,3 +1,15 @@
+# v20.40.0 (Wed Jan 17 2024)
+
+#### 🚀 Enhancement
+
+- Spinner: added an inverted prop [#903](https://github.com/Infineon/infineon-design-system-stencil/pull/903) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.39.3 (Tue Jan 16 2024)
 
 #### 🐛 Bug Fix
