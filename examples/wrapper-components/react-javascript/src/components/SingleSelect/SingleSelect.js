@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { IfxSelect, IfxMultiselect, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxSelect, IfxButton } from '@infineon/infineon-design-system-react';
 
 
 function App() {
