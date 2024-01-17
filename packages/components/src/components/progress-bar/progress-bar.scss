@@ -51,7 +51,7 @@
     font-weight: 400;
     font-size: tokens.$ifxFontSizeS;
     line-height: tokens.$ifxLineHeightS;
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family);
     color: tokens.$ifxColorBaseWhite;
     top: 0;
     bottom: 0;

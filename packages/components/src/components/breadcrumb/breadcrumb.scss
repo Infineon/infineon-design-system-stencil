@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: flex;
 }
 
@@ -11,7 +11,7 @@
   margin: 0px;
   display: flex;
   flex-direction: row;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeS;
   align-items: flex-start;
   //gap: tokens.$ifxSpace200; //this is where the gap comes from

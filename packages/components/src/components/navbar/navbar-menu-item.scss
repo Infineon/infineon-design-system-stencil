@@ -9,25 +9,26 @@
   padding: 8px 16px;
   gap: 8px;
 
-  &.hide { 
+  &.hide {
     display: none;
   }
 
-  & span { 
+  & span {
     color: tokens.$ifxColorBaseBlack;
-    font-family: Source Sans 3;
+    font-family: var(--ifx-font-family);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
+    /* 150% */
   }
 
-  &:hover { 
+  &:hover {
     cursor: pointer;
     background-color: tokens.$ifxColorEngineering200;
   }
 
-  &:active { 
+  &:active {
     background-color: tokens.$ifxColorEngineering300;
   }
 }

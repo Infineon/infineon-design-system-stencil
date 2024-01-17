@@ -31,7 +31,7 @@
   & .heading__section-title {
     flex: 1;
     margin: 0;
-    font-family: "Source Sans Pro";
+    font-family: var(--ifx-font-family);
     font-weight: tokens.$ifxFontWeightSemibold;
     line-height: 1.2;
     font-size: tokens.$ifxFontSizeM;

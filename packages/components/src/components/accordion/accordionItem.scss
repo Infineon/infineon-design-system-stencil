@@ -41,7 +41,7 @@
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family);
 }
 
 .inner-content {
