@@ -110,6 +110,9 @@
     <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="true" icon="false">
       Not clickable when disabled
     </ifx-button>
+    <div style="background-color: grey">
+      <ifx-button id="btn-in-div" theme='danger' onClick="toggleButtonWidth()">  I'm a button in a div. Click to toggle full width</ifx-button>
+    </div>
     <br />
 
     <h2>Checkbox</h2>
@@ -581,7 +584,11 @@
 
   updateValues();
 
-
+  function toggleButtonWidth(){
+    const btn = document.getElementById('btn-in-div');
+    btn.fullWidth = !btn.fullWidth;
+    console.log(btn.fullWidth);
+  }
 
 
 </script>
