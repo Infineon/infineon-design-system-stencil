@@ -1,3 +1,15 @@
+# v20.42.0 (Thu Jan 18 2024)
+
+#### 🚀 Enhancement
+
+- Accordion: dynamic height not working with content wrapper [#890](https://github.com/Infineon/infineon-design-system-stencil/pull/890) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.41.0 (Wed Jan 17 2024)
 
 #### 🚀 Enhancement
