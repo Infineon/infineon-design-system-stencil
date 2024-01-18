@@ -1,3 +1,16 @@
+# v20.43.0 (Thu Jan 18 2024)
+
+#### 🚀 Enhancement
+
+- added the logohref prop in navbar [#913](https://github.com/Infineon/infineon-design-system-stencil/pull/913) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.42.0 (Thu Jan 18 2024)
 
 #### 🚀 Enhancement
