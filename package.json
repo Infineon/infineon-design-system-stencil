@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "list:packages": "lerna list --all",
+    "process:design-tokens": "lerna run process:design-tokens --scope @infineon/infineon-design-system-stencil",
     "storybook": "lerna run dev --scope @infineon/infineon-design-system-stencil",
     "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
     "prebuild": "node build-utils/scripts/prebuild.js",
@@ -20,9 +21,13 @@
     "packages/components-angular/projects/*"
   ],
   "devDependencies": {
+    "@storybook/addon-docs": "^7.6.10",
+    "@storybook/manager-api": "^7.6.9",
+    "@storybook/theming": "^7.6.9",
     "@types/node": "^20.2.1",
     "lerna": "^7.0.0",
     "nx": "^16.2.1",
+    "sass-export": "^2.1.2",
     "typescript": "^5.0.4"
   },
   "dependencies": {

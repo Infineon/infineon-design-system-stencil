@@ -26,6 +26,7 @@
     "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs",
+    "process:design-tokens": "npx sass-export ./node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "dev:storybook": "storybook dev -p 6262",
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
