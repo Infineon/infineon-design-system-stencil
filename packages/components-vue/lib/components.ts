@@ -258,7 +258,8 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
   'fixed',
-  'showLogoAndAppname'
+  'showLogoAndAppname',
+  'logoHref'
 ]);
 
 

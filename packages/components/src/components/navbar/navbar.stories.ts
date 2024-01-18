@@ -12,7 +12,8 @@ export default {
     searchBarIsOpen: false,
     searchBarShowCloseButton: true,
     navbarPositionFixed: false,
-    showLogoAndAppname: true
+    showLogoAndAppname: true,
+    logoHref: "http://google.com"
   },
   argTypes: {
     icon: {
@@ -24,7 +25,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-navbar show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}">
+  `<ifx-navbar show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.navbarPositionFixed}" logo-href="${args.logoHref}">
   <ifx-navbar-item hide-label="${args.hideLabel}" icon="${args.icon}" slot="left-item" target="${args.navbBarItemTarget}" href="${args.navbBarItemHref}">Menu Item 1</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
   <ifx-navbar-item hide-label="${args.hideLabel}" slot="left-item">Menu Item</ifx-navbar-item>
