@@ -1,5 +1,5 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Watch, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Event, EventEmitter } from '@stencil/core';
 
 
 @Component({
@@ -26,19 +26,14 @@ export class IfxTabs {
 
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
+    if (this.internalActiveTabIndex !== this.activeTabIndex) {
+      this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
+    };
     this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
+    this.updateTabStyles();
+    this.onSlotChange();
   }
-
-  @Watch('activeTabIndex')
-  activeTabIndexChanged(newValue: number, oldValue: number) {
-    if (newValue !== oldValue) {
-      this.internalActiveTabIndex = newValue;
-      this.ifxTabChange.emit({ previousTab: oldValue, currentTab: newValue });
-      this.updateTabStyles();
-    }
-  }
-
 
   updateTabStyles() {
     this.tabHeaderRefs.forEach((tab, index) => {
@@ -82,7 +77,6 @@ export class IfxTabs {
     this.tabRefs = Array.from(tabs);
     this.tabRefs.forEach((tab, index) => {
       tab.setAttribute('slot', `tab-${index}`);
-      tab.tabIndex = index === this.internalActiveTabIndex ? 0 : -1;
     });
   }
 
@@ -96,7 +90,6 @@ export class IfxTabs {
   }
 
   componentDidLoad() {
-    this.onSlotChange();
     this.updateBorderAndFocus();
   }
 
@@ -144,6 +137,14 @@ export class IfxTabs {
     return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`;
   }
 
+  private handleClick(tab, index) {
+    this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
+    if (!tab.disabled) this.internalActiveTabIndex = index;
+
+  }
+
+
+
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Tab') {
@@ -185,7 +186,7 @@ export class IfxTabs {
               class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
               tabindex="0"
-              onClick={() => { if (!tab.disabled) this.internalActiveTabIndex = index; }}
+              onClick={() => this.handleClick(tab, index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
               role="tab"

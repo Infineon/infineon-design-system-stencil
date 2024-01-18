@@ -1,8 +1,8 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 
-/* exemplary semantic color variables for this project */
 
 div {
   background-color: tokens.$ifxColorBaseWhite;
+  // --ifx-font-family: 'Arial black'; //overwrite default font
 }

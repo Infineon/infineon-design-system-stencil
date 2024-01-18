@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                     | Default     |
-| ---------- | ---------- | ----------- | ---------------------------------------- | ----------- |
-| `disabled` | `disabled` |             | `boolean`                                | `false`     |
-| `href`     | `href`     |             | `string`                                 | `undefined` |
-| `size`     | `size`     |             | `string`                                 | `'m'`       |
-| `target`   | `target`   |             | `string`                                 | `'_self'`   |
-| `theme`    | `theme`    |             | `"danger" \| "default" \| "inverse"`     | `'default'` |
-| `type`     | `type`     |             | `"button" \| "reset" \| "submit"`        | `"button"`  |
-| `variant`  | `variant`  |             | `"primary" \| "secondary" \| "tertiary"` | `'primary'` |
+| Property    | Attribute    | Description | Type                                     | Default     |
+| ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
+| `disabled`  | `disabled`   |             | `boolean`                                | `false`     |
+| `fullWidth` | `full-width` |             | `boolean`                                | `false`     |
+| `href`      | `href`       |             | `string`                                 | `undefined` |
+| `size`      | `size`       |             | `string`                                 | `'m'`       |
+| `target`    | `target`     |             | `string`                                 | `'_self'`   |
+| `theme`     | `theme`      |             | `"danger" \| "default" \| "inverse"`     | `'default'` |
+| `type`      | `type`       |             | `"button" \| "reset" \| "submit"`        | `"button"`  |
+| `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `'primary'` |
 
 
 ## Methods

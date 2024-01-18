@@ -64,7 +64,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'disabled',
   'href',
   'target',
-  'type'
+  'type',
+  'fullWidth'
 ]);
 
 
@@ -390,14 +391,26 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 
 
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
-  'applicationName'
+  'applicationName',
+  'termsOfUse',
+  'imprint',
+  'privacyPolicy',
+  'target'
 ]);
 
 
 export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
   'icon',
   'href',
-  'target'
+  'target',
+  'numberIndicator',
+  'active',
+  'isActionItem',
+  'value',
+  'handleItemClick',
+  'ifxSidebarMenu',
+  'ifxSidebarNavigationItem',
+  'ifxSidebarActionItem'
 ]);
 
 
@@ -417,7 +430,8 @@ export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slide
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
-  'variant'
+  'variant',
+  'inverted'
 ]);
 
 

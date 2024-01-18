@@ -109,6 +109,9 @@
     <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="true" icon="false">
       Not clickable when disabled
     </ifx-button>
+    <div style="background-color: grey">
+      <ifx-button id="btn-in-div" theme='danger' onClick="toggleButtonWidth()">  I'm a button in a div. Click to toggle full width</ifx-button>
+    </div>
     <br />
 
     <h2>Checkbox</h2>
@@ -245,6 +248,17 @@
 
     <h2>Sidebar</h2>
     <ifx-sidebar application-name="Application Name">
+      <ifx-sidebar-item>
+        Header Section
+        <ifx-sidebar-item icon="image-16">
+          Menu Item
+          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
+            me</ifx-sidebar-item>
+          <ifx-sidebar-item icon="image-16" active="true">
+            Menu Item 2
+          </ifx-sidebar-item>
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
@@ -446,6 +460,7 @@
   const errorSpan = document.querySelector("#errorSpan");
   const valueSpan = document.querySelector("#valueSpan");
   const textInputSpan = document.querySelector("#textInputSpan");
+  const sidebarItem = document.querySelector('#sidebarItemClickable');
 
 
   function updateValues() {
@@ -554,6 +569,10 @@
       console.log("search bar value", event.detail);
     });
 
+    sidebarItem.addEventListener('ifxSidebarNavigationItem', function (event) {
+      console.log('Sidebar item clicked', event.detail);
+    });
+
 
   });
 
@@ -564,7 +583,11 @@
 
   updateValues();
 
-
+  function toggleButtonWidth(){
+    const btn = document.getElementById('btn-in-div');
+    btn.fullWidth = !btn.fullWidth;
+    console.log(btn.fullWidth);
+  }
 
 
 </script>
