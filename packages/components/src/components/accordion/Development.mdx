@@ -3,7 +3,7 @@ import * as AccordionStories from './accordion.stories';
  
 <Meta of={AccordionStories} />
 
-# Sidebar
+# Accordion
 
 <Canvas of={AccordionStories.Default} sourceState="shown" />
 
@@ -18,23 +18,15 @@ When using in React, if you wish you dynamically update the content of an accord
 
   ...
 
-    <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
-      <div>{content}</div>
-    </IfxAccordionItem>
+  <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
+    <div>{content}</div>
+  </IfxAccordionItem>
+
+...
   
-  ...
+  <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
+    {content}
+  </IfxAccordionItem>
   
-  ...
-
-    <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
-      {content}
-    </IfxAccordionItem>
-  
-  ...
-
-
-}
-
-export default Accordion;
 
 ```
