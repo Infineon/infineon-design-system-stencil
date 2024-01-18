@@ -1,0 +1,40 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as AccordionStories from './accordion.stories';
+ 
+<Meta of={AccordionStories} />
+
+# Sidebar
+
+<Canvas of={AccordionStories.Default} sourceState="shown" />
+
+<Controls />
+
+
+## Note
+When using in React, if you wish you dynamically update the content of an accordion-item, please add a ``key`` attribute on the accordion-item in order to trigger an internal re-render.
+
+
+```js
+
+  ...
+
+    <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
+      <div>{content}</div>
+    </IfxAccordionItem>
+  
+  ...
+  
+  ...
+
+    <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
+      {content}
+    </IfxAccordionItem>
+  
+  ...
+
+
+}
+
+export default Accordion;
+
+```
