@@ -64,7 +64,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'disabled',
   'href',
   'target',
-  'type'
+  'type',
+  'fullWidth'
 ]);
 
 
@@ -429,7 +430,8 @@ export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slide
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
-  'variant'
+  'variant',
+  'inverted'
 ]);
 
 

@@ -1,3 +1,49 @@
+# v20.41.0 (Wed Jan 17 2024)
+
+#### 🚀 Enhancement
+
+- Added fullWidth prop on button component [#874](https://github.com/Infineon/infineon-design-system-stencil/pull/874) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-react from 20.36.0 to 20.39.2 in /examples/wrapper-components/react-javascript [#893](https://github.com/Infineon/infineon-design-system-stencil/pull/893) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump sass from 1.69.5 to 1.69.7 in /examples/wrapper-components/vue-javascript [#871](https://github.com/Infineon/infineon-design-system-stencil/pull/871) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump sass from 1.69.5 to 1.69.7 in /examples/wrapper-components/react-javascript [#866](https://github.com/Infineon/infineon-design-system-stencil/pull/866) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump follow-redirects from 1.15.3 to 1.15.4 in /examples/wrapper-components/react-javascript [#878](https://github.com/Infineon/infineon-design-system-stencil/pull/878) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump follow-redirects from 1.15.3 to 1.15.4 in /examples/wrapper-components/vue-javascript [#879](https://github.com/Infineon/infineon-design-system-stencil/pull/879) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.40.0 (Wed Jan 17 2024)
+
+#### 🚀 Enhancement
+
+- Spinner: added an inverted prop [#903](https://github.com/Infineon/infineon-design-system-stencil/pull/903) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.39.3 (Tue Jan 16 2024)
+
+#### 🐛 Bug Fix
+
+- Card: Card is clickable even without href [#902](https://github.com/Infineon/infineon-design-system-stencil/pull/902) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.39.2 (Mon Jan 15 2024)
 
 #### 🐛 Bug Fix
