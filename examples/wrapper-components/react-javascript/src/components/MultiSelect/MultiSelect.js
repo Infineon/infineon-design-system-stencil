@@ -3,8 +3,8 @@ import { IfxMultiselect } from '@infineon/infineon-design-system-react';
 
 
 function App() {
-  const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState(false);
+  const [disabled] = useState(false);
+  const [error] = useState(false);
   const [options] = useState([{
     value: "a",
     label: "option a",
