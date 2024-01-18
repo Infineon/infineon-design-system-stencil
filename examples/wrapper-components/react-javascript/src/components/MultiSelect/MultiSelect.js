@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IfxMultiselect, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxMultiselect } from '@infineon/infineon-design-system-react';
 
 
 function App() {
@@ -156,15 +156,6 @@ function App() {
 
   const handleIfxSelect = (e) => {
     console.log('ifxSelect event emitted with value:', e.detail);
-  }
-
-
-  const toggleDisabled = () => {
-    setDisabled(prevDisabled => !prevDisabled);
-  }
-
-  const toggleError = () => {
-    setError(prevError => !prevError);
   }
 
 
