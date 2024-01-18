@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { IfxMultiselect, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxMultiselect } from '@infineon/infineon-design-system-react';
 
 
 function App() {
-  const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState(false);
+  const [disabled] = useState(false);
+  const [error] = useState(false);
   const [options] = useState([{
     value: "a",
     label: "option a",
@@ -159,22 +159,12 @@ function App() {
   }
 
 
-  const toggleDisabled = () => {
-    setDisabled(prevDisabled => !prevDisabled);
-  }
-
-  const toggleError = () => {
-    setError(prevError => !prevError);
-  }
-
-
   return (
     <div>
       <IfxMultiselect options={options} batchSize={20}
-        size="medium (40px)" onIfxSelect={handleIfxSelect} disabled={disabled} error={error} error-message="Some error" label="" ></IfxMultiselect>
+        size="m" placeholder="Placeholder" onIfxSelect={handleIfxSelect} disabled={disabled} error={error} error-message="Some error" label="" ></IfxMultiselect>
       <div>
-        <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>
+     
       </div>
       <br />
     </div>

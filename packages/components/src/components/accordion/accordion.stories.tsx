@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 export default {
   title: 'Components/Accordion',
   component: 'ifx-accordion',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
 
   args: {
     autoCollapse: false,

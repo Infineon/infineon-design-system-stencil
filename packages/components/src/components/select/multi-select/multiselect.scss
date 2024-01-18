@@ -3,11 +3,9 @@
 @use "../../../global/font.scss";
 
 .ifx-multiselect-container {
+  background-color: tokens.$ifxColorBaseWhite;
   position: relative;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 
   &.small-select {
     height: 36px;
@@ -46,16 +44,22 @@
     position: relative;
     display: flex;
     align-items: center;
-    border: 1px solid #8D8786;
+    box-shadow: 0 0 0 1px tokens.$ifxColorEngineering400;
     width: 100%;
+    border-radius: 1px;
+    font-weight: 400;
+    font-style: normal;
+
 
     &.small-select {
+      height: 36px;
       line-height: 20px;
       padding: 8px 12px;
       font-size: 14px;
     }
 
     &.medium-select {
+      height: 40px;
       line-height: 24px;
       padding: 8px 16px;
       font-size: 16px;
@@ -66,6 +70,8 @@
     }
 
     &:focus-visible:not(.active):not(:active) {
+      outline: none;
+
       &::before {
         content: '';
         position: absolute;
@@ -74,12 +80,14 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid tokens.$ifxColorOcean500
+        border: 2px solid tokens.$ifxColorOcean500;
+        border-radius: 2px;
+
       }
     }
 
     &.disabled {
-      background: #EEEDED;
+      background: tokens.$ifxColorEngineering200;
       color: #575352;
       border-color: #575352;
       cursor: not-allowed;
@@ -97,7 +105,7 @@
     }
 
     &.active {
-      border: 2px solid #0A8276 !important; // Active border color
+      box-shadow: 0 0 0 1px #0A8276 !important; // Active border color
 
       & .icon-wrapper-up {
         display: flex;
@@ -159,10 +167,9 @@
     top: 100%;
     left: 0;
     width: 100%;
-    border: 1px solid #ddd;
     margin-top: 2px;
     background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
     max-height: 300px;
     /* Adjust based on your design */
     overflow-y: auto;
@@ -214,17 +221,16 @@
     }
 
     &:hover {
-      background-color: #EEEDED;
+      background-color: tokens.$ifxColorEngineering200;
     }
 
     &:focus {
-      background-color: #BFBBBB;
+      background-color: tokens.$ifxColorEngineering300;
       outline: none;
-      box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
     }
 
     &.is-highlighted {
-      background-color: #EEEDED;
+      background-color: tokens.$ifxColorEngineering200;
       ;
     }
 

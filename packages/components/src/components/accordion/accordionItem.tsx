@@ -59,11 +59,30 @@ export class IfxAccordionItem {
     }
   }
 
-  handleSlotChange() {
+  handleSlotChange(e) {
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    
+    if(nodes.length > 0) {
+      nodes.forEach(node => {
+        const observer = new MutationObserver((mutationsList, _) => {
+          for(let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              if (this.internalOpen) {
+                this.openAccordionItem();
+              }
+            }
+          }
+        });
+        observer.observe(node, { attributes: true, childList: true, subtree: true });
+      });
+    }
+
     if (this.internalOpen) {
       this.openAccordionItem();
     }
   }
+
   render() {
     return (
       <div aria-label={this.caption} class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
@@ -75,7 +94,7 @@ export class IfxAccordionItem {
         </div>
         <div class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)}>
           <div class="inner-content">
-            <slot onSlotchange={() => this.handleSlotChange()} />
+            <slot onSlotchange={(e) => this.handleSlotChange(e)} />
           </div>
         </div>
       </div>

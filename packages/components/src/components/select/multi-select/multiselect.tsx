@@ -117,12 +117,13 @@ export class Multiselect {
 
 
   componentWillLoad() {
+    console.log('MULTI SELECT LOADED')
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
   }
 
   @Watch('error')
-  updateInternalError() { 
+  updateInternalError() {
     this.internalError = this.error;
   }
 
@@ -402,7 +403,7 @@ export class Multiselect {
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}
         >
-          <ifx-checkbox id={uniqueId} value={isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
+          <ifx-checkbox id={uniqueId} size="s" value={isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
@@ -449,7 +450,7 @@ export class Multiselect {
         role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
-        <ifx-checkbox id={uniqueId} value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
+        <ifx-checkbox id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId}>{option.label}</label>
       </div>
     );

@@ -1,3 +1,42 @@
+# v20.43.1 (Thu Jan 18 2024)
+
+#### 🐛 Bug Fix
+
+- added missing bg color for single and multiselect [#753](https://github.com/Infineon/infineon-design-system-stencil/pull/753) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.43.0 (Thu Jan 18 2024)
+
+#### 🚀 Enhancement
+
+- added the logohref prop in navbar [#913](https://github.com/Infineon/infineon-design-system-stencil/pull/913) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.42.0 (Thu Jan 18 2024)
+
+#### 🚀 Enhancement
+
+- Accordion: dynamic height not working with content wrapper [#890](https://github.com/Infineon/infineon-design-system-stencil/pull/890) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.41.0 (Wed Jan 17 2024)
 
 #### 🚀 Enhancement

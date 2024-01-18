@@ -4,7 +4,7 @@ import { IfxNavbar, IfxNavbarMenuItem, IfxSearchBar, IfxNavbarItem, IfxNavbarMen
 function Navbar() {
   return (
     <div>
-      <IfxNavbar application-name="Application name" fixed="false">
+      <IfxNavbar application-name="Application name" fixed="false" logo-href="https://google.com">
         <IfxNavbarItem hide-label="false" icon="calendar16" slot="left-item" target="_blank" href="https://google.com">Menu Item1</IfxNavbarItem>
         <IfxNavbarItem  slot="left-item">Menu Item</IfxNavbarItem>
         <IfxNavbarItem  slot="left-item">Menu Item</IfxNavbarItem>
