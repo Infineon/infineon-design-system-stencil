@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div>
-      <IfxSelect ifx-options={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} ifx-size="medium (40px)" placeholder="true" search-enabled="true"
+      <IfxSelect ifx-options={JSON.stringify(options)} type="single" value="undefined" onIfxSelect={handleIfxSelect} ifx-size="m" placeholder="true" search-enabled="true"
         search-placeholder-value="Search..." ifx-disabled={disabled} ifx-error={error} ifx-error-message="Some error"
         ifx-label="" ifx-placeholder-value="Placeholder"
       ></IfxSelect>
