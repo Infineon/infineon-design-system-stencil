@@ -4,6 +4,8 @@
 :host {
   display: flex;
   width: 100%;
+  font-family: var(--ifx-font-family, sans-serif);
+
 }
 
 .progress-bar {
@@ -54,7 +56,6 @@
     font-size: tokens.$ifxFontSizeS;
     font-weight: 400;
     line-height: tokens.$ifxLineHeightS;
-    font-family: var(--ifx-font-family);
     color: tokens.$ifxColorBaseWhite;
     top: 0;
     bottom: 0;
