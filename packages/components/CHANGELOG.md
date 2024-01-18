@@ -1,3 +1,17 @@
+# v20.43.1 (Thu Jan 18 2024)
+
+#### 🐛 Bug Fix
+
+- added missing bg color for single and multiselect [#753](https://github.com/Infineon/infineon-design-system-stencil/pull/753) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.0 (Thu Jan 18 2024)
 
 #### 🚀 Enhancement
