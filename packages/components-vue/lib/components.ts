@@ -259,7 +259,8 @@ export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navba
   'applicationName',
   'fixed',
   'showLogoAndAppname',
-  'logoHref'
+  'logoHref',
+  'logoHrefTarget'
 ]);
 
 

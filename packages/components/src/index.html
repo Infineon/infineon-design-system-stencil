@@ -11,16 +11,6 @@
 
   <style defer>
 
-    #wrapper { 
-      width: 500px;
-      border: 1px solid;
-      padding: 10px;
-    }
-
-    #myButton { 
-      margin: 10px;
-    }
-
   </style>
 
   <script defer>
@@ -30,33 +20,57 @@
 </head>
 
 <body>
+  <div>
+    <ifx-navbar application-name="when target is _self" fixed="false" logo-href="https://google.com" logo-href-target = "_self">
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
+        href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
 
-  <div id="wrapper">
-    <ifx-button
-    type="button"
-    disabled="false"
-    variant="primary"
-    size="m"
-    target="_blank"
-    theme="default"
-    full-width="false"
-  >
-    Button
-  </ifx-button>
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
 
-    <ifx-button
-    type="button"
-    disabled="false"
-    variant="primary"
-    size="m"
-    target="_blank"
-    theme="default"
-    id="myButton"
-    full-width="true"
-  >
-    Button
-  </ifx-button>
-  </div>
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+    </ifx-navbar>
+    <ifx-navbar application-name="when target is _parent" fixed="false" logo-href="https://google.com" logo-href-target = "_parent">
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
+        href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+    </ifx-navbar>
+    <ifx-navbar application-name="when target is _blank" fixed="false" logo-href="https://google.com" logo-href-target = "_blank">
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
+        href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+    </ifx-navbar>
+    <ifx-navbar application-name="when target is 'empty'" fixed="false" logo-href="https://google.com" logo-href-target = "">
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
+        href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+    </ifx-navbar>
+    <ifx-navbar application-name="when target is randomtext" fixed="false" logo-href="https://google.com" logo-href-target = "random">
+      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
+        href="https://google.com">Menu Item1</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+
+      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
+    </ifx-navbar>
 
 </body>
 
