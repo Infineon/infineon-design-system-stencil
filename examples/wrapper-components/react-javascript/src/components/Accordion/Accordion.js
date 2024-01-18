@@ -14,13 +14,12 @@ function Accordion() {
   const accordionItemRef = useRef();
 
   async function handleButtonClick() {
-    // Get a reference to the ifx-accordion-item component instance
     const accordionItem = accordionItemRef.current;
     accordionItem.open = !accordionItem.open;
     console.log("accordion item: ", accordionItem)
   }
 
-  const handleContent = () => { 
+  const updateContent = () => { 
     setContent(`Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.`)
@@ -29,7 +28,7 @@ function Accordion() {
   return (
     <div>
       <IfxAccordion auto-collapse={true} onIfxItemOpen={handleItems}>
-        <IfxAccordionItem initial-collapse={false} open={false} caption="Label" ref={accordionItemRef}>
+        <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
          <div>{content}</div>
         </IfxAccordionItem>
         <IfxAccordionItem open={false} caption="Label">
@@ -45,7 +44,7 @@ function Accordion() {
       </IfxAccordion>
       <br />
       <IfxButton onClick={handleButtonClick}>Open/Close the first accordion item</IfxButton>
-      <IfxButton onClick={handleContent}>Change Content dynamically</IfxButton>
+      <IfxButton onClick={updateContent}>Change Content dynamically</IfxButton>
 
 
     </div>

@@ -62,7 +62,7 @@ export class IfxAccordionItem {
   handleSlotChange(e) {
     const slotElement = e.target;
     const nodes = slotElement.assignedNodes();
-    console.log('handle slot change')
+    
     if(nodes.length > 0) {
       nodes.forEach(node => {
         const observer = new MutationObserver((mutationsList, _) => {
