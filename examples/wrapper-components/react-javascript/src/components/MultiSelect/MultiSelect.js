@@ -173,8 +173,7 @@ function App() {
       <IfxMultiselect options={options} batchSize={20}
         size="m" placeholder="Placeholder" onIfxSelect={handleIfxSelect} disabled={disabled} error={error} error-message="Some error" label="" ></IfxMultiselect>
       <div>
-        <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-        <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>
+     
       </div>
       <br />
     </div>
