@@ -26,12 +26,12 @@
     "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs",
-    "process:design-tokens": "npx sass-export ./node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
-    "dev:storybook": "storybook dev -p 6262",
+    "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook",
+    "dev:storybook": "wait-on ./dist && storybook dev -p 6262",
     "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
