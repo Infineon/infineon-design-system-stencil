@@ -9,6 +9,7 @@
   display: inline-flex;
   flex-direction: column;
   position: relative;
+  font-family: var(--ifx-font-family);
 
 }
 
@@ -19,7 +20,6 @@
   display: none;
   transition: opacity 0.3s;
   position: relative;
-  font-family: var(--ifx-font-family);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -67,7 +67,6 @@
 
   .tooltip-dismissible-header,
   .tooltip-dismissible-body {
-    font-family: var(--ifx-font-family);
     font-size: 14px;
     font-style: normal;
     line-height: 20px;
@@ -123,7 +122,6 @@
 
   .tooltip-extended-header,
   .tooltip-extended-body {
-    font-family: var(--ifx-font-family);
     font-size: 14px;
     font-style: normal;
     line-height: 20px;

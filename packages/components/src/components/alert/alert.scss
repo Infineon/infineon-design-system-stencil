@@ -9,6 +9,8 @@
   display: flex;
   padding: 16px 24px;
   //justify-content: space-between;
+  font-family: var(--ifx-font-family);
+
 
   & .info__text-wrapper {
     display: flex;
@@ -27,7 +29,6 @@
     & .info__headline-wrapper,
     .info__description-wrapper {
       color: #1D1D1D;
-      font-family: var(--ifx-font-family);
       font-size: 16px;
       font-style: normal;
       font-weight: 600;

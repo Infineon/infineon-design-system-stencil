@@ -20,9 +20,6 @@
     "packages/components-angular/projects/*"
   ],
   "devDependencies": {
-    "@storybook/addon-docs": "^7.6.10",
-    "@storybook/manager-api": "^7.6.9",
-    "@storybook/theming": "^7.6.9",
     "@types/node": "^20.2.1",
     "lerna": "^7.0.0",
     "nx": "^16.2.1",

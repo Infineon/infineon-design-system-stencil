@@ -8,6 +8,8 @@
   align-items: center;
   padding: 8px 16px;
   gap: 8px;
+  font-family: var(--ifx-font-family);
+
 
   &.hide {
     display: none;
@@ -15,7 +17,6 @@
 
   & span {
     color: tokens.$ifxColorBaseBlack;
-    font-family: var(--ifx-font-family);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

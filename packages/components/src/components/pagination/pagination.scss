@@ -10,6 +10,8 @@
   justify-content: center;
   align-items: center;
   gap: 32px;
+  font-family: var(--ifx-font-family);
+
 
   & .items__per-page-wrapper {
     display: flex;
@@ -18,7 +20,6 @@
 
     & .items__per-page-label {
       color: #1D1D1D;
-      font-family: var(--ifx-font-family);
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
@@ -97,7 +98,6 @@
           justify-content: center;
           color: #1D1D1D;
           text-align: center;
-          font-family: var(--ifx-font-family);
           font-size: 13px;
           font-style: normal;
           font-weight: 400;
@@ -176,7 +176,6 @@ li {
     justify-content: center;
     color: #1D1D1D;
     text-align: center;
-    font-family: var(--ifx-font-family);
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
