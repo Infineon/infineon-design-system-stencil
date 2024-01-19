@@ -46,34 +46,35 @@ export class Card {
     const card = this.el.shadowRoot.querySelector('.card')
     let cardHeadline = this.el.querySelector('ifx-card-headline');
 
-    card.addEventListener('mouseover', (ev) => {
-
-      // const target = ev.target;
-      // const relatedTarget = ev.relatedTarget;
-
-      // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
-      //   this.handleClassList(card, 'add', 'borderHovered')
-      // }
-
-      if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
-        this.handleClassList(card, 'add', 'linkHovered')
-      } else {
-        this.handleClassList(card, 'add', 'cardHovered')
-        if (cardHeadline) {
-          cardHeadline.isHovered = true;
+    if(this.href) { 
+      card.addEventListener('mouseover', (ev) => {
+  
+        // const target = ev.target;
+        // const relatedTarget = ev.relatedTarget;
+  
+        // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
+        //   this.handleClassList(card, 'add', 'borderHovered')
+        // }
+  
+        if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
+          this.handleClassList(card, 'add', 'linkHovered')
+        } else {
+          this.handleClassList(card, 'add', 'cardHovered')
+          if (cardHeadline) {
+            cardHeadline.isHovered = true;
+          }
         }
-      }
-    })
+      })
 
-
-    card.addEventListener('mouseout', () => {
-      if (cardHeadline) {
-        cardHeadline.isHovered = false;
-      }
-      //this.handleClassList(card, 'remove', 'borderHovered')
-      this.handleClassList(card, 'remove', 'cardHovered')
-      this.handleClassList(card, 'add', 'linkHovered')
-    })
+      card.addEventListener('mouseout', () => {
+        if (cardHeadline) {
+          cardHeadline.isHovered = false;
+        }
+        //this.handleClassList(card, 'remove', 'borderHovered')
+        this.handleClassList(card, 'remove', 'cardHovered')
+        this.handleClassList(card, 'add', 'linkHovered')
+      })
+    }
   }
 
   componentWillLoad() {
