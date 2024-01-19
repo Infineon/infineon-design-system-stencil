@@ -321,7 +321,6 @@ yarn/npm run build:components
 To run storybook locally (automatically rebuilds on changes), run:
 
 ```bash
-yarn/npm process:design-tokens
 yarn/npm run storybook
 ```
 

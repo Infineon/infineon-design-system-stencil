@@ -3,8 +3,7 @@
   "private": true,
   "scripts": {
     "list:packages": "lerna list --all",
-    "process:design-tokens": "lerna run process:design-tokens --scope @infineon/infineon-design-system-stencil",
-    "storybook": "lerna run dev --scope @infineon/infineon-design-system-stencil",
+    "storybook": "lerna run storybook --scope @infineon/infineon-design-system-stencil",
     "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
     "prebuild": "node build-utils/scripts/prebuild.js",
     "build:components": "lerna run build:stencil --scope @infineon/infineon-design-system-stencil",

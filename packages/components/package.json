@@ -31,7 +31,8 @@
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
-    "dev": "run-p dev:stencil dev:storybook"
+    "dev": "run-p dev:stencil dev:storybook",
+    "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "^3.0.0",
