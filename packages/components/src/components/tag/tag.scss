@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -13,6 +13,7 @@
   border-radius: tokens.$ifxBorderRadiusRound;
   background-color: tokens.$ifxColorBaseWhite;
   gap: tokens.$ifxSpace100;
+  font-family: var(--ifx-font-family);
 
   &:hover {
     cursor: pointer;
@@ -36,7 +37,6 @@
       margin: 0;
       font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeM;
-      font-family: tokens.$ifxFontFamilyBody;
       line-height: 20px;
       color: tokens.$ifxColorBaseBlack;
     }

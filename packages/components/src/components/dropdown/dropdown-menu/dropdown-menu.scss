@@ -17,14 +17,15 @@
   box-shadow: 0px 6px 9px 0px #1d1d1d1a;
   border: 1px solid tokens.$ifxColorEngineering200;
   padding: 8px 0px;
+  font-family: var(--ifx-font-family);
 
-  &.small { 
+  &.small {
     max-height: 266px;
     max-width: 186px;
     overflow-y: auto;
   }
 
-  &.hideTopPadding { 
+  &.hideTopPadding {
     padding-top: 0px;
   }
 }

@@ -36,7 +36,6 @@ export class Checkbox {
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
-    console.log("watch");
     if (newValue !== oldValue) {
       this.internalValue = newValue;
       this.inputElement.checked = this.internalValue; // update the checkbox's checked property

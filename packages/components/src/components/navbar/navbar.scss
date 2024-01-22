@@ -1,22 +1,24 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   width: 100%;
   display: block;
 }
 
 
 .navbar__wrapper {
-  //height: 64px;
+  font-family: var(--ifx-font-family);
   height: 63px;
   position: sticky;
   overflow: hidden;
   z-index: 1030;
   border-bottom: 1px solid #EEEDED;
-  &.fixed { 
+
+  &.fixed {
     border-bottom: none;
   }
+
   // border-bottom: 1px solid #EEEDED; //when fixed is false
 }
 
@@ -30,6 +32,7 @@
 
   &.fixed {
     position: fixed;
+
     & .navbar__container {
       border-bottom: 1px solid #EEEDED;
     }
@@ -183,6 +186,7 @@
   padding: 8px 40px;
   gap: 16px;
   background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
 
   // &.fixed { 
   //   border-bottom: 1px solid #EEEDED; //when fixed is true
@@ -198,7 +202,7 @@
     order: 0;
     flex-grow: 0;
 
-    &.searchOpened { 
+    &.searchOpened {
       display: none;
     }
 
@@ -324,8 +328,8 @@
             gap: 8px;
 
             & a {
-              & span { 
-                &:hover { 
+              & span {
+                &:hover {
                   color: tokens.$ifxColorOcean500;
                 }
               }
@@ -529,10 +533,10 @@
     }
   }
 
-  &.searchOpened { 
+  &.searchOpened {
     justify-content: initial;
 
-    & .navbar__container-right { 
+    & .navbar__container-right {
       flex-grow: 0;
       flex: auto;
       justify-content: initial;
@@ -541,11 +545,11 @@
     & .navbar__container-right-content {
       width: 100%;
 
-      & .navbar__container-right-content-navigation-group { 
+      & .navbar__container-right-content-navigation-group {
         justify-content: initial;
         width: 100%;
 
-        & .navbar__container-right-content-navigation-item-search-bar { 
+        & .navbar__container-right-content-navigation-item-search-bar {
           padding: 0;
           width: 100%;
 

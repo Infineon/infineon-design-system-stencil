@@ -16,17 +16,18 @@
   border-right: 1px solid #EEEDED;
   width: 264px;
   height: 100%;
+  font-family: var(--ifx-font-family);
 
   & .sidebar__top-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0px;
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
     order: 0;
     z-index: 0;
     width: 100%;
-    overflow-y: auto; 
+    overflow-y: auto;
 
     //max-height: 440px;
     //overflow-y: auto;
@@ -95,10 +96,10 @@
       flex-direction: column;
       align-items: flex-start;
       padding: 12px 32px;
-      flex: 1 1 auto; 
+      flex: 1 1 auto;
       order: 1;
       width: 100%;
-      overflow-y: auto; 
+      overflow-y: auto;
 
       & ::slotted(*) {
         width: 100%;
@@ -155,11 +156,11 @@
             order: 0;
             flex-grow: 0;
 
-            &:hover { 
+            &:hover {
               color: #08665C;
             }
 
-            &:focus { 
+            &:focus {
               outline: none;
               color: #08665C;
             }
@@ -209,7 +210,7 @@
             cursor: initial;
           }
 
-          &:focus { 
+          &:focus {
             outline: none;
             color: #08665C;
           }

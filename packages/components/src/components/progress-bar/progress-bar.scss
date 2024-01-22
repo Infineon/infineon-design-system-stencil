@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 :host {
   display: flex;
@@ -17,6 +18,9 @@
   width: 100%; // Ensure the bar itself can grow up to 100% width
   overflow: hidden; // Ensures that the inner progress bar doesn't exceed the width of the outer progress bar
   background-color: tokens.$ifxColorEngineering200;
+  font-family: var(--ifx-font-family, sans-serif);
+
+
 
   .label {
     height: 17px;
@@ -48,10 +52,9 @@
     justify-content: center;
     position: absolute;
     font-style: normal;
-    font-weight: 400;
     font-size: tokens.$ifxFontSizeS;
+    font-weight: 400;
     line-height: tokens.$ifxLineHeightS;
-    font-family: tokens.$ifxFontFamilyBody;
     color: tokens.$ifxColorBaseWhite;
     top: 0;
     bottom: 0;

@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -14,6 +14,7 @@
   border: 1px solid tokens.$ifxColorEngineering200;
   background-color: tokens.$ifxColorEngineering200;
   border-radius: 100px;
+  font-family: var(--ifx-font-family);
   font-size: tokens.$ifxFontSizeS;
   line-height: tokens.$ifxLineHeightS;
   font-weight: 400;

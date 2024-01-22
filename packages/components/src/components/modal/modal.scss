@@ -14,6 +14,8 @@
   height: 100%;
   z-index: 1060;
   overflow-y: auto;
+  font-family: var(--ifx-font-family);
+
 }
 
 .modal-container.open {
@@ -45,7 +47,6 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   box-sizing: border-box;
-  font-family: tokens.$ifxFontFamilyBody;
   align-items: stretch;
 
 }
@@ -114,8 +115,8 @@
   min-height: 56px;
   box-sizing: border-box;
   flex: 1;
-  max-height: 70vh; 
-  overflow-y: auto; 
+  max-height: 70vh;
+  overflow-y: auto;
 
   // & slot[name=content] {
   //   display: -webkit-box;

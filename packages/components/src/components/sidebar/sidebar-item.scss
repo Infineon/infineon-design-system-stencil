@@ -1,42 +1,48 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   position: relative;
 }
 
-.sidebar__nav-item, .sidebar__nav-item.header__section {
-  &:focus { 
+.sidebar__nav-item,
+.sidebar__nav-item.header__section {
+  &:focus {
     outline: none;
-    & .sidebar__nav-item-icon-wrapper { 
+
+    & .sidebar__nav-item-icon-wrapper {
       color: tokens.$ifxColorOcean600;
     }
-    & .sidebar__nav-item-label { 
+
+    & .sidebar__nav-item-label {
       outline: none;
       color: tokens.$ifxColorOcean600;
     }
+
     & .sidebar__nav-item-indicator {
-      & .item__arrow-wrapper { 
-        & ifx-icon { 
+      & .item__arrow-wrapper {
+        & ifx-icon {
           color: tokens.$ifxColorOcean600;
         }
       }
     }
   }
 
-  &:hover { 
+  &:hover {
     outline: none;
-    & .sidebar__nav-item-icon-wrapper { 
+
+    & .sidebar__nav-item-icon-wrapper {
       color: tokens.$ifxColorOcean600;
     }
-    & .sidebar__nav-item-label { 
+
+    & .sidebar__nav-item-label {
       outline: none;
       color: tokens.$ifxColorOcean600;
     }
 
     & .sidebar__nav-item-indicator {
-      & .item__arrow-wrapper { 
-        & ifx-icon { 
+      & .item__arrow-wrapper {
+        & ifx-icon {
           color: tokens.$ifxColorOcean600;
         }
       }
@@ -57,42 +63,42 @@
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
+  font-family: var(--ifx-font-family);
 
-  &.active { 
+  &.active {
     color: tokens.$ifxColorOcean500;
   }
 
-    &.active-section { 
-      &::before { 
-        content: "";
-        position: absolute;
-        left: -44px;
-        height: 40px;
-        width: 2px;
-        background: tokens.$ifxColorOcean500;
-      }
+  &.active-section {
+    &::before {
+      content: "";
+      position: absolute;
+      left: -44px;
+      height: 40px;
+      width: 2px;
+      background: tokens.$ifxColorOcean500;
     }
-  
+  }
 
-  &.open { 
-    & .sidebar__nav-item-label { 
-      font-family: Source Sans 3;
+
+  &.open {
+    & .sidebar__nav-item-label {
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: 24px;
     }
 
-    & .sidebar__nav-item-indicator { 
-      & .item__arrow-wrapper { 
-        & ifx-icon { 
+    & .sidebar__nav-item-indicator {
+      & .item__arrow-wrapper {
+        & ifx-icon {
           transform: rotate(-180deg);
         }
       }
     }
   }
 
-  &.header__section { 
+  &.header__section {
     box-sizing: padding-box;
     border-top: 1px solid tokens.$ifxColorEngineering200;
     padding: 20px 0px;
@@ -102,8 +108,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &.active-section { 
-      &::before { 
+    &.active-section {
+      &::before {
         content: "";
         position: absolute;
         left: -32px;
@@ -112,24 +118,24 @@
         background: tokens.$ifxColorOcean500;
       }
     }
-    
-    &.open { 
-      & .sidebar__nav-item-indicator { 
-        & .item__arrow-wrapper { 
-          & ifx-icon { 
+
+    &.open {
+      & .sidebar__nav-item-indicator {
+        & .item__arrow-wrapper {
+          & ifx-icon {
             transform: rotate(-180deg);
           }
         }
       }
     }
 
-    & .sidebar__nav-item-label { 
+    & .sidebar__nav-item-label {
       color: tokens.$ifxColorBaseBlack;
       font-family: Source Sans 3;
       font-size: 16px;
       font-style: normal;
       font-weight: 600;
-      line-height: 24px; 
+      line-height: 24px;
     }
   }
 
@@ -177,7 +183,7 @@
   }
 }
 
-.expandable__submenu { 
+.expandable__submenu {
   display: none;
   list-style-type: none;
   flex-direction: column;
@@ -185,8 +191,7 @@
   margin: 0;
   padding-left: 12px;
 
-  &.open { 
+  &.open {
     display: flex;
   }
 }
-  

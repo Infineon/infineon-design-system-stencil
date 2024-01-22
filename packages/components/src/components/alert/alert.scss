@@ -1,22 +1,23 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: block;
 }
 
-.alert__info-wrapper { 
+.alert__info-wrapper {
   display: flex;
   padding: 16px 24px;
-  //justify-content: space-between;
+  font-family: var(--ifx-font-family);
 
-  & .info__text-wrapper { 
+
+  & .info__text-wrapper {
     display: flex;
     flex-direction: column;
     gap: tokens.$ifxSpace100;
     width: 100%;
-    
-    & .info__headline-wrapper { 
+
+    & .info__headline-wrapper {
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
@@ -24,13 +25,13 @@
       text-overflow: ellipsis;
     }
 
-    & .info__headline-wrapper, .info__description-wrapper { 
+    & .info__headline-wrapper,
+    .info__description-wrapper {
       color: #1D1D1D;
-      font-family: Source Sans 3;
       font-size: 16px;
       font-style: normal;
       font-weight: 600;
-      line-height: 24px; 
+      line-height: 24px;
 
       ::slotted(p) {
         padding: 0;
@@ -38,7 +39,7 @@
       }
     }
 
-    & .info__description-wrapper { 
+    & .info__description-wrapper {
       font-weight: 400;
     }
   }
@@ -63,6 +64,8 @@
   border-radius: tokens.$ifxBorderRadius12;
   color: tokens.$ifxColorBaseBlack;
   background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
+
 
   & .close-icon-wrapper {
     display: flex;
@@ -136,9 +139,9 @@
   }
 }
 
-.close-icon-wrapper { 
-  & ifx-icon { 
-    &:hover { 
+.close-icon-wrapper {
+  & ifx-icon {
+    &:hover {
       cursor: pointer;
     }
   }

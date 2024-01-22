@@ -9,6 +9,7 @@
   position: relative;
   width: tokens.$ifxSize500;
   height: tokens.$ifxSize500;
+
 }
 
 .spinner.s {
@@ -30,7 +31,7 @@
   border-radius: 50%;
   animation: spin 2s linear infinite;
 
-  &.inverted { 
+  &.inverted {
     border-top-color: tokens.$ifxColorBaseWhite;
     border-left-color: tokens.$ifxColorBaseWhite;
     border-right-color: tokens.$ifxColorBaseWhite;
@@ -41,13 +42,13 @@
   width: 100%;
   height: 100%;
   animation: spin 2s linear infinite;
-  
-  & svg { 
+
+  & svg {
     fill: tokens.$ifxColorOcean500;
   }
 
-  &.inverted { 
-    & svg { 
+  &.inverted {
+    & svg {
       fill: tokens.$ifxColorBaseWhite;
     }
   }

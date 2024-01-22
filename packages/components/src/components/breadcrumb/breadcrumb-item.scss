@@ -33,6 +33,7 @@
     & a {
       text-decoration: none;
       color: tokens.$ifxColorBaseBlack;
+      font-family: var(--ifx-font-family);
       font-style: normal;
       font-weight: 400;
       font-size: tokens.$ifxFontSizeS;

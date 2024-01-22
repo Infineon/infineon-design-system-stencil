@@ -1,6 +1,6 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -18,7 +18,7 @@
   border-radius: tokens.$ifxBorderRadius12;
   line-height: tokens.$ifxLineHeightM;
   outline: none;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family);
   text-decoration: none;
   user-select: none;
   border: 1px solid rgba(0, 0, 0, 0);
