@@ -8,7 +8,7 @@
 .alert__info-wrapper {
   display: flex;
   padding: 16px 24px;
-  //justify-content: space-between;
+  font-family: var(--ifx-font-family);
 
 
   & .info__text-wrapper {
@@ -135,6 +135,14 @@
     & .icon-wrapper {
       background-color: tokens.$ifxColorOrange500;
       color: tokens.$ifxColorBaseWhite;
+    }
+  }
+}
+
+.close-icon-wrapper {
+  & ifx-icon {
+    &:hover {
+      cursor: pointer;
     }
   }
 }
