@@ -3,7 +3,7 @@ import { IfxBadge } from '@infineon/infineon-design-system-react';
 
 function Badge() {
   return (
-    <div>
+    <div style={{ '--ifx-font-family': '"Arial black"' }}>
       <IfxBadge>Label</IfxBadge>
     </div>
   );

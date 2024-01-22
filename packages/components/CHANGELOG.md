@@ -1,3 +1,16 @@
+# v20.43.5 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Font Family can now be modified by user via CSS custom properties [#915](https://github.com/Infineon/infineon-design-system-stencil/pull/915) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.4 (Mon Jan 22 2024)
 
 #### 🐛 Bug Fix

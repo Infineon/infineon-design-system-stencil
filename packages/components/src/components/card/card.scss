@@ -17,6 +17,8 @@
   //width: 22rem;
   width: 350px;
   height: auto;
+  font-family: var(--ifx-font-family);
+
 
   &.linkHovered {
     border-color: tokens.$ifxColorEngineering200;

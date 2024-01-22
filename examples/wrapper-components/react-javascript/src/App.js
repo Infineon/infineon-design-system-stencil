@@ -73,10 +73,6 @@ function App() {
       <Dropdown />
       <br />
 
-      <h2>Dropdown</h2>
-      <Dropdown />
-      <br />
-
       <h2>Icon</h2>
       <Icon />
       <br />

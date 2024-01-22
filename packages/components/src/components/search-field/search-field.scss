@@ -1,4 +1,5 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
 
 :host {
   display: flex;
@@ -8,6 +9,8 @@
   box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
+  font-family: var(--ifx-font-family);
+
 
   .search-field__wrapper {
     box-sizing: border-box;
@@ -56,7 +59,6 @@
     }
 
     input[type='text'] {
-      font-family: tokens.$ifxFontFamilyBody;
       font-style: normal;
       font-weight: 400;
       font-size: 16px;

@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: block;
   width: 100%;
 }
@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
 
   & .footer__wrapper {
     display: flex;

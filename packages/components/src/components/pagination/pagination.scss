@@ -1,36 +1,37 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
-.container  {
+.container {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 32px;
+  font-family: var(--ifx-font-family);
+
 
   & .items__per-page-wrapper {
     display: flex;
     align-items: center;
     gap: 16px;
 
-    & .items__per-page-label { 
+    & .items__per-page-label {
       color: #1D1D1D;
-      font-family: Source Sans 3;
       font-size: 14px;
       font-style: normal;
       font-weight: 600;
-      line-height: 20px; 
+      line-height: 20px;
     }
 
-    & .items__per-page-field { 
+    & .items__per-page-field {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-  
-      & ifx-select { 
+
+      & ifx-select {
         width: 92px;
       }
     }
@@ -42,7 +43,7 @@
     align-items: center;
     gap: 12px;
 
-    & .items__total-button { 
+    & .items__total-button {
       display: flex;
       width: 40px;
       height: 40px;
@@ -53,13 +54,13 @@
       background: #FFF;
     }
 
-    & .page__numbers-wrapper { 
+    & .page__numbers-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 12px;
 
-      & .page__number-item { 
+      & .page__number-item {
         display: flex;
         padding: 6px;
         flex-direction: column;
@@ -68,27 +69,28 @@
         gap: 10px;
         border-radius: 100px;
 
-        &.active { 
+        &.active {
           background-color: #0A8276;
-          & span { 
+
+          & span {
             color: #fff;
           }
         }
 
-        &:hover { 
+        &:hover {
           cursor: pointer;
         }
 
-        &:hover:not(.active) { 
+        &:hover:not(.active) {
           background-color: #ddd;
-         
+
         }
 
-        &:active:not(.active) { 
+        &:active:not(.active) {
           background-color: #575352;
         }
 
-        & span { 
+        & span {
           display: flex;
           width: 16px;
           height: 16px;
@@ -96,11 +98,10 @@
           justify-content: center;
           color: #1D1D1D;
           text-align: center;
-          font-family: Source Sans 3;
           font-size: 13px;
           font-style: normal;
           font-weight: 400;
-          line-height: 20px; 
+          line-height: 20px;
         }
       }
     }
@@ -111,15 +112,16 @@
 .pagination {
   display: flex;
 
-  & ifx-icon-button:first-of-type  { 
+  & ifx-icon-button:first-of-type {
     margin-right: 12px;
   }
 
-  & ifx-icon-button:last-of-type  { 
+  & ifx-icon-button:last-of-type {
     margin-left: 12px;
   }
 }
-  a {
+
+a {
   padding: 6px;
   border-radius: 100px;
 }
@@ -132,6 +134,7 @@ ol {
   align-items: center;
   gap: 12px;
 }
+
 li {
   display: flex;
   flex-direction: column;
@@ -139,20 +142,20 @@ li {
   align-items: center;
   border-radius: 100px;
 
-  &:hover:not(.active) { 
-    & a { 
+  &:hover:not(.active) {
+    & a {
       background-color: #EEEDED;
     }
   }
 
   &:active:not(.active) {
-    & a { 
+    & a {
       background-color: #575352;
       color: #fff;
     }
   }
 
-  &.active { 
+  &.active {
     background-color: #0A8276;
 
     & a {
@@ -173,7 +176,6 @@ li {
     justify-content: center;
     color: #1D1D1D;
     text-align: center;
-    font-family: "Source Sans 3";
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -181,31 +183,37 @@ li {
   }
 }
 
-.prev, .next {
+.prev,
+.next {
   &.disabled {
     cursor: default;
-   
+
     &:hover {
       cursor: default;
       text-decoration: none;
     }
   }
 }
+
 .prev {
   margin-right: 2.5px;
 }
+
 .next {
   margin-left: 2.5px;
 }
 
 
-@mixin ellipsis($before:true) {
+@mixin ellipsis($before: true) {
   content: "\2026";
   font-size: 13px;
   display: inline-block;
+
   @if($before) {
     margin-right: 6px;
-  } @else {
+  }
+
+  @else {
     margin-left: 6px;
   }
 }
@@ -213,7 +221,7 @@ li {
 
 // @media(max-width:460px) {
 //   li {
-    
+
 //     &:first-child,
 //     &.active,
 //     &.active-sibling:nth-last-child(2), // Show second to last child if the last one is active
@@ -222,30 +230,30 @@ li {
 //       display: inline-flex !important;
 //       flex-direction: row;
 //     }
-    
+
 //     $how-many-on-ends: 3; // 1,2,3,...,10 || 1,...,8,9,10
 //     // There are >= 5 pages
 //     &:first-child:nth-last-child(n+6) {
-      
+
 //       &~li {
 //         // Start out with all siblings hidden
 //         display: none;
-          
+
 //         // Show the last children in the list by default
 //         &:nth-last-child(-n+#{$how-many-on-ends}) {
 //           //display: inline-block;
 //           display: inline-flex;
 //           flex-direction: row;
-       
+
 //         }
-        
+
 //         // The child at the beginning of the last group shows ellipsis for the group
 //         &:nth-last-child(#{$how-many-on-ends}) {
 //           &:before {
 //             @include ellipsis(true);
 //           }
 //         }
-        
+
 //         // The very beginning elements do not need to show ellipsis
 //         // The very end elements do not need to show ellipsis
 //       }
@@ -253,7 +261,7 @@ li {
 
 //       &.active,
 //        &~li.active {
-         
+
 //          // Show ellipsis before and after the active element
 //          &:before {
 //            @include ellipsis(true);
@@ -262,7 +270,7 @@ li {
 //            @include ellipsis(false);
 //          }
 
-        
+
 //          // If the active element is in the first or last group, don't show ellipsis (siblings will take care of it)
 //          &:nth-child(-n+#{$how-many-on-ends - 1}),
 //          &:nth-last-child(-n+#{$how-many-on-ends - 1}) {
@@ -270,27 +278,27 @@ li {
 //              display: none;
 //            }
 //          }
-         
+
 //          // Hide the last group if "active" comes before them
 //          &~li:nth-last-child(-n+#{$how-many-on-ends}) {
 //            display: none;
 //          }
-         
+
 //          // Show the first group together if "active" comes before them
 //          &~li:nth-child(-n+#{$how-many-on-ends}) {
 //            //display: inline-block;
 //            display: inline-flex;
 //            flex-direction: row;
 //          }
-         
+
 //          // If "active" is before the last member in the group, don't show ellipsis
 //          &~li:nth-child(-n+#{$how-many-on-ends - 1}) {
 //             &:after {
 //               display: none;
 //             }
 //          }
-         
-         
+
+
 //         // The child at the end of the first group shows ellipsis for the group
 //         &~li:nth-child(#{$how-many-on-ends}) {
 //           &:after {
@@ -304,98 +312,103 @@ li {
 
 @media (min-width: 400px) {
   li {
+
     &:first-child,
     &.active-sibling,
     &.active,
-    &.active + li,
+    &.active+li,
     &:last-child {
       //display: inline-block!important;
-      display: inline-flex!important;
+      display: inline-flex !important;
       flex-direction: row;
     }
-    
+
     // There are >= 7 pages
     &:first-child:nth-last-child(n+8) {
       $how-many-on-ends: 5; // 1,2,3,4,5,...,10 || 1,...6,7,8,9,10
-      
+
       &~li {
         // Start out with all siblings hidden
         display: none;
-        
+
         // Show ellipsis before the previous one
         &.active-sibling:before {
-            @include ellipsis(true);          
+          @include ellipsis(true);
         }
+
         // Show ellipsis after the next one
-        &.active + li:after {
-            @include ellipsis(false);
+        &.active+li:after {
+          @include ellipsis(false);
         }
-          
+
         // Show the last children in the list by default
         &:nth-last-child(-n+#{$how-many-on-ends}) {
           //display: inline-block;
           display: inline-flex;
           flex-direction: row;
         }
-        
+
         // The child at the beginning of the last group shows ellipsis for the group
         &:nth-last-child(#{$how-many-on-ends}) {
           &:before {
             @include ellipsis(true);
           }
         }
-        
+
         // The very beginning elements do not need to show ellipsis
         &:nth-child(-n+#{$how-many-on-ends - 3}),
         // The very end elements do not need to show ellipsis
         &:nth-last-child(-n+#{$how-many-on-ends - 3}),
         // Even if it's a sibling to "active"
         &.active-sibling:nth-last-child(-n+#{$how-many-on-ends - 1}) {
-          &:before, &:after {
+
+          &:before,
+          &:after {
             display: none !important;
           }
         }
       }
-      
+
       &.active,
-       &~li.active {
-         
-         // Hide the last group if "active" comes before them
-         &~li:nth-last-child(-n+#{$how-many-on-ends}) {
-           display: none;
-           
-           // If there is overlap, the element will show, but hide it's ellipsis
-           &:before {
+      &~li.active {
+
+        // Hide the last group if "active" comes before them
+        &~li:nth-last-child(-n+#{$how-many-on-ends}) {
+          display: none;
+
+          // If there is overlap, the element will show, but hide it's ellipsis
+          &:before {
             display: none;
-           }
-         }
-         
-         // Show the first group together if "active" comes before them
-         &~li:nth-child(-n+#{$how-many-on-ends}) {
-           //display: inline-block;
-           display: inline-flex!important;
-           flex-direction: row;
-         }
-         
-         // If "active" is before the last member in the group, don't show ellipsis
-         &~li:nth-child(-n+#{$how-many-on-ends - 1}) {
-            &:after {
-              display: none;
-            }
-         }
-         
-         
+          }
+        }
+
+        // Show the first group together if "active" comes before them
+        &~li:nth-child(-n+#{$how-many-on-ends}) {
+          //display: inline-block;
+          display: inline-flex !important;
+          flex-direction: row;
+        }
+
+        // If "active" is before the last member in the group, don't show ellipsis
+        &~li:nth-child(-n+#{$how-many-on-ends - 1}) {
+          &:after {
+            display: none;
+          }
+        }
+
+
         // The child at the end of the first group shows ellipsis for the group
         &~li:nth-child(#{$how-many-on-ends}) {
           &:after {
             @include ellipsis(false);
           }
         }
-         
-         // "active" should never show ellipsis
-         &:before, &:after {
-           display: none;
-         }
+
+        // "active" should never show ellipsis
+        &:before,
+        &:after {
+          display: none;
+        }
       }
     }
   }

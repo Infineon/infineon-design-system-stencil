@@ -2,14 +2,13 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-// :host {
-//   display: block;
-// }
 
 .accordion-item {
   border-radius: 3px;
   overflow: hidden;
   transition: all 0.3s;
+  font-family: var(--ifx-font-family);
+
 }
 
 .accordion-title:hover {
@@ -41,7 +40,6 @@
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
-  font-family: tokens.$ifxFontFamilyBody;
 }
 
 .inner-content {

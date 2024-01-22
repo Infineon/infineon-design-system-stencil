@@ -14,6 +14,8 @@
 
 .ag-root-wrapper {
   border: none;
+  font-family: var(--ifx-font-family);
+
 }
 
 
@@ -36,6 +38,8 @@
   font-weight: 600;
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
+  font-family: var(--ifx-font-family);
+
 }
 
 .ag-theme-alpine .ag-row-focus {

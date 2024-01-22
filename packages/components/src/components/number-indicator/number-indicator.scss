@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -12,6 +12,7 @@
   align-items: center;
   border-radius: 100px;
   background-color: tokens.$ifxColorOcean500;
+  font-family: var(--ifx-font-family);
 
   & span {
     color: tokens.$ifxColorBaseWhite;

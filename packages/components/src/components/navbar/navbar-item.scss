@@ -9,14 +9,16 @@
   flex: none;
   order: 0;
   flex-grow: 0;
+  font-family: var(--ifx-font-family);
 
-  &.hideElement { 
+  &.hideElement {
     display: none;
   }
 
-  &:hover { 
+  &:hover {
     color: tokens.$ifxColorOcean500;
-    & a { 
+
+    & a {
       color: tokens.$ifxColorOcean500;
     }
   }

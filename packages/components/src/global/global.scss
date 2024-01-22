@@ -1,10 +1,8 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@import "~@infineon/design-system-tokens/dist/fonts.scss";
 
 * {
   box-sizing: border-box;
   line-height: tokens.$ifxLineHeightXl;
-  font-family: tokens.$ifxFontFamilyBody;
 }
 
 ifx-icon:empty {

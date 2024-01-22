@@ -13,6 +13,7 @@
     align-items: center;
     padding: 0px;
     gap: tokens.$ifxSpace100;
+    font-family: var(--ifx-font-family);
 
     & .checkbox__wrapper {
         display: flex;
@@ -116,7 +117,6 @@
 
     & .label {
         height: tokens.$ifxSize250;
-        font-family: tokens.$ifxFontFamilyBody;
         font-style: normal;
         font-weight: 400;
         font-size: tokens.$ifxFontSizeS;
