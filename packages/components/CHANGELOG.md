@@ -1,3 +1,15 @@
+# v20.43.2 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Added closable property to the alert component [#917](https://github.com/Infineon/infineon-design-system-stencil/pull/917) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.43.1 (Thu Jan 18 2024)
 
 #### 🐛 Bug Fix
