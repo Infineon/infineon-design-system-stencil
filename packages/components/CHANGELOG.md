@@ -1,3 +1,15 @@
+# v20.43.4 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Alert: optimized code and updated storybook [#926](https://github.com/Infineon/infineon-design-system-stencil/pull/926) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.43.3 (Mon Jan 22 2024)
 
 #### 🐛 Bug Fix
