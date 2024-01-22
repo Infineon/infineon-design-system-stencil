@@ -1,3 +1,15 @@
+# v20.43.3 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Card: when not clickable, no hover state [#920](https://github.com/Infineon/infineon-design-system-stencil/pull/920) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.43.2 (Mon Jan 22 2024)
 
 #### 🐛 Bug Fix
