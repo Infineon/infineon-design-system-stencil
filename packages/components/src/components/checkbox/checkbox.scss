@@ -13,6 +13,7 @@
     align-items: center;
     padding: 0px;
     gap: tokens.$ifxSpace100;
+    font-family: var(--ifx-font-family);
 
     & .checkbox__wrapper {
         display: flex;

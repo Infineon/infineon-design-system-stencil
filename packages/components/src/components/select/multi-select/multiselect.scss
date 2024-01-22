@@ -6,6 +6,7 @@
   background-color: tokens.$ifxColorBaseWhite;
   position: relative;
   box-sizing: border-box;
+  font-family: var(--ifx-font-family);
 
   &.small-select {
     height: 36px;

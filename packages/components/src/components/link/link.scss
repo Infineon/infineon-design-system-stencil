@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-flex;
 }
 
@@ -14,8 +14,9 @@
   color: tokens.$ifxColorOcean500;
   gap: tokens.$ifxSpace100;
   line-height: 1.6;
+  font-family: var(--ifx-font-family);
 
-  &:focus { 
+  &:focus {
     outline-width: 2px;
     outline-style: solid;
     outline-color: #0A8276;
@@ -23,14 +24,14 @@
     border-radius: 3px;
   }
 
-  &.bold { 
+  &.bold {
     font-weight: tokens.$ifxFontWeightSemibold;
 
-    &:hover { 
+    &:hover {
       text-decoration: underline;
     }
 
-    &:active { 
+    &:active {
       color: #08665C;
       font-style: normal;
       font-weight: 600;
@@ -38,13 +39,14 @@
     }
   }
 
-  &.underlined { 
+  &.underlined {
     text-decoration: underline;
     text-decoration-color: tokens.$ifxColorOcean500;
     color: #1D1D1D;
 
-    &:hover { 
-      color: tokens.$ifxColorOcean500;;
+    &:hover {
+      color: tokens.$ifxColorOcean500;
+      ;
     }
 
     &:active {
@@ -52,50 +54,50 @@
     }
   }
 
-  &.title { 
+  &.title {
     text-decoration: none;
     font-weight: tokens.$ifxFontWeightSemibold;
     color: #1D1D1D;
-    
-    &:hover { 
+
+    &:hover {
       color: tokens.$ifxColorOcean500;
     }
 
-    &:active { 
+    &:active {
       color: #08665C;
     }
   }
 
-  &.menu { 
+  &.menu {
     font-weight: 400;
     font-style: normal;
-    line-height: 26px; 
+    line-height: 26px;
     color: #1D1D1D;
 
-    &:hover { 
+    &:hover {
       color: tokens.$ifxColorOcean500;
     }
 
-    &:active { 
+    &:active {
       color: #08665C;
     }
   }
 
 
 
-  &.small { 
+  &.small {
     font-size: tokens.$ifxFontSizeS;
   }
 
-  &.medium { 
+  &.medium {
     font-size: tokens.$ifxFontSizeM;
   }
 
-  &.large { 
+  &.large {
     font-size: tokens.$ifxFontSizeL;
   }
 
-  &.extraLarge { 
+  &.extraLarge {
     font-size: tokens.$ifxFontSizeXl;
   }
 

@@ -7,6 +7,7 @@
   flex-direction: column;
   gap: tokens.$ifxSpace150;
   color: tokens.$ifxColorBaseBlack;
+  font-family: var(--ifx-font-family);
 
   & ::slotted([slot=title]) {
     box-sizing: border-box;
@@ -17,12 +18,12 @@
     padding: 0;
   }
 
-  & span { 
+  & span {
     display: flex;
     flex-direction: column;
     gap: tokens.$ifxSpace150;
     color: tokens.$ifxColorBaseBlack;
-    
+
     & ::slotted([slot=link]) {
       box-sizing: border-box;
       font-weight: 400;

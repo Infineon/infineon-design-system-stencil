@@ -11,6 +11,7 @@
   align-items: center;
   padding: 0 tokens.$ifxSpace100;
   border-radius: tokens.$ifxBorderRadiusRound;
+  font-family: var(--ifx-font-family);
 
   &.no-border {
     padding: 0; // Remove padding when border is not present

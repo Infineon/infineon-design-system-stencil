@@ -1,13 +1,14 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-:host { 
+:host {
   display: inline-block;
 }
 
 .container {
   //display: inline-block;
   position: relative;
+  font-family: var(--ifx-font-family);
 
   & .wrapper {
     display: inline-flex;
