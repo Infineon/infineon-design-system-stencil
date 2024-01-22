@@ -8,6 +8,7 @@ export default {
     label: 'Attention! This is an alert message — check it out!',
     variant: "primary",
     showIcon: true,
+    closable: true,
     iconName: 'c-info-24',
   },
 
@@ -20,6 +21,11 @@ export default {
     iconName: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' }
+    },
+
+    closable: {
+      control: 'boolean',
+      default: true
     },
 
     ifxClose: {
@@ -38,7 +44,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ""}">${args.label}</ifx-alert>`;
+  `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ""}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 
 export const Default = DefaultTemplate.bind({});

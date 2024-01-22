@@ -1,3 +1,27 @@
+# v20.43.3 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Card: when not clickable, no hover state [#920](https://github.com/Infineon/infineon-design-system-stencil/pull/920) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.43.2 (Mon Jan 22 2024)
+
+#### 🐛 Bug Fix
+
+- Added closable property to the alert component [#917](https://github.com/Infineon/infineon-design-system-stencil/pull/917) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.43.1 (Thu Jan 18 2024)
 
 #### 🐛 Bug Fix

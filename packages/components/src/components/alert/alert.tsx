@@ -10,6 +10,7 @@ export class Alert {
   @Prop() variant: 'primary' | 'secondary' | 'danger' | 'warning' | 'info' = 'primary';
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
+  @Prop() closable: boolean = true;
 
   handleClose() { 
     this.ifxClose.emit()
@@ -27,11 +28,11 @@ export class Alert {
             <slot name='desc' />
           </div>
         </div>
-        <div class="close-icon-wrapper">
+        { this.closable && <div class="close-icon-wrapper">
           <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
             <ifx-icon icon='cross-16' />
           </a>
-        </div>
+        </div> }
       </div>
      : <div class={`alert ${this.variant}`}>
         {this.icon && (
@@ -43,11 +44,11 @@ export class Alert {
         <div class="alert-text">
           <slot />
         </div>
-        <div class="close-icon-wrapper">
+        { this.closable && <div class="close-icon-wrapper">
           <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
             <ifx-icon icon='cross-16' />
           </a>
-        </div>
+        </div> }
       </div >
     );
   }
