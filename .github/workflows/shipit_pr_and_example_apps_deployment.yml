@@ -41,7 +41,7 @@ jobs:
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
-          lerna version $CANARY_VERSION --no-git-tag-version --y
+          lerna version CANARY_VERSION --no-git-tag-version --y
           npm run build:components
           cd packages/components
           auto shipit
