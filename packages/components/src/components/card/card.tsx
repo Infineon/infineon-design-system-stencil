@@ -13,6 +13,7 @@ export class Card {
   @State() alignment: string;
   @State() noImg: boolean;
   @Prop() href: string = "";
+  @State() internalHref: string = ""
   @Prop() target: string = "_self";
 
   @Listen('imgPosition')
@@ -32,9 +33,9 @@ export class Card {
       this.noBtns = true;
     } else this.noBtns = false;
 
-    if (this.href && this.href?.trim() === "") {
-      this.href = undefined;
-    }
+    if (this.href.trim() === "") {
+      this.internalHref = undefined;
+    } else this.internalHref = this.href;
   }
 
   handleClassList(el, type, className) {
@@ -45,34 +46,35 @@ export class Card {
     const card = this.el.shadowRoot.querySelector('.card')
     let cardHeadline = this.el.querySelector('ifx-card-headline');
 
-    card.addEventListener('mouseover', (ev) => {
-
-      // const target = ev.target;
-      // const relatedTarget = ev.relatedTarget;
-
-      // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
-      //   this.handleClassList(card, 'add', 'borderHovered')
-      // }
-
-      if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
-        this.handleClassList(card, 'add', 'linkHovered')
-      } else {
-        this.handleClassList(card, 'add', 'cardHovered')
-        if (cardHeadline) {
-          cardHeadline.isHovered = true;
+    if(this.href) { 
+      card.addEventListener('mouseover', (ev) => {
+  
+        // const target = ev.target;
+        // const relatedTarget = ev.relatedTarget;
+  
+        // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
+        //   this.handleClassList(card, 'add', 'borderHovered')
+        // }
+  
+        if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
+          this.handleClassList(card, 'add', 'linkHovered')
+        } else {
+          this.handleClassList(card, 'add', 'cardHovered')
+          if (cardHeadline) {
+            cardHeadline.isHovered = true;
+          }
         }
-      }
-    })
+      })
 
-
-    card.addEventListener('mouseout', () => {
-      if (cardHeadline) {
-        cardHeadline.isHovered = false;
-      }
-      //this.handleClassList(card, 'remove', 'borderHovered')
-      this.handleClassList(card, 'remove', 'cardHovered')
-      this.handleClassList(card, 'add', 'linkHovered')
-    })
+      card.addEventListener('mouseout', () => {
+        if (cardHeadline) {
+          cardHeadline.isHovered = false;
+        }
+        //this.handleClassList(card, 'remove', 'borderHovered')
+        this.handleClassList(card, 'remove', 'cardHovered')
+        this.handleClassList(card, 'add', 'linkHovered')
+      })
+    }
   }
 
   componentWillLoad() {
@@ -120,12 +122,12 @@ export class Card {
 
           {this.direction === 'horizontal' &&
             <div class="horizontal">
-              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.href}>
+              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.internalHref}>
                 <slot name="img" />
               </a>
 
               <div class='lower__body-wrapper'>
-                <a class='upper-body' href={this.href}>
+                <a class='upper-body' href={this.internalHref}>
                   <slot />
                 </a>
                 <div>
@@ -136,7 +138,7 @@ export class Card {
 
           {this.direction === 'vertical' &&
             <div class="vertical">
-              <a class='upper__body-wrapper' href={this.href} target={this.target}>
+              <a class='upper__body-wrapper' href={this.internalHref} target={this.target}>
                 <div class={`card-img ${this.noImg ? 'noImage' : ""}`}>
                   <slot name="img" />
                 </div>

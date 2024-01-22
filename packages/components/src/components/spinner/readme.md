@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type     | Default     |
-| --------- | --------- | ----------- | -------- | ----------- |
-| `size`    | `size`    |             | `string` | `undefined` |
-| `variant` | `variant` |             | `string` | `undefined` |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `inverted` | `inverted` |             | `boolean` | `false`     |
+| `size`     | `size`     |             | `string`  | `undefined` |
+| `variant`  | `variant`  |             | `string`  | `undefined` |
 
 
 ----------------------------------------------

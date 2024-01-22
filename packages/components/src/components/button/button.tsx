@@ -16,6 +16,7 @@ export class Button {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Prop() type: "button" | "submit" | "reset" = "button";
+  @Prop() fullWidth: boolean = false;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -49,8 +50,20 @@ export class Button {
     }
   }
 
+  handleButtonWidth(){
+    if(this.fullWidth){
+      this.el.style.setProperty('--bw', '100%');
+    }else{
+      this.el.style.setProperty('--bw', 'fit-content');
+    }
+  }
+
   componentWillLoad() {
    this.handleFormAndInternalHref()
+  }
+  
+  componentWillRender(){  
+    this.handleButtonWidth()
   }
 
   handleClick() {
@@ -135,8 +148,7 @@ export class Button {
       'btn',
       this.size && `btn-${this.getSizeClass()}`,
       `btn-${this.getVariantClass()}`,
-      this.disabled ? 'disabled' : '',
-
+      this.disabled ? 'disabled' : ''
     );
   }
 }

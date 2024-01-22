@@ -25,6 +25,7 @@ export const IfxAccordionItem = /*@__PURE__*/ defineContainer<JSX.IfxAccordionIt
 export const IfxAlert = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
   'variant',
   'icon',
+  'closable',
   'ifxClose'
 ]);
 
@@ -64,7 +65,8 @@ export const IfxButton = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-butto
   'disabled',
   'href',
   'target',
-  'type'
+  'type',
+  'fullWidth'
 ]);
 
 
@@ -257,7 +259,9 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
 export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
   'applicationName',
   'fixed',
-  'showLogoAndAppname'
+  'showLogoAndAppname',
+  'logoHref',
+  'logoHrefTarget'
 ]);
 
 
@@ -429,7 +433,8 @@ export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slide
 
 export const IfxSpinner = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
-  'variant'
+  'variant',
+  'inverted'
 ]);
 
 
