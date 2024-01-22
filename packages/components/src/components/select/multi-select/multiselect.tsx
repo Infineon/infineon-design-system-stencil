@@ -117,7 +117,6 @@ export class Multiselect {
 
 
   componentWillLoad() {
-    console.log('MULTI SELECT LOADED')
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
   }
