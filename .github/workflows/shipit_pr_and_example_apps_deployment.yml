@@ -36,6 +36,7 @@ jobs:
 
         run: | 
           npm install
+          npm run build:components
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $CANARY_VERSION"
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
