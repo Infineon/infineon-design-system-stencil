@@ -64,6 +64,8 @@
   border-radius: tokens.$ifxBorderRadius12;
   color: tokens.$ifxColorBaseBlack;
   background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
+
 
   & .close-icon-wrapper {
     display: flex;
