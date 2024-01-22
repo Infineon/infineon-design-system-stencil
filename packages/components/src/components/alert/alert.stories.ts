@@ -68,5 +68,10 @@ Info.argTypes = {
     table:{
       disable: true
     }
+  },
+  showIcon: {
+    table:{
+      disable: true
+    }
   }
 }
