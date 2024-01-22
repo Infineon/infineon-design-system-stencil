@@ -49,8 +49,8 @@ const DefaultTemplate = (args) =>
 
 export const Default = DefaultTemplate.bind({});
 
-const InfoTemplate = () =>
-  `  <ifx-alert variant="info">
+const InfoTemplate = (args) =>
+  `  <ifx-alert variant="info" closable="${args.closable}">
       <div slot="headline">Headline</div>
       <div slot="desc">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi animi voluptatum quia esse dolor corrupti veniam dolorum. Voluptatem ut enim voluptate. Provident modi molestiae at atque rerum cupiditate, dicta recusandae ab libero veniam iusto possimus quia sequi amet, tempora dolore nobis excepturi est illo blanditiis nihil laborum enim ducimus consequuntur.
@@ -58,3 +58,20 @@ const InfoTemplate = () =>
     </ifx-alert>`;
 
 export const Info = InfoTemplate.bind({});
+Info.argTypes = {
+  variant: {
+    table:{
+      disable: true
+    }
+  },
+  iconName: {
+    table:{
+      disable: true
+    }
+  },
+  showIcon: {
+    table:{
+      disable: true
+    }
+  }
+}
