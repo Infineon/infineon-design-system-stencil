@@ -113,6 +113,8 @@ typings/
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
 packages/components-vue/lib/components.d.ts
+packages/components-react/lib/index.ts
+
 packages/components/package-lock.json
 packages/components/stencil-components/
 packages/components/src/components.d.ts
