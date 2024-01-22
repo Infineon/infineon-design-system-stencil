@@ -135,3 +135,11 @@
     }
   }
 }
+
+.close-icon-wrapper { 
+  & ifx-icon { 
+    &:hover { 
+      cursor: pointer;
+    }
+  }
+}
