@@ -29,7 +29,7 @@ export class Alert {
           </div>
         </div>
         { this.closable && <div class="close-icon-wrapper">
-          <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
+          <a href={undefined} onClick={this.handleClose.bind(this)}>
             <ifx-icon icon='cross-16' />
           </a>
         </div> }
@@ -45,7 +45,7 @@ export class Alert {
           <slot />
         </div>
         { this.closable && <div class="close-icon-wrapper">
-          <a href="javascript:void(0);" onClick={this.handleClose.bind(this)}>
+          <a href={undefined} onClick={this.handleClose.bind(this)}>
             <ifx-icon icon='cross-16' />
           </a>
         </div> }
