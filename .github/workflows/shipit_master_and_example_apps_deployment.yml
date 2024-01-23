@@ -171,7 +171,7 @@ jobs:
         run: |
           cd packages/components-angular
           npm i
-          npm i @infineon/infineon-design-system-stencil@latest
+          npm i @infineon/infineon-design-system-angular@latest
           npm run build my-app
            
       - name: Deploy 🚀
