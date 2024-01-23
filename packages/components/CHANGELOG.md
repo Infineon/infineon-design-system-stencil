@@ -1,3 +1,15 @@
+# v20.43.7 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- Checkbox: optimized internal state usage [#928](https://github.com/Infineon/infineon-design-system-stencil/pull/928) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v20.43.6 (Tue Jan 23 2024)
 
 #### 🐛 Bug Fix
