@@ -1,3 +1,16 @@
+# v20.43.8 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Setting activeTabIndex from outside [#945](https://github.com/Infineon/infineon-design-system-stencil/pull/945) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.7 (Tue Jan 23 2024)
 
 #### 🐛 Bug Fix
