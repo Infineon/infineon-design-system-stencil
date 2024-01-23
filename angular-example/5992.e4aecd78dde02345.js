@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[5992],{5992:(n,o,r)=>{r.r(o),r.d(o,{ifx_dropdown_separator:()=>a});var s=r(9279);const a=class{constructor(d){(0,s.r)(this,d)}render(){return(0,s.h)("div",{class:"dropdown-separator"})}};a.style=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}"}}]);
