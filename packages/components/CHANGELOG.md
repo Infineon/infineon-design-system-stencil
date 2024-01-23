@@ -1,3 +1,21 @@
+# v20.43.6 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- fixed master deployment file [#940](https://github.com/Infineon/infineon-design-system-stencil/pull/940) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump vue from 3.4.14 to 3.4.15 in /examples/wrapper-components/vue-javascript [#930](https://github.com/Infineon/infineon-design-system-stencil/pull/930) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.5 (Mon Jan 22 2024)
 
 #### 🐛 Bug Fix
