@@ -11,6 +11,10 @@
 
   <style defer>
 
+    body { 
+      font-family: "source sans 3";
+    }
+
   </style>
 
   <script defer>
@@ -20,6 +24,40 @@
 </head>
 
 <body>
+
+  <ifx-navbar show-logo-and-appname="true" application-name="Application name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+
+    <ifx-navbar-item hide-label="false" icon="undefined" slot="left-item" target="undefined" href="undefined">
+      Menu Item 1
+    </ifx-navbar-item>
+    <ifx-navbar-item hide-label="false" slot="left-item">
+      Menu Item
+    </ifx-navbar-item>
+    <ifx-navbar-item hide-label="false" slot="left-item">
+      Menu Item
+    </ifx-navbar-item>
+
+    <ifx-navbar-menu slot="menu">
+      <ifx-navbar-menu-item href="" target="_blank">
+        Item 1
+      </ifx-navbar-menu-item>
+      <ifx-navbar-menu-item href="">Item 2</ifx-navbar-menu-item>
+      <ifx-navbar-menu-item href="">Item 3</ifx-navbar-menu-item>
+    </ifx-navbar-menu>
+
+    <ifx-search-bar slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+
+    <ifx-navbar-item hide-label="false" slot="right-item">
+      Right One
+    </ifx-navbar-item>
+    <ifx-navbar-item hide-label="false" slot="right-item">
+      Right Two
+    </ifx-navbar-item>
+    <ifx-navbar-item hide-label="false" slot="right-profile-item">
+      Tisho
+    </ifx-navbar-item>
+  </ifx-navbar>
+
 
 </body>
 

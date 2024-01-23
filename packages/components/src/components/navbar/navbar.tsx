@@ -268,34 +268,38 @@ export class Navbar {
                     <slot name='right-item' />
                     <slot name='right-profile-item' />
                   </div>
+
+
                   {/* <div class="navbar__container-right-content-navigation-item tablet">
                     <div class="navbar__container-right-content-navigation-item-icon-wrapper">
                       <ifx-icon icon="image-16"></ifx-icon>
                     </div>
-                  </div> */}
-                  {/* <div class="navbar__container-right-content-navigation-item-profile">
+                  </div> 
+                   <div class="navbar__container-right-content-navigation-item-profile">
                     <div class="navbar__container-right-content-navigation-item-navigation-profile">
                       <a href="javascript:void(0)">AA</a>
                     </div>
-                  </div> */}
+                  </div>  */}
+
+
                 </div>
               </div>
 
-              {/* SIDEBAR BUTTON */}
-              {/* <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
+              {/* MOBILE MENU BUTTON */}
+              <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
                 <div class="navbar__burger-icon">
                   <ifx-icon icon="menu-right-24"></ifx-icon>
                 </div>
                 <div class="navbar__cross-icon">
                   <ifx-icon icon="cross-24"></ifx-icon>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
 
         {/* SIDEBAR */}
-        {/* <div class="navbar__sidebar">
+        <div class="navbar__sidebar">
            {this.main &&
             <div class="navbar__sidebar-content-main">
             <div class="navbar__sidebar-content-main-menu">
@@ -491,7 +495,7 @@ export class Navbar {
                 </div>
               </div>
           </div>}
-        </div> */}
+        </div>
       </div>
     );
   }
