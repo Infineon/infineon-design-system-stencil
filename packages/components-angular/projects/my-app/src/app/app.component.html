@@ -639,7 +639,7 @@
   <br />
 
   <h2>Tabs</h2>
-  <ifx-tabs (tabChange)="handleChange($event)" [tabIndex]="tabIndex" #ifxTabs orientation="horizontal">
+  <ifx-tabs (tabChange)="handleChange($event)" [activeTabIndex]="activeTabIndex" #ifxTabs orientation="horizontal">
     <ifx-tab header="tab header 1" disabled="false">tab 1 content</ifx-tab>
     <ifx-tab header="tab header 2" disabled="true">tab 2 content</ifx-tab>
     <ifx-tab header="tab header 3" disabled="false">tab 3 content</ifx-tab>

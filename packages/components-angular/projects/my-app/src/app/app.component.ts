@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'my-app';
 
   progressValue = 10;
-  tabIndex = 0;
+  activeTabIndex = 0;
   checkboxChecked = false;
   checkboxError = false;
   checkboxDisabled = false;
@@ -38,7 +38,7 @@ export class AppComponent {
     const next = Math.floor(Math.random() * (3));
     console.log("set next active tab: ", next)
     if (this.ifxTabs) {
-      this.tabIndex = next;;
+      this.activeTabIndex = next;;
     }
   }
 
