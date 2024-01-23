@@ -32,14 +32,8 @@ export class IfxTabs {
 
   @Watch('activeTabIndex')
   activeTabIndexChanged(newValue: number, oldValue: number) {
-    console.log("watch", newValue)
     if (newValue !== oldValue) {
       this.setActiveAndFocusedTab(newValue);
-
-
-      // if (this.isKeyboardEvent) {
-      //   this.internalFocusedTabIndex = newValue;
-      // }
     }
 
   }
