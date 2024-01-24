@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State} from "@stencil/core";
+import { Component, h, Prop, Element, State, EventEmitter, Event} from "@stencil/core";
 
 @Component({
     tag: 'ifx-stepper',
@@ -10,10 +10,12 @@ export class Stepper{
 
     @Prop() showNumber: boolean = false;
     @Prop() activeStep: number = 1;
-    @State() internalActiveStep = 1;
+    @State() internalActiveStep = undefined;
     @Prop() variant: string = 'default';
     @Element() el: HTMLElement;
+    @Event() ifxActiveStepChange: EventEmitter;
     private stepsCount: number;
+
 
     // Syncing children (steps) with parent state
     updateChildren(){
@@ -34,7 +36,14 @@ export class Stepper{
     }
 
     updateActiveStep(){
-        this.internalActiveStep = Math.max(1, Math.min(this.stepsCount+(this.variant !== 'compact' ? 1 : 0), this.activeStep));
+        let newActiveStep = Math.max(1, Math.min(this.stepsCount+(this.variant !== 'compact' ? 1 : 0), this.activeStep));
+
+        if(this.internalActiveStep && newActiveStep != this.internalActiveStep){
+            this.internalActiveStep = newActiveStep;
+            this.ifxActiveStepChange.emit({activeStep: this.internalActiveStep, totalSteps: this.stepsCount});
+        }else{
+            this.internalActiveStep = newActiveStep;
+        }
     }
     
     componentWillLoad(){

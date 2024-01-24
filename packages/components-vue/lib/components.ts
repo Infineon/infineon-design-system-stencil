@@ -456,7 +456,8 @@ export const IfxStep = /*@__PURE__*/ defineContainer<JSX.IfxStep>('ifx-step', un
 export const IfxStepper = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', undefined, [
   'showNumber',
   'activeStep',
-  'variant'
+  'variant',
+  'ifxActiveStepChange'
 ]);
 
 

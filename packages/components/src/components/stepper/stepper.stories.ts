@@ -1,3 +1,5 @@
+import { action } from '@storybook/addon-actions';
+
 export default{
     title: 'Under Development/Stepper',
     tags: ['autodocs'],
@@ -10,19 +12,25 @@ export default{
     },
     argTypes: {
         activeStep: { 
-                    control : {
-                        type: 'number',
-                        min: 1
-                    }, 
-                    description: 'Current active step', 
-                    default: 1 },
+            control : {
+                type: 'number',
+                min: 1
+            }, 
+            description: 'Current active step', 
+            default: 1 
+        },
         amountOfSteps: { control : 'number' },
         showNumber: { 
-          control: 'boolean', 
-          if: { arg: 'variant', eq: 'default'}},
+            control: 'boolean', 
+            if: { arg: 'variant', eq: 'default'}
+        },
         variant: {
             options: ['default', 'compact'],
             control: { type: 'radio' },
+        },
+        ifxActiveStepChange:{
+            action: 'ifxActiveStepChange',
+            description: 'A custom event emitted when active step changes'
         }
     }
 }
@@ -39,6 +47,7 @@ const Template = (args) => {
         stepper.appendChild(step);
         if(args.errorStep == i+1) step.setAttribute('error', 'true');
     }
+    stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
     return stepper;
 }
 

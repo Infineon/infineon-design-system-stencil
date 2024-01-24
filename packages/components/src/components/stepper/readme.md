@@ -14,6 +14,13 @@
 | `variant`    | `variant`     |             | `string`  | `'default'` |
 
 
+## Events
+
+| Event                 | Description | Type               |
+| --------------------- | ----------- | ------------------ |
+| `ifxActiveStepChange` |             | `CustomEvent<any>` |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
