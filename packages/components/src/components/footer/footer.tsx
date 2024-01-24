@@ -11,6 +11,10 @@ export class Footer {
   @Prop() variant: string = 'medium'
   @State() large: boolean = false;
   @State() medium: boolean = false;
+  @Prop() termsUrl: string = '#';
+  @Prop() imprintUrl: string = '#';
+  @Prop() privacyPolicyUrl: string = '#';
+  @Prop() glossaryUrl: string = '#';
 
 
   componentWillLoad() {
@@ -95,13 +99,12 @@ export class Footer {
                 © 1999 - 2022 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
-                <a aria-label="View our terms of use" href="#">Terms</a>
-                <a aria-label="View our legal notices" href="#">Imprint</a>
-                <a aria-label="View our privacy policy" href="#">Privacy policy</a>
-                <a aria-label="View our glossary" href="#">Glossary</a>
+                <a aria-label="View our terms of use" href={this.termsUrl}>Terms</a>
+                <a aria-label="View our legal notices" href={this.imprintUrl}>Imprint</a>
+                <a aria-label="View our privacy policy" href={this.privacyPolicyUrl}>Privacy policy</a>
+                <a aria-label="View our glossary" href={this.glossaryUrl}>Glossary</a>
               </div>
             </div>
-
           </div>
         </div>
       </Host>
