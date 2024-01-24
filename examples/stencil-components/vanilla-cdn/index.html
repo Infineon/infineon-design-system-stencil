@@ -306,7 +306,7 @@
     <br />
 
     <h2>Stepper</h2>
-    <ifx-stepper id = "stepper" showNumber=false activeStep=2>
+    <ifx-stepper id = "stepper" showNumber=false activeStep=2 variant = 'default'>
       <ifx-step> Step 1 </ifx-step>
       <ifx-step> Step 2 </ifx-step>
       <ifx-step error = true> Step 3 </ifx-step>
@@ -314,7 +314,8 @@
       <ifx-step> Step 5 </ifx-step>
     </ifx-stepper>
     <ifx-button variant="secondary" onClick="prevStep()"> Previous Step</ifx-button>
-    <ifx-button variant="primary" onClick="toggleStepperVariant()"> Toggle Number/Default </ifx-button>
+    <ifx-button variant="primary" onClick="toggleShowNumber()"> Toggle Show Number </ifx-button>
+    <ifx-button variant="primary" onClick="toggleVariant()"> Toggle Variant </ifx-button>
     <ifx-button variant="secondary" onClick="nextStep()"> Next Step</ifx-button>
     <br/>
     <br/>
@@ -608,9 +609,18 @@
     stepper.activeStep = Math.max(0, stepper.activeStep);
   }
 
-  function toggleStepperVariant(){
+  function toggleShowNumber(){
     const stepper = document.querySelector('#stepper');
     stepper.showNumber = !stepper.showNumber;
+  }
+
+  function toggleVariant(){
+    const stepper = document.querySelector('#stepper');
+    if(!stepper.variant || stepper.variant === 'default'){
+      stepper.variant = 'compact';
+    }else{
+      stepper.variant = 'default';
+    }
   }
 
   updateValues();

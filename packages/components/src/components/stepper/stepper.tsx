@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element } from "@stencil/core";
+import { Component, h, Prop, Element, State} from "@stencil/core";
 
 @Component({
     tag: 'ifx-stepper',
@@ -9,7 +9,8 @@ import { Component, h, Prop, Element } from "@stencil/core";
 export class Stepper{
 
     @Prop() showNumber: boolean = false;
-    @Prop({mutable: true, reflect: true}) activeStep: number = 1;
+    @Prop() activeStep: number = 1;
+    @State() internalActiveStep = 1;
     @Prop() variant: string = 'default';
     @Element() el: HTMLElement;
     private stepsCount: number;
@@ -18,24 +19,32 @@ export class Stepper{
     updateChildren(){
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         for(let i = 0; i < steps.length; i++){
-            steps[i].stepperState = {activeStep: this.activeStep, showNumber: this.showNumber, variant: this.variant};
+            steps[i].stepperState = {activeStep: this.internalActiveStep, showNumber: this.showNumber, variant: this.variant};
         }
         
     }
-    
-    componentWillLoad(){
-        // Adding Step Id's to steps
+
+    addStepIdsToStepsAndCountSteps(){
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         steps[steps.length-1].lastStep = true;
         for(let i = 0; i < steps.length; i++){
             steps[i].stepId = i+1;
         }
-        this.activeStep = Math.max(1, Math.min(steps.length+1, this.activeStep));
         this.stepsCount = steps.length;
+    }
+
+    updateActiveStep(){
+        this.internalActiveStep = Math.max(1, Math.min(this.stepsCount+(this.variant !== 'compact' ? 1 : 0), this.activeStep));
+    }
+    
+    componentWillLoad(){
+        this.addStepIdsToStepsAndCountSteps();
+        this.updateActiveStep();
         this.updateChildren();
     }
     
     componentWillUpdate(){
+        this.updateActiveStep();
         this.updateChildren();
     }
 
@@ -45,7 +54,7 @@ export class Stepper{
                 {   
                     this.variant === 'compact' && <div class='stepper-progress'>
                         <div class = 'progress-detail'>
-                            {`${this.activeStep} of ${this.stepsCount}`}
+                            {`${Math.min(this.internalActiveStep, this.stepsCount)} of ${this.stepsCount}`}
                         </div>
                     </div>
                 }
@@ -61,7 +70,7 @@ export class Stepper{
         // Updating progress bar in compact version
         if(this.variant == 'compact'){
             const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress')
-            progressBar.style.setProperty('--pb', `${(this.activeStep/(this.stepsCount)) * 100}%`);
+            progressBar.style.setProperty('--pb', `${(this.internalActiveStep/(this.stepsCount)) * 100}%`);
         }
     }
 }
