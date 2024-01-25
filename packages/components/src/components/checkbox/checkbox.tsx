@@ -23,11 +23,9 @@ export class Checkbox {
     if (!this.disabled) {
       if (this.inputElement.indeterminate) {
         this.internalValue = true;
-        this.value = this.internalValue;
         this.indeterminate = false;
       } else {
         this.internalValue = !this.internalValue;
-        this.value = this.internalValue;
       }
       this.ifxChange.emit(this.internalValue);
     }

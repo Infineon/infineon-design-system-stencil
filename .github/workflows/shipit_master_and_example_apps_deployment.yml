@@ -107,6 +107,9 @@ jobs:
           folder: examples/wrapper-components/vue-javascript/dist/ # The folder the action should deploy.
           target-folder: vue-example
           clean-exclude: |
+            angular-example/
+            react-example/
+            vanilla-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -144,6 +147,9 @@ jobs:
           folder: examples/wrapper-components/react-javascript/build/ # The folder the action should deploy.
           target-folder: react-example
           clean-exclude: |
+            angular-example/
+            vanilla-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -171,7 +177,7 @@ jobs:
         run: |
           cd packages/components-angular
           npm i
-          npm i @infineon/infineon-design-system-stencil@latest
+          npm i @infineon/infineon-design-system-angular@latest
           npm run build my-app
            
       - name: Deploy 🚀
@@ -180,6 +186,9 @@ jobs:
           folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.
           target-folder: angular-example
           clean-exclude: |
+            react-example/
+            vanilla-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -215,6 +224,9 @@ jobs:
           folder: examples/stencil-components/vanilla-cdn/dist # The folder the action should deploy.
           target-folder: vanilla-example
           clean-exclude: |
+            angular-example/
+            react-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
