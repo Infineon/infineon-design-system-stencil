@@ -22,8 +22,8 @@
 
 
   .ifx-label-wrapper {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: anywhere;
@@ -32,8 +32,8 @@
 
   .ifx-error-message-wrapper {
     color: #CD002F;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: anywhere;
@@ -45,25 +45,25 @@
     position: relative;
     display: flex;
     align-items: center;
-    box-shadow: 0 0 0 1px tokens.$ifxColorEngineering400;
+    border: 1px solid tokens.$ifxColorEngineering400;
+    border-radius: tokens.$ifxBorderRadius12;
     width: 100%;
-    border-radius: 1px;
     font-weight: 400;
     font-style: normal;
 
 
     &.small-select {
       height: 36px;
-      line-height: 20px;
       padding: 8px 12px;
-      font-size: 14px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
       height: 40px;
-      line-height: 24px;
       padding: 8px 16px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
     }
 
     &:focus-visible {
@@ -182,7 +182,8 @@
       // z-index: 2;
       width: 100%;
       padding: 8px 16px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
       font-style: normal;
       font-weight: 400;
       box-sizing: border-box;
@@ -212,13 +213,13 @@
     font-weight: 400;
 
     &.small-select {
-      line-height: 20px;
-      font-size: 14px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
-      line-height: 24px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
     }
 
     &:hover {

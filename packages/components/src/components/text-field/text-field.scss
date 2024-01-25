@@ -107,6 +107,8 @@
       height: tokens.$ifxSize500;
       background-color: tokens.$ifxColorBaseWhite;
       color: tokens.$ifxColorBaseBlack;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
       border: 1px solid tokens.$ifxColorEngineering400;
       border-radius: tokens.$ifxBorderRadius12;
       flex: none;
@@ -116,6 +118,14 @@
 
       &.input-s {
         height: tokens.$ifxSize450;
+        font-size: tokens.$ifxFontSizeS;
+        line-height: tokens.$ifxLineHeightS;
+
+        &::placeholder {
+          font-size: tokens.$ifxFontSizeS;
+          line-height: tokens.$ifxLineHeightS;
+        }
+
       }
 
       &.icon {
@@ -151,7 +161,7 @@
       &::placeholder {
         font-style: normal;
         font-weight: 400;
-        font-size: tokens.$ifxFontSizeS;
+        font-size: tokens.$ifxFontSizeM;
         line-height: tokens.$ifxLineHeightM;
         color: #8D8786;
         flex: none;
@@ -169,6 +179,7 @@
       left: 8px;
       /* Adjust this value to control the icon's left offset */
       transition: .3s;
+      color: tokens.$ifxColorEngineering400;
     }
 
     & .textInput__bottom-wrapper-caption {
