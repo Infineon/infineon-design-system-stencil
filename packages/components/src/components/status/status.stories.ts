@@ -5,13 +5,13 @@ export default {
   args: {
     label: "text",
     color: "orange",
-    hasBorder: true,
+    border: true,
   },
   argTypes: {
 
-    hasBorder: {
+    border: {
       control: 'boolean',
-      attr: 'hasBorder',
+      attr: 'border',
     },
     color: {
       options: ['orange', 'ocean', 'grey', 'light-grey', 'red', 'green', 'berry'],
@@ -21,7 +21,7 @@ export default {
 }
 
 const DefaultTemplate = (args) =>
-  `<ifx-status label="${args.label}" color="${args.color}" has-border="${args.hasBorder}"/>`;
+  `<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {
