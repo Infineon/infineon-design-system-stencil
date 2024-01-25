@@ -151,7 +151,7 @@
 
       &:focus:not(.error, .success) {
         outline: none;
-        border: 1px solid tokens.$ifxColorOcean500
+        border: 1px solid tokens.$ifxColorOcean500;
       }
 
       &:hover:not(:disabled, .error, .success) {
