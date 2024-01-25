@@ -71,7 +71,6 @@ export class Footer {
 
 
   render() {
-    console.log("terms url ", this.termsUrl, this.variant)
     return (
       <Host>
         <div aria-label='Main footer navigation' class="footer__container">
