@@ -27,13 +27,14 @@ export default {
   },
 };
 
-
-const DefaultTemplate = (args) =>
-  `<ifx-footer variant="${args.variant}" 
-               termsUrl="${args.termsUrl}" termsTarget="${args.termsTarget}" 
-               imprintUrl="${args.imprintUrl}" imprintTarget="${args.imprintTarget}" 
-               privacyPolicyUrl="${args.privacyPolicyUrl}" privacyPolicyTarget="${args.privacyPolicyTarget}" 
-               glossaryUrl="${args.glossaryUrl}" glossaryTarget="${args.glossaryTarget}">
+const DefaultTemplate = (args) => {
+  const key = Object.values(args).join('-');
+  return `
+    <ifx-footer key="${key}" variant="${args.variant}" 
+               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}" 
+               imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}" 
+               privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-parget="${args.privacyPolicyTarget}" 
+               glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -55,7 +56,7 @@ const DefaultTemplate = (args) =>
       </ifx-link>
     </div>
   </ifx-footer>`;
-
+}
 
 
 export const Medium = DefaultTemplate.bind({});

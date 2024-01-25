@@ -8,10 +8,11 @@ import classNames from 'classnames';
 })
 
 export class Link {
-  @Prop() href: string
-  @Prop() target: string = '_self';
+  @Prop({ mutable: true }) href: string
+  @Prop({ mutable: true }) target: string = '_self';
   @Prop() size: string;
-  @Prop() variant: string  = 'bold';
+  @Prop({ mutable: true }) variant: string = 'bold';
+
 
   render() {
     return (
@@ -27,32 +28,32 @@ export class Link {
     const large = this.size === 'l' ? 'large' : null;
     const extraLarge = this.size === 'xl' ? 'extraLarge' : null;
 
-    if(small) {
+    if (small) {
       return small;
-    } else if(medium) {
+    } else if (medium) {
       return medium;
-    } else if(large) {
+    } else if (large) {
       return large;
-    } else if(extraLarge && this.variant === 'underlined') { 
+    } else if (extraLarge && this.variant === 'underlined') {
       return 'large';
-    } else if(extraLarge && this.variant !== 'underlined') { 
+    } else if (extraLarge && this.variant !== 'underlined') {
       return extraLarge;
     } else return "";
   }
 
-  getVariantClass() { 
+  getVariantClass() {
     const bold = this.variant === 'bold' ? 'bold' : null;
     const title = this.variant === 'title' ? 'title' : null;
     const underlined = this.variant === 'underlined' ? 'underlined' : null;
     const menu = this.variant === 'menu' ? 'menu' : null;
 
-    if(bold) { 
+    if (bold) {
       return bold
-    } else if(title) { 
+    } else if (title) {
       return title;
-    } else if(underlined) { 
+    } else if (underlined) {
       return underlined;
-    } else if(menu) { 
+    } else if (menu) {
       return menu;
     } else return bold;
   }

@@ -35,15 +35,14 @@ export class Footer {
     } else {
       this.medium = true;
     }
-
     // const hostElement = this.el.closest('ifx-footer')
     // hostElement.style.width = '100%';
   }
 
   componentDidLoad() {
     this.addEventListenersToHandleCustomFocusState();
-
   }
+
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -63,13 +62,16 @@ export class Footer {
     const children = footerBtns.children;
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
-      if (child.tagName === 'A') {
-        child.tabIndex = -1;
+      const links = child.getElementsByTagName('A');
+      for (let j = 0; j < links.length; j++) {
+        links[j].tabIndex = -1;
       }
     }
   }
 
+
   render() {
+    console.log("terms url ", this.termsUrl, this.variant)
     return (
       <Host>
         <div aria-label='Main footer navigation' class="footer__container">
@@ -104,11 +106,10 @@ export class Footer {
                 © 1999 - 2022 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
-                <a aria-label="View our terms of use" href={this.termsUrl} target={this.termsTarget}>Terms</a>
-                <a aria-label="View our legal notices" href={this.imprintUrl} target={this.imprintTarget}>Imprint</a>
-                <a aria-label="View our privacy policy" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</a>
-                <a aria-label="View our glossary" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</a>
-
+                <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
+                <ifx-link variant="menu" href={this.imprintUrl} target={this.imprintTarget}>Imprint</ifx-link>
+                <ifx-link variant="menu" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</ifx-link>
+                <ifx-link variant="menu" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</ifx-link>
               </div>
             </div>
           </div>
