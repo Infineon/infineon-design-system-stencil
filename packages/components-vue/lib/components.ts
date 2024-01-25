@@ -173,9 +173,13 @@ export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undef
 export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', undefined, [
   'variant',
   'termsUrl',
+  'termsTarget',
   'imprintUrl',
+  'imprintTarget',
   'privacyPolicyUrl',
-  'glossaryUrl'
+  'privacyPolicyTarget',
+  'glossaryUrl',
+  'glossaryTarget'
 ]);
 
 

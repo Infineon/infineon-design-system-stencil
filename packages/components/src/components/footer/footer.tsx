@@ -12,9 +12,14 @@ export class Footer {
   @State() large: boolean = false;
   @State() medium: boolean = false;
   @Prop() termsUrl: string = '#';
+  @Prop() termsTarget: string = '_self';
   @Prop() imprintUrl: string = '#';
+  @Prop() imprintTarget: string = '_self';
   @Prop() privacyPolicyUrl: string = '#';
+  @Prop() privacyPolicyTarget: string = '_self';
   @Prop() glossaryUrl: string = '#';
+  @Prop() glossaryTarget: string = '_self';
+
 
 
   componentWillLoad() {
@@ -99,10 +104,11 @@ export class Footer {
                 © 1999 - 2022 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
-                <a aria-label="View our terms of use" href={this.termsUrl}>Terms</a>
-                <a aria-label="View our legal notices" href={this.imprintUrl}>Imprint</a>
-                <a aria-label="View our privacy policy" href={this.privacyPolicyUrl}>Privacy policy</a>
-                <a aria-label="View our glossary" href={this.glossaryUrl}>Glossary</a>
+                <a aria-label="View our terms of use" href={this.termsUrl} target={this.termsTarget}>Terms</a>
+                <a aria-label="View our legal notices" href={this.imprintUrl} target={this.imprintTarget}>Imprint</a>
+                <a aria-label="View our privacy policy" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</a>
+                <a aria-label="View our glossary" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</a>
+
               </div>
             </div>
           </div>
