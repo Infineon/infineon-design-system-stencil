@@ -107,6 +107,7 @@
       height: tokens.$ifxSize500;
       background-color: tokens.$ifxColorBaseWhite;
       color: tokens.$ifxColorBaseBlack;
+      font-family: tokens.$ifxFontFamilyBody;
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       border: 1px solid tokens.$ifxColorEngineering400;
@@ -115,6 +116,7 @@
       order: 0;
       align-self: stretch;
       flex-grow: 0;
+      text-overflow: ellipsis;
 
       &.input-s {
         height: tokens.$ifxSize450;
@@ -129,7 +131,7 @@
       }
 
       &.icon {
-        padding-left: tokens.$ifxSpace400;
+        padding-left: tokens.$ifxSpace500;
       }
 
       &.error {
@@ -154,8 +156,8 @@
         border: 1px solid tokens.$ifxColorOcean500;
       }
 
-      &:hover:not(:disabled, .error, .success) {
-        border: 1px solid #3C3A39;
+      &:hover:not(:disabled, :focus, .error, .success) {
+        border: 1px solid tokens.$ifxColorEngineering500;
       }
 
       &::placeholder {
@@ -176,7 +178,7 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: 8px;
+      left: tokens.$ifxSpace200;
       /* Adjust this value to control the icon's left offset */
       transition: .3s;
       color: tokens.$ifxColorEngineering400;

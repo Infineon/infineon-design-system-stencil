@@ -102,16 +102,17 @@
     }
 
     &:hover:not(.focus, :focus) {
-      border-color: #8D8786;
+      border-color: tokens.$ifxColorEngineering500;
     }
 
     &.active {
-      box-shadow: 0 0 0 1px #0A8276 !important; // Active border color
+      border-color: tokens.$ifxColorOcean500 !important; // Active border color
 
       & .icon-wrapper-up {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: tokens.$ifxSpace100;
       }
 
       & .icon-wrapper-down {
@@ -128,6 +129,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-left: tokens.$ifxSpace100;
     }
 
     &.is-flipped {
@@ -189,7 +191,7 @@
       box-sizing: border-box;
       background-color: tokens.$ifxColorBaseWhite;
       border: none;
-      border-bottom: 2px solid #ccc;
+      border-bottom: 1px solid tokens.$ifxColorEngineering400;
 
       &:focus {
         outline: none;
