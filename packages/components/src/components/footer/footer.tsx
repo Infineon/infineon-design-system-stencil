@@ -11,6 +11,15 @@ export class Footer {
   @Prop() variant: string = 'medium'
   @State() large: boolean = false;
   @State() medium: boolean = false;
+  @Prop() termsUrl: string = '#';
+  @Prop() termsTarget: string = '_self';
+  @Prop() imprintUrl: string = '#';
+  @Prop() imprintTarget: string = '_self';
+  @Prop() privacyPolicyUrl: string = '#';
+  @Prop() privacyPolicyTarget: string = '_self';
+  @Prop() glossaryUrl: string = '#';
+  @Prop() glossaryTarget: string = '_self';
+
 
 
   componentWillLoad() {
@@ -26,39 +35,13 @@ export class Footer {
     } else {
       this.medium = true;
     }
-
     // const hostElement = this.el.closest('ifx-footer')
     // hostElement.style.width = '100%';
   }
 
-  componentDidLoad() {
-    this.addEventListenersToHandleCustomFocusState();
 
-  }
 
-  private addEventListenersToHandleCustomFocusState() {
-    const element = this.el.shadowRoot.firstChild;
-    if (!element) {
-      console.error('element not found');
-      return;
-    }
-    const footerBtns = element.querySelector('.footer__buttons');
-    if (!footerBtns) {
-      console.error('footerBtns not found');
-      return;
-    }
 
-    element.tabIndex = -1;
-    footerBtns.tabIndex = -1;
-
-    const children = footerBtns.children;
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (child.tagName === 'A') {
-        child.tabIndex = -1;
-      }
-    }
-  }
 
   render() {
     return (
@@ -95,13 +78,12 @@ export class Footer {
                 © 1999 - 2022 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
-                <a aria-label="View our terms of use" href="#">Terms</a>
-                <a aria-label="View our legal notices" href="#">Imprint</a>
-                <a aria-label="View our privacy policy" href="#">Privacy policy</a>
-                <a aria-label="View our glossary" href="#">Glossary</a>
+                <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
+                <ifx-link variant="menu" href={this.imprintUrl} target={this.imprintTarget}>Imprint</ifx-link>
+                <ifx-link variant="menu" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</ifx-link>
+                <ifx-link variant="menu" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</ifx-link>
               </div>
             </div>
-
           </div>
         </div>
       </Host>

@@ -32,6 +32,10 @@ jobs:
         with:
           folder: packages/components/storybook-static/ # The folder the action should deploy.
           clean-exclude: |
+            angular-example/
+            react-example/
+            vanilla-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/

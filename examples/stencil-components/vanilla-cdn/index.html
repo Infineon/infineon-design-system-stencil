@@ -15,7 +15,8 @@
 <body>
 
   <div>
-    <ifx-navbar application-name="Application name" fixed="false" logo-href="https://google.com" logo-href-target = "_self">
+    <ifx-navbar application-name="Application name" fixed="false" logo-href="https://google.com"
+      logo-href-target="_self">
       <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
         href="https://google.com">Menu Item1</ifx-navbar-item>
       <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
@@ -110,7 +111,8 @@
       Not clickable when disabled
     </ifx-button>
     <div style="background-color: grey">
-      <ifx-button id="btn-in-div" theme='danger' onClick="toggleButtonWidth()">  I'm a button in a div. Click to toggle full width</ifx-button>
+      <ifx-button id="btn-in-div" theme='danger' onClick="toggleButtonWidth()"> I'm a button in a div. Click to toggle
+        full width</ifx-button>
     </div>
     <br />
 
@@ -290,6 +292,15 @@
     <br />
     <br />
 
+    <br />
+    <br />
+    <h2>Status</h2>
+    <ifx-status label="Status with border" color="orange" border="true"></ifx-status>
+    <ifx-status label="Status without border" color="orange" border="false"></ifx-status>
+    <br />
+    <br />
+
+
     <h2>Switch</h2>
     <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
     <br />
@@ -302,13 +313,7 @@
       <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
       <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
     </ifx-tabs>
-    <br />
-    <br />
-    <h2>Status</h2>
-    <ifx-status label="Status with border" color="orange" border="true" />
-    <ifx-status label="Status without border" color="orange" border="false" />
-    <br />
-    <br />
+
 
 
 
@@ -371,9 +376,8 @@
     <br />
 
 
-
     <h2>Footer</h2>
-    <ifx-footer variant="medium">
+    <ifx-footer variant="medium" terms-url="https://yourwebsite.com/terms">
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
         <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
@@ -583,7 +587,7 @@
 
   updateValues();
 
-  function toggleButtonWidth(){
+  function toggleButtonWidth() {
     const btn = document.getElementById('btn-in-div');
     btn.fullWidth = !btn.fullWidth;
     console.log(btn.fullWidth);
