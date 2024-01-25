@@ -39,35 +39,8 @@ export class Footer {
     // hostElement.style.width = '100%';
   }
 
-  componentDidLoad() {
-    this.addEventListenersToHandleCustomFocusState();
-  }
 
 
-  private addEventListenersToHandleCustomFocusState() {
-    const element = this.el.shadowRoot.firstChild;
-    if (!element) {
-      console.error('element not found');
-      return;
-    }
-    const footerBtns = element.querySelector('.footer__buttons');
-    if (!footerBtns) {
-      console.error('footerBtns not found');
-      return;
-    }
-
-    element.tabIndex = -1;
-    footerBtns.tabIndex = -1;
-
-    const children = footerBtns.children;
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      const links = child.getElementsByTagName('A');
-      for (let j = 0; j < links.length; j++) {
-        links[j].tabIndex = -1;
-      }
-    }
-  }
 
 
   render() {
