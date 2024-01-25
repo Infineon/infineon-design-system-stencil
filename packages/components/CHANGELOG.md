@@ -1,3 +1,21 @@
+# v20.44.0 (Thu Jan 25 2024)
+
+#### 🚀 Enhancement
+
+- Footer url props added for terms, imprint, etc. [#946](https://github.com/Infineon/infineon-design-system-stencil/pull/946) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump vite from 4.5.1 to 5.0.12 in /examples/wrapper-components/vue-javascript [#931](https://github.com/Infineon/infineon-design-system-stencil/pull/931) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.8 (Tue Jan 23 2024)
 
 #### 🐛 Bug Fix
