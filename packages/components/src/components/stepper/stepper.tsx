@@ -41,13 +41,10 @@ export class Stepper {
 
     updateActiveStep() {
         let newActiveStep = Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-
         if (this.internalActiveStep === undefined || newActiveStep != this.internalActiveStep) {
-            this.internalActiveStep = newActiveStep;
-            this.ifxActiveStepChange.emit({ activeStep: this.internalActiveStep, totalSteps: this.stepsCount });
-        } else {
-            this.internalActiveStep = newActiveStep;
+            this.ifxActiveStepChange.emit({ activeStep: newActiveStep, totalSteps: this.stepsCount });
         }
+        this.internalActiveStep = newActiveStep;
     }
 
     componentWillLoad() {
