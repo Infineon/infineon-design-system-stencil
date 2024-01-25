@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default{
-    title: 'Under Development/Stepper',
+    title: 'Components/Stepper',
     tags: ['autodocs'],
     args: { 
         variant: 'default',

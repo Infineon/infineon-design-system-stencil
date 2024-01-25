@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, EventEmitter, Event} from "@stencil/core";
+import { Component, h, Prop, Element, State, EventEmitter, Event, Watch} from "@stencil/core";
 
 @Component({
     tag: 'ifx-stepper',
@@ -16,7 +16,11 @@ export class Stepper{
     @Event() ifxActiveStepChange: EventEmitter;
     private stepsCount: number;
 
-
+    @Watch('activeStep')
+    activeStepHandler() {
+        this.updateActiveStep();
+    }
+    
     // Syncing children (steps) with parent state
     updateChildren(){
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
@@ -25,7 +29,7 @@ export class Stepper{
         }
         
     }
-
+    
     addStepIdsToStepsAndCountSteps(){
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         steps[steps.length-1].lastStep = true;
@@ -34,7 +38,7 @@ export class Stepper{
         }
         this.stepsCount = steps.length;
     }
-
+    
     updateActiveStep(){
         let newActiveStep = Math.max(1, Math.min(this.stepsCount+(this.variant !== 'compact' ? 1 : 0), this.activeStep));
 
@@ -53,10 +57,9 @@ export class Stepper{
     }
     
     componentWillUpdate(){
-        this.updateActiveStep();
         this.updateChildren();
     }
-
+    
     render(){
         return(
             <div class={`stepper ${this.variant}`}>
