@@ -1,0 +1,11 @@
+/* @use "~@infineon/design-system-tokens/dist/tokens"; */
+@import "~@infineon/design-system-tokens/dist/_fonts.scss";
+
+/* * {
+  box-sizing: border-box;
+  line-height: tokens.$ifxLineHeightXl;
+} */
+
+ifx-icon:empty {
+  display: none;
+}

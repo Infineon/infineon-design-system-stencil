@@ -4,6 +4,7 @@ import prettier from 'prettier/standalone';
 import prettierBabel from 'prettier/parser-babel';
 import ifxTheme from './ifxTheme';
 import tokens from './exported-sass-array.json';
+import "../src/global/global.css";
 
 //since font is defined via a CSS custom property that can be changed by the user, and storybook cant read those properties when defined via the :root selector, it needs to be set here
 function applyStyles() {
