@@ -27,7 +27,6 @@
     "wait-on": "^7.2.0"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "^3.3.2--canary.35.b4e58bec0a656d13dc163db78282f5cd0a3ae475.0",
     "@storybook/core-events": "^7.6.6"
   }
 }
