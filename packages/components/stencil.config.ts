@@ -17,6 +17,10 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      copy: [
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/', dest: '../', warn: true },
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/', dest: '../../storybook-static/', warn: true },
+      ]
     },
     ...frameworkTargets,
     {
