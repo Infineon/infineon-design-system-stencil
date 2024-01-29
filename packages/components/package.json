@@ -35,7 +35,7 @@
     "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.2--canary.35.9b56368b02be3c2ad39cbfaa9fdc9895d8f33384.0",
+    "@infineon/design-system-tokens": "3.3.2--canary.35.c8d5d18ed3cc4604774db800cb86d5a826b2b371.0",
     "@infineon/infineon-icons": "^1.1.8",
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "4.5.0",
