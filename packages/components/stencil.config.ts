@@ -18,8 +18,8 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/', dest: '../', warn: true },
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/', dest: '../../storybook-static/', warn: true },
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../fonts', warn: true },
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../storybook-static/', warn: true },
       ]
     },
     ...frameworkTargets,
@@ -33,6 +33,9 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
+      copy: [
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: 'build/fonts', warn: true },
+      ]
     }
   ],
 };
