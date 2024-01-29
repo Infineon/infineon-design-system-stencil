@@ -3,7 +3,7 @@ import { create } from '@storybook/theming/create';
 export default create({
   base: 'light',
   // Typography
-  fontBase: '"Source Sans 3", "sans-serif"',
+  fontBase: '"Source Sans 3", sans-serif',
   fontCode: 'monospace',
 
   // brandTitle: 'My custom Storybook',
