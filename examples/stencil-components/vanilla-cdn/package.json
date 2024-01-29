@@ -23,7 +23,7 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "^20.37.0--canary.741.44b6704a6228afaa7ed47bf111fac5a76acee4c0.0",
+    "@infineon/infineon-design-system-stencil": "^20.44.1--canary.952.07c4adf7cb6248d36fba80c73691162b1ed12fa4.0",
     "typescript": "^4.5.4"
   }
 }
