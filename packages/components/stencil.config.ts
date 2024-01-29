@@ -19,7 +19,7 @@ export const config: Config = {
       esmLoaderPath: '../loader',
       copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../fonts', warn: true },
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../storybook-static/fonts', warn: true },
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../public-storybook/fonts', warn: true },
       ]
     },
     ...frameworkTargets,

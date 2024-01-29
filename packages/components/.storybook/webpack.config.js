@@ -1,3 +1,4 @@
+// const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = ({ config }) => {
@@ -13,6 +14,13 @@ module.exports = ({ config }) => {
   });
 
 
+  // config.plugins.push(
+  //   new CopyPlugin({
+  //     patterns: [
+  //       { from: '~@infineon/design-system-tokens/dist/fonts', to: 'fonts' }
+  //     ],
+  //   })
+  // );
 
   return config;
 };

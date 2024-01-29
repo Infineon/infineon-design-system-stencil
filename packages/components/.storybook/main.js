@@ -27,6 +27,7 @@ module.exports = {
   docs: {
     autodocs: 'tag',
     defaultName: 'Development',
+  },
+  staticDirs: ['../public-storybook'],
 
-  }
 };
