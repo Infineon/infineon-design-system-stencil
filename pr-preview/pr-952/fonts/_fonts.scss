@@ -1,0 +1,26 @@
+/* Source Sans 3 Regular */
+@font-face {
+     font-family: "Source Sans 3";
+     font-style: normal;
+     font-weight: 400;
+     src: url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-Regular.ttf.woff2") format("woff2"),
+          url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-Regular.ttf.woff") format("woff");
+}
+
+/* Source Sans 3 Semibold */
+@font-face {
+     font-family: "Source Sans 3";
+     font-style: normal;
+     font-weight: 600;
+     src: url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-Semibold.ttf.woff2") format("woff2"),
+          url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-Semibold.ttf.woff") format("woff");
+}
+
+/* Source Sans 3 Italic */
+@font-face {
+     font-family: "Source Sans 3";
+     font-style: italic;
+     font-weight: 400;
+     src: url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-It.ttf.woff2") format("woff2"),
+          url("~@infineon/design-system-tokens/dist/fonts/source-sans-3/SourceSans3-It.ttf.woff") format("woff");
+}
