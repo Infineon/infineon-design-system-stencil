@@ -28,6 +28,6 @@ module.exports = {
     autodocs: 'tag',
     defaultName: 'Development',
   },
-  // staticDirs: ['../public-storybook'],
+  staticDirs: ['../public-storybook'],
 
 };
