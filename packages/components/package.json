@@ -25,7 +25,7 @@
   "scripts": {
     "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
-    "build:stencil": "stencil build --docs && npm run compile-fonts-scss",
+    "build:stencil": "stencil build --docs",
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
