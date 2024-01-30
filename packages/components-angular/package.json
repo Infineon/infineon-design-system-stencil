@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-    "@infineon/infineon-design-system-angular": "20.44.1--canary.952.07c4adf7cb6248d36fba80c73691162b1ed12fa4.0",
+    "@infineon/infineon-design-system-angular": "20.44.1--canary.952.3e77eb2e72f45e870afa07088a8715cdd47c1f94.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
