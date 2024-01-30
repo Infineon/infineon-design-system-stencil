@@ -19,7 +19,7 @@ module.exports = ({ config }) => {
   config.plugins.push(
     new CopyPlugin({
       patterns: [
-        { from: '../../packages/components/dist/fonts', to: 'fonts' }
+        { from: '../../packages/components/dist/fonts', to: 'sb-common-assets' }
       ],
     })
   );
