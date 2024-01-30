@@ -25,7 +25,8 @@
   "scripts": {
     "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
-    "build:stencil": "stencil build --docs",
+    "build:stencil": "stencil build --docs && npm run compile-fonts-scss",
+    "compile-fonts-scss": "node ./src/global/utils/compile-fonts-scss.js",
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
@@ -78,6 +79,7 @@
     "copy-webpack-plugin": "^12.0.2",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
+    "node-sass": "^9.0.0",
     "puppeteer": "^21.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -15,10 +15,11 @@ module.exports = ({ config }) => {
 
 
 
+  //copies the /fonts folder located in the /dist directory (created during a stencil bulid) to storybook-static/fonts
   config.plugins.push(
     new CopyPlugin({
       patterns: [
-        { from: '../../node_modules/@infineon/design-system-tokens/dist/fonts', to: 'fonts' }
+        { from: '../../packages/components/dist/fonts', to: 'fonts' }
       ],
     })
   );
