@@ -26,7 +26,6 @@
     "test": "stencil test --e2e",
     "build:storybook": "npm run build:stencil && storybook build",
     "build:stencil": "stencil build --docs && npm run compile-fonts-scss",
-    "compile-fonts-scss": "node ./src/global/utils/compile-fonts-scss.js",
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "dev:stencil": "stencil build --serve --watch",
     "watch:stencil": "stencil build  --watch",
@@ -36,7 +35,7 @@
     "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.2--canary.35.c75e176d82a696a0aee87a6364d2a0615af8e9d5.0",
+    "@infineon/design-system-tokens": "3.3.2--canary.35.c6695b9a9961f501ac36d21085e9143d3930a22b.0",
     "@infineon/infineon-icons": "^1.1.8",
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "4.5.0",

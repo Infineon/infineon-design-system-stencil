@@ -17,11 +17,10 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      //copy task is taken over by compile-fonts-scss script during a stencil build
-      // copy: [
-      //   { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../fonts', warn: true },
-      //   { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../public-storybook/fonts', warn: true },
-      // ]
+      copy: [
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../fonts', warn: true },
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../public-storybook/fonts', warn: true },
+      ]
     },
     ...frameworkTargets,
     {
@@ -34,10 +33,9 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      //copy task is taken over by compile-fonts-scss script during a stencil build
-      // copy: [
-      //   { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: 'build/fonts', warn: true },
-      // ]
+      copy: [
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: 'build/fonts', warn: true },
+      ]
     }
   ],
 };
