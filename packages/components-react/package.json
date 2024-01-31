@@ -27,7 +27,6 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "^3.3.2--canary.35.37fb280e88ed6cac90c421f89ba851375e93e62d.0",
     "@infineon/infineon-design-system-stencil": "^20.36.3"
   },
   "auto": {
