@@ -1,6 +1,8 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+
 .navbar__container-left-content-navigation-item {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -10,6 +12,11 @@
   order: 0;
   flex-grow: 0;
   font-family: var(--ifx-font-family);
+  text-decoration: none;
+
+  &.open { 
+    color: red; //test only
+  }
 
   &.hideElement {
     display: none;
@@ -17,6 +24,7 @@
 
   &:hover {
     color: tokens.$ifxColorOcean500;
+    cursor: pointer;
 
     & a {
       color: tokens.$ifxColorOcean500;
@@ -117,3 +125,66 @@
 //     }
 //   }
 // }
+
+
+
+.navbar-menu  {
+  position: absolute;
+  top: 25px;
+  display: none;
+
+  list-style-type: none;
+
+  visibility: visible;
+  flex-direction: column;
+  width: 224px;
+  max-height: 289px;
+  min-width: 224px;
+  //overflow-y: auto;
+  background: tokens.$ifxColorBaseWhite;
+  box-shadow: 0px 6px 9px 0px #1d1d1d1a;
+  border: 1px solid tokens.$ifxColorEngineering200;
+  padding: 8px 0px;
+  font-family: var(--ifx-font-family);
+
+  &.open {
+    display: flex;
+  }
+}
+
+
+
+.navbar__container-left-content-navigation-item { 
+  &.menuItem {
+    text-decoration: none;
+    color: tokens.$ifxColorBaseBlack;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 8px;
+    font-family: var(--ifx-font-family);
+  
+  
+    &.hide {
+      display: none;
+    }
+  
+    & span {
+      color: tokens.$ifxColorBaseBlack;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      /* 150% */
+    }
+  
+    &:hover {
+      cursor: pointer;
+      background-color: tokens.$ifxColorEngineering200;
+    }
+  
+    &:active {
+      background-color: tokens.$ifxColorEngineering300;
+    }
+  }
+}

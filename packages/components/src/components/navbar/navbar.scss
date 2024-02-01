@@ -11,7 +11,7 @@
   font-family: var(--ifx-font-family);
   height: 63px;
   position: sticky;
-  overflow: hidden;
+  //overflow: hidden;
   z-index: 1030;
   border-bottom: 1px solid #EEEDED;
 
@@ -26,7 +26,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  overflow: hidden;
+  //overflow: hidden;
   transition: all 1s;
   z-index: 1020;
 
@@ -563,245 +563,245 @@
 }
 
 
-@media screen and (max-width: 720px) {
+// @media screen and (max-width: 720px) {
 
-  //mobile
-  .navbar__container {
-    padding: 0px 16px;
-    height: 64px;
-    gap: initial;
+//   //mobile
+//   .navbar__container {
+//     padding: 0px 16px;
+//     height: 64px;
+//     gap: initial;
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        display: none;
-      }
-    }
+//     & .navbar__container-left {
+//       & .navbar__container-left-content {
+//         display: none;
+//       }
+//     }
 
-    & .navbar__container-right {
-      & .navbar__container-right-content {
-        display: none;
-      }
-    }
-  }
+//     & .navbar__container-right {
+//       & .navbar__container-right-content {
+//         display: none;
+//       }
+//     }
+//   }
 
-  .navbar__sidebar {
-    width: 0;
-    transition: 1s;
+//   .navbar__sidebar {
+//     width: 0;
+//     transition: 1s;
 
-    &.show {
-      width: 100%;
-    }
-  }
-}
+//     &.show {
+//       width: 100%;
+//     }
+//   }
+// }
 
-@media screen and (min-width: 720px) {
+// @media screen and (min-width: 720px) {
 
-  //tablet
-  .navbar__wrapper {
-    //height: 64px;
-    height: 63px;
-  }
+//   //tablet
+//   .navbar__wrapper {
+//     //height: 64px;
+//     height: 63px;
+//   }
 
-  .navbar__container {
-    padding: 0px 16px;
-    //height: 64px;
-    height: 63px;
-    gap: initial;
+//   .navbar__container {
+//     padding: 0px 16px;
+//     //height: 64px;
+//     height: 63px;
+//     gap: initial;
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        display: none;
-      }
-    }
+//     & .navbar__container-left {
+//       & .navbar__container-left-content {
+//         display: none;
+//       }
+//     }
 
-    & .navbar__container-right {
-      & .navbar__burger-icon-wrapper {
-        display: flex;
-      }
+//     & .navbar__container-right {
+//       & .navbar__burger-icon-wrapper {
+//         display: flex;
+//       }
 
-      & .navbar__container-right-content {
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item {
-            &.tablet {
-              display: none;
-            }
-          }
+//       & .navbar__container-right-content {
+//         & .navbar__container-right-content-navigation-group {
+//           & .navbar__container-right-content-navigation-item {
+//             &.tablet {
+//               display: none;
+//             }
+//           }
 
-          & .navbar__container-right-content-navigation-item-profile {
-            & a {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+//           & .navbar__container-right-content-navigation-item-profile {
+//             & a {
+//               display: none;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
 
-@media screen and (min-width: 1024px) {
+// @media screen and (min-width: 1024px) {
 
-  //medium
-  .navbar__wrapper {
-    height: 72px;
-  }
+//   //medium
+//   .navbar__wrapper {
+//     height: 72px;
+//   }
 
-  .navbar__container {
-    //padding: 4px 24px;
-    padding: 0px 24px;
-    height: 72px;
+//   .navbar__container {
+//     //padding: 4px 24px;
+//     padding: 0px 24px;
+//     height: 72px;
 
-    & .navbar__container-left {
-      gap: 12px;
+//     & .navbar__container-left {
+//       gap: 12px;
 
-      & .navbar__container-left-logo {
-        & .navbar__container-left-logo-divider {
-          display: block;
-        }
-      }
+//       & .navbar__container-left-logo {
+//         & .navbar__container-left-logo-divider {
+//           display: block;
+//         }
+//       }
 
-      & .navbar__container-left-content {
-        display: flex;
-      }
+//       & .navbar__container-left-content {
+//         display: flex;
+//       }
 
-      & .navbar__container-left-logo-default {
-        & svg {
-          width: 72.8px;
-          height: 32px;
-        }
-      }
+//       & .navbar__container-left-logo-default {
+//         & svg {
+//           width: 72.8px;
+//           height: 32px;
+//         }
+//       }
 
-      & .navbar__container-left-content {
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-dropdown-menu {
-            & .hidden {
+//       & .navbar__container-left-content {
+//         & .navbar__container-left-content-navigation-group {
+//           & .navbar__container-left-content-navigation-dropdown-menu {
+//             & .hidden {
 
-              //display: flex;
-              & .navbar__dropdown-wrapper {
-                &.open {
-                  top: 72px;
-                }
-              }
-            }
+//               //display: flex;
+//               & .navbar__dropdown-wrapper {
+//                 &.open {
+//                   top: 72px;
+//                 }
+//               }
+//             }
 
-            & .shown {
-              display: none
-            }
-          }
-        }
-      }
-    }
+//             & .shown {
+//               display: none
+//             }
+//           }
+//         }
+//       }
+//     }
 
-    & .navbar__container-right {
-      & .navbar__burger-icon-wrapper {
-        display: none;
-      }
+//     & .navbar__container-right {
+//       & .navbar__burger-icon-wrapper {
+//         display: none;
+//       }
 
-      & .navbar__container-right-content {
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item {
-            &.tablet {
-              display: flex;
-            }
-          }
+//       & .navbar__container-right-content {
+//         & .navbar__container-right-content-navigation-group {
+//           & .navbar__container-right-content-navigation-item {
+//             &.tablet {
+//               display: flex;
+//             }
+//           }
 
-          & .navbar__container-right-content-navigation-item-profile {
-            & a {
-              display: flex;
-            }
-          }
-        }
-      }
-    }
-  }
+//           & .navbar__container-right-content-navigation-item-profile {
+//             & a {
+//               display: flex;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
 
-  .navbar__main-container {
-    &.show {
-      height: auto;
-      background-color: inherit;
-      transition: none;
-    }
-  }
+//   .navbar__main-container {
+//     &.show {
+//       height: auto;
+//       background-color: inherit;
+//       transition: none;
+//     }
+//   }
 
-  .navbar__sidebar {
-    &.show {
-      right: -100%;
-    }
-  }
-}
+//   .navbar__sidebar {
+//     &.show {
+//       right: -100%;
+//     }
+//   }
+// }
 
-@media screen and (min-width: 1200px) {
+// @media screen and (min-width: 1200px) {
 
-  //large
-  .navbar__wrapper {
-    height: 80px
-  }
+//   //large
+//   .navbar__wrapper {
+//     height: 80px
+//   }
 
-  .navbar__container {
-    //padding: 8px 32px;
-    padding: 0px 32px;
-    height: 80px;
+//   .navbar__container {
+//     //padding: 8px 32px;
+//     padding: 0px 32px;
+//     height: 80px;
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        justify-content: inherit;
+//     & .navbar__container-left {
+//       & .navbar__container-left-content {
+//         justify-content: inherit;
 
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-dropdown-menu {
-            & .hidden {
-              //display: none
-            }
+//         & .navbar__container-left-content-navigation-group {
+//           & .navbar__container-left-content-navigation-dropdown-menu {
+//             & .hidden {
+//               //display: none
+//             }
 
-            & .shown {
-              display: flex;
-              z-index: 1030;
-            }
-          }
-        }
-      }
-    }
+//             & .shown {
+//               display: flex;
+//               z-index: 1030;
+//             }
+//           }
+//         }
+//       }
+//     }
 
-    & .navbar__container-right {
-      & .navbar__container-right-content {
-        justify-content: inherit;
-      }
-    }
-  }
-}
+//     & .navbar__container-right {
+//       & .navbar__container-right-content {
+//         justify-content: inherit;
+//       }
+//     }
+//   }
+// }
 
-@media screen and (min-width: 1440px) {
+// @media screen and (min-width: 1440px) {
 
-  //largest
-  .navbar__wrapper {
-    height: 80px;
-  }
+//   //largest
+//   .navbar__wrapper {
+//     height: 80px;
+//   }
 
-  .navbar__container {
-    //padding: 8px 40px;
-    padding: 0px 40px;
-    height: 80px;
+//   .navbar__container {
+//     //padding: 8px 40px;
+//     padding: 0px 40px;
+//     height: 80px;
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        justify-content: center;
+//     & .navbar__container-left {
+//       & .navbar__container-left-content {
+//         justify-content: center;
 
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-item-search-bar {
-            display: inherit; //flex
-          }
-        }
-      }
-    }
+//         & .navbar__container-left-content-navigation-group {
+//           & .navbar__container-left-content-navigation-item-search-bar {
+//             display: inherit; //flex
+//           }
+//         }
+//       }
+//     }
 
-    & .navbar__container-right {
-      & .navbar__container-right-content {
-        justify-content: inherit;
+//     & .navbar__container-right {
+//       & .navbar__container-right-content {
+//         justify-content: inherit;
 
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item-search-bar {
-            display: inherit; //none
-          }
-        }
-      }
-    }
-  }
-}
+//         & .navbar__container-right-content-navigation-group {
+//           & .navbar__container-right-content-navigation-item-search-bar {
+//             display: inherit; //none
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
