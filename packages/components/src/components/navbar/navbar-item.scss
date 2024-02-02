@@ -7,12 +7,30 @@
   flex-direction: row;
   align-items: center;
   padding: 0px 8px;
-  gap: 8px;
+  //gap: 8px;
   flex: none;
   order: 0;
   flex-grow: 0;
   font-family: var(--ifx-font-family);
   text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  color: tokens.$ifxColorBaseBlack;
+
+  &.isParent { 
+    gap: 8px;
+  }
+
+  & .navItemIconWrapper { 
+    transition: .3s;
+  }
+
+  &.open { 
+    & .navItemIconWrapper { 
+      transform: rotate(-180deg);
+      transition: .3s;
+    }
+  }
 
 
   &.hideElement {
@@ -22,28 +40,15 @@
   &:hover {
     color: tokens.$ifxColorOcean500;
     cursor: pointer;
-
-    & a {
-      color: tokens.$ifxColorOcean500;
-    }
   }
 
   &.remove {
     display: none;
   }
 
-  & a {
-    display: flex;
-    align-items: center;
-    font-weight: 400;
-    font-size: 16px;
-    //line-height: 24px;
-    color: tokens.$ifxColorBaseBlack;
-    text-decoration: none;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-  }
+  
+
+  
 
   &.removeLabel {
     & a {
@@ -125,6 +130,13 @@
 
 .container { 
   position: relative;
+
+  & .inner__content-wrapper { 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .navbar-menu  {

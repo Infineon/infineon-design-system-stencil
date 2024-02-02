@@ -17,7 +17,7 @@ export class NavbarItem {
   @Prop() hideComponent: boolean = false;
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
-
+ 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -138,24 +138,27 @@ export class NavbarItem {
 
   closeItemMenu() { 
     const itemMenu = this.getItemMenu()
+    const menuItem = this.getNavBarItem()
     if(itemMenu) { 
       this.handleClassList(itemMenu, 'remove', 'open')
+      this.handleClassList(menuItem, 'remove', 'open')
     }
   }
 
   toggleItemMenu() {
-    if(this.isMenuItem && this.hasChildNavItems) { 
-      const itemMenu = this.getItemMenu()
-      this.handleClassList(itemMenu, 'add', 'right')
+    if(!this.internalHref) {     
+      if(this.isMenuItem && this.hasChildNavItems) { 
+        const itemMenu = this.getItemMenu()
+        this.handleClassList(itemMenu, 'add', 'right')
+      }
+   
+      if(this.hasChildNavItems) { 
+        const itemMenu = this.getItemMenu();
+        const menuItem = this.getNavBarItem()
+        this.handleClassList(itemMenu, 'toggle', 'open');
+        this.handleClassList(menuItem, 'toggle', 'open');
+      } 
     }
- 
-    if(this.hasChildNavItems) { 
-      const itemMenu = this.getItemMenu();
-      const menuItem = this.getNavBarItem()
-
-      this.handleClassList(itemMenu, 'toggle', 'open');
-      this.handleClassList(menuItem, 'toggle', 'open');
-    } 
   }
 
   
@@ -189,16 +192,27 @@ export class NavbarItem {
   render() {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
-        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""} ${this. hideComponent ? 'hideElement' : ""} ${this.isMenuItem ? 'menuItem' : ""}`}>
-          <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
-            {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__container-left-content-navigation-item ${this.hideLabel ? 'removeLabel' : ""} ${this. hideComponent ? 'hideElement' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
+          <div class="inner__content-wrapper">
+            <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
+              {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+            </div>
+            <span>
+              <slot onSlotchange={(e) => this.handleSlotChange(e)} />
+            </span>
           </div>
-          <span>
-            <slot onSlotchange={(e) => this.handleSlotChange(e)} />
-          </span>
-          {this.hasChildNavItems && !this.isMenuItem && <ifx-icon icon="chevron-up-12" />}
-          {this.hasChildNavItems && this.isMenuItem && <ifx-icon icon="chevron-right-12" />}
+
+          {this.hasChildNavItems && !this.isMenuItem &&  
+          <div class="navItemIconWrapper">
+            <ifx-icon icon="chevron-up-12" />
+          </div>}
+         
+         {this.hasChildNavItems && this.isMenuItem && 
+         <div class="menuItemIconWrapper">
+            <ifx-icon icon="chevron-right-12" />
+          </div>}
         </a>
+        
         {this.hasChildNavItems && <ul class='navbar-menu'></ul>}
       </div>
     )

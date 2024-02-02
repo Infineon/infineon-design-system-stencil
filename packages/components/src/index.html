@@ -29,7 +29,7 @@
 
     <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="" href="">
       Menu Item 1
-      <ifx-navbar-item icon="calendar16">
+      <ifx-navbar-item icon="calendar16" >
         Nested Item 1
         <ifx-navbar-item>Nested Item 2
           <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
@@ -57,6 +57,12 @@
     <ifx-navbar-item hide-label="false" slot="left-item">
       Menu Item 2
     </ifx-navbar-item>
+
+    <ifx-navbar-item slot="left-item">
+      More
+      <ifx-navbar-item>Item1</ifx-navbar-item>
+      <ifx-navbar-item>Item2</ifx-navbar-item>
+    </ifx-navbar-item>
  
     <ifx-search-bar slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
 
@@ -70,7 +76,6 @@
       Tisho
     </ifx-navbar-item>
   </ifx-navbar>
-
 
 </body>
 
