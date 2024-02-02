@@ -118,4 +118,4 @@ packages/components/stencil-components/
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
 packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
-
+packages/components/public-storybook/fonts/*
