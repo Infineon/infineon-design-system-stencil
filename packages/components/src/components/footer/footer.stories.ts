@@ -6,14 +6,19 @@ export default {
     variant: 'medium',
     termsUrl: 'https://yourwebsite.com/terms',
     termsTarget: '_blank',
+    displayTermsLink: true,
     imprintUrl: 'https://yourwebsite.com/imprint',
     imprintTarget: '_blank',
+    displayImprintLink: true,
     privacyPolicyUrl: 'https://yourwebsite.com/privacy-policy',
     privacyPolicyTarget: '_blank',
+    displayPrivacyPolicyLink: true,
     glossaryUrl: 'https://yourwebsite.com/glossary',
-    glossaryTarget: '_blank'
+    glossaryTarget: '_blank',
+    displayGlossaryLink: true,
+    displayCopyright: true,
+    copyrightText: '© 1999 - 2022 Infineon Technologies AG'
   },
-
 
   argTypes: {
     variant: {
@@ -21,9 +26,19 @@ export default {
       control: { type: 'radio' },
     },
     termsUrl: { control: 'text' },
+    termsTarget: { control: 'text' },
+    displayTermsLink: { control: 'boolean' },
     imprintUrl: { control: 'text' },
+    imprintTarget: { control: 'text' },
+    displayImprintLink: { control: 'boolean' },
     privacyPolicyUrl: { control: 'text' },
+    privacyPolicyTarget: { control: 'text' },
+    displayPrivacyPolicyLink: { control: 'boolean' },
     glossaryUrl: { control: 'text' },
+    glossaryTarget: { control: 'text' },
+    displayGlossaryLink: { control: 'boolean' },
+    displayCopyright: { control: 'boolean' },
+    copyrightText: { control: 'text' },
   },
 };
 
@@ -31,10 +46,15 @@ const DefaultTemplate = (args) => {
   const key = Object.values(args).join('-');
   return `
     <ifx-footer key="${key}" variant="${args.variant}" 
-               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}" 
-               imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}" 
-               privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-parget="${args.privacyPolicyTarget}" 
-               glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}">
+               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
+               display-terms-link="${args.displayTermsLink}"
+               imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}"
+               display-imprint-link="${args.displayImprintLink}"
+               privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-target="${args.privacyPolicyTarget}"
+               display-privacy-policy-link="${args.displayPrivacyPolicyLink}"
+               glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}"
+               display-glossary-link="${args.displayGlossaryLink}"
+               display-copyright="${args.displayCopyright}" copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -57,6 +77,7 @@ const DefaultTemplate = (args) => {
     </div>
   </ifx-footer>`;
 }
+
 
 
 export const Medium = DefaultTemplate.bind({});

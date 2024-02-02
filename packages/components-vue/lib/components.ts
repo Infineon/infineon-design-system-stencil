@@ -174,12 +174,18 @@ export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-foote
   'variant',
   'termsUrl',
   'termsTarget',
+  'displayTermsLink',
   'imprintUrl',
   'imprintTarget',
+  'displayImprintLink',
   'privacyPolicyUrl',
   'privacyPolicyTarget',
+  'displayPrivacyPolicyLink',
   'glossaryUrl',
-  'glossaryTarget'
+  'glossaryTarget',
+  'displayGlossaryLink',
+  'displayCopyright',
+  'copyrightText'
 ]);
 
 

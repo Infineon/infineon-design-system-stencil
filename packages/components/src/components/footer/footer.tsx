@@ -7,20 +7,24 @@ import { Component, h, Element, Prop, State, Host } from '@stencil/core';
 })
 
 export class Footer {
-  @Element() el;
-  @Prop() variant: string = 'medium'
+  @Element() el: HTMLElement;
+  @Prop() variant: string = 'medium';
   @State() large: boolean = false;
   @State() medium: boolean = false;
   @Prop() termsUrl: string = '#';
   @Prop() termsTarget: string = '_self';
+  @Prop() displayTermsLink: boolean = true;
   @Prop() imprintUrl: string = '#';
   @Prop() imprintTarget: string = '_self';
+  @Prop() displayImprintLink: boolean = true;
   @Prop() privacyPolicyUrl: string = '#';
   @Prop() privacyPolicyTarget: string = '_self';
+  @Prop() displayPrivacyPolicyLink: boolean = true;
   @Prop() glossaryUrl: string = '#';
   @Prop() glossaryTarget: string = '_self';
-
-
+  @Prop() displayGlossaryLink: boolean = true;
+  @Prop() displayCopyright: boolean = true;
+  @Prop() copyrightText: string = '© 1999 - 2022 Infineon Technologies AG';
 
   componentWillLoad() {
     if (this.variant.toLowerCase() === 'large') {
@@ -74,14 +78,24 @@ export class Footer {
             }
 
             <div class="footer__base">
-              <div class="footer__brand">
-                © 1999 - 2022 Infineon Technologies AG
-              </div>
+              {this.displayCopyright &&
+                <div class="footer__brand">
+                  {this.copyrightText}
+                </div>
+              }
               <div class="footer__buttons">
-                <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
-                <ifx-link variant="menu" href={this.imprintUrl} target={this.imprintTarget}>Imprint</ifx-link>
-                <ifx-link variant="menu" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</ifx-link>
-                <ifx-link variant="menu" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</ifx-link>
+                {this.displayTermsLink &&
+                  <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
+                }
+                {this.displayImprintLink &&
+                  <ifx-link variant="menu" href={this.imprintUrl} target={this.imprintTarget}>Imprint</ifx-link>
+                }
+                {this.displayPrivacyPolicyLink &&
+                  <ifx-link variant="menu" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</ifx-link>
+                }
+                {this.displayGlossaryLink &&
+                  <ifx-link variant="menu" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</ifx-link>
+                }
               </div>
             </div>
           </div>
