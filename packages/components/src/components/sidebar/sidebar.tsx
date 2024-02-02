@@ -15,6 +15,7 @@ export class Sidebar {
   @Prop() applicationName: string = ''
   @Prop() termsOfUse: string = ""
   @Prop() imprint: string = ""
+  @Prop() initialCollapse: boolean = true
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
   @State() internalTermsofUse: string = ""
@@ -22,11 +23,46 @@ export class Sidebar {
   @State() internalPrivacyPolicy: string = ""
   @State() activeItem: HTMLElement | null = null;
 
+  expandActiveItems(){
+
+    const expandRecursively = (parent) => {
+      if(!parent.isItemExpandable()){
+        return parent.active;
+      }
+      const children = this.getSidebarMenuItems(parent);
+      let activeChildPresent = false;
+      for(let i = 0; i < children.length; i++){
+        if(expandRecursively(children[i])){
+          activeChildPresent = true;
+          // topLevelItems[i].expandMenu();
+          break;
+        }else if(children[i].active){
+          activeChildPresent = true;
+          break;
+        }
+      }
+      if(activeChildPresent){
+        parent.expandMenu();
+      }
+      return activeChildPresent;
+    }
+
+    const topLevelItems = this.getSidebarMenuItems(this.el);
+    for(let i = 0; i < topLevelItems.length; i++){
+      if(expandRecursively(topLevelItems[i])){
+        // topLevelItems[i].expandMenu();
+        break;
+      }
+    }
+  }
+
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
     this.setInitialActiveItem();
+    if(!this.initialCollapse){
+      this.expandActiveItems();
+    }
     this.applyActiveSectionToParent(this.el);
-
   }
 
   // disconnectedCallback() {
