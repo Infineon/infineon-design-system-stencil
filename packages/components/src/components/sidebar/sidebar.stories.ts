@@ -6,7 +6,8 @@ export default {
 
   args: {
     icon: true,
-    applicationName: 'Application Name'
+    applicationName: 'Application Name',
+    initialCollapse: true
   },
 
   argTypes: {
@@ -34,6 +35,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
@@ -52,8 +54,22 @@ const DefaultTemplate = (args) => {
     sidebarElement.appendChild(itemElement);
   });
 
-  const thirdItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[2];
-  thirdItem.setAttribute('active', 'true') //first submenu item
+  const subItemElement1 = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+  subItemElement1.setAttribute('href', "http://google.com");
+  subItemElement1.setAttribute('target', "_blank");
+  subItemElement1.setAttribute('is-action-item', "false");
+  subItemElement1.textContent = 'Sub Item 1';
+  subItemElement1.setAttribute('active', 'true')
+  const subItemElement2 = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+  subItemElement2.setAttribute('href', "http://google.com");
+  subItemElement2.setAttribute('target', "_blank");
+  subItemElement2.setAttribute('is-action-item', "false");
+  subItemElement2.textContent = 'Sub Item 2';
+  
+  const firstItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[0];
+  firstItem.append(subItemElement1, subItemElement2)
+  firstItem.setAttribute('href', '');
+  // thirdItem.setAttribute('active', 'true') //first submenu item
 
 
   return sidebarElement;
