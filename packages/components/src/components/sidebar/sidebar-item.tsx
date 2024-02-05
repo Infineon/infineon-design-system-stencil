@@ -219,11 +219,15 @@ export class SidebarItem {
   }
 
   @Method()
-  async expandMenu(){
+  async expandMenu(ac: boolean){
       const menuItem = this.getSidebarMenuItem();
       const expandableMenu = this.getExpandableMenu();
       this.handleClassList(expandableMenu, 'add', 'open');
       this.handleClassList(menuItem, 'add', 'open');
+      if(ac){
+        this.handleClassList(expandableMenu, 'remove', 'active-section')
+        this.handleClassList(menuItem, 'remove', 'active-section')
+      }
   }
   
   @Method()

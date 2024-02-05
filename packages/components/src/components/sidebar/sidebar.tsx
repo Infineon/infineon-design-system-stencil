@@ -24,7 +24,7 @@ export class Sidebar {
   @State() activeItem: HTMLElement | null = null;
 
   expandActiveItems(){
-
+    let firstActiveSection = true;
     const expandRecursively = (parent) => {
       if(!parent.isItemExpandable()){
         return parent.active;
@@ -42,7 +42,12 @@ export class Sidebar {
         }
       }
       if(activeChildPresent){
-        parent.expandMenu();
+        if(firstActiveSection){
+          parent.expandMenu(false);
+          firstActiveSection = false;
+        }else{
+          parent.expandMenu(true);
+        }
       }
       return activeChildPresent;
     }

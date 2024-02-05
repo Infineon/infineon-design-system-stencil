@@ -30,7 +30,7 @@
 
 ## Methods
 
-### `expandMenu() => Promise<void>`
+### `expandMenu(ac: boolean) => Promise<void>`
 
 
 
