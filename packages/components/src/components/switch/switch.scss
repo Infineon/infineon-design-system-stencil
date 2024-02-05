@@ -24,7 +24,7 @@
   outline: none;
 
   &:focus {
-    outline: 4px solid #0A8276;
+    outline: 4px solid tokens.$ifxColorOcean500;
     outline-offset: 2px;
   }
 
@@ -33,13 +33,13 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #0A8276;
+    outline: 2px solid tokens.$ifxColorOcean500;
     outline-offset: 2px;
   }
 
   &.disabled {
     cursor: default;
-    border-color: #BFBBBB;
+    border-color: tokens.$ifxColorEngineering300;
   }
 
 
@@ -72,8 +72,8 @@
     transition: transform 0.3s ease, background-color 0.3s ease;
 
     &.disabled {
-      background-color: #BFBBBB;
-      border-color: #BFBBBB;
+      background-color: tokens.$ifxColorEngineering300;
+      border-color: tokens.$ifxColorEngineering300;
       cursor: default;
     }
   }
@@ -101,8 +101,8 @@
   border-color: tokens.$ifxColorOcean500;
 
   &.disabled {
-    background-color: #BFBBBB;
-    border-color: #BFBBBB;
+    background-color: tokens.$ifxColorEngineering300;
+    border-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
 }
