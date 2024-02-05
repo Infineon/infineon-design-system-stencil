@@ -1,11 +1,25 @@
 import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
 import { Option } from './interfaces';
 
+// Debounce function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
 @Component({
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
   shadow: true
 })
+
 
 
 export class Multiselect {
@@ -20,6 +34,7 @@ export class Multiselect {
   @Prop() label: string = "";
   @State() persistentSelectedOptions: Option[] = [];
   @Prop() placeholder: string = "";
+  @State() listOfOptions: Option[] = [];
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
   @Prop() maxItemCount: number;
@@ -95,14 +110,15 @@ export class Multiselect {
     return slicedOptions;
   }
 
-  handleSearch(event: Event) {
+
+  handleSearch = debounce((event: Event) => {
     const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
     if (searchTerm === '') {
       this.filteredOptions = this.loadedOptions;
     } else {
       this.filteredOptions = this.loadedOptions.filter(option => option.label.toLowerCase().includes(searchTerm))
     }
-  }
+  }, 300);
 
   componentDidLoad() {
     setTimeout(() => {
@@ -132,58 +148,64 @@ export class Multiselect {
 
 
   handleOptionClick(option: Option) {
-    this.internalError = false; //reset potential previous errors
+    this.internalError = false;
 
-    // 1. Prevent action if disabled
-    //check if newly selected option has children => if not, count it as 1, otherwise count the # of children
-    let newOptionsLength = option.children ? option.children.length : 1;
-    if (this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount &&
-      !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)) {
+    if (this.isSelectionLimitReached(option)) {
       console.error('Max item count reached');
       this.internalError = true;
       this.errorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
 
-    // 2. Determine if the current option was previously selected
+    this.updateSelection(option);
+    this.ifxSelect.emit(this.persistentSelectedOptions);
+  }
+
+
+  isSelectionLimitReached(option: Option): boolean {
+    let newOptionsLength = option.children ? option.children.length : 1;
+    return this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount &&
+      !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)
+  }
+
+  updateSelection(option: Option) {
     const wasSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
 
-    // 3. Handle parent-child relationships
     if (option.children && option.children.length > 0) {
-      // Check if all children of the option are already selected
-      const allChildrenSelected = option.children.every(child =>
-        this.persistentSelectedOptions.some(selectedOption => selectedOption.value === child.value)
-      );
-
-      if (allChildrenSelected) {
-        // If all children are already selected, remove them from persistentSelectedOptions
-        this.persistentSelectedOptions = this.persistentSelectedOptions.filter(
-          selectedOption => !option.children.some(child => child.value === selectedOption.value)
-        );
-      } else {
-        // If not all children are selected, add the ones that aren't
-        this.persistentSelectedOptions = [
-          ...this.persistentSelectedOptions,
-          ...option.children.filter(childOption =>
-            !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === childOption.value)
-          )
-        ];
-      }
+      this.handleParentOptionClick(option);
     } else {
-      // Handle child option click
-      if (wasSelected) {
-        this.persistentSelectedOptions = this.persistentSelectedOptions.filter(selectedOption => selectedOption.value !== option.value);
-      } else {
-        this.persistentSelectedOptions.push(option);
-      }
+      this.handleChildOptionClick(option, wasSelected);
     }
-
-
-    // 4. Emit `persistentSelectedOptions` 
-    const emittedOptions = this.persistentSelectedOptions;
-
-    this.ifxSelect.emit(emittedOptions);
   }
+
+  handleParentOptionClick(option: Option) {
+    const allChildrenSelected = option.children.every(child =>
+      this.persistentSelectedOptions.some(selectedOption => selectedOption.value === child.value)
+    );
+
+    if (allChildrenSelected) {
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(
+        selectedOption => !option.children.some(child => child.value === selectedOption.value)
+      )];
+    } else {
+      const newChildren = [...option.children.filter(childOption =>
+        !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === childOption.value)
+      )];
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...newChildren];
+    }
+  }
+
+  handleChildOptionClick(option: Option, wasSelected: boolean) {
+    if (wasSelected) {
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(selectedOption => selectedOption.value !== option.value)];
+    } else {
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, option];
+    }
+  }
+
+
+
+
 
 
   handleDocumentClick = (event: Event) => {
