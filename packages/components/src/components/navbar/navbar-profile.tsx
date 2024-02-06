@@ -1,23 +1,29 @@
-import { Component, h, Element, Prop, State, Listen } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, getAssetPath  } from "@stencil/core";
 
 @Component({
-  tag: 'ifx-navbar-item',
+  tag: 'ifx-navbar-profile',
   styleUrl: 'navbar-item.scss',
-  shadow: true
+  shadow: true,
+  assetsDirs: ['assets']
 })
 
-export class NavbarItem {
+export class NavbarProfile {
 
   @Element() el;
   @Prop() hideLabel: boolean = false;
-  @Prop() icon: string = ""
   @Prop() href: string = ""
   @State() internalHref: string = ""
   @Prop() target: string = "_self";
   @Prop() hideComponent: boolean = false;
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
- 
+  @Prop() image: string = ""
+  @State() internalImage: string = ""
+  @Prop() alt: string = ""
+
+  private defaultProfileImage = getAssetPath(`./assets/default_image.png`);
+
+
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -33,6 +39,7 @@ export class NavbarItem {
 
   componentWillLoad() {
     this.setHref()
+    this.setImage()
     this.checkIfItemIsNested()
     const sidebarItems = this.getNavbarItems();
     if (sidebarItems.length !== 0) {
@@ -78,6 +85,12 @@ export class NavbarItem {
     })
   }
 
+  setImage() { 
+    if (this.image.toLowerCase().trim() === "") {
+      this.internalImage = undefined;
+    } else this.internalImage = this.image;
+  }
+
   setHref() {
     if (this.href.toLowerCase().trim() === "") {
       this.internalHref = undefined;
@@ -86,8 +99,7 @@ export class NavbarItem {
 
   checkIfItemIsNested() {
     const parentElement = this.el.parentElement;
-    if (parentElement.tagName.toUpperCase() === 'IFX-NAVBAR-ITEM' 
-    || parentElement.tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') {
+    if (parentElement.tagName.toUpperCase() === 'IFX-NAVBAR-ITEM') {
       this.isMenuItem = true;
       return;
     } else {
@@ -99,7 +111,6 @@ export class NavbarItem {
   setItemSideSpecifications() { 
     const menuItem = this.el;
     const slotValue = menuItem.getAttribute('slot')
-    console.log('menuItem', menuItem)
     if(slotValue.toLowerCase().trim() === "right-item") { 
       //add hideable
       //add class for correct mobile menu location
@@ -196,8 +207,8 @@ export class NavbarItem {
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${this.hideLabel ? 'removeLabel' : ""} ${this. hideComponent ? 'hideElement' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
-            <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
-              {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+            <div class={`navbar__container-right-content-navigation-item-icon-wrapper`}>
+              <img src={this.defaultProfileImage} alt={this.alt} />
             </div>
             <span>
               <slot onSlotchange={(e) => this.handleSlotChange(e)} />

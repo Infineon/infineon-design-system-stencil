@@ -54,7 +54,7 @@
       </ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-item hide-label="false" slot="left-item">
+    <ifx-navbar-item hide-label="false" slot="left-item" icon="calendar16">
       Menu Item 2
     </ifx-navbar-item>
 
@@ -67,14 +67,27 @@
     <ifx-search-bar slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
 
     <ifx-navbar-item hide-label="false" slot="right-item">
-      Right One
+      Right Item
+      <ifx-navbar-item>
+        Nested Right Item
+      </ifx-navbar-item>
     </ifx-navbar-item>
+
     <ifx-navbar-item hide-label="false" slot="right-item">
-      Right Two
+      Right Item
     </ifx-navbar-item>
-    <ifx-navbar-item hide-label="false" slot="right-profile-item">
+
+    <ifx-navbar-profile slot="right-item" image="">
       Tisho
-    </ifx-navbar-item>
+      <ifx-navbar-item>
+        Item
+        <ifx-navbar-item>Item</ifx-navbar-item>
+      </ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+    </ifx-navbar-profile>
+
   </ifx-navbar>
 
 </body>

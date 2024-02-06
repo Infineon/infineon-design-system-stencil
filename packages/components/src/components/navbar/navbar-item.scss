@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 
-.navbar__container-left-content-navigation-item {
+.navbar__item {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -67,6 +67,11 @@
     order: 0;
     flex-grow: 0;
 
+    & img { 
+      width: 20px;
+      height: 20px;
+    }
+
     &.removeWrapper {
       display: none;
     }
@@ -113,7 +118,7 @@
 
 
 // @media screen and (min-width: 720px) {  
-//   .navbar__container-left-content-navigation-item { 
+//   .navbar__item { 
 //     & a { 
 //       display: none;
 //     }
@@ -121,7 +126,7 @@
 // }
 
 // @media screen and (min-width: 1024px) { 
-//   .navbar__container-left-content-navigation-item { 
+//   .navbar__item { 
 //     & a { 
 //       display: flex;
 //     }
@@ -170,7 +175,7 @@
 
 
 
-.navbar__container-left-content-navigation-item { 
+.navbar__item { 
   &.menuItem {
     text-decoration: none;
     color: tokens.$ifxColorBaseBlack;
