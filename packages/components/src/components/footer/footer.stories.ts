@@ -16,7 +16,6 @@ export default {
     glossaryUrl: 'https://yourwebsite.com/glossary',
     glossaryTarget: '_blank',
     displayGlossaryLink: true,
-    displayCopyright: true,
     copyrightText: '© 1999 - 2022 Infineon Technologies AG'
   },
 
@@ -37,7 +36,6 @@ export default {
     glossaryUrl: { control: 'text' },
     glossaryTarget: { control: 'text' },
     displayGlossaryLink: { control: 'boolean' },
-    displayCopyright: { control: 'boolean' },
     copyrightText: { control: 'text' },
   },
 };
@@ -53,7 +51,7 @@ const DefaultTemplate = (args) => {
                display-privacy-policy-link="${args.displayPrivacyPolicyLink}"
                glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}"
                display-glossary-link="${args.displayGlossaryLink}"
-               display-copyright="${args.displayCopyright}" copyright-text="${args.copyrightText}">
+               copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>

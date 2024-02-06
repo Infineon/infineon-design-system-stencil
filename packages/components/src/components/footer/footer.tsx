@@ -23,7 +23,6 @@ export class Footer {
   @Prop() glossaryUrl: string = '#';
   @Prop() glossaryTarget: string = '_self';
   @Prop() displayGlossaryLink: boolean = true;
-  @Prop() displayCopyright: boolean = true;
   @Prop() copyrightText: string = '© 1999 - 2022 Infineon Technologies AG';
 
   componentWillLoad() {
@@ -78,7 +77,7 @@ export class Footer {
             }
 
             <div class="footer__base">
-              {this.displayCopyright &&
+              {this.copyrightText &&
                 <div class="footer__brand">
                   {this.copyrightText}
                 </div>
