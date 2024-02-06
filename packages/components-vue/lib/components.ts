@@ -184,7 +184,6 @@ export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-foote
   'glossaryUrl',
   'glossaryTarget',
   'displayGlossaryLink',
-  'displayCopyright',
   'copyrightText'
 ]);
 
