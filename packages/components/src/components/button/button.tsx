@@ -71,14 +71,19 @@ export class Button {
       if (parentForm) {
         ev.preventDefault();
 
-        const fakeButton = document.createElement('button');
-        if (this.type) {
-          fakeButton.type = this.type;
+        if (this.type === 'reset') {
+          // If the button type is 'reset', manually reset all custom form fields
+          this.resetClickHandler(); //this will reset all ifx-text-fields within a form
+        } else {
+          const fakeButton = document.createElement('button');
+          if (this.type) {
+            fakeButton.type = this.type;
+          }
+          fakeButton.style.display = 'none';
+          parentForm.appendChild(fakeButton);
+          fakeButton.click();
+          fakeButton.remove();
         }
-        fakeButton.style.display = 'none';
-        parentForm.appendChild(fakeButton);
-        fakeButton.click();
-        fakeButton.remove();
       }
     }
   }
