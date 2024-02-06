@@ -1,3 +1,33 @@
+# v20.44.2 (Fri Feb 02 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: font file import updated for storybook [#952](https://github.com/Infineon/infineon-design-system-stencil/pull/952) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.44.1 (Thu Feb 01 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: text field uses wrong font size and styling not aligned [#948](https://github.com/Infineon/infineon-design-system-stencil/pull/948) ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-vue from 20.41.0 to 20.44.0 in /examples/wrapper-components/vue-javascript [#957](https://github.com/Infineon/infineon-design-system-stencil/pull/957) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+---
+
 # v20.44.0 (Thu Jan 25 2024)
 
 #### 🚀 Enhancement

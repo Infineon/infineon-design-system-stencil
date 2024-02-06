@@ -41,7 +41,6 @@ export class IfxTabs {
 
 
   componentWillLoad() {
-    console.log("component will load")
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
@@ -182,7 +181,6 @@ export class IfxTabs {
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Tab') {
-      console.log("tab ev");
 
       if (ev.shiftKey) {
         // Shift + Tab

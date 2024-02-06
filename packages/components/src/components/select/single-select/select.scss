@@ -25,8 +25,8 @@
   }
 
   .ifx-label-wrapper {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: anywhere;
@@ -36,8 +36,8 @@
 
   .ifx-error-message-wrapper {
     color: #CD002F;
-    font-size: 12px;
-    line-height: 16px;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: anywhere;
@@ -50,8 +50,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    box-shadow: 0 0 0 1px tokens.$ifxColorEngineering400;
-    border-radius: 1px;
+    border: 1px solid tokens.$ifxColorEngineering400;
+    border-radius: tokens.$ifxBorderRadius12;
     font-weight: 400;
     font-style: normal;
 
@@ -59,14 +59,16 @@
       height: 36px;
       line-height: 20px;
       padding: 8px 12px;
-      font-size: 14px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
       height: 40px;
       line-height: 24px;
       padding: 8px 16px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
     }
 
     &.disabled {
@@ -84,16 +86,17 @@
     }
 
     &:hover:not(.focus, :focus) {
-      border-color: #8D8786;
+      border-color: tokens.$ifxColorEngineering500;
     }
 
     &.active {
-      box-shadow: 0 0 0 1px #0A8276 !important; // Active border color
+      border-color: tokens.$ifxColorOcean500 !important; // Active border color
 
       & .ifx-choices__icon-wrapper-up {
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: tokens.$ifxSpace100;
 
       }
 
@@ -143,6 +146,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-left: tokens.$ifxSpace100;
 
       &:hover {
         cursor: pointer;
@@ -219,20 +223,20 @@ END Select options: item alignment
     display: block;
     width: 100%;
     padding: 8px 16px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid tokens.$ifxColorEngineering400;
     background-color: #ffffff;
     margin: 0;
     font-style: normal;
     font-weight: 400;
 
     &.small-select {
-      line-height: 20px;
-      font-size: 14px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
-      line-height: 24px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
     }
 
   }
@@ -394,7 +398,8 @@ END Select options: item alignment
     vertical-align: middle;
     border-radius: 20px;
     padding: 4px 10px;
-    font-size: 12px;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
     font-weight: 500;
     margin-right: 3.75px;
     margin-bottom: 3.75px;
@@ -475,13 +480,13 @@ END Select options: item alignment
     font-weight: 400;
 
     &.small-select {
-      line-height: 20px;
-      font-size: 14px;
+      font-size: tokens.$ifxFontSizeS;
+      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
-      line-height: 24px;
-      font-size: 16px;
+      font-size: tokens.$ifxFontSizeM;
+      line-height: tokens.$ifxLineHeightM;
     }
 
     &.selected {
@@ -502,7 +507,8 @@ END Select options: item alignment
 
     .choices__list--dropdown .choices__item--selectable:after {
       // content: attr(data-select-text); #press to select text next to select option
-      font-size: 12px;
+      font-size: tokens.$ifxFontSizeXs;
+      line-height: tokens.$ifxLineHeightXs;
       opacity: 0;
       position: absolute;
       right: 10px;
@@ -565,7 +571,8 @@ END Select options: item alignment
 
   .choices__heading {
     font-weight: 600;
-    font-size: 12px;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
     padding: 10px;
     border-bottom: 1px solid #f7f7f7;
     color: tokens.$ifxColorBaseBlack
@@ -611,7 +618,8 @@ END Select options: item alignment
     display: inline-block;
     vertical-align: baseline;
     background-color: #f9f9f9;
-    font-size: 14px;
+    font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
     margin-bottom: 5px;
     border: 0;
     border-radius: 0;

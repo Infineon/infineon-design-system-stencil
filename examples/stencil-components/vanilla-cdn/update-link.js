@@ -19,7 +19,7 @@ const cdnLinkCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@
 // const cdnStylesheetLatest = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
 // const cdnStylesheetCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
 
-const localLink = '<script type="module" src="dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
+const localLink = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
 // const localStylesheet = '<link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css">';
 
 let newScriptSrc;
