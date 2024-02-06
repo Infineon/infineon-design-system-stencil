@@ -44,6 +44,8 @@ export class Table {
       defaultColDef: {
         resizable: true,
       },
+      domLayout: 'autoHeight',
+
       suppressCellFocus: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,

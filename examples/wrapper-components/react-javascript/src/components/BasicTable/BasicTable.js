@@ -21,7 +21,6 @@ function BasicTable() {
       rows={JSON.stringify(rows)}
       table-height='auto'>
     </IfxBasicTable>
-
   );
 }
 

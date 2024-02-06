@@ -5,6 +5,8 @@
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
 
+
+
 .ifx-ag-grid .ag-header-cell:focus {
   outline: none !important;
 }
@@ -86,7 +88,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-
+  z-index: 1; //ensure the stacking order when used inside js frameworks
 }
 
 .ag-row-odd {
