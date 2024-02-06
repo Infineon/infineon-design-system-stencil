@@ -43,9 +43,8 @@ export default {
 };
 
 const DefaultTemplate = (args) => {
-  const key = Object.values(args).join('-');
   return `
-    <ifx-footer key="${key}" variant="${args.variant}" 
+    <ifx-footer variant="${args.variant}" 
                terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
                display-terms-link="${args.displayTermsLink}"
                imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}"
