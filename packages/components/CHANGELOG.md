@@ -1,3 +1,15 @@
+# v20.45.0 (Wed Feb 07 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: implemented prop showFooter [#990](https://github.com/Infineon/infineon-design-system-stencil/pull/990) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.44.3 (Wed Feb 07 2024)
 
 #### 🐛 Bug Fix
