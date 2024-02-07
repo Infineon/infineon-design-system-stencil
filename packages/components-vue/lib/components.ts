@@ -406,7 +406,8 @@ export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sid
   'termsOfUse',
   'imprint',
   'privacyPolicy',
-  'target'
+  'target',
+  'showFooter'
 ]);
 
 

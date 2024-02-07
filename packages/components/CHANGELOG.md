@@ -1,3 +1,34 @@
+# v20.45.0 (Wed Feb 07 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: implemented prop showFooter [#990](https://github.com/Infineon/infineon-design-system-stencil/pull/990) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.44.3 (Wed Feb 07 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: prevent click dom event from button when disabled [#977](https://github.com/Infineon/infineon-design-system-stencil/pull/977) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-vue from 20.44.1--canary.952.ef26122f343bda06639a1a121612a92548dea562.0 to 20.44.2 in /examples/wrapper-components/vue-javascript [#979](https://github.com/Infineon/infineon-design-system-stencil/pull/979) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.44.1--canary.952.444b06f83e4c1084dafa5d43b2817f77b8e40369.0 to 20.44.2 in /examples/wrapper-components/react-javascript [#980](https://github.com/Infineon/infineon-design-system-stencil/pull/980) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.44.2 (Fri Feb 02 2024)
 
 #### 🐛 Bug Fix

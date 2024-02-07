@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element, Watch, State, Listen } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -6,7 +6,6 @@ import classNames from 'classnames';
   styleUrl: 'button.scss',
   shadow: true,
 })
-
 export class Button {
   @Prop() variant: 'primary' | 'secondary' | 'tertiary' = 'primary';
   @Prop() theme: 'default' | 'danger' | 'inverse' = 'default';
@@ -32,14 +31,14 @@ export class Button {
     this.focusableElement.focus();
   }
 
-  insertNativeButton() { 
+  insertNativeButton() {
     this.nativeButton = document.createElement('button');
     this.nativeButton.type = this.type;
     this.nativeButton.style.display = 'none';
     this.el.closest('form').appendChild(this.nativeButton);
   }
 
-  handleFormAndInternalHref() { 
+  handleFormAndInternalHref() {
     if (this.el.closest('form')) {
       if (this.el.href) {
         this.el.internalHref = undefined;
@@ -50,29 +49,41 @@ export class Button {
     }
   }
 
-  handleButtonWidth(){
-    if(this.fullWidth){
+  handleButtonWidth() {
+    if (this.fullWidth) {
       this.el.style.setProperty('--bw', '100%');
-    }else{
+    } else {
       this.el.style.setProperty('--bw', 'fit-content');
     }
   }
 
   componentWillLoad() {
-   this.handleFormAndInternalHref()
+    this.handleFormAndInternalHref()
   }
-  
-  componentWillRender(){  
+
+  componentWillRender() {
     this.handleButtonWidth()
   }
 
-  handleClick() {
-    if (!this.disabled) {
-      if (this.nativeButton) {
+  handleClick = (ev: Event) => {
+    if (this.el.shadowRoot) {
+      const parentForm = this.el.closest('form');
+      if (parentForm) {
+        ev.preventDefault();
+
         if (this.type === 'reset') {
+          // If the button type is 'reset', manually reset all custom form fields
           this.resetClickHandler(); //this will reset all ifx-text-fields within a form
+        } else {
+          const fakeButton = document.createElement('button');
+          if (this.type) {
+            fakeButton.type = this.type;
+          }
+          fakeButton.style.display = 'none';
+          parentForm.appendChild(fakeButton);
+          fakeButton.click();
+          fakeButton.remove();
         }
-        this.nativeButton.click(); //clicking the nativeButton on type reset will include standard input type text as well
       }
     }
   }
@@ -87,13 +98,19 @@ export class Button {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'Enter') {
-      this.handleClick();
+    if (ev.key === 'Enter' && !this.disabled) {
+      this.handleClick(ev as unknown as MouseEvent);
+    }
+  }
+
+  @Listen('click', { capture: true })
+  handleHostClick(event: Event) {
+    if (this.disabled === true) {
+      event.stopImmediatePropagation();
     }
   }
 
   handleFocus(event: FocusEvent) {
-    // the anchor element should not be focusable when it's disabled
     if (this.disabled) {
       event.preventDefault();
       this.focusableElement.blur();
@@ -109,7 +126,7 @@ export class Button {
           class={this.getClassNames()}
           href={!this.disabled ? this.internalHref : undefined}
           target={this.target}
-          onClick={this.handleClick.bind(this)}
+          onClick={this.handleClick}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           onFocus={(event) => this.handleFocus(event)}
           aria-disabled={this.disabled}
