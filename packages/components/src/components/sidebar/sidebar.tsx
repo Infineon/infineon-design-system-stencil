@@ -17,6 +17,7 @@ export class Sidebar {
   @Prop() imprint: string = ""
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
+  @Prop() hideFooter: boolean = false
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
@@ -295,22 +296,25 @@ export class Sidebar {
           </div>
         </div>
 
-        <div class='sidebar__footer-container'>
-          <div class="sidebar__footer-wrapper">
-            <div class='sidebar__footer-wrapper-top-links'>
-              <div class="sidebar__footer-wrapper-top-line">
-                <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
-                <a target={this.target} href={this.internalImprint}>Imprint</a>
+        {
+          !this.hideFooter &&
+          <div class='sidebar__footer-container'>
+            <div class="sidebar__footer-wrapper">
+              <div class='sidebar__footer-wrapper-top-links'>
+                <div class="sidebar__footer-wrapper-top-line">
+                  <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                  <a target={this.target} href={this.internalImprint}>Imprint</a>
+                </div>
+                <div class="sidebar__footer-wrapper-bottom-line">
+                  <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+                </div>
               </div>
-              <div class="sidebar__footer-wrapper-bottom-line">
-                <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+              <div class='sidebar__footer-wrapper-bottom-links'>
+                <a href='https://www.infineon.com/'>© 1999 - 2023 Infineon Technologies AG</a>
               </div>
-            </div>
-            <div class='sidebar__footer-wrapper-bottom-links'>
-              <a href='https://www.infineon.com/'>© 1999 - 2023 Infineon Technologies AG</a>
             </div>
           </div>
-        </div>
+        }
       </div>
     );
   }

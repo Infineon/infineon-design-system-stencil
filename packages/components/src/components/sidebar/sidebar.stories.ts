@@ -6,7 +6,8 @@ export default {
 
   args: {
     icon: true,
-    applicationName: 'Application Name'
+    applicationName: 'Application Name',
+    hideFooter: false
   },
 
   argTypes: {
@@ -34,6 +35,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('hide-footer', args.hideFooter);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
