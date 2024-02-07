@@ -17,7 +17,7 @@ export class Sidebar {
   @Prop() imprint: string = ""
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
-  @Prop() hideFooter: boolean = false
+  @Prop() showFooter: boolean = true
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
@@ -297,7 +297,7 @@ export class Sidebar {
         </div>
 
         {
-          !this.hideFooter &&
+          this.showFooter &&
           <div class='sidebar__footer-container'>
             <div class="sidebar__footer-wrapper">
               <div class='sidebar__footer-wrapper-top-links'>
