@@ -75,7 +75,7 @@ export class Footer {
 
             <div class="footer__base">
               <div class="footer__brand">
-                © 1999 - 2022 Infineon Technologies AG
+                © 1999 - 2024 Infineon Technologies AG
               </div>
               <div class="footer__buttons">
                 <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
