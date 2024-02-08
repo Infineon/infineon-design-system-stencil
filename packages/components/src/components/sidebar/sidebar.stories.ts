@@ -8,9 +8,9 @@ export default {
     icon: true,
     applicationName: 'Application Name',
     showFooter: true,
-    displayTermsOfUseLink: true,
-    displayImprintLink: true,
-    displayPrivacyPolicyLink: true
+    termsOfUse: 'http://google.com',
+    imprint: 'http://google.com',
+    privacyPolicy: 'http://google.com'
   },
 
   argTypes: {
@@ -26,6 +26,16 @@ export default {
       action: 'ifxSidebarMenu',
       description: 'Custom event emitted when a menu is expanded or closed',
     },
+    imprint: {
+      if: { arg: 'showFooter', eq: true}
+    },
+    termsOfUse: {
+      if: { arg: 'showFooter', eq: true}
+    },
+    privacyPolicy: {
+      if: { arg: 'showFooter', eq: true}
+    },
+
 
   },
 };
@@ -39,9 +49,9 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
   sidebarElement.setAttribute('show-footer', args.showFooter);
-  sidebarElement.setAttribute('display-terms-of-use-link', args.displayTermsOfUseLink);
-  sidebarElement.setAttribute('display-imprint-link', args.displayImprintLink);
-  sidebarElement.setAttribute('display-privacy-policy-link', args.displayPrivacyPolicyLink);
+  sidebarElement.setAttribute('terms-of-use', args.termsOfUse);
+  sidebarElement.setAttribute('imprint', args.imprint);
+  sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 

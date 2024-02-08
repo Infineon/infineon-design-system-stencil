@@ -18,9 +18,6 @@ export class Sidebar {
   @Prop() imprint: string = ""
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
-  @Prop() displayTermsOfUseLink: boolean = true;
-  @Prop() displayImprintLink: boolean = true;
-  @Prop() displayPrivacyPolicyLink: boolean = true;
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
@@ -267,9 +264,9 @@ export class Sidebar {
 
 
   componentWillLoad() {
-    this.internalTermsofUse = this.termsOfUse || 'Not available';
-    this.internalPrivacyPolicy = this.privacyPolicy || 'Not available';
-    this.internalImprint = this.imprint || 'Not available';
+    this.internalTermsofUse = this.termsOfUse.trim();
+    this.internalPrivacyPolicy = this.privacyPolicy.trim();
+    this.internalImprint = this.imprint.trim();
   }
 
   render() {
@@ -305,15 +302,15 @@ export class Sidebar {
               <div class='sidebar__footer-wrapper-top-links'>
                 <div class="sidebar__footer-wrapper-top-line">
                   {
-                    this.displayTermsOfUseLink && <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                    this.internalTermsofUse !== ''  && <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
                   }
                   {
-                    this.displayImprintLink && <a target={this.target} href={this.internalImprint}>Imprint</a>
+                    this.internalImprint !== '' && <a target={this.target} href={this.internalImprint}>Imprint</a>
                   }
                 </div>
                 <div class="sidebar__footer-wrapper-bottom-line">
                   {
-                    this.displayPrivacyPolicyLink && <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+                    this.internalPrivacyPolicy !== '' && <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
                   }
                 </div>
               </div>
