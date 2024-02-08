@@ -404,10 +404,13 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
   'applicationName',
   'termsOfUse',
+  'showFooter',
   'imprint',
   'privacyPolicy',
   'target',
-  'showFooter'
+  'displayTermsOfUseLink',
+  'displayImprintLink',
+  'displayPrivacyPolicyLink'
 ]);
 
 

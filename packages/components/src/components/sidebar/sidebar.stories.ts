@@ -7,7 +7,10 @@ export default {
   args: {
     icon: true,
     applicationName: 'Application Name',
-    showFooter: true
+    showFooter: true,
+    displayTermsOfUseLink: true,
+    displayImprintLink: true,
+    displayPrivacyPolicyLink: true
   },
 
   argTypes: {
@@ -36,6 +39,9 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
   sidebarElement.setAttribute('show-footer', args.showFooter);
+  sidebarElement.setAttribute('display-terms-of-use-link', args.displayTermsOfUseLink);
+  sidebarElement.setAttribute('display-imprint-link', args.displayImprintLink);
+  sidebarElement.setAttribute('display-privacy-policy-link', args.displayPrivacyPolicyLink);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 

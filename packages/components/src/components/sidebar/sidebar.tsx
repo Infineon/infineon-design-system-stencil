@@ -14,10 +14,13 @@ export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
   @Prop() termsOfUse: string = ""
+  @Prop() showFooter: boolean = true
   @Prop() imprint: string = ""
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
-  @Prop() showFooter: boolean = true
+  @Prop() displayTermsOfUseLink: boolean = true;
+  @Prop() displayImprintLink: boolean = true;
+  @Prop() displayPrivacyPolicyLink: boolean = true;
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
@@ -27,7 +30,6 @@ export class Sidebar {
     // document.addEventListener('click', this.handleClickOutside);
     this.setInitialActiveItem();
     this.applyActiveSectionToParent(this.el);
-
   }
 
   // disconnectedCallback() {
@@ -302,11 +304,17 @@ export class Sidebar {
             <div class="sidebar__footer-wrapper">
               <div class='sidebar__footer-wrapper-top-links'>
                 <div class="sidebar__footer-wrapper-top-line">
-                  <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
-                  <a target={this.target} href={this.internalImprint}>Imprint</a>
+                  {
+                    this.displayTermsOfUseLink && <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                  }
+                  {
+                    this.displayImprintLink && <a target={this.target} href={this.internalImprint}>Imprint</a>
+                  }
                 </div>
                 <div class="sidebar__footer-wrapper-bottom-line">
-                  <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+                  {
+                    this.displayPrivacyPolicyLink && <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+                  }
                 </div>
               </div>
               <div class='sidebar__footer-wrapper-bottom-links'>
