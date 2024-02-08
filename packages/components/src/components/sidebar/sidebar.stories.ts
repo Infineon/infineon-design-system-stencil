@@ -7,6 +7,7 @@ export default {
   args: {
     icon: true,
     applicationName: 'Application Name',
+    showFooter: true,
     initialCollapse: true
   },
 
@@ -35,6 +36,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('show-footer', args.showFooter);
   sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];

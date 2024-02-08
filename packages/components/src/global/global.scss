@@ -1,9 +1,9 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
+@import "~@infineon/design-system-tokens/dist/fonts/ifx-fonts.css";
 
-* {
-  box-sizing: border-box;
-  line-height: tokens.$ifxLineHeightXl;
-}
+// * {
+//   box-sizing: border-box;
+//   line-height: tokens.$ifxLineHeightXl;
+// }
 
 ifx-icon:empty {
   display: none;
