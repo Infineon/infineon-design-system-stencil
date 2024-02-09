@@ -1,3 +1,16 @@
+# v20.46.0 (Fri Feb 09 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: footer links now customizable and removable + bump copyright date to current date [#976](https://github.com/Infineon/infineon-design-system-stencil/pull/976) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.45.0 (Wed Feb 07 2024)
 
 #### 🚀 Enhancement
