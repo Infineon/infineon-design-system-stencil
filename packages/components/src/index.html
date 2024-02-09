@@ -12,6 +12,8 @@
   <style defer>
 
     body { 
+      padding: 0;
+      margin: 0;
       font-family: "source sans 3";
     }
 
@@ -27,7 +29,7 @@
 
   <ifx-navbar show-logo-and-appname="true" application-name="Application name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
 
-    <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="" href="">
+    <ifx-navbar-item  icon="calendar16" slot="left-item" target="" href="">
       Menu Item 1
       <ifx-navbar-item icon="calendar16" >
         Nested Item 1
@@ -54,7 +56,7 @@
       </ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-item hide-label="false" slot="left-item" icon="calendar16">
+    <ifx-navbar-item slot="left-item" icon="calendar16" show-label="false">
       Menu Item 2
     </ifx-navbar-item>
 
@@ -64,20 +66,35 @@
       <ifx-navbar-item>Item2</ifx-navbar-item>
     </ifx-navbar-item>
  
-    <ifx-search-bar slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+    <ifx-search-bar slot="search-bar-left" is-open="false" show-close-button="true"></ifx-search-bar>
 
-    <ifx-navbar-item hide-label="false" slot="right-item">
-      Right Item
+    <ifx-navbar-item slot="right-item" show-label='true' icon="calendar16">
+      Item
+      <ifx-navbar-item>Nested Item</ifx-navbar-item>
+      <ifx-navbar-item>Nested Item</ifx-navbar-item>
+      <ifx-navbar-item>Nested Item</ifx-navbar-item>
       <ifx-navbar-item>
         Nested Right Item
+        <ifx-navbar-item>Nested Item</ifx-navbar-item>
+        <ifx-navbar-item>Nested Item</ifx-navbar-item>
+        <ifx-navbar-item>Nested Item</ifx-navbar-item>
+        <ifx-navbar-item>Nested Item</ifx-navbar-item>
+        <ifx-navbar-item>
+          Nested Right Item
+          <ifx-navbar-item>Nested Right Item</ifx-navbar-item>
+          <ifx-navbar-item>
+            Nested Right Item
+            <ifx-navbar-item>Nested Right Item</ifx-navbar-item>
+          </ifx-navbar-item>
+        </ifx-navbar-item>
       </ifx-navbar-item>
     </ifx-navbar-item>
 
-    <ifx-navbar-item hide-label="false" slot="right-item">
+    <ifx-navbar-item slot="right-item">
       Right Item
     </ifx-navbar-item>
 
-    <ifx-navbar-profile slot="right-item" image="">
+    <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
       Tisho
       <ifx-navbar-item>
         Item

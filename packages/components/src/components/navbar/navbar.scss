@@ -319,67 +319,67 @@
           }
         }
 
-        & .navbar__container-left-content-navigation-dropdown-menu {
-          & .hidden {
-            display: flex; //none
-            flex-direction: row;
-            align-items: center;
-            padding: 0px 8px;
-            gap: 8px;
+        // & .navbar__container-left-content-navigation-dropdown-menu {
+        //   & .hidden {
+        //     display: flex; //none
+        //     flex-direction: row;
+        //     align-items: center;
+        //     padding: 0px 8px;
+        //     gap: 8px;
 
-            & a {
-              & span {
-                &:hover {
-                  color: tokens.$ifxColorOcean500;
-                }
-              }
-            }
-          }
+        //     & a {
+        //       & span {
+        //         &:hover {
+        //           color: tokens.$ifxColorOcean500;
+        //         }
+        //       }
+        //     }
+        //   }
 
-          & .hidden {
-            position: relative;
-            //display: flex;
-            flex-direction: column;
+        //   & .hidden {
+        //     position: relative;
+        //     //display: flex;
+        //     flex-direction: column;
 
-            & .navbar__dropdown-wrapper {
-              display: none;
+        //     & .navbar__dropdown-wrapper {
+        //       display: none;
 
-              &.open {
-                top: 50px;
-                position: fixed;
-                display: flex;
-                flex-direction: column;
-              }
-            }
+        //       &.open {
+        //         top: 50px;
+        //         position: fixed;
+        //         display: flex;
+        //         flex-direction: column;
+        //       }
+        //     }
 
-            & a {
-              text-decoration: none;
-              font-weight: 400;
-              font-size: 16px;
-              line-height: 24px;
-              color: tokens.$ifxColorBaseBlack;
-              display: flex;
-              align-items: center;
+        //     & a {
+        //       text-decoration: none;
+        //       font-weight: 400;
+        //       font-size: 16px;
+        //       line-height: 24px;
+        //       color: tokens.$ifxColorBaseBlack;
+        //       display: flex;
+        //       align-items: center;
 
-              & span {
-                padding-right: 8.5px;
-              }
+        //       & span {
+        //         padding-right: 8.5px;
+        //       }
 
-              & ifx-icon {
-                transition: transform 0.3s;
-                transform: rotate(0deg);
-                color: tokens.$ifxColorOcean500;
-              }
+        //       & ifx-icon {
+        //         transition: transform 0.3s;
+        //         transform: rotate(0deg);
+        //         color: tokens.$ifxColorOcean500;
+        //       }
 
-              &.open {
-                & ifx-icon {
-                  transition: transform 0.3s;
-                  transform: rotate(180deg);
-                }
-              }
-            }
-          }
-        }
+        //       &.open {
+        //         & ifx-icon {
+        //           transition: transform 0.3s;
+        //           transform: rotate(180deg);
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
       }
     }
   }
