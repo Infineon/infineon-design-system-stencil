@@ -39,19 +39,44 @@ export class NavbarItem {
   }
 
   componentDidLoad() { 
- 
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.appendNavItemToMenu(navItems)
       if(!this.isMenuItem) { 
         this.setItemSideSpecifications()
-        console.log('setItemSideSpecifications invoked')
       } 
-      //first we need to check to make sure the siteItemsidespecs have been invoked.
-    
-      this.setMenuItemPosition()
+      setTimeout(() => {
+        this.setMenuItemPosition()
+      }, 1000)
     }
   }
+
+//   componentDidLoad() { 
+//     if(this.hasChildNavItems) { 
+//         const navItems = this.getNavbarItems();
+//         this.appendNavItemToMenu(navItems)
+//         if(!this.isMenuItem) { 
+//             this.setItemSideSpecifications().then(() => {
+//                 this.setMenuItemPosition()
+//             });
+//         } 
+//     }
+// }
+
+setMenuItemPosition() { 
+  if(this.isMenuItem && this.hasChildNavItems) { 
+    const menuPosition = this.checkItemMenuPosition()
+    if(menuPosition === 'left') { 
+      this.itemPosition = 'left'
+    } else if(menuPosition === 'right') { 
+      this.itemPosition = 'right'
+    }
+
+    console.log('item position', this.itemPosition)
+
+  }
+}
+
 
   handleClassList(el, type, className) {
     el.classList[type](className)
@@ -105,20 +130,39 @@ export class NavbarItem {
     }
   }
 
-  setItemSideSpecifications() { 
-    const menuItem = this.el;
-    const itemMenu = this.getItemMenu()
-    const slotValue = menuItem.getAttribute('slot')
+  // setItemSideSpecifications() { 
+  //   const menuItem = this.el;
+  //   const itemMenu = this.getItemMenu()
+  //   const slotValue = menuItem.getAttribute('slot')
  
-    if(slotValue.toLowerCase().trim() === "right-item") { 
-      this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
-      //add hideable
-      //add class for correct mobile menu location
-    } else { 
-      //remove hideable option
-      //add class for correct mobile menu location
-    }
-  }
+  //   if(slotValue.toLowerCase().trim() === "right-item") { 
+  //     this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
+  //     //add hideable
+  //     //add class for correct mobile menu location
+  //   } else { 
+  //     //remove hideable option
+  //     //add class for correct mobile menu location
+  //   }
+  // }
+
+  setItemSideSpecifications(): Promise<void> { 
+    return new Promise<void>((resolve, reject) => {
+        const menuItem = this.el;
+        const itemMenu = this.getItemMenu()
+        const slotValue = menuItem.getAttribute('slot')
+ 
+        if(slotValue.toLowerCase().trim() === "right-item") { 
+            this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
+            //add hideable
+            //add class for correct mobile menu location
+        } else { 
+            //remove hideable option
+            //add class for correct mobile menu location
+        }
+        resolve();
+    });
+}
+
 
   setInternalContent() {
     const slot = this.el.shadowRoot.querySelector('slot');
@@ -170,10 +214,7 @@ export class NavbarItem {
   toggleItemMenu() {
     if(!this.internalHref) {   
       const itemMenu = this.getItemMenu()
-      // if(this.isMenuItem && this.hasChildNavItems) { 
-      //   //this.handleClassList(itemMenu, 'add', 'right')
-      // }
-   
+    
       if(this.hasChildNavItems) { 
         const menuItem = this.getNavBarItem()
         this.handleClassList(itemMenu, 'toggle', 'open');
@@ -191,16 +232,21 @@ export class NavbarItem {
     }
   }
 
-  setMenuItemPosition() { 
-    if(this.isMenuItem && this.hasChildNavItems) { 
-      const menuPosition = this.checkItemMenuPosition()
-      if(menuPosition === 'left') { 
-        this.itemPosition = 'left'
-      } else if(menuPosition === 'right') { 
-        this.itemPosition = 'right'
-      }
-    }
-  }
+
+
+  // setMenuItemPosition(): Promise<void> { 
+  //   return new Promise<void>((resolve, reject) => {
+  //       if(this.isMenuItem && this.hasChildNavItems) { 
+  //           const menuPosition = this.checkItemMenuPosition()
+  //           if(menuPosition === 'left') { 
+  //               this.itemPosition = 'left'
+  //           } else if(menuPosition === 'right') { 
+  //               this.itemPosition = 'right'
+  //           }
+  //       }
+  //       resolve();
+  //   });
+  // }
   
   handleNestedLayerMenu(e) { 
     if(this.isMenuItem && this.hasChildNavItems) { 
