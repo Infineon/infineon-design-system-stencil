@@ -1,3 +1,16 @@
+# v20.46.1 (Fri Feb 09 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Multiselect options: handling of parent - child relationship [#978](https://github.com/Infineon/infineon-design-system-stencil/pull/978) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.46.0 (Fri Feb 09 2024)
 
 #### 🚀 Enhancement
