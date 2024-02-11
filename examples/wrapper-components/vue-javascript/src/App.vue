@@ -27,7 +27,8 @@
   <Spinner />
   <Status />
   <Switch />
-  <Table />
+  <TableBasic />
+  <TableAdvanced />
   <Tabs />
   <Tag />
   <TextField />
@@ -62,7 +63,8 @@ import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
 import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
-import Table from './components/BasicTable.vue'
+import TableBasic from './components/BasicTable.vue'
+import TableAdvanced from './components/AdvancedTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
 import SearchBar from './components/SearchBar.vue';
 import Badge from './components/Badge.vue'

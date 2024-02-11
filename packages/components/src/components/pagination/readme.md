@@ -24,6 +24,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-table](../table)
+
 ### Depends on
 
 - [ifx-select](../select/single-select)
@@ -36,6 +40,7 @@ graph TD;
   ifx-pagination --> ifx-icon-button
   ifx-select --> ifx-icon
   ifx-icon-button --> ifx-icon
+  ifx-table --> ifx-pagination
   style ifx-pagination fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

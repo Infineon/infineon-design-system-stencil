@@ -1,5 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import { FirstDataRenderedEvent, Grid, GridOptions } from 'ag-grid-community';
+import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CustomNoRowsOverlay } from './customNoRowsOverlay';
+import { CustomLoadingOverlay } from './customLoadingOverlay';
 
 
 @Component({
@@ -9,6 +11,7 @@ import { FirstDataRenderedEvent, Grid, GridOptions } from 'ag-grid-community';
 })
 export class Table {
   @State() gridOptions: GridOptions;
+  @State() gridApi: GridApi;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
   @Prop() columnDefs: any[] = [];
@@ -44,14 +47,24 @@ export class Table {
       defaultColDef: {
         resizable: true,
       },
-      domLayout: 'autoHeight',
+      autoSizeStrategy: {
+        type: 'fitGridWidth',
+        defaultMinWidth: 100,
 
+      },
       suppressCellFocus: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
+      loadingOverlayComponent: CustomLoadingOverlay,
+      noRowsOverlayComponent: CustomNoRowsOverlay,
+      noRowsOverlayComponentParams: {
+        noRowsMessageFunc: () =>
+          'No rows found at: ' + new Date().toLocaleTimeString(),
+      },
+
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
@@ -60,35 +73,35 @@ export class Table {
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
     };
-    // console.log("grid options ", this.gridOptions);
 
   }
+
 
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
     params.api.sizeColumnsToFit();
   }
 
-
   componentWillUpdate() {
     this.gridOptions.columnDefs = this.columnDefs;
     this.gridOptions.rowData = this.rowData;
-    if (this.gridOptions.api) {
-      this.gridOptions.api.setRowData(this.rowData);
-      this.gridOptions.api.setColumnDefs(this.columnDefs);
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', this.rowData);
+      this.gridApi.setGridOption('columnDefs', this.columnDefs);
     }
   }
 
   componentDidLoad() {
-    new Grid(document.getElementById(`ifxTable-${this.uniqueKey}`), this.gridOptions);
-    if (this.gridOptions.api) {
-      this.gridOptions.api.sizeColumnsToFit();
+    this.gridApi = createGrid(document.getElementById(`ifxTable-${this.uniqueKey}`), this.gridOptions);
+    if (this.gridApi) {
+      this.gridApi.sizeColumnsToFit({
+        defaultMinWidth: 100,
+      });
     }
   }
 
 
   render() {
-
     return (
       <div id="grid-wrapper" class={{ 'auto-height': this.tableHeight === 'auto' ? true : false }}>
         <div id={`ifxTable-${this.uniqueKey}`} class="ifx-ag-grid ag-theme-alpine" style={{
@@ -99,8 +112,4 @@ export class Table {
 
 
   }
-
-
-
-
 }

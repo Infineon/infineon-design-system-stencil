@@ -5,8 +5,6 @@
 @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
 
-
-
 .ifx-ag-grid .ag-header-cell:focus {
   outline: none !important;
 }
@@ -15,10 +13,23 @@
   outline: none;
 }
 
+
+.ifx-ag-grid .ag-theme-alpine {
+  height: 100%;
+  width: 100%;
+}
+
+
 .auto-height .ag-theme-alpine .ag-root-wrapper-body {
   height: auto !important;
 }
 
+.ag-overlay-loading-center {
+  border: none;
+  background: none;
+  border-radius: none;
+  box-shadow: none;
+}
 
 .ag-root-wrapper {
   border: none;
@@ -84,7 +95,7 @@
 .ag-row {
   background-color: tokens.$ifxColorBaseWhite;
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
-  font-size: 13;
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
@@ -104,7 +115,6 @@
   padding-left: 0px;
   vertical-align: bottom;
   line-height: 12px;
-
 }
 
 

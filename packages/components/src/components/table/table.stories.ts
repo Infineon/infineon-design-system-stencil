@@ -6,6 +6,7 @@ const columnDefs = [
   { headerName: 'Age', field: 'age' }
 
 ];
+
 const rowData = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
   { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
@@ -78,10 +79,11 @@ export default {
   title: 'Under Development/Table (advanced)',
   // tags: ['autodocs'],
   args: {
-    tableHeight: 'auto',
+    tableHeight: '200px',
     pagination: false,
     paginationPageSize: 10,
     rowHeight: 40,
+    showLoading: false,
   },
   argTypes: {
     tableHeight: {
@@ -91,6 +93,10 @@ export default {
           detail: 'Default: "auto"\nExample for fixed height: "400px"',
         }
       },
+    },
+    showLoading: {
+      options: [true, false],
+      control: { type: 'radio' },
     },
     rowHeight: {
       options: ['compact', 'default'],
@@ -115,15 +121,24 @@ export default {
   }
 };
 
+// document.getElementById('my-button').addEventListener('click', function () {
+//   var table = document.getElementById('my-table') as HTMLIfxTableElement;
+//   table.onBtShowLoading();
+// });
 
-const DefaultTemplate = (args) => `<ifx-table 
-row-height='${args.rowHeight}'
-cols='${JSON.stringify(args.columnDefs)}' 
-rows='${JSON.stringify(args.rowData)}'
-table-height='${args.tableHeight}'
-pagination='${args.pagination}'
-pagination-page-size='${args.paginationPageSize}'>
-</ifx-table>`;
+const DefaultTemplate = (args) =>
+  `<ifx-table 
+  id='my-table'
+  row-height='${args.rowHeight}'
+  cols='${JSON.stringify(args.columnDefs)}' 
+  rows='${JSON.stringify(args.rowData)}'
+  table-height='${args.tableHeight}'
+  pagination='${args.pagination}'
+  pagination-page-size='${args.paginationPageSize}'>
+  </ifx-table>`
+  ;
+
+
 
 // export const Default = DefaultTemplate.bind({});
 // Default.args = {
@@ -142,7 +157,7 @@ pagination-page-size='${args.paginationPageSize}'>
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
-  pagination: true,
+  pagination: false,
   paginationPageSize: 10,
   rowHeight: 'default',
   columnDefs: columnDefs,
