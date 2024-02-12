@@ -17,7 +17,7 @@ export class Sidebar {
   @Prop() imprint: string = ""
   @Prop() initialCollapse: boolean = true
   @Prop() privacyPolicy: string = ""
-  @Prop() target: string = "_blank"
+  @Prop() target: string = "_self"
   @Prop() showFooter: boolean = true
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
@@ -27,6 +27,7 @@ export class Sidebar {
   expandActiveItems(){
     var firstActiveSection = true;
     const expandRecursively = (parent) => {
+      firstActiveSection = true;
       if(!parent.isItemExpandable()){
         return parent.active;
       }
@@ -35,11 +36,8 @@ export class Sidebar {
       for(let i = 0; i < children.length; i++){
         if(expandRecursively(children[i])){
           activeChildPresent = true;
-          // topLevelItems[i].expandMenu()
-          break;
         }else if(children[i].active){
           activeChildPresent = true;
-          break;
         }
       }
       if(activeChildPresent){
@@ -50,12 +48,12 @@ export class Sidebar {
           parent.expandMenu(true);
         }
       }
+
       return activeChildPresent;
     }
 
     const topLevelItems = this.getSidebarMenuItems(this.el);
     for(let i = 0; i < topLevelItems.length; i++){
-      firstActiveSection = true;
       expandRecursively(topLevelItems[i]);
     }
   }
@@ -100,7 +98,6 @@ export class Sidebar {
         }
         // If the item is active but it's not the first one in its group
         else if (this.isActive(item) && firstActiveFoundInGroup) {
-          console.error("Only one item can be marked as active at a time. The active state for any following active items will be reset to false.")
           item.setAttribute('active', 'false'); // Set the 'active' attribute to 'false'
         }
 
