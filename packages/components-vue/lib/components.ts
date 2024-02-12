@@ -39,7 +39,6 @@ export const IfxBasicTable = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('i
   'columnDefs',
   'rowData',
   'rowHeight',
-  'uniqueKey',
   'tableHeight'
 ]);
 
@@ -470,8 +469,6 @@ export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undef
 export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
   'cols',
   'rows',
-  'columnDefs',
-  'rowData',
   'rowHeight',
   'tableHeight',
   'pagination',

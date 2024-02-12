@@ -2,8 +2,33 @@
 @use "../../global/font.scss";
 
 @import "~ag-grid-community/styles/ag-grid.css";
-@import "~ag-grid-community/styles/ag-theme-alpine.css";
+// @import "~ag-grid-community/styles/ag-theme-alpine.css";
 
+// :host {
+//   --table-height: '200px';
+//   /* Default value */
+// }
+
+.ifx-table-wrapper .ag-root-wrapper-body {
+  height: auto !important;
+  min-height: 100px !important;
+  min-width: 100px;
+}
+
+.ifx-ag-grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  min-width: 100px;
+  padding-bottom: tokens.$ifxSpace100;
+}
+
+
+.ifx-ag-grid .ag-header-cell::after {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
 .ifx-ag-grid .ag-header-cell:focus {
   outline: none !important;
@@ -14,15 +39,6 @@
 }
 
 
-.ifx-ag-grid .ag-theme-alpine {
-  height: 100%;
-  width: 100%;
-}
-
-
-.auto-height .ag-theme-alpine .ag-root-wrapper-body {
-  height: auto !important;
-}
 
 .ag-overlay-loading-center {
   border: none;
@@ -31,9 +47,11 @@
   box-shadow: none;
 }
 
+
 .ag-root-wrapper {
   border: none;
 }
+
 
 
 .ag-header {
@@ -46,16 +64,16 @@
   }
 }
 
-
 .ag-header-cell {
   padding-left: 16px;
   padding-right: 16px;
   gap: 4px;
+}
 
-  // &.ag-header-active {
-  //   outline: none;
-  //   border-color: #0A8276 !important;
-  // }
+
+.ag-header-cell-focus {
+  border: none !important;
+  outline: none !important;
 }
 
 .ag-header-cell-text {
@@ -68,25 +86,20 @@
 
 }
 
-
-.ag-theme-alpine .ag-row-focus {
+.ag-row-focus {
   background-color: inherit !important;
   /* Reset the hover color to the row's original color */
 }
 
-.ag-theme-alpine .ag-row-hover {
-  background-color: tokens.$ifxColorBaseWhite; //inherit !important;
+.ag-row-hover {
+  background-color: tokens.$ifxColorBaseWhite !important; //inherit !important;
   /* Reset the hover color to the row's original color */
 }
 
-.ag-theme-alpine .ag-cell-focus {
+
+.ag-cell-focus {
   border: none !important;
   outline: none !important;
-
-}
-
-.ag-theme-alpine .ag-cell-focus {
-  border: none !important;
   background-color: inherit !important;
 }
 
@@ -107,8 +120,11 @@
 }
 
 .ag-cell {
+  display: flex;
   padding-left: 16px;
   padding-right: 16px;
+  align-items: center;
+
 }
 
 .ag-ltr .ag-sort-indicator-icon {
@@ -116,7 +132,6 @@
   vertical-align: bottom;
   line-height: 12px;
 }
-
 
 .unsort-icon-custom-color {
   color: tokens.$ifxColorEngineering400;

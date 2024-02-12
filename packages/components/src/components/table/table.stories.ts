@@ -10,7 +10,17 @@ const columnDefs = [
 const rowData = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
   { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 }
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Bmw', model: 'x', price: 72000 },
+  { make: 'Mercedes', model: 'y', price: 72000 },
+  { make: 'Ferrari', model: 'z', price: 72000 },
+  { make: 'Chrysler', model: 'a', price: 72000 },
+  { make: 'Range rover', model: 'b', price: 72000 },
+  { make: 'Tesla', model: 'x', price: 72000 },
+  { make: 'Audi', model: '3', price: 72000 },
+  { make: 'Landrover', model: 'x', price: 72000 },
+
+
 ];
 
 //table with button col
@@ -79,9 +89,10 @@ export default {
   title: 'Under Development/Table (advanced)',
   // tags: ['autodocs'],
   args: {
-    tableHeight: '200px',
+    tableHeight: 'auto',
     pagination: false,
     paginationPageSize: 10,
+    currentPage: 1,
     rowHeight: 40,
     showLoading: false,
   },
@@ -93,6 +104,10 @@ export default {
           detail: 'Default: "auto"\nExample for fixed height: "400px"',
         }
       },
+    },
+    paginationPageSize: {
+      description: "Results per page: minimum 10 - maximum 30",
+      control: { type: 'number', min: 10, max: 30, step: 10 }
     },
     showLoading: {
       options: [true, false],
@@ -121,10 +136,6 @@ export default {
   }
 };
 
-// document.getElementById('my-button').addEventListener('click', function () {
-//   var table = document.getElementById('my-table') as HTMLIfxTableElement;
-//   table.onBtShowLoading();
-// });
 
 const DefaultTemplate = (args) =>
   `<ifx-table 
@@ -140,24 +151,10 @@ const DefaultTemplate = (args) =>
 
 
 
-// export const Default = DefaultTemplate.bind({});
-// Default.args = {
-//   rowHeight: 'default',
-//   columnDefs: columnDefs,
-//   rowData: rowData,
-// };
-
-// export const FixedHeight = DefaultTemplate.bind({});
-// FixedHeight.args = {
-//   tableHeight: '400px',
-//   rowHeight: 'default',
-//   columnDefs: columnDefs,
-//   rowData: rowData,
-// };
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
-  pagination: false,
+  pagination: true,
   paginationPageSize: 10,
   rowHeight: 'default',
   columnDefs: columnDefs,

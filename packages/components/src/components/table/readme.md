@@ -10,10 +10,8 @@
 | Property             | Attribute              | Description | Type              | Default     |
 | -------------------- | ---------------------- | ----------- | ----------------- | ----------- |
 | `cols`               | `cols`                 |             | `any[] \| string` | `undefined` |
-| `columnDefs`         | --                     |             | `any[]`           | `[]`        |
-| `pagination`         | `pagination`           |             | `boolean`         | `false`     |
-| `paginationPageSize` | `pagination-page-size` |             | `number`          | `2`         |
-| `rowData`            | --                     |             | `any[]`           | `[]`        |
+| `pagination`         | `pagination`           |             | `boolean`         | `true`      |
+| `paginationPageSize` | `pagination-page-size` |             | `number`          | `10`        |
 | `rowHeight`          | `row-height`           |             | `string`          | `'default'` |
 | `rows`               | `rows`                 |             | `any[] \| string` | `undefined` |
 | `showLoading`        | `show-loading`         |             | `boolean`         | `false`     |

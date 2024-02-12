@@ -1,6 +1,7 @@
-import { Component, h, Host, Method, Element, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Host, Method, Element, Prop, State } from '@stencil/core';
+import classNames from 'classnames';
 
-import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions, RowDataUpdatedEvent } from 'ag-grid-community';
+import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -14,33 +15,20 @@ import { CustomLoadingOverlay } from './customLoadingOverlay';
 export class Table {
   @State() gridOptions: GridOptions;
   @State() gridApi: GridApi;
+  @State() currentPage: number = 1;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
-  @Prop() columnDefs: any[] = [];
-  @Prop() rowData: any[] = [];
-  // Store all row data separately
+  // Store all row data separately for pagination
   allRowData: any[] = [];
   @Prop() rowHeight: string = 'default'; //default or compact
   @Prop() tableHeight: string = 'auto';
-  @Prop() pagination: boolean = false;
-  @Prop() paginationPageSize: number = 2;
+  @Prop() pagination: boolean = true;
+  @Prop() paginationPageSize: number = 10;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
 
 
-
-  @Watch('showLoading')
-  watchHandler(newValue: boolean, oldValue: boolean) {
-    console.log('loadin');
-    if (newValue !== oldValue) {
-      if (newValue === true) {
-        this.gridApi!.showLoadingOverlay();
-      } else {
-        this.gridApi!.hideOverlay();
-      }
-    }
-  }
 
   @Method()
   async onBtShowLoading() {
@@ -84,12 +72,16 @@ export class Table {
     } else {
       console.error('Unexpected value for cols: ', this.cols);
     }
+
+    //columns can contain row data with button objects (ifx-button)
+    let buttonColumn = cols.find(column => column.field === 'button');
+    if (buttonColumn) {
+      buttonColumn.cellRenderer = ButtonCellRenderer;
+    }
     return cols;
   }
 
   componentWillLoad() {
-    console.log("component will load")
-    this.setButtonRenderer();
 
     this.gridOptions = {
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
@@ -101,10 +93,10 @@ export class Table {
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.getColData(),
       rowData: this.getRowData(),
-      onRowDataUpdated: (event: RowDataUpdatedEvent) => {
-        console.log("row data updated ", event.type);
-        // updateRowCount(event.api.getDisplayedRowCount());
-      },
+      // onRowDataUpdated: (event: RowDataUpdatedEvent) => {
+      //   // console.log("row data updated ", event.type);
+      //   // updateRowCount(event.api.getDisplayedRowCount());
+      // },
       loadingOverlayComponent: CustomLoadingOverlay,
       noRowsOverlayComponent: CustomNoRowsOverlay,
       noRowsOverlayComponentParams: {
@@ -116,11 +108,13 @@ export class Table {
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
         sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowtrianglevertikal16"></ifx-icon></a>'
       },
-      rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
-      animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
+      rowDragManaged: this.getColData().some(col => col.dndSource === true) ? true : false,
+      animateRows: this.getColData().some(col => col.dndSource === true) ? true : false,
       // pagination: this.pagination,
       // paginationPageSize: this.paginationPageSize,
     };
+
+
 
   }
 
@@ -140,7 +134,6 @@ export class Table {
 
 
   componentDidLoad() {
-    console.log("first load")
     if (this.container) {
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
@@ -150,48 +143,60 @@ export class Table {
         this.gridApi.setGridOption('columnDefs', this.getColData());
         this.gridApi.setGridOption('rowData', this.getRowData());
 
-        const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
-        // set pagination page size (manually)
-        if (paginationElement) {
-          paginationElement.addEventListener('ifxPageChange', (event) => this.handlePageChange(event));
+        if (this.pagination) {
+          const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+          if (paginationElement) {
+            paginationElement.addEventListener('ifxPageChange', (event) => this.handlePageChange(event));
+          }
         }
       }
     }
   }
 
   disconnectedCallback() {
-    const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
-    if (paginationElement) {
-      paginationElement.removeEventListener('ifxPageChange', this.handlePageChange);
+    if (this.pagination) {
+      const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+      if (paginationElement) {
+        paginationElement.removeEventListener('ifxPageChange', this.handlePageChange);
+      }
     }
   }
 
 
   handlePageChange(event) {
-    console.log("handle page change ", event.detail)
-    const newPage = event.detail.currentPage;
-    const startIndex = (newPage - 1) * this.paginationPageSize;
+    this.currentPage = event.detail.currentPage;  // update current page
+    const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
     this.gridApi.setGridOption('rowData', visibleRowData);
   }
 
+  getClassNames() {
+    return classNames(
+      this.tableHeight === 'auto' && 'ifx-table-wrapper ag-root-wrapper-body',
+      'ifx-table-wrapper',
+    );
+  }
 
 
   render() {
     // if (this.gridOptions.rowDragManaged) {
     //   // console.log("draggable table render")
     // }
-    const style = {
-      '--table-height': this.tableHeight
-    };
-
+    let style = {};
+    if (this.tableHeight !== 'auto') {
+      style = {
+        'height': this.tableHeight
+      };
+    }
     return (
-      <Host style={style}>
-        <div class='ifx-ag-grid' ref={(el) => this.container = el}>
+      <Host >
+        <div id="ifx-table-wrapper" class={this.getClassNames()}>
+          <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+          </div>
         </div>
-        <ifx-pagination total={50} current-page="1"></ifx-pagination>
+        {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
       </Host>
     );
 
@@ -200,27 +205,27 @@ export class Table {
 
 
   hasButtonCol(): boolean {
-    return this.columnDefs.some(column => column.field === 'button');
+    return this.getColData().some(column => column.field === 'button');
   }
 
 
 
   setButtonRenderer() {
-    const buttonColumn = this.columnDefs.find(column => column.field === 'button');
+    const buttonColumn = this.getColData().find(column => column.field === 'button');
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
     }
   }
 
   // setIconButtonRenderer() {
-  //   const iconButtonColumn = this.columnDefs.find(column => column.field === 'iconButton');
+  //   const iconButtonColumn = this.getColData().find(column => column.field === 'iconButton');
   //   if (iconButtonColumn) {
   //     iconButtonColumn.cellRenderer = IconButtonCellRenderer;
   //   }
   // }
 
   // setLinkRenderer() {
-  //   const linkColumn = this.columnDefs.find(column => column.field === 'link');
+  //   const linkColumn = this.getColData().find(column => column.field === 'link');
   //   if (linkColumn) {
   //     linkColumn.cellRenderer = LinkCellRenderer;
   //   }

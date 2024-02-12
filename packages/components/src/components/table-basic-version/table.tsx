@@ -1,7 +1,8 @@
-import { Component, h, Prop, State } from '@stencil/core';
+import { Component, h, Element, Host, Prop, State } from '@stencil/core';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
+import classNames from 'classnames';
 
 
 @Component({
@@ -17,14 +18,13 @@ export class Table {
   @Prop() columnDefs: any[] = [];
   @Prop() rowData: any[] = [];
   @Prop() rowHeight: string = 'default'; //default or compact
-  @Prop() uniqueKey: string;
   @Prop() tableHeight: string = 'auto';
-
+  private container: HTMLDivElement;
+  @Element() host: HTMLElement;
 
 
 
   componentWillLoad() {
-    this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     if (typeof this.rows === 'string' && typeof this.cols === 'string') {
       try {
         this.columnDefs = JSON.parse(this.cols);
@@ -77,6 +77,42 @@ export class Table {
   }
 
 
+  getRowData() {
+    let rows: any[] = [];
+    if (typeof this.rows === 'string') {
+      try {
+        rows = JSON.parse(this.rows);
+      } catch (err) {
+        console.error('Failed to parse input:', err);
+      }
+    } else if ((Array.isArray(this.rows) || typeof this.rows === 'object')) {
+      rows = this.rows;
+
+    } else {
+      console.error('Unexpected value for rows: ', this.rows);
+    }
+
+
+    return rows;
+  }
+
+  getColData() {
+    let cols: any[] = [];
+
+    if (typeof this.cols === 'string') {
+      try {
+        cols = JSON.parse(this.cols);
+      } catch (err) {
+        console.error('Failed to parse input:', err);
+      }
+    } else if ((Array.isArray(this.cols) || typeof this.cols === 'object')) {
+      cols = this.cols;
+
+    } else {
+      console.error('Unexpected value for cols: ', this.cols);
+    }
+    return cols;
+  }
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
     params.api.sizeColumnsToFit();
@@ -92,22 +128,42 @@ export class Table {
   }
 
   componentDidLoad() {
-    this.gridApi = createGrid(document.getElementById(`ifxTable-${this.uniqueKey}`), this.gridOptions);
-    if (this.gridApi) {
-      this.gridApi.sizeColumnsToFit({
-        defaultMinWidth: 100,
-      });
+    if (this.container) {
+      this.gridApi = createGrid(this.container, this.gridOptions);
+      if (this.gridApi) {
+        this.gridApi.sizeColumnsToFit({
+          defaultMinWidth: 100,
+        });
+        this.gridApi.setGridOption('columnDefs', this.getColData());
+        this.gridApi.setGridOption('rowData', this.getRowData());
+
+
+      }
     }
+  }
+
+  getClassNames() {
+    return classNames(
+      this.tableHeight === 'auto' && 'ifx-table-wrapper ag-root-wrapper-body',
+      'ifx-table-wrapper',
+    );
   }
 
 
   render() {
+    let style = {};
+    if (this.tableHeight !== 'auto') {
+      style = {
+        'height': this.tableHeight
+      };
+    }
     return (
-      <div id="grid-wrapper" class={{ 'auto-height': this.tableHeight === 'auto' ? true : false }}>
-        <div id={`ifxTable-${this.uniqueKey}`} class="ifx-ag-grid ag-theme-alpine" style={{
-          'height': `${this.tableHeight}`, width: '100%'
-        }}></div >
-      </div >
+      <Host >
+        <div id="ifx-table-wrapper" class={this.getClassNames()}>
+          <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+          </div>
+        </div>
+      </Host>
     );
 
 
