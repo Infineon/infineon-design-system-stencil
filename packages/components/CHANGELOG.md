@@ -1,3 +1,15 @@
+# v20.46.2 (Mon Feb 12 2024)
+
+#### 🐛 Bug Fix
+
+- Fixed the height and width of the switch container [#975](https://github.com/Infineon/infineon-design-system-stencil/pull/975) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.46.1 (Fri Feb 09 2024)
 
 #### 🐛 Bug Fix
