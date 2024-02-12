@@ -18,10 +18,11 @@ export class Sidebar {
   @Prop() imprint: string = ""
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
+  @Prop() copyrightText: string = "R"
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
-  @State() activeItem: HTMLElement | null = null;
+  @State() activeItem: HTMLElement | null = null
 
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
@@ -314,8 +315,12 @@ export class Sidebar {
                   }
                 </div>
               </div>
+              
               <div class='sidebar__footer-wrapper-bottom-links'>
-                <a href='https://www.infineon.com/'>© 1999 - 2023 Infineon Technologies AG</a>
+                {
+                  this.copyrightText &&
+                  <span>{this.copyrightText}</span>
+                }
               </div>
             </div>
           </div>

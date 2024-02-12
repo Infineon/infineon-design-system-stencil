@@ -10,7 +10,8 @@ export default {
     showFooter: true,
     termsOfUse: 'http://google.com',
     imprint: 'http://google.com',
-    privacyPolicy: 'http://google.com'
+    privacyPolicy: 'http://google.com',
+    copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`
   },
 
   argTypes: {
@@ -52,6 +53,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.setAttribute('terms-of-use', args.termsOfUse);
   sidebarElement.setAttribute('imprint', args.imprint);
   sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
+  sidebarElement.setAttribute('copyright-text', args.copyrightText);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
