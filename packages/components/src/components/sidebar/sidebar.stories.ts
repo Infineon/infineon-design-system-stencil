@@ -8,9 +8,9 @@ export default {
     icon: true,
     applicationName: 'Application Name',
     showFooter: true,
-    termsOfUse: 'http://google.com',
-    imprint: 'http://google.com',
-    privacyPolicy: 'http://google.com',
+    termsOfUse: 'https://yourwebsite.com/terms',
+    imprint: 'https://yourwebsite.com/imprint',
+    privacyPolicy: 'https://yourwebsite.com/privacy-policy',
     copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`
   },
 

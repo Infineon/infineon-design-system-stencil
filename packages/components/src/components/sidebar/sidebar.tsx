@@ -13,12 +13,13 @@ const SIDEBAR_ITEM = '.sidebar__nav-item';
 export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
-  @Prop() termsOfUse: string = ""
   @Prop() showFooter: boolean = true
-  @Prop() imprint: string = ""
-  @Prop() privacyPolicy: string = ""
+  @Prop() termsOfUse: string = "#"
+  @Prop() imprint: string = "#"
+  @Prop() privacyPolicy: string = "#"
   @Prop() target: string = "_blank"
-  @Prop() copyrightText: string = "R"
+  @State() currentYear: number = new Date().getFullYear()
+  @Prop() copyrightText: string = '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
