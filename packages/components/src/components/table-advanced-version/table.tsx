@@ -54,7 +54,7 @@ export class Table {
       noRowsOverlayComponent: CustomNoRowsOverlay,
       noRowsOverlayComponentParams: {
         noRowsMessageFunc: () =>
-          'No rows found at: ' + new Date().toLocaleTimeString(),
+          'No rows found' //at: ' + new Date().toLocaleTimeString(),
       },
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
@@ -112,8 +112,14 @@ export class Table {
   }
 
   getRowData() {
-    console.log("rows", this.rows)
     let rows: any[] = [];
+
+    // If this.rows is undefined or null, log a warning and return an empty array
+    if (this.rows === undefined || this.rows === null) {
+      console.warn('rows is undefined or null');
+      return rows;
+    }
+
     if (typeof this.rows === 'string') {
       try {
         rows = JSON.parse(this.rows);
@@ -125,12 +131,21 @@ export class Table {
     } else {
       console.error('Unexpected value for rows: ', this.rows);
     }
+
     this.allRowData = rows;
     return rows.slice(0, this.paginationPageSize);
   }
 
+
   getColData() {
     let cols: any[] = [];
+
+    // If this.cols is undefined or null, log a warning and return an empty array
+    if (this.cols === undefined || this.cols === null) {
+      console.warn('cols is undefined or null');
+      return cols;
+    }
+
     if (typeof this.cols === 'string') {
       try {
         cols = JSON.parse(this.cols);
@@ -142,10 +157,12 @@ export class Table {
     } else {
       console.error('Unexpected value for cols: ', this.cols);
     }
+
     let buttonColumn = cols.find(column => column.field === 'button');
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
     }
+
     return cols;
   }
 
