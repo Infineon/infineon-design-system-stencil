@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
+import { Component, h, Element, State, Prop } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -23,8 +23,7 @@ export class Navbar {
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
-
-
+ 
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -159,7 +158,49 @@ export class Navbar {
   //   }
   // }
 
+  async setItemMenuPosition() { 
+    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
+
+    if(navbarProfile) {
+      const itemChildren = navbarProfile.shadowRoot.querySelectorAll('ifx-navbar-item')
+      if (itemChildren.length !== 0) {
+        itemChildren.forEach(item => { 
+          item.setMenuItemPosition()
+          this.setMenuItemChildrenPosition(item)
+        })
+      }
+    }
+   
+    if(navbarItems.length !== 0) { 
+      for(let i = 0; i < navbarItems.length; i++) { 
+        const item = navbarItems[i];
+        const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item')
+        if (itemChildren.length !== 0) {
+         const hasNestedItems = await item.setItemSideSpecifications()
+         if(hasNestedItems) { 
+          itemChildren.forEach(item => { 
+            item.setMenuItemPosition()
+            this.setMenuItemChildrenPosition(item)
+          })
+         }
+        }
+      }
+    }
+  }
+
+  setMenuItemChildrenPosition(item) {
+    const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item');
+    if (itemChildren.length !== 0) {
+        itemChildren.forEach(subItem => { 
+          subItem.setMenuItemPosition()
+          this.setMenuItemChildrenPosition(subItem)
+        })
+    }
+  }
+
   componentDidLoad() {
+    this.setItemMenuPosition()
     // const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
     // if (!dropdownMenu) {
     //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
