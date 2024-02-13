@@ -1,5 +1,5 @@
 import React from 'react';
-import { IfxAdvancedTable } from '@infineon/infineon-design-system-react';
+import { IfxTable } from '@infineon/infineon-design-system-react';
 
 function AdvancedTable() {
   const cols = [
@@ -24,11 +24,11 @@ function AdvancedTable() {
 
 
   return (
-    <IfxAdvancedTable row-height='default'
+    <IfxTable row-height='default'
       cols={JSON.stringify(cols)}
       rows={JSON.stringify(rows)}
       table-height='auto'>
-    </IfxAdvancedTable>
+    </IfxTable>
   );
 }
 

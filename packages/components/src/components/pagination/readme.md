@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [ifx-table](../table)
+ - [ifx-table](../table-advanced-version)
 
 ### Depends on
 

@@ -25,7 +25,7 @@
         "model": "Boxster",
         "price": 72000,    
     }
-]' table-height="auto" pagination="true" pagination-page-size="4"></ifx-table>
+]' table-height="auto" pagination="true" pagination-page-size="10"></ifx-table>
     <br />
   </div>
 </template>
