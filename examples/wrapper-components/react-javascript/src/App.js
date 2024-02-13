@@ -31,6 +31,7 @@ import Footer from './components/Footer/Footer'
 import Icon from './components/Icon/Icon';
 import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
+import AdvancedTable from './components/AdvancedTable/AdvancedTable';
 
 
 function App() {
@@ -162,6 +163,10 @@ function App() {
 
       <h2>Table (basic)</h2>
       <BasicTable />
+      <br />
+
+      <h2>Table (advanced)</h2>
+      <AdvancedTable />
       <br />
 
       <h2>Footer</h2>

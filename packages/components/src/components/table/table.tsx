@@ -13,20 +13,21 @@ import { CustomLoadingOverlay } from './customLoadingOverlay';
   shadow: true
 })
 export class Table {
-  @State() gridOptions: GridOptions;
-  @State() gridApi: GridApi;
+  gridOptions: GridOptions;
+  gridApi: GridApi;
   @State() currentPage: number = 1;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
-  // Store all row data separately for pagination
   allRowData: any[] = [];
-  @Prop() rowHeight: string = 'default'; //default or compact
+  @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
   @Prop() paginationPageSize: number = 10;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
+  colData: any[];
+  rowData: any[];
 
 
 
@@ -35,53 +36,9 @@ export class Table {
     this.gridApi.showLoadingOverlay();
   }
 
-
-  getRowData() {
-    let rows: any[] = [];
-    if (typeof this.rows === 'string') {
-      try {
-        rows = JSON.parse(this.rows);
-      } catch (err) {
-        console.error('Failed to parse input:', err);
-      }
-    } else if ((Array.isArray(this.rows) || typeof this.rows === 'object')) {
-      rows = this.rows;
-
-    } else {
-      console.error('Unexpected value for rows: ', this.rows);
-    }
-    // Save all row data separately
-    this.allRowData = rows;
-
-    // Initial page of row data
-    return rows.slice(0, this.paginationPageSize);
-  }
-
-  getColData() {
-    let cols: any[] = [];
-
-    if (typeof this.cols === 'string') {
-      try {
-        cols = JSON.parse(this.cols);
-      } catch (err) {
-        console.error('Failed to parse input:', err);
-      }
-    } else if ((Array.isArray(this.cols) || typeof this.cols === 'object')) {
-      cols = this.cols;
-
-    } else {
-      console.error('Unexpected value for cols: ', this.cols);
-    }
-
-    //columns can contain row data with button objects (ifx-button)
-    let buttonColumn = cols.find(column => column.field === 'button');
-    if (buttonColumn) {
-      buttonColumn.cellRenderer = ButtonCellRenderer;
-    }
-    return cols;
-  }
-
   componentWillLoad() {
+    this.rowData = this.getRowData();
+    this.colData = this.getColData();
 
     this.gridOptions = {
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
@@ -90,13 +47,9 @@ export class Table {
         resizable: true,
       },
       suppressDragLeaveHidesColumns: true,
-      onFirstDataRendered: this.onFirstDataRendered,
-      columnDefs: this.getColData(),
-      rowData: this.getRowData(),
-      // onRowDataUpdated: (event: RowDataUpdatedEvent) => {
-      //   // console.log("row data updated ", event.type);
-      //   // updateRowCount(event.api.getDisplayedRowCount());
-      // },
+      onFirstDataRendered: this.onFirstDataRendered.bind(this),
+      columnDefs: this.colData,
+      rowData: this.rowData,
       loadingOverlayComponent: CustomLoadingOverlay,
       noRowsOverlayComponent: CustomNoRowsOverlay,
       noRowsOverlayComponentParams: {
@@ -108,30 +61,17 @@ export class Table {
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
         sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowtrianglevertikal16"></ifx-icon></a>'
       },
-      rowDragManaged: this.getColData().some(col => col.dndSource === true) ? true : false,
-      animateRows: this.getColData().some(col => col.dndSource === true) ? true : false,
-      // pagination: this.pagination,
-      // paginationPageSize: this.paginationPageSize,
+      rowDragManaged: this.colData.some(col => col.dndSource === true) ? true : false,
+      animateRows: this.colData.some(col => col.dndSource === true) ? true : false,
     };
-
-
-
   }
 
+  componentDidRender() {
 
-  onFirstDataRendered(params: FirstDataRenderedEvent) {
-    params.api.sizeColumnsToFit();
-  }
-
-
-
-  componentWillUpdate() {
     if (this.gridApi) {
-      this.gridApi.setGridOption('columnDefs', this.getColData());
-      // this.gridApi.setGridOption('rowData', this.getRowData());
+      this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
-
 
   componentDidLoad() {
     if (this.container) {
@@ -140,18 +80,82 @@ export class Table {
         this.gridApi.sizeColumnsToFit({
           defaultMinWidth: 100,
         });
-        this.gridApi.setGridOption('columnDefs', this.getColData());
-        this.gridApi.setGridOption('rowData', this.getRowData());
+        this.gridApi.setGridOption('columnDefs', this.colData);
+        this.gridApi.setGridOption('rowData', this.rowData);
 
         if (this.pagination) {
           const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
           if (paginationElement) {
-            paginationElement.addEventListener('ifxPageChange', (event) => this.handlePageChange(event));
+            paginationElement.addEventListener('ifxPageChange', this.handlePageChange.bind(this));
           }
         }
       }
     }
   }
+
+  componentWillUnmount() {
+    if (this.pagination) {
+      const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+      if (paginationElement) {
+        paginationElement.removeEventListener('ifxPageChange', this.handlePageChange.bind(this));
+      }
+    }
+  }
+
+  handlePageChange(event) {
+    this.currentPage = event.detail.currentPage;
+    const startIndex = (this.currentPage - 1) * this.paginationPageSize;
+    const endIndex = startIndex + this.paginationPageSize;
+    const visibleRowData = this.allRowData.slice(startIndex, endIndex);
+
+    this.gridApi.setGridOption('rowData', visibleRowData);
+  }
+
+  getRowData() {
+    console.log("rows", this.rows)
+    let rows: any[] = [];
+    if (typeof this.rows === 'string') {
+      try {
+        rows = JSON.parse(this.rows);
+      } catch (err) {
+        console.error('Failed to parse rows input:', this.rows, err);
+      }
+    } else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
+      rows = this.rows;
+    } else {
+      console.error('Unexpected value for rows: ', this.rows);
+    }
+    this.allRowData = rows;
+    return rows.slice(0, this.paginationPageSize);
+  }
+
+  getColData() {
+    let cols: any[] = [];
+    if (typeof this.cols === 'string') {
+      try {
+        cols = JSON.parse(this.cols);
+      } catch (err) {
+        console.error('Failed to parse cols input:', this.cols, err);
+      }
+    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+      cols = this.cols;
+    } else {
+      console.error('Unexpected value for cols: ', this.cols);
+    }
+    let buttonColumn = cols.find(column => column.field === 'button');
+    if (buttonColumn) {
+      buttonColumn.cellRenderer = ButtonCellRenderer;
+    }
+    return cols;
+  }
+
+
+
+  onFirstDataRendered(params: FirstDataRenderedEvent) {
+    params.api.sizeColumnsToFit();
+  }
+
+
 
   disconnectedCallback() {
     if (this.pagination) {
@@ -162,15 +166,6 @@ export class Table {
     }
   }
 
-
-  handlePageChange(event) {
-    this.currentPage = event.detail.currentPage;  // update current page
-    const startIndex = (this.currentPage - 1) * this.paginationPageSize;
-    const endIndex = startIndex + this.paginationPageSize;
-    const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-
-    this.gridApi.setGridOption('rowData', visibleRowData);
-  }
 
   getClassNames() {
     return classNames(
@@ -198,9 +193,7 @@ export class Table {
         </div>
         {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
       </Host>
-    );
-
-
+    )
   }
 
 
@@ -210,12 +203,7 @@ export class Table {
 
 
 
-  setButtonRenderer() {
-    const buttonColumn = this.getColData().find(column => column.field === 'button');
-    if (buttonColumn) {
-      buttonColumn.cellRenderer = ButtonCellRenderer;
-    }
-  }
+
 
   // setIconButtonRenderer() {
   //   const iconButtonColumn = this.getColData().find(column => column.field === 'iconButton');
