@@ -179,7 +179,8 @@ export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-foote
   'privacyPolicyUrl',
   'privacyPolicyTarget',
   'glossaryUrl',
-  'glossaryTarget'
+  'glossaryTarget',
+  'copyrightText'
 ]);
 
 

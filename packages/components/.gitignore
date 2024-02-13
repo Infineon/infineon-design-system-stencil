@@ -2,6 +2,7 @@ dist/
 stencil-components/
 www/
 loader/
+public-storybook/fonts/
 
 *~
 *.sw[mnpcod]
