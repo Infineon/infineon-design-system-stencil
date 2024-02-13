@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -59,24 +59,24 @@ export class Navbar {
   }
 
 
-  // @Listen('ifxSearchBarIsOpen')
-  // handleSearchBarToggle(e) {
-  //   this.searchBarIsOpen = !this.searchBarIsOpen;
-  //   const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
-  //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
+  @Listen('ifxSearchBarIsOpen')
+  handleSearchBarToggle(e) {
+    this.searchBarIsOpen = !this.searchBarIsOpen;
+    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
 
-  //   if (e.detail) {
-  //     for (let i = 0; i < navbarItems.length; i++) {
-  //       navbarItems[i].hideComponent = true;
-  //     }
-  //     moreMenu.style.display = 'none'
-  //   } else {
-  //     for (let i = 0; i < navbarItems.length; i++) {
-  //       navbarItems[i].hideComponent = false;
-  //     }
-  //     moreMenu.style.display = 'flex'
-  //   }
-  // }
+    if (e.detail) {
+      for (let i = 0; i < navbarItems.length; i++) {
+        navbarItems[i].hideComponent = true;
+      }
+      moreMenu.style.display = 'none'
+    } else {
+      for (let i = 0; i < navbarItems.length; i++) {
+        navbarItems[i].hideComponent = false;
+      }
+      moreMenu.style.display = 'flex'
+    }
+  }
 
   toggleClass(el, className) {
     el.classList.toggle(className)
@@ -278,19 +278,6 @@ export class Navbar {
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
                   <slot name='left-item' />
-
-                  {/* <div class="navbar__container-left-content-navigation-dropdown-menu">
-                    <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
-                      <a href="javascript:void(0)">
-                        <span>More</span>
-                        <ifx-icon icon="chevron-down-12"></ifx-icon>
-                      </a>
-                      <div class="navbar__dropdown-wrapper">
-                        <slot name='menu' />
-                      </div>
-                    </div>
-                  </div> */}
-
                   <div class="navbar__container-left-content-navigation-item-search-bar">
                     <slot name='search-bar-left' />
                   </div>
@@ -300,30 +287,12 @@ export class Navbar {
             <div class="navbar__container-right">
               <div class="navbar__container-right-content">
                 <div class="navbar__container-right-content-navigation-group">
-
                   <div class="navbar__container-right-content-navigation-item-search-bar">
                     <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
                       <slot name='search-bar-right' />
                     </div>
                   </div>
-
-
                   <slot name='right-item' />
-
-                  {/* <div class="navbar__container-right-content-navigation-item">
-                    <slot name='right-item' />
-                  </div> */}
-
-
-                  {/* 
-                   <div class="navbar__container-right-content-navigation-item-profile">
-                    <div class="navbar__container-right-content-navigation-item-navigation-profile">
-                      <a href="javascript:void(0)">AA</a>
-                    </div>
-                  </div>  
-                  */}
-
-
                 </div>
               </div>
 
