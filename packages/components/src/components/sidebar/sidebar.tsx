@@ -25,39 +25,34 @@ export class Sidebar {
   @State() activeItem: HTMLElement | null = null;
 
   expandActiveItems(){
-    var firstActiveSection = true;
-    const expandRecursively = (parent) => {
-      firstActiveSection = true;
-      if(!parent.isItemExpandable()){
-        return parent.active;
+    const expandRecursively = async (parent) => {
+      if(await parent.isItemExpandable() !== true){
+        if(parent.active) return 1;
+        return 0;
       }
+      let currRes = 0;
       const children = this.getSidebarMenuItems(parent);
-      let activeChildPresent = false;
       for(let i = 0; i < children.length; i++){
-        if(expandRecursively(children[i])){
-          activeChildPresent = true;
-        }else if(children[i].active){
-          activeChildPresent = true;
-        }
+        currRes = Math.max(currRes, await expandRecursively(children[i]));
       }
-      if(activeChildPresent){
-        if(firstActiveSection){
+      if(currRes > 0){
+        if(currRes == 1){
           parent.expandMenu(false);
-          firstActiveSection = false;
         }else{
           parent.expandMenu(true);
         }
       }
 
-      return activeChildPresent;
+      return (currRes ? currRes+1 : 0);
     }
 
     const topLevelItems = this.getSidebarMenuItems(this.el);
     for(let i = 0; i < topLevelItems.length; i++){
-      expandRecursively(topLevelItems[i]);
+      expandRecursively(topLevelItems[i])
     }
   }
 
+  
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
     this.setInitialActiveItem();

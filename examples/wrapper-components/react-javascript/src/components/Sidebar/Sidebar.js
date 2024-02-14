@@ -44,7 +44,7 @@ function Sidebar() {
 
   return (
     <div>
-      <IfxSidebar application-name="Application Name">
+      <IfxSidebar applicationName="Application Name" initialCollapse={false}>
         <IfxSidebarItem  >
           Header Section
           <IfxSidebarItem icon="image-16" >
@@ -61,7 +61,7 @@ function Sidebar() {
           </IfxSidebarItem>
           <IfxSidebarItem icon="image-16">
             Menu Item
-            <IfxSidebarItem target="_blank"active="true" icon="image-16">
+            <IfxSidebarItem target="_blank" icon="image-16">
               Menu Item
             </IfxSidebarItem>
           </IfxSidebarItem>

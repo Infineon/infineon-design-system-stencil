@@ -38,24 +38,24 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
   sidebarElement.setAttribute('show-footer', args.showFooter);
   sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
-
+  
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
-
+  
   items.forEach(itemTitle => {
     const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
     itemElement.setAttribute('href', "http://google.com");
     itemElement.setAttribute('target', "_blank");
     itemElement.setAttribute('is-action-item', "false");
-
+    
     if (args.icon) {
       itemElement.setAttribute('icon', 'image-16');
     }
     itemElement.textContent = itemTitle;
-
+    
     // Append the item to the sidebar
     sidebarElement.appendChild(itemElement);
   });
-
+  
   const subItemElement1 = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
   subItemElement1.setAttribute('href', "http://google.com");
   subItemElement1.setAttribute('target', "_blank");
@@ -72,8 +72,8 @@ const DefaultTemplate = (args) => {
   firstItem.append(subItemElement1, subItemElement2)
   firstItem.setAttribute('href', '');
   // thirdItem.setAttribute('active', 'true') //first submenu item
-
-
+  
+  
   return sidebarElement;
 };
 
@@ -89,7 +89,8 @@ const SubmenuTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
   sidebarElement.addEventListener('ifxSidebarActionItem', action('ifxSidebarActionItem'));
   sidebarElement.addEventListener('ifxSidebarMenu', action('ifxSidebarMenu'));
-
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
+  
   // Create 3 sections
   for (let i = 0; i < 3; i++) {
     const sectionElement = document.createElement('ifx-sidebar-item');
