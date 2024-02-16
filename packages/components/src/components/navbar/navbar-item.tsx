@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, Method } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-item',

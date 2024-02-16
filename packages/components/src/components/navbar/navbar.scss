@@ -190,25 +190,6 @@
 
   &.expanded { 
     justify-content: initial;
-    //I will only keep this, and everything below will be done in its own wrapper instead
-    // & .navbar__container-right { 
-    //   justify-content: initial;
-    //   flex: 1;
-    //   & .navbar__container-right-content { 
-    //     align-items: initial;
-    //     flex: 1;
-    //     & .navbar__container-right-content-navigation-group { 
-    //       justify-content: initial;
-    //       flex: 1;
-    //       & .navbar__container-right-content-navigation-item-search-bar { 
-    //         flex: 1;
-    //         & .navbar__container-right-content-navigation-item-search-bar-icon-wrapper { 
-    //           flex: 1;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   // &.fixed { 
@@ -311,7 +292,6 @@
         flex: none;
         order: 2;
         flex-grow: 0;
-        display: none;
       }
     }
 
@@ -370,68 +350,6 @@
             flex-grow: 0;
           }
         }
-
-        // & .navbar__container-left-content-navigation-dropdown-menu {
-        //   & .hidden {
-        //     display: flex; //none
-        //     flex-direction: row;
-        //     align-items: center;
-        //     padding: 0px 8px;
-        //     gap: 8px;
-
-        //     & a {
-        //       & span {
-        //         &:hover {
-        //           color: tokens.$ifxColorOcean500;
-        //         }
-        //       }
-        //     }
-        //   }
-
-        //   & .hidden {
-        //     position: relative;
-        //     //display: flex;
-        //     flex-direction: column;
-
-        //     & .navbar__dropdown-wrapper {
-        //       display: none;
-
-        //       &.open {
-        //         top: 50px;
-        //         position: fixed;
-        //         display: flex;
-        //         flex-direction: column;
-        //       }
-        //     }
-
-        //     & a {
-        //       text-decoration: none;
-        //       font-weight: 400;
-        //       font-size: 16px;
-        //       line-height: 24px;
-        //       color: tokens.$ifxColorBaseBlack;
-        //       display: flex;
-        //       align-items: center;
-
-        //       & span {
-        //         padding-right: 8.5px;
-        //       }
-
-        //       & ifx-icon {
-        //         transition: transform 0.3s;
-        //         transform: rotate(0deg);
-        //         color: tokens.$ifxColorOcean500;
-        //       }
-
-        //       &.open {
-        //         & ifx-icon {
-        //           transition: transform 0.3s;
-        //           transform: rotate(180deg);
-        //         }
-        //       }
-        //     }
-        //   }
-        // }
       }
     }
   }
@@ -620,25 +538,35 @@
   }
 }
 
-
-@media screen and (max-width: 720px) {
-
-  //mobile
+//burger icon exist, and left container is gone
+@media screen and (max-width: 800px) {
   .navbar__container {
     padding: 0px 16px;
     height: 64px;
     gap: initial;
 
+    &.expanded { 
+      & .navbar__container-right {
+        & .navbar__burger-icon-wrapper {
+          display: none;
+        }
+      }
+    }
+
     & .navbar__container-left {
       & .navbar__container-left-content {
         display: none;
       }
+
+      & .navbar__container-left-logo {
+        & .navbar__container-left-logo-divider {
+          display: none;
+        }
+      }
     }
 
     & .navbar__container-right {
-      & .navbar__container-right-content {
-        display: none;
-      }
+      flex: 1;
     }
   }
 
@@ -652,70 +580,38 @@
   }
 }
 
-@media screen and (min-width: 720px) {
-
-  //tablet
+//burger icon disappears
+@media screen and (min-width: 800px) {
   .navbar__wrapper {
-    //height: 64px;
     height: 63px;
   }
 
   .navbar__container {
     padding: 0px 16px;
-    //height: 64px;
     height: 63px;
     gap: initial;
 
-    & .navbar__container-left {
-      & .navbar__container-left-content {
-        display: none;
-      }
-    }
-
     & .navbar__container-right {
       & .navbar__burger-icon-wrapper {
-        display: flex;
-      }
-
-      & .navbar__container-right-content {
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item {
-            &.tablet {
-              display: none;
-            }
-          }
-
-          & .navbar__container-right-content-navigation-item-profile {
-            & a {
-              display: none;
-            }
-          }
-        }
+        display: none;
       }
     }
   }
 }
 
+//left container appears
 @media screen and (min-width: 1024px) {
-
-  //medium
   .navbar__wrapper {
     height: 72px;
   }
 
   .navbar__container {
-    //padding: 4px 24px;
     padding: 0px 24px;
     height: 72px;
 
     & .navbar__container-left {
       gap: 12px;
-
-      & .navbar__container-left-logo {
-        & .navbar__container-left-logo-divider {
-          display: block;
-        }
-      }
+      display: flex;
 
       & .navbar__container-left-content {
         display: flex;
@@ -725,48 +621,6 @@
         & svg {
           width: 72.8px;
           height: 32px;
-        }
-      }
-
-      & .navbar__container-left-content {
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-dropdown-menu {
-            & .hidden {
-
-              //display: flex;
-              & .navbar__dropdown-wrapper {
-                &.open {
-                  top: 72px;
-                }
-              }
-            }
-
-            & .shown {
-              display: none
-            }
-          }
-        }
-      }
-    }
-
-    & .navbar__container-right {
-      & .navbar__burger-icon-wrapper {
-        display: none;
-      }
-
-      & .navbar__container-right-content {
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item {
-            &.tablet {
-              display: flex;
-            }
-          }
-
-          & .navbar__container-right-content-navigation-item-profile {
-            & a {
-              display: flex;
-            }
-          }
         }
       }
     }
@@ -788,33 +642,17 @@
 }
 
 @media screen and (min-width: 1200px) {
-
-  //large
   .navbar__wrapper {
     height: 80px
   }
 
   .navbar__container {
-    //padding: 8px 32px;
     padding: 0px 32px;
     height: 80px;
 
     & .navbar__container-left {
       & .navbar__container-left-content {
         justify-content: inherit;
-
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-dropdown-menu {
-            & .hidden {
-              //display: none
-            }
-
-            & .shown {
-              display: flex;
-              z-index: 1030;
-            }
-          }
-        }
       }
     }
 
@@ -827,38 +665,23 @@
 }
 
 @media screen and (min-width: 1440px) {
-
-  //largest
   .navbar__wrapper {
     height: 80px;
   }
 
   .navbar__container {
-    //padding: 8px 40px;
     padding: 0px 40px;
     height: 80px;
 
     & .navbar__container-left {
       & .navbar__container-left-content {
         justify-content: center;
-
-        & .navbar__container-left-content-navigation-group {
-          & .navbar__container-left-content-navigation-item-search-bar {
-            display: inherit; //flex
-          }
-        }
       }
     }
 
     & .navbar__container-right {
       & .navbar__container-right-content {
         justify-content: inherit;
-
-        & .navbar__container-right-content-navigation-group {
-          & .navbar__container-right-content-navigation-item-search-bar {
-            display: inherit; //none
-          }
-        }
       }
     }
   }

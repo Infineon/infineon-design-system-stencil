@@ -69,8 +69,6 @@ export class Navbar {
     const leftAssignedNodes = leftSideSlot.assignedNodes();
 
 
-
-
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
     if(event.detail) { 
@@ -123,55 +121,6 @@ export class Navbar {
     this[menu] = !this[menu];
   }
 
-  // @Listen('mousedown', { target: 'document' })
-  // handleOutsideClick(event: MouseEvent) {
-  //   const path = event.composedPath();
-  //   if (!path.includes(this.el)) {
-  //     const dropdownWrapper = this.el.shadowRoot.querySelector('.navbar__dropdown-wrapper')
-  //     dropdownWrapper.classList.remove('open')
-  //     const iconWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('a')
-  //     iconWrapper.classList.remove('open')
-  //   }
-  // }
-
-
-  // handleMenuItems() { 
-  //   const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
-  //   const navbar = this.el.closest('ifx-navbar')
-  //   const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
-  //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
-
-  //   if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
-  //     const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
-  //     if(dropdownMenu.childNodes.length === 0) { 
-  //       moreMenu.style.display = 'none'
-  //       if(leftMenuItems.length > 3) { 
-  //         moreMenu.style.display = 'flex'
-  //         for (let i = 3; i < leftMenuItems.length; i++) {
-  //           const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-  //           dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-  //           leftMenuItems[i].remove()
-  //           dropdownMenu.append(dropdownMenuItem);
-  //         }
-  //       }
-  //     }
-
-  //   } else if(window.matchMedia("(min-width: 1200px)").matches) { 
-  //     for(let i = 0; i < dropdownMenuItems.length; i++) { 
-  //       const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
-  //       navbarMenuItem.setAttribute('slot', 'left-menu-item')
-  //       navbarMenuItem.innerHTML = dropdownMenuItems[i].innerHTML;
-
-  //       while (dropdownMenu.firstChild) {
-  //         dropdownMenu.removeChild(dropdownMenu.lastChild);
-  //       } 
-  //       moreMenu.style.display = 'none'
-  //       setTimeout(() => {
-  //         navbar.append(navbarMenuItem)
-  //       }, 0);
-  //     }
-  //   }
-  // }
 
   async setItemMenuPosition() { 
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
@@ -216,27 +165,7 @@ export class Navbar {
 
   componentDidLoad() {
     this.setItemMenuPosition()
-    // const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
-    // if (!dropdownMenu) {
-    //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
-    //   moreMenu.style.display = 'none'
-    // }
-
     this.addEventListenersToHandleCustomFocusState();
-
-    // if(window.matchMedia("(max-width: 1200px)").matches) { 
-    //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
-
-    //   if(leftMenuItems.length > 3) { 
-    //     moreMenu.style.display = 'flex'
-    //     for (let i = 3; i < leftMenuItems.length; i++) {
-    //       const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-    //       dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-    //       leftMenuItems[i].remove()
-    //       dropdownMenu.append(dropdownMenuItem);
-    //     }
-    //   }
-    // }
   }
 
   handleLogoHrefAndTarget(){
