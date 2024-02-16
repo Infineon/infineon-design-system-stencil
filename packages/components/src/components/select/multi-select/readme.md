@@ -30,6 +30,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-set-filter](../../set-filter)
+
 ### Depends on
 
 - [ifx-checkbox](../../checkbox)
@@ -41,6 +45,7 @@ graph TD;
   ifx-multiselect --> ifx-checkbox
   ifx-multiselect --> ifx-icon
   ifx-checkbox --> ifx-icon
+  ifx-set-filter --> ifx-multiselect
   style ifx-multiselect fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

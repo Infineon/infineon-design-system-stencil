@@ -18,6 +18,11 @@ export class Table {
   @State() currentPage: number = 1;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
+  @State() rowData: any[] = [];
+  @State() colData: any[] = [];
+  @State() filterOptions: { [key: string]: string[] } = {};
+  @State() currentFilters = {};
+
   allRowData: any[] = [];
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
@@ -26,9 +31,67 @@ export class Table {
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
-  colData: any[];
-  rowData: any[];
+  originalRowData: any[] = [];
 
+
+  updateFilterOptions() {
+    const options = {};
+    for (let col of this.colData) {
+      options[col.field] = [...new Set(this.rowData.map(row => row[col.field]))];
+      // console.log(`Options for ${col.field}:`, options[col.field]);
+    }
+    this.filterOptions = options;
+  }
+
+
+  handleFilterChange(event: CustomEvent) {
+    console.log("filter change", event.detail);
+    const { filterName, filterValues, type } = event.detail;
+
+    const selectedValues = filterValues.map(option => option?.value || option);
+    if (selectedValues.length === 0) {
+      delete this.currentFilters[filterName];
+    } else {
+      this.currentFilters = {
+        ...this.currentFilters, [filterName]: { filterValues: selectedValues, type: type }
+      }
+    }
+
+    this.allRowData = [...this.originalRowData];
+
+    this.filterData();
+
+    const startIndex = (this.currentPage - 1) * this.paginationPageSize;
+    const endIndex = startIndex + this.paginationPageSize;
+    const visibleRowData = this.allRowData.slice(startIndex, endIndex);
+
+    this.rowData = visibleRowData;
+
+    this.gridApi.setGridOption('rowData', this.rowData);
+  }
+
+  filterData() {
+    let filteredData = [...this.allRowData];
+
+    for (let filterName in this.currentFilters) {
+      let selectedValues = this.currentFilters[filterName].filterValues;
+      let filterType = this.currentFilters[filterName].type;
+
+      filteredData = this.filterByType(filteredData, filterName, selectedValues, filterType);
+    }
+
+    this.allRowData = filteredData;
+  }
+
+  filterByType(data, filterName, selectedValues, filterType) {
+    if (filterType === 'text') {
+      return data.filter(row => selectedValues.some(value =>
+        String(row[filterName]).toLowerCase().startsWith(String(value).toLowerCase())
+      ));
+    } else {
+      return data.filter(row => selectedValues.includes(String(row[filterName])));
+    }
+  }
 
 
   @Method()
@@ -39,6 +102,7 @@ export class Table {
   componentWillLoad() {
     this.rowData = this.getRowData();
     this.colData = this.getColData();
+    this.updateFilterOptions();
 
     this.gridOptions = {
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
@@ -67,11 +131,12 @@ export class Table {
   }
 
   componentDidRender() {
-
     if (this.gridApi) {
       this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
+
+
 
   componentDidLoad() {
     if (this.container) {
@@ -89,6 +154,11 @@ export class Table {
             paginationElement.addEventListener('ifxPageChange', this.handlePageChange.bind(this));
           }
         }
+        const setFilterElements = this.host.querySelectorAll('ifx-set-filter');
+        // Add an event listener to each SetFilter component
+        setFilterElements.forEach(setFilterElement => {
+          setFilterElement.addEventListener('ifxFilterChange', this.handleFilterChange.bind(this));
+        });
       }
     }
   }
@@ -100,6 +170,11 @@ export class Table {
         paginationElement.removeEventListener('ifxPageChange', this.handlePageChange.bind(this));
       }
     }
+    const setFilterElements = this.host.shadowRoot.querySelectorAll('ifx-set-filter');
+    // Remove the event listener from each SetFilter component
+    setFilterElements.forEach(setFilterElement => {
+      setFilterElement.removeEventListener('ifxFilterChange', this.handleFilterChange.bind(this));
+    });
   }
 
   handlePageChange(event) {
@@ -107,9 +182,12 @@ export class Table {
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-
-    this.gridApi.setGridOption('rowData', visibleRowData);
+    // Update the data in the grid
+    if (this.gridApi) {
+      this.gridApi.setRowData(visibleRowData);
+    }
   }
+
 
   getRowData() {
     let rows: any[] = [];
@@ -133,6 +211,7 @@ export class Table {
     }
 
     this.allRowData = rows;
+    this.originalRowData = [...rows]; // Deep copy the original data
     return rows.slice(0, this.paginationPageSize);
   }
 
@@ -202,8 +281,10 @@ export class Table {
         'height': this.tableHeight
       };
     }
+
     return (
       <Host >
+        <slot name="set-filter"></slot>
         <div id="ifx-table-wrapper" class={this.getClassNames()}>
           <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
           </div>
@@ -217,9 +298,6 @@ export class Table {
   hasButtonCol(): boolean {
     return this.getColData().some(column => column.field === 'button');
   }
-
-
-
 
 
   // setIconButtonRenderer() {

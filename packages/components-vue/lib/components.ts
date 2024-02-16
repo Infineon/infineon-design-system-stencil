@@ -400,6 +400,16 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 ]);
 
 
+export const IfxSetFilter = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', undefined, [
+  'filterName',
+  'filterLabel',
+  'placeholder',
+  'type',
+  'options',
+  'ifxFilterChange'
+]);
+
+
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
   'applicationName',
   'termsOfUse',
@@ -469,6 +479,7 @@ export const IfxTab = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undef
 export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
   'cols',
   'rows',
+  'filterPosition',
   'rowHeight',
   'tableHeight',
   'pagination',

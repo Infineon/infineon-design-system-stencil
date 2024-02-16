@@ -10,6 +10,7 @@
 | Property             | Attribute              | Description | Type              | Default     |
 | -------------------- | ---------------------- | ----------- | ----------------- | ----------- |
 | `cols`               | `cols`                 |             | `any[] \| string` | `undefined` |
+| `filterPosition`     | `filter-position`      |             | `"left" \| "top"` | `'top'`     |
 | `pagination`         | `pagination`           |             | `boolean`         | `true`      |
 | `paginationPageSize` | `pagination-page-size` |             | `number`          | `10`        |
 | `rowHeight`          | `row-height`           |             | `string`          | `'default'` |

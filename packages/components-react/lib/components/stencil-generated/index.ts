@@ -54,6 +54,7 @@ export const IfxRadioButton = /*@__PURE__*/createReactComponent<JSX.IfxRadioButt
 export const IfxSearchBar = /*@__PURE__*/createReactComponent<JSX.IfxSearchBar, HTMLIfxSearchBarElement>('ifx-search-bar');
 export const IfxSearchField = /*@__PURE__*/createReactComponent<JSX.IfxSearchField, HTMLIfxSearchFieldElement>('ifx-search-field');
 export const IfxSelect = /*@__PURE__*/createReactComponent<JSX.IfxSelect, HTMLIfxSelectElement>('ifx-select');
+export const IfxSetFilter = /*@__PURE__*/createReactComponent<JSX.IfxSetFilter, HTMLIfxSetFilterElement>('ifx-set-filter');
 export const IfxSidebar = /*@__PURE__*/createReactComponent<JSX.IfxSidebar, HTMLIfxSidebarElement>('ifx-sidebar');
 export const IfxSidebarItem = /*@__PURE__*/createReactComponent<JSX.IfxSidebarItem, HTMLIfxSidebarItemElement>('ifx-sidebar-item');
 export const IfxSlider = /*@__PURE__*/createReactComponent<JSX.IfxSlider, HTMLIfxSliderElement>('ifx-slider');

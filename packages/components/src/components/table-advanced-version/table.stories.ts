@@ -113,6 +113,7 @@ export default {
       options: [true, false],
       control: { type: 'radio' },
     },
+
     rowHeight: {
       options: ['compact', 'default'],
       control: { type: 'radio' },
@@ -139,7 +140,6 @@ export default {
 
 const DefaultTemplate = (args) =>
   `<ifx-table 
-  id='my-table'
   row-height='${args.rowHeight}'
   cols='${JSON.stringify(args.columnDefs)}' 
   rows='${JSON.stringify(args.rowData)}'
@@ -151,6 +151,37 @@ const DefaultTemplate = (args) =>
 
 
 
+
+const SetFilterTemplate = (args) => {
+  let columnFilters = args.columnDefs.map(column => {
+    let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+    return {
+      name: column.field,
+      options: uniqueColValues.map(option => {
+        return { label: option, value: option, selected: false };
+      })
+    };
+  });
+
+  // let setFilterAllCols = columnFilters.map(filter => {
+  //   return `<ifx-set-filter slot="set-filter" filter-name="${filter.name}" options='${JSON.stringify(filter.options)}' type="multi-select"></ifx-set-filter>`;
+  // }).join("");
+
+
+  return (
+    `<ifx-table 
+    row-height='${args.rowHeight}'
+    cols='${JSON.stringify(args.columnDefs)}' 
+    rows='${JSON.stringify(args.rowData)}'
+    table-height='${args.tableHeight}'
+    pagination='${args.pagination}'
+    pagination-page-size='${args.paginationPageSize}'
+    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Text filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="text"></ifx-set-filter>
+    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Single-select filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="multi-select" options='${JSON.stringify(columnFilters[0].options)}'></ifx-set-filter>
+    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Multi-select filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="single-select" options='${JSON.stringify(columnFilters[0].options)}'></ifx-set-filter>
+    </ifx-table>`
+  );
+}
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
@@ -167,6 +198,15 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
+};
+
+
+export const SetFilter = SetFilterTemplate.bind({});
+SetFilter.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  type: 'multi-select'
 };
 
 
