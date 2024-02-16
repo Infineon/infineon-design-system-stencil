@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-item',
@@ -17,6 +17,7 @@ export class NavbarItem {
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
   @State() itemPosition: string;
+
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -29,6 +30,12 @@ export class NavbarItem {
         }
       }
     }
+  }
+
+  @Method()
+  hideComponent(action) { 
+    const container = this.el.shadowRoot.querySelector('.container')
+    this.handleClassList(container, action, 'hide')
   }
 
   componentWillLoad() {

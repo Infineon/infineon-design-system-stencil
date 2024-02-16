@@ -130,6 +130,10 @@
 .container { 
   position: relative;
 
+  &.hide { 
+    display: none;
+  }
+
   & .inner__content-wrapper { 
     display: flex;
     justify-content: space-between;

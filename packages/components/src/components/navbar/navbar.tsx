@@ -18,12 +18,12 @@ export class Navbar {
   @State() hasLeftMenuItems: boolean = true;
   @Prop() fixed: boolean = true;
   @Prop() showLogoAndAppname: boolean = true;
-  @State() searchBarIsOpen: boolean = false;
+  @State() searchBarIsOpen: string;
   @Prop() logoHref: string = "";
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
- 
+
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -60,21 +60,36 @@ export class Navbar {
 
 
   @Listen('ifxSearchBarIsOpen')
-  handleSearchBarToggle(e) {
-    this.searchBarIsOpen = !this.searchBarIsOpen;
-    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
-    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
+  handleSearchBarToggle(event: CustomEvent) {
+    const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
+    const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
+    const rightSideSlot = searchBarRightWrapper.querySelector('slot');
+    const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
+    const rightAssignedNodes = rightSideSlot.assignedNodes();
+    const leftAssignedNodes = leftSideSlot.assignedNodes();
 
-    if (e.detail) {
-      for (let i = 0; i < navbarItems.length; i++) {
-        navbarItems[i].hideComponent = true;
+
+
+
+    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
+    if(event.detail) { 
+      if(rightAssignedNodes.length !== 0) { 
+        this.searchBarIsOpen = 'right'
+      } else if(leftAssignedNodes.length !== 0) {
+        this.searchBarIsOpen = 'left'
       }
-      moreMenu.style.display = 'none'
-    } else {
-      for (let i = 0; i < navbarItems.length; i++) {
-        navbarItems[i].hideComponent = false;
+      navbarProfile.hideComponent('add')
+      for(let i = 0; i < navbarItems.length; i++) { 
+        navbarItems[i].hideComponent('add')
       }
-      moreMenu.style.display = 'flex'
+
+    } else if(!event.detail) {
+      this.searchBarIsOpen = undefined;
+      navbarProfile.hideComponent('remove')
+      for(let i = 0; i < navbarItems.length; i++) { 
+        navbarItems[i].hideComponent('remove')
+      }
     }
   }
 
@@ -247,15 +262,14 @@ export class Navbar {
     this.handleLogoHrefAndTarget();
   }
 
-
   render() {
     return (
       <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
         <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
-          <div class={`navbar__container ${this.searchBarIsOpen ? "searchOpened" : ""}`}>
-            <div class={`navbar__container-left ${this.searchBarIsOpen ? 'searchOpened' : ""}`}>
+          <div class={`navbar__container ${this.searchBarIsOpen ? "expanded" : ""}`}>
+            <div class={`navbar__container-left ${this.searchBarIsOpen === 'left' ? "expand" : this.searchBarIsOpen === 'right' ? 'hide' : ""}`}>
               {this.showLogoAndAppname &&
-                <div class="navbar__container-left-logo">
+                <div class={`navbar__container-left-logo ${this.searchBarIsOpen === 'left' ? 'hide' : ""}`}>
                   <div class="navbar__container-left-logo-default">
                     <a href={this.internalLogoHref} target = {this.internalLogoHrefTarget}>
                       <svg width="91" height="40" viewBox="0 0 91 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -284,11 +298,11 @@ export class Navbar {
                 </div>
               </div>
             </div>
-            <div class="navbar__container-right">
+            <div class={`navbar__container-right ${this.searchBarIsOpen === 'right' ? "expand" : this.searchBarIsOpen === 'left' ? 'hide' : ""}`}>
               <div class="navbar__container-right-content">
                 <div class="navbar__container-right-content-navigation-group">
                   <div class="navbar__container-right-content-navigation-item-search-bar">
-                    <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
+                  <div class={`navbar__container-right-content-navigation-item-search-bar-icon-wrapper`}>
                       <slot name='search-bar-right' />
                     </div>
                   </div>
@@ -297,7 +311,7 @@ export class Navbar {
               </div>
 
               {/* MOBILE MENU BUTTON */}
-              <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
+              <div class={`navbar__burger-icon-wrapper`} onClick={this.handleSidebar.bind(this)}>
                 <div class="navbar__burger-icon">
                   <ifx-icon icon="menu-right-24"></ifx-icon>
                 </div>

@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, getAssetPath  } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, getAssetPath, Method } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-profile',
@@ -51,6 +51,12 @@ export class NavbarProfile {
       const navItems = this.getNavbarItems();
       this.appendNavItemToMenu(navItems)
     }
+  }
+
+  @Method()
+  hideComponent(action) { 
+    const container = this.el.shadowRoot.querySelector('.container')
+    this.handleClassList(container, action, 'hide')
   }
 
   handleClassList(el, type, className) {
