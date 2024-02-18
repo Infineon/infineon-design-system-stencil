@@ -147,8 +147,6 @@ const DefaultTemplate = (args) =>
   pagination='${args.pagination}'
   pagination-page-size='${args.paginationPageSize}'>
   </ifx-table>`
-  ;
-
 
 
 
@@ -162,10 +160,6 @@ const SetFilterTemplate = (args) => {
       })
     };
   });
-
-  // let setFilterAllCols = columnFilters.map(filter => {
-  //   return `<ifx-set-filter slot="set-filter" filter-name="${filter.name}" options='${JSON.stringify(filter.options)}' type="multi-select"></ifx-set-filter>`;
-  // }).join("");
 
 
   return (

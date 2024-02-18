@@ -71,12 +71,15 @@ rows='${JSON.stringify(args.rowData)}'>
 
 ### Set filter
 
+<Canvas of={TableStories.IncludesButtons} sourceState="shown" />
+
 Advanced filtering can be done including our set-filter component via a named slot within the table.
 The set filter can be of type 'text', 'single-select', or 'multi-select'. An additional type to offer filtering using chips will be available in the future.
 Filtering using our select components requires an input array in the following format:
 
+
 ```
-const columnFilterOptions = [{
+const options = [{
   value: "a",
   label: "option a",
   selected: false
@@ -91,21 +94,4 @@ const columnFilterOptions = [{
   label: "option c",
   selected: false
 }];
-```
-
-<Canvas of={TableStories.SetFilter} sourceState="shown" />
-
-
-```js
-    `<ifx-table 
-    row-height='${args.rowHeight}'
-    cols='${JSON.stringify(args.columnDefs)}' 
-    rows='${JSON.stringify(args.rowData)}'
-    table-height='${args.tableHeight}'
-    pagination='${args.pagination}'
-    pagination-page-size='${args.paginationPageSize}'>
-    <ifx-set-filter slot="set-filter" filter-name="${columnName}" type="text"></ifx-set-filter>
-    <ifx-set-filter slot="set-filter" filter-name="${columnName}"  type="multi-select" options='${JSON.stringify(columnFilterOptions)}'></ifx-set-filter>
-    <ifx-set-filter slot="set-filter" filter-name="${columnName}"  type="single-select" options='${JSON.stringify(ccolumnFilterOptions)}'></ifx-set-filter>
-    </ifx-table>`
 ```
