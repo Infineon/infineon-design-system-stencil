@@ -10,6 +10,8 @@ export class ButtonCellRenderer implements ICellRendererComp {
 
   // gets called once before the renderer is used
   init(params: ICellRendererParams) {
+    console.log("render cell")
+
     const config = params.data.button;
     this.eGui = document.createElement('div');
 
@@ -106,5 +108,6 @@ export class ButtonCellRenderer implements ICellRendererComp {
     if (!this.isObject(obj)) return false;
     return ButtonKeys.every(key => key in obj);
   }
+
 
 }

@@ -6,10 +6,21 @@ const columnDefs = [
   { headerName: 'Age', field: 'age' }
 
 ];
+
 const rowData = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
   { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
-  { make: 'Porsche', model: 'Boxster', price: 72000 }
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Bmw', model: 'x', price: 72000 },
+  { make: 'Mercedes', model: 'y', price: 72000 },
+  { make: 'Ferrari', model: 'z', price: 72000 },
+  { make: 'Chrysler', model: 'a', price: 72000 },
+  { make: 'Range rover', model: 'b', price: 72000 },
+  { make: 'Tesla', model: 'x', price: 72000 },
+  { make: 'Audi', model: '3', price: 72000 },
+  { make: 'Landrover', model: 'x', price: 72000 },
+
+
 ];
 
 //table with button col
@@ -81,7 +92,9 @@ export default {
     tableHeight: 'auto',
     pagination: false,
     paginationPageSize: 10,
+    currentPage: 1,
     rowHeight: 40,
+    showLoading: false,
   },
   argTypes: {
     tableHeight: {
@@ -92,6 +105,15 @@ export default {
         }
       },
     },
+    paginationPageSize: {
+      description: "Results per page: minimum 10 - maximum 30",
+      control: { type: 'number', min: 10, max: 30, step: 10 }
+    },
+    showLoading: {
+      options: [true, false],
+      control: { type: 'radio' },
+    },
+
     rowHeight: {
       options: ['compact', 'default'],
       control: { type: 'radio' },
@@ -116,29 +138,64 @@ export default {
 };
 
 
-const DefaultTemplate = (args) => `<ifx-table 
-row-height='${args.rowHeight}'
-cols='${JSON.stringify(args.columnDefs)}' 
-rows='${JSON.stringify(args.rowData)}'
-table-height='${args.tableHeight}'
-pagination='${args.pagination}'
-pagination-page-size='${args.paginationPageSize}'>
-</ifx-table>`;
+const DefaultTemplate = (args) =>
+  `<ifx-table 
+  row-height='${args.rowHeight}'
+  cols='${JSON.stringify(args.columnDefs)}' 
+  rows='${JSON.stringify(args.rowData)}'
+  table-height='${args.tableHeight}'
+  pagination='${args.pagination}'
+  pagination-page-size='${args.paginationPageSize}'>
+  </ifx-table>`
 
-// export const Default = DefaultTemplate.bind({});
-// Default.args = {
-//   rowHeight: 'default',
-//   columnDefs: columnDefs,
-//   rowData: rowData,
-// };
 
-// export const FixedHeight = DefaultTemplate.bind({});
-// FixedHeight.args = {
-//   tableHeight: '400px',
-//   rowHeight: 'default',
-//   columnDefs: columnDefs,
-//   rowData: rowData,
-// };
+const SetFilterTemplate = (args) => {
+  let columnFilters = args.columnDefs.map(column => {
+    let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+    return {
+      name: column.field,
+      options: uniqueColValues.map(option => {
+        return { label: option, value: option, selected: false };
+      })
+    };
+  });
+
+  // Create main table element
+  let ifxTable = document.createElement('ifx-table');
+  ifxTable.setAttribute('row-height', args.rowHeight);
+  ifxTable.setAttribute('cols', JSON.stringify(args.columnDefs));
+  ifxTable.setAttribute('rows', JSON.stringify(args.rowData));
+  ifxTable.setAttribute('table-height', args.tableHeight);
+  ifxTable.setAttribute('pagination', args.pagination);
+  ifxTable.setAttribute('pagination-page-size', args.paginationPageSize);
+
+  // Create set-filter elements and append to main table element
+  columnFilters.forEach((columnFilter, index) => {
+    let filterType;
+    switch (index) {
+      case 0:
+        filterType = 'single-select';
+        break;
+      case 1:
+        filterType = 'multi-select';
+        break;
+      default:
+        filterType = 'text';
+    }
+    let ifxSetFilter = document.createElement('ifx-set-filter');
+    ifxSetFilter.setAttribute('slot', 'set-filter');
+    ifxSetFilter.setAttribute('filter-name', columnFilter.name);
+    ifxSetFilter.setAttribute('filter-label', `${filterType} filter for: ${columnFilter.name}`);
+    ifxSetFilter.setAttribute('placeholder', 'Placeholder');
+    ifxSetFilter.setAttribute('type', filterType);
+    if (['single-select', 'multi-select'].includes(filterType)) {
+      ifxSetFilter.setAttribute('options', JSON.stringify(columnFilter.options));
+    }
+    ifxTable.appendChild(ifxSetFilter);
+  });
+
+  return ifxTable.outerHTML;
+}
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
@@ -155,6 +212,15 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
+};
+
+
+export const SetFilter = SetFilterTemplate.bind({});
+SetFilter.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  type: 'multi-select'
 };
 
 
