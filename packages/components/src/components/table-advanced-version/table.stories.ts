@@ -149,7 +149,6 @@ const DefaultTemplate = (args) =>
   </ifx-table>`
 
 
-
 const SetFilterTemplate = (args) => {
   let columnFilters = args.columnDefs.map(column => {
     let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
@@ -161,20 +160,41 @@ const SetFilterTemplate = (args) => {
     };
   });
 
+  // Create main table element
+  let ifxTable = document.createElement('ifx-table');
+  ifxTable.setAttribute('row-height', args.rowHeight);
+  ifxTable.setAttribute('cols', JSON.stringify(args.columnDefs));
+  ifxTable.setAttribute('rows', JSON.stringify(args.rowData));
+  ifxTable.setAttribute('table-height', args.tableHeight);
+  ifxTable.setAttribute('pagination', args.pagination);
+  ifxTable.setAttribute('pagination-page-size', args.paginationPageSize);
 
-  return (
-    `<ifx-table 
-    row-height='${args.rowHeight}'
-    cols='${JSON.stringify(args.columnDefs)}' 
-    rows='${JSON.stringify(args.rowData)}'
-    table-height='${args.tableHeight}'
-    pagination='${args.pagination}'
-    pagination-page-size='${args.paginationPageSize}'
-    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Text filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="text"></ifx-set-filter>
-    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Single-select filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="multi-select" options='${JSON.stringify(columnFilters[0].options)}'></ifx-set-filter>
-    <ifx-set-filter slot="set-filter" filter-name='${columnFilters[0].name}' filter-label='Multi-select filter for: ${columnFilters[0].name}' placeholder='Placeholder' type="single-select" options='${JSON.stringify(columnFilters[0].options)}'></ifx-set-filter>
-    </ifx-table>`
-  );
+  // Create set-filter elements and append to main table element
+  columnFilters.forEach((columnFilter, index) => {
+    let filterType;
+    switch (index) {
+      case 0:
+        filterType = 'single-select';
+        break;
+      case 1:
+        filterType = 'multi-select';
+        break;
+      default:
+        filterType = 'text';
+    }
+    let ifxSetFilter = document.createElement('ifx-set-filter');
+    ifxSetFilter.setAttribute('slot', 'set-filter');
+    ifxSetFilter.setAttribute('filter-name', columnFilter.name);
+    ifxSetFilter.setAttribute('filter-label', `${filterType} filter for: ${columnFilter.name}`);
+    ifxSetFilter.setAttribute('placeholder', 'Placeholder');
+    ifxSetFilter.setAttribute('type', filterType);
+    if (['single-select', 'multi-select'].includes(filterType)) {
+      ifxSetFilter.setAttribute('options', JSON.stringify(columnFilter.options));
+    }
+    ifxTable.appendChild(ifxSetFilter);
+  });
+
+  return ifxTable.outerHTML;
 }
 
 export const Pagination = DefaultTemplate.bind({});

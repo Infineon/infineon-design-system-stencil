@@ -84,14 +84,28 @@ export class Table {
   }
 
   filterByType(data, filterName, selectedValues, filterType) {
-    if (filterType === 'text') {
-      return data.filter(row => selectedValues.some(value =>
-        String(row[filterName]).toLowerCase().startsWith(String(value).toLowerCase())
-      ));
-    } else {
-      return data.filter(row => selectedValues.includes(String(row[filterName])));
-    }
+    return data.filter(row => {
+      // Fetch the value from the row and convert it to a string for comparison
+      let rowValue = String(row[filterName]).toLowerCase();
+
+      switch (filterType) {
+        case 'multi-select':
+        case 'single-select':
+          // Check if the selectedValues (should be an array) includes the rowValue
+          return selectedValues.some(value => String(value).toLowerCase() === rowValue);
+
+        case 'text':
+          // Check if any of the selectedValues start with the rowValue
+          return selectedValues.some(value => rowValue.startsWith(String(value).toLowerCase()));
+
+        default:
+          // Fallback case
+          return selectedValues.includes(rowValue);
+      }
+    });
   }
+
+
 
 
   @Method()
