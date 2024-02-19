@@ -56,14 +56,9 @@ jobs:
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-          lerna version $CANARY_VERSION --no-git-tag-version --y
-          cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          cd ../../../../
-          cd packages/components-vue
-          rm -rf node_modules/@infineon/infineon-design-system-stencil
-          cd ../components-react
-          rm -rf node_modules/@infineon/infineon-design-system-stencil
+          npx lerna exec --scope @infineon/infineon-design-system-angular -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          npx lerna exec --scope @infineon/infineon-design-system-react -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          npx lerna exec --scope @infineon/infineon-design-system-vue -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
      
       - name: Build and deploy Angular, Vue and React packages
         env:
