@@ -7,6 +7,7 @@ export default {
   args: {
     icon: true,
     applicationName: 'Application Name',
+    showHeader: true,
     showFooter: true
   },
 
@@ -35,6 +36,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('show-header', args.showHeader);
   sidebarElement.setAttribute('show-footer', args.showFooter);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];

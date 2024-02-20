@@ -18,6 +18,7 @@ export class Sidebar {
   @Prop() privacyPolicy: string = ""
   @Prop() target: string = "_blank"
   @Prop() showFooter: boolean = true
+  @Prop() showHeader: boolean = true;
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
@@ -274,6 +275,8 @@ export class Sidebar {
     return (
       <div aria-label="a navigation sidebar" aria-value={this.applicationName} class='sidebar__container'>
         <div class='sidebar__top-container'>
+        {
+          this.showHeader && 
           <div class="sidebar__nav-bar">
             <div class="sidebar__nav-bar-logo">
               <div class='sidebar__nav-bar-logo-img'>
@@ -291,6 +294,7 @@ export class Sidebar {
               <div class='sidebar__nav-bar-logo-text'>{this.applicationName}</div>
             </div>
           </div>
+        }
           <div class="sidebar__nav-container">
             <slot />
           </div>
