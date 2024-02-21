@@ -50,6 +50,7 @@ export const DIRECTIVES = [
   d.IfxSearchField,
   d.IfxSelect,
   d.IfxSidebar,
+  d.IfxSidebarHeader,
   d.IfxSidebarItem,
   d.IfxSlider,
   d.IfxSpinner,
