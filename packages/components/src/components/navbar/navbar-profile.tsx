@@ -54,7 +54,7 @@ export class NavbarProfile {
   }
 
   @Method()
-  hideComponent(action) { 
+  async hideComponent(action) { 
     const container = this.el.shadowRoot.querySelector('.container')
     this.handleClassList(container, action, 'hide')
   }
@@ -130,7 +130,7 @@ export class NavbarProfile {
   // }
 
 
-  handleSlotChange(event) { 
+  handleSlotChange() { 
     
   }
 
@@ -200,7 +200,7 @@ export class NavbarProfile {
               <img src={ this.internalImageUrl ? this.internalImageUrl : this.defaultProfileImage} alt={this.alt} />
             </div>
             <span class="label__wrapper">
-              <slot onSlotchange={(e) => this.handleSlotChange(e)} />
+              <slot onSlotchange={() => this.handleSlotChange()} />
             </span>
           </div>
         </a>

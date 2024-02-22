@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-item',
@@ -17,7 +17,7 @@ export class NavbarItem {
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
   @State() itemPosition: string;
-
+  @Event() ifxNavItem: EventEmitter;
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -33,9 +33,14 @@ export class NavbarItem {
   }
 
   @Method()
-  hideComponent(action) { 
+  async hideComponent(action) { 
     const container = this.el.shadowRoot.querySelector('.container')
     this.handleClassList(container, action, 'hide')
+  }
+
+  @Method() //temporary test
+  async sendComponent() { 
+    this.ifxNavItem.emit(this.el);
   }
 
   componentWillLoad() {
@@ -151,7 +156,8 @@ export class NavbarItem {
     });
   }
 
-  handleSlotChange(event) { 
+  handleSlotChange() { 
+  
     //handle dynamic slot change
   }
 
@@ -235,7 +241,7 @@ export class NavbarItem {
 
 
             <span class="label__wrapper">
-              <slot onSlotchange={(e) => this.handleSlotChange(e)} />
+              <slot onSlotchange={() => this.handleSlotChange()} />
             </span>
           </div>
 

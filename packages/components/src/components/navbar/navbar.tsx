@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -23,7 +23,24 @@ export class Navbar {
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
+  @State() firstLayerItems: Array<HTMLElement> = [];
 
+  @Watch('firstLayerItems')
+  addSlots(newValue: HTMLElement[]) { 
+    //console.log('new value', newValue)
+    const childComponent = newValue[0]
+    childComponent.setAttribute('slot', 'first-layer')
+    console.log('child  component', childComponent)
+  }
+
+  @Listen('ifxNavItem')
+  getChildComponent(event: CustomEvent) { 
+    //console.log('emitted component', event.detail)
+    if(event.detail) { 
+      this.firstLayerItems = [event.detail]
+      //event.detail.setAttribute('slot', 'first-layer')
+    }
+  }
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -189,6 +206,62 @@ export class Navbar {
       this.hasLeftMenuItems = false;
     }
     this.handleLogoHrefAndTarget();
+
+    const mediaQueryList = window.matchMedia('(max-width: 800px)');
+    mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
+  }
+
+  moveToFirstLayer(el) { 
+    //el.setAttribute('slot', 'first-layer')
+    el.sendComponent()
+  }
+
+  getChildren(el) { 
+    const childComponents = el.querySelectorAll('ifx-navbar-item')
+    if(childComponents.length !== 0) { 
+      for(let i = 0; i < childComponents.length; i++) { 
+        //console.log('childComponents[i]', childComponents[i])
+        
+        // const div = document.createElement('div');
+        // const slot = document.createElement('slot');
+        // div.classList.add('top__menu-wrapper')
+        // slot.setAttribute('name', 'first-layer');
+        // div.appendChild(slot)
+        // const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
+        // firstLayerWrapper.appendChild(div)
+
+
+        this.moveToFirstLayer(childComponents[i])
+      
+      }
+      //return childComponents
+
+    }
+  }
+
+  moveNavItemsToSidebar(e) {
+    
+    if (e.matches) {
+      /* The viewport is 800px wide or less */
+      const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
+
+        //destructure and extract each child component
+        this.getChildren(leftMenuItems[i].shadowRoot)
+       
+      }
+      //do the right-side here
+  
+    } else {
+      /* The viewport is more than 800px wide */
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        leftMenuItems[i].setAttribute('slot', 'left-item')
+      }
+     //do the right-side here
+
+    }
   }
 
   render() {
@@ -254,28 +327,61 @@ export class Navbar {
 
         {/* SIDEBAR */}
         <div class="navbar__sidebar">
-           {this.main &&
-            <div class="navbar__sidebar-content-main">
+            <div class="navbar__sidebar-top-row">
+              <div class="navbar__sidebar-top-row-wrapper">
+
+                {/* left side ifx-navbar-item  */}
+                <slot name='mobile-menu-top' />
+                <slot name='first-layer' />
+
+                <div class='first__layer-wrapper'>
+                </div>
+                {/* <div class="navbar__sidebar-top-row-item">
+                  <div class="navbar__sidebar-top-row-item-label">
+                    Menu Item
+                  </div>
+                  <div class="navbar__sidebar-top-row-item-icon-wrapper">
+                    <ifx-icon icon="chevron-right-16"></ifx-icon>
+                  </div>
+                </div> */}
+
+              </div>
+            </div>
+
+          <div class="navbar__sidebar-bottom-row">
+            {/* right side ifx-navbar-item  */}
+              <div class="navbar__sidebar-bottom-row-item">
+                  <div class="navbar__sidebar-bottom-row-item-icon-wrapper">
+                    <ifx-icon icon="calendar16"></ifx-icon>
+                  </div>
+                  <div class="navbar__sidebar-bottom-row-item-label">
+                    Footer Menu Item
+                  </div>
+              </div>
+          </div>
+           
+
+          {/* <div class="navbar__sidebar-content-main">
             <div class="navbar__sidebar-content-main-menu">
               <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('products')}>
-                <a href="javascript:void(0)">Products</a>
+                <a href="javascript:void(0)">Menu Item</a>
                 <ifx-icon icon="chevron-right-16"></ifx-icon>
               </div>
             </div>
-          </div>}
+          </div> */}
 
-            {this.products &&
-            <div class="navbar__sidebar-content-products">
-                <div class="navbar__sidebar-content-products-header" onClick={() => this.handleSubSidebarMenu('products')}>
-                <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>Products</span>
-              </div>
-              <div class="navbar__sidebar-content-products-menu">
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Careers</a>
-                  </div>
-              </div>
-            </div>}
+            
+          {/* <div class="navbar__sidebar-content-products">
+              <div class="navbar__sidebar-content-products-header" onClick={() => this.handleSubSidebarMenu('products')}>
+              <ifx-icon icon="chevron-left-16"></ifx-icon>
+              <span>Products</span>
+            </div>
+            <div class="navbar__sidebar-content-products-menu">
+                <div class="navbar__sidebar-content-products-menu-item">
+                  <a href="javascript:void(0)">Careers</a>
+                </div>
+            </div>
+          </div> */}
         </div>
       </div>
     );

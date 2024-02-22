@@ -31,7 +31,7 @@
 
     <ifx-navbar-item  icon="calendar16" slot="left-item" target="" href="">
       Menu Item 1
-      <ifx-navbar-item icon="calendar16" >
+      <ifx-navbar-item icon="calendar16">
         Nested Item 1
         <ifx-navbar-item>Nested Item 2
           <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
@@ -68,7 +68,7 @@
  
     <ifx-search-bar id="myBar" slot="search-bar-right" is-open="false"></ifx-search-bar>
 
-    <ifx-navbar-item slot="right-item" show-label='true' icon="calendar16">
+    <!-- <ifx-navbar-item slot="right-item" show-label='true' icon="calendar16">
       Item
       <ifx-navbar-item>Nested Item</ifx-navbar-item>
       <ifx-navbar-item>Nested Item</ifx-navbar-item>
@@ -88,13 +88,13 @@
           </ifx-navbar-item>
         </ifx-navbar-item>
       </ifx-navbar-item>
-    </ifx-navbar-item>
+    </ifx-navbar-item> -->
 
-    <ifx-navbar-item slot="right-item">
+    <ifx-navbar-item slot="right-item" show-label='false' icon="calendar16">
       Right Item
     </ifx-navbar-item>
 
-    <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+    <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="false" href="" target="_blank">
       Tisho
       <ifx-navbar-item>
         Item
