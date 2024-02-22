@@ -15,19 +15,51 @@ export class Sidebar {
   @Prop() applicationName: string = ''
   @Prop() termsOfUse: string = ""
   @Prop() imprint: string = ""
+  @Prop() initialCollapse: boolean = true
   @Prop() privacyPolicy: string = ""
-  @Prop() target: string = "_blank"
+  @Prop() target: string = "_self"
   @Prop() showFooter: boolean = true
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
   @State() activeItem: HTMLElement | null = null;
 
+  expandActiveItems(){
+    const expandRecursively = async (parent) => {
+      if(await parent.isItemExpandable() !== true){
+        if(parent.active) return 1;
+        return 0;
+      }
+      let currRes = 0;
+      const children = this.getSidebarMenuItems(parent);
+      for(let i = 0; i < children.length; i++){
+        currRes = Math.max(currRes, await expandRecursively(children[i]));
+      }
+      if(currRes > 0){
+        if(currRes == 1){
+          parent.expandMenu(false);
+        }else{
+          parent.expandMenu(true);
+        }
+      }
+
+      return (currRes ? currRes+1 : 0);
+    }
+
+    const topLevelItems = this.getSidebarMenuItems(this.el);
+    for(let i = 0; i < topLevelItems.length; i++){
+      expandRecursively(topLevelItems[i])
+    }
+  }
+
+  
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
     this.setInitialActiveItem();
+    if(!this.initialCollapse){
+      this.expandActiveItems();
+    }
     this.applyActiveSectionToParent(this.el);
-
   }
 
   // disconnectedCallback() {
@@ -61,7 +93,6 @@ export class Sidebar {
         }
         // If the item is active but it's not the first one in its group
         else if (this.isActive(item) && firstActiveFoundInGroup) {
-          console.error("Only one item can be marked as active at a time. The active state for any following active items will be reset to false.")
           item.setAttribute('active', 'false'); // Set the 'active' attribute to 'false'
         }
 

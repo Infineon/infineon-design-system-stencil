@@ -30,6 +30,26 @@
 
 ## Methods
 
+### `expandMenu(ac: boolean) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `isItemExpandable() => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
+
 ### `setActiveClasses() => Promise<void>`
 
 
