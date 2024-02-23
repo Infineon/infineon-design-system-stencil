@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.2",
-    "@infineon/infineon-design-system-stencil": "^20.44.1--canary.952.e2740b8e640aa78a0a199512580d52d96004104f.0"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "auto": {
     "plugins": [
