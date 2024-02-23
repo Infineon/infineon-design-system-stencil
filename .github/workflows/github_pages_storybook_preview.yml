@@ -38,7 +38,7 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm i
+          npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:storybook
 
       - name: Deploy preview
