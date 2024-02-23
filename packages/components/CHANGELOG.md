@@ -1,3 +1,15 @@
+# v20.47.0 (Fri Feb 23 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: implemented initial-collapse prop [#974](https://github.com/Infineon/infineon-design-system-stencil/pull/974) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.46.2 (Mon Feb 12 2024)
 
 #### 🐛 Bug Fix
