@@ -179,7 +179,8 @@ export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-foote
   'privacyPolicyUrl',
   'privacyPolicyTarget',
   'glossaryUrl',
-  'glossaryTarget'
+  'glossaryTarget',
+  'copyrightText'
 ]);
 
 
@@ -406,6 +407,7 @@ export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sid
   'showFooter',
   'termsOfUse',
   'imprint',
+  'initialCollapse',
   'privacyPolicy',
   'target',
   'copyrightText'

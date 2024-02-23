@@ -96,6 +96,7 @@ export class SidebarItem {
     return sidebarItem;
   }
 
+
   toggleSubmenu() {
     if (this.isExpandable) {
       const menuItem = this.getSidebarMenuItem();
@@ -215,6 +216,23 @@ export class SidebarItem {
   async setActiveClasses() {
     const activeMenuItem = this.getNavItem(this.el.shadowRoot)
     this.handleClassList(activeMenuItem, 'add', 'active')
+  }
+
+  @Method()
+  async expandMenu(ac: boolean){
+      const menuItem = this.getSidebarMenuItem();
+      const expandableMenu = this.getExpandableMenu();
+      this.handleClassList(expandableMenu, 'add', 'open');
+      this.handleClassList(menuItem, 'add', 'open');
+      if(ac){
+        this.handleClassList(expandableMenu, 'remove', 'active-section')
+        this.handleClassList(menuItem, 'remove', 'active-section')
+      }
+  }
+  
+  @Method()
+  async isItemExpandable(){
+    return this.isExpandable;
   }
 
   handleActiveState() {

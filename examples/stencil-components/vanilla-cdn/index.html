@@ -250,9 +250,28 @@
 
 
     <h2>Sidebar</h2>
-    <ifx-sidebar application-name="Application Name" imprint="https://google.com">
+    <ifx-sidebar application-name="Application Name" initial-collapse = false imprint="https://google.com">
       <ifx-sidebar-item>
         Header Section
+        <ifx-sidebar-item icon="image-16">
+          Menu Item
+          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
+            me</ifx-sidebar-item>
+          <ifx-sidebar-item icon="image-16" active="true">
+            Menu Item 2
+          </ifx-sidebar-item>
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item>
+        Header Section
+        <ifx-sidebar-item icon="image-16">
+          Menu Item
+          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
+            me</ifx-sidebar-item>
+          <ifx-sidebar-item icon="image-16" active="true">
+            Menu Item 2
+          </ifx-sidebar-item>
+        </ifx-sidebar-item>
         <ifx-sidebar-item icon="image-16">
           Menu Item
           <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
