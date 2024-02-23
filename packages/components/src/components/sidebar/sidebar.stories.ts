@@ -8,7 +8,7 @@ export default {
     icon: true,
     applicationName: 'Application Name',
     showFooter: true,
-    initialCollapse: true
+    initialCollapse: true,
     termsOfUse: 'https://yourwebsite.com/terms',
     imprint: 'https://yourwebsite.com/imprint',
     privacyPolicy: 'https://yourwebsite.com/privacy-policy',
