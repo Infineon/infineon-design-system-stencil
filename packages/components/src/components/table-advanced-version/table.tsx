@@ -279,8 +279,8 @@ export class Table {
 
   getClassNames() {
     return classNames(
-      this.tableHeight === 'auto' && 'ifx-table-wrapper ag-root-wrapper-body',
-      'ifx-table-wrapper',
+      this.tableHeight === 'auto' && 'table-wrapper ag-root-wrapper-body',
+      'table-wrapper',
     );
   }
 
@@ -298,8 +298,10 @@ export class Table {
 
     return (
       <Host >
-        <slot name="set-filter"></slot>
-        <div id="ifx-table-wrapper" class={this.getClassNames()}>
+        <div class="set-filter-wrapper">
+          <slot name="set-filter"></slot>
+        </div>
+        <div id="table-wrapper" class={this.getClassNames()}>
           <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
           </div>
         </div>
