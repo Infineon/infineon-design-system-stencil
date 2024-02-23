@@ -59,11 +59,7 @@ jobs:
           lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          cd ../../../../
-          cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          cd ../components-react
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+
      
       - name: Build and deploy Angular, Vue and React packages
         env:
