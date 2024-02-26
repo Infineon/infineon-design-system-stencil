@@ -350,12 +350,12 @@ export class Sidebar {
                 </div>
               </div>
               
-              <div class='sidebar__footer-wrapper-bottom-links'>
-                {
-                  this.copyrightText &&
-                  <span>{this.copyrightText}</span>
-                }
-              </div>
+              {
+                this.copyrightText &&
+                <div class='sidebar__footer-wrapper-bottom-links'>
+                    <span>{this.copyrightText}</span>
+                </div>
+              }
             </div>
           </div>
         }
