@@ -38,9 +38,9 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
   sidebarElement.setAttribute('show-footer', args.showFooter);
 
-  const sidebarHeaderElement = document.createElement('ifx-sidebar-header');
-  sidebarHeaderElement.innerHTML = 'Title';
-  sidebarElement.appendChild(sidebarHeaderElement);
+  const sidebarTitleElement = document.createElement('ifx-sidebar-title');
+  sidebarTitleElement.innerHTML = 'Title';
+  sidebarElement.appendChild(sidebarTitleElement);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 

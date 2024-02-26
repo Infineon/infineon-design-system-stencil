@@ -5,14 +5,14 @@
     position: relative;
 }
 
-.sidebar__header {
+.sidebar__title {
     width: 100%;
     height: fit-content;
     border-top: 1px solid tokens.$ifxColorEngineering200;
     padding: 12px 0;
 }
 
-.sidebar__header-label {
+.sidebar__title-label {
     height: 20px;
     font: tokens.$ifxEyebrowEyebrow02;
     text-transform: uppercase;
