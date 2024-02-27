@@ -1,3 +1,17 @@
+# v20.50.0 (Tue Feb 27 2024)
+
+#### 🚀 Enhancement
+
+- Implemented sidebar header component [#1011](https://github.com/Infineon/infineon-design-system-stencil/pull/1011) ([@akashyeole](https://github.com/akashyeole) lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.49.0 (Tue Feb 27 2024)
 
 #### 🚀 Enhancement
