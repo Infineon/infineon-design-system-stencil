@@ -8,6 +8,7 @@ export default {
     icon: true,
     applicationName: 'Application Name',
     showFooter: true,
+    showHeader: true,
     initialCollapse: true,
     termsOfUse: 'https://yourwebsite.com/terms',
     imprint: 'https://yourwebsite.com/imprint',
@@ -50,6 +51,7 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('show-header', args.showHeader);
   sidebarElement.setAttribute('show-footer', args.showFooter);
   sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
   
