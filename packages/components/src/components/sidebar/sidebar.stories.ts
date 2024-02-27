@@ -7,8 +7,9 @@ export default {
   args: {
     icon: true,
     applicationName: 'Application Name',
+    showFooter: true,
+    initialCollapse: true,
     showHeader: true,
-    showFooter: true
   },
 
   argTypes: {
@@ -38,28 +39,43 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
   sidebarElement.setAttribute('show-header', args.showHeader);
   sidebarElement.setAttribute('show-footer', args.showFooter);
-
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
+  
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
-
+  
   items.forEach(itemTitle => {
     const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
     itemElement.setAttribute('href', "http://google.com");
     itemElement.setAttribute('target', "_blank");
     itemElement.setAttribute('is-action-item', "false");
-
+    
     if (args.icon) {
       itemElement.setAttribute('icon', 'image-16');
     }
     itemElement.textContent = itemTitle;
-
+    
     // Append the item to the sidebar
     sidebarElement.appendChild(itemElement);
   });
-
-  const thirdItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[2];
-  thirdItem.setAttribute('active', 'true') //first submenu item
-
-
+  
+  const subItemElement1 = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+  subItemElement1.setAttribute('href', "http://google.com");
+  subItemElement1.setAttribute('target', "_blank");
+  subItemElement1.setAttribute('is-action-item', "false");
+  subItemElement1.textContent = 'Sub Item 1';
+  subItemElement1.setAttribute('active', 'true')
+  const subItemElement2 = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+  subItemElement2.setAttribute('href', "http://google.com");
+  subItemElement2.setAttribute('target', "_blank");
+  subItemElement2.setAttribute('is-action-item', "false");
+  subItemElement2.textContent = 'Sub Item 2';
+  
+  const firstItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[0];
+  firstItem.append(subItemElement1, subItemElement2)
+  firstItem.setAttribute('href', '');
+  // thirdItem.setAttribute('active', 'true') //first submenu item
+  
+  
   return sidebarElement;
 };
 
@@ -75,7 +91,8 @@ const SubmenuTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
   sidebarElement.addEventListener('ifxSidebarActionItem', action('ifxSidebarActionItem'));
   sidebarElement.addEventListener('ifxSidebarMenu', action('ifxSidebarMenu'));
-
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
+  
   // Create 3 sections
   for (let i = 0; i < 3; i++) {
     const sectionElement = document.createElement('ifx-sidebar-item');
