@@ -1,3 +1,15 @@
+# v20.49.0 (Tue Feb 27 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: links are now removable [#994](https://github.com/Infineon/infineon-design-system-stencil/pull/994) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.48.0 (Tue Feb 27 2024)
 
 #### 🚀 Enhancement
