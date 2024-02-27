@@ -99,7 +99,7 @@
       flex: 1 1 auto;
       order: 1;
       width: 100%;
-      overflow-y: auto;
+      // overflow-y: auto;
 
       & ::slotted(*) {
         width: 100%;

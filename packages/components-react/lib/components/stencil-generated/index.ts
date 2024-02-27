@@ -56,6 +56,7 @@ export const IfxSearchField = /*@__PURE__*/createReactComponent<JSX.IfxSearchFie
 export const IfxSelect = /*@__PURE__*/createReactComponent<JSX.IfxSelect, HTMLIfxSelectElement>('ifx-select');
 export const IfxSidebar = /*@__PURE__*/createReactComponent<JSX.IfxSidebar, HTMLIfxSidebarElement>('ifx-sidebar');
 export const IfxSidebarItem = /*@__PURE__*/createReactComponent<JSX.IfxSidebarItem, HTMLIfxSidebarItemElement>('ifx-sidebar-item');
+export const IfxSidebarTitle = /*@__PURE__*/createReactComponent<JSX.IfxSidebarTitle, HTMLIfxSidebarTitleElement>('ifx-sidebar-title');
 export const IfxSlider = /*@__PURE__*/createReactComponent<JSX.IfxSlider, HTMLIfxSliderElement>('ifx-slider');
 export const IfxSpinner = /*@__PURE__*/createReactComponent<JSX.IfxSpinner, HTMLIfxSpinnerElement>('ifx-spinner');
 export const IfxStatus = /*@__PURE__*/createReactComponent<JSX.IfxStatus, HTMLIfxStatusElement>('ifx-status');

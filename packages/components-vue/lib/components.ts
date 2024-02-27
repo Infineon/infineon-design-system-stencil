@@ -430,6 +430,9 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
 ]);
 
 
+export const IfxSidebarTitle = /*@__PURE__*/ defineContainer<JSX.IfxSidebarTitle>('ifx-sidebar-title', undefined);
+
+
 export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
   'min',
   'max',
