@@ -23,21 +23,15 @@ export class Navbar {
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
-  @State() firstLayerItems: Array<HTMLElement> = [];
 
-  @Watch('firstLayerItems')
-  addSlots(newValue: HTMLElement[]) { 
-    //console.log('new value', newValue)
-    const childComponent = newValue[0]
-    childComponent.setAttribute('slot', 'first-layer')
-    console.log('child  component', childComponent)
-  }
 
   @Listen('ifxNavItem')
   getChildComponent(event: CustomEvent) { 
     //console.log('emitted component', event.detail)
     if(event.detail) { 
-      this.firstLayerItems = [event.detail]
+      const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
+      firstLayerWrapper.appendChild(event.detail)
+      //this.firstLayerItems = [event.detail]
       //event.detail.setAttribute('slot', 'first-layer')
     }
   }
@@ -211,11 +205,6 @@ export class Navbar {
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
 
-  moveToFirstLayer(el) { 
-    //el.setAttribute('slot', 'first-layer')
-    el.sendComponent()
-  }
-
   getChildren(el) { 
     const childComponents = el.querySelectorAll('ifx-navbar-item')
     if(childComponents.length !== 0) { 
@@ -229,13 +218,26 @@ export class Navbar {
         // div.appendChild(slot)
         // const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
         // firstLayerWrapper.appendChild(div)
+        childComponents[i].sendComponent()
 
-
-        this.moveToFirstLayer(childComponents[i])
-      
       }
       //return childComponents
 
+    }
+  }
+
+  reSlot() { 
+    const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
+    const firstLayerWrapperComponents = firstLayerWrapper.querySelectorAll('ifx-navbar-item')
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')[0]
+    const slot = leftMenuItems.shadowRoot.querySelector('slot')
+    slot.appendChild(firstLayerWrapperComponents[0])
+    const assignedNodes = slot.assignedNodes();
+
+    console.log('assignedNodes', assignedNodes)
+    for(let i = 0; i < firstLayerWrapperComponents.length; i++) { 
+      firstLayerWrapperComponents[i].setAttribute('slot', 'left-item')
+      
     }
   }
 
@@ -258,6 +260,9 @@ export class Navbar {
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'left-item')
+
+        //destructure and extract each child component
+        this.reSlot()
       }
      //do the right-side here
 
@@ -335,6 +340,7 @@ export class Navbar {
                 <slot name='first-layer' />
 
                 <div class='first__layer-wrapper'>
+                 
                 </div>
                 {/* <div class="navbar__sidebar-top-row-item">
                   <div class="navbar__sidebar-top-row-item-label">
