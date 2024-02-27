@@ -129,6 +129,7 @@
       flex: none;
       order: 0;
       flex-grow: 0;
+      width: 100%;
 
       & .sidebar__footer-wrapper-top-links {
         display: flex;
@@ -195,7 +196,7 @@
         flex-direction: column;
         align-items: center;
 
-        & a {
+        & span {
           font-style: normal;
           font-weight: 400;
           font-size: tokens.$ifxFontSizeS;
@@ -208,11 +209,6 @@
 
           &:hover {
             cursor: initial;
-          }
-
-          &:focus {
-            outline: none;
-            color: #08665C;
           }
         }
       }

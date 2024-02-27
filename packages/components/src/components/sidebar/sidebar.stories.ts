@@ -8,7 +8,12 @@ export default {
     icon: true,
     applicationName: 'Application Name',
     showFooter: true,
-    initialCollapse: true
+    showHeader: true,
+    initialCollapse: true,
+    termsOfUse: 'https://yourwebsite.com/terms',
+    imprint: 'https://yourwebsite.com/imprint',
+    privacyPolicy: 'https://yourwebsite.com/privacy-policy',
+    copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`
   },
 
   argTypes: {
@@ -24,6 +29,16 @@ export default {
       action: 'ifxSidebarMenu',
       description: 'Custom event emitted when a menu is expanded or closed',
     },
+    imprint: {
+      if: { arg: 'showFooter', eq: true}
+    },
+    termsOfUse: {
+      if: { arg: 'showFooter', eq: true}
+    },
+    privacyPolicy: {
+      if: { arg: 'showFooter', eq: true}
+    },
+
 
   },
 };
@@ -36,11 +51,17 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+  sidebarElement.setAttribute('show-header', args.showHeader);
   sidebarElement.setAttribute('show-footer', args.showFooter);
 
   const sidebarTitleElement = document.createElement('ifx-sidebar-title');
   sidebarTitleElement.innerHTML = 'Title';
   sidebarElement.appendChild(sidebarTitleElement);
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
+  sidebarElement.setAttribute('terms-of-use', args.termsOfUse);
+  sidebarElement.setAttribute('imprint', args.imprint);
+  sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
+  sidebarElement.setAttribute('copyright-text', args.copyrightText);
 
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
 
