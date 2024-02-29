@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop, Listen, Watch } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -24,17 +24,6 @@ export class Navbar {
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
 
-
-  @Listen('ifxNavItem')
-  getChildComponent(event: CustomEvent) { 
-    //console.log('emitted component', event.detail)
-    if(event.detail) { 
-      const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
-      firstLayerWrapper.appendChild(event.detail)
-      //this.firstLayerItems = [event.detail]
-      //event.detail.setAttribute('slot', 'first-layer')
-    }
-  }
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -205,53 +194,13 @@ export class Navbar {
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
 
-  getChildren(el) { 
-    const childComponents = el.querySelectorAll('ifx-navbar-item')
-    if(childComponents.length !== 0) { 
-      for(let i = 0; i < childComponents.length; i++) { 
-        //console.log('childComponents[i]', childComponents[i])
-        
-        // const div = document.createElement('div');
-        // const slot = document.createElement('slot');
-        // div.classList.add('top__menu-wrapper')
-        // slot.setAttribute('name', 'first-layer');
-        // div.appendChild(slot)
-        // const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
-        // firstLayerWrapper.appendChild(div)
-        childComponents[i].sendComponent()
-
-      }
-      //return childComponents
-
-    }
-  }
-
-  reSlot() { 
-    const firstLayerWrapper = this.el.shadowRoot.querySelector('.first__layer-wrapper')
-    const firstLayerWrapperComponents = firstLayerWrapper.querySelectorAll('ifx-navbar-item')
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')[0]
-    const slot = leftMenuItems.shadowRoot.querySelector('slot')
-    slot.appendChild(firstLayerWrapperComponents[0])
-    const assignedNodes = slot.assignedNodes();
-
-    console.log('assignedNodes', assignedNodes)
-    for(let i = 0; i < firstLayerWrapperComponents.length; i++) { 
-      firstLayerWrapperComponents[i].setAttribute('slot', 'left-item')
-      
-    }
-  }
-
   moveNavItemsToSidebar(e) {
-    
     if (e.matches) {
       /* The viewport is 800px wide or less */
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
-
-        //destructure and extract each child component
-        this.getChildren(leftMenuItems[i].shadowRoot)
-       
+        leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
       }
       //do the right-side here
   
@@ -260,9 +209,7 @@ export class Navbar {
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'left-item')
-
-        //destructure and extract each child component
-        this.reSlot()
+        leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }
      //do the right-side here
 
@@ -337,11 +284,6 @@ export class Navbar {
 
                 {/* left side ifx-navbar-item  */}
                 <slot name='mobile-menu-top' />
-                <slot name='first-layer' />
-
-                <div class='first__layer-wrapper'>
-                 
-                </div>
                 {/* <div class="navbar__sidebar-top-row-item">
                   <div class="navbar__sidebar-top-row-item-label">
                     Menu Item

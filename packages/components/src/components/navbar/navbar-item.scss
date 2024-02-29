@@ -210,3 +210,18 @@
     }
   }
 }
+
+.sub__layer-menu { 
+  border: 1px solid;
+  padding: 5px;
+  display: none;
+  &.open { 
+    display: block;
+  }
+}
+
+.navbar__item { 
+  &.hide { 
+    display: none;
+  }
+}

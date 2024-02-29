@@ -76,8 +76,20 @@ export class NavbarProfile {
     return navItem;
   }
 
+  relocateUsingSlot(navItems) { 
+    navItems.forEach(item => {
+     item.setAttribute('slot', 'first__layer')
+   })
+   // for(let i = 0; i < navItems.length; i++) { 
+   //   navItems[i].setAttribute('slot', 'first__layer')
+   // }
+ }
+
   appendNavItemToMenu(navItems) { 
     const menu = this.getItemMenu()
+    //console.log('nav items', navItems)
+    //this.relocateUsingSlot(navItems)
+
     navItems.forEach((el: HTMLElement) => {
       const li = document.createElement('li')
       li.appendChild(el)
@@ -174,33 +186,34 @@ export class NavbarProfile {
     }
   }
   
-  handleNestedLayerMenu(e) { 
-    if(this.isMenuItem && this.hasChildNavItems) { 
-      const itemMenu = this.getItemMenu()
-      if(e.type.toUpperCase() === 'MOUSEENTER') { 
-        this.handleClassList(itemMenu, 'add', 'open')
-        this.handleClassList(itemMenu, 'add', 'right')
-      }
+  handleNestedLayerMenu() { 
+    // if(this.isMenuItem && this.hasChildNavItems) { 
+    //   const itemMenu = this.getItemMenu()
+    //   if(e.type.toUpperCase() === 'MOUSEENTER') { 
+    //     console.log('itemmenu', itemMenu)
+    //     this.handleClassList(itemMenu, 'add', 'open')
+    //     this.handleClassList(itemMenu, 'add', 'right')
+    //   }
 
-      if(e.type.toUpperCase() === 'MOUSELEAVE') { 
+    //   if(e.type.toUpperCase() === 'MOUSELEAVE') { 
         
-        this.handleClassList(itemMenu, 'remove', 'open')
-        this.handleClassList(itemMenu, 'remove', 'right')
-      }
-    }
+    //     this.handleClassList(itemMenu, 'remove', 'open')
+    //     this.handleClassList(itemMenu, 'remove', 'right')
+    //   }
+    // }
   }
 
   
   render() {
     return (
-      <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
+      <div class="container" onMouseLeave={() => this.handleNestedLayerMenu()}  onMouseEnter={() => this.handleNestedLayerMenu()}>
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${!this.showLabel ? 'removeLabel' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper`}>
               <img src={ this.internalImageUrl ? this.internalImageUrl : this.defaultProfileImage} alt={this.alt} />
             </div>
             <span class="label__wrapper">
-              <slot onSlotchange={() => this.handleSlotChange()} />
+              <slot  />
             </span>
           </div>
         </a>

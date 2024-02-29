@@ -38,9 +38,50 @@ export class NavbarItem {
     this.handleClassList(container, action, 'hide')
   }
 
-  @Method() //temporary test
-  async sendComponent() { 
-    this.ifxNavItem.emit(this.el);
+  @Method()
+  async moveChildComponentsIntoSubLayerMenu() { 
+    const navItems = this.el.shadowRoot.querySelectorAll('ifx-navbar-item')
+    const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
+    if(navItems.length !== 0) { 
+      for(let i = 0; i < navItems.length; i++) { 
+        navItems[i].setAttribute('slot', 'second__layer')
+        subLayerMenu.append(navItems[i])
+      }
+    }
+  }
+
+  openNextLayer() { 
+    //we hide the parent when we click it
+    const navItem = this.getNavBarItem()
+    navItem.classList.add('hide')
+    const itemMenu = this.getItemMenu()
+    console.log('item menu', itemMenu)
+    itemMenu.classList.remove('open')
+    //we show the 2nd layer container with the children
+    const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
+    subLayerMenu.classList.add('open')
+  }
+
+  @Method()
+  async moveChildComponentsBackIntoNavbar() { 
+    const navItem = this.getNavBarItem()
+    const menuItems = this.el.shadowRoot.querySelectorAll('[slot="second__layer"]')
+    navItem.classList.remove('hide')
+    
+
+ 
+    const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
+    subLayerMenu.classList.remove('open')
+
+    const defaultSlot = this.el.shadowRoot.querySelector('.navbar-menu')
+  
+    //const navItems = this.el.shadowRoot.querySelectorAll('ifx-navbar-item')
+    //this.appendNavItemToMenu(menuItems)
+    
+    for(let i = 0; i < menuItems.length; i++) { 
+      menuItems[i].setAttribute('slot', '')
+      defaultSlot.append(menuItems[i])
+    }
   }
 
   componentWillLoad() {
@@ -85,8 +126,20 @@ export class NavbarItem {
     return navItem;
   }
 
+  relocateUsingSlot(navItems) { 
+     navItems.forEach(item => {
+      item.setAttribute('slot', 'first__layer')
+    })
+    // for(let i = 0; i < navItems.length; i++) { 
+    //   navItems[i].setAttribute('slot', 'first__layer')
+    // }
+  }
+
   appendNavItemToMenu(navItems) { 
     const menu = this.getItemMenu()
+    //this.relocateUsingSlot(navItems)
+    //console.log('this el', this.el, 'children', navItems)
+    //console.log('menu', menu)
     navItems.forEach((el: HTMLElement) => {
       const li = document.createElement('li')
       li.appendChild(el)
@@ -114,6 +167,7 @@ export class NavbarItem {
   checkIfItemHasChildren() { 
     const sidebarItems = this.getNavbarItems();
     if (sidebarItems.length !== 0) {
+      //console.log('sidebar items', sidebarItems)
       this.hasChildNavItems = true;
     } else {
       this.hasChildNavItems = false;
@@ -156,11 +210,6 @@ export class NavbarItem {
     });
   }
 
-  handleSlotChange() { 
-  
-    //handle dynamic slot change
-  }
-
   getItemMenu() { 
     const menu = this.el.shadowRoot.querySelector('.navbar-menu');
     return menu;
@@ -187,7 +236,12 @@ export class NavbarItem {
   }
   
   toggleItemMenu() {
-    if(!this.internalHref) {   
+    const slotName = this.el.getAttribute('slot')
+    if(slotName.toLowerCase() === 'mobile-menu-top') { 
+      this.openNextLayer()
+    }
+
+    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' ) {   
       const itemMenu = this.getItemMenu()
     
       if(this.hasChildNavItems) { 
@@ -241,7 +295,7 @@ export class NavbarItem {
 
 
             <span class="label__wrapper">
-              <slot onSlotchange={() => this.handleSlotChange()} />
+              <slot />
             </span>
           </div>
 
@@ -258,7 +312,12 @@ export class NavbarItem {
           </div>}
         </a>
         
-        {this.hasChildNavItems && <ul class='navbar-menu'></ul>}
+        {this.hasChildNavItems && <ul class='navbar-menu'> </ul>}
+
+        <div class="sub__layer-menu">
+            <slot name="second__layer" />
+        </div>
+
       </div>
     )
   }
