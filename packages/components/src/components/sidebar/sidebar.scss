@@ -170,15 +170,14 @@
 
         & span {
           font: tokens.$ifxBodyBody04;
-          // font-style: normal;
-          // font-weight: 400;
-          // font-size: tokens.$ifxFontSizeS;
-          // line-height: tokens.$ifxLineHeightS;
           text-decoration: none;
           color: tokens.$ifxColorEngineering500;
           flex: none;
           order: 1;
           flex-grow: 0;
+          white-space: pre-wrap;
+          word-wrap: break-word;  
+          overflow-wrap: anywhere;
 
           &:hover {
             cursor: initial;

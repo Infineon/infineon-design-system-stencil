@@ -296,10 +296,6 @@ export class Sidebar {
   }
 
 
-
-
-
-
   componentWillLoad() {
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
