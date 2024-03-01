@@ -1,3 +1,15 @@
+# v20.50.1 (Fri Mar 01 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: Optimized footer links style [#1020](https://github.com/Infineon/infineon-design-system-stencil/pull/1020) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.50.0 (Tue Feb 27 2024)
 
 #### 🚀 Enhancement
