@@ -123,71 +123,43 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 12px 0px;
-      gap: tokens.$ifxSpace150;
+      padding: 24px 0px;
+      gap: tokens.$ifxSpace200;
       border-top: 1px solid #EEEDED;
       flex: none;
       order: 0;
       flex-grow: 0;
       width: 100%;
 
+
       & .sidebar__footer-wrapper-top-links {
         display: flex;
-        flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        gap: 4px;
+        gap: 12px;
         flex: none;
         order: 0;
         align-self: stretch;
         flex-grow: 0;
+        flex-wrap: wrap;
 
-        & .sidebar__footer-wrapper-top-line,
-        & .sidebar__footer-wrapper-bottom-line {
-          & a {
-            font-style: normal;
-            font-weight: 400;
-            font-size: tokens.$ifxFontSizeS;
-            line-height: tokens.$ifxLineHeightS;
-            display: flex;
-            text-decoration: none;
-            align-items: center;
-            color: tokens.$ifxColorBaseBlack;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
+        & a {
+          font: tokens.$ifxBodyBody04;
+          display: flex;
+          text-decoration: none;
+          align-items: center;
+          color: tokens.$ifxColorBaseBlack;
+          flex: none;
+          flex-grow: 0;
 
-            &:hover {
-              color: #08665C;
-            }
-
-            &:focus {
-              outline: none;
-              color: #08665C;
-            }
+          &:hover {
+            color: #08665C;
           }
-        }
 
-        & .sidebar__footer-wrapper-top-line {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          padding: 0px;
-          gap: tokens.$ifxSpace200;
-          flex: none;
-          order: 0;
-          align-self: stretch;
-          flex-grow: 0;
-        }
-
-        & .sidebar__footer-wrapper-bottom-line {
-          display: flex;
-          flex-direction: row;
-          align-items: flex-start;
-          padding: 0px;
-          flex: none;
-          order: 1;
-          flex-grow: 0;
+          &:focus {
+            outline: none;
+            color: #08665C;
+          }
         }
       }
 
@@ -197,15 +169,15 @@
         align-items: center;
 
         & span {
-          font-style: normal;
-          font-weight: 400;
-          font-size: tokens.$ifxFontSizeS;
-          line-height: tokens.$ifxLineHeightS;
+          font: tokens.$ifxBodyBody04;
           text-decoration: none;
-          color: #575352;
+          color: tokens.$ifxColorEngineering500;
           flex: none;
           order: 1;
           flex-grow: 0;
+          white-space: pre-wrap;
+          word-wrap: break-word;  
+          overflow-wrap: anywhere;
 
           &:hover {
             cursor: initial;

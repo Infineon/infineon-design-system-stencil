@@ -25,6 +25,7 @@ export class Sidebar {
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
+  @State() internalShowFooter: boolean = true
 
   @State() activeItem: HTMLElement | null = null;
 
@@ -295,14 +296,14 @@ export class Sidebar {
   }
 
 
-
-
-
-
   componentWillLoad() {
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
     this.internalImprint = this.imprint.trim();
+    this.internalShowFooter = this.showFooter;
+    if(this.internalShowFooter && !this.internalImprint && !this.internalPrivacyPolicy && !this.internalTermsofUse && !this.copyrightText){
+      this.internalShowFooter = false;
+    }
   }
 
   render() {
@@ -335,24 +336,23 @@ export class Sidebar {
         </div>
 
         {
-          this.showFooter &&
+          this.internalShowFooter &&
           <div class='sidebar__footer-container'>
             <div class="sidebar__footer-wrapper">
+            {
+              (this.internalTermsofUse || this.internalImprint || this.internalPrivacyPolicy) &&
               <div class='sidebar__footer-wrapper-top-links'>
-                <div class="sidebar__footer-wrapper-top-line">
                   {
                     this.internalTermsofUse !== ''  && <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
                   }
                   {
                     this.internalImprint !== '' && <a target={this.target} href={this.internalImprint}>Imprint</a>
                   }
-                </div>
-                <div class="sidebar__footer-wrapper-bottom-line">
                   {
                     this.internalPrivacyPolicy !== '' && <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
                   }
-                </div>
               </div>
+            }
               
               {
                 this.copyrightText &&
