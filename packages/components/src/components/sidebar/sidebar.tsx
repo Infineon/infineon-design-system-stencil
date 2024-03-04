@@ -57,9 +57,29 @@ export class Sidebar {
     }
   }
 
+  adjustTopBorder() {
+    const children = this.el.children;
+    if(!children.length) return;
+    if(children[0].tagName === 'IFX-SIDEBAR-TITLE'){
+      children[0].shadowRoot.querySelector('.sidebar__title').classList.add('no-top-border')
+    }
+
+    if(children[0].tagName === 'IFX-SIDEBAR-ITEM' && children[0].shadowRoot.querySelector('div > a').classList.contains('header__section')){
+      children[0].shadowRoot.querySelector('div > a').classList.add('no-top-border')
+    }
+
+    const allIfxTitles = this.el.querySelectorAll('ifx-sidebar-title');
+    allIfxTitles.forEach(element => {
+      const nextSibling = element.nextSibling.nextSibling;
+      if(nextSibling && nextSibling.tagName === 'IFX-SIDEBAR-ITEM' && nextSibling.shadowRoot.querySelector('div > a').classList.contains('header__section')){
+        nextSibling.shadowRoot.querySelector('div > a').classList.add('no-top-border')
+      }
+    });
+  }
   
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
+    this.adjustTopBorder();
     this.setInitialActiveItem();
     if(!this.initialCollapse){
       this.expandActiveItems();
@@ -295,7 +315,6 @@ export class Sidebar {
     }
   }
 
-
   componentWillLoad() {
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
@@ -305,7 +324,7 @@ export class Sidebar {
       this.internalShowFooter = false;
     }
   }
-
+  
   render() {
     return (
       <div aria-label="a navigation sidebar" aria-value={this.applicationName} class='sidebar__container'>

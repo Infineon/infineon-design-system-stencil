@@ -51,20 +51,21 @@ const DefaultTemplate = (args) => {
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
+
   sidebarElement.setAttribute('show-header', args.showHeader);
   sidebarElement.setAttribute('show-footer', args.showFooter);
-
-  const sidebarTitleElement = document.createElement('ifx-sidebar-title');
-  sidebarTitleElement.innerHTML = 'Title';
-  sidebarElement.appendChild(sidebarTitleElement);
   sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
   sidebarElement.setAttribute('terms-of-use', args.termsOfUse);
   sidebarElement.setAttribute('imprint', args.imprint);
   sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
   sidebarElement.setAttribute('copyright-text', args.copyrightText);
-
+  
+  
+  const sidebarTitleElement = document.createElement('ifx-sidebar-title');
+  sidebarTitleElement.innerHTML = 'Title';
+  sidebarElement.appendChild(sidebarTitleElement);
   const items = ["Item One", "Item Two", "Item Three", "Item Four"];
-
+  
   items.forEach(itemTitle => {
     const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
     itemElement.setAttribute('href', "http://google.com");
@@ -75,14 +76,32 @@ const DefaultTemplate = (args) => {
       itemElement.setAttribute('icon', 'image-16');
     }
     itemElement.textContent = itemTitle;
-
+    
     // Append the item to the sidebar
     sidebarElement.appendChild(itemElement);
   });
-
-
+  
+  
   const thirdItem = sidebarElement.querySelectorAll('ifx-sidebar-item')[2];
   thirdItem.setAttribute('active', 'true') //first submenu item
+  
+  const sidebarNewTitleElement = document.createElement('ifx-sidebar-title');
+  sidebarNewTitleElement.innerHTML = 'Another Title';
+  sidebarElement.appendChild(sidebarNewTitleElement);
+
+  const items2 = ["Item 1", "Item 2", "Item 3", "Item 4"];
+  items2.forEach(itemTitle => {
+    const itemElement = document.createElement('ifx-sidebar-item') as HTMLIfxSidebarItemElement;
+    itemElement.setAttribute('href', "http://google.com");
+    itemElement.setAttribute('target', "_blank");
+    itemElement.setAttribute('is-action-item', "false");
+
+    if (args.icon) {
+      itemElement.setAttribute('icon', 'image-16');
+    }
+    itemElement.textContent = itemTitle;
+    sidebarElement.appendChild(itemElement);
+  });
 
 
   return sidebarElement;
