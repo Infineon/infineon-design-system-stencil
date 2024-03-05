@@ -242,6 +242,6 @@ jobs:
       - name: Send Notification
         run: |
           VERSION=${{ needs.stencil-library-release.outputs.VERSION }}
-          WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION) Click to see what's included in this release."
+          WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."
           curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
         shell: bash
