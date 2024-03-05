@@ -43,6 +43,8 @@ jobs:
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
+          echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
+
           auto shipit
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
@@ -258,3 +260,12 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  webex-notification:
+    needs: [stencil-library-release, deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla, update-pr-comment]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification
+        run: |
+          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"text\":\"$WEBEX_MESSAGE\"}"
+        shell: bash
