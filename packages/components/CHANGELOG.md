@@ -1,3 +1,15 @@
+# v20.50.2 (Tue Mar 05 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: top border on header-section and title shown only when required [#1026](https://github.com/Infineon/infineon-design-system-stencil/pull/1026) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.50.1 (Fri Mar 01 2024)
 
 #### 🐛 Bug Fix
