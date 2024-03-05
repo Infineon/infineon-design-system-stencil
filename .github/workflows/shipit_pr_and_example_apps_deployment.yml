@@ -267,5 +267,7 @@ jobs:
     steps:
       - name: Send Notification
         run: |
+          CANARY_VERSION=${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
+          WEBEX_MESSAGE="New package release - Version: $CANARY_VERSION"
           curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"text\":\"$WEBEX_MESSAGE\"}"
         shell: bash
