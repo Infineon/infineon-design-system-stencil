@@ -1,3 +1,15 @@
+# v20.50.3 (Tue Mar 05 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: Search feature is now working [#1032](https://github.com/Infineon/infineon-design-system-stencil/pull/1032) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.50.2 (Tue Mar 05 2024)
 
 #### 🐛 Bug Fix
