@@ -111,8 +111,8 @@ export class Multiselect {
   }
 
 
-  handleSearch = debounce((event: Event) => {
-    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+  handleSearch = debounce((targetElement: HTMLInputElement) => {
+    const searchTerm = targetElement.value.toLowerCase();
     if (searchTerm === '') {
       this.filteredOptions = this.loadedOptions;
     } else {
@@ -488,7 +488,7 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}
               style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event)} placeholder="Search..."></input>
+              <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>
