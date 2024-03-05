@@ -33,73 +33,46 @@ export class NavbarItem {
     }
   }
 
+  // @Method()
+  // async hideComponent(action) { 
+  //   this.el.style.display = 'none';
+  //   //const container = this.el.shadowRoot.querySelector('.container')
+  //   //this.handleClassList(container, action, 'hide')
+  // }
+
   @Method()
-  async hideComponent(action) { 
-    const container = this.el.shadowRoot.querySelector('.container')
-    this.handleClassList(container, action, 'hide')
+  async hideComponent() { 
+    this.el.style.display = 'none';
+  }
+
+  @Method()
+  async showComponent() { 
+    this.el.style.display = '';
   }
 
   @Method()
   async moveChildComponentsIntoSubLayerMenu() { 
     const navItems = this.el.querySelectorAll('[slot="first__layer"]')
-
     this.isSidebarMenuItem = true;
-
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'second__layer')
     }
-
-
-    // const navItems = this.el.shadowRoot.querySelectorAll('ifx-navbar-item')
-    // const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
-    // if(navItems.length !== 0) { 
-    //   for(let i = 0; i < navItems.length; i++) { 
-    //     navItems[i].setAttribute('slot', 'second__layer')
-    //     subLayerMenu.append(navItems[i])
-    //   }
-    // }
   }
 
   openNextLayer() { 
-    //we hide the parent when we click it
-    const navItem = this.getNavBarItem()
-    navItem.classList.add('hide')
-    //const itemMenu = this.getItemMenu()
-    //itemMenu.classList.remove('open')
-    //we show the 2nd layer container with the children
+    this.ifxNavItem.emit({component: this.el, action: 'hide'})
     const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
     subLayerMenu.classList.add('open')
   }
 
   @Method()
   async moveChildComponentsBackIntoNavbar() { 
+    this.ifxNavItem.emit({component: this.el, action: 'show'})
     const navItems = this.el.querySelectorAll('[slot="second__layer"]')
-
     this.isSidebarMenuItem = false;
-
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'first__layer')
     }
-
-
-    // const navItem = this.getNavBarItem()
-    // const menuItems = this.el.shadowRoot.querySelectorAll('[slot="second__layer"]')
-    // navItem.classList.remove('hide')
-    // this.isSidebarMenuItem = false;
-
- 
-    // const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
-    // subLayerMenu.classList.remove('open')
-
-    // const defaultSlot = this.el.shadowRoot.querySelector('.navbar-menu')
-  
-    //const navItems = this.el.shadowRoot.querySelectorAll('ifx-navbar-item')
-    //this.appendNavItemToMenu(menuItems)
-    
-    // for(let i = 0; i < menuItems.length; i++) { 
-    //   menuItems[i].setAttribute('slot', '')
-    //   defaultSlot.append(menuItems[i])
-    // }
   }
 
   componentWillLoad() {
@@ -253,6 +226,7 @@ export class NavbarItem {
   
   toggleItemMenu() {
     const slotName = this.el.getAttribute('slot')
+
     if(slotName.toLowerCase() === 'mobile-menu-top') { 
       this.openNextLayer()
     }

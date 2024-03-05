@@ -58,6 +58,27 @@ export class Navbar {
     }
   }
 
+  @Listen('ifxNavItem') 
+  clearFirstLayerMenu(event: CustomEvent) { 
+    if(event.detail.action === 'hide') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].hideComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'show') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].showComponent()
+        }
+      }
+    }
+  }
+  
 
   @Listen('ifxSearchBarIsOpen')
   handleSearchBarToggle(event: CustomEvent) {
@@ -77,16 +98,18 @@ export class Navbar {
       } else if(leftAssignedNodes.length !== 0) {
         this.searchBarIsOpen = 'left'
       }
-      navbarProfile.hideComponent('add')
+      navbarProfile.hideComponent()
       for(let i = 0; i < navbarItems.length; i++) { 
-        navbarItems[i].hideComponent('add')
+        navbarItems[i].hideComponent()
       }
 
     } else if(!event.detail) {
       this.searchBarIsOpen = undefined;
-      navbarProfile.hideComponent('remove')
+      //navbarProfile.hideComponent('remove')
+      navbarProfile.showComponent()
       for(let i = 0; i < navbarItems.length; i++) { 
-        navbarItems[i].hideComponent('remove')
+        //navbarItems[i].hideComponent('remove')
+        navbarItems[i].showComponent() 
       }
     }
   }

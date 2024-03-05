@@ -53,10 +53,20 @@ export class NavbarProfile {
     }
   }
 
+  // @Method()
+  // async hideComponent(action) { 
+  //   const container = this.el.shadowRoot.querySelector('.container')
+  //   this.handleClassList(container, action, 'hide')
+  // }
+
   @Method()
-  async hideComponent(action) { 
-    const container = this.el.shadowRoot.querySelector('.container')
-    this.handleClassList(container, action, 'hide')
+  async hideComponent() { 
+    this.el.style.display = 'none';
+  }
+
+  @Method()
+  async showComponent() { 
+    this.el.style.display = '';
   }
 
   handleClassList(el, type, className) {
