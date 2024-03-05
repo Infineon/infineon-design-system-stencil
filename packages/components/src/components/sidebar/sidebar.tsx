@@ -59,7 +59,6 @@ export class Sidebar {
 
   adjustTopBorder() {
     const children = this.el.children;
-    // console.log(children)
     if(!children.length) return;
     if(children[0].tagName === 'IFX-SIDEBAR-TITLE'){
       children[0].shadowRoot.querySelector('.sidebar__title').classList.add('no-top-border')
@@ -72,7 +71,6 @@ export class Sidebar {
     const allIfxTitles = this.el.querySelectorAll('ifx-sidebar-title');
     allIfxTitles.forEach(element => {
       const nextSibling = element.nextElementSibling;
-      console.log(nextSibling)
       if(nextSibling && nextSibling.tagName === 'IFX-SIDEBAR-ITEM' && nextSibling.shadowRoot.querySelector('div > a').classList.contains('header__section')){
         nextSibling.shadowRoot.querySelector('div > a').classList.add('no-top-border')
       }
