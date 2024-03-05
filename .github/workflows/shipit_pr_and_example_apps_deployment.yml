@@ -268,7 +268,6 @@ jobs:
       - name: Send Notification
         run: |
           CANARY_VERSION=${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
-          WEBEX_MESSAGE="New package release - Version: [$CANARY_VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v20.50.3)
-          "
-          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"text\":\"$WEBEX_MESSAGE\"}"
+          WEBEX_MESSAGE="**VERSION UPDATE** A new version has been released: [$CANARY_VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v20.50.3)"
+          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
         shell: bash
