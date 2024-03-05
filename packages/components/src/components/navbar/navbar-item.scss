@@ -178,6 +178,12 @@
 }
 
 .navbar__item { 
+
+  &.sidebarMenuItem { 
+    justify-content: space-between;
+  }
+
+
   &.menuItem {
     text-decoration: none;
     color: tokens.$ifxColorBaseBlack;
@@ -215,12 +221,25 @@
   border: 1px solid;
   padding: 5px;
   display: none;
+ 
   &.open { 
     display: block;
   }
 }
 
 .navbar__item { 
+  &.hide { 
+    display: none;
+  }
+}
+
+.menuItemRightIconWrapper { 
+  &.hide { 
+    display: none;
+  }
+}
+
+.navItemIconWrapper { 
   &.hide { 
     display: none;
   }

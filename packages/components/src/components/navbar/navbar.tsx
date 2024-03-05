@@ -127,7 +127,8 @@ export class Navbar {
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
 
     if(navbarProfile) {
-      const itemChildren = navbarProfile.shadowRoot.querySelectorAll('ifx-navbar-item')
+      //const itemChildren = navbarProfile.shadowRoot.querySelectorAll('ifx-navbar-item')
+      const itemChildren = navbarProfile.querySelectorAll('ifx-navbar-item')
       if (itemChildren.length !== 0) {
         itemChildren.forEach(item => { 
           item.setMenuItemPosition()
@@ -139,7 +140,8 @@ export class Navbar {
     if(navbarItems.length !== 0) { 
       for(let i = 0; i < navbarItems.length; i++) { 
         const item = navbarItems[i];
-        const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item')
+        //const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item')
+        const itemChildren = item.querySelectorAll('ifx-navbar-item')
         if (itemChildren.length !== 0) {
          const hasNestedItems = await item.setItemSideSpecifications()
          if(hasNestedItems) { 
@@ -154,7 +156,8 @@ export class Navbar {
   }
 
   setMenuItemChildrenPosition(item) {
-    const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item');
+    //const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item');
+    const itemChildren = item.querySelectorAll('ifx-navbar-item');
     if (itemChildren.length !== 0) {
         itemChildren.forEach(subItem => { 
           subItem.setMenuItemPosition()
@@ -195,9 +198,11 @@ export class Navbar {
   }
 
   moveNavItemsToSidebar(e) {
+    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+      topRowWrapper.classList.add('expand')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
         leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
@@ -208,6 +213,7 @@ export class Navbar {
       /* The viewport is more than 800px wide */
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
+        topRowWrapper.classList.remove('expand')
         leftMenuItems[i].setAttribute('slot', 'left-item')
         leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }

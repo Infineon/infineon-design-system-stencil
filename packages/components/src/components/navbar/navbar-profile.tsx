@@ -86,15 +86,15 @@ export class NavbarProfile {
  }
 
   appendNavItemToMenu(navItems) { 
-    const menu = this.getItemMenu()
+    //const menu = this.getItemMenu()
     //console.log('nav items', navItems)
-    //this.relocateUsingSlot(navItems)
+    this.relocateUsingSlot(navItems)
 
-    navItems.forEach((el: HTMLElement) => {
-      const li = document.createElement('li')
-      li.appendChild(el)
-      menu.appendChild(li)
-    })
+    // navItems.forEach((el: HTMLElement) => {
+    //   const li = document.createElement('li')
+    //   li.appendChild(el)
+    //   menu.appendChild(li)
+    // })
   }
 
   setImage() { 
@@ -218,7 +218,7 @@ export class NavbarProfile {
           </div>
         </a>
         
-        {this.hasChildNavItems && <ul class='navbar-menu rightSideItemMenu'></ul>}
+        {this.hasChildNavItems && <ul class='navbar-menu rightSideItemMenu'> <slot name="first__layer" /> </ul>}
       </div>
     )
   }

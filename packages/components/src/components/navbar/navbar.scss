@@ -84,6 +84,10 @@
       align-self: stretch;
       gap: 16px;
 
+      &.expand { 
+        align-items: initial;
+      }
+
       & .navbar__sidebar-top-row-item { 
         display: flex;
         padding: var(--space-200, 0px) var(--space-50, 4px) var(--space-200, 0px) 0px;

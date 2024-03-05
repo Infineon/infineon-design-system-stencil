@@ -20,6 +20,12 @@
   </style>
 
   <script defer>
+
+    const handleIcon = () => { 
+      const item = document.getElementById("mynav");
+      console.log(item)
+      item.setAttribute('icon', 'cartf16')
+    }
     
   </script>
 
@@ -27,21 +33,24 @@
 
 <body>
 
-  <ifx-navbar show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
-    <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="">
+  <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+    <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
       Menu Item 1
+
       <ifx-navbar-item icon="calendar16">
         Layer 1 Nested Item 1
-        <ifx-navbar-item>Layer 2 Nested Item 2
+        <ifx-navbar-item>
+          Layer 2 Nested Item 2
           <ifx-navbar-item>Layer 3 Nested Item 1</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
           <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
         </ifx-navbar-item>
-        <ifx-navbar-item>Layer 2 Nested Item 3</ifx-navbar-item>
+        <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
         <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
         <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
       </ifx-navbar-item>
+
       <ifx-navbar-item>
         Layer 1 Nested Item 2
         <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
@@ -49,15 +58,16 @@
         <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
       </ifx-navbar-item>
 
-      <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+      <ifx-navbar-item >Nested Item 3</ifx-navbar-item>
 
       <ifx-navbar-item>
         Layer 1 Nested Item 4
         <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
       </ifx-navbar-item>
+
     </ifx-navbar-item>
 
-    <ifx-navbar-item slot="left-item" icon="calendar16" show-label="false">
+    <ifx-navbar-item slot="left-item" icon="calendar16" show-label="true">
       Menu Item 2
     </ifx-navbar-item>
 
@@ -118,6 +128,7 @@
     </ifx-navbar-profile>
 
   </ifx-navbar>
+
 
 </body>
 
