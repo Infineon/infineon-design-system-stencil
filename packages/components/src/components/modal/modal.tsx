@@ -189,8 +189,6 @@ export class IfxModal {
               </div>
               <div class="modal-footer">
                 <slot name="buttons">
-                  <ifx-button aria-label={this.okButtonLabel}>{this.okButtonLabel}</ifx-button>
-                  <ifx-button variant='secondary' aria-label={this.cancelButtonLabel}>{this.cancelButtonLabel}</ifx-button>
                 </slot>
               </div>
             </div>

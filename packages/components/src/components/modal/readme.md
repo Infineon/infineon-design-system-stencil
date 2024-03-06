@@ -32,14 +32,12 @@
 
 - [ifx-icon](../icon)
 - [ifx-icon-button](../icon-button)
-- [ifx-button](../button)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-modal --> ifx-icon
   ifx-modal --> ifx-icon-button
-  ifx-modal --> ifx-button
   ifx-icon-button --> ifx-icon
   style ifx-modal fill:#f9f,stroke:#333,stroke-width:4px
 ```

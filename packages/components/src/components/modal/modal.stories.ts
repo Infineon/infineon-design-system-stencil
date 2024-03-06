@@ -8,6 +8,7 @@ export default {
 
   args: {
     opened: false,
+    showButtons: true
   },
   argTypes: {
     caption: {
@@ -35,6 +36,9 @@ export default {
       options: Object.keys(icons),
       control: { type: 'select' },
       description: 'When specified together with alertIcon then an border to the right is shown',
+    },
+    showButtons: {
+      control: 'boolean'
     },
     variant: {
       options: ['default', 'alert-brand', 'alert-danger'],
@@ -67,7 +71,8 @@ const Template = ({
   caption,
   closeOnOverlayClick,
   variant,
-  alertIcon
+  alertIcon,
+  showButtons
 }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
@@ -88,25 +93,27 @@ const Template = ({
   `;
   modal.appendChild(content);
 
-  const buttons = document.createElement('div');
-  buttons.setAttribute('slot', 'buttons');
+  if(showButtons){
+    const buttons = document.createElement('div');
+    buttons.setAttribute('slot', 'buttons');
+  
+    const cancelButton = document.createElement('ifx-button');
+    cancelButton.setAttribute('variant', 'secondary');
+    cancelButton.textContent = 'Button 1';
+    cancelButton.addEventListener('click', () => {
+      console.log("Button 1 clicked");
+    });
+  
+    const primaryButton = document.createElement('ifx-button');
+    primaryButton.textContent = 'Button 2';
+    primaryButton.addEventListener('click', () => {
+      console.log("Button 2 clicked");
+    });
 
-  const cancelButton = document.createElement('ifx-button');
-  cancelButton.setAttribute('variant', 'secondary');
-  cancelButton.textContent = 'Button 1';
-  cancelButton.addEventListener('click', () => {
-    console.log("Button 1 clicked");
-  });
-
-  const primaryButton = document.createElement('ifx-button');
-  primaryButton.textContent = 'Button 2';
-  primaryButton.addEventListener('click', () => {
-    console.log("Button 2 clicked");
-  });
-
-  buttons.appendChild(cancelButton);
-  buttons.appendChild(primaryButton);
-  modal.appendChild(buttons);
+    buttons.appendChild(cancelButton);
+    buttons.appendChild(primaryButton);
+    modal.appendChild(buttons);
+  }
 
   const openButton = document.createElement('ifx-button');
   openButton.id = "open"

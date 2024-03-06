@@ -55,7 +55,7 @@
 @media screen and (min-width: 768px) {
   .modal-content-container {
     width: 540px;
-    min-height: 220px;
+    min-height: 132px;
   }
 }
 
@@ -127,24 +127,19 @@
   // }
 }
 
-.modal-footer {
+.modal-footer ::slotted(*) {
   display: flex;
-  //justify-content: flex-end;
-  align-items: center;
+  justify-content: flex-end;
+  gap: 1em;
+  box-sizing: border-box;
+  margin-left: auto;
+  gap: 24px;
   padding-top: 16px;
   padding-bottom: 32px;
   padding-right: 24px;
-  gap: 1em;
-  height: 88px;
-  box-sizing: border-box;
-
-  margin-left: auto;
 }
-
-.modal-footer ::slotted(*) {
-  display: flex;
-  //justify-content: space-between;
-  gap: 24px;
+.modal-footer ::slotted(*:empty){
+  padding:0;
 }
 
 
