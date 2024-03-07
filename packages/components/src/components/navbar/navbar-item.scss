@@ -130,6 +130,13 @@
 .container { 
   position: relative;
 
+  & .sub__layer-back-button { 
+    display: none;
+    &.show { 
+      display: block;
+    }
+  }
+
   &.hide { 
     display: none;
   }
@@ -139,6 +146,26 @@
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+
+    &.layer__item-parent { 
+      color: var(--color-base-black, #1D1D1D);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px; 
+      letter-spacing: -0.24px;
+
+      & .navbar__container-right-content-navigation-item-icon-wrapper { 
+        & ifx-icon { 
+          & svg { 
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+
+
   }
 }
 
@@ -244,3 +271,4 @@
     display: none;
   }
 }
+

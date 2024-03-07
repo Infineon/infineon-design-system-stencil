@@ -77,6 +77,15 @@ export class Navbar {
         }
       }
     }
+
+    if(event.detail.action === 'return') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].showComponent()
+        }
+      }
+    }
   }
   
 
@@ -310,7 +319,6 @@ export class Navbar {
         <div class="navbar__sidebar">
             <div class="navbar__sidebar-top-row">
               <div class="navbar__sidebar-top-row-wrapper">
-
                 {/* left side ifx-navbar-item  */}
                 <slot name='mobile-menu-top' />
                 {/* <div class="navbar__sidebar-top-row-item">

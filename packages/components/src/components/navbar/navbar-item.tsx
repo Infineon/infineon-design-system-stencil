@@ -52,27 +52,77 @@ export class NavbarItem {
 
   @Method()
   async moveChildComponentsIntoSubLayerMenu() { 
+    const subLayerMenu = this.el.shadowRoot.querySelector('.navbar-menu')
+    if(subLayerMenu && subLayerMenu.classList.contains('open')) { 
+      const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+      label__wrapper.classList.add('layer__item-parent')
+      this.toggleSubLayerBackButton('add')
+      this.ifxNavItem.emit({component: this.el, action: 'hide'})
+      
+      const menuItemRightIconWrapper = this.el.shadowRoot.querySelector('.menuItemRightIconWrapper')
+      menuItemRightIconWrapper.classList.add('hide')
+    }
+
     const navItems = this.el.querySelectorAll('[slot="first__layer"]')
     this.isSidebarMenuItem = true;
+
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'second__layer')
     }
   }
 
-  openNextLayer() { 
-    this.ifxNavItem.emit({component: this.el, action: 'hide'})
-    const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
-    subLayerMenu.classList.add('open')
+  toggleSubLayerBackButton(action) { 
+    const sublayerBackButton = this.el.shadowRoot.querySelector('.sub__layer-back-button')
+    sublayerBackButton.classList[action]('show')
+  }
+ 
+  openSubLayerMenu() { 
+    if(this.hasChildNavItems) { 
+      this.toggleSubLayerBackButton('add')
+      const menuItemRightIconWrapper = this.el.shadowRoot.querySelector('.menuItemRightIconWrapper')
+      const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+      menuItemRightIconWrapper.classList.add('hide')
+      label__wrapper.classList.add('layer__item-parent')
+  
+      this.ifxNavItem.emit({component: this.el, action: 'hide'})
+      const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
+      subLayerMenu.classList.add('open')
+    }
   }
 
   @Method()
   async moveChildComponentsBackIntoNavbar() { 
+    this.toggleSubLayerBackButton('remove')
+    const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+    label__wrapper.classList.remove('layer__item-parent')
+
     this.ifxNavItem.emit({component: this.el, action: 'show'})
     const navItems = this.el.querySelectorAll('[slot="second__layer"]')
     this.isSidebarMenuItem = false;
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'first__layer')
     }
+  }
+
+  returnToFirstLayer() { 
+    this.toggleSubLayerBackButton('remove')
+    const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+    label__wrapper.classList.remove('layer__item-parent')
+    const menuItemRightIconWrapper = this.el.shadowRoot.querySelector('.menuItemRightIconWrapper')
+    menuItemRightIconWrapper.classList.remove('hide')
+
+    this.ifxNavItem.emit({component: this.el, action: 'return'})
+
+    const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
+    subLayerMenu.classList.remove('open')
+
+    //const navItems = this.el.querySelectorAll('[slot="second__layer"]')
+    //this.isSidebarMenuItem = true;
+    //console.log('navItems', navItems)
+
+    // for(let i = 0; i < navItems.length; i++) { 
+    //   navItems[i].setAttribute('slot', 'first__layer')
+    // }
   }
 
   componentWillLoad() {
@@ -85,6 +135,16 @@ export class NavbarItem {
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.appendNavItemToMenu(navItems)
+    }
+  }
+
+  componentDidUpdate() { 
+    const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+    
+    if(this.isSidebarMenuItem && label__wrapper.classList.contains('layer__item-parent')) {
+      console.log('invoked')
+      const menuItemRightIconWrapper = this.el.shadowRoot.querySelector('.menuItemRightIconWrapper')
+      menuItemRightIconWrapper.classList.add('hide')
     }
   }
  
@@ -228,7 +288,7 @@ export class NavbarItem {
     const slotName = this.el.getAttribute('slot')
 
     if(slotName.toLowerCase() === 'mobile-menu-top') { 
-      this.openNextLayer()
+      this.openSubLayerMenu()
     }
 
    
@@ -270,6 +330,9 @@ export class NavbarItem {
   render() {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
+        <div class="sub__layer-back-button">
+          <button onClick={() => this.returnToFirstLayer()}>Go Back</button>
+        </div>
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
