@@ -46,10 +46,15 @@ export class NavbarItem {
   @Method()
   async moveChildComponentsIntoSubLayerMenu() { 
     const subLayerMenu = this.getItemMenu()
-    if(subLayerMenu && subLayerMenu.classList.contains('open')) { 
-      this.toggleLayerItemParent('add')
-      this.toggleSubLayerBackButton('add')
-      this.ifxNavItem.emit({component: this.el, action: 'hide'})
+    if(subLayerMenu) { 
+      const subLayerMenuIsOpened = this.handleClassList(subLayerMenu, 'contains', 'open')
+      if(subLayerMenuIsOpened) { 
+        const layerItemParent = this.getLayerItemParent()
+        const subLayerBackButton = this.getSubLayerBackButton()
+        this.handleClassList(layerItemParent, 'add', 'layer__item-parent')
+        this.handleClassList(subLayerBackButton, 'add', 'show')
+        this.ifxNavItem.emit({component: this.el, action: 'hide'})
+      }
     }
 
     const navItems = this.el.querySelectorAll('[slot="first__layer"]')
@@ -60,25 +65,31 @@ export class NavbarItem {
     }
   }
 
-  toggleSubLayerBackButton(action) { 
+  getSubLayerBackButton() { 
     const sublayerBackButton = this.el.shadowRoot.querySelector('.sub__layer-back-button')
-    sublayerBackButton.classList[action]('show')
+    return sublayerBackButton
   }
  
   openSubLayerMenu() { 
     if(this.hasChildNavItems) { 
-      this.toggleSubLayerBackButton('add')
-      this.toggleRightArrowIcon('add')
-      this.toggleLayerItemParent('add')
-      this.toggleSubLayerMenu('add')
+      const subLayerBackButton = this.getSubLayerBackButton()
+      const rightArrowIcon = this.getRightArrowIcon()
+      const layerItemParent = this.getLayerItemParent()
+      const subLayerMenu = this.getSubLayerMenu()
+      this.handleClassList(subLayerBackButton, 'add', 'show')
+      this.handleClassList(rightArrowIcon, 'add', 'hide')
+      this.handleClassList(layerItemParent, 'add', 'layer__item-parent')
+      this.handleClassList(subLayerMenu, 'add', 'open')
       this.ifxNavItem.emit({component: this.el, action: 'hide'})
     }
   }
 
   @Method()
   async moveChildComponentsBackIntoNavbar() { 
-    this.toggleSubLayerBackButton('remove')
-    this.toggleLayerItemParent('remove')
+    const subLayerBackButton = this.getSubLayerBackButton()
+    const layerItemParent = this.getLayerItemParent()
+    this.handleClassList(subLayerBackButton, 'remove', 'show')
+    this.handleClassList(layerItemParent, 'remove', 'layer__item-parent')
     this.ifxNavItem.emit({component: this.el, action: 'show'})
     const navItems = this.el.querySelectorAll('[slot="second__layer"]')
     this.isSidebarMenuItem = false;
@@ -87,24 +98,25 @@ export class NavbarItem {
     }
   }
 
-  toggleRightArrowIcon(action) { 
+  getRightArrowIcon() { 
     const menuItemRightIconWrapper = this.el.shadowRoot.querySelector('.menuItemRightIconWrapper')
-    menuItemRightIconWrapper.classList[action]('hide')
+    return menuItemRightIconWrapper;
   }
 
-  toggleLayerItemParent(action) { 
+  getLayerItemParent() { 
     const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
-    if(action === 'contains') { 
-      return label__wrapper.classList.contains('layer__item-parent')
-    }
-    label__wrapper.classList[action]('layer__item-parent')
+    return label__wrapper;
   }
 
   returnToFirstLayer() { 
-    this.toggleSubLayerBackButton('remove')
-    this.toggleLayerItemParent('remove')
-    this.toggleRightArrowIcon('remove')
-    this.toggleSubLayerMenu('remove')
+    const subLayerBackButton = this.getSubLayerBackButton()
+    const layerItemParent = this.getLayerItemParent()
+    const rightArrowIcon = this.getRightArrowIcon()
+    const subLayerMenu = this.getSubLayerMenu()
+    this.handleClassList(subLayerBackButton, 'remove', 'show')
+    this.handleClassList(layerItemParent, 'remove', 'layer__item-parent')
+    this.handleClassList(rightArrowIcon, 'remove', 'hide')
+    this.handleClassList(subLayerMenu, 'remove', 'open')
     this.ifxNavItem.emit({component: this.el, action: 'return'})
   }
 
@@ -122,16 +134,18 @@ export class NavbarItem {
   }
 
   componentDidUpdate() { 
-    const isLayerItemParent = this.toggleLayerItemParent('contains')
+    const layerItemParent = this.getLayerItemParent()
+    const isLayerItemParent = this.handleClassList(layerItemParent, 'contains', 'layer__item-parent')
     if(this.isSidebarMenuItem && isLayerItemParent) {
-      this.toggleRightArrowIcon('add')
+      const rightArrowIcon = this.getRightArrowIcon()
+      this.handleClassList(rightArrowIcon, 'add', 'hide')
     }
   }
  
   @Method()
   async setMenuItemPosition() { 
     if(this.isMenuItem && this.hasChildNavItems) { 
-      const menuPosition = this.checkItemMenuPosition()
+      const menuPosition = this.getItemMenuPosition()
       if(menuPosition === 'left') { 
         this.itemPosition = 'left'
       } else if(menuPosition === 'right') { 
@@ -157,9 +171,9 @@ export class NavbarItem {
     return navItem;
   }
 
-  toggleSubLayerMenu(action) { 
+  getSubLayerMenu() { 
     const subLayerMenu = this.el.shadowRoot.querySelector('.sub__layer-menu')
-    subLayerMenu.classList[action]('open')
+    return subLayerMenu;
   }
 
   relocateItemsToFirstlayer(navItems) { 
@@ -244,7 +258,7 @@ export class NavbarItem {
     }
   }
 
-  checkItemMenuPosition() {
+  getItemMenuPosition() {
     let parentElement = this.el;
     while(parentElement) {
       if(parentElement.tagName === 'IFX-NAVBAR-PROFILE') {
@@ -257,12 +271,10 @@ export class NavbarItem {
   
   toggleItemMenu() {
     const slotName = this.el.getAttribute('slot')
-
     if(slotName.toLowerCase() === 'mobile-menu-top') { 
       this.openSubLayerMenu()
     }
 
-   
     if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' ) {   
       const itemMenu = this.getItemMenu()
     
@@ -277,7 +289,7 @@ export class NavbarItem {
   handleNestedLayerMenu(e) { 
     if(this.isMenuItem && this.hasChildNavItems) { 
       const itemMenu = this.getItemMenu()
-      const menuPosition = this.checkItemMenuPosition()
+      const menuPosition = this.getItemMenuPosition()
       if(e.type.toUpperCase() === 'MOUSEENTER') { 
         this.handleClassList(itemMenu, 'add', 'open')
         if(menuPosition === 'left') { 
