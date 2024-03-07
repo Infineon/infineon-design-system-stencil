@@ -7,7 +7,7 @@ export default {
   // tags: ['autodocs'],
 
   args: {
-    opened: false,
+    opened: false
   },
   argTypes: {
     caption: {
@@ -87,7 +87,6 @@ const Template = ({
     <span>Modal content</span>
   `;
   modal.appendChild(content);
-
   const buttons = document.createElement('div');
   buttons.setAttribute('slot', 'buttons');
 

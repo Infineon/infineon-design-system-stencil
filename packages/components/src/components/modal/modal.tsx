@@ -29,6 +29,8 @@ export class IfxModal {
   @Prop() cancelButtonLabel: string = 'Cancel';
   @Element() hostElement: HTMLElement;
 
+  @State() slotButtonsPresent: boolean = false;
+
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
@@ -150,6 +152,14 @@ export class IfxModal {
   }
 
 
+  handleButtonsSlotChange(e) {
+    if(e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
+      this.slotButtonsPresent = true;
+    }else{
+      this.slotButtonsPresent = false;
+    }
+  }
+
 
   render() {
     const isAlertVariant = this.variant !== 'default';
@@ -187,10 +197,8 @@ export class IfxModal {
               <div class="modal-body">
                 <slot name="content" /*onSlotchange={() => console.log('slots children modified')}*/ />
               </div>
-              <div class="modal-footer">
-                <slot name="buttons">
-                  <ifx-button aria-label={this.okButtonLabel}>{this.okButtonLabel}</ifx-button>
-                  <ifx-button variant='secondary' aria-label={this.cancelButtonLabel}>{this.cancelButtonLabel}</ifx-button>
+              <div class={`modal-footer ${this.slotButtonsPresent ? 'buttons-present' : ''}`}>
+                <slot name="buttons" onSlotchange={(e)=>this.handleButtonsSlotChange(e)}>
                 </slot>
               </div>
             </div>
