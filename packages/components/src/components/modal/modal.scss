@@ -127,21 +127,24 @@
   // }
 }
 
-.modal-footer ::slotted(*) {
+// .modal-footer{
+//   display: flex;
+//   justify-content: flex-end;
+//   gap: 1em;
+//   box-sizing: border-box;
+//   margin-left: auto;
+//   gap: 24px;
+//   padding-top: 16px;
+//   padding-bottom: 32px;
+//   padding-right: 24px;
+// }
+
+.modal-footer.buttons-present ::slotted(*){
   display: flex;
   justify-content: flex-end;
-  gap: 1em;
-  box-sizing: border-box;
-  margin-left: auto;
-  gap: 24px;
-  padding-top: 16px;
-  padding-bottom: 32px;
-  padding-right: 24px;
+  gap: 16px;
+  padding: 16px 24px 32px 16px
 }
-.modal-footer ::slotted(*:empty){
-  padding:0;
-}
-
 
 .modal-border {
   display: flex;
