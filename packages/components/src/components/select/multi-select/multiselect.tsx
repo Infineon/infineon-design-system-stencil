@@ -44,7 +44,7 @@ export class Multiselect {
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
   @State() filteredOptions: Option[] = [];
-
+  @Prop() searchEnabled: boolean = true
 
 
   @Event() ifxSelect: EventEmitter;
@@ -488,7 +488,7 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}
               style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>
+              {this.searchEnabled && <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>

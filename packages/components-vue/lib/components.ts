@@ -260,6 +260,7 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
   'label',
   'placeholder',
   'maxItemCount',
+  'searchEnabled',
   'ifxSelect',
   'ifxMultiselectIsOpen'
 ]);
