@@ -36,13 +36,12 @@ export default {
     size: "m",
     batchSize: 10,
     maxItemCount: 10,
+    searchEnabled: true,
     error: false,
     errorMessage: 'Some error',
     label: '',
     disabled: false,
     placeholder: 'Placeholder'
-
-
   },
   argTypes: {
     size: {
@@ -71,6 +70,11 @@ export default {
       name: 'Disabled',
       options: [true, false],
       control: { type: 'radio' },
+    },
+    searchEnabled: {
+      name: 'Enable search',
+      options: [true, false],
+      control: { type: 'radio' }
     },
     error: {
       name: 'Error',
@@ -117,7 +121,8 @@ const DefaultTemplate = (args) => {
   error-message='${args.errorMessage}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  disabled='${args.disabled}'>
+  disabled='${args.disabled}'
+  search-enabled='${args.searchEnabled}'>
 </ifx-multiselect>`;
 
   setTimeout(() => {
