@@ -256,7 +256,7 @@ export class NavbarItem {
   getItemMenuPosition() {
     let parentElement = this.el;
     while(parentElement) {
-      if(parentElement.tagName === 'IFX-NAVBAR-PROFILE') {
+      if(parentElement.tagName === 'IFX-NAVBAR-PROFILE' || parentElement.slot === 'right-item') {
         return 'left'
       }
       parentElement = parentElement.parentElement || parentElement.getRootNode().host;
