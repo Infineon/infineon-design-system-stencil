@@ -1,3 +1,15 @@
+# v20.52.0 (Fri Mar 08 2024)
+
+#### 🚀 Enhancement
+
+- Multiselect: implemented search-enabled prop [#1037](https://github.com/Infineon/infineon-design-system-stencil/pull/1037) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.51.0 (Thu Mar 07 2024)
 
 #### 🚀 Enhancement
