@@ -49,9 +49,9 @@ export class NavbarItem {
     if(subLayerMenu) { 
       const subLayerMenuIsOpened = this.handleClassList(subLayerMenu, 'contains', 'open')
       if(subLayerMenuIsOpened) { 
-        const layerItemParent = this.getLayerItemParent()
+        const navbarItem = this.getNavBarItem()
         const subLayerBackButton = this.getSubLayerBackButton()
-        this.handleClassList(layerItemParent, 'add', 'layer__item-parent')
+        this.handleClassList(navbarItem, 'add', 'layer__item-parent')
         this.handleClassList(subLayerBackButton, 'add', 'show')
         this.ifxNavItem.emit({component: this.el, action: 'hide'})
       }
@@ -74,11 +74,11 @@ export class NavbarItem {
     if(this.hasChildNavItems) { 
       const subLayerBackButton = this.getSubLayerBackButton()
       const rightArrowIcon = this.getRightArrowIcon()
-      const layerItemParent = this.getLayerItemParent()
+      const navbarItem = this.getNavBarItem()
       const subLayerMenu = this.getSubLayerMenu()
       this.handleClassList(subLayerBackButton, 'add', 'show')
       this.handleClassList(rightArrowIcon, 'add', 'hide')
-      this.handleClassList(layerItemParent, 'add', 'layer__item-parent')
+      this.handleClassList(navbarItem, 'add', 'layer__item-parent')
       this.handleClassList(subLayerMenu, 'add', 'open')
       this.ifxNavItem.emit({component: this.el, action: 'hide'})
     }
@@ -87,9 +87,9 @@ export class NavbarItem {
   @Method()
   async moveChildComponentsBackIntoNavbar() { 
     const subLayerBackButton = this.getSubLayerBackButton()
-    const layerItemParent = this.getLayerItemParent()
+    const navbarItem = this.getNavBarItem()
     this.handleClassList(subLayerBackButton, 'remove', 'show')
-    this.handleClassList(layerItemParent, 'remove', 'layer__item-parent')
+    this.handleClassList(navbarItem, 'remove', 'layer__item-parent')
     this.ifxNavItem.emit({component: this.el, action: 'show'})
     const navItems = this.el.querySelectorAll('[slot="second__layer"]')
     this.isSidebarMenuItem = false;
@@ -103,18 +103,13 @@ export class NavbarItem {
     return menuItemRightIconWrapper;
   }
 
-  getLayerItemParent() { 
-    const label__wrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
-    return label__wrapper;
-  }
-
   returnToFirstLayer() { 
     const subLayerBackButton = this.getSubLayerBackButton()
-    const layerItemParent = this.getLayerItemParent()
+    const navbarItem = this.getNavBarItem()
     const rightArrowIcon = this.getRightArrowIcon()
     const subLayerMenu = this.getSubLayerMenu()
     this.handleClassList(subLayerBackButton, 'remove', 'show')
-    this.handleClassList(layerItemParent, 'remove', 'layer__item-parent')
+    this.handleClassList(navbarItem, 'remove', 'layer__item-parent')
     this.handleClassList(rightArrowIcon, 'remove', 'hide')
     this.handleClassList(subLayerMenu, 'remove', 'open')
     this.ifxNavItem.emit({component: this.el, action: 'return'})
@@ -134,8 +129,8 @@ export class NavbarItem {
   }
 
   componentDidUpdate() { 
-    const layerItemParent = this.getLayerItemParent()
-    const isLayerItemParent = this.handleClassList(layerItemParent, 'contains', 'layer__item-parent')
+    const navbarItem = this.getNavBarItem()
+    const isLayerItemParent = this.handleClassList(navbarItem, 'contains', 'layer__item-parent')
     if(this.isSidebarMenuItem && isLayerItemParent) {
       const rightArrowIcon = this.getRightArrowIcon()
       this.handleClassList(rightArrowIcon, 'add', 'hide')
@@ -314,7 +309,10 @@ export class NavbarItem {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <div class="sub__layer-back-button">
-          <button onClick={() => this.returnToFirstLayer()}>Go Back</button>
+          <div class="back__button-wrapper" onClick={() => this.returnToFirstLayer()}>
+            <ifx-icon icon="arrow-left-16" />
+            <span>Back</span>
+          </div>
         </div>
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
@@ -329,36 +327,22 @@ export class NavbarItem {
                 <ifx-icon icon="chevron-left-12" />
             </div>}
 
-
             <span class="label__wrapper">
               <slot />
             </span>
           </div>
 
-           
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />
           </div>
           
-         {/* {((this.itemPosition === 'right' && this.hasChildNavItems && this.isMenuItem) 
-         || (this.isSidebarMenuItem && this.hasChildNavItems)) && 
-         <div class="menuItemRightIconWrapper">
-            <ifx-icon icon="chevron-right-12" />
-          </div>} */}
-
-         {
-         <div class={`menuItemRightIconWrapper ${((this.itemPosition === 'right' && this.hasChildNavItems && this.isMenuItem) || (this.isSidebarMenuItem && this.hasChildNavItems)) ? '' : "hide"}`}>
+         {<div class={`menuItemRightIconWrapper ${((this.itemPosition === 'right' && this.hasChildNavItems && this.isMenuItem) || (this.isSidebarMenuItem && this.hasChildNavItems)) ? '' : "hide"}`}>
             <ifx-icon icon="chevron-right-12" />
           </div>}
-
         </a>
         
         {this.hasChildNavItems && !this.isSidebarMenuItem && <ul class='navbar-menu'> <slot name="first__layer" /> </ul>}
         {this.isSidebarMenuItem && <ul class='sub__layer-menu'> <slot name="second__layer" /> </ul>}
-
-        {/* <div class="sub__layer-menu">
-            <slot name="second__layer" />
-        </div> */}
 
       </div>
     )
