@@ -40,7 +40,7 @@ jobs:
           npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
-            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+            echo "SKIP_REMAINING='true'" >> $GITHUB_OUTPUT
           else 
             cd packages/components
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
@@ -51,9 +51,11 @@ jobs:
             auto shipit
           fi
 
+
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: sleep 10s
+        run: |
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
         shell: bash
 
       - name: Update Dependencies in Angular, Vue and React packages
