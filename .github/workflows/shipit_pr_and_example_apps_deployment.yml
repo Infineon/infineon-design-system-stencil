@@ -33,7 +33,7 @@ jobs:
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+        if: github.actor != 'dependabot[bot]'
         run: | 
           npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
