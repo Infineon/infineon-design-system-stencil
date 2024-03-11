@@ -5,11 +5,11 @@ on:
     branches:
      - master
  
-env:
-  VERSION: ''
 
 jobs:
   stencil-library-release:
+    outputs:
+      VERSION: ${{ steps.build.outputs.VERSION }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -39,6 +39,8 @@ jobs:
           VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Set version as Github Env and Github Output: $VERSION"
           echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
           auto shipit
 
@@ -50,6 +52,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
+          echo "VERSION: $VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
