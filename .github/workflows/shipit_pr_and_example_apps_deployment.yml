@@ -261,7 +261,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-  # webex-notification: commented out and left in here as a reference for testing
+  # send-webex-notification: commented out and left in here as a reference for testing
   #   needs: [stencil-library-release, deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla, update-pr-comment]
   #   runs-on: ubuntu-latest
   #   steps:

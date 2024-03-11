@@ -235,7 +235,7 @@ jobs:
             pr-preview-vanilla-example/
           force: false
 
-  webex-notification:
+  send-webex-notification:
     needs: [stencil-library-release, deploy-master-vue, deploy-master-react, deploy-master-angular, deploy-master-vanilla]
     runs-on: ubuntu-latest
     steps:
