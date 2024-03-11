@@ -1,3 +1,16 @@
+# v20.53.0 (Mon Mar 11 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Webex notification on new version release [#1033](https://github.com/Infineon/infineon-design-system-stencil/pull/1033) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.52.0 (Fri Mar 08 2024)
 
 #### 🚀 Enhancement
