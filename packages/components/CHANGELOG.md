@@ -1,3 +1,16 @@
+# v20.53.1 (Mon Mar 11 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Version is null when sending webex notification [#1040](https://github.com/Infineon/infineon-design-system-stencil/pull/1040) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.53.0 (Mon Mar 11 2024)
 
 #### 🚀 Enhancement
