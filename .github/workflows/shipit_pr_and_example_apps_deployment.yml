@@ -261,14 +261,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-  webex-notification:
-    needs: [stencil-library-release, deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla, update-pr-comment]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Notification
-        run: |
-          VERSION=20.50.3
-          CANARY_VERSION=${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
-          WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$CANARY_VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."
-          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
-        shell: bash
+  # webex-notification: commented out and left in here as a reference for testing
+  #   needs: [stencil-library-release, deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla, update-pr-comment]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Send Notification
+  #       run: |
+  #         VERSION=20.50.3
+  #         CANARY_VERSION=${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
+  #         WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$CANARY_VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."
+  #         curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
+  #       shell: bash
