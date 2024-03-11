@@ -239,7 +239,7 @@ jobs:
     needs: [stencil-library-release, deploy-master-vue, deploy-master-react, deploy-master-angular, deploy-master-vanilla]
     runs-on: ubuntu-latest
     steps:
-      - name: Send Notification
+      - name: Send Webex Notification
         run: |
           VERSION=${{ needs.stencil-library-release.outputs.VERSION }}
           WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."

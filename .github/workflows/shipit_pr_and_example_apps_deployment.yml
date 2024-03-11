@@ -265,7 +265,7 @@ jobs:
   #   needs: [stencil-library-release, deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla, update-pr-comment]
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - name: Send Notification
+  #     - name: Send Webex Notification
   #       run: |
   #         VERSION=20.50.3
   #         CANARY_VERSION=${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
