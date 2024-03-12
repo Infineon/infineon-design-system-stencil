@@ -1,3 +1,16 @@
+# v20.54.0 (Tue Mar 12 2024)
+
+#### 🚀 Enhancement
+
+- 1041 enhancement skip canary release creation when workflow is triggered by dependabot secrets not accessible [#1042](https://github.com/Infineon/infineon-design-system-stencil/pull/1042) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.53.1 (Mon Mar 11 2024)
 
 #### 🐛 Bug Fix
