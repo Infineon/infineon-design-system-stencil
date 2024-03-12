@@ -12,7 +12,6 @@ jobs:
     outputs:
       CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
       SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
-
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -35,18 +34,19 @@ jobs:
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         run: | 
           npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
-            echo "SKIP_REMAINING='true'" >> $GITHUB_OUTPUT
+            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
             cd packages/components
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-            echo "SKIP_REMAINING='false'" >> $GITHUB_OUTPUT
+            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
             auto shipit
