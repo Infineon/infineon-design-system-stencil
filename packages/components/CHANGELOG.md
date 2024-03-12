@@ -1,3 +1,16 @@
+# v20.55.0 (Tue Mar 12 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: skip canary release creation when workflow is triggered by dependabot [#1052](https://github.com/Infineon/infineon-design-system-stencil/pull/1052) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.54.0 (Tue Mar 12 2024)
 
 #### 🚀 Enhancement
