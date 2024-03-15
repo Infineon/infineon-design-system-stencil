@@ -20,7 +20,7 @@
     outline-width: 2px;
     outline-style: solid;
     outline-color: #0A8276;
-    outline-offset: 2px;
+    outline-offset: 4px;
     border-radius: 3px;
   }
 
@@ -43,6 +43,7 @@
     text-decoration: underline;
     text-decoration-color: tokens.$ifxColorOcean500;
     color: #1D1D1D;
+    text-underline-offset: 8px;
 
     &:hover {
       color: tokens.$ifxColorOcean500;
