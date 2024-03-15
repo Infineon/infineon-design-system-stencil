@@ -31,6 +31,8 @@ export class IfxModal {
 
   @State() slotButtonsPresent: boolean = false;
 
+  @Prop() showCloseButton: boolean = true;
+
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
@@ -191,8 +193,11 @@ export class IfxModal {
             <div class="modal-content">
               <div class="modal-header">
                 <h2>{this.caption}</h2>
-                <ifx-icon-button ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON')}
-                ></ifx-icon-button>
+                { 
+                  this.showCloseButton && 
+                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
+                  </ifx-icon-button>
+                }
               </div>
               <div class="modal-body">
                 <slot name="content" /*onSlotchange={() => console.log('slots children modified')}*/ />
