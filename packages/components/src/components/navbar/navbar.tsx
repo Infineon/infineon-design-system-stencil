@@ -60,11 +60,33 @@ export class Navbar {
 
   @Listen('ifxNavItem') 
   clearFirstLayerMenu(event: CustomEvent) { 
-    if(event.detail.action === 'hide') { 
+    if(event.detail.action === 'hideFirstLayer') { 
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         if(!leftMenuItems[i].isSameNode(event.detail.component)) {
           leftMenuItems[i].hideComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'hideSecondLayer') { 
+      const parent = event.detail.parent;
+      const children = parent.children;
+      parent.hideFirstLayerItem()
+      for(let i = 0; i < children.length; i++) { 
+        if(!children[i].isSameNode(event.detail.component)) {
+          children[i].hideComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'returnToSecondLayer') { 
+      const parent = event.detail.parent;
+      const children = parent.children;
+      parent.showFirstLayerItem()
+      for(let i = 0; i < children.length; i++) { 
+        if(!children[i].isSameNode(event.detail.component)) {
+          children[i].showComponent()
         }
       }
     }
@@ -152,7 +174,6 @@ export class Navbar {
     this.main = !this.main;
     this[menu] = !this[menu];
   }
-
 
   async setItemMenuPosition() { 
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')

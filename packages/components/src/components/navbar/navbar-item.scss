@@ -17,6 +17,10 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
+  &.hide { 
+    display: none;
+  }
+
   &.isParent { 
     gap: 8px;
   }
@@ -265,9 +269,13 @@
 }
 
 .sub__layer-menu { 
-  border: 1px solid;
   padding: 5px;
   display: none;
+
+  &.remove__margin { 
+    margin: 0;
+    padding: 0;
+  }
  
   &.open { 
     display: block;

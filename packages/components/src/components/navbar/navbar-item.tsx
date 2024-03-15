@@ -53,7 +53,7 @@ export class NavbarItem {
         const subLayerBackButton = this.getSubLayerBackButton()
         this.handleClassList(navbarItem, 'add', 'layer__item-parent')
         this.handleClassList(subLayerBackButton, 'add', 'show')
-        this.ifxNavItem.emit({component: this.el, action: 'hide'})
+        this.ifxNavItem.emit({component: this.el, action: 'hideFirstLayer'})
       }
     }
 
@@ -62,12 +62,33 @@ export class NavbarItem {
 
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'second__layer')
+      navItems[i].moveChildComponentsIntoSubLayerMenu()
     }
   }
 
   getSubLayerBackButton() { 
     const sublayerBackButton = this.el.shadowRoot.querySelector('.sub__layer-back-button')
     return sublayerBackButton
+  }
+
+  @Method()
+  async hideFirstLayerItem() { 
+   const navbarItem = this.getNavBarItem()
+   const secondLayerMenu = this.getSubLayerMenu()
+   const subLayerBackButton = this.getSubLayerBackButton()
+   this.handleClassList(subLayerBackButton, 'remove', 'show')
+   this.handleClassList(navbarItem, 'add', 'hide')
+   this.handleClassList(secondLayerMenu, 'add', 'remove__margin')
+  }
+
+  @Method()
+  async showFirstLayerItem() { 
+   const navbarItem = this.getNavBarItem()
+   const secondLayerMenu = this.getSubLayerMenu()
+   const subLayerBackButton = this.getSubLayerBackButton()
+   this.handleClassList(subLayerBackButton, 'add', 'show')
+   this.handleClassList(navbarItem, 'remove', 'hide')
+   this.handleClassList(secondLayerMenu, 'remove', 'remove__margin')
   }
  
   openSubLayerMenu() { 
@@ -80,7 +101,14 @@ export class NavbarItem {
       this.handleClassList(rightArrowIcon, 'add', 'hide')
       this.handleClassList(navbarItem, 'add', 'layer__item-parent')
       this.handleClassList(subLayerMenu, 'add', 'open')
-      this.ifxNavItem.emit({component: this.el, action: 'hide'})
+    
+      const slotName = this.el.getAttribute('slot')
+      if(slotName.toLowerCase() === 'second__layer') {
+        this.ifxNavItem.emit({component: this.el, parent: this.el.parentElement, action: 'hideSecondLayer'})
+        this.handleClassList(navbarItem, 'remove', 'menuItem')
+      } else { 
+        this.ifxNavItem.emit({component: this.el, action: 'hideFirstLayer'})
+      }
     }
   }
 
@@ -95,6 +123,15 @@ export class NavbarItem {
     this.isSidebarMenuItem = false;
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'first__layer')
+      navItems[i].moveChildComponentsBackIntoNavbar()
+
+      
+      // navItems[i].showComponent()
+      // const navbarItem = this.getNavBarItem()
+      // const rightArrowIcon = this.getRightArrowIcon()
+      // this.handleClassList(navbarItem, 'remove', 'hide')
+      // this.handleClassList(rightArrowIcon, 'remove', 'hide')
+      // this.handleClassList(navbarItem, 'add', 'menuItem')
     }
   }
 
@@ -112,7 +149,16 @@ export class NavbarItem {
     this.handleClassList(navbarItem, 'remove', 'layer__item-parent')
     this.handleClassList(rightArrowIcon, 'remove', 'hide')
     this.handleClassList(subLayerMenu, 'remove', 'open')
-    this.ifxNavItem.emit({component: this.el, action: 'return'})
+    //this.ifxNavItem.emit({component: this.el, action: 'return'})
+
+    const slotName = this.el.getAttribute('slot')
+    if(slotName.toLowerCase() === 'second__layer') {
+      console.log('el', this.el, 'parent', this.el.parentElement)
+      this.ifxNavItem.emit({component: this.el, parent: this.el.parentElement, action: 'returnToSecondLayer'})
+      this.handleClassList(navbarItem, 'add', 'menuItem')
+    } else { 
+      this.ifxNavItem.emit({component: this.el, action: 'return'})
+    }
   }
 
   componentWillLoad() {
@@ -266,11 +312,12 @@ export class NavbarItem {
   
   toggleItemMenu() {
     const slotName = this.el.getAttribute('slot')
-    if(slotName.toLowerCase() === 'mobile-menu-top') { 
+
+    if(slotName.toLowerCase() === 'mobile-menu-top' || slotName.toLowerCase() === 'second__layer') { 
       this.openSubLayerMenu()
     }
 
-    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' ) {   
+    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' && slotName.toLowerCase() !== 'second__layer' ) {   
       const itemMenu = this.getItemMenu()
     
       if(this.hasChildNavItems) { 
@@ -282,7 +329,7 @@ export class NavbarItem {
   }
 
   handleNestedLayerMenu(e) { 
-    if(this.isMenuItem && this.hasChildNavItems) { 
+    if(this.isMenuItem && this.hasChildNavItems && !this.isSidebarMenuItem) { 
       const itemMenu = this.getItemMenu()
       const menuPosition = this.getItemMenuPosition()
       if(e.type.toUpperCase() === 'MOUSEENTER') { 
