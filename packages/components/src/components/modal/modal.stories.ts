@@ -31,6 +31,10 @@ export default {
       control: 'boolean',
       description: 'Close the modal when clicking outside the window',
     },
+    showCloseButton: {
+      control: 'boolean',
+      description: "Show or hide close button 'x'",
+    },
     alertIcon: {
       options: Object.keys(icons),
       control: { type: 'select' },
@@ -65,6 +69,7 @@ export default {
 
 const Template = ({
   caption,
+  showCloseButton,
   closeOnOverlayClick,
   variant,
   alertIcon
@@ -77,6 +82,7 @@ const Template = ({
     modal.setAttribute('alert-icon', alertIcon);
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
+  modal.setAttribute('show-close-button', showCloseButton);
 
   modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
   modal.addEventListener('ifxModalClose', action('ifxModalClose'));
@@ -129,6 +135,7 @@ const Template = ({
 export const Default = Template.bind({});
 Default.args = {
   caption: 'Modal Title',
+  showCloseButton: true,
   closeOnOverlayClick: false,
   variant: 'default',
 };
