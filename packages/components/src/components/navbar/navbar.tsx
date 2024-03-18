@@ -72,7 +72,8 @@ export class Navbar {
     if(event.detail.action === 'hideSecondLayer') { 
       const parent = event.detail.parent;
       const children = parent.children;
-      parent.hideFirstLayerItem()
+      //parent.hideFirstLayerItem()
+      parent.toggleFirstLayerItem('remove', 'add')
       for(let i = 0; i < children.length; i++) { 
         if(!children[i].isSameNode(event.detail.component)) {
           children[i].hideComponent()
@@ -83,7 +84,8 @@ export class Navbar {
     if(event.detail.action === 'returnToSecondLayer') { 
       const parent = event.detail.parent;
       const children = parent.children;
-      parent.showFirstLayerItem()
+      //parent.showFirstLayerItem()
+      parent.toggleFirstLayerItem('add', 'remove')
       for(let i = 0; i < children.length; i++) { 
         if(!children[i].isSameNode(event.detail.component)) {
           children[i].showComponent()
