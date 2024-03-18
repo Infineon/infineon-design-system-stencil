@@ -40,7 +40,7 @@
     "@popperjs/core": "^2.11.8",
     "@stencil/core": "4.12.6",
     "@storybook/blocks": "^7.0.23",
-    "@storybook/cli": "^7.0.20",
+    "@storybook/cli": "^8.0.1",
     "babel-prettier-parser": "^0.10.8",
     "classnames": "^2.3.2",
     "i": "^0.3.7",
