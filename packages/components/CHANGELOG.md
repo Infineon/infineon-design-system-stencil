@@ -1,3 +1,20 @@
+# v20.56.0 (Mon Mar 18 2024)
+
+#### 🚀 Enhancement
+
+- Modal: Close button is now removable [#1059](https://github.com/Infineon/infineon-design-system-stencil/pull/1059) ([@akashyeole](https://github.com/akashyeole))
+
+#### 🔩 Dependency Updates
+
+- Bump @stencil/core from 4.5.0 to 4.12.6 in /packages/components [#1044](https://github.com/Infineon/infineon-design-system-stencil/pull/1044) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.55.0 (Tue Mar 12 2024)
 
 #### 🚀 Enhancement
