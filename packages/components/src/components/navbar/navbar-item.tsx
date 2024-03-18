@@ -57,6 +57,8 @@ export class NavbarItem {
       }
     }
 
+    //const subLayerMenuIsOpened = this.handleClassList(navbarItem, 'contains', 'layer__item-parent')
+
     const navItems = this.el.querySelectorAll('[slot="first__layer"]')
     this.isSidebarMenuItem = true;
 
@@ -113,25 +115,38 @@ export class NavbarItem {
   }
 
   @Method()
+  async addMenuItemClass() { 
+    const navbarItem = this.getNavBarItem()
+    this.handleClassList(navbarItem, 'add', 'menuItem')
+    const rightArrowIcon = this.getRightArrowIcon()
+    //this.handleClassList(rightArrowIcon, 'remove', 'hide')
+    if(this.hasChildNavItems) { 
+      this.handleClassList(rightArrowIcon, 'remove', 'hide')
+    }
+  }
+
+  @Method()
   async moveChildComponentsBackIntoNavbar() { 
     const subLayerBackButton = this.getSubLayerBackButton()
     const navbarItem = this.getNavBarItem()
     this.handleClassList(subLayerBackButton, 'remove', 'show')
     this.handleClassList(navbarItem, 'remove', 'layer__item-parent')
+
+    const secondLayerMenu = this.getSubLayerMenu()
+    this.handleClassList(secondLayerMenu, 'remove', 'remove__margin')
+    
     this.ifxNavItem.emit({component: this.el, action: 'show'})
     const navItems = this.el.querySelectorAll('[slot="second__layer"]')
     this.isSidebarMenuItem = false;
+    this.showComponent()
+    this.handleClassList(navbarItem, 'remove', 'hide')
+
+
     for(let i = 0; i < navItems.length; i++) { 
       navItems[i].setAttribute('slot', 'first__layer')
       navItems[i].moveChildComponentsBackIntoNavbar()
-
-      
-      // navItems[i].showComponent()
-      // const navbarItem = this.getNavBarItem()
-      // const rightArrowIcon = this.getRightArrowIcon()
-      // this.handleClassList(navbarItem, 'remove', 'hide')
-      // this.handleClassList(rightArrowIcon, 'remove', 'hide')
-      // this.handleClassList(navbarItem, 'add', 'menuItem')
+      navItems[i].addMenuItemClass()
+      navItems[i].returnToFirstLayer()
     }
   }
 
@@ -140,20 +155,22 @@ export class NavbarItem {
     return menuItemRightIconWrapper;
   }
 
-  returnToFirstLayer() { 
+  @Method()
+  async returnToFirstLayer() { 
     const subLayerBackButton = this.getSubLayerBackButton()
     const navbarItem = this.getNavBarItem()
     const rightArrowIcon = this.getRightArrowIcon()
     const subLayerMenu = this.getSubLayerMenu()
     this.handleClassList(subLayerBackButton, 'remove', 'show')
     this.handleClassList(navbarItem, 'remove', 'layer__item-parent')
-    this.handleClassList(rightArrowIcon, 'remove', 'hide')
+    if(this.hasChildNavItems) { 
+      this.handleClassList(rightArrowIcon, 'remove', 'hide')
+    }
     this.handleClassList(subLayerMenu, 'remove', 'open')
     //this.ifxNavItem.emit({component: this.el, action: 'return'})
 
     const slotName = this.el.getAttribute('slot')
     if(slotName.toLowerCase() === 'second__layer') {
-      console.log('el', this.el, 'parent', this.el.parentElement)
       this.ifxNavItem.emit({component: this.el, parent: this.el.parentElement, action: 'returnToSecondLayer'})
       this.handleClassList(navbarItem, 'add', 'menuItem')
     } else { 
