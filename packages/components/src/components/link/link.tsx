@@ -11,6 +11,7 @@ export class Link {
   @Prop({ mutable: true }) href: string
   @Prop({ mutable: true }) target: string = '_self';
   @Prop() size: string;
+  @Prop() disabled: boolean = false;
   @Prop({ mutable: true }) variant: string = 'bold';
 
 
@@ -63,7 +64,8 @@ export class Link {
       'link',
       'primary',
       this.getVariantClass(),
-      this.getSizeClass()
+      this.getSizeClass(),
+      this.disabled ? 'disabled' : '',
     );
   }
 }

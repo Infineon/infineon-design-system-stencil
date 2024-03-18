@@ -212,6 +212,7 @@ export const IfxLink = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', un
   'href',
   'target',
   'size',
+  'disabled',
   'variant'
 ]);
 

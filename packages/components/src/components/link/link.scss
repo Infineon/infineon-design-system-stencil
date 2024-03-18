@@ -37,6 +37,7 @@
       font-weight: 600;
       text-decoration: underline;
     }
+
   }
 
   &.underlined {
@@ -44,14 +45,18 @@
     text-decoration-color: tokens.$ifxColorOcean500;
     color: #1D1D1D;
     text-underline-offset: 8px;
-
+    
     &:hover {
-      color: tokens.$ifxColorOcean500;
-      ;
+      color: tokens.$ifxColorOcean500;;
     }
-
+    
     &:active {
       color: #0A8276;
+    }
+
+    &:disabled,
+    &.disabled {
+      text-decoration-color: tokens.$ifxColorEngineering300;
     }
   }
 
@@ -129,4 +134,12 @@
   &.underline {
     text-decoration: underline;
   }
+
+  &:disabled,
+  &.disabled {
+    color: tokens.$ifxColorEngineering300;
+    cursor: default;
+    pointer-events:  none;
+  }
+
 }
