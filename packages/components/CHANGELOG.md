@@ -1,3 +1,15 @@
+# v20.56.1 (Mon Mar 18 2024)
+
+#### 🐛 Bug Fix
+
+- Alert: renamed variant secondary with success and aligned the variant design color [#1062](https://github.com/Infineon/infineon-design-system-stencil/pull/1062) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.56.0 (Mon Mar 18 2024)
 
 #### 🚀 Enhancement
