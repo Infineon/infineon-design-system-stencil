@@ -7,7 +7,7 @@ import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
 })
 
 export class Alert {
-  @Prop() variant: 'primary' | 'secondary' | 'danger' | 'warning' | 'info' = 'primary';
+  @Prop() variant: 'primary' | 'success' | 'danger' | 'warning' | 'info' = 'primary';
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
   @Prop() closable: boolean = true;

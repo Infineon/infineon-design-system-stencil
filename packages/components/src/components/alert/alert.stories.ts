@@ -14,7 +14,7 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'danger', 'warning'],
+      options: ['primary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
     },
 
