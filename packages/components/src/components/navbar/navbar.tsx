@@ -72,7 +72,6 @@ export class Navbar {
     if(event.detail.action === 'hideSecondLayer') { 
       const parent = event.detail.parent;
       const children = parent.children;
-      //parent.hideFirstLayerItem()
       parent.toggleFirstLayerItem('remove', 'add')
       for(let i = 0; i < children.length; i++) { 
         if(!children[i].isSameNode(event.detail.component)) {
@@ -84,7 +83,6 @@ export class Navbar {
     if(event.detail.action === 'returnToSecondLayer') { 
       const parent = event.detail.parent;
       const children = parent.children;
-      //parent.showFirstLayerItem()
       parent.toggleFirstLayerItem('add', 'remove')
       for(let i = 0; i < children.length; i++) { 
         if(!children[i].isSameNode(event.detail.component)) {
@@ -138,10 +136,8 @@ export class Navbar {
 
     } else if(!event.detail) {
       this.searchBarIsOpen = undefined;
-      //navbarProfile.hideComponent('remove')
       navbarProfile.showComponent()
       for(let i = 0; i < navbarItems.length; i++) { 
-        //navbarItems[i].hideComponent('remove')
         navbarItems[i].showComponent() 
       }
     }
@@ -182,7 +178,6 @@ export class Navbar {
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
 
     if(navbarProfile) {
-      //const itemChildren = navbarProfile.shadowRoot.querySelectorAll('ifx-navbar-item')
       const itemChildren = navbarProfile.querySelectorAll('ifx-navbar-item')
       if (itemChildren.length !== 0) {
         itemChildren.forEach(item => { 
@@ -195,7 +190,6 @@ export class Navbar {
     if(navbarItems.length !== 0) { 
       for(let i = 0; i < navbarItems.length; i++) { 
         const item = navbarItems[i];
-        //const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item')
         const itemChildren = item.querySelectorAll('ifx-navbar-item')
         if (itemChildren.length !== 0) {
          const hasNestedItems = await item.setItemSideSpecifications()
@@ -211,7 +205,6 @@ export class Navbar {
   }
 
   setMenuItemChildrenPosition(item) {
-    //const itemChildren = item.shadowRoot.querySelectorAll('ifx-navbar-item');
     const itemChildren = item.querySelectorAll('ifx-navbar-item');
     if (itemChildren.length !== 0) {
         itemChildren.forEach(subItem => { 

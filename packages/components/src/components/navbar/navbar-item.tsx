@@ -81,26 +81,6 @@ export class NavbarItem {
    this.handleClassList(secondLayerMenu, [actionTwo], 'remove__margin')
   }
 
-  // @Method()
-  // async hideFirstLayerItem() { 
-  //  const navbarItem = this.getNavBarItem()
-  //  const secondLayerMenu = this.getSubLayerMenu()
-  //  const subLayerBackButton = this.getSubLayerBackButton()
-  //  this.handleClassList(subLayerBackButton, 'remove', 'show')
-  //  this.handleClassList(navbarItem, 'add', 'hide')
-  //  this.handleClassList(secondLayerMenu, 'add', 'remove__margin')
-  // }
-
-  // @Method()
-  // async showFirstLayerItem() { 
-  //  const navbarItem = this.getNavBarItem()
-  //  const secondLayerMenu = this.getSubLayerMenu()
-  //  const subLayerBackButton = this.getSubLayerBackButton()
-  //  this.handleClassList(subLayerBackButton, 'add', 'show')
-  //  this.handleClassList(navbarItem, 'remove', 'hide')
-  //  this.handleClassList(secondLayerMenu, 'remove', 'remove__margin')
-  // }
- 
   openSubLayerMenu() { 
     if(this.hasChildNavItems) { 
       const subLayerBackButton = this.getSubLayerBackButton()
