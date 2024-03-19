@@ -1,0 +1,94 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
+.step-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: tokens.$ifxSize100;
+    max-width: tokens.$ifxSize2000;
+    width: tokens.$ifxSize2000;
+    font: tokens.$ifxBodyBody03;
+    
+    &.compact{
+        gap: 0;
+        align-items: flex-end;
+        .step-label{
+            max-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
+            text-align: right;
+        }
+    }
+
+    .step-label{
+        max-width: tokens.$ifxSize1800;
+        color: tokens.$ifxColorEngineering400; 
+        word-wrap: break-word;
+        &.curr-label{
+            font: tokens.$ifxHeadingHeadingCompact04; 
+        }
+        &.next-label{
+            font: tokens.$ifxBodyBody05;
+        }
+    }
+    
+    &.first-step{
+        .step-connector-l{
+            height: 0px;
+        }
+    }
+    
+    &.last-step{
+        .step-connector-r{
+            height: 0px;
+        }
+    }
+    
+    &.completed{
+        .step-connector-l, .step-connector-r, .step-icon{
+            background: tokens.$ifxColorOcean500;
+        }
+        .step-label{
+            color: tokens.$ifxColorBaseBlack;
+        }
+    }
+    
+    &.error{
+        color: tokens.$ifxColorRed500;
+        .step-label{
+            color: tokens.$ifxColorRed500;
+        }
+
+    }
+}
+
+.active-indic{
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxSize200;
+    border-radius: tokens.$ifxBorderRadiusRound;
+    background: white;
+}
+
+.step-icon-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-icon{
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
+    background-color: tokens.$ifxColorEngineering400;
+    border-radius: tokens.$ifxBorderRadiusRound;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.step-connector-r, .step-connector-l{
+    height: 2px;
+    width: tokens.$ifxSize800 + tokens.$ifxSize50;
+    background-color: tokens.$ifxColorEngineering400;
+}
