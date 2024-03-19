@@ -249,23 +249,47 @@ export class Navbar {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
+      //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
       topRowWrapper.classList.add('expand')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
         leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
       }
-      //do the right-side here
-  
+      //right-side
+      const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
+      for(let i = 0; i < rightMenuItems.length; i++) { 
+        if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
+          //method inside profile
+          //hide label
+          rightMenuItems[i].showLabel = false;
+        } else { 
+          rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
+          rightMenuItems[i].hideChildren()
+        }
+      }
+      
     } else {
       /* The viewport is more than 800px wide */
+      //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         topRowWrapper.classList.remove('expand')
         leftMenuItems[i].setAttribute('slot', 'left-item')
         leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }
-     //do the right-side here
+     //right-side
+     const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
+     for(let i = 0; i < rightMenuItems.length; i++) { 
+       rightMenuItems[i].setAttribute('slot', 'right-item')
+       if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
+          //method inside profile
+          //show label
+          rightMenuItems[i].showLabel = true;
+       } else { 
+         rightMenuItems[i].showChildren()
+       }
+     }
 
     }
   }
@@ -337,28 +361,21 @@ export class Navbar {
               <div class="navbar__sidebar-top-row-wrapper">
                 {/* left side ifx-navbar-item  */}
                 <slot name='mobile-menu-top' />
-                {/* <div class="navbar__sidebar-top-row-item">
-                  <div class="navbar__sidebar-top-row-item-label">
-                    Menu Item
-                  </div>
-                  <div class="navbar__sidebar-top-row-item-icon-wrapper">
-                    <ifx-icon icon="chevron-right-16"></ifx-icon>
-                  </div>
-                </div> */}
-
               </div>
             </div>
 
           <div class="navbar__sidebar-bottom-row">
             {/* right side ifx-navbar-item  */}
-              <div class="navbar__sidebar-bottom-row-item">
+            <slot name='mobile-menu-bottom' />
+
+              {/* <div class="navbar__sidebar-bottom-row-item">
                   <div class="navbar__sidebar-bottom-row-item-icon-wrapper">
                     <ifx-icon icon="calendar16"></ifx-icon>
                   </div>
                   <div class="navbar__sidebar-bottom-row-item-label">
                     Footer Menu Item
                   </div>
-              </div>
+              </div> */}
           </div>
            
 

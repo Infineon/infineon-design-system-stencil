@@ -44,6 +44,16 @@ export class NavbarItem {
   }
 
   @Method()
+  async hideChildren() { 
+    this.hasChildNavItems = false;
+  }
+
+  @Method()
+  async showChildren() { 
+    this.checkIfItemHasChildren()
+  }
+
+  @Method()
   async moveChildComponentsIntoSubLayerMenu() { 
     const subLayerMenu = this.getItemMenu()
     if(subLayerMenu) { 

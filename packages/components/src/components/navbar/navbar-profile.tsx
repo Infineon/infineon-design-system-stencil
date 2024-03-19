@@ -19,7 +19,7 @@ export class NavbarProfile {
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
   @State() internalImageUrl: string = ""
-
+ 
   private defaultProfileImage = getAssetPath(`./assets/default_profile2.png`);
 
   @Listen('mousedown', { target: 'document' })
@@ -90,21 +90,10 @@ export class NavbarProfile {
     navItems.forEach(item => {
      item.setAttribute('slot', 'first__layer')
    })
-   // for(let i = 0; i < navItems.length; i++) { 
-   //   navItems[i].setAttribute('slot', 'first__layer')
-   // }
  }
 
   appendNavItemToMenu(navItems) { 
-    //const menu = this.getItemMenu()
-    //console.log('nav items', navItems)
     this.relocateUsingSlot(navItems)
-
-    // navItems.forEach((el: HTMLElement) => {
-    //   const li = document.createElement('li')
-    //   li.appendChild(el)
-    //   menu.appendChild(li)
-    // })
   }
 
   setImage() { 
@@ -118,6 +107,7 @@ export class NavbarProfile {
       this.internalHref = undefined;
     } else this.internalHref = this.href;
   }
+
 
 
   // setItemSideSpecifications() { 
