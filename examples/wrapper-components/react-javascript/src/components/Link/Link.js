@@ -5,7 +5,7 @@ function Link() {
 
   return (
     <div>
-      <IfxLink href="#" target="_blank" size="m" variant={variant}>Link</IfxLink>
+      <IfxLink href="#" target="_blank" size="m" variant='bold'>Link</IfxLink>
     </div>
   );
 }
