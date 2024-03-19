@@ -10,10 +10,12 @@
 | Property             | Attribute              | Description | Type              | Default     |
 | -------------------- | ---------------------- | ----------- | ----------------- | ----------- |
 | `cols`               | `cols`                 |             | `any[] \| string` | `undefined` |
+| `filterOrientation`  | `filter-orientation`   |             | `string`          | `'topbar'`  |
 | `pagination`         | `pagination`           |             | `boolean`         | `true`      |
 | `paginationPageSize` | `pagination-page-size` |             | `number`          | `10`        |
 | `rowHeight`          | `row-height`           |             | `string`          | `'default'` |
 | `rows`               | `rows`                 |             | `any[] \| string` | `undefined` |
+| `showFilter`         | `show-filter`          |             | `boolean`         | `true`      |
 | `showLoading`        | `show-loading`         |             | `boolean`         | `false`     |
 | `tableHeight`        | `table-height`         |             | `string`          | `'auto'`    |
 

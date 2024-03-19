@@ -118,6 +118,10 @@ export default {
       options: ['compact', 'default'],
       control: { type: 'radio' },
     },
+    filterOrientation: {
+      options: ['sideBar', 'topBar'],
+      control: { type: 'radio' },
+    },
     columnDefs: {
       table: {
         type: {
@@ -168,6 +172,9 @@ const SetFilterTemplate = (args) => {
   ifxTable.setAttribute('table-height', args.tableHeight);
   ifxTable.setAttribute('pagination', args.pagination);
   ifxTable.setAttribute('pagination-page-size', args.paginationPageSize);
+  ifxTable.setAttribute('show-filter', args.showFilter);
+  ifxTable.setAttribute('filter-orientation', args.filterOrientation);
+
 
   // Create set-filter elements and append to main table element
   columnFilters.forEach((columnFilter, index) => {
@@ -220,7 +227,9 @@ SetFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  type: 'multi-select'
+  type: 'multi-select',
+  showFilter: true,
+  filterOrientation: 'topBar'
 };
 
 

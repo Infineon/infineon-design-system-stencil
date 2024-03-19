@@ -4,13 +4,35 @@
 @import "~ag-grid-community/styles/ag-grid.css";
 
 
+.sideBar-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.topBar-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; // stretches items to fill the container horizontally
+  width: 100%; // ensures the wrapper takes up the full width of its parent
+}
+
+#table-wrapper {
+  flex: 1; // allows the table to take up the remaining space
+}
+
+
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
   min-height: 100px !important;
   min-width: 100px;
 }
 
-.filter-wrapper {
+.set-filter-wrapper {
   margin-bottom: tokens.$ifxSpace100;
 }
 

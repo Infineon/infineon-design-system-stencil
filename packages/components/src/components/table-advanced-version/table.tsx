@@ -28,6 +28,8 @@ export class Table {
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
   @Prop() paginationPageSize: number = 10;
+  @Prop() filterOrientation: string = 'topbar'; // sidebar
+  @Prop() showFilter: boolean = true;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
@@ -295,17 +297,23 @@ export class Table {
         'height': this.tableHeight
       };
     }
+    const filterClass = this.filterOrientation === 'topBar' ? 'topBar-layout' : 'sideBar-layout';
+
 
     return (
       <Host >
-        <div class="set-filter-wrapper">
-          <slot name="set-filter"></slot>
-        </div>
-        <div id="table-wrapper" class={this.getClassNames()}>
-          <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+        <div class={this.showFilter ? filterClass : ''}>
+          <div class="set-filter-wrapper">
+            <slot name="set-filter"></slot>
+          </div>
+          <div class="table-pagination-wrapper">
+            <div id="table-wrapper" class={this.getClassNames()}>
+              <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+              </div>
+            </div>
+            {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
           </div>
         </div>
-        {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
       </Host>
     )
   }

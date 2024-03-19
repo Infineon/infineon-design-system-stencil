@@ -483,6 +483,8 @@ export const IfxTable = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table',
   'tableHeight',
   'pagination',
   'paginationPageSize',
+  'filterOrientation',
+  'showFilter',
   'showLoading'
 ]);
 
