@@ -51,6 +51,8 @@ export class NavbarItem {
   @Method()
   async showChildren() { 
     this.checkIfItemHasChildren()
+    //console.log(this.el)
+    //this.showLabel = false; //how to know what was the default value?
   }
 
   @Method()

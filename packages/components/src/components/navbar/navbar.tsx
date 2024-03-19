@@ -260,12 +260,11 @@ export class Navbar {
       const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
       for(let i = 0; i < rightMenuItems.length; i++) { 
         if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
-          //method inside profile
-          //hide label
           rightMenuItems[i].showLabel = false;
         } else { 
           rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
           rightMenuItems[i].hideChildren()
+          rightMenuItems[i].showLabel = true;
         }
       }
       
@@ -283,14 +282,13 @@ export class Navbar {
      for(let i = 0; i < rightMenuItems.length; i++) { 
        rightMenuItems[i].setAttribute('slot', 'right-item')
        if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
-          //method inside profile
-          //show label
           rightMenuItems[i].showLabel = true;
        } else { 
          rightMenuItems[i].showChildren()
+         const showLabel = rightMenuItems[i].getAttribute('show-label');
+         rightMenuItems[i].setAttribute('show-label', showLabel)
        }
      }
-
     }
   }
 
