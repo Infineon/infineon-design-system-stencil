@@ -88,11 +88,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  height: 76px;
+  min-height: 76px;
   box-sizing: border-box;
   border-radius: 1px 1px 0px 0px;
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
-
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 .modal-header h2 {
