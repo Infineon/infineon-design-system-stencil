@@ -8,7 +8,7 @@ import classNames from 'classnames';
 })
 
 export class Link {
-  @Prop() href: string = '#';
+  @Prop() href: string = undefined;
   @Prop() target: string = '_self';
   @Prop() variant: string = 'bold';
   @Prop() size: string;
@@ -18,8 +18,11 @@ export class Link {
   @State() internalVariant: string = '';
 
   setInternalStates() {
-    this.internalHref = this.href.trim();
-    if(this.internalHref === '') this.internalHref = '#';
+    if(this.href){
+      this.internalHref = this.href.trim();
+    }else{
+      this.internalHref = undefined;
+    }
     this.internalTarget = this.target.trim();
     this.internalVariant = this.variant.trim().toLowerCase();
   }
