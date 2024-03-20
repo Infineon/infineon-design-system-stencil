@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type     | Default     |
-| --------- | --------- | ----------- | -------- | ----------- |
-| `href`    | `href`    |             | `string` | `undefined` |
-| `size`    | `size`    |             | `string` | `undefined` |
-| `target`  | `target`  |             | `string` | `'_self'`   |
-| `variant` | `variant` |             | `string` | `'bold'`    |
+| Property   | Attribute  | Description | Type      | Default     |
+| ---------- | ---------- | ----------- | --------- | ----------- |
+| `disabled` | `disabled` |             | `boolean` | `false`     |
+| `href`     | `href`     |             | `string`  | `undefined` |
+| `size`     | `size`     |             | `string`  | `undefined` |
+| `target`   | `target`   |             | `string`  | `'_self'`   |
+| `variant`  | `variant`  |             | `string`  | `'bold'`    |
 
 
 ## Dependencies

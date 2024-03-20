@@ -7,6 +7,7 @@ export default {
     href: "",
     target: '_blank',
     size: 'm',
+    disabled: false,
     variant: 'bold'
   },
 
@@ -29,7 +30,7 @@ export default {
 
 
 const DefaultTemplate = (args) =>
-  `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
+  `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" >
   ${args.label}
   </ifx-link>`;
 
