@@ -1,3 +1,15 @@
+# v20.57.0 (Wed Mar 20 2024)
+
+#### 🚀 Enhancement
+
+- Link: text-underline-offset with new design, implemented disabled state design [#1060](https://github.com/Infineon/infineon-design-system-stencil/pull/1060) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.56.1 (Mon Mar 18 2024)
 
 #### 🐛 Bug Fix
