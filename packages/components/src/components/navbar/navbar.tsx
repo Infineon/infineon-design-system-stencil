@@ -262,9 +262,11 @@ export class Navbar {
         if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
           rightMenuItems[i].showLabel = false;
         } else { 
-          rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
-          rightMenuItems[i].hideChildren()
-          rightMenuItems[i].showLabel = true;
+          if(rightMenuItems[i].hideOnMobile) { 
+            rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
+            rightMenuItems[i].hideChildren()
+            rightMenuItems[i].showLabel = true;
+          }
         }
       }
       
@@ -279,15 +281,15 @@ export class Navbar {
       }
      //right-side
      const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
+     const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
+     const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
+     navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
+
      for(let i = 0; i < rightMenuItems.length; i++) { 
        rightMenuItems[i].setAttribute('slot', 'right-item')
-       if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
-          rightMenuItems[i].showLabel = true;
-       } else { 
-         rightMenuItems[i].showChildren()
-         const showLabel = rightMenuItems[i].getAttribute('show-label');
-         rightMenuItems[i].setAttribute('show-label', showLabel)
-       }
+        rightMenuItems[i].showChildren()
+        const showLabel = rightMenuItems[i].getAttribute('show-label');
+        rightMenuItems[i].setAttribute('show-label', showLabel)
      }
     }
   }

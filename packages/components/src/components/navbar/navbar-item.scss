@@ -188,8 +188,12 @@
   padding: 8px 0px;
   font-family: var(--ifx-font-family);
 
-  &.open {
+  &.open:not(.itemInMobileMenu) {
     display: flex;
+  }
+
+  &.itemInMobileMenu { 
+    display: none;
   }
 
   &.right { 

@@ -13,6 +13,7 @@ export class NavbarItem {
   @Prop() icon: string = ""
   @Prop() href: string = ""
   @Prop() target: string = "_self";
+  @Prop() hideOnMobile: boolean = true;
   @State() internalHref: string = ""
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
@@ -43,16 +44,26 @@ export class NavbarItem {
     this.el.style.display = '';
   }
 
+
+
   @Method()
   async hideChildren() { 
-    this.hasChildNavItems = false;
+    const itemMenu = this.getItemMenu()
+    const arrowIcon = this.getChevronDownIconWrapper()
+    if(itemMenu) { 
+      this.handleClassList(arrowIcon, 'add', 'hide')
+      this.handleClassList(itemMenu, 'add', 'itemInMobileMenu')
+    }
   }
 
   @Method()
   async showChildren() { 
-    this.checkIfItemHasChildren()
-    //console.log(this.el)
-    //this.showLabel = false; //how to know what was the default value?
+    const itemMenu = this.getItemMenu()
+    const arrowIcon = this.getChevronDownIconWrapper()
+    if(itemMenu) { 
+      this.handleClassList(arrowIcon, 'remove', 'hide')
+      this.handleClassList(itemMenu, 'remove', 'itemInMobileMenu')
+    }
   }
 
   @Method()
@@ -155,6 +166,11 @@ export class NavbarItem {
     return menuItemRightIconWrapper;
   }
 
+  getChevronDownIconWrapper() { 
+    const arrowIcon = this.el.shadowRoot.querySelector('.navItemIconWrapper');
+    return arrowIcon;
+  }
+
   @Method()
   async returnToFirstLayer() { 
     const subLayerBackButton = this.getSubLayerBackButton()
@@ -183,6 +199,17 @@ export class NavbarItem {
     this.checkIfItemIsNested()
     this.checkIfItemHasChildren()
   }
+
+  // componentDidRender() { 
+  //   if(this.hasChildNavItems) { 
+  //     const itemMenu = this.getItemMenu()
+  //     const hasRightSideItemMenuClass = this.handleClassList(itemMenu, 'contains', 'rightSideItemMenu');
+  //     if(!hasRightSideItemMenuClass) { 
+  //       console.log(itemMenu)
+  //       //this.handleClassList(itemMenu, 'add', 'rightSideItemMenu');
+  //     }
+  //   }
+  // }
 
   componentDidLoad() { 
     if(this.hasChildNavItems) { 
