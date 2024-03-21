@@ -76,6 +76,8 @@
     flex: 1 0 0;
     align-self: stretch;
 
+    overflow-y: auto;
+
     & .navbar__sidebar-top-row-wrapper { 
       display: flex;
       padding-top: var(--space-200, 16px);
@@ -122,7 +124,8 @@
   }
 
   & .navbar__sidebar-bottom-row { 
-    display: flex;
+    //display: flex;
+    display: none;
     padding: var(--space-150, 12px) var(--space-300, 24px) var(--space-150, 12px) var(--space-200, 16px);
     flex-direction: column;
     align-items: flex-start;
@@ -130,6 +133,14 @@
     background: var(--color-engineering-100, #F7F7F7);
     border-top: 1px solid var(--color-engineering-200, #EEEDED);
     gap: 10px;
+
+    max-height: 160px;
+    overflow-y: auto;
+
+    &.show { 
+      display: flex;
+    }
+   
 
     & .navbar__sidebar-bottom-row-item { 
       display: flex;
@@ -736,12 +747,6 @@
       height: auto;
       background-color: inherit;
       transition: none;
-    }
-  }
-
-  .navbar__sidebar {
-    &.show {
-      //right: -100%;
     }
   }
 }

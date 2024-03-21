@@ -219,6 +219,17 @@ export class Navbar {
     this.addEventListenersToHandleCustomFocusState();
   }
 
+  handleMobileMenuBottom(e) { 
+    const mobileMenuBottomWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-bottom-row')
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    if(nodes.length > 0) { 
+      mobileMenuBottomWrapper.classList.add('show')
+    } else { 
+      mobileMenuBottomWrapper.classList.remove('show')
+    }
+  }
+
   handleLogoHrefAndTarget(){
     if(this.logoHref.trim() === "") {
       this.internalLogoHref = undefined;
@@ -357,49 +368,18 @@ export class Navbar {
 
         {/* SIDEBAR */}
         <div class="navbar__sidebar">
-            <div class="navbar__sidebar-top-row">
-              <div class="navbar__sidebar-top-row-wrapper">
-                {/* left side ifx-navbar-item  */}
-                <slot name='mobile-menu-top' />
-              </div>
+          {/* left side ifx-navbar-item  */}
+          <div class="navbar__sidebar-top-row">
+            <div class="navbar__sidebar-top-row-wrapper">
+              <slot name='mobile-menu-top' />
             </div>
-
-          <div class="navbar__sidebar-bottom-row">
-            {/* right side ifx-navbar-item  */}
-            <slot name='mobile-menu-bottom' />
-
-              {/* <div class="navbar__sidebar-bottom-row-item">
-                  <div class="navbar__sidebar-bottom-row-item-icon-wrapper">
-                    <ifx-icon icon="calendar16"></ifx-icon>
-                  </div>
-                  <div class="navbar__sidebar-bottom-row-item-label">
-                    Footer Menu Item
-                  </div>
-              </div> */}
           </div>
-           
 
-          {/* <div class="navbar__sidebar-content-main">
-            <div class="navbar__sidebar-content-main-menu">
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('products')}>
-                <a href="javascript:void(0)">Menu Item</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
-            </div>
-          </div> */}
-
-            
-          {/* <div class="navbar__sidebar-content-products">
-              <div class="navbar__sidebar-content-products-header" onClick={() => this.handleSubSidebarMenu('products')}>
-              <ifx-icon icon="chevron-left-16"></ifx-icon>
-              <span>Products</span>
-            </div>
-            <div class="navbar__sidebar-content-products-menu">
-                <div class="navbar__sidebar-content-products-menu-item">
-                  <a href="javascript:void(0)">Careers</a>
-                </div>
-            </div>
-          </div> */}
+          {/* right side ifx-navbar-item  */}
+          <div class="navbar__sidebar-bottom-row">
+            <slot name='mobile-menu-bottom' onSlotchange={(e) => this.handleMobileMenuBottom(e)} />
+          </div>
+          
         </div>
       </div>
     );
