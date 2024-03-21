@@ -10,12 +10,12 @@
 | Property             | Attribute              | Description | Type              | Default     |
 | -------------------- | ---------------------- | ----------- | ----------------- | ----------- |
 | `cols`               | `cols`                 |             | `any[] \| string` | `undefined` |
+| `enableFiltering`    | `enable-filtering`     |             | `boolean`         | `true`      |
 | `filterOrientation`  | `filter-orientation`   |             | `string`          | `'topbar'`  |
 | `pagination`         | `pagination`           |             | `boolean`         | `true`      |
 | `paginationPageSize` | `pagination-page-size` |             | `number`          | `10`        |
 | `rowHeight`          | `row-height`           |             | `string`          | `'default'` |
 | `rows`               | `rows`                 |             | `any[] \| string` | `undefined` |
-| `showFilter`         | `show-filter`          |             | `boolean`         | `true`      |
 | `showLoading`        | `show-loading`         |             | `boolean`         | `false`     |
 | `tableHeight`        | `table-height`         |             | `string`          | `'auto'`    |
 
@@ -37,12 +37,20 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ifx-chip](../chips)
+- [ifx-dropdown-menu](../dropdown/dropdown-menu)
+- [ifx-dropdown-item](../dropdown/dropdown-item)
 - [ifx-pagination](../pagination)
 
 ### Graph
 ```mermaid
 graph TD;
+  ifx-table --> ifx-chip
+  ifx-table --> ifx-dropdown-menu
+  ifx-table --> ifx-dropdown-item
   ifx-table --> ifx-pagination
+  ifx-chip --> ifx-icon
+  ifx-dropdown-item --> ifx-icon
   ifx-pagination --> ifx-select
   ifx-pagination --> ifx-icon-button
   ifx-select --> ifx-icon

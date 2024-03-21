@@ -113,9 +113,12 @@ export default {
       options: [true, false],
       control: { type: 'radio' },
     },
-
     rowHeight: {
       options: ['compact', 'default'],
+      control: { type: 'radio' },
+    },
+    enableFiltering: {
+      options: [true, false],
       control: { type: 'radio' },
     },
     filterOrientation: {
@@ -142,18 +145,9 @@ export default {
 };
 
 
-const DefaultTemplate = (args) =>
-  `<ifx-table 
-  row-height='${args.rowHeight}'
-  cols='${JSON.stringify(args.columnDefs)}' 
-  rows='${JSON.stringify(args.rowData)}'
-  table-height='${args.tableHeight}'
-  pagination='${args.pagination}'
-  pagination-page-size='${args.paginationPageSize}'>
-  </ifx-table>`
 
 
-const SetFilterTemplate = (args) => {
+const DefaultTemplate = (args) => {
   let columnFilters = args.columnDefs.map(column => {
     let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
     return {
@@ -172,7 +166,7 @@ const SetFilterTemplate = (args) => {
   ifxTable.setAttribute('table-height', args.tableHeight);
   ifxTable.setAttribute('pagination', args.pagination);
   ifxTable.setAttribute('pagination-page-size', args.paginationPageSize);
-  ifxTable.setAttribute('show-filter', args.showFilter);
+  ifxTable.setAttribute('enable-filtering', args.enableFiltering);
   ifxTable.setAttribute('filter-orientation', args.filterOrientation);
 
 
@@ -211,6 +205,7 @@ Pagination.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
+  enableFiltering: false,
 };
 
 
@@ -219,16 +214,16 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
+  enableFiltering: false,
 };
 
 
-export const SetFilter = SetFilterTemplate.bind({});
+export const SetFilter = DefaultTemplate.bind({});
 SetFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  type: 'multi-select',
-  showFilter: true,
+  enableFiltering: true,
   filterOrientation: 'topBar'
 };
 

@@ -21,6 +21,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-table](../table-advanced-version)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -29,6 +33,7 @@
 ```mermaid
 graph TD;
   ifx-chip --> ifx-icon
+  ifx-table --> ifx-chip
   style ifx-chip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

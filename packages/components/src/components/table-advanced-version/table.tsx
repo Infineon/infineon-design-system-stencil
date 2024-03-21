@@ -29,29 +29,32 @@ export class Table {
   @Prop() pagination: boolean = true;
   @Prop() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'topbar'; // sidebar
-  @Prop() showFilter: boolean = true;
+  @State() showSidebarFilters: boolean = true;
+  @Prop() enableFiltering: boolean = true;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
 
 
+  toggleSidebarFilters() {
+    this.showSidebarFilters = !this.showSidebarFilters;
+  }
+
+
   updateFilterOptions() {
     const options = {};
     for (let col of this.colData) {
       options[col.field] = [...new Set(this.rowData.map(row => row[col.field]))];
-      // console.log(`Options for ${col.field}:`, options[col.field]);
     }
     this.filterOptions = options;
   }
 
 
   handleFilterChange(event: CustomEvent) {
-    console.log("filter change", event.detail);
     const { filterName, filterValues, type } = event.detail;
-
     const selectedValues = filterValues.map(option => option?.value || option);
-    if (selectedValues.length === 0) {
+    if (selectedValues.length === 0 || (selectedValues.length === 1 && type === 'text' && selectedValues[0] === '')) {
       delete this.currentFilters[filterName];
     } else {
       this.currentFilters = {
@@ -71,6 +74,15 @@ export class Table {
 
     this.gridApi.setGridOption('rowData', this.rowData);
   }
+
+
+  clearAllFilters() {
+    this.currentFilters = {};
+    this.allRowData = [...this.originalRowData];
+    // If necessary, reset the grid/view to its initial state here
+  }
+
+
 
   filterData() {
     let filteredData = [...this.allRowData];
@@ -121,6 +133,7 @@ export class Table {
     this.updateFilterOptions();
 
     this.gridOptions = {
+
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
       headerHeight: 40,
       defaultColDef: {
@@ -200,7 +213,7 @@ export class Table {
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
     // Update the data in the grid
     if (this.gridApi) {
-      this.gridApi.setRowData(visibleRowData);
+      this.gridApi.setGridOption('rowData', visibleRowData);
     }
   }
 
@@ -279,7 +292,8 @@ export class Table {
   }
 
 
-  getClassNames() {
+
+  getTableClassNames() {
     return classNames(
       this.tableHeight === 'auto' && 'table-wrapper ag-root-wrapper-body',
       'table-wrapper',
@@ -299,19 +313,46 @@ export class Table {
     }
     const filterClass = this.filterOrientation === 'topBar' ? 'topBar-layout' : 'sideBar-layout';
 
-
     return (
       <Host >
-        <div class={this.showFilter ? filterClass : ''}>
-          <div class="set-filter-wrapper">
-            <slot name="set-filter"></slot>
-          </div>
-          <div class="table-pagination-wrapper">
-            <div id="table-wrapper" class={this.getClassNames()}>
-              <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+        <div class="filters-container">
+          {this.enableFiltering && this.filterOrientation === 'sideBar' && (
+            <button onClick={() => this.toggleSidebarFilters()}>
+              {this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
+            </button>
+          )}
+          <div class={filterClass}>
+            {this.enableFiltering && (
+              <div class="set-filter-wrapper">
+                {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
+                  <slot name="set-filter"></slot>
+                )}
               </div>
+            )}
+
+            <div class="table-pagination-wrapper">
+              <div class="filter-chips">
+                {this.enableFiltering && this.filterOrientation === 'sideBar' && this.showSidebarFilters && (
+                  Object.keys(this.currentFilters).map(filterName => (
+                    <ifx-chip placeholder={filterName}>
+                      <ifx-dropdown-menu size="m" slot="menu">
+                        {this.currentFilters[filterName].filterValues.map(filterValue => (
+                          <ifx-dropdown-item icon="" target="_self" href="">
+                            {filterValue}
+                          </ifx-dropdown-item>
+                        ))}
+                      </ifx-dropdown-menu>
+                    </ifx-chip>
+                  ))
+                )}
+              </div>
+
+              <div id="table-wrapper" class={this.getTableClassNames()}>
+                <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+                </div>
+              </div>
+              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
             </div>
-            {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
           </div>
         </div>
       </Host>
