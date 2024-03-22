@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -23,7 +23,7 @@ export class Navbar {
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
-
+  @Event() ifxNavbarMobileMenuIsOpen: EventEmitter;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -119,26 +119,48 @@ export class Navbar {
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
     const leftAssignedNodes = leftSideSlot.assignedNodes();
-
-
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
+
+
+    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+    if(topRowWrapper.classList.contains('expand')) { 
+      console.log('do not hide mobile items')
+
+    }
+
+
+
     if(event.detail) { 
       if(rightAssignedNodes.length !== 0) { 
         this.searchBarIsOpen = 'right'
       } else if(leftAssignedNodes.length !== 0) {
         this.searchBarIsOpen = 'left'
       }
+      
       navbarProfile.hideComponent()
+
       for(let i = 0; i < navbarItems.length; i++) { 
-        navbarItems[i].hideComponent()
+        if(topRowWrapper.classList.contains('expand')) { 
+          if(!navbarItems[i].hideOnMobile) { 
+            navbarItems[i].hideComponent()
+          }
+        } else { 
+          navbarItems[i].hideComponent()
+        }
       }
 
     } else if(!event.detail) {
       this.searchBarIsOpen = undefined;
       navbarProfile.showComponent()
       for(let i = 0; i < navbarItems.length; i++) { 
-        navbarItems[i].showComponent() 
+        if(topRowWrapper.classList.contains('expand')) { 
+          if(!navbarItems[i].hideOnMobile) { 
+            navbarItems[i].showComponent() 
+          }
+        } else { 
+          navbarItems[i].showComponent() 
+        }
       }
     }
   }
@@ -260,18 +282,22 @@ export class Navbar {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
-
+     
       //move search bar to right-side
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
+        if(this.searchBarIsOpen) { 
+          this.ifxNavbarMobileMenuIsOpen.emit(true)
+        }
         const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
         searchBarLeftWrapper.classList.add('initial')
         searchBarLeft.setAttribute('slot', 'search-bar-right')
       }
+      
+      topRowWrapper.classList.add('expand')
 
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
-      topRowWrapper.classList.add('expand')
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
         leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
@@ -297,6 +323,9 @@ export class Navbar {
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
       const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
       if(leftIsInitial) { 
+        if(this.searchBarIsOpen) { 
+          this.ifxNavbarMobileMenuIsOpen.emit(false)
+        }
         const searchBarLeft = this.el.querySelector('[slot="search-bar-right"]')
         searchBarLeft.setAttribute('slot', 'search-bar-left')
       }
@@ -305,7 +334,7 @@ export class Navbar {
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
-        topRowWrapper.classList.remove('expand')
+        topRowWrapper.classList.remove('expand') //should this be here?
         leftMenuItems[i].setAttribute('slot', 'left-item')
         leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }
