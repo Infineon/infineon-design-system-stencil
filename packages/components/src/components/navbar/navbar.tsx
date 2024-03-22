@@ -168,11 +168,6 @@ export class Navbar {
     iconWrapper.classList.toggle('open')
   }
 
-  handleSubSidebarMenu(menu) {
-    this.main = !this.main;
-    this[menu] = !this[menu];
-  }
-
   async setItemMenuPosition() { 
     const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
@@ -256,10 +251,24 @@ export class Navbar {
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
 
+  getSearchBarLeftWrapper() { 
+    const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
+    return searchBarLeftWrapper;
+  }
+
   moveNavItemsToSidebar(e) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
+
+      //move search bar to right-side
+      const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
+      if(searchBarLeft) { 
+        const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+        searchBarLeftWrapper.classList.add('initial')
+        searchBarLeft.setAttribute('slot', 'search-bar-right')
+      }
+
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
       topRowWrapper.classList.add('expand')
@@ -283,6 +292,16 @@ export class Navbar {
       
     } else {
       /* The viewport is more than 800px wide */
+   
+      //return search bar to its original position
+      const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+      const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
+      if(leftIsInitial) { 
+        const searchBarLeft = this.el.querySelector('[slot="search-bar-right"]')
+        searchBarLeft.setAttribute('slot', 'search-bar-left')
+      }
+
+      
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
