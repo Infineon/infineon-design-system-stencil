@@ -1,3 +1,15 @@
+# v20.57.1 (Fri Mar 22 2024)
+
+#### 🐛 Bug Fix
+
+- Modal: caption text overflow fixed [#1074](https://github.com/Infineon/infineon-design-system-stencil/pull/1074) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v20.57.0 (Wed Mar 20 2024)
 
 #### 🚀 Enhancement
