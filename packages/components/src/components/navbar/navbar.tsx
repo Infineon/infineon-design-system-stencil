@@ -119,20 +119,11 @@ export class Navbar {
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
     const leftAssignedNodes = leftSideSlot.assignedNodes();
-    //const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
-
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
     const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
-
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
-    if(topRowWrapper.classList.contains('expand')) { 
-      console.log('do not hide mobile items')
-
-    }
-
-
-
+   
     if(event.detail) { 
       if(rightAssignedNodes.length !== 0) { 
         this.searchBarIsOpen = 'right'
@@ -158,16 +149,6 @@ export class Navbar {
         }
       }
 
-      // for(let i = 0; i < navbarItems.length; i++) { 
-      //   if(topRowWrapper.classList.contains('expand')) { 
-      //     if(!navbarItems[i].hideOnMobile) { 
-      //       navbarItems[i].hideComponent()
-      //     }
-      //   } else { 
-      //     navbarItems[i].hideComponent()
-      //   }
-      // }
-
     } else if(!event.detail) {
       this.searchBarIsOpen = undefined;
       navbarProfile.showComponent()
@@ -187,19 +168,6 @@ export class Navbar {
           rightMenuItems[r].showComponent()
         }
       }
-
-      // for(let i = 0; i < navbarItems.length; i++) { 
-      //   if(topRowWrapper.classList.contains('expand')) { 
-      //     if(!navbarItems[i].hideOnMobile) { 
-      //       navbarItems[i].showComponent() 
-      //     }
-      //   } else { 
-      //     navbarItems[i].showComponent() 
-      //   }
-      // }
-
-
-
     }
   }
 
@@ -320,12 +288,12 @@ export class Navbar {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
-     
+      topRowWrapper.classList.add('expand')
+
       //move search bar to right-side
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
         if(this.searchBarIsOpen) { 
-          //this.ifxNavbarMobileMenuIsOpen.emit(true)
           searchBarLeft.onNavbarMobile()
         }
         const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
@@ -333,8 +301,6 @@ export class Navbar {
         searchBarLeft.setAttribute('slot', 'search-bar-right')
       }
       
-      topRowWrapper.classList.add('expand')
-
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
@@ -344,6 +310,7 @@ export class Navbar {
           leftMenuItems[i].showComponent()
         }
       }
+      
       //right-side
       const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
       for(let i = 0; i < rightMenuItems.length; i++) { 
@@ -352,7 +319,9 @@ export class Navbar {
         } else { 
           if(rightMenuItems[i].hideOnMobile) { 
             rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
-            rightMenuItems[i].hideChildren()
+  
+            rightMenuItems[i].toggleChildren('add')
+
             rightMenuItems[i].showLabel = true;
             if(this.searchBarIsOpen) { 
               rightMenuItems[i].showComponent()
@@ -363,7 +332,8 @@ export class Navbar {
       
     } else {
       /* The viewport is more than 800px wide */
-   
+      topRowWrapper.classList.remove('expand')
+
       //return search bar to its original position
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
       const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
@@ -371,35 +341,34 @@ export class Navbar {
       if(leftIsInitial) { 
         if(this.searchBarIsOpen) { 
           searchBarRight.onNavbarMobile()
-          //this.ifxNavbarMobileMenuIsOpen.emit(false)
-          
         }
         searchBarRight.setAttribute('slot', 'search-bar-left')
       }
 
-      
       //left-side
       const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
       for(let i = 0; i < leftMenuItems.length; i++) { 
-        topRowWrapper.classList.remove('expand') //should this be here?
         leftMenuItems[i].setAttribute('slot', 'left-item')
         leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }
-     //right-side
-     const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
-     const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
-     const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
-     navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
 
-     for(let i = 0; i < rightMenuItems.length; i++) { 
-       rightMenuItems[i].setAttribute('slot', 'right-item')
-        rightMenuItems[i].showChildren()
-        const showLabel = rightMenuItems[i].getAttribute('show-label');
-        rightMenuItems[i].setAttribute('show-label', showLabel)
-        if(this.searchBarIsOpen) { 
-          rightMenuItems[i].hideComponent()
-        }
-     }
+      //right-side
+      const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
+      const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
+      const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
+      navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
+
+      for(let i = 0; i < rightMenuItems.length; i++) { 
+        rightMenuItems[i].setAttribute('slot', 'right-item')
+
+          rightMenuItems[i].toggleChildren('remove')
+
+          const showLabel = rightMenuItems[i].getAttribute('show-label');
+          rightMenuItems[i].setAttribute('show-label', showLabel)
+          if(this.searchBarIsOpen) { 
+            rightMenuItems[i].hideComponent()
+          }
+      }
     }
   }
 

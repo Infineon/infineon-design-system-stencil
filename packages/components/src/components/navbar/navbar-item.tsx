@@ -44,25 +44,13 @@ export class NavbarItem {
     this.el.style.display = '';
   }
 
-
-
   @Method()
-  async hideChildren() { 
+  async toggleChildren(action) { 
     const itemMenu = this.getItemMenu()
     const arrowIcon = this.getChevronDownIconWrapper()
     if(itemMenu) { 
-      this.handleClassList(arrowIcon, 'add', 'hide')
-      this.handleClassList(itemMenu, 'add', 'itemInMobileMenu')
-    }
-  }
-
-  @Method()
-  async showChildren() { 
-    const itemMenu = this.getItemMenu()
-    const arrowIcon = this.getChevronDownIconWrapper()
-    if(itemMenu) { 
-      this.handleClassList(arrowIcon, 'remove', 'hide')
-      this.handleClassList(itemMenu, 'remove', 'itemInMobileMenu')
+      this.handleClassList(arrowIcon, action, 'hide')
+      this.handleClassList(itemMenu, action, 'itemInMobileMenu')
     }
   }
 
