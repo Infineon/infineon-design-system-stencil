@@ -66,7 +66,7 @@
     "@storybook/addon-essentials": "^7.0.24",
     "@storybook/addon-interactions": "^7.0.20",
     "@storybook/addon-links": "^7.0.20",
-    "@storybook/addon-mdx-gfm": "^7.0.20",
+    "@storybook/addon-mdx-gfm": "^8.0.4",
     "@storybook/html": "^7.0.20",
     "@storybook/html-webpack5": "^7.0.20",
     "@storybook/manager-api": "^7.6.9",
