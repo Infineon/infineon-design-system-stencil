@@ -325,7 +325,8 @@ export class Navbar {
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
         if(this.searchBarIsOpen) { 
-          this.ifxNavbarMobileMenuIsOpen.emit(true)
+          //this.ifxNavbarMobileMenuIsOpen.emit(true)
+          searchBarLeft.onNavbarMobile()
         }
         const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
         searchBarLeftWrapper.classList.add('initial')
@@ -366,12 +367,14 @@ export class Navbar {
       //return search bar to its original position
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
       const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
+      const searchBarRight = this.el.querySelector('[slot="search-bar-right"]')
       if(leftIsInitial) { 
         if(this.searchBarIsOpen) { 
-          this.ifxNavbarMobileMenuIsOpen.emit(false)
+          searchBarRight.onNavbarMobile()
+          //this.ifxNavbarMobileMenuIsOpen.emit(false)
+          
         }
-        const searchBarLeft = this.el.querySelector('[slot="search-bar-right"]')
-        searchBarLeft.setAttribute('slot', 'search-bar-left')
+        searchBarRight.setAttribute('slot', 'search-bar-left')
       }
 
       

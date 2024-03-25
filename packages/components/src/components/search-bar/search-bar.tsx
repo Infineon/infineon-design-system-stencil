@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter, State, Watch, Listen, Element } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, State, Watch, Listen, Element, Method } from '@stencil/core';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -16,8 +16,14 @@ export class SearchBar {
 
 
 
-  @Listen('ifxNavbarMobileMenuIsOpen', { target: 'document' })
-  async onNavbarMobile() {
+  // @Listen('ifxNavbarMobileMenuIsOpen', { target: 'document' })
+  // async onNavbarMobile() {
+  //   this.ifxSearchBarIsOpen.emit(false)
+  //   this.internalState = false;
+  // }
+
+  @Method()
+  onNavbarMobile() {
     this.ifxSearchBarIsOpen.emit(false)
     this.internalState = false;
   }
