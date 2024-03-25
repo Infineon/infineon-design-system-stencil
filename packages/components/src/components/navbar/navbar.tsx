@@ -119,9 +119,11 @@ export class Navbar {
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
     const leftAssignedNodes = leftSideSlot.assignedNodes();
-    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    //const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
     const navbarProfile = this.el.querySelector('ifx-navbar-profile')
 
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
 
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if(topRowWrapper.classList.contains('expand')) { 
@@ -140,28 +142,64 @@ export class Navbar {
       
       navbarProfile.hideComponent()
 
-      for(let i = 0; i < navbarItems.length; i++) { 
-        if(topRowWrapper.classList.contains('expand')) { 
-          if(!navbarItems[i].hideOnMobile) { 
-            navbarItems[i].hideComponent()
-          }
-        } else { 
-          navbarItems[i].hideComponent()
+      for(let l = 0; l < leftMenuItems.length; l++) { 
+        if(!topRowWrapper.classList.contains('expand')) {
+          leftMenuItems[l].hideComponent()
         }
       }
+
+      for(let r = 0; r < rightMenuItems.length; r++) { 
+        if(topRowWrapper.classList.contains('expand')) {
+          if(!rightMenuItems[r].hideOnMobile) { 
+            rightMenuItems[r].hideComponent()
+          }
+        } else { 
+          rightMenuItems[r].hideComponent()
+        }
+      }
+
+      // for(let i = 0; i < navbarItems.length; i++) { 
+      //   if(topRowWrapper.classList.contains('expand')) { 
+      //     if(!navbarItems[i].hideOnMobile) { 
+      //       navbarItems[i].hideComponent()
+      //     }
+      //   } else { 
+      //     navbarItems[i].hideComponent()
+      //   }
+      // }
 
     } else if(!event.detail) {
       this.searchBarIsOpen = undefined;
       navbarProfile.showComponent()
-      for(let i = 0; i < navbarItems.length; i++) { 
-        if(topRowWrapper.classList.contains('expand')) { 
-          if(!navbarItems[i].hideOnMobile) { 
-            navbarItems[i].showComponent() 
-          }
-        } else { 
-          navbarItems[i].showComponent() 
+
+      for(let l = 0; l < leftMenuItems.length; l++) { 
+        if(!topRowWrapper.classList.contains('expand')) {
+          leftMenuItems[l].showComponent()
         }
       }
+
+      for(let r = 0; r < rightMenuItems.length; r++) { 
+        if(topRowWrapper.classList.contains('expand')) {
+          if(!rightMenuItems[r].hideOnMobile) { 
+            rightMenuItems[r].showComponent()
+          }
+        } else { 
+          rightMenuItems[r].showComponent()
+        }
+      }
+
+      // for(let i = 0; i < navbarItems.length; i++) { 
+      //   if(topRowWrapper.classList.contains('expand')) { 
+      //     if(!navbarItems[i].hideOnMobile) { 
+      //       navbarItems[i].showComponent() 
+      //     }
+      //   } else { 
+      //     navbarItems[i].showComponent() 
+      //   }
+      // }
+
+
+
     }
   }
 
@@ -301,6 +339,9 @@ export class Navbar {
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
         leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
+        if(this.searchBarIsOpen) { 
+          leftMenuItems[i].showComponent()
+        }
       }
       //right-side
       const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
@@ -312,6 +353,9 @@ export class Navbar {
             rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
             rightMenuItems[i].hideChildren()
             rightMenuItems[i].showLabel = true;
+            if(this.searchBarIsOpen) { 
+              rightMenuItems[i].showComponent()
+            }
           }
         }
       }
@@ -349,6 +393,9 @@ export class Navbar {
         rightMenuItems[i].showChildren()
         const showLabel = rightMenuItems[i].getAttribute('show-label');
         rightMenuItems[i].setAttribute('show-label', showLabel)
+        if(this.searchBarIsOpen) { 
+          rightMenuItems[i].hideComponent()
+        }
      }
     }
   }
