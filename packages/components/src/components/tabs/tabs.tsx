@@ -1,5 +1,5 @@
 //ifxTabs.tsx
-import { Component, h, Prop, State, Element, Listen, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
 
 
 @Component({
@@ -24,12 +24,28 @@ export class IfxTabs {
 
   @Event() ifxTabChange: EventEmitter;
 
+
+  setActiveAndFocusedTab(index: number) {
+    this.internalActiveTabIndex = index;
+    this.internalFocusedTabIndex = index;
+  }
+
+  @Watch('activeTabIndex')
+  activeTabIndexChanged(newValue: number, oldValue: number) {
+    if (newValue !== oldValue) {
+      this.setActiveAndFocusedTab(newValue);
+    }
+
+  }
+
+
+
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
     };
-    this.internalActiveTabIndex = this.activeTabIndex;
+    // this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
     this.updateTabStyles();
     this.onSlotChange();
@@ -91,8 +107,24 @@ export class IfxTabs {
 
   componentDidLoad() {
     this.updateBorderAndFocus();
+    // Add keyboard event listeners for each tab header
+    this.tabHeaderRefs.forEach((tab, index) => {
+      tab.addEventListener('focus', this.onTabFocus(index));
+    });
   }
 
+  onTabFocus(index) {
+    return () => {
+      this.internalFocusedTabIndex = index;
+    };
+  }
+
+  disconnectedCallback() {
+    // Remove keyboard event listeners when component is unmounted
+    this.tabHeaderRefs.forEach((tab, index) => {
+      tab.removeEventListener('focus', this.onTabFocus(index));
+    });
+  }
   componentDidUpdate() {
     this.updateBorderAndFocus();
   }
@@ -114,8 +146,8 @@ export class IfxTabs {
     while (nextIndex < this.tabHeaderRefs.length && this.tabObjects[nextIndex].disabled) {
       nextIndex++;
     }
-    this.internalFocusedTabIndex = nextIndex;
     if (nextIndex >= 0 && nextIndex < this.tabHeaderRefs.length) {
+      this.internalFocusedTabIndex = nextIndex;
       this.tabHeaderRefs[nextIndex].focus();
     }
   }
@@ -125,11 +157,12 @@ export class IfxTabs {
     while ((prevIndex >= 0) && (this.tabObjects[prevIndex].disabled)) {
       prevIndex--;
     }
-    this.internalFocusedTabIndex = prevIndex;
     if ((prevIndex >= 0) && (prevIndex < this.tabHeaderRefs.length)) {
+      this.internalFocusedTabIndex = prevIndex;
       this.tabHeaderRefs[prevIndex].focus();
     }
   }
+
 
   private getTabItemClass(index: number) {
     const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
@@ -148,6 +181,7 @@ export class IfxTabs {
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
     if (ev.key === 'Tab') {
+
       if (ev.shiftKey) {
         // Shift + Tab
         if (this.internalFocusedTabIndex === 0) {

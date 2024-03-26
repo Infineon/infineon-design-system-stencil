@@ -15,11 +15,11 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "^20.36.0",
+    "@infineon/infineon-design-system-vue": "^20.44.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "vite": "^4.3.9",
-    "vue": "^3.3.10"
+    "vite": "^5.0.12",
+    "vue": "^3.4.15"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

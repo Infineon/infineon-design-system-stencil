@@ -171,7 +171,16 @@ export const IfxFaq = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undef
 
 
 export const IfxFooter = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', undefined, [
-  'variant'
+  'variant',
+  'termsUrl',
+  'termsTarget',
+  'imprintUrl',
+  'imprintTarget',
+  'privacyPolicyUrl',
+  'privacyPolicyTarget',
+  'glossaryUrl',
+  'glossaryTarget',
+  'copyrightText'
 ]);
 
 
@@ -202,8 +211,9 @@ export const IfxIconsPreview = /*@__PURE__*/ defineContainer<JSX.IfxIconsPreview
 export const IfxLink = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', undefined, [
   'href',
   'target',
+  'variant',
   'size',
-  'variant'
+  'disabled'
 ]);
 
 
@@ -236,6 +246,7 @@ export const IfxModal = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal',
   'alertIcon',
   'okButtonLabel',
   'cancelButtonLabel',
+  'showCloseButton',
   'ifxModalOpen',
   'ifxModalClose'
 ]);
@@ -251,6 +262,7 @@ export const IfxMultiselect = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>(
   'label',
   'placeholder',
   'maxItemCount',
+  'searchEnabled',
   'ifxSelect',
   'ifxMultiselectIsOpen'
 ]);
@@ -395,10 +407,14 @@ export const IfxSelect = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-selec
 
 export const IfxSidebar = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
   'applicationName',
+  'initialCollapse',
+  'showFooter',
+  'showHeader',
   'termsOfUse',
   'imprint',
   'privacyPolicy',
-  'target'
+  'target',
+  'copyrightText'
 ]);
 
 
@@ -415,6 +431,9 @@ export const IfxSidebarItem = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>(
   'ifxSidebarNavigationItem',
   'ifxSidebarActionItem'
 ]);
+
+
+export const IfxSidebarTitle = /*@__PURE__*/ defineContainer<JSX.IfxSidebarTitle>('ifx-sidebar-title', undefined);
 
 
 export const IfxSlider = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [

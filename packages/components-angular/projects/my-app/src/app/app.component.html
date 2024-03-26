@@ -639,7 +639,7 @@
   <br />
 
   <h2>Tabs</h2>
-  <ifx-tabs (tabChange)="handleChange($event)" [tabIndex]="tabIndex" #ifxTabs orientation="horizontal">
+  <ifx-tabs (tabChange)="handleChange($event)" [activeTabIndex]="activeTabIndex" #ifxTabs orientation="horizontal">
     <ifx-tab header="tab header 1" disabled="false">tab 1 content</ifx-tab>
     <ifx-tab header="tab header 2" disabled="true">tab 2 content</ifx-tab>
     <ifx-tab header="tab header 3" disabled="false">tab 3 content</ifx-tab>
@@ -679,7 +679,7 @@
   <br />
 
   <h2>Footer</h2>
-  <ifx-footer variant="large">
+  <ifx-footer variant="large" terms-url="https://yourwebsite.com/terms">
     <ifx-footer-column slot="col">
       <h5 slot="title">Title</h5>
       <ifx-link bold="false" slot="link">Footer Link</ifx-link>

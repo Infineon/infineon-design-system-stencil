@@ -17,17 +17,17 @@ export class Checkbox {
   @Prop() size: string = 'm';
   @State() internalValue: boolean;
   @Prop() indeterminate: boolean = false;
+  @State() internalIndeterminate: boolean;
+
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
       if (this.inputElement.indeterminate) {
         this.internalValue = true;
-        this.value = this.internalValue;
-        this.indeterminate = false;
+        this.internalIndeterminate = false;
       } else {
         this.internalValue = !this.internalValue;
-        this.value = this.internalValue;
       }
       this.ifxChange.emit(this.internalValue);
     }
@@ -43,6 +43,14 @@ export class Checkbox {
   }
 
 
+  @Watch('indeterminate')
+  indeterminateChanged(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) {
+      this.internalIndeterminate = newValue;
+      this.inputElement.indeterminate = this.internalIndeterminate; // update the checkbox's indeterminate property
+    }
+  }
+
   handleKeydown(event) {
     // Keycode 32 corresponds to the Space key, 13 corresponds to the Enter key
     if (event.keyCode === 32 || event.keyCode === 13) {
@@ -53,10 +61,11 @@ export class Checkbox {
 
   componentWillLoad() {
     this.internalValue = this.value;
+    this.internalIndeterminate = this.indeterminate;
   }
 
   componentDidRender() {
-    this.inputElement.indeterminate = this.indeterminate;
+    this.inputElement.indeterminate = this.internalIndeterminate;
   }
 
   getCheckedClassName() {

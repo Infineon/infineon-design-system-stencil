@@ -1,3 +1,378 @@
+# v20.57.1 (Fri Mar 22 2024)
+
+#### 🐛 Bug Fix
+
+- Modal: caption text overflow fixed [#1074](https://github.com/Infineon/infineon-design-system-stencil/pull/1074) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.57.0 (Wed Mar 20 2024)
+
+#### 🚀 Enhancement
+
+- Link: text-underline-offset with new design, implemented disabled state design [#1060](https://github.com/Infineon/infineon-design-system-stencil/pull/1060) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.56.1 (Mon Mar 18 2024)
+
+#### 🐛 Bug Fix
+
+- Alert: renamed variant secondary with success and aligned the variant design color [#1062](https://github.com/Infineon/infineon-design-system-stencil/pull/1062) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.56.0 (Mon Mar 18 2024)
+
+#### 🚀 Enhancement
+
+- Modal: Close button is now removable [#1059](https://github.com/Infineon/infineon-design-system-stencil/pull/1059) ([@akashyeole](https://github.com/akashyeole))
+
+#### 🔩 Dependency Updates
+
+- Bump @stencil/core from 4.5.0 to 4.12.6 in /packages/components [#1044](https://github.com/Infineon/infineon-design-system-stencil/pull/1044) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.55.0 (Tue Mar 12 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: skip canary release creation when workflow is triggered by dependabot [#1052](https://github.com/Infineon/infineon-design-system-stencil/pull/1052) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.54.0 (Tue Mar 12 2024)
+
+#### 🚀 Enhancement
+
+- 1041 enhancement skip canary release creation when workflow is triggered by dependabot secrets not accessible [#1042](https://github.com/Infineon/infineon-design-system-stencil/pull/1042) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.53.1 (Mon Mar 11 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Version is null when sending webex notification [#1040](https://github.com/Infineon/infineon-design-system-stencil/pull/1040) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.53.0 (Mon Mar 11 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Webex notification on new version release [#1033](https://github.com/Infineon/infineon-design-system-stencil/pull/1033) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.52.0 (Fri Mar 08 2024)
+
+#### 🚀 Enhancement
+
+- Multiselect: implemented search-enabled prop [#1037](https://github.com/Infineon/infineon-design-system-stencil/pull/1037) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.51.0 (Thu Mar 07 2024)
+
+#### 🚀 Enhancement
+
+- Modal: buttons are now removable [#1035](https://github.com/Infineon/infineon-design-system-stencil/pull/1035) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.50.3 (Tue Mar 05 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: Search feature is now working [#1032](https://github.com/Infineon/infineon-design-system-stencil/pull/1032) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.50.2 (Tue Mar 05 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: top border on header-section and title shown only when required [#1026](https://github.com/Infineon/infineon-design-system-stencil/pull/1026) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.50.1 (Fri Mar 01 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: Optimized footer links style [#1020](https://github.com/Infineon/infineon-design-system-stencil/pull/1020) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.50.0 (Tue Feb 27 2024)
+
+#### 🚀 Enhancement
+
+- Implemented sidebar header component [#1011](https://github.com/Infineon/infineon-design-system-stencil/pull/1011) ([@akashyeole](https://github.com/akashyeole) lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.49.0 (Tue Feb 27 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: links are now removable [#994](https://github.com/Infineon/infineon-design-system-stencil/pull/994) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.48.0 (Tue Feb 27 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar header is now removable [#1009](https://github.com/Infineon/infineon-design-system-stencil/pull/1009) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.47.0 (Fri Feb 23 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: implemented initial-collapse prop [#974](https://github.com/Infineon/infineon-design-system-stencil/pull/974) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.46.2 (Mon Feb 12 2024)
+
+#### 🐛 Bug Fix
+
+- Fixed the height and width of the switch container [#975](https://github.com/Infineon/infineon-design-system-stencil/pull/975) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.46.1 (Fri Feb 09 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Multiselect options: handling of parent - child relationship [#978](https://github.com/Infineon/infineon-design-system-stencil/pull/978) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.46.0 (Fri Feb 09 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: footer links now customizable and removable + bump copyright date to current date [#976](https://github.com/Infineon/infineon-design-system-stencil/pull/976) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.45.0 (Wed Feb 07 2024)
+
+#### 🚀 Enhancement
+
+- Sidebar: implemented prop showFooter [#990](https://github.com/Infineon/infineon-design-system-stencil/pull/990) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v20.44.3 (Wed Feb 07 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: prevent click dom event from button when disabled [#977](https://github.com/Infineon/infineon-design-system-stencil/pull/977) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-vue from 20.44.1--canary.952.ef26122f343bda06639a1a121612a92548dea562.0 to 20.44.2 in /examples/wrapper-components/vue-javascript [#979](https://github.com/Infineon/infineon-design-system-stencil/pull/979) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.44.1--canary.952.444b06f83e4c1084dafa5d43b2817f77b8e40369.0 to 20.44.2 in /examples/wrapper-components/react-javascript [#980](https://github.com/Infineon/infineon-design-system-stencil/pull/980) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.44.2 (Fri Feb 02 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: font file import updated for storybook [#952](https://github.com/Infineon/infineon-design-system-stencil/pull/952) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.44.1 (Thu Feb 01 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: text field uses wrong font size and styling not aligned [#948](https://github.com/Infineon/infineon-design-system-stencil/pull/948) ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump @infineon/infineon-design-system-vue from 20.41.0 to 20.44.0 in /examples/wrapper-components/vue-javascript [#957](https://github.com/Infineon/infineon-design-system-stencil/pull/957) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+---
+
+# v20.44.0 (Thu Jan 25 2024)
+
+#### 🚀 Enhancement
+
+- Footer url props added for terms, imprint, etc. [#946](https://github.com/Infineon/infineon-design-system-stencil/pull/946) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump vite from 4.5.1 to 5.0.12 in /examples/wrapper-components/vue-javascript [#931](https://github.com/Infineon/infineon-design-system-stencil/pull/931) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.43.8 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Setting activeTabIndex from outside [#945](https://github.com/Infineon/infineon-design-system-stencil/pull/945) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.43.7 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- Checkbox: optimized internal state usage [#928](https://github.com/Infineon/infineon-design-system-stencil/pull/928) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v20.43.6 (Tue Jan 23 2024)
+
+#### 🐛 Bug Fix
+
+- fixed master deployment file [#940](https://github.com/Infineon/infineon-design-system-stencil/pull/940) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### 🔩 Dependency Updates
+
+- Bump vue from 3.4.14 to 3.4.15 in /examples/wrapper-components/vue-javascript [#930](https://github.com/Infineon/infineon-design-system-stencil/pull/930) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.43.5 (Mon Jan 22 2024)
 
 #### 🐛 Bug Fix

@@ -5,11 +5,10 @@ on:
     branches:
      - master
  
-env:
-  VERSION: ''
-
 jobs:
   stencil-library-release:
+    outputs:
+      VERSION: ${{ steps.build.outputs.VERSION }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -39,6 +38,9 @@ jobs:
           VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Set version as Github Env and Github Output: $VERSION"
+          echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
           auto shipit
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
@@ -49,6 +51,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
+          echo "VERSION: $VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
@@ -107,6 +110,9 @@ jobs:
           folder: examples/wrapper-components/vue-javascript/dist/ # The folder the action should deploy.
           target-folder: vue-example
           clean-exclude: |
+            angular-example/
+            react-example/
+            vanilla-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -144,6 +150,9 @@ jobs:
           folder: examples/wrapper-components/react-javascript/build/ # The folder the action should deploy.
           target-folder: react-example
           clean-exclude: |
+            angular-example/
+            vanilla-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -171,7 +180,7 @@ jobs:
         run: |
           cd packages/components-angular
           npm i
-          npm i @infineon/infineon-design-system-stencil@latest
+          npm i @infineon/infineon-design-system-angular@latest
           npm run build my-app
            
       - name: Deploy 🚀
@@ -180,6 +189,9 @@ jobs:
           folder: packages/components-angular/dist/my-app/ # The folder the action should deploy.
           target-folder: angular-example
           clean-exclude: |
+            react-example/
+            vanilla-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
@@ -215,10 +227,23 @@ jobs:
           folder: examples/stencil-components/vanilla-cdn/dist # The folder the action should deploy.
           target-folder: vanilla-example
           clean-exclude: |
+            angular-example/
+            react-example/
+            vue-example/
             pr-preview/
             pr-preview-vue-example/
             pr-preview-react-example/
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-  
+
+  send-webex-notification:
+    needs: [stencil-library-release, deploy-master-vue, deploy-master-react, deploy-master-angular, deploy-master-vanilla]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Webex Notification
+        run: |
+          VERSION=${{ needs.stencil-library-release.outputs.VERSION }}
+          WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."
+          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
+        shell: bash

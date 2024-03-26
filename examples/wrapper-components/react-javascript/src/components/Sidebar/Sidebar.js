@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { IfxSidebar, IfxSidebarItem, IfxModal, IfxButton } from '@infineon/infineon-design-system-react';
+import { IfxSidebar, IfxSidebarItem, IfxModal, IfxButton, IfxSidebarTitle } from '@infineon/infineon-design-system-react';
 
 
 function Sidebar() {
@@ -44,7 +44,8 @@ function Sidebar() {
 
   return (
     <div>
-      <IfxSidebar application-name="Application Name">
+      <IfxSidebar applicationName="Application Name" initialCollapse={false}>
+        <IfxSidebarTitle>Item Title</IfxSidebarTitle>
         <IfxSidebarItem  >
           Header Section
           <IfxSidebarItem icon="image-16" >

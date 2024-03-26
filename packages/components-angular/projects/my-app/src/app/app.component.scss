@@ -1,0 +1,9 @@
+@use "@infineon/design-system-tokens/dist/tokens";
+@import "@infineon/design-system-tokens/dist/fonts/ifx-fonts.css";
+
+
+
+div {
+  background-color: tokens.$ifxColorBaseWhite;
+  // --ifx-font-family: 'Arial black'; //overwrite default font
+}
