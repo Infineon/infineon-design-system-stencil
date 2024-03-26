@@ -493,6 +493,10 @@
         display: flex;
         align-items: center;
 
+        &:hover { 
+          cursor: pointer;
+        }
+
         &.close {
           display: none;
         }
@@ -504,6 +508,10 @@
 
         &.show {
           display: flex;
+
+          &:hover { 
+            cursor: pointer;
+          }
         }
       }
     }
