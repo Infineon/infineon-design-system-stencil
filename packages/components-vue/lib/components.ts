@@ -273,27 +273,27 @@ export const IfxNavbar = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navba
   'fixed',
   'showLogoAndAppname',
   'logoHref',
-  'logoHrefTarget'
+  'logoHrefTarget',
+  'ifxNavbarMobileMenuIsOpen'
 ]);
 
 
 export const IfxNavbarItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', undefined, [
-  'isProfile',
-  'hideLabel',
+  'showLabel',
   'icon',
   'href',
   'target',
-  'hideComponent'
+  'hideOnMobile',
+  'ifxNavItem'
 ]);
 
 
-export const IfxNavbarMenu = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenu>('ifx-navbar-menu', undefined);
-
-
-export const IfxNavbarMenuItem = /*@__PURE__*/ defineContainer<JSX.IfxNavbarMenuItem>('ifx-navbar-menu-item', undefined, [
+export const IfxNavbarProfile = /*@__PURE__*/ defineContainer<JSX.IfxNavbarProfile>('ifx-navbar-profile', undefined, [
+  'showLabel',
   'href',
+  'imageUrl',
   'target',
-  'hide'
+  'alt'
 ]);
 
 
