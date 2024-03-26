@@ -317,16 +317,28 @@ export class Table {
       <Host >
         <div class="filters-container">
           {this.enableFiltering && this.filterOrientation === 'sideBar' && (
-            <button onClick={() => this.toggleSidebarFilters()}>
-              {this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
-            </button>
+            <ifx-button
+              type="button"
+              disabled={false}
+              variant="secondary"
+              size="m"
+              target="_blank"
+              theme="default"
+              full-width="false"
+              onClick={() => this.toggleSidebarFilters()}
+            >
+              <ifx-icon icon="cross-12"></ifx-icon>{this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
+            </ifx-button>
           )}
-          <div class={filterClass}>
+          < div class={filterClass}>
             {this.enableFiltering && (
               <div class="set-filter-wrapper">
-                {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
-                  <slot name="set-filter"></slot>
-                )}
+                {/* <p>Filters</p> */}
+                <div>
+                  {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
+                    <slot name="set-filter"></slot>
+                  )}
+                </div>
               </div>
             )}
 
@@ -355,7 +367,7 @@ export class Table {
             </div>
           </div>
         </div>
-      </Host>
+      </Host >
     )
   }
 

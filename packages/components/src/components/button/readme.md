@@ -38,12 +38,14 @@ Type: `Promise<void>`
 
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-modal](../modal)
+ - [ifx-table](../table-advanced-version)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-dropdown-trigger-button --> ifx-button
   ifx-modal --> ifx-button
+  ifx-table --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

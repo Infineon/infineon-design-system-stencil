@@ -37,6 +37,8 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ifx-button](../button)
+- [ifx-icon](../icon)
 - [ifx-chip](../chips)
 - [ifx-dropdown-menu](../dropdown/dropdown-menu)
 - [ifx-dropdown-item](../dropdown/dropdown-item)
@@ -45,6 +47,8 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
+  ifx-table --> ifx-button
+  ifx-table --> ifx-icon
   ifx-table --> ifx-chip
   ifx-table --> ifx-dropdown-menu
   ifx-table --> ifx-dropdown-item

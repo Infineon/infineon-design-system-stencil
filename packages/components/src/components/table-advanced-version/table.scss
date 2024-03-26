@@ -32,9 +32,14 @@
   min-width: 100px;
 }
 
+
+
 .set-filter-wrapper {
+  display: flex;
+  flex-direction: column;
   margin-bottom: tokens.$ifxSpace100;
 }
+
 
 .ifx-ag-grid {
   display: grid;
