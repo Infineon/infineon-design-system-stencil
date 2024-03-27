@@ -188,17 +188,6 @@ export class NavbarItem {
     this.checkIfItemHasChildren()
   }
 
-  // componentDidRender() { 
-  //   if(this.hasChildNavItems) { 
-  //     const itemMenu = this.getItemMenu()
-  //     const hasRightSideItemMenuClass = this.handleClassList(itemMenu, 'contains', 'rightSideItemMenu');
-  //     if(!hasRightSideItemMenuClass) { 
-  //       console.log(itemMenu)
-  //       //this.handleClassList(itemMenu, 'add', 'rightSideItemMenu');
-  //     }
-  //   }
-  // }
-
   componentDidLoad() { 
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
@@ -289,32 +278,9 @@ export class NavbarItem {
  
     if(slotValue.toLowerCase().trim() === "right-item") { 
       this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
-      //add hideable
-      //add class for correct mobile menu location
-    } else { 
-      //remove hideable option
-      //add class for correct mobile menu location
     }
 
     return true;
-  }
-
-  setInternalContent() {
-    const slot = this.el.shadowRoot.querySelector('slot');
-    let nodes = slot.assignedNodes();
-
-    nodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        //console.log('Slotted content is text:', node.textContent);
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const elementNode = node as Element;
-        if (elementNode.tagName === 'IFX-NAVBAR-ITEM') {
-          //console.log('Slotted content is an IFX-NAVBAR-ITEM component', elementNode);
-        } else {
-          //console.log('Slotted content is an unknown component:', elementNode.tagName);
-        }
-      }
-    });
   }
 
   getItemMenu() { 

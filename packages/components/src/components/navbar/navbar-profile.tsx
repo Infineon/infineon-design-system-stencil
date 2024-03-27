@@ -53,12 +53,6 @@ export class NavbarProfile {
     }
   }
 
-  // @Method()
-  // async hideComponent(action) { 
-  //   const container = this.el.shadowRoot.querySelector('.container')
-  //   this.handleClassList(container, action, 'hide')
-  // }
-
   @Method()
   async hideComponent() { 
     this.el.style.display = 'none';
@@ -108,44 +102,6 @@ export class NavbarProfile {
     } else this.internalHref = this.href;
   }
 
-
-
-  // setItemSideSpecifications() { 
-  //   const menuItem = this.el;
-  //   const slotValue = menuItem.getAttribute('slot')
-  //   if(slotValue.toLowerCase().trim() === "right-item") { 
-  //     //add hideable
-  //     //add class for correct mobile menu location
-  //   } else { 
-  //     //remove hideable option
-  //     //add class for correct mobile menu location
-  //   }
-  // }
-
-  // setInternalContent() {
-  //   const slot = this.el.shadowRoot.querySelector('slot');
-  //   let nodes = slot.assignedNodes();
-
-  //   nodes.forEach(node => {
-  //     if (node.nodeType === Node.TEXT_NODE) {
-  //       //console.log('Slotted content is text:', node.textContent);
-  //     } else if (node.nodeType === Node.ELEMENT_NODE) {
-  //       const elementNode = node as Element;
-  //       if (elementNode.tagName === 'IFX-NAVBAR-ITEM') {
-  //         //console.log('Slotted content is an IFX-NAVBAR-ITEM component', elementNode);
-  //       } else {
-  //         //console.log('Slotted content is an unknown component:', elementNode.tagName);
-  //       }
-  //     }
-  //   });
-    
-  // }
-
-
-  handleSlotChange() { 
-    
-  }
-
   getItemMenu() { 
     const menu = this.el.shadowRoot.querySelector('.navbar-menu');
     return menu;
@@ -176,7 +132,6 @@ export class NavbarProfile {
     }
   }
 
-  
   itemHasNestedItems() { 
     const childNavItem = this.el.shadowRoot.querySelector('ifx-navbar-item')
     if(childNavItem) { 
@@ -186,27 +141,10 @@ export class NavbarProfile {
     }
   }
   
-  handleNestedLayerMenu() { 
-    // if(this.isMenuItem && this.hasChildNavItems) { 
-    //   const itemMenu = this.getItemMenu()
-    //   if(e.type.toUpperCase() === 'MOUSEENTER') { 
-    //     console.log('itemmenu', itemMenu)
-    //     this.handleClassList(itemMenu, 'add', 'open')
-    //     this.handleClassList(itemMenu, 'add', 'right')
-    //   }
 
-    //   if(e.type.toUpperCase() === 'MOUSELEAVE') { 
-        
-    //     this.handleClassList(itemMenu, 'remove', 'open')
-    //     this.handleClassList(itemMenu, 'remove', 'right')
-    //   }
-    // }
-  }
-
-  
   render() {
     return (
-      <div class="container" onMouseLeave={() => this.handleNestedLayerMenu()}  onMouseEnter={() => this.handleNestedLayerMenu()}>
+      <div class="container">
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${!this.showLabel ? 'removeLabel' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper`}>
