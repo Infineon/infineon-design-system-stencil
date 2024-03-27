@@ -63,7 +63,7 @@ function Navbar() {
       </IfxNavbarItem>
     </IfxNavbarItem>
 
-    <IfxNavbarProfile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+    <IfxNavbarProfile slot="right-item" image-url='' show-label="true" href="" target="_blank">
       Tisho
       <IfxNavbarItem>
         Item

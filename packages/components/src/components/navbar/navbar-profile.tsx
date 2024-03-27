@@ -20,7 +20,7 @@ export class NavbarProfile {
   @State() hasChildNavItems: boolean = false;
   @State() internalImageUrl: string = ""
  
-  private defaultProfileImage = getAssetPath(`./assets/default_profile2.png`);
+  private defaultProfileImage = getAssetPath(`https://raw.githubusercontent.com/Infineon/Infineon-Icons/f4feadb1e9aa26e70aecbe579a4bb1a14efbc168/svg/user-24.svg`);
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
