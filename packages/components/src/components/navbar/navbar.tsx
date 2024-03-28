@@ -187,6 +187,21 @@ export class Navbar {
     this.toggleClass(sidebarWrapper, 'show')
     this.toggleClass(sidebarIconOpen, 'close')
     this.toggleClass(sidebarIconClose, 'show')
+
+    if(sidebarIconClose.classList.contains('show')) { 
+      this.handleBodyScroll('hide')
+    } else { 
+      this.handleBodyScroll('show')
+    }
+  }
+
+  handleBodyScroll(action) { 
+    const body = this.el.closest('body')
+    if(!this.fixed && action === 'hide') { 
+      body.style.overflow = 'hidden'
+    } else if(action === 'show') { 
+      body.style.overflow = 'visible'
+    }
   }
 
   handleDropdownMenu(el) {
@@ -290,6 +305,12 @@ export class Navbar {
       /* The viewport is 800px wide or less */
       topRowWrapper.classList.add('expand')
 
+      //hide body scroll if sidebar was opened
+      const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
+      if(crossIcon.classList.contains('show')) { 
+        this.handleBodyScroll('hide')
+      }
+
       //move search bar to right-side
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
@@ -333,6 +354,9 @@ export class Navbar {
     } else {
       /* The viewport is more than 800px wide */
       topRowWrapper.classList.remove('expand')
+
+      //show body scroll 
+      this.handleBodyScroll('show')
 
       //return search bar to its original position
       const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
