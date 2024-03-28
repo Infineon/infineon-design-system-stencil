@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop, Listen } from '@stencil/core';
+import { Component, h, Element, State, Prop, Listen, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-navbar',
@@ -18,13 +18,12 @@ export class Navbar {
   @State() hasLeftMenuItems: boolean = true;
   @Prop() fixed: boolean = true;
   @Prop() showLogoAndAppname: boolean = true;
-  @State() searchBarIsOpen: boolean = false;
+  @State() searchBarIsOpen: string;
   @Prop() logoHref: string = "";
   @State() internalLogoHref: string = ""
   @Prop() logoHrefTarget: string = '_self';
   @State() internalLogoHrefTarget: string = '_self';
-
-
+  @Event() ifxNavbarMobileMenuIsOpen: EventEmitter;
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot.firstChild;
@@ -59,23 +58,116 @@ export class Navbar {
     }
   }
 
+  @Listen('ifxNavItem') 
+  clearFirstLayerMenu(event: CustomEvent) { 
+    if(event.detail.action === 'hideFirstLayer') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].hideComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'hideSecondLayer') { 
+      const parent = event.detail.parent;
+      const children = parent.children;
+      parent.toggleFirstLayerItem('remove', 'add')
+      for(let i = 0; i < children.length; i++) { 
+        if(!children[i].isSameNode(event.detail.component)) {
+          children[i].hideComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'returnToSecondLayer') { 
+      const parent = event.detail.parent;
+      const children = parent.children;
+      parent.toggleFirstLayerItem('add', 'remove')
+      for(let i = 0; i < children.length; i++) { 
+        if(!children[i].isSameNode(event.detail.component)) {
+          children[i].showComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'show') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].showComponent()
+        }
+      }
+    }
+
+    if(event.detail.action === 'return') { 
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        if(!leftMenuItems[i].isSameNode(event.detail.component)) {
+          leftMenuItems[i].showComponent()
+        }
+      }
+    }
+  }
+  
 
   @Listen('ifxSearchBarIsOpen')
-  handleSearchBarToggle(e) {
-    this.searchBarIsOpen = !this.searchBarIsOpen;
-    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
-    const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
+  handleSearchBarToggle(event: CustomEvent) {
+    const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
+    const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
+    const rightSideSlot = searchBarRightWrapper.querySelector('slot');
+    const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
+    const rightAssignedNodes = rightSideSlot.assignedNodes();
+    const leftAssignedNodes = leftSideSlot.assignedNodes();
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
+    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+   
+    if(event.detail) { 
+      if(rightAssignedNodes.length !== 0) { 
+        this.searchBarIsOpen = 'right'
+      } else if(leftAssignedNodes.length !== 0) {
+        this.searchBarIsOpen = 'left'
+      }
+      
+      navbarProfile.hideComponent()
 
-    if (e.detail) {
-      for (let i = 0; i < navbarItems.length; i++) {
-        navbarItems[i].hideComponent = true;
+      for(let l = 0; l < leftMenuItems.length; l++) { 
+        if(!topRowWrapper.classList.contains('expand')) {
+          leftMenuItems[l].hideComponent()
+        }
       }
-      moreMenu.style.display = 'none'
-    } else {
-      for (let i = 0; i < navbarItems.length; i++) {
-        navbarItems[i].hideComponent = false;
+
+      for(let r = 0; r < rightMenuItems.length; r++) { 
+        if(topRowWrapper.classList.contains('expand')) {
+          if(!rightMenuItems[r].hideOnMobile) { 
+            rightMenuItems[r].hideComponent()
+          }
+        } else { 
+          rightMenuItems[r].hideComponent()
+        }
       }
-      moreMenu.style.display = 'flex'
+
+    } else if(!event.detail) {
+      this.searchBarIsOpen = undefined;
+      navbarProfile.showComponent()
+
+      for(let l = 0; l < leftMenuItems.length; l++) { 
+        if(!topRowWrapper.classList.contains('expand')) {
+          leftMenuItems[l].showComponent()
+        }
+      }
+
+      for(let r = 0; r < rightMenuItems.length; r++) { 
+        if(topRowWrapper.classList.contains('expand')) {
+          if(!rightMenuItems[r].hideOnMobile) { 
+            rightMenuItems[r].showComponent()
+          }
+        } else { 
+          rightMenuItems[r].showComponent()
+        }
+      }
     }
   }
 
@@ -95,6 +187,21 @@ export class Navbar {
     this.toggleClass(sidebarWrapper, 'show')
     this.toggleClass(sidebarIconOpen, 'close')
     this.toggleClass(sidebarIconClose, 'show')
+
+    if(sidebarIconClose.classList.contains('show')) { 
+      this.handleBodyScroll('hide')
+    } else { 
+      this.handleBodyScroll('show')
+    }
+  }
+
+  handleBodyScroll(action) { 
+    const body = this.el.closest('body')
+    if(!this.fixed && action === 'hide') { 
+      body.style.overflow = 'hidden'
+    } else if(action === 'show') { 
+      body.style.overflow = 'visible'
+    }
   }
 
   handleDropdownMenu(el) {
@@ -104,83 +211,61 @@ export class Navbar {
     iconWrapper.classList.toggle('open')
   }
 
-  handleSubSidebarMenu(menu) {
-    this.main = !this.main;
-    this[menu] = !this[menu];
-  }
+  async setItemMenuPosition() { 
+    const navbarItems = this.el.querySelectorAll('ifx-navbar-item')
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
 
-  @Listen('mousedown', { target: 'document' })
-  handleOutsideClick(event: MouseEvent) {
-    const path = event.composedPath();
-    if (!path.includes(this.el)) {
-      const dropdownWrapper = this.el.shadowRoot.querySelector('.navbar__dropdown-wrapper')
-      dropdownWrapper.classList.remove('open')
-      const iconWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('a')
-      iconWrapper.classList.remove('open')
+    if(navbarProfile) {
+      const itemChildren = navbarProfile.querySelectorAll('ifx-navbar-item')
+      if (itemChildren.length !== 0) {
+        itemChildren.forEach(item => { 
+          item.setMenuItemPosition()
+          this.setMenuItemChildrenPosition(item)
+        })
+      }
+    }
+   
+    if(navbarItems.length !== 0) { 
+      for(let i = 0; i < navbarItems.length; i++) { 
+        const item = navbarItems[i];
+        const itemChildren = item.querySelectorAll('ifx-navbar-item')
+        if (itemChildren.length !== 0) {
+         const hasNestedItems = await item.setItemSideSpecifications()
+         if(hasNestedItems) { 
+          itemChildren.forEach(item => { 
+            item.setMenuItemPosition()
+            this.setMenuItemChildrenPosition(item)
+          })
+         }
+        }
+      }
     }
   }
 
-
-  // handleMenuItems() { 
-  //   const dropdownMenu = this.el.shadowRoot.querySelector('ifx-dropdown-menu')
-  //   const navbar = this.el.closest('ifx-navbar')
-  //   const dropdownMenuItems = dropdownMenu.querySelectorAll('ifx-dropdown-item')
-  //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
-
-  //   if(window.matchMedia("(min-width: 1024px)").matches && window.matchMedia("(max-width: 1200px)").matches) { 
-  //     const leftMenuItems = navbar.querySelectorAll('[slot="left-menu-item"]')
-  //     if(dropdownMenu.childNodes.length === 0) { 
-  //       moreMenu.style.display = 'none'
-  //       if(leftMenuItems.length > 3) { 
-  //         moreMenu.style.display = 'flex'
-  //         for (let i = 3; i < leftMenuItems.length; i++) {
-  //           const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-  //           dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-  //           leftMenuItems[i].remove()
-  //           dropdownMenu.append(dropdownMenuItem);
-  //         }
-  //       }
-  //     }
-
-  //   } else if(window.matchMedia("(min-width: 1200px)").matches) { 
-  //     for(let i = 0; i < dropdownMenuItems.length; i++) { 
-  //       const navbarMenuItem = document.createElement('ifx-navbar-menu-item')
-  //       navbarMenuItem.setAttribute('slot', 'left-menu-item')
-  //       navbarMenuItem.innerHTML = dropdownMenuItems[i].innerHTML;
-
-  //       while (dropdownMenu.firstChild) {
-  //         dropdownMenu.removeChild(dropdownMenu.lastChild);
-  //       } 
-  //       moreMenu.style.display = 'none'
-  //       setTimeout(() => {
-  //         navbar.append(navbarMenuItem)
-  //       }, 0);
-  //     }
-  //   }
-  // }
+  setMenuItemChildrenPosition(item) {
+    const itemChildren = item.querySelectorAll('ifx-navbar-item');
+    if (itemChildren.length !== 0) {
+        itemChildren.forEach(subItem => { 
+          subItem.setMenuItemPosition()
+          this.setMenuItemChildrenPosition(subItem)
+        })
+    }
+  }
 
   componentDidLoad() {
-    const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
-    if (!dropdownMenu) {
-      const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu');
-      moreMenu.style.display = 'none'
-    }
-
+    this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
+  }
 
-    // if(window.matchMedia("(max-width: 1200px)").matches) { 
-    //   const moreMenu = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-dropdown-menu').querySelector('.hidden');
-
-    //   if(leftMenuItems.length > 3) { 
-    //     moreMenu.style.display = 'flex'
-    //     for (let i = 3; i < leftMenuItems.length; i++) {
-    //       const dropdownMenuItem = document.createElement('ifx-dropdown-item');
-    //       dropdownMenuItem.innerHTML = leftMenuItems[i].innerHTML;
-    //       leftMenuItems[i].remove()
-    //       dropdownMenu.append(dropdownMenuItem);
-    //     }
-    //   }
-    // }
+  handleMobileMenuBottom(e) { 
+    const mobileMenuBottomWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-bottom-row')
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    if(nodes.length > 0) { 
+      mobileMenuBottomWrapper.classList.add('show')
+    } else { 
+      mobileMenuBottomWrapper.classList.remove('show')
+    }
   }
 
   handleLogoHrefAndTarget(){
@@ -204,17 +289,121 @@ export class Navbar {
       this.hasLeftMenuItems = false;
     }
     this.handleLogoHrefAndTarget();
+
+    const mediaQueryList = window.matchMedia('(max-width: 800px)');
+    mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
 
+  getSearchBarLeftWrapper() { 
+    const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
+    return searchBarLeftWrapper;
+  }
+
+  moveNavItemsToSidebar(e) {
+    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+    if (e.matches) {
+      /* The viewport is 800px wide or less */
+      topRowWrapper.classList.add('expand')
+
+      //hide body scroll if sidebar was opened
+      const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
+      if(crossIcon.classList.contains('show')) { 
+        this.handleBodyScroll('hide')
+      }
+
+      //move search bar to right-side
+      const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
+      if(searchBarLeft) { 
+        if(this.searchBarIsOpen) { 
+          searchBarLeft.onNavbarMobile()
+        }
+        const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+        searchBarLeftWrapper.classList.add('initial')
+        searchBarLeft.setAttribute('slot', 'search-bar-right')
+      }
+      
+      //left-side
+      const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        leftMenuItems[i].setAttribute('slot', 'mobile-menu-top')
+        leftMenuItems[i].moveChildComponentsIntoSubLayerMenu()
+        if(this.searchBarIsOpen) { 
+          leftMenuItems[i].showComponent()
+        }
+      }
+      
+      //right-side
+      const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
+      for(let i = 0; i < rightMenuItems.length; i++) { 
+        if(rightMenuItems[i].tagName.toUpperCase() === 'IFX-NAVBAR-PROFILE') { 
+          rightMenuItems[i].showLabel = false;
+        } else { 
+          if(rightMenuItems[i].hideOnMobile) { 
+            rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
+  
+            rightMenuItems[i].toggleChildren('add')
+
+            rightMenuItems[i].showLabel = true;
+            if(this.searchBarIsOpen) { 
+              rightMenuItems[i].showComponent()
+            }
+          }
+        }
+      }
+      
+    } else {
+      /* The viewport is more than 800px wide */
+      topRowWrapper.classList.remove('expand')
+
+      //show body scroll 
+      this.handleBodyScroll('show')
+
+      //return search bar to its original position
+      const searchBarLeftWrapper = this.getSearchBarLeftWrapper()
+      const leftIsInitial = searchBarLeftWrapper.classList.contains('initial')
+      const searchBarRight = this.el.querySelector('[slot="search-bar-right"]')
+      if(leftIsInitial) { 
+        if(this.searchBarIsOpen) { 
+          searchBarRight.onNavbarMobile()
+        }
+        searchBarRight.setAttribute('slot', 'search-bar-left')
+      }
+
+      //left-side
+      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      for(let i = 0; i < leftMenuItems.length; i++) { 
+        leftMenuItems[i].setAttribute('slot', 'left-item')
+        leftMenuItems[i].moveChildComponentsBackIntoNavbar()
+      }
+
+      //right-side
+      const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
+      const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
+      const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
+      navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
+
+      for(let i = 0; i < rightMenuItems.length; i++) { 
+        rightMenuItems[i].setAttribute('slot', 'right-item')
+
+          rightMenuItems[i].toggleChildren('remove')
+
+          const showLabel = rightMenuItems[i].getAttribute('show-label');
+          rightMenuItems[i].setAttribute('show-label', showLabel)
+          if(this.searchBarIsOpen) { 
+            rightMenuItems[i].hideComponent()
+          }
+      }
+    }
+  }
 
   render() {
     return (
       <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
         <div class={`navbar__main-container ${this.fixed ? 'fixed' : ""}`}>
-          <div class={`navbar__container ${this.searchBarIsOpen ? "searchOpened" : ""}`}>
-            <div class={`navbar__container-left ${this.searchBarIsOpen ? 'searchOpened' : ""}`}>
+          <div class={`navbar__container ${this.searchBarIsOpen ? "expanded" : ""}`}>
+            <div class={`navbar__container-left ${this.searchBarIsOpen === 'left' ? "expand" : this.searchBarIsOpen === 'right' ? 'hide' : ""}`}>
               {this.showLogoAndAppname &&
-                <div class="navbar__container-left-logo">
+                <div class={`navbar__container-left-logo ${this.searchBarIsOpen === 'left' ? 'hide' : ""}`}>
                   <div class="navbar__container-left-logo-default">
                     <a href={this.internalLogoHref} target = {this.internalLogoHrefTarget}>
                       <svg width="91" height="40" viewBox="0 0 91 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -237,261 +426,52 @@ export class Navbar {
               <div class="navbar__container-left-content">
                 <div class="navbar__container-left-content-navigation-group">
                   <slot name='left-item' />
-                  <div class="navbar__container-left-content-navigation-dropdown-menu">
-                    <div class="hidden" onClick={this.handleDropdownMenu.bind(this)}>
-                      <a href="javascript:void(0)">
-                        <span>More</span>
-                        <ifx-icon icon="chevron-down-12"></ifx-icon>
-                      </a>
-                      <div class="navbar__dropdown-wrapper">
-                        <slot name='menu' />
-                        {/* <ifx-dropdown-menu></ifx-dropdown-menu> */}
-                      </div>
-                    </div>
-                  </div>
                   <div class="navbar__container-left-content-navigation-item-search-bar">
                     <slot name='search-bar-left' />
-                    {/* <ifx-search-bar show-close-button="false"></ifx-search-bar> */}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="navbar__container-right">
+            <div class={`navbar__container-right ${this.searchBarIsOpen === 'right' ? "expand" : this.searchBarIsOpen === 'left' ? 'hide' : ""}`}>
               <div class="navbar__container-right-content">
                 <div class="navbar__container-right-content-navigation-group">
                   <div class="navbar__container-right-content-navigation-item-search-bar">
-                    <div class="navbar__container-right-content-navigation-item-search-bar-icon-wrapper">
+                  <div class={`navbar__container-right-content-navigation-item-search-bar-icon-wrapper`}>
                       <slot name='search-bar-right' />
                     </div>
                   </div>
-                  <div class="navbar__container-right-content-navigation-item">
-                    <slot name='right-item' />
-                    <slot name='right-profile-item' />
-                  </div>
-                  {/* <div class="navbar__container-right-content-navigation-item tablet">
-                    <div class="navbar__container-right-content-navigation-item-icon-wrapper">
-                      <ifx-icon icon="image-16"></ifx-icon>
-                    </div>
-                  </div> */}
-                  {/* <div class="navbar__container-right-content-navigation-item-profile">
-                    <div class="navbar__container-right-content-navigation-item-navigation-profile">
-                      <a href="javascript:void(0)">AA</a>
-                    </div>
-                  </div> */}
+                  <slot name='right-item' />
                 </div>
               </div>
 
-              {/* SIDEBAR BUTTON */}
-              {/* <div class="navbar__burger-icon-wrapper" onClick={this.handleSidebar.bind(this)}>
+              {/* MOBILE MENU BUTTON */}
+              <div class={`navbar__burger-icon-wrapper`} onClick={this.handleSidebar.bind(this)}>
                 <div class="navbar__burger-icon">
                   <ifx-icon icon="menu-right-24"></ifx-icon>
                 </div>
                 <div class="navbar__cross-icon">
                   <ifx-icon icon="cross-24"></ifx-icon>
                 </div>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
 
         {/* SIDEBAR */}
-        {/* <div class="navbar__sidebar">
-           {this.main &&
-            <div class="navbar__sidebar-content-main">
-            <div class="navbar__sidebar-content-main-menu">
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('products')}>
-                <a href="javascript:void(0)">Products</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('applications')}>
-                <a href="javascript:void(0)">Applications</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('design')}>
-                <a href="javascript:void(0)">Design Resources</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('support')}>
-                <a href="javascript:void(0)">Support & Training</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
-              <div class="navbar__sidebar-content-main-menu-item" onClick={() => this.handleSubSidebarMenu('about')}>
-                <a href="javascript:void(0)">About</a>
-                <ifx-icon icon="chevron-right-16"></ifx-icon>
-              </div>
+        <div class="navbar__sidebar">
+          {/* left side ifx-navbar-item  */}
+          <div class="navbar__sidebar-top-row">
+            <div class="navbar__sidebar-top-row-wrapper">
+              <slot name='mobile-menu-top' />
             </div>
-          </div>}
+          </div>
 
-            {this.products &&
-            <div class="navbar__sidebar-content-products">
-                <div class="navbar__sidebar-content-products-header" onClick={() => this.handleSubSidebarMenu('products')}>
-                <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>Products</span>
-              </div>
-              <div class="navbar__sidebar-content-products-menu">
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Careers</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Job Search</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Working at Infineon</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Our Locations</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Opportunities & Benefits</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Students & Pupils</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">How to Apply</a>
-                  </div>
-                  <div class="navbar__sidebar-content-products-menu-item">
-                    <a href="javascript:void(0)">Events</a>
-                  </div>
-              </div>
-            </div>}
-
-            {this.applications && 
-            <div class="navbar__sidebar-content-applications">
-              <div class="navbar__sidebar-content-applications-header" onClick={() => this.handleSubSidebarMenu('applications')}>
-                <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>Applications</span>
-              </div>
-              <div class="navbar__sidebar-content-applications-menu">
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Careers</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Job Search</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Working at Infineon</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Our Locations</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Opportunities & Benefits</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Students & Pupils</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">How to Apply</a>
-                  </div>
-                  <div class="navbar__sidebar-content-applications-menu-item">
-                    <a href="javascript:void(0)">Events</a>
-                  </div>
-              </div>
-            </div>}
-
-            {this.design &&
-            <div class="navbar__sidebar-content-design">
-              <div class="navbar__sidebar-content-design-header" onClick={() => this.handleSubSidebarMenu('design')}>
-                  <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>Design</span>
-              </div>
-              <div class="navbar__sidebar-content-design-menu">
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Careers</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Job Search</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Working at Infineon</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Our Locations</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Opportunities & Benefits</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Students & Pupils</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">How to Apply</a>
-                  </div>
-                  <div class="navbar__sidebar-content-design-menu-item">
-                    <a href="javascript:void(0)">Events</a>
-                  </div>
-              </div>
-            </div>}
-            
-            {this.support &&
-            <div class="navbar__sidebar-content-support">
-              <div class="navbar__sidebar-content-about-header" onClick={() => this.handleSubSidebarMenu('support')}>
-                  <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>Support</span>
-              </div>
-              <div class="navbar__sidebar-content-support-menu">
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Careers</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Job Search</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Working at Infineon</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Our Locations</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Opportunities & Benefits</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Students & Pupils</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">How to Apply</a>
-                  </div>
-                  <div class="navbar__sidebar-content-support-menu-item">
-                    <a href="javascript:void(0)">Events</a>
-                  </div>
-              </div>
-            </div>}
-
-            {this.about &&
-            <div class="navbar__sidebar-content-about">
-              <div class="navbar__sidebar-content-about-header" onClick={() => this.handleSubSidebarMenu('about')}>
-                <ifx-icon icon="chevron-left-16"></ifx-icon>
-                <span>About</span>
-              </div>
-              <div class="navbar__sidebar-content-about-menu">
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Careers</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Job Search</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Working at Infineon</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Our Locations</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Opportunities & Benefits</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Students & Pupils</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">How to Apply</a>
-                </div>
-                <div class="navbar__sidebar-content-about-menu-item">
-                  <a href="javascript:void(0)">Events</a>
-                </div>
-              </div>
-          </div>}
-        </div> */}
+          {/* right side ifx-navbar-item  */}
+          <div class="navbar__sidebar-bottom-row">
+            <slot name='mobile-menu-bottom' onSlotchange={(e) => this.handleMobileMenuBottom(e)} />
+          </div>
+          
+        </div>
       </div>
     );
   }
