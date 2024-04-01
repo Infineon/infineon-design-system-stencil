@@ -63,7 +63,7 @@ export class Sidebar {
     if(children[0].tagName === 'IFX-SIDEBAR-TITLE'){
       children[0].shadowRoot.querySelector('.sidebar__title').classList.add('no-top-border')
     }
-
+    
     if(children[0].tagName === 'IFX-SIDEBAR-ITEM' && children[0].shadowRoot.querySelector('div > a').classList.contains('header__section')){
       children[0].shadowRoot.querySelector('div > a').classList.add('no-top-border')
     }
@@ -76,6 +76,41 @@ export class Sidebar {
       }
     });
   }
+
+  async adjustPaddingOfLastItems() {
+    const children = this.el.children;
+    if(!children.length) return;
+    
+    const adjustExpandableItems = async (element) => {
+      const childElements = element.shadowRoot.querySelectorAll('ul li > ifx-sidebar-item');
+      for(let i = 0; i < childElements.length; ++i){
+        if(i === childElements.length-1){
+          childElements[i].shadowRoot.querySelector('div > a').classList.add('extra-bottom-padding')
+        }
+        console.log(childElements[i]);
+        if(childElements[i].tagName === 'IFX-SIDEBAR-ITEM' && childElements[i].isItemExpandable()) {
+          adjustExpandableItems(childElements[i]);
+        }
+      }
+    }
+
+    if(children[0].tagName !== 'IFX-SIDEBAR-TITLE' && await children[0].isItemExpandable()) {
+      adjustExpandableItems(children[0]);
+    }
+
+    for(let i = 1; i < children.length; ++i){
+      if(children[i].tagName === 'IFX-SIDEBAR-TITLE' || (children[i].tagName === 'IFX-SIDEBAR-ITEM' && children[i].shadowRoot.querySelector('div > a').classList.contains('header__section'))){
+        const prevSibling = children[i-1];
+        if(prevSibling && prevSibling.tagName === 'IFX-SIDEBAR-ITEM' && !prevSibling.shadowRoot.querySelector('div > a').classList.contains('header__section')) {
+          prevSibling.shadowRoot.querySelector('div > a').classList.add('extra-bottom-padding')
+        }
+      }
+      if(children[i].tagName !== 'IFX-SIDEBAR-TITLE' && await children[i].isItemExpandable()){
+        adjustExpandableItems(children[i]);
+      }
+    }
+
+  }
   
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
@@ -84,6 +119,7 @@ export class Sidebar {
     if(!this.initialCollapse){
       this.expandActiveItems();
     }
+    this.adjustPaddingOfLastItems();
     this.applyActiveSectionToParent(this.el);
   }
 
