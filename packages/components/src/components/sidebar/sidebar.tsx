@@ -87,7 +87,6 @@ export class Sidebar {
         if(i === childElements.length-1){
           childElements[i].shadowRoot.querySelector('div > a').classList.add('extra-bottom-padding')
         }
-        console.log(childElements[i]);
         if(childElements[i].tagName === 'IFX-SIDEBAR-ITEM' && childElements[i].isItemExpandable()) {
           adjustExpandableItems(childElements[i]);
         }
@@ -113,7 +112,6 @@ export class Sidebar {
   }
   
   componentDidLoad() {
-    // document.addEventListener('click', this.handleClickOutside);
     this.adjustTopBorder();
     this.setInitialActiveItem();
     if(!this.initialCollapse){
@@ -122,16 +120,6 @@ export class Sidebar {
     this.adjustPaddingOfLastItems();
     this.applyActiveSectionToParent(this.el);
   }
-
-  // disconnectedCallback() {
-  //   document.removeEventListener('click', this.handleClickOutside);
-  // }
-
-  // handleClickOutside = (event: MouseEvent) => {
-  //   if (!this.el.contains(event.target as HTMLElement)) {
-  //     this.removeActiveClassesRecursively();
-  //   }
-  // }
 
   getSidebarMenuItems(el = this.el) {
     const sidebarItems = el.querySelectorAll('ifx-sidebar-item');
