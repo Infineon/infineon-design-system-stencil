@@ -64,22 +64,8 @@ function Navbar() {
     </IfxNavbarItem>
 
     <IfxNavbarProfile slot="right-item" image-url='' show-label="true" href="" target="_blank">
-      Tisho
-      <IfxNavbarItem>
-        Item
-        <IfxNavbarItem>
-          Item
-          <IfxNavbarItem>
-            Item
-            <IfxNavbarItem>
-              Item
-              <IfxNavbarItem>
-                Item
-              </IfxNavbarItem>
-            </IfxNavbarItem>
-          </IfxNavbarItem>
-        </IfxNavbarItem>
-      </IfxNavbarItem>
+      User
+      <IfxNavbarItem>Item</IfxNavbarItem>
       <IfxNavbarItem>Item</IfxNavbarItem>
       <IfxNavbarItem>Item</IfxNavbarItem>
       <IfxNavbarItem>Item</IfxNavbarItem>
