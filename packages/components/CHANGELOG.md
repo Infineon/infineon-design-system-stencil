@@ -1,3 +1,21 @@
+# v20.57.3 (Tue Apr 02 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: revert reversion of documentation changes [#1133](https://github.com/Infineon/infineon-design-system-stencil/pull/1133) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: table update" [#1125](https://github.com/Infineon/infineon-design-system-stencil/pull/1125) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: link update" [#1127](https://github.com/Infineon/infineon-design-system-stencil/pull/1127) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: modal update" [#1128](https://github.com/Infineon/infineon-design-system-stencil/pull/1128) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: search field update" [#1129](https://github.com/Infineon/infineon-design-system-stencil/pull/1129) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: sidebar update" [#1126](https://github.com/Infineon/infineon-design-system-stencil/pull/1126) ([@verena-ifx](https://github.com/verena-ifx) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.57.2 (Tue Apr 02 2024)
 
 #### 🐛 Bug Fix
