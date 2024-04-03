@@ -1,3 +1,15 @@
+# v21.0.1 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master branch unsynced issue [#1138](https://github.com/Infineon/infineon-design-system-stencil/pull/1138) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.0.0 (Wed Apr 03 2024)
 
 #### 💥 Breaking Change
