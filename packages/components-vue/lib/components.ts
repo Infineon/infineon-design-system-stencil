@@ -40,7 +40,9 @@ export const IfxBasicTable = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('i
   'rowData',
   'rowHeight',
   'uniqueKey',
-  'tableHeight'
+  'tableHeight',
+  'serverSideModel',
+  'dataSource'
 ]);
 
 
