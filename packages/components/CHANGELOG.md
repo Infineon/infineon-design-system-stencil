@@ -1,3 +1,131 @@
+# v21.0.5 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: version updated in vue-wrapper package.json [#1149](https://github.com/Infineon/infineon-design-system-stencil/pull/1149) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.4 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: missing line added to master depoyment file [#1145](https://github.com/Infineon/infineon-design-system-stencil/pull/1145) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.3 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: typo in master deployment workflow fixed [#1143](https://github.com/Infineon/infineon-design-system-stencil/pull/1143) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.2 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master deployment workflow fails [#1140](https://github.com/Infineon/infineon-design-system-stencil/pull/1140) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.1 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master branch unsynced issue [#1138](https://github.com/Infineon/infineon-design-system-stencil/pull/1138) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.0.0 (Wed Apr 03 2024)
+
+#### 💥 Breaking Change
+
+- Navbar: version 2 [#941](https://github.com/Infineon/infineon-design-system-stencil/pull/941) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.57.3 (Tue Apr 02 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: revert reversion of documentation changes [#1133](https://github.com/Infineon/infineon-design-system-stencil/pull/1133) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: table update" [#1125](https://github.com/Infineon/infineon-design-system-stencil/pull/1125) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: link update" [#1127](https://github.com/Infineon/infineon-design-system-stencil/pull/1127) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: modal update" [#1128](https://github.com/Infineon/infineon-design-system-stencil/pull/1128) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: search field update" [#1129](https://github.com/Infineon/infineon-design-system-stencil/pull/1129) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: sidebar update" [#1126](https://github.com/Infineon/infineon-design-system-stencil/pull/1126) ([@verena-ifx](https://github.com/verena-ifx) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v20.57.2 (Tue Apr 02 2024)
+
+#### 🐛 Bug Fix
+
+- Revert "Documentation: sidebar update" [#1126](https://github.com/Infineon/infineon-design-system-stencil/pull/1126) ([@verena-ifx](https://github.com/verena-ifx) lechneve@ISCN5CG1201S7M.infineon.com)
+- Revert "Documentation: search field update" [#1129](https://github.com/Infineon/infineon-design-system-stencil/pull/1129) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: modal update" [#1128](https://github.com/Infineon/infineon-design-system-stencil/pull/1128) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: link update" [#1127](https://github.com/Infineon/infineon-design-system-stencil/pull/1127) ([@verena-ifx](https://github.com/verena-ifx))
+- Revert "Documentation: table update" [#1125](https://github.com/Infineon/infineon-design-system-stencil/pull/1125) ([@verena-ifx](https://github.com/verena-ifx))
+- Documentation: table update [#1088](https://github.com/Infineon/infineon-design-system-stencil/pull/1088) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: modal update [#1097](https://github.com/Infineon/infineon-design-system-stencil/pull/1097) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: link update [#1095](https://github.com/Infineon/infineon-design-system-stencil/pull/1095) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: select update [#1093](https://github.com/Infineon/infineon-design-system-stencil/pull/1093) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: sidebar update [#1090](https://github.com/Infineon/infineon-design-system-stencil/pull/1090) ([@SergejLust](https://github.com/SergejLust))
+- Documentation: search field update [#1099](https://github.com/Infineon/infineon-design-system-stencil/pull/1099) ([@SergejLust](https://github.com/SergejLust))
+- Progress bar: fixed bug where label text looked broken [#1121](https://github.com/Infineon/infineon-design-system-stencil/pull/1121) ([@akashyeole](https://github.com/akashyeole))
+
+#### 🔩 Dependency Updates
+
+- Bump @storybook/theming from 7.6.17 to 8.0.5 in /packages/components [#1120](https://github.com/Infineon/infineon-design-system-stencil/pull/1120) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump follow-redirects from 1.15.5 to 1.15.6 [#1061](https://github.com/Infineon/infineon-design-system-stencil/pull/1061) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump webpack-dev-middleware from 5.3.3 to 5.3.4 [#1091](https://github.com/Infineon/infineon-design-system-stencil/pull/1091) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 5
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@SergejLust](https://github.com/SergejLust)
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.57.1 (Fri Mar 22 2024)
 
 #### 🐛 Bug Fix

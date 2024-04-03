@@ -129,6 +129,7 @@ export class SidebarItem {
 
   handleExpandableMenu(sidebarItems) {
     const sidebarExpandableMenu = this.getExpandableMenu();
+    console.log('sidebar items', sidebarItems)
     sidebarItems.forEach((el: HTMLElement) => {
       const li = document.createElement('li')
       li.appendChild(el)

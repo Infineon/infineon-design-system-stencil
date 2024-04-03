@@ -32,7 +32,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm install
+          npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
@@ -55,12 +55,12 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@latest
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           cd ../../../../
           cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-vue
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           cd ../components-react
-          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-react        
+          npm install @infineon/infineon-design-system-stencil@$VERSION       
 
       - name: Build and deploy Angular, Vue and React packages
         id: build-and-deploy-wrappers
