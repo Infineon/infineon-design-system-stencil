@@ -77,35 +77,62 @@ export class Sidebar {
     });
   }
 
-  async adjustPaddingOfLastItems() {
-    const children = this.el.children;
-    if(!children.length) return;
-    
-    const adjustExpandableItems = async (element) => {
-      const childElements = element.shadowRoot.querySelectorAll('ul li > ifx-sidebar-item');
-      for(let i = 0; i < childElements.length; ++i){
-        if(i === childElements.length-1){
-          childElements[i].shadowRoot.querySelector('div > a').classList.add('extra-bottom-padding')
-        }
-        if(childElements[i].tagName === 'IFX-SIDEBAR-ITEM' && childElements[i].isItemExpandable()) {
-          adjustExpandableItems(childElements[i]);
-        }
+  async addPaddingToTheLastItem(sidebarItem) {
+    const sidebarChildItems = this.getSidebarMenuItems(sidebarItem)
+
+    for(let i = 0; i < sidebarChildItems.length; i++){
+
+      const childItem = sidebarChildItems[i];
+      const childNavItem = this.getNavItem(childItem.shadowRoot);
+      const isChildItemExpandable = await childItem.isItemExpandable();
+
+      if(isChildItemExpandable) {
+        this.addPaddingToTheLastItem(childItem);
+      }
+
+      if(i === sidebarChildItems.length-1){
+        this.handleClassList(childNavItem, 'add', 'extra-padding__bottom');
+      }
+    }
+  }
+
+  async adjustItemsPadding() {
+    const sidebarItems = this.el.children;
+
+    // Processing first item
+    if(sidebarItems[0].tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM') {
+      const isFirstSidebarItemExpandable = sidebarItems[0].isItemExpandable();
+      if(isFirstSidebarItemExpandable) {
+        this.addPaddingToTheLastItem(sidebarItems[0]);
       }
     }
 
-    if(children[0].tagName !== 'IFX-SIDEBAR-TITLE' && await children[0].isItemExpandable()) {
-      adjustExpandableItems(children[0]);
-    }
+    // Processing remaining items
+    for(let i = 1; i < sidebarItems.length; i++){
 
-    for(let i = 1; i < children.length; ++i){
-      if(children[i].tagName === 'IFX-SIDEBAR-TITLE' || (children[i].tagName === 'IFX-SIDEBAR-ITEM' && children[i].shadowRoot.querySelector('div > a').classList.contains('header__section'))){
-        const prevSibling = children[i-1];
-        if(prevSibling && prevSibling.tagName === 'IFX-SIDEBAR-ITEM' && !prevSibling.shadowRoot.querySelector('div > a').classList.contains('header__section')) {
-          prevSibling.shadowRoot.querySelector('div > a').classList.add('extra-bottom-padding')
+      const sidebarItem = sidebarItems[i];
+      const previousSidebarItem = sidebarItems[i-1];
+      const previousSidebarNavItem = this.getNavItem(previousSidebarItem.shadowRoot);
+
+      if(sidebarItem.tagName.toUpperCase() === 'IFX-SIDEBAR-TITLE') {
+        
+        if(previousSidebarItem.tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM' && previousSidebarNavItem && !this.handleClassList(previousSidebarNavItem, 'contains', 'header__section')) {
+          this.handleClassList(previousSidebarNavItem, 'add', 'extra-padding__bottom');
         }
-      }
-      if(children[i].tagName !== 'IFX-SIDEBAR-TITLE' && await children[i].isItemExpandable()){
-        adjustExpandableItems(children[i]);
+
+      } else if(sidebarItem.tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM') {
+
+        const sidebarNavItem = this.getNavItem(sidebarItem.shadowRoot);
+
+        if(previousSidebarItem.tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM' && previousSidebarNavItem && !this.handleClassList(previousSidebarNavItem, 'contains', 'header__section') && this.handleClassList(sidebarNavItem, 'contains', 'header__section')) {
+          this.handleClassList(previousSidebarNavItem, 'add', 'extra-padding__bottom');
+        }
+
+        const isSidebarItemExpandable = await sidebarItem.isItemExpandable();
+
+        if(isSidebarItemExpandable) {
+          this.addPaddingToTheLastItem(sidebarItem);
+        }
       }
     }
 
@@ -117,7 +144,7 @@ export class Sidebar {
     if(!this.initialCollapse){
       this.expandActiveItems();
     }
-    this.adjustPaddingOfLastItems();
+    this.adjustItemsPadding();
     this.applyActiveSectionToParent(this.el);
   }
 
