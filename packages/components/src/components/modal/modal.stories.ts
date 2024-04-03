@@ -40,6 +40,11 @@ export default {
       control: { type: 'select' },
       description: 'When specified together with alertIcon then an border to the right is shown',
     },
+    width: {
+      options: ['s', 'm', 'l'],
+      control: { type: 'radio'},
+      description: 'Usable only when screen width is more than 1024px'
+    },
     variant: {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
@@ -72,6 +77,7 @@ const Template = ({
   showCloseButton,
   closeOnOverlayClick,
   variant,
+  width,
   alertIcon
 }) => {
   const modal = document.createElement('ifx-modal');
@@ -83,6 +89,7 @@ const Template = ({
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
   modal.setAttribute('show-close-button', showCloseButton);
+  modal.setAttribute('width', width)
 
   modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
   modal.addEventListener('ifxModalClose', action('ifxModalClose'));
@@ -137,6 +144,7 @@ Default.args = {
   caption: 'Modal Title',
   showCloseButton: true,
   closeOnOverlayClick: false,
+  width: 's',
   variant: 'default',
 };
 
@@ -145,5 +153,6 @@ Alert.args = {
   caption: 'Alert-Brand Modal Title',
   closeOnOverlayClick: true,
   alertIcon: 'arrowdoen24',
+  width: 's',
   variant: 'alert-brand',
 };

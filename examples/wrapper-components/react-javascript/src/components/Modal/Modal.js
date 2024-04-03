@@ -15,7 +15,7 @@ function Modal() {
 
   return (
     <div>
-      <IfxModal ref={modalRef} caption="Modal Title" variant="default" closeOnOverlayClick="true"  showCloseButton='false'>
+      <IfxModal ref={modalRef} caption="Modal Title" variant="default" width='l' loseOnOverlayClick="true"  showCloseButton='false'>
         <div slot="content">
           <span>Hello. Welcome. What a pleasure it is to have you.</span>
         </div>

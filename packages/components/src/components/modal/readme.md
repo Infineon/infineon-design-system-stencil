@@ -17,6 +17,7 @@
 | `opened`              | `opened`                 |             | `boolean`                                      | `false`         |
 | `showCloseButton`     | `show-close-button`      |             | `boolean`                                      | `true`          |
 | `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"` | `'default'`     |
+| `width`               | `width`                  |             | `"l" \| "m" \| "s"`                            | `'s'`           |
 
 
 ## Events
