@@ -1,3 +1,16 @@
+# v21.0.2 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master deployment workflow fails [#1140](https://github.com/Infineon/infineon-design-system-stencil/pull/1140) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v21.0.1 (Wed Apr 03 2024)
 
 #### 🐛 Bug Fix
