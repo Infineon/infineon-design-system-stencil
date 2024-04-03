@@ -1,3 +1,16 @@
+# v21.0.5 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: version updated in vue-wrapper package.json [#1149](https://github.com/Infineon/infineon-design-system-stencil/pull/1149) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v21.0.4 (Wed Apr 03 2024)
 
 #### 🐛 Bug Fix
