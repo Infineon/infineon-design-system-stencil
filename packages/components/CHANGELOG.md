@@ -1,3 +1,16 @@
+# v21.0.0 (Wed Apr 03 2024)
+
+#### 💥 Breaking Change
+
+- Navbar: version 2 [#941](https://github.com/Infineon/infineon-design-system-stencil/pull/941) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v20.57.3 (Tue Apr 02 2024)
 
 #### 🐛 Bug Fix
