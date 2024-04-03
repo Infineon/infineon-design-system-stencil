@@ -32,7 +32,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm install
+          npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
