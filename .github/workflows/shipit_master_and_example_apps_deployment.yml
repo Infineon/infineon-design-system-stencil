@@ -55,11 +55,11 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@VERSION
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           cd ../../../../
           cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@VERSION
-          npm install @infineon/infineon-design-system-stencil@VERSION       
+          npm install @infineon/infineon-design-system-stencil@$VERSION
+          npm install @infineon/infineon-design-system-stencil@$VERSION       
 
       - name: Build and deploy Angular, Vue and React packages
         id: build-and-deploy-wrappers
