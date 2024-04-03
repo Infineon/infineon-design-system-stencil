@@ -1,3 +1,16 @@
+# v21.0.3 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: typo in master deployment workflow fixed [#1143](https://github.com/Infineon/infineon-design-system-stencil/pull/1143) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v21.0.2 (Wed Apr 03 2024)
 
 #### 🐛 Bug Fix
