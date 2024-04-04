@@ -16,7 +16,9 @@ export class Chip {
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
-    if (!path.includes(this.el)) {
+    const chipWrapper = this.el.shadowRoot.querySelector('.wrapper');
+    const dropdownMenu = this.getDropdownMenu();
+    if (!path.includes(dropdownMenu) && !path.includes(chipWrapper)) {
       this.closedMenu();
     }
   }
