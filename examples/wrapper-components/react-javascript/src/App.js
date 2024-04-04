@@ -31,6 +31,7 @@ import Footer from './components/Footer/Footer'
 import Icon from './components/Icon/Icon';
 import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
+import Chip from './components/Chip/Chip'
 
 
 function App() {
@@ -65,6 +66,10 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+      <br />
+
+      <h2>Chip</h2>
+      <Chip />
       <br />
 
       <h2>Dropdown</h2>
