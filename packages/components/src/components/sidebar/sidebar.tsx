@@ -99,6 +99,8 @@ export class Sidebar {
   async adjustItemsPadding() {
     const sidebarItems = this.el.children;
 
+    if(sidebarItems.length === 0) return;
+
     // Processing first item
     if(sidebarItems[0].tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM') {
       const isFirstSidebarItemExpandable = sidebarItems[0].isItemExpandable();
