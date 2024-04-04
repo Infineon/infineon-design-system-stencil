@@ -85,7 +85,6 @@ export class IfxModal {
         duration: 200,
       });
       anim.addEventListener('finish', () => {
-        this.attemptFocus(this.getFirstFocusableElement());
         this.ifxModalOpen.emit();
       });
       // this.attemptFocus(this.getFirstFocusableElement());
