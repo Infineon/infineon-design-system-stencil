@@ -7,9 +7,12 @@ export default {
   tags: ['autodocs'],
 
   argTypes: {
-    value: { control: 'number' },
     min: { control: 'number' },
     max: { control: 'number' },
+    type: { control: 'radio', options: ['default', 'range']},
+    value: { control: 'number', if: { arg: 'type', eq: 'default'} },
+    minValue : {control :'number', if: { arg: 'type', eq: 'range'}},
+    maxValue : {control :'number', if: { arg: 'type', eq: 'range'}},
     showPercentage: { control: 'boolean' },
     disabled: { control: 'boolean' },
     leftIcon: {
@@ -40,6 +43,9 @@ const Template = (args) => {
   sliderElement.setAttribute('value', args.value);
   sliderElement.setAttribute('min', args.min);
   sliderElement.setAttribute('max', args.max);
+  sliderElement.setAttribute('min-value', args.minValue);
+  sliderElement.setAttribute('max-value', args.maxValue);
+  sliderElement.setAttribute('type', args.type);
   if (args.showPercentage) {
     sliderElement.setAttribute('show-percentage', 'true');
   }
@@ -66,11 +72,14 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 50,
   min: 0,
   max: 100,
+  value: 50,
+  minValue: 20,
+  maxValue: 80,
   showPercentage: false,
   disabled: false,
+  type: 'range'
 };
 
 export const WithPercentageDisplay = Template.bind({});
