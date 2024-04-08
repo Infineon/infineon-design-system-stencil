@@ -91,18 +91,22 @@
     border-radius: 50%;
     cursor: default;
   }
-
+  
   & .range-slider__wrapper {
     position: relative;
     width: 129px;
+    height: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0px 2px;
-
+    
     background: linear-gradient(to right, tokens.$ifxColorEngineering200 0%, tokens.$ifxColorEngineering200 var(--min-value-percent, 100%), tokens.$ifxColorOcean500 var(--min-value-percent, 100%), tokens.$ifxColorOcean500 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 var(--max-value-percent, 100%), tokens.$ifxColorEngineering200 100%);
 
-    height: 4px;
+    &:has(input[type='range']:disabled) {
+      background: tokens.$ifxColorEngineering300;
+    }
+
     
     @mixin thumb() {
       -webkit-appearance: none;
@@ -126,6 +130,7 @@
 
       &::-webkit-slider-thumb { @include thumb; }
       &::-moz-range-thumb { @include thumb; }
+      &::-ms-thumb { @include thumb; }
 
       &::-webkit-slider-runnable-track { @include track; }
       &::-moz-range-track { @include track; }

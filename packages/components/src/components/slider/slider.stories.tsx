@@ -13,7 +13,7 @@ export default {
     value: { control: 'number', if: { arg: 'type', eq: 'default'} },
     minValue : {control :'number', if: { arg: 'type', eq: 'range'}},
     maxValue : {control :'number', if: { arg: 'type', eq: 'range'}},
-    showPercentage: { control: 'boolean' },
+    showPercentage: { control: 'boolean', if: { arg: 'type', eq: 'default'} },
     disabled: { control: 'boolean' },
     leftIcon: {
       options: Object.values(icons).map(i => i['name']),
@@ -79,14 +79,12 @@ Default.args = {
   maxValue: 80,
   showPercentage: false,
   disabled: false,
-  type: 'range'
+  type: 'default'
 };
 
 export const WithPercentageDisplay = Template.bind({});
 WithPercentageDisplay.args = {
-  value: 50,
-  min: 0,
-  max: 100,
+  ...Default.args,
   showPercentage: true,
   disabled: false,
 };
