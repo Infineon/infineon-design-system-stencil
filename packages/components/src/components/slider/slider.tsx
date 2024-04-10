@@ -9,15 +9,15 @@ export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
   @Prop() value: number = 0;
-  @Prop() minValue: number;
-  @Prop() maxValue: number;
+  @Prop() minValueHandle: number;
+  @Prop() maxValueHandle: number;
   @Prop() disabled: boolean = false;
   @Prop() showPercentage: boolean = false;
   @Prop() leftIcon: string;
   @Prop() rightIcon: string;
   @Prop() leftText: string;
   @Prop() rightText: string;
-  @Prop() type: 'default' | 'range' = 'default';
+  @Prop() type: 'single' | 'double' = 'single';
   @State() internalValue: number = 0;
   @State() internalMinValue: number = 0;
   @State() internalMaxValue: number = 100;
@@ -35,13 +35,13 @@ export class IfxSlider {
     this.updateValuePercent();
   }
 
-  @Watch('minValue')
+  @Watch('minValueHandle')
   minValueChanged(newValue: number) {
     this.internalMinValue = newValue;
     this.updateValuePercent();
   }
   
-  @Watch('maxValue')
+  @Watch('maxValueHandle')
   maxValueChanged(newValue: number) {
     this.internalMaxValue = newValue;
     this.updateValuePercent();
@@ -66,7 +66,7 @@ export class IfxSlider {
     } else {
       this.internalMinValue = parseInt(this.minInputRef.value);
     }
-    this.ifxChange.emit({minVal: this.internalMaxValue, maxVal: this.internalMinValue});
+    this.ifxChange.emit({minVal: this.internalMinValue, maxVal: this.internalMaxValue});
     this.updateValuePercent();
   }
   
@@ -88,7 +88,7 @@ export class IfxSlider {
   }
 
   updateValuePercent() {
-    if(this.type === 'range'){
+    if(this.type === 'double'){
       if (this.minInputRef) {
         const minPercent = ((this.internalMinValue - this.min) / (this.max - this.min)) * 100;
         this.minInputRef.parentElement.style.setProperty('--min-value-percent', `${minPercent}%`);
@@ -111,9 +111,9 @@ export class IfxSlider {
 
   componentWillLoad() {
     this.internalValue = this.value;
-    if(this.minValue !== undefined) this.internalMinValue = this.minValue;
+    if(this.minValueHandle !== undefined) this.internalMinValue = this.minValueHandle;
     else this.internalMinValue = this.min;
-    if(this.maxValue !== undefined) this.internalMaxValue = this.maxValue;
+    if(this.maxValueHandle !== undefined) this.internalMaxValue = this.maxValueHandle;
     else this.internalMaxValue = this.max;
   }
 
@@ -134,7 +134,7 @@ export class IfxSlider {
           <ifx-icon icon={this.leftIcon} class={`left-icon${this.disabled ? ' disabled' : ''}`} />
         )}
         {
-          (this.type !== 'range') ?
+          (this.type !== 'double') ?
             <input
               type="range"
               min={this.min}
@@ -184,7 +184,7 @@ export class IfxSlider {
           </span>
         )}
 
-        {this.showPercentage && (this.type !== "range") && (
+        {this.showPercentage && (this.type !== "double") && (
           <span
             class={`percentage-display${this.disabled ? ' disabled' : ''}`}
           >

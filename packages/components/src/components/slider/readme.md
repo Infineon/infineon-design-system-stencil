@@ -7,20 +7,20 @@
 
 ## Properties
 
-| Property         | Attribute         | Description | Type                   | Default     |
-| ---------------- | ----------------- | ----------- | ---------------------- | ----------- |
-| `disabled`       | `disabled`        |             | `boolean`              | `false`     |
-| `leftIcon`       | `left-icon`       |             | `string`               | `undefined` |
-| `leftText`       | `left-text`       |             | `string`               | `undefined` |
-| `max`            | `max`             |             | `number`               | `100`       |
-| `maxValue`       | `max-value`       |             | `number`               | `undefined` |
-| `min`            | `min`             |             | `number`               | `0`         |
-| `minValue`       | `min-value`       |             | `number`               | `undefined` |
-| `rightIcon`      | `right-icon`      |             | `string`               | `undefined` |
-| `rightText`      | `right-text`      |             | `string`               | `undefined` |
-| `showPercentage` | `show-percentage` |             | `boolean`              | `false`     |
-| `type`           | `type`            |             | `"default" \| "range"` | `'default'` |
-| `value`          | `value`           |             | `number`               | `0`         |
+| Property         | Attribute          | Description | Type                   | Default     |
+| ---------------- | ------------------ | ----------- | ---------------------- | ----------- |
+| `disabled`       | `disabled`         |             | `boolean`              | `false`     |
+| `leftIcon`       | `left-icon`        |             | `string`               | `undefined` |
+| `leftText`       | `left-text`        |             | `string`               | `undefined` |
+| `max`            | `max`              |             | `number`               | `100`       |
+| `maxValueHandle` | `max-value-handle` |             | `number`               | `undefined` |
+| `min`            | `min`              |             | `number`               | `0`         |
+| `minValueHandle` | `min-value-handle` |             | `number`               | `undefined` |
+| `rightIcon`      | `right-icon`       |             | `string`               | `undefined` |
+| `rightText`      | `right-text`       |             | `string`               | `undefined` |
+| `showPercentage` | `show-percentage`  |             | `boolean`              | `false`     |
+| `type`           | `type`             |             | `"double" \| "single"` | `'single'`  |
+| `value`          | `value`            |             | `number`               | `0`         |
 
 
 ## Events
