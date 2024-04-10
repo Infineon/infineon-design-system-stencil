@@ -20,7 +20,7 @@
     "packages/components-angular/projects/*"
   ],
   "devDependencies": {
-    "@types/node": "^20.2.1",
+    "@types/node": "^20.12.7",
     "lerna": "^7.0.0",
     "nx": "^16.10.0",
     "typescript": "^5.0.4",
