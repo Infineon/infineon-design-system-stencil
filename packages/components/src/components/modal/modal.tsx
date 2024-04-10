@@ -85,6 +85,7 @@ export class IfxModal {
         duration: 200,
       });
       anim.addEventListener('finish', () => {
+        this.attemptFocus(this.getFirstFocusableElement());
         this.ifxModalOpen.emit();
       });
       // this.attemptFocus(this.getFirstFocusableElement());
@@ -180,6 +181,7 @@ export class IfxModal {
             tabindex="0"
           ></div>
           <div
+            tabindex="0"
             class={`modal-content-container`}
             role="dialog"
             aria-modal="true"
