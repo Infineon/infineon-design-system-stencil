@@ -56,6 +56,11 @@
   .modal-content-container {
     width: 540px;
     min-height: 132px;
+
+    &.m,
+    &.l {
+      width: 90%;
+    }
   }
 }
 
@@ -71,7 +76,7 @@
     }
 
     &.l {
-      width: 90%;
+      width: 80%;
     }
   }
 }

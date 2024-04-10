@@ -24,7 +24,7 @@ export class IfxModal {
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
   
-  @Prop() width: 's' | 'm' | 'l' = 's';
+  @Prop() size: 's' | 'm' | 'l' = 's';
 
   @Prop() alertIcon: string = '';
   @Prop() okButtonLabel: string = 'OK';
@@ -183,7 +183,7 @@ export class IfxModal {
             tabindex="0"
           ></div>
           <div
-            class={`modal-content-container ${this.width}`}
+            class={`modal-content-container ${this.size}`}
             role="dialog"
             aria-modal="true"
             aria-label={this.caption}>
