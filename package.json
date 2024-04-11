@@ -23,10 +23,7 @@
     "@types/node": "^20.12.7",
     "lerna": "^7.0.0",
     "nx": "^16.10.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
-  },
-  "dependencies": {
-    "@storybook/core-events": "^7.6.6"
   }
 }
