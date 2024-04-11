@@ -25,5 +25,8 @@
     "nx": "^16.10.0",
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@storybook/core-events": "^8.0.6"
   }
 }
