@@ -36,7 +36,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm cache clean --force
           npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
