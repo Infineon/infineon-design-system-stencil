@@ -1,7 +1,0 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-
-
-:root {
-  --ifx-font-family: "#{tokens.$ifxFontFamilyBody}";
-  font-family: var(--ifx-font-family, sans-serif);
-}
