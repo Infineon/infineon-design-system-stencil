@@ -1,7 +1,6 @@
-import { Meta, Description } from '@storybook/addon-docs';
+import { Meta, Description } from '@storybook/blocks';
 
 <Meta title="Setup & installation/Framework integration/Angular + Stencil" />
-
 
 # Angular + Stencil
 
@@ -13,20 +12,19 @@ Angular Wrappers: Similarly to Vue and React, an Angular wrapper provides an Ang
 
 **- with NPM**
 
-```npm install @infineon/infineon-design-system-angular```
+`npm install @infineon/infineon-design-system-angular`
 
 **- with Yarn**
 
-```yarn add @infineon/infineon-design-system-angular```
+`yarn add @infineon/infineon-design-system-angular`
 
 **2. Installation of SASS**
+
 ```bash
 npm install sass
 ```
 
-
 **3. Import the module inside your entry point file**
-
 
 ```js
 import { defineCustomElements } from "@infineon/infineon-design-system-stencil/loader";
@@ -59,17 +57,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 </ifx-button>
 ```
 
-**Note**: In Angular, you do not have to import each component before using them. 
-
+**Note**: In Angular, you do not have to import each component before using them.
 
 ### Events
 
 #### Two way data binding
 
 Two-way binding means that any data-related changes affecting the model are immediately propagated to the matching view(s).
-And any changes made in the view(s) are immediately reflected in the underlying model. 
+And any changes made in the view(s) are immediately reflected in the underlying model.
 When app data changes, so does the UI, and conversely.
-
 
 ```js
 //app.component.ts
@@ -82,3 +78,4 @@ toggleSwitchValue(event: any) {
 }
 //app.component.html
 <ifx-<ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue($event)"></ifx-switch>
+```

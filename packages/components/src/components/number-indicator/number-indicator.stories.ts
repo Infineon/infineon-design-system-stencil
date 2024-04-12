@@ -1,21 +1,14 @@
 export default {
-  title: "Components/Number Indicator",
+  title: 'Components/Number Indicator',
   tags: ['autodocs'],
 
   args: {
     label: 1,
-    inverted: false
+    inverted: false,
   },
 };
 
-
-const DefaultTemplate = (args) =>
-  `<ifx-number-indicator inverted="${args.inverted}">${args.label}</ifx-number-indicator>`;
-
+const DefaultTemplate = args => `<ifx-number-indicator inverted="${args.inverted}">${args.label}</ifx-number-indicator>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
-
-}
-
-
+Default.argTypes = {};

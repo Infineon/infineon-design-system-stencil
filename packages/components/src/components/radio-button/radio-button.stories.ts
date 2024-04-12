@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Components/Radio Button",
+  title: 'Components/Radio Button',
   // tags: ['autodocs'],
 
   args: {
@@ -9,7 +9,7 @@ export default {
     disabled: false,
     value: false,
     size: 's',
-    label: 'Text'
+    label: 'Text',
   },
   argTypes: {
     ifxChange: {
@@ -17,21 +17,22 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+          detail:
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
 
-      action: 'ifxChange'
+      action: 'ifxChange',
     },
     size: {
-      description: "Size options: s (20px) and m (24px) - default: s",
+      description: 'Size options: s (20px) and m (24px) - default: s',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
   },
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   // Create the radio button element
   const element = document.createElement('ifx-radio-button');
 
@@ -49,6 +50,6 @@ const DefaultTemplate = (args) => {
 
   // Return the element
   return element;
-}
+};
 
 export const Default = DefaultTemplate.bind({});
