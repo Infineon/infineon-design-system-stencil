@@ -1,10 +1,9 @@
-
 export default {
   title: 'Components/Progress Bar',
   tags: ['autodocs'],
 
   args: {
-    size: "m",
+    size: 'm',
     percentage: 50,
     showLabel: false,
   },
@@ -13,15 +12,14 @@ export default {
       control: { type: 'range', min: 0, max: 100 },
     },
     size: {
-      description: "Size options: s (36px) and m (40px) - default: m",
+      description: 'Size options: s (36px) and m (40px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
   },
 };
 
-
-const Template = (args) => {
+const Template = args => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
     <ifx-progress-bar
@@ -51,4 +49,4 @@ export const WithLabel = Template.bind({});
 WithLabel.args = {
   percentage: 25,
   showLabel: true,
-}; 
+};

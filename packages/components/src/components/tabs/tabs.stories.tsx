@@ -1,18 +1,19 @@
 import { action } from '@storybook/addon-actions';
 
-const tabHeaders = [{
-  header: "tab a",
-  disabled: false
-},
-{
-  header: "tab b",
-  disabled: true
-},
-{
-  header: "tab c",
-  disabled: false,
-}];
-
+const tabHeaders = [
+  {
+    header: 'tab a',
+    disabled: false,
+  },
+  {
+    header: 'tab b',
+    disabled: true,
+  },
+  {
+    header: 'tab c',
+    disabled: false,
+  },
+];
 
 export default {
   title: 'Components/Tabs',
@@ -37,15 +38,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxTabChange={handleChange}\nVue:@ifxTabChange="handleChange"\nAngular:(ifxTabChange)="handleChange()"\nVanillaJs:.addEventListener("ifxTabChange", (event) => {//handle change});',
+          detail:
+            'React: onIfxTabChange={handleChange}\nVue:@ifxTabChange="handleChange"\nAngular:(ifxTabChange)="handleChange()"\nVanillaJs:.addEventListener("ifxTabChange", (event) => {//handle change});',
         },
       },
     },
   },
 };
 
-
-const Template = (args) => {
+const Template = args => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', tabHeaders[args.activeTabIndex].disabled ? '' : args.activeTabIndex);
@@ -70,13 +71,12 @@ export const Default = Template.bind({});
 Default.args = {
   amountOfTabs: 3,
   orientation: 'horizontal',
-  activeTabIndex: 0
-
+  activeTabIndex: 0,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
   amountOfTabs: 3,
   orientation: 'horizontal',
-  activeTabIndex: 2
+  activeTabIndex: 2,
 };

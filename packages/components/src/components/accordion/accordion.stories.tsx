@@ -7,18 +7,18 @@ export default {
 
   args: {
     autoCollapse: false,
-    initialCollapse: true
+    initialCollapse: true,
   },
 
   argTypes: {
     amountOfItems: { control: 'number' },
     initialCollapse: {
       description: 'If set on more than one accordion-item, auto-collapse must be false',
-    }
+    },
   },
 };
 
-const Template = (args) => {
+const Template = args => {
   const accordionElement = document.createElement('ifx-accordion');
   const initialItem = document.createElement('ifx-accordion-item');
   initialItem.setAttribute('initialCollapse', args.initialCollapse);
@@ -35,7 +35,7 @@ const Template = (args) => {
 
   accordionElement.append(initialItem);
 
-  accordionElement.setAttribute('auto-collapse', args.autoCollapse)
+  accordionElement.setAttribute('auto-collapse', args.autoCollapse);
   for (let i = 1; i < args.amountOfItems; i++) {
     const item = document.createElement('ifx-accordion-item');
     item.setAttribute('caption', `Label`);
@@ -57,5 +57,5 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  amountOfItems: 3
+  amountOfItems: 3,
 };

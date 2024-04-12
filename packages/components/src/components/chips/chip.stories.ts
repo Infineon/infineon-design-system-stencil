@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Components/Chip",
+  title: 'Components/Chip',
   tags: ['autodocs'],
 
   args: {
@@ -14,15 +14,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxDropdownMenu={handleChange}\nVue:@ifxDropdownMenu="handleChange"\nAngular:(ifxDropdownMenu)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenu", (event) => {//handle change});',
+          detail:
+            'React: onIfxDropdownMenu={handleChange}\nVue:@ifxDropdownMenu="handleChange"\nAngular:(ifxDropdownMenu)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenu", (event) => {//handle change});',
         },
       },
-    }
+    },
   },
 };
 
-
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-chip placeholder="${args.placeholder}">
   <ifx-dropdown-menu size="m" slot="menu">
@@ -39,8 +39,6 @@ const DefaultTemplate = (args) => {
 
   dropdownMenu.addEventListener('ifxDropdownMenuItem', action('ifxDropdownMenuItem'));
   return wrapper;
-}
+};
 
 export const Default = DefaultTemplate.bind({});
-
-

@@ -1,49 +1,44 @@
 export default {
-  title: "Components/Link",
+  title: 'Components/Link',
   tags: ['autodocs'],
 
   args: {
     label: 'Link',
-    href: "",
+    href: '',
     target: '_blank',
     size: 'm',
     disabled: false,
-    variant: 'bold'
+    variant: 'bold',
   },
 
   argTypes: {
     target: {
       options: ['_blank', '_self', '_parent'],
-      control: { type: 'radio' }
+      control: { type: 'radio' },
     },
     size: {
-      description: "Font Size options: s (14px), m (16px), l (18px), xl (20px) - default: m",
+      description: 'Font Size options: s (14px), m (16px), l (18px), xl (20px) - default: m',
       options: ['s', 'm', 'l', 'xl'],
-      control: { type: 'radio' }
+      control: { type: 'radio' },
     },
     variant: {
       options: ['bold', 'underlined', 'title', 'menu'],
-      control: { type: 'radio' }
-    }
+      control: { type: 'radio' },
+    },
   },
 };
 
-
-const DefaultTemplate = (args) =>
+const DefaultTemplate = args =>
   `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" >
   ${args.label}
   </ifx-link>`;
 
-
 export const Default = DefaultTemplate.bind({});
 
-const TemplateWithIcon = (args) =>
+const TemplateWithIcon = args =>
   `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" >
   ${args.label}
   <ifx-icon icon="arrow-right-16"></ifx-icon>
   </ifx-link>`;
 
-
 export const WithIcon = TemplateWithIcon.bind({});
-
-
