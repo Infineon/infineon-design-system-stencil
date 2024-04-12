@@ -6,12 +6,12 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    icon: "c-check-16"
+    icon: 'c-check-16',
   },
   argTypes: {
     icon: {
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' }
+      control: { type: 'select' },
     },
     consoleError: {
       action: 'consoleError',
@@ -19,19 +19,19 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onConsoleError={handleChange}\nVue:@consoleError="handleChange"\nAngular:(consoleError)="handleChange()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle change});',
+          detail:
+            'React: onConsoleError={handleChange}\nVue:@consoleError="handleChange"\nAngular:(consoleError)="handleChange()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle change});',
         },
       },
-    }
+    },
   },
-}
+};
 
-  const DefaultTemplate = ({ icon }) => {
-    const ifxIcon = document.createElement('ifx-icon');
-    ifxIcon.setAttribute('icon', icon);
-    ifxIcon.addEventListener('consoleError', action('consoleError'));
-    return ifxIcon;
-  };
+const DefaultTemplate = ({ icon }) => {
+  const ifxIcon = document.createElement('ifx-icon');
+  ifxIcon.setAttribute('icon', icon);
+  ifxIcon.addEventListener('consoleError', action('consoleError'));
+  return ifxIcon;
+};
 
 export const Default = DefaultTemplate.bind({});
-

@@ -1,40 +1,39 @@
 import { icons } from '@infineon/infineon-icons';
 
 export default {
-  title: "Components/Navbar",
+  title: 'Components/Navbar',
   args: {
     applicationName: 'Application name',
     hideLabel: false,
-    navbarItemTarget: "_blank",
-    navbarItemHref: "",
+    navbarItemTarget: '_blank',
+    navbarItemHref: '',
     searchBarIsOpen: false,
     navbarPositionFixed: false,
     showLogoAndAppname: true,
-    logoHref: "http://google.com",
-    logoHrefTarget: "_self",
+    logoHref: 'http://google.com',
+    logoHrefTarget: '_self',
     searchBarPosition: 'left',
     hideOnMobile: true,
-    profileImageUrl: ""
+    profileImageUrl: '',
   },
   argTypes: {
     icon: {
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' }
+      control: { type: 'select' },
     },
     logoHrefTarget: {
       description: "If not '_self' or '_blank' or '_parent', then set to '_self' by default",
-      options: ["_self", "_blank", "_parent"],
-      control: { type: 'radio' }
+      options: ['_self', '_blank', '_parent'],
+      control: { type: 'radio' },
     },
-    searchBarPosition: { 
+    searchBarPosition: {
       options: ['left', 'right'],
-      control: {type: 'radio'}
-    }
-  }
+      control: { type: 'radio' },
+    },
+  },
 };
 
-
-const DefaultTemplate = (args) =>
+const DefaultTemplate = args =>
   `<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.fixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
   <ifx-navbar-item icon="${args.icon}" slot="left-item" target="" href="" >
     Menu Item 1
@@ -95,7 +94,6 @@ const DefaultTemplate = (args) =>
     <ifx-navbar-item>Item</ifx-navbar-item>
     <ifx-navbar-item>Item</ifx-navbar-item>
   </ifx-navbar-profile>
-</ifx-navbar>`
-
+</ifx-navbar>`;
 
 export const Default = DefaultTemplate.bind({});
