@@ -1,7 +1,6 @@
-import { Meta, Description } from '@storybook/addon-docs';
+import { Meta, Description } from '@storybook/blocks';
 
 <Meta title="Setup & installation/Framework integration/React + Stencil" />
-
 
 # React + Stencil
 
@@ -13,20 +12,19 @@ React Wrappers: Similarly to Vue, a React wrapper provides a React interface to 
 
 **- with NPM**
 
-```npm install @infineon/infineon-design-system-react```
+`npm install @infineon/infineon-design-system-react`
 
 **- with Yarn**
 
-```yarn add @infineon/infineon-design-system-react```
+`yarn add @infineon/infineon-design-system-react`
 
 **2. Installation of SASS**
+
 ```bash
 npm install sass
 ```
 
-
 **3. Import the module inside your entry point file**
-
 
 ```js
 import { defineCustomElements } from '@infineon/infineon-design-system-react';
@@ -49,15 +47,15 @@ import { IfxProgressBar, IfxSearchBar, IfxButton } from '@infineon/infineon-desi
 
 It may be necessary to add the following to your .env file at project root:
 
-``GENERATE_SOURCEMAP=false``
+`GENERATE_SOURCEMAP=false`
 
-This can also be achieved by updating your start script in the ``package.json`` accordingly.
+This can also be achieved by updating your start script in the `package.json` accordingly.
 
 ### Events
 
 #### Two way data binding
 
-Two-way binding allows creating synchronization between 2 entities, for example, application data and view. 
+Two-way binding allows creating synchronization between 2 entities, for example, application data and view.
 In React, this is achieved by binding the value attribute of the input element to the value state variable using the useState hook, and binding the onChangeevent of the input element to the handleChange function.
 
 ```js

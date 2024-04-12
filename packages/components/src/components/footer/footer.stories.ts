@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Footer",
+  title: 'Components/Footer',
   tags: ['autodocs'],
 
   args: {
@@ -12,7 +12,7 @@ export default {
     privacyPolicyTarget: '_blank',
     glossaryUrl: 'https://yourwebsite.com/glossary',
     glossaryTarget: '_blank',
-    copyrightText: '© 1999 - 2024 Infineon Technologies AG'
+    copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
 
   argTypes: {
@@ -32,7 +32,7 @@ export default {
   },
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   return `
     <ifx-footer variant="${args.variant}" 
                terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
@@ -61,15 +61,11 @@ const DefaultTemplate = (args) => {
       </ifx-link>
     </div>
   </ifx-footer>`;
-}
-
-
+};
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () =>
-  `<ifx-footer variant="small"></ifx-footer>`;
-
+const SmallTemplate = () => `<ifx-footer variant="small"></ifx-footer>`;
 
 export const Small = SmallTemplate.bind({});
 
@@ -125,9 +121,4 @@ const LargeTemplate = () =>
   </div>
 </ifx-footer>`;
 
-
 export const Large = LargeTemplate.bind({});
-
-
-
-

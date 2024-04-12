@@ -111,11 +111,11 @@
     }
   }
 
-  &.secondary {
-    border: 1px solid tokens.$ifxColorBerry500;
+  &.success {
+    border: 1px solid tokens.$ifxColorGreen500;
 
     & .icon-wrapper {
-      background-color: tokens.$ifxColorBerry500;
+      background-color: tokens.$ifxColorGreen500;
       color: tokens.$ifxColorBaseWhite;
     }
   }

@@ -1,4 +1,4 @@
-import { Component, Prop, h } from "@stencil/core";
+import { Component, Prop, h, State } from "@stencil/core";
 import classNames from 'classnames';
 
 @Component({
@@ -8,15 +8,32 @@ import classNames from 'classnames';
 })
 
 export class Link {
-  @Prop({ mutable: true }) href: string
-  @Prop({ mutable: true }) target: string = '_self';
+  @Prop() href: string = undefined;
+  @Prop() target: string = '_self';
+  @Prop() variant: string = 'bold';
   @Prop() size: string;
-  @Prop({ mutable: true }) variant: string = 'bold';
+  @Prop() disabled: boolean = false;
+  @State() internalHref: string ='';
+  @State() internalTarget: string = '';
+  @State() internalVariant: string = '';
 
+  setInternalStates() {
+    if(this.href){
+      this.internalHref = this.href.trim();
+    }else{
+      this.internalHref = undefined;
+    }
+    this.internalTarget = this.target.trim();
+    this.internalVariant = this.variant.trim().toLowerCase();
+  }
+
+  componentWillRender(){
+    this.setInternalStates();
+  }
 
   render() {
     return (
-      <a aria-label='a navigation link button' href={this.href} target={this.target} class={this.linkClassNames()}>
+      <a aria-label='a navigation link button' href={this.internalHref} target={this.internalTarget} class={this.linkClassNames()}>
         <slot></slot>
       </a>
     )
@@ -34,18 +51,18 @@ export class Link {
       return medium;
     } else if (large) {
       return large;
-    } else if (extraLarge && this.variant === 'underlined') {
+    } else if (extraLarge && this.internalVariant === 'underlined') {
       return 'large';
-    } else if (extraLarge && this.variant !== 'underlined') {
+    } else if (extraLarge && this.internalVariant !== 'underlined') {
       return extraLarge;
     } else return "";
   }
 
   getVariantClass() {
-    const bold = this.variant === 'bold' ? 'bold' : null;
-    const title = this.variant === 'title' ? 'title' : null;
-    const underlined = this.variant === 'underlined' ? 'underlined' : null;
-    const menu = this.variant === 'menu' ? 'menu' : null;
+    const bold = this.internalVariant === 'bold' ? 'bold' : null;
+    const title = this.internalVariant === 'title' ? 'title' : null;
+    const underlined = this.internalVariant === 'underlined' ? 'underlined' : null;
+    const menu = this.internalVariant === 'menu' ? 'menu' : null;
 
     if (bold) {
       return bold
@@ -63,7 +80,8 @@ export class Link {
       'link',
       'primary',
       this.getVariantClass(),
-      this.getSizeClass()
+      this.getSizeClass(),
+      this.disabled ? 'disabled' : '',
     );
   }
 }

@@ -11,6 +11,7 @@ jobs:
   stencil-library-release:
     outputs:
       CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+      SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -35,21 +36,32 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
+          npm cache clean --force
           npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
-          cd packages/components
-          CANARY_VERSION=$(auto shipit --dry-run --quiet)
-          echo "Publishing: $CANARY_VERSION"
-          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-          echo "Set Canary version as Github Env and Github Output: $CANARY_VERSION"
-          auto shipit
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
+            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+          else 
+            cd packages/components
+            CANARY_VERSION=$(auto shipit --dry-run --quiet)
+            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
+            echo "Publishing: $CANARY_VERSION"
+            auto shipit
+          fi
+
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
-        run: sleep 10s
+        run: |
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
         shell: bash
 
       - name: Update Dependencies in Angular, Vue and React packages
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -66,6 +78,7 @@ jobs:
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
      
       - name: Build and deploy Angular, Vue and React packages
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
@@ -83,6 +96,7 @@ jobs:
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
@@ -118,6 +132,7 @@ jobs:
   
   deploy-preview-react:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
@@ -151,6 +166,7 @@ jobs:
    
   deploy-preview-angular:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
     runs-on: ubuntu-latest
@@ -185,6 +201,7 @@ jobs:
           
   deploy-preview-vanilla:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
@@ -258,3 +275,4 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          

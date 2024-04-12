@@ -13,15 +13,20 @@ const SIDEBAR_ITEM = '.sidebar__nav-item';
 export class Sidebar {
   @Element() el;
   @Prop() applicationName: string = ''
-  @Prop() termsOfUse: string = ""
-  @Prop() imprint: string = ""
   @Prop() initialCollapse: boolean = true
-  @Prop() privacyPolicy: string = ""
-  @Prop() target: string = "_self"
   @Prop() showFooter: boolean = true
+  @Prop() showHeader: boolean = true;
+  @Prop() termsOfUse: string = "#"
+  @Prop() imprint: string = "#"
+  @Prop() privacyPolicy: string = "#"
+  @Prop() target: string = "_blank"
+  @State() currentYear: number = new Date().getFullYear()
+  @Prop() copyrightText: string = '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
   @State() internalTermsofUse: string = ""
   @State() internalImprint: string = ""
   @State() internalPrivacyPolicy: string = ""
+  @State() internalShowFooter: boolean = true
+
   @State() activeItem: HTMLElement | null = null;
 
   expandActiveItems(){
@@ -52,9 +57,29 @@ export class Sidebar {
     }
   }
 
+  adjustTopBorder() {
+    const children = this.el.children;
+    if(!children.length) return;
+    if(children[0].tagName === 'IFX-SIDEBAR-TITLE'){
+      children[0].shadowRoot.querySelector('.sidebar__title').classList.add('no-top-border')
+    }
+
+    if(children[0].tagName === 'IFX-SIDEBAR-ITEM' && children[0].shadowRoot.querySelector('div > a').classList.contains('header__section')){
+      children[0].shadowRoot.querySelector('div > a').classList.add('no-top-border')
+    }
+
+    const allIfxTitles = this.el.querySelectorAll('ifx-sidebar-title');
+    allIfxTitles.forEach(element => {
+      const nextSibling = element.nextElementSibling;
+      if(nextSibling && nextSibling.tagName === 'IFX-SIDEBAR-ITEM' && nextSibling.shadowRoot.querySelector('div > a').classList.contains('header__section')){
+        nextSibling.shadowRoot.querySelector('div > a').classList.add('no-top-border')
+      }
+    });
+  }
   
   componentDidLoad() {
     // document.addEventListener('click', this.handleClickOutside);
+    this.adjustTopBorder();
     this.setInitialActiveItem();
     if(!this.initialCollapse){
       this.expandActiveItems();
@@ -290,21 +315,22 @@ export class Sidebar {
     }
   }
 
-
-
-
-
-
   componentWillLoad() {
-    this.internalTermsofUse = this.termsOfUse || 'Not available';
-    this.internalPrivacyPolicy = this.privacyPolicy || 'Not available';
-    this.internalImprint = this.imprint || 'Not available';
+    this.internalTermsofUse = this.termsOfUse.trim();
+    this.internalPrivacyPolicy = this.privacyPolicy.trim();
+    this.internalImprint = this.imprint.trim();
+    this.internalShowFooter = this.showFooter;
+    if(this.internalShowFooter && !this.internalImprint && !this.internalPrivacyPolicy && !this.internalTermsofUse && !this.copyrightText){
+      this.internalShowFooter = false;
+    }
   }
-
+  
   render() {
     return (
       <div aria-label="a navigation sidebar" aria-value={this.applicationName} class='sidebar__container'>
         <div class='sidebar__top-container'>
+        {
+          this.showHeader && 
           <div class="sidebar__nav-bar">
             <div class="sidebar__nav-bar-logo">
               <div class='sidebar__nav-bar-logo-img'>
@@ -322,27 +348,37 @@ export class Sidebar {
               <div class='sidebar__nav-bar-logo-text'>{this.applicationName}</div>
             </div>
           </div>
+        }
           <div class="sidebar__nav-container">
             <slot />
           </div>
         </div>
 
         {
-          this.showFooter &&
+          this.internalShowFooter &&
           <div class='sidebar__footer-container'>
             <div class="sidebar__footer-wrapper">
+            {
+              (this.internalTermsofUse || this.internalImprint || this.internalPrivacyPolicy) &&
               <div class='sidebar__footer-wrapper-top-links'>
-                <div class="sidebar__footer-wrapper-top-line">
-                  <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
-                  <a target={this.target} href={this.internalImprint}>Imprint</a>
-                </div>
-                <div class="sidebar__footer-wrapper-bottom-line">
-                  <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
-                </div>
+                  {
+                    this.internalTermsofUse !== ''  && <a target={this.target} href={this.internalTermsofUse}>Terms of use</a>
+                  }
+                  {
+                    this.internalImprint !== '' && <a target={this.target} href={this.internalImprint}>Imprint</a>
+                  }
+                  {
+                    this.internalPrivacyPolicy !== '' && <a target={this.target} href={this.internalPrivacyPolicy}>Privacy policy</a>
+                  }
               </div>
-              <div class='sidebar__footer-wrapper-bottom-links'>
-                <a href='https://www.infineon.com/'>© 1999 - 2023 Infineon Technologies AG</a>
-              </div>
+            }
+              
+              {
+                this.copyrightText &&
+                <div class='sidebar__footer-wrapper-bottom-links'>
+                    <span>{this.copyrightText}</span>
+                </div>
+              }
             </div>
           </div>
         }
