@@ -85,11 +85,15 @@ export class IfxModal {
         duration: 200,
       });
       anim.addEventListener('finish', () => {
-        this.attemptFocus(this.getFirstFocusableElement());
+        // Setting focus on last item and removing immediately
+        // so, on tab press first element is focused
+        setTimeout(() => {
+          this.getLastFocusableElement().focus();
+          this.getLastFocusableElement().blur();
+        }, 0);
+
         this.ifxModalOpen.emit();
       });
-      // this.attemptFocus(this.getFirstFocusableElement());
-      // this.ifxModalOpen.emit();
 
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
@@ -181,7 +185,6 @@ export class IfxModal {
             tabindex="0"
           ></div>
           <div
-            tabindex="0"
             class={`modal-content-container`}
             role="dialog"
             aria-modal="true"
