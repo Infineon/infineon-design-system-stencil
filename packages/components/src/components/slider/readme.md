@@ -20,7 +20,7 @@
 | `rightText`      | `right-text`       |             | `string`               | `undefined` |
 | `showPercentage` | `show-percentage`  |             | `boolean`              | `false`     |
 | `type`           | `type`             |             | `"double" \| "single"` | `'single'`  |
-| `value`          | `value`            |             | `number`               | `0`         |
+| `value`          | `value`            |             | `number`               | `undefined` |
 
 
 ## Events

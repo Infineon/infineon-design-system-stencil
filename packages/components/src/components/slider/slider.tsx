@@ -8,7 +8,7 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '
 export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
-  @Prop() value: number = 0;
+  @Prop() value: number;
   @Prop() minValueHandle: number;
   @Prop() maxValueHandle: number;
   @Prop() disabled: boolean = false;
@@ -19,6 +19,7 @@ export class IfxSlider {
   @Prop() rightText: string;
   @Prop() type: 'single' | 'double' = 'single';
   @State() internalValue: number = 0;
+  @State() percentage: number = 0;
   @State() internalMinValue: number = 0;
   @State() internalMaxValue: number = 100;
   @Event() ifxChange: EventEmitter;
@@ -80,10 +81,17 @@ export class IfxSlider {
     }
   }
 
+  calculatePercentageValue() {
+    const num = (this.internalValue - this.min) * 1.0;
+    const den = this.max - this.min;
+    this.percentage = +parseFloat(String((num/den)*100)).toFixed(2);
+  }
+
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.internalValue = parseInt(target.value);
     this.ifxChange.emit(this.internalValue);
+    this.calculatePercentageValue();
     this.updateValuePercent();
   }
 
@@ -102,15 +110,21 @@ export class IfxSlider {
     } else {
 
       if (this.inputRef) {
-        const percent = ((this.internalValue - this.min) / (this.max - this.min)) * 100;
-        this.inputRef.style.setProperty('--value-percent', `${percent}%`);
+        this.inputRef.style.setProperty('--value-percent', `${this.percentage}%`);
       }
 
     }
   }
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    if(this.value === undefined) {
+      this.internalValue = (this.max-this.min) / 2;
+    } else {
+      this.internalValue = Math.max(this.min, Math.min(this.max, this.value));
+    }
+
+    this.calculatePercentageValue();
+
     if(this.minValueHandle !== undefined) this.internalMinValue = this.minValueHandle;
     else this.internalMinValue = this.min;
     if(this.maxValueHandle !== undefined) this.internalMaxValue = this.maxValueHandle;
@@ -188,7 +202,7 @@ export class IfxSlider {
           <span
             class={`percentage-display${this.disabled ? ' disabled' : ''}`}
           >
-            {this.internalValue}%
+            {this.percentage}%
           </span>
         )}
       </div>
