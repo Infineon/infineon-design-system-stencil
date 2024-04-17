@@ -47,6 +47,7 @@ export const IfxNavbar = /*@__PURE__*/createReactComponent<JSX.IfxNavbar, HTMLIf
 export const IfxNavbarItem = /*@__PURE__*/createReactComponent<JSX.IfxNavbarItem, HTMLIfxNavbarItemElement>('ifx-navbar-item');
 export const IfxNavbarProfile = /*@__PURE__*/createReactComponent<JSX.IfxNavbarProfile, HTMLIfxNavbarProfileElement>('ifx-navbar-profile');
 export const IfxNumberIndicator = /*@__PURE__*/createReactComponent<JSX.IfxNumberIndicator, HTMLIfxNumberIndicatorElement>('ifx-number-indicator');
+export const IfxOverviewTable = /*@__PURE__*/createReactComponent<JSX.IfxOverviewTable, HTMLIfxOverviewTableElement>('ifx-overview-table');
 export const IfxPagination = /*@__PURE__*/createReactComponent<JSX.IfxPagination, HTMLIfxPaginationElement>('ifx-pagination');
 export const IfxProgressBar = /*@__PURE__*/createReactComponent<JSX.IfxProgressBar, HTMLIfxProgressBarElement>('ifx-progress-bar');
 export const IfxRadioButton = /*@__PURE__*/createReactComponent<JSX.IfxRadioButton, HTMLIfxRadioButtonElement>('ifx-radio-button');

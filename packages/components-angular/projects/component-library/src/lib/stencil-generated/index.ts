@@ -42,6 +42,7 @@ export const DIRECTIVES = [
   d.IfxNavbarItem,
   d.IfxNavbarProfile,
   d.IfxNumberIndicator,
+  d.IfxOverviewTable,
   d.IfxPagination,
   d.IfxProgressBar,
   d.IfxRadioButton,

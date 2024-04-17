@@ -1,0 +1,155 @@
+* { 
+  font-family: "Source Sans 3";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+header { 
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.header__info-wrapper { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.infoboard__wrapper { 
+  display: flex;
+  gap: 15px;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.title { 
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.view {
+  margin: auto;
+  width: 100vw;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--header-height) - 15px);
+  overflow: auto;
+}
+
+
+table { 
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+thead tr th {
+  border-top: 1px solid #dddddd;
+}
+
+td, th { 
+  padding: 10px;
+  background-color: white;
+  border: none;
+  box-shadow: 0 0 0 1px #dddddd;
+  box-sizing: border-box;
+}
+
+table th:nth-child(1), 
+table th:nth-child(2) { 
+  width: 150px;
+}
+
+table th:not(:nth-child(1)):not(:nth-child(2)) {
+  width: 300px;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.sticky-col {
+  position: sticky;
+  z-index: 1;
+}
+
+th.sticky-col {
+  z-index: 2;
+}
+
+.first-col {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 0;
+}
+
+.second-col {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 150px;
+}
+
+.wrapped-content {
+  width: 250px;
+  white-space: normal;
+}
+
+a { 
+  text-decoration: none;
+  color: black;
+}
+
+.basic__info { 
+  display: flex;
+  gap: 5px;
+}
+
+ul { 
+  padding: 0 5px;
+  margin: 0 15px;
+  list-style-type: none;
+}
+
+tr:nth-child(even) td {
+  background-color: #f1f1f1;
+}
+
+ul li {
+  font-size: 14px;
+  display: flex;
+  gap: 5px;
+}
+
+li.planned__component-wrapper { 
+  align-items: center;
+}
+
+.version__wrapper { 
+  display: flex;
+  flex-direction: column;
+}
+
+ifx-icon { 
+  color: rgb(10, 130, 118);
+}
+
+.planned__icon { 
+  width: 12px;
+  height: 12px;
+  vertical-align: sub;
+}
