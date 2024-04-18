@@ -1,5 +1,6 @@
 * { 
   font-family: "Source Sans 3";
+  box-sizing: border-box;
 }
 
 body {
@@ -37,7 +38,7 @@ header {
 
 .view {
   margin: auto;
-  width: 100vw;
+  // width: 100vw;
 }
 
 .wrapper {
@@ -46,7 +47,6 @@ header {
   height: calc(100vh - var(--header-height) - 15px);
   overflow: auto;
 }
-
 
 table { 
   width: 100%;
@@ -66,13 +66,12 @@ td, th {
   box-sizing: border-box;
 }
 
-table th:nth-child(1), 
-table th:nth-child(2) { 
+table th:nth-child(1) { 
   width: 150px;
 }
 
-table th:not(:nth-child(1)):not(:nth-child(2)) {
-  width: 300px;
+table th:not(:nth-child(1)) {
+  width: 240px; //300
 }
 
 th {
@@ -90,18 +89,10 @@ th.sticky-col {
   z-index: 2;
 }
 
-.first-col {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  left: 0;
-}
 
 .second-col {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
-  left: 150px;
+  left: 0;
+  border-left: 1px solid #ddd;
 }
 
 .wrapped-content {
@@ -130,13 +121,15 @@ tr:nth-child(even) td {
 }
 
 ul li {
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   gap: 5px;
+  line-height: 13px;
 }
 
 li.planned__component-wrapper { 
   align-items: center;
+  line-height: 16px;
 }
 
 .version__wrapper { 
@@ -146,6 +139,11 @@ li.planned__component-wrapper {
 
 ifx-icon { 
   color: rgb(10, 130, 118);
+}
+
+.check__icon { 
+  width: 10px;
+  height: 10px;
 }
 
 .planned__icon { 
