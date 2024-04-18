@@ -1,3 +1,97 @@
+# v21.0.6 (Fri Apr 12 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: dependency updates after dependabot merge [#1171](https://github.com/Infineon/infineon-design-system-stencil/pull/1171) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- lock file updated (lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### 🔩 Dependency Updates
+
+- Bump @storybook/addon-mdx-gfm from 7.6.17 to 8.0.6 in /packages/components [#1161](https://github.com/Infineon/infineon-design-system-stencil/pull/1161) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @storybook/manager-api from 7.6.17 to 8.0.6 in /packages/components [#1169](https://github.com/Infineon/infineon-design-system-stencil/pull/1169) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @storybook/cli from 7.6.17 to 8.0.6 in /packages/components [#1166](https://github.com/Infineon/infineon-design-system-stencil/pull/1166) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @angular/cli from 16.2.13 to 17.3.3 in /packages/components-angular [#1160](https://github.com/Infineon/infineon-design-system-stencil/pull/1160) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @storybook/addon-essentials from 7.6.17 to 8.0.6 in /packages/components [#1159](https://github.com/Infineon/infineon-design-system-stencil/pull/1159) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump typescript from 5.1.6 to 5.4.4 in /packages/components-angular [#1162](https://github.com/Infineon/infineon-design-system-stencil/pull/1162) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-vue from 20.57.3 to 21.0.5 in /examples/wrapper-components/vue-javascript [#1164](https://github.com/Infineon/infineon-design-system-stencil/pull/1164) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-angular from 20.57.3 to 21.0.5 in /packages/components-angular [#1163](https://github.com/Infineon/infineon-design-system-stencil/pull/1163) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+- Bump @infineon/infineon-design-system-react from 20.44.2 to 21.0.5 in /examples/wrapper-components/react-javascript [#1168](https://github.com/Infineon/infineon-design-system-stencil/pull/1168) ([@dependabot[bot]](https://github.com/dependabot[bot]))
+
+#### Authors: 3
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.5 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: version updated in vue-wrapper package.json [#1149](https://github.com/Infineon/infineon-design-system-stencil/pull/1149) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.4 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: missing line added to master depoyment file [#1145](https://github.com/Infineon/infineon-design-system-stencil/pull/1145) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.3 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: typo in master deployment workflow fixed [#1143](https://github.com/Infineon/infineon-design-system-stencil/pull/1143) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.2 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master deployment workflow fails [#1140](https://github.com/Infineon/infineon-design-system-stencil/pull/1140) ([@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.0.1 (Wed Apr 03 2024)
+
+#### 🐛 Bug Fix
+
+- Master branch unsynced issue [#1138](https://github.com/Infineon/infineon-design-system-stencil/pull/1138) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.0.0 (Wed Apr 03 2024)
 
 #### 💥 Breaking Change

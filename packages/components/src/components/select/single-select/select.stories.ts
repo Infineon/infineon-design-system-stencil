@@ -1,29 +1,30 @@
-import { action } from "@storybook/addon-actions";
-
+import { action } from '@storybook/addon-actions';
 
 //use string instead of json format here to avoid ugly formatting in the storybook code snippet
 // let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
-const options = [{
-  value: "a",
-  label: "option a",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "c",
-  label: "option c",
-  selected: false
-}];
+const options = [
+  {
+    value: 'a',
+    label: 'option a',
+    selected: false,
+  },
+  {
+    value: 'b',
+    label: 'option b',
+    selected: false,
+  },
+  {
+    value: 'c',
+    label: 'option c',
+    selected: false,
+  },
+];
 
 export default {
   title: 'Components/Select/Single Select',
   // tags: ['autodocs'],
   args: {
-    size: "m",
+    size: 'm',
     searchEnabled: true,
     searchPlaceholderValue: 'Search...',
     placeholder: true,
@@ -43,7 +44,7 @@ export default {
     size: {
       options: {
         'small (36px)': 's',
-        'medium (40px)': 'm'
+        'medium (40px)': 'm',
       },
       control: {
         type: 'radio',
@@ -83,14 +84,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
+          detail:
+            'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
         },
       },
     },
   },
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   const template = `<ifx-select 
   ifx-size='${args.size}'
   placeholder='${args.placeholder}'
@@ -102,24 +104,19 @@ const DefaultTemplate = (args) => {
   ifx-label='${args.label}'
   ifx-placeholder-value='${args.placeholderValue}'
   ifx-options='${JSON.stringify(args.options)}' >
- </ifx-select>`
+ </ifx-select>`;
   setTimeout(() => {
     document.querySelector('ifx-select')?.addEventListener('ifxSelect', action('ifxSelect'));
     document.querySelector('ifx-select')?.addEventListener('ifxInput', action('ifxInput'));
-
   }, 0);
 
   return template;
-}
-
-
+};
 
 export const Single = DefaultTemplate.bind({});
 Single.args = {
   // type: 'single',
   options: options,
-
-
 };
 
 // export const Text = DefaultTemplate.bind({});
@@ -140,22 +137,14 @@ Single.args = {
 //   choices: 'Choice 1, Choice 2, Choice 3',
 // };
 
-
 // export const SingleWithIcon = DefaultTemplate.bind({});
 // SingleWithIcon.args = {
 //   type: 'single',
 //   choices: "Choice 1, Choice 2 <ifx-icon icon='check16'></ifx-icon>, Choice 3 <ifx-icon icon='check16'></ifx-icon>",
 // };
 
-
 // export const MultiselectCombobox = DefaultTemplate.bind({});
 // MultiselectCombobox.args = {
 //   type: 'multiple',
 //   // removeItemButton: true,
 // };
-
-
-
-
-
-
