@@ -1,3 +1,15 @@
+# v21.0.8 (Thu Apr 18 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: optimized the padding of ifx-sidebar-item [#1115](https://github.com/Infineon/infineon-design-system-stencil/pull/1115) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.0.6 (Fri Apr 12 2024)
 
 #### 🐛 Bug Fix
