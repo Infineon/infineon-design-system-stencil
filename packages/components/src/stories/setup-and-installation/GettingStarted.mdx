@@ -1,8 +1,9 @@
-import { Meta, Description } from '@storybook/addon-docs';
+import { Meta, Description } from '@storybook/blocks';
 
 <Meta title="Setup & installation/Getting started" />
 
 # Infineon Design System Stencil Web Components
+
 [![GitHub Repo Issues](https://img.shields.io/github/issues/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/issues)
 [![GitHub Pull Requests](https://img.shields.io/github/issues-pr-raw/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/pulls)
 [![GitHub Repo Version](https://img.shields.io/npm/v/@infineon/infineon-design-system-stencil)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
@@ -10,35 +11,41 @@ import { Meta, Description } from '@storybook/addon-docs';
 [![GitHub Repo Contributors](https://img.shields.io/github/contributors/Infineon/infineon-design-system-stencil?style=plastic)](https://github.com/Infineon/infineon-design-system-stencil/graphs/contributors)
 [![GitHub Repo Discussions](https://img.shields.io/github/discussions/Infineon/infineon-design-system-stencil)](https://github.com/Infineon/infineon-design-system-stencil/)
 
-
 <details id="tableContent">
   <summary>Table of Contents</summary>
+
   <ol>
     <li>
       [Getting started](#getting-started)
+    </li>
+
+    <ul>
+      <li>
+        [Prerequisites](#prerequisites)
       </li>
+
+      <li>
+        [Installation of the component library](#installation)
+      </li>
+
       <ul>
         <li>
-        [Prerequisites](#prerequisites)
+          [Angular](#angular)
         </li>
+
         <li>
-        [Installation of the component library](#installation)
+          [React/Vue](#react/vue)
         </li>
-          <ul>
-            <li>
-            [Angular](#angular)
-            </li>
-            <li>
-            [React/Vue](#react/vue)
-            </li>
-            <li>
-            [Vanilla](#vanilla)
-             </li>
-        </ul>
-         <li>
-            [Using only the icons](#icons-only)
+
+        <li>
+          [Vanilla](#vanilla)
         </li>
       </ul>
+
+      <li>
+        [Using only the icons](#icons-only)
+      </li>
+    </ul>
   </ol>
 </details>
 
@@ -46,8 +53,8 @@ import { Meta, Description } from '@storybook/addon-docs';
 
 ### <h3 id="prerequisites">Prerequisites</h3>
 
-- [Node](https://nodejs.org/en/) v16 or newer.
-- [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or newer, or [Npm](https://www.npmjs.com/) v8 or newer.
+* [Node](https://nodejs.org/en/) v16 or newer.
+* [Yarn](https://classic.yarnpkg.com/en/) v1.22.10 or newer, or [Npm](https://www.npmjs.com/) v8 or newer.
 
 ### <h3 id="installation">Installation of the component library</h3>
 
@@ -55,15 +62,16 @@ import { Meta, Description } from '@storybook/addon-docs';
 
 **1.**
 
-- **with NPM**
+* **with NPM**
 
-```npm install --save @infineon/infineon-design-system-stencil```
+`npm install --save @infineon/infineon-design-system-stencil`
 
-- **with Yarn**
+* **with Yarn**
 
-```yarn add @infineon/infineon-design-system-stencil```
+`yarn add @infineon/infineon-design-system-stencil`
 
 **2. Installation of SASS**
+
 ```bash
 npm install sass
 ```
@@ -94,6 +102,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 ```
 
 ##### Usage
+
 ```js
 //app.component.html
 
@@ -102,11 +111,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-
 #### <h4 id="react/vue">React / Vue</h4>
 
 [How to use wrapper components](./?path=/docs/setup-installation-framework-integration-wrapper-components--development)
-
 
 #### <h4 id="vanilla">Vanilla</h4>
 
@@ -136,14 +143,12 @@ defineCustomElementIfxIcon(window);
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
-
 ## <h2 id="font">Custom font</h2>
 
-It is recommended to use the default font-family (Source Sans 3). 
+It is recommended to use the default font-family (Source Sans 3).
 However, if your application requires a custom font, it is possible to override the default one using CSS custom properties.
 
-In this case, ``--ifx-font-family`` is a CSS custom property. 
-If the user doesn't set ``--ifx-font-family`` in the global stylesheet, the font family will default to ``tokens.$ifxFontFamilyBody``.
-
+In this case, `--ifx-font-family` is a CSS custom property.
+If the user doesn't set `--ifx-font-family` in the global stylesheet, the font family will default to `tokens.$ifxFontFamilyBody`.
 
 <p align="right"><a href="#tableContent">back to top</a></p>

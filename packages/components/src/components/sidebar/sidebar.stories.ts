@@ -1,7 +1,7 @@
-import { action } from "@storybook/addon-actions";
+import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Components/Sidebar",
+  title: 'Components/Sidebar',
   // tags: ['autodocs'],
 
   args: {
@@ -13,7 +13,7 @@ export default {
     termsOfUse: 'https://yourwebsite.com/terms',
     imprint: 'https://yourwebsite.com/imprint',
     privacyPolicy: 'https://yourwebsite.com/privacy-policy',
-    copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`
+    copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`,
   },
 
   argTypes: {
@@ -30,21 +30,18 @@ export default {
       description: 'Custom event emitted when a menu is expanded or closed',
     },
     imprint: {
-      if: { arg: 'showFooter', eq: true}
+      if: { arg: 'showFooter', eq: true },
     },
     termsOfUse: {
-      if: { arg: 'showFooter', eq: true}
+      if: { arg: 'showFooter', eq: true },
     },
     privacyPolicy: {
-      if: { arg: 'showFooter', eq: true}
+      if: { arg: 'showFooter', eq: true },
     },
-
-
   },
 };
 
-
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
@@ -85,12 +82,9 @@ const DefaultTemplate = (args) => {
   return sidebarElement;
 };
 
-
 export const Default = DefaultTemplate.bind({});
 
-
-
-const SubmenuTemplate = (args) => {
+const SubmenuTemplate = args => {
   // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
@@ -126,18 +120,16 @@ const SubmenuTemplate = (args) => {
   const firstSection = sidebarElement.querySelectorAll('ifx-sidebar-item')[0];
   const firstMenuItem = firstSection.querySelectorAll('ifx-sidebar-item')[0];
 
-  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('active', 'true') //first submenu item
-  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('is-action-item', 'false')
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('active', 'true'); //first submenu item
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[0].setAttribute('is-action-item', 'false');
 
-  firstMenuItem.querySelectorAll('ifx-sidebar-item')[1].setAttribute('is-action-item', 'true') //2nd submenu item
-  firstMenuItem.querySelectorAll('ifx-sidebar-item')[2].setAttribute('is-action-item', 'true') //3rd sub menu item
-
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[1].setAttribute('is-action-item', 'true'); //2nd submenu item
+  firstMenuItem.querySelectorAll('ifx-sidebar-item')[2].setAttribute('is-action-item', 'true'); //3rd sub menu item
 
   return sidebarElement;
 };
 
 export const WithSubmenu = SubmenuTemplate.bind({});
-
 
 const NumberIndicatorTemplate = () =>
   `<ifx-sidebar application-name="Application name">
@@ -235,7 +227,4 @@ const NumberIndicatorTemplate = () =>
   </ifx-sidebar-item>
 </ifx-sidebar>`;
 
-
 export const WithNumberIndicator = NumberIndicatorTemplate.bind({});
-
-

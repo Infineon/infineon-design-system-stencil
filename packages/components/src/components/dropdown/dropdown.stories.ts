@@ -1,19 +1,19 @@
 import { action } from '@storybook/addon-actions';
-import { icons } from '@infineon/infineon-icons'
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Dropdown',
   args: {
-    label: "Dropdown",
-    size: "m",
+    label: 'Dropdown',
+    size: 'm',
     disabled: false,
     search: false,
     header: false,
     separator: false,
-    variant: "primary",
-    url: "",
-    target: "_self",
-    icon: "c-check-16",
+    variant: 'primary',
+    url: '',
+    target: '_self',
+    icon: 'c-check-16',
     dropdownMenuItemIcon: false,
     defaultOpen: false,
     noCloseOnOutsideClick: false,
@@ -38,14 +38,13 @@ export default {
         'right-end',
         'left',
         'left-start',
-        'left-end'
+        'left-end',
       ],
       control: { type: 'select' },
-
     },
     label: { description: 'The visible name or label for the dropdown button' },
     size: {
-      description: "Font Size options: s (14px) and m (16px) - default: m",
+      description: 'Font Size options: s (14px) and m (16px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
@@ -76,7 +75,8 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
+          detail:
+            'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
         },
       },
     },
@@ -86,7 +86,8 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
+          detail:
+            'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
         },
       },
     },
@@ -96,28 +97,29 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxDropdownMenuItem={handleChange}\nVue:@ifxDropdownMenuItem="handleChange"\nAngular:(ifxDropdownMenuItem)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenuItem", (event) => {//handle change});',
+          detail:
+            'React: onIfxDropdownMenuItem={handleChange}\nVue:@ifxDropdownMenuItem="handleChange"\nAngular:(ifxDropdownMenuItem)="handleChange()"\nVanillaJs:.addEventListener("ifxDropdownMenuItem", (event) => {//handle change});',
         },
       },
-    }
+    },
   },
-}
+};
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" disabled="${args.disabled}" no-close-on-menu-click="${args.noCloseOnOutsideClick}">
   <ifx-dropdown-trigger-button variant="${args.variant}">
     dropdown
   </ifx-dropdown-trigger-button>
   <ifx-dropdown-menu size="${args.size}">
-    ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ""}
-    ${args.search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ""}
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
-    ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ""}
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ""}" target="${args.target}" href="${args.url !== "" ? args.url : ""}">Menu Item</ifx-dropdown-item>
+    ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
+    ${args.search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
+    ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
+    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -133,7 +135,7 @@ const DefaultTemplate = (args) => {
 
 export const Default = DefaultTemplate.bind({});
 
-const LabelTriggerTemplate = (args) => {
+const LabelTriggerTemplate = args => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-dropdown
     placement="${args.placement}"

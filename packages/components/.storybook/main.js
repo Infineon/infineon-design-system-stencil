@@ -1,3 +1,4 @@
+import { dirname, join } from "path";
 // .storybook/main.ts
 
 import remarkGfm from 'remark-gfm';
@@ -5,23 +6,24 @@ import remarkGfm from 'remark-gfm';
 module.exports = {
   "stories": ["../src/**/*.stories.@(js|jsx|ts|tsx)", "../src/**/*.mdx"],
   "addons": [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
-    '@storybook/addon-docs/web-components',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptions: {
-            remarkPlugins: [remarkGfm],
-          },
-        },
-      },
-    },
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    // {
+    //   name: '@storybook/addon-docs',
+    //   options: {
+    //     mdxPluginOptions: {
+    //       mdxCompileOptions: {
+    //         remarkPlugins: [remarkGfm],
+    //       },
+    //     },
+    //   },
+    // },
+    getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("@storybook/addon-mdx-gfm"),
+    "@storybook/addon-webpack5-compiler-babel"
   ],
   "framework": {
-    name: "@storybook/html-webpack5",
+    name: getAbsolutePath("@storybook/html-webpack5"),
     options: {}
   },
   docs: {
@@ -31,3 +33,7 @@ module.exports = {
   staticDirs: ['../public-storybook'],
 
 };
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}
