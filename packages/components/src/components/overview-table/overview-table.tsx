@@ -9,47 +9,50 @@ import { Component, h, Element } from "@stencil/core";
 export class OverviewTable {
   @Element() el;
 
-  componentWillLoad() { 
-    const headerEl = this.el.querySelector("header");
+  componentDidLoad() { 
+    const headerEl = this.el.shadowRoot.querySelector('header');
     const headerHeight = headerEl.offsetHeight;
-    const wrapperEl = this.el.querySelector(".wrapper");
+    const wrapperEl = this.el.shadowRoot.querySelector(".wrapper");
     wrapperEl.style.setProperty('--header-height', `${headerHeight}px`);
+    this.setPlannedComponentsNumber()
+    this.setCompletedComponentsNumber()
+    this.setTotalComponentsNumber()
   }
 
   getPlannedComponents = () => { 
-    const plannedComponents = document.getElementsByClassName('planned__component')
+    const plannedComponents = this.el.shadowRoot.querySelectorAll('.planned__component')
     return plannedComponents.length;
   }
   
   setPlannedComponentsNumber = () => { 
     const plannedComponents = this.getPlannedComponents()
-    const numberIndicator = this.el.getElementById('number__indicator-planned')
+    const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-planned')
     numberIndicator.innerHTML = plannedComponents;
   }
   
   getCompletedComponents = () => { 
-    const completedComponents = document.getElementsByClassName('completed__component')
+    const completedComponents = this.el.shadowRoot.querySelectorAll('.completed__component')
     return completedComponents.length;
   }
   
   setCompletedComponentsNumber = () => { 
     const completedComponents = this.getCompletedComponents()
-    const numberIndicator = this.el.getElementById('number__indicator-completed')
+    const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-completed')
     numberIndicator.innerHTML = completedComponents;
   }
   
   setTotalComponentsNumber = () => { 
     const plannedComponents = this.getPlannedComponents()
     const completedComponents = this.getCompletedComponents()
-    const numberIndicator = this.el.getElementById('number__indicator-total')
+    const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-total')
     const totalNumberOfComponents = plannedComponents + completedComponents;
     numberIndicator.innerHTML = totalNumberOfComponents;
   }
 
   render() {
     return (
-      <div>
-        <header>
+      <div class='container'>
+        <header class='header'>
           <div class="header__info-wrapper">
             <div class="title">DDS Components Overview</div>
             <div class="infoboard__wrapper">
