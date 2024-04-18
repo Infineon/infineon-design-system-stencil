@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: "Components/Checkbox",
+  title: 'Components/Checkbox',
   tags: ['autodocs'],
   args: {
     error: false,
@@ -14,7 +14,7 @@ export default {
 
   argTypes: {
     size: {
-      description: "Size options: s (21px) and m (25px) - default: m",
+      description: 'Size options: s (21px) and m (25px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
@@ -24,23 +24,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+          detail:
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
-    }
+    },
   },
-
 };
 
-
-const DefaultTemplate = ({
-  error,
-  disabled,
-  value,
-  indeterminate,
-  size,
-  label
-}) => {
+const DefaultTemplate = ({ error, disabled, value, indeterminate, size, label }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
   checkbox.setAttribute('disabled', disabled);
@@ -52,11 +44,9 @@ const DefaultTemplate = ({
 
   checkbox.innerHTML = `
     ${label}
-  `
+  `;
 
   return checkbox;
 };
 
 export const Default = DefaultTemplate.bind({});
-
-

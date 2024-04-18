@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { icons } from '@infineon/infineon-icons'
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Slider',
@@ -28,14 +28,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+          detail:
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
-    }
+    },
   },
 };
 
-const Template = (args) => {
+const Template = args => {
   const sliderElement = document.createElement('ifx-slider');
   sliderElement.setAttribute('value', args.value);
   sliderElement.setAttribute('min', args.min);
@@ -101,4 +102,3 @@ Disabled.args = {
   ...Default.args,
   disabled: true,
 };
-
