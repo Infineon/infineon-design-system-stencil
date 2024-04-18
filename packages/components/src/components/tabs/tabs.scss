@@ -57,14 +57,22 @@
 
 .tab-item {
   // Reduced padding values
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
-
+  
+  &.icon__after {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  
   &:hover {
     color: tokens.$ifxColorOcean500;
   }
-
+  
   &:active,
   &.active {
     color: tokens.$ifxColorOcean500;
@@ -75,13 +83,13 @@
     outline: none;
     border-radius: 1px;
     box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
-
+    
     // Assuming .active-border is a sibling of .tab-item
     +.active-border {
       display: none; // Hide the active border when the tab is in focus
     }
   }
-
+  
   &.disabled {
     color: tokens.$ifxColorEngineering300;
     pointer-events: none;

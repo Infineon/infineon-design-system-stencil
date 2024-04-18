@@ -9,6 +9,8 @@ export class IfxTab {
   @Element() el: HTMLElement;
   @Prop() header: string;
   @Prop() disabled: boolean;
+  @Prop() icon: string = '';
+  @Prop() iconPosition: 'before' | 'after' = 'before';
 
   render() {
     return <slot />;
