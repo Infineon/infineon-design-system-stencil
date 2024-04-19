@@ -7,8 +7,7 @@ export default {
   args: {
     value: false,
     disabled: false,
-    label: "Switch"
-
+    label: 'Switch',
   },
   argTypes: {
     ifxChange: {
@@ -16,16 +15,16 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+          detail:
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
-      action: 'ifxChange'
+      action: 'ifxChange',
     },
-  }
+  },
 };
 
-
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   const element = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
 
   // Set the attributes
@@ -42,17 +41,12 @@ const DefaultTemplate = (args) => {
     action('ifxChange')(customEvent);
 
     args.value = newValue;
-
-
   });
-
 
   const slotContent = document.createTextNode(args.label);
   element.appendChild(slotContent);
 
   return element;
-
 };
 
 export const Default = DefaultTemplate.bind({});
-

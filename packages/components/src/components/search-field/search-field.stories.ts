@@ -1,4 +1,4 @@
-import { action } from "@storybook/addon-actions";
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Search Field',
@@ -7,12 +7,11 @@ export default {
   args: {
     showDeleteIcon: true,
     disabled: false,
-    size: "m",
-
+    size: 'm',
   },
   argTypes: {
     size: {
-      description: "Size options: s (36px) and m (40px) - default: m",
+      description: 'Size options: s (36px) and m (40px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
@@ -22,14 +21,13 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+          detail:
+            'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
     },
-
   },
 };
-
 
 const DefaultTemplate = ({ disabled, size, showDeleteIcon }) => {
   const element = document.createElement('ifx-search-field');
@@ -40,7 +38,5 @@ const DefaultTemplate = ({ disabled, size, showDeleteIcon }) => {
 
   return element;
 };
-
-
 
 export const Default = DefaultTemplate.bind({});

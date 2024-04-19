@@ -1,16 +1,13 @@
-import { Meta, Description } from '@storybook/addon-docs';
-
+import { Meta, Description } from '@storybook/blocks';
 
 <Meta title="Setup & installation/Framework integration/Vue + Stencil" />
-
 
 # Vue + Stencil
 
 Vue Wrappers: A Vue wrapper is a Vue-specific interface for a Stencil-generated web component. It offers a bridge between Stencil and Vue, enabling more native Vue syntax, such as Vue's event handling and property binding. This makes it easier to use Stencil components in a Vue app. Stencil generates these wrappers when configured to do so.
 
 We have added some additional configuration to support the use of Vue's v-model.
-Currently this works with the ``IfxProgressBar``, the ``IfxSearchBar`` and the ``IfxSearchInput``.
-
+Currently this works with the `IfxProgressBar`, the `IfxSearchBar` and the `IfxSearchInput`.
 
 ## Installation
 
@@ -18,13 +15,14 @@ Currently this works with the ``IfxProgressBar``, the ``IfxSearchBar`` and the `
 
 **- with NPM**
 
-```npm install @infineon/infineon-design-system-vue```
+`npm install @infineon/infineon-design-system-vue`
 
 **- with Yarn**
 
-```yarn add @infineon/infineon-design-system-vue```
+`yarn add @infineon/infineon-design-system-vue`
 
 **2. Installation of SASS**
+
 ```bash
 npm install sass
 ```
@@ -54,7 +52,7 @@ In Vue, this registers the components globally.
 #### Two way data binding
 
 Two-way binding means that any data-related changes affecting the model are immediately propagated to the matching view(s).
-And any changes made in the view(s) are immediately reflected in the underlying model. 
+And any changes made in the view(s) are immediately reflected in the underlying model.
 When app data changes, so does the UI, and conversely.
 
 ```js
@@ -74,22 +72,20 @@ let textValue = ref('');
 <ifx-text-field v-model="textValue"></ifx-text-field>
 ```
 
-
-
 ### Assets
 
 To include images or other assets in your web application, there are different possiblities to achieve this in Vue.
-Some of these possibilities are listed below. 
+Some of these possibilities are listed below.
 
-- Assets need to be in the public directory. 
-Images in this directory will be served at the root path, so you only need:
+* Assets need to be in the public directory.
+  Images in this directory will be served at the root path, so you only need:
 
 ```js
 // '/' + your image path
 <img src="/circle.svg">
 ```
 
-- Import files individually
+* Import files individually
 
 ```
 import img from '../assets/coffee_unsplash.jpg'

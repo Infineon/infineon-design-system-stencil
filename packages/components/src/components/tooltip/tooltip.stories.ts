@@ -1,16 +1,14 @@
-import { icons } from '@infineon/infineon-icons'
+import { icons } from '@infineon/infineon-icons';
 
 export default {
-  title: "Components/Tooltip",
+  title: 'Components/Tooltip',
   tags: ['autodocs'],
   args: {
-    header: "Tooltip headline",
+    header: 'Tooltip headline',
     text: "Hi, I'm a tooltip",
     position: 'auto',
     variant: 'compact',
-    icon: "c-info-24",
-
-
+    icon: 'c-info-24',
   },
   argTypes: {
     icon: {
@@ -19,17 +17,15 @@ export default {
     },
     position: {
       options: ['auto', 'bottom-start', 'top-start', 'left', 'bottom-end', 'top-end', 'right', 'bottom', 'top'],
-      control: { type: 'radio' }
+      control: { type: 'radio' },
     },
     variant: {
       options: ['compact', 'dismissible', 'extended'],
-      control: { type: 'radio' }
+      control: { type: 'radio' },
     },
-    header: { control: 'text', if: { arg: 'variant', neq: 'compact' } }
-  }
-
+    header: { control: 'text', if: { arg: 'variant', neq: 'compact' } },
+  },
 };
-
 
 const DefaultTemplate = ({ header, text, variant, position, icon }) => {
   const element = document.createElement('ifx-tooltip');
@@ -44,8 +40,6 @@ const DefaultTemplate = ({ header, text, variant, position, icon }) => {
   element.textContent = "I'm the tooltip reference element - Please hover me"; // Set content for the reference element
 
   return element;
-}
-
+};
 
 export const Default = DefaultTemplate.bind({});
-

@@ -1,5 +1,4 @@
-import { action } from "@storybook/addon-actions";
-
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Search Bar',
@@ -8,7 +7,6 @@ export default {
   args: {
     disabled: false,
     isOpen: true,
-
   },
   argTypes: {
     ifxInput: {
@@ -21,14 +19,13 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
+          detail:
+            'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
     },
   },
 };
-
-
 
 const DefaultTemplate = ({ isOpen, disabled }) => {
   const element = document.createElement('ifx-search-bar');
@@ -40,5 +37,4 @@ const DefaultTemplate = ({ isOpen, disabled }) => {
 };
 
 export const Default = DefaultTemplate.bind({});
-Default.args = {
-};
+Default.args = {};
