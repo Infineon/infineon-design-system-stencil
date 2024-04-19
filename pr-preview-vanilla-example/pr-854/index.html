@@ -5,36 +5,86 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@20.44.1--canary.952.29ea2a18eefabbef614e5db57fc3998b4734a85a.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@21.0.6/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
   <title>Vanilla</title>
-  <script type="module" crossorigin src="/assets/index-6c79cbeb.js"></script>
-  <link rel="stylesheet" href="/assets/index-b63bc005.css">
+  <script type="module" crossorigin src="/assets/index-3cfb730f.js"></script>
 </head>
 
 <body>
 
   <div>
-    <ifx-navbar application-name="Application name" fixed="false" logo-href="https://google.com"
-      logo-href-target="_self">
-      <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
-        href="https://google.com">Menu Item1</ifx-navbar-item>
-      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
-      <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
-
-      <ifx-navbar-menu slot="menu">
-        <ifx-navbar-menu-item href="https://google.com" target="_blank">Item 1</ifx-navbar-menu-item>
-        <ifx-navbar-menu-item href="https://google.com">Item 2</ifx-navbar-menu-item>
-        <ifx-navbar-menu-item href="https://google.com">Item 3</ifx-navbar-menu-item>
-      </ifx-navbar-menu>
-
-      <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
-
-      <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
-      <ifx-navbar-item hide-label="false" slot="right-item">Right Two</ifx-navbar-item>
-      <ifx-navbar-item hide-label="false" slot="right-profile-item">Tisho</ifx-navbar-item>
+    <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+      <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
+        Menu Item 1
+        <ifx-navbar-item icon="calendar16">
+          Layer 1 Nested Item 1
+          <ifx-navbar-item>
+            Layer 2 Nested Item 2
+            <ifx-navbar-item href="http://google.com" target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
+            <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
+            <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
+            <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
+          </ifx-navbar-item>
+          <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
+          <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
+          <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
+        </ifx-navbar-item>
+  
+        <ifx-navbar-item>
+          Layer 1 Nested Item 2
+          <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
+          <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
+          <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+        </ifx-navbar-item>
+  
+        <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+  
+        <ifx-navbar-item>
+          Layer 1 Nested Item 4
+          <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+        </ifx-navbar-item>
+  
+      </ifx-navbar-item>
+  
+      <ifx-navbar-item href="http://google.com" target="_blank" slot="left-item" icon="calendar16" show-label="true">
+        Menu Item 2
+      </ifx-navbar-item>
+  
+      <ifx-navbar-item slot="left-item">
+        More
+        <ifx-navbar-item>Item1</ifx-navbar-item>
+        <ifx-navbar-item>Item2</ifx-navbar-item>
+      </ifx-navbar-item>
+  
+      <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
+  
+      <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartf16">Right Item</ifx-navbar-item>
+      <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
+        Right Item
+        <ifx-navbar-item>
+          Nested one
+          <ifx-navbar-item>
+            Nested one
+            <ifx-navbar-item>
+              Nested one
+              <ifx-navbar-item>Final one</ifx-navbar-item>
+            </ifx-navbar-item>
+          </ifx-navbar-item>
+        </ifx-navbar-item>
+      </ifx-navbar-item>
+  
+      <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+        User
+        <ifx-navbar-item>
+          Item
+        </ifx-navbar-item>
+        <ifx-navbar-item>Item</ifx-navbar-item>
+        <ifx-navbar-item>Item</ifx-navbar-item>
+        <ifx-navbar-item>Item</ifx-navbar-item>
+      </ifx-navbar-profile>
     </ifx-navbar>
 
 
@@ -195,7 +245,7 @@
 
 
     <h2>Link</h2>
-    <ifx-link href="" target="_blank" size="m" variant="bold">
+    <ifx-link href="" target="_blank" size="m" variant="underlined">
       Link
     </ifx-link>
     <br />
@@ -251,7 +301,9 @@
 
 
     <h2>Sidebar</h2>
-    <ifx-sidebar application-name="Application Name" initial-collapse = false>
+
+    <ifx-sidebar application-name="Application Name" initial-collapse = false >
+      <ifx-sidebar-title>Item Header</ifx-sidebar-title>
       <ifx-sidebar-item>
         Header Section
         <ifx-sidebar-item icon="image-16">
@@ -263,25 +315,7 @@
           </ifx-sidebar-item>
         </ifx-sidebar-item>
       </ifx-sidebar-item>
-      <ifx-sidebar-item>
-        Header Section
-        <ifx-sidebar-item icon="image-16">
-          Menu Item
-          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
-            me</ifx-sidebar-item>
-          <ifx-sidebar-item icon="image-16" active="true">
-            Menu Item 2
-          </ifx-sidebar-item>
-        </ifx-sidebar-item>
-        <ifx-sidebar-item icon="image-16">
-          Menu Item
-          <ifx-sidebar-item id="sidebarItemClickable" target="_blank" icon="image-16">Click
-            me</ifx-sidebar-item>
-          <ifx-sidebar-item icon="image-16" active="true">
-            Menu Item 2
-          </ifx-sidebar-item>
-        </ifx-sidebar-item>
-      </ifx-sidebar-item>
+      <ifx-sidebar-title>Item Header</ifx-sidebar-title>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item One</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
