@@ -21,15 +21,19 @@ export default {
       table: {
         type: {
           summary: 'Example (in VanillaJs)',
-          detail: 'const modal = document.getElementById(\'modal\'); \nconst openButton = document.getElementById(\'open\'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}',
+          detail:
+            "const modal = document.getElementById('modal'); \nconst openButton = document.getElementById('open'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}",
         },
       },
       description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
-
     },
     closeOnOverlayClick: {
       control: 'boolean',
       description: 'Close the modal when clicking outside the window',
+    },
+    showCloseButton: {
+      control: 'boolean',
+      description: "Show or hide close button 'x'",
     },
     alertIcon: {
       options: Object.keys(icons),
@@ -46,7 +50,8 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxModalOpen={handleChange}\nVue:@ifxModalOpen="handleChange"\nAngular:(ifxModalOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxModalOpen", (event) => {//handle change});',
+          detail:
+            'React: onIfxModalOpen={handleChange}\nVue:@ifxModalOpen="handleChange"\nAngular:(ifxModalOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxModalOpen", (event) => {//handle change});',
         },
       },
     },
@@ -56,19 +61,15 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxModalClose={handleChange}\nVue:@ifxModalClose="handleChange"\nAngular:(ifxModalClose)="handleChange()"\nVanillaJs:.addEventListener("ifxModalClose", (event) => {//handle change});',
+          detail:
+            'React: onIfxModalClose={handleChange}\nVue:@ifxModalClose="handleChange"\nAngular:(ifxModalClose)="handleChange()"\nVanillaJs:.addEventListener("ifxModalClose", (event) => {//handle change});',
         },
       },
     },
   },
 };
 
-const Template = ({
-  caption,
-  closeOnOverlayClick,
-  variant,
-  alertIcon
-}) => {
+const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, alertIcon }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
   modal.setAttribute('variant', variant);
@@ -77,6 +78,7 @@ const Template = ({
     modal.setAttribute('alert-icon', alertIcon);
   }
   modal.setAttribute('close-on-overlay-click', closeOnOverlayClick);
+  modal.setAttribute('show-close-button', showCloseButton);
 
   modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
   modal.addEventListener('ifxModalClose', action('ifxModalClose'));
@@ -87,7 +89,6 @@ const Template = ({
     <span>Modal content</span>
   `;
   modal.appendChild(content);
-
   const buttons = document.createElement('div');
   buttons.setAttribute('slot', 'buttons');
 
@@ -95,13 +96,13 @@ const Template = ({
   cancelButton.setAttribute('variant', 'secondary');
   cancelButton.textContent = 'Button 1';
   cancelButton.addEventListener('click', () => {
-    console.log("Button 1 clicked");
+    console.log('Button 1 clicked');
   });
 
   const primaryButton = document.createElement('ifx-button');
   primaryButton.textContent = 'Button 2';
   primaryButton.addEventListener('click', () => {
-    console.log("Button 2 clicked");
+    console.log('Button 2 clicked');
   });
 
   buttons.appendChild(cancelButton);
@@ -109,12 +110,12 @@ const Template = ({
   modal.appendChild(buttons);
 
   const openButton = document.createElement('ifx-button');
-  openButton.id = "open"
+  openButton.id = 'open';
   openButton.textContent = 'Open Modal';
   openButton.addEventListener('click', () => {
     modal.opened = true;
   });
-  openButton.addEventListener('keydown', (event) => {
+  openButton.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
       modal.opened = true;
     }
@@ -130,6 +131,7 @@ const Template = ({
 export const Default = Template.bind({});
 Default.args = {
   caption: 'Modal Title',
+  showCloseButton: true,
   closeOnOverlayClick: false,
   variant: 'default',
 };

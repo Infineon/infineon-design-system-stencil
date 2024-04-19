@@ -1,11 +1,11 @@
-import { icons } from '@infineon/infineon-icons'
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Tag',
   tags: ['autodocs'],
 
   args: {
-    label: "Tag label",
+    label: 'Tag label',
     icon: 'chevron-up-16',
   },
   argTypes: {
@@ -14,12 +14,8 @@ export default {
       control: { type: 'select' },
     },
   },
+};
 
-}
-
-const DefaultTemplate = (args) =>
-  `<ifx-tag icon="${args.icon}">${args.label}</ifx-tag>`;
+const DefaultTemplate = args => `<ifx-tag icon="${args.icon}">${args.label}</ifx-tag>`;
 
 export const Default = DefaultTemplate.bind({});
-
-

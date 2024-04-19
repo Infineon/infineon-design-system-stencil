@@ -22,6 +22,19 @@
 | `ifxSearchBarIsOpen` |             | `CustomEvent<any>` |
 
 
+## Methods
+
+### `onNavbarMobile() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
