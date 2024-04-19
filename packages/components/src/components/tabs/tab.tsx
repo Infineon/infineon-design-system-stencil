@@ -10,7 +10,7 @@ export class IfxTab {
   @Prop() header: string;
   @Prop() disabled: boolean;
   @Prop() icon: string = '';
-  @Prop() iconPosition: 'before' | 'after' = 'before';
+  @Prop() iconPosition: 'left' | 'right' = 'left';
 
   render() {
     return <slot />;

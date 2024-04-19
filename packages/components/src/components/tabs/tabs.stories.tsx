@@ -33,7 +33,7 @@ export default {
     },
     iconPosition: {
       name: 'Icon position',
-      options: ['before', 'after'],
+      options: ['left', 'right'],
       control: {type: 'radio'},
       if: {arg: 'icon', eq: true}
     },
@@ -87,7 +87,7 @@ Default.args = {
   orientation: 'horizontal',
   activeTabIndex: 0,
   icon: false,
-  iconPosition: 'before'
+  iconPosition: 'left'
 };
 
 export const Disabled = Template.bind({});
