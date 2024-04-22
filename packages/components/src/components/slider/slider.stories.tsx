@@ -10,6 +10,7 @@ export default {
     value: { control: 'number' },
     min: { control: 'number' },
     max: { control: 'number' },
+    step: { control: 'number' },
     showPercentage: { control: 'boolean' },
     disabled: { control: 'boolean' },
     leftIcon: {
@@ -41,6 +42,7 @@ const Template = args => {
   sliderElement.setAttribute('value', args.value);
   sliderElement.setAttribute('min', args.min);
   sliderElement.setAttribute('max', args.max);
+  sliderElement.setAttribute('step', args.step)
   if (args.showPercentage) {
     sliderElement.setAttribute('show-percentage', 'true');
   }
@@ -70,6 +72,7 @@ Default.args = {
   value: 50,
   min: 0,
   max: 100,
+  step: 1,
   showPercentage: false,
   disabled: false,
 };

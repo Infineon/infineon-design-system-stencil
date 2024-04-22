@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+  import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-slider',
@@ -8,6 +8,7 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/
 export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
+  @Prop() step: number = 1;
   @Prop() value: number = 0;
   @Prop() disabled: boolean = false;
   @Prop() showPercentage: boolean = false;
@@ -72,6 +73,7 @@ export class IfxSlider {
           aria-label='a slider'
           aria-value={this.value}
           aria-disabled={this.disabled}
+          step={this.step}
         />
         {this.rightIcon && (
           <ifx-icon icon={this.rightIcon} class={`right-icon${this.disabled ? ' disabled' : ''}`} />
