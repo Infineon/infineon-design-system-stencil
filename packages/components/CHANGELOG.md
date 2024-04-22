@@ -1,3 +1,31 @@
+# v21.2.0 (Mon Apr 22 2024)
+
+#### 🚀 Enhancement
+
+- Slider: Implement range slider (two thumb) [#1157](https://github.com/Infineon/infineon-design-system-stencil/pull/1157) ([@akashyeole](https://github.com/akashyeole) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.1.0 (Mon Apr 22 2024)
+
+#### 🚀 Enhancement
+
+- 752 component stepper [#854](https://github.com/Infineon/infineon-design-system-stencil/pull/854) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com Akash.Yeole@infineon.com)
+
+#### Authors: 4
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+- Yeole Akash (IT SBI) (Akash.Yeole@infineon.com)
+
+---
+
 # v21.0.8 (Thu Apr 18 2024)
 
 #### 🐛 Bug Fix
