@@ -28,6 +28,17 @@ export class Tooltip {
       this.variant = 'compact'
     }
   }
+  
+  componentDidLoad() {
+    const slotElement = this.el.shadowRoot.querySelector('.tooltip__container').firstChild;
+    
+    if(this.variant.toLowerCase() === 'compact' || this.variant.toLowerCase() === 'extended') {
+      slotElement.addEventListener('mouseenter', this.onMouseEnter)
+      slotElement.addEventListener('mouseleave', this.onMouseLeave)
+    }else{
+      slotElement.addEventListener('click', this.onClick);
+    }
+  }
 
   initializePopper() {
     if (this.popperInstance) return;
@@ -172,15 +183,8 @@ export class Tooltip {
       'visible': this.tooltipVisible,
     };
 
-    const eventHandlers = this.variant.toLowerCase() === 'compact' || this.variant.toLowerCase() === 'extended' ? {
-      onMouseEnter: this.onMouseEnter,
-      onMouseLeave: this.onMouseLeave,
-    } : {
-      onClick: this.onClick,
-    };
-
     return (
-      <div aria-label="a tooltip showing important information" aria-value={this.header} class="tooltip__container" {...eventHandlers}>
+      <div aria-label="a tooltip showing important information" aria-value={this.header} class="tooltip__container" >
         <slot></slot>
 
         {this.variant.toLowerCase() === 'dismissible' && <div class={tooltipDismissible}>
