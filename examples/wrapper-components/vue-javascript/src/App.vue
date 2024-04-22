@@ -26,6 +26,7 @@
   <Slider />
   <Spinner />
   <Status />
+  <Stepper />
   <Switch />
   <Table />
   <Tabs />
@@ -64,11 +65,12 @@ import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
 import Table from './components/BasicTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
-import SearchBar from './components/SearchBar.vue';
+import SearchBar from './components/SearchBar.vue'
 import Badge from './components/Badge.vue'
-import Icon from './components/Icon.vue';
+import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
+import Stepper from './components/Stepper.vue'
 
 
 </script>

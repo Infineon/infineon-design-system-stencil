@@ -1,3 +1,30 @@
+# v21.1.0 (Mon Apr 22 2024)
+
+#### 🚀 Enhancement
+
+- 752 component stepper [#854](https://github.com/Infineon/infineon-design-system-stencil/pull/854) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com Akash.Yeole@infineon.com)
+
+#### Authors: 4
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+- Yeole Akash (IT SBI) (Akash.Yeole@infineon.com)
+
+---
+
+# v21.0.8 (Thu Apr 18 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: optimized the padding of ifx-sidebar-item [#1115](https://github.com/Infineon/infineon-design-system-stencil/pull/1115) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.0.6 (Fri Apr 12 2024)
 
 #### 🐛 Bug Fix

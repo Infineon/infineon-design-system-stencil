@@ -1,0 +1,49 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.stepper{
+    display: flex;
+    align-items: center;
+    
+    &.compact{
+        min-width: (tokens.$ifxSize3800)-(tokens.$ifxSize50);
+        max-width: (tokens.$ifxSize3800)-(tokens.$ifxSize50);
+        justify-content: space-between;
+        align-items: center;
+
+        .stepper-wrapper{
+            align-items: flex-end;
+            flex-direction: column;
+            max-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
+            min-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
+        }
+    }
+}
+
+.stepper-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.stepper-progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: tokens.$ifxBodyBodySemibold04;
+    width: tokens.$ifxSize700;
+    height: tokens.$ifxSize700;
+    border-radius: tokens.$ifxBorderRadiusRound;
+    background: conic-gradient(tokens.$ifxColorOcean500 var(--pb, 0%), tokens.$ifxColorEngineering400 0);
+    
+    .progress-detail{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: (tokens.$ifxSize700)-(tokens.$ifxSize100);
+        height: (tokens.$ifxSize700)-(tokens.$ifxSize100);
+        border-radius: tokens.$ifxBorderRadiusRound;
+        background: white;
+    }
+}
+

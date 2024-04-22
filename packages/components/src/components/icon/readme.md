@@ -42,6 +42,7 @@
  - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
+ - [ifx-step](../stepper/step)
  - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
@@ -67,6 +68,7 @@ graph TD;
   ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
+  ifx-step --> ifx-icon
   ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
