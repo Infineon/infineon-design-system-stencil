@@ -7,10 +7,13 @@ export default {
   tags: ['autodocs'],
 
   argTypes: {
-    value: { control: 'number' },
     min: { control: 'number' },
     max: { control: 'number' },
-    showPercentage: { control: 'boolean' },
+    type: { control: 'radio', options: ['single', 'double']},
+    value: { control: 'number', if: { arg: 'type', eq: 'single'} },
+    minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},
+    maxValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},
+    showPercentage: { control: 'boolean', if: { arg: 'type', eq: 'single'} },
     disabled: { control: 'boolean' },
     leftIcon: {
       options: Object.values(icons).map(i => i['name']),
@@ -41,6 +44,9 @@ const Template = args => {
   sliderElement.setAttribute('value', args.value);
   sliderElement.setAttribute('min', args.min);
   sliderElement.setAttribute('max', args.max);
+  sliderElement.setAttribute('min-value-handle', args.minValueHandle);
+  sliderElement.setAttribute('max-value-handle', args.maxValueHandle);
+  sliderElement.setAttribute('type', args.type);
   if (args.showPercentage) {
     sliderElement.setAttribute('show-percentage', 'true');
   }
@@ -67,18 +73,19 @@ const Template = args => {
 
 export const Default = Template.bind({});
 Default.args = {
-  value: 50,
   min: 0,
   max: 100,
+  value: 50,
+  minValueHandle: 20,
+  maxValueHandle: 80,
   showPercentage: false,
   disabled: false,
+  type: 'single'
 };
 
 export const WithPercentageDisplay = Template.bind({});
 WithPercentageDisplay.args = {
-  value: 50,
-  min: 0,
-  max: 100,
+  ...Default.args,
   showPercentage: true,
   disabled: false,
 };
