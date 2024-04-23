@@ -1,3 +1,17 @@
+# v21.3.0 (Tue Apr 23 2024)
+
+#### 🚀 Enhancement
+
+- Chip: Update to the latest design and fix defected arrow functionality [#1151](https://github.com/Infineon/infineon-design-system-stencil/pull/1151) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) lechneve@ISCN5CG1201S7M.infineon.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v21.2.0 (Mon Apr 22 2024)
 
 #### 🚀 Enhancement
