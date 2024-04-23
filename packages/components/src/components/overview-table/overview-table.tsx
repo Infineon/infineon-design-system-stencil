@@ -108,7 +108,7 @@ export class OverviewTable {
               <tbody>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-accordion--development" size="s" variant="bold">Accordion</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-accordion--development" size="s" variant="bold">Accordion</ifx-link>
                   </td>
                   <td>
                     <ul>
@@ -158,7 +158,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-alert--development" size="s" variant="bold">Alert</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-alert--development" size="s" variant="bold">Alert</ifx-link>
                   </td>
                   <td>
                     <ul>
@@ -202,7 +202,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-badge--development" size="s" variant="bold">Badge</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-badge--development" size="s" variant="bold">Badge</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -234,7 +234,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-breadcrumb--development" size="s" variant="bold">Breadcrumb</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-breadcrumb--development" size="s" variant="bold">Breadcrumb</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -278,7 +278,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-button--development" size="s" variant="bold">Button</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-button--development" size="s" variant="bold">Button</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -337,7 +337,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-card--development" size="s" variant="bold">Card</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-card--development" size="s" variant="bold">Card</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -393,7 +393,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox--development" size="s" variant="bold">Checkbox</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox--development" size="s" variant="bold">Checkbox</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -431,7 +431,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Chip</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Chip</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -469,7 +469,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-dropdown--development" size="s" variant="bold">Dropdown</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-dropdown--development" size="s" variant="bold">Dropdown</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -537,7 +537,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-footer--development" size="s" variant="bold">Footer</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-footer--development" size="s" variant="bold">Footer</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -590,7 +590,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon-button--development" size="s" variant="bold">Icon Button</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon-button--development" size="s" variant="bold">Icon Button</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -640,7 +640,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon--development" size="s" variant="bold">Icon</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-icon--development" size="s" variant="bold">Icon</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -666,7 +666,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-link--development" size="s" variant="bold">Link</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-link--development" size="s" variant="bold">Link</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -725,7 +725,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-modal--development" size="s" variant="bold">Modal</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-modal--development" size="s" variant="bold">Modal</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -778,7 +778,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navbar--development" size="s" variant="bold">Navbar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navbar--development" size="s" variant="bold">Navbar</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -834,7 +834,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-number-indicator--development" size="s" variant="bold">Number Indicator</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-number-indicator--development" size="s" variant="bold">Number Indicator</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -872,7 +872,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-pagination--development" size="s" variant="bold">Pagination</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-pagination--development" size="s" variant="bold">Pagination</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -916,7 +916,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-progress-bar--development" size="s" variant="bold">Progress Bar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-progress-bar--development" size="s" variant="bold">Progress Bar</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -966,7 +966,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-radio-button--development" size="s" variant="bold">Radio Button</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-radio-button--development" size="s" variant="bold">Radio Button</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -998,7 +998,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-bar--development" size="s" variant="bold">Search Bar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-bar--development" size="s" variant="bold">Search Bar</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1036,7 +1036,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-field--development" size="s" variant="bold">Search Field</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-search-field--development" size="s" variant="bold">Search Field</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1074,7 +1074,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-single-select--development" size="s" variant="bold">Single Select</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-single-select--development" size="s" variant="bold">Single Select</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1112,7 +1112,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-multi-select--development" size="s" variant="bold">Multi Select</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-select-multi-select--development" size="s" variant="bold">Multi Select</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1165,7 +1165,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-sidebar--development" size="s" variant="bold">Sidebar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-sidebar--development" size="s" variant="bold">Sidebar</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1242,7 +1242,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-slider--development" size="s" variant="bold">Slider</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-slider--development" size="s" variant="bold">Slider</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1292,7 +1292,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-spinner--development" size="s" variant="bold">Spinner</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-spinner--development" size="s" variant="bold">Spinner</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1330,7 +1330,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-status--development" size="s" variant="bold">Status</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-status--development" size="s" variant="bold">Status</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1368,7 +1368,37 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-switch--development" size="s" variant="bold">Switch</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-stepper--development" size="s" variant="bold">Stepper</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable and intuitive control that allows users to navigate through sequential steps</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Default and Compact variants</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>React, Vue and Angular wrapper integration</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td >
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-switch--development" size="s" variant="bold">Switch</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1406,7 +1436,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-table-basic--development" size="s" variant="bold">Basic Table</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-table-basic--development" size="s" variant="bold">Basic Table</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1444,7 +1474,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tabs--development" size="s" variant="bold">Tabs</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tabs--development" size="s" variant="bold">Tabs</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1488,7 +1518,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tag--development" size="s" variant="bold">Tag</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tag--development" size="s" variant="bold">Tag</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1520,7 +1550,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-text-field--development" size="s" variant="bold">Text Field</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-text-field--development" size="s" variant="bold">Text Field</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1573,7 +1603,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tooltip--development" size="s" variant="bold">Tooltip</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tooltip--development" size="s" variant="bold">Tooltip</ifx-link>
                   </td>
                   <td >
                     <ul>
