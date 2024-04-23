@@ -10,12 +10,15 @@ export class Chip {
   @Element() el;
   @Prop() placeholder: string;
   @State() selectedValue: string = "";
+  @State() active: boolean = false;
   @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
-    if (!path.includes(this.el)) {
+    const chipWrapper = this.el.shadowRoot.querySelector('.wrapper');
+    const dropdownMenu = this.getDropdownMenu();
+    if (!path.includes(dropdownMenu) && !path.includes(chipWrapper)) {
       this.closedMenu();
     }
   }
@@ -34,12 +37,17 @@ export class Chip {
 
   closedMenu() {
     let dropdownMenuComponent = this.getDropdownMenu()
+    if(dropdownMenuComponent.isOpen) {
+      this.toggleCloseIcon();
+    }
     dropdownMenuComponent.isOpen = false;
+    this.active = false;
   }
 
   toggleMenu() { 
     let dropdownMenuComponent = this.getDropdownMenu()
     dropdownMenuComponent.isOpen = !dropdownMenuComponent.isOpen;
+    this.active = dropdownMenuComponent.isOpen;
     this.toggleCloseIcon()
   }
 
@@ -51,7 +59,7 @@ export class Chip {
   render() {
     return (
       <div aria-value={this.selectedValue} aria-label='chip with a dropdown menu' class="dropdown container">
-        <div class="wrapper" onClick={() => this.toggleMenu()}>
+        <div class={`wrapper ${this.active ? 'active' : ''} ${this.selectedValue !== '' ? 'selected' : ''}`} onClick={() => this.toggleMenu()} tabIndex={0}>
           <div class="wrapper-label">
             {this.selectedValue ? this.selectedValue : this.placeholder}
           </div>
