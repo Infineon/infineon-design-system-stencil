@@ -1,3 +1,27 @@
+# v21.3.2 (Wed Apr 24 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: implement overview table page [#1179](https://github.com/Infineon/infineon-design-system-stencil/pull/1179) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.3.1 (Wed Apr 24 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: code snippet bug fix [#1192](https://github.com/Infineon/infineon-design-system-stencil/pull/1192) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.3.0 (Tue Apr 23 2024)
 
 #### 🚀 Enhancement
