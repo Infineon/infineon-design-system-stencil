@@ -51,6 +51,7 @@ pids
 
 # Dependency directories
 node_modules/
+packages/components/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -109,6 +110,10 @@ typings/
 .netlify
 .angular
 
+
+packages/components/src/components.d.ts
+packages/components-vue/lib/components.ts
+packages/components-vue/lib/components.d.ts
 
 packages/components/stencil-components/
 packages/components/src/components.d.ts

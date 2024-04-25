@@ -16,6 +16,7 @@
 | `okButtonLabel`       | `ok-button-label`        |             | `string`                                       | `'OK'`          |
 | `opened`              | `opened`                 |             | `boolean`                                      | `false`         |
 | `showCloseButton`     | `show-close-button`      |             | `boolean`                                      | `true`          |
+| `size`                | `size`                   |             | `"l" \| "m" \| "s"`                            | `'s'`           |
 | `variant`             | `variant`                |             | `"alert-brand" \| "alert-danger" \| "default"` | `'default'`     |
 
 

@@ -23,6 +23,8 @@ export class IfxModal {
   @Event() ifxModalClose: EventEmitter;
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
+  
+  @Prop() size: 's' | 'm' | 'l' = 's';
 
   @Prop() alertIcon: string = '';
   @Prop() okButtonLabel: string = 'OK';
@@ -85,11 +87,15 @@ export class IfxModal {
         duration: 200,
       });
       anim.addEventListener('finish', () => {
-        this.attemptFocus(this.getFirstFocusableElement());
+        // Setting focus on last item and removing immediately
+        // so, on tab press first element is focused
+        setTimeout(() => {
+          this.getLastFocusableElement().focus();
+          this.getLastFocusableElement().blur();
+        }, 0);
+
         this.ifxModalOpen.emit();
       });
-      // this.attemptFocus(this.getFirstFocusableElement());
-      // this.ifxModalOpen.emit();
 
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
@@ -181,7 +187,7 @@ export class IfxModal {
             tabindex="0"
           ></div>
           <div
-            class={`modal-content-container`}
+            class={`modal-content-container ${this.size}`}
             role="dialog"
             aria-modal="true"
             aria-label={this.caption}>

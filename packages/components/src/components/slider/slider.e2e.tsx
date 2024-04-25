@@ -27,7 +27,7 @@ describe('ifx-slider', () => {
         await element.press('ArrowRight');
 
         const value = await element.getProperty('value');
-        expect(value).toEqual('1');
+        expect(value).toEqual('51');
     });
 
     it('disables when the disabled property is set', async () => {

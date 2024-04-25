@@ -1,0 +1,84 @@
+import IconColorAlignment from '../../../public-storybook/images/icon/icon-color-alignment.png'; 
+import IconAlignment from '../../../public-storybook/images/icon/icon-alignment.png'; 
+import IconSizes from '../../../public-storybook/images/icon/icon-sizes.png'; 
+import IconStructure from '../../../public-storybook/images/icon/icon-structure.png'; 
+import IconSizeAlignment from '../../../public-storybook/images/icon/icon-size-alignment.png'; 
+import IconTextColorAlignment from '../../../public-storybook/images/icon/icon-text-color-alignment.png'; 
+import IconVariants from '../../../public-storybook/images/icon/icon-variants.png'; 
+import IconTextColorBrand from '../../../public-storybook/images/icon/icon-text-color-brand.png'; 
+import IconTextColorDark from '../../../public-storybook/images/icon/icon-text-color-dark.png';
+import IconTextColorWhite from '../../../public-storybook/images/icon/icon-text-color-white.png';  
+import { Meta } from '@storybook/addon-docs';
+
+
+<Meta title="Foundations/Iconography" />
+
+# Iconography 
+Icons play a crucial role in our design system, providing visual representation and enhancing user experiences. 
+We primarily utilize the Nucleo icon library for our icons, ensuring consistency and a wide range of options.  
+
+
+## Usage  
+ 
+### When to use 
+ 
+- Icons can be used alongside text to aid navigation and improve usability. They can represent different sections, categories, or actions, making it easier for users to identify and interact with them. 
+- If you want to communicate actions, such as saving, deleting, editing, or sharing. 
+By utilizing recognizable icons, users can quickly understand the purpose or functionality associated with a specific action.  
+
+### When not to use 
+- If an icon's meaning is unclear or open to interpretation, it is best to use descriptive text instead. Clarity and understanding should always take precedence over aesthetic considerations. 
+- Avoid overcrowding interfaces with too many icons, as this can lead to visual clutter and confusion. Strive for a balanced composition that maintains a clean and intuitive design.  
+
+## Size 
+To ensure consistency and alignment, we utilize a 4px grid size for our icons. 
+This grid aligns with the overall design system and facilitates seamless integration into our interfaces. We have established four fixed icon sizes: 12×12px, 16×16px, and 24×24px. 
+Choose the appropriate size based on the context and surrounding elements. > Icons within our DDS components come with the right icon size out of the box!  
+
+<img src={IconSizes} alt="Icon Sizes" />  
+
+## Structure All our icon sizes include the icon itself and the surrounding area. 
+
+<img src={IconStructure} alt="Icon Structure" width="50%"/> 
+
+## Variants 
+ 
+The DDS provides two different kinds of icons: outlined and filled.
+
+<img src={IconVariants} alt="Icon Variants" width="50%" />  
+ 
+## Alignment with text  
+ 
+### Size alignment 
+Try to pair specific typographic styles with corresponding icon sizes. 
+The body-03 and body-04 typographic style is well-suited for 16px icons, while larger typography, such as the heading-04, works best with 24px icons. 
+ 
+<img src={IconSizeAlignment} alt="Icon Size Alignment" width="50%" />  
+ 
+### Vertical alignment 
+Icons should be vertically aligned with the accompanying text or other related elements. Centered aligned icons of adjacent text helps to maintain visual harmony and improves readability. 
+ 
+<img src={IconAlignment} alt="Icon Alignment" width="50%" />  
+ 
+### Text color alignment 
+Icons should be aligned with the text color they accompany. Ensure that icons adhere to the same color scheme as the surrounding text to create a unified and visually pleasing user experience. 
+
+<img src={IconTextColorAlignment} alt="Icon Text Color Alignment" width="50%" /> 
+
+## Color  
+ 
+### Dark font color 
+The black font color is the default color for icons. We use this color in most cases on `base-white` or `Cengineering-100` backgrounds. 
+ 
+<img src={IconTextColorDark} alt="Icon Text Color Dark" width="50%" />  
+ 
+### White font color 
+We use the `base-white` color on dark backgrounds. 
+ 
+<img src={IconTextColorWhite} alt="Icon Text Color White" width="50%" />  
+ 
+### Brand font color
+We use our brand color `ocean-500` to highlight the content or actions connected with the icon. Use it on white or `engineering-100` backgrounds. 
+  
+<img src={IconTextColorBrand} alt="Icon Text Color Brand" width="50%" />   
+*** Check out the Figma Icon Library: **[Icon Library](https://www.figma.com/file/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-Icons?type=design&node-id=6%3A6&mode=design&t=Zc0icFhkq4Jv0xSn-1)** ***

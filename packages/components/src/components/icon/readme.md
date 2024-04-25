@@ -37,11 +37,14 @@
  - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navbar)
  - [ifx-navbar-item](../navbar)
+ - [ifx-overview-table](../overview-table)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../sidebar)
  - [ifx-slider](../slider)
+ - [ifx-step](../stepper/step)
+ - [ifx-tabs](../tabs)
  - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
@@ -62,11 +65,14 @@ graph TD;
   ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-item --> ifx-icon
+  ifx-overview-table --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
+  ifx-step --> ifx-icon
+  ifx-tabs --> ifx-icon
   ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
