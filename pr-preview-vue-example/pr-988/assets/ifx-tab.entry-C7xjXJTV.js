@@ -1,0 +1,1 @@
+import{r as e,h as s,g as i}from"./index-zPkljFmQ.js";const n=":host{display:block}",o=n,r=class{constructor(t){e(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"f55c503e2455d810d66c0c3535b20f28c83e64b5"})}get el(){return i(this)}};r.style=o;export{r as ifx_tab};
