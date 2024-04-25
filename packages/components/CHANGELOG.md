@@ -1,3 +1,15 @@
+# v21.7.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Modal: implemented width property [#1141](https://github.com/Infineon/infineon-design-system-stencil/pull/1141) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.6.0 (Thu Apr 25 2024)
 
 #### 🚀 Enhancement
