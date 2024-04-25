@@ -1,0 +1,141 @@
+import { Meta } from '@storybook/blocks';
+import ColorBaseBlack from '../../../public-storybook/images/color/black.png';
+import ColorBaseWhite from '../../../public-storybook/images/color/white.png';
+import ColorBaseTransparent from '../../../public-storybook/images/color/transparent.png';
+import ColorEngineering100 from '../../../public-storybook/images/color/engineering-100.png';
+import ColorEngineering200 from '../../../public-storybook/images/color/engineering-200.png';
+import ColorEngineering300 from '../../../public-storybook/images/color/engineering-300.png';
+import ColorEngineering400 from '../../../public-storybook/images/color/engineering-400.png';
+import ColorEngineering500 from '../../../public-storybook/images/color/engineering-500.png';
+import ColorEngineering600 from '../../../public-storybook/images/color/engineering-600.png';
+import ColorOcean100 from '../../../public-storybook/images/color/ocean-100.png';
+import ColorOcean200 from '../../../public-storybook/images/color/ocean-200.png';
+import ColorOcean300 from '../../../public-storybook/images/color/ocean-300.png';
+import ColorOcean400 from '../../../public-storybook/images/color/ocean-400.png';
+import ColorOcean500 from '../../../public-storybook/images/color/ocean-500.png';
+import ColorOcean600 from '../../../public-storybook/images/color/ocean-600.png';
+import ColorOcean700 from '../../../public-storybook/images/color/ocean-700.png';
+import ColorRed500 from '../../../public-storybook/images/color/red-500.png';
+import ColorRed600 from '../../../public-storybook/images/color/red-600.png';
+import ColorRed700 from '../../../public-storybook/images/color/red-700.png';
+import ColorOrange500 from '../../../public-storybook/images/color/orange-500.png';
+import ColorGreen500 from '../../../public-storybook/images/color/green-500.png';
+import ColorLawn400 from '../../../public-storybook/images/color/lawn-400.png';
+import ColorLawn500 from '../../../public-storybook/images/color/lawn-500.png';
+import ColorLawn700 from '../../../public-storybook/images/color/lawn-700.png';
+import ColorBerry400 from '../../../public-storybook/images/color/berry-400.png';
+import ColorBerry500 from '../../../public-storybook/images/color/berry-500.png';
+import ColorSun400 from '../../../public-storybook/images/color/sun-400.png';
+import ColorSun500 from '../../../public-storybook/images/color/sun-500.png';
+import ColorSand400 from '../../../public-storybook/images/color/sand-400.png';
+import ColorSand500 from '../../../public-storybook/images/color/sand-500.png';
+import ColorOverlayDark from '../../../public-storybook/images/color/overlay-dark.png';
+import ColorOverlayLight from '../../../public-storybook/images/color/overlay-light.png';
+
+<Meta title="Foundations/Colors" />
+
+# Color
+
+Our UI color palette plays a critical role in our design system. It helps to establish our visual identity and creates a consistent look and feel across all applications
+
+## Tokens
+
+We use the concept of tokens to apply color in a consistent, reusable, and scalable way across applications. They help us abstract how we use color from the values themselves.
+
+| token | hex | example | 
+|---------------------------------------|---------------|-----------------------------------------------------------| 
+| <code>$ifxColorBaseBlack</code>       | #1D1D1D       | <img src={ColorBaseBlack} alt="Base Black" width="50%" />             | 
+| <code>$ifxColorBaseWhite</code> | #FFFFFF | <img src={ColorBaseWhite} alt="Base White" width="50%" /> | 
+| <code>$ifxColorBaseTransparent</code> | transparent   | <img src={ColorBaseTransparent} alt="Base Transparent" width="50%" /> | 
+| <code>$ifxColorEngineering100</code> | #F7F7F7 | <img src={ColorEngineering100} alt="Engineering 100" width="50%" /> | 
+| <code>$ifxColorEngineering200</code>  | #EEEDED       | <img src={ColorEngineering200} alt="Engineering 200" width="50%" /> | 
+| <code>$ifxColorEngineering300</code> | #BFBBBB | <img src={ColorEngineering300} alt="Engineering 300" width="50%" /> | 
+| <code>$ifxColorEngineering400</code>  | #8D8786       | <img src={ColorEngineering400} alt="Engineering 400" width="50%" /> | 
+| <code>$ifxColorEngineering500</code> | #575352 | <img src={ColorEngineering500} alt="Engineering 500" width="50%" /> | 
+| <code>$ifxColorEngineering600</code>  | #3C3A39       | <img src={ColorEngineering600} alt="Engineering 600" width="50%" /> | 
+| <code>$ifxColorOcean100</code> | #0A8276 | <img src={ColorOcean100} alt="Ocean 100" width="50%" /> | 
+| <code>$ifxColorOcean200</code>        | #B8DEDA       | <img src={ColorOcean200} alt="Ocean 200" width="50%" /> | 
+| <code>$ifxColorOcean300</code> | #6CB4AD | <img src={ColorOcean300} alt="Ocean 300" width="50%" /> | 
+| <code>$ifxColorOcean400</code>        | #3B9B91       | <img src={ColorOcean400} alt="Ocean 400" width="50%" /> | 
+| <code>$ifxColorOcean500</code> | #0A8276 | <img src={ColorOcean500} alt="Ocean 500" width="50%" /> | 
+| <code>$ifxColorOcean600</code>        | #08665C       | <img src={ColorOcean600} alt="Ocean 600" width="50%" /> | 
+| <code>$ifxColorOcean700</code> | #06534B | <img src={ColorOcean700} alt="Ocean 700" width="50%" /> | | <code>$ifxColorRed500</code>          | #CD002F       | <img src={ColorRed500} alt="Red 500" width="50%" /> | 
+| <code>$ifxColorRed600</code> | #BF0023 | <img src={ColorRed600} alt="Red 600" width="50%" /> |
+| <code>$ifxColorRed700</code>          | #900021       | <img src={ColorRed700} alt="Red 700" width="50%" /> | 
+| <code>$ifxColorOrange500</code> | #E16B25 | <img src={ColorOrange500} alt="Orange 500" width="50%" /> | 
+| <code>$ifxColorGreen500</code>        | #4CA460       | <img src={ColorGreen500} alt="Green 500" width="50%" /> | 
+| <code>$ifxColorLawn400</code> | #B9D257 | <img src={ColorLawn400} alt="Lawn 400" width="50%" /> | 
+| <code>$ifxColorLawn500</code>         | #9BBA43       | <img src={ColorLawn500} alt="Lawn 500" width="50%" /> | 
+| <code>$ifxColorLawn700</code> | #3C6C0F | <img src={ColorLawn700} alt="Lawn 700" width="50%" /> | 
+| <code>$ifxColorBerry400</code>        | #BE3283       | <img src={ColorBerry400} alt="Berry 400" width="50%" /> | 
+| <code>$ifxColorBerry500</code> | #9C216E | <img src={ColorBerry500} alt="Berry 500" width="50%" /> | 
+| <code>$ifxColorSun400</code>          | #FF9737       | <img src={ColorSun400} alt="Sun 400" width="50%" /> | 
+| <code>$ifxColorSun500</code> | #F97414 | <img src={ColorSun500} alt="Sun 500" width="50%" /> | 
+| <code>$ifxColorSand400</code>         | #FBE273       | <img src={ColorSand400} alt="Sand 400" width="50%" /> | 
+| <code>$ifxColorSand500</code> | #FCD442 | <img src={ColorSand500} alt="Sand 500" width="50%" /> | 
+| <code>$ifxColorOverlayDark</code>     | #1D1D1D (20%) | <img src={ColorOverlayDark} alt="Overlay Dark" width="50%" /> | 
+| <code>$ifxColorOverlayLight</code> | #FFFFFF (20%) | <img src={ColorOverlayLight} alt="Overlay Light" width="50%" /> |
+
+## Using tokens
+
+### Background colors
+
+Our overall look should be light and bright. To achieve that we use:
+
+`$ifxColorBaseWhite`: This is our main background color.
+
+`$ifxColorEngineering-100`: If it is necessary to apply more section-structure. Especially for dashboard designs.
+
+`$ifxColorOcean-500`: This option is only recommended for marketing websites by highlighting messages/sections.
+
+### Typography 
+
+- For default text we use `$ifxColorBaseBlack` as main color. On brand or dark colored backgrounds we recommend to use `$ifxColorBaseWhite`. 
+
+- For headlines you can use either `$ifxColorBaseBlack` or `$ifxColorOcean500`. For the homepage in the hero section we recommend to use `$ifxColorOcean500` as title/h1. 
+
+- For interactive texts like inline-links use `$ifxColorOcean500`.
+
+### Components 
+
+We use a set of engineering color variations to build the core fibres of many layouts and components. This core fibres can be: 
+
+- An engineering outline to shape the form of a toggle, text field etc. 
+
+- An engineering divider structuring content 
+
+- Engineering backgrounds/borders for tables, rows and columns
+
+### Interactions 
+
+We use our brand colors to highlight interactive elements and their interaction states. 
+
+`$ifxColorOcean500`: Default state 
+
+`$ifxColorOcean600`: Hover state 
+
+`$ifxColorOcean700`: Pressed state 
+
+`$ifxColorEngineering300`: Disabled state 
+
+### Signal information 
+
+As in many user interfaces we also use signal colors to convey information quickly and effectively to the user.  
+
+`$ifxColorGreen500`: Used to indicate a successful action. 
+
+`$ifxColorOrange500`: To indicate a warning message. 
+
+`$ifxColorRed500`: To indicate an error message. The two shades `$ifxColorRed600` and `$ifxColorRed700` are used for destructive button states. 
+
+### Interactive infographics 
+
+Sometimes it needs more colors to visualize complex infographics for example on dashboard user interfaces. In these cases we recommend to use these colors: 
+
+`$ifxColorOcean100`, `$ifxColorOcean200`, `$ifxColorOcean300`, `$ifxColorOcean400` `$ifxColorBerry400`, `$ifxColorBerry500` `$ifxColorLawn400`, `$ifxColorLawn500`, `$ifxColorLawn600` `$ifxColorSun400`, `$ifxColorSun500` `$ifxColorSand400`, `$ifxColorSand500` 
+
+Preferred color should be `$ifxColorOcean100`, `$ifxColorOcean200`, `$ifxColorOcean300`, `$ifxColorOcean400` for example for a 4-clustered pie chart. It is important to note that these colors are not intended for use in user interface components such as buttons, text, and background colors. 
+
+## Accessibility 
+
+It is important to ensure that our design system is accessible to as many users as possible, including those with visual impairments. We have chosen our colors with accessibility in mind and we recommend that designers follow the guidelines outlined in the WCAG 2.1 standards when using color in their designs.

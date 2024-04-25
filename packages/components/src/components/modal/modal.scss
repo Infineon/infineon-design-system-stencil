@@ -48,7 +48,6 @@
   overflow: hidden;
   box-sizing: border-box;
   align-items: stretch;
-
 }
 
 /* Add desktop size here */
@@ -56,6 +55,29 @@
   .modal-content-container {
     width: 540px;
     min-height: 132px;
+
+    &.m,
+    &.l,
+    &.s {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .modal-content-container {
+
+    &.s {
+      width: 47vw;
+    }
+
+    &.m {
+      width: 63vw;
+    }
+
+    &.l {
+      width: 80%;
+    }
   }
 }
 
@@ -131,27 +153,7 @@
   box-sizing: border-box;
   flex: 1;
   overflow-y: auto;
-
-  // & slot[name=content] {
-  //   display: -webkit-box;
-  //   -webkit-line-clamp: 1;
-  //   -webkit-box-orient: vertical;
-  //   overflow: hidden;
-  //   text-overflow: ellipsis;
-  // }
 }
-
-// .modal-footer{
-//   display: flex;
-//   justify-content: flex-end;
-//   gap: 1em;
-//   box-sizing: border-box;
-//   margin-left: auto;
-//   gap: 24px;
-//   padding-top: 16px;
-//   padding-bottom: 32px;
-//   padding-right: 24px;
-// }
 
 .modal-footer.buttons-present ::slotted(*){
   display: flex;

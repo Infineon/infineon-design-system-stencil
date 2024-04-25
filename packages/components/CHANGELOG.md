@@ -1,3 +1,91 @@
+# v21.7.2 (Thu Apr 25 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: fix the bug where snippet code in a stories appeared twice [#1195](https://github.com/Infineon/infineon-design-system-stencil/pull/1195) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.7.1 (Thu Apr 25 2024)
+
+#### 🐛 Bug Fix
+
+- Modal: Removed default focus on buttons [#1155](https://github.com/Infineon/infineon-design-system-stencil/pull/1155) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.7.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Modal: implemented width property [#1141](https://github.com/Infineon/infineon-design-system-stencil/pull/1141) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.6.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Tabs: Implement a feature to insert an icon before or after tab header [#1180](https://github.com/Infineon/infineon-design-system-stencil/pull/1180) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.5.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: foundations page added to storybook [#1135](https://github.com/Infineon/infineon-design-system-stencil/pull/1135) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v21.4.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Tooltip: hid tooltip when hovered [#1183](https://github.com/Infineon/infineon-design-system-stencil/pull/1183) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.3.2 (Wed Apr 24 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: implement overview table page [#1179](https://github.com/Infineon/infineon-design-system-stencil/pull/1179) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.3.1 (Wed Apr 24 2024)
 
 #### 🐛 Bug Fix

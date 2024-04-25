@@ -26,7 +26,7 @@ function Tabs() {
 
   return (
     <IfxTabs onIfxTabChange={handleChange} active-tab-index={tabIndex} orientation="horizontal">
-      <IfxTab header="tab header a" disabled="false">
+      <IfxTab header="tab header a" disabled="false" icon='c-check-16'>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -35,7 +35,7 @@ function Tabs() {
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </IfxTab>
-      <IfxTab header="tab header b" disabled="true">
+      <IfxTab header="tab header b" disabled="true" icon='c-check-16'>
         Content for Tab #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
@@ -44,7 +44,7 @@ function Tabs() {
         amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </IfxTab>
-      <IfxTab header="tab header c" disabled="false">
+      <IfxTab header="tab header c" disabled="false" icon='c-check-16'>
         Content for Tab #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec
         egestas odio sapien eget neque. Lorem ipsum dolor sit amet, consectetur
