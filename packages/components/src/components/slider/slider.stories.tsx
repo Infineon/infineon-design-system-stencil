@@ -10,7 +10,6 @@ export default {
     min: { control: 'number' },
     max: { control: 'number' },
     step: { control: 'number' },
-    showPercentage: { control: 'boolean' },
     type: { control: 'radio', options: ['single', 'double']},
     value: { control: 'number', if: { arg: 'type', eq: 'single'} },
     minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},

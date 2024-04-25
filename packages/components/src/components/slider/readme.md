@@ -19,8 +19,8 @@
 | `rightIcon`      | `right-icon`       |             | `string`               | `undefined` |
 | `rightText`      | `right-text`       |             | `string`               | `undefined` |
 | `showPercentage` | `show-percentage`  |             | `boolean`              | `false`     |
+| `step`           | `step`             |             | `number`               | `1`         |
 | `type`           | `type`             |             | `"double" \| "single"` | `'single'`  |
-| `step`           | `step`            |             | `number`  | `1`         |
 | `value`          | `value`            |             | `number`               | `undefined` |
 
 
