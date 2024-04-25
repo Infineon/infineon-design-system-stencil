@@ -1,3 +1,15 @@
+# v21.6.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Tabs: Implement a feature to insert an icon before or after tab header [#1180](https://github.com/Infineon/infineon-design-system-stencil/pull/1180) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.5.0 (Thu Apr 25 2024)
 
 #### 🚀 Enhancement
