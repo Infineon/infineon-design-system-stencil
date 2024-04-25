@@ -30,6 +30,8 @@ export class Table {
   @Prop() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'topbar'; // sidebar
   @State() showSidebarFilters: boolean = true;
+  @State() matchingResultsCount: number = 0;
+
   @Prop() enableFiltering: boolean = true;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
@@ -73,6 +75,10 @@ export class Table {
     this.rowData = visibleRowData;
 
     this.gridApi.setGridOption('rowData', this.rowData);
+
+    // Update matching results count
+    this.matchingResultsCount = this.allRowData.length;
+
   }
 
 
@@ -157,6 +163,7 @@ export class Table {
       rowDragManaged: this.colData.some(col => col.dndSource === true) ? true : false,
       animateRows: this.colData.some(col => col.dndSource === true) ? true : false,
     };
+
   }
 
   componentDidRender() {
@@ -241,6 +248,8 @@ export class Table {
 
     this.allRowData = rows;
     this.originalRowData = [...rows]; // Deep copy the original data
+    this.matchingResultsCount = this.allRowData.length;
+
     return rows.slice(0, this.paginationPageSize);
   }
 
@@ -315,30 +324,47 @@ export class Table {
 
     return (
       <Host >
-        <div class="filters-container">
+        <div class="table-container">
           {this.enableFiltering && this.filterOrientation === 'sideBar' && (
-            <ifx-button
-              type="button"
-              disabled={false}
-              variant="secondary"
-              size="m"
-              target="_blank"
-              theme="default"
-              full-width="false"
-              onClick={() => this.toggleSidebarFilters()}
-            >
-              <ifx-icon icon="cross-12"></ifx-icon>{this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
-            </ifx-button>
+            <div class="sideBar-btn">
+              <ifx-button
+                type="button"
+                disabled={false}
+                variant="secondary"
+                size="m"
+                target="_blank"
+                theme="default"
+                full-width="false"
+                onClick={() => this.toggleSidebarFilters()}
+              >
+                <ifx-icon icon="cross-12"></ifx-icon>{this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
+              </ifx-button>
+            </div>
           )}
-          < div class={filterClass}>
-            {this.enableFiltering && (
-              <div class="set-filter-wrapper">
-                {/* <p>Filters</p> */}
-                <div>
+
+          <div class={filterClass}>
+            <div class="sidebar-container">
+              {this.enableFiltering && this.showSidebarFilters && this.filterOrientation === 'sideBar' && (
+                <div class="filters-title-container">
+                  <span class="filters-title">Filters</span>
+                </div>
+              )}
+
+
+              {this.enableFiltering && this.filterOrientation === 'sideBar' && (
+                <div class="set-filter-wrapper-sidebar">
                   {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
                     <slot name="set-filter"></slot>
                   )}
                 </div>
+              )}
+            </div>
+
+            {this.enableFiltering && this.filterOrientation !== 'sideBar' && (
+              <div class="set-filter-wrapper-topbar">
+                {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
+                  <slot name="set-filter"></slot>
+                )}
               </div>
             )}
 
@@ -359,6 +385,17 @@ export class Table {
                 )}
               </div>
 
+              {((this.enableFiltering && this.filterOrientation === 'sideBar') || this.filterOrientation === 'topBar') && (
+                <div class="matching-results-container">
+                  <span class="matching-results-count">
+                    {this.matchingResultsCount}
+                  </span>
+                  <span class="matching-results-text">
+                    matching results
+                  </span>
+                </div>
+              )}
+
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
                 </div>
@@ -367,7 +404,8 @@ export class Table {
             </div>
           </div>
         </div>
-      </Host >
+      </Host>
+
     )
   }
 

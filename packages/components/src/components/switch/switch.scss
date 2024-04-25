@@ -12,9 +12,10 @@
   display: flex;
   align-items: center;
   position: relative;
-  width: tokens.$ifxSpace500;
-  // gap: tokens.$ifxSpace200;
-  height: 20px;
+  // gap: tokens.$ifxSpace200;4
+  // Subtracting padding size from both height and width
+  width: (tokens.$ifxSpace500)-8px;
+  height: 16px;
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering500;
   border-radius: 20px;
@@ -23,7 +24,7 @@
   outline: none;
 
   &:focus {
-    outline: 4px solid #0A8276;
+    outline: 4px solid tokens.$ifxColorOcean500;
     outline-offset: 2px;
   }
 
@@ -32,12 +33,13 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #0A8276;
+    outline: 2px solid tokens.$ifxColorOcean500;
     outline-offset: 2px;
   }
 
   &.disabled {
     cursor: default;
+    border-color: tokens.$ifxColorEngineering300;
   }
 
 
@@ -67,17 +69,17 @@
     height: tokens.$ifxSpace200;
     background-color: tokens.$ifxColorEngineering500;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 
     &.disabled {
-      background-color: #BFBBBB;
-      border-color: #BFBBBB;
+      background-color: tokens.$ifxColorEngineering300;
+      border-color: tokens.$ifxColorEngineering300;
       cursor: default;
     }
   }
 
   .switch.checked {
-    transform: translateX(20px);
+    transform: translateX(16px);
     background-color: tokens.$ifxColorBaseWhite;
 
     &.disabled {
@@ -99,8 +101,8 @@
   border-color: tokens.$ifxColorOcean500;
 
   &.disabled {
-    background-color: #BFBBBB;
-    border-color: #BFBBBB;
+    background-color: tokens.$ifxColorEngineering300;
+    border-color: tokens.$ifxColorEngineering300;
     cursor: default;
   }
 }

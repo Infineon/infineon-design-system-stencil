@@ -7,11 +7,36 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default   |
-| -------- | --------- | ----------- | --------- | --------- |
-| `hide`   | `hide`    |             | `boolean` | `false`   |
-| `href`   | `href`    |             | `string`  | `""`      |
-| `target` | `target`  |             | `string`  | `"_self"` |
+| Property    | Attribute    | Description | Type      | Default   |
+| ----------- | ------------ | ----------- | --------- | --------- |
+| `alt`       | `alt`        |             | `string`  | `""`      |
+| `href`      | `href`       |             | `string`  | `""`      |
+| `imageUrl`  | `image-url`  |             | `string`  | `""`      |
+| `showLabel` | `show-label` |             | `boolean` | `true`    |
+| `target`    | `target`     |             | `string`  | `"_self"` |
+
+
+## Methods
+
+### `hideComponent() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `showComponent() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------

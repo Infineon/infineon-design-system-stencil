@@ -51,6 +51,7 @@ pids
 
 # Dependency directories
 node_modules/
+packages/components/node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -113,9 +114,13 @@ typings/
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
 packages/components-vue/lib/components.d.ts
-packages/components/package-lock.json
+
 packages/components/stencil-components/
 packages/components/src/components.d.ts
 packages/components-vue/lib/components.ts
+packages/components-vue/lib/vue-component-lib/
+packages/components-react/lib/components/stencil-generated/react-component-lib/
+packages/components-react/lib/components/stencil-generated/index.ts
+packages/components-angular/projects/component-library/src/lib/stencil-generated/angular-component-lib/
 packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
 packages/components/public-storybook/fonts/*

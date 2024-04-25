@@ -4,6 +4,14 @@
 @import "~ag-grid-community/styles/ag-grid.css";
 
 
+.table-container {
+  display: block;
+}
+
+.sideBar-btn {
+  margin-bottom: 24px;
+}
+
 .sideBar-layout {
   display: flex;
   flex-direction: row;
@@ -32,13 +40,26 @@
   min-width: 100px;
 }
 
+.filter-chips {
+  margin-bottom: 12px;
+}
 
-
-.set-filter-wrapper {
+.set-filter-wrapper-sidebar {
   display: flex;
   flex-direction: column;
   margin-bottom: tokens.$ifxSpace100;
 }
+
+.set-filter-wrapper-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: tokens.$ifxSpace100;
+  background: tokens.$ifxColorEngineering100;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  gap: 24px;
+}
+
 
 
 .ifx-ag-grid {
@@ -161,4 +182,28 @@
 
 .unsort-icon-custom-color {
   color: tokens.$ifxColorEngineering400;
+}
+
+
+// Table with set filters in sidebar orientation
+
+
+.filters-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+
+.matching-results-container {
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.matching-results-count {
+  font-weight: 600;
+}
+
+.matching-results-text {
+  font-weight: 400;
 }

@@ -15,6 +15,7 @@ export class SidebarItem {
   @Prop() target: string = "_self";
   @State() isExpandable: boolean = false;
   @State() isNested: boolean = true;
+  @State() isSubMenuItem: boolean = false;
   @Prop() numberIndicator: number;
   @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
@@ -96,6 +97,7 @@ export class SidebarItem {
     return sidebarItem;
   }
 
+
   toggleSubmenu() {
     if (this.isExpandable) {
       const menuItem = this.getSidebarMenuItem();
@@ -145,6 +147,16 @@ export class SidebarItem {
     const parentIsSidebar = this.parentElementIsSidebar()
     if (parentIsSidebar) {
       this.isNested = false;
+    }
+  }
+
+  checkIfMenuItemIsSubMenu() {
+    const parentElement = this.el.parentElement;
+    const navItem = this.getNavItem(parentElement.shadowRoot);
+    if(parentElement.tagName.toUpperCase() === 'IFX-SIDEBAR-ITEM' && !this.handleClassList(navItem, 'contains', 'header__section')) {
+      this.isSubMenuItem = true;
+    }else {
+      this.isSubMenuItem = false;
     }
   }
 
@@ -217,6 +229,23 @@ export class SidebarItem {
     this.handleClassList(activeMenuItem, 'add', 'active')
   }
 
+  @Method()
+  async expandMenu(ac: boolean){
+      const menuItem = this.getSidebarMenuItem();
+      const expandableMenu = this.getExpandableMenu();
+      this.handleClassList(expandableMenu, 'add', 'open');
+      this.handleClassList(menuItem, 'add', 'open');
+      if(ac){
+        this.handleClassList(expandableMenu, 'remove', 'active-section')
+        this.handleClassList(menuItem, 'remove', 'active-section')
+      }
+  }
+  
+  @Method()
+  async isItemExpandable(){
+    return this.isExpandable;
+  }
+
   handleActiveState() {
     if (this.internalActiveState) {
       this.setActiveClasses()
@@ -236,10 +265,11 @@ export class SidebarItem {
       this.handleExpandableMenu(sidebarItems)
     }
   }
-
+  
   componentWillLoad() {
     this.internalActiveState = this.active;
     this.checkIfMenuItemIsNested();
+    this.checkIfMenuItemIsSubMenu();
     this.setHref()
     const sidebarItems = this.getSidebarMenuItems();
     if (sidebarItems.length !== 0) {
@@ -264,7 +294,7 @@ export class SidebarItem {
   render() {
     return (
       <div>
-        <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""}`}>
+        <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}>
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>

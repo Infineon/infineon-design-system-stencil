@@ -3,12 +3,11 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    label: "text",
-    color: "orange",
+    label: 'text',
+    color: 'orange',
     border: true,
   },
   argTypes: {
-
     border: {
       control: 'boolean',
       attr: 'border',
@@ -18,12 +17,9 @@ export default {
       control: { type: 'radio' },
     },
   },
-}
+};
 
-const DefaultTemplate = (args) =>
-  `<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
+const DefaultTemplate = args => `<ifx-status label="${args.label}" color="${args.color}" border="${args.border}"/>`;
 
 export const Default = DefaultTemplate.bind({});
-Default.argTypes = {
-
-}
+Default.argTypes = {};

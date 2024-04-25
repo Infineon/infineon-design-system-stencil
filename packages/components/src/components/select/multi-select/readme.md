@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property       | Attribute        | Description | Type              | Default           |
-| -------------- | ---------------- | ----------- | ----------------- | ----------------- |
-| `batchSize`    | `batch-size`     |             | `number`          | `50`              |
-| `disabled`     | `disabled`       |             | `boolean`         | `false`           |
-| `error`        | `error`          |             | `boolean`         | `false`           |
-| `errorMessage` | `error-message`  |             | `string`          | `"Error"`         |
-| `label`        | `label`          |             | `string`          | `""`              |
-| `maxItemCount` | `max-item-count` |             | `number`          | `undefined`       |
-| `options`      | `options`        |             | `any[] \| string` | `undefined`       |
-| `placeholder`  | `placeholder`    |             | `string`          | `""`              |
-| `size`         | `size`           |             | `string`          | `'medium (40px)'` |
+| Property        | Attribute        | Description | Type              | Default           |
+| --------------- | ---------------- | ----------- | ----------------- | ----------------- |
+| `batchSize`     | `batch-size`     |             | `number`          | `50`              |
+| `disabled`      | `disabled`       |             | `boolean`         | `false`           |
+| `error`         | `error`          |             | `boolean`         | `false`           |
+| `errorMessage`  | `error-message`  |             | `string`          | `"Error"`         |
+| `label`         | `label`          |             | `string`          | `""`              |
+| `maxItemCount`  | `max-item-count` |             | `number`          | `undefined`       |
+| `options`       | `options`        |             | `any[] \| string` | `undefined`       |
+| `placeholder`   | `placeholder`    |             | `string`          | `""`              |
+| `searchEnabled` | `search-enabled` |             | `boolean`         | `true`            |
+| `size`          | `size`           |             | `string`          | `'medium (40px)'` |
 
 
 ## Events

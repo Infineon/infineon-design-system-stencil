@@ -19,19 +19,83 @@
   & .footer__wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    //width: 80%;
     width: 100%;
+
+    & .footer__logo_top {
+      svg {
+        display: none; // Logo (when variant=large) is hidden by default
+
+        @media (max-width: 768px) {
+          display: inline; // Logo is shown (when variant=large) on mobile screens
+        }
+      }
+    }
+
 
     & .large {
       display: flex;
       align-items: flex-start;
       width: 100%;
-      padding: 24px 0;
+      justify-content: space-between;
+
+
+      @media (max-width: 768px) {
+        // Adjust this value to the breakpoint you want
+        flex-wrap: wrap;
+        justify-content: space-between; // Ensures that there is space between the columns if the width allows it
+      }
+
 
       & ::slotted([slot=col]) {
-        width: 276px;
-        min-height: 168px;
+        display: flex;
+        gap: tokens.$ifxSpace400;
+
+        @media (max-width: 768px) {
+          // Adjust this value according to your design breakpoints
+          flex-wrap: wrap;
+          margin-top: tokens.$ifxSpace300;
+        }
+      }
+    }
+
+
+    & .default {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 24px 0;
+      border-bottom: 1px solid #BFBBBB;
+      margin-top: tokens.$ifxSpace600;
+
+      & .footer__logo_btm {
+        svg {
+          display: inline; // Logo is shown at the bottom (when variant=large) on mobile screens 
+          vertical-align: bottom;
+
+          @media (max-width: 768px) {
+            display: none; // Logo at the bottom (when variant=large) is hidden by default
+
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        // Adjust this value according to your design breakpoints
+        margin-top: tokens.$ifxSpace300;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      ::slotted([slot=socials]) {
+        display: flex;
+        gap: tokens.$ifxSpace400;
+
+        @media (max-width: 768px) {
+          // Adjust this value according to your design breakpoints
+          flex-wrap: wrap;
+          margin-top: tokens.$ifxSpace300;
+        }
       }
     }
 
@@ -43,17 +107,33 @@
       padding: 24px 0;
       border-bottom: 1px solid #BFBBBB;
 
-      & .footer__logo {
+
+
+      & .footer__logo_default {
         & svg {
           vertical-align: bottom;
         }
       }
 
-      & ::slotted([slot=socials]) {
+      @media (max-width: 768px) {
+        // Adjust this value according to your design breakpoints
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      ::slotted([slot=socials]) {
         display: flex;
         gap: tokens.$ifxSpace400;
+
+        @media (max-width: 768px) {
+          // Adjust this value according to your design breakpoints
+          flex-wrap: wrap;
+          margin-top: tokens.$ifxSpace300;
+        }
       }
     }
+
+
 
     & .footer__base {
       display: flex;
@@ -67,12 +147,16 @@
         font-size: tokens.$ifxFontSizeM;
         line-height: tokens.$ifxLineHeightM;
         color: tokens.$ifxColorBaseBlack;
+        flex-grow: 1;
+
       }
 
       & .footer__buttons {
         display: flex;
         gap: tokens.$ifxSpace300;
-        padding-right: 8px;
+        padding-right: tokens.$ifxSpace200;
+        justify-content: flex-end;
+        flex-grow: 1;
 
         & a {
           font-style: normal;
@@ -81,6 +165,22 @@
           line-height: tokens.$ifxLineHeightM;
           color: tokens.$ifxColorBaseBlack;
           text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+          // Adjust this value according to your design breakpoints
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          gap: tokens.$ifxSpace150 tokens.$ifxSpace200;
+        }
+      }
+
+      @media (max-width: 768px) {
+        // Adjust this value according to your design breakpoints
+        flex-direction: column-reverse;
+
+        .footer__brand {
+          margin-top: tokens.$ifxSpace200;
         }
       }
     }

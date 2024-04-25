@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@infineon/infineon-design-system-react": "20.44.2",
+    "@infineon/infineon-design-system-react": "21.0.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
@@ -25,9 +25,7 @@
     "eject": "react-scripts eject",
     "watch:library": "cd ../../../packages/components && npm run watch:stencil",
     "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-react && npm run build",
-    "link-clean": "node ../../../utils/os-type.js",
-    "link-clean-win": "cd ../../../packages/components-react && rmdir /s /q node_modules && npm run build && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
-    "link-clean-unix": "cd ../../../packages/components-react && rm -rf node_modules &&  npm run build && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
+    "link-clean": "cd ../../../packages/components-react && npm run build && npm link && cd ../../examples/wrapper-components/react-javascript && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link-clean start",
     "test:local": "run-p preview:link watch:library"
   },

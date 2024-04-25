@@ -1,12 +1,12 @@
 import { icons } from '@infineon/infineon-icons';
 
 export default {
-  title: "Components/Alert",
+  title: 'Components/Alert',
   tags: ['autodocs'],
 
   args: {
     label: 'Attention! This is an alert message — check it out!',
-    variant: "primary",
+    variant: 'primary',
     showIcon: true,
     closable: true,
     iconName: 'c-info-24',
@@ -14,18 +14,18 @@ export default {
 
   argTypes: {
     variant: {
-      options: ['primary', 'secondary', 'danger', 'warning'],
+      options: ['primary', 'success', 'danger', 'warning'],
       control: { type: 'radio' },
     },
 
     iconName: {
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' }
+      control: { type: 'select' },
     },
 
     closable: {
       control: 'boolean',
-      default: true
+      default: true,
     },
 
     ifxClose: {
@@ -34,22 +34,19 @@ export default {
       table: {
         type: {
           summary: 'Framework integration',
-          detail: 'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
+          detail:
+            'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
         },
       },
-    }
-  }
+    },
+  },
 };
 
-
-
-const DefaultTemplate = (args) =>
-  `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ""}" closable="${args.closable}">${args.label}</ifx-alert>`;
-
+const DefaultTemplate = args => `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 
-const InfoTemplate = (args) =>
+const InfoTemplate = args =>
   `  <ifx-alert variant="info" closable="${args.closable}">
       <div slot="headline">Headline</div>
       <div slot="desc">
@@ -60,18 +57,18 @@ const InfoTemplate = (args) =>
 export const Info = InfoTemplate.bind({});
 Info.argTypes = {
   variant: {
-    table:{
-      disable: true
-    }
+    table: {
+      disable: true,
+    },
   },
   iconName: {
-    table:{
-      disable: true
-    }
+    table: {
+      disable: true,
+    },
   },
   showIcon: {
-    table:{
-      disable: true
-    }
-  }
-}
+    table: {
+      disable: true,
+    },
+  },
+};

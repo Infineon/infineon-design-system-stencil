@@ -1,5 +1,5 @@
 export default {
-  title: "Components/Footer",
+  title: 'Components/Footer',
   tags: ['autodocs'],
 
   args: {
@@ -11,9 +11,9 @@ export default {
     privacyPolicyUrl: 'https://yourwebsite.com/privacy-policy',
     privacyPolicyTarget: '_blank',
     glossaryUrl: 'https://yourwebsite.com/glossary',
-    glossaryTarget: '_blank'
+    glossaryTarget: '_blank',
+    copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
-
 
   argTypes: {
     variant: {
@@ -21,20 +21,25 @@ export default {
       control: { type: 'radio' },
     },
     termsUrl: { control: 'text' },
+    termsTarget: { control: 'text' },
     imprintUrl: { control: 'text' },
+    imprintTarget: { control: 'text' },
     privacyPolicyUrl: { control: 'text' },
+    privacyPolicyTarget: { control: 'text' },
     glossaryUrl: { control: 'text' },
+    glossaryTarget: { control: 'text' },
+    copyrightText: { control: 'text' },
   },
 };
 
-const DefaultTemplate = (args) => {
-  const key = Object.values(args).join('-');
+const DefaultTemplate = args => {
   return `
-    <ifx-footer key="${key}" variant="${args.variant}" 
-               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}" 
-               imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}" 
-               privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-parget="${args.privacyPolicyTarget}" 
-               glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}">
+    <ifx-footer variant="${args.variant}" 
+               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
+                imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}"
+                privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-target="${args.privacyPolicyTarget}"
+                glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}"
+                copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -56,14 +61,11 @@ const DefaultTemplate = (args) => {
       </ifx-link>
     </div>
   </ifx-footer>`;
-}
-
+};
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () =>
-  `<ifx-footer variant="small"></ifx-footer>`;
-
+const SmallTemplate = () => `<ifx-footer variant="small"></ifx-footer>`;
 
 export const Small = SmallTemplate.bind({});
 
@@ -119,9 +121,4 @@ const LargeTemplate = () =>
   </div>
 </ifx-footer>`;
 
-
 export const Large = LargeTemplate.bind({});
-
-
-
-

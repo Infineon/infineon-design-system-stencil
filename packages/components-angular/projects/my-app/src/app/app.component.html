@@ -305,24 +305,73 @@
 
 
 <div>
-  <ifx-navbar application-name="Application name" fixed="false">
-    <ifx-navbar-item hide-label="false" icon="calendar16" slot="left-item" target="_blank"
-      href="https://google.com">Menu
-      Item1</ifx-navbar-item>
-    <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
-    <ifx-navbar-item slot="left-item">Menu Item</ifx-navbar-item>
+  <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+    <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
+      Menu Item 1
+      <ifx-navbar-item icon="calendar16">
+        Layer 1 Nested Item 1
+        <ifx-navbar-item>
+          Layer 2 Nested Item 2
+          <ifx-navbar-item href="http://google.com" target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
+        </ifx-navbar-item>
+        <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
+      </ifx-navbar-item>
 
-    <ifx-navbar-menu slot="menu">
-      <ifx-navbar-menu-item href="https://google.com" target="_blank">Item 1</ifx-navbar-menu-item>
-      <ifx-navbar-menu-item href="https://google.com">Item 2</ifx-navbar-menu-item>
-      <ifx-navbar-menu-item href="https://google.com">Item 3</ifx-navbar-menu-item>
-    </ifx-navbar-menu>
+      <ifx-navbar-item>
+        Layer 1 Nested Item 2
+        <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+      </ifx-navbar-item>
 
-    <ifx-search-bar size="default" slot="search-bar-right" is-open="false" show-close-button="true"></ifx-search-bar>
+      <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
 
-    <ifx-navbar-item hide-label="false" slot="right-item">Right One</ifx-navbar-item>
-    <ifx-navbar-item hide-label="false" slot="right-item">Right Two</ifx-navbar-item>
-    <ifx-navbar-item hide-label="false" slot="right-profile-item">Tisho</ifx-navbar-item>
+      <ifx-navbar-item>
+        Layer 1 Nested Item 4
+        <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+      </ifx-navbar-item>
+
+    </ifx-navbar-item>
+
+    <ifx-navbar-item href="http://google.com" target="_blank" slot="left-item" icon="calendar16" show-label="true">
+      Menu Item 2
+    </ifx-navbar-item>
+
+    <ifx-navbar-item slot="left-item">
+      More
+      <ifx-navbar-item>Item1</ifx-navbar-item>
+      <ifx-navbar-item>Item2</ifx-navbar-item>
+    </ifx-navbar-item>
+
+    <ifx-search-bar id="myBar" slot="search-bar-left" is-open="false"></ifx-search-bar>
+
+    <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartf16">Right Item</ifx-navbar-item>
+    <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
+      Right Item
+      <ifx-navbar-item>
+        Nested one
+        <ifx-navbar-item>
+          Nested one
+          <ifx-navbar-item>
+            Nested one
+            <ifx-navbar-item>Final one</ifx-navbar-item>
+          </ifx-navbar-item>
+        </ifx-navbar-item>
+      </ifx-navbar-item>
+    </ifx-navbar-item>
+
+    <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+      User
+      <ifx-navbar-item>Item</ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+      <ifx-navbar-item>Item</ifx-navbar-item>
+    </ifx-navbar-profile>
   </ifx-navbar>
   <br />
   <br />
@@ -625,6 +674,17 @@
   <h2>Status</h2>
   <ifx-status label="Status with border" color="orange" border="true" />
   <ifx-status label="Status without border" color="ocean" border="false" />
+  <br />
+  <br />
+
+  <h2>Stepper</h2>
+  <ifx-stepper show-number="false" active-step="4" variant="default">
+    <ifx-step>Step Label 1</ifx-step>
+    <ifx-step>Step Label 2</ifx-step>
+    <ifx-step>Step Label 3</ifx-step>
+    <ifx-step>Step Label 4</ifx-step>
+    <ifx-step>Step Label 5</ifx-step>
+  </ifx-stepper>
   <br />
   <br />
 

@@ -5,11 +5,10 @@ on:
     branches:
      - master
  
-env:
-  VERSION: ''
-
 jobs:
   stencil-library-release:
+    outputs:
+      VERSION: ${{ steps.build.outputs.VERSION }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -33,12 +32,15 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm install
+          npm install --scope=@infineon/infineon-design-system-stencil
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
           echo "Publishing: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Set version as Github Env and Github Output: $VERSION"
+          echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
           auto shipit
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
@@ -49,15 +51,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: | 
+          echo "VERSION: $VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@latest
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           cd ../../../../
           cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-vue
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           cd ../components-react
-          npm install @infineon/infineon-design-system-stencil@latest -w @infineon/infineon-design-system-react        
+          npm install @infineon/infineon-design-system-stencil@$VERSION       
 
       - name: Build and deploy Angular, Vue and React packages
         id: build-and-deploy-wrappers
@@ -233,4 +236,14 @@ jobs:
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-  
+
+  send-webex-notification:
+    needs: [stencil-library-release, deploy-master-vue, deploy-master-react, deploy-master-angular, deploy-master-vanilla]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Webex Notification
+        run: |
+          VERSION=${{ needs.stencil-library-release.outputs.VERSION }}
+          WEBEX_MESSAGE="**VERSION UPDATE**\nA new version has been released: [$VERSION](https://github.com/Infineon/infineon-design-system-stencil/releases/tag/v$VERSION)\nFollow the link to see what's included in this release."
+          curl https://webexapis.com/v1/messages -X POST -H "Authorization: Bearer ${{ secrets.WEBEX_TOKEN }}" -H "Content-Type: application/json" -d "{\"roomId\":\"${{ secrets.WEBEX_ROOM_ID }}\",\"markdown\":\"$WEBEX_MESSAGE\"}"
+        shell: bash

@@ -27,8 +27,8 @@ export class ProgressBar {
   render() {
     return (
       <div aria-label='a progress bar' aria-value={this.value}  class={`progress-bar ${this.size}`}>
-        <div class="progress" style={{ width: `${this.internalValue}%` }}>
-          {this.showLabel && this.size !== "s" && <span class="label">{`${this.internalValue}%`}</span>}
+        <div class="progress" style={{ width: `${this.internalValue === 0 ? 0 : Math.max(2, this.internalValue)}%` }}>
+          {this.showLabel && this.size !== "s" && this.internalValue !== 0 && <span class="label">{`${this.internalValue}%`}</span>}
         </div>
       </div>
     );
