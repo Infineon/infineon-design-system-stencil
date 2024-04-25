@@ -43,7 +43,7 @@ jobs:
           npm run build:storybook
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1.4.7
+        uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
           source-dir: ./packages/components/storybook-static
