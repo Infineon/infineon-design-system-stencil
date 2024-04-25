@@ -1,3 +1,17 @@
+# v21.5.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: foundations page added to storybook [#1135](https://github.com/Infineon/infineon-design-system-stencil/pull/1135) (lechneve@ISCN5CG1201S7M.infineon.com [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v21.4.0 (Thu Apr 25 2024)
 
 #### 🚀 Enhancement
