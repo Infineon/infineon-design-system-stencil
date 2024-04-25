@@ -122,7 +122,7 @@ export default {
       control: { type: 'radio' },
     },
     filterOrientation: {
-      options: ['sideBar', 'topBar'],
+      options: ['sidebar', 'topbar'],
       control: { type: 'radio' },
     },
     columnDefs: {
@@ -224,7 +224,7 @@ SetFilter.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   enableFiltering: true,
-  filterOrientation: 'topBar'
+  filterOrientation: 'topbar'
 };
 
 

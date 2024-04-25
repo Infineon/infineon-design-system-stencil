@@ -8,16 +8,20 @@
   display: block;
 }
 
-.sideBar-btn {
+.sidebar-btn {
   margin-bottom: 24px;
 }
 
-.sideBar-layout {
+.sidebar-container {
+  margin-right: 24px;
+}
+
+.sidebar-layout {
   display: flex;
   flex-direction: row;
 }
 
-.topBar-layout {
+.topbar-layout {
   display: flex;
   flex-direction: column;
 }

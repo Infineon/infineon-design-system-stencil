@@ -320,13 +320,12 @@ export class Table {
         'height': this.tableHeight
       };
     }
-    const filterClass = this.filterOrientation === 'topBar' ? 'topBar-layout' : 'sideBar-layout';
-
+    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
     return (
       <Host >
         <div class="table-container">
-          {this.enableFiltering && this.filterOrientation === 'sideBar' && (
-            <div class="sideBar-btn">
+          {this.enableFiltering && this.filterOrientation !== 'topbar' && (
+            <div class="sidebar-btn">
               <ifx-button
                 type="button"
                 disabled={false}
@@ -343,26 +342,25 @@ export class Table {
           )}
 
           <div class={filterClass}>
-            <div class="sidebar-container">
-              {this.enableFiltering && this.showSidebarFilters && this.filterOrientation === 'sideBar' && (
+            {this.enableFiltering && this.showSidebarFilters && this.filterOrientation !== 'topbar' && (
+              <div class="sidebar-container">
+
                 <div class="filters-title-container">
                   <span class="filters-title">Filters</span>
                 </div>
-              )}
-
-
-              {this.enableFiltering && this.filterOrientation === 'sideBar' && (
                 <div class="set-filter-wrapper-sidebar">
-                  {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
+                  {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
                     <slot name="set-filter"></slot>
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
 
-            {this.enableFiltering && this.filterOrientation !== 'sideBar' && (
+
+
+            {this.enableFiltering && this.filterOrientation !== 'sidebar' && (
               <div class="set-filter-wrapper-topbar">
-                {(this.filterOrientation !== 'sideBar' || this.showSidebarFilters) && (
+                {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
                   <slot name="set-filter"></slot>
                 )}
               </div>
@@ -370,7 +368,7 @@ export class Table {
 
             <div class="table-pagination-wrapper">
               <div class="filter-chips">
-                {this.enableFiltering && this.filterOrientation === 'sideBar' && this.showSidebarFilters && (
+                {this.enableFiltering && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
                   Object.keys(this.currentFilters).map(filterName => (
                     <ifx-chip placeholder={filterName}>
                       <ifx-dropdown-menu size="m" slot="menu">
@@ -385,7 +383,7 @@ export class Table {
                 )}
               </div>
 
-              {((this.enableFiltering && this.filterOrientation === 'sideBar') || this.filterOrientation === 'topBar') && (
+              {((this.enableFiltering && this.filterOrientation === 'sidebar') || this.filterOrientation === 'topbar') && (
                 <div class="matching-results-container">
                   <span class="matching-results-count">
                     {this.matchingResultsCount}
