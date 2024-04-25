@@ -283,6 +283,7 @@ export class Navbar {
   }
 
   componentWillLoad() {
+    this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
     if (!leftMenuItems.length && !dropdownMenu) {
@@ -392,6 +393,16 @@ export class Navbar {
           if(this.searchBarIsOpen) { 
             rightMenuItems[i].hideComponent()
           }
+      }
+    }
+  }
+
+  RemoveSpaceOnStorybookSnippet() { 
+    let parent = this.el.parentElement;
+    if(parent) { 
+      let storybookWrapper = parent.closest('.css-xzp052');
+      if(storybookWrapper) { 
+        storybookWrapper.style.overflow = 'visible'
       }
     }
   }
