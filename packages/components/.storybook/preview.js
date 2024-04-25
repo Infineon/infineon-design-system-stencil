@@ -58,6 +58,7 @@ export const parameters = {
           ],
           'FAQ',
         ],
+        'Foundations',
         'Components',
         // 'Contact'
       ]

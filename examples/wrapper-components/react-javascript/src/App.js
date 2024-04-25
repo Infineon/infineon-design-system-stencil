@@ -31,11 +31,14 @@ import Footer from './components/Footer/Footer'
 import Icon from './components/Icon/Icon';
 import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
+import Chip from './components/Chip/Chip'
+import Stepper from './components/Stepper/Stepper';
 
 
 function App() {
   return (
     <div>
+
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
 
@@ -65,6 +68,10 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+      <br />
+
+      <h2>Chip</h2>
+      <Chip />
       <br />
 
       <h2>Dropdown</h2>
@@ -132,7 +139,6 @@ function App() {
       <Slider />
       <br />
 
-
       <h2>Sidebar</h2>
       <Sidebar />
       <br />
@@ -143,6 +149,10 @@ function App() {
 
       <h2>Status</h2>
       <Status />
+      <br />
+
+      <h2>Stepper</h2>
+      <Stepper />
       <br />
 
       <h2>Tabs</h2>

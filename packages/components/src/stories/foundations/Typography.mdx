@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/blocks';
+
+import TypographyFontWeightOverview from '../../../public-storybook/images/typography/typography-font-weight-overview.png';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+We use our corporate font Source Sans 3 for all interfaces, that are build with the Infineon Digital Design System. Every instance of text should use a type style defined in this component.
+
+## Type scale and use
+
+Set the **font-size to 100%** in the HTML Tag before applying the REM values. By doing so, we can ensure that users have always an optimal view by changing the default font-size in their browsers.
+
+### Display
+
+Displays are the first headline of the website usually placed on a header image.
+
+### Heading
+
+Headings are above a paragraph, topic section or picture. The text hierarchy should always be considered. Headings should always be clearly distinguishable from the paragraph. Headings should also be distributed across the page in a logical order and according to priority. To support many viewports all headings are available in large and small style.
+
+### Eyebrow
+
+The eyebrow text style can add emphasis and hierarchy to a user interface. It's typically used for short, important messages that need to grab the user's attention.
+
+### Body
+
+We have different Body styles for different purposes. For paragraphs it is recommended to use the Body 3, for less important text Body 4. To guide and create interest for the eye, we are able to use the font style “paragraph lead” to introduce a topic or “paragraph semibold” emphasize a section.
+
+For interactive elements such as buttons it is recommended to use Semibold text styles.
+
+## Weights
+
+We utilize the Source Sans 3 typeface in both Regular and SemiBold weights. The Regular weight is ideal for body text and smaller headings, while the SemiBold weight can be used for larger headings or titles. Choosing the right font weight for each element in a user interface is essential for creating a visual hierarchy that guides users through the content.
+
+<img src={TypographyFontWeightOverview} alt="Typography Font Weight Overview" />
+
+## Upper and lower casing
+
+Upper and lower casing in English is following the principle sentence case. This means that a sentence always starts with a capital letter and continues with lower-case lettering for all subsequent words (unless they are proper nouns or trademarks). For reasons of clarity and consistency, lower casing should also be used on all headlines or navigation items apart from the first letter which is capitalized. Detailed information you find in the general writing policy of Infineon: [https:/brandportal.infineon.com/style-guide/general-writing-policy.html](https:/brandportal.infineon.com/style-guide/general-writing-policy.html)
+
+## Typography overview
+
+| token | value | |----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| <code>$ifxHeadingDisplay01</code> | font-family: Source Sans 3 <br/> font-size: 4.25rem <br/> font-weight: 600 <br/> line-height: 4.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingDisplay02</code> | font-family: Source Sans 3 <br/> font-size: 3.5rem <br/> font-weight: 600 <br/> line-height: 4rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingDisplay03</code> | font-family: Source Sans 3 <br/> font-size: 3rem <br/> font-weight: 600 <br/> line-height: 3.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeading01</code> | font-family: Source Sans 3 <br/> font-size: 3rem <br/> font-weight: 600 <br/> line-height: 3.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact01</code> | font-family: Source Sans 3 <br/> font-size: 2rem <br/> font-weight: 600 <br/> line-height: 2.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeading02</code> | font-family: Source Sans 3 <br/> font-size: 2.25rem <br/> font-weight: 600 <br/> line-height: 3rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact02</code> | font-family: Source Sans 3 <br/> font-size: 1.75rem <br/> font-weight: 600 <br/> line-height: 2.25rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeading03</code> | font-family: Source Sans 3 <br/> font-size: 1.75rem <br/> font-weight: 600 <br/> line-height: 2.25rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact03</code> | font-family: Source Sans 3 <br/> font-size: 1.375rem <br/> font-weight: 600 <br/> line-height: 1.875rem <br/> letter-spacing: -0.01em <br/>  | 
+| <code>$ifxHeadingHeading04</code> | font-family: Source Sans 3 <br/> font-size: 1.5rem <br/> font-weight: 600 <br/> line-height: 2rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact04</code> | font-family: Source Sans 3 <br/> font-size: 1.25rem <br/> font-weight: 600 <br/> line-height: 1.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeading05</code> | font-family: Source Sans 3 <br/> font-size: 1.25rem <br/> font-weight: 600 <br/> line-height: 1.75rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact05</code> | font-family: Source Sans 3 <br/> font-size: 1.125rem <br/> font-weight: 600 <br/> line-height: 1.625rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeading06</code> | font-family: Source Sans 3 <br/> font-size: 1.125rem <br/> font-weight: 600 <br/> line-height: 1.625rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxHeadingHeadingCompact06</code> | font-family: Source Sans 3 <br/> font-size: 0.875rem <br/> font-weight: 600 <br/> line-height: 1.25rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxEyebrowEyebrow01</code> | font-family: Source Sans 3 <br/> font-size: 1rem <br/> font-weight: 600 <br/> line-height: 1.5rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxEyebrowEyebrow02</code> | font-family: Source Sans 3 <br/> font-size: 0.8125rem <br/> font-weight: 600 <br/> line-height: 1.25rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxEyebrowEyebrow03</code> | font-family: Source Sans 3 <br/> font-size: 0.625rem <br/> font-weight: 600 <br/> line-height: 0.8125rem <br/> letter-spacing: -0.01em <br/> | 
+| <code>$ifxBodyBodyCompact06</code> | font-family: Source Sans 3 <br/> font-size: 1.375rem <br/> font-weight: 400 <br/> line-height: 1.875rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodyCompact06</code> | font-family: Source Sans 3 <br/> font-size: 1.125rem <br/> font-weight: 400 <br/> line-height: 1.875rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodyUnderline02</code> | font-family: Source Sans 3 <br/> font-size: 1.125rem <br/> font-weight: 400 <br/> line-height: 1.875rem <br/> letter-spacing: 0em text-decoration: underline <br/> | 
+| <code>$ifxBodyBodySemibold02</code> | font-family: Source Sans 3 <br/> font-size: 1.125rem <br/> font-weight: 600 <br/> line-height: 1.875rem <br/> letter-spacing: 0em text-decoration: underline <br/> | 
+| <code>$ifxBodyBodySemibold02</code> | font-family: Source Sans 3 <br/> font-size: 1rem <br/> font-weight: 400 <br/> line-height: 1.5rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodySemibold03</code> | font-family: Source Sans 3 <br/> font-size: 1rem <br/> font-weight: 600 <br/> line-height: 1.5rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodyUnderline03</code> | font-family: Source Sans 3 <br/> font-size: 1rem <br/> font-weight: 400 <br/> line-height: 1.5rem <br/> letter-spacing: 0em text-decoration: underline <br/> | 
+| <code>$ifxBodyBodySemiboldUnderline03</code> | font-family: Source Sans 3 <br/> font-size: 1rem <br/> font-weight: 600 <br/> line-height: 1.5rem <br/> letter-spacing: 0em text-decoration: underline <br/> | 
+| <code>$ifxBodyBody04</code> | font-family: Source Sans 3 <br/> font-size: 0.875rem <br/> font-weight: 400 <br/> line-height: 1.25rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodySemibold04</code> | font-family: Source Sans 3 <br/> font-size: 0.875rem <br/> font-weight: 600 <br/> line-height: 1.25rem <br/> letter-spacing: 0em <br/> | 
+| <code>$ifxBodyBodyUnderline04</code> | font-family: Source Sans 3 <br/> font-size: 0.875rem <br/> font-weight: 400 <br/> line-height: 1.25rem <br/> letter-spacing: 0em <br/> text-decoration: underline  | 
+| <code>$ifxBodyBodySemiboldUnderline04</code> | font-family: Source Sans 3 <br/> font-size: 0.875rem <br/> font-weight: 600 <br/> line-height: 1.25rem <br/> letter-spacing: 0em <br/> text-decoration: underline | 
+| <code>$ifxBodyBody05</code> | font-family: Source Sans 3 <br/> font-size: 0.75rem <br/> font-weight: 400 <br/> line-height: 1rem <br/> letter-spacing: 0em | 
+| <code>$ifxBodyBodySemibold05</code> | font-family: Source Sans 3 <br/> font-size: 0.75rem <br/> font-weight: 600 <br/> line-height: 1rem <br/> letter-spacing: 0em | 
+| <code>$ifxBodyBody06</code> | font-family: Source Sans 3 <br/> font-size: 0.625rem <br/> font-weight: 400 <br/> line-height: 0.875rem <br/> letter-spacing: 0em |
+
+## Typestyle Naming Conventions
+
+Typestyles have been updated with generic names (display, heading, eyebrow, body).
+
+That gives the designer the freedom of choice to find the right font style for his design needs.
+
+## Typestyle Color
+
+The default text color is `black`.
+
+For Interactive text elements (e.g. Links) we use `ocean-500`.
+
+Disabled interactive texts use `engineering-300` except some cases, where text is used on an colored background (Text Field).
+
+In context of notifications, we use the text color `red-500` for Error messages (e.g. captions beneath Text Fields), `orange-500` for Warnings and `green-500` for success.

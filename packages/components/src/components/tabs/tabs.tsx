@@ -86,7 +86,9 @@ export class IfxTabs {
     this.tabObjects = Array.from(tabs).map((tab) => {
       return {
         header: tab?.header,
-        disabled: tab?.disabled === true
+        disabled: tab?.disabled === true,
+        icon: tab?.icon,
+        iconPosition: tab?.iconPosition
       }
     });
 
@@ -167,7 +169,8 @@ export class IfxTabs {
   private getTabItemClass(index: number) {
     const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
     const isDisabled = this.tabObjects[index].disabled;
-    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''}`;
+    const iconPosition = this.tabObjects[index].iconPosition
+    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition}`;
   }
 
   private handleClick(tab, index) {
@@ -224,7 +227,8 @@ export class IfxTabs {
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
               role="tab"
-            >
+            > 
+              {tab?.icon ? <ifx-icon icon = {tab.icon}></ifx-icon> : ''}
               {tab?.header}
             </li>
           ))}
