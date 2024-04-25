@@ -19,16 +19,17 @@
 
     background: tokens.$ifxColorBaseWhite;
 
-    border: 1px solid #BFBBBB;
+    border: 1px solid  tokens.$ifxColorEngineering300;
     border-radius: 100px;
 
     &:hover {
       cursor: pointer;
-      border: 1px solid #575352;
+      border: 1px solid tokens.$ifxColorEngineering500;
     }
 
-    &:active {
-      border: 1px solid #0A8276;
+    &.active {
+      border: 1px solid tokens.$ifxColorOcean500;
+      outline: none;
     }
 
     & .wrapper-label {
@@ -45,6 +46,9 @@
     }
 
     & .wrapper-close-button {
+      display: flex;
+      align-items: center;
+      
       & ifx-icon {
         transition: .3s;
         width: 12px;
@@ -53,8 +57,36 @@
 
       &.show {
         & ifx-icon {
-          transition: .3s;
+          transition: transform .3s;
           transform: rotate(-180deg);
+        }
+      }
+    }
+
+    &.selected {
+      border: 1px solid tokens.$ifxColorOcean500;
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: -3px;
+
+      & .wrapper-label {
+        font-style: normal;
+        font-weight: 600;
+        font-size: tokens.$ifxFontSizeS;
+        line-height: tokens.$ifxLineHeightS;
+        color: tokens.$ifxColorOcean500;
+      }
+
+      & ifx-icon {
+        color: tokens.$ifxColorOcean500;
+      }
+
+      &:hover {
+        border: 1px solid tokens.$ifxColorOcean600;
+        outline: 2px solid tokens.$ifxColorOcean600;
+
+        & ifx-icon,
+        & .wrapper-label {
+          color: tokens.$ifxColorOcean600;
         }
       }
     }
