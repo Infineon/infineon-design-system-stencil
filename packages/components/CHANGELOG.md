@@ -1,3 +1,16 @@
+# v21.7.1 (Thu Apr 25 2024)
+
+#### 🐛 Bug Fix
+
+- Modal: Removed default focus on buttons [#1155](https://github.com/Infineon/infineon-design-system-stencil/pull/1155) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.7.0 (Thu Apr 25 2024)
 
 #### 🚀 Enhancement
