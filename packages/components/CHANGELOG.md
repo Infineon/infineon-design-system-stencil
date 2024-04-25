@@ -1,3 +1,15 @@
+# v21.4.0 (Thu Apr 25 2024)
+
+#### 🚀 Enhancement
+
+- Tooltip: hid tooltip when hovered [#1183](https://github.com/Infineon/infineon-design-system-stencil/pull/1183) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.3.2 (Wed Apr 24 2024)
 
 #### 🐛 Bug Fix
