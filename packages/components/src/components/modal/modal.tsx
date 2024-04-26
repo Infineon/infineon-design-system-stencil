@@ -90,8 +90,8 @@ export class IfxModal {
         // Setting focus on last item and removing immediately
         // so, on tab press first element is focused
         setTimeout(() => {
-          this.getLastFocusableElement().focus();
-          this.getLastFocusableElement().blur();
+          this.getLastFocusableElement()?.focus();
+          this.getLastFocusableElement()?.blur();
         }, 0);
 
         this.ifxModalOpen.emit();
