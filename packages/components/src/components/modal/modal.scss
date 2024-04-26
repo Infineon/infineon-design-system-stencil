@@ -7,6 +7,8 @@
 
 .modal-container {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +21,7 @@
 }
 
 .modal-container.open {
-  display: block;
+  display: flex;
 }
 
 .modal-overlay {
@@ -37,9 +39,6 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 90%;
   min-height: 218px;
   background-color: #fff;
