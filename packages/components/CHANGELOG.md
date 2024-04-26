@@ -1,3 +1,15 @@
+# v21.7.3 (Fri Apr 26 2024)
+
+#### 🐛 Bug Fix
+
+- Modal: Fix issue with rendering lines [#1197](https://github.com/Infineon/infineon-design-system-stencil/pull/1197) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.7.2 (Thu Apr 25 2024)
 
 #### 🐛 Bug Fix
