@@ -171,6 +171,7 @@ export class IfxSlider {
                 min={this.min}
                 max={this.max}
                 value={this.internalMinValue}
+                step={this.step}
                 disabled={this.disabled}
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
@@ -182,6 +183,7 @@ export class IfxSlider {
                 min={this.min}
                 max={this.max}
                 value={this.internalMaxValue}
+                step={this.step}
                 disabled={this.disabled}
                 ref={(el) => (this.maxInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
