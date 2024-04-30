@@ -32,7 +32,6 @@ export class DatePicker {
     }
   }
 
-
   render() {
     return (
       <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ""}`} >
