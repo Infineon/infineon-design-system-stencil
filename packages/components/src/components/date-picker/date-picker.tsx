@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element } from '@stencil/core';
+import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-date-picker',
@@ -12,6 +12,7 @@ export class DatePicker {
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Event() ifxDate: EventEmitter;
 
   getDate(e) { 
     const selectedDate = new Date(e.target.value);
@@ -19,9 +20,9 @@ export class DatePicker {
     const month = selectedDate.getMonth() + 1; 
     const year = selectedDate.getFullYear();
 
-    console.log('Day: ' + day);
-    console.log('Month: ' + month);
-    console.log('Year: ' + year);
+    if(day && month && year) { 
+      this.ifxDate.emit({day, month, year})
+    }
   }
 
   handleInputFocusOnIconClick() { 

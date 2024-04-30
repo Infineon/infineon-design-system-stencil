@@ -140,8 +140,11 @@
 
  .icon__wrapper { 
   position: absolute;
-  right: 19px;
+  right: 14px;
   padding: 2px;
+  width: 25px;
+  display: flex;
+  justify-content: flex-end;
   pointer-events: none;
   z-index: 100;
   background-color: #fff;
