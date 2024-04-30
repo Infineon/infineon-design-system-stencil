@@ -37,7 +37,7 @@ export class DatePicker {
 
   render() {
     return (
-      <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'}`} onClick={() => this.handleClick()}>
+      <div tabindex="0" class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'}`} onClick={() => this.handleClick()}>
         <input class='date__picker-input' type="date" onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper">
           <ifx-icon icon='calendar16'></ifx-icon>
