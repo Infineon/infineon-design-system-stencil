@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
 :host { 
-  display: block;
+  display: inline-block;
 }
 
 .input__wrapper { 
@@ -19,14 +19,38 @@
   width: 100%;
   cursor: pointer;
 
-  // &:focus:not(.error, .success) {
-  //   outline: none;
-  //   border: 1px solid tokens.$ifxColorOcean500;
-  // }
+  border-radius: 1px;
+  border: 1px solid tokens.$ifxColorEngineering400;
 
-  // &:hover:not(:disabled, :focus, .error, .success) {
-  //   border: 1px solid tokens.$ifxColorEngineering500;
-  // }
+  &:focus:not(.error, .success) {
+    outline: none;
+    border: 1px solid tokens.$ifxColorOcean500;
+  }
+
+  &:hover:not(:disabled, :focus, .error, .success) {
+    border: 1px solid tokens.$ifxColorEngineering500;
+  }
+
+  &:disabled { 
+    border: 1px solid tokens.$ifxColorEngineering500;
+    background-color: tokens.$ifxColorEngineering200;
+  }
+
+  &.error {
+    border: 1px solid #CD002F;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.success {
+    border: 1px solid #4CA460;
+
+    &:focus {
+      outline: none;
+    }
+  }
 
   &::-webkit-datetime-edit-text { 
     color: #8D8786;
@@ -84,14 +108,9 @@
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    border-radius: 1px;
-    border: 1px solid tokens.$ifxColorEngineering400;
+    //border-radius: 1px;
+    //border: 1px solid tokens.$ifxColorEngineering400;
     background: #FFF;
-
-    &:focus { 
-      outline: none;
-      border: 2px solid green;
-    }
 
     // &:focus:not(.error, .success) {
     //   outline: none;
@@ -110,19 +129,9 @@
       width: 173px;
     }
 
-    &.error {
-      border: 1px solid #CD002F;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    &.success {
-      border: 1px solid #4CA460;
-
-      &:focus {
-        outline: none;
+    &.disabled { 
+      & .icon__wrapper { 
+        background-color: tokens.$ifxColorEngineering200;
       }
     }
 
