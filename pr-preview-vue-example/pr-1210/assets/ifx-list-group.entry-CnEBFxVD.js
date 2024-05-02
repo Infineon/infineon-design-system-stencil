@@ -1,0 +1,3 @@
+import{r as s,h as t,H as i,g as l}from"./index-DPrdDKFF.js";const f=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",n=f,o=class{constructor(e){s(this,e),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"b703d804b4184f72d29a39314ac6668525296b59"},t("div",{key:"8e0c989ea0f0996d30767089a12aed0bfe5328d9",class:`list-group-container 
+        ${this.flush?"flush":""} 
+        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"ad49d15326e600fd34f5d17913f0d8bd55fc7ef3",name:"list-item"}),t("slot",{key:"3b2a8f76f4f4fe0a9f4c42fa7619b7fe6f7dd144",name:"list-notification"})))}get el(){return l(this)}};o.style=n;export{o as ifx_list_group};
