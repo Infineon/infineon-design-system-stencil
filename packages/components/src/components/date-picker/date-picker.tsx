@@ -32,6 +32,35 @@ export class DatePicker {
     }
   }
 
+ getBrowser() {
+    if( navigator.userAgent.indexOf("Chrome") != -1 ) {
+      return "Chrome";
+    } else if( navigator.userAgent.indexOf("Opera") != -1 ) {
+      return "Opera";
+    } else if( navigator.userAgent.indexOf("MSIE") != -1 ) {
+      return "IE";
+    } else if( navigator.userAgent.indexOf("Firefox") != -1 ) {
+      return "Firefox";
+    } else {
+      return "unknown";
+    }
+  }
+
+  setFireFoxClasses() { 
+    const browser = this.getBrowser()
+    const input = this.el.shadowRoot.querySelector('.date__picker-input');
+
+    if(browser === 'Firefox') { 
+      input.classList.add('firefox__classes')
+    } else if(input.classList.contains('firefox__classes')) { 
+      input.classList.remove('firefox__classes')
+    }
+  }
+
+  componentDidLoad() { 
+    this.setFireFoxClasses()
+  }
+
   render() {
     return (
       <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ""}`} >
