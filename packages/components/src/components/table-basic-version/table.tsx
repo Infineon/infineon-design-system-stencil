@@ -1,7 +1,5 @@
 import { Component, h, Prop, State } from '@stencil/core';
-import { FirstDataRenderedEvent, Grid, GridOptions } from 'ag-grid-community';
-
-type DataSourceFunction = (request: any, successCallback: any, failCallback: any) => void;
+import { FirstDataRenderedEvent, Grid, GridOptions, IDatasource } from 'ag-grid-community';
 
 @Component({
   tag: 'ifx-basic-table',
@@ -18,7 +16,7 @@ export class Table {
   @Prop() uniqueKey: string;
   @Prop() tableHeight: string = 'auto';
   @Prop() serverSideModel: boolean = false;
-  @Prop() dataSource: DataSourceFunction = undefined;
+  @Prop() dataSource: IDatasource = undefined;
 
 
 
@@ -53,7 +51,7 @@ export class Table {
       onFirstDataRendered: this.onFirstDataRendered,
       columnDefs: this.columnDefs,
       rowData: this.rowData,
-      serverSideDatasource: this.dataSource,
+      datasource: this.dataSource,
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
@@ -61,7 +59,7 @@ export class Table {
       },
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
-      rowModelType: this.serverSideModel ? 'serverSide' : 'clientSide',
+      rowModelType: this.serverSideModel ? 'infinite' : 'clientSide',
     };
     // console.log("grid options ", this.gridOptions);
 
@@ -77,7 +75,9 @@ export class Table {
     this.gridOptions.columnDefs = this.columnDefs;
     this.gridOptions.rowData = this.rowData;
     if (this.gridOptions.api) {
-      this.gridOptions.api.setRowData(this.rowData);
+      if (!this.serverSideModel) {
+        this.gridOptions.api.setRowData(this.rowData);
+	  }
       this.gridOptions.api.setColumnDefs(this.columnDefs);
     }
   }
