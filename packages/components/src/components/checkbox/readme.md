@@ -28,6 +28,7 @@
 
 ### Used by
 
+ - [ifx-filter-entry](../filter-entry)
  - [ifx-multiselect](../select/multi-select)
 
 ### Depends on
@@ -38,6 +39,7 @@
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
+  ifx-filter-entry --> ifx-checkbox
   ifx-multiselect --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
