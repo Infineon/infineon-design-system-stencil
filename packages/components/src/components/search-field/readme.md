@@ -26,6 +26,7 @@
 
 ### Used by
 
+ - [ifx-filter-search](../filter-search)
  - [ifx-search-bar](../search-bar)
 
 ### Depends on
@@ -36,6 +37,7 @@
 ```mermaid
 graph TD;
   ifx-search-field --> ifx-icon
+  ifx-filter-search --> ifx-search-field
   ifx-search-bar --> ifx-search-field
   style ifx-search-field fill:#f9f,stroke:#333,stroke-width:4px
 ```

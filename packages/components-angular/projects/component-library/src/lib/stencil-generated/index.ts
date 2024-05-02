@@ -27,6 +27,7 @@ export const DIRECTIVES = [
   d.IfxDropdownTrigger,
   d.IfxDropdownTriggerButton,
   d.IfxFaq,
+  d.IfxFilterSearch,
   d.IfxFooter,
   d.IfxFooterColumn,
   d.IfxIcon,
