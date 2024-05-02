@@ -12,6 +12,7 @@ export class DatePicker {
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() name: string = '';
   @Event() ifxDate: EventEmitter;
 
   getDate(e) { 
@@ -66,6 +67,7 @@ export class DatePicker {
       <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ""}`} >
         <input 
         class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} type="date" 
+        name={this.name}
         disabled={this.disabled}
         onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper" onClick={() => this.handleInputFocusOnIconClick()}>
