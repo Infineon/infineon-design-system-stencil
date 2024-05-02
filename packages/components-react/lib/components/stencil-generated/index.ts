@@ -35,6 +35,7 @@ export const IfxFaq = /*@__PURE__*/createReactComponent<JSX.IfxFaq, HTMLIfxFaqEl
 export const IfxFilterAccordion = /*@__PURE__*/createReactComponent<JSX.IfxFilterAccordion, HTMLIfxFilterAccordionElement>('ifx-filter-accordion');
 export const IfxFilterEntry = /*@__PURE__*/createReactComponent<JSX.IfxFilterEntry, HTMLIfxFilterEntryElement>('ifx-filter-entry');
 export const IfxFilterSearch = /*@__PURE__*/createReactComponent<JSX.IfxFilterSearch, HTMLIfxFilterSearchElement>('ifx-filter-search');
+export const IfxFilterTypeGroup = /*@__PURE__*/createReactComponent<JSX.IfxFilterTypeGroup, HTMLIfxFilterTypeGroupElement>('ifx-filter-type-group');
 export const IfxFooter = /*@__PURE__*/createReactComponent<JSX.IfxFooter, HTMLIfxFooterElement>('ifx-footer');
 export const IfxFooterColumn = /*@__PURE__*/createReactComponent<JSX.IfxFooterColumn, HTMLIfxFooterColumnElement>('ifx-footer-column');
 export const IfxIcon = /*@__PURE__*/createReactComponent<JSX.IfxIcon, HTMLIfxIconElement>('ifx-icon');

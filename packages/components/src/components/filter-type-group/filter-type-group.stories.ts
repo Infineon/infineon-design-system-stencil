@@ -1,6 +1,6 @@
-// filter-accordion.stories.js
+// filter-type-group.stories.js
 export default {
-  title: 'Components/Filter Accordion',
+  title: 'Components/Filter Type Group',
   tags: ['autodocs'],
 };
 
@@ -21,7 +21,17 @@ const generateFilterEntries = () => {
 };
 
 export const Default = () => `
-  <ifx-filter-accordion>
-    ${generateFilterEntries()}
-  </ifx-filter-accordion>
+  <ifx-filter-type-group>
+    <div slot="filter-search">
+    <ifx-filter-search></ifx-filter-search>
+     </div>
+    <div slot="filter-accordion">
+      <ifx-filter-accordion>
+        ${generateFilterEntries()}
+      </ifx-filter-accordion>
+      <ifx-filter-accordion>
+        ${generateFilterEntries()}
+      </ifx-filter-accordion>
+    </div>
+  </ifx-filter-type-group>
 `;

@@ -30,6 +30,7 @@ export const DIRECTIVES = [
   d.IfxFilterAccordion,
   d.IfxFilterEntry,
   d.IfxFilterSearch,
+  d.IfxFilterTypeGroup,
   d.IfxFooter,
   d.IfxFooterColumn,
   d.IfxIcon,
