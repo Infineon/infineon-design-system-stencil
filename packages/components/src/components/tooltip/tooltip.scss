@@ -148,54 +148,54 @@
 
   // For 'top' placement
   &[data-placement="top"]>.tooltip-arrow-svg {
-    bottom: -8px;
+    bottom: -7px;
     left: 50%;
     transform: rotate(180deg) translateX(-50%);
   }
 
   // For 'top-start' placement
   &[data-placement="top-start"]>.tooltip-arrow-svg {
-    bottom: -8px;
+    bottom: -7px;
     left: 10px; // Adjust as needed
     transform: rotate(180deg)
   }
 
   // For 'top-end' placement
   &[data-placement="top-end"]>.tooltip-arrow-svg {
-    bottom: -8px;
+    bottom: -7px;
     right: 10px; // Adjust as needed
     transform: rotate(180deg);
   }
 
   // For 'bottom' placement
   &[data-placement="bottom"]>.tooltip-arrow-svg {
-    top: -8px;
+    top: -7px;
     left: 50%;
     transform: translateX(-50%);
   }
 
   // For 'bottom-start' placement
   &[data-placement="bottom-start"]>.tooltip-arrow-svg {
-    top: -8px;
+    top: -7px;
     left: 10px; // Adjust as needed
   }
 
   // For 'bottom-end' placement
   &[data-placement="bottom-end"]>.tooltip-arrow-svg {
-    top: -8px;
+    top: -7px;
     right: 10px; // Adjust as needed
   }
 
   // For 'left' placement
   &[data-placement="left"]>.tooltip-arrow-svg {
-    right: -4px;
+    right: -3px;
     top: 50%;
     transform: rotate(90deg) translateY(-50%) translateX(-50%);
   }
 
   // For 'right' placement
   &[data-placement="right"]>.tooltip-arrow-svg {
-    left: -4px;
+    left: -3px;
     top: 50%;
     transform: rotate(270deg) translateY(-50%) translateX(50%);
   }
