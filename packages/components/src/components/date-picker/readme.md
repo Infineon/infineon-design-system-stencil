@@ -11,6 +11,7 @@
 | ---------- | ---------- | ----------- | --------- | ------- |
 | `disabled` | `disabled` |             | `boolean` | `false` |
 | `error`    | `error`    |             | `boolean` | `false` |
+| `name`     | `name`     |             | `string`  | `''`    |
 | `size`     | `size`     |             | `string`  | `'s'`   |
 | `success`  | `success`  |             | `boolean` | `false` |
 
