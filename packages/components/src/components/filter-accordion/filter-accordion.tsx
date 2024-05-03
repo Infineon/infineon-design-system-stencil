@@ -50,9 +50,9 @@ export class FilterAccordion {
     const remainingItems = this.getTotalItems() - 6;
 
     return (
-      <div class={`accordion ${this.expanded ? 'expanded' : ''} ${this.showMore ? 'show-more' : ''}`}>
+      <div class={`accordion ${this.showMore ? 'show-more' : ''}`}>
         <div class="header" onClick={this.toggleAccordion}>
-          <div class="text-and-icon">
+          <div class={`text-and-icon ${this.expanded ? 'expanded' : ''}`}>
             <div class="text">
               <span>{this.filterGroupName}</span>
               <ifx-number-indicator>{this.selectedCount}</ifx-number-indicator>
