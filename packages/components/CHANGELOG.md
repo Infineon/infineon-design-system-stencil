@@ -1,3 +1,15 @@
+# v21.8.0 (Fri May 03 2024)
+
+#### 🚀 Enhancement
+
+- New Component: Basic version of Date Picker [#1205](https://github.com/Infineon/infineon-design-system-stencil/pull/1205) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.7.4 (Thu May 02 2024)
 
 #### 🐛 Bug Fix
