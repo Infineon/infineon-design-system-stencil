@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_javascript=self.webpackChunkreact_javascript||[]).push([[3563],{3563:(t,s,a)=>{a.r(s),a.d(s,{ifx_tab:()=>i});var e=a(7770);const i=class{constructor(t){(0,e.r)(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return(0,e.h)("slot",{key:"a71f161fd6425a99a9a503a9c6999816485978f7"})}get el(){return(0,e.g)(this)}};i.style=":host{display:block}"}}]);
+//# sourceMappingURL=3563.21ba5518.chunk.js.map
