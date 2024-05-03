@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type      | Default     |
-| -------- | --------- | ----------- | --------- | ----------- |
-| `name`   | `name`    |             | `string`  | `undefined` |
-| `value`  | `value`   |             | `boolean` | `undefined` |
+| Property      | Attribute      | Description | Type      | Default     |
+| ------------- | -------------- | ----------- | --------- | ----------- |
+| `filterName`  | `filter-name`  |             | `string`  | `undefined` |
+| `filterValue` | `filter-value` |             | `boolean` | `undefined` |
 
 
 ## Events
 
-| Event             | Description | Type               |
-| ----------------- | ----------- | ------------------ |
-| `ifxFilterChange` |             | `CustomEvent<any>` |
+| Event                  | Description | Type               |
+| ---------------------- | ----------- | ------------------ |
+| `ifxFilterEntryChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

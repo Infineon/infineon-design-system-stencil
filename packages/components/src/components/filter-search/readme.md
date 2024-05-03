@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default     |
-| ------------ | ------------- | ----------- | --------- | ----------- |
-| `disabled`   | `disabled`    |             | `boolean` | `false`     |
-| `filterName` | `filter-name` |             | `string`  | `undefined` |
-| `value`      | `value`       |             | `string`  | `undefined` |
+| Property      | Attribute      | Description | Type      | Default     |
+| ------------- | -------------- | ----------- | --------- | ----------- |
+| `disabled`    | `disabled`     |             | `boolean` | `false`     |
+| `filterName`  | `filter-name`  |             | `string`  | `undefined` |
+| `filterValue` | `filter-value` |             | `string`  | `undefined` |
 
 
 ## Events
 
-| Event      | Description | Type               |
-| ---------- | ----------- | ------------------ |
-| `ifxInput` |             | `CustomEvent<any>` |
+| Event                   | Description | Type               |
+| ----------------------- | ----------- | ------------------ |
+| `ifxFilterSearchChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

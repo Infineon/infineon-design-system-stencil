@@ -7,9 +7,9 @@ import { Component, h, Prop, Event, EventEmitter, Listen, Watch, Element } from 
 })
 export class FilterEntry {
   @Element() host: HTMLElement;
-  @Prop({ mutable: true }) value: boolean;
-  @Prop() name: string;
-  @Event() ifxFilterChange: EventEmitter;
+  @Prop({ mutable: true }) filterValue: boolean;
+  @Prop() filterName: string;
+  @Event() ifxFilterEntryChange: EventEmitter;
 
   @Watch('value')
   valueChanged(newValue: boolean) {
@@ -17,16 +17,16 @@ export class FilterEntry {
   }
 
   @Listen('ifxChange')
-  handleCheckboxChange(event: CustomEvent) {
-    this.value = event.detail;
-    this.ifxFilterChange.emit(this.value);
+  handleFilterEntryChange(event: CustomEvent) {
+    this.filterValue = event.detail;
+    this.ifxFilterEntryChange.emit({ filterName: this.filterName, filterValue: this.filterValue });
   }
 
   render() {
     return (
       <div class="filter-entry">
-        <ifx-checkbox value={this.value}></ifx-checkbox>
-        <span>{this.name}</span>
+        <ifx-checkbox value={this.filterValue}></ifx-checkbox>
+        <span>{this.filterName}</span>
       </div>
     );
   }
