@@ -10,14 +10,14 @@ export default {
 // An array of filters for demonstration purposes.
 // Replace this with your actual data.
 const filters = [
-  { filterName: 'Filter 1', filterValue: true },
-  { filterName: 'Filter 2', filterValue: false },
-  { filterName: 'Filter 3', filterValue: true },
-  { filterName: 'Filter 4', filterValue: false },
-  { filterName: 'Filter 5', filterValue: false },
-  { filterName: 'Filter 6', filterValue: false },
-  { filterName: 'Filter 7', filterValue: false },
-  { filterName: 'Filter 8', filterValue: false },
+  { filterName: 'Filter 1', value: true },
+  { filterName: 'Filter 2', value: false },
+  { filterName: 'Filter 3', value: true },
+  { filterName: 'Filter 4', value: false },
+  { filterName: 'Filter 5', value: false },
+  { filterName: 'Filter 6', value: false },
+  { filterName: 'Filter 7', value: false },
+  { filterName: 'Filter 8', value: false },
 
   // Add as many filters as needed
 ];
@@ -25,7 +25,7 @@ const filters = [
 // A function that generates the HTML for all the ifx-filter-entry components
 const generateFilterEntries = () => {
   return filters.map(filter => `
-    <ifx-filter-entry filter-name="${filter.filterName}" filter-value="${filter.filterValue ? 'true' : 'false'}"></ifx-filter-entry>
+    <ifx-filter-entry filter-name="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-filter-entry>
   `).join('');
 };
 

@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type      | Default     |
-| ------------- | -------------- | ----------- | --------- | ----------- |
-| `filterName`  | `filter-name`  |             | `string`  | `undefined` |
-| `filterValue` | `filter-value` |             | `boolean` | `undefined` |
+| Property     | Attribute     | Description | Type      | Default     |
+| ------------ | ------------- | ----------- | --------- | ----------- |
+| `filterName` | `filter-name` |             | `string`  | `undefined` |
+| `value`      | `value`       |             | `boolean` | `undefined` |
 
 
 ## Events

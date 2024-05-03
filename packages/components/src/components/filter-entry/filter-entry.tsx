@@ -7,25 +7,30 @@ import { Component, h, Prop, Event, EventEmitter, Listen, Watch, Element } from 
 })
 export class FilterEntry {
   @Element() host: HTMLElement;
-  @Prop({ mutable: true }) filterValue: boolean;
+  @Prop({ mutable: true }) value: boolean;
   @Prop() filterName: string;
   @Event() ifxFilterEntryChange: EventEmitter;
 
   @Watch('value')
   valueChanged(newValue: boolean) {
-    this.host.setAttribute('value', newValue.toString());
+    if (newValue) {
+      this.host.setAttribute('value', 'true');
+    } else {
+      this.host.removeAttribute('value');
+    }
   }
+
 
   @Listen('ifxChange')
   handleFilterEntryChange(event: CustomEvent) {
-    this.filterValue = event.detail;
-    this.ifxFilterEntryChange.emit({ filterName: this.filterName, filterValue: this.filterValue });
+    this.value = event.detail;
+    this.ifxFilterEntryChange.emit({ filterName: this.filterName, value: this.value });
   }
 
   render() {
     return (
       <div class="filter-entry">
-        <ifx-checkbox value={this.filterValue}></ifx-checkbox>
+        <ifx-checkbox value={this.value}></ifx-checkbox>
         <span>{this.filterName}</span>
       </div>
     );

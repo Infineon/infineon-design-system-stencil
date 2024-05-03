@@ -14,7 +14,7 @@ export class FilterAccordion {
   @Prop() filterGroupName = "";
 
   componentWillLoad() {
-    this.el.addEventListener('ifxFilterChange', this.handleCheckedChange);
+    this.el.addEventListener('ifxFilterEntryChange', this.handleCheckedChange);
     // Calculate the initial selectedCount
     this.handleCheckedChange();
   }
@@ -24,7 +24,7 @@ export class FilterAccordion {
   }
 
   componentWillUnload() {
-    this.el.removeEventListener('ifxFilterChange', this.handleCheckedChange);
+    this.el.removeEventListener('ifxFilterEntryChange', this.handleCheckedChange);
   }
 
   toggleAccordion = (event: MouseEvent) => {
@@ -42,7 +42,6 @@ export class FilterAccordion {
       .filter(entry => {
         return entry.getAttribute('value') === 'true'
       }).length;
-
   }
 
   render() {
