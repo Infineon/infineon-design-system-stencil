@@ -11,6 +11,7 @@ export class FilterAccordion {
   @State() showMore = false;
   @State() selectedCount: number = 0;
   @State() totalItems = 0;
+  @Prop() filterGroupName = "";
 
   componentWillLoad() {
     this.el.addEventListener('ifxFilterChange', this.handleCheckedChange);
@@ -52,7 +53,7 @@ export class FilterAccordion {
         <div class="header" onClick={this.toggleAccordion}>
           <div class="text-and-icon">
             <div class="text">
-              <span>Filter Group Name</span>
+              <span>{this.filterGroupName}</span>
               <ifx-number-indicator>{this.selectedCount}</ifx-number-indicator>
             </div>
             <ifx-icon
@@ -80,4 +81,8 @@ export class FilterAccordion {
       </div>
     );
   }
+}
+
+function Prop(): (target: FilterAccordion, propertyKey: "filterGroupName") => void {
+  throw new Error('Function not implemented.');
 }

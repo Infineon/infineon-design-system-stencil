@@ -32,10 +32,10 @@ export const Default = () => `
     <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
      </div>
     <div slot="filter-accordion">
-      <ifx-filter-accordion>
+      <ifx-filter-accordion filter-group-name="Filter group 1">
         ${generateFilterEntries()}
       </ifx-filter-accordion>
-      <ifx-filter-accordion>
+      <ifx-filter-accordion filter-group-name="Filter group 2">
         ${generateFilterEntries()}
       </ifx-filter-accordion>
     </div>

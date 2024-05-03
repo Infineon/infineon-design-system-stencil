@@ -26,6 +26,11 @@
   align-items: center;
   gap: 8px;
   flex: 1 0 0;
+  color: tokens.$ifxColorBaseBlack;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
 }
 
 .hidden {
