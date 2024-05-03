@@ -19,12 +19,14 @@ export class FilterAccordion {
     this.handleCheckedChange();
   }
 
-  componentDidLoad() {
-    this.totalItems = this.el.querySelectorAll('ifx-filter-entry').length;
-  }
 
   componentWillUnload() {
     this.el.removeEventListener('ifxFilterEntryChange', this.handleCheckedChange);
+  }
+
+
+  getTotalItems() {
+    return this.el.querySelectorAll('ifx-filter-entry').length;
   }
 
   toggleAccordion = (event: MouseEvent) => {
@@ -45,7 +47,7 @@ export class FilterAccordion {
   }
 
   render() {
-    const remainingItems = this.totalItems - 6;
+    const remainingItems = this.getTotalItems() - 6;
 
     return (
       <div class={`accordion ${this.expanded ? 'expanded' : ''} ${this.showMore ? 'show-more' : ''}`}>

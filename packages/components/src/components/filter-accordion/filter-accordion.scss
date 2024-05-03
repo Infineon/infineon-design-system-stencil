@@ -33,6 +33,10 @@
   line-height: 24px;
 }
 
+ifx-icon[icon="plus-16"]:hover {
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
