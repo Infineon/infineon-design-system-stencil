@@ -1,4 +1,4 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-filter-accordion',
@@ -6,19 +6,55 @@ import { Component, h, State } from '@stencil/core';
   shadow: true,
 })
 export class FilterAccordion {
+  @Element() private el: HTMLElement;
   @State() expanded: boolean = false;
+  @State() showMore = false;
+  @State() selectedCount: number = 0;
+  @State() totalItems = 0;
+
+  componentWillLoad() {
+    this.el.addEventListener('ifxFilterChange', this.handleCheckedChange);
+    // Calculate the initial selectedCount
+    this.handleCheckedChange();
+  }
+
+  componentDidLoad() {
+    this.totalItems = this.el.querySelectorAll('ifx-filter-entry').length;
+  }
+
+  componentWillUnload() {
+    this.el.removeEventListener('ifxFilterChange', this.handleCheckedChange);
+  }
 
   toggleAccordion = (event: MouseEvent) => {
     event.stopPropagation();
     this.expanded = !this.expanded;
   }
 
+  toggleShowMore = (event: MouseEvent) => {
+    event.stopPropagation();
+    this.showMore = !this.showMore;
+  }
+
+  handleCheckedChange = () => {
+    this.selectedCount = Array.from(this.el.querySelectorAll('ifx-filter-entry'))
+      .filter(entry => {
+        return entry.getAttribute('value') === 'true'
+      }).length;
+
+  }
+
   render() {
+    const remainingItems = this.totalItems - 6;
+
     return (
-      <div class={`accordion ${this.expanded ? 'expanded' : ''}`}>
+      <div class={`accordion ${this.expanded ? 'expanded' : ''} ${this.showMore ? 'show-more' : ''}`}>
         <div class="header" onClick={this.toggleAccordion}>
           <div class="text-and-icon">
-            <span class="text">Filter Group Name</span>
+            <div class="text">
+              <span>Filter Group Name</span>
+              <ifx-number-indicator>{this.selectedCount}</ifx-number-indicator>
+            </div>
             <ifx-icon
               class={this.expanded ? '' : 'hidden'}
               icon="minus-16"
@@ -34,6 +70,11 @@ export class FilterAccordion {
         {this.expanded &&
           <div class="filter-accordion-container">
             <slot></slot>
+            <div class="link" onClick={this.toggleShowMore}>
+              <ifx-icon key={this.showMore.toString()} icon={this.showMore ? 'chevron-up-12' : 'chevron-down-12'} />              <ifx-link href="" target="_blank" size="m" variant="underlined" disabled={false} >
+                {this.showMore ? 'Show less' : `Show ${remainingItems} more`}
+              </ifx-link>
+            </div>
           </div>
         }
       </div>

@@ -10,6 +10,12 @@ const filters = [
   { name: 'Filter 1', value: true },
   { name: 'Filter 2', value: false },
   { name: 'Filter 3', value: true },
+  { name: 'Filter 4', value: false },
+  { name: 'Filter 5', value: false },
+  { name: 'Filter 6', value: false },
+  { name: 'Filter 7', value: false },
+  { name: 'Filter 8', value: false },
+
   // Add as many filters as needed
 ];
 
@@ -23,7 +29,7 @@ const generateFilterEntries = () => {
 export const Default = () => `
   <ifx-filter-type-group>
     <div slot="filter-search">
-    <ifx-filter-search></ifx-filter-search>
+    <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
      </div>
     <div slot="filter-accordion">
       <ifx-filter-accordion>

@@ -21,7 +21,7 @@ export class FilterSearch {
   render() {
     return (
       <div class="filter-search-wrapper">
-        <div class="filter-name">Your Filter Name</div>
+        <div class="filter-name">{this.filterName}</div>
         <ifx-search-field disabled={this.disabled} value={this.value} onIfxInput={this.handleInput.bind(this)}>
         </ifx-search-field>
       </div>

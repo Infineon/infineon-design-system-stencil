@@ -1,3 +1,6 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+
 .header {
   display: flex;
   align-items: flex-start;
@@ -8,18 +11,21 @@
   display: flex;
   padding: 12px 16px 12px 20px;
   align-items: center;
-  gap: var(--space-200, 16px);
+  gap: 16px;
   flex: 1 0 0;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+
+  &.expanded {
+    border-left: 3px solid tokens.$ifxColorOcean500;
+    border-bottom: none;
+  }
 }
 
 .text {
-  color: #1D1D1D;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: "Source Sans 3";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
 }
 
 .hidden {
@@ -33,4 +39,23 @@
   align-items: flex-start;
   gap: 12px;
   align-self: stretch;
+  border-left: 3px solid tokens.$ifxColorOcean500;
+}
+
+::slotted(ifx-filter-entry:nth-child(n+7)) {
+  display: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.show-more ::slotted(ifx-filter-entry:nth-child(n+7)) {
+  display: block;
+}
+
+.show-more .show-more-link {
+  display: none;
 }

@@ -13,6 +13,13 @@
 | `value`  | `value`   |             | `boolean` | `undefined` |
 
 
+## Events
+
+| Event             | Description | Type               |
+| ----------------- | ----------- | ------------------ |
+| `ifxFilterChange` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Depends on
