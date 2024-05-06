@@ -28,34 +28,32 @@ const generateFilterEntries = () => {
     <ifx-list-entry slot="slot${index}" type="checkbox" label="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-list-entry>
   `).join('');
 };
-
 export const Default = () => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-filter-type-group>
-    <div slot="filter-search">
-      <ifx-filter-search filter-name="Your filter name"></ififx-filter-search>
-    </div>
-    <div slot="filter-accordion">
-      <ifx-filter-accordion filter-group-name="Filter group 1">
-        <ifx-list slot="list" list-name="Filter group 1"></ifx-list>
-      </ifx-filter-accordion>
-      <ifx-filter-accordion filter-group-name="Filter group 2">
-        <ifx-list slot="list" list-name="Filter group 2" max-visible-items="6"></ifx-list>
-      </ifx-filter-accordion>
-    </div>
-  </ifx-filter-type-group>`;
-
+  <div slot="filter-search">
+  <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+   </div>
+  <div slot="filter-accordion">
+  <ifx-filter-accordion filter-group-name="Filter group 1">
+  <ifx-list slot="list" list-name="Filter group 1" max-visible-items="6">
+    ${generateFilterEntries()}
+  </ifx-list>
+</ifx-filter-accordion>
+<ifx-filter-accordion filter-group-name="Filter group 2">
+<ifx-list slot="list" list-name="Filter group 2" max-visible-items="6">
+${generateFilterEntries()}
+</ifx-list>
+</ifx-filter-accordion>
+  </div>
+</ifx-filter-type-group>
+`;
   const element = wrapper.querySelector('ifx-filter-type-group') as HTMLElement;
+
   element.addEventListener('ifxFilterTypeGroupChange', action('ifxFilterTypeGroupChange'));
 
-  // Wait for the ifx-list components to be defined
-  window.customElements.whenDefined('ifx-list').then(() => {
-    // Now that the ifx-list components are defined, add the ifx-list-entry elements
-    const lists = wrapper.querySelectorAll('ifx-list');
-    lists.forEach(list => {
-      list.innerHTML = generateFilterEntries();
-    });
-  });
-
   return wrapper;
-};
+}
+
+
+
