@@ -1,9 +1,10 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 export class Checkbox {
@@ -19,6 +20,8 @@ export class Checkbox {
   @Prop() indeterminate: boolean = false;
   @State() internalIndeterminate: boolean;
 
+  @AttachInternals() internals: ElementInternals;
+
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
@@ -29,6 +32,8 @@ export class Checkbox {
       } else {
         this.internalValue = !this.internalValue;
       }
+      this.internals.setFormValue(this.internalValue ? 'on' : null);
+      
       this.ifxChange.emit(this.internalValue);
     }
   }
@@ -66,6 +71,14 @@ export class Checkbox {
 
   componentDidRender() {
     this.inputElement.indeterminate = this.internalIndeterminate;
+  }
+
+  /**
+   * Callback for form association.
+   * Called whenever the form is reset.
+   */
+  formResetCallback() {
+    this.internals.setFormValue(null);
   }
 
   getCheckedClassName() {
