@@ -24,7 +24,7 @@
 
 ### Depends on
 
-- [ifx-checkbox](../checkbox)
+- [ifx-checkbox](../../checkbox)
 
 ### Graph
 ```mermaid

@@ -16,7 +16,7 @@
 
 ### Used by
 
- - [ifx-filter-accordion](../filter-accordion)
+ - [ifx-filter-accordion](../filter-type-group/filter-accordion)
  - [ifx-list-item](../list-group)
  - [ifx-overview-table](../overview-table)
  - [ifx-sidebar-item](../sidebar)

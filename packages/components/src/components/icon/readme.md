@@ -31,7 +31,7 @@
  - [ifx-chip](../chips)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
- - [ifx-filter-accordion](../filter-accordion)
+ - [ifx-filter-accordion](../filter-type-group/filter-accordion)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-modal](../modal)

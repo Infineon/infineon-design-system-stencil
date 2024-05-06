@@ -20,7 +20,7 @@
 
 ### Used by
 
- - [ifx-filter-accordion](../filter-accordion)
+ - [ifx-filter-accordion](../filter-type-group/filter-accordion)
  - [ifx-footer](../footer)
  - [ifx-overview-table](../overview-table)
 

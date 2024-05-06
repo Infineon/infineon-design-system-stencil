@@ -1,4 +1,5 @@
-import { Component, h, State, Element } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter, Element } from '@stencil/core';
+import { getInitiallySelectedItems } from '../utils';
 
 @Component({
   tag: 'ifx-filter-accordion',
@@ -13,17 +14,17 @@ export class FilterAccordion {
   @State() totalItems = 0;
   @Prop() filterGroupName = "";
 
+  @Event() ifxFilterAccordionChange: EventEmitter; // Add this line
+
   componentWillLoad() {
     this.el.addEventListener('ifxFilterEntryChange', this.handleCheckedChange);
     // Calculate the initial selectedCount
-    this.handleCheckedChange();
+    this.selectedCount = getInitiallySelectedItems(this.el).length;
   }
-
 
   componentWillUnload() {
     this.el.removeEventListener('ifxFilterEntryChange', this.handleCheckedChange);
   }
-
 
   getTotalItems() {
     return this.el.querySelectorAll('ifx-filter-entry').length;
@@ -40,10 +41,9 @@ export class FilterAccordion {
   }
 
   handleCheckedChange = () => {
-    this.selectedCount = Array.from(this.el.querySelectorAll('ifx-filter-entry'))
-      .filter(entry => {
-        return entry.getAttribute('value') === 'true'
-      }).length;
+    const selectedItems = getInitiallySelectedItems(this.el);
+    this.selectedCount = selectedItems.length;
+    this.ifxFilterAccordionChange.emit({ filterGroupName: this.filterGroupName, selectedItems }); // Add filterGroupName to the emitted object
   }
 
   render() {

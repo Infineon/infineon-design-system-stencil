@@ -12,13 +12,20 @@
 | `filterGroupName` | `filter-group-name` |             | `string` | `""`    |
 
 
+## Events
+
+| Event                      | Description | Type               |
+| -------------------------- | ----------- | ------------------ |
+| `ifxFilterAccordionChange` |             | `CustomEvent<any>` |
+
+
 ## Dependencies
 
 ### Depends on
 
-- [ifx-number-indicator](../number-indicator)
-- [ifx-icon](../icon)
-- [ifx-link](../link)
+- [ifx-number-indicator](../../number-indicator)
+- [ifx-icon](../../icon)
+- [ifx-link](../../link)
 
 ### Graph
 ```mermaid

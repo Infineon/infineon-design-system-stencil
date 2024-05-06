@@ -1,9 +1,8 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-.filter-type-group {
+.filter-entry {
   display: flex;
-  width: 260px;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: tokens.$ifxSpace100;
+  align-self: stretch;
 }

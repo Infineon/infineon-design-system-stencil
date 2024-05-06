@@ -28,7 +28,7 @@
 
 ### Used by
 
- - [ifx-filter-entry](../filter-entry)
+ - [ifx-filter-entry](../filter-type-group/filter-entry)
  - [ifx-multiselect](../select/multi-select)
 
 ### Depends on

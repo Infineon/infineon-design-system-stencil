@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [ifx-filter-search](../filter-search)
+ - [ifx-filter-search](../filter-type-group/filter-search)
  - [ifx-search-bar](../search-bar)
 
 ### Depends on
