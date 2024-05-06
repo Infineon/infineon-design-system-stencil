@@ -22,7 +22,7 @@ const filters = [
   // Add as many filters as needed
 ];
 
-// A function that generates the HTML for all the ifx-filter-entry components
+// A function that generates the HTML for all the ifx-list-entry components
 const generateFilterEntries = () => {
   return filters.map((filter, index) => `
     <ifx-list-entry slot="slot${index}" type="checkbox" label="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-list-entry>
