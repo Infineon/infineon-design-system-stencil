@@ -1,9 +1,10 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
 
 @Component({
   tag: 'ifx-radio-button',
   styleUrl: 'radio-button.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 export class RadioButton {
   @Element() el;
@@ -17,8 +18,8 @@ export class RadioButton {
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
-  private nativeButton: HTMLInputElement;
-
+  @AttachInternals() internals: ElementInternals;
+  
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
@@ -32,19 +33,6 @@ export class RadioButton {
     if (slot) {
       this.hasSlot = true;
     } else this.hasSlot = false;
-
-    if (this.el.closest('form')) {
-      this.insertNativeRadioButton();
-    }
-  }
-
-  insertNativeRadioButton() {
-    this.nativeButton = document.createElement('input');
-    this.nativeButton.type = 'radio';
-    this.nativeButton.name = this.name;
-    this.nativeButton.style.display = 'none';
-    this.nativeButton.checked = this.internalValue;
-    this.el.closest('form').appendChild(this.nativeButton);
   }
 
   handleRadioButtonClick() {
@@ -52,11 +40,12 @@ export class RadioButton {
       this.internalValue = !this.internalValue;
       this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
       this.ifxChange.emit(this.internalValue);
+      this.internals.setFormValue(this.internalValue ? 'on' : null);
     }
+  }
 
-    if (this.nativeButton) {
-      this.nativeButton.click();
-    }
+  formResetCallback() {
+    this.internals.setFormValue(null);
   }
 
   render() {
