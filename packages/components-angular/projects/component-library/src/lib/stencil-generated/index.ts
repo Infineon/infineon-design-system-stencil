@@ -37,6 +37,8 @@ export const DIRECTIVES = [
   d.IfxIconButton,
   d.IfxIconsPreview,
   d.IfxLink,
+  d.IfxList,
+  d.IfxListEntry,
   d.IfxListGroup,
   d.IfxListItem,
   d.IfxListNotification,

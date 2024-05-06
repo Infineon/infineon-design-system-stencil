@@ -1,8 +1,9 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-.filter-entry {
+
+.list-entry {
   display: flex;
   align-items: center;
-  gap: tokens.$ifxSpace100;
+  margin-top: tokens.$ifxSpace100; //gap doesnt apply to child elements
   align-self: stretch;
 }

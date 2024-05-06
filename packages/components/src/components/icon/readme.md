@@ -34,6 +34,7 @@
  - [ifx-filter-accordion](../filter-type-group/filter-accordion)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
+ - [ifx-list](../list)
  - [ifx-modal](../modal)
  - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navbar)
@@ -63,6 +64,7 @@ graph TD;
   ifx-filter-accordion --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
+  ifx-list --> ifx-icon
   ifx-modal --> ifx-icon
   ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon

@@ -1,9 +1,9 @@
 // utils.ts
 export function getInitiallySelectedItems(el: HTMLElement) {
-  return Array.from(el.querySelectorAll('ifx-filter-entry'))
+  return Array.from(el.querySelectorAll('ifx-list-entry'))
     .filter(entry => entry.getAttribute('value') === 'true')
     .map(entry => ({
-      filterName: entry.getAttribute('filter-name'),
+      label: entry.getAttribute('label'),
       value: entry.getAttribute('value')
     }));
 }
