@@ -46,9 +46,7 @@ export const Default = () => {
 </ifx-filter-type-group>
 `;
   const element = wrapper.querySelector('ifx-filter-type-group') as HTMLElement;
-  // element.addEventListener('ifxFilterEntryChange', action('ifxFilterEntryChange'));
-  // element.addEventListener('ifxFilterSearchChange', action('ifxFilterSearchChange'));
-  // element.addEventListener('ifxFilterAccordionChange', action('ifxFilterAccordionChange'));
+
   element.addEventListener('ifxFilterTypeGroupChange', action('ifxFilterTypeGroupChange'));
 
   return wrapper;
