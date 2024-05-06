@@ -1,3 +1,15 @@
+# v21.8.1 (Mon May 06 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: added code snippet for label trigger dropdown [#1212](https://github.com/Infineon/infineon-design-system-stencil/pull/1212) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.8.0 (Fri May 03 2024)
 
 #### 🚀 Enhancement
