@@ -11,10 +11,13 @@ export class RadioButton {
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @Prop() size: "s" | "m" = "s";
+  @Prop() name = undefined;
   @State() internalValue: boolean;
   @State() hasSlot: boolean = true;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
+
+  private nativeButton: HTMLInputElement;
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
@@ -29,6 +32,19 @@ export class RadioButton {
     if (slot) {
       this.hasSlot = true;
     } else this.hasSlot = false;
+
+    if (this.el.closest('form')) {
+      this.insertNativeRadioButton();
+    }
+  }
+
+  insertNativeRadioButton() {
+    this.nativeButton = document.createElement('input');
+    this.nativeButton.type = 'radio';
+    this.nativeButton.name = this.name;
+    this.nativeButton.style.display = 'none';
+    this.nativeButton.checked = this.internalValue;
+    this.el.closest('form').appendChild(this.nativeButton);
   }
 
   handleRadioButtonClick() {
@@ -36,6 +52,10 @@ export class RadioButton {
       this.internalValue = !this.internalValue;
       this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
       this.ifxChange.emit(this.internalValue);
+    }
+
+    if (this.nativeButton) {
+      this.nativeButton.click();
     }
   }
 
