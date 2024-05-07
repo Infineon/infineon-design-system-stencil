@@ -25,8 +25,9 @@ export class ListEntry {
   @Listen('ifxChange')
   handleFilterEntryChange(event: CustomEvent) {
     this.value = event.detail;
-    this.ifxListEntryChange.emit({ label: this.label, value: this.value });
+    this.ifxListEntryChange.emit({ label: this.label, value: this.value, type: this.type });
   }
+
 
   render() {
     return (
@@ -37,7 +38,7 @@ export class ListEntry {
           </div>
         ) : (
           <div class="list-entry">
-            <ifx-radio-button></ifx-radio-button>
+            <ifx-radio-button size="s" value={this.value}>{this.label}</ifx-radio-button>
           </div>
         )}
       </div>

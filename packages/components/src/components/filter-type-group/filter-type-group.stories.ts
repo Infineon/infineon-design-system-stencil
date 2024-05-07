@@ -28,6 +28,8 @@ const generateFilterEntries = () => {
     <ifx-list-entry slot="slot${index}" type="checkbox" label="${filter.filterName}" value="${filter.value ? 'true' : 'false'}"></ifx-list-entry>
   `).join('');
 };
+
+
 export const Default = () => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `<ifx-filter-type-group>
@@ -54,6 +56,3 @@ ${generateFilterEntries()}
 
   return wrapper;
 }
-
-
-

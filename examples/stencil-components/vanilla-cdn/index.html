@@ -16,8 +16,9 @@
 <body>
 
   <div>
-    <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
-      <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
+    <ifx-navbar show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com"
+      logo-href-target="_self">
+      <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="">
         Menu Item 1
         <ifx-navbar-item icon="calendar16">
           Layer 1 Nested Item 1
@@ -28,40 +29,41 @@
             <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
             <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
           </ifx-navbar-item>
-          <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
+          <ifx-navbar-item>Layer 2 Nested Item 3</ifx-navbar-item>
           <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
           <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
         </ifx-navbar-item>
-  
+
         <ifx-navbar-item>
           Layer 1 Nested Item 2
           <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
           <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
           <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
         </ifx-navbar-item>
-  
+
         <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
-  
+
         <ifx-navbar-item>
           Layer 1 Nested Item 4
           <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
         </ifx-navbar-item>
-  
+
       </ifx-navbar-item>
-  
+
       <ifx-navbar-item href="http://google.com" target="_blank" slot="left-item" icon="calendar16" show-label="true">
         Menu Item 2
       </ifx-navbar-item>
-  
+
       <ifx-navbar-item slot="left-item">
         More
         <ifx-navbar-item>Item1</ifx-navbar-item>
         <ifx-navbar-item>Item2</ifx-navbar-item>
       </ifx-navbar-item>
-  
+
       <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
-  
-      <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartf16">Right Item</ifx-navbar-item>
+
+      <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false"
+        show-label="false" icon="cartf16">Right Item</ifx-navbar-item>
       <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
         Right Item
         <ifx-navbar-item>
@@ -75,8 +77,10 @@
           </ifx-navbar-item>
         </ifx-navbar-item>
       </ifx-navbar-item>
-  
-      <ifx-navbar-profile slot="right-item" image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true" href="" target="_blank">
+
+      <ifx-navbar-profile slot="right-item"
+        image-url="https://i.pinimg.com/originals/82/d4/92/82d4926dcf09dd4c73eb1a6c0300c135.jpg" show-label="true"
+        href="" target="_blank">
         User
         <ifx-navbar-item>
           Item
@@ -251,6 +255,18 @@
     <br />
     <br />
 
+    <h2>List</h2>
+    <ifx-list name="checkbox-list" max-visible-items="5" type="checkbox"><ifx-list-entry type="checkbox"
+        label="Checkbox 1" value="false" slot="slot1">Checkbox 1</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 2" value="false" slot="slot2">Checkbox 2</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 3" value="false" slot="slot3">Checkbox 3</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 4" value="false" slot="slot4">Checkbox 4</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 5" value="false" slot="slot5">Checkbox 5</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 6" value="false" slot="slot6">Checkbox 6</ifx-list-entry><ifx-list-entry type="checkbox"
+        label="Checkbox 7" value="false" slot="slot7">Checkbox 7</ifx-list-entry></ifx-list>
+    <br />
+    <br />
+
 
     <h2>Modal</h2>
     <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
@@ -302,7 +318,7 @@
 
     <h2>Sidebar</h2>
 
-    <ifx-sidebar application-name="Application Name" initial-collapse = false >
+    <ifx-sidebar application-name="Application Name" initial-collapse=false>
       <ifx-sidebar-title>Item Header</ifx-sidebar-title>
       <ifx-sidebar-item>
         Header Section
@@ -373,10 +389,10 @@
     <br />
 
     <h2>Stepper</h2>
-    <ifx-stepper id = "stepper" showNumber=false activeStep=2 variant = 'default' >
+    <ifx-stepper id="stepper" showNumber=false activeStep=2 variant='default'>
       <ifx-step> Step 1 </ifx-step>
       <ifx-step> Step 2 </ifx-step>
-      <ifx-step error = true> Step 3 </ifx-step>
+      <ifx-step error=true> Step 3 </ifx-step>
       <ifx-step> Step 4 </ifx-step>
       <ifx-step> Step 5 </ifx-step>
     </ifx-stepper>
@@ -384,8 +400,8 @@
     <ifx-button variant="primary" onClick="toggleShowNumber()"> Toggle Show Number </ifx-button>
     <ifx-button variant="primary" onClick="toggleVariant()"> Toggle Variant </ifx-button>
     <ifx-button variant="secondary" onClick="nextStep()"> Next Step</ifx-button>
-    <br/>
-    <br/>
+    <br />
+    <br />
 
     <h2>Status</h2>
     <ifx-status label="Status with border" color="orange" border="true" />
@@ -665,28 +681,28 @@
   }
 
   const stepper = document.querySelector('#stepper');
-  function nextStep(){
+  function nextStep() {
     stepper.activeStep += 1;
     stepper.activeStep = Math.min(stepper.activeStep, 6);
   }
 
-  function prevStep(){
+  function prevStep() {
     stepper.activeStep -= 1;
     stepper.activeStep = Math.max(0, stepper.activeStep);
   }
 
-  function toggleShowNumber(){
+  function toggleShowNumber() {
     stepper.showNumber = !stepper.showNumber;
   }
 
-  function toggleVariant(){
-    if(!stepper.variant || stepper.variant === 'default'){
+  function toggleVariant() {
+    if (!stepper.variant || stepper.variant === 'default') {
       stepper.variant = 'compact';
-    }else{
+    } else {
       stepper.variant = 'default';
     }
   }
-  stepper.addEventListener('ifxActiveStepChange', (event)=>{
+  stepper.addEventListener('ifxActiveStepChange', (event) => {
     console.log('Stepper active step changed ', event.detail)
   })
 

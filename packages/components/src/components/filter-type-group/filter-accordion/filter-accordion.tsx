@@ -17,11 +17,11 @@ export class FilterAccordion {
   @Event() ifxFilterAccordionChange: EventEmitter; // Add this line
 
   componentWillLoad() {
-    this.el.addEventListener('ifxListChange', this.handleCheckedChange);
+    this.el.addEventListener('ifxListUpdate', this.handleCheckedChange);
   }
 
   componentDidLoad() {
-    // Dispatch the ifxListChange event after the component has been fully loaded
+    // Dispatch the ifxListUpdate event after the component has been fully loaded
     const selectedItems = getInitiallySelectedItems(this.el);
     this.count = selectedItems.length;
 
@@ -34,7 +34,7 @@ export class FilterAccordion {
   }
 
   componentWillUnload() {
-    this.el.removeEventListener('ifxListChange', this.handleCheckedChange);
+    this.el.removeEventListener('ifxListUpdate', this.handleCheckedChange);
   }
 
   getTotalItems() {

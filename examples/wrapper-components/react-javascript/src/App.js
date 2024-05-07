@@ -33,6 +33,7 @@ import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
+import List from './components/List/List';
 
 
 function App() {
@@ -88,6 +89,10 @@ function App() {
 
       <h2>Link</h2>
       <Link />
+      <br />
+
+      <h2>List</h2>
+      <List />
       <br />
 
       <h2>Modal</h2>

@@ -11,18 +11,32 @@ export class List {
   @State() showMore = false;
   @State() selectedCount: number = 0;
   @State() totalItems = 0;
-  @Prop() listName = "";
+  @Prop() name = "";
   @Prop() maxVisibleItems = 6;
 
-  @Event() ifxListChange: EventEmitter;
+  @Event() ifxListUpdate: EventEmitter;
+
+  observer: MutationObserver;
 
   componentWillLoad() {
     this.el.addEventListener('ifxListEntryChange', this.handleCheckedChange);
     this.selectedCount = this.getSelectedItems(this.el).length;
+    this.totalItems = this.getTotalItems();
+
+    this.observer = new MutationObserver(() => {
+      const newTotalItems = this.getTotalItems();
+      if (newTotalItems !== this.totalItems) {
+        this.totalItems = newTotalItems;
+        this.handleCheckedChange();
+      }
+    });
+
+    this.observer.observe(this.el, { childList: true });
   }
 
   componentWillUnload() {
     this.el.removeEventListener('ifxListEntryChange', this.handleCheckedChange);
+    this.observer.disconnect();
   }
 
   getTotalItems() {
@@ -48,10 +62,20 @@ export class List {
         value: entry.getAttribute('value')
       }));
   }
-  handleCheckedChange = () => {
+
+
+  handleCheckedChange = (event?: CustomEvent) => {
+    // If the type of the changed entry is 'radio-button' and its value is true, deselect all other radio buttons
+    if (event && event.detail.type === 'radio-button' && event.detail.value) {
+      const otherRadioButtons = Array.from(this.el.querySelectorAll('ifx-list-entry'))
+        .filter(entry => entry.getAttribute('type') === 'radio-button' && entry !== event.target);
+      otherRadioButtons.forEach(radioButton => radioButton.setAttribute('value', 'false'));
+    }
+
     const selectedItems = this.getSelectedItems(this.el);
     this.selectedCount = selectedItems.length;
-    this.ifxListChange.emit({ listName: this.listName, selectedItems });
+
+    this.ifxListUpdate.emit({ name: this.name, selectedItems });
   }
 
   render() {

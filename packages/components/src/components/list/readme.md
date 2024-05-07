@@ -9,15 +9,15 @@
 
 | Property          | Attribute           | Description | Type     | Default |
 | ----------------- | ------------------- | ----------- | -------- | ------- |
-| `listName`        | `list-name`         |             | `string` | `""`    |
 | `maxVisibleItems` | `max-visible-items` |             | `number` | `6`     |
+| `name`            | `name`              |             | `string` | `""`    |
 
 
 ## Events
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
-| `ifxListChange` |             | `CustomEvent<any>` |
+| `ifxListUpdate` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
