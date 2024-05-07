@@ -1,1 +1,0 @@
-import{r as s,h as e,g as a}from"./index-Bg7bDTfs.js";const i=":host{display:block}",n=i,o=class{constructor(t){s(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return e("slot",{key:"a71f161fd6425a99a9a503a9c6999816485978f7"})}get el(){return a(this)}};o.style=n;export{o as ifx_tab};
