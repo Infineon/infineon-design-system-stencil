@@ -1,0 +1,70 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.text-and-icon {
+  display: flex;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200 tokens.$ifxSpace150 tokens.$ifxSpace250;
+  align-items: center;
+  gap: tokens.$ifxSpace200;
+  flex: 1 0 0;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+
+  &.expanded {
+    border-left: 3px solid tokens.$ifxColorOcean500;
+    border-bottom: none;
+  }
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  color: tokens.$ifxColorBaseBlack;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+ifx-icon[icon="plus-16"]:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.filter-accordion-container {
+  display: flex;
+  padding: 8px 16px 16px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  border-left: 3px solid tokens.$ifxColorOcean500;
+}
+
+::slotted(ifx-filter-entry:nth-child(n+7)) {
+  display: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.show-more ::slotted(ifx-filter-entry:nth-child(n+7)) {
+  display: block;
+}
+
+.show-more .show-more-link {
+  display: none;
+}

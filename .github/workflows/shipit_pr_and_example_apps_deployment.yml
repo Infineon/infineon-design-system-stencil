@@ -182,6 +182,9 @@ jobs:
           cd packages/components-angular
           npm i
           echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          cd projects/component-library
+          npm i @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
+          cd ../../
           npm i @infineon/infineon-design-system-angular@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build my-app
            

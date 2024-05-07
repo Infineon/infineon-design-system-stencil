@@ -31,8 +31,10 @@
  - [ifx-chip](../chips)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
+ - [ifx-filter-accordion](../filter-type-group/filter-accordion)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
+ - [ifx-list](../list)
  - [ifx-modal](../modal)
  - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navbar)
@@ -60,8 +62,10 @@ graph TD;
   ifx-chip --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
+  ifx-filter-accordion --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
+  ifx-list --> ifx-icon
   ifx-modal --> ifx-icon
   ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
