@@ -109,65 +109,77 @@ export class Navbar {
       }
     }
   }
-  
 
-  @Listen('ifxSearchBarIsOpen')
-  handleSearchBarToggle(event: CustomEvent) {
+  hideNavComponents() {
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
     const leftAssignedNodes = leftSideSlot.assignedNodes();
-    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
-    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile');
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
+    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
-   
-    if(event.detail) { 
-      if(rightAssignedNodes.length !== 0) { 
-        this.searchBarIsOpen = 'right'
-      } else if(leftAssignedNodes.length !== 0) {
-        this.searchBarIsOpen = 'left'
+    
+    if(rightAssignedNodes.length !== 0) { 
+      this.searchBarIsOpen = 'right'
+    } else if(leftAssignedNodes.length !== 0) {
+      this.searchBarIsOpen = 'left'
+    }
+    navbarProfile.hideComponent()
+    
+    for(let l = 0; l < leftMenuItems.length; l++) { 
+      if(!topRowWrapper.classList.contains('expand')) {
+        leftMenuItems[l].hideComponent()
       }
-      
-      navbarProfile.hideComponent()
-
-      for(let l = 0; l < leftMenuItems.length; l++) { 
-        if(!topRowWrapper.classList.contains('expand')) {
-          leftMenuItems[l].hideComponent()
-        }
-      }
-
-      for(let r = 0; r < rightMenuItems.length; r++) { 
-        if(topRowWrapper.classList.contains('expand')) {
-          if(!rightMenuItems[r].hideOnMobile) { 
-            rightMenuItems[r].hideComponent()
-          }
-        } else { 
+    }
+  
+    for(let r = 0; r < rightMenuItems.length; r++) { 
+      if(topRowWrapper.classList.contains('expand')) {
+        if(!rightMenuItems[r].hideOnMobile) { 
           rightMenuItems[r].hideComponent()
         }
+      } else { 
+        rightMenuItems[r].hideComponent()
       }
+    }
+  }
 
-    } else if(!event.detail) {
-      this.searchBarIsOpen = undefined;
-      navbarProfile.showComponent()
-
-      for(let l = 0; l < leftMenuItems.length; l++) { 
-        if(!topRowWrapper.classList.contains('expand')) {
-          leftMenuItems[l].showComponent()
-        }
+  showNavComponents() {
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile');
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
+    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
+    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+    this.searchBarIsOpen = undefined;
+    
+    navbarProfile.showComponent()
+    
+    for(let l = 0; l < leftMenuItems.length; l++) { 
+      if(!topRowWrapper.classList.contains('expand')) {
+        leftMenuItems[l].showComponent()
       }
-
-      for(let r = 0; r < rightMenuItems.length; r++) { 
-        if(topRowWrapper.classList.contains('expand')) {
-          if(!rightMenuItems[r].hideOnMobile) { 
-            rightMenuItems[r].showComponent()
-          }
-        } else { 
+    }
+  
+    for(let r = 0; r < rightMenuItems.length; r++) { 
+      if(topRowWrapper.classList.contains('expand')) {
+        if(!rightMenuItems[r].hideOnMobile) { 
           rightMenuItems[r].showComponent()
         }
+      } else { 
+        rightMenuItems[r].showComponent()
       }
+    }
+  }
+  
+  
+  @Listen('ifxSearchBarIsOpen')
+  handleSearchBarToggle(event: CustomEvent) {
+   
+    if(event.detail) { 
+      this.hideNavComponents();
+    } else if(!event.detail) {
+      this.showNavComponents();
     }
   }
 
@@ -254,6 +266,7 @@ export class Navbar {
 
   componentDidLoad() {
     this.setItemMenuPosition()
+    this.adjustSearchBarWidth();
     this.addEventListenersToHandleCustomFocusState();
   }
 
@@ -282,6 +295,18 @@ export class Navbar {
     }
   }
 
+  getSearchBar(){
+    const searchBar = this.el.querySelector('ifx-search-bar');
+    return searchBar;
+  }
+
+  adjustSearchBarWidth() {
+    const searchBar = this.getSearchBar();
+    if(searchBar.isOpen) {
+      this.hideNavComponents();
+    }
+  }
+
   componentWillLoad() {
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
@@ -291,6 +316,7 @@ export class Navbar {
     }
     this.handleLogoHrefAndTarget();
 
+    
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
@@ -299,19 +325,19 @@ export class Navbar {
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     return searchBarLeftWrapper;
   }
-
+  
   moveNavItemsToSidebar(e) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     if (e.matches) {
       /* The viewport is 800px wide or less */
       topRowWrapper.classList.add('expand')
-
+      
       //hide body scroll if sidebar was opened
       const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
       if(crossIcon.classList.contains('show')) { 
         this.handleBodyScroll('hide')
       }
-
+      
       //move search bar to right-side
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
@@ -341,9 +367,9 @@ export class Navbar {
         } else { 
           if(rightMenuItems[i].hideOnMobile) { 
             rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
-  
+            
             rightMenuItems[i].toggleChildren('add')
-
+            
             rightMenuItems[i].showLabel = true;
             if(this.searchBarIsOpen) { 
               rightMenuItems[i].showComponent()
@@ -387,15 +413,15 @@ export class Navbar {
         rightMenuItems[i].setAttribute('slot', 'right-item')
 
           rightMenuItems[i].toggleChildren('remove')
-
+          
           const showLabel = rightMenuItems[i].getAttribute('show-label');
           rightMenuItems[i].setAttribute('show-label', showLabel)
           if(this.searchBarIsOpen) { 
             rightMenuItems[i].hideComponent()
           }
+        }
       }
     }
-  }
 
   RemoveSpaceOnStorybookSnippet() { 
     let parent = this.el.parentElement;
@@ -406,6 +432,7 @@ export class Navbar {
       }
     }
   }
+  
 
   render() {
     return (
