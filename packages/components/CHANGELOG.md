@@ -1,3 +1,15 @@
+# v21.8.2 (Wed May 08 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: text and image update to storybook foundation pages [#1220](https://github.com/Infineon/infineon-design-system-stencil/pull/1220) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
 # v21.8.1 (Mon May 06 2024)
 
 #### 🐛 Bug Fix
