@@ -1,3 +1,16 @@
+# v21.8.3 (Mon May 13 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: implement States page to Foundations in Storybook [#1222](https://github.com/Infineon/infineon-design-system-stencil/pull/1222) ([@tishoyanchev](https://github.com/tishoyanchev) [@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.8.2 (Wed May 08 2024)
 
 #### 🐛 Bug Fix
