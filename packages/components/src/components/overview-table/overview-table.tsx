@@ -483,6 +483,18 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
+                        <span>Cross browser compatibility</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Form integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
                         <span>Adheres to web standards</span>
                       </li>
                     </ul>
