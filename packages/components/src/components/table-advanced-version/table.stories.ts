@@ -146,7 +146,6 @@ export default {
 
 
 
-
 const DefaultTemplate = (args) => {
   let columnFilters = args.columnDefs.map(column => {
     let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
@@ -171,31 +170,58 @@ const DefaultTemplate = (args) => {
 
 
   // Create set-filter elements and append to main table element
-  columnFilters.forEach((columnFilter, index) => {
-    let filterType;
-    switch (index) {
-      case 0:
-        filterType = 'single-select';
-        break;
-      case 1:
-        filterType = 'multi-select';
-        break;
-      default:
-        filterType = 'text';
-    }
-    let ifxSetFilter = document.createElement('ifx-set-filter');
-    ifxSetFilter.setAttribute('slot', 'set-filter');
-    ifxSetFilter.setAttribute('filter-name', columnFilter.name);
-    ifxSetFilter.setAttribute('filter-label', `${filterType} filter for: ${columnFilter.name}`);
-    ifxSetFilter.setAttribute('placeholder', 'Placeholder');
-    ifxSetFilter.setAttribute('type', filterType);
-    if (['single-select', 'multi-select'].includes(filterType)) {
-      ifxSetFilter.setAttribute('options', JSON.stringify(columnFilter.options));
-    }
-    ifxTable.appendChild(ifxSetFilter);
+  // columnFilters.forEach((columnFilter, index) => {
+  //   let filterType;
+  //   switch (index) {
+  //     case 0:
+  //       filterType = 'single-select';
+  //       break;
+  //     case 1:
+  //       filterType = 'multi-select';
+  //       break;
+  //     default:
+  //       filterType = 'text';
+  //   }
+  // Create filter-type-group element
+  let filterTypeGroup = document.createElement('ifx-filter-type-group');
+  filterTypeGroup.setAttribute('slot', 'set-filter');
+
+  // Create filter-search element and append to filterTypeGroup
+  let filterSearch = document.createElement('ifx-filter-search');
+  filterSearch.setAttribute('slot', 'filter-search');
+  filterSearch.setAttribute('filter-name', 'Your filter name');
+  filterTypeGroup.appendChild(filterSearch);
+
+  // Create filter-accordion elements and append to filterTypeGroup
+  columnFilters.forEach((columnFilter, _index) => {
+    let filterAccordion = document.createElement('ifx-filter-accordion');
+    filterAccordion.setAttribute('slot', 'filter-accordion');
+    filterAccordion.setAttribute('filter-group-name', columnFilter.name);
+    filterTypeGroup.appendChild(filterAccordion);
+
+    // Create ifx-list element and append to filterAccordion
+    let filterList = document.createElement('ifx-list');
+    filterList.setAttribute('slot', 'list');
+    filterList.setAttribute('list-name', columnFilter.name);
+    filterList.setAttribute('max-visible-items', '6');
+    filterAccordion.appendChild(filterList);
+
+    // Create ifx-list-entry elements and append to filterList
+    columnFilter.options.forEach((option, optionIndex) => {
+      let listEntry = document.createElement('ifx-list-entry');
+      listEntry.setAttribute('slot', `slot${optionIndex}`);
+      listEntry.setAttribute('type', 'checkbox');
+      listEntry.setAttribute('label', option.label);
+      listEntry.setAttribute('value', option.selected ? 'true' : 'false');
+      filterList.appendChild(listEntry);
+    });
   });
 
+  // Append filterTypeGroup to ifxTable
+  ifxTable.appendChild(filterTypeGroup);
+
   return ifxTable.outerHTML;
+
 }
 
 export const Pagination = DefaultTemplate.bind({});
