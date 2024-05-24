@@ -38,12 +38,12 @@ export const Default = () => {
    </div>
   <div slot="filter-accordion">
   <ifx-filter-accordion filter-group-name="Filter group 1">
-  <ifx-list slot="list" list-name="Filter group 1" max-visible-items="6">
+  <ifx-list slot="list" name="Filter group 1" max-visible-items="6">
     ${generateFilterEntries()}
   </ifx-list>
 </ifx-filter-accordion>
 <ifx-filter-accordion filter-group-name="Filter group 2">
-<ifx-list slot="list" list-name="Filter group 2" max-visible-items="6">
+<ifx-list slot="list" name="Filter group 2" max-visible-items="6">
 ${generateFilterEntries()}
 </ifx-list>
 </ifx-filter-accordion>
