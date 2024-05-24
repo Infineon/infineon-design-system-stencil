@@ -10,6 +10,7 @@
 | Property      | Attribute      | Description | Type      | Default     |
 | ------------- | -------------- | ----------- | --------- | ----------- |
 | `disabled`    | `disabled`     |             | `boolean` | `false`     |
+| `filterKey`   | `filter-key`   |             | `string`  | `undefined` |
 | `filterName`  | `filter-name`  |             | `string`  | `undefined` |
 | `filterValue` | `filter-value` |             | `string`  | `undefined` |
 
