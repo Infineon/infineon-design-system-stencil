@@ -110,7 +110,7 @@ export class Navbar {
     }
   }
 
-  hideNavComponents() {
+  getNavComponents() {
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
@@ -121,6 +121,12 @@ export class Navbar {
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
     const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+    
+    return {rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
+  }
+
+  hideNavComponents() {
+    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
     
     if(rightAssignedNodes.length !== 0) { 
       this.searchBarIsOpen = 'right'
@@ -147,10 +153,7 @@ export class Navbar {
   }
 
   showNavComponents() {
-    const navbarProfile = this.el.querySelector('ifx-navbar-profile');
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
-    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
-    const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
+    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
     this.searchBarIsOpen = undefined;
     
     navbarProfile.showComponent()
@@ -266,7 +269,6 @@ export class Navbar {
 
   componentDidLoad() {
     this.setItemMenuPosition()
-    this.adjustSearchBarWidth();
     this.addEventListenersToHandleCustomFocusState();
   }
 
@@ -292,18 +294,6 @@ export class Navbar {
       this.internalLogoHrefTarget = this.logoHrefTarget;
     }else{
       this.internalLogoHrefTarget = '_self';
-    }
-  }
-
-  getSearchBar(){
-    const searchBar = this.el.querySelector('ifx-search-bar');
-    return searchBar;
-  }
-
-  adjustSearchBarWidth() {
-    const searchBar = this.getSearchBar();
-    if(searchBar.isOpen) {
-      this.hideNavComponents();
     }
   }
 
