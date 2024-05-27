@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default |
-| ----------------- | ------------------- | ----------- | -------- | ------- |
-| `maxVisibleItems` | `max-visible-items` |             | `number` | `6`     |
-| `name`            | `name`              |             | `string` | `""`    |
+| Property          | Attribute           | Description | Type     | Default     |
+| ----------------- | ------------------- | ----------- | -------- | ----------- |
+| `maxVisibleItems` | `max-visible-items` |             | `number` | `6`         |
+| `name`            | `name`              |             | `string` | `""`        |
+| `type`            | `type`              |             | `string` | `undefined` |
 
 
 ## Events

@@ -9,22 +9,21 @@ import { getInitiallySelectedItems } from '../utils';
 export class FilterAccordion {
   @Element() private el: HTMLElement;
   @State() expanded: boolean = false;
-  @State() showMore = false;
+  @Prop() maxVisibleItems: number;
   @State() count: number = 0;
   @State() totalItems = 0;
+
   @Prop() filterGroupName = "";
 
-  @Event() ifxFilterAccordionChange: EventEmitter; // Add this line
+  @Event() ifxFilterAccordionChange: EventEmitter;
 
   componentWillLoad() {
     this.el.addEventListener('ifxListUpdate', this.handleCheckedChange);
   }
 
   componentDidLoad() {
-    // Dispatch the ifxListUpdate event after the component has been fully loaded
     const selectedItems = getInitiallySelectedItems(this.el);
     this.count = selectedItems.length;
-
   }
 
   handleCheckedChange = (event: CustomEvent) => {
@@ -37,25 +36,14 @@ export class FilterAccordion {
     this.el.removeEventListener('ifxListUpdate', this.handleCheckedChange);
   }
 
-  getTotalItems() {
-    return this.el.querySelectorAll('ifx-list-entry').length;
-  }
-
   toggleAccordion = (event: MouseEvent) => {
     event.stopPropagation();
     this.expanded = !this.expanded;
   }
 
-  toggleShowMore = (event: MouseEvent) => {
-    event.stopPropagation();
-    this.showMore = !this.showMore;
-  }
-
-
   render() {
-
     return (
-      <div class={`accordion ${this.showMore ? 'show-more' : ''}`}>
+      <div class={`accordion ${this.expanded ? 'expanded' : ''}`}>
         <div class="header" onClick={this.toggleAccordion}>
           <div class={`text-and-icon ${this.expanded ? 'expanded' : ''}`}>
             <div class="text">

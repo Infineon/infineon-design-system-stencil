@@ -5,7 +5,7 @@ export default {
   tags: ['autodocs'],
   args: {
     name: 'checkbox-list',
-    maxVisibleItems: 5,
+    maxVisibleItems: 10,
     type: 'checkbox'
   },
   argTypes: {
