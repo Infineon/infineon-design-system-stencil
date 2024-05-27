@@ -136,6 +136,8 @@ ol {
 }
 
 li {
+  width: 32px;
+  height: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -143,14 +145,12 @@ li {
   border-radius: 100px;
 
   &:hover:not(.active) {
-    & a {
-      background-color: #EEEDED;
-    }
+    background-color: #EEEDED;
   }
 
   &:active:not(.active) {
+    background-color: #575352;
     & a {
-      background-color: #575352;
       color: #fff;
     }
   }
@@ -170,8 +170,6 @@ li {
   & a {
     text-decoration: none;
     display: flex;
-    width: 16px;
-    height: 16px;
     flex-direction: column;
     justify-content: center;
     color: #1D1D1D;
