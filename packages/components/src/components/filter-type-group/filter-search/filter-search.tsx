@@ -21,9 +21,21 @@ export class FilterSearch {
 
   @Listen('ifxInput')
   handleFilterSearchChange(event: CustomEvent) {
+    // Check if a search filter with the same filterName already exists
+    const existingFilter = this.host.parentElement.querySelector(`ifx-filter-search[filter-name="${this.filterName}"]`);
+    if (existingFilter && existingFilter !== this.host) {
+      throw new Error(`A search filter with the name '${this.filterName}' already exists.`);
+    }
+
+    // Check if the filterName is 'search' and the filter is not the search component
+    if (this.filterName === 'search' && this.filterKey !== 'text') {
+      throw new Error("The filter name 'search' is reserved for the search component.");
+    }
+
     this.filterValue = event.detail;
     this.ifxFilterSearchChange.emit({ filterName: this.filterName, filterValue: this.filterValue, filterKey: this.filterKey }); // Emitting filterKey along with other properties
   }
+
 
   render() {
     return (

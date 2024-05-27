@@ -54,13 +54,27 @@ export class Table {
 
 
   handleFilterChange(event: CustomEvent) {
-    const { filterName, filterValues, type } = event.detail;
-    const selectedValues = filterValues.map(option => option?.value || option);
-    if (selectedValues.length === 0 || (selectedValues.length === 1 && type === 'text' && selectedValues[0] === '')) {
+    const filterGroup = event.detail[0]; // Assuming the event detail is an array with one element
+    const filterName = filterGroup.filterGroupName;
+    let filterValues;
+    let type;
+
+    // Check if the filterGroup has a selectedItems property
+    if (filterGroup.selectedItems) {
+      // If it does, use the labels of the selected items as the filter values and set the type to 'multi-select'
+      filterValues = filterGroup.selectedItems.map(item => item.label);
+      type = 'multi-select';
+    } else {
+      // If it doesn't, use the value property as the filter value and set the type to 'text'
+      filterValues = [filterGroup.value];
+      type = 'text';
+    }
+
+    if (filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === '')) {
       delete this.currentFilters[filterName];
     } else {
       this.currentFilters = {
-        ...this.currentFilters, [filterName]: { filterValues: selectedValues, type: type }
+        ...this.currentFilters, [filterName]: { filterValues: filterValues, type: type }
       }
     }
 
@@ -105,28 +119,45 @@ export class Table {
 
   filterByType(data, filterName, selectedValues, filterType) {
     return data.filter(row => {
-      // Fetch the value from the row and convert it to a string for comparison
-      let rowValue = String(row[filterName]).toLowerCase();
+      // If the filterName is 'search', iterate over all properties of the row
+      if (filterType === 'text') {
+        for (let property in row) {
+          // Fetch the value from the row and convert it to a string for comparison
+          let rowValue = String(row[property]).toLowerCase();
 
-      switch (filterType) {
-        case 'multi-select':
-        case 'single-select':
-          // Check if the selectedValues (should be an array) includes the rowValue
-          return selectedValues.some(value => String(value).toLowerCase() === rowValue);
+          if (this.valueMatchesFilter(rowValue, selectedValues, filterType)) {
+            return true;
+          }
+        }
+      } else {
+        // If the filterName is not 'search', filter by the specific column
+        let rowValue = String(row[filterName]).toLowerCase();
 
-        case 'text':
-          // Check if any of the selectedValues start with the rowValue
-          return selectedValues.some(value => rowValue.startsWith(String(value).toLowerCase()));
-
-        default:
-          // Fallback case
-          return selectedValues.includes(rowValue);
+        if (this.valueMatchesFilter(rowValue, selectedValues, filterType)) {
+          return true;
+        }
       }
+
+      // If none of the properties matched the filter, exclude the row
+      return false;
     });
   }
+  valueMatchesFilter(rowValue, selectedValues, filterType) {
+    switch (filterType) {
+      case 'multi-select':
+      case 'single-select':
+        // Check if the selectedValues (should be an array) includes the rowValue
+        return selectedValues.some(value => String(value).toLowerCase() === rowValue);
 
+      case 'text':
+        // Check if any of the selectedValues start with the rowValue
+        return selectedValues.some(value => rowValue.startsWith(String(value).toLowerCase()));
 
-
+      default:
+        // Fallback case
+        return selectedValues.includes(rowValue);
+    }
+  }
 
   @Method()
   async onBtShowLoading() {
@@ -190,10 +221,10 @@ export class Table {
             paginationElement.addEventListener('ifxPageChange', this.handlePageChange.bind(this));
           }
         }
-        const setFilterElements = this.host.querySelectorAll('ifx-set-filter');
+        const setFilterElements = this.host.querySelectorAll('ifx-filter-type-group');
         // Add an event listener to each SetFilter component
         setFilterElements.forEach(setFilterElement => {
-          setFilterElement.addEventListener('ifxFilterChange', this.handleFilterChange.bind(this));
+          setFilterElement.addEventListener('ifxFilterTypeGroupChange', this.handleFilterChange.bind(this));
         });
       }
     }
@@ -206,10 +237,10 @@ export class Table {
         paginationElement.removeEventListener('ifxPageChange', this.handlePageChange.bind(this));
       }
     }
-    const setFilterElements = this.host.shadowRoot.querySelectorAll('ifx-set-filter');
+    const setFilterElements = this.host.shadowRoot.querySelectorAll('ifx-filter-type-group');
     // Remove the event listener from each SetFilter component
     setFilterElements.forEach(setFilterElement => {
-      setFilterElement.removeEventListener('ifxFilterChange', this.handleFilterChange.bind(this));
+      setFilterElement.removeEventListener('ifxFilterTypeGroupChange', this.handleFilterChange.bind(this));
     });
   }
 

@@ -168,20 +168,6 @@ const DefaultTemplate = (args) => {
   ifxTable.setAttribute('enable-filtering', args.enableFiltering);
   ifxTable.setAttribute('filter-orientation', args.filterOrientation);
 
-
-  // Create set-filter elements and append to main table element
-  // columnFilters.forEach((columnFilter, index) => {
-  //   let filterType;
-  //   switch (index) {
-  //     case 0:
-  //       filterType = 'single-select';
-  //       break;
-  //     case 1:
-  //       filterType = 'multi-select';
-  //       break;
-  //     default:
-  //       filterType = 'text';
-  //   }
   // Create filter-type-group element
   let filterTypeGroup = document.createElement('ifx-filter-type-group');
   filterTypeGroup.setAttribute('slot', 'set-filter');
@@ -189,8 +175,15 @@ const DefaultTemplate = (args) => {
   // Create filter-search element and append to filterTypeGroup
   let filterSearch = document.createElement('ifx-filter-search');
   filterSearch.setAttribute('slot', 'filter-search');
-  filterSearch.setAttribute('filter-name', 'Your filter name');
+  filterSearch.setAttribute('filter-name', 'search');
   filterTypeGroup.appendChild(filterSearch);
+
+  // // Create filter-search element and append to filterTypeGroup
+  // let filterSearch1 = document.createElement('ifx-filter-search');
+  // filterSearch.setAttribute('slot', 'filter-search');
+  // filterSearch.setAttribute('filter-name', 'search');
+  // filterTypeGroup.appendChild(filterSearch1);
+
 
   // Create filter-accordion elements and append to filterTypeGroup
   columnFilters.forEach((columnFilter, _index) => {
@@ -202,7 +195,7 @@ const DefaultTemplate = (args) => {
     // Create ifx-list element and append to filterAccordion
     let filterList = document.createElement('ifx-list');
     filterList.setAttribute('slot', 'list');
-    filterList.setAttribute('list-name', columnFilter.name);
+    filterList.setAttribute('name', columnFilter.name);
     filterList.setAttribute('max-visible-items', '6');
     filterAccordion.appendChild(filterList);
 
