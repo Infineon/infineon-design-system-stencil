@@ -1,3 +1,15 @@
+# v21.9.0 (Mon May 27 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: add e2e test file [#1250](https://github.com/Infineon/infineon-design-system-stencil/pull/1250) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.8.3 (Mon May 13 2024)
 
 #### 🐛 Bug Fix
