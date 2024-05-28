@@ -1,3 +1,15 @@
+# v21.9.1 (Tue May 28 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixed bug affecting the search-bar's isOpen prop on initial load [#1236](https://github.com/Infineon/infineon-design-system-stencil/pull/1236) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.9.0 (Mon May 27 2024)
 
 #### 🚀 Enhancement
