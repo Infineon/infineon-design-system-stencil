@@ -110,7 +110,7 @@ export class Navbar {
     }
   }
 
-  getNavComponents() {
+  getWrappers() {
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
@@ -125,8 +125,8 @@ export class Navbar {
     return {rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
   }
 
-  hideNavComponents() {
-    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
+  hideNavItems() {
+    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
     
     if(rightAssignedNodes.length !== 0) { 
       this.searchBarIsOpen = 'right'
@@ -152,8 +152,8 @@ export class Navbar {
     }
   }
 
-  showNavComponents() {
-    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
+  showNavItems() {
+    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
     this.searchBarIsOpen = undefined;
     
     navbarProfile.showComponent()
@@ -180,9 +180,9 @@ export class Navbar {
   handleSearchBarToggle(event: CustomEvent) {
    
     if(event.detail) { 
-      this.hideNavComponents();
+      this.hideNavItems();
     } else if(!event.detail) {
-      this.showNavComponents();
+      this.showNavItems();
     }
   }
 
@@ -318,7 +318,6 @@ export class Navbar {
     }
     this.handleLogoHrefAndTarget();
 
-    
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
@@ -329,7 +328,7 @@ export class Navbar {
     return searchBarLeftWrapper;
   }
   
-  moveNavItemsToSidebar(e) {
+  moveNavItemsToSidebar(e?: MediaQueryListEvent) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     const mediaQueryList = this.getMediaQueryList();
     const matches = e ? e.matches : mediaQueryList.matches;
@@ -438,8 +437,9 @@ export class Navbar {
       }
     }
   }
-  
 
+
+  
   render() {
     return (
       <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
