@@ -1,3 +1,15 @@
+# v21.9.2 (Wed May 29 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: mobile functionality added on initial mobile version [#1253](https://github.com/Infineon/infineon-design-system-stencil/pull/1253) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.9.1 (Tue May 28 2024)
 
 #### 🐛 Bug Fix
