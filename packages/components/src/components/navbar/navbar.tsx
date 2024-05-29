@@ -110,7 +110,7 @@ export class Navbar {
     }
   }
 
-  getNavComponents() {
+  getWrappers() {
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
@@ -125,8 +125,8 @@ export class Navbar {
     return {rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
   }
 
-  hideNavComponents() {
-    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
+  hideNavItems() {
+    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
     
     if(rightAssignedNodes.length !== 0) { 
       this.searchBarIsOpen = 'right'
@@ -152,8 +152,8 @@ export class Navbar {
     }
   }
 
-  showNavComponents() {
-    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getNavComponents();
+  showNavItems() {
+    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
     this.searchBarIsOpen = undefined;
     
     navbarProfile.showComponent()
@@ -180,9 +180,9 @@ export class Navbar {
   handleSearchBarToggle(event: CustomEvent) {
    
     if(event.detail) { 
-      this.hideNavComponents();
+      this.hideNavItems();
     } else if(!event.detail) {
-      this.showNavComponents();
+      this.showNavItems();
     }
   }
 
@@ -267,9 +267,20 @@ export class Navbar {
     }
   }
 
+  getMediaQueryList() { 
+    const mediaQueryList = window.matchMedia('(max-width: 800px)');
+    return mediaQueryList;
+  }
+
   componentDidLoad() {
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
+
+    const mediaQueryList = this.getMediaQueryList()
+
+    if (mediaQueryList.matches) {
+      this.moveNavItemsToSidebar();
+    }
   }
 
   handleMobileMenuBottom(e) { 
@@ -297,6 +308,7 @@ export class Navbar {
     }
   }
 
+ 
   componentWillLoad() {
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
@@ -306,19 +318,22 @@ export class Navbar {
     }
     this.handleLogoHrefAndTarget();
 
-    
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
+  
 
   getSearchBarLeftWrapper() { 
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     return searchBarLeftWrapper;
   }
   
-  moveNavItemsToSidebar(e) {
+  moveNavItemsToSidebar(e?: MediaQueryListEvent) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
-    if (e.matches) {
+    const mediaQueryList = this.getMediaQueryList();
+    const matches = e ? e.matches : mediaQueryList.matches;
+  
+    if (matches) {
       /* The viewport is 800px wide or less */
       topRowWrapper.classList.add('expand')
       
@@ -422,8 +437,9 @@ export class Navbar {
       }
     }
   }
-  
 
+
+  
   render() {
     return (
       <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>
