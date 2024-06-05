@@ -122,7 +122,6 @@
 }
 
 a {
-  padding: 6px;
   border-radius: 100px;
 }
 
@@ -136,8 +135,6 @@ ol {
 }
 
 li {
-  width: 32px;
-  height: 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,12 +142,14 @@ li {
   border-radius: 100px;
 
   &:hover:not(.active) {
-    background-color: #EEEDED;
+    & a {
+      background-color: #EEEDED;
+    }
   }
 
   &:active:not(.active) {
-    background-color: #575352;
     & a {
+      background-color: #575352;
       color: #fff;
     }
   }
@@ -170,6 +169,8 @@ li {
   & a {
     text-decoration: none;
     display: flex;
+    width: 32px;
+    height: 32px;
     flex-direction: column;
     justify-content: center;
     color: #1D1D1D;
@@ -178,6 +179,7 @@ li {
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
+    align-items: center;
   }
 }
 
