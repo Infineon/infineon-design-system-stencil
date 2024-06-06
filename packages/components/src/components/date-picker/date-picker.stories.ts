@@ -12,7 +12,7 @@ export default {
   },
   argTypes: {
     size: {
-      description: 'Size options: small (173px) and large (400px) - default: small',
+      description: 'Size options: Height small  (36px) and Height large (40px) - default: small',
       options: ['s', 'l'],
       control: { type: 'radio' },
     },
