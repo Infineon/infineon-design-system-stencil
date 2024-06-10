@@ -48,10 +48,6 @@ export class TextField {
     this.ifxInput.emit(this.value);
   }
 
-  formDisabledCallback(disabled: boolean) {
-    this.disabled = disabled;
-  }
-
   formResetCallback() {
     this.internals.setValidity({});
     this.internals.setFormValue("");
