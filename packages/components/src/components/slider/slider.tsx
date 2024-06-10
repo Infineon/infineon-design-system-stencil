@@ -154,9 +154,9 @@ export class IfxSlider {
               type="range"
               min={this.min}
               max={this.max}
-              disabled={this.disabled}
-              value={this.internalValue}
               step={this.step}
+              value={this.internalValue}
+              disabled={this.disabled}
               ref={(el) => (this.inputRef = el as HTMLInputElement)}
               onInput={(event) => this.handleInputChange(event)}
               aria-label='a slider'
@@ -170,8 +170,8 @@ export class IfxSlider {
                 type='range'
                 min={this.min}
                 max={this.max}
-                value={this.internalMinValue}
                 step={this.step}
+                value={this.internalMinValue}
                 disabled={this.disabled}
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
@@ -182,8 +182,8 @@ export class IfxSlider {
                 type='range'
                 min={this.min}
                 max={this.max}
-                value={this.internalMaxValue}
                 step={this.step}
+                value={this.internalMaxValue}
                 disabled={this.disabled}
                 ref={(el) => (this.maxInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
