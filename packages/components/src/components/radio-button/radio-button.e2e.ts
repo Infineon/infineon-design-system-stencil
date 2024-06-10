@@ -34,7 +34,7 @@ describe('ifx-radio-button', () => {
     const radioButton = await page.find('ifx-radio-button');
     await radioButton.click();
 
-    const submitButton = await page.find('button');
+    const submitButton = await page.find('#submit');
     await submitButton.click();
 
     const formData: FormData = await page.evaluate(() => {
@@ -47,7 +47,25 @@ describe('ifx-radio-button', () => {
   it('handleRadioButtonClick should be off when form submitted and radio button not clicked', async () => {
     const page = await newE2EPageWithRadioButtonWithinForm();
 
-    const submitButton = await page.find('button');
+    const submitButton = await page.find('#submit');
+    await submitButton.click();
+
+    const formData: FormData = await page.evaluate(() => {
+      return window['formData'];
+    });
+
+    expect(formData['radiobtn']).toBeUndefined;
+  });
+
+
+  it('handleRadioButtonClick should be off when form is reset ', async () => {
+    const page = await newE2EPageWithRadioButtonWithinForm();
+    const element = await page.find('ifx-radio-button >>> .label');
+    const submitButton = await page.find('#submit');
+    const resetButton = await page.find('#reset');
+
+    await element.click();
+    await resetButton.click();
     await submitButton.click();
 
     const formData: FormData = await page.evaluate(() => {
@@ -62,7 +80,8 @@ async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
   const page = await newE2EPage();
   await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
     <ifx-radio-button name="radiobtn" value="false">Test</ifx-radio-button>
-    <button type="submit">Submit</button>
+    <button id="submit" type="submit">Submit</button>
+    <button id="reset" type="reset">Reset</button>
   </form>`);
 
   // convert formdata to serializable Object and set to window.formData
