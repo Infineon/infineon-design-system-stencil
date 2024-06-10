@@ -12,7 +12,6 @@ export class RadioButton {
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
   @Prop() size: "s" | "m" = "s";
-  @Prop() name = undefined;
   @State() internalValue: boolean;
   @State() hasSlot: boolean = true;
 

@@ -57,7 +57,7 @@ describe('ifx-checkbox', () => {
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
 
-    checkbox.click();
+    await checkbox.click();
 
     const value = await submitAndGetValue(page);
     expect(value).toBe('on')
@@ -72,7 +72,7 @@ describe('ifx-checkbox', () => {
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
 
-    checkbox.click();
+    await checkbox.click();
 
     const value = await submitAndGetValue(page);
     expect(value).toBeUndefined();

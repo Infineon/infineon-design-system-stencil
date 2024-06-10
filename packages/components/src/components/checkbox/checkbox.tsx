@@ -14,7 +14,6 @@ export class Checkbox {
   @Prop() disabled: boolean = false;
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
-  @Prop() name: string = '';
   @Prop() size: string = 'm';
   @State() internalValue: boolean;
   @Prop() indeterminate: boolean = false;
@@ -108,7 +107,6 @@ export class Checkbox {
           type="checkbox"
           hidden
           ref={(el) => (this.inputElement = el)}
-          name={this.name}
           checked={this.internalValue}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
