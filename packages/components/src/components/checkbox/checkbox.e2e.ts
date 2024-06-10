@@ -40,7 +40,7 @@ describe('ifx-checkbox', () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-checkbox name="checkbox"></ifx-checkbox>
-      <button type="submit">Submit</button>
+      <button id="submit" type="submit">Submit</button>
     </form>`);
     await addHandleSubmitScript(page);
 
@@ -52,7 +52,7 @@ describe('ifx-checkbox', () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-checkbox name="checkbox"></ifx-checkbox>
-      <button type="submit">Submit</button>
+      <button id="submit" type="submit">Submit</button>
     </form>`);
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
@@ -67,7 +67,7 @@ describe('ifx-checkbox', () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-checkbox name="checkbox" disabled></ifx-checkbox>
-      <button type="submit">Submit</button>
+      <button id="submit" type="submit">Submit</button>
     </form>`);
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
@@ -77,6 +77,25 @@ describe('ifx-checkbox', () => {
     const value = await submitAndGetValue(page);
     expect(value).toBeUndefined();
   });
+
+  it('should not be in FormData when form is reset', async () => {
+    const page = await newE2EPage();
+    await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
+      <ifx-checkbox name="checkbox"></ifx-checkbox>
+      <button id="submit" type="submit">Submit</button>
+      <button id="reset" type="reset">Reset</button>
+    </form>`);
+    await addHandleSubmitScript(page);
+
+    const checkbox = await page.find('ifx-checkbox');
+    const resetButton = await page.find('#reset')
+
+    await checkbox.click();
+    await resetButton.click();
+
+    const value = await submitAndGetValue(page);
+    expect(value).toBeUndefined();
+  })
 });
 
 async function addHandleSubmitScript(page: E2EPage) {
@@ -98,7 +117,7 @@ async function addHandleSubmitScript(page: E2EPage) {
 }
 
 async function submitAndGetValue(page: E2EPage) {
-  const submitButton = await page.find('button');
+  const submitButton = await page.find('#submit');
   await submitButton.click();
 
   const formData: FormData = await page.evaluate(() => {
