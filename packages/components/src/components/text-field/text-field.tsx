@@ -1,9 +1,10 @@
-import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 
 @Component({
   tag: 'ifx-text-field',
   styleUrl: 'text-field.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 export class TextField {
@@ -24,6 +25,7 @@ export class TextField {
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
 
+  @AttachInternals() internals: ElementInternals;
 
   @Watch('value')
   valueWatcher(newValue: string) {
@@ -42,7 +44,17 @@ export class TextField {
   handleInput() {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
+    this.internals.setFormValue(query) // update form value
     this.ifxInput.emit(this.value);
+  }
+
+  formDisabledCallback(disabled: boolean) {
+    this.disabled = disabled;
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   render() {
