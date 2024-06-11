@@ -1,3 +1,64 @@
+# v21.9.0 (Mon May 27 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: add e2e test file [#1250](https://github.com/Infineon/infineon-design-system-stencil/pull/1250) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.8.3 (Mon May 13 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: implement States page to Foundations in Storybook [#1222](https://github.com/Infineon/infineon-design-system-stencil/pull/1222) ([@tishoyanchev](https://github.com/tishoyanchev) [@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.8.2 (Wed May 08 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: text and image update to storybook foundation pages [#1220](https://github.com/Infineon/infineon-design-system-stencil/pull/1220) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v21.8.1 (Mon May 06 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: added code snippet for label trigger dropdown [#1212](https://github.com/Infineon/infineon-design-system-stencil/pull/1212) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.8.0 (Fri May 03 2024)
+
+#### 🚀 Enhancement
+
+- New Component: Basic version of Date Picker [#1205](https://github.com/Infineon/infineon-design-system-stencil/pull/1205) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.7.4 (Thu May 02 2024)
 
 #### 🐛 Bug Fix

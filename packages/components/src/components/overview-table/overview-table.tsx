@@ -469,6 +469,45 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Date Picker</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a customized wrapper and theming for the standard date picker element, enhancing its appearance and user interaction</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Cross browser compatibility</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Form integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td >
+                    <ul>
+
+                    </ul>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-dropdown--development" size="s" variant="bold">Dropdown</ifx-link>
                   </td>
                   <td >
@@ -1705,25 +1744,7 @@ export class OverviewTable {
                   <td></td>
                   <td></td>
                 </tr>
-            
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Basic Date Picker</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
-                        </span>
-                        <span>Planned</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-            
+          
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Advanced Date Picker</ifx-link>

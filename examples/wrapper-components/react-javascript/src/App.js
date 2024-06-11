@@ -19,6 +19,7 @@ import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
+import DatePicker from './components/DatePicker/DatePicker';
 import Tooltip from './components/Tooltip/Tooltip';
 import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
@@ -73,6 +74,10 @@ function App() {
 
       <h2>Chip</h2>
       <Chip />
+      <br />
+
+      <h2>Date Picker</h2>
+      <DatePicker />
       <br />
 
       <h2>Dropdown</h2>
