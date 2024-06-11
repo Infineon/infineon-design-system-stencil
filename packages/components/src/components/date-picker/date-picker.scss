@@ -1,8 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
   :host { 
-    display: inline-block;
-    width: 100%;
+    display: block;
   }
 
   .date__picker-input { 
