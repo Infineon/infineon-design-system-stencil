@@ -1,3 +1,15 @@
+# v21.10.0 (Tue Jun 11 2024)
+
+#### 🚀 Enhancement
+
+- Navbar and Sidebar moved into a Navigation folder on Storybook [#1283](https://github.com/Infineon/infineon-design-system-stencil/pull/1283) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.9.2 (Wed May 29 2024)
 
 #### 🐛 Bug Fix
