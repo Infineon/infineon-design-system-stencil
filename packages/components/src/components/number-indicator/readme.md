@@ -18,7 +18,7 @@
 
  - [ifx-list-item](../list-group)
  - [ifx-overview-table](../overview-table)
- - [ifx-sidebar-item](../sidebar)
+ - [ifx-sidebar-item](../navigation/sidebar)
 
 ### Graph
 ```mermaid
