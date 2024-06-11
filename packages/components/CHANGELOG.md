@@ -1,3 +1,15 @@
+# v21.10.1 (Tue Jun 11 2024)
+
+#### 🐛 Bug Fix
+
+- Date-picker: changed width to 100% and added height options s and l [#1279](https://github.com/Infineon/infineon-design-system-stencil/pull/1279) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.10.0 (Tue Jun 11 2024)
 
 #### 🚀 Enhancement
