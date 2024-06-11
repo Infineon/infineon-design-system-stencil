@@ -104,8 +104,7 @@ export class List {
     const listEntries = Array.from(this.el.querySelectorAll('ifx-list-entry'));
     const visibleItems = this.showMore ? listEntries : listEntries.slice(0, this.maxVisibleItems);
     const remainingItems = listEntries.length - visibleItems.length;
-    console.log("remaining ", remainingItems)
-
+ 
     return (
       <div class="list-wrapper">
         {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
