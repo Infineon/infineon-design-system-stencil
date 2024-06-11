@@ -122,6 +122,7 @@
 }
 
 a {
+  padding: 6px;
   border-radius: 100px;
 }
 
@@ -169,8 +170,8 @@ li {
   & a {
     text-decoration: none;
     display: flex;
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
     flex-direction: column;
     justify-content: center;
     color: #1D1D1D;
