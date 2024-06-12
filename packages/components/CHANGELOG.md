@@ -1,3 +1,15 @@
+# v21.11.0 (Wed Jun 12 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Updated Documentation with vue-cli usage related information [#1282](https://github.com/Infineon/infineon-design-system-stencil/pull/1282) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v21.10.1 (Tue Jun 11 2024)
 
 #### 🐛 Bug Fix
