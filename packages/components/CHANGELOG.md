@@ -1,3 +1,15 @@
+# v21.11.3 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Date-picker: Added documentation [#1290](https://github.com/Infineon/infineon-design-system-stencil/pull/1290) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.11.2 (Wed Jun 12 2024)
 
 #### 🐛 Bug Fix
