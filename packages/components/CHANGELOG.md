@@ -1,3 +1,64 @@
+# v21.11.2 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Button: Updated documentation [#1278](https://github.com/Infineon/infineon-design-system-stencil/pull/1278) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.11.1 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Pagination: page number centered + padding increased [#1252](https://github.com/Infineon/infineon-design-system-stencil/pull/1252) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.11.0 (Wed Jun 12 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Updated Documentation with vue-cli usage related information [#1282](https://github.com/Infineon/infineon-design-system-stencil/pull/1282) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v21.10.1 (Tue Jun 11 2024)
+
+#### 🐛 Bug Fix
+
+- Date-picker: changed width to 100% and added height options s and l [#1279](https://github.com/Infineon/infineon-design-system-stencil/pull/1279) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.10.0 (Tue Jun 11 2024)
+
+#### 🚀 Enhancement
+
+- Navbar and Sidebar moved into a Navigation folder on Storybook [#1283](https://github.com/Infineon/infineon-design-system-stencil/pull/1283) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.9.2 (Wed May 29 2024)
 
 #### 🐛 Bug Fix
