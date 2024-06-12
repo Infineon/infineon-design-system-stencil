@@ -1,3 +1,15 @@
+# v21.11.1 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Pagination: page number centered + padding increased [#1252](https://github.com/Infineon/infineon-design-system-stencil/pull/1252) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.11.0 (Wed Jun 12 2024)
 
 #### 🚀 Enhancement
