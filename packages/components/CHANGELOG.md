@@ -1,3 +1,16 @@
+# v21.11.2 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Button: Updated documentation [#1278](https://github.com/Infineon/infineon-design-system-stencil/pull/1278) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.11.1 (Wed Jun 12 2024)
 
 #### 🐛 Bug Fix
