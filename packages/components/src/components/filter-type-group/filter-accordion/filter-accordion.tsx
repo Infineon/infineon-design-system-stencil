@@ -21,10 +21,11 @@ export class FilterAccordion {
     this.el.addEventListener('ifxListUpdate', this.handleCheckedChange);
   }
 
-  componentDidLoad() {
+  componentWillUpdate() {
     const selectedItems = getInitiallySelectedItems(this.el);
     this.count = selectedItems.length;
   }
+
 
   handleCheckedChange = (event: CustomEvent) => {
     const selectedItems = event.detail.selectedItems;

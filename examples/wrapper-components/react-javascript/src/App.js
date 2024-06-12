@@ -35,6 +35,7 @@ import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 import List from './components/List/List';
+import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
 
 
 function App() {
@@ -82,6 +83,10 @@ function App() {
 
       <h2>Dropdown</h2>
       <Dropdown />
+      <br />
+      
+      <h2>FilterTypeGroup</h2>
+      <FilterTypeGroup />
       <br />
 
       <h2>Icon</h2>

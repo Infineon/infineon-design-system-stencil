@@ -11,6 +11,7 @@
   <Checkbox />
   <DatePicker />
   <Dropdown />
+  <FilterTypeGroup />
   <IconButton />
   <Icon />
   <Link />
@@ -74,6 +75,7 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
+import FilterTypeGroup from './components/FilterTypeGroup.vue'
 
 
 </script>

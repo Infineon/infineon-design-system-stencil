@@ -1,7 +1,11 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-.filter-type-group {
+
+:host {
   display: flex;
+}
+
+.filter-type-group {
   width: 260px;
   flex-direction: column;
   align-items: flex-start;
