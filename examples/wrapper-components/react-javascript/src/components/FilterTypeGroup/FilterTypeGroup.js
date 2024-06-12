@@ -1,57 +1,57 @@
 import React from 'react';
-import { IfxFilterTypeGroup } from '@infineon/infineon-design-system-react';
-
+import { IfxFilterTypeGroup, IfxFilterAccordion, IfxList, IfxListEntry, IfxFilterSearch } from '@infineon/infineon-design-system-react';
 function FilterTypeGroup() {
-    return (
-<div><ifx-filter-type-group>
+  return (
+<div><IfxFilterTypeGroup>
   <div slot="filter-search">
-    <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+  <IfxFilterSearch filter-name="Your filter name"></IfxFilterSearch>
   </div>
   <div slot="filter-accordion">
-    <ifx-filter-accordion filter-group-name="Filter group 1">
-      <ifx-list slot="list" type="checkbox" name="Filter group 1" max-visible-items="10">
-    <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
+  <IfxFilterAccordion filter-group-name="Filter group 1">
+    <IfxList slot="list" type="checkbox" name="Filter group 1" max-visible-items="10">
+  <IfxListEntry slot="slot0" label="Filter 1" value="true"></IfxListEntry>
   
-    <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot1" label="Filter 2" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot2" label="Filter 3" value="true"></ifx-list-entry>
+  <IfxListEntry slot="slot2" label="Filter 3" value="true"></IfxListEntry>
   
-    <ifx-list-entry slot="slot3" label="Filter 4" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot3" label="Filter 4" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot4" label="Filter 5" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot4" label="Filter 5" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot5" label="Filter 6" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot5" label="Filter 6" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot6" label="Filter 7" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot6" label="Filter 7" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot7" label="Filter 8" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot7" label="Filter 8" value="false"></IfxListEntry>
   
-      </ifx-list>
-    </ifx-filter-accordion>
-    <ifx-filter-accordion filter-group-name="Filter group 2">
-      <ifx-list slot="list" type="radio-button" name="Filter group 2" max-visible-items="6">
-    <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
+    </IfxList>
+  </IfxFilterAccordion>
+  <IfxFilterAccordion filter-group-name="Filter group 2">
+    <IfxList slot="list" type="radio-button" name="Filter group 2" max-visible-items="6">
+  <IfxListEntry slot="slot0" label="Filter 1" value="true"></IfxListEntry>
   
-    <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot1" label="Filter 2" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot2" label="Filter 3" value="true"></ifx-list-entry>
+  <IfxListEntry slot="slot2" label="Filter 3" value="true"></IfxListEntry>
   
-    <ifx-list-entry slot="slot3" label="Filter 4" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot3" label="Filter 4" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot4" label="Filter 5" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot4" label="Filter 5" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot5" label="Filter 6" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot5" label="Filter 6" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot6" label="Filter 7" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot6" label="Filter 7" value="false"></IfxListEntry>
   
-    <ifx-list-entry slot="slot7" label="Filter 8" value="false"></ifx-list-entry>
+  <IfxListEntry slot="slot7" label="Filter 8" value="false"></IfxListEntry>
   
-      </ifx-list>
-    </ifx-filter-accordion>
+    </IfxList>
+  </IfxFilterAccordion>
   </div>
-</ifx-filter-type-group>
+</IfxFilterTypeGroup>
 </div>
-      );
-    }
-    
-    export default FilterTypeGroup;
+    );
+  }
+  
+  export default FilterTypeGroup;
+
