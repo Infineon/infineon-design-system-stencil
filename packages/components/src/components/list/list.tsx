@@ -105,7 +105,6 @@ export class List {
     const visibleItems = this.showMore ? listEntries : listEntries.slice(0, this.maxVisibleItems);
     const remainingItems = listEntries.length - visibleItems.length;
  
-    console.log("list ", listEntries)
     return (
       <div class="list-wrapper">
         {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
