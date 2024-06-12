@@ -7,7 +7,21 @@ import { Meta, Description } from '@storybook/blocks';
 Vue Wrappers: A Vue wrapper is a Vue-specific interface for a Stencil-generated web component. It offers a bridge between Stencil and Vue, enabling more native Vue syntax, such as Vue's event handling and property binding. This makes it easier to use Stencil components in a Vue app. Stencil generates these wrappers when configured to do so.
 
 We have added some additional configuration to support the use of Vue's v-model.
-Currently this works with the `IfxProgressBar`, the `IfxSearchBar` and the `IfxSearchInput`.
+Currently this works with the `IfxProgressBar`, the `IfxSearchBar` and the `IfxSearchField`.
+
+
+## Recommended build setup for Vue Applications Using the Vue wrapper components
+
+### Issues with CommonJS in Vue CLI
+
+Users of Vue applications built with the Vue CLI may encounter issues when integrating Stencil web components, particularly when the project relies on the CommonJS module system. Common problems include v-model bindings not updating correctly and certain ES Module features not functioning as expected. This is often due to differences in how CommonJS and ES Modules handle this context, dynamic imports, and other language features critical to Stencil web components' functionality.
+While there are potential workarounds to address these issues in a Vue CLI setup, they can be complex and may not cover all edge cases. Therefore, we recommend transitioning to a build setup that better supports ES Modules for a more seamless integration of Stencil web components.
+
+### Transitioning to Vite and ES Modules
+
+We strongly recommend using Vite as the build tool and adopting the ES Module (ESM) format for Vue applications that utilize Stencil web components. Vite provides out-of-the-box support for ES Modules, which aligns closely with the design and capabilities of Stencil web components.
+For existing projects, transitioning from Vue CLI to Vite typically involves updating the project configuration and build scripts. The Vite website provides a Migration Guide to assist with this process.
+By adopting Vite and ES Modules, your Vue applications will benefit from improved performance, better compatibility with web components, and a smoother development experience.
 
 ## Installation
 
@@ -37,7 +51,44 @@ import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
 createApp(App).use(ComponentLibrary).mount('#app');
 ```
 
-In Vue, this registers the components globally.
+**4. Register the components globally**
+
+```js
+//vite.config.js
+...
+plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: (tag) => tag.includes('ifx-'),
+        },
+      },
+    }),
+  ],
+```
+
+```js
+//vue.config.js
+module.exports = {
+  transpileDependencies: true,
+  ...
+  chainWebpack: config => {
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .loader('vue-loader')
+      .tap(options => {
+        return {
+          ...options,
+          compilerOptions: {
+            isCustomElement: (tag) => tag.includes('ifx-'),
+          },
+        };
+      });
+  }
+};
+```
 
 ## Usage
 
