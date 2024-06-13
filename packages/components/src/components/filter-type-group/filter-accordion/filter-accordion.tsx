@@ -19,9 +19,6 @@ export class FilterAccordion {
 
   componentWillLoad() {
     this.el.addEventListener('ifxListUpdate', this.handleCheckedChange);
-  }
-
-  componentWillUpdate() {
     const selectedItems = getInitiallySelectedItems(this.el);
     this.count = selectedItems.length;
   }
