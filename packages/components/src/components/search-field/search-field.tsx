@@ -21,6 +21,7 @@ export class SearchField {
   @Prop() disabled: boolean = false;
   @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
+  @Prop() placeholder: string = "Search...";
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -75,7 +76,7 @@ export class SearchField {
             ref={(el) => (this.inputElement = el)}
             type="text"
             onInput={() => this.handleInput()}
-            placeholder="Search..."
+            placeholder={this.placeholder}
             disabled={this.disabled}
             value={this.value} // bind the value property to input element
           />
