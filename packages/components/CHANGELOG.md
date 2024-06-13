@@ -1,3 +1,15 @@
+# v21.12.0 (Thu Jun 13 2024)
+
+#### 🚀 Enhancement
+
+- Search-field: implement ```placeholder``` prop to customize placeholder text [#1292](https://github.com/Infineon/infineon-design-system-stencil/pull/1292) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.11.3 (Wed Jun 12 2024)
 
 #### 🐛 Bug Fix
