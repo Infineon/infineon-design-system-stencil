@@ -6,7 +6,7 @@
   align-items: flex-start;
   align-self: stretch;
   cursor: pointer;
-
+  border-left: 3px solid transparent;
 }
 
 .text-and-icon {
@@ -18,9 +18,12 @@
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
 
   &.expanded {
-    border-left: 3px solid tokens.$ifxColorOcean500;
     border-bottom: none;
   }
+}
+
+.header.expanded {
+  border-left: 3px solid tokens.$ifxColorOcean500;
 }
 
 .text {
