@@ -7,6 +7,7 @@ import { getInitiallySelectedItems } from '../utils';
   shadow: true,
 })
 export class FilterAccordion {
+  private initialized = false;
   @Element() private el: HTMLElement;
   @State() expanded: boolean = false;
   @Prop() maxVisibleItems: number;
@@ -19,12 +20,19 @@ export class FilterAccordion {
 
   componentWillLoad() {
     this.el.addEventListener('ifxListUpdate', this.handleCheckedChange);
-    const selectedItems = getInitiallySelectedItems(this.el);
-    this.count = selectedItems.length;
+
   }
 
+componentDidLoad() {
+  if (!this.initialized) {
+    const selectedItems = getInitiallySelectedItems(this.el);
+    this.count = selectedItems.length;
+    this.initialized = true; // Prevent further execution in future calls
+  }
+}
 
-  handleCheckedChange = (event: CustomEvent) => {
+
+handleCheckedChange = (event: CustomEvent) => {
     const selectedItems = event.detail.selectedItems;
     this.count = selectedItems.length;
     this.ifxFilterAccordionChange.emit({ filterGroupName: this.filterGroupName, selectedItems });

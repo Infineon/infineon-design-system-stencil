@@ -82,6 +82,7 @@ export class List {
       .map(entry => ({
         label: entry.getAttribute('label'),
         value: entry.getAttribute('value'),
+        type: entry.getAttribute('type'),
         element: entry
       }));
   }
