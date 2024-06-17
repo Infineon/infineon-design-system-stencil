@@ -12,7 +12,7 @@ function applyStyles() {
   const fontFamilyToken = tokens.find(token => token.name === '$ifxFontFamilyBody');
   // Extract the value if the token exists
   const fontFamilyValue = fontFamilyToken ? `"${fontFamilyToken.value}"` : sans - serif;
-  console.log(fontFamilyValue)
+  // console.log(fontFamilyValue)
   style.setProperty('--ifx-font-family', fontFamilyValue);
 }
 export const decorators = [

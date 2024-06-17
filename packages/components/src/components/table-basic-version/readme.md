@@ -15,7 +15,6 @@
 | `rowHeight`   | `row-height`   |             | `string`          | `'default'` |
 | `rows`        | `rows`         |             | `any[] \| string` | `undefined` |
 | `tableHeight` | `table-height` |             | `string`          | `'auto'`    |
-| `uniqueKey`   | `unique-key`   |             | `string`          | `undefined` |
 
 
 ----------------------------------------------

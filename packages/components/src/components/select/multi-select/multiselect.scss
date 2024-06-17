@@ -3,7 +3,6 @@
 @use "../../../global/font.scss";
 
 .ifx-multiselect-container {
-  background-color: tokens.$ifxColorBaseWhite;
   position: relative;
   box-sizing: border-box;
   font-family: var(--ifx-font-family);
@@ -41,6 +40,7 @@
   }
 
   .ifx-multiselect-wrapper {
+    background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
     position: relative;
     display: flex;
