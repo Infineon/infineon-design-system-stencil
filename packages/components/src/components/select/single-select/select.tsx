@@ -55,7 +55,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public shouldSortItems: boolean;
   @Prop() public sorter: SortFn;
   @Prop() public placeholder: boolean | string;
-  @Prop() public placeholderValue: string;
   @Prop() public searchPlaceholderValue: string;
   @Prop() public prependValue: string;
   @Prop() public appendValue: string;
@@ -75,16 +74,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public callbackOnCreateTemplates: OnCreateTemplates;
   @Prop() public valueComparer: ValueCompareFunction;
   //custom ifx props
-  @Prop() ifxError: boolean = false;
-  @Prop() ifxErrorMessage: string = "Error";
-  @Prop() ifxLabel: string = "";
-  @Prop() ifxDisabled: boolean = false;
-  @Prop() ifxPlaceholderValue: string = "Placeholder";
+  @Prop() error: boolean = false;
+  @Prop() errorMessage: string = "Error";
+  @Prop() label: string = "";
+  @Prop() disabled: boolean = false;
+  @Prop() placeholderValue: string = "Placeholder";
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
-  @Prop() ifxOptions: any[] | string;
-  @Prop() ifxSize: string = 'medium (40px)';
-  @State() ifxSelectedOption: any | null = null;
+  @Prop() options: any[] | string;
+  @Prop() size: string = 'medium (40px)';
+  @State() selectedOption: any | null = null;
 
   @Element() private readonly root: HTMLElement;
   private choice;
@@ -94,8 +93,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   async handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
-    this.ifxSelectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
-    this.setPreSelected(this.ifxSelectedOption.value); //set previously selected items from the input array to false and the new selection to true
+    this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
+    this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
     this.closeDropdownMenu();
   }
 
@@ -214,7 +213,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     } else if (Array.isArray(choices) || typeof choices === 'object') {
       listOfChoices = [...choices];
     } else {
-      console.error('Unexpected value for choices:', this.ifxOptions);
+      console.error('Unexpected value for choices:', this.options);
     }
 
     this.choice.setChoices(listOfChoices, value, label, replaceChoices);
@@ -306,22 +305,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         this.element =
           <div class={`ifx-select-container`}>
             {
-              this.ifxLabel ?
+              this.label ?
                 <div class="ifx-label-wrapper">
-                  <span>{this.ifxLabel}</span>
+                  <span>{this.label}</span>
                 </div> : null
             }
             <div class={`${choicesWrapperClass} 
-            ${this.ifxDisabled ? 'disabled' : ""} 
-            ${this.ifxError ? 'error' : ""}`}
+            ${this.disabled ? 'disabled' : ""} 
+            ${this.error ? 'error' : ""}`}
 
-              onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}
+              onClick={this.disabled ? undefined : () => this.toggleDropdown()}
               onKeyDown={(event) => this.handleKeyDown(event)}
             >
 
               <select {...attributesSingle} data-trigger
                 onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.ifxOptions)}
+                {this.createSelectOptions(this.options)}
               </select>
 
 
@@ -338,9 +337,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               </div>
             </div>
             {
-              this.ifxError ?
+              this.error ?
                 <div class="ifx-error-message-wrapper">
-                  <span>{this.ifxErrorMessage}</span>
+                  <span>{this.errorMessage}</span>
                 </div> : null
             }
           </div>;
@@ -421,7 +420,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.ifxDisabled) return;
+    if (this.disabled) return;
 
     const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
 
@@ -468,7 +467,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
 
   getSizeClass() {
-    return `${this.ifxSize}` === "s"
+    return `${this.size}` === "s"
       ? "small-select"
       : "medium-select";
   }
@@ -522,7 +521,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     };
 
     const settings = filterObject(props, isDefined);
-    this.ifxSelectedOption = null;
+    this.selectedOption = null;
 
     //type check
     const element = this.root.querySelector('[data-selector="root"]');
@@ -538,11 +537,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               item: ({ classNames }, data) => {
                 let removeButtonHTML = '';
 
-                if (data.placeholder && !self.ifxSelectedOption?.value) {
+                if (data.placeholder && !self.selectedOption?.value) {
                   // For placeholders, use data-id="placeholder"
                   return template(`
                     <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
-                     ${data.label === undefined ? this.ifxPlaceholderValue : data.label}
+                     ${data.label === undefined ? this.placeholderValue : data.label}
                      ${removeButtonHTML}
                     </div>
                   `);
@@ -551,10 +550,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                   return template(`
                   <div class="${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}" 
                        data-item 
-                       data-id="${self.ifxSelectedOption?.id !== undefined ? self.ifxSelectedOption?.id : self.choice.getValue().id}" 
-                       data-value="${self.ifxSelectedOption?.value !== undefined ? self.ifxSelectedOption?.value : self.choice.getValue().value}" 
+                       data-id="${self.selectedOption?.id !== undefined ? self.selectedOption?.id : self.choice.getValue().id}" 
+                       data-value="${self.selectedOption?.value !== undefined ? self.selectedOption?.value : self.choice.getValue().value}" 
                        ${data.disabled ? 'aria-disabled="true"' : ''}>
-                    <span>${self.ifxSelectedOption?.label !== undefined ? self.ifxSelectedOption?.label : self.choice.getValue().label}</span>
+                    <span>${self.selectedOption?.label !== undefined ? self.selectedOption?.label : self.choice.getValue().label}</span>
                     <!-- Add your remove button here if needed -->
                   </div>
                 `)
@@ -577,7 +576,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               choice: ({ classNames }, data) => {
                 return template(`
                 <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
-                ${data.selected || self.ifxSelectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
+                ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
                 ${data.placeholder ? classNames.placeholder : ''} 
                 ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
                      role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
@@ -585,7 +584,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                      data-value="${data.value}"
                      data-select-text="${this.config.itemSelectText}">
                   <span>${data.label}</span>
-                  ${data.selected || self.ifxSelectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
+                  ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
                 </div>
               `)
               },
@@ -596,7 +595,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         ));
 
         //set select options
-        this.setChoices(this.ifxOptions, "value", "label", true)
+        this.setChoices(this.options, "value", "label", true)
         //set custom event listener to listen for search input
         self.addSearchEventListener(self, this.choice);
 
@@ -637,14 +636,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           },
         }));
 
-        this.setChoices(this.ifxOptions, "value", "label", true)
+        this.setChoices(this.options, "value", "label", true)
       } else { //text
         this.choice = new ChoicesJs(element, Object.assign({}, settings, {
           removeItemButton: true,
         }));
       }
 
-      if (this.ifxDisabled) {
+      if (this.disabled) {
         this.choice.disable();
       } else {
         this.choice.enable();
@@ -704,7 +703,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   //get selected values from input array
   private getPreSelected(self) { //pass current context
-    const optionValueBasedOnSelectedOption = Array.isArray(self.ifxOptions) ? self.ifxOptions.find(option => option.selected === true) : JSON.parse(self.ifxOptions).find(option => option.selected === true)
+    const optionValueBasedOnSelectedOption = Array.isArray(self.options) ? self.options.find(option => option.selected === true) : JSON.parse(self.options).find(option => option.selected === true)
     if (optionValueBasedOnSelectedOption) {
       return optionValueBasedOnSelectedOption;
     } else return null;
@@ -712,9 +711,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   //set previously marked as selected items in the input array to unselected and select new ones
   private setPreSelected(newValue) {
-    const resetPreviouslySelected = Array.isArray(this.ifxOptions) ? this.ifxOptions.map(obj => {
+    const resetPreviouslySelected = Array.isArray(this.options) ? this.options.map(obj => {
       return { ...obj, selected: false }
-    }) : JSON.parse(this.ifxOptions).map(obj => {
+    }) : JSON.parse(this.options).map(obj => {
       return { ...obj, selected: false }
     })
     const newSelection = resetPreviouslySelected.map(obj => {
@@ -723,7 +722,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       }
       return obj;
     });
-    this.ifxOptions = [...newSelection];
+    this.options = [...newSelection];
   }
 
 
@@ -731,7 +730,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
     // console.log("createSelectOptions")
-    if (this.value !== 'undefined' || this.ifxSelectedOption?.value !== '') {
+    if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
       let options;
       if (this.isJSONParseable(ifxOptions)) {
         options = [...JSON.parse(ifxOptions)];
@@ -739,7 +738,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
       }
-      const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.ifxSelectedOption?.value);
+      const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.selectedOption?.value);
 
       if (optionValueBasedOnAvailableOptions) {
         return [
@@ -753,7 +752,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     // Assign a unique id for the placeholder
     return this.placeholder !== "false" ? [
       <option value="">
-        {this.ifxPlaceholderValue}
+        {this.placeholderValue}
       </option>
     ] : [
       <option value="">

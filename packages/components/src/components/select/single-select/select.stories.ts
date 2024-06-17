@@ -94,16 +94,16 @@ export default {
 
 const DefaultTemplate = args => {
   const template = `<ifx-select 
-  ifx-size='${args.size}'
+  size='${args.size}'
   placeholder='${args.placeholder}'
   search-enabled='${args.searchEnabled}'
   search-placeholder-value='${args.searchPlaceholderValue}'
-  ifx-disabled='${args.disabled}'
-  ifx-error='${args.error}'
-  ifx-error-message='${args.errorMessage}'
-  ifx-label='${args.label}'
-  ifx-placeholder-value='${args.placeholderValue}'
-  ifx-options='${JSON.stringify(args.options)}' >
+  disabled='${args.disabled}'
+  error='${args.error}'
+  error-message='${args.errorMessage}'
+  label='${args.label}'
+  placeholder-value='${args.placeholderValue}'
+  options='${JSON.stringify(args.options)}' >
  </ifx-select>`;
   setTimeout(() => {
     document.querySelector('ifx-select')?.addEventListener('ifxSelect', action('ifxSelect'));
