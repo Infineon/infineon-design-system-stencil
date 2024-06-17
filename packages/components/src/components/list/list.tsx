@@ -13,7 +13,7 @@ export class List {
   @State() totalItems = 0;
   @Prop() name = "";
   @Prop() maxVisibleItems = 6;
-  @Prop() type: string;
+  @Prop() type: string = "checkbox"; //default value
 
   @Event() ifxListUpdate: EventEmitter;
 
