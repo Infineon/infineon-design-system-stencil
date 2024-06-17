@@ -1,7 +1,7 @@
 import { dirname, join } from "path";
 // .storybook/main.ts
 
-import remarkGfm from 'remark-gfm';
+// import remarkGfm from 'remark-gfm';
 
 module.exports = {
   "stories": ["../src/**/*.stories.@(js|jsx|ts|tsx)", "../src/**/*.mdx"],

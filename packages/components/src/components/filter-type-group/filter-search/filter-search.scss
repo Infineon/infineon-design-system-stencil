@@ -1,0 +1,20 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+
+
+.filter-search-wrapper {
+  display: flex;
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200 tokens.$ifxSpace200 tokens.$ifxSpace200;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: tokens.$ifxSpace50;
+  font-family: var(--ifx-font-family);
+  background: tokens.$ifxColorEngineering200;
+}
+
+.filter-name {
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightM;
+  font-weight: 600;
+}
