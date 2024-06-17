@@ -195,6 +195,7 @@ const DefaultTemplate = (args) => {
     // Create ifx-list element and append to filterAccordion
     let filterList = document.createElement('ifx-list');
     filterList.setAttribute('slot', 'list');
+    filterList.setAttribute('type', 'radio-button');
     filterList.setAttribute('name', columnFilter.name);
     filterList.setAttribute('max-visible-items', '6');
     filterAccordion.appendChild(filterList);

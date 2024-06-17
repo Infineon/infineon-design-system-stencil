@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default |
-| ----------------- | ------------------- | ----------- | -------- | ------- |
-| `filterGroupName` | `filter-group-name` |             | `string` | `""`    |
+| Property          | Attribute           | Description | Type     | Default     |
+| ----------------- | ------------------- | ----------- | -------- | ----------- |
+| `filterGroupName` | `filter-group-name` |             | `string` | `""`        |
+| `maxVisibleItems` | `max-visible-items` |             | `number` | `undefined` |
 
 
 ## Events

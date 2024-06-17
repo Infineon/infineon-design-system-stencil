@@ -1,4 +1,4 @@
-import { Component, h, Listen, Watch, Element, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Listen, Watch, Element, Event, EventEmitter, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-filter-search',
@@ -11,6 +11,7 @@ export class FilterSearch {
   @Prop() disabled: boolean = false;
   @Prop({ mutable: true }) filterValue: string;
   @Prop() filterKey: string;
+  @State() showDeleteIcon: boolean = false;
 
   @Event() ifxFilterSearchChange: EventEmitter;
 
@@ -33,6 +34,7 @@ export class FilterSearch {
     }
 
     this.filterValue = event.detail;
+    this.showDeleteIcon = this.filterValue !== "";
     this.ifxFilterSearchChange.emit({ filterName: this.filterName, filterValue: this.filterValue, filterKey: this.filterKey }); // Emitting filterKey along with other properties
   }
 
@@ -41,7 +43,7 @@ export class FilterSearch {
     return (
       <div class="filter-search-wrapper">
         <div class="filter-name">{this.filterName}</div>
-        <ifx-search-field show-delete-icon="true" disabled={this.disabled} value={this.filterValue}>
+        <ifx-search-field show-delete-icon={this.showDeleteIcon} disabled={this.disabled} value={this.filterValue}>
         </ifx-search-field>
       </div>
     );

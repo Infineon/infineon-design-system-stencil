@@ -5,6 +5,8 @@
   display: flex;
   align-items: flex-start;
   align-self: stretch;
+  cursor: pointer;
+  border-left: 3px solid transparent;
 }
 
 .text-and-icon {
@@ -16,9 +18,12 @@
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
 
   &.expanded {
-    border-left: 3px solid tokens.$ifxColorOcean500;
     border-bottom: none;
   }
+}
+
+.header.expanded {
+  border-left: 3px solid tokens.$ifxColorOcean500;
 }
 
 .text {
@@ -31,10 +36,6 @@
   font-style: normal;
   font-weight: 600;
   line-height: 24px;
-}
-
-ifx-icon[icon="plus-16"]:hover {
-  cursor: pointer;
 }
 
 .hidden {

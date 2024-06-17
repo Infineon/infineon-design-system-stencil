@@ -1,3 +1,161 @@
+# v21.11.3 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Date-picker: Added documentation [#1290](https://github.com/Infineon/infineon-design-system-stencil/pull/1290) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.11.2 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Button: Updated documentation [#1278](https://github.com/Infineon/infineon-design-system-stencil/pull/1278) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.11.1 (Wed Jun 12 2024)
+
+#### 🐛 Bug Fix
+
+- Pagination: page number centered + padding increased [#1252](https://github.com/Infineon/infineon-design-system-stencil/pull/1252) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.11.0 (Wed Jun 12 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Updated Documentation with vue-cli usage related information [#1282](https://github.com/Infineon/infineon-design-system-stencil/pull/1282) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v21.10.1 (Tue Jun 11 2024)
+
+#### 🐛 Bug Fix
+
+- Date-picker: changed width to 100% and added height options s and l [#1279](https://github.com/Infineon/infineon-design-system-stencil/pull/1279) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.10.0 (Tue Jun 11 2024)
+
+#### 🚀 Enhancement
+
+- Navbar and Sidebar moved into a Navigation folder on Storybook [#1283](https://github.com/Infineon/infineon-design-system-stencil/pull/1283) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.9.2 (Wed May 29 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: mobile functionality added on initial mobile version [#1253](https://github.com/Infineon/infineon-design-system-stencil/pull/1253) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.9.1 (Tue May 28 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixed bug affecting the search-bar's isOpen prop on initial load [#1236](https://github.com/Infineon/infineon-design-system-stencil/pull/1236) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.9.0 (Mon May 27 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: add e2e test file [#1250](https://github.com/Infineon/infineon-design-system-stencil/pull/1250) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.8.3 (Mon May 13 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: implement States page to Foundations in Storybook [#1222](https://github.com/Infineon/infineon-design-system-stencil/pull/1222) ([@tishoyanchev](https://github.com/tishoyanchev) [@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.8.2 (Wed May 08 2024)
+
+#### 🐛 Bug Fix
+
+- Documentation: text and image update to storybook foundation pages [#1220](https://github.com/Infineon/infineon-design-system-stencil/pull/1220) ([@SergejLust](https://github.com/SergejLust))
+
+#### Authors: 1
+
+- [@SergejLust](https://github.com/SergejLust)
+
+---
+
+# v21.8.1 (Mon May 06 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: added code snippet for label trigger dropdown [#1212](https://github.com/Infineon/infineon-design-system-stencil/pull/1212) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.8.0 (Fri May 03 2024)
+
+#### 🚀 Enhancement
+
+- New Component: Basic version of Date Picker [#1205](https://github.com/Infineon/infineon-design-system-stencil/pull/1205) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v21.7.4 (Thu May 02 2024)
 
 #### 🐛 Bug Fix

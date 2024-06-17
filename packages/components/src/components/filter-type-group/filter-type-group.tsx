@@ -1,4 +1,4 @@
-import { Component, h, State, Event, EventEmitter, Element } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter, Element, Host } from '@stencil/core';
 
 @Component({
   tag: 'ifx-filter-type-group',
@@ -73,10 +73,12 @@ export class IfxFilterTypeGroup {
 
   render() {
     return (
+      <Host>
       <div class="filter-type-group">
         <slot name="filter-search" />
         <slot name="filter-accordion" />
       </div>
+      </Host>
     );
   }
 }

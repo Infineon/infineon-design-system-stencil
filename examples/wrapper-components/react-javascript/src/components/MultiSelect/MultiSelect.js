@@ -158,7 +158,6 @@ function App() {
     console.log('ifxSelect event emitted with value:', e.detail);
   }
 
-
   return (
     <div>
       <IfxMultiselect options={options} batchSize={20}

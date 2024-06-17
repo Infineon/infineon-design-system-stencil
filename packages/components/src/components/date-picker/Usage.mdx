@@ -1,0 +1,60 @@
+import { Meta  } from '@storybook/blocks';
+import * as DatePickerStories from './date-picker.stories';
+import DatePickerAnatomy from '../../../public-storybook/images/date-picker/date-picker-anatomy.png';
+import DatePickerSizes from '../../../public-storybook/images/date-picker/date-picker-sizes.png';
+import DatePickerStates from '../../../public-storybook/images/date-picker/date-picker-states.png';
+
+<Meta of={DatePickerStories} />
+
+# Date picker
+The date picker allows users to select a date from a combination of an input field and a calendar view. It is essential for our applications where date input is required.
+
+## Usage
+
+### When to use
+- If you want to select a date or a range of dates by allow users to navigate through months and years.
+
+### When not to use
+- If the date options are limited to a few predefined values, a dropdown menu or a set of radio buttons might be more appropriate than a date picker.
+
+## Anatomy
+<img src={DatePickerAnatomy} alt="Date Picker Anatomy" />
+
+**Label (1)**\
+Use a label to describe the purpose of the date field to the user.
+
+
+**Required field (2)**\
+Mark a date field as required when the information is necessary for the user to proceed with a specific action, such as submitting a form. It is indicated with an asterisk (*) next to the label.
+
+
+**Input field (3)**\
+For this `<input>` we use the `type="date"` which enables users to enter a date.
+
+
+ **Date icon (4)**\
+By clicking the date icon a calendar view will appear.
+
+
+**Date element (5)**\
+Each date element (e.g. DD, MM, YYYY) is clickable and editable via keyboard.
+
+
+**Caption text (6)**\
+If required, use caption text to provide additional context or information about the date field.
+
+
+**Calendar view (7)**\
+The calendar view provides a visual representation of a calendar, enabling users to navigate through months and years to select a specific date.
+
+## States
+<img src={DatePickerStates} alt="Date Picker States" />
+
+## Size
+There are two date field sizes: 36px and 40px. This will give you more flexibility in structuring layouts due to e.g. different button heights. It's important to maintain uniform field height while combining form elements on a single page.
+
+<img src={DatePickerSizes} alt="Date Picker Sizes" />
+
+***
+Check out the Figma component: **[Date picker](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=53965-18132)**
+***

@@ -29,6 +29,7 @@
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
  - [ifx-chip](../chips)
+ - [ifx-date-picker](../date-picker)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-filter-accordion](../filter-type-group/filter-accordion)
@@ -37,13 +38,13 @@
  - [ifx-list](../list)
  - [ifx-modal](../modal)
  - [ifx-multiselect](../select/multi-select)
- - [ifx-navbar](../navbar)
- - [ifx-navbar-item](../navbar)
+ - [ifx-navbar](../navigation/navbar)
+ - [ifx-navbar-item](../navigation/navbar)
  - [ifx-overview-table](../overview-table)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-select](../select/single-select)
- - [ifx-sidebar-item](../sidebar)
+ - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
  - [ifx-step](../stepper/step)
  - [ifx-table](../table-advanced-version)
@@ -60,6 +61,7 @@ graph TD;
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
+  ifx-date-picker --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
   ifx-filter-accordion --> ifx-icon

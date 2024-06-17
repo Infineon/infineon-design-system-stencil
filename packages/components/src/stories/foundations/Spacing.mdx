@@ -36,49 +36,37 @@ Each spacing element is defined as a token, which is a pre-determined value that
 
 | token | rem | px | example | 
 |-------|-----|----|---------| 
-| #12 | 0.0625 | 1 | <img src={Space12} alt="Spacing 1px" width="50%" /> | 
-| #25 | 0.125 | 2 | <img src={Space25} alt="Spacing 2px" width="50%" /> | 
-| #50 | 0.25 | 4 | <img src={Space50} alt="Spacing 4px" width="50%" /> | 
-| #100 |0.5 | 8 | <img src={Space100} alt="Spacing 8px" width="50%" /> | 
-| #150 | 0.75 | 12 | <img src={Space150} alt="Spacing 12px" width="50%" /> | 
-| #200 | 1 | 16 | <img src={Space200} alt="Spacing 16px" width="50%" /> | 
-| #250 | 1.25 | 20 | <img src={Space250} alt="Spacing 20px" width="50%" /> | 
-| #300 | 1.5 | 24 | <img src={Space300} alt="Spacing 24px" width="50%" /> | 
-| #400 | 2 | 32 | <img src={Space400} alt="Spacing 32px" width="50%" /> | 
-| #500 | 2.5 | 40 | <img src={Space500} alt="Spacing 40px" width="50%" /> | 
-| #600 | 3 | 48 | <img src={Space600} alt="Spacing 48px" width="50%" /> | 
-| #700 | 3,5 | 56 | <img src={Space700} alt="Spacing 56px" width="50%" /> | 
-| #800 | 4 | 64 | <img src={Space800} alt="Spacing 64px" width="50%" /> | 
-| #900 | 4,5 | 72 | <img src={Space900} alt="Spacing 72px" width="50%" /> | 
-| #1000 | 5 | 80 | <img src={Space1000} alt="Spacing 80px" width="50%" /> | 
-| #1100 | 5.5 | 88 | <img src={Space1100} alt="Spacing 88px" width="50%" /> | 
-| #1200 | 6 | 96 | <img src={Space1200} alt="Spacing 96px" width="50%" /> | 
-| #1300 | 6,5 | 104 | <img src={Space1300} alt="Spacing 104px" width="50%" /> | 
-| #1400 | 7 | 112 | <img src={Space1400} alt="Spacing 112px" width="50%" /> | 
-| #1500 | 7,5 | 120 | <img src={Space1500} alt="Spacing 120px" width="50%" /> | 
-| #1600 | 8 | 128 | <img src={Space1600} alt="Spacing 128px" width="50%" /> | 
-| #2000 | 10 | 160 | <img src={Space2000} alt="Spacing 160px" width="50%" /> | 
-| #2500 | 12.5 | 200 | <img src={Space2500} alt="Spacing 200px" width="50%" /> |
+| $ifxSpace12 | 0.0625 | 1 | <img src={Space12} alt="Spacing 1px" width="50%" /> | 
+| $ifxSpace25 | 0.125 | 2 | <img src={Space25} alt="Spacing 2px" width="50%" /> | 
+| $ifxSpace50 | 0.25 | 4 | <img src={Space50} alt="Spacing 4px" width="50%" /> | 
+| $ifxSpace100 |0.5 | 8 | <img src={Space100} alt="Spacing 8px" width="50%" /> | 
+| $ifxSpace150 | 0.75 | 12 | <img src={Space150} alt="Spacing 12px" width="50%" /> | 
+| $ifxSpace200 | 1 | 16 | <img src={Space200} alt="Spacing 16px" width="50%" /> | 
+| $ifxSpace250 | 1.25 | 20 | <img src={Space250} alt="Spacing 20px" width="50%" /> | 
+| $ifxSpace300 | 1.5 | 24 | <img src={Space300} alt="Spacing 24px" width="50%" /> | 
+| $ifxSpace400 | 2 | 32 | <img src={Space400} alt="Spacing 32px" width="50%" /> | 
+| $ifxSpace500 | 2.5 | 40 | <img src={Space500} alt="Spacing 40px" width="50%" /> | 
+| $ifxSpace600 | 3 | 48 | <img src={Space600} alt="Spacing 48px" width="50%" /> | 
+| $ifxSpace700 | 3,5 | 56 | <img src={Space700} alt="Spacing 56px" width="50%" /> | 
+| $ifxSpace800 | 4 | 64 | <img src={Space800} alt="Spacing 64px" width="50%" /> | 
+| $ifxSpace900 | 4.5 | 72 | <img src={Space900} alt="Spacing 72px" width="50%" /> | 
+| $ifxSpace1000 | 5 | 80 | <img src={Space1000} alt="Spacing 80px" width="50%" /> | 
+| $ifxSpace1100 | 5.5 | 88 | <img src={Space1100} alt="Spacing 88px" width="50%" /> | 
+| $ifxSpace1200 | 6 | 96 | <img src={Space1200} alt="Spacing 96px" width="50%" /> | 
+| $ifxSpace1300 | 6.5 | 104 | <img src={Space1300} alt="Spacing 104px" width="50%" /> | 
+| $ifxSpace1400 | 7 | 112 | <img src={Space1400} alt="Spacing 112px" width="50%" /> | 
+| $ifxSpace1500 | 7.5 | 120 | <img src={Space1500} alt="Spacing 120px" width="50%" /> | 
+| $ifxSpace1600 | 8 | 128 | <img src={Space1600} alt="Spacing 128px" width="50%" /> | 
+| $ifxSpace2000 | 10 | 160 | <img src={Space2000} alt="Spacing 160px" width="50%" /> | 
+| $ifxSpace2500 | 12.5 | 200 | <img src={Space2500} alt="Spacing 200px" width="50%" /> |
 
 ### Usage 
+When designing layouts, use these spacing tokens to ensure that spacing is consistent across different elements (e.g. paddings, margins, distance). It is recommended to balance the right amount of spacing according to the clear and minimalistic approach of our design principles. Too large distances can result in wasted space and a layout that looks too spread out while too small distances can result in cramped and cluttered layouts. 
 
-When designing layouts, use these spacing tokens to ensure that spacing is consistent across different elements (e.g. paddings, margins, distance).    
+## Using space  
 
-It is recommended to balance the right amount of spacing according to the clear and minimalistic approach of our design principles.  
-
-Too large distances can result in wasted space and a layout that looks too spread out while too small distances can result in cramped and cluttered layouts. 
-
-##  Using space  
-
-### Working with Whitespace 
-
+### Working with whitespace 
 Whitespace is an essential aspect of good design, and spacing is a key component of whitespace. The effective use of spacing creates a sense of balance and harmony in our designs. 
 
-### Creating Relationships
-
-Spacing plays an important role in creating relationships between different elements in our designs.   
-
-When designing layouts, consider the spacing between elements as an opportunity to create visual relationships. For example, if you want to **group related elements** together, consider reducing the spacing between them.   
-
-Conversely, if you want to create a clear **distinction between elements**, consider increasing the spacing between them.
-
+### Creating relationships
+Spacing plays an important role in creating relationships between different elements in our designs. When designing layouts, consider the spacing between elements as an opportunity to create visual relationships. For example, if you want to **group related elements** together, consider reducing the spacing between them. Conversely, if you want to create a clear **distinction between elements**, consider increasing the spacing between them.

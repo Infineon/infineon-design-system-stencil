@@ -19,6 +19,7 @@ import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
+import DatePicker from './components/DatePicker/DatePicker';
 import Tooltip from './components/Tooltip/Tooltip';
 import SingleSelect from './components/SingleSelect/SingleSelect';
 import MultiSelect from './components/MultiSelect/MultiSelect';
@@ -35,6 +36,7 @@ import AdvancedTable from './components/AdvancedTable/AdvancedTable';
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 import List from './components/List/List';
+import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
 
 
 function App() {
@@ -76,8 +78,16 @@ function App() {
       <Chip />
       <br />
 
+      <h2>Date Picker</h2>
+      <DatePicker />
+      <br />
+
       <h2>Dropdown</h2>
       <Dropdown />
+      <br />
+      
+      <h2>FilterTypeGroup</h2>
+      <FilterTypeGroup />
       <br />
 
       <h2>Icon</h2>

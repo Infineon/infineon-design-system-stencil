@@ -9,7 +9,9 @@
   <Button />
   <Card />
   <Checkbox />
+  <DatePicker />
   <Dropdown />
+  <FilterTypeGroup />
   <IconButton />
   <Icon />
   <Link />
@@ -59,6 +61,7 @@ import Card from './components/Card.vue'
 import IconButton from './components/IconButton.vue'
 import Switch from './components/Switch.vue'
 import Dropdown from './components/Dropdown.vue'
+import DatePicker from './components/DatePicker.vue'
 import Tooltip from './components/Tooltip.vue'
 import Footer from './components/Footer.vue'
 import SingleSelect from './components/SingleSelect.vue'
@@ -74,6 +77,7 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
+import FilterTypeGroup from './components/FilterTypeGroup.vue'
 
 
 </script>
