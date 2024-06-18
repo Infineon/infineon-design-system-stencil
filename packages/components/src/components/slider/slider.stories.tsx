@@ -9,6 +9,7 @@ export default {
   argTypes: {
     min: { control: 'number' },
     max: { control: 'number' },
+    step: { control: 'number' },
     type: { control: 'radio', options: ['single', 'double']},
     value: { control: 'number', if: { arg: 'type', eq: 'single'} },
     minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},
@@ -44,6 +45,7 @@ const Template = args => {
   sliderElement.setAttribute('value', args.value);
   sliderElement.setAttribute('min', args.min);
   sliderElement.setAttribute('max', args.max);
+  sliderElement.setAttribute('step', args.step)
   sliderElement.setAttribute('min-value-handle', args.minValueHandle);
   sliderElement.setAttribute('max-value-handle', args.maxValueHandle);
   sliderElement.setAttribute('type', args.type);
@@ -75,6 +77,7 @@ export const Default = Template.bind({});
 Default.args = {
   min: 0,
   max: 100,
+  step: 1,
   value: 50,
   minValueHandle: 20,
   maxValueHandle: 80,
