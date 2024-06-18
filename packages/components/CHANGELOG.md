@@ -1,3 +1,17 @@
+# v21.13.0 (Tue Jun 18 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Add configurable step size to slider component [#1186](https://github.com/Infineon/infineon-design-system-stencil/pull/1186) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@akashyeole](https://github.com/akashyeole) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v21.12.0 (Thu Jun 13 2024)
 
 #### 🚀 Enhancement
