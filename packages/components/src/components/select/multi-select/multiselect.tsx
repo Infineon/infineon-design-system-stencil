@@ -150,13 +150,14 @@ export class Multiselect {
   handleOptionClick(option: Option) {
     this.internalError = false;
 
-    if (this.isSelectionLimitReached(option)) {
+    if (!option.selected && this.isSelectionLimitReached(option)) {
+      option.checkboxRef.toggleCheckedState(false)
       console.error('Max item count reached');
       this.internalError = true;
       this.errorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
-
+    
     this.updateSelection(option);
     this.ifxSelect.emit(this.persistentSelectedOptions);
   }
@@ -187,10 +188,20 @@ export class Multiselect {
       this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(
         selectedOption => !option.children.some(child => child.value === selectedOption.value)
       )];
+
+      option.selected = false;
+      option.children.forEach(child => {
+        child.selected = false;
+      })
+
     } else {
       const newChildren = [...option.children.filter(childOption =>
-        !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === childOption.value)
+            !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === childOption.value)
       )];
+      option.selected = true;
+      option.children.forEach(child => {
+        child.selected = true;
+      })
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...newChildren];
     }
   }
@@ -198,13 +209,29 @@ export class Multiselect {
   handleChildOptionClick(option: Option, wasSelected: boolean) {
     if (wasSelected) {
       this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(selectedOption => selectedOption.value !== option.value)];
+      option.selected = false;
     } else {
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, option];
+      option.selected = true;
     }
+    this.updateParentSelectedState();
   }
 
-
-
+  updateParentSelectedState() {
+    this.loadedOptions.forEach(option => {
+      if(option.children?.length > 0) {
+        if(option.children.every(child => child.selected === true)) option.selected = true;
+        else {
+          option.selected = false;
+          if(this.isOptionIndeterminate(option)) {
+            option.indeterminate = true;
+          }else{
+            option.indeterminate = false;
+          }
+        }
+      }
+    });
+  }
 
 
 
@@ -382,9 +409,8 @@ export class Multiselect {
           data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
-          role={`${option.children?.length > 0 ? "treeitem" : "option"}`}
-        >
-          <ifx-checkbox id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
+          role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
+          <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
@@ -439,7 +465,7 @@ export class Multiselect {
         role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
-        <ifx-checkbox id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
+        <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId}>{option.label}</label>
       </div>
     );
