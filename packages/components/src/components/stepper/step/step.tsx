@@ -8,10 +8,10 @@ import { Component, h, Prop } from "@stencil/core";
 
 export class Step{
 
+    @Prop() error: boolean = false;
     @Prop() lastStep: boolean = false;
     @Prop() stepId: number = 1;
-    @Prop() stepperState: any = {activeStep: 1, showNumber: false, variant: 'default'};
-    @Prop() error: boolean = false;
+    @Prop() stepperState: any = {activeStep: 1, showNumber: false, variant: 'default', indicatorPosition: 'left'};
 
     render(){
         return(
@@ -19,7 +19,8 @@ export class Step{
                         ${this.lastStep ? 'last-step': ''}
                         ${this.stepId <= this.stepperState.activeStep ? 'completed': ''}
                         ${this.error ? 'error': ''}
-                        ${this.stepperState.variant}`}
+                        ${this.stepperState.variant}
+                        indicator-${this.stepperState.indicatorPosition}`}
             >
 
                 <div class = 'step-icon-wrapper'>
@@ -38,9 +39,11 @@ export class Step{
                     {this.stepperState.variant === 'default' && <span class = 'step-connector-r'/>}
                 </div>
 
-                { (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.stepId === this.stepperState.activeStep || this.stepId === this.stepperState.activeStep+1))) && <div class= {`step-label ${this.stepperState.variant === 'compact' ? (this.stepperState.activeStep === this.stepId ? 'curr-label' : 'next-label') : ''}`}>
-                    <slot/>
-                </div>}
+                { (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.stepId === this.stepperState.activeStep || this.stepId === this.stepperState.activeStep+1))) && 
+                    <div class= {`step-label ${this.stepperState.variant === 'compact' ? (this.stepperState.activeStep === this.stepId ? 'curr-label' : 'next-label') : ''}`}>
+                        {this.stepperState.variant === 'compact' &&  (this.stepId != this.stepperState.activeStep)  ? 'Next: ' : ''}<slot/>
+                    </div>
+                }
 
             </div>
         );

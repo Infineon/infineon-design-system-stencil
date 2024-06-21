@@ -4,29 +4,55 @@ export default{
     title: 'Components/Stepper',
     tags: ['autodocs'],
     args: { 
-        variant: 'default',
-        amountOfSteps: 5,
         activeStep: 2,
+        amountOfSteps: 5,
         errorStep: -1,
-        showNumber: false
+        indicatorPosition : 'left',
+        showNumber: false,
+        variant: 'default',
     },
     argTypes: {
         activeStep: { 
+            name: 'Active step',
             control : {
                 type: 'number',
                 min: 1
             }, 
-            description: 'Current active step', 
-            default: 1 
+            description: 'Indicates the current active step', 
+            defaultValue: {summary: 1}
         },
-        amountOfSteps: { control : 'number' },
+        amountOfSteps: { 
+            name: 'Amount of steps',
+            control : 'number', 
+            description: 'Indicates the number steps in stepper in a story',
+        },
+        errorStep: {
+            name: 'Error step',
+            control: 'number',
+            defaultValue: {summary: -1},
+            description: 'Specified step number becomes indicates to have an error'
+        },
+        indicatorPosition: {
+            name: 'Indicator position',
+            control : 'radio',
+            defaultValue: {summary: 'left'},
+            description: 'Allows to swap the progross bar and steps\' label',
+            options: ['left', 'right'],
+            if: { arg:'variant', eq: 'compact'}
+        },
         showNumber: { 
+            name: 'Show number',
             control: 'boolean', 
+            defaultValue: {summary: 'false'},
+            description: 'Shows the step number when set true',
             if: { arg: 'variant', eq: 'default'}
         },
         variant: {
+            name: 'Variant',
             options: ['default', 'compact'],
-            control: { type: 'radio' },
+            defaultValue: {summary: 'default'},
+            description: 'Allows to switch between default and compact variant',
+            control: 'radio'
         },
         ifxActiveStepChange:{
             action: 'ifxActiveStepChange',
@@ -40,6 +66,7 @@ const Template = (args) => {
     stepper.setAttribute('show-number', args.showNumber);
     stepper.setAttribute('active-step', args.activeStep);
     stepper.setAttribute('variant', args.variant);
+    stepper.setAttribute('indicator-position', args.indicatorPosition);
 
     for(let i = 0; i < args.amountOfSteps; i++){
         const step = document.createElement('ifx-step');

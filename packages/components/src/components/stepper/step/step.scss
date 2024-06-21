@@ -8,15 +8,22 @@
     justify-content: center;
     gap: tokens.$ifxSize100;
     max-width: tokens.$ifxSize2000;
-    width: tokens.$ifxSize2000;
     font: tokens.$ifxBodyBody03;
     
     &.compact{
         gap: 0;
-        align-items: flex-end;
+        max-width: 100%;
         .step-label{
-            max-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
+            max-width: 100%;
+        }
+        
+        &.indicator-left {
+            align-items: flex-end;
             text-align: right;
+        }
+        
+        &.indicator-right {
+            align-items: flex-start;
         }
     }
 
