@@ -31,6 +31,7 @@ export class Multiselect {
   @Prop() error: boolean = false;
   @State() internalError: boolean = false;
   @Prop() errorMessage: string = "Error";
+  @State() internalErrorMessage: string;
   @Prop() label: string = "";
   @State() persistentSelectedOptions: Option[] = [];
   @Prop() placeholder: string = "";
@@ -57,6 +58,7 @@ export class Multiselect {
   async loadInitialOptions() {
     this.isLoading = true;
     this.internalError = this.error;
+    this.internalErrorMessage = this.errorMessage;
     // Load the first batch of options (e.g., first 20)
     this.loadedOptions = await this.fetchOptions(0, this.batchSize);
     this.isLoading = false;
@@ -141,6 +143,11 @@ export class Multiselect {
     this.internalError = this.error;
   }
 
+  @Watch('errorMessage')
+  updateInternalErrorMessage() {
+    this.internalErrorMessage = this.errorMessage;
+  }
+
   @Watch('loadedOptions')
   loadedOptionsChanged() {
     this.filteredOptions = [...this.loadedOptions];
@@ -152,9 +159,8 @@ export class Multiselect {
 
     if (!option.selected && this.isSelectionLimitReached(option)) {
       option.checkboxRef.toggleCheckedState(false)
-      console.error('Max item count reached');
       this.internalError = true;
-      this.errorMessage = "Please consider the maximum number of items to choose from";
+      this.internalErrorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
     
@@ -543,7 +549,7 @@ export class Multiselect {
         {
           this.internalError ?
             <div class="ifx-error-message-wrapper">
-              <span>{this.errorMessage}</span>
+              <span>{this.internalErrorMessage}</span>
             </div> : null
         }
       </div>
