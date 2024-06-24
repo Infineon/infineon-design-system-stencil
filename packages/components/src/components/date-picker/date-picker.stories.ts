@@ -9,12 +9,16 @@ export default {
     size: 's',
     success: false,
     error: false,
+    name: 'date-picker'
   },
   argTypes: {
     size: {
       description: 'Size options: small (173px) and large (400px) - default: small',
       options: ['s', 'l'],
       control: { type: 'radio' },
+    },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
     },
     ifxDate: {
       action: 'ifxDate',
