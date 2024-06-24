@@ -2,7 +2,7 @@
   <div>
     <h2>SingleSelect</h2>
     <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" search-enabled="true"
-      search-placeholder-value="Search..." disabled="disabled" :error="error" :error-message="errorMessage"
+      search-placeholder-value="Search..." :disabled="disabled" :error="error" :error-message="errorMessage"
       label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
     <div>
 
