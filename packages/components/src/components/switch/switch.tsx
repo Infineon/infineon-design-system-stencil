@@ -1,15 +1,19 @@
+import { AttachInternals } from '@stencil/core';
 import { Component, Prop, State, Watch, h, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-switch',
   styleUrl: 'switch.scss',
   shadow: true,
+  formAssociated: true
 })
 export class Switch {
   @Prop() value: boolean = false;
   @Prop() name: string = '';
   @Prop() disabled: boolean = false;
   @State() internalValue: boolean = false;
+
+  @AttachInternals() internals: ElementInternals;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter<boolean>;
 
@@ -29,6 +33,7 @@ export class Switch {
   toggle() {
     if (this.disabled) return;
     this.internalValue = !this.internalValue;
+    this.internals.setFormValue(this.internalValue ? 'on' : null);
     this.ifxChange.emit(this.internalValue);
   }
 
@@ -38,6 +43,14 @@ export class Switch {
     if (event.key === 'Enter' || event.key === ' ') {
       this.toggle();
     }
+  }
+
+  /**
+   * Callback for form association.
+   * Called whenever the form is reset.
+   */
+  formResetCallback() {
+    this.internals.setFormValue(null);
   }
 
 
