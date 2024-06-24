@@ -1,3 +1,15 @@
+# v21.14.0 (Mon Jun 24 2024)
+
+#### 🚀 Enhancement
+
+- Multi-select: Fixed a bug causing error when unselecting option [#1303](https://github.com/Infineon/infineon-design-system-stencil/pull/1303) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v21.13.1 (Fri Jun 21 2024)
 
 #### 🐛 Bug Fix
