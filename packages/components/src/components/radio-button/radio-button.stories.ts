@@ -10,6 +10,7 @@ export default {
     value: false,
     size: 's',
     label: 'Text',
+    name: 'radio-button'
   },
   argTypes: {
     ifxChange: {
@@ -29,6 +30,9 @@ export default {
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    }
   },
 };
 
@@ -41,6 +45,7 @@ const DefaultTemplate = args => {
   element.setAttribute('disabled', args.disabled);
   element.setAttribute('value', args.value);
   element.setAttribute('size', args.size);
+  element.setAttribute('name', args.name);
 
   // Add the label as a text node
   element.appendChild(document.createTextNode(args.label));
