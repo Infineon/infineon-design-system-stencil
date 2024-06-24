@@ -1,9 +1,9 @@
 <template>
   <div>
     <h2>SingleSelect</h2>
-    <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
-      search-placeholder-value="Search..." :ifx-disabled="disabled" :ifx-error="error" :ifx-error-message="errorMessage"
-      ifx-label="" ifx-placeholder-value="Placeholder" :ifx-options="JSON.stringify(options)"></ifx-select>
+    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" search-enabled="true"
+      search-placeholder-value="Search..." :disabled="disabled" :error="error" :error-message="errorMessage"
+      label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
     <div>
       <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
@@ -11,9 +11,9 @@
     </div>
     <br />
 
-    <ifx-select type="single" value="undefined" ifx-size="medium (40px)" placeholder="true" search-enabled="true"
-      search-placeholder-value="Search..." :ifx-disabled="disabled2" :ifx-error="error" :ifx-error-message="errorMessage"
-      ifx-label="" ifx-placeholder-value="Placeholder" :ifx-options="JSON.stringify(options)"></ifx-select>
+    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" search-enabled="true"
+      search-placeholder-value="Search..." :disabled="disabled2" :error="error" :error-message="errorMessage"
+      label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
 
     <br />
     <br />
