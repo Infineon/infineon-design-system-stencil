@@ -4,4 +4,5 @@ export interface Option {
   selected?: boolean;  // Making this optional
   indeterminate?: boolean;
   children?: Option[];  // Sub-options
+  checkboxRef?: HTMLIfxCheckboxElement;
 }
