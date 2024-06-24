@@ -13,7 +13,7 @@ export class Stepper {
 
     @Prop() activeStep: number = 1;
     @Prop() indicatorPosition: 'left' | 'right' = 'left';
-    @Prop() showNumber: boolean = false;
+    @Prop() showStepNumber: boolean = false;
     @Prop() variant: 'default' | 'compact' = 'default';
 
     @State() internalActiveStep = undefined;
@@ -31,7 +31,7 @@ export class Stepper {
         for (let i = 0; i < steps.length; i++) {
             steps[i].stepperState = { 
                 activeStep: this.internalActiveStep, 
-                showNumber: this.showNumber, 
+                showStepNumber: this.showStepNumber, 
                 variant: this.variant, 
                 indicatorPosition: this.indicatorPosition 
             };

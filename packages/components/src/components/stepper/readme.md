@@ -11,7 +11,7 @@
 | ------------------- | -------------------- | ----------- | ------------------------ | ----------- |
 | `activeStep`        | `active-step`        |             | `number`                 | `1`         |
 | `indicatorPosition` | `indicator-position` |             | `"left" \| "right"`      | `'left'`    |
-| `showNumber`        | `show-number`        |             | `boolean`                | `false`     |
+| `showStepNumber`    | `show-step-number`   |             | `boolean`                | `false`     |
 | `variant`           | `variant`            |             | `"compact" \| "default"` | `'default'` |
 
 

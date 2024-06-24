@@ -8,7 +8,7 @@ export default{
         amountOfSteps: 5,
         errorStep: -1,
         indicatorPosition : 'left',
-        showNumber: false,
+        showStepNumber: false,
         variant: 'default',
     },
     argTypes: {
@@ -40,8 +40,8 @@ export default{
             options: ['left', 'right'],
             if: { arg:'variant', eq: 'compact'}
         },
-        showNumber: { 
-            name: 'Show number',
+        showStepNumber: { 
+            name: 'Show step number',
             control: 'boolean', 
             defaultValue: {summary: 'false'},
             description: 'Shows the step number when set true',
@@ -63,7 +63,7 @@ export default{
 
 const Template = (args) => {
     const stepper = document.createElement('ifx-stepper');
-    stepper.setAttribute('show-number', args.showNumber);
+    stepper.setAttribute('show-step-number', args.showStepNumber);
     stepper.setAttribute('active-step', args.activeStep);
     stepper.setAttribute('variant', args.variant);
     stepper.setAttribute('indicator-position', args.indicatorPosition);

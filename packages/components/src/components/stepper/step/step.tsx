@@ -8,10 +8,10 @@ import { Component, h, Prop } from "@stencil/core";
 
 export class Step{
 
-    @Prop() error: boolean = false;
     @Prop() lastStep: boolean = false;
+    @Prop() error: boolean = false;
     @Prop() stepId: number = 1;
-    @Prop() stepperState: any = {activeStep: 1, showNumber: false, variant: 'default', indicatorPosition: 'left'};
+    @Prop() stepperState: any = {activeStep: 1, showStepNumber: false, variant: 'default', indicatorPosition: 'left'};
 
     render(){
         return(
@@ -27,16 +27,16 @@ export class Step{
                     {this.stepperState.variant === 'default' && <span class = 'step-connector-l'/>}
                     {
                         (this.stepperState.variant === 'default' && (!this.error || (this.error && this.stepId == this.stepperState.activeStep))) && <div class = 'step-icon'>
-                            {(this.stepperState.showNumber && this.stepperState.activeStep <= this.stepId) ? this.stepId : ''}
+                            {(this.stepperState.showStepNumber && this.stepperState.activeStep <= this.stepId) ? this.stepId : ''}
                             {(this.stepId < this.stepperState.activeStep) && <ifx-icon icon='check16'></ifx-icon>}
-                            {(!this.stepperState.showNumber && this.stepId == this.stepperState.activeStep) && <span class = 'active-indic'></span>}
+                            {(!this.stepperState.showStepNumber && this.stepId == this.stepperState.activeStep) && <span class = 'active-indic'></span>}
                         </div>
                     }
 
                     {
                         (this.stepperState.variant ==='default' && this.error && (this.stepId != this.stepperState.activeStep)) && <ifx-icon icon='warningf24'></ifx-icon>
                     }
-                    {this.stepperState.variant === 'default' && <span class = 'step-connector-r'/>}
+                    {this.stepperState.variant === 'default' && <span class = {`step-connector-r ${this.stepId === this.stepperState.activeStep ? 'active' : ''}`}/>}
                 </div>
 
                 { (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.stepId === this.stepperState.activeStep || this.stepId === this.stepperState.activeStep+1))) && 
