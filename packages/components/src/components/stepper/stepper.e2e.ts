@@ -29,8 +29,8 @@ describe('ifx-stepper', () => {
         expect(secondStep).toBeTruthy();
     }) 
 
-    it('should display step number when showNumber is set', async () => {
-        element.setProperty('showNumber', true);
+    it('should display step number when showStepNumber is set', async () => {
+        element.setProperty('showStepNumber', true);
         await page.waitForChanges();
         const firstStep = await page.find('ifx-stepper > ifx-step >>> .step-icon')
         expect(firstStep.innerText).toEqual('1');

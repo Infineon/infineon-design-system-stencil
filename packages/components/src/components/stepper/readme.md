@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default     |
-| ------------ | ------------- | ----------- | --------- | ----------- |
-| `activeStep` | `active-step` |             | `number`  | `1`         |
-| `showNumber` | `show-number` |             | `boolean` | `false`     |
-| `variant`    | `variant`     |             | `string`  | `'default'` |
+| Property            | Attribute            | Description | Type                     | Default     |
+| ------------------- | -------------------- | ----------- | ------------------------ | ----------- |
+| `activeStep`        | `active-step`        |             | `number`                 | `1`         |
+| `indicatorPosition` | `indicator-position` |             | `"left" \| "right"`      | `'left'`    |
+| `showStepNumber`    | `show-step-number`   |             | `boolean`                | `false`     |
+| `variant`           | `variant`            |             | `"compact" \| "default"` | `'default'` |
 
 
 ## Events
