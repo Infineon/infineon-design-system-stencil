@@ -24,13 +24,13 @@ export default{
         amountOfSteps: { 
             name: 'Amount of steps',
             control : 'number', 
-            description: 'Indicates the number steps in stepper in a story',
+            description: 'Indicates the number of steps in stepper in a story',
         },
         errorStep: {
             name: 'Error step',
             control: 'number',
             defaultValue: {summary: -1},
-            description: 'Specified step number becomes indicates to have an error'
+            description: 'Specified step number indicates to have an error'
         },
         indicatorPosition: {
             name: 'Indicator position',
