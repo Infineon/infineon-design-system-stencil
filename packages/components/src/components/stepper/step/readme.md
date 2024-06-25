@@ -9,6 +9,7 @@
 
 | Property       | Attribute       | Description | Type      | Default                                                                                 |
 | -------------- | --------------- | ----------- | --------- | --------------------------------------------------------------------------------------- |
+| `complete`     | `complete`      |             | `boolean` | `false`                                                                                 |
 | `error`        | `error`         |             | `boolean` | `false`                                                                                 |
 | `lastStep`     | `last-step`     |             | `boolean` | `false`                                                                                 |
 | `stepId`       | `step-id`       |             | `number`  | `1`                                                                                     |

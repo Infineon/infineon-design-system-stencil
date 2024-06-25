@@ -73,6 +73,7 @@ const Template = (args) => {
         step.innerHTML = `Step Label ${i+1}`;
         stepper.appendChild(step);
         if(args.errorStep == i+1) step.setAttribute('error', 'true');
+        if(i < args.activeStep-1) step.setAttribute('complete', 'true');
     }
     stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
     return stepper;
