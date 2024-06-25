@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+// import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
@@ -62,21 +62,23 @@ export default{
 }
 
 const Template = (args) => {
-    const stepper = document.createElement('ifx-stepper');
-    stepper.setAttribute('show-step-number', args.showStepNumber);
-    stepper.setAttribute('active-step', args.activeStep);
-    stepper.setAttribute('variant', args.variant);
-    stepper.setAttribute('indicator-position', args.indicatorPosition);
-
-    for(let i = 0; i < args.amountOfSteps; i++){
-        const step = document.createElement('ifx-step');
-        step.innerHTML = `Step Label ${i+1}`;
-        stepper.appendChild(step);
-        if(args.errorStep == i+1) step.setAttribute('error', 'true');
-        if(i < args.activeStep-1) step.setAttribute('complete', 'true');
+    return (
+        `
+<ifx-stepper active-step=${args.activeStep} indicator-position=${args.indicatorPosition} show-step-number=${args.showStepNumber} variant=${args.variant}>
+    ${
+        (()=>{
+            return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
+                const step = document.createElement('ifx-step')
+                step.innerHTML = `Step Label ${stepId+1}`
+                if(args.errorStep === stepId+1) step.setAttribute('error', 'true')
+                if(stepId < args.activeStep-1) step.setAttribute('complete', 'true')
+                return step.outerHTML
+            }).join(`\n    `)
+         })()
     }
-    stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
-    return stepper;
+</ifx-stepper>
+        `
+    )
 }
 
 export const Default = Template.bind({});
