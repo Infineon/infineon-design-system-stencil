@@ -1,4 +1,4 @@
-// import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
@@ -7,54 +7,54 @@ export default{
         activeStep: 2,
         amountOfSteps: 5,
         errorStep: -1,
-        indicatorPosition : 'left',
+        indicatorPosition: 'left',
         showStepNumber: false,
-        variant: 'default',
+        variant: 'default'
     },
     argTypes: {
         activeStep: { 
             name: 'Active step',
-            control : {
+            control: {
                 type: 'number',
                 min: 1
             }, 
             description: 'Indicates the current active step', 
-            defaultValue: {summary: 1}
+            defaultValue: { summary: 1 }
         },
         amountOfSteps: { 
             name: 'Amount of steps',
-            control : 'number', 
-            description: 'Indicates the number of steps in stepper in a story',
+            control: 'number', 
+            description: 'Indicates the number of steps in stepper in a story'
         },
         errorStep: {
             name: 'Error step',
             control: 'number',
-            defaultValue: {summary: -1},
+            defaultValue: { summary: -1 },
             description: 'Specified step number indicates to have an error'
         },
         indicatorPosition: {
             name: 'Indicator position',
-            control : 'radio',
-            defaultValue: {summary: 'left'},
+            control: 'radio',
+            defaultValue: { summary: 'left' },
             description: 'Allows to swap the progross bar and steps\' label',
             options: ['left', 'right'],
-            if: { arg:'variant', eq: 'compact'}
+            if: { arg:'variant', eq: 'compact' }
         },
         showStepNumber: { 
             name: 'Show step number',
             control: 'boolean', 
-            defaultValue: {summary: 'false'},
+            defaultValue: { summary: 'false' },
             description: 'Shows the step number when set true',
-            if: { arg: 'variant', eq: 'default'}
+            if: { arg: 'variant', eq: 'default' }
         },
         variant: {
             name: 'Variant',
             options: ['default', 'compact'],
-            defaultValue: {summary: 'default'},
+            defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
             control: 'radio'
         },
-        ifxActiveStepChange:{
+        ifxActiveStepChange: {
             action: 'ifxActiveStepChange',
             description: 'A custom event emitted when active step changes'
         }
@@ -62,9 +62,13 @@ export default{
 }
 
 const Template = (args) => {
-    return (
-        `
-<ifx-stepper active-step=${args.activeStep} indicator-position=${args.indicatorPosition} show-step-number=${args.showStepNumber} variant=${args.variant}>
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `
+<ifx-stepper 
+active-step=${args.activeStep} 
+${args.variant === 'compact' ? `indicator-position=${args.indicatorPosition}` : ''} 
+${args.variant === 'default' ? `show-step-number=${args.showStepNumber}` : ''} 
+variant=${args.variant}>
     ${
         (()=>{
             return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
@@ -74,19 +78,22 @@ const Template = (args) => {
                 if(stepId < args.activeStep-1) step.setAttribute('complete', 'true')
                 return step.outerHTML
             }).join(`\n    `)
-         })()
+        })()
     }
-</ifx-stepper>
-        `
-    )
-}
+</ifx-stepper>`
+
+    const stepper = wrapper.querySelector('ifx-stepper');
+    stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
+    
+    return stepper;
+};
 
 export const Default = Template.bind({});
 Default.args = {
     variant: 'default'
-}
+};
 
 export const Compact = Template.bind({});
 Compact.args = {
-    variant: 'compact',
-}
+    variant: 'compact'
+};
