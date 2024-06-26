@@ -47,6 +47,7 @@ export class Stepper {
         this.stepsCount = steps.length;
     }
 
+    // Sets the initial active step or assigns new active step
     updateActiveStep(stepId: number = null) {
         let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
         if (newActiveStep != this.internalActiveStep) {

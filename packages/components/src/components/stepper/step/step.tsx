@@ -21,7 +21,7 @@ export class Step {
     updateCurrentStep(newStepperState) {
         this.active = (newStepperState.activeStep === this.stepId)
     }
-
+    
     handleStepClick() {
         if(this.complete || this.error) {
             this.stepperState.setActiveStep(this.stepId)
