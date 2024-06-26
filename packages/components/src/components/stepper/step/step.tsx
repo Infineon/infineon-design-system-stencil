@@ -21,9 +21,9 @@ export class Step {
     updateCurrentStep(newStepperState) {
         this.active = (newStepperState.activeStep === this.stepId)
     }
-    
+
     handleStepClick() {
-        if(this.complete || this.error) {
+        if(this.stepperState.variant === 'default' && this.complete) {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
@@ -53,10 +53,10 @@ export class Step {
                         </div>
                     }
 
-                    {/* // Special error state */}
+                    {/* Special error state */}
                     {(this.stepperState.variant ==='default' && this.error && !this.active) && <ifx-icon icon='warningf24'></ifx-icon>}
                     
-                    {/* // Right connector */}
+                    {/* Right connector */}
                     {this.stepperState.variant === 'default' && <span class = {`step-connector-r ${this.active ? 'active' : ''}`}/>}
                 </div>
 

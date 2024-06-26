@@ -25,6 +25,10 @@
         &.indicator-right {
             align-items: flex-start;
         }
+        
+        .step-label{
+            cursor: auto;
+        }
     }
 
     .step-label{
@@ -68,7 +72,12 @@
         .step-label{
             color: tokens.$ifxColorRed500;
         }
+    }
 
+    &.complete{
+        .step-label{
+            cursor: pointer;
+        }
     }
 }
 
