@@ -34,6 +34,7 @@ export class Stepper {
 
     // Sets the specified step as an active step
     setActiveStep(stepId: number) {
+        this.activeStep = stepId;
         this.updateActiveStep(stepId);
     }
 

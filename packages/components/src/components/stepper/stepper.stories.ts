@@ -6,7 +6,7 @@ export default{
     args: { 
         activeStep: 2,
         amountOfSteps: 5,
-        errorStep: -1,
+        errorStep: 0,
         indicatorPosition: 'left',
         showStepNumber: false,
         variant: 'default'
@@ -29,7 +29,6 @@ export default{
         errorStep: {
             name: 'Error step',
             control: 'number',
-            defaultValue: { summary: -1 },
             description: 'Specified step number indicates to have an error'
         },
         indicatorPosition: {
