@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element, State, EventEmitter, Event, Watch } from "@stencil/core";
-
+import { StepperState } from "./interfaces";
 @Component({
     tag     : 'ifx-stepper',
     styleUrl: 'stepper.scss',
@@ -61,13 +61,14 @@ export class Stepper {
     syncIfxSteps() {
         const steps = this.getSteps()
         for (let i = 0; i < steps.length; i++) {
-            steps[i].stepperState = { 
+            const stepperState: StepperState = { 
                 activeStep: this.internalActiveStep, 
+                indicatorPosition: this.indicatorPosition, 
                 showStepNumber: this.showStepNumber, 
                 variant: this.variant, 
-                indicatorPosition: this.indicatorPosition, 
                 setActiveStep: this.setActiveStep.bind(this)
             };
+            steps[i].stepperState = stepperState;
         }
     }
 

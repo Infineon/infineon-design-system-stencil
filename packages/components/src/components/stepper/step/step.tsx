@@ -1,5 +1,5 @@
 import { Component, h, Prop, State, Watch } from "@stencil/core";
-
+import { StepperState } from "../interfaces";
 @Component({
     tag     : 'ifx-step',
     styleUrl: 'step.scss',
@@ -12,8 +12,8 @@ export class Step {
     @Prop() error   : boolean = false;
     @Prop() stepId  : number  = 1;
 
-    @Prop({ reflect: false }) lastStep    : boolean = false;
-    @Prop({ reflect: false }) stepperState: any     = {activeStep: 1, showStepNumber: false, variant: 'default', indicatorPosition: 'left'};
+    @Prop({ reflect: false }) lastStep    : boolean      = false;
+    @Prop({ reflect: false }) stepperState: StepperState = {activeStep: 1, showStepNumber: false, variant: 'default', indicatorPosition: 'left'};
 
     @State() active: boolean;
 

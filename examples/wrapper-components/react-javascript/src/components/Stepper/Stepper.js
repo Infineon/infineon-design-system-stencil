@@ -9,12 +9,12 @@ function Stepper(){
     const [stepsState, changeStepState] = useState(initialStepsState);
 
     function handleNextClick() {
-        changeStepState(stepsState.map((step, idx) => idx == activeStep-1 ? {...step, complete: true} : step));
+        changeStepState(stepsState.map((step, idx) => idx === activeStep-1 ? {...step, complete: true} : step));
         changeStep(Math.min(activeStep+1, 6));
     }
     
     function handlePrevClick() {
-        changeStepState(stepsState.map((step, idx) => idx == activeStep-1 ? {...step, complete: false} : step));
+        changeStepState(stepsState.map((step, idx) => idx === activeStep-1 ? {...step, complete: false} : step));
         changeStep(Math.max(activeStep-1, 1));
     }
 
