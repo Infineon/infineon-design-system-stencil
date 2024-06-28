@@ -84,19 +84,21 @@ export class Stepper {
 
     render() {
         return (
-            <div class={`stepper ${this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
+            <div aria-label = 'a stepper' 
+                role = 'navigation' 
+                class = {`stepper ${this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
                     // Progress bar for compact variant
                     (this.variant === 'compact') && 
-                    <div class='stepper-progress'>
-                        <div class='progress-detail'>
+                    <div class = 'stepper-progress'>
+                        <div class = 'progress-detail'>
                             {`${Math.min(this.internalActiveStep, this.stepsCount)} of ${this.stepsCount}`}
                         </div>
                     </div>
                 }
                 
                 {/* Slot for ifx-steps */}
-                <div class={`stepper-wrapper`}>
+                <div class = {`stepper-wrapper`}>
                     <slot />
                 </div>
             </div>

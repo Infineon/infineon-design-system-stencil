@@ -79,6 +79,12 @@
             cursor: pointer;
         }
     }
+
+    &.active{
+        .step-label{
+            cursor: auto;
+        }
+    }
 }
 
 .active-indic{

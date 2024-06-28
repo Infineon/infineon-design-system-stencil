@@ -28,16 +28,23 @@ export class Step {
         } 
     }
 
+    handleStepKeyDown(event: KeyboardEvent) {
+        if(this.stepperState.variant === 'default' && this.complete && event.key === 'Enter') {
+            this.stepperState.setActiveStep(this.stepId)
+        } 
+    }
+
     render() {
         return (
-            <div class = {`step-wrapper ${this.stepId === 1 ? 'first-step': ''} 
+            <div aria-current = {this.active ? 'step': false}
+                aria-disabled = {this.active || this.complete ? false : true}
+                class = {`step-wrapper ${this.stepId === 1 ? 'first-step': ''} 
                         ${this.error ? 'error': ''}
                         ${this.stepperState.variant}
                         ${this.complete ? 'complete': ''}
                         ${this.lastStep ? 'last-step': ''}
                         indicator-${this.stepperState.indicatorPosition}
-                        ${this.active ? 'active' : ''}`}
-            >
+                        ${this.active ? 'active' : ''}`}>
 
                 <div class = 'step-icon-wrapper'>
                     {/* Left connector */}
@@ -63,7 +70,10 @@ export class Step {
                 {
                     // Step labels
                     (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.active || this.stepId === this.stepperState.activeStep+1))) && 
-                    <div class= {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} onClick={() => { this.handleStepClick() }}>
+                    <div tabIndex={this.complete && !this.active ? 0 : -1} 
+                        class = {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} 
+                        onClick={() => { this.handleStepClick() }} 
+                        onKeyDown={(e) => { this.handleStepKeyDown(e) }}>
                         {this.stepperState.variant === 'compact' &&  !this.active  ? 'Next: ' : ''}<slot/>
                     </div>
                 }
