@@ -1,3 +1,15 @@
+# v23.0.0 (Mon Jul 01 2024)
+
+#### 💥 Breaking Change
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil [#1295](https://github.com/Infineon/infineon-design-system-stencil/pull/1295) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v22.1.0 (Mon Jul 01 2024)
 
 #### 🚀 Enhancement
