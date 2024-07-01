@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox',
@@ -37,6 +37,11 @@ export class Checkbox {
     }
   }
 
+
+  @Method()
+  async toggleCheckedState(newVal: boolean) {
+    this.internalValue = newVal;
+  }
 
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {

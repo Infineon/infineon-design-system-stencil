@@ -109,65 +109,80 @@ export class Navbar {
       }
     }
   }
-  
 
-  @Listen('ifxSearchBarIsOpen')
-  handleSearchBarToggle(event: CustomEvent) {
+  getWrappers() {
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
     const leftAssignedNodes = leftSideSlot.assignedNodes();
-    const navbarProfile = this.el.querySelector('ifx-navbar-profile')
-    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')
-    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]')
+    const navbarProfile = this.el.querySelector('ifx-navbar-profile');
+    const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]');
+    const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
-   
-    if(event.detail) { 
-      if(rightAssignedNodes.length !== 0) { 
-        this.searchBarIsOpen = 'right'
-      } else if(leftAssignedNodes.length !== 0) {
-        this.searchBarIsOpen = 'left'
-      }
-      
-      navbarProfile.hideComponent()
+    
+    return {rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
+  }
 
-      for(let l = 0; l < leftMenuItems.length; l++) { 
-        if(!topRowWrapper.classList.contains('expand')) {
-          leftMenuItems[l].hideComponent()
-        }
+  hideNavItems() {
+    const { rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
+    
+    if(rightAssignedNodes.length !== 0) { 
+      this.searchBarIsOpen = 'right'
+    } else if(leftAssignedNodes.length !== 0) {
+      this.searchBarIsOpen = 'left'
+    }
+    navbarProfile.hideComponent()
+    
+    for(let l = 0; l < leftMenuItems.length; l++) { 
+      if(!topRowWrapper.classList.contains('expand')) {
+        leftMenuItems[l].hideComponent()
       }
-
-      for(let r = 0; r < rightMenuItems.length; r++) { 
-        if(topRowWrapper.classList.contains('expand')) {
-          if(!rightMenuItems[r].hideOnMobile) { 
-            rightMenuItems[r].hideComponent()
-          }
-        } else { 
+    }
+  
+    for(let r = 0; r < rightMenuItems.length; r++) { 
+      if(topRowWrapper.classList.contains('expand')) {
+        if(!rightMenuItems[r].hideOnMobile) { 
           rightMenuItems[r].hideComponent()
         }
+      } else { 
+        rightMenuItems[r].hideComponent()
       }
+    }
+  }
 
-    } else if(!event.detail) {
-      this.searchBarIsOpen = undefined;
-      navbarProfile.showComponent()
-
-      for(let l = 0; l < leftMenuItems.length; l++) { 
-        if(!topRowWrapper.classList.contains('expand')) {
-          leftMenuItems[l].showComponent()
-        }
+  showNavItems() {
+    const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
+    this.searchBarIsOpen = undefined;
+    
+    navbarProfile.showComponent()
+    
+    for(let l = 0; l < leftMenuItems.length; l++) { 
+      if(!topRowWrapper.classList.contains('expand')) {
+        leftMenuItems[l].showComponent()
       }
-
-      for(let r = 0; r < rightMenuItems.length; r++) { 
-        if(topRowWrapper.classList.contains('expand')) {
-          if(!rightMenuItems[r].hideOnMobile) { 
-            rightMenuItems[r].showComponent()
-          }
-        } else { 
+    }
+  
+    for(let r = 0; r < rightMenuItems.length; r++) { 
+      if(topRowWrapper.classList.contains('expand')) {
+        if(!rightMenuItems[r].hideOnMobile) { 
           rightMenuItems[r].showComponent()
         }
+      } else { 
+        rightMenuItems[r].showComponent()
       }
+    }
+  }
+  
+  
+  @Listen('ifxSearchBarIsOpen')
+  handleSearchBarToggle(event: CustomEvent) {
+   
+    if(event.detail) { 
+      this.hideNavItems();
+    } else if(!event.detail) {
+      this.showNavItems();
     }
   }
 
@@ -252,9 +267,20 @@ export class Navbar {
     }
   }
 
+  getMediaQueryList() { 
+    const mediaQueryList = window.matchMedia('(max-width: 800px)');
+    return mediaQueryList;
+  }
+
   componentDidLoad() {
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
+
+    const mediaQueryList = this.getMediaQueryList()
+
+    if (mediaQueryList.matches) {
+      this.moveNavItemsToSidebar();
+    }
   }
 
   handleMobileMenuBottom(e) { 
@@ -282,6 +308,7 @@ export class Navbar {
     }
   }
 
+ 
   componentWillLoad() {
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
@@ -294,24 +321,28 @@ export class Navbar {
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
+  
 
   getSearchBarLeftWrapper() { 
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     return searchBarLeftWrapper;
   }
-
-  moveNavItemsToSidebar(e) {
+  
+  moveNavItemsToSidebar(e?: MediaQueryListEvent) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
-    if (e.matches) {
+    const mediaQueryList = this.getMediaQueryList();
+    const matches = e ? e.matches : mediaQueryList.matches;
+  
+    if (matches) {
       /* The viewport is 800px wide or less */
       topRowWrapper.classList.add('expand')
-
+      
       //hide body scroll if sidebar was opened
       const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
       if(crossIcon.classList.contains('show')) { 
         this.handleBodyScroll('hide')
       }
-
+      
       //move search bar to right-side
       const searchBarLeft = this.el.querySelector('[slot="search-bar-left"]')
       if(searchBarLeft) { 
@@ -341,9 +372,9 @@ export class Navbar {
         } else { 
           if(rightMenuItems[i].hideOnMobile) { 
             rightMenuItems[i].setAttribute('slot', 'mobile-menu-bottom')
-  
+            
             rightMenuItems[i].toggleChildren('add')
-
+            
             rightMenuItems[i].showLabel = true;
             if(this.searchBarIsOpen) { 
               rightMenuItems[i].showComponent()
@@ -387,15 +418,15 @@ export class Navbar {
         rightMenuItems[i].setAttribute('slot', 'right-item')
 
           rightMenuItems[i].toggleChildren('remove')
-
+          
           const showLabel = rightMenuItems[i].getAttribute('show-label');
           rightMenuItems[i].setAttribute('show-label', showLabel)
           if(this.searchBarIsOpen) { 
             rightMenuItems[i].hideComponent()
           }
+        }
       }
     }
-  }
 
   RemoveSpaceOnStorybookSnippet() { 
     let parent = this.el.parentElement;
@@ -407,6 +438,8 @@ export class Navbar {
     }
   }
 
+
+  
   render() {
     return (
       <div aria-label='a navigation navbar' class={`navbar__wrapper ${this.fixed ? 'fixed' : ""}`}>

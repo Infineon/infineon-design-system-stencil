@@ -36,6 +36,7 @@ export class SearchBar {
 
   componentWillLoad() {
     this.setInitialState();
+    this.ifxSearchBarIsOpen.emit(this.internalState)
   }
 
   handleInput(event: CustomEvent) {

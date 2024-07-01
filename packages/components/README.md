@@ -239,7 +239,46 @@ createApp(App).use(ComponentLibrary).mount('#app');
 
 In Vue, this registers the components globally.
 
-**4. Usage**
+**4. Register the components globally**
+
+```js
+//vite.config.js
+...
+plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: (tag) => tag.includes('ifx-'),
+        },
+      },
+    }),
+  ],
+```
+
+```js
+//vue.config.js
+module.exports = {
+  transpileDependencies: true,
+  ...
+  chainWebpack: config => {
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .loader('vue-loader')
+      .tap(options => {
+        return {
+          ...options,
+          compilerOptions: {
+            isCustomElement: (tag) => tag.includes('ifx-'),
+          },
+        };
+      });
+  }
+};
+```
+
+**5. Usage**
 
 ```js
 <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>

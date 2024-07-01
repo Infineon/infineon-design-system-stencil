@@ -1,7 +1,7 @@
 import { icons } from '@infineon/infineon-icons';
 
 export default {
-  title: 'Components/Navbar',
+  title: 'Components/Navigation/Navbar',
   args: {
     applicationName: 'Application name',
     hideLabel: false,

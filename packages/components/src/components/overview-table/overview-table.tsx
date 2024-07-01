@@ -483,6 +483,18 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
+                        <span>Cross browser compatibility</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Form integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
                         <span>Adheres to web standards</span>
                       </li>
                     </ul>
@@ -805,7 +817,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navbar--development" size="s" variant="bold">Navbar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navigation-navbar--development" size="s" variant="bold">Navbar</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -1192,7 +1204,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-sidebar--development" size="s" variant="bold">Sidebar</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-navigation-sidebar--development" size="s" variant="bold">Sidebar</ifx-link>
                   </td>
                   <td >
                     <ul>

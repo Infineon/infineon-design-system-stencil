@@ -3,6 +3,7 @@ import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Dropdown',
+  tags: ['autodocs'],
   args: {
     label: 'Dropdown',
     size: 'm',

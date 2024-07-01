@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Components/Sidebar',
+  title: 'Components/Navigation/Sidebar',
   // tags: ['autodocs'],
 
   args: {
