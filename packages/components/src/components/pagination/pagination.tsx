@@ -178,8 +178,8 @@ export class Pagination {
               placeholder='false'
               search-enabled='false'
               search-placeholder-value='Search...'
-              disabled='false'
-              error='false'
+              disabled={false}
+              error={false}
               error-message='Error'
               label=''
               placeholder-value='Placeholder'
