@@ -24,6 +24,25 @@
 | `ifxChange` |             | `CustomEvent<any>` |
 
 
+## Methods
+
+### `toggleCheckedState(newVal: boolean) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name     | Type      | Description |
+| -------- | --------- | ----------- |
+| `newVal` | `boolean` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Used by

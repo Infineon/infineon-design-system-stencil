@@ -1,3 +1,68 @@
+# v22.0.0 (Mon Jun 24 2024)
+
+#### 💥 Breaking Change
+
+- Stepper: enhanced customization of compact variant [#1316](https://github.com/Infineon/infineon-design-system-stencil/pull/1316) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.14.1 (Mon Jun 24 2024)
+
+#### 🐛 Bug Fix
+
+- Updated components documentation [#1318](https://github.com/Infineon/infineon-design-system-stencil/pull/1318) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.14.0 (Mon Jun 24 2024)
+
+#### 🚀 Enhancement
+
+- Multi-select: Fixed a bug causing error when unselecting option [#1303](https://github.com/Infineon/infineon-design-system-stencil/pull/1303) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v21.13.1 (Fri Jun 21 2024)
+
+#### 🐛 Bug Fix
+
+- Button: updated documentation [#1314](https://github.com/Infineon/infineon-design-system-stencil/pull/1314) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v21.13.0 (Tue Jun 18 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Add configurable step size to slider component [#1186](https://github.com/Infineon/infineon-design-system-stencil/pull/1186) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@akashyeole](https://github.com/akashyeole) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v21.12.0 (Thu Jun 13 2024)
 
 #### 🚀 Enhancement
