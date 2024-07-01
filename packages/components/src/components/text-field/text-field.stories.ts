@@ -29,6 +29,9 @@ export default {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
     },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event',
