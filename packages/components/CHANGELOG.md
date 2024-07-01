@@ -1,3 +1,15 @@
+# v22.1.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- Alert: added box shadow [#1332](https://github.com/Infineon/infineon-design-system-stencil/pull/1332) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v22.0.0 (Mon Jun 24 2024)
 
 #### 💥 Breaking Change
