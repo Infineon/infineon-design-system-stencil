@@ -10,6 +10,7 @@ export default {
     label: 'Text',
     size: 's',
     indeterminate: false,
+    name: 'checkbox'
   },
 
   argTypes: {
@@ -29,16 +30,20 @@ export default {
         },
       },
     },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    }
   },
 };
 
-const DefaultTemplate = ({ error, disabled, value, indeterminate, size, label }) => {
+const DefaultTemplate = ({ error, disabled, value, indeterminate, size, label, name }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
   checkbox.setAttribute('disabled', disabled);
   checkbox.setAttribute('value', value);
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
+  checkbox.setAttribute('name', name);
 
   checkbox.addEventListener('ifxChange', action('ifxChange'));
 

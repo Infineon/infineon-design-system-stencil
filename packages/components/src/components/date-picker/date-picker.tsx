@@ -1,9 +1,11 @@
+import { AttachInternals } from '@stencil/core';
 import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-date-picker',
   styleUrl: 'date-picker.scss',
   shadow: true,
+  formAssociated: true,
 })
 
 export class DatePicker {
@@ -12,7 +14,9 @@ export class DatePicker {
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
-  @Prop() name: string = '';
+
+  @AttachInternals() internals: ElementInternals;
+
   @Event() ifxDate: EventEmitter;
 
   getDate(e) { 
@@ -22,6 +26,7 @@ export class DatePicker {
     const year = selectedDate.getFullYear();
 
     if(day && month && year) { 
+      this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
       this.ifxDate.emit({day, month, year})
     }
   }
@@ -62,12 +67,19 @@ export class DatePicker {
     this.setFireFoxClasses()
   }
 
+  /**
+   * Callback for form association.
+   * Called whenever the form is reset.
+   */
+  formResetCallback() {
+    this.internals.setFormValue(null);
+  }
+
   render() {
     return (
       <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ""}`} >
         <input 
         class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} type="date" 
-        name={this.name}
         disabled={this.disabled}
         onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper" onClick={() => this.handleInputFocusOnIconClick()}>

@@ -16,6 +16,7 @@ export default {
     required: true,
     optional: false,
     icon: 'c-info-16',
+    name: 'text-field'
   },
 
   argTypes: {
@@ -27,6 +28,9 @@ export default {
     icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+    },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
     },
     ifxInput: {
       action: 'ifxInput',
@@ -42,7 +46,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -53,6 +57,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('caption', caption);
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
+  element.setAttribute('name', name);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   const slotContent = document.createTextNode(label);

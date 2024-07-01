@@ -8,8 +8,12 @@ export default {
     value: false,
     disabled: false,
     label: 'Switch',
+    name: 'switch'
   },
   argTypes: {
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
     ifxChange: {
       description: 'Custom event emitted on change',
       table: {
@@ -30,6 +34,7 @@ const DefaultTemplate = args => {
   // Set the attributes
   element.setAttribute('disabled', args.disabled);
   element.setAttribute('value', args.value);
+  element.setAttribute('name', args.name);
 
   // Add the event listener
   // element.addEventListener('ifxChange', action('ifxChange'));

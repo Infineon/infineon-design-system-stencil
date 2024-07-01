@@ -1,9 +1,10 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 export class Checkbox {
@@ -13,11 +14,12 @@ export class Checkbox {
   @Prop() disabled: boolean = false;
   @Prop() value: boolean = false;
   @Prop() error: boolean = false;
-  @Prop() name: string = '';
   @Prop() size: string = 'm';
   @State() internalValue: boolean;
   @Prop() indeterminate: boolean = false;
   @State() internalIndeterminate: boolean;
+
+  @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
@@ -29,6 +31,8 @@ export class Checkbox {
       } else {
         this.internalValue = !this.internalValue;
       }
+      this.internals.setFormValue(this.internalValue ? 'on' : null);
+      
       this.ifxChange.emit(this.internalValue);
     }
   }
@@ -73,6 +77,14 @@ export class Checkbox {
     this.inputElement.indeterminate = this.internalIndeterminate;
   }
 
+  /**
+   * Callback for form association.
+   * Called whenever the form is reset.
+   */
+  formResetCallback() {
+    this.internals.setFormValue(null);
+  }
+
   getCheckedClassName() {
     if (this.error) {
       if (this.internalValue) {
@@ -100,7 +112,6 @@ export class Checkbox {
           type="checkbox"
           hidden
           ref={(el) => (this.inputElement = el)}
-          name={this.name}
           checked={this.internalValue}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
