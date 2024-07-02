@@ -66,7 +66,17 @@ export default{
         },
         ifxChange: {
             action: 'ifxChange',
-            description: 'A custom event emitted when active step changes'
+            description: 'A custom event emitted when active step changes',
+            table: {
+                type: {
+                    summary: 'Framework integration',
+                    detail: `
+React: onIfxChange={handleChange}
+Vue:@ifxChange="handleChange"
+Angular:(ifxChange)="handleChange()"
+VanillaJs:.addEventListener("ifxChange", (event) => {//handle change});`,
+                }
+            }
         }
     }
 }
