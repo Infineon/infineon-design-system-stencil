@@ -1,5 +1,11 @@
-import { Component, h, Prop, State, Watch } from "@stencil/core";
+import { h, 
+         Component, 
+         Listen, 
+         Prop, 
+         State, 
+         Watch } from "@stencil/core";
 import { StepperState } from "../interfaces";
+
 @Component({
     tag     : 'ifx-step',
     styleUrl: 'step.scss',
@@ -8,31 +14,85 @@ import { StepperState } from "../interfaces";
 
 export class Step {
 
-    @Prop() complete: boolean = false;
-    @Prop() error   : boolean = false;
-    @Prop() stepId  : number  = 1;
+    /**
+     * Sets the complete status of the step.
+     * 
+     * @Default false
+     */
+    @Prop() complete?: boolean = false;
 
-    @Prop({ reflect: false }) lastStep    : boolean      = false;
-    @Prop({ reflect: false }) stepperState: StepperState = {activeStep: 1, showStepNumber: false, variant: 'default', indicatorPosition: 'left'};
+    /**
+     * Sets the error status of the step.
+     * 
+     * @Default false
+     */
+    @Prop({ mutable: true }) error?: boolean = false;
 
+    /**
+     * An internal prop to identify the last step of the stepper.
+     */
+    @Prop({ reflect: false }) lastStep: boolean = false;
+
+    /**
+     * An unique step id assigned to every step in the stepper.
+     */
+    @Prop() stepId: number = 1;
+
+    /**
+     * An internal prop to store the current state of the parent (stepper) components.
+     */
+    @Prop({ reflect: false }) stepperState: StepperState = { activeStep: 1, 
+                                                             showStepNumber: false, 
+                                                             variant: 'default', 
+                                                             indicatorPosition: 'left' };
+
+    /**
+     * Stores the active state of the step.
+     */
     @State() active: boolean;
+
+    /**
+     * Internal state which sets to true when the step is clickable.
+     */
+    @State() clickable: boolean = false;
+
+    @Listen('ifxChange', { target: 'document' })
+    onStepChange(event: CustomEvent) {
+        const previousActiveStep = event.detail.previousActiveStep;
+        if (previousActiveStep.stepId === this.stepId && this.error) {
+            this.clickable = true;
+        }
+    } 
 
     @Watch('stepperState')
     updateCurrentStep(newStepperState) {
         this.active = (newStepperState.activeStep === this.stepId)
     }
 
+    @Watch('active')
+    updateErrorState(){
+        if(this.active && this.error) {
+            this.error = false;
+        }
+    }
+
+    /* Handle the click event on step label. */
     handleStepClick() {
-        if(this.stepperState.variant === 'default' && this.complete) {
+        if(this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
 
+    /* Handle the 'Enter' key press on step label. */
     handleStepKeyDown(event: KeyboardEvent) {
-        if(this.stepperState.variant === 'default' && this.complete && event.key === 'Enter') {
+        if(this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
+    
+    /**
+     * Lifecycle methods
+     */
 
     render() {
         return (
@@ -44,14 +104,15 @@ export class Step {
                         ${this.complete ? 'complete': ''}
                         ${this.lastStep ? 'last-step': ''}
                         indicator-${this.stepperState.indicatorPosition}
-                        ${this.active ? 'active' : ''}`}>
+                        ${this.active ? 'active' : ''}
+                        ${this.clickable ? 'clickable' : ''}`}>
 
                 <div class = 'step-icon-wrapper'>
                     {/* Left connector */}
                     {this.stepperState.variant === 'default' && <span class = 'step-connector-l'/>}
 
                     {
-                        // Active, complete or incomplete
+                        /* Active, complete or incomplete */
                         (this.stepperState.variant === 'default' && (!this.error || (this.error && this.active))) && 
                         <div class = 'step-icon'>
                             {(this.stepperState.showStepNumber && (!this.complete || (this.complete && this.active))) ? this.stepId : ''}
@@ -68,7 +129,7 @@ export class Step {
                 </div>
 
                 {
-                    // Step labels
+                    /* Step labels */
                     (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.active || this.stepId === this.stepperState.activeStep+1))) && 
                     <div tabIndex={this.complete && !this.active ? 0 : -1} 
                         class = {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} 

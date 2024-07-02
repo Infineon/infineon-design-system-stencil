@@ -1,5 +1,14 @@
-import { Component, h, Prop, Element, State, EventEmitter, Event, Watch } from "@stencil/core";
+import { h, 
+         Component, 
+         Element, 
+         Event, 
+         EventEmitter, 
+         Listen, 
+         Prop, 
+         State, 
+         Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
+
 @Component({
     tag     : 'ifx-stepper',
     styleUrl: 'stepper.scss',
@@ -8,37 +17,66 @@ import { StepperState } from "./interfaces";
 
 export class Stepper {
 
+    /**
+     * Reference to the host element.
+     */
     @Element() el: HTMLElement;
 
-    @Event() ifxActiveStepChange: EventEmitter;
+    /**
+     * An event emmited when the active step is changed.
+     */
+    @Event() ifxChange: EventEmitter;
 
-    @Prop() activeStep       : number                = 1;
-    @Prop() indicatorPosition: 'left' | 'right'      = 'left';
-    @Prop() showStepNumber   : boolean               = false;
-    @Prop() variant          : 'default' | 'compact' = 'default';
+    /**
+     * Represents the active step of the stepper.
+     */
+    @Prop() activeStep: number = 1;
 
+    /**
+     * (Optional) Defines the position of the indicator in a compact variant.
+     * 
+     * @Default 'left'
+     */
+    @Prop() indicatorPosition?: 'left' | 'right' = 'left';
+
+    /**
+     * (Optional) Control whether to show step number or not in a DEFAULT variant.
+     * 
+     * @Default false
+     */
+    @Prop() showStepNumber?: boolean = false;
+
+    /**
+     * (Optional) Defines the variant of the stepper.
+     * 
+     * @Default 'default'
+     */
+    @Prop() variant?: 'default' | 'compact' = 'default';
+
+    /**
+     * An internal state for activeStep prop.
+     */
     @State() internalActiveStep: number = undefined;
 
-    private stepsCount: number;
+    /**
+     * Stores total number of steps in a stepper.
+     */
+    @State() stepsCount: number;
+
+    @Listen('ifxChange') 
+    onStepChange(event: CustomEvent) {
+        const previousActiveStep = event.detail.previousActiveStep;
+        if (!previousActiveStep.complete) {
+            previousActiveStep.setAttribute('error', 'true');
+        }
+    } 
 
     @Watch('activeStep')
     handleActiveStep() {
         this.updateActiveStep();
     }
 
-    // Returns the reference to all steps from DOM
-    getSteps() {
-        const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
-        return steps;
-    }
-
-    // Sets the specified step as an active step
-    setActiveStep(stepId: number) {
-        this.activeStep = stepId;
-        this.updateActiveStep(stepId);
-    }
-
-    // Assigns step Id's to ifx-steps
+    /* Assigns step Id's to ifx-steps. */
     addStepIdsToStepsAndCountSteps() {
         const steps = this.getSteps()
         steps[steps.length - 1].lastStep = true;
@@ -48,16 +86,26 @@ export class Stepper {
         this.stepsCount = steps.length;
     }
 
-    // Sets the initial active step or assigns new active step
-    updateActiveStep(stepId: number = null) {
-        let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-        if (newActiveStep != this.internalActiveStep) {
-            if(this.internalActiveStep !== undefined) this.ifxActiveStepChange.emit({ activeStep: newActiveStep, previousActiveStep: this.internalActiveStep, totalSteps: this.stepsCount });
-        }
-        this.internalActiveStep = newActiveStep;
+    /* Returns the reference to all steps from DOM. */
+    getSteps() {
+        const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
+        return steps;
     }
 
-    // Sync steps with parent state
+    /* Sets the specified step as an active step. */
+    setActiveStep(stepId: number) {
+        this.updateActiveStep(stepId);
+    }
+
+    /* Sets the step before active to step to complete by default (on load). */
+    setStepsBeforeActiveToComplete() {
+        const steps = this.getSteps();
+        steps.forEach( (step, stepId) => {
+            if (stepId+1 < this.activeStep) step.complete = true;
+        });
+    }
+
+    /* Sync steps with parent state. */
     syncIfxSteps() {
         const steps = this.getSteps()
         for (let i = 0; i < steps.length; i++) {
@@ -72,9 +120,24 @@ export class Stepper {
         }
     }
 
+    /* Sets the initial active step or assigns new active step. */
+    updateActiveStep(stepId: number = null) {
+        let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
+        if (newActiveStep != this.internalActiveStep) {
+            const steps = this.getSteps();
+            if (this.internalActiveStep !== undefined) this.ifxChange.emit({ activeStep: steps[newActiveStep-1], previousActiveStep: steps[this.internalActiveStep-1], totalSteps: this.stepsCount });
+        }
+        this.internalActiveStep = newActiveStep;
+    }
+
+    /**
+     * Lifecycle methods
+     */
+
     componentWillLoad() {
         this.addStepIdsToStepsAndCountSteps();
         this.updateActiveStep();
+        this.setStepsBeforeActiveToComplete();
         this.syncIfxSteps();
     }
 
@@ -88,7 +151,7 @@ export class Stepper {
                 role = 'navigation' 
                 class = {`stepper ${this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
-                    // Progress bar for compact variant
+                    /* Progress bar for compact variant. */
                     (this.variant === 'compact') && 
                     <div class = 'stepper-progress'>
                         <div class = 'progress-detail'>
@@ -97,7 +160,7 @@ export class Stepper {
                     </div>
                 }
                 
-                {/* Slot for ifx-steps */}
+                {/* Slot for ifx-steps. */}
                 <div class = {`stepper-wrapper`}>
                     <slot />
                 </div>
@@ -106,7 +169,7 @@ export class Stepper {
     };
 
     componentDidRender() {
-        // Updating progress bar in compact version
+        /* Updating progress bar in compact version. */
         if (this.variant == 'compact') {
             const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress');
             progressBar.style.setProperty('--pb', `${(this.internalActiveStep / (this.stepsCount)) * 100}%`);

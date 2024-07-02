@@ -13,26 +13,39 @@ export default{
     },
     argTypes: {
         activeStep: { 
-            name: 'Active step',
             control: {
                 type: 'number',
                 min: 1
             }, 
             description: 'Indicates the current active step', 
-            defaultValue: { summary: 1 }
+            table: {
+                defaultValue: { summary: 1 }
+            }
         },
         amountOfSteps: { 
             name: 'Amount of steps',
             control: 'number', 
             description: 'Indicates the number of steps in stepper in a story'
         },
+        completeStep: {
+            name: 'complete',
+            description: 'A boolean prop to mark a step complete.<br>Usage:',
+            table: {
+                defaultValue: { summary: false },
+                type: {
+                    summary: `<ifx-step complete=true> </ifx-step>`
+                }
+            }
+        },
         errorStep: {
-            name: 'Error step',
+            name: 'error',
             control: 'number',
-            description: 'Specified step number indicates to have an error'
+            description: 'Specified step number indicates to have an error',
+            table: {
+                defaultValue: { summary: false }
+            },
         },
         indicatorPosition: {
-            name: 'Indicator position',
             control: 'radio',
             defaultValue: { summary: 'left' },
             description: 'Allows to swap the progross bar and steps\' label',
@@ -40,21 +53,19 @@ export default{
             if: { arg:'variant', eq: 'compact' }
         },
         showStepNumber: { 
-            name: 'Show step number',
             control: 'boolean', 
             defaultValue: { summary: 'false' },
             description: 'Shows the step number when set true',
             if: { arg: 'variant', eq: 'default' }
         },
         variant: {
-            name: 'Variant',
             options: ['default', 'compact'],
             defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
             control: 'radio'
         },
-        ifxActiveStepChange: {
-            action: 'ifxActiveStepChange',
+        ifxChange: {
+            action: 'ifxChange',
             description: 'A custom event emitted when active step changes'
         }
     }
@@ -73,8 +84,7 @@ variant=${args.variant}>
             return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
                 const step = document.createElement('ifx-step')
                 step.innerHTML = `Step Label ${stepId+1}`
-                if(args.errorStep === stepId+1) step.setAttribute('error', 'true')
-                if(stepId < args.activeStep-1) step.setAttribute('complete', 'true')
+                if (args.errorStep === stepId+1) step.setAttribute('error', 'true')
                 return step.outerHTML
             }).join(`\n    `)
         })()
@@ -82,7 +92,7 @@ variant=${args.variant}>
 </ifx-stepper>`
 
     const stepper = wrapper.querySelector('ifx-stepper');
-    stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
+    stepper.addEventListener('ifxChange', action('ifxChange'));
     
     return stepper;
 };

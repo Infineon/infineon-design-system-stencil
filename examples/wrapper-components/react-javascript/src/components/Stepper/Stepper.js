@@ -27,7 +27,7 @@ function Stepper(){
 
     return(
         <div>
-            <IfxStepper showStepNumber={showStepNumber} variant = {isCompact ? 'compact' : 'default' } activeStep={activeStep} onIfxActiveStepChange={(e) => {handleStepChangeEvent(e)}}>
+            <IfxStepper showStepNumber={showStepNumber} variant = {isCompact ? 'compact' : 'default' } activeStep={activeStep} onIfxChange={(e) => {handleStepChangeEvent(e)}}>
                 <IfxStep error={stepsState[0].error} complete={stepsState[0].complete}> Step 1 </IfxStep>
                 <IfxStep error={stepsState[1].error} complete={stepsState[1].complete}> Step 2 </IfxStep>
                 <IfxStep error={stepsState[2].error} complete={stepsState[2].complete}> Step 3 </IfxStep>

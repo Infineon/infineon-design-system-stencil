@@ -65,24 +65,24 @@
         .step-label{
             color: tokens.$ifxColorBaseBlack;
         }
-    }
+    } 
     
-    &.error{
-        color: tokens.$ifxColorRed500;
-        .step-label{
-            color: tokens.$ifxColorRed500;
-        }
-    }
-
-    &.complete{
+    &.complete, &.clickable{
         .step-label{
             cursor: pointer;
         }
     }
-
+    
     &.active{
         .step-label{
             cursor: auto;
+        }
+    }
+
+    &.error:not(.active){
+        color: tokens.$ifxColorRed500;
+        .step-label{
+            color: tokens.$ifxColorRed500;
         }
     }
 }
@@ -117,10 +117,3 @@
     width: tokens.$ifxSize800 + tokens.$ifxSize50;
     background-color: tokens.$ifxColorEngineering400;
 }
-
-
-/*
-    active
-    error
-    complete/incomplete
-*/
