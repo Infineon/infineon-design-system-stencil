@@ -25,6 +25,10 @@
         &.indicator-right {
             align-items: flex-start;
         }
+        
+        .step-label{
+            cursor: auto;
+        }
     }
 
     .step-label{
@@ -51,24 +55,35 @@
         }
     }
     
-    &.completed{
+    &.complete, &.active{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
-            &.active {
+            &.active, &.error {
                 background: tokens.$ifxColorEngineering400;
             }
         }
         .step-label{
             color: tokens.$ifxColorBaseBlack;
         }
+    } 
+    
+    &.complete, &.clickable{
+        .step-label{
+            cursor: pointer;
+        }
     }
     
-    &.error{
+    &.active{
+        .step-label{
+            cursor: auto;
+        }
+    }
+
+    &.error:not(.active){
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
         }
-
     }
 }
 
