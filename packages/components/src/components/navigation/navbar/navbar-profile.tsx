@@ -18,9 +18,9 @@ export class NavbarProfile {
   @State() internalHref: string = ""
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
-  @State() internalImageUrl: string = ""
+  @State() internalImageUrl: any = {type: "", value: ""}
  
-  private defaultProfileImage = getAssetPath(`https://raw.githubusercontent.com/Infineon/Infineon-Icons/f4feadb1e9aa26e70aecbe579a4bb1a14efbc168/svg/user-24.svg`);
+  private defaultProfileImage = getAssetPath('./assets/48px-profile.png');
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -47,6 +47,7 @@ export class NavbarProfile {
   }
 
   componentDidLoad() { 
+    this.setProfileGap()
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.appendNavItemToMenu(navItems)
@@ -90,16 +91,44 @@ export class NavbarProfile {
     this.relocateUsingSlot(navItems)
   }
 
+  isValidHttpUrl(string) {
+    let url;
+    
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+  
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
   setImage() { 
     if (this.imageUrl.toLowerCase().trim() === "") {
-      this.internalImageUrl = undefined;
-    } else this.internalImageUrl = this.imageUrl;
+      this.internalImageUrl = {type: undefined, value: ""}
+    } else if(this.isValidHttpUrl(this.imageUrl)) {
+      this.internalImageUrl = { type: 'url', value: this.imageUrl}
+    } else { 
+      this.internalImageUrl = { type: 'initials', value: this.imageUrl}
+    }
   }
 
   setHref() {
     if (this.href.toLowerCase().trim() === "") {
       this.internalHref = undefined;
     } else this.internalHref = this.href;
+  }
+
+  setProfileGap() { 
+    const innerContentWrapper = this.el.shadowRoot.querySelector('.inner__content-wrapper')
+    const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper')
+    const labelSlot = labelWrapper.querySelector('slot')
+    const nodes = labelSlot.assignedNodes();
+    if(nodes.length) { 
+      this.handleClassList(innerContentWrapper, 'add', 'withLabel')
+    } else { 
+      this.handleClassList(innerContentWrapper, 'remove', 'withLabel')
+    }
   }
 
   getItemMenu() { 
@@ -142,16 +171,25 @@ export class NavbarProfile {
   }
   
 
+
   render() {
     return (
       <div class="container">
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${!this.showLabel ? 'removeLabel' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper`}>
-              <img src={ this.internalImageUrl ? this.internalImageUrl : this.defaultProfileImage} alt={this.alt} />
+             
+             {this.internalImageUrl.type !== 'initials' && 
+              <img src={ this.internalImageUrl.type === 'url' ? this.internalImageUrl.value : this.defaultProfileImage} alt={this.alt} />}
+
+              {this.internalImageUrl.type === 'initials' && 
+              <div class="initials__wrapper">
+                <span class="initials">{this.internalImageUrl.value}</span>
+              </div>}
+              
             </div>
             <span class="label__wrapper">
-              <slot  />
+              <slot onSlotchange={() => this.setProfileGap()} />
             </span>
           </div>
         </a>

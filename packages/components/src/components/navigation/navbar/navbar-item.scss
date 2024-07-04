@@ -7,7 +7,6 @@
   flex-direction: row;
   align-items: center;
   padding: 0px 8px;
-  //gap: 8px;
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -39,6 +38,14 @@
   &:hover {
     color: tokens.$ifxColorOcean500;
     cursor: pointer;
+
+    & .navbar__container-right-content-navigation-item-icon-wrapper { 
+      
+      & .initials__wrapper { 
+        cursor: pointer;
+        background-color: tokens.$ifxColorOcean600;
+      }
+    }
   }
 
   &.remove {
@@ -62,6 +69,26 @@
     order: 0;
     flex-grow: 0;
 
+    & .initials__wrapper { 
+      display: flex;
+      width: 24px;
+      height: 24px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 100%;
+      background-color: tokens.$ifxColorOcean500;
+
+      & .initials { 
+        color: #FFF;
+        text-align: center;
+        font-family: "Source Sans 3";
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; 
+      }
+    }
+
     & img { 
       width: 24px; 
       height: 24px;
@@ -76,60 +103,7 @@
       display: none;
     }
   }
-
-  // & .navbar__container-right-content-navigation-item-navigation-profile {
-  //   position: relative;
-  //   width: 24px;
-  //   height: 24px;
-  //   background: tokens.$ifxColorOcean500;
-  //   border-radius: 100px;
-  //   flex: none;
-  //   order: 0;
-  //   flex-grow: 0;
-  //   display: none;
-
-  //   &.show {
-  //     display: flex;
-  //   }
-
-  //   & a {
-  //     position: absolute;
-  //     width: 22px;
-  //     height: 20px;
-  //     left: calc(50% - 22px/2);
-  //     top: calc(50% - 20px/2);
-  //     font-style: normal;
-  //     font-weight: 600;
-  //     font-size: 14px;
-  //     line-height: 20px;
-  //     text-decoration: none;
-  //     display: flex;
-  //     align-items: center;
-  //     justify-content: center;
-  //     text-align: center;
-  //     color: tokens.$ifxColorBaseWhite;
-  //   }
-  // }
-
-
 }
-
-
-// @media screen and (min-width: 720px) {  
-//   .navbar__item { 
-//     & a { 
-//       display: none;
-//     }
-//   }
-// }
-
-// @media screen and (min-width: 1024px) { 
-//   .navbar__item { 
-//     & a { 
-//       display: flex;
-//     }
-//   }
-// }
 
 .container { 
   position: relative;
@@ -169,7 +143,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+
+    &.withLabel { 
+      gap: 8px;
+    }
   }
 }
 
