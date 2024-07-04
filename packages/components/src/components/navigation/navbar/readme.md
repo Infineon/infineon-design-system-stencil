@@ -14,6 +14,7 @@
 | `imageUrl`  | `image-url`  |             | `string`  | `""`      |
 | `showLabel` | `show-label` |             | `boolean` | `true`    |
 | `target`    | `target`     |             | `string`  | `"_self"` |
+| `userName`  | `user-name`  |             | `string`  | `""`      |
 
 
 ## Methods
