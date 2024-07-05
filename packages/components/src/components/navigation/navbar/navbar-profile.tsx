@@ -15,6 +15,7 @@ export class NavbarProfile {
   @Prop() imageUrl: string = ""
   @Prop() target: string = "_self";
   @Prop() alt: string = ""
+  @Prop() userName: string = "";
   @State() internalHref: string = ""
   @State() isMenuItem: boolean = false;
   @State() hasChildNavItems: boolean = false;
@@ -140,7 +141,7 @@ export class NavbarProfile {
       return false;
     }
   }
-  
+
 
   render() {
     return (
@@ -154,6 +155,7 @@ export class NavbarProfile {
               <slot  />
             </span>
           </div>
+          {this.userName.trim() !== "" && <div class='username__tooltip'>{this.userName}</div>}
         </a>
         
         {this.hasChildNavItems && <ul class='navbar-menu rightSideItemMenu'> <slot name="first__layer" /> </ul>}

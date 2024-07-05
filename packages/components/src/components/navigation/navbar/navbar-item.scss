@@ -17,6 +17,20 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
+  & .username__tooltip { 
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    text-wrap: nowrap;
+    padding: 1px 5px;
+    font-size: 13px;
+    font-family: "Source Sans 3";
+    background-color: black;
+    color: #fff;
+    z-index: 99;
+  }
+
   &.hide { 
     display: none;
   }
@@ -39,6 +53,9 @@
   &:hover {
     color: tokens.$ifxColorOcean500;
     cursor: pointer;
+    & .username__tooltip { 
+      display: block;
+    }
   }
 
   &.remove {
