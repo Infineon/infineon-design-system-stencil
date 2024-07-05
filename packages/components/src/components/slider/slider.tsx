@@ -8,6 +8,7 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '
 export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
+  @Prop() step: number = 1;
   @Prop() value: number;
   @Prop() minValueHandle: number;
   @Prop() maxValueHandle: number;
@@ -153,8 +154,9 @@ export class IfxSlider {
               type="range"
               min={this.min}
               max={this.max}
-              disabled={this.disabled}
+              step={this.step}
               value={this.internalValue}
+              disabled={this.disabled}
               ref={(el) => (this.inputRef = el as HTMLInputElement)}
               onInput={(event) => this.handleInputChange(event)}
               aria-label='a slider'
@@ -163,12 +165,12 @@ export class IfxSlider {
               /> 
               :
             <div class = 'range-slider__wrapper' aria-label='a range slider' aria-value={this.value} aria-disabled={this.disabled} >
-
               <input 
                 id='min-slider'
                 type='range'
                 min={this.min}
                 max={this.max}
+                step={this.step}
                 value={this.internalMinValue}
                 disabled={this.disabled}
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
@@ -180,6 +182,7 @@ export class IfxSlider {
                 type='range'
                 min={this.min}
                 max={this.max}
+                step={this.step}
                 value={this.internalMaxValue}
                 disabled={this.disabled}
                 ref={(el) => (this.maxInputRef = el as HTMLInputElement)}
