@@ -379,9 +379,9 @@
 
 
     <h2>Single-Select</h2>
-    <ifx-select id="single-select" ifx-size='m' placeholder='true' search-enabled='true'
-      search-placeholder-value='Search...' ifx-disabled='false' ifx-error='false' ifx-error-message='Some error'
-      ifx-label='' ifx-placeholder-value='Placeholder' ifx-options=''>
+    <ifx-select id="single-select" size='m' placeholder='true' search-enabled='true'
+      search-placeholder-value='Search...' disabled='false' error='false' error-message='Some error'
+      label='' placeholder-value='Placeholder' options=''>
     </ifx-select> <br />
     <br />
     <br />
@@ -689,7 +689,7 @@
 
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
-    singleSelect.setAttribute('ifx-options', singleSelectOptions);
+    singleSelect.setAttribute('options', singleSelectOptions);
 
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
