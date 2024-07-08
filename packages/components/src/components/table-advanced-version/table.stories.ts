@@ -4,8 +4,9 @@ const columnDefs = [
   { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
   { headerName: 'Age', field: 'age' }
-
 ];
+
+
 
 const rowData = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
@@ -19,8 +20,6 @@ const rowData = [
   { make: 'Tesla', model: 'x', price: 72000 },
   { make: 'Audi', model: '3', price: 72000 },
   { make: 'Landrover', model: 'x', price: 72000 },
-
-
 ];
 
 //table with button col
@@ -147,76 +146,47 @@ export default {
 
 
 const DefaultTemplate = (args) => {
-  let columnFilters = args.columnDefs.map(column => {
-    let uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
-    return {
-      name: column.field,
-      options: uniqueColValues.map(option => {
-        return { label: option, value: option, selected: false };
-      })
-    };
-  });
+  // Generate filter accordions based on column definitions and row data
+  const filterAccordions = args.columnDefs.map(column => {
+    const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+    const filterOptions = uniqueColValues.map(option => {
+      return `<ifx-list-entry slot="slot0" label="${option}" value="${option}"></ifx-list-entry>`;
+    }).join('');
 
-  // Create main table element
-  let ifxTable = document.createElement('ifx-table');
-  ifxTable.setAttribute('row-height', args.rowHeight);
-  ifxTable.setAttribute('cols', JSON.stringify(args.columnDefs));
-  ifxTable.setAttribute('rows', JSON.stringify(args.rowData));
-  ifxTable.setAttribute('table-height', args.tableHeight);
-  ifxTable.setAttribute('pagination', args.pagination);
-  ifxTable.setAttribute('pagination-page-size', args.paginationPageSize);
-  ifxTable.setAttribute('enable-filtering', args.enableFiltering);
-  ifxTable.setAttribute('filter-orientation', args.filterOrientation);
+    return `
+      <ifx-filter-accordion slot="filter-accordion" filter-group-name="${column.field}">
+        <ifx-list slot="list" type="radio-button" name="${column.field}" max-visible-items="6">
+          ${filterOptions}
+        </ifx-list>
+      </ifx-filter-accordion>
+    `;
+  }).join('');
 
-  // Create filter-type-group element
-  let filterTypeGroup = document.createElement('ifx-filter-type-group');
-  filterTypeGroup.setAttribute('slot', 'set-filter');
+  // Create wrapper element
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      pagination-page-size="${args.paginationPageSize}"
+      enable-filtering="${args.enableFiltering}"
+      filter-orientation="${args.filterOrientation}">
+      <ifx-filter-type-group slot="set-filter">
+        <div slot="filter-search">
+          <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+        </div>
+        ${filterAccordions}
+      </ifx-filter-type-group>
+    </ifx-table>
+  `;
 
-  // Create filter-search element and append to filterTypeGroup
-  let filterSearch = document.createElement('ifx-filter-search');
-  filterSearch.setAttribute('slot', 'filter-search');
-  filterSearch.setAttribute('filter-name', 'search');
-  filterTypeGroup.appendChild(filterSearch);
+  // Return the wrapper element instead of outerHTML
+  return wrapper;
+};
 
-  // // Create filter-search element and append to filterTypeGroup
-  // let filterSearch1 = document.createElement('ifx-filter-search');
-  // filterSearch.setAttribute('slot', 'filter-search');
-  // filterSearch.setAttribute('filter-name', 'search');
-  // filterTypeGroup.appendChild(filterSearch1);
-
-
-  // Create filter-accordion elements and append to filterTypeGroup
-  columnFilters.forEach((columnFilter, _index) => {
-    let filterAccordion = document.createElement('ifx-filter-accordion');
-    filterAccordion.setAttribute('slot', 'filter-accordion');
-    filterAccordion.setAttribute('filter-group-name', columnFilter.name);
-    filterTypeGroup.appendChild(filterAccordion);
-
-    // Create ifx-list element and append to filterAccordion
-    let filterList = document.createElement('ifx-list');
-    filterList.setAttribute('slot', 'list');
-    filterList.setAttribute('type', 'radio-button');
-    filterList.setAttribute('name', columnFilter.name);
-    filterList.setAttribute('max-visible-items', '6');
-    filterAccordion.appendChild(filterList);
-
-    // Create ifx-list-entry elements and append to filterList
-    columnFilter.options.forEach((option, optionIndex) => {
-      let listEntry = document.createElement('ifx-list-entry');
-      listEntry.setAttribute('slot', `slot${optionIndex}`);
-      listEntry.setAttribute('type', 'checkbox');
-      listEntry.setAttribute('label', option.label);
-      listEntry.setAttribute('value', option.selected ? 'true' : 'false');
-      filterList.appendChild(listEntry);
-    });
-  });
-
-  // Append filterTypeGroup to ifxTable
-  ifxTable.appendChild(filterTypeGroup);
-
-  return ifxTable.outerHTML;
-
-}
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
@@ -244,7 +214,7 @@ SetFilter.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   enableFiltering: true,
-  filterOrientation: 'topbar'
+  filterOrientation: 'sidebar'
 };
 
 

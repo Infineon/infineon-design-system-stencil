@@ -16,8 +16,8 @@ export class Table {
   gridOptions: GridOptions;
   gridApi: GridApi;
   @State() currentPage: number = 1;
-  @Prop() cols: any[] | string;
-  @Prop() rows: any[] | string;
+  @Prop() cols: any;
+  @Prop() rows: any;
   @State() rowData: any[] = [];
   @State() colData: any[] = [];
   @State() filterOptions: { [key: string]: string[] } = {};
@@ -255,6 +255,15 @@ export class Table {
     }
   }
 
+  isJSONParseable(str) {
+    try {
+      JSON.parse(str);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
 
   getRowData() {
     let rows: any[] = [];
@@ -264,16 +273,15 @@ export class Table {
       console.warn('rows is undefined or null');
       return rows;
     }
-
-    if (typeof this.rows === 'string') {
-      try {
-        rows = JSON.parse(this.rows);
-      } catch (err) {
-        console.error('Failed to parse rows input:', this.rows, err);
-      }
-    } else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
-      rows = this.rows;
-    } else {
+ 
+    // if (typeof this.rows === 'string') {
+      if (this.isJSONParseable(this.rows)) {
+      rows = [...JSON.parse(this.rows)];
+    }
+     else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
+      rows = [...this.rows];
+    } 
+    else {
       console.error('Unexpected value for rows: ', this.rows);
     }
 
@@ -294,14 +302,10 @@ export class Table {
       return cols;
     }
 
-    if (typeof this.cols === 'string') {
-      try {
-        cols = JSON.parse(this.cols);
-      } catch (err) {
-        console.error('Failed to parse cols input:', this.cols, err);
-      }
-    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
-      cols = this.cols;
+    if (this.isJSONParseable(this.cols)) {
+      cols = [...JSON.parse(this.cols)];
+     } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+      cols = [...this.cols];
     } else {
       console.error('Unexpected value for cols: ', this.cols);
     }
