@@ -21,11 +21,13 @@
 ### Depends on
 
 - [ifx-icon](../../icon)
+- [ifx-link](../../link)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-step --> ifx-icon
+  ifx-step --> ifx-link
   style ifx-step fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

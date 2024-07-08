@@ -59,7 +59,7 @@ export class Step {
     @Listen('ifxChange', { target: 'document' })
     onStepChange(event: CustomEvent) {
         const previousActiveStep = event.detail.previousActiveStep;
-        if (previousActiveStep.stepId === this.stepId && this.error) {
+        if (previousActiveStep === this.stepId && this.error) {
             this.clickable = true;
         }
     } 
@@ -71,21 +71,21 @@ export class Step {
 
     @Watch('active')
     updateErrorState(){
-        if(this.active && this.error) {
+        if (this.active && this.error) {
             this.error = false;
         }
     }
 
     /* Handle the click event on step label. */
     handleStepClick() {
-        if(this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
+        if (this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
 
     /* Handle the 'Enter' key press on step label. */
     handleStepKeyDown(event: KeyboardEvent) {
-        if(this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
+        if (this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
@@ -135,7 +135,16 @@ export class Step {
                         class = {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} 
                         onClick={() => { this.handleStepClick() }} 
                         onKeyDown={(e) => { this.handleStepKeyDown(e) }}>
-                        {this.stepperState.variant === 'compact' &&  !this.active  ? 'Next: ' : ''}<slot/>
+
+                        {
+                            (this.stepperState.variant === 'default') &&
+                            <ifx-link variant='underlined'>
+                                <slot/>
+                            </ifx-link>
+                        }
+
+                        {this.stepperState.variant === 'compact' &&  !this.active  ? 'Next: ' : ''}
+                        {this.stepperState.variant === 'compact' && <slot/>}
                     </div>
                 }
 

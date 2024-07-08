@@ -65,7 +65,8 @@ export class Stepper {
 
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
-        const previousActiveStep = event.detail.previousActiveStep;
+        const steps = this.getSteps();
+        const previousActiveStep = steps[event.detail.previousActiveStep-1];
         if (!previousActiveStep.complete) {
             previousActiveStep.setAttribute('error', 'true');
         }
@@ -124,8 +125,7 @@ export class Stepper {
     updateActiveStep(stepId: number = null) {
         let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
         if (newActiveStep != this.internalActiveStep) {
-            const steps = this.getSteps();
-            if (this.internalActiveStep !== undefined) this.ifxChange.emit({ activeStep: steps[newActiveStep-1], previousActiveStep: steps[this.internalActiveStep-1], totalSteps: this.stepsCount });
+            if (this.internalActiveStep !== undefined) this.ifxChange.emit({ activeStep: newActiveStep, previousActiveStep: this.internalActiveStep, totalSteps: this.stepsCount });
         }
         this.internalActiveStep = newActiveStep;
     }
