@@ -10,9 +10,9 @@ export default {
 const filters = [
   { filterName: 'Filter 1', value: true },
   { filterName: 'Filter 2', value: false },
-  { filterName: 'Filter 3', value: true },
+  { filterName: 'Filter 3', value: false },
   { filterName: 'Filter 4', value: false },
-  { filterName: 'Filter 5', value: false },
+  { filterName: 'Filter 5', value: true },
   { filterName: 'Filter 6', value: false },
   { filterName: 'Filter 7', value: false },
   { filterName: 'Filter 8', value: false },
