@@ -25,8 +25,9 @@ export class List {
     listEntries.forEach(entry => entry.setAttribute('type', newType));
   }
 
-
+  
   componentWillLoad() {
+
     this.el.addEventListener('ifxListEntryChange', this.handleCheckedChange);
     this.selectedCount = this.getSelectedItems(this.el).length;
     this.totalItems = this.getTotalItems();
@@ -108,7 +109,7 @@ export class List {
  
     return (
       <div class="list-wrapper">
-        {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
+         {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
         {(remainingItems > 0 || this.showMore) && (
           <div class="link-wrapper" onClick={this.toggleShowMore}>
             <ifx-icon key={this.showMore.toString()} icon={this.showMore ? 'chevron-up-12' : 'chevron-down-12'} />

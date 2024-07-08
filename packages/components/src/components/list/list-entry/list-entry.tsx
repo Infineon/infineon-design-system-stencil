@@ -13,6 +13,7 @@ export class ListEntry {
   @Prop() type: string;
   @Event() ifxListEntryChange: EventEmitter;
 
+
   @Watch('value')
   valueChanged(newValue: boolean) {
     if (newValue) {

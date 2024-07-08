@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module"
-    src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <!-- <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script> -->
 
-  <!-- <script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script> -->
+  <script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
     <!--<link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -289,22 +289,6 @@
     <br />
     <br />
 
-    <h2>List</h2>
-    <div>
-    <ifx-list name="checkbox-list" max-visible-items="5" type="checkbox">
-      <ifx-list-entry type="checkbox" label="Checkbox 1" value="false"
-        slot="slot1">Checkbox 1</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 2" value="false"
-        slot="slot2">Checkbox 2</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 3" value="false"
-        slot="slot3">Checkbox 3</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 4" value="false"
-        slot="slot4">Checkbox 4</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 5" value="false"
-        slot="slot5">Checkbox 5</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 6" value="false"
-        slot="slot6">Checkbox 6</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 7" value="false"
-        slot="slot7">Checkbox 7</ifx-list-entry>
-      </ifx-list></div>
-    <br />
-    <br />
-
-
     <h2>Modal</h2>
     <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
         <div slot="content">
@@ -379,9 +363,9 @@
 
 
     <h2>Single-Select</h2>
-    <ifx-select id="single-select" ifx-size='m' placeholder='true' search-enabled='true'
-      search-placeholder-value='Search...' ifx-disabled='false' ifx-error='false' ifx-error-message='Some error'
-      ifx-label='' ifx-placeholder-value='Placeholder' ifx-options=''>
+    <ifx-select id="single-select" size='m' placeholder='true' search-enabled='true'
+      search-placeholder-value='Search...' disabled='false' error='false' error-message='Some error'
+      label='' placeholder-value='Placeholder' options=''>
     </ifx-select> <br />
     <br />
     <br />
@@ -718,7 +702,7 @@
 
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
-    singleSelect.setAttribute('ifx-options', singleSelectOptions);
+    singleSelect.setAttribute('options', singleSelectOptions);
 
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");

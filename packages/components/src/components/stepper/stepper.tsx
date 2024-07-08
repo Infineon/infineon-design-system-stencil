@@ -8,12 +8,16 @@ import { Component, h, Prop, Element, State, EventEmitter, Event, Watch } from "
 
 export class Stepper {
 
-    @Prop() showNumber: boolean = false;
-    @Prop() activeStep: number = 1;
-    @State() internalActiveStep = undefined;
-    @Prop() variant: string = 'default';
     @Element() el: HTMLElement;
     @Event() ifxActiveStepChange: EventEmitter;
+
+    @Prop() activeStep: number = 1;
+    @Prop() indicatorPosition: 'left' | 'right' = 'left';
+    @Prop() showStepNumber: boolean = false;
+    @Prop() variant: 'default' | 'compact' = 'default';
+
+    @State() internalActiveStep = undefined;
+
     private stepsCount: number;
 
     @Watch('activeStep')
@@ -25,7 +29,12 @@ export class Stepper {
     updateChildren() {
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
         for (let i = 0; i < steps.length; i++) {
-            steps[i].stepperState = { activeStep: this.internalActiveStep, showNumber: this.showNumber, variant: this.variant };
+            steps[i].stepperState = { 
+                activeStep: this.internalActiveStep, 
+                showStepNumber: this.showStepNumber, 
+                variant: this.variant, 
+                indicatorPosition: this.indicatorPosition 
+            };
         }
 
     }
@@ -59,7 +68,7 @@ export class Stepper {
 
     render() {
         return (
-            <div class={`stepper ${this.variant}`}>
+            <div class={`stepper ${this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
                     this.variant === 'compact' && <div class='stepper-progress'>
                         <div class='progress-detail'>

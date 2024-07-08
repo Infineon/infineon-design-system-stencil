@@ -6,16 +6,16 @@
     align-items: center;
     
     &.compact{
-        min-width: (tokens.$ifxSize3800)-(tokens.$ifxSize50);
-        max-width: (tokens.$ifxSize3800)-(tokens.$ifxSize50);
         justify-content: space-between;
         align-items: center;
+        
+        &.compact-right {
+            flex-direction: row-reverse;
+            text-align: left;
+        }
 
         .stepper-wrapper{
-            align-items: flex-end;
             flex-direction: column;
-            max-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
-            min-width: (tokens.$ifxSize3000)-(tokens.$ifxSize50);
         }
     }
 }
@@ -30,7 +30,7 @@
     justify-content: center;
     align-items: center;
     font: tokens.$ifxBodyBodySemibold04;
-    width: tokens.$ifxSize700;
+    min-width: tokens.$ifxSize700;
     height: tokens.$ifxSize700;
     border-radius: tokens.$ifxBorderRadiusRound;
     background: conic-gradient(tokens.$ifxColorOcean500 var(--pb, 0%), tokens.$ifxColorEngineering400 0);
