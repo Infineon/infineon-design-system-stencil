@@ -1,3 +1,15 @@
+# v23.1.0 (Fri Jul 05 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-profile: implemented a tooltip for username [#1346](https://github.com/Infineon/infineon-design-system-stencil/pull/1346) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.0.0 (Mon Jul 01 2024)
 
 #### 💥 Breaking Change

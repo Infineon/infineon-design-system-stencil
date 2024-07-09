@@ -87,13 +87,7 @@ const DefaultTemplate = args =>
     <ifx-navbar-item>Right Item</ifx-navbar-item>
   </ifx-navbar-item>
 
-  <ifx-navbar-profile slot="right-item" image-url="${args.profileImageUrl}" show-label="true" href="" target="_blank">
-    User
-    <ifx-navbar-item>Item</ifx-navbar-item>
-    <ifx-navbar-item>Item</ifx-navbar-item>
-    <ifx-navbar-item>Item</ifx-navbar-item>
-    <ifx-navbar-item>Item</ifx-navbar-item>
-  </ifx-navbar-profile>
+  <ifx-navbar-profile user-name="${args.userName}" slot="right-item" image-url="${args.profileImageUrl}" show-label="true" href="" target="_blank"></ifx-navbar-profile>
 </ifx-navbar>`;
 
 export const Default = DefaultTemplate.bind({});
