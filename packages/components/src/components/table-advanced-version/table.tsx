@@ -52,49 +52,95 @@ export class Table {
     this.filterOptions = options;
   }
 
-
   handleFilterChange(event: CustomEvent) {
-    const filterGroup = event.detail[0]; // Assuming the event detail is an array with one element
-    const filterName = filterGroup.filterGroupName;
-    let filterValues;
-    let type;
-
-    // Check if the filterGroup has a selectedItems property
-    if (filterGroup.selectedItems) {
-      // If it does, use the labels of the selected items as the filter values and set the type to 'multi-select'
-      filterValues = filterGroup.selectedItems.map(item => item.label);
-      type = 'multi-select';
-    } else {
-      // If it doesn't, use the value property as the filter value and set the type to 'text'
-      filterValues = [filterGroup.value];
-      type = 'text';
-    }
-
-    if (filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === '')) {
-      delete this.currentFilters[filterName];
-    } else {
-      this.currentFilters = {
-        ...this.currentFilters, [filterName]: { filterValues: filterValues, type: type }
+    // Assuming event.detail is an array of filter groups
+    const filterGroups = event.detail;
+  
+    // Start by resetting the filter conditions to a blank object
+    this.currentFilters = {};
+  
+    // Loop through each filter group provided in the event detail
+    filterGroups.forEach(filterGroup => {
+      const filterName = filterGroup.filterGroupName;
+      let filterValues;
+      let type;
+  
+      // Check if the filterGroup has a selectedItems property
+      if (filterGroup.selectedItems) {
+        // Multi-select filter
+        filterValues = filterGroup.selectedItems.map(item => item.label);
+        type = 'multi-select';
+      } else {
+        // Text filter
+        filterValues = [filterGroup.value];
+        type = 'text';
       }
-    }
+  
+      // If there are no filter values, or the filter is a text filter with an empty value, remove the filter
+      if (!(filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === ''))) {
+        // Add or update the filter in the currentFilters object
+        this.currentFilters[filterName] = { filterValues, type };
+      }
+    });
+  
+    // Now that the currentFilters object has been updated, apply all filters to the data
+    this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+  
+    // After filtering, update the table view with the new filtered data
+    this.updateTableView();
+  }
 
-    this.allRowData = [...this.originalRowData];
 
-    this.filterData();
-
+  applyAllFilters(data, filters) {
+    return data.filter(row => {
+      for (const filterName in filters) {
+        const filterInfo = filters[filterName];
+        let selectedValues = (filterInfo.filterValues || []).map(value => 
+          value != null ? value.toLowerCase() : ''
+        );
+  
+        // For text filters, check if row values start with any of the selectedValues
+        if (filterInfo.type === 'text') {
+          let textFilterMatched = false;
+          for (let property in row) {
+            if (row.hasOwnProperty(property)) {
+              let rowValue = row[property] != null ? String(row[property]).toLowerCase() : '';
+              if (selectedValues.some(filterValue => rowValue.startsWith(filterValue))) {
+                textFilterMatched = true;
+                break;
+              }
+            }
+          }
+          if (!textFilterMatched) return false;
+        }
+        // For multi-select filters, this remains unchanged
+        else if (filterInfo.type === 'multi-select') {
+          let rowValue = row[filterName] != null ? String(row[filterName]).toLowerCase() : '';
+          if (!selectedValues.includes(rowValue)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    });
+  }
+  
+  
+  
+  updateTableView() {
+    // Calculate the slice of data to display based on pagination
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-
+  
+    // Update the row data in the table
     this.rowData = visibleRowData;
-
     this.gridApi.setGridOption('rowData', this.rowData);
-
+  
     // Update matching results count
     this.matchingResultsCount = this.allRowData.length;
-
   }
-
+  
 
   clearAllFilters() {
     this.currentFilters = {};
@@ -103,61 +149,6 @@ export class Table {
   }
 
 
-
-  filterData() {
-    let filteredData = [...this.allRowData];
-
-    for (let filterName in this.currentFilters) {
-      let selectedValues = this.currentFilters[filterName].filterValues;
-      let filterType = this.currentFilters[filterName].type;
-
-      filteredData = this.filterByType(filteredData, filterName, selectedValues, filterType);
-    }
-
-    this.allRowData = filteredData;
-  }
-
-  filterByType(data, filterName, selectedValues, filterType) {
-    return data.filter(row => {
-      // If the filterName is 'search', iterate over all properties of the row
-      if (filterType === 'text') {
-        for (let property in row) {
-          // Fetch the value from the row and convert it to a string for comparison
-          let rowValue = String(row[property]).toLowerCase();
-
-          if (this.valueMatchesFilter(rowValue, selectedValues, filterType)) {
-            return true;
-          }
-        }
-      } else {
-        // If the filterName is not 'search', filter by the specific column
-        let rowValue = String(row[filterName]).toLowerCase();
-
-        if (this.valueMatchesFilter(rowValue, selectedValues, filterType)) {
-          return true;
-        }
-      }
-
-      // If none of the properties matched the filter, exclude the row
-      return false;
-    });
-  }
-  valueMatchesFilter(rowValue, selectedValues, filterType) {
-    switch (filterType) {
-      case 'multi-select':
-      case 'single-select':
-        // Check if the selectedValues (should be an array) includes the rowValue
-        return selectedValues.some(value => String(value).toLowerCase() === rowValue);
-
-      case 'text':
-        // Check if any of the selectedValues start with the rowValue
-        return selectedValues.some(value => rowValue.startsWith(String(value).toLowerCase()));
-
-      default:
-        // Fallback case
-        return selectedValues.includes(rowValue);
-    }
-  }
 
   @Method()
   async onBtShowLoading() {
@@ -385,7 +376,7 @@ export class Table {
                 </div>
                 <div class="set-filter-wrapper-sidebar">
                   {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
-                    <slot name="set-filter"></slot>
+                    <slot name="sidebar-filter"></slot>
                   )}
                 </div>
               </div>
@@ -396,7 +387,7 @@ export class Table {
             {this.enableFiltering && this.filterOrientation !== 'sidebar' && (
               <div class="set-filter-wrapper-topbar">
                 {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
-                  <slot name="set-filter"></slot>
+                  <slot name="topbar-filter"></slot>
                 )}
               </div>
             )}

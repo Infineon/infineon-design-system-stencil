@@ -94,6 +94,7 @@ export default {
     currentPage: 1,
     rowHeight: 40,
     showLoading: false,
+    
   },
   argTypes: {
     tableHeight: {
@@ -146,25 +147,55 @@ export default {
 
 
 const DefaultTemplate = (args) => {
-  // Generate filter accordions based on column definitions and row data
+  // Create wrapper element
+  const table = `<ifx-table
+  row-height="${args.rowHeight}"
+  cols='${JSON.stringify(args.columnDefs)}'
+  rows='${JSON.stringify(args.rowData)}'
+  table-height="${args.tableHeight}"
+  pagination="${args.pagination}"
+  pagination-page-size="${args.paginationPageSize}"
+  enable-filtering="${args.enableFiltering}"
+  filter-orientation="${args.filterOrientation}">
+  </ifx-table>`;
+
+  // Return the wrapper element instead of outerHTML
+  return table;
+};
+
+
+
+const FilterTemplate = (args) => {
+
+
+
   const filterAccordions = args.columnDefs.map(column => {
     const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
-    const filterOptions = uniqueColValues.map(option => {
-      return `<ifx-list-entry slot="slot0" label="${option}" value="${option}"></ifx-list-entry>`;
+    const filterOptions = uniqueColValues.map((option, index) => {
+      return `<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
     }).join('');
+
 
     return `
       <ifx-filter-accordion slot="filter-accordion" filter-group-name="${column.field}">
-        <ifx-list slot="list" type="radio-button" name="${column.field}" max-visible-items="6">
+        <ifx-list slot="list" type="checkbox" name="${column.field}" max-visible-items="6">
           ${filterOptions}
         </ifx-list>
       </ifx-filter-accordion>
     `;
   }).join('');
 
+  const filterTypeGroupComponent = args.filterOrientation === 'sidebar'
+  ? `<ifx-filter-type-group slot="sidebar-filter">
+        <div slot="filter-search">
+          <ifx-filter-search filter-name="search"></ifx-filter-search>
+        </div>
+        ${filterAccordions}
+    </ifx-filter-type-group>`
+  : '';
+
   // Create wrapper element
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = `
+  const wrapper =`
     <ifx-table
       row-height="${args.rowHeight}"
       cols='${JSON.stringify(args.columnDefs)}'
@@ -174,19 +205,13 @@ const DefaultTemplate = (args) => {
       pagination-page-size="${args.paginationPageSize}"
       enable-filtering="${args.enableFiltering}"
       filter-orientation="${args.filterOrientation}">
-      <ifx-filter-type-group slot="set-filter">
-        <div slot="filter-search">
-          <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
-        </div>
-        ${filterAccordions}
-      </ifx-filter-type-group>
+      ${filterTypeGroupComponent}
     </ifx-table>
   `;
 
   // Return the wrapper element instead of outerHTML
   return wrapper;
 };
-
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
@@ -208,7 +233,7 @@ IncludesButtons.args = {
 };
 
 
-export const SetFilter = DefaultTemplate.bind({});
+export const SetFilter = FilterTemplate.bind({});
 SetFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
