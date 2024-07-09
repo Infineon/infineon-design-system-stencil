@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@21.0.6/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-
   <!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@21.0.6/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script> -->
-    <!--<link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@21.0.6/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <!--<link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
   <title>Vanilla</title>
@@ -243,39 +243,39 @@
       </ifx-dropdown-menu>
     </ifx-dropdown>
     <br />
-<br/>
+    <br />
 
     <h2>FilterTypeGroup</h2>
     <div><ifx-filter-type-group id="filter-type-group">
-      <div slot="filter-search">
-        <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
-      </div>
-      <div slot="filter-accordion">
-        <ifx-filter-accordion filter-group-name="Filter group 1">
-          <ifx-list slot="list" type="checkbox" name="Filter group 1" max-visible-items="10">
-        <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
-        <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
-         
-          </ifx-list>
-        </ifx-filter-accordion>
-        <ifx-filter-accordion filter-group-name="Filter group 2">
-          <ifx-list slot="list" type="radio-button" name="Filter group 2" max-visible-items="6">
-        <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
-      
-        <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
-      
-        <ifx-list-entry slot="slot2" label="Filter 3" value="true"></ifx-list-entry>
-      
-        <ifx-list-entry slot="slot3" label="Filter 4" value="false"></ifx-list-entry>
-      
-          </ifx-list>
-        </ifx-filter-accordion>
-      </div>
-    </ifx-filter-type-group>
+        <div slot="filter-search">
+          <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+        </div>
+        <div slot="filter-accordion">
+          <ifx-filter-accordion filter-group-name="Filter group 1">
+            <ifx-list slot="list" type="checkbox" name="Filter group 1" max-visible-items="10">
+              <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
+              <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
+
+            </ifx-list>
+          </ifx-filter-accordion>
+          <ifx-filter-accordion filter-group-name="Filter group 2">
+            <ifx-list slot="list" type="radio-button" name="Filter group 2" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
+
+              <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
+
+              <ifx-list-entry slot="slot2" label="Filter 3" value="true"></ifx-list-entry>
+
+              <ifx-list-entry slot="slot3" label="Filter 4" value="false"></ifx-list-entry>
+
+            </ifx-list>
+          </ifx-filter-accordion>
+        </div>
+      </ifx-filter-type-group>
     </div>
 
-    <br/>
-    <br/>
+    <br />
+    <br />
 
     <h2>Icon Button</h2>
     <ifx-icon-button shape="round" variant="primary" icon="calendar16" href="http://google.com" target="" size="s"
@@ -288,22 +288,6 @@
     </ifx-link>
     <br />
     <br />
-
-    <h2>List</h2>
-    <div>
-    <ifx-list name="checkbox-list" max-visible-items="5" type="checkbox">
-      <ifx-list-entry type="checkbox" label="Checkbox 1" value="false"
-        slot="slot1">Checkbox 1</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 2" value="false"
-        slot="slot2">Checkbox 2</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 3" value="false"
-        slot="slot3">Checkbox 3</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 4" value="false"
-        slot="slot4">Checkbox 4</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 5" value="false"
-        slot="slot5">Checkbox 5</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 6" value="false"
-        slot="slot6">Checkbox 6</ifx-list-entry><ifx-list-entry type="checkbox" label="Checkbox 7" value="false"
-        slot="slot7">Checkbox 7</ifx-list-entry>
-      </ifx-list></div>
-    <br />
-    <br />
-
 
     <h2>Modal</h2>
     <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
@@ -379,9 +363,9 @@
 
 
     <h2>Single-Select</h2>
-    <ifx-select id="single-select" ifx-size='m' placeholder='true' search-enabled='true'
-      search-placeholder-value='Search...' ifx-disabled='false' ifx-error='false' ifx-error-message='Some error'
-      ifx-label='' ifx-placeholder-value='Placeholder' ifx-options=''>
+    <ifx-select id="single-select" size='m' placeholder='true' search-enabled='true'
+      search-placeholder-value='Search...' disabled='false' error='false' error-message='Some error' label=''
+      placeholder-value='Placeholder' options=''>
     </ifx-select> <br />
     <br />
     <br />
@@ -440,15 +424,6 @@
     <br />
     <br />
 
-    <h2>Status</h2>
-    <ifx-status label="Status with border" color="orange" border="true" />
-    <ifx-status label="Status without border" color="orange" border="false" />
-    <br />
-    <br />
-
-
-
-
 
     <h2>Tag</h2>
     <ifx-tag>tag</ifx-tag>
@@ -458,10 +433,7 @@
     <h2>
       Table (Basic)
     </h2>
-    <ifx-basic-table row-height='default'
-      cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
-      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
-      table-height='auto'>
+    <ifx-basic-table id="basic-table" row-height='default' cols="" rows="" table-height='auto'>
     </ifx-basic-table>
     <br />
     <br />
@@ -469,31 +441,60 @@
     <h2>
       Table (Advanced)
     </h2>
-    <ifx-table row-height='default'
-      cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"}{"headerName":"Age","field":"age"}]'
-      rows='[
-  {
-      "make": "Toyota",
-      "model": "Celica",
-      "price": 35000,
-      "age": 10,
-      "button": "something about Toyota"
-  },
-  {
-      "make": "Ford",
-      "model": "Mondeo",
-      "price": 32000,
-      "age": 12,
-      "button": "something about Ford"
-  },
-  {
-      "make": "Porsche",
-      "model": "Boxster",
-      "price": 72000,    
-  }
-]' table-height='auto'></ifx-table>
+    <div>
+      <ifx-table id="adv-table" row-height="default" cols="" rows="" table-height="auto" pagination="false"
+        pagination-page-size="10" enable-filtering="true" filter-orientation="sidebar">
+        <ifx-filter-type-group slot="sidebar-filter">
+          <div slot="filter-search">
+            <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+          </div>
+
+          <ifx-filter-accordion slot="filter-accordion" filter-group-name="make">
+            <ifx-list slot="list" type="radio-button" name="make" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="Toyota" value="false"></ifx-list-entry><ifx-list-entry slot="slot1"
+                label="Ford" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="Porsche"
+                value="false"></ifx-list-entry>
+            </ifx-list>
+          </ifx-filter-accordion>
+
+          <ifx-filter-accordion slot="filter-accordion" filter-group-name="model">
+            <ifx-list slot="list" type="checkbox" name="model" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="Celica" value="false"></ifx-list-entry><ifx-list-entry slot="slot1"
+                label="Mondeo" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="Boxster"
+                value="false"></ifx-list-entry>
+            </ifx-list>
+          </ifx-filter-accordion>
+
+          <ifx-filter-accordion slot="filter-accordion" filter-group-name="price">
+            <ifx-list slot="list" type="radio-button" name="price" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="35000" value="false"></ifx-list-entry><ifx-list-entry slot="slot1"
+                label="32000" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="72000"
+                value="false"></ifx-list-entry>
+            </ifx-list>
+          </ifx-filter-accordion>
+
+          <ifx-filter-accordion slot="filter-accordion" filter-group-name="age">
+            <ifx-list slot="list" type="radio-button" name="age" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="10" value="false"></ifx-list-entry><ifx-list-entry slot="slot1"
+                label="12" value="false"></ifx-list-entry>
+            </ifx-list>
+          </ifx-filter-accordion>
+
+          <ifx-filter-accordion slot="filter-accordion" filter-group-name="button">
+            <ifx-list slot="list" type="radio-button" name="button" max-visible-items="6">
+              <ifx-list-entry slot="slot0" label="something about Toyota"
+                value="something about Toyota"></ifx-list-entry><ifx-list-entry slot="slot0"
+                label="something about Ford" value="something about Ford"></ifx-list-entry><ifx-list-entry slot="slot0"
+                label="[object Object]" value="[object Object]"></ifx-list-entry>
+            </ifx-list>
+          </ifx-filter-accordion>
+
+        </ifx-filter-type-group>
+      </ifx-table>
+    </div>
     <br />
     <br />
+
 
 
     <form id="another-form">
@@ -627,6 +628,9 @@
   const textInputSpan = document.querySelector("#textInputSpan");
   const sidebarItem = document.querySelector('#sidebarItemClickable');
 
+  const basicTable = document.querySelector('#basic-table');
+  const advancedTable = document.querySelector('#adv-table');
+
 
   function updateValues() {
     checkbox.setAttribute('disabled', disabled);
@@ -718,7 +722,38 @@
 
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
-    singleSelect.setAttribute('ifx-options', singleSelectOptions);
+    singleSelect.setAttribute('options', singleSelectOptions);
+
+
+    //set advanced table row values using a json array
+    const tableRows = `[
+  { "make": "Toyota", "model": "Celica", "price": 35000, "age": 10 },
+  { "make": "Ford", "model": "Mondeo", "price": 32000, "age": 12 },
+  { "make": "Porsche", "model": "Boxster", "price": 72000 },
+  { "make": "Bmw", "model": "x", "price": 72000 },
+  { "make": "Mercedes", "model": "y", "price": 72000 },
+  { "make": "Ferrari", "model": "z", "price": 72000 },
+  { "make": "Chrysler", "model": "a", "price": 72000 },
+  { "make": "Range rover", "model": "b", "price": 72000 },
+  { "make": "Tesla", "model": "x", "price": 72000 },
+  { "make": "Audi", "model": "3", "price": 72000 },
+  { "make": "Landrover", "model": "x", "price": 72000 }
+]`;
+
+    basicTable.setAttribute('rows', tableRows);
+    advancedTable.setAttribute('rows', tableRows);
+
+    //set advanced table row values using a json array
+    const tableColumns = `[
+  { "headerName": "Make", "field": "make", "sortable": true, "sort": "desc", "unSortIcon": true },
+  { "headerName": "Model", "field": "model", "sortable": true, "unSortIcon": true },
+  { "headerName": "Price", "field": "price" },
+  { "headerName": "Age", "field": "age" }
+]`;
+    basicTable.setAttribute('cols', tableColumns);
+    advancedTable.setAttribute('cols', tableColumns);
+
+
 
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
