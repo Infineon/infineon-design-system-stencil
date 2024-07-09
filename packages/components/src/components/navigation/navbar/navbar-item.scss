@@ -165,9 +165,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    &.withLabel { 
-      gap: 8px;
+    gap: 8px;
+    &.no-gap { 
+      gap: 0px;
     }
   }
 }

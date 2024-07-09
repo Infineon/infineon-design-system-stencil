@@ -128,10 +128,10 @@ export class NavbarProfile {
     const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper')
     const labelSlot = labelWrapper.querySelector('slot')
     const nodes = labelSlot.assignedNodes();
-    if(nodes.length) { 
-      this.handleClassList(innerContentWrapper, 'add', 'withLabel')
+    if(!nodes.length) { 
+      this.handleClassList(innerContentWrapper, 'add', 'no-gap')
     } else { 
-      this.handleClassList(innerContentWrapper, 'remove', 'withLabel')
+      this.handleClassList(innerContentWrapper, 'remove', 'no-gap')
     }
   }
 
