@@ -1,3 +1,15 @@
+# v23.2.0 (Wed Jul 10 2024)
+
+#### 🚀 Enhancement
+
+- Navbar: enhanced customization of profile image [#1343](https://github.com/Infineon/infineon-design-system-stencil/pull/1343) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.1.0 (Fri Jul 05 2024)
 
 #### 🚀 Enhancement
