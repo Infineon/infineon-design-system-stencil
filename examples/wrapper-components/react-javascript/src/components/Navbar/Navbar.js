@@ -63,7 +63,7 @@ function Navbar() {
       </IfxNavbarItem>
     </IfxNavbarItem>
 
-    <IfxNavbarProfile slot="right-item" image-url='' show-label="true" href="" target="_blank">
+    <IfxNavbarProfile slot="right-item" user-name='Tihomir Yanchev' image-url='' show-label="true" href="" target="_blank">
       User
       <IfxNavbarItem>Item</IfxNavbarItem>
       <IfxNavbarItem>Item</IfxNavbarItem>

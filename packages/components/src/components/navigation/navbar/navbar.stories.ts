@@ -14,8 +14,7 @@ export default {
     logoHrefTarget: '_self',
     searchBarPosition: 'left',
     hideOnMobile: true,
-    profileImageUrl: '',
-    userName: ""
+    profileImageUrl: "",
   },
   argTypes: {
     icon: {
@@ -38,7 +37,7 @@ const DefaultTemplate = args =>
   `<ifx-navbar  show-logo-and-appname="${args.showLogoAndAppname}" application-name="${args.applicationName}" fixed="${args.fixed}" logo-href="${args.logoHref}" logo-href-target="${args.logoHrefTarget}">
   <ifx-navbar-item icon="${args.icon}" slot="left-item" target="" href="" >
     Menu Item 1
-    <ifx-navbar-item icon="calendar16">
+    <ifx-navbar-item icon="image-16">
       Layer 1 Nested Item 1
       <ifx-navbar-item>
         Layer 2 Nested Item 2
@@ -68,7 +67,7 @@ const DefaultTemplate = args =>
 
   </ifx-navbar-item>
 
-  <ifx-navbar-item href="${args.navbarItemHref}" target="${args.navbarItemTarget}" slot="left-item" icon="calendar16" show-label="${args.hideLabel}">
+  <ifx-navbar-item href="${args.navbarItemHref}" target="${args.navbarItemTarget}" slot="left-item" icon="image-16" show-label="${args.hideLabel}">
     Menu Item 2
   </ifx-navbar-item>
 
@@ -80,10 +79,10 @@ const DefaultTemplate = args =>
 
   <ifx-search-bar slot="search-bar-${args.searchBarPosition}" is-open="${args.searchBarIsOpen}"></ifx-search-bar>
 
-  <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="${args.hideOnMobile}" show-label="false" icon="cartf16">
+  <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="${args.hideOnMobile}" show-label="true" icon="image-16">
     Right Item
   </ifx-navbar-item>
-  <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
+  <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="image-16">
     Right Item
     <ifx-navbar-item>Right Item</ifx-navbar-item>
   </ifx-navbar-item>
