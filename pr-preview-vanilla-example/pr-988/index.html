@@ -759,8 +759,6 @@
       console.log("card button click event");
     });
 
-
-
     searchField.addEventListener('ifxInput', (event) => {
       console.log("search field value", event.detail);
     });
@@ -773,8 +771,14 @@
       console.log('Sidebar item clicked', event.detail);
     });
 
+    
+    advancedTable.addEventListener('ifxFilterTypeGroupChange', (event) => {
+      console.log("table filter value", event.detail);
+    });
 
   });
+
+
 
   function handleModalButton2Click() {
     console.log("Modal Button 2 clicked")
