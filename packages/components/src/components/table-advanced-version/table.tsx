@@ -28,7 +28,7 @@ export class Table {
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
   @Prop() paginationPageSize: number = 10;
-  @Prop() filterOrientation: string = 'topbar'; // sidebar
+  @Prop() filterOrientation: string = 'sidebar'; // topbar
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
 
@@ -53,39 +53,42 @@ export class Table {
   }
 
   handleFilterChange(event: CustomEvent) {
+
     // Assuming event.detail is an array of filter groups
     const filterGroups = event.detail;
-  
+
     // Start by resetting the filter conditions to a blank object
     this.currentFilters = {};
-  
+
     // Loop through each filter group provided in the event detail
     filterGroups.forEach(filterGroup => {
       const filterName = filterGroup.filterGroupName;
       let filterValues;
       let type;
-  
+
       // Check if the filterGroup has a selectedItems property
       if (filterGroup.selectedItems) {
         // Multi-select filter
         filterValues = filterGroup.selectedItems.map(item => item.label);
+
         type = 'multi-select';
       } else {
         // Text filter
         filterValues = [filterGroup.value];
         type = 'text';
       }
-  
+
       // If there are no filter values, or the filter is a text filter with an empty value, remove the filter
       if (!(filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === ''))) {
         // Add or update the filter in the currentFilters object
         this.currentFilters[filterName] = { filterValues, type };
       }
     });
-  
+
+
     // Now that the currentFilters object has been updated, apply all filters to the data
     this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
-  
+
     // After filtering, update the table view with the new filtered data
     this.updateTableView();
   }
@@ -95,10 +98,10 @@ export class Table {
     return data.filter(row => {
       for (const filterName in filters) {
         const filterInfo = filters[filterName];
-        let selectedValues = (filterInfo.filterValues || []).map(value => 
+        let selectedValues = (filterInfo.filterValues || []).map(value =>
           value != null ? value.toLowerCase() : ''
         );
-  
+
         // For text filters, check if row values start with any of the selectedValues
         if (filterInfo.type === 'text') {
           let textFilterMatched = false;
@@ -116,7 +119,9 @@ export class Table {
         // For multi-select filters, this remains unchanged
         else if (filterInfo.type === 'multi-select') {
           let rowValue = row[filterName] != null ? String(row[filterName]).toLowerCase() : '';
-          if (!selectedValues.includes(rowValue)) {
+          // Check if 'undefined' is a selected value and include rows with empty values in that case
+          let includesUndefined = selectedValues.includes('undefined');
+          if (!selectedValues.includes(rowValue) && !(includesUndefined && rowValue === '')) {
             return false;
           }
         }
@@ -124,29 +129,29 @@ export class Table {
       return true;
     });
   }
-  
-  
-  
+
+
+
   updateTableView() {
     // Calculate the slice of data to display based on pagination
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-  
+
     // Update the row data in the table
     this.rowData = visibleRowData;
     this.gridApi.setGridOption('rowData', this.rowData);
-  
+
     // Update matching results count
     this.matchingResultsCount = this.allRowData.length;
   }
-  
+
 
   clearAllFilters() {
     this.currentFilters = {};
     this.allRowData = [...this.originalRowData];
-    // If necessary, reset the grid/view to its initial state here
   }
+
 
 
 
@@ -258,20 +263,17 @@ export class Table {
 
   getRowData() {
     let rows: any[] = [];
-
-    // If this.rows is undefined or null, log a warning and return an empty array
     if (this.rows === undefined || this.rows === null) {
       console.warn('rows is undefined or null');
       return rows;
     }
- 
-    // if (typeof this.rows === 'string') {
-      if (this.isJSONParseable(this.rows)) {
+
+    if (this.isJSONParseable(this.rows)) {
       rows = [...JSON.parse(this.rows)];
     }
-     else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
+    else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
       rows = [...this.rows];
-    } 
+    }
     else {
       console.error('Unexpected value for rows: ', this.rows);
     }
@@ -286,8 +288,6 @@ export class Table {
 
   getColData() {
     let cols: any[] = [];
-
-    // If this.cols is undefined or null, log a warning and return an empty array
     if (this.cols === undefined || this.cols === null) {
       console.warn('cols is undefined or null');
       return cols;
@@ -295,7 +295,7 @@ export class Table {
 
     if (this.isJSONParseable(this.cols)) {
       cols = [...JSON.parse(this.cols)];
-     } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
       cols = [...this.cols];
     } else {
       console.error('Unexpected value for cols: ', this.cols);
@@ -309,12 +309,17 @@ export class Table {
     return cols;
   }
 
-
-
   onFirstDataRendered(params: FirstDataRenderedEvent) {
     params.api.sizeColumnsToFit();
   }
 
+  handleResetButtonClick() {
+     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });
+    window.dispatchEvent(resetEvent); // Dispatch from the window object
+
+    this.clearAllFilters();
+    this.updateTableView();  // Update table view with the original data
+  }
 
 
   disconnectedCallback() {
@@ -323,6 +328,11 @@ export class Table {
       if (paginationElement) {
         paginationElement.removeEventListener('ifxPageChange', this.handlePageChange);
       }
+    }
+
+    const resetButton = this.host.shadowRoot.querySelector('#reset-filters-button');
+    if (resetButton) {
+      resetButton.removeEventListener('click', this.handleResetButtonClick.bind(this));
     }
   }
 
@@ -406,7 +416,13 @@ export class Table {
                       </ifx-dropdown-menu>
                     </ifx-chip>
                   ))
+
                 )}
+                {Object.keys(this.currentFilters).length > 0 && (
+                  <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
+                  >
+                    <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all
+                  </ifx-button>)}
               </div>
 
               {((this.enableFiltering && this.filterOrientation === 'sidebar') || this.filterOrientation === 'topbar') && (
@@ -437,6 +453,8 @@ export class Table {
   hasButtonCol(): boolean {
     return this.getColData().some(column => column.field === 'button');
   }
+
+
 
 
   // setIconButtonRenderer() {

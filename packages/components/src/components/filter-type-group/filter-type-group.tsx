@@ -10,15 +10,60 @@ export class IfxFilterTypeGroup {
   @State() selectedOptions: Array<{ filterGroupName: string, selectedItems?: Array<{ filterName: string, value: boolean | string }>, value?: string }> = [];
   @Event() ifxFilterTypeGroupChange: EventEmitter;
 
-  componentWillLoad() {
+
+
+/* If the component is ever removed and then reattached to the DOM, 
+connectedCallback ensures that the event listeners are properly set up again */
+  connectedCallback() {
     this.el.addEventListener('ifxFilterAccordionChange', this.handleAccordionChange);
     this.el.addEventListener('ifxFilterSearchChange', this.handleSearchChange);
+    window.addEventListener('ifxResetFiltersEvent', this.handleResetEvent);
+
   }
+
 
   componentWillUnload() {
     this.el.removeEventListener('ifxFilterAccordionChange', this.handleAccordionChange);
     this.el.removeEventListener('ifxFilterSearchChange', this.handleSearchChange);
+    window.removeEventListener('ifxResetFiltersEvent', this.handleResetEvent);
   }
+
+  handleResetEvent = () => {
+    const accordionSlot = this.el.shadowRoot.querySelector('slot[name="filter-accordion"]');
+    const filterAccordionSlottedElements = (accordionSlot as HTMLSlotElement).assignedElements({ flatten: true });
+
+
+    filterAccordionSlottedElements.forEach(accordionElement => {
+      const ifxLists = accordionElement.querySelectorAll('ifx-list');
+    
+      ifxLists.forEach((ifxListElement: HTMLIfxListElement) => {
+        ifxListElement.resetTrigger = !ifxListElement.resetTrigger;
+      });
+    });
+    
+    const filterSearchSlot = this.el.shadowRoot.querySelector('slot[name="filter-search"]');
+    const filterSearchSlottedElements = (filterSearchSlot as HTMLSlotElement).assignedElements({ flatten: true });
+
+    filterSearchSlottedElements.forEach((filterSearchWrapper: HTMLElement) => {
+      const filterSearch = filterSearchWrapper.querySelector('ifx-filter-search');
+
+      const searchField = filterSearch.shadowRoot.querySelectorAll('ifx-search-field')
+
+      if (searchField.length > 0) {
+        searchField.forEach((searchFieldElement: any) => {
+          searchFieldElement.value = '';
+        });
+
+      }
+    });
+
+    this.selectedOptions = [];
+
+    // Emit the change to inform any parent components that the filters have been reset
+    this.ifxFilterTypeGroupChange.emit(this.selectedOptions);
+  }
+
+
 
   handleAccordionChange = (event: CustomEvent) => {
     this.handleFilterChange(event);
@@ -74,10 +119,10 @@ export class IfxFilterTypeGroup {
   render() {
     return (
       <Host>
-      <div class="filter-type-group">
-        <slot name="filter-search" />
-        <slot name="filter-accordion" />
-      </div>
+        <div class="filter-type-group">
+          <slot name="filter-search" />
+          <slot name="filter-accordion" />
+        </div>
       </Host>
     );
   }

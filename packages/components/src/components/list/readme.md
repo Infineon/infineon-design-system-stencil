@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type     | Default      |
-| ----------------- | ------------------- | ----------- | -------- | ------------ |
-| `maxVisibleItems` | `max-visible-items` |             | `number` | `6`          |
-| `name`            | `name`              |             | `string` | `""`         |
-| `type`            | `type`              |             | `string` | `"checkbox"` |
+| Property          | Attribute           | Description | Type      | Default      |
+| ----------------- | ------------------- | ----------- | --------- | ------------ |
+| `maxVisibleItems` | `max-visible-items` |             | `number`  | `6`          |
+| `name`            | `name`              |             | `string`  | `""`         |
+| `resetTrigger`    | `reset-trigger`     |             | `boolean` | `undefined`  |
+| `type`            | `type`              |             | `string`  | `"checkbox"` |
 
 
 ## Events

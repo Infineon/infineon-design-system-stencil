@@ -94,7 +94,7 @@ export default {
     currentPage: 1,
     rowHeight: 40,
     showLoading: false,
-    
+
   },
   argTypes: {
     tableHeight: {
@@ -147,71 +147,60 @@ export default {
 
 
 const DefaultTemplate = (args) => {
-  // Create wrapper element
-  const table = `<ifx-table
-  row-height="${args.rowHeight}"
-  cols='${JSON.stringify(args.columnDefs)}'
-  rows='${JSON.stringify(args.rowData)}'
-  table-height="${args.tableHeight}"
-  pagination="${args.pagination}"
-  pagination-page-size="${args.paginationPageSize}"
-  enable-filtering="${args.enableFiltering}"
-  filter-orientation="${args.filterOrientation}">
-  </ifx-table>`;
+  if (!args.enableFiltering) {
+    const table = `<ifx-table
+    row-height="${args.rowHeight}"
+    cols='${JSON.stringify(args.columnDefs)}'
+    rows='${JSON.stringify(args.rowData)}'
+    table-height="${args.tableHeight}"
+    pagination="${args.pagination}"
+    pagination-page-size="${args.paginationPageSize}"
+    enable-filtering="${args.enableFiltering}"
+    filter-orientation="${args.filterOrientation}">
+</ifx-table>`;
+    return table;
+  } else {
+    const filterAccordions = args.columnDefs.map(column => {
+      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+      const filterOptions = uniqueColValues.map((option, index) => {
+        return `<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
+      }).join('');
 
-  // Return the wrapper element instead of outerHTML
-  return table;
-};
-
-
-
-const FilterTemplate = (args) => {
-
-
-
-  const filterAccordions = args.columnDefs.map(column => {
-    const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
-    const filterOptions = uniqueColValues.map((option, index) => {
-      return `<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
-    }).join('');
-
-
-    return `
+      return `
       <ifx-filter-accordion slot="filter-accordion" filter-group-name="${column.field}">
         <ifx-list slot="list" type="checkbox" name="${column.field}" max-visible-items="6">
           ${filterOptions}
         </ifx-list>
       </ifx-filter-accordion>
     `;
-  }).join('');
+    }).join('');
 
-  const filterTypeGroupComponent = args.filterOrientation === 'sidebar'
-  ? `<ifx-filter-type-group slot="sidebar-filter">
+    const filterTypeGroupComponent = args.filterOrientation === 'sidebar'
+      ? `<ifx-filter-type-group slot="sidebar-filter">
         <div slot="filter-search">
           <ifx-filter-search filter-name="search"></ifx-filter-search>
         </div>
         ${filterAccordions}
     </ifx-filter-type-group>`
-  : '';
+      : '';
 
-  // Create wrapper element
-  const wrapper =`
-    <ifx-table
-      row-height="${args.rowHeight}"
-      cols='${JSON.stringify(args.columnDefs)}'
-      rows='${JSON.stringify(args.rowData)}'
-      table-height="${args.tableHeight}"
-      pagination="${args.pagination}"
-      pagination-page-size="${args.paginationPageSize}"
-      enable-filtering="${args.enableFiltering}"
-      filter-orientation="${args.filterOrientation}">
-      ${filterTypeGroupComponent}
-    </ifx-table>
-  `;
+    const table = `<ifx-table
+    row-height="${args.rowHeight}"
+    cols='${JSON.stringify(args.columnDefs)}'
+    rows='${JSON.stringify(args.rowData)}'
+    table-height="${args.tableHeight}"
+    pagination="${args.pagination}"
+    pagination-page-size="${args.paginationPageSize}"
+    enable-filtering="${args.enableFiltering}"
+    filter-orientation="${args.filterOrientation}">
+    ${filterTypeGroupComponent}
+</ifx-table>`;
 
-  // Return the wrapper element instead of outerHTML
-  return wrapper;
+    return table;
+  }
 };
+
+
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
@@ -221,6 +210,8 @@ Pagination.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   enableFiltering: false,
+  filterOrientation: 'sidebar'
+
 };
 
 
@@ -230,10 +221,12 @@ IncludesButtons.args = {
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
   enableFiltering: false,
+  filterOrientation: 'sidebar'
+
 };
 
 
-export const SetFilter = FilterTemplate.bind({});
+export const SetFilter = DefaultTemplate.bind({});
 SetFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,

@@ -14,6 +14,8 @@ export class List {
   @Prop() name = "";
   @Prop() maxVisibleItems = 6;
   @Prop() type: string = "checkbox"; //default value
+  @Prop({ mutable: true }) resetTrigger: boolean;
+  @State() internalResetTrigger: boolean = false;
 
   @Event() ifxListUpdate: EventEmitter;
 
@@ -21,45 +23,87 @@ export class List {
 
   @Watch('type')
   handleTypeChange(newType: string) {
+    this.updateListEntriesType(newType);
+  }
+
+  @Watch('resetTrigger')
+  resetTriggerChanged(newValue: boolean) {
+    if (newValue) {
+      this.reset();
+      this.resetTrigger = false; // Resetting the trigger after the action is performed
+    }
+  }
+
+  componentWillLoad() {
+    this.setupListenersAndObservers();
+    this.initializeList();
+  }
+
+  disconnectedCallback() {
+    this.cleanupListenersAndObservers();
+  }
+
+  reset() {
+    this.resetListEntries();
+    this.expanded = false;
+    this.showMore = false;
+    this.selectedCount = 0;
+    this.ifxListUpdate.emit({ name: this.name, selectedItems: [] });
+  }
+
+
+  render() {
+    return this.renderList();
+  }
+
+
+    // Refactored methods for clarity and maintainability
+    private setupListenersAndObservers() {
+      this.el.addEventListener('ifxListEntryChange', this.handleCheckedChange);
+      this.observer = new MutationObserver(this.handleMutation);
+      this.observer.observe(this.el, { childList: true });
+    }
+
+    private cleanupListenersAndObservers() {
+      this.el.removeEventListener('ifxListEntryChange', this.handleCheckedChange);
+      this.observer.disconnect();
+    }
+  
+    private initializeList() {
+      this.selectedCount = this.getSelectedItems(this.el).length;
+      this.totalItems = this.getTotalItems();
+      this.updateListEntriesType(this.type);
+      this.checkRadioButtonConstraint();
+    }
+
+    
+  private updateListEntriesType(newType: string) {
     const listEntries = Array.from(this.el.querySelectorAll('ifx-list-entry'));
     listEntries.forEach(entry => entry.setAttribute('type', newType));
   }
 
-  
-  componentWillLoad() {
-
-    this.el.addEventListener('ifxListEntryChange', this.handleCheckedChange);
-    this.selectedCount = this.getSelectedItems(this.el).length;
-    this.totalItems = this.getTotalItems();
-
-    this.handleTypeChange(this.type);
-
-    // If the list type is 'radio-button' and more than one item is preselected, deselect all items
-    if (this.type === 'radio-button' && this.selectedCount > 1) {
-      const selectedItems = this.getSelectedItems(this.el);
-      // Keep the first one selected and deselect the others
-      selectedItems.slice(1).forEach(item => item.element.setAttribute('value', 'false'));
-      // Or deselect all items
-      // selectedItems.forEach(item => item.element.setAttribute('value', 'false'));
-      this.selectedCount = this.getSelectedItems(this.el).length;
-    }
-    this.observer = new MutationObserver(() => {
-      const newTotalItems = this.getTotalItems();
-      if (newTotalItems !== this.totalItems) {
-        this.totalItems = newTotalItems;
-        this.handleCheckedChange();
-      }
-      this.handleTypeChange(this.type);
-
+  private resetListEntries() {
+    const listEntries = Array.from(this.el.querySelectorAll('ifx-list-entry'));
+    listEntries.forEach(entry => {
+      entry.value = false;
+      entry.setAttribute('value', 'false');
     });
-
-    this.observer.observe(this.el, { childList: true });
   }
 
+  private handleMutation = () => {
+    const newTotalItems = this.getTotalItems();
+    if (newTotalItems !== this.totalItems) {
+      this.totalItems = newTotalItems;
+      this.handleCheckedChange();
+    }
+    this.updateListEntriesType(this.type);
+  }
 
-  disconnectedCallback() {
-    this.el.removeEventListener('ifxListEntryChange', this.handleCheckedChange);
-    this.observer.disconnect();
+  private checkRadioButtonConstraint() {
+    if (this.type === 'radio-button' && this.selectedCount > 1) {
+      this.resetListEntries(); // Reset all and let the user select again
+      this.selectedCount = 0;
+    }
   }
 
   getTotalItems() {
@@ -88,6 +132,7 @@ export class List {
       }));
   }
 
+
   handleCheckedChange = (event?: CustomEvent) => {
     // If the type of the changed entry is 'radio-button' and its value is true, deselect all other radio buttons
     if (event && event.detail.type === 'radio-button' && event.detail.value) {
@@ -102,14 +147,14 @@ export class List {
     this.ifxListUpdate.emit({ name: this.name, selectedItems });
   }
 
-  render() {
+  private renderList() {
     const listEntries = Array.from(this.el.querySelectorAll('ifx-list-entry'));
     const visibleItems = this.showMore ? listEntries : listEntries.slice(0, this.maxVisibleItems);
     const remainingItems = listEntries.length - visibleItems.length;
- 
+
     return (
       <div class="list-wrapper">
-         {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
+        {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
         {(remainingItems > 0 || this.showMore) && (
           <div class="link-wrapper" onClick={this.toggleShowMore}>
             <ifx-icon key={this.showMore.toString()} icon={this.showMore ? 'chevron-up-12' : 'chevron-down-12'} />
