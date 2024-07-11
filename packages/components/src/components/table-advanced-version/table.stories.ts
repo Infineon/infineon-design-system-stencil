@@ -178,26 +178,28 @@ const DefaultTemplate = (args) => {
     `;
     }).join('');
 
-    //topbar
-    const filterComponents = args.columnDefs.map(column => {
-      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
-      const options = uniqueColValues.map(option => ({
-        value: option,
-        label: option,
-        selected: false
-      }));
+//topbar
+const filterComponents = args.columnDefs.map((column, index) => {
+  const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+  const options = uniqueColValues.map(option => ({
+    value: option,
+    label: option,
+    selected: false
+  }));
 
-      // Directly use JSON.stringify without replacing quotes
-      const optionsString = JSON.stringify(options);
+  // Directly use JSON.stringify without replacing quotes
+  const optionsString = JSON.stringify(options);
 
-      return `<ifx-set-filter slot="filter-component"
-    options='${optionsString}' 
-    filter-label='${column.headerName}'
-    filter-name='${column.field}'
-    type='multi-select'
-    search-enabled='true'>
-  </ifx-set-filter>`;
-    }).join('\n');
+  return `
+        <ifx-set-filter slot="filter-component-${index + 1}"
+            options='${optionsString}' 
+            filter-label='${column.headerName}'
+            filter-name='${column.field}'
+            type='multi-select'
+            search-enabled='true'>
+          </ifx-set-filter>
+          `;
+          }).join('\n');
 
 
 
@@ -209,7 +211,7 @@ const DefaultTemplate = (args) => {
         ${filterAccordions}
     </ifx-filter-type-group>`
       :
-      `<ifx-filter-bar slot="topbar-filter">
+      `<ifx-filter-bar slot="topbar-filter" max-shown-filters="3">
         <ifx-filter-search slot="filter-search" filter-orientation="topbar"></ifx-filter-search>
         ${filterComponents}
    </ifx-filter-bar>`;

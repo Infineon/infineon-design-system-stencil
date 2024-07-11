@@ -33,6 +33,7 @@
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-filter-accordion](../filter-type-group/filter-accordion)
+ - [ifx-filter-bar](../filter-bar)
  - [ifx-icon-button](../icon-button)
  - [ifx-icons-preview](../icons-preview)
  - [ifx-list](../list)
@@ -65,6 +66,7 @@ graph TD;
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
   ifx-filter-accordion --> ifx-icon
+  ifx-filter-bar --> ifx-icon
   ifx-icon-button --> ifx-icon
   ifx-icons-preview --> ifx-icon
   ifx-list --> ifx-icon
