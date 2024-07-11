@@ -1,3 +1,15 @@
+# v23.2.1 (Thu Jul 11 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: restored old changes regarding profile image hover and username [#1356](https://github.com/Infineon/infineon-design-system-stencil/pull/1356) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.2.0 (Wed Jul 10 2024)
 
 #### 🚀 Enhancement
