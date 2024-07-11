@@ -53,8 +53,11 @@
     color: tokens.$ifxColorOcean500;
     cursor: pointer;
 
+    & .username__tooltip { 
+      display: block;
+    }
+
     & .navbar__container-right-content-navigation-item-icon-wrapper { 
-      
       & .initials__wrapper { 
         cursor: pointer;
         background-color: tokens.$ifxColorOcean600;
