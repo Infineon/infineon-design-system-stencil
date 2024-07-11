@@ -49,6 +49,8 @@ const rowDataWithButtonCol = [
   }
 ];
 
+
+
 //other example
 // const columnDefsDragAndDrop = [
 //   { valueGetter: '"Drag"', dndSource: true },
@@ -160,6 +162,7 @@ const DefaultTemplate = (args) => {
 </ifx-table>`;
     return table;
   } else {
+    //sidebar
     const filterAccordions = args.columnDefs.map(column => {
       const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
       const filterOptions = uniqueColValues.map((option, index) => {
@@ -175,14 +178,41 @@ const DefaultTemplate = (args) => {
     `;
     }).join('');
 
+    //topbar
+    const filterComponents = args.columnDefs.map(column => {
+      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+      const options = uniqueColValues.map(option => ({
+        value: option,
+        label: option,
+        selected: false
+      }));
+
+      // Directly use JSON.stringify without replacing quotes
+      const optionsString = JSON.stringify(options);
+
+      return `<ifx-set-filter slot="filter-component"
+    options='${optionsString}' 
+    filter-label='${column.headerName}'
+    filter-name='${column.field}'
+    type='multi-select'
+    search-enabled='true'>
+  </ifx-set-filter>`;
+    }).join('\n');
+
+
+
     const filterTypeGroupComponent = args.filterOrientation === 'sidebar'
       ? `<ifx-filter-type-group slot="sidebar-filter">
         <div slot="filter-search">
-          <ifx-filter-search filter-name="search"></ifx-filter-search>
+          <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
         </div>
         ${filterAccordions}
     </ifx-filter-type-group>`
-      : '';
+      :
+      `<ifx-filter-bar slot="topbar-filter">
+        <ifx-filter-search slot="filter-search" filter-orientation="topbar"></ifx-filter-search>
+        ${filterComponents}
+   </ifx-filter-bar>`;
 
     const table = `<ifx-table
     row-height="${args.rowHeight}"
@@ -226,8 +256,8 @@ IncludesButtons.args = {
 };
 
 
-export const SetFilter = DefaultTemplate.bind({});
-SetFilter.args = {
+export const SidebarFilter = DefaultTemplate.bind({});
+SidebarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
@@ -235,6 +265,15 @@ SetFilter.args = {
   filterOrientation: 'sidebar'
 };
 
+
+export const TopbarFilter = DefaultTemplate.bind({});
+TopbarFilter.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  enableFiltering: true,
+  filterOrientation: 'topbar'
+};
 
 // export const DragAndDrop = DefaultTemplate.bind({});
 // DragAndDrop.args = {

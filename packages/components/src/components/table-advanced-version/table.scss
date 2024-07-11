@@ -57,13 +57,13 @@
 .set-filter-wrapper-topbar {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   margin-bottom: tokens.$ifxSpace100;
   background: tokens.$ifxColorEngineering100;
   padding-top: 32px;
   padding-bottom: 32px;
   gap: 24px;
-}
-
+ }
 
 
 .ifx-ag-grid {

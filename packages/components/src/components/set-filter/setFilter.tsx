@@ -14,25 +14,25 @@ export class SetFilter {
   @Prop() options: any[] | string;
   @State() filterValues: string[] = [];
 
-  @Event() ifxFilterChange: EventEmitter;
+  @Event() ifxFilterSelect: EventEmitter;
 
 
   handleTextInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
     const value = target.value;
-    this.ifxFilterChange.emit({ filterName: this.filterName, filterValues: [value], type: this.type }); // Emit an array for consistency with the multi select component
+    this.ifxFilterSelect.emit({ filterName: this.filterName, filterValues: [value], type: this.type }); // Emit an array for consistency with the multi select component
 
   }
 
   handleSingleSelectChange(event: CustomEvent) {
     const value = event.detail.value;
-    this.ifxFilterChange.emit({ filterName: this.filterName, filterValues: [value], type: this.type }); // Emit an array for consistency with the multi select component
+    this.ifxFilterSelect.emit({ filterName: this.filterName, filterValues: [value], type: this.type }); // Emit an array for consistency with the multi select component
   }
 
 
   handleMultiselectOptionChange(event: CustomEvent) {
     this.filterValues = event.detail; // Assuming that ifx-multiselect emits an array of selected options
-    this.ifxFilterChange.emit({ filterName: this.filterName, filterValues: this.filterValues, type: this.type });
+    this.ifxFilterSelect.emit({ filterName: this.filterName, filterValues: this.filterValues, type: this.type });
   }
 
 

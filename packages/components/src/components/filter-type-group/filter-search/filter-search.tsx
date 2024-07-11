@@ -12,6 +12,8 @@ export class FilterSearch {
   @Prop({ mutable: true }) filterValue: string;
   @Prop() filterKey: string;
   @State() showDeleteIcon: boolean = false;
+  @Prop() filterOrientation: string = 'sidebar'; //topbar
+  @Prop() placeholder: string;
 
   @Event() ifxFilterSearchChange: EventEmitter;
 
@@ -41,10 +43,12 @@ export class FilterSearch {
 
   render() {
     return (
-      <div class="filter-search-wrapper">
-        <div class="filter-name">{this.filterName}</div>
-        <ifx-search-field show-delete-icon={this.showDeleteIcon} disabled={this.disabled} value={this.filterValue}>
-        </ifx-search-field>
+      <div class={`${
+      this.filterOrientation === 'sidebar' ? 'sidebar-filter-search-wrapper' : 'topbar-filter-search-wrapper'
+      }`}>
+      <div class="filter-name">{this.filterName}</div>
+      <ifx-search-field placeholder={this.placeholder} show-delete-icon={this.showDeleteIcon} disabled={this.disabled} value={this.filterValue}>
+      </ifx-search-field>
       </div>
     );
   }

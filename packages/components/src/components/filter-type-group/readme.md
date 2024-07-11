@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event                      | Description | Type               |
-| -------------------------- | ----------- | ------------------ |
-| `ifxFilterTypeGroupChange` |             | `CustomEvent<any>` |
+| Event                    | Description | Type               |
+| ------------------------ | ----------- | ------------------ |
+| `ifxSidebarFilterChange` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------

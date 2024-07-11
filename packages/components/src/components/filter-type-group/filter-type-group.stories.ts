@@ -40,7 +40,7 @@ export const Default = () => {
   wrapper.innerHTML = `
   <ifx-filter-type-group>
     <div slot="filter-search">
-      <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
+      <ifx-filter-search filter-orientation="sidebar" filter-name="Your filter name"></ifx-filter-search>
     </div>
     <div slot="filter-accordion">
       <ifx-filter-accordion filter-group-name="Filter group 1">
@@ -56,7 +56,7 @@ export const Default = () => {
 `;
   const element = wrapper.querySelector('ifx-filter-type-group') as HTMLElement;
 
-  element.addEventListener('ifxFilterTypeGroupChange', action('ifxFilterTypeGroupChange'));
+  element.addEventListener('ifxSidebarFilterChange', action('ifxSidebarFilterChange'));
 
   return wrapper;
 }

@@ -1,0 +1,56 @@
+/* filter-bar.scss */
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.search-container {
+  display: flex;
+  width: calc(100% - 48px); /* Adjust width to account for padding */
+  padding-left: 24px;
+  padding-right: 24px;  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: tokens.$ifxSpace200;
+}
+
+.components-container {
+  display: flex;
+  width: calc(100% - 48px); /* Adjust width to account for padding */
+  padding-left: 24px;
+  padding-right: 24px;  flex-direction: row;
+  align-items: flex-end;
+  align-content:flex-end;
+  flex-wrap: wrap;
+  gap: tokens.$ifxSpace200;
+}
+
+::slotted([slot="filter-component"]) {
+    flex-grow: 1;
+    flex-basis: 100%; 
+    max-width: 100%; 
+  }
+  
+  @media (min-width: 720px) and (max-width: 1024px) {
+    ::slotted([slot="filter-component"]) {
+      flex-basis: calc((100% - tokens.$ifxSpace200) / 2);
+      max-width: calc((100% - tokens.$ifxSpace200) / 2);
+    }
+}
+
+  @media (min-width: 1025px) {
+    ::slotted([slot="filter-component"]) {
+      flex-basis: auto; 
+      max-width: 200px; 
+    }
+    ::slotted([slot="filter-search"]) {
+        max-width: 828px;
+      }
+  }
+  
+  ::slotted([slot="filter-search"]) {
+    flex-grow: 1;
+    flex-basis: 100%;
+    width: 100%; 
+  }

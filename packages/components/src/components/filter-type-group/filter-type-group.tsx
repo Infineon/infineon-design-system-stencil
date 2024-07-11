@@ -8,7 +8,7 @@ import { Component, h, State, Event, EventEmitter, Element, Host } from '@stenci
 export class IfxFilterTypeGroup {
   @Element() el: HTMLElement;
   @State() selectedOptions: Array<{ filterGroupName: string, selectedItems?: Array<{ filterName: string, value: boolean | string }>, value?: string }> = [];
-  @Event() ifxFilterTypeGroupChange: EventEmitter;
+  @Event() ifxSidebarFilterChange: EventEmitter;
 
 
 
@@ -60,7 +60,7 @@ connectedCallback ensures that the event listeners are properly set up again */
     this.selectedOptions = [];
 
     // Emit the change to inform any parent components that the filters have been reset
-    this.ifxFilterTypeGroupChange.emit(this.selectedOptions);
+    this.ifxSidebarFilterChange.emit(this.selectedOptions);
   }
 
 
@@ -113,7 +113,7 @@ connectedCallback ensures that the event listeners are properly set up again */
     this.selectedOptions = newSelectedOptions;
 
     // Emit the entire selectedOptions array
-    this.ifxFilterTypeGroupChange.emit(this.selectedOptions);
+    this.ifxSidebarFilterChange.emit(this.selectedOptions);
   }
 
   render() {

@@ -52,7 +52,7 @@ export class Table {
     this.filterOptions = options;
   }
 
-  handleFilterChange(event: CustomEvent) {
+  handleSidebarFilterChange(event: CustomEvent) {
 
     // Assuming event.detail is an array of filter groups
     const filterGroups = event.detail;
@@ -94,13 +94,55 @@ export class Table {
   }
 
 
+  handleTopbarFilterChange(event: CustomEvent) {
+     const filters = event.detail;
+
+    // Start by resetting the filter conditions to a blank object
+    this.currentFilters = {};
+
+    // Loop through each filter group provided in the event detail
+    filters.forEach(filter => {
+      const filterName = filter.filterName;
+      let filterValues;
+
+      let type = filter.type;
+
+      if (type === 'text') {
+        // Search/Text filter
+        filterValues = filter.filterValues
+      } else {
+        // Multi-select/Single-Select
+        filterValues = filter.filterValues.map(item => item.label);
+      }
+
+      // If there are no filter values, or the filter is a text filter with an empty value, remove the filter
+      if (!(filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === ''))) {
+        // Add or update the filter in the currentFilters object
+        this.currentFilters[filterName] = { filterValues, type };
+      }
+    });
+
+
+    // Now that the currentFilters object has been updated, apply all filters to the data
+    this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+
+    // After filtering, update the table view with the new filtered data
+    this.updateTableView();
+  }
+
+
   applyAllFilters(data, filters) {
     return data.filter(row => {
       for (const filterName in filters) {
         const filterInfo = filters[filterName];
-        let selectedValues = (filterInfo.filterValues || []).map(value =>
-          value != null ? value.toLowerCase() : ''
-        );
+        let selectedValues = (filterInfo.filterValues || []).map(value => {
+          if (typeof value === 'string') {
+            return value.toLowerCase();
+          } else if (typeof value === 'number' || typeof value === 'boolean') {
+            return value.toString();
+          }
+          return '';
+        });
 
         // For text filters, check if row values start with any of the selectedValues
         if (filterInfo.type === 'text') {
@@ -217,10 +259,15 @@ export class Table {
             paginationElement.addEventListener('ifxPageChange', this.handlePageChange.bind(this));
           }
         }
-        const setFilterElements = this.host.querySelectorAll('ifx-filter-type-group');
+        const sidebarFilterElements = this.host.querySelectorAll('ifx-filter-type-group');
         // Add an event listener to each SetFilter component
-        setFilterElements.forEach(setFilterElement => {
-          setFilterElement.addEventListener('ifxFilterTypeGroupChange', this.handleFilterChange.bind(this));
+        sidebarFilterElements.forEach(sidebarFilterElement => {
+          sidebarFilterElement.addEventListener('ifxSidebarFilterChange', this.handleSidebarFilterChange.bind(this));
+        });
+        const topbarFilterElements = this.host.querySelectorAll('ifx-filter-bar');
+        // Add an event listener to each SetFilter component
+        topbarFilterElements.forEach(topbarFilterElement => {
+          topbarFilterElement.addEventListener('ifxTopbarFilterChange', this.handleTopbarFilterChange.bind(this));
         });
       }
     }
@@ -233,10 +280,15 @@ export class Table {
         paginationElement.removeEventListener('ifxPageChange', this.handlePageChange.bind(this));
       }
     }
-    const setFilterElements = this.host.shadowRoot.querySelectorAll('ifx-filter-type-group');
+    const sidebarFilters = this.host.shadowRoot.querySelectorAll('ifx-filter-type-group');
     // Remove the event listener from each SetFilter component
-    setFilterElements.forEach(setFilterElement => {
-      setFilterElement.removeEventListener('ifxFilterTypeGroupChange', this.handleFilterChange.bind(this));
+    sidebarFilters.forEach(sidebarFilter => {
+      sidebarFilter.removeEventListener('ifxSidebarFilterChange', this.handleSidebarFilterChange.bind(this));
+    });
+    const topbarFilters = this.host.shadowRoot.querySelectorAll('ifx-filter-type-group');
+    // Remove the event listener from each SetFilter component
+    topbarFilters.forEach(topbarFilter => {
+      topbarFilter.removeEventListener('ifxTopbarFilterChange', this.handleTopbarFilterChange.bind(this));
     });
   }
 
@@ -418,7 +470,7 @@ export class Table {
                   ))
 
                 )}
-                {Object.keys(this.currentFilters).length > 0 && (
+                {this.enableFiltering && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
                   <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
                   >
                     <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all

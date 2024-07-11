@@ -2,7 +2,7 @@
 
 
 
-.filter-search-wrapper {
+.sidebar-filter-search-wrapper {
   display: flex;
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200 tokens.$ifxSpace200 tokens.$ifxSpace200;
   flex-direction: column;
@@ -11,6 +11,19 @@
   gap: tokens.$ifxSpace50;
   font-family: var(--ifx-font-family);
   background: tokens.$ifxColorEngineering200;
+}
+
+.topbar-filter-search-wrapper {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: tokens.$ifxSpace50;
+  font-family: var(--ifx-font-family);
+}
+
+.topbar-filter-search-wrapper ifx-search-field {
+  width: 100%; /* Ensure ifx-search-field takes up full width */
 }
 
 .filter-name {

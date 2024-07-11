@@ -20,7 +20,7 @@
 
 | Event             | Description | Type               |
 | ----------------- | ----------- | ------------------ |
-| `ifxFilterChange` |             | `CustomEvent<any>` |
+| `ifxFilterSelect` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
