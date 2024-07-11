@@ -125,9 +125,14 @@ export class Stepper {
     updateActiveStep(stepId: number = null) {
         let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
         if (newActiveStep != this.internalActiveStep) {
-            if (this.internalActiveStep !== undefined) this.ifxChange.emit({ activeStep: newActiveStep, previousActiveStep: this.internalActiveStep, totalSteps: this.stepsCount });
+            this.internalActiveStep = newActiveStep;
+            this.activeStep = newActiveStep;
+
+            if (this.internalActiveStep !== undefined) {
+                console.log('activeStep', newActiveStep, 'previousActiveStep', this.internalActiveStep, 'stepId', stepId )
+                this.ifxChange.emit({ activeStep: newActiveStep, previousActiveStep: this.internalActiveStep, totalSteps: this.stepsCount });
+            }
         }
-        this.internalActiveStep = newActiveStep;
     }
 
     /**
