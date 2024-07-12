@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
-    tags: ['autodocs'],
+    // tags: ['autodocs'],
     args: { 
         activeStep: 2,
         amountOfSteps: 5,

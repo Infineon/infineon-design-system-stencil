@@ -15,43 +15,11 @@
 
   <script defer>
 
-    const incrementStep = () => {
-      const myStepper = document.getElementById('myStepper')
-      if('some form condition') { 
-        const steps = myStepper.querySelectorAll('ifx-step')
-        steps[myStepper.activeStep-1].complete = true; 
-        myStepper.activeStep++;
-        for(let i = 0; i < steps.length; i++) { 
-          console.log(steps[i].stepperState)
-        }
-      }
-    }
-
-    const decrementStep = () => {
-      const myStepper = document.getElementById('myStepper')
-      myStepper.activeStep--;
-    }
-    
   </script>
 
 </head>
 
 <body>
-
-  <form action="" onsubmit=""> 
-
-  </form>
-
-  <ifx-stepper id="myStepper" active-step="4" show-step-number="false" variant="default">
-    <ifx-step>Step Label 1</ifx-step>
-    <ifx-step>Step Label 2</ifx-step>
-    <ifx-step>Step Label 3</ifx-step>
-    <ifx-step>Step Label 4</ifx-step>
-    <ifx-step>Step Label 5</ifx-step>
-  </ifx-stepper>
-
-  <ifx-button onclick="decrementStep()">Previous Step</ifx-button>
-  <ifx-button onclick="incrementStep()">Next Step</ifx-button>
 
 </body>
 
