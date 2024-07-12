@@ -1,3 +1,63 @@
+# v23.2.1 (Thu Jul 11 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: restored old changes regarding profile image hover and username [#1356](https://github.com/Infineon/infineon-design-system-stencil/pull/1356) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.2.0 (Wed Jul 10 2024)
+
+#### 🚀 Enhancement
+
+- Navbar: enhanced customization of profile image [#1343](https://github.com/Infineon/infineon-design-system-stencil/pull/1343) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.1.0 (Fri Jul 05 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-profile: implemented a tooltip for username [#1346](https://github.com/Infineon/infineon-design-system-stencil/pull/1346) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.0.0 (Mon Jul 01 2024)
+
+#### 💥 Breaking Change
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil [#1295](https://github.com/Infineon/infineon-design-system-stencil/pull/1295) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v22.1.0 (Mon Jul 01 2024)
+
+#### 🚀 Enhancement
+
+- Alert: added box shadow [#1332](https://github.com/Infineon/infineon-design-system-stencil/pull/1332) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v22.0.0 (Mon Jun 24 2024)
 
 #### 💥 Breaking Change
