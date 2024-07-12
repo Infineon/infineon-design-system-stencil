@@ -16,20 +16,6 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
-  & .username__tooltip { 
-    display: none;
-    position: absolute;
-    top: 35px;
-    right: 0;
-    text-wrap: nowrap;
-    padding: 1px 5px;
-    font-size: 13px;
-    font-family: "Source Sans 3";
-    background-color: black;
-    color: #fff;
-    z-index: 99;
-  }
-
   &.hide { 
     display: none;
   }
@@ -76,6 +62,7 @@
   }
 
   & .navbar__container-right-content-navigation-item-icon-wrapper {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -85,6 +72,26 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+
+    & .username__tooltip { 
+      display: none;
+      position: absolute;
+      top: 35px;
+      right: 0;
+      text-wrap: nowrap;
+      padding: 1px 5px;
+      font-size: 13px;
+      font-family: "Source Sans 3";
+      background-color: black;
+      color: #fff;
+      z-index: 99;
+    }
+
+    &:hover { 
+      & .username__tooltip { 
+        display: block;
+      }
+    }
 
     & .initials__wrapper { 
       display: flex;
