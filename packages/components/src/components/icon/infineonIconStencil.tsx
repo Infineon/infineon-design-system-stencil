@@ -57,10 +57,12 @@ export class InfineonIconStencil {
       const SVG = this.getSVG(svgPath)
       this.consoleError.emit(false)
       return SVG;
-    } else {
+    } else if(this.icon !== "") {
       console.error('Icon not found!')
       this.consoleError.emit(true)
-      return ""
+      return;
+    }  else { 
+      return;
     }
   }
 
