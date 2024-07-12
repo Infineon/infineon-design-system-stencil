@@ -175,14 +175,14 @@ export class NavbarProfile {
   }
 
 
-
   render() {
     return (
       <div class="container">
         <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${!this.showLabel ? 'removeLabel' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper`}>
-             
+             {this.userName.trim() !== "" && <div class='username__tooltip'>{this.userName}</div>}
+
              {this.internalImageUrl.type !== 'initials' && 
               <img src={ this.internalImageUrl.type === 'url' ? this.internalImageUrl.value : `data:image/svg+xml,${encodeURIComponent(this.defaultProfileImage)}`} alt={this.alt} />}
 
@@ -196,7 +196,7 @@ export class NavbarProfile {
               <slot onSlotchange={() => this.setProfileGap()} />
             </span>
           </div>
-          {this.userName.trim() !== "" && <div class='username__tooltip'>{this.userName}</div>}
+          {/* {this.userName.trim() !== "" && <div class='username__tooltip'>{this.userName}</div>} */}
         </a>
         
         {this.hasChildNavItems && <ul class='navbar-menu rightSideItemMenu'> <slot name="first__layer" /> </ul>}
