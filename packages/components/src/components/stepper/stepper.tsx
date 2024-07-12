@@ -30,7 +30,7 @@ export class Stepper {
     /**
      * Represents the active step of the stepper.
      */
-    @Prop() activeStep: number = 1;
+    @Prop({ mutable: true }) activeStep: number = 1;
 
     /**
      * (Optional) Defines the position of the indicator in a compact variant.
@@ -125,14 +125,14 @@ export class Stepper {
     updateActiveStep(stepId: number = null) {
         let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
         if (newActiveStep != this.internalActiveStep) {
-            this.internalActiveStep = newActiveStep;
-            this.activeStep = newActiveStep;
-
             if (this.internalActiveStep !== undefined) {
-                console.log('activeStep', newActiveStep, 'previousActiveStep', this.internalActiveStep, 'stepId', stepId )
-                this.ifxChange.emit({ activeStep: newActiveStep, previousActiveStep: this.internalActiveStep, totalSteps: this.stepsCount });
+                this.ifxChange.emit({ activeStep: newActiveStep, 
+                                      previousActiveStep: this.internalActiveStep, 
+                                      totalSteps: this.stepsCount });
             }
         }
+        this.internalActiveStep = newActiveStep;
+        this.activeStep = newActiveStep;
     }
 
     /**
