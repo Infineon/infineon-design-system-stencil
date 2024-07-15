@@ -1,3 +1,15 @@
+# v23.3.0 (Fri Jul 12 2024)
+
+#### 🚀 Enhancement
+
+- Icon component: removed error message when no icon specified [#1358](https://github.com/Infineon/infineon-design-system-stencil/pull/1358) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.2.1 (Thu Jul 11 2024)
 
 #### 🐛 Bug Fix
