@@ -64,16 +64,18 @@ const decrementStep = () => {
 }
 
 return(
-  <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
-    <IfxStep>Step 1</IfxStep>
-    <IfxStep>Step 2</IfxStep>
-    <IfxStep>Step 3</IfxStep>
-    <IfxStep>Step 4</IfxStep>
-    <IfxStep>Step 5</IfxStep>
-  </IfxStepper>
+  <div>
+    <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
+      <IfxStep>Step 1</IfxStep>
+      <IfxStep>Step 2</IfxStep>
+      <IfxStep>Step 3</IfxStep>
+      <IfxStep>Step 4</IfxStep>
+      <IfxStep>Step 5</IfxStep>
+    </IfxStepper>
 
-  <IfxButton onClick={decrementStep}>Decrement</IfxButton>
-  <IfxButton onClick={incrementStep}>Increment</IfxButton>
+    <IfxButton onClick={decrementStep}>Decrement</IfxButton>
+    <IfxButton onClick={incrementStep}>Increment</IfxButton>
+  </div>
 )
 ```
 
