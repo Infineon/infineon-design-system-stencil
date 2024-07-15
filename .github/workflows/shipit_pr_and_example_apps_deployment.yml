@@ -30,6 +30,9 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
 
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Install dependencies for all packages, build and deploy Stencil core package
         id: build
         env:
@@ -72,9 +75,19 @@ jobs:
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../../../
           cd packages/components-vue
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          # Use jq to update the version directly in package.json
+          jq '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          npm install
           cd ../components-react
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          jq '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          npm install
+          cd ../../
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add package.json
+          git commit -m "Update Stencil library version to $CANARY_VERSION"
+          git push
+
      
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
