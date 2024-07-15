@@ -115,9 +115,9 @@ export class Step {
                         /* Active, complete or incomplete */
                         (this.stepperState.variant === 'default' && (!this.error || (this.error && this.active))) && 
                         <div class = 'step-icon'>
-                            {(this.stepperState.showStepNumber && (!this.complete || (this.complete && this.active))) ? this.stepId : ''}
+                            {(this.stepperState.showStepNumber && !this.complete && !this.active) ? this.stepId : ''}
                             {(this.complete && !this.active) && <ifx-icon icon='check16'></ifx-icon>}
-                            {(!this.stepperState.showStepNumber && this.active) && <span class = 'active-indic'></span>}
+                            {this.active && <span class = 'active-indic'></span>}
                         </div>
                     }
 
