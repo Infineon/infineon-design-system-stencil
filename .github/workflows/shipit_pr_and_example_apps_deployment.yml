@@ -66,6 +66,7 @@ jobs:
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
@@ -85,7 +86,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git add .
           git commit -m "Update Stencil library version to $CANARY_VERSION"
-          git push
+          git push origin HEAD:$BRANCH_NAME
 
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
