@@ -11,7 +11,11 @@
   padding: 20px;
   color: white;
   font-family: monospace;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
 
   & button {
     position: absolute;
@@ -74,7 +78,7 @@
 
     &.copied {
       &::after {
-        z-index: 1000;
+        z-index: 50;
         content: 'copied!';
         position: absolute;
         top: 0;
