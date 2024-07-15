@@ -1,25 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IfxStepper, IfxStep, IfxButton } from "@infineon/infineon-design-system-react";
 
 function Stepper(){
-    const [showNumber, changeNumberStatus] = useState(false);
-    const [activeStep, changeStep] = useState(2);
-    const [isCompact, changeIsCompact] = useState(false);
+
+    const [activeStep, setActiveStep] = useState(3);
+
+    useEffect(() => { 
+        const myStepper = document.getElementById('myStepper')
+        myStepper.addEventListener('ifxChange', (e) => { 
+            setActiveStep(e.detail.activeStep)
+            console.log(e.detail)
+        })
+
+    }, [])
+
+    const incrementStep = () => {
+        const myStepper = document.getElementById('myStepper')
+        if('some form condition') { 
+          const steps = myStepper.querySelectorAll('ifx-step')
+          if(steps[myStepper.activeStep-1]) steps[myStepper.activeStep-1].complete = true; 
+          setActiveStep(activeStep+1)
+        }
+      }
+
+    const decrementStep = () => {
+        if('some form condition') { 
+          setActiveStep(activeStep-1)
+        }
+      }
+
+
 
     return(
         <div>
-            <IfxStepper showNumber={showNumber} variant = {isCompact ? 'compact' : 'default' } activeStep={activeStep}>
-                <IfxStep> Step 1 </IfxStep>
-                <IfxStep> Step 2 </IfxStep>
-                <IfxStep error = {true}> Step 3 </IfxStep>
-                <IfxStep> Step 4 </IfxStep>
-                <IfxStep> Step 5 </IfxStep>
+            <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
+                <IfxStep>Step 1</IfxStep>
+                <IfxStep>Step 2</IfxStep>
+                <IfxStep>Step 3</IfxStep>
+                <IfxStep>Step 4</IfxStep>
+                <IfxStep>Step 5</IfxStep>
             </IfxStepper>
 
-            <IfxButton variant="secondary" onClick={() => changeStep(Math.max(activeStep-1, 1))}> Previous Step</IfxButton>
-            {!isCompact && <IfxButton variant="primary" onClick={() => changeNumberStatus(!showNumber)}> {showNumber ? 'Hide Number' : 'Show Number'} </IfxButton>}
-            <IfxButton variant="secondary" onClick={() => changeStep(Math.min(activeStep+1, 6))}> Next Step</IfxButton>
-            <IfxButton variant="primary" onClick={() => { isCompact ? changeIsCompact(false) : changeIsCompact(true)}}> {isCompact ? 'Set default' : 'Set Compact'}</IfxButton>
+            <IfxButton onClick={decrementStep}>Decrement</IfxButton>
+            <IfxButton onClick={incrementStep}>Increment</IfxButton>
+
 
         </div>
     );
