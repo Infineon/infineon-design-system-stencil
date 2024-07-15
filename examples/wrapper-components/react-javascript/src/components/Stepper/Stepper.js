@@ -12,13 +12,13 @@ function Stepper(){
             console.log(e.detail)
         })
 
-    }, [activeStep])
+    }, [])
 
     const incrementStep = () => {
         const myStepper = document.getElementById('myStepper')
         if('some form condition') { 
           const steps = myStepper.querySelectorAll('ifx-step')
-          steps[myStepper.activeStep-1].complete = true; 
+          if(steps[myStepper.activeStep-1]) steps[myStepper.activeStep-1].complete = true; 
           setActiveStep(activeStep+1)
         }
       }

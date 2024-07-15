@@ -67,7 +67,7 @@ export class Stepper {
     onStepChange(event: CustomEvent) {
         const steps = this.getSteps();
         const previousActiveStep = steps[event.detail.previousActiveStep-1];
-        if (!previousActiveStep.complete) {
+        if (previousActiveStep && !previousActiveStep.complete) {
             previousActiveStep.setAttribute('error', 'true');
         }
     } 

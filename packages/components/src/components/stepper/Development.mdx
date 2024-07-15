@@ -17,62 +17,64 @@ Examples of general usage
 
 ```js
 
-  const incrementStep = () => {
-    const myStepper = document.getElementById('myStepper')
-    if('some form condition') { 
-      const steps = myStepper.querySelectorAll('ifx-step')
-      steps[myStepper.activeStep-1].complete = true; 
-      myStepper.activeStep++;
-    }
+const incrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  if('some form condition') { 
+    const steps = myStepper.querySelectorAll('ifx-step')
+    steps[myStepper.activeStep-1].complete = true; 
+    myStepper.activeStep++;
   }
+}
 
-  const decrementStep = () => {
-    const myStepper = document.getElementById('myStepper')
-    myStepper.activeStep--;
-  }
+const decrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  myStepper.activeStep--;
+}
 
-  <ifx-button variant='primary' onClick="decrementStep()">Decrement Step</ifx-button>
-  <ifx-button variant='primary' onClick="incrementStep()">Increment Step</ifx-button>
+<ifx-button variant='primary' onClick="decrementStep()">Decrement Step</ifx-button>
+<ifx-button variant='primary' onClick="incrementStep()">Increment Step</ifx-button>
 ```
 
 <b>React</b>
 
 ```js
- const [activeStep, setActiveStep] = useState(3);
+const [activeStep, setActiveStep] = useState(3);
 
-  useEffect(() => { 
-      const myStepper = document.getElementById('myStepper')
-      myStepper.addEventListener('ifxChange', (e) => { 
-          setActiveStep(e.detail.activeStep)
-      })
+useEffect(() => { 
+  const myStepper = document.getElementById('myStepper')
+  myStepper.addEventListener('ifxChange', (e) => { 
+      setActiveStep(e.detail.activeStep)
+  })
 
-  }, [activeStep])
+}, [])
 
-    const incrementStep = () => {
-      const myStepper = document.getElementById('myStepper')
-      if('some form condition') { 
-        const steps = myStepper.querySelectorAll('ifx-step')
-        steps[myStepper.activeStep-1].complete = true; 
-        setActiveStep(activeStep+1)
-      }
-    }
+const incrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  if('some form condition') { 
+    const steps = myStepper.querySelectorAll('ifx-step')
+    steps[myStepper.activeStep-1].complete = true; 
+    setActiveStep(activeStep+1)
+  }
+}
 
-    const decrementStep = () => {
-      if('some form condition') { 
-        setActiveStep(activeStep-1)
-      }
-    }
+const decrementStep = () => {
+  if('some form condition') { 
+    setActiveStep(activeStep-1)
+  }
+}
 
-    <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
-      <IfxStep>Step 1</IfxStep>
-      <IfxStep>Step 2</IfxStep>
-      <IfxStep>Step 3</IfxStep>
-      <IfxStep>Step 4</IfxStep>
-      <IfxStep>Step 5</IfxStep>
-    </IfxStepper>
+return(
+  <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
+    <IfxStep>Step 1</IfxStep>
+    <IfxStep>Step 2</IfxStep>
+    <IfxStep>Step 3</IfxStep>
+    <IfxStep>Step 4</IfxStep>
+    <IfxStep>Step 5</IfxStep>
+  </IfxStepper>
 
-    <IfxButton onClick={decrementStep}>Decrement</IfxButton>
-    <IfxButton onClick={incrementStep}>Increment</IfxButton>
+  <IfxButton onClick={decrementStep}>Decrement</IfxButton>
+  <IfxButton onClick={incrementStep}>Increment</IfxButton>
+)
 ```
 
 
