@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "0.0.0",
+  "version": "23.4.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

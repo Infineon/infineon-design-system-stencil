@@ -1,3 +1,43 @@
+# v23.4.2 (Tue Jul 16 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: adjusted the deployment bugfix for the github action master workflow [#1366](https://github.com/Infineon/infineon-design-system-stencil/pull/1366) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v23.4.1 (Mon Jul 15 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Update stencil library version in wrapper libraries' package.json [#1363](https://github.com/Infineon/infineon-design-system-stencil/pull/1363) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 4
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.4.0 (Mon Jul 15 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: enhanced step customization [#1331](https://github.com/Infineon/infineon-design-system-stencil/pull/1331) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.3.0 (Fri Jul 12 2024)
 
 #### 🚀 Enhancement

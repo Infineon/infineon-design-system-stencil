@@ -2,88 +2,117 @@ import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
-    tags: ['autodocs'],
+    // tags: ['autodocs'],
     args: { 
         activeStep: 2,
         amountOfSteps: 5,
-        errorStep: -1,
-        indicatorPosition : 'left',
+        errorStep: 0,
+        indicatorPosition: 'left',
         showStepNumber: false,
-        variant: 'default',
+        variant: 'default'
     },
     argTypes: {
         activeStep: { 
-            name: 'Active step',
-            control : {
+            control: {
                 type: 'number',
                 min: 1
             }, 
             description: 'Indicates the current active step', 
-            defaultValue: {summary: 1}
+            table: {
+                defaultValue: { summary: 1 }
+            }
         },
         amountOfSteps: { 
             name: 'Amount of steps',
-            control : 'number', 
-            description: 'Indicates the number of steps in stepper in a story',
+            control: 'number', 
+            description: 'Indicates the number of steps in stepper in a story'
+        },
+        completeStep: {
+            name: 'complete',
+            description: 'A boolean prop to mark a step complete.<br>Usage:',
+            table: {
+                defaultValue: { summary: false },
+                type: {
+                    summary: `<ifx-step complete=true> </ifx-step>`
+                }
+            }
         },
         errorStep: {
-            name: 'Error step',
+            name: 'error',
             control: 'number',
-            defaultValue: {summary: -1},
-            description: 'Specified step number indicates to have an error'
+            description: 'Specified step number indicates to have an error',
+            table: {
+                defaultValue: { summary: false }
+            },
         },
         indicatorPosition: {
-            name: 'Indicator position',
-            control : 'radio',
-            defaultValue: {summary: 'left'},
+            control: 'radio',
+            defaultValue: { summary: 'left' },
             description: 'Allows to swap the progross bar and steps\' label',
             options: ['left', 'right'],
-            if: { arg:'variant', eq: 'compact'}
+            if: { arg:'variant', eq: 'compact' }
         },
         showStepNumber: { 
-            name: 'Show step number',
             control: 'boolean', 
-            defaultValue: {summary: 'false'},
+            defaultValue: { summary: 'false' },
             description: 'Shows the step number when set true',
-            if: { arg: 'variant', eq: 'default'}
+            if: { arg: 'variant', eq: 'default' }
         },
         variant: {
-            name: 'Variant',
             options: ['default', 'compact'],
-            defaultValue: {summary: 'default'},
+            defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
             control: 'radio'
         },
-        ifxActiveStepChange:{
-            action: 'ifxActiveStepChange',
-            description: 'A custom event emitted when active step changes'
+        ifxChange: {
+            action: 'ifxChange',
+            description: 'A custom event emitted when active step changes',
+            table: {
+                type: {
+                    summary: 'Framework integration',
+                    detail: `
+React: onIfxChange={handleChange}
+Vue:@ifxChange="handleChange"
+Angular:(ifxChange)="handleChange()"
+VanillaJs:.addEventListener("ifxChange", (event) => {//handle change});`,
+                }
+            }
         }
     }
 }
 
 const Template = (args) => {
-    const stepper = document.createElement('ifx-stepper');
-    stepper.setAttribute('show-step-number', args.showStepNumber);
-    stepper.setAttribute('active-step', args.activeStep);
-    stepper.setAttribute('variant', args.variant);
-    stepper.setAttribute('indicator-position', args.indicatorPosition);
-
-    for(let i = 0; i < args.amountOfSteps; i++){
-        const step = document.createElement('ifx-step');
-        step.innerHTML = `Step Label ${i+1}`;
-        stepper.appendChild(step);
-        if(args.errorStep == i+1) step.setAttribute('error', 'true');
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = `
+<ifx-stepper 
+active-step=${args.activeStep} 
+${args.variant === 'compact' ? `indicator-position=${args.indicatorPosition}` : ''} 
+${args.variant === 'default' ? `show-step-number=${args.showStepNumber}` : ''} 
+variant=${args.variant}>
+    ${
+        (()=>{
+            return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
+                const step = document.createElement('ifx-step')
+                step.innerHTML = `Step Label ${stepId+1}`
+                if (args.errorStep === stepId+1) step.setAttribute('error', 'true')
+                return step.outerHTML
+            }).join(`\n    `)
+        })()
     }
-    stepper.addEventListener('ifxActiveStepChange', action('ifxActiveStepChange'));
+</ifx-stepper>`
+
+    const stepper = wrapper.querySelector('ifx-stepper');
+    stepper.addEventListener('ifxChange', action('ifxChange'));
+    
     return stepper;
-}
+};
 
 export const Default = Template.bind({});
 Default.args = {
     variant: 'default'
-}
+};
 
 export const Compact = Template.bind({});
 Compact.args = {
-    variant: 'compact',
-}
+    variant: 'compact'
+};
