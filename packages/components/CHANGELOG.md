@@ -1,3 +1,15 @@
+# v23.4.2 (Tue Jul 16 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: adjusted the deployment bugfix for the github action master workflow [#1366](https://github.com/Infineon/infineon-design-system-stencil/pull/1366) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v23.4.1 (Mon Jul 15 2024)
 
 #### 🐛 Bug Fix
