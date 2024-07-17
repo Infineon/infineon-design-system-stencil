@@ -1,3 +1,21 @@
+# v23.5.0 (Wed Jul 17 2024)
+
+#### 🚀 Enhancement
+
+- Icon preview: out of sync with the icon library [#1364](https://github.com/Infineon/infineon-design-system-stencil/pull/1364) ([@tishoyanchev](https://github.com/tishoyanchev) [@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.4.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.4.2 (Tue Jul 16 2024)
 
 #### 🐛 Bug Fix
