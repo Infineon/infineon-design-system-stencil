@@ -16,7 +16,6 @@ export class Navbar {
   @State() about: boolean = false
   @Prop() applicationName: string = ""
   @State() hasLeftMenuItems: boolean = true;
-  @State() hasMenuItems: boolean = true;
   @Prop() fixed: boolean = true;
   @Prop() showLogoAndAppname: boolean = true;
   @State() searchBarIsOpen: string;
@@ -278,6 +277,12 @@ export class Navbar {
     this.addEventListenersToHandleCustomFocusState();
 
     const mediaQueryList = this.getMediaQueryList()
+        
+    const menuItems = this.el.querySelectorAll('ifx-navbar-item')
+    if (!menuItems.length) {
+      const burgerIconWrapper = this.el.shadowRoot.querySelector('.navbar__burger-icon-wrapper')
+      burgerIconWrapper.classList.add('hide');
+    }
 
     if (mediaQueryList.matches) {
       this.moveNavItemsToSidebar();
@@ -317,12 +322,8 @@ export class Navbar {
     if (!leftMenuItems.length && !dropdownMenu) {
       this.hasLeftMenuItems = false;
     }
-    const menuItems = this.el.querySelectorAll('ifx-navbar-item')
-    if (!menuItems.length) {
-      this.hasMenuItems = false;
-    }
-    this.handleLogoHrefAndTarget();
 
+    this.handleLogoHrefAndTarget();
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
@@ -494,39 +495,33 @@ export class Navbar {
               </div>
 
               {/* MOBILE MENU BUTTON */}
-              { 
-                this.hasMenuItems &&
-                <div class={`navbar__burger-icon-wrapper`} onClick={this.handleSidebar.bind(this)}>
-                  <div class="navbar__burger-icon">
-                    <ifx-icon icon="menu-right-24"></ifx-icon>
-                  </div>
-                  <div class="navbar__cross-icon">
-                    <ifx-icon icon="cross-24"></ifx-icon>
-                  </div>
+              <div class={`navbar__burger-icon-wrapper`} onClick={this.handleSidebar.bind(this)}>
+                <div class="navbar__burger-icon">
+                  <ifx-icon icon="menu-right-24"></ifx-icon>
                 </div>
-              }
+                <div class="navbar__cross-icon">
+                  <ifx-icon icon="cross-24"></ifx-icon>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* SIDEBAR */}
-        {
-          this.hasMenuItems &&
-          <div class="navbar__sidebar">
-            {/* left side ifx-navbar-item  */}
-            <div class="navbar__sidebar-top-row">
-              <div class="navbar__sidebar-top-row-wrapper">
-                <slot name='mobile-menu-top' />
-              </div>
+        <div class="navbar__sidebar">
+          {/* left side ifx-navbar-item  */}
+          <div class="navbar__sidebar-top-row">
+            <div class="navbar__sidebar-top-row-wrapper">
+              <slot name='mobile-menu-top' />
             </div>
-
-            {/* right side ifx-navbar-item  */}
-            <div class="navbar__sidebar-bottom-row">
-              <slot name='mobile-menu-bottom' onSlotchange={(e) => this.handleMobileMenuBottom(e)} />
-            </div>
-            
           </div>
-        }
+
+          {/* right side ifx-navbar-item  */}
+          <div class="navbar__sidebar-bottom-row">
+            <slot name='mobile-menu-bottom' onSlotchange={(e) => this.handleMobileMenuBottom(e)} />
+          </div>
+          
+        </div>
       </div>
     );
   }
