@@ -277,6 +277,12 @@ export class Navbar {
     this.addEventListenersToHandleCustomFocusState();
 
     const mediaQueryList = this.getMediaQueryList()
+        
+    const menuItems = this.el.querySelectorAll('ifx-navbar-item')
+    if (!menuItems.length) {
+      const burgerIconWrapper = this.el.shadowRoot.querySelector('.navbar__burger-icon-wrapper')
+      burgerIconWrapper.classList.add('hide');
+    }
 
     if (mediaQueryList.matches) {
       this.moveNavItemsToSidebar();
@@ -316,8 +322,8 @@ export class Navbar {
     if (!leftMenuItems.length && !dropdownMenu) {
       this.hasLeftMenuItems = false;
     }
-    this.handleLogoHrefAndTarget();
 
+    this.handleLogoHrefAndTarget();
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
@@ -335,11 +341,11 @@ export class Navbar {
   
     if (matches) {
       /* The viewport is 800px wide or less */
-      topRowWrapper.classList.add('expand')
+      topRowWrapper?.classList.add('expand')
       
       //hide body scroll if sidebar was opened
       const crossIcon = this.el.shadowRoot.querySelector('.navbar__cross-icon')
-      if(crossIcon.classList.contains('show')) { 
+      if(crossIcon?.classList.contains('show')) { 
         this.handleBodyScroll('hide')
       }
       
@@ -385,7 +391,7 @@ export class Navbar {
       
     } else {
       /* The viewport is more than 800px wide */
-      topRowWrapper.classList.remove('expand')
+      topRowWrapper?.classList.remove('expand')
 
       //show body scroll 
       this.handleBodyScroll('show')
