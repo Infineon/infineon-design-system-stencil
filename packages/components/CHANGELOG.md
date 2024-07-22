@@ -1,3 +1,20 @@
+# v23.6.0 (Mon Jul 22 2024)
+
+#### 🚀 Enhancement
+
+- Form integration for radio-button, checkbox, text-field, switch and date-picker [#1284](https://github.com/Infineon/infineon-design-system-stencil/pull/1284) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.5.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v23.5.0 (Wed Jul 17 2024)
 
 #### 🚀 Enhancement
