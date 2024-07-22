@@ -1,3 +1,20 @@
+# v24.0.0 (Mon Jul 22 2024)
+
+#### 💥 Breaking Change
+
+- Documentation update to checkbox, radio-button and states [#1379](https://github.com/Infineon/infineon-design-system-stencil/pull/1379) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.6.0 (Mon Jul 22 2024)
 
 #### 🚀 Enhancement
