@@ -1,5 +1,5 @@
 import { AttachInternals } from '@stencil/core';
-import { Component, Prop, State, Watch, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, State, Watch, h, Event, EventEmitter, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-switch',
@@ -15,10 +15,20 @@ export class Switch {
 
   @AttachInternals() internals: ElementInternals;
 
+  @Element() el: HTMLIfxSwitchElement;
+
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter<boolean>;
 
   componentWillLoad() {
     this.internalValue = this.value;
+  }
+
+  componentDidLoad() {
+    const slot = this.el.shadowRoot.querySelector('slot');
+    if (slot.assignedNodes().length) {
+      const container: HTMLElement = this.el.shadowRoot.querySelector('.container');
+      container.style.gap = "16px";
+    }
   }
 
   @Watch('value')
@@ -53,31 +63,37 @@ export class Switch {
     this.internals.setFormValue(null);
   }
 
-
   render() {
     return (
       <div
-        class={`container ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+        class="container"
         role="switch"
-        tabindex="0"
         aria-checked={this.internalValue ? 'true' : 'false'}
         aria-label={this.name}
         onClick={() => this.toggle()}
         onKeyDown={(event) => this.handleKeyDown(event)}
-      >
-        <div class="switch_checkbox-wrapper">
-          <input type="checkbox" hidden
-            name={this.name}
-            disabled={this.disabled}
-            value={`${this.internalValue}`} />
-          <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
-        </div>
-        <div class={`switch_label-wrapper ${this.disabled ? 'disabled' : ''}`} >
+        >
+        {/* Checkbox */}
+        <div 
+          class={`switch__checkbox-container ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+          tabindex="0"
+        >
+          <div class="switch__checkbox-wrapper">
+            <input type="checkbox" hidden
+              name={this.name}
+              disabled={this.disabled}
+              value={`${this.internalValue}`} />
+            <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
+          </div>
+        </div >
+
+        {/* Label */}
+        <div class={`switch__label-wrapper ${this.disabled ? 'disabled' : ''}`} >
           <label htmlFor="switch">
-            <slot />
+            <slot/>
           </label>
         </div>
-      </div >
+      </div>
     )
 
   }
