@@ -19,7 +19,7 @@ describe('ifx-switch', () => {
 
     await switchDiv.click();
 
-    const container = await page.find('ifx-switch >>> .container');
+    const container = await page.find('ifx-switch >>> .switch__checkbox-container');
     expect(container).not.toHaveClass('checked');
   });
 
@@ -42,7 +42,7 @@ describe('ifx-switch', () => {
     const component = await page.find('ifx-switch');
     await component.press('Enter');
 
-    const container = await page.find('ifx-switch >>> .container');
+    const container = await page.find('ifx-switch >>> .switch__checkbox-container');
     expect(container).not.toHaveClass('checked');
   });
 
@@ -56,8 +56,8 @@ describe('ifx-switch', () => {
     // Wait for any changes after pressing 'Space'
     await page.waitForChanges();
 
-    const container = await page.find('ifx-switch >>> .container');
-    expect(container).toHaveClass('checked');
+    const container = await page.find('ifx-switch >>> .switch__checkbox-container');
+    expect(container).not.toHaveClass('checked');
   });
 
 
@@ -70,7 +70,7 @@ describe('ifx-switch', () => {
     component.setProperty('value', true);
     await page.waitForChanges();
 
-    const container = await page.find('ifx-switch >>> .container');
+    const container = await page.find('ifx-switch >>> .switch__checkbox-container');
     expect(container).toHaveClass('checked');
   });
 
