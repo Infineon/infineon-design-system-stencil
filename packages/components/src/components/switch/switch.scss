@@ -8,11 +8,17 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: row;
+  gap: tokens.$ifxSpace200;
+  align-items: center;
+}
+
+.switch_checkbox-container {
   padding: tokens.$ifxSpace50;
   display: flex;
   align-items: center;
   position: relative;
-  // gap: tokens.$ifxSpace200;4
   // Subtracting padding size from both height and width
   width: (tokens.$ifxSpace500)-8px;
   height: 16px;
@@ -47,7 +53,6 @@
 
 
 .switch_label-wrapper {
-  margin-left: 46px; //(container witdth - switch width) + label gap (label starts where switch class ends)
   
   & label { 
     &:hover { 
@@ -90,13 +95,13 @@
 
 }
 
-.container:hover .toggle-switch {
+.switch_checkbox-container:hover .toggle-switch {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 
 
-.container.checked {
+.switch_checkbox-container.checked {
   background-color: tokens.$ifxColorOcean500;
   border-color: tokens.$ifxColorOcean500;
 
