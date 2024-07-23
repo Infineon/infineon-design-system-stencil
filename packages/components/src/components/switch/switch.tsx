@@ -57,27 +57,34 @@ export class Switch {
   render() {
     return (
       <div
-        class={`container ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+        class="container"
         role="switch"
-        tabindex="0"
         aria-checked={this.internalValue ? 'true' : 'false'}
         aria-label={this.name}
         onClick={() => this.toggle()}
         onKeyDown={(event) => this.handleKeyDown(event)}
-      >
-        <div class="switch_checkbox-wrapper">
-          <input type="checkbox" hidden
-            name={this.name}
-            disabled={this.disabled}
-            value={`${this.internalValue}`} />
-          <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
-        </div>
+        >
+        {/* Checkbox */}
+        <div 
+          class={`switch_checkbox-container ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+          tabindex="0"
+        >
+          <div class="switch_checkbox-wrapper">
+            <input type="checkbox" hidden
+              name={this.name}
+              disabled={this.disabled}
+              value={`${this.internalValue}`} />
+            <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
+          </div>
+        </div >
+
+        {/* Label */}
         <div class={`switch_label-wrapper ${this.disabled ? 'disabled' : ''}`} >
           <label htmlFor="switch">
             <slot />
           </label>
         </div>
-      </div >
+      </div>
     )
 
   }
