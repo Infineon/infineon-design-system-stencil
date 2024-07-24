@@ -17,8 +17,13 @@ function ProgressBar() {
   };
 
   return (
-    <div style={{ '--ifx-font-family': '"Arial black"' }}>
+    <div>
+      Small
+      <IfxProgressBar value={progressValue} size="s" ></IfxProgressBar>
+      <br/>
+      Medium
       <IfxProgressBar value={progressValue} size="m" showLabel={true}></IfxProgressBar>
+      <br/>
       <IfxButton onClick={updateProgressOnClick} theme='default' target="_blank">
         Update Progress
       </IfxButton>
