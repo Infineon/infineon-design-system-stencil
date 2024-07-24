@@ -21,6 +21,7 @@ export class TextField {
   @Prop() optional: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() maxlength?: number;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
@@ -82,6 +83,7 @@ export class TextField {
               value={this.value}
               onInput={() => this.handleInput()}
               placeholder={this.placeholder}
+              maxlength={this.maxlength}
               class={
                 `${this.icon ? 'icon' : ""}
                 ${this.error ? 'error' : ""} 
