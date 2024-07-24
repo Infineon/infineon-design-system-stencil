@@ -1,3 +1,20 @@
+# v24.0.2 (Wed Jul 24 2024)
+
+#### 🐛 Bug Fix
+
+- Progress bar: aligned progress bar height with the figma design [#1386](https://github.com/Infineon/infineon-design-system-stencil/pull/1386) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.0.1 (Wed Jul 24 2024)
 
 #### 🐛 Bug Fix
