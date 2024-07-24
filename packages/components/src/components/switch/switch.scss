@@ -11,7 +11,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  &.gap {
+    gap: tokens.$ifxSpace200;
+  }
 }
+
 
 .switch__checkbox-container {
   padding: tokens.$ifxSpace50;

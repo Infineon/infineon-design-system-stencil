@@ -23,12 +23,19 @@ export class Switch {
     this.internalValue = this.value;
   }
 
-  componentDidLoad() {
+  addGapBetweenLabelAndSwitch() {
     const slot = this.el.shadowRoot.querySelector('slot');
     if (slot.assignedNodes().length) {
-      const container: HTMLElement = this.el.shadowRoot.querySelector('.container');
-      container.style.gap = "16px";
+      this.el.shadowRoot.querySelector('.container').classList.add('gap')
     }
+  }
+  
+  componentDidLoad() {
+    this.addGapBetweenLabelAndSwitch();
+  }
+  
+  componentWillUpdate() {
+    this.addGapBetweenLabelAndSwitch();
   }
 
   @Watch('value')
