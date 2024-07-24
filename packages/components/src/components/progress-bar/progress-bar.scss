@@ -13,52 +13,32 @@
   top: 0;
   left: 0;
   display: flex;
-  height: tokens.$ifxSize200;
+  height: tokens.$ifxSize250;
   border-radius: tokens.$ifxBorderRadius12;
   width: 100%; // Ensure the bar itself can grow up to 100% width
   overflow: hidden; // Ensures that the inner progress bar doesn't exceed the width of the outer progress bar
   background-color: tokens.$ifxColorEngineering200;
   font-family: var(--ifx-font-family, sans-serif);
-
-
-
-  .label {
-    height: 17px;
-    border-radius: 1px 0px 0px 1px;
-  }
-
+  
   &.s {
     height: 4px;
   }
 
-  .progress {
-    height: 100%;
-    background-color: #0A8276;
-    position: relative;
-    transition: width 0.2s ease;
-
-    &:after {
-      content: '';
-      background-color: #EEEDED;
-      height: 100%;
-      position: absolute;
-    }
-
-  }
-
   .label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
     font-style: normal;
     font-size: tokens.$ifxFontSizeS;
     font-weight: 400;
     line-height: tokens.$ifxLineHeightS;
     color: tokens.$ifxColorBaseWhite;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  }
+  
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: fit-content;
+    height: 100%;
+    background-color: #0A8276;
+    transition: width 0.2s ease;
   }
 }
