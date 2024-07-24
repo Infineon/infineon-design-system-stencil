@@ -13,6 +13,10 @@ export default {
       action: 'ifxInput',
       description: 'Custom event emitted on input\n\n(see below for Two Way Data Binding in different JS frameworks)',
     },
+    maxlength: {
+      description: 'Maximum input length',
+      control: {type: 'number'}
+    },
     ifxSearchBarIsOpen: {
       action: 'ifxInput',
       description: 'Custom event',
@@ -27,11 +31,12 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ isOpen, disabled }) => {
+const DefaultTemplate = ({ isOpen, disabled, maxlength }) => {
   const element = document.createElement('ifx-search-bar');
   element.setAttribute('is-open', isOpen);
   element.setAttribute('disabled', disabled);
   element.addEventListener('ifxInput', action('ifxInput'));
+  if(maxlength != undefined) element.setAttribute('maxlength', maxlength);
 
   return element;
 };
