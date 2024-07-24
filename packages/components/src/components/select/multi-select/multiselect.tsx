@@ -33,7 +33,7 @@ export class Multiselect {
   @Prop() errorMessage: string = "Error";
   @State() internalErrorMessage: string;
   @Prop() label: string = "";
-  @State() persistentSelectedOptions: Option[] = [];
+  @State()  persistentSelectedOptions: Option[] = [];
   @Prop() placeholder: string = "";
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
@@ -109,7 +109,8 @@ export class Multiselect {
     // Update the state for initially selected options, if needed
     if (startIndex === 0) { // Assuming you want to do this only for the first batch
       const initiallySelected = slicedOptions.filter(option => option.selected);
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
+      const initallyAndNotAdded = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallyAndNotAdded];
     }
 
     return slicedOptions;
@@ -204,6 +205,7 @@ export class Multiselect {
   }
 
   async selectAll() {
+    console.log("select all")
     const allOptions = await this.fetchOptions(0, this.optionCount);
     this.selectAllRecursive(allOptions);
     
@@ -216,7 +218,8 @@ export class Multiselect {
         this.selectAllRecursive(opt.children);
       } else {
         if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
-          this.persistentSelectedOptions.push(opt)
+          opt.selected = true;
+          this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
         }
       }
     }
@@ -447,7 +450,7 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
 
     return (
-      <div>
+      <div class="option-wrapper">
         <div class={`option ${isSelected ? 'selected' : ''} 
         ${this.getSizeClass()}`}
           data-value={option.value}
