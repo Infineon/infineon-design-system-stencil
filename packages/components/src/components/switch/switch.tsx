@@ -23,21 +23,20 @@ export class Switch {
     this.internalValue = this.value;
   }
 
-  addGapBetweenLabelAndSwitch() {
+  toggleLabelGap() {
     const slot = this.el.shadowRoot.querySelector('slot');
+    const container = this.el.shadowRoot.querySelector('.container');
     if (slot.assignedNodes().length) {
-      this.el.shadowRoot.querySelector('.container').classList.add('gap')
+      container.classList.add('gap')
+    } else { 
+      container.classList.remove('gap')
     }
   }
   
   componentDidLoad() {
-    this.addGapBetweenLabelAndSwitch();
+    this.toggleLabelGap();
   }
-  
-  componentWillUpdate() {
-    this.addGapBetweenLabelAndSwitch();
-  }
-
+    
   @Watch('value')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
@@ -45,9 +44,7 @@ export class Switch {
     }
   }
 
-
-
-  toggle() {
+  toggleSwitch() {
     if (this.disabled) return;
     this.internalValue = !this.internalValue;
     this.internals.setFormValue(this.internalValue ? 'on' : null);
@@ -58,7 +55,7 @@ export class Switch {
     if (this.disabled) return;
     // If the pressed key is either 'Enter' or 'Space' 
     if (event.key === 'Enter' || event.key === ' ') {
-      this.toggle();
+      this.toggleSwitch();
     }
   }
 
@@ -77,7 +74,7 @@ export class Switch {
         role="switch"
         aria-checked={this.internalValue ? 'true' : 'false'}
         aria-label={this.name}
-        onClick={() => this.toggle()}
+        onClick={() => this.toggleSwitch()}
         onKeyDown={(event) => this.handleKeyDown(event)}
         >
         {/* Checkbox */}
@@ -97,7 +94,7 @@ export class Switch {
         {/* Label */}
         <div class={`switch__label-wrapper ${this.disabled ? 'disabled' : ''}`} >
           <label htmlFor="switch">
-            <slot/>
+            <slot onSlotchange={() => this.toggleLabelGap()} />
           </label>
         </div>
       </div>
