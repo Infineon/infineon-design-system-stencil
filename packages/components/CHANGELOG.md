@@ -1,3 +1,21 @@
+# v24.0.1 (Wed Jul 24 2024)
+
+#### 🐛 Bug Fix
+
+- Switch: Fixed the bug where the sibling elements of switch overlapped with its label [#1380](https://github.com/Infineon/infineon-design-system-stencil/pull/1380) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.0.0 (Mon Jul 22 2024)
 
 #### 💥 Breaking Change
