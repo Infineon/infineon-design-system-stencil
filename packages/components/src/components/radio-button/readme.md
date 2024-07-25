@@ -22,6 +22,19 @@
 | `ifxChange` |             | `CustomEvent<any>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [ifx-list-entry](../list/list-entry)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-list-entry --> ifx-radio-button
+  style ifx-radio-button fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

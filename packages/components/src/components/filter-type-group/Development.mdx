@@ -1,0 +1,17 @@
+import { Meta, Primary, Controls, Canvas, Story } from '@storybook/blocks';
+import * as FilterTypeGroupStories from './filter-type-group.stories';
+ 
+<Meta of={FilterTypeGroupStories} />
+
+# Filter Type Group
+
+The Filter Type Group component is used within the table component, when filtering is enabled and the filter-orientation is set to 'sidebar'.
+It consists of an ``ìfx-filter-search`` component and a list of filters of type ``checkbox``, ``radio-button``.
+These filters are grouped within one or multiple ```ifx-filter-accordion``` component(s), which can be expanded and collapsed.
+The ```ifx-filter-accordion``` contains an ``ifx-list`` component, which contains a number of ```ifx-list-entry``` components, which can then be selected to filter the table data.
+Each ``ifx-list`` has a ``type`` property, which defaults to ``checkbox``.
+
+## Stories
+<Canvas of={FilterTypeGroupStories.Default} sourceState="shown" />
+
+<Controls />
