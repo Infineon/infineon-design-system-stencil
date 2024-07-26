@@ -10,7 +10,6 @@ import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch 
 export class IfxTabs {
   @Element() el: HTMLElement;
 
-  @Prop() tabs: { header: string, disabled?: boolean }[] = [];
   @Prop() orientation: string = "horizontal";
   @Prop({ mutable: true }) activeTabIndex: number = 0;
 
@@ -26,8 +25,13 @@ export class IfxTabs {
 
 
   setActiveAndFocusedTab(index: number) {
-    this.internalActiveTabIndex = index;
-    this.internalFocusedTabIndex = index;
+    if (index >= this.tabObjects.length) {
+      index = this.tabObjects.length - 1;
+    }
+    if (!this.tabObjects[index].disabled) {
+      this.internalActiveTabIndex = index;
+      this.internalFocusedTabIndex = index;
+    }
   }
 
   @Watch('activeTabIndex')
@@ -35,7 +39,6 @@ export class IfxTabs {
     if (newValue !== oldValue) {
       this.setActiveAndFocusedTab(newValue);
     }
-
   }
 
 
@@ -45,10 +48,9 @@ export class IfxTabs {
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
     };
-    this.internalActiveTabIndex = this.activeTabIndex;
-    this.internalFocusedTabIndex = this.internalActiveTabIndex;
-    this.updateTabStyles();
     this.onSlotChange();
+    this.setActiveAndFocusedTab(this.activeTabIndex);
+    this.updateTabStyles();
   }
 
   updateTabStyles() {

@@ -85,12 +85,9 @@ describe('IfxTabs', () => {
       </ifx-tabs>
     `);
 
-    const tabs = await page.find('ifx-tabs');
-
     await page.$eval("ifx-tabs", elm => {
       elm.activeTabIndex = 0;
     });
-
 
     const activeTab = await page.find('ifx-tabs >>> .tab-item.active');
 
