@@ -1,0 +1,13 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+
+:host {
+  display: flex;
+}
+
+.filter-type-group {
+  width: 260px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: tokens.$ifxSpace100;
+}
