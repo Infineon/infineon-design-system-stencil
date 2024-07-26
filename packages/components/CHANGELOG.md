@@ -1,3 +1,195 @@
+# v24.1.0 (Fri Jul 26 2024)
+
+#### 🚀 Enhancement
+
+- Navbar: removed burger icon when mobile menu is empty [#1394](https://github.com/Infineon/infineon-design-system-stencil/pull/1394) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.0.2 (Wed Jul 24 2024)
+
+#### 🐛 Bug Fix
+
+- Progress bar: aligned progress bar height with the figma design [#1386](https://github.com/Infineon/infineon-design-system-stencil/pull/1386) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.0.1 (Wed Jul 24 2024)
+
+#### 🐛 Bug Fix
+
+- Switch: Fixed the bug where the sibling elements of switch overlapped with its label [#1380](https://github.com/Infineon/infineon-design-system-stencil/pull/1380) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.0.0 (Mon Jul 22 2024)
+
+#### 💥 Breaking Change
+
+- Documentation update to checkbox, radio-button and states [#1379](https://github.com/Infineon/infineon-design-system-stencil/pull/1379) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.6.0 (Mon Jul 22 2024)
+
+#### 🚀 Enhancement
+
+- Form integration for radio-button, checkbox, text-field, switch and date-picker [#1284](https://github.com/Infineon/infineon-design-system-stencil/pull/1284) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.5.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v23.5.0 (Wed Jul 17 2024)
+
+#### 🚀 Enhancement
+
+- Icon preview: out of sync with the icon library [#1364](https://github.com/Infineon/infineon-design-system-stencil/pull/1364) ([@tishoyanchev](https://github.com/tishoyanchev) [@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 23.4.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.4.2 (Tue Jul 16 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: adjusted the deployment bugfix for the github action master workflow [#1366](https://github.com/Infineon/infineon-design-system-stencil/pull/1366) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v23.4.1 (Mon Jul 15 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Update stencil library version in wrapper libraries' package.json [#1363](https://github.com/Infineon/infineon-design-system-stencil/pull/1363) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 4
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.4.0 (Mon Jul 15 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: enhanced step customization [#1331](https://github.com/Infineon/infineon-design-system-stencil/pull/1331) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.3.0 (Fri Jul 12 2024)
+
+#### 🚀 Enhancement
+
+- Icon component: removed error message when no icon specified [#1358](https://github.com/Infineon/infineon-design-system-stencil/pull/1358) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.2.1 (Thu Jul 11 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: restored old changes regarding profile image hover and username [#1356](https://github.com/Infineon/infineon-design-system-stencil/pull/1356) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.2.0 (Wed Jul 10 2024)
+
+#### 🚀 Enhancement
+
+- Navbar: enhanced customization of profile image [#1343](https://github.com/Infineon/infineon-design-system-stencil/pull/1343) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v23.1.0 (Fri Jul 05 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-profile: implemented a tooltip for username [#1346](https://github.com/Infineon/infineon-design-system-stencil/pull/1346) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v23.0.0 (Mon Jul 01 2024)
 
 #### 💥 Breaking Change

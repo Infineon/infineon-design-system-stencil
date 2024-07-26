@@ -12,7 +12,6 @@
 | `disabled`      | `disabled`      |             | `boolean` | `false` |
 | `error`         | `error`         |             | `boolean` | `false` |
 | `indeterminate` | `indeterminate` |             | `boolean` | `false` |
-| `name`          | `name`          |             | `string`  | `''`    |
 | `size`          | `size`          |             | `string`  | `'m'`   |
 | `value`         | `value`         |             | `boolean` | `false` |
 

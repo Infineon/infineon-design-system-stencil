@@ -23,6 +23,7 @@
  - [ifx-footer](../footer)
  - [ifx-list](../list)
  - [ifx-overview-table](../overview-table)
+ - [ifx-step](../stepper/step)
 
 ### Graph
 ```mermaid
@@ -30,6 +31,7 @@ graph TD;
   ifx-footer --> ifx-link
   ifx-list --> ifx-link
   ifx-overview-table --> ifx-link
+  ifx-step --> ifx-link
   style ifx-link fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -30,6 +30,9 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
 
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Install dependencies for all packages, build and deploy Stencil core package
         id: build
         env:
@@ -52,7 +55,6 @@ jobs:
             auto shipit
           fi
 
-
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
           echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
@@ -64,13 +66,28 @@ jobs:
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-          npx lerna exec --scope @infineon/infineon-design-system-angular -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          npx lerna exec --scope @infineon/infineon-design-system-react -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          npx lerna exec --scope @infineon/infineon-design-system-vue -- npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-     
+          lerna version $CANARY_VERSION --no-git-tag-version --y
+          cd packages/components-angular/projects/component-library
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          cd ../../../../
+          cd packages/components-vue
+          # Use jq to update the version directly in package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          npm install
+          cd ../components-react
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          npm install
+          cd ../../
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Update Stencil library version to $CANARY_VERSION"
+          git push origin HEAD:$BRANCH_NAME
+
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -86,7 +103,7 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
-        
+
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
@@ -97,7 +114,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-  
+
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
@@ -105,8 +122,7 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  
-  
+
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
@@ -122,8 +138,7 @@ jobs:
           source-dir: ./examples/wrapper-components/vue-javascript/dist
           umbrella-dir: pr-preview-vue-example
           token: ${{ secrets.GH_TOKEN }}
-  
-  
+
   deploy-preview-react:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -133,7 +148,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-  
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -142,7 +157,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-javascript
@@ -157,7 +171,7 @@ jobs:
           source-dir: ./examples/wrapper-components/react-javascript/build
           umbrella-dir: pr-preview-react-example
           token: ${{ secrets.GH_TOKEN }}
-   
+
   deploy-preview-angular:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -167,7 +181,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-          
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -176,7 +190,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  
       - name: Install and Build
         run: |
           cd packages/components-angular
@@ -187,7 +200,7 @@ jobs:
           cd ../../
           npm i @infineon/infineon-design-system-angular@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build my-app
-           
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -195,7 +208,7 @@ jobs:
           source-dir: ./packages/components-angular/dist/my-app
           umbrella-dir: pr-preview-angular-example
           token: ${{ secrets.GH_TOKEN }}
-          
+
   deploy-preview-vanilla:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -205,7 +218,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
- 
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -213,7 +226,6 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  
 
       - name: Update CDN Link in Vanilla example app & build
         run: | 
@@ -221,7 +233,7 @@ jobs:
           npm install
           npm run update-link
           npm run build
-            
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
