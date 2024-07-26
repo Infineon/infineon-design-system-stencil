@@ -61,7 +61,7 @@ export class Navbar {
   @Listen('ifxNavItem') 
   clearFirstLayerMenu(event: CustomEvent) { 
     if(event.detail.action === 'hideFirstLayer') { 
-      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      const leftMenuItems = this.getMobileMenuTop()
       for(let i = 0; i < leftMenuItems.length; i++) { 
         if(!leftMenuItems[i].isSameNode(event.detail.component)) {
           leftMenuItems[i].hideComponent()
@@ -101,7 +101,7 @@ export class Navbar {
     }
 
     if(event.detail.action === 'return') { 
-      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      const leftMenuItems = this.getMobileMenuTop()
       for(let i = 0; i < leftMenuItems.length; i++) { 
         if(!leftMenuItems[i].isSameNode(event.detail.component)) {
           leftMenuItems[i].showComponent()
@@ -327,6 +327,25 @@ export class Navbar {
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
     return searchBarLeftWrapper;
   }
+
+  getMobileMenuTop() { 
+    const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]');
+    return leftMenuItems;
+  }
+
+  getMobileMenuBottom() { 
+    const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]');
+    return rightMenuItems;
+  }
+
+  handleBurgerIcon() { 
+    const leftMenuItems = this.getMobileMenuTop()
+    const rightMenuItems = this.getMobileMenuBottom()
+    if(!leftMenuItems.length && !rightMenuItems.length) { 
+     const burgerIconWrapper = this.el.shadowRoot.querySelector('.navbar__burger-icon-wrapper')
+     this.toggleClass(burgerIconWrapper, 'hide')
+    }
+  }
   
   moveNavItemsToSidebar(e?: MediaQueryListEvent) {
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
@@ -383,6 +402,8 @@ export class Navbar {
         }
       }
       
+      this.handleBurgerIcon()
+
     } else {
       /* The viewport is more than 800px wide */
       topRowWrapper.classList.remove('expand')
@@ -402,14 +423,14 @@ export class Navbar {
       }
 
       //left-side
-      const leftMenuItems = this.el.querySelectorAll('[slot="mobile-menu-top"]')
+      const leftMenuItems = this.getMobileMenuTop()
       for(let i = 0; i < leftMenuItems.length; i++) { 
         leftMenuItems[i].setAttribute('slot', 'left-item')
         leftMenuItems[i].moveChildComponentsBackIntoNavbar()
       }
 
       //right-side
-      const rightMenuItems = this.el.querySelectorAll('[slot="mobile-menu-bottom"]')
+      const rightMenuItems = this.getMobileMenuBottom()
       const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
       const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
       navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
