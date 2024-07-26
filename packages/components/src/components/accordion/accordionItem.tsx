@@ -1,5 +1,5 @@
 //ifxAccordionItem
-import { Component, Prop, h, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion-item',
@@ -83,10 +83,24 @@ export class IfxAccordionItem {
     }
   }
 
+  
+
+  @Listen('keydown')
+  handleKeydown(ev: KeyboardEvent) {
+    switch (ev.key) {
+      case 'Enter': // fallthrough
+      case ' ': // space
+        ev.preventDefault();
+        this.toggleOpen();
+        break;
+    }
+  }
+
+
   render() {
     return (
       <div aria-label={this.caption} class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
-        <div class="accordion-title" onClick={() => this.toggleOpen()}>
+        <div class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0'>
           <span class="accordion-icon">
             <ifx-icon icon="chevron-down-12" />
           </span>
