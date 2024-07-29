@@ -1,3 +1,20 @@
+# v24.1.0 (Fri Jul 26 2024)
+
+#### 🚀 Enhancement
+
+- Navbar: removed burger icon when mobile menu is empty [#1394](https://github.com/Infineon/infineon-design-system-stencil/pull/1394) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.0.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.0.2 (Wed Jul 24 2024)
 
 #### 🐛 Bug Fix
