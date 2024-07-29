@@ -488,7 +488,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       duplicateItemsAllowed: this.duplicateItemsAllowed,
       delimiter: this.delimiter,
       paste: this.paste,
-      showSearch: this.showSearch,
+      searchEnabled: this.showSearch,
       searchChoices: this.searchChoices,
       searchFields: this.searchFields,
       searchFloor: this.searchFloor,
