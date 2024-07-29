@@ -37,8 +37,8 @@ export default {
     size: 'm',
     batchSize: 10,
     maxItemCount: 10,
-    searchEnabled: true,
-    selectAllEnabled: true,
+    showSearch: true,
+    showSelectAll: true,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -73,13 +73,13 @@ export default {
       options: [true, false],
       control: { type: 'radio' },
     },
-    searchEnabled: {
+    showSearch: {
       name: 'Enable search',
       options: [true, false],
       control: { type: 'radio' },
     },
-    selectAllEnabled: {
-      name: 'Enable Select All',
+    showSelectAll: {
+      name: 'Show Select All',
       description: 'Show a checkbox to select all options',
       options: [true, false],
       control: { type: 'radio' },
@@ -131,8 +131,8 @@ const DefaultTemplate = args => {
   label='${args.label}'
   placeholder='${args.placeholder}'
   disabled='${args.disabled}'
-  search-enabled='${args.searchEnabled}'
-  select-all-enabled='${args.selectAllEnabled}'>
+  show-search='${args.showSearch}'
+  show-select-all='${args.showSelectAll}'>
 </ifx-multiselect>`;
 
   setTimeout(() => {

@@ -87,7 +87,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="false" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="false" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -107,7 +107,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="false"></ifx-multiselect>
+      <ifx-multiselect show-select-all="false"></ifx-multiselect>
     `);
 
     // open dropdown
@@ -124,7 +124,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -148,7 +148,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(optionsOneSelected)}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(optionsOneSelected)}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -169,7 +169,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -199,7 +199,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -226,7 +226,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(optionsOneSelected)}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(optionsOneSelected)}'></ifx-multiselect>
     `);
 
     // open dropdown
@@ -250,7 +250,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect select-all-enabled="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+      <ifx-multiselect show-select-all="true" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
     `);
 
     // open dropdown
