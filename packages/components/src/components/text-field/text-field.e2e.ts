@@ -100,6 +100,18 @@ describe('ifx-text-field', () => {
 
     expect(formData['textField']).toBe("");
   });
+
+  it('handles value change', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-text-field maxlength="2"></ifx-text-field>');
+
+    const input = await page.find('ifx-text-field >>> input');
+    await input.press('KeyA');
+    await input.press('KeyB');
+    await input.press('KeyC');
+
+    expect(await input.getProperty('value')).toBe('ab');
+  });
 });
 
 async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
