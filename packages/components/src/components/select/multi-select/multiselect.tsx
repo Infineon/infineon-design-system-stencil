@@ -205,7 +205,6 @@ export class Multiselect {
   }
 
   async selectAll() {
-    console.log("select all")
     const allOptions = await this.fetchOptions(0, this.optionCount);
     this.selectAllRecursive(allOptions);
     
