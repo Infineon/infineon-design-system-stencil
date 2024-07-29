@@ -119,12 +119,8 @@ export default {
       options: ['compact', 'default'],
       control: { type: 'radio' },
     },
-    enableFiltering: {
-      options: [true, false],
-      control: { type: 'radio' },
-    },
     filterOrientation: {
-      options: ['sidebar', 'topbar'],
+      options: ['sidebar', 'topbar', 'none'],
       control: { type: 'radio' },
     },
     columnDefs: {
@@ -149,7 +145,7 @@ export default {
 
 
 const DefaultTemplate = (args) => {
-  if (!args.enableFiltering) {
+  if (args.filterOrientation === 'none') {
     const table = `<ifx-table
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
@@ -157,7 +153,6 @@ const DefaultTemplate = (args) => {
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-page-size="${args.paginationPageSize}"
-    enable-filtering="${args.enableFiltering}"
     filter-orientation="${args.filterOrientation}">
 </ifx-table>`;
     return table;
@@ -223,7 +218,6 @@ const filterComponents = args.columnDefs.map((column, index) => {
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-page-size="${args.paginationPageSize}"
-    enable-filtering="${args.enableFiltering}"
     filter-orientation="${args.filterOrientation}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
@@ -241,8 +235,7 @@ Pagination.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  enableFiltering: false,
-  filterOrientation: 'sidebar'
+  filterOrientation: 'none'
 
 };
 
@@ -252,8 +245,7 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
-  enableFiltering: false,
-  filterOrientation: 'sidebar'
+  filterOrientation: 'none'
 
 };
 
@@ -263,7 +255,6 @@ SidebarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  enableFiltering: true,
   filterOrientation: 'sidebar'
 };
 
@@ -273,7 +264,6 @@ TopbarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  enableFiltering: true,
   filterOrientation: 'topbar'
 };
 

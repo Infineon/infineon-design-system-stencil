@@ -10,7 +10,6 @@
 | Property             | Attribute              | Description | Type      | Default     |
 | -------------------- | ---------------------- | ----------- | --------- | ----------- |
 | `cols`               | `cols`                 |             | `any`     | `undefined` |
-| `enableFiltering`    | `enable-filtering`     |             | `boolean` | `true`      |
 | `filterOrientation`  | `filter-orientation`   |             | `string`  | `'sidebar'` |
 | `pagination`         | `pagination`           |             | `boolean` | `true`      |
 | `paginationPageSize` | `pagination-page-size` |             | `number`  | `10`        |

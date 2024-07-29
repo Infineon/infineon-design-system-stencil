@@ -45,7 +45,7 @@ export class IfxTabs {
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
     };
-    // this.internalActiveTabIndex = this.activeTabIndex;
+    this.internalActiveTabIndex = this.activeTabIndex;
     this.internalFocusedTabIndex = this.internalActiveTabIndex;
     this.updateTabStyles();
     this.onSlotChange();

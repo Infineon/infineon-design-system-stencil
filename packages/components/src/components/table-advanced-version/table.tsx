@@ -28,11 +28,10 @@ export class Table {
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
   @Prop() paginationPageSize: number = 10;
-  @Prop() filterOrientation: string = 'sidebar'; // topbar
+  @Prop() filterOrientation: string = 'sidebar'; // topbar / none
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
 
-  @Prop() enableFiltering: boolean = true;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
@@ -399,9 +398,6 @@ export class Table {
 
 
   render() {
-    // if (this.gridOptions.rowDragManaged) {
-    //   // console.log("draggable table render")
-    // }
     let style = {};
     if (this.tableHeight !== 'auto') {
       style = {
@@ -410,9 +406,9 @@ export class Table {
     }
     const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
     return (
-      <Host >
+      <Host>
         <div class="table-container">
-          {this.enableFiltering && this.filterOrientation !== 'topbar' && (
+          {this.filterOrientation === 'sidebar' && (
             <div class="sidebar-btn">
               <ifx-button
                 type="button"
@@ -428,11 +424,10 @@ export class Table {
               </ifx-button>
             </div>
           )}
-
+  
           <div class={filterClass}>
-            {this.enableFiltering && this.showSidebarFilters && this.filterOrientation !== 'topbar' && (
+            {this.filterOrientation === 'sidebar' && this.showSidebarFilters && (
               <div class="sidebar-container">
-
                 <div class="filters-title-container">
                   <span class="filters-title">Filters</span>
                 </div>
@@ -443,20 +438,18 @@ export class Table {
                 </div>
               </div>
             )}
-
-
-
-            {this.enableFiltering && this.filterOrientation !== 'sidebar' && (
+  
+            {this.filterOrientation !== 'none' && this.filterOrientation !== 'sidebar' && (
               <div class="set-filter-wrapper-topbar">
                 {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
                   <slot name="topbar-filter"></slot>
                 )}
               </div>
             )}
-
+  
             <div class="table-pagination-wrapper">
               <div class="filter-chips">
-                {this.enableFiltering && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
+                {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
                   Object.keys(this.currentFilters).map(filterName => (
                     <ifx-chip placeholder={filterName}>
                       <ifx-dropdown-menu size="m" slot="menu">
@@ -468,16 +461,16 @@ export class Table {
                       </ifx-dropdown-menu>
                     </ifx-chip>
                   ))
-
                 )}
-                {this.enableFiltering && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
+                {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
                   <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
                   >
                     <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all
-                  </ifx-button>)}
+                  </ifx-button>
+                )}
               </div>
-
-              {((this.enableFiltering && this.filterOrientation === 'sidebar') || this.filterOrientation === 'topbar') && (
+  
+              {this.filterOrientation !== 'none' && (
                 <div class="matching-results-container">
                   <span class="matching-results-count">
                     {this.matchingResultsCount}
@@ -487,7 +480,7 @@ export class Table {
                   </span>
                 </div>
               )}
-
+  
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
                 </div>
@@ -497,8 +490,7 @@ export class Table {
           </div>
         </div>
       </Host>
-
-    )
+    );
   }
 
 

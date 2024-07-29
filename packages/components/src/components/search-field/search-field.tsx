@@ -22,6 +22,7 @@ export class SearchField {
   @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
   @Prop() placeholder: string = "Search...";
+  @Prop() maxlength?: number = null;  
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -78,6 +79,7 @@ export class SearchField {
             onInput={() => this.handleInput()}
             placeholder={this.placeholder}
             disabled={this.disabled}
+            maxlength={this.maxlength}
             value={this.value} // bind the value property to input element
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (
