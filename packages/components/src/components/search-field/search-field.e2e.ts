@@ -78,4 +78,16 @@ describe('SearchField', () => {
     expect(await input.getProperty('placeholder')).toBe('Search...');
     expect(await wrapper.getProperty('className')).toContain('focused');
   });
+
+  it('should not update value when maxlength is set', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-search-field maxlength="2"></ifx-search-field>');
+
+    const input = await page.find('ifx-search-field >>> input');
+    await input.press('KeyA');
+    await input.press('KeyB');
+    await input.press('KeyC');
+
+    expect(await input.getProperty('value')).toBe('ab');
+  })
 });

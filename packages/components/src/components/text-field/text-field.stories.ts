@@ -32,6 +32,10 @@ export default {
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
     },
+    maxlength: {
+      description: 'Maximum input length',
+      control: {type: 'number'}
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event',
@@ -46,7 +50,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -58,7 +62,10 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
   element.setAttribute('name', name);
+  if (maxlength) element.setAttribute('maxlength', maxlength);
+
   element.addEventListener('ifxInput', action('ifxInput'));
+
 
   const slotContent = document.createTextNode(label);
   element.appendChild(slotContent);
