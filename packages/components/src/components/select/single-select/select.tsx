@@ -44,7 +44,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public duplicateItemsAllowed: boolean;
   @Prop() public delimiter: string;
   @Prop() public paste: boolean;
-  @Prop() public searchEnabled: boolean;
+  @Prop() public showSearch: boolean;
   @Prop() public searchChoices: boolean;
   @Prop() public searchFields: Array<string> | string;
   @Prop() public searchFloor: number;
@@ -488,7 +488,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       duplicateItemsAllowed: this.duplicateItemsAllowed,
       delimiter: this.delimiter,
       paste: this.paste,
-      searchEnabled: this.searchEnabled,
+      showSearch: this.showSearch,
       searchChoices: this.searchChoices,
       searchFields: this.searchFields,
       searchFloor: this.searchFloor,
@@ -568,7 +568,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 spellcheck="false"
                 role="textbox"
                 aria-autocomplete="list"
-                aria-label="${this.searchEnabled ? this.searchPlaceholderValue : ''}"   >     
+                aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
                 `)
               },
 

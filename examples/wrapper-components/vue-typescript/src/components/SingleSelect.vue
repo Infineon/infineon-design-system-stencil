@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>SingleSelect</h2>
-    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" search-enabled="true"
+    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" show-search="true"
       search-placeholder-value="Search..." :disabled="disabled" :error="error" :error-message="errorMessage"
       label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
     <div>
@@ -11,7 +11,7 @@
     </div>
     <br />
 
-    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" search-enabled="true"
+    <ifx-select type="single" value="undefined" size="medium (40px)" placeholder="true" show-search="true"
       search-placeholder-value="Search..." :disabled="disabled2" :error="error" :error-message="errorMessage"
       label="" placeholder-value="Placeholder" :options="JSON.stringify(options)"></ifx-select>
 
