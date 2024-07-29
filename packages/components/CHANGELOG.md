@@ -1,3 +1,20 @@
+# v24.1.1 (Mon Jul 29 2024)
+
+#### 🐛 Bug Fix
+
+- Implemented a maxlength prop for input elements [#1388](https://github.com/Infineon/infineon-design-system-stencil/pull/1388) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.1.0 (Fri Jul 26 2024)
 
 #### 🚀 Enhancement
