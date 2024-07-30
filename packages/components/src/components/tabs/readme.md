@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type                                        | Default        |
-| ---------------- | ------------------ | ----------- | ------------------------------------------- | -------------- |
-| `activeTabIndex` | `active-tab-index` |             | `number`                                    | `0`            |
-| `orientation`    | `orientation`      |             | `string`                                    | `"horizontal"` |
-| `tabs`           | --                 |             | `{ header: string; disabled?: boolean; }[]` | `[]`           |
+| Property         | Attribute          | Description | Type     | Default        |
+| ---------------- | ------------------ | ----------- | -------- | -------------- |
+| `activeTabIndex` | `active-tab-index` |             | `number` | `0`            |
+| `orientation`    | `orientation`      |             | `string` | `"horizontal"` |
 
 
 ## Events

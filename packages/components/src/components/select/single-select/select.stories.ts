@@ -25,7 +25,7 @@ export default {
   // tags: ['autodocs'],
   args: {
     size: 'm',
-    searchEnabled: true,
+    showSearch: true,
     searchPlaceholderValue: 'Search...',
     placeholder: true,
     placeholderValue: 'Placeholder',
@@ -69,7 +69,7 @@ export default {
       options: [true, false],
       control: { type: 'radio' },
     },
-    searchEnabled: {
+    showSearch: {
       options: [true, false],
       control: { type: 'radio' },
     },
@@ -96,7 +96,7 @@ const DefaultTemplate = args => {
   const template = `<ifx-select 
   size='${args.size}'
   placeholder='${args.placeholder}'
-  search-enabled='${args.searchEnabled}'
+  show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   disabled='${args.disabled}'
   error='${args.error}'

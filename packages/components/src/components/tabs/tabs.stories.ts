@@ -59,7 +59,7 @@ export default {
 const Template = args => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
-  tabsElement.setAttribute('active-tab-index', tabHeaders[args.activeTabIndex].disabled ? '' : args.activeTabIndex);
+  tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));
   
   for (let i = 0; i < args.amountOfTabs; i++) {
