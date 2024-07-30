@@ -44,8 +44,8 @@ export class Multiselect {
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
   @State() filteredOptions: Option[] = [];
-  @Prop() searchEnabled: boolean = true;
-  @Prop() selectAllEnabled: boolean = true;
+  @Prop() showSearch: boolean = true;
+  @Prop() showSelectAll: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
 
 
@@ -205,7 +205,6 @@ export class Multiselect {
   }
 
   async selectAll() {
-    console.log("select all")
     const allOptions = await this.fetchOptions(0, this.optionCount);
     this.selectAllRecursive(allOptions);
     
@@ -585,8 +584,8 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}
               style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              {this.searchEnabled && <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
-              {this.selectAllEnabled && this.renderSelectAll()}
+              {this.showSearch && <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
+              {this.showSelectAll && this.renderSelectAll()}
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>

@@ -176,7 +176,7 @@ export class Pagination {
               value='undefined'
               size='s'
               placeholder='false'
-              search-enabled='false'
+              show-search='false'
               search-placeholder-value='Search...'
               disabled={false}
               error={false}
