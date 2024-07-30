@@ -56,7 +56,7 @@ export class IfxSlider {
 
   handleInputChangeOfRangeSlider(event: Event) {
     const target = event.target as HTMLInputElement;
-    if(parseInt(this.maxInputRef.value) - parseInt(this.minInputRef.value) <= 0) {
+    if(parseFloat(this.maxInputRef.value) - parseFloat(this.minInputRef.value) <= 0) {
       if(target.id === 'max-slider') {
         this.maxInputRef.value = this.minInputRef.value;
       }else{
@@ -64,9 +64,9 @@ export class IfxSlider {
       }
     }
     if(target.id === 'max-slider') {
-      this.internalMaxValue = parseInt(this.maxInputRef.value);
+      this.internalMaxValue = parseFloat(this.maxInputRef.value);
     } else {
-      this.internalMinValue = parseInt(this.minInputRef.value);
+      this.internalMinValue = parseFloat(this.minInputRef.value);
     }
     this.ifxChange.emit({minVal: this.internalMinValue, maxVal: this.internalMaxValue});
     this.updateValuePercent();
@@ -90,7 +90,7 @@ export class IfxSlider {
 
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.internalValue = parseInt(target.value);
+    this.internalValue = parseFloat(target.value);
     this.ifxChange.emit(this.internalValue);
     this.calculatePercentageValue();
     this.updateValuePercent();
