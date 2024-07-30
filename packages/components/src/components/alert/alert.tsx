@@ -16,6 +16,24 @@ export class Alert {
     this.ifxClose.emit()
   }
 
+  matomoLogic() { 
+    var _paq = (window as any)._paq = (window as any)._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+    var u="https://matomowebtst-vih-staging-eu-at-3-vih.icp.infineon.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '4']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  }
+
+  componentWillLoad() { 
+    this.matomoLogic()
+  }
+
   render() {
     return (
      this.variant === 'info' 
