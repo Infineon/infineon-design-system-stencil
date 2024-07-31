@@ -83,8 +83,8 @@ export class IfxSlider {
   }
 
   calculatePercentageValue() {
-    const num = (this.internalValue - this.min) * 1.0;
-    const den = this.max - this.min;
+    const num = Math.round((this.internalValue - this.min) / this.step);
+    const den = Math.ceil((this.max - this.min) / this.step);
     this.percentage = +parseFloat(String((num/den)*100)).toFixed(2);
   }
 
@@ -98,13 +98,17 @@ export class IfxSlider {
 
   updateValuePercent() {
     if(this.type === 'double'){
+      const den = Math.ceil((this.max - this.min) / this.step);
+
       if (this.minInputRef) {
-        const minPercent = ((this.internalMinValue - this.min) / (this.max - this.min)) * 100;
+        const num = Math.round((this.internalMinValue - this.min) / this.step);
+        const minPercent = (num/den) * 100;
         this.minInputRef.parentElement.style.setProperty('--min-value-percent', `${minPercent}%`);
       }
 
       if (this.maxInputRef) {
-        const maxPercent = ((this.internalMaxValue - this.min) / (this.max - this.min)) * 100;
+        const num = Math.round((this.internalMaxValue - this.min) / this.step);
+        const maxPercent = (num/den) * 100;
         this.maxInputRef.parentElement.style.setProperty('--max-value-percent', `${maxPercent}%`);
       }
 
