@@ -56,7 +56,7 @@ export class IfxSlider {
 
   handleInputChangeOfRangeSlider(event: Event) {
     const target = event.target as HTMLInputElement;
-    if(parseInt(this.maxInputRef.value) - parseInt(this.minInputRef.value) <= 0) {
+    if(parseFloat(this.maxInputRef.value) - parseFloat(this.minInputRef.value) <= 0) {
       if(target.id === 'max-slider') {
         this.maxInputRef.value = this.minInputRef.value;
       }else{
@@ -64,9 +64,9 @@ export class IfxSlider {
       }
     }
     if(target.id === 'max-slider') {
-      this.internalMaxValue = parseInt(this.maxInputRef.value);
+      this.internalMaxValue = parseFloat(this.maxInputRef.value);
     } else {
-      this.internalMinValue = parseInt(this.minInputRef.value);
+      this.internalMinValue = parseFloat(this.minInputRef.value);
     }
     this.ifxChange.emit({minVal: this.internalMinValue, maxVal: this.internalMaxValue});
     this.updateValuePercent();
@@ -83,14 +83,14 @@ export class IfxSlider {
   }
 
   calculatePercentageValue() {
-    const num = (this.internalValue - this.min) * 1.0;
-    const den = this.max - this.min;
+    const num = Math.round((this.internalValue - this.min) / this.step);
+    const den = Math.ceil((this.max - this.min) / this.step);
     this.percentage = +parseFloat(String((num/den)*100)).toFixed(2);
   }
 
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.internalValue = parseInt(target.value);
+    this.internalValue = parseFloat(target.value);
     this.ifxChange.emit(this.internalValue);
     this.calculatePercentageValue();
     this.updateValuePercent();
@@ -98,13 +98,17 @@ export class IfxSlider {
 
   updateValuePercent() {
     if(this.type === 'double'){
+      const den = Math.ceil((this.max - this.min) / this.step);
+
       if (this.minInputRef) {
-        const minPercent = ((this.internalMinValue - this.min) / (this.max - this.min)) * 100;
+        const num = Math.round((this.internalMinValue - this.min) / this.step);
+        const minPercent = (num/den) * 100;
         this.minInputRef.parentElement.style.setProperty('--min-value-percent', `${minPercent}%`);
       }
 
       if (this.maxInputRef) {
-        const maxPercent = ((this.internalMaxValue - this.min) / (this.max - this.min)) * 100;
+        const num = Math.round((this.internalMaxValue - this.min) / this.step);
+        const maxPercent = (num/den) * 100;
         this.maxInputRef.parentElement.style.setProperty('--max-value-percent', `${maxPercent}%`);
       }
 
