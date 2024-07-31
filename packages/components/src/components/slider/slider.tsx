@@ -83,8 +83,8 @@ export class IfxSlider {
   }
 
   calculatePercentageValue() {
-    const num = Math.round((this.internalValue - this.min) / this.step);
-    const den = Math.ceil((this.max - this.min) / this.step);
+    const num = (this.internalValue - this.min) * 1.0;
+    const den = this.max - this.min;
     this.percentage = +parseFloat(String((num/den)*100)).toFixed(2);
   }
 
@@ -96,18 +96,27 @@ export class IfxSlider {
     this.updateValuePercent();
   }
 
-  updateValuePercent() {
-    if(this.type === 'double'){
-      const den = Math.ceil((this.max - this.min) / this.step);
+  private roundToValidStep(value: number) {
+    const relativeValue = value - this.min;
+    const remainder = relativeValue % this.step;
+    if (remainder >= this.step / 2) {
+      return this.min + relativeValue + (this.step - remainder);
+    } else {
+      return this.min + relativeValue - remainder;
+    }
+  }
 
+  updateValuePercent() {
+    const den = this.max - this.min;
+    if(this.type === 'double'){
       if (this.minInputRef) {
-        const num = Math.round((this.internalMinValue - this.min) / this.step);
+        const num = (this.roundToValidStep(this.internalMinValue) - this.min) * 1.0;
         const minPercent = (num/den) * 100;
         this.minInputRef.parentElement.style.setProperty('--min-value-percent', `${minPercent}%`);
       }
 
       if (this.maxInputRef) {
-        const num = Math.round((this.internalMaxValue - this.min) / this.step);
+        const num = (this.roundToValidStep(this.internalMaxValue) - this.min) * 1.0;
         const maxPercent = (num/den) * 100;
         this.maxInputRef.parentElement.style.setProperty('--max-value-percent', `${maxPercent}%`);
       }
@@ -115,7 +124,10 @@ export class IfxSlider {
     } else {
 
       if (this.inputRef) {
-        this.inputRef.style.setProperty('--value-percent', `${this.percentage}%`);
+        const num = (this.roundToValidStep(this.internalValue) - this.min) * 1.0;
+        const den = this.max - this.min;
+        const percentage = (num/den) * 100;
+        this.inputRef.style.setProperty('--value-percent', `${percentage}%`);
       }
 
     }
