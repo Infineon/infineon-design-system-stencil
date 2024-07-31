@@ -457,7 +457,7 @@ export class Multiselect {
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
           <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
-          <label htmlFor={uniqueId}>{option.label}</label>
+          <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
       </div>
@@ -512,7 +512,7 @@ export class Multiselect {
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
         <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
-        <label htmlFor={uniqueId}>{option.label}</label>
+        <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
       </div>
     );
   }
