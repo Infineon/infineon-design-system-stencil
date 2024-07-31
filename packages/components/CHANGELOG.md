@@ -1,3 +1,20 @@
+# v24.2.0 (Wed Jul 31 2024)
+
+#### 🚀 Enhancement
+
+- Tailwind CSS page included in Storybook [#1397](https://github.com/Infineon/infineon-design-system-stencil/pull/1397) ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.1.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.1.2 (Tue Jul 30 2024)
 
 #### 🐛 Bug Fix
