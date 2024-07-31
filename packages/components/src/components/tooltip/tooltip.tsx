@@ -193,7 +193,7 @@ export class Tooltip {
         <slot></slot>
 
         {this.variant.toLowerCase() === 'dismissible' && <div class={tooltipDismissible}>
-          <button class="close-button" onClick={this.onDismissClick}>
+          <button aria-label="Close Tooltip" class="close-button" onClick={this.onDismissClick}>
             <ifx-icon icon="cross16"></ifx-icon>
           </button>
           <div class="tooltip-dismissible-content">
