@@ -1,3 +1,20 @@
+# v24.2.1 (Wed Jul 31 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: tooltip: x-close button on dismissible variant does not work [#1401](https://github.com/Infineon/infineon-design-system-stencil/pull/1401) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.2.0 (Wed Jul 31 2024)
 
 #### 🚀 Enhancement
