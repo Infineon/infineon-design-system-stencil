@@ -167,6 +167,11 @@ export class Tooltip {
     }
   }
 
+  onDismissClick = () => {
+    this.tooltipVisible = false;
+    this.tooltipEl.style.display = 'none';
+  }
+
   render() {
     const tooltipDismissible = {
       'tooltip-dismissible': true,
@@ -188,7 +193,9 @@ export class Tooltip {
         <slot></slot>
 
         {this.variant.toLowerCase() === 'dismissible' && <div class={tooltipDismissible}>
-          <ifx-icon icon="cross16" class="close-button"></ifx-icon>
+          <button aria-label="Close Tooltip" class="close-button" onClick={this.onDismissClick}>
+            <ifx-icon icon="cross16"></ifx-icon>
+          </button>
           <div class="tooltip-dismissible-content">
             {this.header && <div class="tooltip-dismissible-header">{this.header}</div>}
             <div class="tooltip-dismissible-body">{this.text}</div>
