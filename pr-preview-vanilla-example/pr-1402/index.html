@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@24.2.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@24.2.2/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -333,6 +333,22 @@
     <br />
     <br />
 
+    <h2>Slider</h2>
+    <ifx-slider id="single-slider" type="single" value="50" min="0" max="100" step="0.1"></ifx-slider>
+    <br />
+    <span id="single-slider-value">Value: 50</span>
+
+    <br />
+    
+    <h2>Slider (Double)</h2>
+    <ifx-slider id="double-slider" type="double" min="0" max="100" step="1" min-value-handle="20" max-value-handle="80"></ifx-slider>
+    <br />
+    <span id="double-slider-value-min">Min Value: 20</span>
+    <br />
+    <span id="double-slider-value-max">Max Value: 80</span>
+
+    <br />
+    <br />
 
 
     <h2>Search field</h2>
@@ -698,6 +714,25 @@
     console.log(btn.fullWidth);
   }
 
+  // Slider
+  const singleSlider = document.querySelector('#single-slider');
+  const doubleSlider = document.querySelector('#double-slider');
+
+  const singleSliderSpan = document.querySelector('#single-slider-value');
+  const doubleSliderSpanMin = document.querySelector('#double-slider-value-min');
+  const doubleSliderSpanMax = document.querySelector('#double-slider-value-max');
+
+  function singleSliderChange(event) {
+    singleSliderSpan.innerHTML = event.detail;
+  }
+
+  function doubleSliderChange(event) {
+    doubleSliderSpanMin.innerHTML = `Min Value: ${event.detail.minVal}`;
+    doubleSliderSpanMax.innerHTML = `Max Value: ${event.detail.maxVal}`;
+  }
+
+  singleSlider.addEventListener('ifxChange', singleSliderChange);
+  doubleSlider.addEventListener('ifxChange', doubleSliderChange);
 
 </script>
 
