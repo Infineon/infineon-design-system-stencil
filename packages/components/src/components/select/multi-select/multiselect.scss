@@ -247,8 +247,14 @@
       /* or however much indentation you want */
     }
 
+    &.disabled {
+      &:hover {
+        cursor: default;
+      }
+    }
+
     label {
-      cursor: pointer;
+      cursor: inherit;
     }
   }
 
