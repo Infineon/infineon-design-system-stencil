@@ -206,7 +206,7 @@
 }
 
 
-.tooltip-compact.visible {
+.tooltip-compact {
   @extend %tooltip-arrow-positions;
   min-width: 28px !important;
   max-width: 145px !important;
