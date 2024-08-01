@@ -228,7 +228,7 @@
       background-color: tokens.$ifxColorEngineering200;
     }
 
-    &:focus {
+    &:focus:not(.disabled) {
       background-color: tokens.$ifxColorEngineering300;
       outline: none;
     }
@@ -245,6 +245,16 @@
     &.sub-option {
       padding-left: 30px;
       /* or however much indentation you want */
+    }
+
+    &.disabled {
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    label {
+      cursor: inherit;
     }
   }
 
