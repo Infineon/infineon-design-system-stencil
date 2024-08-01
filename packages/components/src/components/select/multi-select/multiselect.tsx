@@ -450,7 +450,7 @@ export class Multiselect {
 
     return (
       <div class="option-wrapper">
-        <div class={`option ${isSelected ? 'selected' : ''} 
+        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 
         ${this.getSizeClass()}`}
           data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
@@ -506,7 +506,7 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (
-      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
+      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()} ${disableCheckbox ? 'disabled' : ''}`}
         data-value={option.value}
         role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}

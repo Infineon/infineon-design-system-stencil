@@ -228,7 +228,7 @@
       background-color: tokens.$ifxColorEngineering200;
     }
 
-    &:focus {
+    &:focus:not(.disabled) {
       background-color: tokens.$ifxColorEngineering300;
       outline: none;
     }
