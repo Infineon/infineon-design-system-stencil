@@ -38,7 +38,6 @@
 
 .tooltip-dismissible {
   @extend %tooltip-common;
-  min-width: 110px;
   width: auto;
 
     .close-button {
@@ -92,7 +91,6 @@
 
 .tooltip-extended {
   @extend %tooltip-common;
-  min-width: 100px;
   width: auto;
   //padding-left: 36px; // Added this line, adjust as per your icon width
   //padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
@@ -205,12 +203,18 @@
 
 .tooltip-compact {
   @extend %tooltip-arrow-positions;
+  min-width: 28px;
+  max-width: 145px;
 }
 
 .tooltip-dismissible {
   @extend %tooltip-arrow-positions;
+  min-width: 145px;
+  max-width: 310px;
 }
 
 .tooltip-extended {
   @extend %tooltip-arrow-positions;
+  min-width: 145px;
+  max-width: 310px;
 }
