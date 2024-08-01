@@ -1,3 +1,20 @@
+# v24.2.3 (Thu Aug 01 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: label is now clickable + Design adjustment [#1402](https://github.com/Infineon/infineon-design-system-stencil/pull/1402) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.2.2 (Wed Jul 31 2024)
 
 #### 🐛 Bug Fix
