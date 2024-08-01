@@ -450,14 +450,14 @@ export class Multiselect {
 
     return (
       <div class="option-wrapper">
-        <div class={`option ${isSelected ? 'selected' : ''} 
+        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 
         ${this.getSizeClass()}`}
           data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
           <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
-          <label htmlFor={uniqueId}>{option.label}</label>
+          <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
       </div>
@@ -506,13 +506,13 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (
-      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
+      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()} ${disableCheckbox ? 'disabled' : ''}`}
         data-value={option.value}
         role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
         <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
-        <label htmlFor={uniqueId}>{option.label}</label>
+        <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
       </div>
     );
   }
