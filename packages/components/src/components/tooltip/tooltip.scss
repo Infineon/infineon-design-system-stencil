@@ -43,7 +43,6 @@
 
 .tooltip-dismissible {
   @extend %tooltip-common;
-  width: auto;
 
     .close-button {
       all: unset;
@@ -96,7 +95,6 @@
 
 .tooltip-extended {
   @extend %tooltip-common;
-  width: auto;
   //padding-left: 36px; // Added this line, adjust as per your icon width
   //padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
   align-items: center;
