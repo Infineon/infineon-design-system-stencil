@@ -26,6 +26,7 @@
   line-height: 20px;
   color: tokens.$ifxColorBaseWhite;
   width: max-content;
+  box-sizing: border-box;
 
   white-space: pre-wrap;   /* wraps text at spaces and within words */
   word-wrap: break-word;   /* breaks text within a word if necessary */
