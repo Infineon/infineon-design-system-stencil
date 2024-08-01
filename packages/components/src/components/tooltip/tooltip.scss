@@ -19,12 +19,17 @@
   z-index: 1080;
   display: none;
   transition: opacity 0.3s;
-  position: relative;
+  position: absolute;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   color: tokens.$ifxColorBaseWhite;
+  width: max-content;
+
+  white-space: pre-wrap;   /* wraps text at spaces and within words */
+  word-wrap: break-word;   /* breaks text within a word if necessary */
+  overflow-wrap: anywhere; /* breaks text at arbitrary points when needed */
 
   &.visible {
     display: flex !important;
@@ -201,20 +206,20 @@
 }
 
 
-.tooltip-compact {
+.tooltip-compact.visible {
   @extend %tooltip-arrow-positions;
-  min-width: 28px;
-  max-width: 145px;
+  min-width: 28px !important;
+  max-width: 145px !important;
 }
 
 .tooltip-dismissible {
   @extend %tooltip-arrow-positions;
-  min-width: 145px;
-  max-width: 310px;
+  min-width: 145px !important;
+  max-width: 310px !important;
 }
 
 .tooltip-extended {
   @extend %tooltip-arrow-positions;
-  min-width: 145px;
-  max-width: 310px;
+  min-width: 145px !important;
+  max-width: 310px !important;
 }
