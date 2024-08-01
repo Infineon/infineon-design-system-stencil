@@ -37,7 +37,7 @@ const DefaultTemplate = ({ header, text, variant, position, icon }) => {
   element.setAttribute('position', position);
   element.setAttribute('icon', icon);
 
-  element.textContent = "I'm the tooltip reference element - Please hover me"; // Set content for the reference element
+  element.textContent = `I'm the tooltip reference element - Please ${variant==='dismissible' ? 'click' : 'hover'} me`; // Set content for the reference element
 
   return element;
 };
