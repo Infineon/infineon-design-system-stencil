@@ -47,6 +47,7 @@ export class Multiselect {
   @Prop() showSearch: boolean = true;
   @Prop() showSelectAll: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
+  @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
 
 
   @Event() ifxSelect: EventEmitter;
@@ -101,19 +102,63 @@ export class Multiselect {
       console.error('Unexpected value for options:', this.options);
     }
 
-    this.optionCount = this.countOptions(allOptions);
-
+    if (!this.optionsProcessed) {
+      this.optionCount = this.countOptions(allOptions);
+      const initiallySelected = this.collectSelectedOptions(allOptions);
+      const initallySelectedNotInState = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
+      this.optionsProcessed = true;
+    }
+    
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
-
-    // Update the state for initially selected options, if needed
-    if (startIndex === 0) { // Assuming you want to do this only for the first batch
-      const initiallySelected = slicedOptions.filter(option => option.selected);
-      const initallyAndNotAdded = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallyAndNotAdded];
-    }
-
     return slicedOptions;
+  }
+
+  /**
+   * Collects and returns all options that are selected.
+   * When the parent is selected, then the value of the children will be overriden with selected as well.
+   * It will only collect the leaves of the tree.
+   * 
+   * @param options A list of options.
+   * @returns A list with all selected options
+   */
+  private collectSelectedOptions(options: Option[]): Option[] {
+    let selectedOptions: Option[] = [];
+  
+    for (const option of options) {
+      if (option.selected) {
+        if (option.children && option.children.length > 0) {
+          // if parent is selected, then select all child options
+          selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
+        } else {
+          selectedOptions.push(option);
+        }
+      } else {
+        if (option.children && option.children.length > 0) {
+          selectedOptions = selectedOptions.concat(this.collectSelectedOptions(option.children));
+        }
+      }
+    }
+    return selectedOptions;
+  }
+
+  /**
+   * Collects all leaf children options.
+   * 
+   * @param option A list with all leaf-children.
+   */
+  private collectLeafOptions(children: Option[]): Option[] {
+    let leafOptions = [];
+  
+    for (const child of children) {
+      if (child.children && child.children.length > 0) {
+        leafOptions = leafOptions.concat(this.collectLeafOptions(child.children));
+      } else {
+        leafOptions.push(child);
+      }
+    }  
+    return leafOptions;
   }
 
   /**
