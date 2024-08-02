@@ -104,7 +104,7 @@ export class Multiselect {
 
     if (!this.optionsProcessed) {
       this.optionCount = this.countOptions(allOptions);
-      const initiallySelected = this.collectSelectedNodes(allOptions);
+      const initiallySelected = this.collectSelectedOptions(allOptions);
       const initallySelectedNotInState = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
       this.optionsProcessed = true;
@@ -115,18 +115,50 @@ export class Multiselect {
     return slicedOptions;
   }
 
-  private collectSelectedNodes(nodes) {
-    let selectedNodes = [];
+  /**
+   * Collects and returns all options that are selected.
+   * When the parent is selected, then the value of the children will be overriden with selected as well.
+   * It will only collect the leaves of the tree.
+   * 
+   * @param options A list of options.
+   * @returns A list with all selected options
+   */
+  private collectSelectedOptions(options: Option[]): Option[] {
+    let selectedOptions: Option[] = [];
   
-    for (const node of nodes) {
-      if (node.children && node.children.length > 0) {
-        selectedNodes = selectedNodes.concat(this.collectSelectedNodes(node.children));
-      } else if (node.selected) {
-        selectedNodes.push(node);
+    for (const option of options) {
+      if (option.selected) {
+        if (option.children && option.children.length > 0) {
+          // if parent is selected, then select all child options
+          selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
+        } else {
+          selectedOptions.push(option);
+        }
+      } else {
+        if (option.children && option.children.length > 0) {
+          selectedOptions = selectedOptions.concat(this.collectSelectedOptions(option.children));
+        }
       }
     }
+    return selectedOptions;
+  }
+
+  /**
+   * Collects all leaf children options.
+   * 
+   * @param option A list with all leaf-children.
+   */
+  private collectLeafOptions(children: Option[]): Option[] {
+    let leafOptions = [];
   
-    return selectedNodes;
+    for (const child of children) {
+      if (child.children && child.children.length > 0) {
+        leafOptions = leafOptions.concat(this.collectLeafOptions(child.children));
+      } else {
+        leafOptions.push(child);
+      }
+    }  
+    return leafOptions;
   }
 
   /**
@@ -312,7 +344,6 @@ export class Multiselect {
   }
 
   toggleDropdown() {
-    console.log(this.loadedOptions);
     this.dropdownOpen = !this.dropdownOpen;
     setTimeout(() => {
       if (this.dropdownOpen) {
