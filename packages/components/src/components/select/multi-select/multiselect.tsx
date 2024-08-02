@@ -47,6 +47,7 @@ export class Multiselect {
   @Prop() showSearch: boolean = true;
   @Prop() showSelectAll: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
+  @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
 
 
   @Event() ifxSelect: EventEmitter;
@@ -101,19 +102,31 @@ export class Multiselect {
       console.error('Unexpected value for options:', this.options);
     }
 
-    this.optionCount = this.countOptions(allOptions);
-
+    if (!this.optionsProcessed) {
+      this.optionCount = this.countOptions(allOptions);
+      const initiallySelected = this.collectSelectedNodes(allOptions);
+      const initallySelectedNotInState = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
+      this.optionsProcessed = true;
+    }
+    
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
-
-    // Update the state for initially selected options, if needed
-    if (startIndex === 0) { // Assuming you want to do this only for the first batch
-      const initiallySelected = slicedOptions.filter(option => option.selected);
-      const initallyAndNotAdded = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallyAndNotAdded];
-    }
-
     return slicedOptions;
+  }
+
+  private collectSelectedNodes(nodes) {
+    let selectedNodes = [];
+  
+    for (const node of nodes) {
+      if (node.children && node.children.length > 0) {
+        selectedNodes = selectedNodes.concat(this.collectSelectedNodes(node.children));
+      } else if (node.selected) {
+        selectedNodes.push(node);
+      }
+    }
+  
+    return selectedNodes;
   }
 
   /**
@@ -299,6 +312,7 @@ export class Multiselect {
   }
 
   toggleDropdown() {
+    console.log(this.loadedOptions);
     this.dropdownOpen = !this.dropdownOpen;
     setTimeout(() => {
       if (this.dropdownOpen) {

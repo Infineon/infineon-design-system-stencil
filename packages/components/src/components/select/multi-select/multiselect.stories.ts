@@ -30,6 +30,29 @@ const options = [
   },
 ];
 
+const longOptions = [];
+for (let i=1; i<=50; i++) {
+  let children = undefined;
+  if (i % 3 == 0) {
+    children = [{
+      "value":  `${i}.1`,
+      "label": `Option ${i}.1`,
+      "selected": i % 2 == 0 ? true : false
+    },{
+      "value": `${i}.2`,
+      "label": `Option ${i}.2`,
+      "selected": i % 4 == 0 ? true : false
+    }];
+  }
+  longOptions.push({
+    "value": i,
+    "label": `Option ${i}`,
+    "selected": i % 2 == 0 ? true : false,
+    "children": children
+  })
+}
+
+
 export default {
   title: 'Components/Select/Multi Select',
   // tags: ['autodocs'],
@@ -120,7 +143,7 @@ export default {
   },
 };
 
-const DefaultTemplate = args => {
+const Template = args => {
   const template = `<ifx-multiselect 
   options='${JSON.stringify(args.options)}' 
   batch-size='${args.batchSize}'
@@ -142,7 +165,14 @@ const DefaultTemplate = args => {
   return template;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default = Template.bind({});
 Default.args = {
   options: options,
+};
+
+export const WithLazyLoading = Template.bind({});
+WithLazyLoading.args = {
+  options: longOptions,
+  batchSize: 5,
+  maxItemCount: undefined
 };
