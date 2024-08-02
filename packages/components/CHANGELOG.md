@@ -1,3 +1,20 @@
+# v24.3.0 (Fri Aug 02 2024)
+
+#### 🚀 Enhancement
+
+- Tooltip: implemented min and max width [#1404](https://github.com/Infineon/infineon-design-system-stencil/pull/1404) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.2.3 (Thu Aug 01 2024)
 
 #### 🐛 Bug Fix
