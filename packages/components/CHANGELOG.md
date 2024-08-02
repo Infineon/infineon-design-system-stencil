@@ -1,3 +1,20 @@
+# v24.3.1 (Fri Aug 02 2024)
+
+#### 🐛 Bug Fix
+
+- Multiselect: selected state of the passed array of items is now reflected on the rendered component [#1405](https://github.com/Infineon/infineon-design-system-stencil/pull/1405) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.3.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.3.0 (Fri Aug 02 2024)
 
 #### 🚀 Enhancement
