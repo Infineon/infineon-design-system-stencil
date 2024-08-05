@@ -1,4 +1,5 @@
 import { Component, Prop, h, State, Watch } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-progress-bar',
@@ -19,8 +20,13 @@ export class ProgressBar {
     }
   }
 
+  
   componentWillLoad() {
     this.internalValue = this.value;
+  }
+
+  componentDidLoad() {
+    trackComponentView('ProgressBar');
   }
 
   render() {
