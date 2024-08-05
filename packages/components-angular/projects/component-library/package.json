@@ -11,7 +11,7 @@
     "@angular/common": "^17.3.3",
     "@angular/core": "^17.3.3",
     "@infineon/design-system-tokens": "3.3.2",
-    "@infineon/infineon-design-system-stencil": "^24.4.0--canary.1410.b94de18447ec1696ffef3f2be383f52f5ea822ec.0"
+    "@infineon/infineon-design-system-stencil": "*"
   },
   "dependencies": {
     "tslib": "^2.3.0"
