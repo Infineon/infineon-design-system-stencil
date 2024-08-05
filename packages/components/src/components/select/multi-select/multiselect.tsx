@@ -1,5 +1,6 @@
 import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
 import { Option } from './interfaces';
+import { trackComponentView } from '../../../global/utils/tracking';
 
 // Debounce function
 function debounce(func, wait) {
@@ -147,8 +148,7 @@ export class Multiselect {
     }, 500);
 
     // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
-
-
+    trackComponentView('Multiselect');
   }
 
 
