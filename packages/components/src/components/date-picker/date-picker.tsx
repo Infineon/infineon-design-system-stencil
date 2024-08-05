@@ -1,5 +1,6 @@
 import { AttachInternals } from '@stencil/core';
 import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-date-picker',
@@ -65,6 +66,8 @@ export class DatePicker {
 
   componentDidLoad() { 
     this.setFireFoxClasses()
+    trackComponentView('DatePicker');
+
   }
 
   /**

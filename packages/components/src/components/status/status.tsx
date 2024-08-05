@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-status',
@@ -10,6 +11,10 @@ export class Status {
   @Prop() label: string;
   @Prop() border: boolean = false;
   @Prop() color: 'orange' | 'ocean' | 'grey' | 'light-grey' | 'red' | 'green' | 'berry' = 'orange';
+
+  componentDidLoad() {
+    trackComponentView('Status');
+  }
 
   render() {
     const containerClass = this.border ? `container border-${this.color}` : 'container no-border';
