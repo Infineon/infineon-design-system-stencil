@@ -97,14 +97,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.closeDropdownMenu();
   }
 
-  // @Listen('removeItem')
-  // handleRemoveItem() {
-  //   if (this.choice.getValue() === undefined) {
-  //     console.log("handle remove")
-  //     this.choice.setChoices([{ value: '', label: 'Your placeholder text', placeholder: true }], 'value', 'label', true);
-  //   }
-  // }
-
   @Method()
   public async highlightItem(item: HTMLElement, runEvent?: boolean) {
     this.choice.highlightItem(item, runEvent);
@@ -393,7 +385,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   private init() {
     const props = {
-      allowHTML: true, // Set allowHTML to true
+      allowHTML: true,
       items: this.items,
       choices: this.choices,
       renderChoiceLimit: this.renderChoiceLimit,
@@ -416,7 +408,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       shouldSortItems: this.shouldSortItems,
       sorter: this.sorter,
       placeholder: this.placeholder,
-      // placeholderValue: this.placeholderValue,  //|| (typeof this.placeholder === 'string' && this.placeholder) || ' ',
       searchPlaceholderValue: this.searchPlaceholderValue,
       prependValue: this.prependValue,
       appendValue: this.appendValue,
@@ -595,7 +586,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
-    // console.log("createSelectOptions")
     if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
       let options;
       if (this.isJSONParseable(ifxOptions)) {
@@ -625,7 +615,4 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       </option>
     ];
   }
-
-
-
 }
