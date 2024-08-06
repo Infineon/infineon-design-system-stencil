@@ -123,12 +123,15 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Update package.json with canary version
+        run: |
+          cd examples/wrapper-components/vue-javascript
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-vue"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-vue@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build
 
       - name: Deploy preview
@@ -157,13 +160,17 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Update package.json with canary version
+        run: |
+          cd examples/wrapper-components/react-javascript
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-react@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -190,12 +197,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Update package.json with canary version
+        run: |
+          cd packages/components-angular
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
+      
       - name: Install and Build
         run: |
           cd packages/components-angular
           npm i
-          echo "Installing package with canary version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          npm i @infineon/infineon-design-system-angular@${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           npm run build my-app
 
       - name: Deploy preview
