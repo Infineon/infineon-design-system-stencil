@@ -1,0 +1,9 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.link-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: tokens.$ifxSpace100;
+  margin-top: tokens.$ifxSpace100;
+}

@@ -42,7 +42,7 @@ const activeTabIndex = ref(0);
 
 onMounted(() => {
   setTab();
-  setInterval(setTab, 5000);
+  setInterval(setTab, 50000);
 })
 
 function handleChange(event) {

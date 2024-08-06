@@ -24,6 +24,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-table](../../table-advanced-version)
+
 ### Depends on
 
 - [ifx-icon](../../icon)
@@ -32,6 +36,7 @@
 ```mermaid
 graph TD;
   ifx-dropdown-item --> ifx-icon
+  ifx-table --> ifx-dropdown-item
   style ifx-dropdown-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
