@@ -1,3 +1,134 @@
+# v24.3.1 (Fri Aug 02 2024)
+
+#### 🐛 Bug Fix
+
+- Multiselect: selected state of the passed array of items is now reflected on the rendered component [#1405](https://github.com/Infineon/infineon-design-system-stencil/pull/1405) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.3.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.3.0 (Fri Aug 02 2024)
+
+#### 🚀 Enhancement
+
+- Tooltip: implemented min and max width [#1404](https://github.com/Infineon/infineon-design-system-stencil/pull/1404) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.2.3 (Thu Aug 01 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: label is now clickable + Design adjustment [#1402](https://github.com/Infineon/infineon-design-system-stencil/pull/1402) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.2.2 (Wed Jul 31 2024)
+
+#### 🐛 Bug Fix
+
+- Slider: correct handling of small fractions [#1400](https://github.com/Infineon/infineon-design-system-stencil/pull/1400) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.2.1 (Wed Jul 31 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: tooltip: x-close button on dismissible variant does not work [#1401](https://github.com/Infineon/infineon-design-system-stencil/pull/1401) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.2.0 (Wed Jul 31 2024)
+
+#### 🚀 Enhancement
+
+- Tailwind CSS page included in Storybook [#1397](https://github.com/Infineon/infineon-design-system-stencil/pull/1397) ([@benedikt-ifx](https://github.com/benedikt-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.1.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Benedikt Kaemmerer ([@benedikt-ifx](https://github.com/benedikt-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.1.2 (Tue Jul 30 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: restored active-tab-index functionality [#1389](https://github.com/Infineon/infineon-design-system-stencil/pull/1389) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+- Merge branch '1131-multi-select-implement-select-all-feature-and-make-search-bar-removable' of https://github.com/Infineon/infineon-design-system-stencil [#1387](https://github.com/Infineon/infineon-design-system-stencil/pull/1387) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Merge branch 'master' of https://github.com/Infineon/infineon-design-system-stencil ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 24.1.1 (github-actions@github.com)
+- clean install ([@tishoyanchev](https://github.com/tishoyanchev))
+- updated stencil version ([@tishoyanchev](https://github.com/tishoyanchev))
+- re-install ([@tishoyanchev](https://github.com/tishoyanchev))
+- stage changes ([@tishoyanchev](https://github.com/tishoyanchev))
+- merged master into this branch ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 24.0.3--canary.1389.52fce0bf7532b5229f36bdd8ff23cf056c123c70.0 (github-actions@github.com)
+- Merge 8bc6bb9baccf0b48a38f20bfbe9cadb40abc1fc0 into c96e7293cdc90f5e70520f40310720b21038d1c0 ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- tests for activeTabIndex ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- fix activeTabIndex ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.1.1 (Mon Jul 29 2024)
 
 #### 🐛 Bug Fix

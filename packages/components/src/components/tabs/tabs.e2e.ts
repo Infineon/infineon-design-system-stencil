@@ -85,11 +85,12 @@ describe('IfxTabs', () => {
       </ifx-tabs>
     `);
 
-
     await page.$eval("ifx-tabs", elm => {
       elm.activeTabIndex = 0;
     });
 
+    const tabs = await page.find('ifx-tabs');
+    tabs.setProperty('activeTabIndex', 0);
 
     const activeTab = await page.find('ifx-tabs >>> .tab-item.active');
 
@@ -102,5 +103,58 @@ describe('IfxTabs', () => {
     expect(activeTab.innerText).toBe('Tab 1')    
   });
 
+  it('should set last tab active when activeTabIndex out of bounds', async () => {
+    const page = await newE2EPage();
+    await page.setContent(`
+      <ifx-tabs active-tab-index="3">
+        <ifx-tab header="Tab 1">
+          Tab1Content
+        </ifx-tab>
+        <ifx-tab header="Tab 2">
+          Tab2Content
+        </ifx-tab>
+        <ifx-tab header="Tab 3">
+          Tab3Content
+        </ifx-tab>
+      </ifx-tabs>
+    `);
+
+
+    const activeTab = await page.find('ifx-tabs >>> .tab-item.active');
+
+    const tabContents = await page.findAll('ifx-tabs >>> .tab-content > div');
+    expect(await tabContents[0].isVisible()).toBe(false);
+    expect(await tabContents[1].isVisible()).toBe(false);
+    expect(await tabContents[2].isVisible()).toBe(true);
+
+    expect(activeTab.innerText).toBe('Tab 3')    
+  });
+
+  it('should set first tab active when activeTabIndex is smaller than 0', async () => {
+    const page = await newE2EPage();
+    await page.setContent(`
+      <ifx-tabs active-tab-index="-1">
+        <ifx-tab header="Tab 1">
+          Tab1Content
+        </ifx-tab>
+        <ifx-tab header="Tab 2">
+          Tab2Content
+        </ifx-tab>
+        <ifx-tab header="Tab 3">
+          Tab3Content
+        </ifx-tab>
+      </ifx-tabs>
+    `);
+
+
+    const activeTab = await page.find('ifx-tabs >>> .tab-item.active');
+
+    const tabContents = await page.findAll('ifx-tabs >>> .tab-content > div');
+    expect(await tabContents[0].isVisible()).toBe(true);
+    expect(await tabContents[1].isVisible()).toBe(false);
+    expect(await tabContents[2].isVisible()).toBe(false);
+
+    expect(activeTab.innerText).toBe('Tab 1')    
+  });
 
 });

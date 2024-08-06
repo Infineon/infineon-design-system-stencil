@@ -33,9 +33,8 @@ export class Multiselect {
   @Prop() errorMessage: string = "Error";
   @State() internalErrorMessage: string;
   @Prop() label: string = "";
-  @State() persistentSelectedOptions: Option[] = [];
+  @State()  persistentSelectedOptions: Option[] = [];
   @Prop() placeholder: string = "";
-  @State() listOfOptions: Option[] = [];
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
   @Prop() maxItemCount: number;
@@ -45,7 +44,10 @@ export class Multiselect {
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
   @State() filteredOptions: Option[] = [];
-  @Prop() searchEnabled: boolean = true
+  @Prop() showSearch: boolean = true;
+  @Prop() showSelectAll: boolean = true;
+  @State() optionCount: number = 0; // number of all options (leaves of the tree)
+  @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
 
 
   @Event() ifxSelect: EventEmitter;
@@ -100,16 +102,78 @@ export class Multiselect {
       console.error('Unexpected value for options:', this.options);
     }
 
+    if (!this.optionsProcessed) {
+      this.optionCount = this.countOptions(allOptions);
+      const initiallySelected = this.collectSelectedOptions(allOptions);
+      const initallySelectedNotInState = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
+      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
+      this.optionsProcessed = true;
+    }
+    
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
-
-    // Update the state for initially selected options, if needed
-    if (startIndex === 0) { // Assuming you want to do this only for the first batch
-      const initiallySelected = slicedOptions.filter(option => option.selected);
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelected];
-    }
-
     return slicedOptions;
+  }
+
+  /**
+   * Collects and returns all options that are selected.
+   * When the parent is selected, then the value of the children will be overriden with selected as well.
+   * It will only collect the leaves of the tree.
+   * 
+   * @param options A list of options.
+   * @returns A list with all selected options
+   */
+  private collectSelectedOptions(options: Option[]): Option[] {
+    let selectedOptions: Option[] = [];
+  
+    for (const option of options) {
+      if (option.selected) {
+        if (option.children && option.children.length > 0) {
+          // if parent is selected, then select all child options
+          selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
+        } else {
+          selectedOptions.push(option);
+        }
+      } else {
+        if (option.children && option.children.length > 0) {
+          selectedOptions = selectedOptions.concat(this.collectSelectedOptions(option.children));
+        }
+      }
+    }
+    return selectedOptions;
+  }
+
+  /**
+   * Collects all leaf children options.
+   * 
+   * @param option A list with all leaf-children.
+   */
+  private collectLeafOptions(children: Option[]): Option[] {
+    let leafOptions = [];
+  
+    for (const child of children) {
+      if (child.children && child.children.length > 0) {
+        leafOptions = leafOptions.concat(this.collectLeafOptions(child.children));
+      } else {
+        leafOptions.push(child);
+      }
+    }  
+    return leafOptions;
+  }
+
+  /**
+   * Count the number of options. Only counts the leaves of the options tree.
+   */
+  countOptions(options: Option[]): number {
+    let count = 0;
+    for (const option of options) {
+      if (option.children && option.children.length >= 0) {
+        count += this.countOptions(option.children);
+      } else {
+        count++;
+      }
+    }
+    return count;
   }
 
 
@@ -183,6 +247,27 @@ export class Multiselect {
     } else {
       this.handleChildOptionClick(option, wasSelected);
     }
+  }
+
+  async selectAll() {
+    const allOptions = await this.fetchOptions(0, this.optionCount);
+    this.selectAllRecursive(allOptions);
+    
+    this.ifxSelect.emit(this.persistentSelectedOptions);
+  }
+
+  private selectAllRecursive(options: Option[]) {
+    for (const opt of options) {
+      if (opt.children && opt.children.length > 0) {
+        this.selectAllRecursive(opt.children);
+      } else {
+        if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
+          opt.selected = true;
+          this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
+        }
+      }
+    }
+
   }
 
   handleParentOptionClick(option: Option) {
@@ -409,15 +494,15 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
 
     return (
-      <div>
-        <div class={`option ${isSelected ? 'selected' : ''} 
+      <div class="option-wrapper">
+        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 
         ${this.getSizeClass()}`}
           data-value={option.value}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
           <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
-          <label htmlFor={uniqueId}>{option.label}</label>
+          <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
       </div>
@@ -466,16 +551,40 @@ export class Multiselect {
     const uniqueId = `checkbox-${option.value}-${index}`;
 
     return (
-      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()}`}
+      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()} ${disableCheckbox ? 'disabled' : ''}`}
         data-value={option.value}
         role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
         <ifx-checkbox ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
-        <label htmlFor={uniqueId}>{option.label}</label>
+        <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
       </div>
     );
   }
+
+  private renderSelectAll() {
+    const allSelected = this.persistentSelectedOptions.length === this.optionCount;
+    const noneSelected = this.persistentSelectedOptions.length === 0;
+    const indeterminate = this.optionCount > 0 && !noneSelected && !allSelected;
+
+    const that = this;
+    function toggleSelectAll() {
+      if (allSelected) {
+        that.clearSelection();
+      } else {
+        that.selectAll();
+      }
+    }
+
+    return <div class="select-all-wrapper">
+      <div class={`option ${this.getSizeClass()}`} tabindex='0' onClick={toggleSelectAll}>
+        <ifx-checkbox id='selectAll' value={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
+        <label htmlFor='selectAll'>Select all</label>
+      </div>
+      <ifx-dropdown-separator></ifx-dropdown-separator>
+    </div>;
+  }
+
 
   render() {
     // Create a label for the selected options
@@ -514,13 +623,14 @@ export class Multiselect {
           `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           >
-            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
+            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
           </div>
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}
               style={{ '--dynamic-z-index': this.zIndex.toString() }}>
-              {this.searchEnabled && <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
+              {this.showSearch && <input type="text" role="textbox" class="search-input" onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
+              {this.showSelectAll && this.renderSelectAll()}
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>

@@ -75,12 +75,12 @@ describe('ifx-slider', () => {
 
     it('increments the value according to step size', async () => {
         const page = await newE2EPage();
-        await page.setContent('<ifx-slider value="50" step="5"></ifx-slider>');
+        await page.setContent('<ifx-slider value="50" step="0.1"></ifx-slider>');
         const element = await page.find('ifx-slider >>> input');
 
         await element.press('ArrowRight');
 
         const value = await element.getProperty('value');
-        expect(value).toEqual('55');
+        expect(value).toEqual('50.1');
     });
 });

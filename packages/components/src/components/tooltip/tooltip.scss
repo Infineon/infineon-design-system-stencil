@@ -19,16 +19,22 @@
   z-index: 1080;
   display: none;
   transition: opacity 0.3s;
-  position: relative;
+  position: absolute;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
   color: tokens.$ifxColorBaseWhite;
+  width: max-content;
+  box-sizing: border-box;
+
+  white-space: pre-wrap;   /* wraps text at spaces and within words */
+  word-wrap: break-word;   /* breaks text within a word if necessary */
+  overflow-wrap: anywhere; /* breaks text at arbitrary points when needed */
 
   &.visible {
     display: flex !important;
-    align-items: center;
+    align-items: start;
     //min-width: 100px;
     //width: auto;
   }
@@ -38,20 +44,19 @@
 
 .tooltip-dismissible {
   @extend %tooltip-common;
-  min-width: 110px;
-  width: auto;
 
-  .close-button {
-    //position: absolute;
-    //top: tokens.$ifxSpace150;
-    //right: tokens.$ifxSpace150;
-    cursor: pointer;
-    position: relative;
-    top: 0px;
-    //right: 0px;
-    order: 2;
-    padding-right: 12px;
-  }
+    .close-button {
+      all: unset;
+      //position: absolute;
+      //top: tokens.$ifxSpace150;
+      //right: tokens.$ifxSpace150;
+      cursor: pointer;
+      position: relative;
+      order: 2;
+      margin-top: 12px;
+      margin-right: 12px;
+      line-height: 0px;
+    }
 
   .tooltip-dismissible-content {
     display: flex;
@@ -91,8 +96,6 @@
 
 .tooltip-extended {
   @extend %tooltip-common;
-  min-width: 100px;
-  width: auto;
   //padding-left: 36px; // Added this line, adjust as per your icon width
   //padding-left: tokens.$ifxSpace150; // Added this line, adjust as per your icon width
   align-items: center;
@@ -204,12 +207,18 @@
 
 .tooltip-compact {
   @extend %tooltip-arrow-positions;
+  min-width: 28px !important;
+  max-width: 145px !important;
 }
 
 .tooltip-dismissible {
   @extend %tooltip-arrow-positions;
+  min-width: 145px !important;
+  max-width: 310px !important;
 }
 
 .tooltip-extended {
   @extend %tooltip-arrow-positions;
+  min-width: 145px !important;
+  max-width: 310px !important;
 }

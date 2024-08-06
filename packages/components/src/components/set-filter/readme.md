@@ -40,6 +40,7 @@ graph TD;
   ifx-text-field --> ifx-icon
   ifx-select --> ifx-icon
   ifx-multiselect --> ifx-checkbox
+  ifx-multiselect --> ifx-dropdown-separator
   ifx-multiselect --> ifx-icon
   ifx-checkbox --> ifx-icon
   style ifx-set-filter fill:#f9f,stroke:#333,stroke-width:4px
