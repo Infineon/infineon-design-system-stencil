@@ -30,7 +30,6 @@ import { filterObject, isDefined } from './utils';
 
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
-  @Prop() public type?: string = 'single' // to be included in a later implementation | 'multiple' | 'text';
   @Prop() public value: string;
   @Prop() public name: string;
   @Prop() public items: Array<any>;
@@ -279,130 +278,49 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected render(): any {
 
-    const attributesSingle = {
+    const attributes = {
       'data-selector': 'root',
       'name': this.name || null,
       // 'remove-item-button': false,
     };
-    // to be implemented later
-    // const attributesMultiple = {
-    //   'data-selector': 'root',
-    //   'name': this.name || null,
-    // };
-    // const attributesText = {
-    //   'data-selector': 'root',
-    //   'name': this.name || null,
-    //   'remove-item-button': true,
-    // };
     const choicesWrapperClass = `ifx-choices__wrapper ${this.getSizeClass()}`;
 
     // destroy choices element to restore previous dom structure
     // so vdom can replace the element correctly
     this.destroy();
 
-    switch (this.type) {
-      case 'single':
-        this.element =
-          <div class={`ifx-select-container`}>
-            {
-              this.label ?
-                <div class="ifx-label-wrapper">
-                  <span>{this.label}</span>
-                </div> : null
-            }
-            <div class={`${choicesWrapperClass} 
-            ${this.disabled ? 'disabled' : ""} 
-            ${this.error ? 'error' : ""}`}
+    return (
+      <div class={`ifx-select-container`}>
+        {this.label ? (
+          <div class="ifx-label-wrapper">
+            <span>{this.label}</span>
+          </div>
+        ) : null}
+        <div
+          class={`${choicesWrapperClass} 
+            ${this.disabled ? 'disabled' : ''} 
+            ${this.error ? 'error' : ''}`}
+          onClick={this.disabled ? undefined : () => this.toggleDropdown()}
+          onKeyDown={event => this.handleKeyDown(event)}
+        >
+          <select {...attributes} data-trigger onChange={() => this.handleChange()}>
+            {this.createSelectOptions(this.options)}
+          </select>
 
-              onClick={this.disabled ? undefined : () => this.toggleDropdown()}
-              onKeyDown={(event) => this.handleKeyDown(event)}
-            >
-
-              <select {...attributesSingle} data-trigger
-                onChange={() => this.handleChange()}>
-                {this.createSelectOptions(this.options)}
-              </select>
-
-
-              <div class="ifx-choices__icon-wrapper-up">
-                <ifx-icon
-                  key='icon-up'
-                  icon='chevronup-16'></ifx-icon>
-              </div>
-              <div class="ifx-choices__icon-wrapper-down">
-
-                <ifx-icon
-                  key='icon-down'
-                  icon='chevron-down-16'></ifx-icon>
-              </div>
-            </div>
-            {
-              this.error ?
-                <div class="ifx-error-message-wrapper">
-                  <span>{this.errorMessage}</span>
-                </div> : null
-            }
-          </div>;
-        break;
-      // to be implemented later
-      //   case 'multiple':
-      //     this.element =
-      //       <div class={`ifx-select-container`}>
-      //         {
-      //           this.ifxLabel ?
-      //             <div class="ifx-label-wrapper">
-      //               <span>{this.ifxLabel}</span>
-      //             </div> : null
-      //         }
-      //         <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""}`} onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()} >
-      //           <select {...attributesMultiple} multiple onChange={() => this.handleChange()}>
-      //             {this.createSelectOptions(this.ifxOptions)}
-      //           </select>
-      //           <div class="ifx-choices__icon-wrapper-up" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
-      //             <ifx-icon
-      //               icon='chevronup-16'></ifx-icon>
-      //           </div>
-      //           <div class="ifx-choices__icon-wrapper-down" onClick={this.ifxDisabled ? undefined : () => this.toggleDropdown()}>
-
-      //             <ifx-icon
-      //               icon='chevron-down-16'></ifx-icon>
-      //           </div>
-      //         </div>
-      //         {
-      //           this.ifxError ?
-      //             <div class="ifx-error-message-wrapper">
-      //               <span>{this.ifxErrorMessage}</span>
-      //             </div> : null
-      //         }
-      //       </div>;
-      //     break;
-      //   case 'text':
-      //   default:
-      //     this.element =
-      //       this.element =
-      //       <div class={`ifx-select-container ${this.getSizeClass()}`}>
-      //         {
-      //           this.ifxLabel ?
-      //             <div class="ifx-label-wrapper">
-      //               <span>{this.ifxLabel}</span>
-      //             </div> : null
-      //         }
-      //         <div class={`${choicesWrapperClass} ${this.ifxDisabled ? 'disabled' : ""} ${this.ifxError ? 'error' : ""}`}>
-
-      //           <input
-      //             class="form-control"
-      //             type="text"
-      //             value={this.value}
-      //             {...attributesText}
-      //             placeholder="Enter something"
-      //           />
-      //         </div>
-      //       </div>
-      //     break;
-    }
-
-
-    return this.element;
+          <div class="ifx-choices__icon-wrapper-up">
+            <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
+          </div>
+          <div class="ifx-choices__icon-wrapper-down">
+            <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+          </div>
+        </div>
+        {this.error ? (
+          <div class="ifx-error-message-wrapper">
+            <span>{this.errorMessage}</span>
+          </div>
+        ) : null}
+      </div>
+    );
   }
 
 
@@ -475,7 +393,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   private init() {
     const props = {
-      type: this.type,
       allowHTML: true, // Set allowHTML to true
       items: this.items,
       choices: this.choices,
@@ -517,7 +434,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       callbackOnCreateTemplates: this.callbackOnCreateTemplates,
       valueComparer: this.valueComparer,
       addItemFilter: this.addItemFilter,
-      customAddItemText: this.customAddItemText
+      customAddItemText: this.customAddItemText,
     };
 
     const settings = filterObject(props, isDefined);
@@ -528,9 +445,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     if (element instanceof HTMLInputElement || element instanceof HTMLSelectElement) {
       // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
       const self = this; // save the context of this in a variable outside of the function to access it in the following
-      //for now, only single-select is implemented
-      if (this.type === 'single') {
-        this.choice = new ChoicesJs(element, Object.assign({}, settings, {
+
+      this.choice = new ChoicesJs(
+        element,
+        Object.assign({}, settings, {
           callbackOnCreateTemplates: function (template) {
             return {
               //modifying the selected item template
@@ -540,115 +458,63 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 if (data.placeholder && !self.selectedOption?.value) {
                   // For placeholders, use data-id="placeholder"
                   return template(`
-                    <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
-                     ${data.label === undefined ? this.placeholderValue : data.label}
-                     ${removeButtonHTML}
-                    </div>
-                  `);
+                  <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
+                    ${data.label === undefined ? this.placeholderValue : data.label}
+                    ${removeButtonHTML}
+                  </div>
+                `);
                 } else {
                   // For non-placeholder items, use the actual data ID
                   return template(`
-                  <div class="${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}" 
-                       data-item 
-                       data-id="${self.selectedOption?.id !== undefined ? self.selectedOption?.id : self.choice.getValue().id}" 
-                       data-value="${self.selectedOption?.value !== undefined ? self.selectedOption?.value : self.choice.getValue().value}" 
-                       ${data.disabled ? 'aria-disabled="true"' : ''}>
-                    <span>${self.selectedOption?.label !== undefined ? self.selectedOption?.label : self.choice.getValue().label}</span>
-                    <!-- Add your remove button here if needed -->
-                  </div>
-                `)
+                <div class="${classNames.item} ${data.highlighted ? classNames.highlightedState : classNames.itemSelectable}" 
+                      data-item 
+                      data-id="${self.selectedOption?.id !== undefined ? self.selectedOption?.id : self.choice.getValue().id}" 
+                      data-value="${self.selectedOption?.value !== undefined ? self.selectedOption?.value : self.choice.getValue().value}" 
+                      ${data.disabled ? 'aria-disabled="true"' : ''}>
+                  <span>${self.selectedOption?.label !== undefined ? self.selectedOption?.label : self.choice.getValue().label}</span>
+                  <!-- Add your remove button here if needed -->
+                </div>
+              `);
                 }
               },
               input: ({ classNames }) => {
                 return template(`
-                <input type="search" name="search_terms" 
-                class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
-                autocomplete="off"
-                autocapitalize="off"
-                spellcheck="false"
-                role="textbox"
-                aria-autocomplete="list"
-                aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
-                `)
+              <input type="search" name="search_terms" 
+              class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              role="textbox"
+              aria-autocomplete="list"
+              aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
+              `);
               },
 
               //modifying the template of each item in the options list
               choice: ({ classNames }, data) => {
                 return template(`
-                <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
-                ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
-                ${data.placeholder ? classNames.placeholder : ''} 
-                ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
-                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
-                     data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
-                     data-value="${data.value}"
-                     data-select-text="${this.config.itemSelectText}">
-                  <span>${data.label}</span>
-                  ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
-                </div>
-              `)
-              },
-            };
-
-          },
-        }
-        ));
-
-        //set select options
-        this.setChoices(this.options, "value", "label", true)
-        //set custom event listener to listen for search input
-        self.addSearchEventListener(self, this.choice);
-
-
-      } else if (this.type === 'multiple') { //not implemented right now
-        // this.choice = new ChoicesJs(element, settings); //standard, without using custom templates
-        this.choice = new ChoicesJs(element, Object.assign({}, settings, {
-          removeItemButton: true,
-          callbackOnCreateTemplates: function (template) {
-            return {
-              //modifying the template of each item in the options list
-              choice: ({ classNames }, data) => {
-                return template(`
-                <div class="${classNames.item} ${classNames.itemChoice}
-                 ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
-                } choice-container" data-select-text="${this.config.itemSelectText}" data-choice ${data.disabled
-                    ? 'data-choice-disabled aria-disabled="true"'
-                    : 'data-choice-selectable'
-                  } data-id="${data.id}" data-value="${data.value}" ${data.groupId > 0 ? 'role="treeitem"' : 'role="option"'
-                  }">
-                 ${data.label}
+              <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
+              ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
+              ${data.placeholder ? classNames.placeholder : ''} 
+              ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
+                    role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
+                    data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
+                    data-value="${data.value}"
+                    data-select-text="${this.config.itemSelectText}">
+                <span>${data.label}</span>
+                ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
               </div>
-                `);
-              },
-              input: ({ classNames }) => {
-                return template(`
-                <input type="search" name="search_terms" 
-                class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
-                autocomplete="off"
-                autocapitalize="off"
-                spellcheck="false"
-                role="textbox"
-                aria-autocomplete="list"
-                aria-label="${this.placeholderValue}"   >     
-                `)
+            `);
               },
             };
           },
-        }));
+        }),
+      );
 
-        this.setChoices(this.options, "value", "label", true)
-      } else { //text
-        this.choice = new ChoicesJs(element, Object.assign({}, settings, {
-          removeItemButton: true,
-        }));
-      }
-
-      if (this.disabled) {
-        this.choice.disable();
-      } else {
-        this.choice.enable();
-      }
-
+      //set select options
+      this.setChoices(this.options, 'value', 'label', true);
+      //set custom event listener to listen for search input
+      self.addSearchEventListener(self, this.choice);
     } else {
       // handle the case when the element is neither an HTMLInputElement nor an HTMLSelectElement
     }

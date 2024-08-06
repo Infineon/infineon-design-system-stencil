@@ -172,7 +172,6 @@ export class Pagination {
           <div class='items__per-page-label'>Results per Page</div>
           <div class='items__per-page-field'>
             <ifx-select
-              type='single'
               value='undefined'
               size='s'
               placeholder='false'
