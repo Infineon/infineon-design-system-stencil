@@ -107,14 +107,17 @@ jobs:
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  
-  
+
+      - name: Update package.json with latest version
+        run: |
+          cd examples/wrapper-components/vue-javascript
+          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-vue"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
+
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          echo "Installing package with version: ${{ needs.stencil-library-release.outputs.VERSION }}"
-          npm install @infineon/infineon-design-system-vue@latest
           npm run build
 
       - name: Deploy Vue Example🚀
@@ -148,14 +151,18 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  
+            
+      - name: Update package.json with version
+        run: |
+          cd examples/wrapper-components/react-javascript
+          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
-          echo "Installing package with version: ${{ needs.stencil-library-release.outputs.VERSION }}"
-          npm i @infineon/infineon-design-system-react@latest
           npm run build
+
 
       - name: Deploy React Example🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -188,13 +195,18 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Update package.json with version
+        run: |
+          cd packages/components-angular
+          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
   
       - name: Install and Build
         run: |
           cd packages/components-angular
           npm i
-          npm i @infineon/infineon-design-system-angular@latest
           npm run build my-app
+
            
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
