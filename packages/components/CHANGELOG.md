@@ -1,3 +1,20 @@
+# v24.3.2 (Wed Aug 07 2024)
+
+#### 🐛 Bug Fix
+
+- Removed dependabot script due to updated deployment actions taking care of versioning [#1412](https://github.com/Infineon/infineon-design-system-stencil/pull/1412) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.3.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.3.1 (Fri Aug 02 2024)
 
 #### 🐛 Bug Fix
