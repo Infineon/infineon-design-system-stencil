@@ -79,6 +79,12 @@
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
+
+      .ifx-choices__icon-wrapper-down {
+        &:hover {
+          cursor: not-allowed;
+        }
+      }
     }
 
     &.error {
