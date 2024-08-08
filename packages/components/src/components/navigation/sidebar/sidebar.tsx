@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, State, Listen } from '@stencil/core';
+import { trackComponentView } from '../../../global/utils/tracking';
 
 const ACTIVE = 'active';
 const ACTIVE_SECTION = 'active-section';
@@ -148,6 +149,8 @@ export class Sidebar {
     }
     this.adjustItemsPadding();
     this.applyActiveSectionToParent(this.el);
+    trackComponentView('Sidebar');
+
   }
 
   getSidebarMenuItems(el = this.el) {

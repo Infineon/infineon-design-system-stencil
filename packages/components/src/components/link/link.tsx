@@ -1,5 +1,6 @@
 import { Component, Prop, h, State } from "@stencil/core";
 import classNames from 'classnames';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-link',
@@ -29,6 +30,10 @@ export class Link {
 
   componentWillRender(){
     this.setInternalStates();
+  }
+  
+  componentDidLoad() {
+    trackComponentView('Link');
   }
 
   render() {

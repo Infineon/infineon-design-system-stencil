@@ -1,5 +1,6 @@
 //ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 
 @Component({
@@ -115,6 +116,8 @@ export class IfxTabs {
     this.tabHeaderRefs.forEach((tab, index) => {
       tab.addEventListener('focus', this.onTabFocus(index));
     });
+    trackComponentView('Tabs');
+
   }
 
   onTabFocus(index) {

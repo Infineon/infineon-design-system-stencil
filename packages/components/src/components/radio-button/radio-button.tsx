@@ -1,4 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-radio-button',
@@ -32,6 +33,10 @@ export class RadioButton {
     if (slot) {
       this.hasSlot = true;
     } else this.hasSlot = false;
+  }
+
+  componentDidLoad() {
+    trackComponentView('RadioButton');
   }
 
   handleRadioButtonClick() {
