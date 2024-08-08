@@ -1,3 +1,4 @@
+//framework-output-targets.ts
 import { ComponentModelConfig, vueOutputTarget } from '@stencil/vue-output-target';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { ValueAccessorConfig, angularOutputTarget } from '@stencil/angular-output-target';
@@ -43,6 +44,7 @@ export const frameworkTargets = [
     componentModels: vueComponentModels,
     // includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
     excludeComponents,
+
   }),
   reactOutputTarget({
     componentCorePackage: '@infineon/infineon-design-system-stencil',
