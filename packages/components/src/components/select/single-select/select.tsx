@@ -20,7 +20,7 @@ import {
   ValueCompareFunction,
   CustomAddItemText,
 } from './interfaces';
-import { filterObject, isDefined } from './utils';
+import { filterObject, isDefined, isJSONParseable } from './utils';
 
 @Component({
   tag: 'ifx-select',
@@ -100,7 +100,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.ifxSelect.emit(this.choice.getValue());
     this.selectedOption = this.choice.getValue(); //store the selected option to reflect it in the template function
     this.setPreSelected(this.selectedOption.value); //set previously selected items from the input array to false and the new selection to true
-    this.closeDropdownMenu();
+    this.closeDropdown();
   }
 
   @Method()
@@ -183,21 +183,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
-  isJSONParseable(str) {
-    try {
-      JSON.parse(str);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
   @Method()
   public async setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) {
     let listOfChoices;
     if (typeof choices === 'string') {
       try {
-        if (!this.isJSONParseable(choices)) {
+        if (!isJSONParseable(choices)) {
           //meaning the input string comes from storybook as a non valid json string to be displayed in a beautified version on storybook
           choices = choices
             .replace(/'/g, '"')
@@ -334,6 +325,21 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     choicesElement.classList.add('is-focused'); // Add the 'is-focused' class, cause a click on the wrapper (and not the embedded select element) doesnt add this automatically to the choices instance
   }
 
+  closeDropdown() {
+    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    ifxChoicesWrapper.classList.remove('active');
+  }
+
+  @Listen('mousedown', { target: 'document' })
+  handleOutsideClick(event: MouseEvent) {
+    const path = event.composedPath();
+    const ifxChoicesContainer = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+
+    if (!path.includes(this.root)) {
+      ifxChoicesContainer.classList.remove('active');
+    }
+  }
+
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled) return;
 
@@ -351,25 +357,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     // Only prevent default space behavior when it's not from the search input.
     if (event.code === 'Space' && !isSearchInput) {
       event.preventDefault(); // Prevent default page scrolling.
-    }
-  }
-
-  handleClassList(el, type, className) {
-    el?.classList[type](className);
-  }
-
-  closeDropdownMenu() {
-    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    this.handleClassList(ifxChoicesWrapper, 'remove', 'active');
-  }
-
-  @Listen('mousedown', { target: 'document' })
-  handleOutsideClick(event: MouseEvent) {
-    const path = event.composedPath();
-    const ifxChoicesContainer = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-
-    if (!path.includes(this.root)) {
-      this.handleClassList(ifxChoicesContainer, 'remove', 'active');
     }
   }
 
@@ -550,38 +537,27 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   //get selected values from input array
   private getPreSelected(self) {
-    //pass current context
-    const optionValueBasedOnSelectedOption = Array.isArray(self.options)
-      ? self.options.find(option => option.selected === true)
-      : JSON.parse(self.options).find(option => option.selected === true);
-    if (optionValueBasedOnSelectedOption) {
-      return optionValueBasedOnSelectedOption;
-    } else return null;
+    const optionsArray: any[] = Array.isArray(self.options) ? self.options : JSON.parse(self.options);
+    return optionsArray.find(option => option.selected === true) || null;
   }
 
   //set previously marked as selected items in the input array to unselected and select new ones
   private setPreSelected(newValue) {
-    const resetPreviouslySelected = Array.isArray(this.options)
-      ? this.options.map(obj => {
-          return { ...obj, selected: false };
-        })
-      : JSON.parse(this.options).map(obj => {
-          return { ...obj, selected: false };
-        });
-    const newSelection = resetPreviouslySelected.map(obj => {
-      if (obj.value === newValue) {
-        return { ...obj, selected: true };
-      }
-      return obj;
+    const optionsArray: any[] = Array.isArray(this.options) ? this.options : JSON.parse(this.options);
+
+    this.options = optionsArray.map(obj => {
+      return {
+        ...obj,
+        selected: obj.value === newValue
+      };
     });
-    this.options = [...newSelection];
   }
 
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
     if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
       let options;
-      if (this.isJSONParseable(ifxOptions)) {
+      if (isJSONParseable(ifxOptions)) {
         options = [...JSON.parse(ifxOptions)];
       } else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
