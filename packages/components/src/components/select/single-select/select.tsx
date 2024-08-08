@@ -1,5 +1,5 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { HTMLStencilElement, Listen } from '@stencil/core/internal';
+import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
 import {
@@ -87,6 +87,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Element() private readonly root: HTMLElement;
   private choice;
   private element;
+  
+  @Watch('disabled')
+  watchDisabled(newValue: boolean) {
+    if (newValue) {
+      this.disable();
+    } else {
+      this.enable();
+    }
+  }
 
 
   @Method()
@@ -235,6 +244,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   public async enable() {
     this.choice.enable();
+    this.disabled = false;
 
     return this;
   }
@@ -242,6 +252,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   public async disable() {
     this.choice.disable();
+    this.disabled = true;
 
     return this;
   }
