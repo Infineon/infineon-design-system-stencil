@@ -18,16 +18,14 @@ import {
   OnCreateTemplates,
   UniqueItemText,
   ValueCompareFunction,
-  CustomAddItemText
+  CustomAddItemText,
 } from './interfaces';
 import { filterObject, isDefined } from './utils';
-
 
 @Component({
   tag: 'ifx-select',
   styleUrl: 'select.scss',
   // shadow: true, //with shadow dom enabled, styles to the external choicesJs library cant be applied.
-
 })
 export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public value: string;
@@ -74,10 +72,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public valueComparer: ValueCompareFunction;
   //custom ifx props
   @Prop() error: boolean = false;
-  @Prop() errorMessage: string = "Error";
-  @Prop() label: string = "";
+  @Prop() errorMessage: string = 'Error';
+  @Prop() label: string = '';
   @Prop() disabled: boolean = false;
-  @Prop() placeholderValue: string = "Placeholder";
+  @Prop() placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
   @Prop() options: any[] | string;
@@ -87,7 +85,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Element() private readonly root: HTMLElement;
   private choice;
   private element;
-  
+
   @Watch('disabled')
   watchDisabled(newValue: boolean) {
     if (newValue) {
@@ -96,7 +94,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       this.enable();
     }
   }
-
 
   @Method()
   async handleChange() {
@@ -186,7 +183,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
-
   isJSONParseable(str) {
     try {
       JSON.parse(str);
@@ -196,17 +192,19 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-
   @Method()
   public async setChoices(choices: any[] | string, value: string, label: string, replaceChoices?: boolean) {
     let listOfChoices;
     if (typeof choices === 'string') {
       try {
-        if (!this.isJSONParseable(choices)) { //meaning the input string comes from storybook as a non valid json string to be displayed in a beautified version on storybook
-          choices = choices.replace(/'/g, '"').replace(/"false"/g, 'false').replace(/"true"/g, 'true');
+        if (!this.isJSONParseable(choices)) {
+          //meaning the input string comes from storybook as a non valid json string to be displayed in a beautified version on storybook
+          choices = choices
+            .replace(/'/g, '"')
+            .replace(/"false"/g, 'false')
+            .replace(/"true"/g, 'true');
         }
         listOfChoices = [...JSON.parse(choices)];
-
       } catch (err) {
         console.error('Failed to parse choices:', err);
       }
@@ -269,7 +267,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.addEventListenersToHandleCustomFocusAndActiveState();
   }
 
-
   protected componentDidUpdate() {
     this.init();
   }
@@ -278,9 +275,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.destroy();
   }
 
-
   protected render(): any {
-
     const attributes = {
       'data-selector': 'root',
       'name': this.name || null,
@@ -326,7 +321,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     );
   }
 
-
   toggleDropdown() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
@@ -356,25 +350,18 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
     // Only prevent default space behavior when it's not from the search input.
     if (event.code === 'Space' && !isSearchInput) {
-      event.preventDefault();  // Prevent default page scrolling.
+      event.preventDefault(); // Prevent default page scrolling.
     }
   }
 
-
-
-
   handleClassList(el, type, className) {
-    el?.classList[type](className)
+    el?.classList[type](className);
   }
-
-
 
   closeDropdownMenu() {
     const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     this.handleClassList(ifxChoicesWrapper, 'remove', 'active');
   }
-
-
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -386,13 +373,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "small-select"
-      : "medium-select";
+    return `${this.size}` === 's' ? 'small-select' : 'medium-select';
   }
-
 
   private init() {
     const props = {
@@ -543,20 +526,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     });
   }
 
-
-
   private addSearchEventListener(self, choiceElement: ChoicesJs) {
     choiceElement.passedElement.element.addEventListener(
       'search',
       function (event: CustomEvent) {
-        self.ifxInput.emit(event.detail.value)
+        self.ifxInput.emit(event.detail.value);
       },
       false,
     );
     return choiceElement;
-
   }
-
 
   private destroy() {
     if (this.element) {
@@ -570,8 +549,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   //get selected values from input array
-  private getPreSelected(self) { //pass current context
-    const optionValueBasedOnSelectedOption = Array.isArray(self.options) ? self.options.find(option => option.selected === true) : JSON.parse(self.options).find(option => option.selected === true)
+  private getPreSelected(self) {
+    //pass current context
+    const optionValueBasedOnSelectedOption = Array.isArray(self.options)
+      ? self.options.find(option => option.selected === true)
+      : JSON.parse(self.options).find(option => option.selected === true);
     if (optionValueBasedOnSelectedOption) {
       return optionValueBasedOnSelectedOption;
     } else return null;
@@ -579,11 +561,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   //set previously marked as selected items in the input array to unselected and select new ones
   private setPreSelected(newValue) {
-    const resetPreviouslySelected = Array.isArray(this.options) ? this.options.map(obj => {
-      return { ...obj, selected: false }
-    }) : JSON.parse(this.options).map(obj => {
-      return { ...obj, selected: false }
-    })
+    const resetPreviouslySelected = Array.isArray(this.options)
+      ? this.options.map(obj => {
+          return { ...obj, selected: false };
+        })
+      : JSON.parse(this.options).map(obj => {
+          return { ...obj, selected: false };
+        });
     const newSelection = resetPreviouslySelected.map(obj => {
       if (obj.value === newValue) {
         return { ...obj, selected: true };
@@ -593,37 +577,23 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.options = [...newSelection];
   }
 
-
-
   //setting the value that gets displayed in the select at component start (either the value prop or a placeholder)
   private createSelectOptions(ifxOptions): Array<HTMLStencilElement> {
     if (this.value !== 'undefined' || this.selectedOption?.value !== '') {
       let options;
       if (this.isJSONParseable(ifxOptions)) {
         options = [...JSON.parse(ifxOptions)];
-      }
-      else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
+      } else if (Array.isArray(ifxOptions) || typeof ifxOptions === 'object') {
         options = [...ifxOptions];
       }
       const optionValueBasedOnAvailableOptions = options?.find(option => option.value === this.value || this.selectedOption?.value);
 
       if (optionValueBasedOnAvailableOptions) {
-        return [
-          <option value={optionValueBasedOnAvailableOptions.value}>
-            {optionValueBasedOnAvailableOptions.label}
-          </option>
-        ];
+        return [<option value={optionValueBasedOnAvailableOptions.value}>{optionValueBasedOnAvailableOptions.label}</option>];
       }
     }
 
     // Assign a unique id for the placeholder
-    return this.placeholder !== "false" ? [
-      <option value="">
-        {this.placeholderValue}
-      </option>
-    ] : [
-      <option value="">
-      </option>
-    ];
+    return this.placeholder !== 'false' ? [<option value="">{this.placeholderValue}</option>] : [<option value=""></option>];
   }
 }
