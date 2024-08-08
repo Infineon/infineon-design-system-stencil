@@ -1,6 +1,7 @@
 //dropdown.tsx
 import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter, Event } from "@stencil/core";
 import { createPopper } from '@popperjs/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 import { IOpenable } from './IOpenable';
 
@@ -63,6 +64,10 @@ export class Dropdown {
     //maybe not needed
     this.updateSlotContent();
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
+  }
+
+  componentDidLoad() {
+    trackComponentView('Dropdown');
   }
 
   @Watch('defaultOpen')

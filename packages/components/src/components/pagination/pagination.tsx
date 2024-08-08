@@ -1,4 +1,5 @@
 import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-pagination',
@@ -31,6 +32,8 @@ export class Pagination {
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
     let leftArrow = paginationElement.querySelector('.prev')
     this.navigateSinglePage(leftArrow, true)
+    trackComponentView('Pagination');
+
   }
 
   calculateNumberOfPages() {

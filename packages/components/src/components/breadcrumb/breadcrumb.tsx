@@ -1,4 +1,5 @@
 import { Component, h, Element } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-breadcrumb',
@@ -11,6 +12,7 @@ export class Breadcrumb {
   componentDidLoad() {
     const element = this.el.shadowRoot.firstChild;
     this.addEventListenersToHandleCustomFocusState(element);
+    trackComponentView('Breadcrumb');
 
   }
 

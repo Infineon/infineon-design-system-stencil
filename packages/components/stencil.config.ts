@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { frameworkTargets } from './framework-output-targets';
+import injectTracking from './rollup-plugin-inject-tracking';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -33,9 +34,14 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [
+       copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: 'build/fonts', warn: true },
       ]
     }
   ],
+  rollupPlugins: {
+    after: [
+      injectTracking()
+    ]
+  }
 };
