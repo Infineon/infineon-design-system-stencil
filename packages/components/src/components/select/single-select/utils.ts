@@ -40,3 +40,18 @@ export function getValues(value: string | Array<string>): Array<string> {
     ? [].concat(typeof value === 'string' ? value.split(',') : value)
     : [];
 }
+
+/**
+ * Determines whether a string is valid JSON and can be parsed.
+ * 
+ * @param str - The input string.
+ * @returns - Whether the string can be parsed.
+ */
+export function isJSONParseable(str: string): boolean {
+  try {
+    JSON.parse(str);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}

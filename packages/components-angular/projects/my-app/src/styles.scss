@@ -2,6 +2,6 @@
 @use "@infineon/design-system-tokens/dist/tokens";
 
 
-div {
+:root {
   background-color: tokens.$ifxColorBaseWhite;
 }

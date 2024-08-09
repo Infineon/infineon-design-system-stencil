@@ -329,7 +329,10 @@
     <ifx-select id="single-select" size='m' placeholder='true' show-search='true'
       search-placeholder-value='Search...' disabled='false' error='false' error-message='Some error'
       label='' placeholder-value='Placeholder' options=''>
-    </ifx-select> <br />
+    </ifx-select> 
+    <br />
+    <ifx-button id="single-select-disabled-btn">Toggle Disabled</ifx-button>
+    <ifx-button  id="single-select-error-btn">Toggle Error</ifx-button>
     <br />
     <br />
 
@@ -544,6 +547,8 @@
   const numberIndicator = document.querySelector('#number-indicator');
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
+  const singleSelectDisabledBtn = document.querySelector('#single-select-disabled-btn');
+  const singleSelectErrorBtn = document.querySelector('#single-select-error-btn');
   const openModalBtn = document.querySelector("#open-modal-btn");
   const modal = document.querySelector("#modal");
 
@@ -653,6 +658,18 @@
     //set single select values using a json array
     const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
     singleSelect.setAttribute('options', singleSelectOptions);
+
+    // Set buttons to update single select
+    singleSelectDisabledBtn.addEventListener('click', () => {
+      const disabled = singleSelect.getAttribute('disabled');
+      singleSelect.setAttribute('disabled', disabled === 'false' ? true : false);
+    });
+
+    singleSelectErrorBtn.addEventListener('click', () => {
+      const error = singleSelect.getAttribute('error');
+      singleSelect.setAttribute('error', error === 'false' ? true : false);
+    })
+
 
     cardBtn.addEventListener('click', () => {
       console.log("card button click event");
