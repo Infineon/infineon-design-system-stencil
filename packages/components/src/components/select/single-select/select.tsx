@@ -413,7 +413,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     };
 
     const settings = filterObject(props, isDefined);
-    this.selectedOption = null;
 
     //type check
     const element = this.root.querySelector('[data-selector="root"]');
