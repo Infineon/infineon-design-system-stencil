@@ -5,17 +5,18 @@ export default {
   title: 'Components/Dropdown',
   tags: ['autodocs'],
   args: {
-    label: 'Dropdown',
-    size: 'm',
-    disabled: false,
-    search: false,
-    header: false,
-    separator: false,
+    Type: 'Default',
+    Label: 'Dropdown',
     variant: 'primary',
-    url: '',
-    target: '_self',
+    disabled: false,
     icon: 'c-check-16',
-    dropdownMenuItemIcon: false,
+    size: 'm',
+    Search: false,
+    Header: false,
+    href: '',
+    target: '_self',
+    Separator: false,
+    DropDownMenuItemIcon: false,
     defaultOpen: false,
     noCloseOnOutsideClick: false,
     noCloseOnMenuClick: false,
@@ -23,6 +24,10 @@ export default {
     placement: 'bottom-start',
   },
   argTypes: {
+    Type:{
+      options: ['Default', 'Label Trigger'],
+      control: { type: 'radio' }
+    },
     placement: {
       options: [
         'auto',
@@ -43,9 +48,12 @@ export default {
       ],
       control: { type: 'select' },
     },
-    label: { description: 'The visible name or label for the dropdown button' },
+    Label: { 
+      description: 'The visible name or label for the dropdown button',
+      if: { arg: 'Type', eq: 'Default' }
+    },
     size: {
-      description: 'Font Size options: s (14px) and m (16px) - default: m',
+      description: 'Font Size options for menu items: s (14px) and m (16px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
     },
@@ -54,17 +62,33 @@ export default {
       description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
       options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
+      if: { arg: 'Type', eq: 'Default' }
     },
 
     target: {
       options: ['_self', '_blank'],
       control: { type: 'radio' },
     },
-
+    href: {
+      description: 'href link to menu item'
+    },
     icon: {
       description: 'The icon to be displayed on the dropdown button',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      if: { arg: 'Type', eq: 'Label Trigger' }
+    },
+    Search :{
+      description: 'Show Search Bar'
+    },
+    Header: {
+      description: 'Add Header Text'
+    },
+    Separator:{
+      description: 'Use seperator in dropdown'
+    },
+    DropDownMenuItemIcon: {
+      description: 'Show menu item icon in dropdown'
     },
     defaultOpen: { description: 'Determines if the dropdown should be open by default' },
     noCloseOnOutsideClick: { description: 'Determines if the dropdown should not close when a click outside the dropdown happens' },
@@ -108,19 +132,36 @@ export default {
 
 const DefaultTemplate = args => {
   const wrapper = document.createElement('div');
-  wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" disabled="${args.disabled}" no-close-on-menu-click="${args.noCloseOnOutsideClick}">
-  <ifx-dropdown-trigger-button variant="${args.variant}">
-    dropdown
-  </ifx-dropdown-trigger-button>
+  wrapper.innerHTML = `<ifx-dropdown placement="${args.placement}" 
+  disabled="${args.disabled}" 
+  default-open="${args.defaultOpen}"
+  no-close-on-outside-click="${args.noCloseOnOutsideClick}"
+  no-close-on-menu-click="${args.noCloseOnOutsideClick}"
+  no-append-to-body="${args.noAppendToBody}">
+
+  ${args.Type === 'Default' ?
+    `
+    <ifx-dropdown-trigger-button variant="${args.variant}">
+      ${args.Label}
+    </ifx-dropdown-trigger-button>
+    ` 
+    :
+    `
+    <ifx-dropdown-trigger>
+      <ifx-icon icon="${args.icon}"></ifx-icon>
+    </ifx-dropdown-trigger>
+    `
+  }
+  
   <ifx-dropdown-menu size="${args.size}">
-    ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
-    ${args.search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
-    ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
-    <ifx-dropdown-item icon="${args.dropdownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.url !== '' ? args.url : ''}">Menu Item</ifx-dropdown-item>
+    ${args.Header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
+    ${args.Search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    ${args.Separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
