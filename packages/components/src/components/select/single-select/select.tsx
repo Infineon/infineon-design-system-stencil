@@ -79,7 +79,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
-  @Prop() options: any[] | string;
+  @Prop({ mutable: true }) options: any[] | string;
   @Prop() size: string = 'medium (40px)';
   @State() selectedOption: any | null = null;
 
