@@ -8,6 +8,7 @@ import { h,
          State, 
          Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
     tag     : 'ifx-stepper',
@@ -63,6 +64,11 @@ export class Stepper {
      */
     @State() stepsCount: number;
 
+
+    componentDidLoad() {
+        trackComponentView('Stepper');
+      }
+    
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
         const steps = this.getSteps();

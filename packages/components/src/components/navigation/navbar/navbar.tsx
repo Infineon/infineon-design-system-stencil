@@ -1,4 +1,5 @@
 import { Component, h, Element, State, Prop, Listen, Event, EventEmitter } from '@stencil/core';
+import { trackComponentView } from '../../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-navbar',
@@ -281,6 +282,8 @@ export class Navbar {
     if (mediaQueryList.matches) {
       this.moveNavItemsToSidebar();
     }
+    trackComponentView('Navbar');
+
   }
 
   handleMobileMenuBottom(e) { 
@@ -321,7 +324,8 @@ export class Navbar {
     const mediaQueryList = window.matchMedia('(max-width: 800px)');
     mediaQueryList.addEventListener('change', (e) => this.moveNavItemsToSidebar(e));
   }
-  
+
+ 
 
   getSearchBarLeftWrapper() { 
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')

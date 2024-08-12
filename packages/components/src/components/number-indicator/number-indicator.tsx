@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-number-indicator',
@@ -7,6 +8,10 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class NumberIndicator {
   @Prop() inverted: boolean = false;
+
+  componentDidLoad() {
+    trackComponentView('NumberIndicator');
+  }
 
   render() {
     return (

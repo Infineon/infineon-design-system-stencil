@@ -1,4 +1,5 @@
 import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-alert',
@@ -11,6 +12,10 @@ export class Alert {
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
   @Prop() closable: boolean = true;
+
+  componentDidLoad() {
+    trackComponentView('Alert');
+  }
 
   handleClose() { 
     this.ifxClose.emit()
