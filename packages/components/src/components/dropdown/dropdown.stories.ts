@@ -186,13 +186,17 @@ const LabelTriggerTemplate = args => {
       <ifx-icon icon="${args.icon}"></ifx-icon>
     </ifx-dropdown-trigger>
     Some more text
-    <ifx-dropdown-menu>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-      <ifx-dropdown-item>Menu Item</ifx-dropdown-item>
-    </ifx-dropdown-menu>
-  </ifx-dropdown>`;
+  <ifx-dropdown-menu size="${args.size}">
+    ${args.Header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
+    ${args.Search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    ${args.Separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
+    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+  </ifx-dropdown-menu>
+</ifx-dropdown>`;
 
   const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
