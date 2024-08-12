@@ -5,7 +5,6 @@ export default {
   title: 'Components/Dropdown',
   tags: ['autodocs'],
   args: {
-    Type: 'Default',
     Label: 'Dropdown',
     variant: 'primary',
     disabled: false,
@@ -24,11 +23,6 @@ export default {
     placement: 'bottom-start',
   },
   argTypes: {
-    Type:{
-      description: 'Note: Type is __NOT__ a prop/attribute',
-      options: ['Default', 'Label Trigger'],
-      control: { type: 'radio' }
-    },
     placement: {
       options: [
         'auto',
@@ -51,7 +45,7 @@ export default {
     },
     Label: { 
       description: 'The visible name or label for the dropdown button',
-      if: { arg: 'Type', eq: 'Default' }
+      // if: { arg: 'Type', eq: 'Default' }
     },
     size: {
       description: 'Font Size options for menu items: s (14px) and m (16px) - default: m',
@@ -63,7 +57,7 @@ export default {
       description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
       options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
-      if: { arg: 'Type', eq: 'Default' }
+      // if: { arg: 'Type', eq: 'Default' }
     },
 
     target: {
@@ -77,7 +71,7 @@ export default {
       description: 'The icon to be displayed on the dropdown button',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
-      if: { arg: 'Type', eq: 'Label Trigger' }
+      // if: { arg: 'Type', eq: 'Label Trigger' }
     },
     Search :{
       description: 'Show Search Bar'
@@ -140,20 +134,10 @@ const DefaultTemplate = args => {
   no-close-on-menu-click="${args.noCloseOnOutsideClick}"
   no-append-to-body="${args.noAppendToBody}">
 
-  ${args.Type === 'Default' ?
-    `
     <ifx-dropdown-trigger-button variant="${args.variant}">
       ${args.Label}
     </ifx-dropdown-trigger-button>
-    ` 
-    :
-    `
-    <ifx-dropdown-trigger>
-      <ifx-icon icon="${args.icon}"></ifx-icon>
-    </ifx-dropdown-trigger>
-    `
-  }
-  
+
   <ifx-dropdown-menu size="${args.size}">
     ${args.Header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
     ${args.Search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
@@ -177,6 +161,15 @@ const DefaultTemplate = args => {
 };
 
 export const Default = DefaultTemplate.bind({});
+Default.argTypes = {
+  icon: {
+    table: {
+      disable: true
+    }
+  }
+}
+
+
 
 const LabelTriggerTemplate = args => {
   const wrapper = document.createElement('div');
@@ -212,11 +205,13 @@ const LabelTriggerTemplate = args => {
 };
 
 export const LabelTrigger = LabelTriggerTemplate.bind({});
-LabelTrigger.args = {
-  Type: 'Label Trigger'
-}
 LabelTrigger.argTypes = {
-  Type: {
+  Label: {
+    table: {
+      disable: true
+    }
+  },
+  variant: {
     table: {
       disable: true
     }
