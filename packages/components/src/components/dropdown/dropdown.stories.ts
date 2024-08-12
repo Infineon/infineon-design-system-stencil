@@ -25,6 +25,7 @@ export default {
   },
   argTypes: {
     Type:{
+      description: 'Note: Type is __NOT__ a prop/attribute',
       options: ['Default', 'Label Trigger'],
       control: { type: 'radio' }
     },
@@ -211,3 +212,13 @@ const LabelTriggerTemplate = args => {
 };
 
 export const LabelTrigger = LabelTriggerTemplate.bind({});
+LabelTrigger.args = {
+  Type: 'Label Trigger'
+}
+LabelTrigger.argTypes = {
+  Type: {
+    table: {
+      disable: true
+    }
+  }
+}
