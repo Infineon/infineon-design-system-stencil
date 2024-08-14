@@ -295,7 +295,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
