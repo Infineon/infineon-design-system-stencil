@@ -616,8 +616,8 @@ export class Multiselect {
         ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           tabindex="0"
-          onClick={(event) => this.handleWrapperClick(event)}
-          onKeyDown={(event) => this.handleKeyDown(event)} >
+          onClick={this.disabled ? undefined : (event) => this.handleWrapperClick(event)}
+          onKeyDown={this.disabled ? undefined : (event) => this.handleKeyDown(event)} >
           <div class={`ifx-multiselect-input 
           ${this.persistentSelectedOptions.length === 0 ? 'placeholder' : ""}
           `}
