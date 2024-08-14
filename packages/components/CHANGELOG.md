@@ -1,3 +1,20 @@
+# v24.4.1 (Tue Aug 13 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: Optimized dropdown story [#1415](https://github.com/Infineon/infineon-design-system-stencil/pull/1415) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.4.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.4.0 (Thu Aug 08 2024)
 
 #### 🚀 Enhancement
