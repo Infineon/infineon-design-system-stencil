@@ -26,11 +26,6 @@ function App() {
     selected: false
   },
   {
-    value: "b",
-    label: "option b",
-    selected: false
-  },
-  {
     value: "e",
     label: "option e",
     selected: false

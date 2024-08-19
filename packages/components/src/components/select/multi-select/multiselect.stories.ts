@@ -3,27 +3,27 @@ import { action } from '@storybook/addon-actions';
 const options = [
   {
     value: 'a',
-    label: 'option a',
+    label: 'Option a',
     selected: false,
   },
   {
     value: 'b',
-    label: 'option b',
+    label: 'Option b',
     selected: false,
   },
   {
-    value: 'z',
-    label: 'option z',
+    value: 'c',
+    label: 'Option c',
     selected: false,
     children: [
       {
         value: 'z1',
-        label: 'option z1',
+        label: 'Option c1',
         selected: false,
       },
       {
         value: 'z2',
-        label: 'option z2',
+        label: 'Option c2',
         selected: false,
       },
     ],
