@@ -1,6 +1,6 @@
 import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 
 @Component({
@@ -59,9 +59,6 @@ export class SearchField {
     this.isFocused = true;
   }
   
-  componentDidLoad() {
-    trackComponentView('SearchField');
-  }
 
 
   componentWillUpdate() { 

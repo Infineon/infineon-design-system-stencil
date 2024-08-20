@@ -1,5 +1,5 @@
 import { Component, h, Element, Prop, State, Host } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-footer',
@@ -41,11 +41,7 @@ export class Footer {
   }
 
 
-  componentDidLoad() {
-    trackComponentView('Footer');
-  }
-
-
+ 
   render() {
     return (
       <Host>
