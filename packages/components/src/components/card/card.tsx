@@ -1,5 +1,5 @@
 import { Component, h, Host, Element, Prop, State, Listen } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-card',
@@ -85,7 +85,6 @@ export class Card {
   componentDidLoad() {
     this.handleHovering();
     this.addEventListenersToHandleCustomFocusState();
-    trackComponentView('Card');
 
   }
 

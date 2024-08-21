@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-button',
@@ -66,9 +66,7 @@ export class Button {
     this.handleButtonWidth()
   }
 
-  componentDidLoad() {
-    trackComponentView('Button');
-  }
+
 
   handleClick = (ev: Event) => {
     if (this.el.shadowRoot) {

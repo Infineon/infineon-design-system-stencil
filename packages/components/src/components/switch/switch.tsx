@@ -1,6 +1,6 @@
 import { AttachInternals } from '@stencil/core';
 import { Component, Prop, State, Watch, h, Event, EventEmitter, Element } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-switch',
@@ -37,7 +37,6 @@ export class Switch {
   
   componentDidLoad() {
     this.toggleLabelGap();
-    trackComponentView('Switch');
 
   }
     

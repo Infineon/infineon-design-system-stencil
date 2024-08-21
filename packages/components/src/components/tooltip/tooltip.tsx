@@ -1,6 +1,6 @@
 import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
 import { createPopper } from '@popperjs/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-tooltip',
@@ -39,7 +39,6 @@ export class Tooltip {
     }else{
       slotElement.addEventListener('click', this.onClick);
     }
-    trackComponentView('Tooltip');
 
   }
 
