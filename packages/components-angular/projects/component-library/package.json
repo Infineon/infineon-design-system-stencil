@@ -8,8 +8,8 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@angular/common": "^17.3.3",
-    "@angular/core": "^17.3.3",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
     "@infineon/design-system-tokens": "3.3.2",
     "@infineon/infineon-design-system-stencil": "^24.4.1"
   },
