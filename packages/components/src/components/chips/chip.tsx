@@ -1,5 +1,5 @@
 import { Component, h, Element, Prop, Listen, State, Event, EventEmitter } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-chip',
@@ -13,10 +13,6 @@ export class Chip {
   @State() selectedValue: string = "";
   @State() active: boolean = false;
   @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
-
-  componentDidLoad() {
-    trackComponentView('Chip');
-  }
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {

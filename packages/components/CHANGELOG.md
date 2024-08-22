@@ -1,3 +1,20 @@
+# v24.5.0 (Thu Aug 22 2024)
+
+#### 🚀 Enhancement
+
+- Tracking needs to be removed [#1422](https://github.com/Infineon/infineon-design-system-stencil/pull/1422) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.4.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.4.1 (Tue Aug 13 2024)
 
 #### 🐛 Bug Fix
