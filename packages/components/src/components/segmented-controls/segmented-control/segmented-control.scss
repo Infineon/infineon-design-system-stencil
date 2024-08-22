@@ -1,0 +1,41 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
+.control {
+    display: flex;
+    align-items: center;
+    gap: tokens.$ifxSize100;
+
+    outline: tokens.$ifxSpace12 solid tokens.$ifxColorEngineering300;
+    border-radius: tokens.$ifxBorderRadius12;
+    padding: 0 tokens.$ifxSize100 0 tokens.$ifxSize100;
+
+    height: 34px;
+    width: fit-content;
+
+    background-color: tokens.$ifxColorBaseWhite;
+
+    transition: all 150ms ease;
+    transition-property: color, background;
+    
+    font: tokens.$ifxBodyBodySemibold04;
+
+    &:hover { 
+        color: tokens.$ifxColorBaseWhite;
+        background-color: tokens.$ifxColorOcean600;
+        
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: tokens.$ifxColorOcean700;
+    }
+
+    &.control--selected {
+        background-color: tokens.$ifxColorOcean500;
+    }
+
+    &.control--small {
+        height: 30px;
+    }
+}
