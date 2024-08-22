@@ -1,5 +1,5 @@
 import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-text-field',
@@ -29,9 +29,6 @@ export class TextField {
 
   @AttachInternals() internals: ElementInternals;
 
-  componentDidLoad() {
-    trackComponentView('TextField');
-  }
 
   @Watch('value')
   valueWatcher(newValue: string) {

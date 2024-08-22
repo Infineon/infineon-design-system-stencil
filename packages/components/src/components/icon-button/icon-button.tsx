@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Method, Element } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-icon-button',
@@ -31,9 +31,7 @@ export class IconButton {
     }
   }
 
-  componentDidLoad() {
-    trackComponentView('IconButton');
-  }
+
 
   render() {
     return (

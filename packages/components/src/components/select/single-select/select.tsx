@@ -1,7 +1,6 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
-import { trackComponentView } from '../../../global/utils/tracking';
 
 import {
   AjaxFn,
@@ -257,7 +256,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   protected componentDidLoad() {
     this.init();
     this.addEventListenersToHandleCustomFocusAndActiveState();
-    trackComponentView('SingleSelect');
 
   }
 

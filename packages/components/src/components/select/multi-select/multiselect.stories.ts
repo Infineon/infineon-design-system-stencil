@@ -70,7 +70,6 @@ export default {
   },
   argTypes: {
     size: {
-      name: 'Size',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm',
@@ -80,56 +79,45 @@ export default {
       },
     },
     batchSize: {
-      name: 'Batch size',
       description: 'Batch size used during lazy loading options',
       control: {
         type: 'number',
       },
     },
     maxItemCount: {
-      name: 'Maximum selectable items',
       control: { type: 'number' },
       description: 'Number of maximum selectable items',
     },
     disabled: {
-      name: 'Disabled',
       options: [true, false],
       control: { type: 'radio' },
     },
     showSearch: {
-      name: 'Enable search',
       options: [true, false],
       control: { type: 'radio' },
     },
     showSelectAll: {
-      name: 'Show Select All',
       description: 'Show a checkbox to select all options',
       options: [true, false],
       control: { type: 'radio' },
     },
     error: {
-      name: 'Error',
       options: [true, false],
       control: { type: 'radio' },
     },
     errorMessage: {
-      name: 'Error message',
       control: 'text',
     },
     label: {
-      name: 'Label',
       control: 'text',
     },
     placeholder: {
-      name: 'Placeholder',
       control: 'text',
     },
     options: {
-      name: 'Options',
       description: 'Takes an array of objects in the following format',
     },
     ifxSelect: {
-      name: 'Custom event: ifxSelect',
       action: 'ifxSelect',
       description: 'Custom event emitted when item is selected or unselected',
       table: {

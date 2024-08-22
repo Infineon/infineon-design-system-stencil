@@ -1,6 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-spinner',
@@ -12,9 +12,6 @@ export class Spinner {
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
-  componentDidLoad() {
-    trackComponentView('Spinner');
-  }
 
   render() {
     return (
