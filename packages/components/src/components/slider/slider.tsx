@@ -1,5 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 @Component({
   tag: 'ifx-slider',
@@ -151,7 +151,6 @@ export class IfxSlider {
 
   componentDidLoad() {
     this.updateValuePercent();
-    trackComponentView('Slider');
 
   }
 

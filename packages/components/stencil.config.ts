@@ -1,7 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { frameworkTargets } from './framework-output-targets';
-import injectTracking from './rollup-plugin-inject-tracking';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -39,9 +38,4 @@ export const config: Config = {
       ]
     }
   ],
-  rollupPlugins: {
-    after: [
-      injectTracking()
-    ]
-  }
 };
