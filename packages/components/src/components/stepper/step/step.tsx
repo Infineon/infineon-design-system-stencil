@@ -112,7 +112,8 @@ export class Step {
                         ${this.lastStep ? 'last-step': ''}
                         indicator-${this.stepperState.indicatorPosition}
                         ${this.active ? 'active' : ''}
-                        ${this.clickable ? 'clickable' : ''}`}>
+                        ${this.clickable ? 'clickable' : ''}
+                        ${this.disabled ? 'disabled': ''}`}>
 
                 <div class = 'step-icon-wrapper'>
                     {/* Left connector */}
