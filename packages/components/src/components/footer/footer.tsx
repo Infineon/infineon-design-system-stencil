@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, State, Host } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-footer',
@@ -40,9 +41,7 @@ export class Footer {
   }
 
 
-
-
-
+ 
   render() {
     return (
       <Host>

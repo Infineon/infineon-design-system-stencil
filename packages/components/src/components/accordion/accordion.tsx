@@ -10,6 +10,7 @@ export class Accordion {
   @Element() el: HTMLElement;
   @Prop() autoCollapse: boolean = false;
 
+
   @Listen('ifxItemOpen')
   async onItemOpen(event: CustomEvent) {
     if (this.autoCollapse) {

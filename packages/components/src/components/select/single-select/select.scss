@@ -75,10 +75,16 @@
       background: #EEEDED;
       color: #575352;
       border-color: #575352;
-      cursor: not-allowed;
+      cursor: default;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
+
+      .ifx-choices__icon-wrapper-down {
+        &:hover {
+          cursor: default;
+        }
+      }
     }
 
     &.error {
@@ -195,15 +201,14 @@ END Select options: item alignment
 
   .choices.is-disabled .choices__inner,
   .choices.is-disabled .choices__input {
-    background-color: #eaeaea;
-    cursor: not-allowed;
+    cursor: default;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
   }
 
   .choices.is-disabled .choices__item {
-    cursor: not-allowed;
+    cursor: default;
     color: #575352;
   }
 
@@ -558,7 +563,7 @@ END Select options: item alignment
   }
 
   .choices__item--disabled {
-    cursor: not-allowed;
+    cursor: default;
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;

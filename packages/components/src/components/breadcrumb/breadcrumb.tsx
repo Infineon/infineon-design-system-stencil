@@ -11,7 +11,6 @@ export class Breadcrumb {
   componentDidLoad() {
     const element = this.el.shadowRoot.firstChild;
     this.addEventListenersToHandleCustomFocusState(element);
-
   }
 
   private addEventListenersToHandleCustomFocusState(element: HTMLElement) {

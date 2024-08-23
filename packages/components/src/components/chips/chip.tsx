@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, Listen, State, Event, EventEmitter } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-chip',

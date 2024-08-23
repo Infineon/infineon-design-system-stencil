@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Method, Element } from '@stencil/core';
 import classNames from 'classnames';
+ 
 
 @Component({
   tag: 'ifx-icon-button',
@@ -29,6 +30,8 @@ export class IconButton {
       this.shape = 'round';
     }
   }
+
+
 
   render() {
     return (

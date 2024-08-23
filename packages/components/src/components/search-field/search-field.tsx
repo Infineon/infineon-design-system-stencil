@@ -1,5 +1,6 @@
 import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
+ 
 
 
 @Component({
@@ -56,6 +57,8 @@ export class SearchField {
     this.inputElement.focus();
     this.isFocused = true;
   }
+  
+
 
 
   componentWillUpdate() {

@@ -1,5 +1,6 @@
 import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
 import { createPopper } from '@popperjs/core';
+ 
 
 @Component({
   tag: 'ifx-tooltip',
@@ -38,6 +39,7 @@ export class Tooltip {
     }else{
       slotElement.addEventListener('click', this.onClick);
     }
+
   }
 
   initializePopper() {

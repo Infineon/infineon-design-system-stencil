@@ -1,5 +1,6 @@
 //ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
+ 
 
 
 @Component({
@@ -115,6 +116,7 @@ export class IfxTabs {
     this.tabHeaderRefs.forEach((tab, index) => {
       tab.addEventListener('focus', this.onTabFocus(index));
     });
+
   }
 
   onTabFocus(index) {

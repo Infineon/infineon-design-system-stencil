@@ -1,4 +1,5 @@
 import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-text-field',
@@ -27,6 +28,7 @@ export class TextField {
   // resetOnSubmit: boolean = false;
 
   @AttachInternals() internals: ElementInternals;
+
 
   @Watch('value')
   valueWatcher(newValue: string) {

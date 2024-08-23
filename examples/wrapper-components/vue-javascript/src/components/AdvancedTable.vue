@@ -8,11 +8,10 @@
     table-height="auto"
     pagination="false"
     pagination-page-size="10"
-    enable-filtering="true"
     filter-orientation="sidebar">
     <ifx-filter-type-group slot="sidebar-filter">
         <div slot="filter-search">
-          <ifx-filter-search filter-name="search"></ifx-filter-search>
+          <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
         </div>
         
       <ifx-filter-accordion slot="filter-accordion" filter-group-name="make">

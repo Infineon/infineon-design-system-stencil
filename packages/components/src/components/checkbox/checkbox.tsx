@@ -1,4 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-checkbox',
@@ -76,6 +77,7 @@ export class Checkbox {
   componentDidRender() {
     this.inputElement.indeterminate = this.internalIndeterminate;
   }
+
 
   /**
    * Callback for form association.

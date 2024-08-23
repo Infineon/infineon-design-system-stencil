@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-number-indicator',
@@ -7,6 +8,8 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class NumberIndicator {
   @Prop() inverted: boolean = false;
+
+
 
   render() {
     return (

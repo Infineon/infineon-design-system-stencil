@@ -8,6 +8,7 @@ import { h,
          State, 
          Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
+ 
 
 @Component({
     tag     : 'ifx-stepper',
@@ -63,6 +64,9 @@ export class Stepper {
      */
     @State() stepsCount: number;
 
+
+
+    
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
         const steps = this.getSteps();

@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
 import classNames from 'classnames';
+ 
 
 @Component({
   tag: 'ifx-button',
@@ -64,6 +65,8 @@ export class Button {
   componentWillRender() {
     this.handleButtonWidth()
   }
+
+
 
   handleClick = (ev: Event) => {
     if (this.el.shadowRoot) {

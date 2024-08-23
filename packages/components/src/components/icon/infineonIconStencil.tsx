@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
+ 
 
 
 @Component({
@@ -70,6 +71,8 @@ export class InfineonIconStencil {
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
+
+
 
   render() {
     return (

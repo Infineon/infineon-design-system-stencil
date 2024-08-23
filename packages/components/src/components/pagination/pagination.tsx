@@ -1,4 +1,5 @@
 import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-pagination',
@@ -31,6 +32,7 @@ export class Pagination {
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
     let leftArrow = paginationElement.querySelector('.prev')
     this.navigateSinglePage(leftArrow, true)
+
   }
 
   calculateNumberOfPages() {
@@ -172,7 +174,6 @@ export class Pagination {
           <div class='items__per-page-label'>Results per Page</div>
           <div class='items__per-page-field'>
             <ifx-select
-              type='single'
               value='undefined'
               size='s'
               placeholder='false'

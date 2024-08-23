@@ -1,4 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element, Method } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-search-bar',
@@ -35,10 +36,13 @@ export class SearchBar {
     this.internalState = this.isOpen;
   }
 
+  
+
   componentWillLoad() {
     this.setInitialState();
     this.ifxSearchBarIsOpen.emit(this.internalState)
   }
+
 
   handleInput(event: CustomEvent) {
     this.value = event.detail;

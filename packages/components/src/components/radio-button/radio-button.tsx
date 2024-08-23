@@ -1,4 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, AttachInternals } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-radio-button',
@@ -33,6 +34,7 @@ export class RadioButton {
       this.hasSlot = true;
     } else this.hasSlot = false;
   }
+
 
   handleRadioButtonClick() {
     if (!this.disabled && !this.error && !this.internalValue) {

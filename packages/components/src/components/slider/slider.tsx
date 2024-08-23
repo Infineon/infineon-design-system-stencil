@@ -1,4 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-slider',
@@ -150,6 +151,7 @@ export class IfxSlider {
 
   componentDidLoad() {
     this.updateValuePercent();
+
   }
 
 
