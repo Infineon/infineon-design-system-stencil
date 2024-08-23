@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@24.3.1/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@24.6.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -95,12 +95,6 @@
     <h1>Using Stencil web components in an Vanilla JS</h1>
 
 
-
-
-    <h2>Alert</h2>
-    <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
-    <br />
-
     <h2>Accordion</h2>
     <ifx-accordion><ifx-accordion-item caption="Label">
 
@@ -130,6 +124,13 @@
         nisl cursus ipsum, nec egestas odio sapien eget neque.
 
       </ifx-accordion-item></ifx-accordion>
+      <br />
+
+      
+    <h2>Alert</h2>
+    <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
+    <br />
+
 
     <h2>Breadcrumb</h2>
     <ifx-breadcrumb>
@@ -364,7 +365,10 @@
     <ifx-select id="single-select" size='m' placeholder='true' show-search='true'
       search-placeholder-value='Search...' disabled='false' error='false' error-message='Some error'
       label='' placeholder-value='Placeholder' options=''>
-    </ifx-select> <br />
+    </ifx-select> 
+    <br />
+    <ifx-button id="single-select-disabled-btn">Toggle Disabled</ifx-button>
+    <ifx-button  id="single-select-error-btn">Toggle Error</ifx-button>
     <br />
     <br />
 
@@ -625,6 +629,8 @@
   const numberIndicator = document.querySelector('#number-indicator');
   const switchToggle = document.querySelector('#switch');
   const singleSelect = document.querySelector('#single-select');
+  const singleSelectDisabledBtn = document.querySelector('#single-select-disabled-btn');
+  const singleSelectErrorBtn = document.querySelector('#single-select-error-btn');
   const openModalBtn = document.querySelector("#open-modal-btn");
   const modal = document.querySelector("#modal");
 
