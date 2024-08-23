@@ -1,3 +1,60 @@
+# v24.6.0 (Thu Aug 22 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: upgraded to angular 18 [#1423](https://github.com/Infineon/infineon-design-system-stencil/pull/1423) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### 🐛 Bug Fix
+
+- SingleSelect: Clean Up and Bug Fix [#1414](https://github.com/Infineon/infineon-design-system-stencil/pull/1414) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@akashyeole](https://github.com/akashyeole) [@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.5.0 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.5.0 (Thu Aug 22 2024)
+
+#### 🚀 Enhancement
+
+- Tracking needs to be removed [#1422](https://github.com/Infineon/infineon-design-system-stencil/pull/1422) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.4.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
+# v24.4.1 (Tue Aug 13 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: Optimized dropdown story [#1415](https://github.com/Infineon/infineon-design-system-stencil/pull/1415) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.4.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.4.0 (Thu Aug 08 2024)
 
 #### 🚀 Enhancement

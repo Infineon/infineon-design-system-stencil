@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 
 @Component({
@@ -72,9 +72,6 @@ export class InfineonIconStencil {
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
 
-  componentDidLoad() {
-    trackComponentView('InfineonIconStencil');
-  }
 
 
   render() {

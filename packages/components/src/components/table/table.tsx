@@ -1,7 +1,7 @@
 import { Component, h, Prop, State } from '@stencil/core';
 import { FirstDataRenderedEvent, Grid, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 
 @Component({
@@ -85,7 +85,6 @@ export class Table {
     if (this.gridOptions.api) {
       this.gridOptions.api.sizeColumnsToFit();
     }
-    trackComponentView('Table');
 
   }
 
