@@ -55,7 +55,26 @@
         }
     }
     
-    &.complete, &.active{
+    
+    &.complete{
+        .step-connector-l, .step-connector-r, .step-icon {
+            background: tokens.$ifxColorOcean500;
+            &.active, &.error {
+                background: tokens.$ifxColorEngineering400;
+            }
+        }
+        .step-label{
+            color: tokens.$ifxColorBaseBlack;
+        }
+    } 
+
+    &.disabled{
+        .step-connector-l, .step-connector-r, .step-icon {
+            background-color: tokens.$ifxColorEngineering400;
+        }
+    }
+    
+    &.active{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
             &.active, &.error {
@@ -78,13 +97,14 @@
             cursor: auto;
         }
     }
-
+    
     &.error:not(.active){
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
         }
     }
+    
 }
 
 .active-indic{

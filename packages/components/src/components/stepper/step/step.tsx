@@ -22,6 +22,13 @@ export class Step {
     @Prop() complete?: boolean = false;
 
     /**
+     * Disables the step - makes the step unclickable
+     * 
+     * @Default false
+     */
+    @Prop() disabled?: boolean = false;
+
+    /**
      * Sets the error status of the step.
      * 
      * @Default false
@@ -78,14 +85,14 @@ export class Step {
 
     /* Handle the click event on step label. */
     handleStepClick() {
-        if (this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
+        if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
 
     /* Handle the 'Enter' key press on step label. */
     handleStepKeyDown(event: KeyboardEvent) {
-        if (this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
+        if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
@@ -105,7 +112,8 @@ export class Step {
                         ${this.lastStep ? 'last-step': ''}
                         indicator-${this.stepperState.indicatorPosition}
                         ${this.active ? 'active' : ''}
-                        ${this.clickable ? 'clickable' : ''}`}>
+                        ${this.clickable ? 'clickable' : ''}
+                        ${this.disabled ? 'disabled': ''}`}>
 
                 <div class = 'step-icon-wrapper'>
                     {/* Left connector */}
@@ -131,14 +139,14 @@ export class Step {
                 {
                     /* Step labels */
                     (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.active || this.stepId === this.stepperState.activeStep+1))) && 
-                    <div tabIndex={this.complete && !this.active ? 0 : -1} 
+                    <div tabIndex={!this.disabled && this.complete && !this.active ? 0 : -1} 
                         class = {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} 
                         onClick={() => { this.handleStepClick() }} 
                         onKeyDown={(e) => { this.handleStepKeyDown(e) }}>
 
                         {
                             (this.stepperState.variant === 'default') &&
-                            <ifx-link variant='underlined'>
+                            <ifx-link variant='menu'>
                                 <slot/>
                             </ifx-link>
                         }
