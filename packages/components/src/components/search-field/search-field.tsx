@@ -45,13 +45,12 @@ export class SearchField {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
     this.ifxInput.emit(this.value);
-    
   };
 
   handleDelete = () => {
     this.inputElement.value = '';
     this.value = "";
-    this.ifxInput.emit(null);
+    this.ifxInput.emit(this.value);
   }
 
   focusInput() {
@@ -61,8 +60,9 @@ export class SearchField {
   
 
 
-  componentWillUpdate() { 
-    if(this.value !== "") { 
+
+  componentWillUpdate() {
+    if (this.value !== "") {
       this.showDeleteIconInternalState = true;
     } else this.showDeleteIconInternalState = false;
   }
