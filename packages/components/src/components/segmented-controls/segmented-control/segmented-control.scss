@@ -5,8 +5,9 @@
     display: flex;
     align-items: center;
     gap: tokens.$ifxSize100;
+    position: relative;
 
-    outline: tokens.$ifxSpace12 solid tokens.$ifxColorEngineering300;
+    outline: tokens.$ifxBorderRadius25 solid tokens.$ifxColorEngineering300;
     border-radius: tokens.$ifxBorderRadius12;
     padding: 0 tokens.$ifxSize100 0 tokens.$ifxSize100;
 
@@ -15,12 +16,17 @@
 
     background-color: tokens.$ifxColorBaseWhite;
 
-    transition: all 150ms ease;
+    transition: all 100ms ease;
     transition-property: color, background;
     
     font: tokens.$ifxBodyBodySemibold04;
 
-    &:hover { 
+    &:focus-visible {
+        color: tokens.$ifxColorBaseWhite;
+        background-color: tokens.$ifxColorOcean500;
+    }
+
+    &:hover {         
         color: tokens.$ifxColorBaseWhite;
         background-color: tokens.$ifxColorOcean600;
         

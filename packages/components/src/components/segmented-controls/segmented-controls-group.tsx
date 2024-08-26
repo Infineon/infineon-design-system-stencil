@@ -1,6 +1,6 @@
 import { h, 
-         Element,
          Component, 
+         Element,
          Prop } from "@stencil/core";
 
 @Component ({

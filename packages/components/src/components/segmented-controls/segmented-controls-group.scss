@@ -29,8 +29,9 @@
 .group__controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.7px;
+    gap: 1px;
     
+    padding: 1px;
     outline: tokens.$ifxSpace12 solid tokens.$ifxColorEngineering300;
     border-radius: tokens.$ifxSpace12;
     

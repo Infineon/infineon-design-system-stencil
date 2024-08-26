@@ -21,6 +21,12 @@ size = '${args.size}'>
     <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
     <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
     <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
+    <ifx-segmented-control icon='star16'> Label </ifx-segmented-control>
     </ifx-segmented-controls-group>`;
     
     const segmentedControls = wrapper.querySelector('ifx-segmented-controls-group');
