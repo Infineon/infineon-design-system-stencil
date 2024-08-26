@@ -89,9 +89,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Watch('disabled')
   watchDisabled(newValue: boolean) {
     if (newValue) {
-      this.disable();
+      this.choice.disable();
     } else {
-      this.enable();
+      this.choice.enable();
     }
   }
 
@@ -226,22 +226,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Method()
   public async clearInput() {
     this.choice.clearInput();
-
-    return this;
-  }
-
-  @Method()
-  public async enable() {
-    this.choice.enable();
-    this.disabled = false;
-
-    return this;
-  }
-
-  @Method()
-  public async disable() {
-    this.choice.disable();
-    this.disabled = true;
 
     return this;
   }

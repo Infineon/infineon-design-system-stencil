@@ -183,6 +183,4 @@ export interface IChoicesMethods {
   setChoiceByValue(value: string | Array<string>);
   clearStore();
   clearInput();
-  disable();
-  enable();
 }
