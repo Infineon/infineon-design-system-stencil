@@ -1,0 +1,28 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../../global/font.scss";
+
+.chip-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: tokens.$ifxSpace100;
+    
+
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+
+    font: tokens.$ifxBodyBody04;
+
+    transition: all 100ms ease;
+    transition-property: background;
+
+    &:hover {
+        cursor: pointer;
+
+        background-color: tokens.$ifxColorEngineering200;
+    }
+    
+    &:active {
+        background-color: tokens.$ifxColorEngineering300;
+    }
+}
+

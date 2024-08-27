@@ -28,6 +28,7 @@
         flex: none;
         order: 0;
         flex-grow: 0;
+        align-self: flex-start;
 
         &.checkbox-m {
             height: tokens.$ifxSize300;
@@ -116,18 +117,18 @@
     }
 
     & .label {
-        height: tokens.$ifxSize250;
+        // height: tokens.$ifxSize250;
         font-style: normal;
         font-weight: 400;
         font-size: tokens.$ifxFontSizeS;
         line-height: tokens.$ifxLineHeightS;
         color: tokens.$ifxColorBaseBlack;
-        flex: none;
-        order: 1;
-        flex-grow: 0;
+        // flex: none;
+        // order: 1;
+        // flex-grow: 0;
 
         &.label-m {
-            height: tokens.$ifxSize300;
+            //height: tokens.$ifxSize300;
             font-size: tokens.$ifxFontSizeM;
             line-height: tokens.$ifxLineHeightM;
         }
