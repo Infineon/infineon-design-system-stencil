@@ -1,3 +1,20 @@
+# v24.6.2 (Tue Aug 27 2024)
+
+#### 🐛 Bug Fix
+
+- Checkbox: removed fixed height [#1430](https://github.com/Infineon/infineon-design-system-stencil/pull/1430) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.6.1 (Mon Aug 26 2024)
 
 #### 🐛 Bug Fix
