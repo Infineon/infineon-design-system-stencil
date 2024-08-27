@@ -16,6 +16,7 @@
     font-family: var(--ifx-font-family);
 
     & .checkbox__wrapper {
+        box-sizing: border-box;
         display: flex;
         position: relative; //needs to be added for the indeterminate state of the checkbox
         justify-content: center;
