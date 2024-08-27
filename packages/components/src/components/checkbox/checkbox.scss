@@ -117,18 +117,17 @@
     }
 
     & .label {
-        // height: tokens.$ifxSize250;
         font-style: normal;
         font-weight: 400;
         font-size: tokens.$ifxFontSizeS;
         line-height: tokens.$ifxLineHeightS;
         color: tokens.$ifxColorBaseBlack;
-        // flex: none;
-        // order: 1;
-        // flex-grow: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-all;
+        max-width: 100%;
 
         &.label-m {
-            //height: tokens.$ifxSize300;
             font-size: tokens.$ifxFontSizeM;
             line-height: tokens.$ifxLineHeightM;
         }
