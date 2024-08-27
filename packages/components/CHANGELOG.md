@@ -1,3 +1,17 @@
+# v24.6.1 (Mon Aug 26 2024)
+
+#### 🐛 Bug Fix
+
+- Single Select: removed unnecessary code [#1428](https://github.com/Infineon/infineon-design-system-stencil/pull/1428) ([@akashyeole](https://github.com/akashyeole))
+- Update Stencil library version to 24.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.6.0 (Thu Aug 22 2024)
 
 #### 🚀 Enhancement
