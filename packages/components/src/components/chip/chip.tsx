@@ -1,9 +1,11 @@
 import { h,
          Element,
          Component,
+         Listen,
          Prop,
          State } from '@stencil/core';
- 
+
+import { ChipItemEvent } from './interfaces';
 
 @Component({
     tag: 'ifx-chip',
@@ -17,21 +19,39 @@ export class Chip {
 
     @Prop() placeholder: string = '';
     @Prop() size: 'small' | 'large' = 'large';
+    @Prop() variant: 'single' | 'multi' = 'single';
 
     @State() opened: boolean = false;
-  // @State() selectedValue: string = "";
-  // @State() active: boolean = false;
-  // @Event() ifxDropdownMenu: EventEmitter<CustomEvent>;
+    @State() selectedOptions: Array<ChipItemEvent> = [];
 
-  // @Listen('mousedown', { target: 'document' })
-  // handleOutsideClick(event: MouseEvent) {
-  //   const path = event.composedPath();
-  //   const chipWrapper = this.el.shadowRoot.querySelector('.wrapper');
-  //   const dropdownMenu = this.getDropdownMenu();
-  //   if (!path.includes(dropdownMenu) && !path.includes(chipWrapper)) {
-  //     this.closedMenu();
-  //   }
-  // }
+    @Listen('mousedown', { target: 'document' })
+    handleOutsideClick(event: MouseEvent) {
+        const path = event.composedPath();
+        const chipWrapper = this.chip.shadowRoot.querySelector('.chip__wrapper');
+        const chipDropdown = this.chip.shadowRoot.querySelector('.chip__dropdown');
+        if (!path.includes(chipDropdown) && !path.includes(chipWrapper) && this.opened) {
+            this.toggleDropdownMenu();
+        }
+    }
+
+    @Listen('ifxChipItem') 
+    updateSelectedOptions(event: CustomEvent<ChipItemEvent>) {
+        const eventDetail: ChipItemEvent = event.detail;
+        if (this.variant === 'single') {
+            if (eventDetail.selected) {
+                this.selectedOptions = [ eventDetail ];
+                this.opened = false;
+            } else {
+                this.selectedOptions = [];
+            }
+        } else {
+            if (eventDetail.selected) {
+                this.selectedOptions = [...this.selectedOptions, eventDetail];
+            } else {
+                this.selectedOptions = this.selectedOptions.filter((option) => option.key !== eventDetail.key);
+            }
+        }
+    }
 
   // @Listen('ifxDropdownItem')
   // handleDropdownItemValueEmission(event: CustomEvent) {
@@ -102,6 +122,36 @@ export class Chip {
 
     syncChipState() {
         const chipItems: NodeList = this.getChipItems();
+        let key: number = 0;
+        chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
+            chipItem.chipState = { size: this.size,
+                                   variant: this.variant, 
+                                   key: key++ };
+        });
+    }
+
+    getSelectedOptions(): string {
+        console.log(this.selectedOptions)
+        if (this.variant === 'single') {
+            return this.selectedOptions[0].label;
+        } else {
+            let optionsLabel = '';
+            let index = 0;
+            while(index < 2) {
+                if (index < this.selectedOptions.length) {
+                    optionsLabel += this.selectedOptions[index].label;
+                    index++;
+                }
+
+                if (index < 2 && index < this.selectedOptions.length) {
+                    optionsLabel += ', ';
+                    continue;
+                }
+
+                break;
+            }
+            return optionsLabel;
+        }   
     }
 
     componentWillLoad() {
@@ -112,26 +162,53 @@ export class Chip {
         return (
             <div aria-value={'TBD'} aria-label='chip with a dropdown menu' class='chip'>
             
-                {/* Wrapper and Label */}
-                <div class={`chip__wrapper chip__wrapper--${this.size}`}
-                    tabIndex={0}
-                    onClick={() => {this.handleWrapperClick()}}
-                    onKeyDown={(e) => {this.handleWrapperKeyDown(e)}}>
+                {/* Wrapper */}
+                <div class={`chip__wrapper chip__wrapper--${this.size} 
+                     chip__wrapper--${this.variant}
+                     ${this.opened ? 'chip__wrapper--opened': ''}
+                     ${this.selectedOptions.length ? 'chip__wrapper--selected': ''}`}
+                tabIndex={0}
+                onClick={() => {this.handleWrapperClick()}}
+                onKeyDown={(e) => {this.handleWrapperKeyDown(e)}}>
 
                     <div class='wrapper__label'>
-                        {this.placeholder}
+                        {
+                            (this.selectedOptions.length === 0) && `${this.placeholder}`
+                        }
+                        {
+                            (this.selectedOptions.length !== 0 && this.variant === 'multi') &&
+                            `${this.placeholder}:`
+                        }
+                        {
+                            (this.selectedOptions.length !== 0) && 
+                            <div class='label__selected-options'>
+                                {this.getSelectedOptions()}
+                            </div>
+                        }
+                        {
+                            (this.selectedOptions.length > 2) &&
+                            <ifx-number-indicator>  {`+${this.selectedOptions.length - 2}`} </ifx-number-indicator>
+                        }
                     </div>
 
-                    <div class={`wrapper__open-button ${this.opened ? 'wrapper__open-button--opened': ''}`}>
-                        <ifx-icon icon='chevrondown12'></ifx-icon>
-                    </div>
+                    {
+                        (this.variant === 'single' || (this.variant === 'multi' && this.selectedOptions.length === 0)) &&
+                        <div class='wrapper__open-button'> Pr </div>
+                    }
                     
+                    {
+                        ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
+                        <div class='wrapper__open-button'> Cr </div>
+                    } 
                 </div>
 
                 {/* Dropdown */}
-                <div class='chip__dropdown'>
-                    <slot />
-                </div>
+                {   
+                    this.opened &&
+                    <div class='chip__dropdown'>
+                        <slot />
+                    </div>
+                }
 
             </div>
         ); 

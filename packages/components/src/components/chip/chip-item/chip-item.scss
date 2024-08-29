@@ -4,25 +4,45 @@
 .chip-item {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
     gap: tokens.$ifxSpace100;
     
-
     padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
-
-    font: tokens.$ifxBodyBody04;
-
+    
+    user-select: none;
+    
     transition: all 100ms ease;
-    transition-property: background;
-
+    transition-property: background, color;
+    
     &:hover {
         cursor: pointer;
-
+        
         background-color: tokens.$ifxColorEngineering200;
     }
     
     &:active {
         background-color: tokens.$ifxColorEngineering300;
     }
+    
+    &.chip-item--large {
+        font: tokens.$ifxBodyBody03;
+    }
+    
+    &.chip-item--small {
+        font: tokens.$ifxBodyBody04;
+    }
+
+    &.chip-item--selected {
+        color: tokens.$ifxColorOcean500;
+
+        .chip-item__selected-indicator {
+            display: block;
+        }
+    }
+}
+
+.chip-item__selected-indicator {
+    display: none;
+    
+    margin-left: auto;
 }
 

@@ -46,7 +46,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [ifx-chip-item](../chips/chip-item)
+ - [ifx-chip-item](../chip/chip-item)
  - [ifx-multiselect](../select/multi-select)
 
 ### Depends on
