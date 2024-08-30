@@ -133,7 +133,10 @@ export class Navbar {
     } else if(leftAssignedNodes.length !== 0) {
       this.searchBarIsOpen = 'left'
     }
-    navbarProfile.hideComponent()
+
+    if(navbarProfile) { 
+      navbarProfile.hideComponent()
+    }
     
     for(let l = 0; l < leftMenuItems.length; l++) { 
       if(!topRowWrapper.classList.contains('expand')) {
@@ -156,7 +159,9 @@ export class Navbar {
     const { navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper } = this.getWrappers();
     this.searchBarIsOpen = undefined;
     
-    navbarProfile.showComponent()
+    if(navbarProfile) {
+      navbarProfile.showComponent()
+    }
     
     for(let l = 0; l < leftMenuItems.length; l++) { 
       if(!topRowWrapper.classList.contains('expand')) {
@@ -434,8 +439,10 @@ export class Navbar {
       //right-side
       const rightMenuItems = this.getMobileMenuBottom()
       const navbarProfileItem = this.el.querySelector('ifx-navbar-profile')
-      const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
-      navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
+      if(navbarProfileItem) { 
+        const showProfileItemLabel = navbarProfileItem.getAttribute('show-label');
+        navbarProfileItem.setAttribute('show-label', showProfileItemLabel)
+      }
 
       for(let i = 0; i < rightMenuItems.length; i++) { 
         rightMenuItems[i].setAttribute('slot', 'right-item')
