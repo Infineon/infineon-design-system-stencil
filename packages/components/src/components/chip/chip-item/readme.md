@@ -11,7 +11,7 @@
 | ----------- | ---------- | ---------------------------------------------------------------------- | ----------- | ------------------------------------- |
 | `chipState` | --         | An internal prop to store the state of the parent (Chip Component).    | `ChipState` | `{ variant: 'multi', size: 'large' }` |
 | `selected`  | `selected` | The prop allows to set the initial *selected* status of the Chip Item. | `boolean`   | `false`                               |
-| `value`     | `value`    | Value is used to identify the Chip Item.                               | `string`    | `undefined`                           |
+| `value`     | `value`    | Value is used to uniquely identify the Chip Item.                      | `string`    | `undefined`                           |
 
 
 ## Events

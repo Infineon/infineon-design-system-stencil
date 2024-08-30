@@ -5,7 +5,6 @@ import { h,
          EventEmitter, 
          Listen,
          Prop, 
-         State,
          Watch } from '@stencil/core';
 import { ChipItemEvent, ChipState } from '../interfaces';
 
@@ -27,7 +26,7 @@ export class ChipItem {
     @Event({ composed: false }) ifxChipItem: EventEmitter<ChipItemEvent>;
 
     /**
-     * Value is used to identify the Chip Item.
+     * Value is used to uniquely identify the Chip Item.
      * 
      * @Default `undefined`
      */
@@ -36,24 +35,18 @@ export class ChipItem {
     /**
      * An internal prop to store the state of the parent (Chip Component).
      */
-    @Prop({ reflect: false }) chipState: ChipState = { variant: 'multi', size: 'large' }; 
+    @Prop() chipState: ChipState = { variant: 'multi', size: 'large' }; 
 
     /**
      * The prop allows to set the initial *selected* status of the Chip Item.
      * 
      * @Default `false`
      */
-    @Prop() selected?: boolean = false;
-    
-    /**
-     * Internal 'selected' state to update Chip Item design whenever the Chip Item
-     * is selected/unselected.
-     */
-    @State() internalSelected: boolean;
+    @Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
     /**
      * Listenting for ifxChipItem event to unselect the previously selected Item.
-     * Only used for the 'single' variant of Chip.
+     * Only used for the *single* variant of Chip.
      */
     @Listen('ifxChipItem', { target: 'body' })
     updateItemSelection(event: CustomEvent<ChipItemEvent>) {
@@ -61,18 +54,18 @@ export class ChipItem {
             const target = event.target as HTMLIfxChipItemElement;
             /* Also making sure chip items are from the same group (parent) */
             if (this.chipItem !== target && this.chipItem.parentElement === target.parentElement) {
-                this.internalSelected = false;
+                this.selected = false;
             }
         }
     } 
 
     /**
-     * Keeping internal 'selected' state in sync with the selected prop if changed.
+     * Keeping internal *selected* state in sync with the selected prop if changed.
      */
     @Watch('selected')
     validateSelected(newValue: boolean, oldValue: boolean) {
         if (newValue !== oldValue) {
-            this.internalSelected = newValue;
+            this.emitIfxChipItemEvent();
         }
     } 
     
@@ -89,16 +82,19 @@ export class ChipItem {
      * Toggles the selection of the Chip Item and emits the ifxChipItem event.
      */
     toggleItemSelection() {
-        this.internalSelected = !this.internalSelected;
-        this.ifxChipItem.emit({ key: this.chipState.key,
-            label: this.getItemLabel(), 
-            selected: this.internalSelected, 
-            value: this.value } );
+        this.selected = !this.selected;
     }
         
     /**
      * Helper functions
      */
+
+    emitIfxChipItemEvent() {
+        this.ifxChipItem.emit({ key: this.chipState.key,
+                                label: this.getItemLabel(), 
+                                selected: this.selected, 
+                                value: this.value } );
+    }
 
     handleItemClick() {
         this.toggleItemSelection();
@@ -112,11 +108,7 @@ export class ChipItem {
 
     handleSelectedState() {
         if (this.selected) {
-            this.internalSelected = this.selected;
-            this.ifxChipItem.emit({ key: this.chipState.key,
-                                    label: this.getItemLabel(), 
-                                    selected: true, 
-                                    value: this.value } );
+            this.emitIfxChipItemEvent();
         }
     }
 
@@ -132,7 +124,7 @@ export class ChipItem {
     render() {
         return (
             <div class={`chip-item chip-item--${this.chipState.size} 
-                         chip-item--${(this.internalSelected && this.chipState.variant) === 'single' ? 'selected' : ''}`} 
+                         chip-item--${(this.selected && this.chipState.variant) === 'single' ? 'selected' : ''}`} 
                 tabIndex={0}
                 onClick={() => {this.handleItemClick()}}
                 onKeyDown={(e) => {this.handleItemKeyDown(e)}}>
@@ -140,7 +132,7 @@ export class ChipItem {
                 {/* Checkbox; renders only in 'multi' variant. */}
                 { 
                     this.chipState.variant === 'multi' &&
-                    <ifx-checkbox value={this.internalSelected}
+                    <ifx-checkbox value={this.selected}
                         tabIndex={-1} 
                         size='s'>
                     </ifx-checkbox>

@@ -12,14 +12,14 @@
 | `placeholder` | `placeholder` | A label/placeholder string.                                                    | `string`              | `''`        |
 | `size`        | `size`        | Allows to change the size of Chip and Chip Item component.                     | `"large" \| "small"`  | `'large'`   |
 | `value`       | `value`       | Stores the values of each selected options to allow quick access from outside. | `string \| string[]`  | `undefined` |
-| `variant`     | `variant`     | Allows to specify variant of the Chip.                                         | `"multi" \| "single"` | `'single'`  |
+| `variant`     | `variant`     | Allows to specify the variant of the Chip.                                     | `"multi" \| "single"` | `'single'`  |
 
 
 ## Events
 
-| Event       | Description                                                         | Type                           |
-| ----------- | ------------------------------------------------------------------- | ------------------------------ |
-| `ifxChange` | A global event which emitted when the selected options are changed. | `CustomEvent<ChipItemEvent[]>` |
+| Event       | Description                                                            | Type                           |
+| ----------- | ---------------------------------------------------------------------- | ------------------------------ |
+| `ifxChange` | A global event which is emitted when the selected options are changed. | `CustomEvent<ChipItemEvent[]>` |
 
 
 ## Dependencies
