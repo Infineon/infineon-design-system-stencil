@@ -1,3 +1,20 @@
+# v24.6.3 (Fri Aug 30 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixed error when profile-item not used [#1443](https://github.com/Infineon/infineon-design-system-stencil/pull/1443) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.6.2 (Tue Aug 27 2024)
 
 #### 🐛 Bug Fix
