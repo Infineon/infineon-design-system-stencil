@@ -13,14 +13,47 @@
 
   </style>
 
-  <script defer>
-
-  </script>
 
 </head>
 
 <body>
 
+<ifx-chip id="chip" size="small" variant='multi' placeholder='Label'> 
+  <ifx-chip-item selected=true value="o1"> Option 1</ifx-chip-item>
+  <ifx-chip-item value="o2"> Option 2</ifx-chip-item>
+  <ifx-chip-item value="o3"> Option 3</ifx-chip-item>
+</ifx-chip>
+<!-- <br/> -->
+<ifx-chip id="chip1" size="small" placeholder='Label'> 
+  <ifx-chip-item selected=true value="o1"> Option 1</ifx-chip-item>
+  <ifx-chip-item value="o2"> Option 2</ifx-chip-item>
+  <ifx-chip-item value="o3"> Option 3</ifx-chip-item>
+</ifx-chip>
+
+<ifx-chip variant='multi' placeholder='Label'> 
+  <ifx-chip-item> Option 1</ifx-chip-item>
+  <ifx-chip-item> Option 2</ifx-chip-item>
+  <ifx-chip-item> Option 3</ifx-chip-item>
+</ifx-chip>
+<!-- <br/> -->
+<ifx-chip placeholder='Label'> 
+  <ifx-chip-item> Option 1</ifx-chip-item>
+  <ifx-chip-item> Option 2</ifx-chip-item>
+  <ifx-chip-item> Option 3</ifx-chip-item>
+</ifx-chip>
+<ifx-button onclick="getValue()"> get valur </ifx-button>
+<ifx-button onclick="setValue()"> set valur </ifx-button>
+
 </body>
+  <script defer>
+    function getValue() {
+      const chip = document.getElementById('chip');
+      console.log(chip.value);
+    }
+    function setValue() {
+      const chip = document.getElementById('chip');
+      chip.value.push('ah');
+    }
+  </script>
 
 </html>
