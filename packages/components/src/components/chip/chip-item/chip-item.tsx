@@ -7,7 +7,6 @@ import { h,
          Prop, 
          State,
          Watch } from '@stencil/core';
-
 import { ChipItemEvent, ChipState } from '../interfaces';
 
 @Component({
@@ -18,7 +17,7 @@ import { ChipItemEvent, ChipState } from '../interfaces';
 
 export class ChipItem {
     /**
-     * Reference to the component.
+     * Reference to this component.
      */
     @Element() chipItem: HTMLIfxChipItemElement;
 
@@ -52,27 +51,53 @@ export class ChipItem {
      */
     @State() internalSelected: boolean;
 
-
+    /**
+     * Listenting for ifxChipItem event to unselect the previously selected Item.
+     * Only used for the 'single' variant of Chip.
+     */
     @Listen('ifxChipItem', { target: 'body' })
     updateItemSelection(event: CustomEvent<ChipItemEvent>) {
         if (this.chipState.variant === 'single') {
             const target = event.target as HTMLIfxChipItemElement;
+            /* Also making sure chip items are from the same group (parent) */
             if (this.chipItem !== target && this.chipItem.parentElement === target.parentElement) {
                 this.internalSelected = false;
             }
         }
     } 
 
+    /**
+     * Keeping internal 'selected' state in sync with the selected prop if changed.
+     */
     @Watch('selected')
     validateSelected(newValue: boolean, oldValue: boolean) {
         if (newValue !== oldValue) {
             this.internalSelected = newValue;
         }
     } 
-
     
     /**
-     * Helpers
+     * A function extracts and returns the Item label.
+     * 
+     * @returns string
+     */
+    getItemLabel(): string {
+        return this.chipItem.innerText as string;
+    }
+
+    /**
+     * Toggles the selection of the Chip Item and emits the ifxChipItem event.
+     */
+    toggleItemSelection() {
+        this.internalSelected = !this.internalSelected;
+        this.ifxChipItem.emit({ key: this.chipState.key,
+            label: this.getItemLabel(), 
+            selected: this.internalSelected, 
+            value: this.value } );
+    }
+        
+    /**
+     * Helper functions
      */
 
     handleItemClick() {
@@ -94,28 +119,13 @@ export class ChipItem {
                                     value: this.value } );
         }
     }
-    
-    /**
-     * Utilities
-     */
-    
-    getItemLabel(): string {
-        return this.chipItem.innerText as string;
-    }
-
-    toggleItemSelection() {
-        this.internalSelected = !this.internalSelected;
-        this.ifxChipItem.emit({ key: this.chipState.key,
-                                label: this.getItemLabel(), 
-                                selected: this.internalSelected, 
-                                value: this.value } );
-    }
 
     /**
      * Lifecycle Methods
      */
 
     componentWillLoad() {
+        /* Propogating the selected state to the Chip (Parent) component if it is set. */
         this.handleSelectedState();
     }
 
@@ -126,6 +136,8 @@ export class ChipItem {
                 tabIndex={0}
                 onClick={() => {this.handleItemClick()}}
                 onKeyDown={(e) => {this.handleItemKeyDown(e)}}>
+
+                {/* Checkbox; renders only in 'multi' variant. */}
                 { 
                     this.chipState.variant === 'multi' &&
                     <ifx-checkbox value={this.internalSelected}
@@ -133,10 +145,14 @@ export class ChipItem {
                         size='s'>
                     </ifx-checkbox>
                 }
+
                 <div class='chip-item__label'> <slot /> </div>
+
+                {/* Selected indicator only visible in 'single' variant. */}
                 <div class='chip-item__selected-indicator'> 
                     <ifx-icon icon={`check${this.chipState.size === 'small' ? '12' : '16'}`}> </ifx-icon> 
                 </div>
+
             </div>
         );
     }
