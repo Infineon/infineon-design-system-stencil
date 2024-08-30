@@ -11,33 +11,20 @@ export class Table {
   @State() gridOptions: GridOptions;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
-  @Prop() columnDefs: any[] = [];
-  @Prop() rowData: any[] = [];
+  @State() columnDefs: any[] = [];
+  @State() rowData: any[] = [];
   @Prop() rowHeight: string = 'default'; //default or compact
-  @Prop() uniqueKey: string;
+  @State() uniqueKey: string;
   @Prop() tableHeight: string = 'auto';
-
-
 
 
   componentWillLoad() {
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
-    if (typeof this.rows === 'string' && typeof this.cols === 'string') {
-      try {
-        this.columnDefs = JSON.parse(this.cols);
-        this.rowData = JSON.parse(this.rows);
-      } catch (err) {
-        console.error('Failed to parse input:', err);
-      }
-    } else if ((Array.isArray(this.rows) || typeof this.rows === 'object') && (Array.isArray(this.cols) || typeof this.cols === 'object')) {
-      this.columnDefs = this.cols;
-      this.rowData = this.rows;
+    this.setColsAndRows()
+    this.setGridOptions()
+  }
 
-    } else {
-      console.error('Unexpected value for cols and rows:', this.rows, this.cols);
-    }
-
-
+  setGridOptions() { 
     this.gridOptions = {
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
       headerHeight: 40,
@@ -58,17 +45,33 @@ export class Table {
       rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
       animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
     };
-    // console.log("grid options ", this.gridOptions);
-
   }
 
+  setColsAndRows() { 
+    if (typeof this.rows === 'string' && typeof this.cols === 'string') {
+      try {
+        this.columnDefs = JSON.parse(this.cols);
+        this.rowData = JSON.parse(this.rows);
+      } catch (err) {
+        console.error('Failed to parse input:', err);
+      }
+    } else if ((Array.isArray(this.rows) || typeof this.rows === 'object') && (Array.isArray(this.cols) || typeof this.cols === 'object')) {
+      this.columnDefs = this.cols;
+      this.rowData = this.rows;
+
+    } else {
+      console.error('Unexpected value for cols and rows:', this.rows, this.cols);
+    }
+  }
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
     params.api.sizeColumnsToFit();
   }
 
-
+ 
   componentWillUpdate() {
+   this.setColsAndRows()
+
     this.gridOptions.columnDefs = this.columnDefs;
     this.gridOptions.rowData = this.rowData;
     if (this.gridOptions.api) {
@@ -86,7 +89,6 @@ export class Table {
 
 
   render() {
-
     return (
       <div id="grid-wrapper" class={{ 'auto-height': this.tableHeight === 'auto' ? true : false }}>
         <div id={`ifxTable-${this.uniqueKey}`} class="ifx-ag-grid ag-theme-alpine" style={{
@@ -94,11 +96,6 @@ export class Table {
         }}></div >
       </div >
     );
-
-
   }
-
-
-
 
 }
