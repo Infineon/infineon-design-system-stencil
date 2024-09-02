@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event       | Description                                                            | Type                           |
-| ----------- | ---------------------------------------------------------------------- | ------------------------------ |
-| `ifxChange` | A global event which is emitted when the selected options are changed. | `CustomEvent<ChipItemEvent[]>` |
+| Event       | Description                                                            | Type                                                                                      |
+| ----------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `ifxChange` | A global event which is emitted when the selected options are changed. | `CustomEvent<{ previousSelection: ChipItemEvent[]; currentSelection: ChipItemEvent[]; }>` |
 
 
 ## Dependencies

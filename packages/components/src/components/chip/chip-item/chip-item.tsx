@@ -35,7 +35,7 @@ export class ChipItem {
     /**
      * An internal prop to store the state of the parent (Chip Component).
      */
-    @Prop() chipState: ChipState = { variant: 'multi', size: 'large' }; 
+    @Prop() chipState: ChipState = { emitIfxChipItem: true, variant: 'multi', size: 'large' }; 
 
     /**
      * The prop allows to set the initial *selected* status of the Chip Item.
@@ -52,7 +52,7 @@ export class ChipItem {
     updateItemSelection(event: CustomEvent<ChipItemEvent>) {
         if (this.chipState.variant === 'single') {
             const target = event.target as HTMLIfxChipItemElement;
-            /* Also making sure chip items are from the same group (parent) */
+            /* Also making sure chip items are from the same group (parent) while unselecting. */
             if (this.chipItem !== target && this.chipItem.parentElement === target.parentElement) {
                 this.selected = false;
             }
@@ -65,7 +65,12 @@ export class ChipItem {
     @Watch('selected')
     validateSelected(newValue: boolean, oldValue: boolean) {
         if (newValue !== oldValue) {
-            this.emitIfxChipItemEvent();
+            /* Do not emit if ChipState does not allow. */
+            if (this.chipState.emitIfxChipItem){
+                this.emitIfxChipItemEvent();
+            } else {
+                this.chipState.emitIfxChipItem = true;
+            }
         }
     } 
     
@@ -89,11 +94,12 @@ export class ChipItem {
      * Helper functions
      */
 
-    emitIfxChipItemEvent() {
-        this.ifxChipItem.emit({ key: this.chipState.key,
+    emitIfxChipItemEvent(emitIfxChange: boolean = true) {
+        this.ifxChipItem.emit({ emitIfxChange: emitIfxChange,
+                                key: this.chipState.key,
                                 label: this.getItemLabel(), 
                                 selected: this.selected, 
-                                value: this.value } );
+                                value: this.value });
     }
 
     handleItemClick() {
@@ -108,7 +114,7 @@ export class ChipItem {
 
     handleSelectedState() {
         if (this.selected) {
-            this.emitIfxChipItemEvent();
+            this.emitIfxChipItemEvent(false);
         }
     }
 

@@ -23,7 +23,7 @@ export class Chip {
     /**
      * A global event which is emitted when the selected options are changed.
      */
-    @Event() ifxChange: EventEmitter<Array<ChipItemEvent>>;
+    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemEvent>, currentSelection: Array<ChipItemEvent>}>;
 
     /**
      * A label/placeholder string.
@@ -81,13 +81,25 @@ export class Chip {
     @Listen('ifxChipItem') 
     updateSelectedOptions(event: CustomEvent<ChipItemEvent>) {
         const eventDetail: ChipItemEvent = event.detail;
-
+        const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
+        
         /* Handling 'single' variant */
         if (this.variant !== 'multi') {
             if (eventDetail.selected) {
-                this.selectedOptions = [ eventDetail ];
-                /* Closing the dropdown menu item is selected. */
+                /* Closing the dropdown menu when the item is selected. */
                 this.opened = false;
+                /* Unselecting the previously selected option by traversing each item. */
+                const chipItems: NodeList = this.getChipItems();
+                chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
+                    if (chipItem.selected && chipItem !== event.target) {
+                        chipItem.chipState = {
+                            ...chipItem.chipState,
+                            emitIfxChipItem: false,
+                        }
+                        chipItem.selected = false;
+                    }
+                });
+                this.selectedOptions = [ eventDetail ];
             } else {
                 this.selectedOptions = [];
             }
@@ -102,7 +114,9 @@ export class Chip {
         }
 
         /* Emitting ifxChange with the selected options. */
-        this.ifxChange.emit(this.selectedOptions);
+        if (eventDetail.emitIfxChange){
+            this.ifxChange.emit({ previousSelection: previousSelection, currentSelection: this.selectedOptions});
+        }
     }
     
     /**
@@ -155,10 +169,27 @@ export class Chip {
 
     handleUnselectButtonClick(event: MouseEvent) {
         event.stopPropagation();
+        this.opened = false;
+
+        let itemGotUnselected = false;
         const chipItems: NodeList = this.getChipItems();
         chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
-            if (chipItem.selected) chipItem.selected = false;
+            if (chipItem.selected) {
+                itemGotUnselected = true;
+                chipItem.chipState = {
+                    ...chipItem.chipState,
+                    emitIfxChipItem: false,
+                }
+                chipItem.selected = false;
+            }
         });
+
+        /* Emit event only if at least one item was unselected. */
+        if (itemGotUnselected) {
+            const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
+            this.selectedOptions = [];
+            this.ifxChange.emit({ previousSelection: previousSelection, currentSelection: [] });
+        }
     }
 
     handleWrapperClick() {
@@ -175,7 +206,8 @@ export class Chip {
         const chipItems: NodeList = this.getChipItems();
         let key: number = 0;
         chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
-            chipItem.chipState = { size: (this.size === 'small' ? 'small' : 'large'),
+            chipItem.chipState = { emitIfxChipItem: true,
+                                   size: (this.size === 'small' ? 'small' : 'large'),
                                    variant: (this.variant === 'multi' ? 'multi' : 'single'), 
                                    key: key++ };
         });
