@@ -23,7 +23,8 @@ export class Chip {
     /**
      * A global event which is emitted when the selected options are changed.
      */
-    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemEvent>, currentSelection: Array<ChipItemEvent>}>;
+    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemEvent>, 
+                                      currentSelection: Array<ChipItemEvent>}>;
 
     /**
      * A label/placeholder string.
@@ -115,7 +116,8 @@ export class Chip {
 
         /* Emitting ifxChange with the selected options. */
         if (eventDetail.emitIfxChange){
-            this.ifxChange.emit({ previousSelection: previousSelection, currentSelection: this.selectedOptions});
+            this.ifxChange.emit({ previousSelection: previousSelection, 
+                                  currentSelection: this.selectedOptions});
         }
     }
     
@@ -170,7 +172,7 @@ export class Chip {
     handleUnselectButtonClick(event: MouseEvent) {
         event.stopPropagation();
         this.opened = false;
-
+        
         let itemGotUnselected = false;
         const chipItems: NodeList = this.getChipItems();
         chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
@@ -188,7 +190,9 @@ export class Chip {
         if (itemGotUnselected) {
             const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
             this.selectedOptions = [];
-            this.ifxChange.emit({ previousSelection: previousSelection, currentSelection: [] });
+            this.value = [];
+            this.ifxChange.emit({ previousSelection: previousSelection, 
+                                  currentSelection: [] });
         }
     }
 
