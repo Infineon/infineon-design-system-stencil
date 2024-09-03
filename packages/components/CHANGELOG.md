@@ -1,3 +1,20 @@
+# v24.7.0 (Tue Sep 03 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: implement dynamic rows and cols [#1445](https://github.com/Infineon/infineon-design-system-stencil/pull/1445) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.4 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.6.4 (Fri Aug 30 2024)
 
 #### 🐛 Bug Fix
