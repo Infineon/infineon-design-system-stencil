@@ -46,6 +46,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [ifx-chip-item](../chip/chip-item)
  - [ifx-multiselect](../select/multi-select)
 
 ### Depends on
@@ -56,6 +57,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
+  ifx-chip-item --> ifx-checkbox
   ifx-multiselect --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
