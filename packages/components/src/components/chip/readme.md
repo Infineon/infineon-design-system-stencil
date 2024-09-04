@@ -17,9 +17,9 @@
 
 ## Events
 
-| Event       | Description | Type                                                                                                  |
-| ----------- | ----------- | ----------------------------------------------------------------------------------------------------- |
-| `ifxChange` |             | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; }>` |
+| Event           | Description | Type                                                                                                  |
+| --------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
+| `ifxChipChange` |             | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; }>` |
 
 
 ## Dependencies

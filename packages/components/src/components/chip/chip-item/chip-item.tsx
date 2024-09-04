@@ -55,8 +55,8 @@ export class ChipItem {
     }
         
 
-    emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
-        this.ifxChipItemSelect.emit({ emitIfxChange: emitIfxChange,
+    emitIfxChipItemSelectEvent(emitIfxChipChange: boolean = true) {
+        this.ifxChipItemSelect.emit({ emitIfxChipChange: emitIfxChipChange,
                                 key: this.chipState.key,
                                 label: this.getItemLabel(), 
                                 selected: this.selected, 
