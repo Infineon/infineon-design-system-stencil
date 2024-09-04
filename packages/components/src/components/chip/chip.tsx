@@ -6,7 +6,7 @@ import { h,
          Listen,
          Prop,
          State} from '@stencil/core';
-import { ChipItemEvent } from './interfaces';
+import { ChipItemSelectEvent } from './interfaces';
 
 @Component({
     tag: 'ifx-chip',
@@ -17,15 +17,15 @@ import { ChipItemEvent } from './interfaces';
 export class Chip {
     @Element() chip: HTMLIfxChipElement;
 
-    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemEvent>, 
-                                      currentSelection: Array<ChipItemEvent>}>;
+    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemSelectEvent>, 
+                                      currentSelection: Array<ChipItemSelectEvent>}>;
     @Prop() placeholder: string = '';
     @Prop() size: 'small' | 'large' = 'large';
     @Prop({ mutable: true }) value: Array<string> | string = undefined;
     @Prop() variant: 'single' | 'multi' = 'single';
 
     @State() opened: boolean = false;
-    @State() selectedOptions: Array<ChipItemEvent> = [];
+    @State() selectedOptions: Array<ChipItemSelectEvent> = [];
 
     @Listen('mousedown', { target: 'document' })
     closeDropdownOnOutsideClick(event: MouseEvent) {
@@ -37,10 +37,10 @@ export class Chip {
         }
     }
 
-    @Listen('ifxChipItem') 
-    updateSelectedOptions(event: CustomEvent<ChipItemEvent>) {
-        const eventDetail: ChipItemEvent = event.detail;
-        const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
+    @Listen('ifxChipItemSelect') 
+    updateSelectedOptions(event: CustomEvent<ChipItemSelectEvent>) {
+        const eventDetail: ChipItemSelectEvent = event.detail;
+        const previousSelection: Array<ChipItemSelectEvent> = this.selectedOptions;
 
         if (this.variant !== 'multi') {
             if (eventDetail.selected) {
@@ -52,7 +52,7 @@ export class Chip {
                     if (chipItem.selected && chipItem !== event.target) {
                         chipItem.chipState = {
                             ...chipItem.chipState,
-                            emitIfxChipItem: false,
+                            emitIfxChipItemSelect: false,
                         }
                         chipItem.selected = false;
                     }
@@ -120,7 +120,7 @@ export class Chip {
                 itemGotUnselected = true;
                 chipItem.chipState = {
                     ...chipItem.chipState,
-                    emitIfxChipItem: false,
+                    emitIfxChipItemSelect: false,
                 }
                 chipItem.selected = false;
             }
@@ -128,7 +128,7 @@ export class Chip {
 
         /* Emit event only if at least one item was unselected. */
         if (itemGotUnselected) {
-            const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
+            const previousSelection: Array<ChipItemSelectEvent> = this.selectedOptions;
             this.selectedOptions = [];
             this.value = [];
             this.ifxChange.emit({ previousSelection: previousSelection, 
@@ -150,7 +150,7 @@ export class Chip {
         const chipItems: NodeList = this.getChipItems();
         let key: number = 0;
         chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
-            chipItem.chipState = { emitIfxChipItem: true,
+            chipItem.chipState = { emitIfxChipItemSelect: true,
                                    size: (this.size === 'small' ? 'small' : 'large'),
                                    variant: (this.variant === 'multi' ? 'multi' : 'single'), 
                                    key: key++ };

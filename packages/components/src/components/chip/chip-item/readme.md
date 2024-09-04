@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property    | Attribute  | Description | Type        | Default                                                      |
-| ----------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
-| `chipState` | --         |             | `ChipState` | `{ emitIfxChipItem: true, variant: 'multi', size: 'large' }` |
-| `selected`  | `selected` |             | `boolean`   | `false`                                                      |
-| `value`     | `value`    |             | `string`    | `undefined`                                                  |
+| Property    | Attribute  | Description | Type        | Default                                                            |
+| ----------- | ---------- | ----------- | ----------- | ------------------------------------------------------------------ |
+| `chipState` | --         |             | `ChipState` | `{ emitIfxChipItemSelect: true, variant: 'multi', size: 'large' }` |
+| `selected`  | `selected` |             | `boolean`   | `false`                                                            |
+| `value`     | `value`    |             | `string`    | `undefined`                                                        |
 
 
 ## Events
 
-| Event         | Description | Type                         |
-| ------------- | ----------- | ---------------------------- |
-| `ifxChipItem` |             | `CustomEvent<ChipItemEvent>` |
+| Event               | Description | Type                               |
+| ------------------- | ----------- | ---------------------------------- |
+| `ifxChipItemSelect` |             | `CustomEvent<ChipItemSelectEvent>` |
 
 
 ## Dependencies

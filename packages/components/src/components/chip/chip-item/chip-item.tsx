@@ -6,7 +6,7 @@ import { h,
          Listen,
          Prop, 
          Watch } from '@stencil/core';
-import { ChipItemEvent, ChipState } from '../interfaces';
+import { ChipItemSelectEvent, ChipState } from '../interfaces';
 
 @Component({
     tag: 'ifx-chip-item',
@@ -17,14 +17,14 @@ import { ChipItemEvent, ChipState } from '../interfaces';
 export class ChipItem {
     @Element() chipItem: HTMLIfxChipItemElement;
 
-    @Event({ composed: false }) ifxChipItem: EventEmitter<ChipItemEvent>;
+    @Event({ composed: false }) ifxChipItemSelect: EventEmitter<ChipItemSelectEvent>;
 
     @Prop() value: string = undefined;
-    @Prop() chipState: ChipState = { emitIfxChipItem: true, variant: 'multi', size: 'large' }; 
+    @Prop() chipState: ChipState = { emitIfxChipItemSelect: true, variant: 'multi', size: 'large' }; 
     @Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
-    @Listen('ifxChipItem', { target: 'body' })
-    updateItemSelection(event: CustomEvent<ChipItemEvent>) {
+    @Listen('ifxChipItemSelect', { target: 'body' })
+    updateItemSelection(event: CustomEvent<ChipItemSelectEvent>) {
         if (this.chipState.variant === 'single') {
             const target = event.target as HTMLIfxChipItemElement;
             /* Also making sure chip items are from the same group (parent) while unselecting. */
@@ -38,10 +38,10 @@ export class ChipItem {
     validateSelected(newValue: boolean, oldValue: boolean) {
         if (newValue !== oldValue) {
             /* Do not emit if ChipState does not allow. */
-            if (this.chipState.emitIfxChipItem){
-                this.emitIfxChipItemEvent();
+            if (this.chipState.emitIfxChipItemSelect){
+                this.emitIfxChipItemSelectEvent();
             } else {
-                this.chipState.emitIfxChipItem = true;
+                this.chipState.emitIfxChipItemSelect = true;
             }
         }
     } 
@@ -55,8 +55,8 @@ export class ChipItem {
     }
         
 
-    emitIfxChipItemEvent(emitIfxChange: boolean = true) {
-        this.ifxChipItem.emit({ emitIfxChange: emitIfxChange,
+    emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
+        this.ifxChipItemSelect.emit({ emitIfxChange: emitIfxChange,
                                 key: this.chipState.key,
                                 label: this.getItemLabel(), 
                                 selected: this.selected, 
@@ -75,7 +75,7 @@ export class ChipItem {
 
     handleSelectedState() {
         if (this.selected) {
-            this.emitIfxChipItemEvent(false);
+            this.emitIfxChipItemSelectEvent(false);
         }
     }
 

@@ -1,10 +1,10 @@
 export interface ChipState {
-    emitIfxChipItem: boolean;
+    emitIfxChipItemSelect: boolean;
     size: 'small' | 'large';
     variant: 'single' | 'multi';
     key?: number;
 }
-export interface ChipItemEvent {
+export interface ChipItemSelectEvent {
     key: number;
     emitIfxChange: boolean,
     label: string;
