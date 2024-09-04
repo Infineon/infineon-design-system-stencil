@@ -90,18 +90,18 @@ export default {
                 category: 'ifx-chip-item props',
             }
         },
-        ifxChange: {
-            action: 'ifxChange',
+        ifxChipChange: {
+            action: 'ifxChipChange',
             description: 'A custom event emitted when the selection in a *<ifx-chip>* is updated.',
             table: {
                 category: 'custom events',
                 type: {
                     summary: 'Framework integration',
                     detail: `
-React: onIfxChange={handleChange}
-Vue: @ifxChange="handleChange"
-Angular: (ifxChange)="handleChange()"
-VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
+React: onIfxChipChange={handleChange}
+Vue: @ifxChipChange="handleChange"
+Angular: (ifxChipChange)="handleChange()"
+VanillaJs: .addEventListener("ifxChipChange", (event) => {/*handle change*/});`,
                 }
             }
         }
@@ -134,7 +134,7 @@ variant = "${args.variant}"
 </ifx-chip>`
 
     const chip = wrapper.querySelector('ifx-chip');
-    chip.addEventListener('ifxChange', action('ifxChange'));
+    chip.addEventListener('ifxChipChange', action('ifxChipChange'));
 
     return chip;
 }
