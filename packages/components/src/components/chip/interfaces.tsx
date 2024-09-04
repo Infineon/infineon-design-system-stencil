@@ -6,7 +6,7 @@ export interface ChipState {
 }
 export interface ChipItemSelectEvent {
     key: number;
-    emitIfxChange: boolean,
+    emitIfxChipChange: boolean,
     label: string;
     selected: boolean;
     value: string;

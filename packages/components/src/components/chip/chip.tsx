@@ -17,7 +17,7 @@ import { ChipItemSelectEvent } from './interfaces';
 export class Chip {
     @Element() chip: HTMLIfxChipElement;
 
-    @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemSelectEvent>, 
+    @Event() ifxChipChange: EventEmitter<{previousSelection: Array<ChipItemSelectEvent>, 
                                       currentSelection: Array<ChipItemSelectEvent>}>;
     @Prop() placeholder: string = '';
     @Prop() size: 'small' | 'large' = 'large';
@@ -71,9 +71,9 @@ export class Chip {
             this.value = this.selectedOptions.map((option) => { return option.value });
         }
 
-        /* Emitting ifxChange with the selected options. */
-        if (eventDetail.emitIfxChange){
-            this.ifxChange.emit({ previousSelection: previousSelection, 
+        /* Emitting ifxChipChange with the selected options. */
+        if (eventDetail.emitIfxChipChange){
+            this.ifxChipChange.emit({ previousSelection: previousSelection, 
                                   currentSelection: this.selectedOptions});
         }
     }
@@ -131,7 +131,7 @@ export class Chip {
             const previousSelection: Array<ChipItemSelectEvent> = this.selectedOptions;
             this.selectedOptions = [];
             this.value = [];
-            this.ifxChange.emit({ previousSelection: previousSelection, 
+            this.ifxChipChange.emit({ previousSelection: previousSelection, 
                                   currentSelection: [] });
         }
     }
