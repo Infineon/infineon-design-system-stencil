@@ -7,18 +7,18 @@
 
 ## Properties
 
-| Property    | Attribute  | Description                                                            | Type        | Default                                                      |
-| ----------- | ---------- | ---------------------------------------------------------------------- | ----------- | ------------------------------------------------------------ |
-| `chipState` | --         | An internal prop to store the state of the parent (Chip Component).    | `ChipState` | `{ emitIfxChipItem: true, variant: 'multi', size: 'large' }` |
-| `selected`  | `selected` | The prop allows to set the initial *selected* status of the Chip Item. | `boolean`   | `false`                                                      |
-| `value`     | `value`    | Value is used to uniquely identify the Chip Item.                      | `string`    | `undefined`                                                  |
+| Property    | Attribute  | Description | Type        | Default                                                      |
+| ----------- | ---------- | ----------- | ----------- | ------------------------------------------------------------ |
+| `chipState` | --         |             | `ChipState` | `{ emitIfxChipItem: true, variant: 'multi', size: 'large' }` |
+| `selected`  | `selected` |             | `boolean`   | `false`                                                      |
+| `value`     | `value`    |             | `string`    | `undefined`                                                  |
 
 
 ## Events
 
-| Event         | Description                                                     | Type                         |
-| ------------- | --------------------------------------------------------------- | ---------------------------- |
-| `ifxChipItem` | An event emitted whenever the Chip Item is selected/unselected. | `CustomEvent<ChipItemEvent>` |
+| Event         | Description | Type                         |
+| ------------- | ----------- | ---------------------------- |
+| `ifxChipItem` |             | `CustomEvent<ChipItemEvent>` |
 
 
 ## Dependencies

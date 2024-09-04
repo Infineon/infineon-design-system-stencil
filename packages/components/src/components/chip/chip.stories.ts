@@ -20,7 +20,6 @@ export default {
         value: 'Item Value'
     },
     argTypes:{
-        /* Story Control */
         amountOfChipItems: {
             name: 'Amount of Chip Items',
             control: 'number',
@@ -42,7 +41,6 @@ export default {
                 }
             }
         },
-        /* ifx-chip Props */
         placeholder: {
             description: 'Set the placeholder string.',
             table: {
@@ -77,7 +75,6 @@ export default {
                 }
             }
         },
-        /* ifx-chip-item Props */
         selected: {
             description: 'Set the *selected* prop to pre-select the chip item.',
             table: {
@@ -93,7 +90,6 @@ export default {
                 category: 'ifx-chip-item props',
             }
         },
-        /* Custom Event */
         ifxChange: {
             action: 'ifxChange',
             description: 'A custom event emitted when the selection in a *<ifx-chip>* is updated.',

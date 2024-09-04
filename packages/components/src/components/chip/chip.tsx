@@ -15,57 +15,18 @@ import { ChipItemEvent } from './interfaces';
 })
 
 export class Chip {
-    /**
-     * Reference to this component.
-     */
     @Element() chip: HTMLIfxChipElement;
 
-    /**
-     * A global event which is emitted when the selected options are changed.
-     */
     @Event() ifxChange: EventEmitter<{previousSelection: Array<ChipItemEvent>, 
                                       currentSelection: Array<ChipItemEvent>}>;
-
-    /**
-     * A label/placeholder string.
-     */
     @Prop() placeholder: string = '';
-    
-    /**
-     * Allows to change the size of Chip and Chip Item component.
-     * 
-     * @Default `'large'`
-     */
     @Prop() size: 'small' | 'large' = 'large';
-
-    /**
-     * Stores the values of each selected options to allow quick access from outside.
-     * 
-     * @Default `undefined`
-     */
     @Prop({ mutable: true }) value: Array<string> | string = undefined;
-
-    /**
-     * Allows to specify the variant of the Chip.
-     * 
-     * @Default `'single'`
-     */
     @Prop() variant: 'single' | 'multi' = 'single';
 
-    /**
-     * Internal boolean *opened* state to determine whether the dropdown menu is
-     * opened.
-     */
     @State() opened: boolean = false;
-
-    /**
-     * State to store the selected options of the chip component.
-     */
     @State() selectedOptions: Array<ChipItemEvent> = [];
 
-    /**
-     * Closing the dropdown menu when clicked outside of it.
-     */
     @Listen('mousedown', { target: 'document' })
     closeDropdownOnOutsideClick(event: MouseEvent) {
         const path = event.composedPath();
@@ -76,15 +37,11 @@ export class Chip {
         }
     }
 
-    /**
-     * Listening to ifxChipItem event to update the selected option(s).
-     */
     @Listen('ifxChipItem') 
     updateSelectedOptions(event: CustomEvent<ChipItemEvent>) {
         const eventDetail: ChipItemEvent = event.detail;
         const previousSelection: Array<ChipItemEvent> = this.selectedOptions;
-        
-        /* Handling 'single' variant */
+
         if (this.variant !== 'multi') {
             if (eventDetail.selected) {
                 /* Closing the dropdown menu when the item is selected. */
@@ -105,7 +62,7 @@ export class Chip {
                 this.selectedOptions = [];
             }
             this.value = this.selectedOptions[0] ? this.selectedOptions[0].value : undefined;
-        } else /* Handling 'multi' variant */ {
+        } else {
             if (eventDetail.selected) {
                 this.selectedOptions = [...this.selectedOptions, eventDetail];
             } else {
@@ -121,21 +78,10 @@ export class Chip {
         }
     }
     
-    /**
-     * Returns the list of reference to the Chip Items.
-     * 
-     * @returns `NodeList<HTMLIfxChipItemElement>`
-     */
     getChipItems(): NodeList {
         return this.chip.querySelectorAll('ifx-chip-item');
     }
 
-    /**
-     * Returns the selected option label in *single* variant.
-     * Appends and returns the label of first 2 selected option in *multi* variant.
-     * 
-     * @returns `string`
-     */
     getSelectedOptions(): string {
         if (!this.selectedOptions.length) return '';
         if (this.variant !== 'multi') {
@@ -158,16 +104,10 @@ export class Chip {
         }   
     }
 
-    /**
-     * Opens or Closes the dropdown menu.
-     */
     toggleDropdownMenu() {
         this.opened = !this.opened;
     }
 
-    /**
-     * Helper functions
-     */
 
     handleUnselectButtonClick(event: MouseEvent) {
         event.stopPropagation();
@@ -217,9 +157,6 @@ export class Chip {
         });
     }
 
-    /**
-     * Lifecycle Methods
-     */
 
     componentWillLoad() {
         /* Propogating the required Chip State with every Chip Item. */
@@ -230,7 +167,6 @@ export class Chip {
         return (
             <div aria-value={this.getSelectedOptions()} aria-label='chip with a dropdown menu' class='chip'>
             
-                {/* Wrapper */}
                 <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'} 
                      chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
                      ${this.opened ? 'chip__wrapper--opened': ''}
@@ -263,13 +199,11 @@ export class Chip {
                         }
                     </div>
 
-                    {/* Arrow button */}
                     {   
                         (this.variant !== 'multi' || (this.variant === 'multi' && this.selectedOptions.length === 0)) &&
                         <div class='wrapper__open-button'> <ifx-icon key={1} icon={`chevrondown16`}/> </div>
                     }
                     
-                    {/* Close button */}
                     {
                         ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
                         <div class='wrapper__unselect-button' onClick={(e) => {this.handleUnselectButtonClick(e)}}> 
@@ -279,7 +213,6 @@ export class Chip {
 
                 </div>
 
-                {/* Dropdown */}
                 {   
                     this.opened &&
                     <div class='chip__dropdown'>

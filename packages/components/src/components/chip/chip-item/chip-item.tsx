@@ -15,39 +15,14 @@ import { ChipItemEvent, ChipState } from '../interfaces';
 })
 
 export class ChipItem {
-    /**
-     * Reference to this component.
-     */
     @Element() chipItem: HTMLIfxChipItemElement;
 
-    /**
-     * An event emitted whenever the Chip Item is selected/unselected.
-     */
     @Event({ composed: false }) ifxChipItem: EventEmitter<ChipItemEvent>;
 
-    /**
-     * Value is used to uniquely identify the Chip Item.
-     * 
-     * @Default `undefined`
-     */
     @Prop() value: string = undefined;
-
-    /**
-     * An internal prop to store the state of the parent (Chip Component).
-     */
     @Prop() chipState: ChipState = { emitIfxChipItem: true, variant: 'multi', size: 'large' }; 
-
-    /**
-     * The prop allows to set the initial *selected* status of the Chip Item.
-     * 
-     * @Default `false`
-     */
     @Prop({ mutable: true, reflect: true }) selected: boolean = false;
 
-    /**
-     * Listenting for ifxChipItem event to unselect the previously selected Item.
-     * Only used for the *single* variant of Chip.
-     */
     @Listen('ifxChipItem', { target: 'body' })
     updateItemSelection(event: CustomEvent<ChipItemEvent>) {
         if (this.chipState.variant === 'single') {
@@ -59,9 +34,6 @@ export class ChipItem {
         }
     } 
 
-    /**
-     * Keeping internal *selected* state in sync with the selected prop if changed.
-     */
     @Watch('selected')
     validateSelected(newValue: boolean, oldValue: boolean) {
         if (newValue !== oldValue) {
@@ -74,25 +46,14 @@ export class ChipItem {
         }
     } 
     
-    /**
-     * A function extracts and returns the Item label.
-     * 
-     * @returns string
-     */
     getItemLabel(): string {
         return this.chipItem.innerText as string;
     }
 
-    /**
-     * Toggles the selection of the Chip Item and emits the ifxChipItem event.
-     */
     toggleItemSelection() {
         this.selected = !this.selected;
     }
         
-    /**
-     * Helper functions
-     */
 
     emitIfxChipItemEvent(emitIfxChange: boolean = true) {
         this.ifxChipItem.emit({ emitIfxChange: emitIfxChange,
@@ -118,9 +79,6 @@ export class ChipItem {
         }
     }
 
-    /**
-     * Lifecycle Methods
-     */
 
     componentWillLoad() {
         /* Propogating the selected state to the Chip (Parent) component if it is set. */
