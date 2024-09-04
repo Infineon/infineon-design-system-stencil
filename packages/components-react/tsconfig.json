@@ -6,8 +6,8 @@
       "dom",
       "es2015"
     ],
-    "module": "es2015",
-    "moduleResolution": "node",
+    "module": "Node16",  
+    "moduleResolution": "node16",
     "target": "es2015",
     "skipLibCheck": true,
     "jsx": "react",
