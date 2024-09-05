@@ -61,6 +61,9 @@ jobs:
           sleep 10s
         shell: bash
 
+      - name: Set CANARY_VERSION
+        run: echo "CANARY_VERSION=$(npm view @infineon/infineon-design-system-stencil version)" >> $GITHUB_ENV
+
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
