@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "25.0.0--canary.1441.dcf4b8965eb35b3544d74503b8da6df0dc6d5e9a.0",
+  "version": "25.0.0--canary.1441.2676a030ec44588adb0ca192db5a46c1c277f280.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -38,7 +38,10 @@
     "@infineon/design-system-tokens": "3.3.2",
     "@infineon/infineon-icons": "^2.1.2",
     "@popperjs/core": "^2.11.8",
+    "@stencil/angular-output-target": "^0.8.2",
     "@stencil/core": "4.12.6",
+    "@stencil/react-output-target": "^0.7.1",
+    "@stencil/vue-output-target": "^0.8.6",
     "@storybook/cli": "^8.0.9",
     "@storybook/test": "^8.0.9",
     "babel-prettier-parser": "^0.10.8",
@@ -46,10 +49,7 @@
     "i": "^0.3.7",
     "npm": "^10.2.1",
     "npm-run-all": "^4.1.5",
-    "prettier-standalone": "^1.3.1-0",
-    "@stencil/angular-output-target": "^0.8.2",
-    "@stencil/react-output-target": "^0.7.1",
-    "@stencil/vue-output-target": "^0.8.6"
+    "prettier-standalone": "^1.3.1-0"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.4.5",
