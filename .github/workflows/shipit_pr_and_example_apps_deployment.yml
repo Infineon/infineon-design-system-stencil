@@ -72,7 +72,8 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          npm install
           cd ../../../../
           cd packages/components-vue
           # Use jq to update the version directly in package.json
@@ -206,6 +207,8 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/components-angular
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
           npm i
           npm run build my-app
 
