@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.3d657ac89f1d2fa05ae5c30bb20b61e59b4f4453.0",
+    "@infineon/infineon-design-system-react": "^24.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
