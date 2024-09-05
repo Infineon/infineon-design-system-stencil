@@ -207,6 +207,8 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/components-angular
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
           npm i
           npm run build my-app
 
