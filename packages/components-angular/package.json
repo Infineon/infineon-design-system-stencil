@@ -26,6 +26,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "typescript": "~5.4.4",
     "@infineon/infineon-design-system-angular": "^25.0.0--canary.1441.46456e3a33244e5bf989db28ff613e9320bb6c00.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -40,7 +41,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^18.2.0",
-    "typescript": "~5.4.4"
-  }
+    "ng-packagr": "^18.2.0"
+    }
 }
