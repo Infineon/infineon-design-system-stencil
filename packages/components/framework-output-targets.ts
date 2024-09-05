@@ -48,7 +48,6 @@ export const frameworkTargets = [
   }),
   reactOutputTarget({
     outDir: '../components-react/lib/components/stencil-generated/',
-    // includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
     excludeComponents,
   }),
 

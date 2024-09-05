@@ -20,6 +20,7 @@
   "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
   "files": [
     "dist/",
+    "stencil-components/",
     "loader/"
   ],
   "scripts": {
