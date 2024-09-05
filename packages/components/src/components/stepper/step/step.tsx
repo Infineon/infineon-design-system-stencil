@@ -7,60 +7,23 @@ import { h,
 import { StepperState } from "../interfaces";
 
 @Component({
-    tag     : 'ifx-step',
+    tag: 'ifx-step',
     styleUrl: 'step.scss',
-    shadow  : true
+    shadow: true
 })
 
 export class Step {
-
-    /**
-     * Sets the complete status of the step.
-     * 
-     * @Default false
-     */
     @Prop() complete?: boolean = false;
-
-    /**
-     * Disables the step - makes the step unclickable
-     * 
-     * @Default false
-     */
     @Prop() disabled?: boolean = false;
-
-    /**
-     * Sets the error status of the step.
-     * 
-     * @Default false
-     */
     @Prop({ mutable: true }) error?: boolean = false;
-
-    /**
-     * An internal prop to identify the last step of the stepper.
-     */
     @Prop({ reflect: false }) lastStep: boolean = false;
-
-    /**
-     * An unique step id assigned to every step in the stepper.
-     */
     @Prop() stepId: number = 1;
-
-    /**
-     * An internal prop to store the current state of the parent (stepper) components.
-     */
     @Prop({ reflect: false }) stepperState: StepperState = { activeStep: 1, 
                                                              showStepNumber: false, 
                                                              variant: 'default', 
                                                              indicatorPosition: 'left' };
 
-    /**
-     * Stores the active state of the step.
-     */
     @State() active: boolean;
-
-    /**
-     * Internal state which sets to true when the step is clickable.
-     */
     @State() clickable: boolean = false;
 
     @Listen('ifxChange', { target: 'document' })
@@ -83,23 +46,19 @@ export class Step {
         }
     }
 
-    /* Handle the click event on step label. */
+
     handleStepClick() {
         if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
 
-    /* Handle the 'Enter' key press on step label. */
     handleStepKeyDown(event: KeyboardEvent) {
         if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId)
         } 
     }
     
-    /**
-     * Lifecycle methods
-     */
 
     render() {
         return (
@@ -120,7 +79,6 @@ export class Step {
                     {this.stepperState.variant === 'default' && <span class = 'step-connector-l'/>}
 
                     {
-                        /* Active, complete or incomplete */
                         (this.stepperState.variant === 'default' && (!this.error || (this.error && this.active))) && 
                         <div class = 'step-icon'>
                             {(this.stepperState.showStepNumber && !this.complete && !this.active) ? this.stepId : ''}
@@ -129,7 +87,6 @@ export class Step {
                         </div>
                     }
 
-                    {/* Special error state */}
                     {(this.stepperState.variant ==='default' && this.error && !this.active) && <ifx-icon icon='warningf24'></ifx-icon>}
                     
                     {/* Right connector */}
@@ -144,12 +101,7 @@ export class Step {
                         onClick={() => { this.handleStepClick() }} 
                         onKeyDown={(e) => { this.handleStepKeyDown(e) }}>
 
-                        {
-                            (this.stepperState.variant === 'default') &&
-                            <ifx-link variant='menu'>
-                                <slot/>
-                            </ifx-link>
-                        }
+                        {(this.stepperState.variant === 'default') && <slot/>}
 
                         {this.stepperState.variant === 'compact' &&  !this.active  ? 'Next: ' : ''}
                         {this.stepperState.variant === 'compact' && <slot/>}
