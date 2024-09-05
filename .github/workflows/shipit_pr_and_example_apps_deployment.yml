@@ -208,7 +208,7 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/components-angular
-          npm i
+          npm install --legacy-peer-deps
           npm run build my-app
 
       - name: Deploy preview
