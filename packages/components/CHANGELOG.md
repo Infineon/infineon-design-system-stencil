@@ -1,3 +1,85 @@
+# v24.7.0 (Tue Sep 03 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: implement dynamic rows and cols [#1445](https://github.com/Infineon/infineon-design-system-stencil/pull/1445) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.4 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.6.4 (Fri Aug 30 2024)
+
+#### 🐛 Bug Fix
+
+- Icon component: removed unnecessary console error [#1444](https://github.com/Infineon/infineon-design-system-stencil/pull/1444) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.6.3 (Fri Aug 30 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: fixed error when profile-item not used [#1443](https://github.com/Infineon/infineon-design-system-stencil/pull/1443) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.6.2 (Tue Aug 27 2024)
+
+#### 🐛 Bug Fix
+
+- Checkbox: removed fixed height [#1430](https://github.com/Infineon/infineon-design-system-stencil/pull/1430) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.6.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.6.1 (Mon Aug 26 2024)
+
+#### 🐛 Bug Fix
+
+- Single Select: removed unnecessary code [#1428](https://github.com/Infineon/infineon-design-system-stencil/pull/1428) ([@akashyeole](https://github.com/akashyeole))
+- Update Stencil library version to 24.6.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.6.0 (Thu Aug 22 2024)
 
 #### 🚀 Enhancement
