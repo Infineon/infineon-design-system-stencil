@@ -60,6 +60,11 @@ jobs:
           echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
           sleep 10s
         shell: bash
+      
+        
+      - name: Clear NPM cache
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        run: npm cache clean --force
 
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -72,7 +77,8 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          npm install
           cd ../../../../
           cd packages/components-vue
           # Use jq to update the version directly in package.json
@@ -171,6 +177,12 @@ jobs:
           npm i
           npm run build
 
+      - name: Verify Installed Packages
+        run: |
+          cd examples/wrapper-components/react-javascript
+          npm list @infineon/infineon-design-system-stencil
+          npm list @infineon/infineon-design-system-react
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -201,12 +213,14 @@ jobs:
         run: |
           cd packages/components-angular
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-
+          cd projects/component-library
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
       
       - name: Install and Build
         run: |
           cd packages/components-angular
-          npm i
+          npm install
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           npm run build my-app
 
       - name: Deploy preview
