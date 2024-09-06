@@ -15,6 +15,10 @@ export const config: Config = {
 
   outputTargets: [
     {
+      type: 'dist-custom-elements',
+      externalRuntime: false, // Ensure this is set to false
+    },
+    {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
@@ -23,11 +27,6 @@ export const config: Config = {
       ]
     },
     ...frameworkTargets,
-    {
-      type: 'dist-custom-elements',
-      dir: 'stencil-components',
-      externalRuntime: false, // Ensure this is set to false
-    },
     {
       type: 'docs-readme',
     },
