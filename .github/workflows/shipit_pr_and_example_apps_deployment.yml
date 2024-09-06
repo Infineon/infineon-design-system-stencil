@@ -60,6 +60,11 @@ jobs:
           echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
           sleep 10s
         shell: bash
+      
+        
+      - name: Clear NPM cache
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        run: npm cache clean --force
 
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -208,7 +213,8 @@ jobs:
       - name: Install and Build
         run: |
           cd packages/components-angular
-          npm install --legacy-peer-deps
+          npm install
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           npm run build my-app
 
       - name: Deploy preview
