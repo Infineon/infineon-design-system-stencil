@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "24.7.0",
+  "version": "25.0.0--canary.1441.8a75e24117e592ae47169f6fa4ca8f61b241960f.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,9 +26,10 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@infineon/infineon-design-system-angular": "^24.7.0",
+    "@infineon/infineon-design-system-angular": "*",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typescript": "~5.4.4",
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
@@ -40,7 +41,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^18.2.0",
-    "typescript": "~5.4.4"
+    "ng-packagr": "^18.2.0"
   }
 }
