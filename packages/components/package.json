@@ -39,7 +39,7 @@
     "@infineon/design-system-tokens": "3.3.2",
     "@infineon/infineon-icons": "^2.1.2",
     "@popperjs/core": "^2.11.8",
-    "@stencil/angular-output-target": "^0.8.2",
+    "@stencil/angular-output-target": "^0.9.0",
     "@stencil/core": "4.12.6",
     "@stencil/react-output-target": "^0.7.1",
     "@stencil/vue-output-target": "^0.8.6",
