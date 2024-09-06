@@ -50,6 +50,10 @@ jobs:
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: sleep 10s
         shell: bash
+                
+      - name: Clear NPM cache
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        run: npm cache clean --force
 
       - name: Update Dependencies in Angular, Vue and React packages
         env:
