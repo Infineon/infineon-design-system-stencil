@@ -1,6 +1,5 @@
 //ifxAccordion.tsx
 import { Component, h, Listen, Element, Prop } from '@stencil/core';
-import { trackComponentView } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-accordion',
@@ -11,9 +10,6 @@ export class Accordion {
   @Element() el: HTMLElement;
   @Prop() autoCollapse: boolean = false;
 
-  componentDidLoad() {
-    trackComponentView('Accordion');
-  }
 
   @Listen('ifxItemOpen')
   async onItemOpen(event: CustomEvent) {

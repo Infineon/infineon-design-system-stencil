@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
-import { trackComponentView } from '../../global/utils/tracking';
+ 
 
 
 @Component({
@@ -56,7 +56,6 @@ export class InfineonIconStencil {
       const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
-      this.consoleError.emit(false)
       return SVG;
     } else if(this.icon !== "") {
       console.error('Icon not found!')
@@ -72,9 +71,6 @@ export class InfineonIconStencil {
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
 
-  componentDidLoad() {
-    trackComponentView('InfineonIconStencil');
-  }
 
 
   render() {
