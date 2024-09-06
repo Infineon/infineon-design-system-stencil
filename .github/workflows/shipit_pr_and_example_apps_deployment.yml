@@ -175,13 +175,10 @@ jobs:
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
-          npm run build
-
-      - name: Verify Installed Packages
-        run: |
-          cd examples/wrapper-components/react-javascript
+          echo "Verifying the installed version of the Stencil library"
           npm list @infineon/infineon-design-system-stencil
           npm list @infineon/infineon-design-system-react
+          npm run build
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
