@@ -10,6 +10,7 @@
 | Property      | Attribute     | Description | Type                  | Default     |
 | ------------- | ------------- | ----------- | --------------------- | ----------- |
 | `placeholder` | `placeholder` |             | `string`              | `''`        |
+| `readOnly`    | `read-only`   |             | `boolean`             | `false`     |
 | `size`        | `size`        |             | `"large" \| "small"`  | `'large'`   |
 | `value`       | `value`       |             | `string \| string[]`  | `undefined` |
 | `variant`     | `variant`     |             | `"multi" \| "single"` | `'single'`  |

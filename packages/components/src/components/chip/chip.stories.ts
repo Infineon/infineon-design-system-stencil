@@ -16,6 +16,7 @@ export default {
         placeholder: 'Label',
         size: 'large',
         variant: 'single',
+        readOnly: false,
         selected: false,
         value: 'Item Value'
     },
@@ -75,6 +76,11 @@ export default {
                 }
             }
         },
+        readOnly: {
+            description: 'No dropdown menu. The chip component is read-only.',
+            control: 'radio',
+            options: [true, false],
+        },
         selected: {
             description: 'Set the *selected* prop to pre-select the chip item.',
             table: {
@@ -115,6 +121,7 @@ const Template = (args) => {
 placeholder = "${args.placeholder}"
 size = "${args.size}"
 variant = "${args.variant}"
+read-only="${args.readOnly}"
 >
     ${
         (() => {
@@ -164,4 +171,11 @@ Multi.argTypes = {
             disable: true
         }
     }
+}
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+    readOnly: true,
+    selected: false,
+    value: 'Item Value'
 }
