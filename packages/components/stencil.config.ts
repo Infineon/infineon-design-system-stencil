@@ -25,7 +25,8 @@ export const config: Config = {
     ...frameworkTargets,
     {
       type: 'dist-custom-elements',
-      dir: 'stencil-components'
+      dir: 'stencil-components',
+      externalRuntime: false, // Ensure this is set to false
     },
     {
       type: 'docs-readme',
