@@ -114,13 +114,14 @@ VanillaJs: .addEventListener("ifxChipChange", (event) => {/*handle change*/});`,
     }
 };
 
+ 
 const Template = (args) => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
 <ifx-chip
 placeholder = "${args.placeholder}"
 size = "${args.size}"
-variant = "${args.variant}"
+variant = "${args.readOnly ? 'multi' : args.variant}"
 read-only="${args.readOnly}"
 >
     ${
@@ -131,7 +132,9 @@ read-only="${args.readOnly}"
                 if(chipItemId === 0 && args.value) {
                     chipItem.setAttribute('value', args.value);
                 } 
-                if(chipItemId === 0 && args.selected) {
+                if (args.readOnly) {
+                    chipItem.setAttribute('selected', 'true');
+                } else if (chipItemId === 0 && args.readOnly) {
                     chipItem.setAttribute('selected', 'true');
                 }
                 return chipItem.outerHTML;
@@ -145,6 +148,7 @@ read-only="${args.readOnly}"
 
     return chip;
 }
+
 
 export const Default = Template.bind({});
 Default.tags = ['!dev', '!autodocs'];
@@ -176,6 +180,6 @@ Multi.argTypes = {
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
     readOnly: true,
-    selected: false,
+    selected: true,
     value: 'Item Value'
 }
