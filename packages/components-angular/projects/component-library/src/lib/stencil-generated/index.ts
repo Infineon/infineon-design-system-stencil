@@ -19,6 +19,7 @@ export const DIRECTIVES = [
   d.IfxCardText,
   d.IfxCheckbox,
   d.IfxChip,
+  d.IfxChipItem,
   d.IfxDatePicker,
   d.IfxDropdown,
   d.IfxDropdownHeader,
