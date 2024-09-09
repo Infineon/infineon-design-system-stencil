@@ -50,7 +50,7 @@ jobs:
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: sleep 10s
         shell: bash
-                
+
       - name: Clear NPM cache
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         run: npm cache clean --force
@@ -166,6 +166,7 @@ jobs:
         run: |
           cd examples/wrapper-components/react-javascript
           npm i
+          npm install @infineon/infineon-design-system-stencil@$VERSION
           npm run build
 
 
