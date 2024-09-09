@@ -128,10 +128,9 @@ read-only="${args.readOnly}"
         (() => {
             return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
                 const chipItem: HTMLIfxChipItemElement  = document.createElement('ifx-chip-item');
-                chipItem.innerHTML = args.chipItemLabel;
-                if(chipItemId === 0 && args.value) {
-                    chipItem.setAttribute('value', args.value);
-                } 
+                chipItem.innerHTML = args.chipItemLabel + ' ' + chipItemId;
+                chipItem.setAttribute('value', args.value + ' ' + chipItemId);
+                 
                 if (args.readOnly) {
                     chipItem.setAttribute('selected', 'true');
                 } else if (chipItemId === 0 && args.readOnly) {
