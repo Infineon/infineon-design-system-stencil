@@ -132,7 +132,7 @@ jobs:
       - name: Update package.json with canary version
         run: |
           cd examples/wrapper-components/vue-javascript
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-vue"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-vue"] = ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Install and Build
         run: |
@@ -169,7 +169,7 @@ jobs:
       - name: Update package.json with canary version
         run: |
           cd examples/wrapper-components/react-javascript
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Install and Build
         run: |
@@ -209,9 +209,9 @@ jobs:
       - name: Update package.json with canary version
         run: |
           cd packages/components-angular
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}' package.json > package.json.tmp && mv package.json.tmp package.json
           cd projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}' package.json > package.json.tmp && mv package.json.tmp package.json          
       
       - name: Install and Build
         run: |
