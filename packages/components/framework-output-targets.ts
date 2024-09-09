@@ -47,9 +47,7 @@ export const frameworkTargets = [
 
   }),
   reactOutputTarget({
-    componentCorePackage: '@infineon/infineon-design-system-stencil',
-    proxiesFile: '../components-react/lib/components/stencil-generated/index.ts',
-    // includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
+    outDir: '../components-react/lib/components/stencil-generated/',
     excludeComponents,
   }),
 
