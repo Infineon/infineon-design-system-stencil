@@ -78,23 +78,39 @@ jobs:
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
+      
+          # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
           cd ../../../../
+      
+          # Update Vue package
           cd packages/components-vue
-          # Use jq to update the version directly in package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
-          cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          cd ../
+      
+          # Update React package
+          cd packages/components-react
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
           cd ../../
+      
+          # Verify updates
+          echo "Verifying updates in Angular package"
+          jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
+          echo "Verifying updates in Vue package"
+          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
+          echo "Verifying updates in React package"
+          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
+      
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add .
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
+      
 
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
