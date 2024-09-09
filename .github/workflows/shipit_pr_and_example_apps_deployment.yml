@@ -89,10 +89,9 @@ jobs:
           cd packages/components-vue
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
-          cd ../
       
           # Update React package
-          cd packages/components-react
+          cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
           cd ../../
