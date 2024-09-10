@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.a815d90ac5a494842cf9ae702ad156c5cbad96af.0",
+    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.5c195aeacd9a14c268e0c2a1f072abdf70e6d1e5.0",
     "@stencil/react-output-target":"0.7.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.1.2",
@@ -20,7 +20,7 @@
     "serve": "^14.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PUBLIC_URL=. react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
