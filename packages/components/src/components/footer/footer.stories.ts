@@ -1,33 +1,15 @@
 export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
-
   args: {
     variant: 'medium',
-    termsUrl: 'https://yourwebsite.com/terms',
-    termsTarget: '_blank',
-    imprintUrl: 'https://yourwebsite.com/imprint',
-    imprintTarget: '_blank',
-    privacyPolicyUrl: 'https://yourwebsite.com/privacy-policy',
-    privacyPolicyTarget: '_blank',
-    glossaryUrl: 'https://yourwebsite.com/glossary',
-    glossaryTarget: '_blank',
     copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
-
   argTypes: {
     variant: {
       options: ['small', 'medium', 'large'],
       control: { type: 'radio' },
     },
-    termsUrl: { control: 'text' },
-    termsTarget: { control: 'text' },
-    imprintUrl: { control: 'text' },
-    imprintTarget: { control: 'text' },
-    privacyPolicyUrl: { control: 'text' },
-    privacyPolicyTarget: { control: 'text' },
-    glossaryUrl: { control: 'text' },
-    glossaryTarget: { control: 'text' },
     copyrightText: { control: 'text' },
   },
 };
@@ -35,11 +17,7 @@ export default {
 const DefaultTemplate = args => {
   return `
     <ifx-footer variant="${args.variant}" 
-               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
-                imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}"
-                privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-target="${args.privacyPolicyTarget}"
-                glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}"
-                copyright-text="${args.copyrightText}">
+              copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -59,6 +37,12 @@ const DefaultTemplate = args => {
       <ifx-link variant="title" href="http://xing.com/infineon">
         <ifx-icon icon="xing"></ifx-icon>
       </ifx-link>
+    </div>
+    <div slot="buttons">
+      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
     </div>
   </ifx-footer>`;
 };

@@ -12,14 +12,6 @@ export class Footer {
   @Prop() variant: string = 'medium';
   @State() large: boolean = false;
   @State() medium: boolean = false;
-  @Prop() termsUrl: string = '#';
-  @Prop() termsTarget: string = '_self';
-  @Prop() imprintUrl: string = '#';
-  @Prop() imprintTarget: string = '_self';
-  @Prop() privacyPolicyUrl: string = '#';
-  @Prop() privacyPolicyTarget: string = '_self';
-  @Prop() glossaryUrl: string = '#';
-  @Prop() glossaryTarget: string = '_self';
   @State() currentYear: number = new Date().getFullYear();
   @Prop() copyrightText: string = '© 1999 - ' + this.currentYear + ' Infineon Technologies AG';
 
@@ -120,18 +112,7 @@ export class Footer {
                 </div>
               }
               <div class="footer__buttons">
-                {this.termsUrl &&
-                  <ifx-link variant="menu" href={this.termsUrl} target={this.termsTarget}>Terms</ifx-link>
-                }
-                {this.imprintUrl &&
-                  <ifx-link variant="menu" href={this.imprintUrl} target={this.imprintTarget}>Imprint</ifx-link>
-                }
-                {this.privacyPolicyUrl &&
-                  <ifx-link variant="menu" href={this.privacyPolicyUrl} target={this.privacyPolicyTarget}>Privacy policy</ifx-link>
-                }
-                {this.glossaryUrl &&
-                  <ifx-link variant="menu" href={this.glossaryUrl} target={this.glossaryTarget}>Glossary</ifx-link>
-                }
+                <slot name="buttons"/>
               </div>
             </div>
           </div>
