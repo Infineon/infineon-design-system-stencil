@@ -103,6 +103,9 @@ export class Stepper {
         this.addStepIdsToStepsAndCountSteps();
         this.updateActiveStep();
         this.setStepsBeforeActiveToComplete();
+    }
+    
+    componentDidLoad() {
         this.syncIfxSteps();
     }
 

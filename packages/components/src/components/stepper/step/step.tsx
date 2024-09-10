@@ -41,7 +41,7 @@ export class Step {
 
     @Watch('active')
     updateErrorState(){
-        if (this.active && this.error) {
+        if (this.active) {
             this.error = false;
         }
     }
