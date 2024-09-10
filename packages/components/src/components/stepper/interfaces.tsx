@@ -1,8 +1,8 @@
 export interface StepperState {
-    activeStep       : number;
+    activeStep: number;
     indicatorPosition: 'left' | 'right';
-    showStepNumber   : boolean;
-    variant          : 'default' | 'compact';
+    showStepNumber: boolean;
+    variant: 'default' | 'compact';
 
     setActiveStep?(stepId: number): null;
 }
