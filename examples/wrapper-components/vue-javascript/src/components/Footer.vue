@@ -50,6 +50,9 @@
           <ifx-icon icon="xing"></ifx-icon>
         </ifx-link>
       </div>
+      <div slot="buttons">
+        <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+      </div>
     </ifx-footer>
   </div>
 </template>
