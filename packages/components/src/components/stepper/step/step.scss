@@ -16,7 +16,7 @@
         .step-label{
             max-width: 100%;
             cursor: auto;
-            text-align: left;
+            align-self: flex-start;
         }
         
         &.indicator-left {
