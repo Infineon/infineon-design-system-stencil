@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.2c65aedcd67ce294a92973686d19a6b98ab67866.0",
-    "@infineon/infineon-design-system-stencil": "^25.0.0--canary.1441.2c65aedcd67ce294a92973686d19a6b98ab67866.0",
+    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.5990c23520b51d51ff78484aec25cd1e675f95c6.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
