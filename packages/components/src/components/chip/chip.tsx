@@ -174,30 +174,31 @@ export class Chip {
   render() {
     return (
       <div aria-value={this.getSelectedOptions()} aria-label='chip with a dropdown menu' class='chip'>
-        <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'}
-                    chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
-                    ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
-                    ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
-          tabIndex={0}
-          onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
-          onKeyDown={!this.readOnly ? (e) => { this.handleWrapperKeyDown(e) } : undefined}>
-  
-          <div class='wrapper__label'>
-            {
-              (this.selectedOptions.length === 0) && `${this.placeholder}`
-            }
-  
-            {
-              (this.selectedOptions.length !== 0 && this.variant === 'multi') &&
-              `${this.placeholder}:`
-            }
-  
-            {
-              (this.selectedOptions.length !== 0) &&
-              <div class='label__selected-options'>
-                {this.selectedOptions.map(option => option.label).join(', ')}
-              </div>
-            }
+      <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'}
+                  chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
+                  ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
+                  ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
+        tabIndex={0}
+        onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
+        onKeyDown={!this.readOnly ? (e) => { this.handleWrapperKeyDown(e) } : undefined}>
+
+        <div class='wrapper__label'>
+          {
+            (this.selectedOptions.length === 0) && `${this.placeholder}`
+          }
+
+          {
+            (this.selectedOptions.length !== 0 && this.variant === 'multi') &&
+            `${this.placeholder}:`
+          }
+
+          {
+            (this.selectedOptions.length !== 0) &&
+            <div class='label__selected-options'>
+              {this.selectedOptions.slice(0, 2).map(option => option.label).join(', ')}
+            </div>
+          }
+
   
             {/* Number indicator appears only when 2+ options selected in 'multi' variant. */}
             {
