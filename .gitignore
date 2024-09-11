@@ -121,6 +121,7 @@ packages/components-vue/lib/components.ts
 packages/components-vue/lib/vue-component-lib/
 packages/components-react/lib/components/stencil-generated/react-component-lib/
 packages/components-react/lib/components/stencil-generated/index.ts
+packages/components-react/lib/components/
 packages/components-angular/projects/component-library/src/lib/stencil-generated/angular-component-lib/
 packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
 packages/components/public-storybook/fonts/*
