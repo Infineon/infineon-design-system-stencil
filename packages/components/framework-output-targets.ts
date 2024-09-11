@@ -48,6 +48,8 @@ export const frameworkTargets = [
   }),
   reactOutputTarget({
     outDir: '../components-react/lib/components/stencil-generated/',
+    stencilPackageName: '@infineon/infineon-design-system-stencil',
+    esModules: true,
     excludeComponents,
   }),
 

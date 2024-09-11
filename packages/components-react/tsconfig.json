@@ -1,20 +1,18 @@
 {
+  "extends": "../../tsconfig.react.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "esnext",  
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "esnext",
     "moduleResolution": "bundler",
-    "target": "ES2020",
+    "target": "es2015",
     "skipLibCheck": true,
-    "strict": true,
-
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": false,
-    "esModuleInterop": true,
+    "declarationDir": "./dist/types"
   },
   "include": [
     "lib"
