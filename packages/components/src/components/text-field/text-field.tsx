@@ -23,7 +23,7 @@ export class TextField {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() maxlength?: number;
-  @Event() ifxInput: EventEmitter<String>;
+  @Event() ifxInput: EventEmitter<string>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
 
@@ -67,7 +67,7 @@ export class TextField {
             ) : this.optional ? (
               <span class="optional">(optional)</span>
             ) : this.required ? (
-              <span class="required">*</span>
+              <span class={`required ${this.error} ? error : ""`}>*</span>
             ) : null}
           </label>
         </div>
