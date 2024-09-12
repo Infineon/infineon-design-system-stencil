@@ -10,6 +10,7 @@
   <Button />
   <Card />
   <Checkbox />
+  <Chip />
   <DatePicker />
   <Dropdown />
   <IconButton />
@@ -44,6 +45,7 @@ import Alert from './components/Alert.vue'
 import Accordion from './components/Accordion.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
+import Chip from './components/Chip.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import RadioButton from './components/RadioButton.vue'
 import TextField from './components/TextField.vue'
