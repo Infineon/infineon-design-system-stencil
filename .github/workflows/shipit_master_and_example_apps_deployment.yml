@@ -55,7 +55,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: | 
-          npm install --scope=@infineon/infineon-design-system-stencil
+          npm install
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
