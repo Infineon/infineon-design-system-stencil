@@ -170,7 +170,7 @@ export class Chip {
           }
 
           {
-            (this.selectedOptions.length !== 0 && this.variant === 'multi') &&
+            (this.selectedOptions.length !== 0 && this.variant === 'multi' && this.placeholder !== '') &&
             `${this.placeholder}:`
           }
 
