@@ -84,25 +84,7 @@ export class Chip {
   }
 
   getSelectedOptions(): string {
-    if (!this.selectedOptions.length) return '';
-    if (this.variant !== 'multi') {
-      return this.selectedOptions[0].label;
-    } else {
-      let optionsLabel = '';
-      let index = 0;
-      while (index < 2) {
-        if (index < this.selectedOptions.length) {
-          optionsLabel += this.selectedOptions[index].label;
-          index++;
-        }
-        if (index < 2 && index < this.selectedOptions.length) {
-          optionsLabel += ', ';
-          continue;
-        }
-        break;
-      }
-      return optionsLabel;
-    }
+    return this.selectedOptions.slice(0, 2).map(option => option.label).join(', ');
   }
 
   toggleDropdownMenu() {
@@ -195,7 +177,7 @@ export class Chip {
           {
             (this.selectedOptions.length !== 0) &&
             <div class='label__selected-options'>
-              {this.selectedOptions.slice(0, 2).map(option => option.label).join(', ')}
+              { this.getSelectedOptions() }
             </div>
           }
 
@@ -216,7 +198,7 @@ export class Chip {
   
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
-            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
+            <div class='wrapper__unselect-button' onClick={!this.readOnly ? (e) => { this.handleUnselectButtonClick(e)} : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
           }

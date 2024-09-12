@@ -77,9 +77,15 @@ export default {
             }
         },
         readOnly: {
+            name: 'read-only',
             description: 'No dropdown menu. The chip component is read-only.',
-            control: 'radio',
-            options: [true, false],
+            control: 'boolean',
+            table: {
+                category: 'ifx-chip props',
+                defaultValue: {
+                    summary: false,
+                }
+            }
         },
         selected: {
             description: 'Set the *selected* prop to pre-select the chip item.',
@@ -98,7 +104,21 @@ export default {
         },
         ifxChipChange: {
             action: 'ifxChipChange',
-            description: 'A custom event emitted when the selection in a *<ifx-chip>* is updated.',
+            description: `A custom event emitted when the selection in a *<ifx-chip>* is updated.\n
+    event.detail: 
+    {
+        currentSelection: Array<Option>,
+        previousSelection: Array<Option>
+    }
+
+    Option:
+    {
+        key: number,
+        label: string,
+        selected: boolean,
+        value: string
+    }
+            `,
             table: {
                 category: 'custom events',
                 type: {
@@ -121,20 +141,21 @@ const Template = (args) => {
 <ifx-chip
 placeholder = "${args.placeholder}"
 size = "${args.size}"
-variant = "${args.readOnly ? 'multi' : args.variant}"
-read-only="${args.readOnly}"
+variant = "${args.variant}"
+read-only = "${args.readOnly}"
 >
     ${
         (() => {
             return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
                 const chipItem: HTMLIfxChipItemElement  = document.createElement('ifx-chip-item');
-                chipItem.innerHTML = args.chipItemLabel + ' ' + chipItemId;
-                chipItem.setAttribute('value', args.value + ' ' + chipItemId);
-                 
+                chipItem.innerHTML = args.chipItemLabel + ' ' + (chipItemId+1);
+                chipItem.setAttribute('value', args.value + ' ' + (chipItemId+1));
                 if (args.readOnly) {
-                    chipItem.setAttribute('selected', 'true');
-                } else if (chipItemId === 0 && args.readOnly) {
-                    chipItem.setAttribute('selected', 'true');
+                    if (args.variant === 'multi') {
+                        chipItem.setAttribute('selected', 'true');
+                    } else if (chipItemId === 0) {
+                        chipItem.setAttribute('selected', 'true');
+                    }
                 }
                 return chipItem.outerHTML;
             }).join(`\n    `);
@@ -179,6 +200,12 @@ Multi.argTypes = {
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
     readOnly: true,
-    selected: true,
-    value: 'Item Value'
+    variant: 'multi'
+}
+ReadOnly.argTypes = {
+    readOnly: {
+        table: {
+            disable: true
+        }
+    }
 }
