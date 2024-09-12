@@ -2,22 +2,16 @@ export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
   args: {
-    variant: 'medium',
     copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
   argTypes: {
-    variant: {
-      options: ['small', 'medium', 'large'],
-      control: { type: 'radio' },
-    },
     copyrightText: { control: 'text' },
   },
 };
 
 const DefaultTemplate = args => {
   return `
-    <ifx-footer variant="${args.variant}" 
-              copyright-text="${args.copyrightText}">
+    <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -49,12 +43,19 @@ const DefaultTemplate = args => {
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () => `<ifx-footer variant="small"></ifx-footer>`;
+const SmallTemplate = () => `<ifx-footer variant="small">
+    <div slot="info">
+      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
+    </div>
+  </ifx-footer>`;
 
 export const Small = SmallTemplate.bind({});
 
 const LargeTemplate = () =>
-  `<ifx-footer variant="large">
+  `<ifx-footer>
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
     <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
@@ -102,6 +103,12 @@ const LargeTemplate = () =>
     <ifx-link variant="title" href="http://xing.com/infineon">
       <ifx-icon icon="xing"></ifx-icon>
     </ifx-link>
+  </div>
+  <div slot="info">
+    <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
   </div>
 </ifx-footer>`;
 
