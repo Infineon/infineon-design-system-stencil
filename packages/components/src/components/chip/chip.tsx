@@ -198,7 +198,7 @@ export class Chip {
   
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
-            <div class='wrapper__unselect-button' onClick={!this.readOnly ? (e) => { this.handleUnselectButtonClick(e)} : undefined}>
+            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
           }
