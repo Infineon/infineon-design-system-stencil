@@ -1,3 +1,20 @@
+# v24.7.1 (Thu Sep 12 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Backgroundcolor of multiselect [#1453](https://github.com/Infineon/infineon-design-system-stencil/pull/1453) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.7.0 (Tue Sep 03 2024)
 
 #### 🚀 Enhancement
