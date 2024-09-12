@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm ci
+        run: npm install
 
       - name: Build and deploy Stencil core package
         id: build
