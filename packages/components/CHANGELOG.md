@@ -1,3 +1,22 @@
+# v25.0.0 (Thu Sep 12 2024)
+
+#### 💥 Breaking Change
+
+- Chip: component enhancement [#1441](https://github.com/Infineon/infineon-design-system-stencil/pull/1441) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.7.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v24.7.1 (Thu Sep 12 2024)
 
 #### 🐛 Bug Fix
