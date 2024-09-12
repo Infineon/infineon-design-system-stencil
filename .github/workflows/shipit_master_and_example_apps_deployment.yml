@@ -30,13 +30,27 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Build stencil
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
+    
+      - name: Install dependencies for all packages
+        run: npm install
+
+      - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        run: | 
-          npm install --scope=@infineon/infineon-design-system-stencil
+        run: |
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
@@ -50,10 +64,6 @@ jobs:
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: sleep 10s
         shell: bash
-
-      - name: Clear NPM cache
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: npm cache clean --force
 
       - name: Update Dependencies in Angular, Vue and React packages
         env:
