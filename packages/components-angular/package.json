@@ -29,6 +29,7 @@
     "@infineon/infineon-design-system-angular": "^24.7.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typescript": "~5.4.4",
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
@@ -40,7 +41,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^18.2.0",
-    "typescript": "~5.4.4"
+    "ng-packagr": "^18.2.0"
   }
 }
