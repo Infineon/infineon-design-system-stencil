@@ -111,8 +111,8 @@ export class Footer {
                   {this.copyrightText}
                 </div>
               }
-              <div class="footer__buttons">
-                <slot name="buttons"/>
+              <div class="footer__info">
+                <slot name="info"/>
               </div>
             </div>
           </div>

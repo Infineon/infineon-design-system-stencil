@@ -38,7 +38,7 @@ const DefaultTemplate = args => {
         <ifx-icon icon="xing"></ifx-icon>
       </ifx-link>
     </div>
-    <div slot="buttons">
+    <div slot="info">
       <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
       <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
       <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>

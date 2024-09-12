@@ -151,7 +151,7 @@
 
       }
 
-      & .footer__buttons > ::slotted([slot=buttons]) {
+      & .footer__info > ::slotted([slot=info]) {
         display: flex;
         gap: tokens.$ifxSpace300;
         padding-right: tokens.$ifxSpace200;
