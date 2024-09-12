@@ -46,7 +46,7 @@ jobs:
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: List the state of node modules
         continue-on-error: true
-        run: echo "Cache exists" 
+        run: npm list
 
       - name: Install dependencies for all packages, build and deploy Stencil core package
         id: build
