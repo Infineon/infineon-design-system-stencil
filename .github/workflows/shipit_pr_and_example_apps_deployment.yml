@@ -37,14 +37,17 @@ jobs:
         id: cache-npm
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
+            **/node_modules
+
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm install
+        run: npm ci
 
       - name: Build and deploy Stencil core package
         id: build
