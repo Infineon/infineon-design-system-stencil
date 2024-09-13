@@ -1,0 +1,48 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.ifx-content-switcher {
+    background-color: tokens.$ifxColorBaseWhite;
+    border: 1px solid tokens.$ifxColorEngineering300;
+    border-radius: tokens.$ifxBorderRadiusRound;
+    height: tokens.$ifxSize450;
+    width: fit-content;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // gap: 3px;
+
+    & ::slotted(ifx-content-switcher-item) {
+        position: relative;
+        // top: -1px;
+    }
+
+    & ::slotted(ifx-content-switcher-item:first-child) {
+        left: -1px;
+        margin-right: -1px;
+    }
+
+    & ::slotted(ifx-content-switcher-item:last-child) {
+        right: -1px;
+        margin-left: -1px;
+    }
+
+    // &.dividers {
+    //     & ::slotted(ifx-content-switcher-item)::before {
+    //             content: "";
+    //             position: absolute;
+    //             display: block;
+    //             width: tokens.$ifxSize12;
+    //             height: tokens.$ifxSize250;
+    //             background-color: tokens.$ifxColorEngineering400;
+    //             align-self: center;
+    //             left: -2px;
+    //             // center the separator vertically
+    //             top: 50%;
+    //             transform: translate(-50%, -50%)
+    //     }
+
+    // }
+    // Dividers
+
+}
