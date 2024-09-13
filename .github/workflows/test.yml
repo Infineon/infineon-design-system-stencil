@@ -42,17 +42,8 @@ jobs:
         run: npm install
 
       - name: Install Puppeteer Browsers
-        run: PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer npx puppeteer install --browser chrome
-
-      - name: Verify Puppeteer Installation
         run: |
-          echo "Puppeteer version:"
-          npx puppeteer --version
-          echo "Installed browsers:"
-          ls -l /home/runner/.cache/puppeteer
-
-      - name: Install Chrome
-        run: sudo apt-get install -y google-chrome-stable
+          npx puppeteer install --browser chrome
 
   
       - name: Run tests
