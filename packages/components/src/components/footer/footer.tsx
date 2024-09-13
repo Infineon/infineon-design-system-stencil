@@ -14,17 +14,14 @@ export class Footer {
 
   private hasColSlot: boolean = false;
   private hasSocialsSlot: boolean = false;
-  private hasInfoSlot: boolean = false;
 
   componentWillLoad() {
     this.hasColSlot = !!this.el.querySelector('[slot="col"]');
     this.hasSocialsSlot = !!this.el.querySelector('[slot="socials"]');
-    this.hasInfoSlot = !!this.el.querySelector('[slot="info"]');
 }
 
  
   render() {
-    console.log("hasInfoSlot"+this.hasInfoSlot)
     return (
       <Host>
         <div aria-label='Main footer navigation' class="footer__container">
@@ -88,7 +85,3 @@ export class Footer {
     );
   }
 }
-
-
-
-
