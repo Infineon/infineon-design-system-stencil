@@ -45,6 +45,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          # Increase the Jest timeout
-          echo "module.exports = { testTimeout: 30000 };" > jest.config.js
           npm run test
