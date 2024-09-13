@@ -1,3 +1,20 @@
+# v25.0.1 (Fri Sep 13 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: upgraded tokens version to latest in wrapper libraries [#1462](https://github.com/Infineon/infineon-design-system-stencil/pull/1462) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.0.0 (Thu Sep 12 2024)
 
 #### 💥 Breaking Change
