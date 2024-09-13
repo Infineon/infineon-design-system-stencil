@@ -32,4 +32,5 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: | 
           npm install
+          npm run build:components
           npm run test
