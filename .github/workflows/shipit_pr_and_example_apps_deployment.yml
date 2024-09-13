@@ -93,7 +93,7 @@ jobs:
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../
           npm install
-          cd ../../../../
+          cd ../../
       
           # Update Vue package
           cd packages/components-vue
