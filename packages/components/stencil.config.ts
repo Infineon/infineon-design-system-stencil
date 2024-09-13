@@ -16,14 +16,13 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist-custom-elements',
-      externalRuntime: false, // Ensure this is set to false
+      externalRuntime: false,
     },
     {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './', warn: true },
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../public-storybook/fonts', warn: true },
       ]
     },
     ...frameworkTargets,
