@@ -8,22 +8,17 @@
       "dom",
       "es2017"
     ],
-    "skipLibCheck": true,
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "jsx": "react",
-    "jsxFactory": "h",
-    "baseUrl": "./",
-    "paths": {
-      "*": ["src/types/*"]
-    }
+    "jsxFactory": "h"
   },
   "include": [
     "src",
-    "types/**/*"
+    "types/jsx.d.ts"
   ],
   "exclude": [
     "node_modules"
