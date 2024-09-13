@@ -39,7 +39,14 @@ export class Stepper {
     } 
 
     @Watch('activeStep')
-    handleActiveStep() {
+    handleActiveStep(newStep: number, oldStep: number) {
+        if (newStep-1 >= 0 && newStep-1 < this.stepsCount) {
+            const steps = this.getSteps();
+            if (steps[newStep-1].disabled) {
+                this.activeStep = oldStep;
+                return;
+            }
+        }
         this.updateActiveStep();
     }
 
