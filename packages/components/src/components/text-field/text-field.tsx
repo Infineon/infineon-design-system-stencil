@@ -23,7 +23,7 @@ export class TextField {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() maxlength?: number;
-  @Event() ifxInput: EventEmitter<string>;
+  @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
 
