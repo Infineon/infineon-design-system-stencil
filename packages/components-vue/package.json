@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.3",
-    "@infineon/infineon-design-system-stencil": "25.1.0"
+    "@infineon/infineon-design-system-stencil": "25.1.0",
+    "root": "file:../.."
   },
   "auto": {
     "plugins": [
