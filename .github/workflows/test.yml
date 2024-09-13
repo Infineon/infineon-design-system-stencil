@@ -43,6 +43,10 @@ jobs:
 
       - name: Install Puppeteer Browsers
         run: npx puppeteer install
+
+      - name: Install Chrome
+        run: sudo apt-get install -y google-chrome-stable
+
   
       - name: Run tests
         env:
