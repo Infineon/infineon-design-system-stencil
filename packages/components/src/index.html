@@ -21,31 +21,6 @@
 
 <body>
 
-<ifx-stepper id ='stpr' active-step="3" show-step-number="false" variant="default">
-  <ifx-step>Step Label 1</ifx-step>
-  <ifx-step disabled="true">Step Label 2</ifx-step>
-  <ifx-step>Step Label 3</ifx-step>
-  <ifx-step>Step Label 4</ifx-step>
-  <ifx-step>Step Label 5</ifx-step>
-</ifx-stepper>
-
-<ifx-button id ='prv'> Prev </ifx-button>
-<ifx-button id ='nxt'> Next </ifx-button>
-
 </body>
-
-<script> 
-  const prv = document.getElementById('prv');
-  const nxt = document.getElementById('nxt');
-
-  const stpr = document.getElementById('stpr');
-
-  prv.addEventListener('click', () => {
-    stpr.activeStep -= 1;
-  });
-  nxt.addEventListener('click', () => {
-    stpr.activeStep += 1;
-  });
-</script>
 
 </html>
