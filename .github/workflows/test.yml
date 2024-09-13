@@ -43,7 +43,7 @@ jobs:
 
       - name: Install Puppeteer Browsers
         run: |
-          npx puppeteer install --browser chrome
+          npx puppeteer browsers install ${browserType}
 
   
       - name: Run tests
