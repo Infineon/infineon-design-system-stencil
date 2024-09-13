@@ -42,7 +42,7 @@ jobs:
         run: npm install
 
       - name: Install Puppeteer Browsers
-        run: npx puppeteer install --browser chrome
+        run: PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer npx puppeteer install --browser chrome
 
       - name: Verify Puppeteer Installation
         run: |
