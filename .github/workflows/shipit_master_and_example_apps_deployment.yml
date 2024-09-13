@@ -73,7 +73,7 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
           cd packages/components-angular/projects/component-library
-          jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          # jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
           npm install
           cd ../../../../
           cd packages/components-vue
@@ -169,12 +169,12 @@ jobs:
             
       - name: Update package.json with version
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Install and Build
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           npm i
           npm install @infineon/infineon-design-system-stencil@$VERSION
           npm run build
@@ -183,7 +183,7 @@ jobs:
       - name: Deploy React Example🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/wrapper-components/react-javascript/build/ # The folder the action should deploy.
+          folder: examples/wrapper-components/react-vite-js/dist/ # The folder the action should deploy.
           target-folder: react-example
           clean-exclude: |
             angular-example/

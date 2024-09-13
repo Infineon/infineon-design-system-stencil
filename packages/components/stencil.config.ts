@@ -16,7 +16,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist-custom-elements',
-      externalRuntime: false, // Ensure this is set to false
+      externalRuntime: false,
     },
     {
       type: 'dist',
