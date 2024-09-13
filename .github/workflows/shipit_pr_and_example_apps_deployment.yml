@@ -33,13 +33,27 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Install dependencies for all packages, build and deploy Stencil core package
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
+    
+      - name: Install dependencies for all packages
+        run: npm install
+
+      - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        run: | 
-          npm install --scope=@infineon/infineon-design-system-stencil
+        run: |
           npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
@@ -61,11 +75,6 @@ jobs:
           sleep 10s
         shell: bash
       
-        
-      - name: Clear NPM cache
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: npm cache clean --force
-
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -81,7 +90,7 @@ jobs:
       
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          # jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           npm install
           cd ../../../../
       
@@ -185,13 +194,13 @@ jobs:
 
       - name: Update package.json with canary version
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
 
 
       - name: Install and Build
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
@@ -203,7 +212,7 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         id: preview
         with:
-          source-dir: ./examples/wrapper-components/react-javascript/build
+          source-dir: ./examples/wrapper-components/react-vite-js/dist
           umbrella-dir: pr-preview-react-example
           token: ${{ secrets.GH_TOKEN }}
 
@@ -230,7 +239,7 @@ jobs:
           cd packages/components-angular
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd projects/component-library
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
+          # jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
       - name: Install and Build
         run: |
           cd packages/components-angular

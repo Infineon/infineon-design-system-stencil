@@ -30,13 +30,27 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Build stencil
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
+    
+      - name: Install dependencies for all packages
+        run: npm install
+
+      - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        run: | 
-          npm install --scope=@infineon/infineon-design-system-stencil
+        run: |
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
@@ -50,10 +64,6 @@ jobs:
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: sleep 10s
         shell: bash
-
-      - name: Clear NPM cache
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: npm cache clean --force
 
       - name: Update Dependencies in Angular, Vue and React packages
         env:
@@ -159,12 +169,12 @@ jobs:
             
       - name: Update package.json with version
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-react"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
 
       - name: Install and Build
         run: |
-          cd examples/wrapper-components/react-javascript
+          cd examples/wrapper-components/react-vite-js
           npm i
           npm install @infineon/infineon-design-system-stencil@$VERSION
           npm run build
@@ -173,7 +183,7 @@ jobs:
       - name: Deploy React Example🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/wrapper-components/react-javascript/build/ # The folder the action should deploy.
+          folder: examples/wrapper-components/react-vite-js/dist/ # The folder the action should deploy.
           target-folder: react-example
           clean-exclude: |
             angular-example/
