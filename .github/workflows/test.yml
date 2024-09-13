@@ -42,7 +42,7 @@ jobs:
         run: npm install
 
       - name: Install Puppeteer Browsers
-        run: npx puppeteer install
+        run: npx puppeteer install --browser chrome
 
       - name: Verify Puppeteer Installation
         run: |
@@ -50,7 +50,7 @@ jobs:
           npx puppeteer --version
           echo "Installed browsers:"
           ls -l /home/runner/.cache/puppeteer
-          
+
       - name: Install Chrome
         run: sudo apt-get install -y google-chrome-stable
 
