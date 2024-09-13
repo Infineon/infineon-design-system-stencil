@@ -1,7 +1,8 @@
 import { Meta  } from '@storybook/blocks';
 import * as StepperStories from './stepper.stories';
-import StepperCompact from '../../../public-storybook/images/stepper/stepper-compact-stepper.png';
+import StepperVertical from '../../../public-storybook/images/stepper/stepper-vertical-stepper.png';
 import StepperEditable from '../../../public-storybook/images/stepper/stepper-editable-steppers.png';
+import StepperCompact from '../../../public-storybook/images/stepper/stepper-compact-stepper.png';
 import StepperNonEditable from '../../../public-storybook/images/stepper/stepper-non-editable-steppers.png';
 import StepperStepsStates from '../../../public-storybook/images/stepper/stepper-steps-states.png';
 
@@ -27,20 +28,19 @@ The stepper guides users through a step-by-step process. It provides a clear vis
 - For very long processes with a large number of steps. In such cases consider a progress bar.
 
 
-## Variants
+## Layouts
 
-### Default Stepper
-The linear stepper displays the steps in a linear, sequential order, with a clear indication of the current active step. Users can progress through the steps in a linear fashion, completing each step before moving on to the next. This type of stepper is suitable for processes that require a strict sequence of steps.
-<img src={StepperEditable} alt="Default Stepper" />
-
-#### Horizontal
+### Horizontal
 Horizontal steppers are helpful when the content of each step relies on the completion of a previous step.
 <img src={StepperEditable} alt="Horizontal Stepper" />
 
-#### Vertical (compact)
-Vertical steppers are tailored for narrow screens, making them ideal for mobile devices.
-<img src={StepperCompact} alt="Vertical Stepper" />
+### Vertical
+Vertical steppers are tailored for narrow screens.
+<img src={StepperVertical} alt="Vertical Stepper" />
 
+### Compact
+The compact stepper is a streamlined version of the default stepper component, optimized for mobile devices with limited screen space.
+<img src={StepperCompact} alt="Compact Stepper" />
 
 ## Types of steps
 
