@@ -1,3 +1,21 @@
+# v25.1.0 (Mon Sep 16 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: add github actions caching option [#1460](https://github.com/Infineon/infineon-design-system-stencil/pull/1460) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Update Stencil library version to 25.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.0.1 (Fri Sep 13 2024)
 
 #### 🐛 Bug Fix
