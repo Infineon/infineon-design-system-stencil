@@ -34,7 +34,6 @@ import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 
-import './App.css'
 
 function App() {
  
