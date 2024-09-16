@@ -66,19 +66,42 @@ describe('ifx-text-field', () => {
   });
 
   it('should submit the form data when the form is submitted', async () => {
-    const page = await newE2EPageWithRadioButtonWithinForm();
-    const submitButton = await page.find('#submit');
+    const page = await newE2EPage();
+    await page.setContent(`
+      <form id="testForm" onSubmit="handleSubmit(event)">
+        <ifx-text-field name="textField"></ifx-text-field>
+        <button id="submit" type="submit">Submit</button>
+        <button id="reset" type="reset">Reset</button>
+      </form>
+    `);
+  
+    await page.addScriptTag({
+      content: `
+        function handleSubmit(event) {
+          event.preventDefault();
+          const formData = new FormData(event.target);
+          
+          const obj = Array.from(formData.entries()).reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+          }, {});
+          window.formData = obj;
+        }
+        window.handleSubmit = handleSubmit;
+      `,
+    });
+  
     const input = await page.find('ifx-text-field >>> input');
-
+    const submitButton = await page.find('#submit');
+  
     const expectedValue = 'test';
-
-    input.type(expectedValue);
+    await input.type(expectedValue);
     await submitButton.click();
-
+  
     const formData: FormData = await page.evaluate(() => {
       return window['formData'];
     });
-
+  
     expect(formData['textField']).toBe(expectedValue);
   });
 
