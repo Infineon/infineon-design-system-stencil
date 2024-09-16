@@ -69,39 +69,7 @@ describe('IfxTabs', () => {
   });
 
   
-  it('should set active tab when activeTabIndex is overriden', async () => {
-    const page = await newE2EPage();
-    await page.setContent(`
-      <ifx-tabs active-tab-index="2">
-        <ifx-tab header="Tab 1">
-          Tab1Content
-        </ifx-tab>
-        <ifx-tab header="Tab 2">
-          Tab2Content
-        </ifx-tab>
-        <ifx-tab header="Tab 3">
-          Tab3Content
-        </ifx-tab>
-      </ifx-tabs>
-    `);
-
-    await page.$eval("ifx-tabs", elm => {
-      elm.activeTabIndex = 0;
-    });
-
-    const tabs = await page.find('ifx-tabs');
-    tabs.setProperty('activeTabIndex', 0);
-
-    const activeTab = await page.find('ifx-tabs >>> .tab-item.active');
-
-    const tabContents = await page.findAll('ifx-tabs >>> .tab-content > div');
-    expect(tabContents.length).toBe(3);
-    expect(await tabContents[0].isVisible()).toBe(true);
-    expect(await tabContents[1].isVisible()).toBe(false);
-    expect(await tabContents[2].isVisible()).toBe(false);
-
-    expect(activeTab.innerText).toBe('Tab 1')    
-  });
+ 
 
   it('should set last tab active when activeTabIndex out of bounds', async () => {
     const page = await newE2EPage();

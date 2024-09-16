@@ -2,6 +2,7 @@
   "name": "react-javascript",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@infineon/infineon-design-system-react": "25.0.0--canary.1441.ca9dec8363140ebe58dae80cfc492b4bbe42f2da.0",
     "@testing-library/jest-dom": "^5.16.5",
