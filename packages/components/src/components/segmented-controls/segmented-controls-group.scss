@@ -16,16 +16,6 @@
     }
 }
 
-.group__caption {
-    display: flex;
-    align-items: center;
-    gap: tokens.$ifxSpace100;
-    
-    font: tokens.$ifxBodyBody05;
-}
-
-// temps
-
 .group__controls {
     display: flex;
     flex-wrap: wrap;
@@ -40,3 +30,10 @@
     background-color: tokens.$ifxColorEngineering300;
 }
 
+.group__caption {
+    display: flex;
+    align-items: center;
+    gap: tokens.$ifxSpace100;
+    
+    font: tokens.$ifxBodyBody05;
+}

@@ -7,11 +7,19 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                                     | Type                   | Default     |
-| ------------ | ------------- | ----------------------------------------------- | ---------------------- | ----------- |
-| `caption`    | `caption`     | Sets the caption which describe the controls.   | `string`               | `''`        |
-| `groupLabel` | `group-label` | Sets the label for the segement controls group. | `string`               | `''`        |
-| `size`       | `size`        | Sets the size of the segmented controls.        | `"regular" \| "small"` | `'regular'` |
+| Property        | Attribute        | Description | Type                   | Default     |
+| --------------- | ---------------- | ----------- | ---------------------- | ----------- |
+| `caption`       | `caption`        |             | `string`               | `''`        |
+| `groupLabel`    | `group-label`    |             | `string`               | `''`        |
+| `selectedValue` | `selected-value` |             | `string`               | `undefined` |
+| `size`          | `size`           |             | `"regular" \| "small"` | `'regular'` |
+
+
+## Events
+
+| Event       | Description | Type                                                             |
+| ----------- | ----------- | ---------------------------------------------------------------- |
+| `ifxChange` |             | `CustomEvent<{ previousValue: string; selectedValue: string; }>` |
 
 
 ## Dependencies

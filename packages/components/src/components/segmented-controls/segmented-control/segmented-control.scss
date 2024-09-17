@@ -32,12 +32,14 @@
         
         cursor: pointer;
     }
-
+    
     &:active {
         background-color: tokens.$ifxColorOcean700;
     }
-
+    
     &.control--selected {
+        color: tokens.$ifxColorBaseWhite;
+        
         background-color: tokens.$ifxColorOcean500;
     }
 

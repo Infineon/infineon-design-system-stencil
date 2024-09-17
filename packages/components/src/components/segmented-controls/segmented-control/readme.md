@@ -7,9 +7,17 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
+| Property             | Attribute | Description | Type     | Default     |
+| -------------------- | --------- | ----------- | -------- | ----------- |
+| `icon`               | `icon`    |             | `string` | `undefined` |
+| `value` _(required)_ | `value`   |             | `string` | `undefined` |
+
+
+## Events
+
+| Event           | Description | Type                  |
+| --------------- | ----------- | --------------------- |
+| `segmentSelect` |             | `CustomEvent<string>` |
 
 
 ## Dependencies

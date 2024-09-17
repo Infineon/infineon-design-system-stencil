@@ -1,62 +1,56 @@
-import { h, 
-         Component, 
-         Element,
-         Prop } from "@stencil/core";
+import { h, Component, Element, Event, EventEmitter, Listen, Prop, Watch } from "@stencil/core";
 
 @Component ({
-    tag     : 'ifx-segmented-controls-group',
+    tag: 'ifx-segmented-controls-group',
     styleUrl: 'segmented-controls-group.scss',
-    shadow  : true
+    shadow: true
 })
 
 export class SegmentedControlsGroup {
+    @Element() segmentedControlsGroup: HTMLIfxSegmentedControlsGroupElement;
 
-    @Element() segmentedControlGroup: HTMLIfxSegmentedControlsGroupElement;
+    @Event() ifxChange: EventEmitter<{previousValue: string, selectedValue: string}>;
 
-    /**
-     * Sets the caption which describe the controls.
-     */
     @Prop() caption: string = '';
-    
-    /**
-     * Sets the label for the segement controls group.
-     */
     @Prop() groupLabel: string = '';
-
-    /**
-     * Sets the size of the segmented controls.
-     * 
-     * @Default 'regular'
-     */
     @Prop() size: 'regular' | 'small' = 'regular';
+    @Prop() selectedValue: string;
 
-
-    /**
-     * Utiliy functions
-     */
-
-    getSegmentedControls(): NodeList {
-        return this.segmentedControlGroup.querySelectorAll('ifx-segmented-control');
+    @Listen('segmentSelect')
+    onSegmentSelect(event: CustomEvent) {
+        this.ifxChange.emit({ previousValue: this.selectedValue, selectedValue: event.detail});
     }
 
-    /**
-     * Helper functions
-     */
+    @Watch('selectedValue')
+    handleValueChange() {
+        this.setActiveSegment();
+    }
 
-    setSegmentedControlSize() {
+    getSegmentedControls(): NodeList {
+        return this.segmentedControlsGroup.querySelectorAll('ifx-segmented-control');
+    }
+
+    setActiveSegment(): void {
         const segmentedControls: NodeList = this.getSegmentedControls();
         segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
-            control.shadowRoot.querySelector('.control').classList.add(`control--${this.size}`);
-            // console.log(control.shadowRoot);
+            if (control.value === this.selectedValue) {
+                control.shadowRoot.querySelector('.control').classList.add('control--selected');
+            } else {
+                control.shadowRoot.querySelector('.control').classList.remove('control--selected');
+            }
         });
     }
 
-    /**
-     * Lifecycle methods
-     */
 
-    componentDidRender() {
-        this.setSegmentedControlSize();
+    setSegmentedControlSize(): void {
+        const segmentedControls: NodeList = this.getSegmentedControls();
+        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
+            control.shadowRoot.querySelector('.control').classList.add(`control--${this.size}`);
+        });
+    }
+
+    componentDidLoad() {
+        this.setActiveSegment();
     }
 
     render() {
@@ -78,5 +72,9 @@ export class SegmentedControlsGroup {
                 }
             </div>
         );
+    }
+
+    componentDidRender() {
+        this.setSegmentedControlSize();
     }
 }
