@@ -72,3 +72,4 @@ export const IfxTabs = /*@__PURE__*/createReactComponent<JSX.IfxTabs, HTMLIfxTab
 export const IfxTag = /*@__PURE__*/createReactComponent<JSX.IfxTag, HTMLIfxTagElement>('ifx-tag');
 export const IfxTextField = /*@__PURE__*/createReactComponent<JSX.IfxTextField, HTMLIfxTextFieldElement>('ifx-text-field');
 export const IfxTooltip = /*@__PURE__*/createReactComponent<JSX.IfxTooltip, HTMLIfxTooltipElement>('ifx-tooltip');
+
