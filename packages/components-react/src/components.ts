@@ -56,6 +56,8 @@ import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineI
 import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button.js";
 import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-bar.js";
 import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-field.js";
+import { IfxSegmentedControl as IfxSegmentedControlElement, defineCustomElement as defineIfxSegmentedControl } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segmented-control.js";
+import { IfxSegmentedControlsGroup as IfxSegmentedControlsGroupElement, defineCustomElement as defineIfxSegmentedControlsGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-segmented-controls-group.js";
 import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
 import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
 import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-title.js";
@@ -600,6 +602,26 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxSearchFieldEvents,
     defineCustomElement: defineIfxSearchField
+});
+
+type IfxSegmentedControlEvents = { onSegmentSelect: EventName<CustomEvent<string>> };
+
+export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
+    tagName: 'ifx-segmented-control',
+    elementClass: IfxSegmentedControlElement,
+    react: React,
+    events: { onSegmentSelect: 'segmentSelect' } as IfxSegmentedControlEvents,
+    defineCustomElement: defineIfxSegmentedControl
+});
+
+type IfxSegmentedControlsGroupEvents = { onIfxChange: EventName<CustomEvent<{ previousValue: string, selectedValue: string }>> };
+
+export const IfxSegmentedControlsGroup: StencilReactComponent<IfxSegmentedControlsGroupElement, IfxSegmentedControlsGroupEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlsGroupElement, IfxSegmentedControlsGroupEvents>({
+    tagName: 'ifx-segmented-controls-group',
+    elementClass: IfxSegmentedControlsGroupElement,
+    react: React,
+    events: { onIfxChange: 'ifxChange' } as IfxSegmentedControlsGroupEvents,
+    defineCustomElement: defineIfxSegmentedControlsGroup
 });
 
 type IfxSelectEvents = {
