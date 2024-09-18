@@ -45,4 +45,15 @@
     // }
     // Dividers
 
+    & ::slotted(.ifx-content-switcher-divider) {
+        width: tokens.$ifxSize12;
+        height: tokens.$ifxSize250;
+        background-color: tokens.$ifxColorEngineering400;
+        margin: 0px 1px;
+        visibility: visible;
+    }
+
+    & ::slotted(.ifx-content-switcher-divider.hidden) {
+        visibility: hidden;
+    }
 }

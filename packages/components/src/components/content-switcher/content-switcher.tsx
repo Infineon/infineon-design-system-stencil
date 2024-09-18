@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Host, Prop, State } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Host, State } from '@stencil/core';
 
 type SwitchEvent = { oldIndex: number; newIndex: number };
 
@@ -9,59 +9,160 @@ type SwitchEvent = { oldIndex: number; newIndex: number };
 })
 export class ContentSwitcher {
   @Element() el: HTMLElement;
-  @Prop() selected: boolean = false;
 
   @State() items: Element[];
   @State() activeIndex = -1;
+  @State() hoverIndex: number = -1;
+  @State() focusIndex: number = -1;
+
+  @State() dividers: Element[] = Array();
 
   @Event() ifxSwitch: EventEmitter<SwitchEvent>;
 
-  private eventHandlers: Map<Element, (event: Event) => void> = new Map();
+  private eventHandlers: Map<Element, { [key: string]: EventListener }> = new Map();
 
-  async componentDidLoad() {
+  componentDidLoad() {
     this.items = Array.from(this.el.children);
-    
-    // Filter to only one selected item
-    for (let item of this.items) {
-      if (item.hasAttribute("selected")) {
-        if (this.activeIndex < 0) {
-          this.activeIndex = this.items.indexOf(item);
-        } else {
-          item.removeAttribute("selected");
-        }
-      }
-    }
-
-    // Register Event Handlers and filter to only one selected item
-    for (let item of this.items) {
-      const handler = (event: Event) => {
-        if (!(event.target instanceof window.Element)) return;
-        const element: Element = event.target as Element;
-        const index = this.items.indexOf(element as HTMLElement);
-        if (index !== -1) {
-          this.selectItem(index);
-        }
-      };
-      item.addEventListener('click', handler);
-      this.eventHandlers.set(item, handler);
-    }
+    this.initializeDividers();
+    this.addEventListeners();
+    this.ensureSingleSelectedItem();
   }
 
   disconnectedCallback() {
-    // Remove Event Handlers
-    for (let [item, handler] of this.eventHandlers.entries()) {
-      item.removeEventListener('click', handler);
-    }
+    this.removeEventListeners();
+  }
+
+  /**
+   * Initialize the dividers between items.
+   */
+  initializeDividers() {
+    this.items.forEach((item, index) => {
+      if (index < this.items.length - 1) {
+        const divider = document.createElement('div');
+        divider.classList.add('ifx-content-switcher-divider');
+        item.after(divider);
+        this.dividers.push(divider);
+      }
+    });
+  }
+
+  /**
+   * Add event listeners for each item.
+   */
+  addEventListeners() {
+    this.items.forEach((item, index) => {
+      const handlers = {
+        click: () => this.selectItem(index),
+        mouseenter: () => this.handleHover(index, true),
+        mouseleave: () => this.handleHover(index, false),
+        focus: () => this.handleFocus(index, true),
+        blur: () => this.handleFocus(index, false),
+      };
+
+      Object.keys(handlers).forEach(event => {
+        item.addEventListener(event, handlers[event]);
+      });
+
+      this.eventHandlers.set(item, handlers);
+    });
+  }
+
+  /**
+   * Remove all event listeners.
+   */
+  removeEventListeners() {
+    this.eventHandlers.forEach((handlers, item) => {
+      Object.keys(handlers).forEach(event => {
+        item.removeEventListener(event, handlers[event]);
+      });
+    });
     this.eventHandlers.clear();
   }
 
-  async selectItem(index: number) {
-    if (index == this.activeIndex) return;
+  /**
+   * Ensure that only one item is selected at a time.
+   */
+  ensureSingleSelectedItem() {
+    this.items.forEach((item, index) => {
+      if (item.hasAttribute('selected')) {
+        if (this.activeIndex < 0) {
+          this.selectItem(index);
+        } else {
+          item.removeAttribute('selected');
+        }
+      }
+    });
+  }
 
-    this.items[this.activeIndex].removeAttribute('selected');
-    this.items[index].setAttribute('selected', 'true');
-    this.ifxSwitch.emit({ oldIndex: this.activeIndex, newIndex: index });
-    this.activeIndex = index;
+  /**
+   * Handle hover events on an item.
+   * @param index - Index of the item.
+   * @param isActive - Whether the item is hovered.
+   */
+  handleHover(index: number, isActive: boolean) {
+    this.hoverIndex = isActive ? index : -1;
+    this.updateDividersOfItem(index);
+  }
+
+  /**
+   * Handle hover events on an item.
+   * @param index - Index of the item.
+   * @param isActive - Whether the item is focused.
+   */
+  handleFocus(index: number, isActive: boolean) {
+    this.focusIndex = isActive ? index : -1;
+    this.updateDividersOfItem(index);
+  }
+
+  /**
+   * Update visibility of dividers adjacent to a specific item.
+   * @param itemIndex - Index of the item.
+   */
+  updateDividersOfItem(itemIndex: number) {
+    if (itemIndex < this.items.length - 1) {
+      this.updateDividerVisibility(itemIndex);
+    }
+    if (itemIndex > 0) {
+      this.updateDividerVisibility(itemIndex - 1);
+    }
+  }
+
+  /**
+   * Update visibility of a specific divider.
+   * @param dividerIndex - Index of the divider.
+   */
+  updateDividerVisibility(dividerIndex: number) {
+    const hiddenDividers = new Set([this.activeIndex, this.activeIndex - 1, this.hoverIndex, this.hoverIndex - 1, this.focusIndex, this.focusIndex - 1]);
+    this.setDividerVisibility(dividerIndex, hiddenDividers.has(dividerIndex));
+  }
+
+  /**
+   * Set the visibility of a specific divider.
+   * @param dividerIndex - Index of the divider.
+   * @param hidden - Whether the divider should be hidden.
+   */
+  setDividerVisibility(dividerIndex: number, hidden: boolean) {
+    if (this.dividers[dividerIndex]) {
+      this.dividers[dividerIndex].classList.toggle('hidden', hidden);
+    }
+  }
+
+  /**
+   * Select a specific item.
+   * @param itemIndex - Index of the item to be selected.
+   */
+  selectItem(itemIndex: number) {
+    if (itemIndex === this.activeIndex) return;
+    const oldIndex = this.activeIndex;
+    if (oldIndex >= 0) {
+      this.items[oldIndex].removeAttribute('selected');
+    }
+
+    this.activeIndex = itemIndex;
+    this.items[itemIndex].setAttribute('selected', 'true');
+    this.ifxSwitch.emit({ oldIndex: oldIndex, newIndex: itemIndex });
+    this.updateDividersOfItem(oldIndex);
+    this.updateDividersOfItem(itemIndex);
   }
 
   render() {
