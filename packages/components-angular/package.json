@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "25.2.0--canary.1474.4080758b2a49a71ca28a130353a599018932111a.0",
+  "version": "25.2.0--canary.1474.6faeba2c1506e55c0f4446c4019d762bf9a77c62.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@infineon/infineon-design-system-angular": "^25.2.0--canary.1474.4080758b2a49a71ca28a130353a599018932111a.0",
+    "@infineon/infineon-design-system-angular": "^25.2.0--canary.1474.6faeba2c1506e55c0f4446c4019d762bf9a77c62.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.4.4",
