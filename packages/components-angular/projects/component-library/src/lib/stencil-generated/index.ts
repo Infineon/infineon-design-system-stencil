@@ -51,7 +51,7 @@ export const DIRECTIVES = [
   d.IfxSearchBar,
   d.IfxSearchField,
   d.IfxSegmentedControl,
-  d.IfxSegmentedControlsGroup,
+  d.IfxSegmentedControlGroup,
   d.IfxSelect,
   d.IfxSidebar,
   d.IfxSidebarItem,

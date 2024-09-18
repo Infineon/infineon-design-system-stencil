@@ -1,15 +1,15 @@
 import { h, Component, Element, Event, EventEmitter, Listen, Prop, Watch } from "@stencil/core";
 
 @Component ({
-    tag: 'ifx-segmented-controls-group',
-    styleUrl: 'segmented-controls-group.scss',
+    tag: 'ifx-segmented-control-group',
+    styleUrl: 'segmented-control-group.scss',
     shadow: true
 })
 
-export class SegmentedControlsGroup {
-    @Element() segmentedControlsGroup: HTMLIfxSegmentedControlsGroupElement;
+export class SegmentedControlGroup {
+    @Element() segmentedControlGroup: HTMLIfxSegmentedControlGroupElement;
 
-    @Event() ifxChange: EventEmitter<{previousValue: string, selectedValue: string}>;
+    @Event() ifxChange: EventEmitter<{ previousValue: string, selectedValue: string }>;
 
     @Prop() caption: string = '';
     @Prop() groupLabel: string = '';
@@ -18,7 +18,9 @@ export class SegmentedControlsGroup {
 
     @Listen('segmentSelect')
     onSegmentSelect(event: CustomEvent) {
-        this.ifxChange.emit({ previousValue: this.selectedValue, selectedValue: event.detail});
+        if (this.selectedValue !== event.detail) {
+            this.ifxChange.emit({ previousValue: this.selectedValue, selectedValue: event.detail});
+        }
     }
 
     @Watch('selectedValue')
@@ -26,8 +28,9 @@ export class SegmentedControlsGroup {
         this.setActiveSegment();
     }
 
+
     getSegmentedControls(): NodeList {
-        return this.segmentedControlsGroup.querySelectorAll('ifx-segmented-control');
+        return this.segmentedControlGroup.querySelectorAll('ifx-segmented-control');
     }
 
     setActiveSegment(): void {

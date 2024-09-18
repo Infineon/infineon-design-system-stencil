@@ -21,7 +21,19 @@
 
 <body>
 
-  <ifx-segmented-control icon='star16' label='Label'> </ifx-segmented-control>
+  <ifx-segmented-controls-group caption="Caption text to describe the controls" group-label="Group Label" selected-value="3" size="small">
+    <ifx-segmented-control value="v1" icon="star16"> Label </ifx-segmented-control>
+    <ifx-segmented-control value="v2" icon="star16"> Label </ifx-segmented-control>
+    <ifx-segmented-control value="v3" icon="star16"> Label </ifx-segmented-control>
+    <ifx-segmented-control value="v4" icon="star16"> Label </ifx-segmented-control>
+</ifx-segmented-controls-group>
+
+<script> 
+    const segmentedControls = document.querySelector('ifx-segmented-controls-group');
+    segmentedControls.addEventListener('ifxChange', (e) => {
+        segmentedControls.selectedValue = e.detail.selectedValue;
+    });
+</script>
 
 </body>
 

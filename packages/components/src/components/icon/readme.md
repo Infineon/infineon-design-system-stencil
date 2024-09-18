@@ -43,7 +43,7 @@
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-segmented-control](../segmented-controls/segmented-control)
- - [ifx-segmented-controls-group](../segmented-controls)
+ - [ifx-segmented-control-group](../segmented-controls)
  - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
@@ -75,7 +75,7 @@ graph TD;
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-segmented-control --> ifx-icon
-  ifx-segmented-controls-group --> ifx-icon
+  ifx-segmented-control-group --> ifx-icon
   ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon

@@ -31,8 +31,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-segmented-controls-group --> ifx-icon
-  style ifx-segmented-controls-group fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-segmented-control-group --> ifx-icon
+  style ifx-segmented-control-group fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------
