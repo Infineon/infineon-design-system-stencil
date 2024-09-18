@@ -1,6 +1,6 @@
 import { Component, h, Element, Event, EventEmitter, Host, State } from '@stencil/core';
 
-type SwitchEvent = { oldIndex: number; newIndex: number };
+export type SwitchEvent = { oldIndex: number; newIndex: number };
 
 @Component({
   tag: 'ifx-content-switcher',
