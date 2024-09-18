@@ -10,7 +10,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    // gap: 3px;
 
     & ::slotted(ifx-content-switcher-item) {
         position: relative;
@@ -27,24 +26,7 @@
         margin-left: -1px;
     }
 
-    // &.dividers {
-    //     & ::slotted(ifx-content-switcher-item)::before {
-    //             content: "";
-    //             position: absolute;
-    //             display: block;
-    //             width: tokens.$ifxSize12;
-    //             height: tokens.$ifxSize250;
-    //             background-color: tokens.$ifxColorEngineering400;
-    //             align-self: center;
-    //             left: -2px;
-    //             // center the separator vertically
-    //             top: 50%;
-    //             transform: translate(-50%, -50%)
-    //     }
-
-    // }
     // Dividers
-
     & ::slotted(.ifx-content-switcher-divider) {
         width: tokens.$ifxSize12;
         height: tokens.$ifxSize250;

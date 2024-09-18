@@ -168,7 +168,7 @@ export class ContentSwitcher {
   render() {
     return (
       <Host>
-        <div class="ifx-content-switcher dividers" role="group">
+        <div class="ifx-content-switcher" role="group">
           <slot></slot>
         </div>
       </Host>
