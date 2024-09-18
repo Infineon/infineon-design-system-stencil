@@ -5,7 +5,7 @@ export default {
     title: 'Components/Segmented Controls',
     tags: ['autodocs'],
     args: {
-        amountOfSegments: 3,
+        amountOfSegments: 5,
         labelOfSegment: 'Label',
         caption: 'Caption text to describe the controls',
         groupLabel: 'Group Label',
