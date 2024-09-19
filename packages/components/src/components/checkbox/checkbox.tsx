@@ -13,10 +13,10 @@ export class Checkbox {
 
   @Element() el;
   @Prop() disabled: boolean = false;
-  @Prop() value: boolean = false;
+  @Prop() checked: boolean = false;
   @Prop() error: boolean = false;
   @Prop() size: string = 'm';
-  @State() internalValue: boolean;
+  @State() internalChecked: boolean;
   @Prop() indeterminate: boolean = false;
   @State() internalIndeterminate: boolean;
 
@@ -27,28 +27,32 @@ export class Checkbox {
   handleCheckbox() {
     if (!this.disabled) {
       if (this.inputElement.indeterminate) {
-        this.internalValue = true;
+        this.internalChecked = true;
         this.internalIndeterminate = false;
       } else {
-        this.internalValue = !this.internalValue;
+        this.internalChecked = !this.internalChecked;
       }
-      this.internals.setFormValue(this.internalValue ? 'on' : null);
+      this.internals.setFormValue(this.internalChecked ? 'on' : null);
       
-      this.ifxChange.emit(this.internalValue);
+      this.ifxChange.emit(this.internalChecked);
     }
   }
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
 
   @Method()
   async toggleCheckedState(newVal: boolean) {
-    this.internalValue = newVal;
+    this.internalChecked = newVal;
   }
 
-  @Watch('value')
+  @Watch('checked')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this.internalValue = newValue;
-      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
+      this.internalChecked = newValue;
+      this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
     }
   }
 
@@ -70,7 +74,7 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
 
@@ -89,12 +93,12 @@ export class Checkbox {
 
   getCheckedClassName() {
     if (this.error) {
-      if (this.internalValue) {
+      if (this.internalChecked) {
         return "checked error"
       } else {
         return "error"
       }
-    } else if (this.internalValue) {
+    } else if (this.internalChecked) {
       return "checked";
     } else return ""
   }
@@ -114,10 +118,10 @@ export class Checkbox {
           type="checkbox"
           hidden
           ref={(el) => (this.inputElement = el)}
-          checked={this.internalValue}
+          checked={this.internalChecked}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
-          value={`${this.internalValue}`}
+          value={`${this.internalChecked}`}
         />
 
         <div
@@ -125,7 +129,7 @@ export class Checkbox {
           onClick={this.handleCheckbox.bind(this)}
           onKeyDown={this.handleKeydown.bind(this)}
           role="checkbox"  // role attribute
-          aria-value={this.internalValue}
+          aria-value={this.internalChecked}
           aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
@@ -134,7 +138,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}
+          {this.internalChecked && <ifx-icon icon="check-12"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>

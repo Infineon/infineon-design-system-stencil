@@ -23,6 +23,28 @@ describe('ifx-checkbox', () => {
     expect(labelContent).toBe('Test content');
   });
 
+  it('should be checked when checked attribute is set', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-checkbox checked="true">Test content</ifx-checkbox>');
+
+    const checkbox = await page.find('ifx-checkbox');
+    const checkmark = await page.find('ifx-checkbox >>> .checkbox__wrapper')
+
+    expect(await checkbox.callMethod("isChecked")).toBe(true);
+    expect(checkmark).toHaveClass("checked");
+  });
+
+  it('should not be checked when checked attribute is not set', async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-checkbox>Test content</ifx-checkbox>');
+
+    const checkbox = await page.find('ifx-checkbox');
+    const checkmark = await page.find('ifx-checkbox >>> .checkbox__wrapper')
+
+    expect(await checkbox.callMethod("isChecked")).toBe(false);
+    expect(checkmark).not.toHaveClass("checked");
+  });
+
   it('should emit ifxChange event when clicked', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox></ifx-checkbox>');
