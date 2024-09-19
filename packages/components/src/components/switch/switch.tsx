@@ -12,6 +12,7 @@ export class Switch {
   @Prop() checked: boolean = false;
   @Prop() name: string = '';
   @Prop() disabled: boolean = false;
+  @Prop() value: string;
   @State() internalChecked: boolean = false;
 
   @AttachInternals() internals: ElementInternals;
@@ -55,7 +56,17 @@ export class Switch {
   toggleSwitch() {
     if (this.disabled) return;
     this.internalChecked = !this.internalChecked;
-    this.internals.setFormValue(this.internalChecked ? 'on' : null);
+
+    if (this.internalChecked) {
+      if (this.value !== undefined) {
+        this.internals.setFormValue(this.value);
+      } else {
+        this.internals.setFormValue("on")
+      }
+    } else {
+      this.internals.setFormValue(null)
+    }
+
     this.ifxChange.emit(this.internalChecked);
   }
 
@@ -94,7 +105,8 @@ export class Switch {
             <input type="checkbox" hidden
               name={this.name}
               disabled={this.disabled}
-              value={`${this.internalChecked}`} />
+              checked={this.internalChecked}
+              value={`${this.value}`} />
             <div class={`switch ${this.internalChecked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
           </div>
         </div >

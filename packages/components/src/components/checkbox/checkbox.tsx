@@ -16,8 +16,9 @@ export class Checkbox {
   @Prop() checked: boolean = false;
   @Prop() error: boolean = false;
   @Prop() size: string = 'm';
-  @State() internalChecked: boolean;
   @Prop() indeterminate: boolean = false;
+  @Prop() value: string;
+  @State() internalChecked: boolean;
   @State() internalIndeterminate: boolean;
 
   @AttachInternals() internals: ElementInternals;
@@ -32,8 +33,16 @@ export class Checkbox {
       } else {
         this.internalChecked = !this.internalChecked;
       }
-      this.internals.setFormValue(this.internalChecked ? 'on' : null);
       
+      if (this.internalChecked) {
+        if (this.value !== undefined) {
+          this.internals.setFormValue(this.value);
+        } else {
+          this.internals.setFormValue("on")
+        }
+      } else {
+        this.internals.setFormValue(null)
+      }
       this.ifxChange.emit(this.internalChecked);
     }
   }
@@ -121,7 +130,7 @@ export class Checkbox {
           checked={this.internalChecked}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
-          value={`${this.internalChecked}`}
+          value={`${this.value}`}
         />
 
         <div

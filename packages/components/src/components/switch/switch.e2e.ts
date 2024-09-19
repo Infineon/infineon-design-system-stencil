@@ -60,8 +60,6 @@ describe('ifx-switch', () => {
     expect(container).not.toHaveClass('checked');
   });
 
-
-
   it('updates the visual state when checked prop changes', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch checked="false"></ifx-switch>');
@@ -101,6 +99,20 @@ describe('ifx-switch', () => {
     expect(value).toBe('on')
   });
 
+  it('should be value when form is submitted and value is set', async () => {
+    const page = await newE2EPage();
+    await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
+      <ifx-switch name="switch" value="val"></ifx-switch>
+      <button id="submit" type="submit">Submit</button>
+    </form>`);
+    await addHandleSubmitScript(page);
+    const switchEl = await page.find('ifx-switch');
+
+    await switchEl.click();
+
+    const value = await submitAndGetValue(page);
+    expect(value).toBe('val')
+  });
   
   it('should not change value when disabled attribute is present', async () => {
     const page = await newE2EPage();

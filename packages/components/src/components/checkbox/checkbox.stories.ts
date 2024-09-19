@@ -10,7 +10,7 @@ export default {
     label: 'Text',
     size: 's',
     indeterminate: false,
-    name: 'checkbox'
+    name: 'checkbox',
   },
 
   argTypes: {
@@ -32,6 +32,9 @@ export default {
     },
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: {
+      description: 'The value that gets submitted, when the checkbox is seleted'
     }
   },
 };

@@ -70,7 +70,7 @@ describe('ifx-checkbox', () => {
     expect(value).toBeUndefined();
   })
 
-  it('should be on when form is submitted', async () => {
+  it('should be on when form is submitted when no value is given', async () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-checkbox name="checkbox"></ifx-checkbox>
@@ -83,6 +83,21 @@ describe('ifx-checkbox', () => {
 
     const value = await submitAndGetValue(page);
     expect(value).toBe('on')
+  });
+
+  it('should set value when form is submitted when value is given', async () => {
+    const page = await newE2EPage();
+    await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
+      <ifx-checkbox name="checkbox" value="check"></ifx-checkbox>
+      <button id="submit" type="submit">Submit</button>
+    </form>`);
+    await addHandleSubmitScript(page);
+    const checkbox = await page.find('ifx-checkbox');
+
+    await checkbox.click();
+
+    const value = await submitAndGetValue(page);
+    expect(value).toBe('check')
   });
 
   it('should not change value when disabled attribute is present', async () => {
