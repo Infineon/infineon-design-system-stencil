@@ -309,7 +309,7 @@ export class SidebarItem {
               </span>
             }
 
-            {!this.isExpandable && !this.isNested &&
+            {!this.numberIndicator !== undefined && !this.isExpandable && !this.isNested &&
               <span class='item__number-indicator'>
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
               </span>}
