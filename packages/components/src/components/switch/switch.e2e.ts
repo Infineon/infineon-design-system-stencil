@@ -62,12 +62,12 @@ describe('ifx-switch', () => {
 
 
 
-  it('updates the visual state when value prop changes', async () => {
+  it('updates the visual state when checked prop changes', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-switch value="false"></ifx-switch>');
+    await page.setContent('<ifx-switch checked="false"></ifx-switch>');
 
     const component = await page.find('ifx-switch');
-    component.setProperty('value', true);
+    component.setProperty('checked', true);
     await page.waitForChanges();
 
     const container = await page.find('ifx-switch >>> .switch__checkbox-container');
