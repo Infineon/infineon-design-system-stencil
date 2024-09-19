@@ -5,7 +5,7 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    value: false,
+    checked: false,
     disabled: false,
     label: 'Switch',
     name: 'switch'
@@ -33,7 +33,7 @@ const DefaultTemplate = args => {
 
   // Set the attributes
   element.setAttribute('disabled', args.disabled);
-  element.setAttribute('value', args.value);
+  element.setAttribute('checked', args.checked);
   element.setAttribute('name', args.name);
 
   // Add the event listener
