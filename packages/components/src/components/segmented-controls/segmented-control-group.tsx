@@ -58,7 +58,7 @@ export class SegmentedControlGroup {
 
     render() {
         return (
-            <div class='group'>
+            <div aria-value={this.selectedValue} aria-label='segmented controls' class='group'>
                 <div class='group__label'>
                     { this.groupLabel.trim() }
                 </div>
