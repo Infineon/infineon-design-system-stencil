@@ -45,6 +45,10 @@ Type: `Promise<void>`
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-template](../templates/template)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -53,6 +57,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-text-field --> ifx-icon
+  ifx-template --> ifx-text-field
   style ifx-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
