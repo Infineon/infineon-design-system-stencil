@@ -191,7 +191,6 @@ jobs:
         run: |
           cd examples/wrapper-components/react-vite-js
           npm i
-          npm install @infineon/infineon-design-system-stencil@$VERSION
           npm run build
 
 
