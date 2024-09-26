@@ -9,14 +9,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@stencil/react-output-target/runtime': path.resolve(__dirname, 'node_modules/@stencil/react-output-target/runtime')
+      "@": path.resolve(__dirname, "node_modules/@stencil/"),
     }
   },
-  build: {
-    rollupOptions: {
-      external: [
-        '@stencil/react-output-target/runtime'  // Ensure this is treated as external
-      ]
-    }
-  }
 });
