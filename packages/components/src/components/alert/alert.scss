@@ -52,7 +52,8 @@
     justify-content: flex-start;
     //min-width: tokens.$ifxSize500;
 
-    & a {
+    & button {
+      all: unset;
       line-height: 0;
       color: tokens.$ifxColorBaseBlack;
     }
@@ -75,7 +76,8 @@
     justify-content: center;
     min-width: tokens.$ifxSize500;
 
-    & a {
+    & button {
+      all: unset;
       line-height: 0;
       color: tokens.$ifxColorBaseBlack;
     }

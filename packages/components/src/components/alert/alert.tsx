@@ -12,6 +12,9 @@ export class Alert {
   @Event() ifxClose: EventEmitter;
   @Prop() closable: boolean = true;
 
+  @Prop() ariaIconLabel: string;
+  @Prop() ariaLive = 'assertive';
+
   handleClose() { 
     this.ifxClose.emit()
   }
@@ -19,22 +22,22 @@ export class Alert {
   render() {
     return (
      this.variant === 'info' 
-     ? <div class='alert__info-wrapper'>
+     ? <div class='alert__info-wrapper' role="alert" aria-live={this.ariaLive} aria-labelledby="alert-description">
         <div class='info__text-wrapper'>
           <div class="info__headline-wrapper">
             <slot name='headline' />
           </div>
-          <div class="info__description-wrapper">
+          <div id="alert-description" class="info__description-wrapper">
             <slot name='desc' />
           </div>
         </div>
         { this.closable && <div class="close-icon-wrapper">
-          <a href={undefined} onClick={this.handleClose.bind(this)}>
+          <button onClick={this.handleClose.bind(this)} aria-label="Dismiss">
             <ifx-icon icon='cross-16' />
-          </a>
+          </button>
         </div> }
       </div>
-     : <div class={`alert ${this.variant}`}>
+     : <div class={`alert ${this.variant}`} role="alert">
         {this.icon && (
           <div class='icon-wrapper'>
             <ifx-icon icon={this.icon} />
@@ -45,9 +48,9 @@ export class Alert {
           <slot />
         </div>
         { this.closable && <div class="close-icon-wrapper">
-          <a href={undefined} onClick={this.handleClose.bind(this)}>
+          <button onClick={this.handleClose.bind(this)} aria-label="Dismiss">
             <ifx-icon icon='cross-16' />
-          </a>
+          </button>
         </div> }
       </div >
     );
