@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_javascript=self.webpackChunkreact_javascript||[]).push([[3933],{3933:(r,a,e)=>{e.r(a),e.d(a,{ifx_dropdown_separator:()=>c});var s=e(5714);const c=class{constructor(r){(0,s.r)(this,r)}render(){return(0,s.h)("div",{key:"bacb115ad4b778f6e6b07381d30632688ce3be9e",class:"dropdown-separator"})}};c.style=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}"}}]);
-//# sourceMappingURL=3933.c27ae5a8.chunk.js.map

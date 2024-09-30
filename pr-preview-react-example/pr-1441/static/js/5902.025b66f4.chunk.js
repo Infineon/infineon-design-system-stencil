@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkreact_javascript=self.webpackChunkreact_javascript||[]).push([[5902],{5902:(e,r,s)=>{s.r(r),s.d(r,{ifx_dropdown_trigger:()=>c});var t=s(5714);const c=class{constructor(e){(0,t.r)(this,e),this.isOpen=!1}render(){return(0,t.h)("slot",{key:"262cc2e533e10ce7d586b13a79dafdd47e30a570"})}};c.style=":host{display:inline-block;cursor:pointer}"}}]);
-//# sourceMappingURL=5902.025b66f4.chunk.js.map
