@@ -245,7 +245,6 @@ jobs:
         run: |
           cd packages/components-angular
           npm install
-          # npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           npm run build my-app
 
       - name: Deploy preview
@@ -289,7 +288,7 @@ jobs:
           umbrella-dir: pr-preview-vanilla-example
           token: ${{ secrets.GH_TOKEN }}
   
-  update-pr-comment: # add comment on github
+  update-pr-comment: 
     needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
     runs-on: ubuntu-latest
     steps:
