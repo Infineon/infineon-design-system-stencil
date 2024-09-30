@@ -245,7 +245,6 @@ jobs:
         run: |
           cd packages/components-angular
           npm install
-          # npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           npm run build my-app
 
       - name: Deploy preview
