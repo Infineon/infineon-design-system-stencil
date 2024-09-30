@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[5071],{5071:(b,d,s)=>{s.r(d),s.d(d,{ifx_tab:()=>e});var t=s(369);const e=class{constructor(a){(0,t.r)(this,a),this.header=void 0,this.disabled=void 0}render(){return(0,t.h)("slot",{key:"bd5c10bc0086fd6dfbed0bfd70af04c5639944fb"})}get el(){return(0,t.g)(this)}};e.style=":host{display:block}"}}]);
