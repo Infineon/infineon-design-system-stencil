@@ -1,1 +1,0 @@
-import{r as e,h as s,g as i}from"./index-DMQjsRBW.js";const n=":host{display:block}",o=n,r=class{constructor(t){e(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"7cc0dbf70f1b3a0287c0f2d353d5b6644606ffae"})}get el(){return i(this)}};r.style=o;export{r as ifx_tab};
