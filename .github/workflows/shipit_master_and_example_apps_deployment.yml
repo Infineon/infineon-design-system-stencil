@@ -190,15 +190,17 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-vite-js
-          npm i
-          npm install @infineon/infineon-design-system-stencil@$VERSION
+          REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
+          STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
+          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          npm install
           npm run build
 
 
       - name: Deploy React Example🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: examples/wrapper-components/react-vite-js/dist/ # The folder the action should deploy.
+          folder: examples/wrapper-components/react-vite-js/dist # The folder the action should deploy.
           target-folder: react-example
           clean-exclude: |
             angular-example/
