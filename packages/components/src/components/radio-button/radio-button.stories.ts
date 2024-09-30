@@ -7,7 +7,7 @@ export default {
   args: {
     error: false,
     disabled: false,
-    value: false,
+    checked: false,
     size: 's',
     label: 'Text',
     name: 'radio-button'
@@ -43,7 +43,7 @@ const DefaultTemplate = args => {
   // Set the attributes
   element.setAttribute('error', args.error);
   element.setAttribute('disabled', args.disabled);
-  element.setAttribute('value', args.value);
+  element.setAttribute('checked', args.checked);
   element.setAttribute('size', args.size);
   element.setAttribute('name', args.name);
 
