@@ -22,19 +22,4 @@ describe('ifx-basic-table', () => {
 
 
 
-  // Example for checking parsed columns and rows
-  it('parses cols and rows correctly', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-basic-table cols=\'[...]\' rows=\'[...]\'>'); // Replace [...] with your mock data
-
-    const component = await page.find('ifx-basic-table');
-    const columnDefs = await component.getProperty('columnDefs');
-    const rowData = await component.getProperty('rowData');
-
-    expect(columnDefs).toBeDefined();
-    expect(rowData).toBeDefined();
-    expect(Array.isArray(columnDefs)).toBeTruthy();
-    expect(Array.isArray(rowData)).toBeTruthy();
-  });
-
 });

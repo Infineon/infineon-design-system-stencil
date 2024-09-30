@@ -1,3 +1,108 @@
+# v25.2.1 (Fri Sep 27 2024)
+
+#### 🐛 Bug Fix
+
+- deployment to master issue [#1502](https://github.com/Infineon/infineon-design-system-stencil/pull/1502) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.2.0 (Thu Sep 26 2024)
+
+#### 🚀 Enhancement
+
+- Fix the yaml file related to deployment to master [#1499](https://github.com/Infineon/infineon-design-system-stencil/pull/1499) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.1.0 (Mon Sep 16 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: add github actions caching option [#1460](https://github.com/Infineon/infineon-design-system-stencil/pull/1460) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Update Stencil library version to 25.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.0.1 (Fri Sep 13 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: upgraded tokens version to latest in wrapper libraries [#1462](https://github.com/Infineon/infineon-design-system-stencil/pull/1462) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.0.0 (Thu Sep 12 2024)
+
+#### 💥 Breaking Change
+
+- Chip: component enhancement [#1441](https://github.com/Infineon/infineon-design-system-stencil/pull/1441) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.7.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v24.7.1 (Thu Sep 12 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Backgroundcolor of multiselect [#1453](https://github.com/Infineon/infineon-design-system-stencil/pull/1453) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 24.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+
+---
+
 # v24.7.0 (Tue Sep 03 2024)
 
 #### 🚀 Enhancement
