@@ -1,3 +1,20 @@
+# v25.2.2 (Mon Sep 30 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Deployment of React Example App Master version [#1512](https://github.com/Infineon/infineon-design-system-stencil/pull/1512) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.2.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.2.1 (Fri Sep 27 2024)
 
 #### 🐛 Bug Fix
