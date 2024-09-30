@@ -39,6 +39,7 @@
  - [ifx-multiselect](../select/multi-select)
  - [ifx-navbar](../navigation/navbar)
  - [ifx-navbar-item](../navigation/navbar)
+ - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
@@ -69,6 +70,7 @@ graph TD;
   ifx-multiselect --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-item --> ifx-icon
+  ifx-notification --> ifx-icon
   ifx-overview-table --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon

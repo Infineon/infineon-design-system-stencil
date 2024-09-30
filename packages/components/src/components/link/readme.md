@@ -21,6 +21,7 @@
 ### Used by
 
  - [ifx-footer](../footer)
+ - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
  - [ifx-step](../stepper/step)
 
@@ -28,6 +29,7 @@
 ```mermaid
 graph TD;
   ifx-footer --> ifx-link
+  ifx-notification --> ifx-link
   ifx-overview-table --> ifx-link
   ifx-step --> ifx-link
   style ifx-link fill:#f9f,stroke:#333,stroke-width:4px
