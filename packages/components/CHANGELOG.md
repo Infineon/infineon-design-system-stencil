@@ -1,3 +1,37 @@
+# v25.2.1 (Fri Sep 27 2024)
+
+#### 🐛 Bug Fix
+
+- deployment to master issue [#1502](https://github.com/Infineon/infineon-design-system-stencil/pull/1502) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.2.0 (Thu Sep 26 2024)
+
+#### 🚀 Enhancement
+
+- Fix the yaml file related to deployment to master [#1499](https://github.com/Infineon/infineon-design-system-stencil/pull/1499) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.1.0 (Mon Sep 16 2024)
 
 #### 🚀 Enhancement
