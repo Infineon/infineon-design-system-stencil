@@ -1,5 +1,0 @@
-examples/**/**
-node_modules/**/
-packages/components/node_modules/**
-node_modules/**/**
-packages/components-vue/node_modules/**
