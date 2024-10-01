@@ -23,6 +23,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-table](../../table-advanced-version)
+
 ### Depends on
 
 - [ifx-checkbox](../../checkbox)
@@ -34,6 +38,7 @@ graph TD;
   ifx-chip-item --> ifx-checkbox
   ifx-chip-item --> ifx-icon
   ifx-checkbox --> ifx-icon
+  ifx-table --> ifx-chip-item
   style ifx-chip-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -36,6 +36,7 @@ function getAbsolutePath(value) {
     ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)')),
     ...glob.sync(path.join(__dirname, '../src/**/*.mdx'))
   ];
+  
   // Exclude specific files or patterns
   const filteredStories = allStories.filter(story => {
     return !story.includes('components/filter-type-group');

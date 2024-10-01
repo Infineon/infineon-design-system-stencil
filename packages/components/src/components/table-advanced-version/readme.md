@@ -38,9 +38,8 @@ Type: `Promise<void>`
 
 - [ifx-button](../button)
 - [ifx-icon](../icon)
-- [ifx-chip](../chips)
-- [ifx-dropdown-menu](../dropdown/dropdown-menu)
-- [ifx-dropdown-item](../dropdown/dropdown-item)
+- [ifx-chip](../chip)
+- [ifx-chip-item](../chip/chip-item)
 - [ifx-pagination](../pagination)
 
 ### Graph
@@ -49,11 +48,13 @@ graph TD;
   ifx-table --> ifx-button
   ifx-table --> ifx-icon
   ifx-table --> ifx-chip
-  ifx-table --> ifx-dropdown-menu
-  ifx-table --> ifx-dropdown-item
+  ifx-table --> ifx-chip-item
   ifx-table --> ifx-pagination
+  ifx-chip --> ifx-number-indicator
   ifx-chip --> ifx-icon
-  ifx-dropdown-item --> ifx-icon
+  ifx-chip-item --> ifx-checkbox
+  ifx-chip-item --> ifx-icon
+  ifx-checkbox --> ifx-icon
   ifx-pagination --> ifx-select
   ifx-pagination --> ifx-icon-button
   ifx-select --> ifx-icon

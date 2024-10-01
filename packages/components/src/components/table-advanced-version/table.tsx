@@ -1,4 +1,4 @@
-import { Component, h, Host, Method, Element, Prop, State } from '@stencil/core';
+import { Component, h, Host, Method, Element, Prop, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
 
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
@@ -22,7 +22,7 @@ export class Table {
   @State() colData: any[] = [];
   @State() filterOptions: { [key: string]: string[] } = {};
   @State() currentFilters = {};
-
+  @State() uniqueKey: string;
   allRowData: any[] = [];
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
@@ -37,11 +37,42 @@ export class Table {
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
 
+  @Listen('ifxChipChange')
+handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
+  const { name, currentSelection } = event.detail;
+  console.log('handleChipChange event:', name, currentSelection); // Debug log
+
+  // Clone the current filters state
+  const updatedFilters = { ...this.currentFilters };
+
+  if (currentSelection.length === 0) {
+    // If there are no selections for this filter, delete the filter
+    delete updatedFilters[name];
+    console.log(`Deleted filter: ${name}`); // Debug log
+
+    // Emit event with specific filter name
+    const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
+    this.host.dispatchEvent(customEvent);
+  } else {
+    // Otherwise, update the filter values with the current selection
+    updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
+    console.log(`Updated filter: ${name} with values:`, updatedFilters[name].filterValues); // Debug log
+  }
+
+  // Update the component's filters
+  this.currentFilters = updatedFilters;
+  console.log('Updated filters:', this.currentFilters); // Debug log
+
+  // Ensure table data is updated
+  this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+  this.updateTableView();
+}
+
+
 
   toggleSidebarFilters() {
     this.showSidebarFilters = !this.showSidebarFilters;
   }
-
 
   updateFilterOptions() {
     const options = {};
@@ -52,49 +83,37 @@ export class Table {
   }
 
   handleSidebarFilterChange(event: CustomEvent) {
-
-    // Assuming event.detail is an array of filter groups
     const filterGroups = event.detail;
+    const updatedFilters = {};
 
-    // Start by resetting the filter conditions to a blank object
-    this.currentFilters = {};
-
-    // Loop through each filter group provided in the event detail
     filterGroups.forEach(filterGroup => {
       const filterName = filterGroup.filterGroupName;
       let filterValues;
       let type;
 
-      // Check if the filterGroup has a selectedItems property
       if (filterGroup.selectedItems) {
-        // Multi-select filter
         filterValues = filterGroup.selectedItems.map(item => item.label);
-
         type = 'multi-select';
       } else {
-        // Text filter
         filterValues = [filterGroup.value];
         type = 'text';
       }
 
-      // If there are no filter values, or the filter is a text filter with an empty value, remove the filter
       if (!(filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === ''))) {
-        // Add or update the filter in the currentFilters object
-        this.currentFilters[filterName] = { filterValues, type };
+        updatedFilters[filterName] = { filterValues, type };
       }
     });
 
-
-    // Now that the currentFilters object has been updated, apply all filters to the data
-    this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
-
-    // After filtering, update the table view with the new filtered data
+    console.log('updatedFilters:', updatedFilters);
+    this.allRowData = this.applyAllFilters(this.originalRowData, updatedFilters);
     this.updateTableView();
+    this.currentFilters = updatedFilters;
+
   }
 
 
   handleTopbarFilterChange(event: CustomEvent) {
-     const filters = event.detail;
+    const filters = event.detail;
 
     // Start by resetting the filter conditions to a blank object
     this.currentFilters = {};
@@ -202,6 +221,8 @@ export class Table {
   }
 
   componentWillLoad() {
+    this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
+
     this.rowData = this.getRowData();
     this.colData = this.getColData();
     this.updateFilterOptions();
@@ -365,7 +386,7 @@ export class Table {
   }
 
   handleResetButtonClick() {
-     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });
+    const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });
     window.dispatchEvent(resetEvent); // Dispatch from the window object
 
     this.clearAllFilters();
@@ -424,7 +445,7 @@ export class Table {
               </ifx-button>
             </div>
           )}
-  
+
           <div class={filterClass}>
             {this.filterOrientation === 'sidebar' && this.showSidebarFilters && (
               <div class="sidebar-container">
@@ -438,7 +459,7 @@ export class Table {
                 </div>
               </div>
             )}
-  
+
             {this.filterOrientation !== 'none' && this.filterOrientation !== 'sidebar' && (
               <div class="set-filter-wrapper-topbar">
                 {(this.filterOrientation !== 'sidebar' || this.showSidebarFilters) && (
@@ -446,22 +467,21 @@ export class Table {
                 )}
               </div>
             )}
-  
+
             <div class="table-pagination-wrapper">
               <div class="filter-chips">
                 {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
-                  Object.keys(this.currentFilters).map(filterName => (
-                    <ifx-chip placeholder={filterName}>
-                      <ifx-dropdown-menu size="m" slot="menu">
-                        {this.currentFilters[filterName].filterValues.map(filterValue => (
-                          <ifx-dropdown-item icon="" target="_self" href="">
-                            {filterValue}
-                          </ifx-dropdown-item>
+                  Object.keys(this.currentFilters).map(name => (
+                    this.currentFilters[name]?.filterValues.length > 0 && (
+                      <ifx-chip placeholder={name} size="large" variant="multi" read-only={true} key={name}>
+                        {this.currentFilters[name]?.filterValues.map(filterValue => (
+                          <ifx-chip-item value={filterValue} selected={true} key={filterValue}>{filterValue}</ifx-chip-item>
                         ))}
-                      </ifx-dropdown-menu>
-                    </ifx-chip>
+                      </ifx-chip>
+                    )
                   ))
                 )}
+
                 {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
                   <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
                   >
@@ -469,7 +489,7 @@ export class Table {
                   </ifx-button>
                 )}
               </div>
-  
+
               {this.filterOrientation !== 'none' && (
                 <div class="matching-results-container">
                   <span class="matching-results-count">
@@ -480,9 +500,9 @@ export class Table {
                   </span>
                 </div>
               )}
-  
+
               <div id="table-wrapper" class={this.getTableClassNames()}>
-                <div class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+                <div id={`ifxTable-${this.uniqueKey}`} class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
               {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
@@ -497,25 +517,6 @@ export class Table {
   hasButtonCol(): boolean {
     return this.getColData().some(column => column.field === 'button');
   }
-
-
-
-
-  // setIconButtonRenderer() {
-  //   const iconButtonColumn = this.getColData().find(column => column.field === 'iconButton');
-  //   if (iconButtonColumn) {
-  //     iconButtonColumn.cellRenderer = IconButtonCellRenderer;
-  //   }
-  // }
-
-  // setLinkRenderer() {
-  //   const linkColumn = this.getColData().find(column => column.field === 'link');
-  //   if (linkColumn) {
-  //     linkColumn.cellRenderer = LinkCellRenderer;
-  //   }
-  // }
-
-
 
   onDragOver(event) {
     var dragSupported = event.dataTransfer.length;

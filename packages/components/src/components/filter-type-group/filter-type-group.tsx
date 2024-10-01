@@ -12,13 +12,14 @@ export class IfxFilterTypeGroup {
 
 
 
-/* If the component is ever removed and then reattached to the DOM, 
-connectedCallback ensures that the event listeners are properly set up again */
+  /* If the component is ever removed and then reattached to the DOM, 
+  connectedCallback ensures that the event listeners are properly set up again */
   connectedCallback() {
     this.el.addEventListener('ifxFilterAccordionChange', this.handleAccordionChange);
     this.el.addEventListener('ifxFilterSearchChange', this.handleSearchChange);
     window.addEventListener('ifxResetFiltersEvent', this.handleResetEvent);
-
+    window.addEventListener('ifxUpdateSidebarFilter', this.handleUpdateSidebarFilter);
+    console.log("sidebar filter change event listener added");
   }
 
 
@@ -35,12 +36,12 @@ connectedCallback ensures that the event listeners are properly set up again */
 
     filterAccordionSlottedElements.forEach(accordionElement => {
       const ifxLists = accordionElement.querySelectorAll('ifx-list');
-    
+
       ifxLists.forEach((ifxListElement: HTMLIfxListElement) => {
         ifxListElement.resetTrigger = !ifxListElement.resetTrigger;
       });
     });
-    
+
     const filterSearchSlot = this.el.shadowRoot.querySelector('slot[name="filter-search"]');
     const filterSearchSlottedElements = (filterSearchSlot as HTMLSlotElement).assignedElements({ flatten: true });
 
@@ -63,6 +64,52 @@ connectedCallback ensures that the event listeners are properly set up again */
     this.ifxSidebarFilterChange.emit(this.selectedOptions);
   }
 
+  handleUpdateSidebarFilter = (event: CustomEvent) => {
+    const { filterName } = event.detail;
+    console.log(`Clearing filter for: ${filterName}`);
+
+    const accordionSlot = this.el.shadowRoot.querySelector('slot[name="filter-accordion"]');
+    const filterAccordionSlottedElements = accordionSlot ? (accordionSlot as HTMLSlotElement).assignedElements({ flatten: true }) : [];
+
+    filterAccordionSlottedElements.forEach(accordionElement => {
+      const ifxLists = accordionElement.querySelectorAll('ifx-list');
+
+      ifxLists.forEach((ifxListElement: HTMLIfxListElement) => {
+        if (ifxListElement.getAttribute('name') === filterName) {
+          ifxListElement.resetTrigger = !ifxListElement.resetTrigger;
+        }
+      });
+    });
+
+    // Clear the search bar within the filter-search slot
+    const searchSlot = this.el.shadowRoot.querySelector('slot[name="filter-search"]');
+    const filterSearchSlottedElements = searchSlot ? (searchSlot as HTMLSlotElement).assignedNodes({ flatten: true }) : [];
+  
+    filterSearchSlottedElements.forEach(searchElement => {
+      if (searchElement.nodeType === Node.ELEMENT_NODE) {
+        // Identify the ifx-filter-search component within the slot
+        const filterSearchComponent = searchElement as HTMLElement;
+          const searchField: any = filterSearchComponent.firstElementChild;
+          if (searchField) {
+            console.log(`Resetting search field for: ${filterName}`); // Debug log
+            searchField.setAttribute('value', '');
+            searchField.dispatchEvent(new CustomEvent('ifxInput', { bubbles: true, composed: true, detail: '' })); // Trigger ifxInput event to reset
+          }
+        
+      }
+    });
+
+    const newSelectedOptions = this.selectedOptions.map(option => {
+      if (option.filterGroupName === filterName) {
+        return { ...option, selectedItems: [], value: '' };
+      }
+      return option;
+    });
+
+    this.selectedOptions = newSelectedOptions;
+
+    this.ifxSidebarFilterChange.emit(this.selectedOptions);
+  }
 
 
   handleAccordionChange = (event: CustomEvent) => {
