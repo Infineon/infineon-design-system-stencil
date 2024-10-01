@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-vue",
-  "version": "25.2.2",
+  "version": "25.2.3--canary.1482.bd53259df81a6f5205f85ebd74c90c7173dab1f7.0",
   "description": "Infineon design system Stencil web components for Vue",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.3",
-    "@infineon/infineon-design-system-stencil": "25.2.2"
+    "@infineon/infineon-design-system-stencil": "25.2.3--canary.1482.bd53259df81a6f5205f85ebd74c90c7173dab1f7.0"
   },
   "auto": {
     "plugins": [
