@@ -28,7 +28,8 @@
  - [ifx-alert](../alert)
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
- - [ifx-chip](../chips)
+ - [ifx-chip](../chip)
+ - [ifx-chip-item](../chip/chip-item)
  - [ifx-date-picker](../date-picker)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
@@ -62,6 +63,7 @@ graph TD;
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-chip --> ifx-icon
+  ifx-chip-item --> ifx-icon
   ifx-date-picker --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon

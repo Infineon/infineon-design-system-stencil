@@ -136,7 +136,7 @@ function App() {
       <br />
 
 
-      <h2>Spinner</h2>
+      <h2>Link</h2>
       <Link />
       <br />
 
@@ -199,7 +199,6 @@ function App() {
       <br />
 
     </div>
-
   )
 }
 export default App;

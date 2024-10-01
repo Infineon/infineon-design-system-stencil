@@ -116,26 +116,6 @@ Type: `Promise<this>`
 
 
 
-### `disable() => Promise<this>`
-
-
-
-#### Returns
-
-Type: `Promise<this>`
-
-
-
-### `enable() => Promise<this>`
-
-
-
-#### Returns
-
-Type: `Promise<this>`
-
-
-
 ### `getValue(valueOnly?: boolean) => Promise<string | Array<string>>`
 
 
