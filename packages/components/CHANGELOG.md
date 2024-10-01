@@ -1,3 +1,20 @@
+# v25.3.0 (Tue Oct 01 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: implemented `disabled` prop for ifx-step [#1408](https://github.com/Infineon/infineon-design-system-stencil/pull/1408) ([@akashyeole](https://github.com/akashyeole))
+
+#### 🐛 Bug Fix
+
+- Update Stencil library version to 25.2.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.2.2 (Mon Sep 30 2024)
 
 #### 🐛 Bug Fix
