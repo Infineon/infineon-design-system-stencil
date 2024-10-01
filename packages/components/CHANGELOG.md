@@ -1,3 +1,21 @@
+# v25.4.0 (Tue Oct 01 2024)
+
+#### 🚀 Enhancement
+
+- Storybook: update theme to Infineon branding [#1452](https://github.com/Infineon/infineon-design-system-stencil/pull/1452) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.3.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.3.0 (Tue Oct 01 2024)
 
 #### 🚀 Enhancement
