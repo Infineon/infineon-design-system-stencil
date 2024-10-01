@@ -1,1 +1,0 @@
-const n=[];function e(){if(n.length>0){const o=[...n];n.length=0,window._paq?window._paq.push(["trackEvent","Component","View",o.join(", ")]):console.error("Matomo _paq array is not defined")}}function t(o){n.includes(o)||n.push(o)}setInterval(e,5e3);export{t};
