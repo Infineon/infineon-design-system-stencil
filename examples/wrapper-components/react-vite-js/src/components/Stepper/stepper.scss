@@ -1,0 +1,11 @@
+.stepper__container { 
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button__wrapper { 
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
