@@ -1,3 +1,18 @@
+# v25.4.1 (Wed Oct 02 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: fixed storybook page bug [#1482](https://github.com/Infineon/infineon-design-system-stencil/pull/1482) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 25.4.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.4.0 (Tue Oct 01 2024)
 
 #### 🚀 Enhancement
