@@ -15,6 +15,8 @@
         max-width: 100%;
         .step-label{
             max-width: 100%;
+            cursor: auto;
+            align-self: flex-start;
         }
         
         &.indicator-left {
@@ -25,13 +27,9 @@
         &.indicator-right {
             align-items: flex-start;
         }
-        
-        .step-label{
-            cursor: auto;
-        }
     }
 
-    .step-label{
+    .step-label {
         max-width: tokens.$ifxSize1800;
         color: tokens.$ifxColorEngineering400; 
         word-wrap: break-word;
@@ -41,7 +39,11 @@
         &.next-label{
             font: tokens.$ifxBodyBody05;
         }
+        :hover{
+            color: tokens.$ifxColorEngineering400;
+        }
     }
+
     
     &.first-step{
         .step-connector-l{
@@ -54,37 +56,84 @@
             height: 0px;
         }
     }
+
     
-    &.complete, &.active{
+    &.complete{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
             &.active, &.error {
                 background: tokens.$ifxColorEngineering400;
             }
         }
-        .step-label{
-            color: tokens.$ifxColorBaseBlack;
+        &:not(.disabled) {
+            .step-label{
+                cursor: pointer;
+                color: tokens.$ifxColorBaseBlack;
+                :hover {
+                    color: tokens.$ifxColorOcean600;
+                }
+            }
         }
     } 
     
-    &.complete, &.clickable{
-        .step-label{
-            cursor: pointer;
+    &.disabled{
+        .step-connector-l, .step-connector-r, .step-icon {
+            background-color: tokens.$ifxColorEngineering400;
+        }
+        .step-label, .step-label :hover{
+            color: tokens.$ifxColorEngineering400;
         }
     }
     
     &.active{
-        .step-label{
+        .step-connector-l, .step-connector-r, .step-icon {
+            background: tokens.$ifxColorOcean500;
+            &.active, &.error {
+                background: tokens.$ifxColorEngineering400;
+            }
+        }
+        .step-label, .step-label :hover{
+            color: tokens.$ifxColorBaseBlack;
+        }
+        &.complete .step-label { 
             cursor: auto;
         }
+    } 
+
+    &.clickable:not(.active) .step-label{
+        cursor: pointer;
     }
 
     &.error:not(.active){
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
+            :hover{
+                color: tokens.$ifxColorOcean500;
+            }
         }
     }
+
+    &.disabled{
+        .step-label{
+            cursor: auto;
+        }
+    }
+
+    &:hover{
+        &.complete:not(.disabled):not(.active){
+            .step-connector-l, .step-connector-r, .step-icon {
+                background: tokens.$ifxColorOcean600;
+                &.active, &.error {
+                    background: tokens.$ifxColorEngineering400;
+                }
+            } 
+            .step-label{
+                color: tokens.$ifxColorOcean600;
+            }
+        }
+    }
+    
 }
 
 .active-indic{
