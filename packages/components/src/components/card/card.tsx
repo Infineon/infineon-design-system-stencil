@@ -84,10 +84,12 @@ export class Card {
 
   componentDidLoad() {
     this.handleHovering();
-    this.addEventListenersToHandleCustomFocusState();
 
+    // Only add event listeners if the card is vertical
+    if (this.direction === 'vertical') {
+      this.addEventListenersToHandleCustomFocusState();
+    }
   }
-
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot;
