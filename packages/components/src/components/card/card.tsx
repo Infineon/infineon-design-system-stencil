@@ -84,11 +84,7 @@ export class Card {
 
   componentDidLoad() {
     this.handleHovering();
-
-    // Only add event listeners if the card is vertical
-    if (this.direction === 'vertical') {
-      this.addEventListenersToHandleCustomFocusState();
-    }
+    this.addEventListenersToHandleCustomFocusState();
   }
 
   private addEventListenersToHandleCustomFocusState() {
@@ -99,7 +95,6 @@ export class Card {
     }
     const upperBodyWrapper = element.querySelector('.upper__body-wrapper');
     if (!upperBodyWrapper) {
-      console.error('upper body wrapper not found');
       return;
     }
 
