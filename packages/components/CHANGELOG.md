@@ -1,3 +1,21 @@
+# v25.5.1 (Wed Oct 02 2024)
+
+#### 🐛 Bug Fix
+
+- Updated Documentation of Slider and Foundation Colors in Storybook [#1506](https://github.com/Infineon/infineon-design-system-stencil/pull/1506) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.5.0 (Wed Oct 02 2024)
 
 #### 🚀 Enhancement
