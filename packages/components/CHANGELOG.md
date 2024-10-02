@@ -1,3 +1,21 @@
+# v25.6.2 (Wed Oct 02 2024)
+
+#### 🐛 Bug Fix
+
+- Card: removed unnecessary error message on horizontal variant [#1494](https://github.com/Infineon/infineon-design-system-stencil/pull/1494) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.6.1 (Wed Oct 02 2024)
 
 #### 🐛 Bug Fix
