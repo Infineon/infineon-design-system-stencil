@@ -34,6 +34,7 @@ import Slider from './components/Slider/Slider.js'
 import Status from './components/Status/Status.js'
 import Chip from './components/Chip/Chip.js'
 import Stepper from './components/Stepper/Stepper.js';
+import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher.js';
 
 
 function App() {
@@ -75,6 +76,9 @@ function App() {
       <Chip />
       <br />
 
+      <h2>Content Switcher</h2>
+      <ContentSwitcher />
+      
       <h2>Date Picker</h2>
       <DatePicker />
       <br />
