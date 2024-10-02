@@ -66,7 +66,6 @@ export class IfxFilterTypeGroup {
 
   handleUpdateSidebarFilter = (event: CustomEvent) => {
     const { filterName } = event.detail;
-    console.log(`Clearing filter for: ${filterName}`);
 
     const accordionSlot = this.el.shadowRoot.querySelector('slot[name="filter-accordion"]');
     const filterAccordionSlottedElements = accordionSlot ? (accordionSlot as HTMLSlotElement).assignedElements({ flatten: true }) : [];
@@ -91,8 +90,7 @@ export class IfxFilterTypeGroup {
         const filterSearchComponent = searchElement as HTMLElement;
           const searchField: any = filterSearchComponent.firstElementChild;
           if (searchField) {
-            console.log(`Resetting search field for: ${filterName}`); // Debug log
-            searchField.setAttribute('value', '');
+             searchField.setAttribute('value', '');
             searchField.dispatchEvent(new CustomEvent('ifxInput', { bubbles: true, composed: true, detail: '' })); // Trigger ifxInput event to reset
           }
         

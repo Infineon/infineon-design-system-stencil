@@ -36,7 +36,6 @@ updateItemSelection(event: CustomEvent<ChipItemSelectEvent>) {
 
 @Watch('selected')
 validateSelected(newValue: boolean, oldValue: boolean) {
-    console.log("selected value changed");
    if (newValue !== oldValue) {
        /* Do not emit if ChipState does not allow. */
        if (this.chipState.emitIfxChipItemSelect){

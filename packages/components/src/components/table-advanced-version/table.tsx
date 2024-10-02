@@ -38,35 +38,35 @@ export class Table {
   originalRowData: any[] = [];
 
   @Listen('ifxChipChange')
-handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
-  const { name, currentSelection } = event.detail;
-  console.log('handleChipChange event:', name, currentSelection); // Debug log
+  handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
+    const { name, currentSelection } = event.detail;
+    console.log('handleChipChange event:', name, currentSelection); // Debug log
 
-  // Clone the current filters state
-  const updatedFilters = { ...this.currentFilters };
+    // Clone the current filters state
+    const updatedFilters = { ...this.currentFilters };
 
-  if (currentSelection.length === 0) {
-    // If there are no selections for this filter, delete the filter
-    delete updatedFilters[name];
-    console.log(`Deleted filter: ${name}`); // Debug log
+    if (currentSelection.length === 0) {
+      // If there are no selections for this filter, delete the filter
+      delete updatedFilters[name];
+      console.log(`Deleted filter: ${name}`); // Debug log
 
-    // Emit event with specific filter name
-    const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
-    this.host.dispatchEvent(customEvent);
-  } else {
-    // Otherwise, update the filter values with the current selection
-    updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
-    console.log(`Updated filter: ${name} with values:`, updatedFilters[name].filterValues); // Debug log
+      // Emit event with specific filter name
+      const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
+      this.host.dispatchEvent(customEvent);
+    } else {
+      // Otherwise, update the filter values with the current selection
+      updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
+      console.log(`Updated filter: ${name} with values:`, updatedFilters[name].filterValues); // Debug log
+    }
+
+    // Update the component's filters
+    this.currentFilters = updatedFilters;
+    console.log('Updated filters:', this.currentFilters); // Debug log
+
+    // Ensure table data is updated
+    this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+    this.updateTableView();
   }
-
-  // Update the component's filters
-  this.currentFilters = updatedFilters;
-  console.log('Updated filters:', this.currentFilters); // Debug log
-
-  // Ensure table data is updated
-  this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
-  this.updateTableView();
-}
 
 
 
@@ -91,12 +91,14 @@ handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSele
       let filterValues;
       let type;
 
-      if (filterGroup.selectedItems) {
+      if (filterGroup.selectedItems && filterGroup.selectedItems.length > 0) {
         filterValues = filterGroup.selectedItems.map(item => item.label);
         type = 'multi-select';
-      } else {
+      } else if (filterGroup.value) {
         filterValues = [filterGroup.value];
         type = 'text';
+      } else {
+        filterValues = [];
       }
 
       if (!(filterValues.length === 0 || (filterValues.length === 1 && type === 'text' && filterValues[0] === ''))) {
@@ -108,7 +110,6 @@ handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSele
     this.allRowData = this.applyAllFilters(this.originalRowData, updatedFilters);
     this.updateTableView();
     this.currentFilters = updatedFilters;
-
   }
 
 
@@ -471,15 +472,28 @@ handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSele
             <div class="table-pagination-wrapper">
               <div class="filter-chips">
                 {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
-                  Object.keys(this.currentFilters).map(name => (
-                    this.currentFilters[name]?.filterValues.length > 0 && (
-                      <ifx-chip placeholder={name} size="large" variant="multi" read-only={true} key={name}>
-                        {this.currentFilters[name]?.filterValues.map(filterValue => (
-                          <ifx-chip-item value={filterValue} selected={true} key={filterValue}>{filterValue}</ifx-chip-item>
+                  Object.keys(this.currentFilters).map(name => {
+                    const filter = this.currentFilters[name];
+                    const filterValues = filter.filterValues;
+                    const isMultiSelect = filter.type !== 'text';
+
+                    return filterValues.length > 0 ? (
+                      <ifx-chip
+                        placeholder={name}
+                        size="large"
+                        variant={isMultiSelect ? "multi" : "single"}
+                        readOnly={true}
+                        value={filterValues} // Ensure value prop is set
+                        key={name}
+                      >
+                        {filterValues.map(filterValue => (
+                          <ifx-chip-item value={filterValue} selected={true} key={filterValue}>
+                            {filterValue}
+                          </ifx-chip-item>
                         ))}
                       </ifx-chip>
-                    )
-                  ))
+                    ) : null;
+                  })
                 )}
 
                 {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
