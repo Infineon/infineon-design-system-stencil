@@ -302,19 +302,22 @@ export class SidebarItem {
           <div class="sidebar__nav-item-label">
             <slot />
           </div>
-          <div class="sidebar__nav-item-indicator">
-            {this.isExpandable &&
-              <span class='item__arrow-wrapper'>
-                <ifx-icon icon="chevron-down-12" />
-              </span>
-            }
+          {
+          (this.isExpandable || this.numberIndicator?.trim()) && 
+            <div class="sidebar__nav-item-indicator">
+              {this.isExpandable &&
+                <span class='item__arrow-wrapper'>
+                  <ifx-icon icon="chevron-down-12" />
+                </span>
+              }
 
-            {this.numberIndicator.trim() && !this.isExpandable && !this.isNested &&
-              <span class='item__number-indicator'>
-                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
-              </span>}
+              {this.numberIndicator?.trim() && !this.isExpandable && !this.isNested &&
+                <span class='item__number-indicator'>
+                  <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+                </span>}
 
-          </div>
+            </div>
+          }
         </a>
         {this.isExpandable && <ul class='expandable__submenu'></ul>}
 
