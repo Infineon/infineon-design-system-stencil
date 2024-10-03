@@ -16,7 +16,7 @@ export class SidebarItem {
   @State() isExpandable: boolean = false;
   @State() isNested: boolean = true;
   @State() isSubMenuItem: boolean = false;
-  @Prop() numberIndicator: number;
+  @Prop() numberIndicator: string;
   @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
 
@@ -309,7 +309,7 @@ export class SidebarItem {
               </span>
             }
 
-            {!this.isExpandable && !this.isNested &&
+            {this.numberIndicator.trim() && !this.isExpandable && !this.isNested &&
               <span class='item__number-indicator'>
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
               </span>}
