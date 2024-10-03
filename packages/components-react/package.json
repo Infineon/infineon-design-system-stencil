@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-react",
-  "version": "25.7.0--canary.1493.9b6d982dd10d4e3d9182944cc9901b35de5f7524.0",
+  "version": "25.7.0--canary.1493.df8290acfb7499847726d41bc3c061a1087be613.0",
   "description": "Infineon design system Stencil web components for React",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.3",
-    "@infineon/infineon-design-system-stencil": "25.7.0--canary.1493.9b6d982dd10d4e3d9182944cc9901b35de5f7524.0"
+    "@infineon/infineon-design-system-stencil": "25.7.0--canary.1493.df8290acfb7499847726d41bc3c061a1087be613.0"
   },
   "auto": {
     "plugins": [
