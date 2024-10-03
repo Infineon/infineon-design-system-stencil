@@ -1,45 +1,17 @@
 export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
-
   args: {
-    variant: 'medium',
-    termsUrl: 'https://yourwebsite.com/terms',
-    termsTarget: '_blank',
-    imprintUrl: 'https://yourwebsite.com/imprint',
-    imprintTarget: '_blank',
-    privacyPolicyUrl: 'https://yourwebsite.com/privacy-policy',
-    privacyPolicyTarget: '_blank',
-    glossaryUrl: 'https://yourwebsite.com/glossary',
-    glossaryTarget: '_blank',
     copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
-
   argTypes: {
-    variant: {
-      options: ['small', 'medium', 'large'],
-      control: { type: 'radio' },
-    },
-    termsUrl: { control: 'text' },
-    termsTarget: { control: 'text' },
-    imprintUrl: { control: 'text' },
-    imprintTarget: { control: 'text' },
-    privacyPolicyUrl: { control: 'text' },
-    privacyPolicyTarget: { control: 'text' },
-    glossaryUrl: { control: 'text' },
-    glossaryTarget: { control: 'text' },
     copyrightText: { control: 'text' },
   },
 };
 
 const DefaultTemplate = args => {
   return `
-    <ifx-footer variant="${args.variant}" 
-               terms-url="${args.termsUrl}" terms-target="${args.termsTarget}"
-                imprint-url="${args.imprintUrl}" imprint-target="${args.imprintTarget}"
-                privacy-policy-url="${args.privacyPolicyUrl}" privacy-policy-target="${args.privacyPolicyTarget}"
-                glossary-url="${args.glossaryUrl}" glossary-target="${args.glossaryTarget}"
-                copyright-text="${args.copyrightText}">
+    <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
@@ -60,17 +32,30 @@ const DefaultTemplate = args => {
         <ifx-icon icon="xing"></ifx-icon>
       </ifx-link>
     </div>
+    <div slot="info">
+      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
+    </div>
   </ifx-footer>`;
 };
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () => `<ifx-footer variant="small"></ifx-footer>`;
+const SmallTemplate = () => `<ifx-footer variant="small">
+    <div slot="info">
+      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+      <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
+    </div>
+  </ifx-footer>`;
 
 export const Small = SmallTemplate.bind({});
 
 const LargeTemplate = () =>
-  `<ifx-footer variant="large">
+  `<ifx-footer>
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
     <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
@@ -118,6 +103,12 @@ const LargeTemplate = () =>
     <ifx-link variant="title" href="http://xing.com/infineon">
       <ifx-icon icon="xing"></ifx-icon>
     </ifx-link>
+  </div>
+  <div slot="info">
+    <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
+    <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
   </div>
 </ifx-footer>`;
 
