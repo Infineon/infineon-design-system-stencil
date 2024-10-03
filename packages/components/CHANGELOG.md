@@ -1,3 +1,21 @@
+# v25.6.3 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Icon-button: event not emitted anymore when disabled [#1519](https://github.com/Infineon/infineon-design-system-stencil/pull/1519) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.6.2 (Wed Oct 02 2024)
 
 #### 🐛 Bug Fix
