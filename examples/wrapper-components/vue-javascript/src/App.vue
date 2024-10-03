@@ -18,6 +18,7 @@
   <Link />
   <Modal />
   <MultiSelect />
+  <Notification />
   <NumberIndicator />
   <Pagination />
   <ProgressBar />
@@ -75,6 +76,7 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
+import Notification from './components/Notification.vue'
 
 
 </script>
