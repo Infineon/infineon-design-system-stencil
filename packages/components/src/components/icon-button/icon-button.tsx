@@ -20,6 +20,13 @@ export class IconButton {
 
   private focusableElement: HTMLElement;
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopImmediatePropagation();
+    }
+  }
+
   @Method()
   async setFocus() {
     this.focusableElement.focus();
@@ -43,7 +50,6 @@ export class IconButton {
             href={!this.disabled ? this.href : undefined}
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
-            onClick={this.handleClick}
           >
             <ifx-icon icon={this.icon}></ifx-icon>
           </a>
@@ -88,12 +94,5 @@ export class IconButton {
       `btn-${this.getVariantClass()}`,
       this.disabled ? 'disabled' : ''
     );
-  }
-
-  @Listen('click', { capture: true })
-  handleClick(event: Event) {
-    if (this.disabled === true) {
-      event.stopImmediatePropagation();
-    }
   }
 }
