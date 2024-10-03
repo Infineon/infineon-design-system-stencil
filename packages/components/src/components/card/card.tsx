@@ -85,9 +85,7 @@ export class Card {
   componentDidLoad() {
     this.handleHovering();
     this.addEventListenersToHandleCustomFocusState();
-
   }
-
 
   private addEventListenersToHandleCustomFocusState() {
     const element = this.el.shadowRoot;
@@ -97,7 +95,6 @@ export class Card {
     }
     const upperBodyWrapper = element.querySelector('.upper__body-wrapper');
     if (!upperBodyWrapper) {
-      console.error('upper body wrapper not found');
       return;
     }
 

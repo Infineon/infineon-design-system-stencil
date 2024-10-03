@@ -1,20 +1,5 @@
 import { action } from '@storybook/addon-actions';
 
-const tabHeaders = [
-  {
-    header: 'tab a',
-    disabled: false,
-  },
-  {
-    header: 'tab b',
-    disabled: true,
-  },
-  {
-    header: 'tab c',
-    disabled: false,
-  },
-];
-
 export default {
   title: 'Components/Tabs',
   tags: ['autodocs'],
@@ -64,8 +49,10 @@ const Template = args => {
   
   for (let i = 0; i < args.amountOfTabs; i++) {
     const tabContent = document.createElement('ifx-tab');
-    tabContent.setAttribute('header', tabHeaders[i].header);
-    tabContent.setAttribute('disabled', tabHeaders[i].disabled.toString());
+    tabContent.setAttribute('header', `tab ${i+1}`);
+    if(i == 1) {
+      tabContent.setAttribute('disabled', 'true');
+    }
     if(args.icon){
       tabContent.setAttribute('icon', 'c-check-16');
       tabContent.setAttribute('icon-position', args.iconPosition);

@@ -2,11 +2,11 @@ import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
-    // tags: ['autodocs'],
     args: { 
         activeStep: 2,
         amountOfSteps: 5,
         errorStep: 0,
+        disabled: false,
         indicatorPosition: 'left',
         showStepNumber: false,
         variant: 'default'
@@ -36,6 +36,18 @@ export default{
                     summary: `<ifx-step complete=true> </ifx-step>`
                 }
             }
+        },
+        disabled: {
+            name: 'disabled',
+            control: 'boolean',
+            description: 'A boolean prop to make the step unclickable:',
+            table: {
+                defaultValue: { summary: false },
+                type: {
+                    summary: `<ifx-step disabled=true> </ifx-step>`
+                }
+            },
+            if: { arg:'variant', eq: 'default' }
         },
         errorStep: {
             name: 'error',
@@ -95,6 +107,7 @@ variant=${args.variant}>
                 const step = document.createElement('ifx-step')
                 step.innerHTML = `Step Label ${stepId+1}`
                 if (args.errorStep === stepId+1) step.setAttribute('error', 'true')
+                if (args.disabled) step.setAttribute('disabled', 'true')
                 return step.outerHTML
             }).join(`\n    `)
         })()

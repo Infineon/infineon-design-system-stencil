@@ -7,21 +7,16 @@ export default {
 
   args: {
     autoCollapse: false,
-    initialCollapse: true,
   },
 
   argTypes: {
     amountOfItems: { control: 'number' },
-    initialCollapse: {
-      description: 'If set on more than one accordion-item, auto-collapse must be false',
-    },
   },
 };
 
 const Template = args => {
   const accordionElement = document.createElement('ifx-accordion');
   const initialItem = document.createElement('ifx-accordion-item');
-  initialItem.setAttribute('initialCollapse', args.initialCollapse);
   initialItem.setAttribute('caption', `Label`);
   initialItem.setAttribute('open', `true`);
 

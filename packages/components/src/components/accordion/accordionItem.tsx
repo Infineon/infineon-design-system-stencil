@@ -11,7 +11,6 @@ export class IfxAccordionItem {
   @Prop({
     mutable: true,
   }) open: boolean = false;
-  @Prop() initialCollapse: boolean = true;
   @State() internalOpen: boolean = false;
   @Event() ifxItemOpen: EventEmitter;
   @Event() ifxItemClose: EventEmitter;
@@ -20,9 +19,6 @@ export class IfxAccordionItem {
 
   componentWillLoad() {
     this.internalOpen = this.open;
-    if (!this.initialCollapse) {
-      this.internalOpen = true;
-    }
   }
 
   componentDidLoad() {
