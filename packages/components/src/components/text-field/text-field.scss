@@ -71,6 +71,10 @@
 
       & .required {
         margin-left: 4px;
+        
+        &.error {
+          color: #CD002F;
+        }
       }
     }
   }
