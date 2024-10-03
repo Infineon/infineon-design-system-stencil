@@ -1,0 +1,57 @@
+import { Meta  } from '@storybook/blocks';
+import * as StepperStories from './stepper.stories';
+import StepperVertical from '../../../public-storybook/images/stepper/stepper-vertical-stepper.png';
+import StepperEditable from '../../../public-storybook/images/stepper/stepper-editable-steppers.png';
+import StepperCompact from '../../../public-storybook/images/stepper/stepper-compact-stepper.png';
+import StepperNonEditable from '../../../public-storybook/images/stepper/stepper-non-editable-steppers.png';
+import StepperStepsStates from '../../../public-storybook/images/stepper/stepper-steps-states.png';
+
+
+<Meta of={StepperStories} />
+
+# Stepper
+The stepper guides users through a step-by-step process. It provides a clear visual representation of progress and allows users to navigate between steps.
+
+| Resources                                                                                                                                          |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Figma stepper component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=17858-11227) |
+
+## Usage
+
+### When to use
+- When you have a multi-step process or task that needs to be visually represented and guided.
+- If you need to simplify complex workflows by breaking them down into manageable steps.
+- When you need to provide users with a clear sense of progress and to keep them engaged in the process.
+
+### When not to use
+- For simple, single-step processes or tasks where sequential navigation is not necessary.
+- For very long processes with a large number of steps. In such cases consider a progress bar.
+
+
+## Layouts
+
+### Horizontal
+Horizontal steppers are helpful when the content of each step relies on the completion of a previous step.
+<img src={StepperEditable} alt="Horizontal Stepper" />
+
+### Vertical
+Vertical steppers are tailored for narrow screens.
+<img src={StepperVertical} alt="Vertical Stepper" />
+
+### Compact
+The compact stepper is a streamlined version of the default stepper component, optimized for mobile devices with limited screen space.
+<img src={StepperCompact} alt="Compact Stepper" />
+
+## Types of steps
+
+### Editable
+Editable steps enable users to revisit and modify a step at any point.
+<img src={StepperEditable} alt="Editable Stepper" />
+
+### Non-editable
+Non-editable steps are used when users are not allowed to modify a step once it is completed.
+<img src={StepperNonEditable} alt="Non-Editable Stepper" />
+
+
+## States
+<img src={StepperStepsStates} alt="Step States" />
