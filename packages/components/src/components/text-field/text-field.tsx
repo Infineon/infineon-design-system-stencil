@@ -67,7 +67,7 @@ export class TextField {
             ) : this.optional ? (
               <span class="optional">(optional)</span>
             ) : this.required ? (
-              <span class="required">*</span>
+              <span class={`required ${this.error ? 'error' : ""}`}>*</span>
             ) : null}
           </label>
         </div>
