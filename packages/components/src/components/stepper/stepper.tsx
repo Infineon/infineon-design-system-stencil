@@ -26,7 +26,6 @@ export class Stepper {
     @Prop() showStepNumber?: boolean = false;
     @Prop() variant?: 'default' | 'compact' = 'default';
 
-    @State() internalActiveStep: number = undefined;
     @State() stepsCount: number;
 
     @Listen('ifxChange') 
@@ -39,7 +38,23 @@ export class Stepper {
     } 
 
     @Watch('activeStep')
-    handleActiveStep() {
+    handleActiveStep(newStep: number, oldStep: number) {
+        const steps = this.getSteps();
+        if (newStep < oldStep) {
+            let i = newStep;
+            while(i >= 1 && steps[i-1].disabled) {
+                i--;
+            }
+            if (i) this.activeStep = i;
+            else this.activeStep = oldStep;
+        } else if(newStep > oldStep) {
+            let i = newStep;
+            while(i <= steps.length && steps[i-1].disabled) {
+                i++;
+            }
+            if (i <= steps.length) this.activeStep = i; 
+            else this.activeStep = oldStep;
+        }
         this.updateActiveStep();
     }
 
@@ -75,7 +90,7 @@ export class Stepper {
         const steps = this.getSteps()
         for (let i = 0; i < steps.length; i++) {
             const stepperState: StepperState = { 
-                activeStep: this.internalActiveStep, 
+                activeStep: this.activeStep,
                 indicatorPosition: (this.indicatorPosition !== 'right' ? 'left' : 'right'), 
                 showStepNumber: this.showStepNumber, 
                 variant: (this.variant !== 'compact' ? 'default' : 'compact'), 
@@ -87,14 +102,13 @@ export class Stepper {
 
     updateActiveStep(stepId: number = null) {
         let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-        if (newActiveStep != this.internalActiveStep) {
-            if (this.internalActiveStep !== undefined) {
+        if (newActiveStep != this.activeStep) {
+            if (this.activeStep !== undefined) {
                 this.ifxChange.emit({ activeStep: newActiveStep, 
-                                      previousActiveStep: this.internalActiveStep, 
+                                      previousActiveStep: this.activeStep, 
                                       totalSteps: this.stepsCount });
             }
         }
-        this.internalActiveStep = newActiveStep;
         this.activeStep = newActiveStep;
     }
 
@@ -123,7 +137,7 @@ export class Stepper {
                     (this.variant === 'compact') && 
                     <div class = 'stepper-progress'>
                         <div class = 'progress-detail'>
-                            {`${Math.min(this.internalActiveStep, this.stepsCount)} of ${this.stepsCount}`}
+                            {`${Math.min(this.activeStep, this.stepsCount)} of ${this.stepsCount}`}
                         </div>
                     </div>
                 }
@@ -140,7 +154,7 @@ export class Stepper {
         /* Updating progress bar in compact version. */
         if (this.variant == 'compact') {
             const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress');
-            progressBar.style.setProperty('--pb', `${(this.internalActiveStep / (this.stepsCount)) * 100}%`);
+            progressBar.style.setProperty('--pb', `${(this.activeStep / (this.stepsCount)) * 100}%`);
         }
     }
 }
