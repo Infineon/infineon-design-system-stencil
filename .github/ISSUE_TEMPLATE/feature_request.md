@@ -1,19 +1,26 @@
 ---
-name: New Request
-about: Suggest a new feature
-title: '[Request] [Component] Short description'
-labels: enhancement
+name: New Feature Request
+about: Request a new feature
+title: 'Component-name: Short summary'
+labels: request, enhancement
 assignees: ''
 
 ---
 
-**1. Component(s) name**
+**1. Detailed description of what you want to happen**
+...
 
-**2. Describe the new feature you would like to see**
-A clear and concise description of what you want to happen.
+**2. Upload a screenshot or reference an example if possible**
+...
 
-**3. Upload a screenshot if possible**
-A clear and concise description of any alternative solutions or features you've considered.
+**3. Describe the context and use case. Why do you need this feature?**
+...
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**4. How urgent is this request?**
+...
+
+**5. Email address for contact**
+...
+
+**Additional information**
+...
