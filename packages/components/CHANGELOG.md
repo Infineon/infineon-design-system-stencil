@@ -1,3 +1,20 @@
+# v25.6.4 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: number-indicator not showing anymore when empty [#1481](https://github.com/Infineon/infineon-design-system-stencil/pull/1481) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.6.3 (Thu Oct 03 2024)
 
 #### 🐛 Bug Fix
