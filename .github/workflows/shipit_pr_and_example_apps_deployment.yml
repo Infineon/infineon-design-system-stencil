@@ -204,7 +204,7 @@ jobs:
           cd examples/wrapper-components/react-vite-js
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION | .dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
           npm install
           npm run build
