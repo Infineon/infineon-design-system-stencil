@@ -33,7 +33,7 @@ import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
-
+import SegmentedControls from './components/Segmented Controls/SegmentedControls';
 
 function App() {
  
@@ -131,6 +131,10 @@ function App() {
 
       <h2>Search Bar</h2>
       <SearchBar />
+      <br />
+      
+      <h2>Segmented Controls</h2>
+      <SegmentedControls />
       <br />
 
       <h2>Search Field</h2>
