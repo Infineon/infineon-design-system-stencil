@@ -44,8 +44,14 @@
   min-width: 100px;
 }
 
-.filter-chips {
+.filter-chips { 
+  display:flex;
+  gap:tokens.$ifxSpace100;
   margin-bottom: 12px;
+}
+
+.filter-chips > ifx-button { // ifx-button with icon and text has a paddingof 16 px. This is to remove the padding to align with the filter-chips container definition
+  margin-left: -8px;
 }
 
 .set-filter-wrapper-sidebar {

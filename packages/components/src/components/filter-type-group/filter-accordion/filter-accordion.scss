@@ -15,11 +15,6 @@
   align-items: center;
   gap: tokens.$ifxSpace200;
   flex: 1 0 0;
-  border-bottom: 1px solid tokens.$ifxColorEngineering200;
-
-  &.expanded {
-    border-bottom: none;
-  }
 }
 
 .header.expanded {
@@ -41,6 +36,11 @@
 .hidden {
   display: none;
 }
+
+.accordion {
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+}
+
 
 .filter-accordion-container {
   display: flex;

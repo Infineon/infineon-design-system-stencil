@@ -50,7 +50,7 @@ handleCheckedChange = (event: CustomEvent) => {
   render() {
     return (
       <div class={`accordion ${this.expanded ? 'expanded' : ''}`}>
-        <div class="header" onClick={this.toggleAccordion}>
+        <div class={`header ${this.expanded ? 'expanded' : ''}`} onClick={this.toggleAccordion} >
           <div class={`text-and-icon ${this.expanded ? 'expanded' : ''}`}>
             <div class="text">
               <span>{this.filterGroupName}</span>

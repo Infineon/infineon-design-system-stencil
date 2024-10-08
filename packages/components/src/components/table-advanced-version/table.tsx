@@ -40,7 +40,6 @@ export class Table {
   @Listen('ifxChipChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
     const { name, currentSelection } = event.detail;
-    console.log('handleChipChange event:', name, currentSelection); // Debug log
 
     // Clone the current filters state
     const updatedFilters = { ...this.currentFilters };
@@ -48,7 +47,6 @@ export class Table {
     if (currentSelection.length === 0) {
       // If there are no selections for this filter, delete the filter
       delete updatedFilters[name];
-      console.log(`Deleted filter: ${name}`); // Debug log
 
       // Emit event with specific filter name
       const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
@@ -56,12 +54,10 @@ export class Table {
     } else {
       // Otherwise, update the filter values with the current selection
       updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
-      console.log(`Updated filter: ${name} with values:`, updatedFilters[name].filterValues); // Debug log
     }
 
     // Update the component's filters
     this.currentFilters = updatedFilters;
-    console.log('Updated filters:', this.currentFilters); // Debug log
 
     // Ensure table data is updated
     this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
@@ -106,7 +102,6 @@ export class Table {
       }
     });
 
-    console.log('updatedFilters:', updatedFilters);
     this.allRowData = this.applyAllFilters(this.originalRowData, updatedFilters);
     this.updateTableView();
     this.currentFilters = updatedFilters;
@@ -337,7 +332,6 @@ export class Table {
   getRowData() {
     let rows: any[] = [];
     if (this.rows === undefined || this.rows === null) {
-      console.warn('rows is undefined or null');
       return rows;
     }
 
@@ -362,7 +356,6 @@ export class Table {
   getColData() {
     let cols: any[] = [];
     if (this.cols === undefined || this.cols === null) {
-      console.warn('cols is undefined or null');
       return cols;
     }
 
