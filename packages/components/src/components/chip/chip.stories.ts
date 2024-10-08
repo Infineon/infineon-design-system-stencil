@@ -156,6 +156,10 @@ read-only = "${args.readOnly}"
                     } else if (chipItemId === 0) {
                         chipItem.setAttribute('selected', 'true');
                     }
+                } else {
+                    if (chipItemId === 0 || args.variant === 'multi') {
+                        chipItem.setAttribute('selected', args.selected);
+                    }
                 }
                 return chipItem.outerHTML;
             }).join(`\n    `);
