@@ -48,7 +48,7 @@ export class Stepper {
         }
         // Skipping until the enabled step is found 
         if (!steps[newStep-1].disabled) {
-            this,this.emitIfxChange(newStep, oldStep);
+            this.emitIfxChange(newStep, oldStep);
         } else {
             // If coming from higher step number to the lower step number
             if (newStep < oldStep) {
