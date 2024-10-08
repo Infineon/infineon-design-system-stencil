@@ -26,7 +26,9 @@ export class Stepper {
     @Prop() showStepNumber?: boolean = false;
     @Prop() variant?: 'default' | 'compact' = 'default';
 
+
     @State() stepsCount: number;
+    @State() shouldEmitEvent: boolean = true;
 
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
@@ -40,24 +42,47 @@ export class Stepper {
     @Watch('activeStep')
     handleActiveStep(newStep: number, oldStep: number) {
         const steps = this.getSteps();
-        if (newStep < oldStep) {
-            let i = newStep;
-            while(i >= 1 && steps[i-1].disabled) {
-                i--;
-            }
-            if (i) this.activeStep = i;
-            else this.activeStep = oldStep;
-        } else if(newStep > oldStep) {
-            let i = newStep;
-            while(i <= steps.length && steps[i-1].disabled) {
-                i++;
-            }
-            if (i <= steps.length) this.activeStep = i; 
-            else this.activeStep = oldStep;
+        if (!this.shouldEmitEvent) {
+            this.shouldEmitEvent = true;
+            return;
         }
-        this.updateActiveStep();
+        // Skipping until the enabled step is found 
+        if (!steps[newStep-1].disabled) {
+            this,this.emitIfxChange(newStep, oldStep);
+        } else {
+            // If coming from higher step number to the lower step number
+            if (newStep < oldStep) {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i >= 1 && steps[i-1].disabled) i--;
+                // if all the steps are disabled no change.
+                if (i < 1) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            } 
+            // If coming from lower step number to the higher step number
+            else {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i <= this.stepsCount && steps[i-1].disabled) i++;
+                if (i > this.stepsCount) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            }
+        }
     }
 
+    emitIfxChange(activeStep: number, previousActiveStep: number) {
+        this.ifxChange.emit({activeStep: activeStep, 
+            previousActiveStep: previousActiveStep, 
+            totalSteps: this.stepsCount });
+    }
 
     getSteps() {
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
@@ -76,7 +101,7 @@ export class Stepper {
 
 
     setActiveStep(stepId: number) {
-        this.updateActiveStep(stepId);
+        this.activeStep = stepId;
     }
 
     setStepsBeforeActiveToComplete() {
@@ -100,22 +125,14 @@ export class Stepper {
         }
     }
 
-    updateActiveStep(stepId: number = null) {
-        let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-        if (newActiveStep != this.activeStep) {
-            if (this.activeStep !== undefined) {
-                this.ifxChange.emit({ activeStep: newActiveStep, 
-                                      previousActiveStep: this.activeStep, 
-                                      totalSteps: this.stepsCount });
-            }
-        }
-        this.activeStep = newActiveStep;
+    setInitialActiveStep() {
+        this.activeStep = Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
     }
 
 
     componentWillLoad() {
         this.addStepIdsToStepsAndCountSteps();
-        this.updateActiveStep();
+        this.setInitialActiveStep();
         this.setStepsBeforeActiveToComplete();
     }
     
