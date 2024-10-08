@@ -26,8 +26,9 @@ export class Stepper {
     @Prop() showStepNumber?: boolean = false;
     @Prop() variant?: 'default' | 'compact' = 'default';
 
-    @State() internalActiveStep: number = undefined;
+
     @State() stepsCount: number;
+    @State() shouldEmitEvent: boolean = true;
 
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
@@ -39,10 +40,49 @@ export class Stepper {
     } 
 
     @Watch('activeStep')
-    handleActiveStep() {
-        this.updateActiveStep();
+    handleActiveStep(newStep: number, oldStep: number) {
+        const steps = this.getSteps();
+        if (!this.shouldEmitEvent) {
+            this.shouldEmitEvent = true;
+            return;
+        }
+        // Skipping until the enabled step is found 
+        if (!steps[newStep-1].disabled) {
+            this,this.emitIfxChange(newStep, oldStep);
+        } else {
+            // If coming from higher step number to the lower step number
+            if (newStep < oldStep) {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i >= 1 && steps[i-1].disabled) i--;
+                // if all the steps are disabled no change.
+                if (i < 1) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            } 
+            // If coming from lower step number to the higher step number
+            else {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i <= this.stepsCount && steps[i-1].disabled) i++;
+                if (i > this.stepsCount) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            }
+        }
     }
 
+    emitIfxChange(activeStep: number, previousActiveStep: number) {
+        this.ifxChange.emit({activeStep: activeStep, 
+            previousActiveStep: previousActiveStep, 
+            totalSteps: this.stepsCount });
+    }
 
     getSteps() {
         const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
@@ -61,7 +101,7 @@ export class Stepper {
 
 
     setActiveStep(stepId: number) {
-        this.updateActiveStep(stepId);
+        this.activeStep = stepId;
     }
 
     setStepsBeforeActiveToComplete() {
@@ -75,7 +115,7 @@ export class Stepper {
         const steps = this.getSteps()
         for (let i = 0; i < steps.length; i++) {
             const stepperState: StepperState = { 
-                activeStep: this.internalActiveStep, 
+                activeStep: this.activeStep,
                 indicatorPosition: (this.indicatorPosition !== 'right' ? 'left' : 'right'), 
                 showStepNumber: this.showStepNumber, 
                 variant: (this.variant !== 'compact' ? 'default' : 'compact'), 
@@ -85,23 +125,14 @@ export class Stepper {
         }
     }
 
-    updateActiveStep(stepId: number = null) {
-        let newActiveStep = stepId ? stepId : Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-        if (newActiveStep != this.internalActiveStep) {
-            if (this.internalActiveStep !== undefined) {
-                this.ifxChange.emit({ activeStep: newActiveStep, 
-                                      previousActiveStep: this.internalActiveStep, 
-                                      totalSteps: this.stepsCount });
-            }
-        }
-        this.internalActiveStep = newActiveStep;
-        this.activeStep = newActiveStep;
+    setInitialActiveStep() {
+        this.activeStep = Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
     }
 
 
     componentWillLoad() {
         this.addStepIdsToStepsAndCountSteps();
-        this.updateActiveStep();
+        this.setInitialActiveStep();
         this.setStepsBeforeActiveToComplete();
     }
     
@@ -123,7 +154,7 @@ export class Stepper {
                     (this.variant === 'compact') && 
                     <div class = 'stepper-progress'>
                         <div class = 'progress-detail'>
-                            {`${Math.min(this.internalActiveStep, this.stepsCount)} of ${this.stepsCount}`}
+                            {`${Math.min(this.activeStep, this.stepsCount)} of ${this.stepsCount}`}
                         </div>
                     </div>
                 }
@@ -140,7 +171,7 @@ export class Stepper {
         /* Updating progress bar in compact version. */
         if (this.variant == 'compact') {
             const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress');
-            progressBar.style.setProperty('--pb', `${(this.internalActiveStep / (this.stepsCount)) * 100}%`);
+            progressBar.style.setProperty('--pb', `${(this.activeStep / (this.stepsCount)) * 100}%`);
         }
     }
 }
