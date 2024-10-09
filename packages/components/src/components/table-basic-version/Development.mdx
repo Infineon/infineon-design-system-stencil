@@ -1,13 +1,12 @@
-import { Meta, Primary, Source, Controls, Canvas, Story } from '@storybook/blocks';
-import * as TableStories from './table.stories';
+import { Meta,  Controls, Canvas } from '@storybook/blocks';
+import * as TableBasicVersionStories from './table.stories';
  
-<Meta of={TableStories} />
+<Meta of={TableBasicVersionStories} />
 
 # Table
 
-<Canvas withSource="none" of={TableStories.Default} >
-    <Story height="200px" of={TableStories.Default} />
-</Canvas>
+
+<Canvas of={TableBasicVersionStories.Default} sourceState="shown"/>
 
 
 <Controls />
@@ -15,8 +14,7 @@ import * as TableStories from './table.stories';
 ## Stories
 
 ### Default
-<Canvas of={TableStories.Default} sourceState="shown" />
+<Canvas of={TableBasicVersionStories.Default} sourceState="shown" />
 
 ### Fixed table height
-<Canvas of={TableStories.FixedHeight} sourceState="shown" />
-
+<Canvas of={TableBasicVersionStories.FixedHeight} sourceState="shown" />
