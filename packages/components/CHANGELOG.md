@@ -1,3 +1,20 @@
+# v25.7.2 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: prevent active tab from becoming negative index which causes error in React [#1532](https://github.com/Infineon/infineon-design-system-stencil/pull/1532) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.7.1 (Wed Oct 09 2024)
 
 #### 🐛 Bug Fix
