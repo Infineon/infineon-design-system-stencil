@@ -1,0 +1,219 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+@import "~ag-grid-community/styles/ag-grid.css";
+
+
+.table-container {
+  display: block;
+}
+
+.sidebar-btn {
+  margin-bottom: 24px;
+}
+
+.sidebar-container {
+  margin-right: 24px;
+}
+
+.sidebar-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.topbar-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; // stretches items to fill the container horizontally
+  width: 100%; // ensures the wrapper takes up the full width of its parent
+}
+
+#table-wrapper {
+  flex: 1; // allows the table to take up the remaining space
+}
+
+
+.table-wrapper .ag-root-wrapper-body {
+  height: auto !important;
+  min-height: 100px !important;
+  min-width: 100px;
+}
+
+.filter-chips { 
+  display:flex;
+  gap:tokens.$ifxSpace100;
+  margin-bottom: 12px;
+}
+
+.filter-chips > ifx-button { // ifx-button with icon and text has a paddingof 16 px. This is to remove the padding to align with the filter-chips container definition
+  margin-left: -8px;
+}
+
+.set-filter-wrapper-sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: tokens.$ifxSpace100;
+}
+
+.set-filter-wrapper-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: tokens.$ifxSpace100;
+  background: tokens.$ifxColorEngineering100;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  gap: 24px;
+ }
+
+
+.ifx-ag-grid {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  min-width: 100px;
+  padding-bottom: tokens.$ifxSpace100;
+}
+
+
+.ifx-ag-grid .ag-header-cell::after {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ifx-ag-grid .ag-header-cell:focus {
+  outline: none !important;
+}
+
+.ifx-ag-grid *:not(.ag-header-cell):focus {
+  outline: none;
+}
+
+
+
+.ag-overlay-loading-center {
+  border: none;
+  background: none;
+  border-radius: none;
+  box-shadow: none;
+}
+
+
+.ag-root-wrapper {
+  border: none;
+}
+
+
+
+.ag-header {
+  background-color: tokens.$ifxColorEngineering100;
+  border-bottom: none;
+
+  &.ag-header-active {
+    outline: none !important;
+    border-color: #0A8276 !important;
+  }
+}
+
+.ag-header-cell {
+  padding-left: 16px;
+  padding-right: 16px;
+  gap: 4px;
+}
+
+
+.ag-header-cell-focus {
+  border: none !important;
+  outline: none !important;
+}
+
+.ag-header-cell-text {
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: tokens.$ifxColorBaseBlack;
+  font-family: var(--ifx-font-family);
+
+}
+
+.ag-row-focus {
+  background-color: inherit !important;
+  /* Reset the hover color to the row's original color */
+}
+
+.ag-row-hover {
+  background-color: tokens.$ifxColorBaseWhite !important; //inherit !important;
+  /* Reset the hover color to the row's original color */
+}
+
+
+.ag-cell-focus {
+  border: none !important;
+  outline: none !important;
+  background-color: inherit !important;
+}
+
+
+
+.ag-row {
+  background-color: tokens.$ifxColorBaseWhite;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  z-index: 1; //ensure the stacking order when used inside js frameworks
+}
+
+.ag-row-odd {
+  background-color: tokens.$ifxColorBaseWhite;
+}
+
+.ag-cell {
+  display: flex;
+  padding-left: 16px;
+  padding-right: 16px;
+  align-items: center;
+
+}
+
+.ag-ltr .ag-sort-indicator-icon {
+  padding-left: 0px;
+  vertical-align: bottom;
+  line-height: 12px;
+}
+
+.unsort-icon-custom-color {
+  color: tokens.$ifxColorEngineering400;
+}
+
+
+// Table with set filters in sidebar orientation
+
+
+.filters-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+
+.matching-results-container {
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.matching-results-count {
+  font-weight: 600;
+}
+
+.matching-results-text {
+  font-weight: 400;
+}
