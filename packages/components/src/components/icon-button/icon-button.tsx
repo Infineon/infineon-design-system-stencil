@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Listen } from '@stencil/core';
 import classNames from 'classnames';
  
 
@@ -20,6 +20,13 @@ export class IconButton {
 
   private focusableElement: HTMLElement;
 
+  @Listen('click', { capture: true })
+  handleClick(event: Event) {
+    if (this.disabled) {
+      event.stopImmediatePropagation();
+    }
+  }
+
   @Method()
   async setFocus() {
     this.focusableElement.focus();
@@ -30,8 +37,6 @@ export class IconButton {
       this.shape = 'round';
     }
   }
-
-
 
   render() {
     return (
@@ -59,8 +64,6 @@ export class IconButton {
       </Host>
     );
   }
-
-
 
   getVariantClass() {
     return `${this.variant}` === "secondary"

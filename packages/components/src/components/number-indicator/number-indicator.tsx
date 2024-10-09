@@ -9,8 +9,6 @@ import { Component, h, Prop } from '@stencil/core';
 export class NumberIndicator {
   @Prop() inverted: boolean = false;
 
-
-
   render() {
     return (
       <div aria-label='a number indicator' class={`numberIndicator__container ${this.inverted ? 'inverted' : ""}`}>
