@@ -1,3 +1,20 @@
+# v25.7.1 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- docs(1529): link selected control in Chip story with the component [#1530](https://github.com/Infineon/infineon-design-system-stencil/pull/1530) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.7.0 (Tue Oct 08 2024)
 
 #### 🚀 Enhancement
