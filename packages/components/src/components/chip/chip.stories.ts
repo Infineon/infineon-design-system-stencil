@@ -151,10 +151,12 @@ read-only = "${args.readOnly}"
                 chipItem.innerHTML = args.chipItemLabel + ' ' + (chipItemId+1);
                 chipItem.setAttribute('value', args.value + ' ' + (chipItemId+1));
                 if (args.readOnly) {
-                    if (args.variant === 'multi') {
+                    if (chipItemId === 0 || args.variant === 'multi') {
                         chipItem.setAttribute('selected', 'true');
-                    } else if (chipItemId === 0) {
-                        chipItem.setAttribute('selected', 'true');
+                    }
+                } else {
+                    if (chipItemId === 0 || args.variant === 'multi') {
+                        chipItem.setAttribute('selected', args.selected);
                     }
                 }
                 return chipItem.outerHTML;
