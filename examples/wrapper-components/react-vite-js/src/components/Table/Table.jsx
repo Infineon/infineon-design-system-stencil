@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { IfxTable, IfxFilterTypeGroup, IfxFilterAccordion, IfxFilterSearch, IfxList, IfxListEntry } from '@infineon/infineon-design-system-react';
+import { IfxTable, IfxFilterTypeGroup, IfxFilterAccordion, IfxFilterSearch, IfxList, IfxListEntry } from '../../../node_modules/@infineon/infineon-design-system-react';
 
 function Table() {
 
