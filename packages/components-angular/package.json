@@ -1,13 +1,13 @@
 {
   "name": "components-angular",
-  "version": "25.7.1",
+  "version": "25.7.2--canary.988.300ec4e41872f8bd3ca2bb5eb6c6a50deef83157.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:library": "ng build @infineon/infineon-design-system-angular",
     "watch": "ng build --watch --configuration development",
-    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm i && npm link && cd ../components-angular/projects/component-library && npm i && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
+    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm link && cd ../components-angular/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
     "link": "cd ../components-angular/dist/@infineon/infineon-design-system-angular && npm link && cd ../../../projects/my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@infineon/infineon-design-system-angular": "^25.7.1",
+    "@infineon/infineon-design-system-angular": "^25.7.2--canary.988.300ec4e41872f8bd3ca2bb5eb6c6a50deef83157.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.4.4",
