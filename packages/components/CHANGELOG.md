@@ -1,3 +1,20 @@
+# v25.7.0 (Tue Oct 08 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: skip step if disabled [#1525](https://github.com/Infineon/infineon-design-system-stencil/pull/1525) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.4 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.6.4 (Thu Oct 03 2024)
 
 #### 🐛 Bug Fix
