@@ -1,0 +1,3 @@
+import{r as s,h as t,H as i,g as l}from"./index-CUTtscpp.js";import"@stencil/react-output-target/runtime";const o=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",n=o,a=class{constructor(e){s(this,e),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"b6831651312f986d0f633c749feb18880b0a165b"},t("div",{key:"3746b9d718518ec53c3c01686dc76f56525996e0",class:`list-group-container 
+        ${this.flush?"flush":""} 
+        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"c49291e0e4dba21e747cf1a1caee26bf70734e92",name:"list-item"}),t("slot",{key:"6034fe09eb519b945cae6a004b6cda808bd3e731",name:"list-notification"})))}get el(){return l(this)}};a.style=n;export{a as ifx_list_group};
