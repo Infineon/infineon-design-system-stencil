@@ -3,13 +3,13 @@ import { ButtonInterface, ButtonKeys } from './interfaces';
 
 export class ButtonCellRenderer implements ICellRendererComp {
   eGui!: HTMLDivElement;
-  eButton: any;
   eValue: any;
   cellValue: any;
   eventListener!: () => void;
 
   // gets called once before the renderer is used
   init(params: ICellRendererParams) {
+
     const config = params.data.button;
     this.eGui = document.createElement('div');
 
@@ -28,12 +28,7 @@ export class ButtonCellRenderer implements ICellRendererComp {
         </span>
        `;
 
-      // get references to the elements we want
-      this.eButton = this.eGui.querySelector('ifx-button');
     }
-    // // add event listener to button
-    // this.eventListener = () => alert('Button clicked!');
-    // this.eButton?.addEventListener('click', this.eventListener);
     else {
       this.eGui.innerHTML = `
       <span>
@@ -68,12 +63,8 @@ export class ButtonCellRenderer implements ICellRendererComp {
         </span>
        `;
 
-      // get references to the elements we want
-      this.eButton = this.eGui.querySelector('ifx-button');
     }
-    // // add event listener to button
-    // this.eventListener = () => alert('Button clicked!');
-    // this.eButton?.addEventListener('click', this.eventListener);
+
     else {
       this.eGui.innerHTML = `
       <span>
@@ -85,14 +76,6 @@ export class ButtonCellRenderer implements ICellRendererComp {
     return true;
   }
 
-  // gets called when the cell is removed from the grid
-  destroy() {
-    // do cleanup, remove event listener from button
-    if (this.eButton) {
-      // check that the button element exists as destroy() can be called before getGui()
-      this.eButton.removeEventListener('click', this.eventListener);
-    }
-  }
 
   getFieldValueToDisplay(params: ICellRendererParams) {
     return params.valueFormatted ? params.valueFormatted : params.value;
@@ -106,5 +89,6 @@ export class ButtonCellRenderer implements ICellRendererComp {
     if (!this.isObject(obj)) return false;
     return ButtonKeys.every(key => key in obj);
   }
+
 
 }
