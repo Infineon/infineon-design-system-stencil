@@ -37,15 +37,21 @@ import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCust
 import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
 import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
 import { IfxFaq as IfxFaqElement, defineCustomElement as defineIfxFaq } from "@infineon/infineon-design-system-stencil/dist/components/ifx-faq.js";
+import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
+import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-bar.js";
+import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-search.js";
+import { IfxFilterTypeGroup as IfxFilterTypeGroupElement, defineCustomElement as defineIfxFilterTypeGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-type-group.js";
 import { IfxFooterColumn as IfxFooterColumnElement, defineCustomElement as defineIfxFooterColumn } from "@infineon/infineon-design-system-stencil/dist/components/ifx-footer-column.js";
 import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-footer.js";
 import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon-button.js";
 import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon.js";
 import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icons-preview.js";
 import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/infineon-design-system-stencil/dist/components/ifx-link.js";
+import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
 import { IfxListGroup as IfxListGroupElement, defineCustomElement as defineIfxListGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-group.js";
 import { IfxListItem as IfxListItemElement, defineCustomElement as defineIfxListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-item.js";
 import { IfxListNotification as IfxListNotificationElement, defineCustomElement as defineIfxListNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-notification.js";
+import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
@@ -59,6 +65,7 @@ import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineI
 import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-bar.js";
 import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-field.js";
 import { IfxSelect as IfxSelectElement, defineCustomElement as defineIfxSelect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-select.js";
+import { IfxSetFilter as IfxSetFilterElement, defineCustomElement as defineIfxSetFilter } from "@infineon/infineon-design-system-stencil/dist/components/ifx-set-filter.js";
 import { IfxSidebarItem as IfxSidebarItemElement, defineCustomElement as defineIfxSidebarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-item.js";
 import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defineIfxSidebarTitle } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar-title.js";
 import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar.js";
@@ -244,7 +251,7 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     defineCustomElement: defineIfxCheckbox
 });
 
-type IfxChipEvents = { onIfxChipChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent> }>> };
+type IfxChipEvents = { onIfxChipChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
@@ -388,6 +395,46 @@ export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__P
     defineCustomElement: defineIfxFaq
 });
 
+type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<CustomEvent<any>> };
+
+export const IfxFilterAccordion: StencilReactComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents> = /*@__PURE__*/ createComponent<IfxFilterAccordionElement, IfxFilterAccordionEvents>({
+    tagName: 'ifx-filter-accordion',
+    elementClass: IfxFilterAccordionElement,
+    react: React,
+    events: { onIfxFilterAccordionChange: 'ifxFilterAccordionChange' } as IfxFilterAccordionEvents,
+    defineCustomElement: defineIfxFilterAccordion
+});
+
+type IfxFilterBarEvents = { onIfxTopbarFilterChange: EventName<CustomEvent<any>> };
+
+export const IfxFilterBar: StencilReactComponent<IfxFilterBarElement, IfxFilterBarEvents> = /*@__PURE__*/ createComponent<IfxFilterBarElement, IfxFilterBarEvents>({
+    tagName: 'ifx-filter-bar',
+    elementClass: IfxFilterBarElement,
+    react: React,
+    events: { onIfxTopbarFilterChange: 'ifxTopbarFilterChange' } as IfxFilterBarEvents,
+    defineCustomElement: defineIfxFilterBar
+});
+
+type IfxFilterSearchEvents = { onIfxFilterSearchChange: EventName<CustomEvent<any>> };
+
+export const IfxFilterSearch: StencilReactComponent<IfxFilterSearchElement, IfxFilterSearchEvents> = /*@__PURE__*/ createComponent<IfxFilterSearchElement, IfxFilterSearchEvents>({
+    tagName: 'ifx-filter-search',
+    elementClass: IfxFilterSearchElement,
+    react: React,
+    events: { onIfxFilterSearchChange: 'ifxFilterSearchChange' } as IfxFilterSearchEvents,
+    defineCustomElement: defineIfxFilterSearch
+});
+
+type IfxFilterTypeGroupEvents = { onIfxSidebarFilterChange: EventName<CustomEvent<any>> };
+
+export const IfxFilterTypeGroup: StencilReactComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents> = /*@__PURE__*/ createComponent<IfxFilterTypeGroupElement, IfxFilterTypeGroupEvents>({
+    tagName: 'ifx-filter-type-group',
+    elementClass: IfxFilterTypeGroupElement,
+    react: React,
+    events: { onIfxSidebarFilterChange: 'ifxSidebarFilterChange' } as IfxFilterTypeGroupEvents,
+    defineCustomElement: defineIfxFilterTypeGroup
+});
+
 type IfxFooterEvents = NonNullable<unknown>;
 
 export const IfxFooter: StencilReactComponent<IfxFooterElement, IfxFooterEvents> = /*@__PURE__*/ createComponent<IfxFooterElement, IfxFooterEvents>({
@@ -446,6 +493,26 @@ export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents> = /*@
     react: React,
     events: {} as IfxLinkEvents,
     defineCustomElement: defineIfxLink
+});
+
+type IfxListEvents = { onIfxListUpdate: EventName<CustomEvent<any>> };
+
+export const IfxList: StencilReactComponent<IfxListElement, IfxListEvents> = /*@__PURE__*/ createComponent<IfxListElement, IfxListEvents>({
+    tagName: 'ifx-list',
+    elementClass: IfxListElement,
+    react: React,
+    events: { onIfxListUpdate: 'ifxListUpdate' } as IfxListEvents,
+    defineCustomElement: defineIfxList
+});
+
+type IfxListEntryEvents = { onIfxListEntryChange: EventName<CustomEvent<any>> };
+
+export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEntryEvents> = /*@__PURE__*/ createComponent<IfxListEntryElement, IfxListEntryEvents>({
+    tagName: 'ifx-list-entry',
+    elementClass: IfxListEntryElement,
+    react: React,
+    events: { onIfxListEntryChange: 'ifxListEntryChange' } as IfxListEntryEvents,
+    defineCustomElement: defineIfxListEntry
 });
 
 type IfxListGroupEvents = NonNullable<unknown>;
@@ -638,6 +705,16 @@ export const IfxSelect: StencilReactComponent<IfxSelectElement, IfxSelectEvents>
         onIfxInput: 'ifxInput'
     } as IfxSelectEvents,
     defineCustomElement: defineIfxSelect
+});
+
+type IfxSetFilterEvents = { onIfxFilterSelect: EventName<CustomEvent<any>> };
+
+export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilterEvents> = /*@__PURE__*/ createComponent<IfxSetFilterElement, IfxSetFilterEvents>({
+    tagName: 'ifx-set-filter',
+    elementClass: IfxSetFilterElement,
+    react: React,
+    events: { onIfxFilterSelect: 'ifxFilterSelect' } as IfxSetFilterEvents,
+    defineCustomElement: defineIfxSetFilter
 });
 
 type IfxSidebarEvents = NonNullable<unknown>;
