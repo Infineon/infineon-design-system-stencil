@@ -25,6 +25,7 @@ function debounce(func, wait) {
 
 export class Multiselect {
 
+  @Prop() name: string;
   @Prop() options: any[] | string;
   @Prop() batchSize: number = 50;
   @Prop() size: string = 'medium (40px)';
@@ -220,7 +221,9 @@ export class Multiselect {
 
   @Watch('persistentSelectedOptions')
   onSelectionChange(newValue: Option[], _: Option[]) {
-    this.internals.setFormValue(JSON.stringify(newValue));
+    const formData = new FormData();
+    newValue.forEach(option => formData.append(this.name, option.value));
+    this.internals.setFormValue(formData);
   }
 
   handleOptionClick(option: Option) {
