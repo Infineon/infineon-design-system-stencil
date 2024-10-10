@@ -103,7 +103,8 @@ jobs:
           # Update React package
           cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          npm install
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.packages[""].dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json          
+          npm ci
           cd ../../
       
           # Verify updates
@@ -129,6 +130,12 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
+
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: |
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
+          shell: bash
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
