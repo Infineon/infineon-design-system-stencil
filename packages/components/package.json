@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "25.7.2",
+  "version": "25.7.3--canary.988.10d8f267aaae74e040b2b6d5e078e60c17c7075d.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -48,6 +48,7 @@
     "@storybook/test": "^8.3.0",
     "babel-prettier-parser": "^0.10.8",
     "classnames": "^2.3.2",
+    "glob": "^11.0.0",
     "i": "^0.3.7",
     "npm": "^10.2.1",
     "npm-run-all": "^4.1.5",
@@ -55,7 +56,7 @@
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.4.5",
-    "ag-grid-community": "^30.0.6",
+    "ag-grid-community": "^31.0.3",
     "choices.js": "^10.2.0"
   },
   "devDependencies": {
