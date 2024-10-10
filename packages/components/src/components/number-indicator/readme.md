@@ -17,6 +17,7 @@
 ### Used by
 
  - [ifx-chip](../chip)
+ - [ifx-filter-accordion](../table-advanced-version/filter-type-group/filter-accordion)
  - [ifx-list-item](../list-group)
  - [ifx-overview-table](../overview-table)
  - [ifx-sidebar-item](../navigation/sidebar)
@@ -25,6 +26,7 @@
 ```mermaid
 graph TD;
   ifx-chip --> ifx-number-indicator
+  ifx-filter-accordion --> ifx-number-indicator
   ifx-list-item --> ifx-number-indicator
   ifx-overview-table --> ifx-number-indicator
   ifx-sidebar-item --> ifx-number-indicator
