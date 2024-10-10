@@ -10,7 +10,8 @@ export default {
     checked: false,
     size: 's',
     label: 'Text',
-    name: 'radio-button'
+    name: 'radio-button',
+    value: 'radio',
   },
   argTypes: {
     ifxChange: {
@@ -32,6 +33,9 @@ export default {
     },
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: {
+      description: 'The value that gets submitted, when the radio button is checked'
     }
   },
 };
@@ -46,6 +50,7 @@ const DefaultTemplate = args => {
   element.setAttribute('checked', args.checked);
   element.setAttribute('size', args.size);
   element.setAttribute('name', args.name);
+  element.setAttribute('value', args.value);
 
   // Add the label as a text node
   element.appendChild(document.createTextNode(args.label));

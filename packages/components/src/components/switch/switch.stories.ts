@@ -7,11 +7,15 @@ export default {
   args: {
     checked: false,
     label: 'Switch',
-    name: 'switch'
+    name: 'switch',
+    value: 'switch',
   },
   argTypes: {
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: {
+      description: 'The value that gets submitted, when the radio button is checked'
     },
     ifxChange: {
       description: 'Custom event emitted on change',
@@ -33,6 +37,7 @@ const DefaultTemplate = args => {
   // Set the attributes
   element.setAttribute('checked', args.checked);
   element.setAttribute('name', args.name);
+  element.setAttribute('value', args.value);
 
   // Add the event listener
   // element.addEventListener('ifxChange', action('ifxChange'));

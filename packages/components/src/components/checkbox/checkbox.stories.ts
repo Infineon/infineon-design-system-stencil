@@ -10,6 +10,7 @@ export default {
     size: 's',
     indeterminate: false,
     name: 'checkbox',
+    value: 'checkbox',
   },
 
   argTypes: {
