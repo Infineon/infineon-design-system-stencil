@@ -1,3 +1,23 @@
+# v25.7.4 (Thu Oct 10 2024)
+
+#### 🐛 Bug Fix
+
+- New component: Table (advanced version) [#988](https://github.com/Infineon/infineon-design-system-stencil/pull/988) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx) [@akashyeole](https://github.com/akashyeole) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.3 (github-actions@github.com)
+
+#### Authors: 5
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v25.7.3 (Thu Oct 10 2024)
 
 #### 🐛 Bug Fix
