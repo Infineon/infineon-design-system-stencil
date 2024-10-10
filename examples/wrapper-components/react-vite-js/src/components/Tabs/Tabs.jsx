@@ -1,9 +1,9 @@
-import { useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { IfxTabs, IfxTab } from '@infineon/infineon-design-system-react';
 
 function Tabs() {
   
-  const tabIndex = useRef(0);
+  const [tabIndex, setTabIndex]= useState(0);
   const INTERVAL = 20000;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function Tabs() {
   const setTab = () => {
     const next = Math.floor(Math.random() * (3));
     console.log("set next active tab: ", next)
-    tabIndex.current = next;
+    setTabIndex(next);
   }
 
   return (

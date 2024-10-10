@@ -29,7 +29,10 @@ export class IfxTabs {
     if (index >= this.tabObjects.length) {
       index = this.tabObjects.length - 1;
     }
-    if (!this.tabObjects[index].disabled) {
+    if (index < 0) {
+      index = 0;
+    }
+    if (!this.tabObjects[index]?.disabled) {
       this.internalActiveTabIndex = index;
       this.internalFocusedTabIndex = index;
     }
