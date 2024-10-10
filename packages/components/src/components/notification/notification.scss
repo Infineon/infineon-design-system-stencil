@@ -41,6 +41,8 @@
   & .ifx-notification__icon {
     margin-right: tokens.$ifxSpace100;
     display: flex;
+    align-self: flex-start;
+    padding-top: 2px;
   }
 
   & .ifx-notification__body {
@@ -60,6 +62,10 @@
 
     & .ifx-notification__body {
       flex-direction: column;
+    }
+
+    & .ifx-notification__link {
+      margin-top: tokens.$ifxSpace100;
     }
   }
 }
