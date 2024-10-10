@@ -1,3 +1,89 @@
+# v25.7.2 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: prevent active tab from becoming negative index which causes error in React [#1532](https://github.com/Infineon/infineon-design-system-stencil/pull/1532) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.7.1 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- docs(1529): link selected control in Chip story with the component [#1530](https://github.com/Infineon/infineon-design-system-stencil/pull/1530) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.7.0 (Tue Oct 08 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: skip step if disabled [#1525](https://github.com/Infineon/infineon-design-system-stencil/pull/1525) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.4 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.6.4 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: number-indicator not showing anymore when empty [#1481](https://github.com/Infineon/infineon-design-system-stencil/pull/1481) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.6.3 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Icon-button: event not emitted anymore when disabled [#1519](https://github.com/Infineon/infineon-design-system-stencil/pull/1519) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.6.2 (Wed Oct 02 2024)
 
 #### 🐛 Bug Fix
