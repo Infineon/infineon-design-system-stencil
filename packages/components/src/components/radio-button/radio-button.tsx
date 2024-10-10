@@ -43,9 +43,12 @@ export class RadioButton {
    * Click the hidden input element to let it handle the state
    * and emit ifxChange event.
    */
-  handleRadioButtonClick() {
-    if (this.disabled) return;
-    
+  handleRadioButtonClick(event: PointerEvent) {
+    if (this.disabled) {
+      event.stopPropagation();
+      return;
+    }
+
     this.inputElement.click();
     this.internalChecked = this.inputElement.checked;
     this.ifxChange.emit(this.internalChecked);
