@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
 import { Option } from './interfaces';
 
 // Debounce function
@@ -17,7 +17,8 @@ function debounce(func, wait) {
 @Component({
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 
@@ -55,6 +56,8 @@ export class Multiselect {
 
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
+
+  @AttachInternals() internals: ElementInternals;
 
 
   async loadInitialOptions() {
@@ -215,6 +218,10 @@ export class Multiselect {
     this.filteredOptions = [...this.loadedOptions];
   }
 
+  @Watch('persistentSelectedOptions')
+  onSelectionChange(newValue: Option[], _: Option[]) {
+    this.internals.setFormValue(JSON.stringify(newValue));
+  }
 
   handleOptionClick(option: Option) {
     this.internalError = false;
@@ -492,7 +499,7 @@ export class Multiselect {
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
-          <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
+          <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
@@ -548,7 +555,7 @@ export class Multiselect {
         onKeyDown={(e) => !disableCheckbox && this.handleOptionKeyDown(e, option)}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
-        <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
+        <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
       </div>
     );
@@ -577,7 +584,7 @@ export class Multiselect {
 
     return <div class="select-all-wrapper">
       <div class={`option ${this.getSizeClass()}`} tabindex='0' onKeyDown={(e) => handleSelectAllKeydown(e)} onClick={toggleSelectAll}>
-        <ifx-checkbox tabIndex={-1} id='selectAll' value={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
+        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
         <label htmlFor='selectAll'>Select all</label>
       </div>
       <ifx-dropdown-separator></ifx-dropdown-separator>

@@ -1,4 +1,4 @@
-import { AttachInternals } from '@stencil/core';
+import { AttachInternals, Method } from '@stencil/core';
 import { Component, Prop, State, Watch, h, Event, EventEmitter, Element } from '@stencil/core';
  
 
@@ -9,10 +9,11 @@ import { Component, Prop, State, Watch, h, Event, EventEmitter, Element } from '
   formAssociated: true
 })
 export class Switch {
-  @Prop() value: boolean = false;
+  @Prop() checked: boolean = false;
   @Prop() name: string = '';
   @Prop() disabled: boolean = false;
-  @State() internalValue: boolean = false;
+  @Prop() value: string;
+  @State() internalChecked: boolean = false;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -20,8 +21,13 @@ export class Switch {
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter<boolean>;
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
+
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalChecked = this.checked;
   }
   
 
@@ -40,18 +46,28 @@ export class Switch {
 
   }
     
-  @Watch('value')
+  @Watch('checked')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this.internalValue = newValue;
+      this.internalChecked = newValue;
     }
   }
 
   toggleSwitch() {
     if (this.disabled) return;
-    this.internalValue = !this.internalValue;
-    this.internals.setFormValue(this.internalValue ? 'on' : null);
-    this.ifxChange.emit(this.internalValue);
+    this.internalChecked = !this.internalChecked;
+
+    if (this.internalChecked) {
+      if (this.value !== undefined) {
+        this.internals.setFormValue(this.value);
+      } else {
+        this.internals.setFormValue("on")
+      }
+    } else {
+      this.internals.setFormValue(null)
+    }
+
+    this.ifxChange.emit(this.internalChecked);
   }
 
   handleKeyDown(event: KeyboardEvent) {
@@ -75,22 +91,23 @@ export class Switch {
       <div
         class="container"
         role="switch"
-        aria-checked={this.internalValue ? 'true' : 'false'}
+        aria-checked={this.internalChecked ? 'true' : 'false'}
         aria-label={this.name}
         onClick={() => this.toggleSwitch()}
         onKeyDown={(event) => this.handleKeyDown(event)}
         >
         {/* Checkbox */}
         <div 
-          class={`switch__checkbox-container ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
+          class={`switch__checkbox-container ${this.internalChecked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`}
           tabindex="0"
         >
           <div class="switch__checkbox-wrapper">
             <input type="checkbox" hidden
               name={this.name}
               disabled={this.disabled}
-              value={`${this.internalValue}`} />
-            <div class={`switch ${this.internalValue ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
+              checked={this.internalChecked}
+              value={`${this.value}`} />
+            <div class={`switch ${this.internalChecked ? 'checked' : ''} ${this.disabled ? 'disabled' : ''}`} />
           </div>
         </div >
 
