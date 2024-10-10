@@ -1,3 +1,17 @@
+# v25.7.3 (Thu Oct 10 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: tab underline border now adjusting dynamically on screen resize [#1537](https://github.com/Infineon/infineon-design-system-stencil/pull/1537) ([@akashyeole](https://github.com/akashyeole))
+- Update Stencil library version to 25.7.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.7.2 (Wed Oct 09 2024)
 
 #### 🐛 Bug Fix
