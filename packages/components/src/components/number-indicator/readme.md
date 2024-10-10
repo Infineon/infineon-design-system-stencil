@@ -17,7 +17,7 @@
 ### Used by
 
  - [ifx-chip](../chip)
- - [ifx-filter-accordion](../filter-type-group/filter-accordion)
+ - [ifx-filter-accordion](../table-advanced-version/filter-type-group/filter-accordion)
  - [ifx-list-item](../list-group)
  - [ifx-overview-table](../overview-table)
  - [ifx-sidebar-item](../navigation/sidebar)

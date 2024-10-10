@@ -19,8 +19,7 @@ export class IfxFilterTypeGroup {
     this.el.addEventListener('ifxFilterSearchChange', this.handleSearchChange);
     window.addEventListener('ifxResetFiltersEvent', this.handleResetEvent);
     window.addEventListener('ifxUpdateSidebarFilter', this.handleUpdateSidebarFilter);
-    console.log("sidebar filter change event listener added");
-  }
+   }
 
 
   componentWillUnload() {

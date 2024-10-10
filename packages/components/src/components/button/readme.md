@@ -37,7 +37,7 @@ Type: `Promise<void>`
 ### Used by
 
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
- - [ifx-filter-bar](../filter-bar)
+ - [ifx-filter-bar](../table-advanced-version/filter-bar)
  - [ifx-table](../table-advanced-version)
 
 ### Graph

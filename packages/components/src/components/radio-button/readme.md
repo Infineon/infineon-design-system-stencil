@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [ifx-list-entry](../list/list-entry)
+ - [ifx-list-entry](../table-advanced-version/list/list-entry)
 
 ### Graph
 ```mermaid

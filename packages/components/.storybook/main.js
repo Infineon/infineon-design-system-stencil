@@ -39,7 +39,7 @@ function getAbsolutePath(value) {
   
   // Exclude specific files or patterns
   const filteredStories = allStories.filter(story => {
-    return !story.includes('components/filter-type-group');
+    return !(story.includes('components/table-advanced-version/filter-type-group') || story.includes('components/table-advanced-version/list'));
   });
 
   const sortedStories = filteredStories.sort();

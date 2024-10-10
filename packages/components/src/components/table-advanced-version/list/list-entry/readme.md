@@ -25,8 +25,8 @@
 
 ### Depends on
 
-- [ifx-checkbox](../../checkbox)
-- [ifx-radio-button](../../radio-button)
+- [ifx-checkbox](../../../checkbox)
+- [ifx-radio-button](../../../radio-button)
 
 ### Graph
 ```mermaid

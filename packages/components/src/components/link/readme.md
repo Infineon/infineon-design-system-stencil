@@ -21,7 +21,7 @@
 ### Used by
 
  - [ifx-footer](../footer)
- - [ifx-list](../list)
+ - [ifx-list](../table-advanced-version/list)
  - [ifx-overview-table](../overview-table)
 
 ### Graph

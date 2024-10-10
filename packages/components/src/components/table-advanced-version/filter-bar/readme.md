@@ -24,8 +24,8 @@
 
 ### Depends on
 
-- [ifx-button](../button)
-- [ifx-icon](../icon)
+- [ifx-button](../../button)
+- [ifx-icon](../../icon)
 
 ### Graph
 ```mermaid

@@ -28,7 +28,7 @@
 
 ### Depends on
 
-- [ifx-search-field](../../search-field)
+- [ifx-search-field](../../../search-field)
 
 ### Graph
 ```mermaid

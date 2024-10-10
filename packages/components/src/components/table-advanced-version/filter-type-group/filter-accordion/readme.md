@@ -24,8 +24,8 @@
 
 ### Depends on
 
-- [ifx-number-indicator](../../number-indicator)
-- [ifx-icon](../../icon)
+- [ifx-number-indicator](../../../number-indicator)
+- [ifx-icon](../../../icon)
 
 ### Graph
 ```mermaid
