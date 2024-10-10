@@ -47,7 +47,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [ifx-set-filter](../set-filter)
+ - [ifx-set-filter](../table-advanced-version/set-filter)
 
 ### Depends on
 

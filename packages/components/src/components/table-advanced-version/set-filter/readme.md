@@ -27,9 +27,9 @@
 
 ### Depends on
 
-- [ifx-text-field](../text-field)
-- [ifx-select](../select/single-select)
-- [ifx-multiselect](../select/multi-select)
+- [ifx-text-field](../../text-field)
+- [ifx-select](../../select/single-select)
+- [ifx-multiselect](../../select/multi-select)
 
 ### Graph
 ```mermaid

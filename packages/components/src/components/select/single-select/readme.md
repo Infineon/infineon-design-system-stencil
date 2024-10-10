@@ -332,7 +332,7 @@ Type: `Promise<this>`
 ### Used by
 
  - [ifx-pagination](../../pagination)
- - [ifx-set-filter](../../set-filter)
+ - [ifx-set-filter](../../table-advanced-version/set-filter)
 
 ### Depends on
 
