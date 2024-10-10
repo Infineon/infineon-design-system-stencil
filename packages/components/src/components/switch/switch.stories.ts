@@ -6,7 +6,6 @@ export default {
 
   args: {
     checked: false,
-    disabled: false,
     label: 'Switch',
     name: 'switch'
   },
@@ -32,7 +31,6 @@ const DefaultTemplate = args => {
   const element = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
 
   // Set the attributes
-  element.setAttribute('disabled', args.disabled);
   element.setAttribute('checked', args.checked);
   element.setAttribute('name', args.name);
 

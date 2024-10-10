@@ -5,7 +5,6 @@ export default {
   tags: ['autodocs'],
   args: {
     error: false,
-    disabled: false,
     checked: false,
     label: 'Text',
     size: 's',
@@ -39,10 +38,9 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, checked, indeterminate, size, label, name }) => {
+const DefaultTemplate = ({ error, checked, indeterminate, size, label, name }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
-  checkbox.setAttribute('disabled', disabled);
   checkbox.setAttribute('checked', checked);
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
