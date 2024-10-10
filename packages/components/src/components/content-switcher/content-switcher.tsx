@@ -21,7 +21,7 @@ export class ContentSwitcher {
 
   private eventHandlers: Map<Element, { [key: string]: EventListener }> = new Map();
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.items = Array.from(this.el.children);
     this.initializeDividers();
     this.addEventListeners();
