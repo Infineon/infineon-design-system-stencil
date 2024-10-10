@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
 import { Option } from './interfaces';
 
 // Debounce function
@@ -17,7 +17,8 @@ function debounce(func, wait) {
 @Component({
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 
@@ -55,6 +56,8 @@ export class Multiselect {
 
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
+
+  @AttachInternals() internals: ElementInternals;
 
 
   async loadInitialOptions() {
@@ -215,6 +218,10 @@ export class Multiselect {
     this.filteredOptions = [...this.loadedOptions];
   }
 
+  @Watch('persistentSelectedOptions')
+  onSelectionChange(newValue: Option[], _: Option[]) {
+    this.internals.setFormValue(JSON.stringify(newValue));
+  }
 
   handleOptionClick(option: Option) {
     this.internalError = false;
