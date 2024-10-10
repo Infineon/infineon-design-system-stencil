@@ -44,6 +44,8 @@ export class RadioButton {
    * and emit ifxChange event.
    */
   handleRadioButtonClick() {
+    if (this.disabled) return;
+    
     this.inputElement.click();
     this.internalChecked = this.inputElement.checked;
     this.ifxChange.emit(this.internalChecked);
