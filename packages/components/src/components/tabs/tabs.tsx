@@ -24,6 +24,10 @@ export class IfxTabs {
 
   @Event() ifxTabChange: EventEmitter;
 
+  @Listen('resize', {target: 'window'})
+  updateBorderOnWindowResize() {
+    this.updateBorderAndFocus();
+  }
 
   setActiveAndFocusedTab(index: number) {
     if (index >= this.tabObjects.length) {
@@ -34,6 +38,7 @@ export class IfxTabs {
       this.internalFocusedTabIndex = index;
     }
   }
+  
 
   @Watch('activeTabIndex')
   activeTabIndexChanged(newValue: number, oldValue: number) {
