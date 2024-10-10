@@ -332,6 +332,7 @@ Type: `Promise<this>`
 ### Used by
 
  - [ifx-pagination](../../pagination)
+ - [ifx-set-filter](../../table-advanced-version/set-filter)
 
 ### Depends on
 
@@ -342,6 +343,7 @@ Type: `Promise<this>`
 graph TD;
   ifx-select --> ifx-icon
   ifx-pagination --> ifx-select
+  ifx-set-filter --> ifx-select
   style ifx-select fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

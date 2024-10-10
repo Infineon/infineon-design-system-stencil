@@ -1,4 +1,3 @@
-
 <template>
   <Navbar />
   <h1>Stencil Framework integration - Vue + JS </h1>
@@ -13,9 +12,11 @@
   <Chip />
   <DatePicker />
   <Dropdown />
+  <FilterTypeGroup />
   <IconButton />
   <Icon />
   <Link />
+  <List />
   <Modal />
   <MultiSelect />
   <NumberIndicator />
@@ -30,7 +31,8 @@
   <Status />
   <Stepper />
   <Switch />
-  <Table />
+  <TableBasic />
+  <TableAdvanced />
   <Tabs />
   <Tag />
   <TextField />
@@ -53,6 +55,7 @@ import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
 import NumberIndicator from './components/NumberIndicator.vue'
 import Link from './components/Link.vue'
+import List from './components/List.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
@@ -67,7 +70,8 @@ import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
 import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
-import Table from './components/BasicTable.vue'
+import TableBasic from './components/BasicTable.vue'
+import TableAdvanced from './components/AdvancedTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
 import SearchBar from './components/SearchBar.vue'
 import Badge from './components/Badge.vue'
@@ -75,7 +79,7 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
+import FilterTypeGroup from './components/FilterTypeGroup.vue'
 
 
 </script>
-
