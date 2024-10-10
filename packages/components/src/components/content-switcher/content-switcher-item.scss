@@ -30,6 +30,7 @@
         color: tokens.$ifxColorOcean600;
         background-color: tokens.$ifxColorBaseWhite;
         border: 3px solid tokens.$ifxColorOcean600;
+        cursor: pointer;
     }
 
     &:active {
