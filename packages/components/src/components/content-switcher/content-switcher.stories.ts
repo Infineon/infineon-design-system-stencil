@@ -1,3 +1,5 @@
+import { action } from '@storybook/addon-actions';
+
 export default {
   title: 'Components/Content Switcher',
   tags: ['autodocs'],
@@ -9,7 +11,18 @@ export default {
   argTypes: {
     amountOfItems: {
       control: { type: 'number' },
-    },
+    },    
+    ifxChange: {
+      action: 'ifxChange',
+      description: 'Custom event emitted when a different content-switcher-item gets selected',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
+        },
+      },
+    }
   },
 };
 
@@ -24,6 +37,8 @@ const DefaultTemplate = ({ amountOfItems }) => {
 
     element.appendChild(item);
   }
+
+  element.addEventListener('ifxChange', action('ifxChange'));
 
   return element;
 };

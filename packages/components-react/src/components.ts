@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type SwitchEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -264,13 +264,13 @@ export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemE
     defineCustomElement: defineIfxChipItem
 });
 
-type IfxContentSwitcherEvents = { onIfxSwitch: EventName<IfxContentSwitcherCustomEvent<SwitchEvent>> };
+type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
 
 export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents>({
     tagName: 'ifx-content-switcher',
     elementClass: IfxContentSwitcherElement,
     react: React,
-    events: { onIfxSwitch: 'ifxSwitch' } as IfxContentSwitcherEvents,
+    events: { onIfxChange: 'ifxChange' } as IfxContentSwitcherEvents,
     defineCustomElement: defineIfxContentSwitcher
 });
 

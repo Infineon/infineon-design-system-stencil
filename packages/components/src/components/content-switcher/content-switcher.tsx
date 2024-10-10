@@ -1,6 +1,6 @@
 import { Component, h, Element, Event, EventEmitter, Host, State } from '@stencil/core';
 
-export type SwitchEvent = { oldIndex: number; newIndex: number };
+export type ChangeEvent = { oldIndex: number; newIndex: number };
 
 @Component({
   tag: 'ifx-content-switcher',
@@ -17,7 +17,7 @@ export class ContentSwitcher {
 
   @State() dividers: Element[] = Array();
 
-  @Event() ifxSwitch: EventEmitter<SwitchEvent>;
+  @Event() ifxChange: EventEmitter<ChangeEvent>;
 
   private eventHandlers: Map<Element, { [key: string]: EventListener }> = new Map();
 
@@ -160,7 +160,7 @@ export class ContentSwitcher {
 
     this.activeIndex = itemIndex;
     this.items[itemIndex].setAttribute('selected', 'true');
-    this.ifxSwitch.emit({ oldIndex: oldIndex, newIndex: itemIndex });
+    this.ifxChange.emit({ oldIndex: oldIndex, newIndex: itemIndex });
     this.updateDividersOfItem(oldIndex);
     this.updateDividersOfItem(itemIndex);
   }
