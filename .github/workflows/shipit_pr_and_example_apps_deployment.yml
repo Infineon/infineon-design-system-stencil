@@ -113,14 +113,7 @@ jobs:
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
-      
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "Update Stencil library version to $CANARY_VERSION"
-          git push origin HEAD:$BRANCH_NAME
-      
-
+            
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -136,6 +129,35 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
+
+      - name: Update Dependencies in example applications
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+        run: |
+          # Update Vue wrapper component
+          cd examples/wrapper-components/vue-javascript
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-vue"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          npm install
+          cd ../../..
+  
+          # Update React wrapper component
+          cd examples/wrapper-components/react-vite-js
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          npm install
+          cd ../../..
+
+      - name: Commit and push all changes
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        env:
+          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git commit -m "Update Stencil library version to $CANARY_VERSION"
+          git push origin HEAD:$BRANCH_NAME
 
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:

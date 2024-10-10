@@ -18,12 +18,16 @@
 
 ## Events
 
-| Event           | Description | Type                                                                                                  |
-| --------------- | ----------- | ----------------------------------------------------------------------------------------------------- |
-| `ifxChipChange` |             | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; }>` |
+| Event           | Description | Type                                                                                                                |
+| --------------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
+| `ifxChipChange` |             | `CustomEvent<{ previousSelection: ChipItemSelectEvent[]; currentSelection: ChipItemSelectEvent[]; name: string; }>` |
 
 
 ## Dependencies
+
+### Used by
+
+ - [ifx-table](../table-advanced-version)
 
 ### Depends on
 
@@ -35,6 +39,7 @@
 graph TD;
   ifx-chip --> ifx-number-indicator
   ifx-chip --> ifx-icon
+  ifx-table --> ifx-chip
   style ifx-chip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
