@@ -1,6 +1,6 @@
 import { Component, h, Element, Event, EventEmitter, Host, State } from '@stencil/core';
 
-export type ChangeEvent = { oldIndex: number; newIndex: number };
+export type ChangeEvent = { oldValue: string; newValue: string };
 
 @Component({
   tag: 'ifx-content-switcher',
@@ -160,9 +160,22 @@ export class ContentSwitcher {
 
     this.activeIndex = itemIndex;
     this.items[itemIndex].setAttribute('selected', 'true');
-    this.ifxChange.emit({ oldIndex: oldIndex, newIndex: itemIndex });
+
+    this.ifxChange.emit({ oldValue: this.getValueOfItem(oldIndex), newValue: this.getValueOfItem(itemIndex) });
     this.updateDividersOfItem(oldIndex);
     this.updateDividersOfItem(itemIndex);
+  }
+
+  /**
+   * Get the value property of the item at a specific index.
+   * Falls back to the index if no value is set.
+   * 
+   * @param index - Index of the item. 
+   * @returns The value of the item.
+   */
+  getValueOfItem(index: number): string {
+    if (this.items[index] == null) return index.toLocaleString();
+    return this.items[index].getAttribute('value') || index.toLocaleString();
   }
 
   render() {

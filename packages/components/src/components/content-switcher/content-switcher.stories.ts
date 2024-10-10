@@ -14,7 +14,7 @@ export default {
     },    
     ifxChange: {
       action: 'ifxChange',
-      description: 'Custom event emitted when a different content-switcher-item gets selected',
+      description: 'Custom event emitted when a different content-switcher-item gets selected. Contains the value of the previous and the new selected item.', 
       table: {
         type: {
           summary: 'Framework integration',
@@ -31,6 +31,7 @@ const DefaultTemplate = ({ amountOfItems }) => {
 
   for (let i = 0; i < amountOfItems; i++) {
     const item = document.createElement('ifx-content-switcher-item');
+    item.setAttribute('value', `item-${i + 1}`);
     item.innerHTML = `
       <ifx-icon icon="applications-16"></ifx-icon>Item ${i + 1}
     `;
