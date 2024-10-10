@@ -43,17 +43,6 @@ const DefaultTemplate = args => {
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () => `<ifx-footer variant="small">
-    <div slot="info">
-      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
-      <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
-      <ifx-link variant="menu" href="https://yourwebsite.com/privacy-policy" target="_blank">Privacy policy</ifx-link>
-      <ifx-link variant="menu" href="https://yourwebsite.com/glossary" target="_blank">Glossary</ifx-link>
-    </div>
-  </ifx-footer>`;
-
-export const Small = SmallTemplate.bind({});
-
 const LargeTemplate = () =>
   `<ifx-footer>
   <ifx-footer-column slot="col">
