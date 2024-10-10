@@ -54,7 +54,7 @@ describe('Notification', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');
 
-    const content = await page.find('ifx-notification >>> .ifx-notification__content');
+    const content = await page.find('ifx-notification >>> .ifx-notification__slot');
     expect(content).not.toBeNull();
   });
 
@@ -62,7 +62,7 @@ describe('Notification', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');
 
-    const content = await page.find('ifx-notification >>> .ifx-notification__content');
+    const content = await page.find('ifx-notification >>> .ifx-notification__slot');
     expect(await content.find('slot')).not.toBeNull();
   });
 });
