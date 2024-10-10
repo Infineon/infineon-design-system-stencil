@@ -226,7 +226,7 @@ jobs:
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
-          npm ci
+          npm install
           npm run build
 
       - name: Deploy preview
@@ -265,7 +265,6 @@ jobs:
         run: |
           cd packages/components-angular
           npm install
-          # npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           npm run build my-app
 
       - name: Deploy preview
