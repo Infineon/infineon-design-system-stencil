@@ -103,8 +103,15 @@ jobs:
           # Update React package
           cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json          
-          npm install
+
+          # Check if package-lock.json exists and update it
+          if [ -f package-lock.json ]; then
+            jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
+            npm ci
+          else
+            npm install
+            npm ci
+          fi
           cd ../../
       
           # Verify updates
