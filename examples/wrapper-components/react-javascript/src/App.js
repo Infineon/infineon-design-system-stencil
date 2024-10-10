@@ -1,39 +1,42 @@
 import './App.scss';
-import Alert from './components/Alert/Alert.js'
-import Link from './components/Link/Link.js';
-import Button from './components/Button/button.js';
-import TextField from './components/TextField/TextField.js';
-import ProgressBar from './components/ProgressBar/ProgressBar.js';
-import SearchBar from './components/SearchBar/SearchBar.js';
-import Accordion from './components/Accordion/Accordion.js';
-import RadioButton from './components/RadioButton/RadioButton.js';
-import Sidebar from './components/Sidebar/Sidebar.js';
-import NumberIndicator from './components/NumberIndicator/NumberIndicator.js'
-import Spinner from './components/Spinner/Spinner.js';
-import Checkbox from './components/Checkbox/Checkbox.js';
-import Navbar from './components/Navbar/Navbar.js';
-import SearchField from './components/SearchField/SearchField.js';
-import IconButton from './components/IconButton/IconButton.js';
-import Tabs from './components/Tabs/Tabs.js';
-import Tag from './components/Tag/Tag.js';
-import Switch from './components/Switch/Switch.js';
-import Card from './components/Card/Card.js';
-import Dropdown from './components/Dropdown/Dropdown.js';
-import DatePicker from './components/DatePicker/DatePicker.js';
-import Tooltip from './components/Tooltip/Tooltip.js';
-import SingleSelect from './components/SingleSelect/SingleSelect.js';
-import MultiSelect from './components/MultiSelect/MultiSelect.js';
-import Pagination from './components/Pagination/Pagination.js';
-import BasicTable from './components/BasicTable/BasicTable.js';
-import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs.js';
-import Modal from './components/Modal/Modal.js';
-import Badge from './components/Badge/Badge.js';
-import Footer from './components/Footer/Footer.js'
-import Icon from './components/Icon/Icon.js';
-import Slider from './components/Slider/Slider.js'
-import Status from './components/Status/Status.js'
-import Chip from './components/Chip/Chip.js'
-import Stepper from './components/Stepper/Stepper.js';
+import Alert from './components/Alert/Alert'
+import Link from './components/Link/Link';
+import Button from './components/Button/button';
+import TextField from './components/TextField/TextField';
+import ProgressBar from './components/ProgressBar/ProgressBar';
+import SearchBar from './components/SearchBar/SearchBar';
+import Accordion from './components/Accordion/Accordion';
+import RadioButton from './components/RadioButton/RadioButton';
+import Sidebar from './components/Sidebar/Sidebar'
+import NumberIndicator from './components/NumberIndicator/NumberIndicator'
+import Spinner from './components/Spinner/Spinner'
+import Checkbox from './components/Checkbox/Checkbox';
+import Navbar from './components/Navbar/Navbar';
+import SearchField from './components/SearchField/SearchField';
+import IconButton from './components/IconButton/IconButton';
+import Tabs from './components/Tabs/Tabs';
+import Tag from './components/Tag/Tag';
+import Switch from './components/Switch/Switch';
+import Card from './components/Card/Card';
+import Dropdown from './components/Dropdown/Dropdown';
+import DatePicker from './components/DatePicker/DatePicker';
+import Tooltip from './components/Tooltip/Tooltip';
+import SingleSelect from './components/SingleSelect/SingleSelect';
+import MultiSelect from './components/MultiSelect/MultiSelect';
+import Pagination from './components/Pagination/Pagination';
+import BasicTable from './components/BasicTable/BasicTable';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
+import Modal from './components/Modal/Modal';
+import Badge from './components/Badge/Badge'
+import Footer from './components/Footer/Footer'
+import Icon from './components/Icon/Icon';
+import Slider from './components/Slider/Slider'
+import Status from './components/Status/Status'
+import AdvancedTable from './components/AdvancedTable/AdvancedTable';
+import Chip from './components/Chip/Chip'
+import Stepper from './components/Stepper/Stepper';
+import List from './components/List/List';
+import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
 
 
 function App() {
@@ -82,6 +85,10 @@ function App() {
       <h2>Dropdown</h2>
       <Dropdown />
       <br />
+      
+      <h2>FilterTypeGroup</h2>
+      <FilterTypeGroup />
+      <br />
 
       <h2>Icon</h2>
       <Icon />
@@ -93,6 +100,10 @@ function App() {
 
       <h2>Link</h2>
       <Link />
+      <br />
+
+      <h2>List</h2>
+      <List />
       <br />
 
       <h2>Modal</h2>
@@ -177,6 +188,10 @@ function App() {
 
       <h2>Table (basic)</h2>
       <BasicTable />
+      <br />
+
+      <h2>Table (advanced)</h2>
+      <AdvancedTable />
       <br />
 
       <h2>Footer</h2>
