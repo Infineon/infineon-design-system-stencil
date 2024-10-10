@@ -15,6 +15,7 @@
 | `errorMessage`  | `error-message`   |             | `string`          | `"Error"`         |
 | `label`         | `label`           |             | `string`          | `""`              |
 | `maxItemCount`  | `max-item-count`  |             | `number`          | `undefined`       |
+| `name`          | `name`            |             | `string`          | `undefined`       |
 | `options`       | `options`         |             | `any[] \| string` | `undefined`       |
 | `placeholder`   | `placeholder`     |             | `string`          | `""`              |
 | `showSearch`    | `show-search`     |             | `boolean`         | `true`            |
