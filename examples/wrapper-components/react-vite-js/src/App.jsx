@@ -33,6 +33,7 @@ import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
+import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 
 
@@ -74,6 +75,10 @@ function App() {
 
       <h2>Chip</h2>
       <Chip />
+      <br />
+
+      <h2>Content Switcher</h2>
+      <ContentSwitcher />
       <br />
 
       <h2>Date Picker</h2>
