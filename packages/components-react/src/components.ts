@@ -57,6 +57,7 @@ import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineI
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
 import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
 import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar.js";
+import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-notification.js";
 import { IfxNumberIndicator as IfxNumberIndicatorElement, defineCustomElement as defineIfxNumberIndicator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-number-indicator.js";
 import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-overview-table.js";
 import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/infineon-design-system-stencil/dist/components/ifx-pagination.js";
@@ -605,6 +606,16 @@ export const IfxNavbarProfile: StencilReactComponent<IfxNavbarProfileElement, If
     react: React,
     events: {} as IfxNavbarProfileEvents,
     defineCustomElement: defineIfxNavbarProfile
+});
+
+type IfxNotificationEvents = NonNullable<unknown>;
+
+export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxNotificationEvents> = /*@__PURE__*/ createComponent<IfxNotificationElement, IfxNotificationEvents>({
+    tagName: 'ifx-notification',
+    elementClass: IfxNotificationElement,
+    react: React,
+    events: {} as IfxNotificationEvents,
+    defineCustomElement: defineIfxNotification
 });
 
 type IfxNumberIndicatorEvents = NonNullable<unknown>;
