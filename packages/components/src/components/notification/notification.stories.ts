@@ -1,3 +1,5 @@
+import { icons } from '@infineon/infineon-icons';
+
 export default {
   title: 'Components/Notification',
   tags: ['autodocs'],
@@ -21,6 +23,8 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed in the notification.',
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' },
     },
     linkText: {
       description: 'Text for the link.',
