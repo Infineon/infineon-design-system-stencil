@@ -100,9 +100,6 @@ jobs:
           # Update React package
           cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] |= sub("^"; "") | .dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          # jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION | sub("^"; "")' package.json > package.json.tmp && mv package.json.tmp package.json
-          echo "After update (React package):"
-          cat package.json
 
           cd ../../
 
