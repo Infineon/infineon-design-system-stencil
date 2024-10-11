@@ -1,3 +1,17 @@
+# v25.8.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Add content-switcher component [#1474](https://github.com/Infineon/infineon-design-system-stencil/pull/1474) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.7.4 (Thu Oct 10 2024)
 
 #### 🐛 Bug Fix

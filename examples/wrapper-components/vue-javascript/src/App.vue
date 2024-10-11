@@ -10,13 +10,12 @@
   <Card />
   <Checkbox />
   <Chip />
+  <ContentSwitcher />
   <DatePicker />
   <Dropdown />
-  <FilterTypeGroup />
   <IconButton />
   <Icon />
   <Link />
-  <List />
   <Modal />
   <MultiSelect />
   <Notification />
@@ -80,6 +79,7 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
+import ContentSwitcher from './components/ContentSwitcher.vue'
 import FilterTypeGroup from './components/FilterTypeGroup.vue'
 
 

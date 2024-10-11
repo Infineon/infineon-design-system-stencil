@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -26,6 +26,8 @@ import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from 
 import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from "@infineon/infineon-design-system-stencil/dist/components/ifx-checkbox.js";
 import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip-item.js";
 import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip.js";
+import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher-item.js";
+import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher.js";
 import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/infineon-design-system-stencil/dist/components/ifx-date-picker.js";
 import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-header.js";
 import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-item.js";
@@ -268,6 +270,26 @@ export const IfxChipItem: StencilReactComponent<IfxChipItemElement, IfxChipItemE
     react: React,
     events: { onIfxChipItemSelect: 'ifxChipItemSelect' } as IfxChipItemEvents,
     defineCustomElement: defineIfxChipItem
+});
+
+type IfxContentSwitcherEvents = { onIfxChange: EventName<IfxContentSwitcherCustomEvent<ChangeEvent>> };
+
+export const IfxContentSwitcher: StencilReactComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherElement, IfxContentSwitcherEvents>({
+    tagName: 'ifx-content-switcher',
+    elementClass: IfxContentSwitcherElement,
+    react: React,
+    events: { onIfxChange: 'ifxChange' } as IfxContentSwitcherEvents,
+    defineCustomElement: defineIfxContentSwitcher
+});
+
+type IfxContentSwitcherItemEvents = NonNullable<unknown>;
+
+export const IfxContentSwitcherItem: StencilReactComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents> = /*@__PURE__*/ createComponent<IfxContentSwitcherItemElement, IfxContentSwitcherItemEvents>({
+    tagName: 'ifx-content-switcher-item',
+    elementClass: IfxContentSwitcherItemElement,
+    react: React,
+    events: {} as IfxContentSwitcherItemEvents,
+    defineCustomElement: defineIfxContentSwitcherItem
 });
 
 type IfxDatePickerEvents = { onIfxDate: EventName<CustomEvent<any>> };
