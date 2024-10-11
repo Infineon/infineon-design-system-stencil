@@ -74,7 +74,7 @@ describe('ifx-content-switcher', () => {
     expect(selectedItems[0].textContent).toBe('Item 1');
   });
 
-  it('should emit ifxSwitch event on selection change', async () => {
+  it('should emit ifxChange event on selection change', async () => {
     const page = await newE2EPage();
     await page.setContent(`<ifx-content-switcher>
       <ifx-content-switcher-item>Item 1</ifx-content-switcher-item>
@@ -82,14 +82,15 @@ describe('ifx-content-switcher', () => {
     </ifx-content-switcher>`);
 
     const component = await page.find('ifx-content-switcher');
-    const switchEventSpy = await component.spyOnEvent('ifxSwitch');
+    const changeEventSpy = await component.spyOnEvent('ifxChange');
 
     const items = await page.findAll('ifx-content-switcher ifx-content-switcher-item');
     await items[0].click();
 
-    expect(switchEventSpy).toHaveReceivedEvent();
-    expect(switchEventSpy).toHaveReceivedEventDetail({ oldIndex: -1, newIndex: 0 });
+    expect(changeEventSpy).toHaveReceivedEvent();
+    expect(changeEventSpy).toHaveReceivedEventDetail({ oldValue: '-1', newValue: '0' });
   });
+
 
   it('should update dividers visibility on selection and hover', async () => {
     const page = await newE2EPage();
