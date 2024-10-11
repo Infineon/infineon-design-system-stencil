@@ -118,6 +118,10 @@ function App() {
       <MultiSelect />
       <br />
 
+      <h2>Notification</h2>
+      <Notification />
+      <br />
+
       <h2>Number indicator</h2>
       <NumberIndicator />
       <br />

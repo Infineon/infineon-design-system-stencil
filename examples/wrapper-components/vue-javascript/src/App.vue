@@ -18,6 +18,7 @@
   <Link />
   <Modal />
   <MultiSelect />
+  <Notification />
   <NumberIndicator />
   <Pagination />
   <ProgressBar />
