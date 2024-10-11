@@ -1,3 +1,17 @@
+# v25.9.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- feat(1447): Add Notification Component [#1493](https://github.com/Infineon/infineon-design-system-stencil/pull/1493) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.8.0 (Fri Oct 11 2024)
 
 #### 🚀 Enhancement
