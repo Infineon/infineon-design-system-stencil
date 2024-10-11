@@ -37,6 +37,7 @@ import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 import List from './components/List/List';
 import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
+import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher.js';
 
 
 function App() {
@@ -78,6 +79,9 @@ function App() {
       <Chip />
       <br />
 
+      <h2>Content Switcher</h2>
+      <ContentSwitcher />
+      
       <h2>Date Picker</h2>
       <DatePicker />
       <br />
