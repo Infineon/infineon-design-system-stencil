@@ -55,7 +55,6 @@ import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
 import NumberIndicator from './components/NumberIndicator.vue'
 import Link from './components/Link.vue'
-import List from './components/List.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
 import Navbar from './components/Navbar.vue'
@@ -80,7 +79,7 @@ import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
 import ContentSwitcher from './components/ContentSwitcher.vue'
-import FilterTypeGroup from './components/FilterTypeGroup.vue'
+import Notification from './components/Notification.vue'
 
 
 </script>
