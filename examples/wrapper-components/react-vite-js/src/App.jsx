@@ -34,6 +34,7 @@ import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
+import Table from './components/Table/Table';
 
 
 function App() {
@@ -182,6 +183,10 @@ function App() {
 
       <h2>Table (basic)</h2>
       <BasicTable />
+      <br />
+
+      <h2>Table (advanced)</h2>
+      <Table />
       <br />
 
       <h2>Footer</h2>
