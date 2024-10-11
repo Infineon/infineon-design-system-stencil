@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Sidebar from './components/Sidebar/Sidebar'
+import Notification from './components/Notification/Notification'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
@@ -107,6 +108,10 @@ function App() {
 
       <h2>MultiSelect</h2>
       <MultiSelect />
+      <br />
+
+      <h2>Notification</h2>
+      <Notification />
       <br />
 
       <h2>Number indicator</h2>
