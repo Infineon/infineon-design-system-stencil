@@ -32,7 +32,6 @@ function getAbsolutePath(value) {
 }
 
  const findAndExcludeFiles = () => {
-
    const allStories = [
     ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)').replaceAll('\\', '/')),
     ...glob.sync(path.join(__dirname, '../src/**/*.mdx').replaceAll('\\', '/'))
@@ -40,7 +39,6 @@ function getAbsolutePath(value) {
   
   // Exclude specific files or patterns
   const filteredStories = allStories.filter(story => {
-    console.log('HERE', story)
     return !(story.includes('components\\table-advanced-version\\filter-type-group') || story.includes('components\\table-advanced-version\\list'));
   });
 
