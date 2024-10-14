@@ -1,3 +1,51 @@
+# v25.9.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- feat(1447): Add Notification Component [#1493](https://github.com/Infineon/infineon-design-system-stencil/pull/1493) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.8.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Add content-switcher component [#1474](https://github.com/Infineon/infineon-design-system-stencil/pull/1474) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.7.4 (Thu Oct 10 2024)
+
+#### 🐛 Bug Fix
+
+- New component: Table (advanced version) [#988](https://github.com/Infineon/infineon-design-system-stencil/pull/988) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx) [@akashyeole](https://github.com/akashyeole) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.3 (github-actions@github.com)
+
+#### Authors: 5
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
 # v25.7.3 (Thu Oct 10 2024)
 
 #### 🐛 Bug Fix
