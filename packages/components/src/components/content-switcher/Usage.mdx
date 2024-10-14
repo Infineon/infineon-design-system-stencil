@@ -1,0 +1,51 @@
+
+import { Meta  } from '@storybook/blocks'
+
+import * as ContentSwitcherStories from './content-switcher.stories';
+import ContentSwitcherAnatomy from '../../../public-storybook/images/content-switcher/content-switcher-anatomy.png';
+import ContentSwitcherMouseInteraction from '../../../public-storybook/images/content-switcher/content-switcher-mouse-interaction.png';
+import ContentSwitcherStates from '../../../public-storybook/images/content-switcher/content-switcher-states.png';
+import ContentSwitcherVariants from '../../../public-storybook/images/content-switcher/content-switcher-variants.png';
+ 
+<Meta of={ContentSwitcherStories} /> 
+
+# Content Switcher
+The Content switcher component allows users to toggle between two or more content sections within the entire content area.
+
+| Resources                                                                                                                |
+|--------------------------------------------------------------------------------------------------------------------------|
+| [Figma Content Switcher component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=63857-4879) |
+
+## Usage
+
+### When to use
+- When you need to switch between different content views or layouts dynamically, often in more complex or interactive scenarios.
+
+### When not to use
+- If you only want to switch between on/off. For this scenario use the switcher component instead.
+
+## Anatomy
+<img src={ContentSwitcherAnatomy} alt="Content Switcher Anatomy" />
+
+**Selected Content Tab(1)**\
+Only one tab can be selected at a time.
+
+**Content Tab(2)**\
+This shows a selectable item which switches the content.
+
+**Label Text(3)**\
+This is the primary text that describes the selected tab. 
+
+**Content Area(4)**\
+The content area is the part where the actual content related to the active tab is displayed. When a user clicks on a tab, the content area updates to show the corresponding content associated with that tab.
+
+## Mouse interaction
+Users can activate and navigate between content switcher tabs by clicking a content tab.
+<img src={ContentSwitcherMouseInteraction} alt="Content Switcher Mouse Interaction" width="50%" />
+
+## States
+<img src={ContentSwitcherStates} alt="Content Switcher States" />
+
+## Variants
+The content switcher allows a various amount of tabs. Consider using max. 5 tabs to ensure a suitable user experience. The vertical divider can be toggled on/off via its “Visible” property. 
+<img src={ContentSwitcherVariants} alt="Content Switcher Variants" />
