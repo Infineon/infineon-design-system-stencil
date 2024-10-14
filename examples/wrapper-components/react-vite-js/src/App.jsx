@@ -37,6 +37,7 @@ import Stepper from './components/Stepper/Stepper';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 
+import SegmentedControls from './components/Segmented Controls/SegmentedControls';
 
 function App() {
  
@@ -142,6 +143,10 @@ function App() {
 
       <h2>Search Bar</h2>
       <SearchBar />
+      <br />
+      
+      <h2>Segmented Controls</h2>
+      <SegmentedControls />
       <br />
 
       <h2>Search Field</h2>
