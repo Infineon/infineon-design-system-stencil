@@ -36,8 +36,7 @@ import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
-
-import SegmentedControls from './components/Segmented Controls/SegmentedControls';
+import SegmentedControls from './components/SegmentedControls/SegmentedControls';
 
 function App() {
  

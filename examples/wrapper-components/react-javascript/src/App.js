@@ -38,7 +38,7 @@ import Stepper from './components/Stepper/Stepper';
 import List from './components/List/List';
 import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher.js';
-import SegmentedControls from './components/Segmented Controls/SegmentedControls';
+import SegmentedControls from './components/SegmentedControls/SegmentedControls';
 
 function App() {
   return (
