@@ -43,6 +43,5 @@ function getAbsolutePath(value) {
   });
 
   const sortedStories = filteredStories.sort();
-
   return sortedStories;
 };
