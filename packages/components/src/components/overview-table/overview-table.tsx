@@ -77,7 +77,7 @@ export class OverviewTable {
                 </div>
               </div>
               <div class="basic__info">
-                <div>Planned:</div>
+                <div>In Progress:</div>
                 <div>
                   <ifx-number-indicator id="number__indicator-planned"></ifx-number-indicator>
                 </div>
