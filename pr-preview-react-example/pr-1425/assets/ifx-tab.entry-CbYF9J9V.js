@@ -1,0 +1,1 @@
+import{r as t,h as s,g as i}from"./index-CIHVXu-t.js";const n=":host{display:block}",a=n,o=class{constructor(e){t(this,e),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"a02d8b776d9e93e1fceb65ae9260d0a8cb7a6e4c"})}get el(){return i(this)}};o.style=a;export{o as ifx_tab};
