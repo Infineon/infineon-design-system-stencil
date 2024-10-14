@@ -7,6 +7,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
 import Sidebar from './components/Sidebar/Sidebar'
+import Notification from './components/Notification/Notification'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
@@ -33,6 +34,9 @@ import Slider from './components/Slider/Slider'
 import Status from './components/Status/Status'
 import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
+import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
+import Table from './components/Table/Table';
+
 import SegmentedControls from './components/Segmented Controls/SegmentedControls';
 
 function App() {
@@ -75,6 +79,10 @@ function App() {
       <Chip />
       <br />
 
+      <h2>Content Switcher</h2>
+      <ContentSwitcher />
+      <br />
+
       <h2>Date Picker</h2>
       <DatePicker />
       <br />
@@ -101,6 +109,10 @@ function App() {
 
       <h2>MultiSelect</h2>
       <MultiSelect />
+      <br />
+
+      <h2>Notification</h2>
+      <Notification />
       <br />
 
       <h2>Number indicator</h2>
@@ -181,6 +193,10 @@ function App() {
 
       <h2>Table (basic)</h2>
       <BasicTable />
+      <br />
+
+      <h2>Table (advanced)</h2>
+      <Table />
       <br />
 
       <h2>Footer</h2>

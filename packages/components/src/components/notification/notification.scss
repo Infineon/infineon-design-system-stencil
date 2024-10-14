@@ -1,0 +1,71 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.ifx-notification__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+
+  background-color: tokens.$ifxColorBaseWhite;
+  font-family: var(--ifx-font-family);
+  color: tokens.$ifxColorBaseBlack;
+
+  border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+
+  &.ifx-notification__wrapper--success {
+    border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorGreen500;
+
+    & .ifx-notification__icon {
+      color: tokens.$ifxColorGreen500;
+    }
+  }
+
+  &.ifx-notification__wrapper--warning {
+    border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorOrange500;
+
+    & .ifx-notification__icon {
+      color: tokens.$ifxColorOrange500;
+    }
+  }
+
+  &.ifx-notification__wrapper--error {
+    border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorRed500;
+
+    & .ifx-notification__icon {
+      color: tokens.$ifxColorRed500;
+    }
+  }
+
+  & .ifx-notification__icon {
+    margin-right: tokens.$ifxSpace100;
+    display: flex;
+    align-self: flex-start;
+    padding-top: 2px;
+  }
+
+  & .ifx-notification__body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
+    & .ifx-notification__slot {
+      flex-grow: 1;
+    }
+  }
+
+  @media (max-width: tokens.$ifxBreakpointXs) {
+    & .ifx-notification__icon {
+      align-self: flex-start;
+    }
+
+    & .ifx-notification__body {
+      flex-direction: column;
+    }
+
+    & .ifx-notification__link {
+      margin-top: tokens.$ifxSpace100;
+    }
+  }
+}
