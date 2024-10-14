@@ -33,8 +33,8 @@ function getAbsolutePath(value) {
 
  const findAndExcludeFiles = () => {
    const allStories = [
-    ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)')),
-    ...glob.sync(path.join(__dirname, '../src/**/*.mdx'))
+    ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)').replaceAll('\\', '/')),
+    ...glob.sync(path.join(__dirname, '../src/**/*.mdx').replaceAll('\\', '/'))
   ];
   
   // Exclude specific files or patterns
