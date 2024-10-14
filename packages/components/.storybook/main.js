@@ -32,17 +32,18 @@ function getAbsolutePath(value) {
 }
 
  const findAndExcludeFiles = () => {
+
    const allStories = [
-    ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)')),
-    ...glob.sync(path.join(__dirname, '../src/**/*.mdx'))
+    ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)').replaceAll('\\', '/')),
+    ...glob.sync(path.join(__dirname, '../src/**/*.mdx').replaceAll('\\', '/'))
   ];
   
   // Exclude specific files or patterns
   const filteredStories = allStories.filter(story => {
-    return !(story.includes('components/table-advanced-version/filter-type-group') || story.includes('components/table-advanced-version/list'));
+    console.log('HERE', story)
+    return !(story.includes('components\\table-advanced-version\\filter-type-group') || story.includes('components\\table-advanced-version\\list'));
   });
 
   const sortedStories = filteredStories.sort();
-
   return sortedStories;
 };
