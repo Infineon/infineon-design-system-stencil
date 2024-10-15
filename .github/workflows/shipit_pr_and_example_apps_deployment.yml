@@ -41,7 +41,7 @@ jobs:
             ~/.npm
             **/node_modules
 
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
@@ -104,10 +104,7 @@ jobs:
           cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../
-
-          # Clear npm cache
-          npm cache clean --force
-          
+         
           npm install
       
           # Verify updates
