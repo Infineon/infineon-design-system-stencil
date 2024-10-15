@@ -12,7 +12,7 @@ describe('ifx-segmented-control-group', () => {
 
   it('should emit ifxChange when segment is clicked/selected', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-segmented-control-group><ifx-segmented-control value="v1">Label</ifx-segmented-control></ifx-segmented-control-group>');
+    await page.setContent('<ifx-segmented-control-group><ifx-segmented-control value="v1">Label</ifx-segmented-control><ifx-segmented-control value="v1" selected="true">Label</ifx-segmented-control></ifx-segmented-control-group>');
 
     const select = await page.find('ifx-segmented-control-group');
     const changeEvent = await select.spyOnEvent('ifxChange');
