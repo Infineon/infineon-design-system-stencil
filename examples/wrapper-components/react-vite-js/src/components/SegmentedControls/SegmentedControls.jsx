@@ -1,5 +1,4 @@
 import { IfxSegmentedControlGroup, IfxSegmentedControl } from '@infineon/infineon-design-system-react';
-import React from 'react';
 
 function SegmentedControls() {
     return (
