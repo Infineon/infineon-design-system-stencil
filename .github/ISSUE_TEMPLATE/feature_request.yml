@@ -19,10 +19,14 @@ body:
     attributes:
       label: Why do you need this feature?
       description: Describe the context and use case.
+    validations:
+      required: true 
   - type: textarea
     attributes:
       label: Do you have a deadline?
       description: Give us a sense of how urgent this feature is.
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Additional Information
