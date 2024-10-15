@@ -1,6 +1,6 @@
-name: Report a Bug
+name: Report a bug
 description: Report a bug or an error
-title: "Component-name: Short summary"
+title: "Component-name: short summary"
 labels: 
   - bug
   - request
@@ -29,5 +29,5 @@ body:
       required: true  
   - type: textarea
     attributes:
-      label: Additional Information
+      label: Additional information
       description: Free text

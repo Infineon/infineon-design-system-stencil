@@ -1,6 +1,6 @@
-name: New Component Request
+name: New component request
 description: Request a new component
-title: "New Component: Component-name"
+title: "New Component: component-name"
 labels: 
   - enhancement
   - request
@@ -13,7 +13,7 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Do you plan to use this component for Web applications, Mobile or Both?
+      label: Do you plan to use this component for web applications, mobile or both?
       description: Free text
     validations:
       required: true
@@ -41,5 +41,5 @@ body:
       required: true 
   - type: textarea
     attributes:
-      label: Additional Information
+      label: Additional information
       description: Free text
