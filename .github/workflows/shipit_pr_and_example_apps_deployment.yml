@@ -33,10 +33,18 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Remove existing node_modules and clear npm cache
-        run: |
-          find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +
-          npm cache clean --force
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
         run: npm install
@@ -138,14 +146,11 @@ jobs:
           # Update Vue wrapper component
           cd examples/wrapper-components/vue-javascript
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-vue"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          npm i
           cd ../../..
   
           # Update React wrapper component
           cd examples/wrapper-components/react-vite-js
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          rm -rf node_modules
-          npm i
           cd ../../..
 
       - name: Commit and push all changes
@@ -181,7 +186,7 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
-          npm install
+          npm i
           npm run build
 
       - name: Deploy preview
@@ -213,6 +218,7 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-vite-js
+          rm -rf node_modules
           npm install
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
