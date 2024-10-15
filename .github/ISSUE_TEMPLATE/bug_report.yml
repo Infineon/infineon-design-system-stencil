@@ -1,0 +1,31 @@
+name: Report a Bug
+description: Report a bug or an error
+title: "Component-name: Short summary"
+labels: 
+  - bug
+  - request
+body:
+  - type: textarea
+    attributes:
+      label: Detailed description of how to reproduce the problem
+      description: A clear and concise description of what the bug is, and how to reproduce is
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Upload a screenshot
+      description: Please provide a screenshot of the bug
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Describe the development framework
+      description: Tech stack, environment, versions, and any other relevant information to help us reproduce the bug
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen
+  - type: textarea
+    attributes:
+      label: Additional Information
+      description: Free text
