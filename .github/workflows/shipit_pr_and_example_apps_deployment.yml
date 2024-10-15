@@ -88,6 +88,9 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
       
+          # Set npm configuration to save exact versions
+          npm config set save-exact true
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
@@ -99,11 +102,13 @@ jobs:
       
           # Update React package
           cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] |= sub("^"; "") | .dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../
 
-          npm ci
+          # Clear npm cache
+          npm cache clean --force
+          
+          npm install
       
           # Verify updates
           echo "Verifying updates in Angular package"
