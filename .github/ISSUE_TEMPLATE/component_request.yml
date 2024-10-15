@@ -1,0 +1,39 @@
+name: New Component Request
+description: Request a new component
+title: "New Component: Component-name"
+labels: 
+  - enhancement
+  - request
+body:
+  - type: textarea
+    attributes:
+      label: Detailed description of the component, its design and behavior
+      description: A clear and concise description of the component
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Do you plan to use this component for Web applications, Mobile or Both?
+      description: Free text
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Upload a screenshot or reference an example if possible
+      description: If you are able to illustrate the component with an example, please provide a sample reference or a screenshot.
+  - type: textarea
+    attributes:
+      label: Why do you need this component?
+      description: Describe the context and use case.
+  - type: textarea
+    attributes:
+      label: Do you have a deadline?
+      description: Give us a sense of how urgent this component is.
+  - type: textarea
+    attributes:
+      label: What project is this component for?
+      description: Describe the technology stack and the project's purpose.
+  - type: textarea
+    attributes:
+      label: Additional Information
+      description: Free text
