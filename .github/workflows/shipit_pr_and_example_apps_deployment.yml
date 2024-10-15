@@ -103,7 +103,7 @@ jobs:
 
           cd ../../
 
-          npm ci
+          npm install
       
           # Verify updates
           echo "Verifying updates in Angular package"
