@@ -11,7 +11,7 @@
 | ---------- | ---------- | ----------- | ----------------------------------------------------------- | ----------- |
 | `closable` | `closable` |             | `boolean`                                                   | `true`      |
 | `icon`     | `icon`     |             | `string`                                                    | `undefined` |
-| `variant`  | `variant`  |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'` |
+| `variant`  | `variant`  |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'success'` |
 
 
 ## Events
