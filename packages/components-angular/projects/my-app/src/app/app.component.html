@@ -305,7 +305,9 @@
 
 
 <div>
-  <ifx-navbar  show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+<div class="row">
+  <div class="col">
+  <ifx-navbar  show-logo-and-appname="false" application-name="App name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
     <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="" >
       Menu Item 1
       <ifx-navbar-item icon="calendar16">
@@ -373,8 +375,29 @@
       <ifx-navbar-item>Item</ifx-navbar-item>
     </ifx-navbar-profile>
   </ifx-navbar>
+</div>
+
+<div class="col">
+  <ifx-sidebar application-name="Application Name">
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item (ifxSidebarNavigationItem)="handleSidebarNavigationItemClick($event)" target="_blank"
+          icon="image-16">Click me</ifx-sidebar-item>
+        <ifx-sidebar-item icon="image-16" active="true">
+          Menu Item 2
+        </ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Two</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
+    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
+  </ifx-sidebar>
   <br />
   <br />
+</div>	
+</div>
 
   <h1>Using Stencil web components in an Angular application</h1>
   <br />
@@ -527,6 +550,23 @@
   <br />
   <br />
 
+  
+  <h2>Content Switcher</h2>
+  <ifx-content-switcher>
+    <ifx-content-switcher-item selected>
+      <ifx-icon icon="applications-16"></ifx-icon>Item 1
+    </ifx-content-switcher-item>
+    <ifx-content-switcher-item>
+      <ifx-icon icon="applications-16"></ifx-icon>Item 2
+    </ifx-content-switcher-item>
+    <ifx-content-switcher-item>
+      <ifx-icon icon="applications-16"></ifx-icon>Item 3
+    </ifx-content-switcher-item>
+    <ifx-content-switcher-item>
+      <ifx-icon icon="applications-16"></ifx-icon>Item 4
+    </ifx-content-switcher-item>
+  </ifx-content-switcher>
+
   <h2>Dropdown</h2>
   <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
     <ifx-dropdown-trigger-button icon="calendar16">
@@ -578,6 +618,17 @@
     options='[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false, "children": [{ "value": "b1", "label": "option b1", "selected": false}] }, { "value": "c", "label": "option c", "selected": false }]'
     size="medium (40px)" error="true" error-message="Some error" label="" disabled="false"></ifx-multiselect>
   <span>Succeeding element</span>
+  <br />
+  <br />
+
+  <div>
+    <h2>Notification</h2>
+    <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success notification</ifx-notification>
+    <br />
+    <ifx-notification icon="lock-16" variant="warning" link-text="Link" link-href="https://www.example.com">Warning notification</ifx-notification>
+    <br />
+    <ifx-notification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error notification</ifx-notification>
+  </div>
   <br />
   <br />
 
@@ -703,6 +754,51 @@
     rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000}]'
     table-height='auto'>
   </ifx-basic-table>
+  <br />
+  <br />
+
+  <h2>
+    Table (Advanced)
+  </h2>
+  <ifx-table
+  row-height="default"
+  cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
+  rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000},{"make":"Bmw","model":"x","price":72000},{"make":"Mercedes","model":"y","price":72000},{"make":"Ferrari","model":"z","price":72000},{"make":"Chrysler","model":"a","price":72000},{"make":"Range rover","model":"b","price":72000},{"make":"Tesla","model":"x","price":72000},{"make":"Audi","model":"3","price":72000},{"make":"Landrover","model":"x","price":72000}]'
+  table-height="auto"
+  pagination="false"
+  pagination-page-size="10"
+  filter-orientation="sidebar">
+  <ifx-filter-type-group slot="sidebar-filter">
+      <div slot="filter-search">
+        <ifx-filter-search filter-orientation="sidebar" filter-name="search"></ifx-filter-search>
+      </div>
+      
+    <ifx-filter-accordion slot="filter-accordion" filter-group-name="make">
+      <ifx-list slot="list" type="checkbox" name="make" max-visible-items="6">
+        <ifx-list-entry slot="slot0" label="Toyota" value="false"></ifx-list-entry><ifx-list-entry slot="slot1" label="Ford" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="Porsche" value="false"></ifx-list-entry><ifx-list-entry slot="slot3" label="Bmw" value="false"></ifx-list-entry><ifx-list-entry slot="slot4" label="Mercedes" value="false"></ifx-list-entry><ifx-list-entry slot="slot5" label="Ferrari" value="false"></ifx-list-entry><ifx-list-entry slot="slot6" label="Chrysler" value="false"></ifx-list-entry><ifx-list-entry slot="slot7" label="Range rover" value="false"></ifx-list-entry><ifx-list-entry slot="slot8" label="Tesla" value="false"></ifx-list-entry><ifx-list-entry slot="slot9" label="Audi" value="false"></ifx-list-entry><ifx-list-entry slot="slot10" label="Landrover" value="false"></ifx-list-entry>
+      </ifx-list>
+    </ifx-filter-accordion>
+  
+    <ifx-filter-accordion slot="filter-accordion" filter-group-name="model">
+      <ifx-list slot="list" type="checkbox" name="model" max-visible-items="6">
+        <ifx-list-entry slot="slot0" label="Celica" value="false"></ifx-list-entry><ifx-list-entry slot="slot1" label="Mondeo" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="Boxster" value="false"></ifx-list-entry><ifx-list-entry slot="slot3" label="x" value="false"></ifx-list-entry><ifx-list-entry slot="slot4" label="y" value="false"></ifx-list-entry><ifx-list-entry slot="slot5" label="z" value="false"></ifx-list-entry><ifx-list-entry slot="slot6" label="a" value="false"></ifx-list-entry><ifx-list-entry slot="slot7" label="b" value="false"></ifx-list-entry><ifx-list-entry slot="slot8" label="3" value="false"></ifx-list-entry>
+      </ifx-list>
+    </ifx-filter-accordion>
+  
+    <ifx-filter-accordion slot="filter-accordion" filter-group-name="price">
+      <ifx-list slot="list" type="checkbox" name="price" max-visible-items="6">
+        <ifx-list-entry slot="slot0" label="35000" value="false"></ifx-list-entry><ifx-list-entry slot="slot1" label="32000" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="72000" value="false"></ifx-list-entry>
+      </ifx-list>
+    </ifx-filter-accordion>
+  
+    <ifx-filter-accordion slot="filter-accordion" filter-group-name="age">
+      <ifx-list slot="list" type="checkbox" name="age" max-visible-items="6">
+        <ifx-list-entry slot="slot0" label="10" value="false"></ifx-list-entry><ifx-list-entry slot="slot1" label="12" value="false"></ifx-list-entry><ifx-list-entry slot="slot2" label="undefined" value="false"></ifx-list-entry>
+      </ifx-list>
+    </ifx-filter-accordion>
+  
+  </ifx-filter-type-group>
+</ifx-table>
   <br />
   <br />
 

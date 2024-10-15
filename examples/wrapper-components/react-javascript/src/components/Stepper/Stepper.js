@@ -3,7 +3,7 @@ import { IfxStepper, IfxStep, IfxButton } from "@infineon/infineon-design-system
 
 function Stepper(){
 
-    const [activeStep, setActiveStep] = useState(3);
+    const [activeStep, setActiveStep] = useState(4);
 
     useEffect(() => { 
         const myStepper = document.getElementById('myStepper')
@@ -35,7 +35,7 @@ function Stepper(){
         <div>
             <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
                 <IfxStep>Step 1</IfxStep>
-                <IfxStep>Step 2</IfxStep>
+                <IfxStep disabled='true'>Step 2</IfxStep>
                 <IfxStep>Step 3</IfxStep>
                 <IfxStep>Step 4</IfxStep>
                 <IfxStep>Step 5</IfxStep>
