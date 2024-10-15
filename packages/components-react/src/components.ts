@@ -704,7 +704,7 @@ export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSea
     defineCustomElement: defineIfxSearchField
 });
 
-type IfxSegmentedControlEvents = { onSegmentSelect: EventName<CustomEvent<string>> };
+type IfxSegmentedControlEvents = { onSegmentSelect: EventName<CustomEvent<number>> };
 
 export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
     tagName: 'ifx-segmented-control',

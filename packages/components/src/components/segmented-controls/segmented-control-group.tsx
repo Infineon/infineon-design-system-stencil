@@ -1,4 +1,4 @@
-import { h, Component, Element, Event, EventEmitter, Listen, Prop, Watch } from "@stencil/core";
+import { h, Component, Element, Event, EventEmitter, Listen, Prop } from "@stencil/core";
 
 @Component ({
     tag: 'ifx-segmented-control-group',
@@ -14,20 +14,34 @@ export class SegmentedControlGroup {
     @Prop() caption: string = '';
     @Prop() groupLabel: string = '';
     @Prop() size: 'regular' | 'small' = 'regular';
-    @Prop() selectedValue: string;
 
     @Listen('segmentSelect')
     onSegmentSelect(event: CustomEvent) {
-        if (this.selectedValue !== event.detail) {
-            this.ifxChange.emit({ previousValue: this.selectedValue, selectedValue: event.detail});
-        }
+        const { previousValue, selectedValue } = this.unselectPreviousSegment(event.detail);
+        this.selectedValue = selectedValue;
+        this.ifxChange.emit({ previousValue, selectedValue });
     }
 
-    @Watch('selectedValue')
-    handleValueChange() {
-        this.setActiveSegment();
-    }
+    private selectedValue: string = '';
 
+    unselectPreviousSegment(newSelectedIndex: number): { previousValue: string, selectedValue: string } {
+        let previousValue: string;
+        let selectedValue: string;
+
+        const segmentedControls: NodeList = this.getSegmentedControls();
+        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
+            if (control.selected) {
+                if (control.segmentIndex !== newSelectedIndex) {
+                    control.selected = false;
+                    previousValue = control.value;
+                } else {
+                    selectedValue = control.value;
+                }
+            }
+        })
+
+        return { previousValue, selectedValue };
+    }
 
     getSegmentedControls(): NodeList {
         return this.segmentedControlGroup.querySelectorAll('ifx-segmented-control');
@@ -35,13 +49,22 @@ export class SegmentedControlGroup {
 
     setActiveSegment(): void {
         const segmentedControls: NodeList = this.getSegmentedControls();
-        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
-            if (control.value === this.selectedValue) {
-                control.shadowRoot.querySelector('.control').classList.add('control--selected');
+        let activeSegmentedControlFound = false;
+        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement, idx: number) => {
+            control.segmentIndex = idx;
+            if (activeSegmentedControlFound) {
+                if (control.selected) control.selected = false;
             } else {
-                control.shadowRoot.querySelector('.control').classList.remove('control--selected');
+                if (control.selected) {
+                    activeSegmentedControlFound = true;
+                    this.selectedValue = control.value;
+                }
             }
         });
+        if (!activeSegmentedControlFound && segmentedControls.length) {
+            (segmentedControls[0] as HTMLIfxSegmentedControlElement).selected = true;
+            this.selectedValue = (segmentedControls[0] as HTMLIfxSegmentedControlElement).value;
+        }
     }
 
 

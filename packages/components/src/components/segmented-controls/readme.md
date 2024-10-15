@@ -7,12 +7,11 @@
 
 ## Properties
 
-| Property        | Attribute        | Description | Type                   | Default     |
-| --------------- | ---------------- | ----------- | ---------------------- | ----------- |
-| `caption`       | `caption`        |             | `string`               | `''`        |
-| `groupLabel`    | `group-label`    |             | `string`               | `''`        |
-| `selectedValue` | `selected-value` |             | `string`               | `undefined` |
-| `size`          | `size`           |             | `"regular" \| "small"` | `'regular'` |
+| Property     | Attribute     | Description | Type                   | Default     |
+| ------------ | ------------- | ----------- | ---------------------- | ----------- |
+| `caption`    | `caption`     |             | `string`               | `''`        |
+| `groupLabel` | `group-label` |             | `string`               | `''`        |
+| `size`       | `size`        |             | `"regular" \| "small"` | `'regular'` |
 
 
 ## Events

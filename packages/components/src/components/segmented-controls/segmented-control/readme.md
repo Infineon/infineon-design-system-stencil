@@ -7,17 +7,19 @@
 
 ## Properties
 
-| Property             | Attribute | Description | Type     | Default     |
-| -------------------- | --------- | ----------- | -------- | ----------- |
-| `icon`               | `icon`    |             | `string` | `undefined` |
-| `value` _(required)_ | `value`   |             | `string` | `undefined` |
+| Property             | Attribute       | Description | Type      | Default     |
+| -------------------- | --------------- | ----------- | --------- | ----------- |
+| `icon`               | `icon`          |             | `string`  | `undefined` |
+| `segmentIndex`       | `segment-index` |             | `number`  | `undefined` |
+| `selected`           | `selected`      |             | `boolean` | `false`     |
+| `value` _(required)_ | `value`         |             | `string`  | `undefined` |
 
 
 ## Events
 
 | Event           | Description | Type                  |
 | --------------- | ----------- | --------------------- |
-| `segmentSelect` |             | `CustomEvent<string>` |
+| `segmentSelect` |             | `CustomEvent<number>` |
 
 
 ## Dependencies
