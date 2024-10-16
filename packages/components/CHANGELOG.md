@@ -1,3 +1,15 @@
+# v25.10.0 (Wed Oct 16 2024)
+
+#### 🚀 Enhancement
+
+- docs(#1528): add documentation for content switcher [#1533](https://github.com/Infineon/infineon-design-system-stencil/pull/1533) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v25.9.0 (Fri Oct 11 2024)
 
 #### 🚀 Enhancement
