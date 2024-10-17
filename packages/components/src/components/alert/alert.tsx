@@ -5,7 +5,6 @@ import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
   styleUrl: 'alert.scss',
   shadow: true,
 })
-
 export class Alert {
   @Prop() variant: 'primary' | 'success' | 'danger' | 'warning' | 'info' = 'primary';
   @Prop() icon: string;
@@ -15,44 +14,45 @@ export class Alert {
   @Prop() ariaIconLabel: string;
   @Prop() ariaLive = 'assertive';
 
-  handleClose() { 
-    this.ifxClose.emit()
+  handleClose() {
+    this.ifxClose.emit();
+  }
+
+  renderCloseButton() {
+    return (
+      <div class="close-icon-wrapper">
+        <button onClick={this.handleClose.bind(this)} aria-label="Dismiss alert">
+          <ifx-icon icon="cross-16" />
+        </button>
+      </div>
+    );
   }
 
   render() {
-    return (
-     this.variant === 'info' 
-     ? <div class='alert__info-wrapper' role="alert" aria-live={this.ariaLive} aria-labelledby="alert-description">
-        <div class='info__text-wrapper'>
+    return this.variant === 'info' ? (
+      <div class="alert__info-wrapper" role="alert" aria-live={this.ariaLive} aria-labelledby="alert-description">
+        <div class="info__text-wrapper">
           <div class="info__headline-wrapper">
-            <slot name='headline' />
+            <slot name="headline" />
           </div>
           <div id="alert-description" class="info__description-wrapper">
-            <slot name='desc' />
+            <slot name="desc" />
           </div>
         </div>
-        { this.closable && <div class="close-icon-wrapper">
-          <button onClick={this.handleClose.bind(this)} aria-label="Dismiss">
-            <ifx-icon icon='cross-16' />
-          </button>
-        </div> }
+        {this.closable ? this.renderCloseButton() : null}
       </div>
-     : <div class={`alert ${this.variant}`} role="alert">
+    ) : (
+      <div class={`alert ${this.variant}`} role="alert">
         {this.icon && (
-          <div class='icon-wrapper'>
+          <div class="icon-wrapper">
             <ifx-icon icon={this.icon} />
           </div>
-        )
-        }
+        )}
         <div class="alert-text">
           <slot />
         </div>
-        { this.closable && <div class="close-icon-wrapper">
-          <button onClick={this.handleClose.bind(this)} aria-label="Dismiss">
-            <ifx-icon icon='cross-16' />
-          </button>
-        </div> }
-      </div >
+        {this.closable ? this.renderCloseButton() : null}
+      </div>
     );
   }
 }
