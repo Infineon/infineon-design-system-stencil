@@ -11,6 +11,24 @@
 
 }
 
+.accordion-title:focus {
+  outline: none;
+}
+
+// workaround to add corner radius to outline
+.accordion-title:focus::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -4px;
+  right: -4px;
+  border-radius: 5px;
+  border: 2px solid tokens.$ifxColorOcean500;
+  box-sizing: border-box;
+}
+
 .accordion-title:hover {
   border: 1px solid tokens.$ifxColorEngineering200;
   color: tokens.$ifxColorOcean600;
@@ -19,12 +37,14 @@
 .accordion-title {
   display: flex;
   align-items: center;
+  position: relative;
   padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
   gap: tokens.$ifxSpace150;
   color: tokens.$ifxColorOcean500;
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
+  margin: 4px;
 }
 
 .accordion-caption {
