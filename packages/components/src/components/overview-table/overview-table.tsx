@@ -77,7 +77,7 @@ export class OverviewTable {
                 </div>
               </div>
               <div class="basic__info">
-                <div>Planned:</div>
+                <div>In Progress:</div>
                 <div>
                   <ifx-number-indicator id="number__indicator-planned"></ifx-number-indicator>
                 </div>
@@ -1513,6 +1513,41 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-table-advanced--development" size="s" variant="bold">Advanced Table</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Pagination</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Sidebar filter</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Topbar filter</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Nestable buttons</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tabs--development" size="s" variant="bold">Tabs</ifx-link>
                   </td>
                   <td >
@@ -1690,18 +1725,81 @@ export class OverviewTable {
                   </td>
                   <td></td>
                 </tr>
-            
                 <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Advanced Table</ifx-link>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development" size="s" variant="bold">Notification</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Offers a flexible and visually distinct container for presenting informative, warning, or error messages to users, enhancing the overall user experience with timely and relevant feedback</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development" size="s" variant="bold">Content Switcher</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a flexible and intuitive interface for dynamically switching between different content sections or views within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable mechanism for users to toggle and display diverse content panels, facilitating seamless navigation and interaction with varying information or functional contexts</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Segmented Controls</ifx-link>
                   </td>
                   <td>
                     <ul>
-                      <li class="planned__component-wrapper">
+                      <li>
                         <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
-                        <span>Planned</span>
+                        <span>Provides a clear and interactive interface for users to make mutually exclusive selections among multiple options within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable set of segmented buttons or tabs, allowing users to toggle between different choices or views, typically used for filtering, categorization, or navigation purposes</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
                       </li>
                     </ul>
                   </td>
@@ -1719,7 +1817,7 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
                         </span>
-                        <span>Planned</span>
+                        <span>On Hold</span>
                       </li>
                     </ul>
                   </td>
@@ -1729,33 +1827,69 @@ export class OverviewTable {
             
                 <tr>
                   <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Radio Group</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
-                        </span>
-                        <span>Planned</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-          
-                <tr>
-                  <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Advanced Date Picker</ifx-link>
                   </td>
                   <td>
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
                         </span>
-                        <span>Planned</span>
+                        <span>In Progress</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="planned__component sticky-col second-col">
+                    <ifx-link href="" size="s" variant="bold">Upload</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li class="planned__component-wrapper">
+                        <span>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                        </span>
+                        <span>In Progress</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="planned__component sticky-col second-col">
+                    <ifx-link href="" size="s" variant="bold">Checkbox Group</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li class="planned__component-wrapper">
+                        <span>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                        </span>
+                        <span>In Progress</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="planned__component sticky-col second-col">
+                    <ifx-link href="" size="s" variant="bold">Radio Group</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li class="planned__component-wrapper">
+                        <span>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                        </span>
+                        <span>In Progress</span>
                       </li>
                     </ul>
                   </td>
@@ -1771,9 +1905,27 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
                         </span>
-                        <span>Planned</span>
+                        <span>In Progress</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td class="planned__component sticky-col second-col">
+                    <ifx-link href="" size="s" variant="bold">Tree View</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li class="planned__component-wrapper">
+                        <span>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                        </span>
+                        <span>In Progress</span>
                       </li>
                     </ul>
                   </td>
@@ -1791,7 +1943,7 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
                         </span>
-                        <span>Planned</span>
+                        <span>On Hold</span>
                       </li>
                     </ul>
                   </td>
