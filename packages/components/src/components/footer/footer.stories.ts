@@ -43,7 +43,7 @@ const DefaultTemplate = args => {
 
 export const Medium = DefaultTemplate.bind({});
 
-const SmallTemplate = () => `<ifx-footer variant="small">
+const SmallTemplate = () => `<ifx-footer>
     <div slot="info">
       <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
       <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
