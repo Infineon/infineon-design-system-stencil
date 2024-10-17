@@ -12,7 +12,7 @@ export class Alert {
   @Prop() closable: boolean = true;
 
   @Prop() ariaIconLabel: string;
-  @Prop() ariaLive = 'assertive';
+  @Prop() ifxAriaLive = 'assertive';
 
   alertTypeDescription = {
     "primary": 'Neutral alert',
@@ -38,7 +38,7 @@ export class Alert {
 
   render() {
     return this.variant === 'info' ? (
-      <div class="alert__info-wrapper" role="alert" aria-live={this.ariaLive} aria-description={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
+      <div class="alert__info-wrapper" role="alert" aria-live={this.ifxAriaLive} aria-description={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
         <div class="info__text-wrapper">
           <div class="info__headline-wrapper">
             <slot name="headline" />
