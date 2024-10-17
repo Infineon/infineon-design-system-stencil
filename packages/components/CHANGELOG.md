@@ -1,3 +1,145 @@
+# v25.10.0 (Wed Oct 16 2024)
+
+#### 🚀 Enhancement
+
+- docs(#1528): add documentation for content switcher [#1533](https://github.com/Infineon/infineon-design-system-stencil/pull/1533) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v25.9.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- feat(1447): Add Notification Component [#1493](https://github.com/Infineon/infineon-design-system-stencil/pull/1493) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.8.0 (Fri Oct 11 2024)
+
+#### 🚀 Enhancement
+
+- Enhancement: Add content-switcher component [#1474](https://github.com/Infineon/infineon-design-system-stencil/pull/1474) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.7.4 (Thu Oct 10 2024)
+
+#### 🐛 Bug Fix
+
+- New component: Table (advanced version) [#988](https://github.com/Infineon/infineon-design-system-stencil/pull/988) (lechneve@ISCN5CG1201S7M.infineon.com [@verena-ifx](https://github.com/verena-ifx) [@akashyeole](https://github.com/akashyeole) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.3 (github-actions@github.com)
+
+#### Authors: 5
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+- verena-ifx (lechneve@ISCN5CG1201S7M.infineon.com)
+
+---
+
+# v25.7.3 (Thu Oct 10 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: tab underline border now adjusting dynamically on screen resize [#1537](https://github.com/Infineon/infineon-design-system-stencil/pull/1537) ([@akashyeole](https://github.com/akashyeole))
+- Update Stencil library version to 25.7.2 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.7.2 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: prevent active tab from becoming negative index which causes error in React [#1532](https://github.com/Infineon/infineon-design-system-stencil/pull/1532) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.7.1 (Wed Oct 09 2024)
+
+#### 🐛 Bug Fix
+
+- docs(1529): link selected control in Chip story with the component [#1530](https://github.com/Infineon/infineon-design-system-stencil/pull/1530) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.7.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.7.0 (Tue Oct 08 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: skip step if disabled [#1525](https://github.com/Infineon/infineon-design-system-stencil/pull/1525) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.4 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
+# v25.6.4 (Thu Oct 03 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar: number-indicator not showing anymore when empty [#1481](https://github.com/Infineon/infineon-design-system-stencil/pull/1481) ([@akashyeole](https://github.com/akashyeole))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 25.6.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- github-actions (github-actions@github.com)
+
+---
+
 # v25.6.3 (Thu Oct 03 2024)
 
 #### 🐛 Bug Fix

@@ -6,7 +6,7 @@
     "update-link": "node update-link.js",
     "dev": "vite",
     "dev:watch": "run-p build:stencil dev watch",
-    "build:stencil": "npm i && cd ../../../packages/components && npm run dev:stencil",
+    "build:stencil": "cd ../../../packages/components && npm run dev:stencil",
     "watch": "nodemon --watch ../../../packages/components/dist --exec \"node utils/copy.js\"",
     "build": "vite build",
     "preview": "vite preview"
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.2--canary.35.37fb280e88ed6cac90c421f89ba851375e93e62d.0",
-    "@infineon/infineon-design-system-stencil": "20.44.1--canary.952.e2740b8e640aa78a0a199512580d52d96004104f.0",
+    "@infineon/infineon-design-system-stencil": "^20.44.1--canary.952.e2740b8e640aa78a0a199512580d52d96004104f.0",
     "typescript": "^4.5.4"
   }
 }

@@ -35,7 +35,7 @@
 .active-border {
   content: "";
   position: absolute;
-  transition: left 0.3s ease-in-out, width 0.3s ease-in-out, top 0.3s ease-in-out, height 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out, top 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .tabs.horizontal .active-border {
