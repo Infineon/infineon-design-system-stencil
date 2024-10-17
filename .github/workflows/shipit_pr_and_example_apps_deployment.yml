@@ -41,7 +41,7 @@ jobs:
             ~/.npm
             **/node_modules
 
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
@@ -88,6 +88,9 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
       
+          # Set npm configuration to save exact versions
+          npm config set save-exact true
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
@@ -99,11 +102,10 @@ jobs:
       
           # Update React package
           cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] |= sub("^"; "") | .dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../
-
-          npm ci
+         
+          npm install
       
           # Verify updates
           echo "Verifying updates in Angular package"
@@ -216,11 +218,11 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-vite-js
+          rm -rf node_modules
+          npm install
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
-          rm -rf node_modules
-          npm install
           npm run build
 
       - name: Deploy preview
