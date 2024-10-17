@@ -4,15 +4,15 @@
 .control {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: tokens.$ifxSize100;
     position: relative;
 
-    outline: tokens.$ifxBorderRadius25 solid tokens.$ifxColorEngineering300;
+    border: tokens.$ifxBorderRadius12 solid tokens.$ifxColorEngineering300;
     border-radius: tokens.$ifxBorderRadius12;
     padding: 0 tokens.$ifxSize100 0 tokens.$ifxSize100;
 
     height: 34px;
-    width: fit-content;
 
     background-color: tokens.$ifxColorBaseWhite;
 
@@ -46,4 +46,18 @@
     &.control--small {
         height: 30px;
     }
+}
+
+.control::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    outline: tokens.$ifxBorderRadius12 solid tokens.$ifxColorEngineering300;
+    border-radius: tokens.$ifxBorderRadius12;
+
+    content: '';
 }

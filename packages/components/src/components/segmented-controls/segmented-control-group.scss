@@ -19,15 +19,18 @@
 .group__controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 1px;
+}
+
+.group__controls::after {
+    content: '';
+    flex-grow: 1000000;
+}
+
+.group__controls ::slotted(*) {
+    flex: 1 1;
     
-    padding: 1px;
-    outline: tokens.$ifxSpace12 solid tokens.$ifxColorEngineering300;
-    border-radius: tokens.$ifxSpace12;
-    
-    width: fit-content;
-    
-    background-color: tokens.$ifxColorEngineering300;
+    margin-left: -1px;
+    margin-top: -1px;
 }
 
 .group__caption {
