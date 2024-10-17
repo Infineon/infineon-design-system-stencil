@@ -52,9 +52,21 @@
     justify-content: flex-start;
     //min-width: tokens.$ifxSize500;
 
-    & a {
+    & button {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 0;
       color: tokens.$ifxColorBaseBlack;
+      height: tokens.$ifxSize300;
+      width: tokens.$ifxSize300;
+
+
+      &:focus {
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 2px;
+      }
     }
   }
 }
@@ -75,9 +87,20 @@
     justify-content: center;
     min-width: tokens.$ifxSize500;
 
-    & a {
+    & button {
+      all: unset;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 0;
       color: tokens.$ifxColorBaseBlack;
+      height: tokens.$ifxSize300;
+      width: tokens.$ifxSize300;
+
+      &:focus {
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 2px;
+      }
     }
   }
 
