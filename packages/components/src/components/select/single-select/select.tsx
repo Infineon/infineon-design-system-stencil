@@ -435,7 +435,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               },
               input: ({ classNames }) => {
                 return template(`
-              <input type="search" name="search_terms" 
+              <input type="search"
               class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
               autocomplete="off"
               autocapitalize="off"
