@@ -96,7 +96,7 @@ render() {
            {/* Checkbox; renders only in 'multi' variant. */}
            { 
                this.chipState.variant === 'multi' &&
-               <ifx-checkbox value={this.selected}
+               <ifx-checkbox checked={this.selected}
                    tabIndex={-1} 
                    size='s'>
                </ifx-checkbox>
