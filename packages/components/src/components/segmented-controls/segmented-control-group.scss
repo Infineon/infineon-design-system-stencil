@@ -1,0 +1,42 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: tokens.$ifxSpace150;
+}
+
+.group__label {
+    font: tokens.$ifxBodyBody05;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.group__controls {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.group__controls::after {
+    content: '';
+    flex-grow: 1000000;
+}
+
+.group__controls ::slotted(*) {
+    flex: 1 1;
+    
+    margin-left: -1px;
+    margin-top: -1px;
+}
+
+.group__caption {
+    display: flex;
+    align-items: center;
+    gap: tokens.$ifxSpace100;
+    
+    font: tokens.$ifxBodyBody05;
+}
