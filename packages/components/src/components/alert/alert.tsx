@@ -14,6 +14,14 @@ export class Alert {
   @Prop() ariaIconLabel: string;
   @Prop() ariaLive = 'assertive';
 
+  alertTypeDescription = {
+    "primary": 'Neutral alert',
+    "success": 'Success Alert',
+    "danger": 'Error Alert',
+    "warning": 'Warning Alert',
+    "info": 'Neutral alert',
+  };
+
   handleClose() {
     this.ifxClose.emit();
   }
@@ -30,7 +38,7 @@ export class Alert {
 
   render() {
     return this.variant === 'info' ? (
-      <div class="alert__info-wrapper" role="alert" aria-live={this.ariaLive} aria-labelledby="alert-description">
+      <div class="alert__info-wrapper" role="alert" aria-live={this.ariaLive} aria-description={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
         <div class="info__text-wrapper">
           <div class="info__headline-wrapper">
             <slot name="headline" />
