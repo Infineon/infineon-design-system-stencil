@@ -81,6 +81,7 @@ import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } fr
 import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tabs.js";
 import { IfxTag as IfxTagElement, defineCustomElement as defineIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tag.js";
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
+import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
@@ -874,6 +875,16 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxTextFieldEvents,
     defineCustomElement: defineIfxTextField
+});
+
+type IfxTextareaEvents = NonNullable<unknown>;
+
+export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
+    tagName: 'ifx-textarea',
+    elementClass: IfxTextareaElement,
+    react: React,
+    events: {} as IfxTextareaEvents,
+    defineCustomElement: defineIfxTextarea
 });
 
 type IfxTooltipEvents = NonNullable<unknown>;
