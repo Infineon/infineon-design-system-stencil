@@ -64,5 +64,4 @@ const Template = args => {
 export const Default = Template.bind({});
 Default.args = {
   amountOfItems: 3,
-  ariaLevel: 3,
 };
