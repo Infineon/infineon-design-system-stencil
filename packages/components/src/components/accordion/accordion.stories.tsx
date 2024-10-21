@@ -7,10 +7,17 @@ export default {
 
   args: {
     autoCollapse: false,
+    AriaLevel: 3,
   },
 
   argTypes: {
     amountOfItems: { control: 'number' },
+    AriaLevel: { 
+      control: 'number', 
+      min: 1, 
+      max: 6, 
+      description: 'The aria-level attribute for the accordion item header.' 
+    },
   },
 };
 
@@ -19,6 +26,7 @@ const Template = args => {
   const initialItem = document.createElement('ifx-accordion-item');
   initialItem.setAttribute('caption', `Label`);
   initialItem.setAttribute('open', `true`);
+  initialItem.setAttribute('aria-level', args.AriaLevel);
 
   initialItem.innerHTML = `
   Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -35,9 +43,12 @@ const Template = args => {
     const item = document.createElement('ifx-accordion-item');
     item.setAttribute('caption', `Label`);
     item.setAttribute('open', `false`);
+    item.setAttribute('aria-level', args.AriaLevel);
 
     item.innerHTML = `
-        Content for Item #${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Content for Item #${
+          i + 1
+        }. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     `;
@@ -53,4 +64,5 @@ const Template = args => {
 export const Default = Template.bind({});
 Default.args = {
   amountOfItems: 3,
+  ariaLevel: 3,
 };
