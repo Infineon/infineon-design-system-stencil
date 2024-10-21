@@ -22,6 +22,7 @@
     "@types/node": "^20.1.4",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "npm-force-resolutions": "0.0.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "typescript": "^5.0.4"
@@ -30,6 +31,10 @@
     "@infineon/design-system-tokens": "3.3.3",
     "@infineon/infineon-design-system-stencil": "^25.11.0--canary.1425.cacc060d8c682c239c063a0502a2205f9705e243.0",
     "@stencil/react-output-target": "^0.7.1"
+  },
+  "resolutions": {
+    "@infineon/infineon-design-system-stencil": "25.11.0--canary.1425.cacc060d8c682c239c063a0502a2205f9705e243.0",
+    "@stencil/react-output-target": "0.7.1"
   },
   "auto": {
     "plugins": [

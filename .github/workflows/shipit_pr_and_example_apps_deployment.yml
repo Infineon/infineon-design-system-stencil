@@ -102,9 +102,14 @@ jobs:
       
           # Update React package
           cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" \
+            '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION |
+            .resolutions["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
+            package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../
-         
+                 
+          npm install npm-force-resolutions --save-dev
+          npx npm-force-resolutions
           npm install
       
           # Verify updates
