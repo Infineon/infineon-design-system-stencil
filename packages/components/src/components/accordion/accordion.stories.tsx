@@ -7,12 +7,12 @@ export default {
 
   args: {
     autoCollapse: false,
-    ifxAriaLevel: 3,
+    AriaLevel: 3,
   },
 
   argTypes: {
     amountOfItems: { control: 'number' },
-    ifxAriaLevel: { 
+    AriaLevel: { 
       control: 'number', 
       min: 1, 
       max: 6, 
@@ -26,7 +26,7 @@ const Template = args => {
   const initialItem = document.createElement('ifx-accordion-item');
   initialItem.setAttribute('caption', `Label`);
   initialItem.setAttribute('open', `true`);
-  initialItem.setAttribute('ifx-aria-level', args.ifxAriaLevel);
+  initialItem.setAttribute('aria-level', args.AriaLevel);
 
   initialItem.innerHTML = `
   Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -43,7 +43,7 @@ const Template = args => {
     const item = document.createElement('ifx-accordion-item');
     item.setAttribute('caption', `Label`);
     item.setAttribute('open', `false`);
-    item.setAttribute('aria-level', args.ifxAriaLevel);
+    item.setAttribute('aria-level', args.AriaLevel);
 
     item.innerHTML = `
         Content for Item #${
