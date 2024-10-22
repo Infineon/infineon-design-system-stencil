@@ -1,3 +1,15 @@
+# v25.13.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Created custom templates for GitHub issues [#1523](https://github.com/Infineon/infineon-design-system-stencil/pull/1523) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.12.0 (Tue Oct 22 2024)
 
 #### 🚀 Enhancement
