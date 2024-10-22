@@ -1,4 +1,4 @@
-import { Component, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-alert',
@@ -10,9 +10,8 @@ export class Alert {
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
   @Prop() closable: boolean = true;
-
-  @Prop() ariaIconLabel: string;
-  @Prop() ifxAriaLive = 'assertive';
+  @Prop() AriaLive = 'assertive';
+  @State() uniqueId: string;
 
   alertTypeDescription = {
     "primary": 'Neutral alert',
@@ -36,14 +35,24 @@ export class Alert {
     );
   }
 
+  generateUniqueId(prefix = 'id') {
+    return `${prefix}-${Math.random().toString(36).substring(2, 9)}`;
+  }
+
+  componentWillLoad() { 
+    if (!this.uniqueId) {
+      this.uniqueId = this.generateUniqueId('alert');
+    }
+  }
+
   render() {
     return this.variant === 'info' ? (
-      <div class="alert__info-wrapper" role="alert" aria-live={this.ifxAriaLive} aria-description={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
+      <div class="alert__info-wrapper" role="alert" aria-live={this.AriaLive} aria-describedby={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
         <div class="info__text-wrapper">
           <div class="info__headline-wrapper">
             <slot name="headline" />
           </div>
-          <div id="alert-description" class="info__description-wrapper">
+          <div id={`alert-description-${this.uniqueId}`} class="info__description-wrapper">
             <slot name="desc" />
           </div>
         </div>
@@ -56,7 +65,7 @@ export class Alert {
             <ifx-icon icon={this.icon} />
           </div>
         )}
-        <div class="alert-text">
+        <div class="alert-text" id={`alert-text-${this.uniqueId}`}>
           <slot />
         </div>
         {this.closable ? this.renderCloseButton() : null}

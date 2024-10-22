@@ -7,13 +7,12 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type                                                        | Default       |
-| --------------- | ----------------- | ----------- | ----------------------------------------------------------- | ------------- |
-| `ariaIconLabel` | `aria-icon-label` |             | `string`                                                    | `undefined`   |
-| `closable`      | `closable`        |             | `boolean`                                                   | `true`        |
-| `icon`          | `icon`            |             | `string`                                                    | `undefined`   |
-| `ifxAriaLive`   | `ifx-aria-live`   |             | `string`                                                    | `'assertive'` |
-| `variant`       | `variant`         |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'`   |
+| Property   | Attribute   | Description | Type                                                        | Default       |
+| ---------- | ----------- | ----------- | ----------------------------------------------------------- | ------------- |
+| `AriaLive` | `aria-live` |             | `string`                                                    | `'assertive'` |
+| `closable` | `closable`  |             | `boolean`                                                   | `true`        |
+| `icon`     | `icon`      |             | `string`                                                    | `undefined`   |
+| `variant`  | `variant`   |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'`   |
 
 
 ## Events
