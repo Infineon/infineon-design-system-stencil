@@ -12,6 +12,8 @@
     border-radius: tokens.$ifxBorderRadius12;
     padding: 0 tokens.$ifxSize100 0 tokens.$ifxSize100;
 
+    white-space: nowrap;
+    
     height: 34px;
 
     background-color: tokens.$ifxColorBaseWhite;
