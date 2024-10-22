@@ -1,3 +1,16 @@
+# v25.12.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Accordion [#1503](https://github.com/Infineon/infineon-design-system-stencil/pull/1503) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.11.0 (Mon Oct 21 2024)
 
 #### 🚀 Enhancement
