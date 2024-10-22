@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-vue",
-  "version": "25.13.0--canary.1523.30648ebc4937a72da65de5a7d097fcc87c698c11.0",
+  "version": "25.14.0--canary.1425.60ced1f39fbca325755a28be4ff2e905b9b0bb1f.0",
   "description": "Infineon design system Stencil web components for Vue",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run compile",
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "compile": "npm run tsc",
     "tsc": "tsc -p ."
   },
@@ -23,7 +23,6 @@
   "devDependencies": {
     "@babel/types": "^7.22.5",
     "@types/node": "^20.2.5",
-    "rimraf": "^5.0.1",
     "rollup": "^4.1.4",
     "rollup-plugin-node-resolve": "^5.2.0",
     "typescript": "^5.0.4",
@@ -31,7 +30,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "3.3.3",
-    "@infineon/infineon-design-system-stencil": "^25.13.0--canary.1523.30648ebc4937a72da65de5a7d097fcc87c698c11.0"
+    "@infineon/infineon-design-system-stencil": "^25.14.0--canary.1425.60ced1f39fbca325755a28be4ff2e905b9b0bb1f.0"
   },
   "auto": {
     "plugins": [
