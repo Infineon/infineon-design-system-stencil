@@ -1,3 +1,40 @@
+# v25.12.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Accordion [#1503](https://github.com/Infineon/infineon-design-system-stencil/pull/1503) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.11.0 (Mon Oct 21 2024)
+
+#### 🚀 Enhancement
+
+- Removed deprecated cpx and adopted ncp dependency [#1544](https://github.com/Infineon/infineon-design-system-stencil/pull/1544) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v25.10.0 (Wed Oct 16 2024)
+
+#### 🚀 Enhancement
+
+- docs(#1528): add documentation for content switcher [#1533](https://github.com/Infineon/infineon-design-system-stencil/pull/1533) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v25.9.0 (Fri Oct 11 2024)
 
 #### 🚀 Enhancement

@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type      | Default     |
-| --------- | --------- | ----------- | --------- | ----------- |
-| `caption` | `caption` |             | `string`  | `undefined` |
-| `open`    | `open`    |             | `boolean` | `false`     |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `AriaLevel` | `aria-level` |             | `number`  | `3`         |
+| `caption`   | `caption`    |             | `string`  | `undefined` |
+| `open`      | `open`       |             | `boolean` | `false`     |
 
 
 ## Events
