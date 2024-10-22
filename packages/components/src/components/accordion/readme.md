@@ -9,7 +9,7 @@
 
 | Property   | Attribute   | Description | Type      | Default     |
 | ---------- | ----------- | ----------- | --------- | ----------- |
-| `ariaLive` | `aria-live` |             | `number`  | `3`         |
+| `AriaLive` | `aria-live` |             | `number`  | `3`         |
 | `caption`  | `caption`   |             | `string`  | `undefined` |
 | `open`     | `open`      |             | `boolean` | `false`     |
 
