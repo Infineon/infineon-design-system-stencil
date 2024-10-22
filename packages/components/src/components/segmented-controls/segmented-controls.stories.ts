@@ -77,6 +77,9 @@ See the 2nd *<ifx-segmented-control>* for effects`,
             control: 'boolean',
             table: {
                 category: 'ifx-segmented-control props',
+                defaultValue: {
+                    summary: false,
+                },
                 type: {
                     summary: 'boolean'
                 }
@@ -89,6 +92,9 @@ See the 2nd *<ifx-segmented-control>* for effects`,
                 type: {
                     summary: 'string'
                 }
+            },
+            type: {
+                required: true
             }
         },
         ifxChange: {

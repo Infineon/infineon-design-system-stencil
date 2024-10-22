@@ -21,14 +21,7 @@
     flex-wrap: wrap;
 }
 
-.group__controls::after {
-    content: '';
-    flex-grow: 1000000;
-}
-
 .group__controls ::slotted(*) {
-    flex: 1 1;
-    
     margin-left: -1px;
     margin-top: -1px;
 }
