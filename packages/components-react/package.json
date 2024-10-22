@@ -31,9 +31,6 @@
     "@infineon/infineon-design-system-stencil": "^25.13.0--canary.1425.043f23a81c591f12a4be37e024c1e4bd4f47b0d9.0",
     "@stencil/react-output-target": "^0.7.1"
   },
-  "resolutions": {
-    "@infineon/infineon-design-system-stencil": "25.12.0--canary.1503.ad49b651a076acc83c8b6857c553d2c0bb92cb49.0"
-  },
   "auto": {
     "plugins": [
       "npm",
