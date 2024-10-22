@@ -10,7 +10,7 @@ export class Alert {
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
   @Prop() closable: boolean = true;
-  @Prop() ariaLive = 'assertive';
+  @Prop() AriaLive = 'assertive';
   @State() uniqueId: string;
 
   alertTypeDescription = {
@@ -47,7 +47,7 @@ export class Alert {
 
   render() {
     return this.variant === 'info' ? (
-      <div class="alert__info-wrapper" role="alert" aria-live={this.ariaLive} aria-describedby={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
+      <div class="alert__info-wrapper" role="alert" aria-live={this.AriaLive} aria-describedby={this.alertTypeDescription[this.variant]} aria-labelledby="alert-text alert-description">
         <div class="info__text-wrapper">
           <div class="info__headline-wrapper">
             <slot name="headline" />
