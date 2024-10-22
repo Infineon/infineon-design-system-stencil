@@ -49,7 +49,7 @@ export default {
   },
 };
 
-const DefaultTemplate = args => `<ifx-alert AriaLive="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 
