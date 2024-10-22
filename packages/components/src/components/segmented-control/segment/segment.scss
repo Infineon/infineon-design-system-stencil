@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
-.control {
+.segment {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,18 +37,18 @@
         background-color: tokens.$ifxColorOcean700;
     }
     
-    &.control--selected {
+    &.segment--selected {
         color: tokens.$ifxColorBaseWhite;
         
         background-color: tokens.$ifxColorOcean500;
     }
 
-    &.control--small {
+    &.segment--small {
         height: 30px;
     }
 }
 
-.control::after {
+.segment::after {
     position: absolute;
     top: 0;
     left: 0;

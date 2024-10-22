@@ -1,18 +1,18 @@
 import { h, Component, Element, Event, EventEmitter, Listen, Prop } from "@stencil/core";
 
 @Component ({
-    tag: 'ifx-segmented-control-group',
-    styleUrl: 'segmented-control-group.scss',
+    tag: 'ifx-segmented-control',
+    styleUrl: 'segmented-control.scss',
     shadow: true
 })
 
-export class SegmentedControlGroup {
-    @Element() segmentedControlGroup: HTMLIfxSegmentedControlGroupElement;
+export class SegmentedControl {
+    @Element() SegmentedControl: HTMLIfxSegmentedControlElement;
 
     @Event() ifxChange: EventEmitter<{ previousValue: string, selectedValue: string }>;
 
     @Prop() caption: string = '';
-    @Prop() groupLabel: string = '';
+    @Prop() label: string = '';
     @Prop() size: 'regular' | 'small' = 'regular';
 
     @Listen('segmentSelect')
@@ -28,8 +28,8 @@ export class SegmentedControlGroup {
         let previousValue: string;
         let selectedValue: string;
 
-        const segmentedControls: NodeList = this.getSegmentedControls();
-        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
+        const segments: NodeList = this.getSegments();
+        segments.forEach((control: HTMLIfxSegmentElement) => {
             if (control.selected) {
                 if (control.segmentIndex !== newSelectedIndex) {
                     control.selected = false;
@@ -43,14 +43,14 @@ export class SegmentedControlGroup {
         return { previousValue, selectedValue };
     }
 
-    getSegmentedControls(): NodeList {
-        return this.segmentedControlGroup.querySelectorAll('ifx-segmented-control');
+    getSegments(): NodeList {
+        return this.SegmentedControl.querySelectorAll('ifx-segment');
     }
 
     setActiveSegment(): void {
-        const segmentedControls: NodeList = this.getSegmentedControls();
+        const segments: NodeList = this.getSegments();
         let activeSegmentedControlFound = false;
-        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement, idx: number) => {
+        segments.forEach((control: HTMLIfxSegmentElement, idx: number) => {
             control.segmentIndex = idx;
             if (activeSegmentedControlFound) {
                 if (control.selected) control.selected = false;
@@ -61,17 +61,17 @@ export class SegmentedControlGroup {
                 }
             }
         });
-        if (!activeSegmentedControlFound && segmentedControls.length) {
-            (segmentedControls[0] as HTMLIfxSegmentedControlElement).selected = true;
-            this.selectedValue = (segmentedControls[0] as HTMLIfxSegmentedControlElement).value;
+        if (!activeSegmentedControlFound && segments.length) {
+            (segments[0] as HTMLIfxSegmentElement).selected = true;
+            this.selectedValue = (segments[0] as HTMLIfxSegmentElement).value;
         }
     }
 
 
-    setSegmentedControlSize(): void {
-        const segmentedControls: NodeList = this.getSegmentedControls();
-        segmentedControls.forEach((control: HTMLIfxSegmentedControlElement) => {
-            control.shadowRoot.querySelector('.control').classList.add(`control--${this.size}`);
+    setSegmentSize(): void {
+        const segments: NodeList = this.getSegments();
+        segments.forEach((control: HTMLIfxSegmentElement) => {
+            control.shadowRoot.querySelector('.segment').classList.add(`segment--${this.size}`);
         });
     }
 
@@ -81,9 +81,9 @@ export class SegmentedControlGroup {
 
     render() {
         return (
-            <div aria-value={this.selectedValue} aria-label='segmented controls' class='group'>
+            <div aria-value={this.selectedValue} aria-label='segmented control' class='group'>
                 <div class='group__label'>
-                    { this.groupLabel.trim() }
+                    { this.label.trim() }
                 </div>
                 
                 <div class='group__controls'>
@@ -101,6 +101,6 @@ export class SegmentedControlGroup {
     }
 
     componentDidRender() {
-        this.setSegmentedControlSize();
+        this.setSegmentSize();
     }
 }

@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type                   | Default     |
-| ------------ | ------------- | ----------- | ---------------------- | ----------- |
-| `caption`    | `caption`     |             | `string`               | `''`        |
-| `groupLabel` | `group-label` |             | `string`               | `''`        |
-| `size`       | `size`        |             | `"regular" \| "small"` | `'regular'` |
+| Property  | Attribute | Description | Type                   | Default     |
+| --------- | --------- | ----------- | ---------------------- | ----------- |
+| `caption` | `caption` |             | `string`               | `''`        |
+| `label`   | `label`   |             | `string`               | `''`        |
+| `size`    | `size`    |             | `"regular" \| "small"` | `'regular'` |
 
 
 ## Events
@@ -30,8 +30,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ifx-segmented-control-group --> ifx-icon
-  style ifx-segmented-control-group fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-segmented-control --> ifx-icon
+  style ifx-segmented-control fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

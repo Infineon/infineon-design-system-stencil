@@ -38,7 +38,7 @@ import Stepper from './components/Stepper/Stepper';
 import List from './components/List/List';
 import FilterTypeGroup from './components/FilterTypeGroup/FilterTypeGroup';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher.js';
-import SegmentedControls from './components/SegmentedControls/SegmentedControls';
+import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 
 function App() {
   return (
@@ -152,8 +152,8 @@ function App() {
       <SearchBar />
       <br />
 
-      <h2>Segmented Controls</h2>
-      <SegmentedControls />
+      <h2>Segmented Control</h2>
+      <SegmentedControl />
       <br />
 
       <h2>Search Field</h2>

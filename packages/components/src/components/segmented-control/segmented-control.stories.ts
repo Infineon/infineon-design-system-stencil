@@ -2,13 +2,13 @@ import { action } from "@storybook/addon-actions";
 import { icons } from '@infineon/infineon-icons';
 
 export default {
-    title: 'Components/Segmented Controls',
+    title: 'Components/Segmented Control',
     tags: ['autodocs'],
     args: {
         amountOfSegments: 5,
         labelOfSegment: 'Label',
         caption: 'Caption text to describe the controls',
-        groupLabel: 'Group Label',
+        label: 'Group Label',
         size: 'regular',
         icon: 'star-16',
         selected: 'false',
@@ -18,7 +18,7 @@ export default {
         amountOfSegments: {
             name: 'Amount of Segments',
             control: { type: 'number', min: 2 },
-            description: 'Control the number of *<ifx-segmented-control>* in component.',
+            description: 'Control the number of *<ifx-segment>* in component.',
             table: {
                 category: 'story controls',
                 type: {
@@ -32,29 +32,29 @@ export default {
             table: {
                 category: 'story controls',
                 type: {
-                    summary: '<ifx-segmented-control> `label` </ifx-segmented-control>'
+                    summary: '<ifx-segment> `label` </ifx-segment>'
                 }
             }
         },
         caption: {
             description: 'Set the caption text of segmented control group.',
             table: {
-                category: 'ifx-segmented-control-group props'
+                category: 'ifx-segmented-control props'
             }
         },
-        groupLabel: {
-            name: 'group-label',
+        label: {
+            name: 'label',
             description: 'Set the label of control group.',
             table: {
-                category: 'ifx-segmented-control-group props'
+                category: 'ifx-segmented-control props'
             }
         },
         size: {
-            description: 'Switch the size of Segmented Controls.',
+            description: 'Switch between the size of Segmented Control.',
             control: 'radio',
             options: ['regular', 'small'],
             table: {
-                category: 'ifx-segmented-control-group props',
+                category: 'ifx-segmented-control props',
                 defaultValue: {
                     summary: 'regular'
                 },
@@ -68,15 +68,15 @@ export default {
             options: Object.values(icons).map(i => i['name']),
             control: { type: 'select' },
             table: {
-                category: 'ifx-segmented-control props'
+                category: 'ifx-segment props'
             }
         },
         selected: {
             description: `Selects the segment when set true.\n
-See the 2nd *<ifx-segmented-control>* for effects`,
+See the 2nd *<ifx-segment>* for effects`,
             control: 'boolean',
             table: {
-                category: 'ifx-segmented-control props',
+                category: 'ifx-segment props',
                 defaultValue: {
                     summary: false,
                 },
@@ -86,9 +86,9 @@ See the 2nd *<ifx-segmented-control>* for effects`,
             }
         },
         value: {
-            description: 'Set the value of *<ifx-segmented-control>*. Required.',
+            description: 'Set the value of *<ifx-segment>*. Required.',
             table: {
-                category: 'ifx-segmented-control props',
+                category: 'ifx-segment props',
                 type: {
                     summary: 'string'
                 }
@@ -110,10 +110,10 @@ See the 2nd *<ifx-segmented-control>* for effects`,
                 type: {
                     summary: 'Framework integration',
                     detail: `
-React: onIfxChipChange={handleChange}
-Vue: @ifxChipChange="handleChange"
-Angular: (ifxChipChange)="handleChange()"
-VanillaJs: .addEventListener("ifxChipChange", (event) => {/*handle change*/});`,
+React: onIfxChange={handleChange}
+Vue: @ifxChange="handleChange"
+Angular: (ifxChange)="handleChange()"
+VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
                 }
             }
         }
@@ -123,14 +123,14 @@ VanillaJs: .addEventListener("ifxChipChange", (event) => {/*handle change*/});`,
 const Template = (args) => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = `
-<ifx-segmented-control-group
+<ifx-segmented-control
 caption = '${args.caption}'
-group-label = '${args.groupLabel}'
+label = '${args.label}'
 size = '${args.size}'>
     ${
         (() => {
             return Array.from({ length: args.amountOfSegments }, (_, segmentId) => {
-                const segment = document.createElement('ifx-segmented-control');
+                const segment = document.createElement('ifx-segment');
                 segment.innerText = args.labelOfSegment;
                 segment.setAttribute('value', `${args.value}${segmentId+1}`);
                 segment.setAttribute('icon', `${args.icon}`);
@@ -139,12 +139,12 @@ size = '${args.size}'>
             }).join(`\n    `);
         })()
     }
-</ifx-segmented-control-group>  
+</ifx-segmented-control>  
 `;
-    const segmentedControlGroup = wrapper.querySelector('ifx-segmented-control-group');
-    segmentedControlGroup.addEventListener('ifxChange', action('ifxChange'));
+    const segmentedControl = wrapper.querySelector('ifx-segmented-control');
+    segmentedControl.addEventListener('ifxChange', action('ifxChange'));
 
-    return segmentedControlGroup;
+    return segmentedControl;
 };
 
 export const Default = Template.bind({});

@@ -36,7 +36,7 @@ import Chip from './components/Chip/Chip'
 import Stepper from './components/Stepper/Stepper';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
-import SegmentedControls from './components/SegmentedControls/SegmentedControls';
+import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 
 function App() {
  
@@ -144,8 +144,8 @@ function App() {
       <SearchBar />
       <br />
       
-      <h2>Segmented Controls</h2>
-      <SegmentedControls />
+      <h2>Segmented Control</h2>
+      <SegmentedControl />
       <br />
 
       <h2>Search Field</h2>

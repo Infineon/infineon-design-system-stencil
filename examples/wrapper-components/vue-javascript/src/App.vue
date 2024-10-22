@@ -25,7 +25,7 @@
   <RadioButton />
   <SearchField />
   <SearchBar />
-  <SegmentedControls />
+  <SegmentedControl />
   <SingleSelect />
   <Slider />
   <Spinner />
@@ -81,7 +81,7 @@ import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
 import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
-import SegmentedControls from './components/SegmentedControls.vue'
+import SegmentedControl from './components/SegmentedControl.vue'
 
 
 </script>

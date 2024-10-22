@@ -1,12 +1,12 @@
 import { h, Component, Event, EventEmitter, Prop } from "@stencil/core";
 
 @Component ({
-    tag: 'ifx-segmented-control',
-    styleUrl: 'segmented-control.scss',
+    tag: 'ifx-segment',
+    styleUrl: 'segment.scss',
     shadow: true
 })
 
-export class SegmentedControl {
+export class Segment {
     @Event({ composed: false }) segmentSelect: EventEmitter<number>;
 
     @Prop() icon: string;
@@ -30,7 +30,7 @@ export class SegmentedControl {
 
     render() {
         return (
-            <div class={`control ${this.selected ? 'control--selected' : ''}`} 
+            <div class={`segment ${this.selected ? 'segment--selected' : ''}`} 
                 tabIndex={0}
                 onClick={() => {this.handleSegmentClick()}}
                 onKeyDown={(e) => {this.handleSegmentKeyDown(e)}}>
