@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "http-server ./dist",
     "lint": "eslint .",
     "preview": "vite preview",
     "watch:library": "cd ../../../packages/components && npm run watch:stencil",
@@ -17,7 +18,8 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-react": "25.0.0--canary.1441.ca9dec8363140ebe58dae80cfc492b4bbe42f2da.0",
+    "@infineon/infineon-design-system-react": "25.14.0--canary.1545.e1a39da349a88328e2b5b31729ce408bb8e76901.0",
+    "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
@@ -31,6 +33,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "http-server": "^14.1.1",
     "sass": "^1.78.0",
     "vite": "^5.4.1"
   }

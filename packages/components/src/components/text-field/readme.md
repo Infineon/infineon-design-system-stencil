@@ -47,7 +47,7 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [ifx-template](../templates/template)
+ - [ifx-set-filter](../table-advanced-version/set-filter)
 
 ### Depends on
 
@@ -57,7 +57,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-text-field --> ifx-icon
-  ifx-template --> ifx-text-field
+  ifx-set-filter --> ifx-text-field
   style ifx-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
