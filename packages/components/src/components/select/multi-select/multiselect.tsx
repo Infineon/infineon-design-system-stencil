@@ -622,7 +622,7 @@ export class Multiselect {
           `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           >
-            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : 'Placeholder'}
+            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu"
