@@ -21,7 +21,7 @@ export class BreadcrumbItemLabel {
 
   render() {
     return (
-      <a href={this.url} target={this.target} class="breadcrumb-item-label-container">
+      <a href={this.url} target={this.target} class="breadcrumb-item-label-container" role='link'>
         <ifx-icon icon={this.icon} aria-hidden="true"></ifx-icon>
         <span class="label-wrapper">
           <slot />

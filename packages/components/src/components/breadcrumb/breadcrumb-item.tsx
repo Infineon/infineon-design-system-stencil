@@ -11,11 +11,21 @@ export class BreadcrumbItem {
   @Element() el;
   private emittedElement: HTMLElement;
   @State() uniqueId: string;
+  @State() hasDropdownMenu: boolean = false;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
     if (!path.includes(this.el)) {
+      this.closeDropdownMenu();
+    }
+  }
+
+  @Listen('keydown')
+  handleKeyDown(ev: KeyboardEvent) {
+    if (ev.key === 'Enter' || ev.key === ' ') {
+      this.toggleDropdownMenu();
+    } else if (ev.key === 'Escape') {
       this.closeDropdownMenu();
     }
   }
@@ -39,22 +49,26 @@ export class BreadcrumbItem {
   }
 
   closeDropdownMenu() {
-    const dropdownMenu = this.getDropdownMenu()
-    const menuWrapper = this.getMenuIconWrapper()
-    this.handleClassList(dropdownMenu, 'remove', 'open')
-    this.handleClassList(menuWrapper, 'remove', 'show')
+    if(this.hasDropdownMenu) {
+      const dropdownMenu = this.getDropdownMenu()
+      const menuWrapper = this.getMenuIconWrapper()
+      this.handleClassList(dropdownMenu, 'remove', 'open')
+      this.handleClassList(menuWrapper, 'remove', 'show')
+    }
   }
 
   toggleDropdownMenu() { 
-    const dropdownMenu = this.getDropdownMenu()
-    const menuWrapper = this.getMenuIconWrapper()
-    this.handleClassList(dropdownMenu, 'toggle', 'open')
-    this.handleClassList(menuWrapper, 'toggle', 'show')
+    if(this.hasDropdownMenu) {
+      const dropdownMenu = this.getDropdownMenu()
+      const menuWrapper = this.getMenuIconWrapper()
+      this.handleClassList(dropdownMenu, 'toggle', 'open')
+      this.handleClassList(menuWrapper, 'toggle', 'show')
+    }
   }
 
   isDropdownMenuOpen(): boolean {
     const dropdownMenu = this.getDropdownMenu()
-    return dropdownMenu && dropdownMenu.classList.contains('open')
+    return this.hasDropdownMenu && dropdownMenu.classList.contains('open')
   }
 
   handleLastItem() { 
@@ -80,11 +94,12 @@ export class BreadcrumbItem {
   }
 
   componentDidLoad() { 
-    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu')
+    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu');
+    this.hasDropdownMenu = !!dropdownMenu;
   
-    if(!dropdownMenu) { 
+    if(!this.hasDropdownMenu) { 
       const iconMenuWrapper = this.getMenuIconWrapper();
-      this.handleClassList(iconMenuWrapper, 'toggle', 'hide')
+      this.handleClassList(iconMenuWrapper, 'toggle', 'hide');
     } else { 
       dropdownMenu.isOpen = true;
     }
@@ -93,8 +108,8 @@ export class BreadcrumbItem {
   render() {
     return (
       <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`}>
-       <li role="button" class="breadcrumb-wrapper" onClick={() => this.toggleDropdownMenu()} aria-controls={this.uniqueId} aria-haspopup="menu">
-          <slot name='label' />
+       <li role="button" tabindex={this.hasDropdownMenu ? 0 : -1} class="breadcrumb-wrapper" onClick={() => this.toggleDropdownMenu()} aria-controls={this.uniqueId} aria-haspopup="menu">
+          <slot name='label'/>
           <div id={this.uniqueId} class="dropdown-menu" aria-expanded={this.isDropdownMenuOpen()}>
             <slot />
           </div>
