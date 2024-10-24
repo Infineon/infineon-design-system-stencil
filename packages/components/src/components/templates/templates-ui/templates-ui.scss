@@ -1,0 +1,19 @@
+* { 
+  padding: 0;
+  margin: 0;
+}
+
+.templates__container { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.templates__wrapper { 
+  display: flex;
+  padding: 20px 0px;
+  gap: 20px;
+  // justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
