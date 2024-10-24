@@ -101,8 +101,8 @@ export class Button {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'Enter' && !this.disabled) {
-      this.handleClick(ev as unknown as MouseEvent);
+    if ( ev.key === " " && !this.disabled) {
+      this.focusableElement.click();
     }
   }
 
@@ -124,6 +124,7 @@ export class Button {
     return (
       <Host>
         <a
+          role={this.href ? 'link' : 'button'}
           tabIndex={0}
           ref={(el) => (this.focusableElement = el)}
           class={this.getClassNames()}
@@ -133,7 +134,7 @@ export class Button {
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           onFocus={(event) => this.handleFocus(event)}
           aria-disabled={this.disabled}
-          aria-labelledby="label"
+          aria-description={this.theme === 'danger' ? 'Dangerous action' : undefined}
         >
           <slot></slot>
         </a>
