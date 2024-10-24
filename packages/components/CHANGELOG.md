@@ -1,3 +1,17 @@
+# v25.15.0 (Thu Oct 24 2024)
+
+#### 🚀 Enhancement
+
+- New component: Segmented controls [#1425](https://github.com/Infineon/infineon-design-system-stencil/pull/1425) ([@akashyeole](https://github.com/akashyeole) [@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.14.0 (Tue Oct 22 2024)
 
 #### 🚀 Enhancement

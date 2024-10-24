@@ -59,6 +59,8 @@ export const DIRECTIVES = [
   d.IfxRadioButton,
   d.IfxSearchBar,
   d.IfxSearchField,
+  d.IfxSegment,
+  d.IfxSegmentedControl,
   d.IfxSelect,
   d.IfxSetFilter,
   d.IfxSidebar,
