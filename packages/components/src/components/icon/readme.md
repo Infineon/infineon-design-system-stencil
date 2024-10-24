@@ -46,6 +46,8 @@
  - [ifx-overview-table](../overview-table)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
+ - [ifx-segment](../segmented-control/segment)
+ - [ifx-segmented-control](../segmented-control)
  - [ifx-select](../select/single-select)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
@@ -81,6 +83,8 @@ graph TD;
   ifx-overview-table --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
+  ifx-segment --> ifx-icon
+  ifx-segmented-control --> ifx-icon
   ifx-select --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
