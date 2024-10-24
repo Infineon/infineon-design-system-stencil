@@ -48,6 +48,7 @@ Type: `Promise<void>`
 ### Used by
 
  - [ifx-set-filter](../table-advanced-version/set-filter)
+ - [ifx-template](../templates/template)
 
 ### Depends on
 
@@ -58,6 +59,7 @@ Type: `Promise<void>`
 graph TD;
   ifx-text-field --> ifx-icon
   ifx-set-filter --> ifx-text-field
+  ifx-template --> ifx-text-field
   style ifx-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

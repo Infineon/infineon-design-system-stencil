@@ -37,12 +37,12 @@ export class TemplatesUI {
       <div class='templates__container'>
         <h2>Templates</h2>
         <div class="templates__wrapper">
-          <ifx-template name='template-1' />
-          <ifx-template name='template-2' />
-          <ifx-template name='template-3' />
-          <ifx-template name='template-4' />
-          <ifx-template name='template-5' />
-          <ifx-template name='template-6' />
+          <ifx-template name='template-01' />
+          <ifx-template name='template-02' />
+          <ifx-template name='template-03' />
+          <ifx-template name='template-04' />
+          <ifx-template name='template-05' />
+          <ifx-template name='template-06' />
         </div>
       </div>
     )
