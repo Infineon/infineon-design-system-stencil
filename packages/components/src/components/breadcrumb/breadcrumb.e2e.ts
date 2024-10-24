@@ -64,5 +64,27 @@ describe('ifx-breadcrumb', () => {
 
   });
 
+  it('should throw an error if breadcrumb item has both a url and a dropdown menu', async () => {
+    try {
+      const page = await newE2EPage();
+      await page.setContent(`
+        <ifx-breadcrumb>
+          <ifx-breadcrumb-item>
+            <ifx-breadcrumb-item-label icon="home" url="/">Home</ifx-breadcrumb-item-label>
+            <ifx-dropdown-menu>
+              <ifx-dropdown-item url="http://yahoo.com">Yahoo</ifx-dropdown-item>
+              <ifx-dropdown-item url="http://naver.com">Naver</ifx-dropdown-item>
+            </ifx-dropdown-menu>
+          </ifx-breadcrumb-item>
+          <ifx-breadcrumb-item>
+            <ifx-breadcrumb-item-label icon="chevron-right" url="/about">About</ifx-breadcrumb-item-label>
+          </ifx-breadcrumb-item>
+        </ifx-breadcrumb>
+      `);
+    } catch (e) {
+      expect(e.message).toBe('ifx-breadcrumb-item cannot have both a url and a dropdown menu.');
+    }
+  });
+
   // Add more test cases as needed
 });

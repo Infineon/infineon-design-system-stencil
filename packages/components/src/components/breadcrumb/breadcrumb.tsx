@@ -10,10 +10,10 @@ export class Breadcrumb {
 
   componentDidLoad() {
     const element = this.el.shadowRoot.firstChild;
-    this.addEventListenersToHandleCustomFocusState(element);
+    this.validateBreadcrumbItemStructure(element);
   }
 
-  private addEventListenersToHandleCustomFocusState(element: HTMLElement) {
+  private validateBreadcrumbItemStructure(element: HTMLElement) {
     if (!element) {
       console.error('element not found');
       return;
@@ -27,14 +27,11 @@ export class Breadcrumb {
       for (let i = 0; i < assignedNodes.length; i++) {
         const node = assignedNodes[i];
         if (node.nodeName === 'IFX-BREADCRUMB-ITEM') {
-          const breadcrumbLabel = node as HTMLIfxBreadcrumbItemElement;
-          if (!breadcrumbLabel.hasAttribute('url')) {
-            breadcrumbLabel.tabIndex = -1;
-            breadcrumbLabel.addEventListener('focus', () => {
-              if (breadcrumbLabel.hasAttribute('url')) {
-                breadcrumbLabel.blur();
-              }
-            });
+          const breadcrumbItem = node as HTMLIfxBreadcrumbItemElement;
+          const breadcrumbItemLabel = breadcrumbItem.querySelector('ifx-breadcrumb-item-label');
+          const breadcrumbDropdown = breadcrumbItem.querySelector('ifx-dropdown-menu');
+          if (breadcrumbItemLabel.hasAttribute('url') && breadcrumbDropdown) {
+            throw new Error('ifx-breadcrumb-item cannot have both a url and a dropdown menu.');
           }
         }
       }
