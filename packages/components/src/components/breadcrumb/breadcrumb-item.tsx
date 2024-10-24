@@ -10,6 +10,7 @@ export class BreadcrumbItem {
   @State() isLastItem: boolean = false;
   @Element() el;
   private emittedElement: HTMLElement;
+  @State() uniqueId: string;
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -51,6 +52,11 @@ export class BreadcrumbItem {
     this.handleClassList(menuWrapper, 'toggle', 'show')
   }
 
+  isDropdownMenuOpen(): boolean {
+    const dropdownMenu = this.getDropdownMenu()
+    return dropdownMenu && dropdownMenu.classList.contains('open')
+  }
+
   handleLastItem() { 
     const breadcrumbItems = this.el.closest('ifx-breadcrumb').querySelectorAll('ifx-breadcrumb-item')
     if(this.el === breadcrumbItems[breadcrumbItems.length-1]) { 
@@ -58,7 +64,14 @@ export class BreadcrumbItem {
     } else this.isLastItem = false;
   }
 
+  generateUniqueId(prefix = 'id') {
+    return `${prefix}-${Math.random().toString(36).substring(2, 9)}`;
+  }
+
   componentWillLoad() { 
+    if (!this.uniqueId) {
+      this.uniqueId = this.generateUniqueId('breadcrumb-dropdown');
+    }
     this.handleLastItem()
   }
 
@@ -79,10 +92,10 @@ export class BreadcrumbItem {
 
   render() {
     return (
-      <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`} onClick={() => this.toggleDropdownMenu()}>
-       <li class="breadcrumb-wrapper">
+      <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`}>
+       <li role="button" class="breadcrumb-wrapper" onClick={() => this.toggleDropdownMenu()} aria-controls={this.uniqueId} aria-haspopup="menu">
           <slot name='label' />
-          <div class="dropdown-menu">
+          <div id={this.uniqueId} class="dropdown-menu" aria-expanded={this.isDropdownMenuOpen()}>
             <slot />
           </div>
         </li>
