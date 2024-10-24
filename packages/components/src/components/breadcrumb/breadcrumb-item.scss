@@ -7,6 +7,8 @@
   align-items: center;
   padding: 0px;
   gap: tokens.$ifxSpace150;
+  min-height: tokens.$ifxSize300;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
