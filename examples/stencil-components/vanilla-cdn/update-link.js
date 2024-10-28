@@ -4,13 +4,12 @@ const path = require('path');
 const indexHtmlPath = path.join(__dirname, '/index.html');
 const isMaster = process.env.GITHUB_REF === 'refs/heads/master';
 
-console.log("is local", process.env.GITHUB_REF === undefined)
+console.log("is local", process.env.GITHUB_REF === undefined);
 
 const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
 
-const scriptRegex = /<\s*script[^>]+src\s*=\s*['"](https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil@[^'" ]+\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.esm\.js)['"][^>]*><\/script>/gis;
-const stylesheetRegex = /<\s*script[^>]+src\s*=\s*['"](https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil@[^'" ]+\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.css)['"][^>]*><\/script>/gis;
-
+const scriptRegex = /<\s*script\s+type="module"\s+src\s*=\s*['"][^'"]*infineon-design-system-stencil[^'"]*\.esm\.js['"]\s*><\/\s*script\s*>/gis;
+const stylesheetRegex = /<\s*script\s+type="module"\s+src\s*=\s*['"][^'"]*infineon-design-system-stencil[^'"]*\.css['"]\s*><\/\s*script\s*>/gis;
 
 const version = require('../../../packages/components/package.json').version;
 
@@ -35,6 +34,9 @@ if (process.env.GITHUB_REF === undefined) {
   newScriptSrc = isMaster ? cdnLinkLatestJS : cdnLinkCanaryJS;
   newStylesheetSrc = isMaster ? cdnLinkLatestCSS : cdnLinkCanaryCSS;
 }
+
+console.log("newScriptSrc: ", newScriptSrc);
+console.log("newStylesheetSrc: ", newStylesheetSrc);
 
 const updatedHtmlContent = htmlContent
   .replace(scriptRegex, newScriptSrc)
