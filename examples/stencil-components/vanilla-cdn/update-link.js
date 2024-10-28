@@ -10,9 +10,9 @@ const isMaster = process.env.GITHUB_REF === 'refs/heads/master';
 // Read the content of index.html
 const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
 
-// Define regex patterns to match both local dist and CDN script tags for JS and CSS files
+// Define regex patterns to match both local dist and CDN script tags for JS and link tags for CSS files
 const scriptRegex = /<\s*script[^>]+src\s*=\s*['"]\s?(https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil[^'" ]*\.esm\.js|\.\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.esm\.js)\s*["'][^>]*><\/script>/gis;
-const stylesheetRegex = /<\s*script[^>]+src\s*=\s*['"]\s?(https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil[^'" ]*\.css|\.\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.css)\s*["'][^>]*><\/script>/gis;
+const stylesheetRegex = /<\s*link[^>]+href\s*=\s*['"]\s?(https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil[^'" ]*\.css|\.\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.css)\s*["'][^>]*>/gis;
 
 // Load the current version from the package.json file
 const version = require('../../../packages/components/package.json').version;
@@ -21,12 +21,12 @@ const version = require('../../../packages/components/package.json').version;
 const cdnLinkLatestJS = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
 const cdnLinkCanaryJS = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>`;
 
-const cdnLinkLatestCSS = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
-const cdnLinkCanaryCSS = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
+const cdnLinkLatestCSS = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">';
+const cdnLinkCanaryCSS = `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">`;
 
 // Define the local links
 const localLinkJS = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
-const localLinkCSS = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
+const localLinkCSS = '<link rel="stylesheet" href="./dist/infineon-design-system-stencil/infineon-design-system-stencil.css">';
 
 // Determine the new source links based on the environment
 let newScriptSrc;
