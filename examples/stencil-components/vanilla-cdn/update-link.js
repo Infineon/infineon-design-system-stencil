@@ -13,8 +13,9 @@ const scriptRegex = /<\s*script[^>]+src\s*=\s*['"]\s?(https:\/\/www\.googletagse
 
 const version = require('../../../packages/components/package.json').version;
 
-const cdnLinkLatest = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
-const cdnLinkCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>`;
+const cdnLinkLatest = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script><script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.1c1eb8e300b13c71569ad58d2397e7bc06c66329.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
+const cdnLinkCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.1c1eb8e300b13c71569ad58d2397e7bc06c66329.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>
+`;
 
 // const cdnStylesheetLatest = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
 // const cdnStylesheetCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
