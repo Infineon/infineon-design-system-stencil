@@ -8,37 +8,39 @@ console.log("is local", process.env.GITHUB_REF === undefined)
 
 const htmlContent = fs.readFileSync(indexHtmlPath, 'utf-8');
 
-const scriptRegex = /<\s*script[^>]+src\s*=\s*['"]\s?(https:\/\/www\.googletagservices\.com\/tag\/js\/gpt\.js)*([^'" ]+)\s*["'][^>]*><\/script>/gis
-// const stylesheetRegex = /<\s*link[^>]+href\s*=\s*['"]\s?(https:\/\/www\.googletagservices\.com\/tag\/js\/gpt\.js)*([^'" ]+)\s*["'][^>]*>/gis
+const scriptRegex = /<\s*script[^>]+src\s*=\s*['"](https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil@[^'" ]+\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.esm\.js)['"][^>]*><\/script>/gis;
+const stylesheetRegex = /<\s*script[^>]+src\s*=\s*['"](https:\/\/cdn\.jsdelivr\.net\/npm\/@infineon\/infineon-design-system-stencil@[^'" ]+\/dist\/infineon-design-system-stencil\/infineon-design-system-stencil\.css)['"][^>]*><\/script>/gis;
+
 
 const version = require('../../../packages/components/package.json').version;
 
-const cdnLinkLatest = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script><script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.1c1eb8e300b13c71569ad58d2397e7bc06c66329.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
-const cdnLinkCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.1c1eb8e300b13c71569ad58d2397e7bc06c66329.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>
-`;
+const cdnLinkLatestJS = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
+const cdnLinkCanaryJS = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>`;
 
-// const cdnStylesheetLatest = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
-// const cdnStylesheetCanary = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
+const cdnLinkLatestCSS = '<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
+const cdnLinkCanaryCSS = `<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@${version}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>`;
 
-const localLink = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
-// const localStylesheet = '<link rel="stylesheet" href="dist/infineon-design-system-stencil/infineon-design-system-stencil.css">';
+const localLinkJS = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>';
+const localLinkCSS = '<script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></script>';
 
 let newScriptSrc;
-// let newStylesheet
+let newStylesheetSrc;
 
-console.log("current branch: ", process.env.GITHUB_REF, " - package version: ", require('../../../packages/components/package.json').version);
+console.log("current branch: ", process.env.GITHUB_REF, " - package version: ", version);
 
 if (process.env.GITHUB_REF === undefined) {
-  newScriptSrc = localLink;
-  // newStylesheet = localStylesheet;
+  newScriptSrc = localLinkJS;
+  newStylesheetSrc = localLinkCSS;
 } else {
-  newScriptSrc = isMaster ? cdnLinkLatest : cdnLinkCanary;
-  // newStylesheet = isMaster ? cdnStylesheetLatest : cdnStylesheetCanary;
-
+  newScriptSrc = isMaster ? cdnLinkLatestJS : cdnLinkCanaryJS;
+  newStylesheetSrc = isMaster ? cdnLinkLatestCSS : cdnLinkCanaryCSS;
 }
-const updatedScriptSrc = htmlContent.replace(scriptRegex, newScriptSrc);
-// const updatedScriptSrcAndStylesheet = updatedScriptSrc.replace(stylesheetRegex, newStylesheet);
 
-fs.writeFileSync(indexHtmlPath, updatedScriptSrc, 'utf-8');
+const updatedHtmlContent = htmlContent
+  .replace(scriptRegex, newScriptSrc)
+  .replace(stylesheetRegex, newStylesheetSrc);
 
-console.log("updated: ", newScriptSrc);
+fs.writeFileSync(indexHtmlPath, updatedHtmlContent, 'utf-8');
+
+console.log("updated JS link: ", newScriptSrc);
+console.log("updated CSS link: ", newStylesheetSrc);
