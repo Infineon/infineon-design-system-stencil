@@ -12,17 +12,17 @@ export class TemplatesUI {
   toggleTemplate(currTemp) { 
     const templates = this.el.shadowRoot.querySelector('.templates__wrapper').querySelectorAll('ifx-template');
       templates.forEach((template) => { 
-        const templateWrapper = template.shadowRoot.querySelector('.react__template-wrapper')
-        console.log('templateWrapper', templateWrapper, template)
-        if(templateWrapper) { 
-          if(!templateWrapper.classList.contains('hide') && currTemp ) { 
-            if(templateWrapper !== currTemp) {
-              template.toggleTemplate('add')
-            }
-          } else { 
-            template.toggleTemplate('remove')
-          }
-        }
+        //const templateWrapper = template.shadowRoot.querySelector('.react__template-wrapper')
+        template.toggleTemplate(currTemp)
+        // if(templateWrapper) { 
+        //   if(!templateWrapper.classList.contains('hide') && currTemp ) { 
+        //     if(templateWrapper !== currTemp) {
+        //       template.toggleTemplate('add')
+        //     }
+        //   } else { 
+        //     template.toggleTemplate('remove')
+        //   }
+        // }
       })
   }
 

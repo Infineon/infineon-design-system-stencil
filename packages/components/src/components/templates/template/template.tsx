@@ -31,7 +31,7 @@ export class Template {
       window.open(authorizationUrl, '_blank'); 
   }
 
-  componentDidRender() { 
+  componentDidLoad() { 
     const url = new URL(window.location.href);
     const code = url.searchParams.get('code');
     const selectedTemplate = localStorage.getItem('selectedTemplate');
@@ -102,11 +102,21 @@ export class Template {
   }
 
   @Method()
-  async toggleTemplate(type: string) { 
+  async toggleTemplate(currTemp) { 
     //console.log('this el', this.el, 'type', type)
     const templateWrapper = this.el.shadowRoot.querySelector('.react__template-wrapper');
     if(templateWrapper) { 
-      templateWrapper.classList[type]('hide')
+      if(!templateWrapper.classList.contains('hide') && currTemp ) { 
+        if(templateWrapper !== currTemp) {
+          templateWrapper.classList.add('hide')
+        }
+      } else { 
+        templateWrapper.classList.remove('hide')
+      }
+    }
+
+    if(templateWrapper) { 
+     // templateWrapper.classList[type]('hide')
     }
   }
 
@@ -124,10 +134,10 @@ export class Template {
           : 
           <div>
               <div class="react__template-wrapper" onClick={(e) => this.handleCurrentTemplate(e)}>
-            <div>
-              {this.name}
-            </div>
-          </div>
+                <div>
+                  {this.name}
+                </div>
+              </div>
           {this.showDetails && 
           <div>
             <ifx-button variant='primary' onClick={() => this.handleCurrentTemplate(null)}>Go Back</ifx-button>

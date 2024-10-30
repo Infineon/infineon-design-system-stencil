@@ -21,15 +21,15 @@
 
 ## Methods
 
-### `toggleTemplate(type: string) => Promise<void>`
+### `toggleTemplate(currTemp: any) => Promise<void>`
 
 
 
 #### Parameters
 
-| Name   | Type     | Description |
-| ------ | -------- | ----------- |
-| `type` | `string` |             |
+| Name       | Type  | Description |
+| ---------- | ----- | ----------- |
+| `currTemp` | `any` |             |
 
 #### Returns
 
