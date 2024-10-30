@@ -9,8 +9,9 @@ import { Component, h, Element, State, Prop, Event, EventEmitter, Method } from 
 export class Template {
   @Element() el: HTMLElement;
   @State() repoDetails: { name: string, desc: string, framework: string } = { name: "", desc: "", framework: "" };
-  @State() repoUrl: URL | null = null;
+  @State() repoUrl: string;
   @State() showDetails: boolean = false;
+  @State() isTemplatePage: boolean = false;
   @Prop() name: string;
   @Event() toggleTemplates: EventEmitter;
 
@@ -26,25 +27,27 @@ export class Template {
       `redirect_uri=${redirectUri}&` +
       `scope=${scope}&` +
       `state=${state}`;
-
+    
       window.open(authorizationUrl, '_blank'); 
   }
 
-  componentWillLoad() { 
+  componentDidRender() { 
     const url = new URL(window.location.href);
     const code = url.searchParams.get('code');
     const selectedTemplate = localStorage.getItem('selectedTemplate');
     if(code && this.name === selectedTemplate) { 
+      this.isTemplatePage = true;
+      this.toggleTemplates.emit(selectedTemplate)
       this.getUserToken(code)
-    }
+    } 
   }
-  
+
   async getUserToken(authCode) {
     const repoName = localStorage.getItem('repo_name');
     const repoDesc = localStorage.getItem('repo_desc');
     const repoFramework = localStorage.getItem('repo_framework');
     const templateName = localStorage.getItem('selectedTemplate');
-  
+    
     fetch(`http://localhost:5000/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
       if (response.ok) {
@@ -58,7 +61,7 @@ export class Template {
     .then(data => { 
       if(data) { 
         console.log(data)
-        this.repoUrl = new URL(data)
+        this.repoUrl = data;
         localStorage.clear();
       } 
     })
@@ -98,37 +101,52 @@ export class Template {
     }
   }
 
-
   @Method()
   async toggleTemplate(type: string) { 
+    //console.log('this el', this.el, 'type', type)
     const templateWrapper = this.el.shadowRoot.querySelector('.react__template-wrapper');
-    templateWrapper.classList[type]('hide')
+    if(templateWrapper) { 
+      templateWrapper.classList[type]('hide')
+    }
   }
 
-
+ 
   render() {
-    return (
-      <div>
-        <div class="react__template-wrapper" onClick={(e) => this.handleCurrentTemplate(e)}>
-          <div>
-            {this.name}
-          </div>
-        </div>
-        {this.showDetails && 
+    console.log('this.el', this.el, 'this.istemplatePage', this.isTemplatePage)
+      return (
         <div>
-          <ifx-button variant='primary' onClick={() => this.handleCurrentTemplate(null)}>Go Back</ifx-button>
+          {this.isTemplatePage 
+          ? 
+          <div class="template__page-wrapper">
+            TEMPLATE PAGE
+            {this.repoUrl && <p><a href={this.repoUrl}>Your Repository URL</a></p>}
+          </div> 
+          : 
           <div>
-            <input type="radio" id="react" name="chosen_framework" value="react" onInput={(e) => this.handleUserInput(e, 'framework')}  />
-            <label htmlFor="react">React</label> <br />
-            <input type="radio" id="vue" name="chosen_framework" value="vue" onInput={(e) => this.handleUserInput(e, 'framework')}/>
-            <label htmlFor="vue">Vue</label>
+              <div class="react__template-wrapper" onClick={(e) => this.handleCurrentTemplate(e)}>
+            <div>
+              {this.name}
+            </div>
           </div>
-          <ifx-text-field onInput={(e) => this.handleUserInput(e, 'name')} size="m" icon="c-info-16" placeholder="Your repository name">Repository Name</ifx-text-field>
-          <ifx-text-field  size="m" icon="c-info-16" onInput={(e) => this.handleUserInput(e, 'desc')} placeholder="Your repository description">Repository Description</ifx-text-field>
-          <ifx-button onClick={() => this.submitUserData()} variant='primary'>Generate template</ifx-button>
-          {this.repoUrl && <a target='_blank' href={`${this.repoUrl}`}>Your Repository URL</a>} 
-        </div>}
-      </div>
-    );
+          {this.showDetails && 
+          <div>
+            <ifx-button variant='primary' onClick={() => this.handleCurrentTemplate(null)}>Go Back</ifx-button>
+            <div>
+              <input type="radio" id="react" name="chosen_framework" value="react" onInput={(e) => this.handleUserInput(e, 'framework')}  />
+              <label htmlFor="react">React</label> <br />
+              <input disabled type="radio" id="vue" name="chosen_framework" value="vue" onInput={(e) => this.handleUserInput(e, 'framework')}/>
+              <label htmlFor="vue">Vue</label> (Soon)
+            </div>
+            <ifx-text-field onInput={(e) => this.handleUserInput(e, 'name')} size="m" icon="c-info-16" placeholder="Your repository name">Repository Name</ifx-text-field>
+            <ifx-text-field  size="m" icon="c-info-16" onInput={(e) => this.handleUserInput(e, 'desc')} placeholder="Your repository description">Repository Description</ifx-text-field>
+            <ifx-button onClick={() => this.submitUserData()} variant='primary'>Generate template</ifx-button>
+            {this.repoUrl && <a target='_blank' href={`${this.repoUrl}`}>Your Repository URL</a>} 
+          </div>}
+          </div>}
+        </div>
+     
+      );
+     
+
   }
 }

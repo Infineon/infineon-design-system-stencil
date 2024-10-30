@@ -13,12 +13,15 @@ export class TemplatesUI {
     const templates = this.el.shadowRoot.querySelector('.templates__wrapper').querySelectorAll('ifx-template');
       templates.forEach((template) => { 
         const templateWrapper = template.shadowRoot.querySelector('.react__template-wrapper')
-        if(!templateWrapper.classList.contains('hide') && currTemp ) { 
-          if(templateWrapper !== currTemp) {
-            template.toggleTemplate('add')
+        console.log('templateWrapper', templateWrapper, template)
+        if(templateWrapper) { 
+          if(!templateWrapper.classList.contains('hide') && currTemp ) { 
+            if(templateWrapper !== currTemp) {
+              template.toggleTemplate('add')
+            }
+          } else { 
+            template.toggleTemplate('remove')
           }
-        } else { 
-          template.toggleTemplate('remove')
         }
       })
   }
@@ -39,10 +42,6 @@ export class TemplatesUI {
         <div class="templates__wrapper">
           <ifx-template name='template-01' />
           <ifx-template name='template-02' />
-          <ifx-template name='template-03' />
-          <ifx-template name='template-04' />
-          <ifx-template name='template-05' />
-          <ifx-template name='template-06' />
         </div>
       </div>
     )
