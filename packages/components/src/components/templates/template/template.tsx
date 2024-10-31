@@ -15,7 +15,6 @@ export class Template {
   @Prop() name: string;
   @Event() toggleTemplates: EventEmitter;
 
-
   authUser() { 
     const clientId = 'Ov23lixmXiNTTNb6V5W6';
     const redirectUri = 'http://localhost:6262/?path=/docs/dds-templates--development';
@@ -60,7 +59,6 @@ export class Template {
     })
     .then(data => { 
       if(data) { 
-        console.log(data)
         this.repoUrl = data;
         localStorage.clear();
       } 
@@ -103,7 +101,6 @@ export class Template {
 
   @Method()
   async toggleTemplate(currTemp) { 
-    //console.log('this el', this.el, 'type', type)
     const templateWrapper = this.el.shadowRoot.querySelector('.react__template-wrapper');
     if(templateWrapper) { 
       if(!templateWrapper.classList.contains('hide') && currTemp ) { 
@@ -114,21 +111,16 @@ export class Template {
         templateWrapper.classList.remove('hide')
       }
     }
-
-    if(templateWrapper) { 
-     // templateWrapper.classList[type]('hide')
-    }
   }
 
  
   render() {
-    console.log('this.el', this.el, 'this.istemplatePage', this.isTemplatePage)
       return (
         <div>
           {this.isTemplatePage 
           ? 
           <div class="template__page-wrapper">
-            TEMPLATE PAGE
+            Your repository is getting ready..
             {this.repoUrl && <p><a href={this.repoUrl}>Your Repository URL</a></p>}
           </div> 
           : 
@@ -154,9 +146,6 @@ export class Template {
           </div>}
           </div>}
         </div>
-     
       );
-     
-
   }
 }
