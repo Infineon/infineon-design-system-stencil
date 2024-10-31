@@ -43,72 +43,16 @@ export class Card {
     el.classList[type](className)
   }
 
-  handleHovering() {
-    const card = this.el.shadowRoot.querySelector('.card')
-    let cardHeadline = this.el.querySelector('ifx-card-headline');
-
-    if (this.href) {
-      card.addEventListener('mouseover', (ev) => {
-
-        // const target = ev.target;
-        // const relatedTarget = ev.relatedTarget;
-
-        // if (relatedTarget && relatedTarget !== target && !target.contains(relatedTarget)) {
-        //   this.handleClassList(card, 'add', 'borderHovered')
-        // }
-
-        if (ev.target.nodeName === 'IFX-CARD-LINKS' || ev.target.nodeName === 'IFX-BUTTON') {
-          this.handleClassList(card, 'add', 'linkHovered')
-        } else {
-          this.handleClassList(card, 'add', 'cardHovered')
-          if (cardHeadline) {
-            cardHeadline.isHovered = true;
-          }
-        }
-      })
-
-      card.addEventListener('mouseout', () => {
-        if (cardHeadline) {
-          cardHeadline.isHovered = false;
-        }
-        //this.handleClassList(card, 'remove', 'borderHovered')
-        this.handleClassList(card, 'remove', 'cardHovered')
-        this.handleClassList(card, 'add', 'linkHovered')
-      })
-    }
-  }
 
   componentWillLoad() {
     this.handleComponentAdjustment()
   }
 
-  componentDidLoad() {
-    this.handleHovering();
-    this.addEventListenersToHandleCustomFocusState();
-  }
-
-  private addEventListenersToHandleCustomFocusState() {
-    const element = this.el.shadowRoot;
-    if (!element) {
-      console.error('element not found');
-      return;
-    }
-    const upperBodyWrapper = element.querySelector('.upper__body-wrapper');
-    if (!upperBodyWrapper) {
-      return;
-    }
-
-    // element.tabIndex = -1;
-    // upperBodyWrapper.tabIndex = -1;
-
-  }
-
-
   componentWillUpdate() {
     this.handleComponentAdjustment()
   }
 
-  render() {
+render() {
     return (
       <Host>
         <div aria-labelledby="label" class={
@@ -121,12 +65,12 @@ export class Card {
 
           {this.direction === 'horizontal' &&
             <div class="horizontal">
-              <a class={`card-img ${this.noImg ? 'noImage' : ""}`} href={this.internalHref}>
+              <a class={`card-img ${this.noImg ? 'noImage' : ""} ${this.internalHref ? 'card-href' : ''}`} href={this.internalHref}>
                 <slot name="img" />
               </a>
 
               <div class='lower__body-wrapper'>
-                <a class='upper-body' href={this.internalHref}>
+                <a class={`upper-body ${this.internalHref ? 'card-href' : ''}`} href={this.internalHref}>
                   <slot />
                 </a>
                 <div>
@@ -137,7 +81,7 @@ export class Card {
 
           {this.direction === 'vertical' &&
             <div class="vertical">
-              <a class='upper__body-wrapper' href={this.internalHref} target={this.target}>
+              <a class={`upper__body-wrapper ${this.internalHref ? 'card-href' : ''}`} href={this.internalHref} target={this.target}>
                 <div class={`card-img ${this.noImg ? 'noImage' : ""}`}>
                   <slot name="img" />
                 </div>
