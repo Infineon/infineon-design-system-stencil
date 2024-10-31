@@ -98,8 +98,8 @@ export class Card {
       return;
     }
 
-    element.tabIndex = -1;
-    upperBodyWrapper.tabIndex = -1;
+    // element.tabIndex = -1;
+    // upperBodyWrapper.tabIndex = -1;
 
   }
 
@@ -116,7 +116,8 @@ export class Card {
           ${this.noBtns ? 'noBtns' : ""}
           ${this.direction} 
           ${this.alignment}`
-        }>
+        }
+        role="region">
 
           {this.direction === 'horizontal' &&
             <div class="horizontal">
