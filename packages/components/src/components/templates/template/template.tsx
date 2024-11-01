@@ -12,6 +12,7 @@ export class Template {
   @State() repoUrl: string;
   @State() showDetails: boolean = false;
   @State() isTemplatePage: boolean = false;
+  @State() isLoading: boolean = true;
   @Prop() name: string;
   @Event() toggleTemplates: EventEmitter;
 
@@ -33,20 +34,25 @@ export class Template {
   componentDidLoad() { 
     const url = new URL(window.location.href);
     const code = url.searchParams.get('code');
-    const selectedTemplate = localStorage.getItem('selectedTemplate');
-    if(code && this.name === selectedTemplate) { 
+    const { templateName } = this.getLocalStorageValues()
+    if(code && this.name === templateName) { 
       this.isTemplatePage = true;
-      this.toggleTemplates.emit(selectedTemplate)
+      this.toggleTemplates.emit(templateName)
       this.getUserToken(code)
     } 
   }
 
-  async getUserToken(authCode) {
+  getLocalStorageValues() { 
     const repoName = localStorage.getItem('repo_name');
     const repoDesc = localStorage.getItem('repo_desc');
     const repoFramework = localStorage.getItem('repo_framework');
     const templateName = localStorage.getItem('selectedTemplate');
-    
+    return { repoName, repoDesc, repoFramework, templateName }
+  }
+
+  async getUserToken(authCode) {
+    const { repoName, repoDesc, repoFramework, templateName } = this.getLocalStorageValues();
+
     fetch(`http://localhost:5000/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
       if (response.ok) {
@@ -59,6 +65,7 @@ export class Template {
     })
     .then(data => { 
       if(data) { 
+        this.isLoading = false;
         this.repoUrl = data;
         localStorage.clear();
       } 
@@ -84,7 +91,7 @@ export class Template {
       localStorage.setItem('selectedTemplate', this.name);
       this.authUser()
     } else { 
-      console.log('its empty')
+      console.error('its empty') //what to do with this? I have to output to the user that all fields are required
     }
   }
 
@@ -120,7 +127,8 @@ export class Template {
           {this.isTemplatePage 
           ? 
           <div class="template__page-wrapper">
-            Your repository is getting ready..
+            {!this.repoUrl && <div>Your repository is getting ready.. this will only take a minute.</div>}
+            {this.isLoading && <div><ifx-spinner variant='default' size='s' /></div>}
             {this.repoUrl && <p><a href={this.repoUrl}>Your Repository URL</a></p>}
           </div> 
           : 

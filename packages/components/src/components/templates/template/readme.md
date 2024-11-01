@@ -46,12 +46,14 @@ Type: `Promise<void>`
 
 ### Depends on
 
+- [ifx-spinner](../../spinner)
 - [ifx-button](../../button)
 - [ifx-text-field](../../text-field)
 
 ### Graph
 ```mermaid
 graph TD;
+  ifx-template --> ifx-spinner
   ifx-template --> ifx-button
   ifx-template --> ifx-text-field
   ifx-text-field --> ifx-icon

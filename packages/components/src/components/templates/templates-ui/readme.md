@@ -15,6 +15,7 @@
 ```mermaid
 graph TD;
   ifx-templates-ui --> ifx-template
+  ifx-template --> ifx-spinner
   ifx-template --> ifx-button
   ifx-template --> ifx-text-field
   ifx-text-field --> ifx-icon
