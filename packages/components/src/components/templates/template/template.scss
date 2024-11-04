@@ -1,3 +1,4 @@
+
 .react__template-wrapper { 
   display: flex;
   width: 300px;
@@ -14,3 +15,57 @@
   }
 }
 
+.template__page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  & .repository__url { 
+    text-decoration: none;
+  }
+}
+
+.input__fields-wrapper { 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.details__wrapper { 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selection__buttons-wrapper { 
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+  align-items: center;
+  & .vue__label { 
+    color: #ccc;
+  }
+
+  & label:not(.vue__label) { 
+    &:hover { 
+      cursor: pointer;
+    }
+  }
+
+  & .selection__input { 
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    & input { 
+      margin: 0;
+      height: 20px;
+      width: 20px;
+      &:hover:not(.vue__input) { 
+        cursor: pointer;
+      }
+    }
+  }
+}

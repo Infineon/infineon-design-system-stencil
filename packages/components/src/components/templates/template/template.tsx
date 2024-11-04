@@ -13,8 +13,10 @@ export class Template {
   @State() showDetails: boolean = false;
   @State() isTemplatePage: boolean = false;
   @State() isLoading: boolean = true;
+  @State() repoError: string;
   @Prop() name: string;
   @Event() toggleTemplates: EventEmitter;
+  @Event() fieldError: EventEmitter;
 
   authUser() { 
     const clientId = 'Ov23lixmXiNTTNb6V5W6';
@@ -37,7 +39,7 @@ export class Template {
     const { templateName } = this.getLocalStorageValues()
     if(code && this.name === templateName) { 
       this.isTemplatePage = true;
-      this.toggleTemplates.emit(templateName)
+      this.toggleTemplates.emit('details')
       this.getUserToken(code)
     } 
   }
@@ -70,7 +72,10 @@ export class Template {
         localStorage.clear();
       } 
     })
-    .catch(error => console.error('Error:', error.message));
+    .catch(error => {
+      this.repoError = error.message;
+      console.error('Error:', error.message)
+    });
   }
 
   handleUserInput(e, type) { 
@@ -89,21 +94,37 @@ export class Template {
       localStorage.setItem('repo_desc', this.repoDetails.desc);
       localStorage.setItem('repo_framework', this.repoDetails.framework);
       localStorage.setItem('selectedTemplate', this.name);
+      this.fieldError.emit(false)
       this.authUser()
     } else { 
-      console.error('its empty') //what to do with this? I have to output to the user that all fields are required
+      this.fieldError.emit('All fields are mandatory')
+    }
+  }
+
+  togglePadding(action) { 
+    let parent = this.el.parentElement;
+    if (parent) {
+      const rootNode = parent.getRootNode();
+      if (rootNode instanceof ShadowRoot) {
+        parent = rootNode.host.parentElement;
+      } else {
+        parent = parent.parentElement;
+      }
+      if(action === 'remove') { 
+        parent.parentElement.style.padding = '0px';
+      } else if(action === 'add') { 
+        parent.parentElement.style.padding = '4rem 20px';
+      }
     }
   }
 
   handleCurrentTemplate(e) { 
     if(e) { 
+      this.togglePadding('remove')
       const targetTemplate = e.target;
       this.toggleTemplates.emit(targetTemplate)
       this.showDetails = true;
-    } else { 
-      this.toggleTemplates.emit(false)
-      this.showDetails = false;
-    }
+    } 
   }
 
   @Method()
@@ -115,6 +136,10 @@ export class Template {
           templateWrapper.classList.add('hide')
         }
       } else { 
+        if(this.showDetails) { 
+          this.showDetails = false;
+        }
+        this.togglePadding('add')
         templateWrapper.classList.remove('hide')
       }
     }
@@ -127,31 +152,46 @@ export class Template {
           {this.isTemplatePage 
           ? 
           <div class="template__page-wrapper">
-            {!this.repoUrl && <div>Your repository is getting ready.. this will only take a minute.</div>}
-            {this.isLoading && <div><ifx-spinner variant='default' size='s' /></div>}
-            {this.repoUrl && <p><a href={this.repoUrl}>Your Repository URL</a></p>}
+            {!this.repoUrl && !this.repoError && 
+            <div>
+              <h3>Your repository is getting ready..</h3>
+              <p>This will only take a minute.</p>
+            </div>}
+            {this.isLoading && !this.repoError && <div><ifx-spinner variant='default' size='s' /></div>}
+            {this.repoUrl && <ifx-link href={this.repoUrl} target="_parent" size="m" variant="underlined">Your repository</ifx-link>}
+            {this.repoError && <div>{this.repoError}</div>}
           </div> 
           : 
-          <div>
+          <div class="react__template-container">
               <div class="react__template-wrapper" onClick={(e) => this.handleCurrentTemplate(e)}>
                 <div>
                   {this.name}
                 </div>
               </div>
-          {this.showDetails && 
-          <div>
-            <ifx-button variant='primary' onClick={() => this.handleCurrentTemplate(null)}>Go Back</ifx-button>
-            <div>
-              <input type="radio" id="react" name="chosen_framework" value="react" onInput={(e) => this.handleUserInput(e, 'framework')}  />
-              <label htmlFor="react">React</label> <br />
-              <input disabled type="radio" id="vue" name="chosen_framework" value="vue" onInput={(e) => this.handleUserInput(e, 'framework')}/>
-              <label htmlFor="vue">Vue</label> (Soon)
-            </div>
-            <ifx-text-field onInput={(e) => this.handleUserInput(e, 'name')} size="m" icon="c-info-16" placeholder="Your repository name">Repository Name</ifx-text-field>
-            <ifx-text-field  size="m" icon="c-info-16" onInput={(e) => this.handleUserInput(e, 'desc')} placeholder="Your repository description">Repository Description</ifx-text-field>
-            <ifx-button onClick={() => this.submitUserData()} variant='primary'>Generate template</ifx-button>
-            {this.repoUrl && <a target='_blank' href={`${this.repoUrl}`}>Your Repository URL</a>} 
-          </div>}
+            {this.showDetails && 
+            <div class="details__wrapper">
+              
+              <div class="selection__buttons-wrapper">
+                <div class="selection__input">
+                  <input type="radio" id="react" name="chosen_framework" value="react" onInput={(e) => this.handleUserInput(e, 'framework')}  />
+                  <label htmlFor="react">React</label>
+                </div>
+                <div class="selection__input vue">
+                  <input class="vue__input" disabled type="radio" id="vue" name="chosen_framework" value="vue" onInput={(e) => this.handleUserInput(e, 'framework')}/>
+                  <label class="vue__label" htmlFor="vue">Vue</label> (Soon)
+                </div>
+              </div>
+           
+
+              <div class="input__fields-wrapper">
+                <ifx-text-field required={true} onInput={(e) => this.handleUserInput(e, 'name')} size="m" icon="c-info-16" placeholder="Your repository name">Repository Name</ifx-text-field>
+
+                <ifx-text-field required={true} size="m" icon="c-info-16" onInput={(e) => this.handleUserInput(e, 'desc')} placeholder="Your repository description">Repository Description</ifx-text-field>
+
+                <ifx-button fullWidth={true} onClick={() => this.submitUserData()} variant='primary'>Generate template</ifx-button>
+              </div>
+              
+            </div>}
           </div>}
         </div>
       );

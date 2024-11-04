@@ -964,14 +964,20 @@ export const IfxTag: StencilReactComponent<IfxTagElement, IfxTagEvents> = /*@__P
     defineCustomElement: defineIfxTag
 });
 
-type IfxTemplateEvents = { onToggleTemplates: EventName<CustomEvent<any>> };
+type IfxTemplateEvents = {
+    onToggleTemplates: EventName<CustomEvent<any>>,
+    onFieldError: EventName<CustomEvent<any>>
+};
 
 export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents>({
     tagName: 'ifx-template',
     elementClass: IfxTemplateElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onToggleTemplates: 'toggleTemplates' } as IfxTemplateEvents,
+    events: {
+        onToggleTemplates: 'toggleTemplates',
+        onFieldError: 'fieldError'
+    } as IfxTemplateEvents,
     defineCustomElement: defineIfxTemplate
 });
 
