@@ -108,13 +108,13 @@ export class BreadcrumbItem {
   render() {
     return (
       <li class='breadcrumb-parent' aria-current={`${this.isLastItem ? 'page' : ""}`}>
-       <li role="button" tabindex={this.hasDropdownMenu ? 0 : -1} class="breadcrumb-wrapper" onClick={() => this.toggleDropdownMenu()} aria-controls={this.uniqueId} aria-haspopup="menu">
+       <li role="button" tabindex={this.hasDropdownMenu ? 0 : -1} class="breadcrumb-wrapper" onClick={() => this.toggleDropdownMenu()} aria-controls={this.uniqueId} aria-haspopup="menu" aria-label="Toggle dropdown menu">
           <slot name='label'/>
-          <div id={this.uniqueId} class="dropdown-menu" aria-expanded={this.isDropdownMenuOpen()}>
+          <div id={this.uniqueId} class="dropdown-menu" aria-expanded={this.isDropdownMenuOpen()} aria-label="Dropdown menu">
             <slot />
           </div>
         </li>
-        {!this.isLastItem && <span class="breadcrumb-divider">/</span>}
+        {!this.isLastItem && <span class="breadcrumb-divider" aria-hidden="true">/</span>}
       </li>
     );
   }

@@ -18,8 +18,7 @@ export class Breadcrumb {
       console.error('element not found');
       return;
     }
-    element.tabIndex = -1;
-
+  
     const slot = element.querySelector('slot');
     if(slot) { 
       const assignedNodes = slot.assignedNodes();
