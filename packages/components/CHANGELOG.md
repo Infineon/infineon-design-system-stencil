@@ -1,3 +1,15 @@
+# v25.15.1 (Tue Nov 05 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Placeholder in Multiselect is now changeable [#1558](https://github.com/Infineon/infineon-design-system-stencil/pull/1558) ([@agata-kim](https://github.com/agata-kim))
+
+#### Authors: 1
+
+- [@agata-kim](https://github.com/agata-kim)
+
+---
+
 # v25.15.0 (Thu Oct 24 2024)
 
 #### 🚀 Enhancement
