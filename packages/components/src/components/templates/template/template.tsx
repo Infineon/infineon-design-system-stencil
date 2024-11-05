@@ -1,10 +1,9 @@
 import { Component, h, Element, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
- 
 
 @Component({
   tag: 'ifx-template',
   styleUrl: 'template.scss',
-  shadow: true
+  shadow: true,
 })
 export class Template {
   @Element() el: HTMLElement;
@@ -17,6 +16,8 @@ export class Template {
   @Prop() name: string;
   @Event() toggleTemplates: EventEmitter;
   @Event() fieldError: EventEmitter;
+  @Prop() thumbnail: string;
+  
 
   authUser() { 
     const clientId = 'Ov23lixmXiNTTNb6V5W6';
@@ -121,7 +122,7 @@ export class Template {
   handleCurrentTemplate(e) { 
     if(e) { 
       this.togglePadding('remove')
-      const targetTemplate = e.target;
+      const targetTemplate = e.currentTarget;
       this.toggleTemplates.emit(targetTemplate)
       this.showDetails = true;
     } 
@@ -164,13 +165,12 @@ export class Template {
           : 
           <div class="react__template-container">
               <div class="react__template-wrapper" onClick={(e) => this.handleCurrentTemplate(e)}>
-                <div>
-                  {this.name}
+                <div class="image__wrapper">
+                  <img src={this.thumbnail} />
                 </div>
               </div>
             {this.showDetails && 
             <div class="details__wrapper">
-              
               <div class="selection__buttons-wrapper">
                 <div class="selection__input">
                   <input type="radio" id="react" name="chosen_framework" value="react" onInput={(e) => this.handleUserInput(e, 'framework')}  />

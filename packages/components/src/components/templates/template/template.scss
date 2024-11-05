@@ -3,8 +3,8 @@
   display: flex;
   width: 300px;
   height: 200px;
-  border-radius: 4px;
-  border: 1px solid;
+  border-radius: 3px;
+  border: 1px solid #ccc;
 
   &.hide { 
     display: none;
@@ -67,5 +67,14 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.image__wrapper { 
+  img { 
+    width: 300px;
+    height: 100%;
+    border-radius: 3px;
+    object-fit: fill;
   }
 }

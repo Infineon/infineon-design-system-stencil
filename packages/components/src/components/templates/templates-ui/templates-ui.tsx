@@ -1,14 +1,19 @@
-import { Component, h, Listen, Element } from '@stencil/core';
+import { Component, h, Listen, Element, getAssetPath } from '@stencil/core';
 
 @Component({
   tag: 'ifx-templates-ui',
   styleUrl: 'templates-ui.scss',
   shadow: true,
+  assetsDirs: ['assets']
 })
 
 export class TemplatesUI {
   @Element() el: HTMLElement;
-   
+
+  private tableTemplate = getAssetPath(`https://raw.githubusercontent.com/Infineon/public-assets/refs/heads/main/table_template.png`);
+  private wizardTemplate = getAssetPath(`https://raw.githubusercontent.com/Infineon/public-assets/refs/heads/main/wizard_template.png`);
+
+
   toggleTemplate(currTemp) { 
     const templates = this.el.shadowRoot.querySelector('.templates__wrapper').querySelectorAll('ifx-template');
       templates.forEach((template) => { 
@@ -59,8 +64,8 @@ export class TemplatesUI {
         </div>
         <h2 class="templates__title">Choose your template</h2>
         <div class="templates__wrapper">
-          <ifx-template name='template-01' />
-          <ifx-template name='template-02' />
+          <ifx-template name='template-01' thumbnail={this.tableTemplate} />
+          <ifx-template name='template-02' thumbnail={this.wizardTemplate} />
         </div>
       </div>
     )
