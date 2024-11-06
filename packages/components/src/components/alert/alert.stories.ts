@@ -10,6 +10,7 @@ export default {
     showIcon: true,
     closable: true,
     iconName: 'c-info-24',
+    AriaLive: 'assertive',
   },
 
   argTypes: {
@@ -39,10 +40,16 @@ export default {
         },
       },
     },
+
+    AriaLive: { 
+      options: ['off', 'polite', 'assertive'],
+      control: { type: 'radio' },
+      description: 'The aria-live attribute to indicate a dynamic content.' 
+    },
   },
 };
 
-const DefaultTemplate = args => `<ifx-alert variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 

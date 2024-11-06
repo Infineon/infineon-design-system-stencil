@@ -1,3 +1,79 @@
+# v25.15.1 (Tue Nov 05 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Placeholder in Multiselect is now changeable [#1558](https://github.com/Infineon/infineon-design-system-stencil/pull/1558) ([@agata-kim](https://github.com/agata-kim))
+
+#### Authors: 1
+
+- [@agata-kim](https://github.com/agata-kim)
+
+---
+
+# v25.15.0 (Thu Oct 24 2024)
+
+#### 🚀 Enhancement
+
+- New component: Segmented controls [#1425](https://github.com/Infineon/infineon-design-system-stencil/pull/1425) ([@akashyeole](https://github.com/akashyeole) [@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.14.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Alert [#1545](https://github.com/Infineon/infineon-design-system-stencil/pull/1545) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.13.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Created custom templates for GitHub issues [#1523](https://github.com/Infineon/infineon-design-system-stencil/pull/1523) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.12.0 (Tue Oct 22 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Accordion [#1503](https://github.com/Infineon/infineon-design-system-stencil/pull/1503) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.11.0 (Mon Oct 21 2024)
+
+#### 🚀 Enhancement
+
+- Removed deprecated cpx and adopted ncp dependency [#1544](https://github.com/Infineon/infineon-design-system-stencil/pull/1544) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v25.10.0 (Wed Oct 16 2024)
 
 #### 🚀 Enhancement
