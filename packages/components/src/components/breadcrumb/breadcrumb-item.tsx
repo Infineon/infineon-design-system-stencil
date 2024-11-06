@@ -32,6 +32,7 @@ export class BreadcrumbItem {
 
   getDropdownMenu() {
     const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
+    console.log('dropdownMenu', dropdownMenu)
     return dropdownMenu
   }
 
@@ -87,20 +88,29 @@ export class BreadcrumbItem {
       this.uniqueId = this.generateUniqueId('breadcrumb-dropdown');
     }
     this.handleLastItem()
+
+
+    this.setHasDropdownMenu()
   }
 
   componentDidUpdate() {
     this.handleLastItem()
   }
 
-  componentDidLoad() { 
+  setHasDropdownMenu() { 
     const dropdownMenu = this.el.querySelector('ifx-dropdown-menu');
     this.hasDropdownMenu = !!dropdownMenu;
-  
+  }
+
+  componentDidLoad() { 
+    const dropdownMenu = this.el.querySelector('ifx-dropdown-menu');
+    //this.hasDropdownMenu = !!dropdownMenu;
+
     if(!this.hasDropdownMenu) { 
       const iconMenuWrapper = this.getMenuIconWrapper();
       this.handleClassList(iconMenuWrapper, 'toggle', 'hide');
     } else { 
+      //console.log('dropdownMenu', dropdownMenu)
       dropdownMenu.isOpen = true;
     }
   }
