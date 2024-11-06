@@ -1,4 +1,4 @@
-import { h, Component, Host, Prop } from "@stencil/core"
+import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "@stencil/core"
 
 @Component({
 	formAssociated: true,
@@ -11,8 +11,15 @@ export class TextArea {
 
 	private inputId = `ifx-textarea-${textareaId++}`;
 
+	@AttachInternals() internals: ElementInternals;
+
+	@Event() ifxChange: EventEmitter<{oldValue: String, newValue: String}>;
+	@Event() ifxInput: EventEmitter<String>;
+
 	@Prop() caption: string;
 	@Prop() cols: number;
+	@Prop() disabled: boolean = false;
+	@Prop() error: boolean = false;
 	@Prop() label: string;
 	@Prop() maxlength: number;
 	@Prop() minlength: number;
@@ -24,9 +31,28 @@ export class TextArea {
 	@Prop({ mutable: true }) value: string;
 	@Prop() wrap: 'hard' | 'soft' | 'off' = 'soft';
 
+	formResetCallback() {
+		this.value = '';
+		this.internals.setValidity({});
+		this.internals.setFormValue('');
+	}
+	
+	handleOnChange(e: Event): void {
+		const value = (e.target as HTMLTextAreaElement).value;
+		this.value = value;
+		this.internals.setFormValue(this.value)
+		this.ifxChange.emit({oldValue: value, newValue: this.value});
+	}
+
+	handleOnInput(e: InputEvent): void {
+		this.ifxInput.emit((e.target as HTMLTextAreaElement).value)
+	}
+
 	render() {
 		return (
-			<Host class='wrapper'>
+			<Host class={`wrapper 
+						wrapper--${this.error ? 'error' : ''}
+						wrapper--${this.disabled ? 'disabled': ''}`}>
 				<label class='wrapper__label' htmlFor={ this.inputId }>
 					{ this.label?.trim() }
 				</label>
@@ -41,9 +67,12 @@ export class TextArea {
 						maxlength={ this.maxlength }
 						minlength={ this.minlength }
 						wrap={ this.wrap }
+						disabled={ this.disabled }
 						readonly={ this.readOnly }
 						placeholder={ this.placeholder }
 						value={ this.value }
+						onInput={ (e) => this.handleOnInput(e) }
+						onChange={ (e) => this.handleOnChange(e) }
 					/>
 				</div>
 
