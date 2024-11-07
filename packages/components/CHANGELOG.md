@@ -1,3 +1,16 @@
+# v25.18.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-item: removed max-height [#1564](https://github.com/Infineon/infineon-design-system-stencil/pull/1564) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.17.0 (Thu Nov 07 2024)
 
 #### 🚀 Enhancement
