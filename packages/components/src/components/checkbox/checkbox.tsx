@@ -117,6 +117,7 @@ export class Checkbox {
           onChange={this.handleCheckbox.bind(this)}
           id='checkbox'
           value={`${this.internalValue}`}
+          disabled={this.disabled ? true : undefined}
         />
 
         <div
