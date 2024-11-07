@@ -77,5 +77,6 @@ export const DIRECTIVES = [
   d.IfxTabs,
   d.IfxTag,
   d.IfxTextField,
+  d.IfxTextarea,
   d.IfxTooltip
 ];
