@@ -10,8 +10,7 @@ import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "
 
 export class TextArea {
 
-	private inputId = `ifx-textarea-${++textareaId}`;
-	// private textareaRef: HTMLTextAreaElement;
+	private inputId: string = `ifx-textarea-${++textareaId}`;
 
 	@AttachInternals() internals: ElementInternals;
 
@@ -70,7 +69,6 @@ export class TextArea {
 
 				<div class='wrapper__textarea'>
 					<textarea
-						// ref={ (el) => (this.textareaRef = el) }
 						id={ this.inputId }
 						style={ {resize: this.resize} }
 						name={ this.name ? this.name : this.inputId}
