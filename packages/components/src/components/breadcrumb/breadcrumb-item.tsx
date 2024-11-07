@@ -32,7 +32,7 @@ export class BreadcrumbItem {
 
   getDropdownMenu() {
     const dropdownMenu = this.el.shadowRoot.querySelector('.dropdown-menu');
-    console.log('dropdownMenu', dropdownMenu)
+    //console.log('dropdownMenu', dropdownMenu)
     return dropdownMenu
   }
 
@@ -69,7 +69,7 @@ export class BreadcrumbItem {
 
   isDropdownMenuOpen(): boolean {
     const dropdownMenu = this.getDropdownMenu()
-    return this.hasDropdownMenu && dropdownMenu.classList.contains('open')
+    return this.hasDropdownMenu && dropdownMenu && dropdownMenu.classList.contains('open')
   }
 
   handleLastItem() { 
@@ -90,16 +90,23 @@ export class BreadcrumbItem {
     this.handleLastItem()
 
 
-    this.setHasDropdownMenu()
+    //this.setHasDropdownMenu()
   }
 
   componentDidUpdate() {
     this.handleLastItem()
   }
 
+  componentWillRender() { 
+    this.setHasDropdownMenu()
+  }
+
   setHasDropdownMenu() { 
     const dropdownMenu = this.el.querySelector('ifx-dropdown-menu');
-    this.hasDropdownMenu = !!dropdownMenu;
+    console.log('dropdownMenu', dropdownMenu)
+    if(dropdownMenu) {
+      this.hasDropdownMenu = !!dropdownMenu;
+    }
   }
 
   componentDidLoad() { 
@@ -107,10 +114,11 @@ export class BreadcrumbItem {
     //this.hasDropdownMenu = !!dropdownMenu;
 
     if(!this.hasDropdownMenu) { 
+      console.log('here')
       const iconMenuWrapper = this.getMenuIconWrapper();
       this.handleClassList(iconMenuWrapper, 'toggle', 'hide');
     } else { 
-      //console.log('dropdownMenu', dropdownMenu)
+      console.log('else')
       dropdownMenu.isOpen = true;
     }
   }
