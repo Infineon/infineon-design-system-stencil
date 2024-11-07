@@ -93,7 +93,7 @@ export class Button {
 
   resetClickHandler() {
     const formElement = this.el.closest('form');
-    const customElements = formElement.querySelectorAll('ifx-text-field');
+    const customElements = formElement.querySelectorAll('ifx-text-field, ifx-textarea');
     customElements.forEach(element => {
       element.reset();
     });

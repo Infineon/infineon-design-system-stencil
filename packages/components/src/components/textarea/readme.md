@@ -33,6 +33,19 @@
 | `ifxInput`  |             | `CustomEvent<String>`                                  |
 
 
+## Methods
+
+### `reset() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

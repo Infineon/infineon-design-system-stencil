@@ -1,3 +1,4 @@
+import { Method } from "@stencil/core";
 import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "@stencil/core"
 
 @Component({
@@ -10,6 +11,7 @@ import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "
 export class TextArea {
 
 	private inputId = `ifx-textarea-${++textareaId}`;
+	// private textareaRef: HTMLTextAreaElement;
 
 	@AttachInternals() internals: ElementInternals;
 
@@ -31,10 +33,13 @@ export class TextArea {
 	@Prop({ mutable: true }) value: string;
 	@Prop() wrap: 'hard' | 'soft' | 'off' = 'soft';
 
-	formResetCallback() {
-		this.value = '';
-		this.internals.setValidity({});
-		this.internals.setFormValue('');
+	@Method()
+	async reset() {
+		this.resetTextarea();
+	}
+	
+	formResetCallback(): void {
+		this.resetTextarea();
 	}
 	
 	handleOnChange(e: Event): void {
@@ -43,9 +48,15 @@ export class TextArea {
 		this.internals.setFormValue(this.value)
 		this.ifxChange.emit({oldValue: value, newValue: this.value});
 	}
-
+	
 	handleOnInput(e: InputEvent): void {
 		this.ifxInput.emit((e.target as HTMLTextAreaElement).value)
+	}
+
+	resetTextarea() {
+		this.value = '';
+		this.internals.setValidity({});
+		this.internals.setFormValue('');
 	}
 
 	render() {
@@ -59,6 +70,7 @@ export class TextArea {
 
 				<div class='wrapper__textarea'>
 					<textarea
+						// ref={ (el) => (this.textareaRef = el) }
 						id={ this.inputId }
 						style={ {resize: this.resize} }
 						name={ this.name ? this.name : this.inputId}
