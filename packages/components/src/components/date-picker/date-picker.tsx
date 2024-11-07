@@ -82,7 +82,8 @@ export class DatePicker {
         <input
         type="date"
         class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
-        disabled={this.disabled}
+        disabled={this.disabled ? true : undefined}
+        aria-invalid={this.error ? true : undefined}
         onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper" onClick={() => this.handleInputFocusOnIconClick()}>
           <ifx-icon icon='calendar16' aria-hidden="true"></ifx-icon>
