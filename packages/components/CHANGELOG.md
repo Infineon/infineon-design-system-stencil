@@ -1,3 +1,16 @@
+# v25.17.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Button [#1559](https://github.com/Infineon/infineon-design-system-stencil/pull/1559) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.16.0 (Thu Nov 07 2024)
 
 #### 🚀 Enhancement
