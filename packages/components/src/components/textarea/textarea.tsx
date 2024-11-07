@@ -9,7 +9,7 @@ import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "
 
 export class TextArea {
 
-	private inputId = `ifx-textarea-${textareaId++}`;
+	private inputId = `ifx-textarea-${++textareaId}`;
 
 	@AttachInternals() internals: ElementInternals;
 

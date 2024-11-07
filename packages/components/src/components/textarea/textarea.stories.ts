@@ -9,6 +9,8 @@ export default {
         disabled: false,
         error: false,
         label: 'Label Text',
+        maxlength: undefined,
+        minlength: undefined,
         name: 'textarea',
         placeholder: 'Placeholder',
         readOnly: false,
@@ -17,7 +19,160 @@ export default {
         value: 'Text',
         wrap: 'soft'
     },
-    argTypes: {},
+    argTypes: {
+        caption: {
+            description: 'Set the caption text of textarea.',
+            table: {
+                category: 'ifx-textarea props',
+            },
+        },
+        cols: {
+            description: 'Set the visible width of the textarea control.',
+            control: { type: 'number', min: 0 },
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 2,
+                },
+            },
+        },
+        disabled: {
+            description: 'Disables the user interaction when set to true.',
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: false,
+                },
+            },
+        },
+        error: {
+            description: 'Set the component to error state.',
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: false,
+                },
+            },
+        },
+        label: {
+            description: 'Set the label of textarea component.',
+            table: {
+                category: 'ifx-textarea props',
+            },
+        },
+        maxlength: {
+            description: 'Set the maximum string length user can enter.',
+            type: 'number',
+            table: {
+                category: 'ifx-textarea props',
+            }
+        },
+        minlength: {
+            description: 'Set the minimum string lenght user must enter.',
+            type: 'number',
+            table: {
+                category: 'ifx-textarea props',
+            }
+        },
+        name: {
+            description: 'The name of the control. Useful for form handling.',
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 'ifx-textarea-[n]',
+                }
+            },
+        },
+        placeholder: {
+            description: 'Set the placeholder text of textarea.',
+            table: {
+                category: 'ifx-textarea props',
+            }
+        },
+        readOnly: {
+            description: `Text cannot be edited when set to true.\n 
+*Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
+        resize: {
+            description: 'Sets whether the textarea is resizable, and if so, in which directions.',
+            control: 'radio',
+            options: ['both', 'vertical', 'horizontal', 'none'],
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 'none',
+                },
+            },
+        },
+        rows: {
+            description: 'Set the number of visible text lines for the textrarea control.',
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 2,
+                },
+            },
+        },
+        value: {
+            description: 'Current value of the textarea.',
+            table: {
+                category: 'ifx-textarea props',
+            },
+        },
+        wrap: {
+            description: 'Indicates how the control should wrap the value for form submission.',
+            control: 'radio',
+            options: ['soft', 'hard', 'off'],
+            table: {
+                category: 'ifx-textarea props',
+                defaultValue: {
+                    summary: 'soft',
+                },
+            },
+        },
+        ifxChange: {
+            description: `A custom event *ifxChange* is emitted whenever the value of *<ifx-textarea>* is changed and unfocused.\n
+    event.detail: 
+    {
+        oldValue: String,
+        newValue: String
+    }
+            `,
+            table: {
+                category: 'custom events',
+                type: {
+                    summary: 'Framework integration',
+                    detail: `
+React: onIfxChange={handleChange}
+Vue: @ifxChange="handleChange"
+Angular: (ifxChange)="handleChange()"
+VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
+                }
+            }
+        },
+        ifxInput: {
+            description: `A custom event *ifxInput* is emitted as the text input of *<ifx-textarea>* changes.\n
+    event.detail: String
+            `,
+            table: {
+                category: 'custom events',
+                type: {
+                    summary: 'Framework integration',
+                    detail: `
+React: onIfxInput={handleInput}
+Vue: @ifxInput="handleInput"
+Angular: (ifxInput)="handleInput()"
+VanillaJs: .addEventListener("ifxInput", (event) => {/*handle input*/});`,
+                }
+            }
+        },
+    },
 }
 
 const Template = (args) => {

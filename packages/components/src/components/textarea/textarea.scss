@@ -34,7 +34,6 @@
         outline: none;
         border: 1px solid tokens.$ifxColorOcean500;
     }
-    
 }
 :host(.wrapper--error) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorRed500;
