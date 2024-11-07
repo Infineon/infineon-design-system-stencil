@@ -17,7 +17,7 @@ export class Button {
   @Prop() target: string = '_self';
   @Prop() type: "button" | "submit" | "reset" = "button";
   @Prop() fullWidth: boolean = false;
-  @Prop() ariaLabel: string;
+  @Prop() AriaLabel: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -136,7 +136,7 @@ export class Button {
           onFocus={(event) => this.handleFocus(event)}
           aria-disabled={this.disabled ? 'true' : null}
           aria-describedby={this.theme === 'danger' ? 'Dangerous action' : undefined}
-          aria-label={this.ariaLabel || "Button label"}
+          aria-label={this.AriaLabel || "Button label"}
         >
           <slot></slot>
         </a>
