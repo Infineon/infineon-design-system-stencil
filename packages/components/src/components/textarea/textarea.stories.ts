@@ -16,7 +16,7 @@ export default {
 		readOnly: false,
 		resize: 'both',
 		rows: 5,
-		value: 'Text',
+		value: '',
 		wrap: 'soft'
 	},
 	argTypes: {
@@ -137,11 +137,11 @@ export default {
 			},
 		},
 		ifxChange: {
-			description: `A custom event *ifxChange* is emitted whenever the value of *<ifx-textarea>* is changed and unfocused.\n
+			description: `A custom event *ifxChange* is emitted when the *<ifx-textarea>* loses focus after the value has been chanaged.\n
 	event.detail: 
 	{
-		oldValue: String,
-		newValue: String
+		oldValue: string,
+		newValue: string
 	}
 			`,
 			table: {
@@ -157,8 +157,8 @@ VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
 			}
 		},
 		ifxInput: {
-			description: `A custom event *ifxInput* is emitted as the text input of *<ifx-textarea>* changes.\n
-	event.detail: String
+			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.\n
+	event.detail: string
 			`,
 			table: {
 				category: 'custom events',

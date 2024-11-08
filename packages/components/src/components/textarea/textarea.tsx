@@ -42,8 +42,8 @@ export class TextArea {
 	}
 	
 	handleOnChange(e: Event): void {
-		const value = (e.target as HTMLTextAreaElement).value;
-		this.value = value;
+		const value = this.value;
+		this.value = (e.target as HTMLTextAreaElement).value;
 		this.internals.setFormValue(this.value)
 		this.ifxChange.emit({oldValue: value, newValue: this.value});
 	}
@@ -56,6 +56,10 @@ export class TextArea {
 		this.value = '';
 		this.internals.setValidity({});
 		this.internals.setFormValue('');
+	}
+
+	componentWillLoad() {
+		this.internals.setFormValue(this.value);
 	}
 
 	render() {
