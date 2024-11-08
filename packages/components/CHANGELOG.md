@@ -1,3 +1,29 @@
+# v25.18.1 (Thu Nov 07 2024)
+
+#### 🐛 Bug Fix
+
+- Slider: set higher z-index on last active handle to prevent double click when both handles overlap [#1567](https://github.com/Infineon/infineon-design-system-stencil/pull/1567) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.18.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-item: removed max-height [#1564](https://github.com/Infineon/infineon-design-system-stencil/pull/1564) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.17.0 (Thu Nov 07 2024)
 
 #### 🚀 Enhancement
