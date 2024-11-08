@@ -17,13 +17,12 @@ export class Template {
   @Event() toggleTemplates: EventEmitter;
   @Event() fieldError: EventEmitter;
   @Prop() thumbnail: string;
-  
 
   authUser() { 
-    const clientId = 'Ov23lixmXiNTTNb6V5W6';
+    const clientId = process.env.CLIENT_ID;
     const redirectUri = 'http://localhost:6262/?path=/docs/dds-templates--development';
-    const scope = 'repo';
-    const state = 'template123';
+    const scope = process.env.SCOPE;
+    const state = process.env.STATE;
 
     const authorizationUrl = `https://github.com/login/oauth/authorize?` +
       `client_id=${clientId}&` +
