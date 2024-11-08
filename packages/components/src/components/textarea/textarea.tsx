@@ -73,6 +73,9 @@ export class TextArea {
 
 				<div class='wrapper__textarea'>
 					<textarea
+						aria-label='a textarea'
+						aria-value={ this.value }
+						aria-disabled={ this.disabled }
 						id={ this.inputId }
 						style={ {resize: this.resize} }
 						name={ this.name ? this.name : this.inputId}
