@@ -1,3 +1,55 @@
+# v25.18.1 (Thu Nov 07 2024)
+
+#### 🐛 Bug Fix
+
+- Slider: set higher z-index on last active handle to prevent double click when both handles overlap [#1567](https://github.com/Infineon/infineon-design-system-stencil/pull/1567) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.18.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Navbar-item: removed max-height [#1564](https://github.com/Infineon/infineon-design-system-stencil/pull/1564) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.17.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Button [#1559](https://github.com/Infineon/infineon-design-system-stencil/pull/1559) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v25.16.0 (Thu Nov 07 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Breadcrumb [#1557](https://github.com/Infineon/infineon-design-system-stencil/pull/1557) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.15.1 (Tue Nov 05 2024)
 
 #### 🐛 Bug Fix
