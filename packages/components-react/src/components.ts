@@ -974,20 +974,14 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
     defineCustomElement: defineIfxTextField
 });
 
-type IfxTextareaEvents = {
-    onIfxChange: EventName<IfxTextareaCustomEvent<{ oldValue: String, newValue: String }>>,
-    onIfxInput: EventName<IfxTextareaCustomEvent<String>>
-};
+type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<String>> };
 
 export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
     tagName: 'ifx-textarea',
     elementClass: IfxTextareaElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {
-        onIfxChange: 'ifxChange',
-        onIfxInput: 'ifxInput'
-    } as IfxTextareaEvents,
+    events: { onIfxInput: 'ifxInput' } as IfxTextareaEvents,
     defineCustomElement: defineIfxTextarea
 });
 

@@ -15,7 +15,6 @@
 | `error`       | `error`       |             | `boolean`                                        | `false`     |
 | `label`       | `label`       |             | `string`                                         | `undefined` |
 | `maxlength`   | `maxlength`   |             | `number`                                         | `undefined` |
-| `minlength`   | `minlength`   |             | `number`                                         | `undefined` |
 | `name`        | `name`        |             | `string`                                         | `undefined` |
 | `placeholder` | `placeholder` |             | `string`                                         | `undefined` |
 | `readOnly`    | `read-only`   |             | `boolean`                                        | `false`     |
@@ -27,10 +26,9 @@
 
 ## Events
 
-| Event       | Description | Type                                                   |
-| ----------- | ----------- | ------------------------------------------------------ |
-| `ifxChange` |             | `CustomEvent<{ oldValue: String; newValue: String; }>` |
-| `ifxInput`  |             | `CustomEvent<String>`                                  |
+| Event      | Description | Type                  |
+| ---------- | ----------- | --------------------- |
+| `ifxInput` |             | `CustomEvent<String>` |
 
 
 ## Methods

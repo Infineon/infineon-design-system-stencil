@@ -1,5 +1,4 @@
-import { Method } from "@stencil/core";
-import { h, Component, Host, Prop, Event, EventEmitter, AttachInternals } from "@stencil/core"
+import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop } from "@stencil/core"
 
 @Component({
 	formAssociated: true,
@@ -14,7 +13,6 @@ export class TextArea {
 
 	@AttachInternals() internals: ElementInternals;
 
-	@Event() ifxChange: EventEmitter<{oldValue: String, newValue: String}>;
 	@Event() ifxInput: EventEmitter<String>;
 
 	@Prop() caption: string;
@@ -23,7 +21,6 @@ export class TextArea {
 	@Prop() error: boolean = false;
 	@Prop() label: string;
 	@Prop() maxlength: number;
-	@Prop() minlength: number;
 	@Prop() name: string;
 	@Prop() placeholder: string;
 	@Prop() readOnly: boolean = false;
@@ -39,17 +36,13 @@ export class TextArea {
 	
 	formResetCallback(): void {
 		this.resetTextarea();
-	}
-	
-	handleOnChange(e: Event): void {
-		const value = this.value;
-		this.value = (e.target as HTMLTextAreaElement).value;
-		this.internals.setFormValue(this.value)
-		this.ifxChange.emit({oldValue: value, newValue: this.value});
+		this.internals.setFormValue("");
 	}
 	
 	handleOnInput(e: InputEvent): void {
-		this.ifxInput.emit((e.target as HTMLTextAreaElement).value)
+		this.value = (e.target as HTMLTextAreaElement).value;
+		this.internals.setFormValue(this.value);
+		this.ifxInput.emit(this.value);
 	}
 
 	resetTextarea() {
@@ -82,14 +75,12 @@ export class TextArea {
 						cols={ this.cols }
 						rows={ this.rows }
 						maxlength={ this.maxlength }
-						minlength={ this.minlength }
 						wrap={ this.wrap }
 						disabled={ this.disabled }
 						readonly={ this.readOnly }
 						placeholder={ this.placeholder }
 						value={ this.value }
 						onInput={ (e) => this.handleOnInput(e) }
-						onChange={ (e) => this.handleOnChange(e) }
 					/>
 				</div>
 

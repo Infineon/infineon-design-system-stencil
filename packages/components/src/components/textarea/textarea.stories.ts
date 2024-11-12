@@ -10,7 +10,6 @@ export default {
 		error: false,
 		label: 'Label Text',
 		maxlength: undefined,
-		minlength: undefined,
 		name: 'textarea',
 		placeholder: 'Placeholder',
 		readOnly: false,
@@ -62,13 +61,6 @@ export default {
 		},
 		maxlength: {
 			description: 'Set the maximum string length user can enter.',
-			type: 'number',
-			table: {
-				category: 'ifx-textarea props',
-			}
-		},
-		minlength: {
-			description: 'Set the minimum string lenght user must enter.',
 			type: 'number',
 			table: {
 				category: 'ifx-textarea props',
@@ -136,26 +128,6 @@ export default {
 				},
 			},
 		},
-		ifxChange: {
-			description: `A custom event *ifxChange* is emitted when the *<ifx-textarea>* loses focus after the value has been chanaged.\n
-	event.detail: 
-	{
-		oldValue: string,
-		newValue: string
-	}
-			`,
-			table: {
-				category: 'custom events',
-				type: {
-					summary: 'Framework integration',
-					detail: `
-React: onIfxChange={handleChange}
-Vue: @ifxChange="handleChange"
-Angular: (ifxChange)="handleChange()"
-VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
-				}
-			}
-		},
 		ifxInput: {
 			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.\n
 	event.detail: string
@@ -185,7 +157,6 @@ const Template = (args) => {
 	error="${args.error}"
 	label="${args.label}"
 	maxlength="${args.maxlength}"
-	minlength="${args.minlength}"
 	name="${args.name}"
 	placeholder="${args.placeholder}"
 	read-only="${args.readOnly}"
@@ -197,7 +168,6 @@ const Template = (args) => {
 `;
 	const textarea = wrapper.querySelector('ifx-textarea');
 	textarea.addEventListener('ifxInput', action('ifxInput'));
-	textarea.addEventListener('ifxChange', action('ifxChange'));
 
 	return textarea;
 };
