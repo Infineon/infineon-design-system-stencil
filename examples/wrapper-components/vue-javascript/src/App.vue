@@ -36,6 +36,7 @@
   <TableAdvanced />
   <Tabs />
   <Tag />
+  <Textarea />
   <TextField />
   <Tooltip />
   <Footer />
@@ -82,6 +83,6 @@ import Stepper from './components/Stepper.vue'
 import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
-
+import Textarea from './components/Textarea.vue'
 
 </script>
