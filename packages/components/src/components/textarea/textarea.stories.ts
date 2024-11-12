@@ -82,6 +82,7 @@ export default {
 			}
 		},
 		readOnly: {
+			name: 'read-only',
 			description: `Text cannot be edited when set to true.\n 
 *Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
 			table: {
