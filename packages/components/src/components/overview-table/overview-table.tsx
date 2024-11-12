@@ -1806,6 +1806,29 @@ export class OverviewTable {
                   <td></td>
                   <td></td>
                 </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Textarea</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a customizable multi-line text input interface, enabling users to input, edit, and view large amounts of text, while adhering to web standards for accessibility and usability.</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Form integration</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
             
                 <tr>
                   <td class="planned__component sticky-col second-col">
@@ -1882,24 +1905,6 @@ export class OverviewTable {
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Radio Group</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-            
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Text Area</ifx-link>
                   </td>
                   <td>
                     <ul>
