@@ -16,6 +16,7 @@ export class Card {
   @Prop() href: string = "";
   @State() internalHref: string = ""
   @Prop() target: string = "_self";
+  @Prop() AriaLabel: string;
 
   @Listen('imgPosition')
   setImgPosition(event) {
@@ -55,7 +56,7 @@ export class Card {
 render() {
     return (
       <Host>
-        <div aria-labelledby="label" class={
+        <div aria-label={this.AriaLabel} class={
           `card 
           ${this.noBtns ? 'noBtns' : ""}
           ${this.direction} 
