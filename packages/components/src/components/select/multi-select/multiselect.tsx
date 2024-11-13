@@ -57,6 +57,18 @@ export class Multiselect {
   dropdownElement!: HTMLElement;
 
 
+  @Watch('options')
+  updateOptions() { 
+    this.loadedOptions = [];
+    this.filteredOptions = [];
+    this.optionCount = 0;
+    this.optionsProcessed = false;
+    this.persistentSelectedOptions = [];
+
+    this.loadInitialOptions();
+  }
+
+
   async loadInitialOptions() {
     this.isLoading = true;
     this.internalError = this.error;
@@ -93,6 +105,7 @@ export class Multiselect {
     if (typeof this.options === 'string') {
       try {
         allOptions = JSON.parse(this.options);
+       
       } catch (err) {
         console.error('Failed to parse options:', err);
       }
@@ -193,7 +206,6 @@ export class Multiselect {
 
     // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
   }
-
 
   componentWillLoad() {
     this.loadInitialOptions();
@@ -377,7 +389,7 @@ export class Multiselect {
     const options = this.dropdownElement.querySelectorAll('.option');
     
     switch (event.code) {
-      case 'Enter' || ' ':
+      case 'Enter':
         this.toggleDropdown();
         // Wait a bit for the dropdown to finish rendering
         this.waitForElement(() => {
