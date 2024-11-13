@@ -1779,7 +1779,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Segmented Controls</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
                   </td>
                   <td>
                     <ul>
