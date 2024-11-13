@@ -56,7 +56,7 @@ export class Multiselect {
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
 
-  
+
   @Watch('options')
   updateOptions() { 
     this.loadedOptions = [];
@@ -389,7 +389,7 @@ export class Multiselect {
     const options = this.dropdownElement.querySelectorAll('.option');
     
     switch (event.code) {
-      case 'Enter' || ' ':
+      case 'Enter':
         this.toggleDropdown();
         // Wait a bit for the dropdown to finish rendering
         this.waitForElement(() => {
