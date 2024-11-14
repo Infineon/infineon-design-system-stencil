@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.14.0--canary.1545.e1a39da349a88328e2b5b31729ce408bb8e76901.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@26.0.0--canary.1485.8162da32f9fc366646a6da72bbed42526db2b8ee.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -365,7 +365,13 @@
 
 
     <h2>Radio Button</h2>
-    <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
+    <form id="radio-form">
+      <ifx-radio-button id="radio-btn" error="false" disabled="false" size="s" name="fruit" value="apple">Apple</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="pear">Pear</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
+      <ifx-button type="submit">Submit</ifx-button>
+    </form>
+
     <br />
 
     <h2>Spinner</h2>
@@ -768,9 +774,12 @@
       updateValues();
     });
 
-    radioBtn.addEventListener('ifxChange', (event) => {
-      console.log("radio btn value change", event.detail);
-      radioChecked = !radioChecked;
+    document.getElementById('radio-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        formData.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+        });
     });
 
     openModalBtn.addEventListener('click', (event) => {
