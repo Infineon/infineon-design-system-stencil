@@ -365,7 +365,13 @@
 
 
     <h2>Radio Button</h2>
-    <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
+    <form id="radio-form">
+      <ifx-radio-button id="radio-btn" error="false" disabled="false" size="s" name="fruit" value="apple">Apple</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="pear">Pear</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
+      <ifx-button type="submit">Submit</ifx-button>
+    </form>
+
     <br />
 
     <h2>Spinner</h2>
@@ -765,9 +771,12 @@
       updateValues();
     });
 
-    radioBtn.addEventListener('ifxChange', (event) => {
-      console.log("radio btn value change", event.detail);
-      radioChecked = !radioChecked;
+    document.getElementById('radio-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        formData.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+        });
     });
 
     openModalBtn.addEventListener('click', (event) => {
