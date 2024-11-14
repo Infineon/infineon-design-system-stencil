@@ -1,3 +1,15 @@
+# v27.2.0 (Thu Nov 14 2024)
+
+#### 🚀 Enhancement
+
+- Multi-select: implemented dynamic options update [#1579](https://github.com/Infineon/infineon-design-system-stencil/pull/1579) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.1.2 (Thu Nov 14 2024)
 
 #### 🐛 Bug Fix
