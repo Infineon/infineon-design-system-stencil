@@ -7,7 +7,7 @@ export default {
     label: 'Text',
     error: false,
     disabled: false,
-    value: false,
+    checked: false,
     size: 's',
     indeterminate: false,
     name: 'checkbox'
@@ -44,7 +44,7 @@ export default {
         }
       }
     },
-    value: {
+    checked: {
       description: 'Controls whether the checkbox is checked.',
       control: 'boolean',
       table: {
@@ -99,11 +99,11 @@ export default {
   },
 };
 
-const Template = ({ error, disabled, value, indeterminate, size, label, name }) => {
+const Template = ({ error, disabled, checked, indeterminate, size, label, name }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
   checkbox.setAttribute('disabled', disabled);
-  checkbox.setAttribute('value', value);
+  checkbox.setAttribute('checked', checked);
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
   checkbox.setAttribute('name', name);
