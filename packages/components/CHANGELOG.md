@@ -1,3 +1,16 @@
+# v26.0.0 (Thu Nov 14 2024)
+
+#### 💥 Breaking Change
+
+- Align Radio-Button, Checkbox and Switch to web standards [#1485](https://github.com/Infineon/infineon-design-system-stencil/pull/1485) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v25.18.1 (Thu Nov 07 2024)
 
 #### 🐛 Bug Fix
