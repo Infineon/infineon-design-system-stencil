@@ -15,6 +15,7 @@ export class Chip {
   @Prop({ mutable: true }) value: Array<string> | string = undefined;
   @Prop() variant: 'single' | 'multi' = 'single';
   @Prop() readOnly: boolean = false;
+  @Prop() AriaLabel: string;
 
   @State() opened: boolean = false;
   @State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -192,14 +193,23 @@ export class Chip {
 
   render() {
     return (
-      <div aria-value={this.getSelectedOptions()} aria-label='chip with a dropdown menu' class='chip'>
+      <div class='chip'>
         <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'}
                   chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
                   ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
                   ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
           tabIndex={0}
           onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
-          onKeyDown={!this.readOnly ? (e) => { this.handleWrapperKeyDown(e) } : undefined}>
+          onKeyDown={!this.readOnly ? (e) => { this.handleWrapperKeyDown(e) } : undefined}
+          role='combobox'
+          aria-label={this.AriaLabel}
+          aria-value={this.getSelectedOptions()}
+          aria-haspopup={!this.readOnly ? 'listbox' : undefined}
+          aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
+          aria-controls={!this.readOnly ? 'dropdown' : undefined}
+          aria-readonly={this.readOnly ? 'true' : undefined}
+          aria-multiselectable={this.variant === 'multi' ? 'true' : undefined}
+          >
 
           <div class='wrapper__label'>
             {
@@ -250,7 +260,7 @@ export class Chip {
 
         {
           this.opened && !this.readOnly &&
-          <div class='chip__dropdown'>
+          <div id='dropdown' role='listbox' class='chip__dropdown'>
             <slot />
           </div>
         }
