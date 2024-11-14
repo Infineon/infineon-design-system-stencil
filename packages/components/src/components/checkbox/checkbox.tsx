@@ -112,7 +112,6 @@ export class Checkbox {
     } else return ""
   }
 
-
   render() {
     const slot = this.el.innerHTML;
     let hasSlot = false;
@@ -131,14 +130,15 @@ export class Checkbox {
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
           value={`${this.value}`}
+          disabled={this.disabled ? true : undefined}
         />
 
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}
           onKeyDown={this.handleKeydown.bind(this)}
-          role="checkbox"  // role attribute
-          aria-value={this.internalChecked}
+          role="checkbox"
+          aria-checked={this.indeterminate ? 'mixed' : this.internalChecked.toString()}
           aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
@@ -147,7 +147,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalChecked && <ifx-icon icon="check-12"></ifx-icon>}
+          {this.internalChecked && <ifx-icon icon="check-12"  aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
