@@ -35,11 +35,11 @@ export class ListEntry {
       <div class="wrapper">
         {this.type === 'checkbox' ? (
           <div class="list-entry">
-            <ifx-checkbox size="s" value={this.value}>{this.label}</ifx-checkbox>
+            <ifx-checkbox size="s" checked={this.value}>{this.label}</ifx-checkbox>
           </div>
         ) : (
           <div class="list-entry">
-            <ifx-radio-button size="s" value={this.value}>{this.label}</ifx-radio-button>
+            <ifx-radio-button size="s" checked={this.value}>{this.label}</ifx-radio-button>
           </div>
         )}
       </div>

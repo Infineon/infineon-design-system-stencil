@@ -65,7 +65,6 @@ export default {
     error: false,
     errorMessage: 'Some error',
     label: '',
-    disabled: false,
     placeholder: 'Placeholder',
   },
   argTypes: {
@@ -87,10 +86,6 @@ export default {
     maxItemCount: {
       control: { type: 'number' },
       description: 'Number of maximum selectable items',
-    },
-    disabled: {
-      options: [true, false],
-      control: { type: 'radio' },
     },
     showSearch: {
       options: [true, false],
@@ -141,7 +136,6 @@ const Template = args => {
   error-message='${args.errorMessage}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  disabled='${args.disabled}'
   show-search='${args.showSearch}'
   show-select-all='${args.showSelectAll}'>
 </ifx-multiselect>`;

@@ -3,7 +3,7 @@ import { IfxFooter, IfxLink, IfxIcon, IfxFooterColumn } from '@infineon/infineon
 
 function Footer() {
   return (
-    <IfxFooter variant="large" termsUrl="https://yourwebsite.com/terms">
+    <IfxFooter variant="large">
       <IfxFooterColumn slot="col">
         <h5 slot="title">Title</h5>
         <IfxLink bold="false" slot="link">Footer Link</IfxLink>
@@ -51,6 +51,9 @@ function Footer() {
         <IfxLink href="http://xing.com/infineon">
           <IfxIcon icon="c-info-16"></IfxIcon>
         </IfxLink>
+      </div>
+      <div slot="buttons">
+        <IfxLink variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</IfxLink>
       </div>
     </IfxFooter>
   );
