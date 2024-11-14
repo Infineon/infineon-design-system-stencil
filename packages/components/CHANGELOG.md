@@ -1,3 +1,15 @@
+# v27.1.2 (Thu Nov 14 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: fixed menu placement bug [#1581](https://github.com/Infineon/infineon-design-system-stencil/pull/1581) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.1.1 (Thu Nov 14 2024)
 
 #### 🐛 Bug Fix
