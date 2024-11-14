@@ -1,3 +1,16 @@
+# v27.0.0 (Thu Nov 14 2024)
+
+#### 💥 Breaking Change
+
+- Footer: Replaced Prop-based "info links" with slottable links [#1450](https://github.com/Infineon/infineon-design-system-stencil/pull/1450) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v26.0.0 (Thu Nov 14 2024)
 
 #### 💥 Breaking Change
