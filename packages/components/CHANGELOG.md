@@ -1,3 +1,16 @@
+# v27.1.0 (Thu Nov 14 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Card, Checkbox, Button, Breadcrumb [#1571](https://github.com/Infineon/infineon-design-system-stencil/pull/1571) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.0.0 (Thu Nov 14 2024)
 
 #### 💥 Breaking Change
