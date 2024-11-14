@@ -20,9 +20,12 @@ export class ButtonCellRenderer implements ICellRendererComp {
           <ifx-button
           disabled=${config.disabled}
           variant=${config.variant}
+          theme=${config.theme}
+          type=${config.type}
           size=${config.size}
+          full-width=${config.fullWidth}
           target=${config.target}
-          color=${config.color}>
+          href=${config.href}>
           ${config.text}
         </ifx-button>
         </span>
@@ -55,9 +58,12 @@ export class ButtonCellRenderer implements ICellRendererComp {
           <ifx-button
           disabled=${config.disabled}
           variant=${config.variant}
+          theme=${config.theme}
+          type=${config.type}
           size=${config.size}
+          full-width=${config.fullWidth}
           target=${config.target}
-          color=${config.color}>
+          href=${config.href}>
           ${config.text}
         </ifx-button>
         </span>
