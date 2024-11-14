@@ -7,7 +7,6 @@ import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core'
 })
 export class BreadcrumbItemLabel {
   @Prop() icon: string;
-  @Prop() iconAriaLabel: string;
   @Prop() url: string;
   @Prop() target: string = "_self"
   @Element() el;

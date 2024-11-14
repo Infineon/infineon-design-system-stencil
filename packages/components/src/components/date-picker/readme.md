@@ -7,12 +7,13 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
-| `error`    | `error`    |             | `boolean` | `false` |
-| `size`     | `size`     |             | `string`  | `'s'`   |
-| `success`  | `success`  |             | `boolean` | `false` |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `AriaLabel` | `aria-label` |             | `string`  | `undefined` |
+| `disabled`  | `disabled`   |             | `boolean` | `false`     |
+| `error`     | `error`      |             | `boolean` | `false`     |
+| `size`      | `size`       |             | `string`  | `'s'`       |
+| `success`   | `success`    |             | `boolean` | `false`     |
 
 
 ## Events

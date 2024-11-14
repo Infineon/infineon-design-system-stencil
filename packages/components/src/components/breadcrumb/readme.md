@@ -7,12 +7,11 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type     | Default     |
-| --------------- | ----------------- | ----------- | -------- | ----------- |
-| `icon`          | `icon`            |             | `string` | `undefined` |
-| `iconAriaLabel` | `icon-aria-label` |             | `string` | `undefined` |
-| `target`        | `target`          |             | `string` | `"_self"`   |
-| `url`           | `url`             |             | `string` | `undefined` |
+| Property | Attribute | Description | Type     | Default     |
+| -------- | --------- | ----------- | -------- | ----------- |
+| `icon`   | `icon`    |             | `string` | `undefined` |
+| `target` | `target`  |             | `string` | `"_self"`   |
+| `url`    | `url`     |             | `string` | `undefined` |
 
 
 ## Events
