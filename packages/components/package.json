@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "27.2.0--canary.1579.20487b708911bc971a15a43b4fda949adb784c9f.0",
+  "version": "27.2.1--canary.1586.e9cd225d6d7c42f4400027a69d43ebacd197b6f8.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -86,7 +86,7 @@
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
     "ncp": "^2.0.0",
-    "puppeteer": "^21.9.0",
+    "puppeteer": "^23.7.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.78.0",
