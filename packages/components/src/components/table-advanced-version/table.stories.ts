@@ -42,7 +42,12 @@ const rowDataWithButtonCol = [
       variant: "secondary",
       size: "s",
       target: "_blank",
-      color: "secondary",
+      href: "https://www.w3schools.com/",
+      theme: "default",
+      type: "button",
+      fullWidth: true,
+      // icon: "arrow-right",
+      // iconPosition: "right",
       text: "Button"
       // ... you can extend this as per the properties of `ifx-button`
     }
