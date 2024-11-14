@@ -8,7 +8,7 @@ import { Component, h, Prop, Element, State, Listen, Watch, Event, EventEmitter,
 export class SidebarItem {
   @Element() el;
   @Prop() icon: string = ""
-  @State() hasIcon: boolean = false;
+  @State() hasIcon: boolean = true;
   @State() hasIconWrapper: boolean = false;
   @Prop() href: string = "";
   @State() internalHref: string = "";

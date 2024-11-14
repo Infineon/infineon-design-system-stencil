@@ -15,6 +15,7 @@ export class DatePicker {
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() AriaLabel: string;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -78,12 +79,15 @@ export class DatePicker {
 
   render() {
     return (
-      <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ""}`} >
-        <input 
-        class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`} type="date" 
-        disabled={this.disabled}
+      <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : undefined}`} >
+        <input
+        type="date"
+        class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
+        disabled={this.disabled ? true : undefined}
+        aria-invalid={this.error}
+        aria-label={this.AriaLabel}
         onChange={(e) => this.getDate(e)} />
-        <div class="icon__wrapper" onClick={() => this.handleInputFocusOnIconClick()}>
+        <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
           <ifx-icon icon='calendar16'></ifx-icon>
         </div>
       </div>
