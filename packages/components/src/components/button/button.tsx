@@ -136,7 +136,7 @@ export class Button {
           onFocus={(event) => this.handleFocus(event)}
           aria-disabled={this.disabled ? 'true' : null}
           aria-describedby={this.theme === 'danger' ? 'Dangerous action' : undefined}
-          aria-label={this.AriaLabel || "Button label"}
+          aria-label={this.AriaLabel || undefined}
         >
           <slot></slot>
         </a>

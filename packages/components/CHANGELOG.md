@@ -1,3 +1,40 @@
+# v27.1.2 (Thu Nov 14 2024)
+
+#### 🐛 Bug Fix
+
+- Dropdown: fixed menu placement bug [#1581](https://github.com/Infineon/infineon-design-system-stencil/pull/1581) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.1.1 (Thu Nov 14 2024)
+
+#### 🐛 Bug Fix
+
+- Sidebar-item: fixed bug where icons were not showing [#1584](https://github.com/Infineon/infineon-design-system-stencil/pull/1584) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.1.0 (Thu Nov 14 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Card, Checkbox, Button, Breadcrumb [#1571](https://github.com/Infineon/infineon-design-system-stencil/pull/1571) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.0.0 (Thu Nov 14 2024)
 
 #### 💥 Breaking Change

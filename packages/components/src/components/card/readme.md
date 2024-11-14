@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute   | Description | Type                         | Default      |
-| ----------- | ----------- | ----------- | ---------------------------- | ------------ |
-| `direction` | `direction` |             | `"horizontal" \| "vertical"` | `'vertical'` |
-| `href`      | `href`      |             | `string`                     | `""`         |
-| `target`    | `target`    |             | `string`                     | `"_self"`    |
+| Property    | Attribute    | Description | Type                         | Default      |
+| ----------- | ------------ | ----------- | ---------------------------- | ------------ |
+| `AriaLabel` | `aria-label` |             | `string`                     | `undefined`  |
+| `direction` | `direction`  |             | `"horizontal" \| "vertical"` | `'vertical'` |
+| `href`      | `href`       |             | `string`                     | `""`         |
+| `target`    | `target`     |             | `string`                     | `"_self"`    |
 
 
 ----------------------------------------------
