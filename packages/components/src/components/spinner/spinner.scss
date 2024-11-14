@@ -32,9 +32,7 @@
   animation: spin 2s linear infinite;
 
   &.inverted {
-    border-top-color: tokens.$ifxColorBaseWhite;
-    border-left-color: tokens.$ifxColorBaseWhite;
-    border-right-color: tokens.$ifxColorBaseWhite;
+    animation-direction: reverse;
   }
 }
 
@@ -48,9 +46,7 @@
   }
 
   &.inverted {
-    & svg {
-      fill: tokens.$ifxColorBaseWhite;
-    }
+    animation-direction: reverse;
   }
 
   &.s {
