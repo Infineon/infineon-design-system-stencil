@@ -1,3 +1,15 @@
+# v27.3.0 (Fri Nov 15 2024)
+
+#### 🚀 Enhancement
+
+- Single Select: Implemented delete-single-selection button [#1588](https://github.com/Infineon/infineon-design-system-stencil/pull/1588) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.2.0 (Thu Nov 14 2024)
 
 #### 🚀 Enhancement
