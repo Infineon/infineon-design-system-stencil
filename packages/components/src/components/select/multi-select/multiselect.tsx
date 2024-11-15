@@ -661,7 +661,7 @@ export class Multiselect {
             {/* Clear Button - will show only if there's a selection */}
             {this.persistentSelectedOptions.length > 0 && (   
               <div class="ifx-clear-button" onClick={this.disabled ? undefined : () => this.clearSelection()}>
-                <ifx-icon icon="cremove24"></ifx-icon>
+                <ifx-icon icon="cremove16"></ifx-icon>
               </div>
             )}
             <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
