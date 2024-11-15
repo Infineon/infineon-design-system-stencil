@@ -19,6 +19,7 @@ export class DatePicker {
   @Prop() value: string;
   @Prop() max: string;
   @Prop() min: string;
+  @Prop() required: boolean = false;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -92,6 +93,7 @@ export class DatePicker {
         value={this.value}
         max={this.max}
         min={this.min}
+        required={this.required}
         onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
           <ifx-icon icon='calendar16'></ifx-icon>
