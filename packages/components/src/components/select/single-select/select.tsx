@@ -95,6 +95,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  handleDeleteSelection() {
+    this.clearInput()
+    this.selectedOption = null;
+    this.setPreSelected(null);
+    this.closeDropdown();
+    this.ifxSelect.emit(null);
+  }
+
   @Method()
   async handleChange() {
     this.ifxSelect.emit(this.choice.getValue());
@@ -281,6 +289,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             {this.createSelectOptions(this.options)}
           </select>
 
+          <div class="ifx-choices__icon-wrapper-delete">
+            <ifx-icon icon="c-remove-16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+          </div>
           <div class="ifx-choices__icon-wrapper-up">
             <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
           </div>
