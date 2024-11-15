@@ -9,7 +9,10 @@ export default {
     size: 's',
     success: false,
     error: false,
-    name: 'date-picker'
+    name: 'date-picker',
+    value: '',
+    max: '',
+    min: '',
   },
   argTypes: {
     size: {
@@ -34,12 +37,15 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
   element.setAttribute('success', success);
+  element.setAttribute('value', value);
+  element.setAttribute('max', max);
+  element.setAttribute('min', min);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };

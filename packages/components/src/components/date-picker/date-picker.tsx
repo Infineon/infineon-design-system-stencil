@@ -16,6 +16,9 @@ export class DatePicker {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() AriaLabel: string;
+  @Prop() value: string;
+  @Prop() max: string;
+  @Prop() min: string;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -86,6 +89,9 @@ export class DatePicker {
         disabled={this.disabled ? true : undefined}
         aria-invalid={this.error}
         aria-label={this.AriaLabel}
+        value={this.value}
+        max={this.max}
+        min={this.min}
         onChange={(e) => this.getDate(e)} />
         <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
           <ifx-icon icon='calendar16'></ifx-icon>
