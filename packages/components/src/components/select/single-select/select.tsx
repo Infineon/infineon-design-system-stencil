@@ -289,9 +289,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             {this.createSelectOptions(this.options)}
           </select>
 
-          <div class="ifx-choices__icon-wrapper-delete">
-            <ifx-icon icon="c-remove-16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
-          </div>
+          { this.selectedOption && (
+            <div class="ifx-choices__icon-wrapper-delete">
+              <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+            </div>
+          )}
           <div class="ifx-choices__icon-wrapper-up">
             <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
           </div>
