@@ -12,18 +12,58 @@ export default {
     name: 'date-picker'
   },
   argTypes: {
+    disabled: {
+      description: 'Disables the date picker',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    success: {
+      description: 'Indicates success in the date picker.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    error: {
+      description: 'Indicates error in the date picker.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     size: {
-      description: 'Size options: Height small  (36px) and Height large (40px) - default: small',
+      description: 'Sets the size of the date picker. Options: Height small  (36px) and Height large (40px)',
+      control: 'radio',
       options: ['s', 'l'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: 's'
+        }
+      }
     },
     name: {
-      description: 'Name of the element, that is used as reference when a form is submitted.'
+      description: 'Name of the element, that is used as reference when a form is submitted.',
+      table: {
+        category: 'ifx-date-picker props'
+      }
     },
     ifxDate: {
       action: 'ifxDate',
-      description: 'Custom event',
+      description: 'A custom event emitted when a date in the calendar is being selected.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -34,7 +74,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size }) => {
+const Template = ({ error, disabled, success, size }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -44,4 +84,4 @@ const DefaultTemplate = ({ error, disabled, success, size }) => {
   return element;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default = Template.bind({});
