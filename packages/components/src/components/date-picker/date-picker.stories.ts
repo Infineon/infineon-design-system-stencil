@@ -25,6 +25,9 @@ export default {
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
     },
+    value: { 
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd'
+    },
     ifxDate: {
       action: 'ifxDate',
       description: 'Custom event',
