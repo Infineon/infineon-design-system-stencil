@@ -38,7 +38,7 @@ export default {
       },
     },
     inverted: {
-      description: 'Inverts the spinner',
+      description: 'Changes the color of spinner to white',
       table: {
         category: 'ifx-spinner props',
         defaultValue: {

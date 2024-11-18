@@ -6,20 +6,47 @@ export default {
 
   args: {
     label: 'Badge label',
-    icon: false,
+    showIcon: false,
   },
 
   argTypes: {
+    label: {
+      name: 'Label',
+      control: { type: 'text' },
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
+    showIcon: {
+      name: 'Show Icon',
+      control: { type: 'boolean' },
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'boolean'
+        }
+      }
+    },
     iconName: {
+      name: 'Icon Name',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'string'
+        }
+      }
     },
   },
 };
 
 const DefaultTemplate = args =>
   `<ifx-badge>
-    ${args.icon ? `<ifx-icon icon="${args.iconName}"></ifx-icon>` : ''}
+    ${args.showIcon ? `<ifx-icon icon="${args.iconName}"></ifx-icon>` : ''}
     ${args.label}
   </ifx-badge>`;
 
