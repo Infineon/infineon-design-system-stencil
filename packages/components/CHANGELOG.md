@@ -1,3 +1,17 @@
+# v27.4.0 (Mon Nov 18 2024)
+
+#### 🚀 Enhancement
+
+- New component: textarea [#1546](https://github.com/Infineon/infineon-design-system-stencil/pull/1546) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.3.0 (Fri Nov 15 2024)
 
 #### 🚀 Enhancement
