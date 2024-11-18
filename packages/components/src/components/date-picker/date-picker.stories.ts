@@ -9,7 +9,12 @@ export default {
     size: 's',
     success: false,
     error: false,
-    name: 'date-picker'
+    name: 'date-picker',
+    value: '',
+    max: '',
+    min: '',
+    label: "Label Text",
+    caption: "Caption text, description, error notification",
   },
   argTypes: {
     size: {
@@ -34,12 +39,17 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
   element.setAttribute('success', success);
+  element.setAttribute('value', value);
+  element.setAttribute('max', max);
+  element.setAttribute('min', min);
+  element.setAttribute('label', label);
+  element.setAttribute('caption', caption);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };
