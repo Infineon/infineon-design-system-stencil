@@ -10,6 +10,8 @@ import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core'
 })
 
 export class DatePicker {
+  private inputId: string = `ifx-date-picker-${++datePickerId}`;
+
   @Element() el: HTMLElement;
   @Prop() size: string = 's';
   @Prop() error: boolean = false;
@@ -20,6 +22,8 @@ export class DatePicker {
   @Prop() max: string;
   @Prop() min: string;
   @Prop() required: boolean = false;
+  @Prop() label: string;
+  @Prop() caption: string;
 
   @AttachInternals() internals: ElementInternals;
 
@@ -73,32 +77,43 @@ export class DatePicker {
     this.setFireFoxClasses()
   }
 
-  /**
-   * Callback for form association.
-   * Called whenever the form is reset.
-   */
   formResetCallback() {
     this.internals.setFormValue(null);
   }
 
   render() {
     return (
-      <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : undefined}`} >
-        <input
-        type="date"
-        class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
-        disabled={this.disabled ? true : undefined}
-        aria-invalid={this.error}
-        aria-label={this.AriaLabel}
-        value={this.value}
-        max={this.max}
-        min={this.min}
-        required={this.required}
-        onChange={(e) => this.getDate(e)} />
-        <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
-          <ifx-icon icon='calendar16'></ifx-icon>
+      <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.disabled ? 'disabled': ''}`}>
+
+        <label class='label__wrapper' htmlFor={ this.inputId }>
+        { this.label?.trim() }
+        </label>
+
+        <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : undefined}`}>
+          <input
+          type="date"
+          class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
+          disabled={this.disabled ? true : undefined}
+          aria-invalid={this.error}
+          aria-label={this.AriaLabel}
+          max={this.max}
+          min={this.min}
+          value={this.value}
+          required={this.required}
+          onChange={(e) => this.getDate(e)} />
+          <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
+            <ifx-icon icon='calendar16'></ifx-icon>
+          </div>
         </div>
+
+        { this.caption?.trim() && (
+            <div class='caption__wrapper'>
+              { this.caption.trim() }
+            </div> 
+          )}
       </div>
     )
   }
 }
+
+let datePickerId = 0;
