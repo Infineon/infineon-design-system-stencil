@@ -3,8 +3,8 @@ import { action } from '@storybook/addon-actions';
 export default{
     title: 'Components/Stepper',
     args: { 
-        activeStep: 2,
         amountOfSteps: 5,
+        activeStep: 2,
         errorStep: 0,
         disabled: false,
         indicatorPosition: 'left',
@@ -12,25 +12,31 @@ export default{
         variant: 'default'
     },
     argTypes: {
-        activeStep: { 
+        activeStep: {
             control: {
                 type: 'number',
                 min: 1
             }, 
             description: 'Indicates the current active step', 
             table: {
-                defaultValue: { summary: 1 }
+                category: 'ifx-stepper props',
+                defaultValue: { summary: 2 }
             }
         },
         amountOfSteps: { 
             name: 'Amount of steps',
             control: 'number', 
-            description: 'Indicates the number of steps in stepper in a story'
+            description: 'Indicates the number of steps in stepper in a story',
+            table: {
+                category: 'story controls',
+                defaultValue: { summary: 5 }
+            }
         },
         completeStep: {
             name: 'complete',
-            description: 'A boolean prop to mark a step complete.<br>Usage:',
+            description: 'A boolean prop to mark a step as complete.<br>Usage:',
             table: {
+                category: 'ifx-step props',
                 defaultValue: { summary: false },
                 type: {
                     summary: `<ifx-step complete=true> </ifx-step>`
@@ -40,8 +46,9 @@ export default{
         disabled: {
             name: 'disabled',
             control: 'boolean',
-            description: 'A boolean prop to make the step unclickable:',
+            description: 'A boolean prop to make all the steps unclickable.',
             table: {
+                category: 'ifx-step props',
                 defaultValue: { summary: false },
                 type: {
                     summary: `<ifx-step disabled=true> </ifx-step>`
@@ -54,32 +61,42 @@ export default{
             control: 'number',
             description: 'Specified step number indicates to have an error',
             table: {
-                defaultValue: { summary: false }
+                category: 'ifx-step props'
             },
         },
         indicatorPosition: {
             control: 'radio',
             defaultValue: { summary: 'left' },
-            description: 'Allows to swap the progross bar and steps\' label',
+            description: 'Allows to swap the progress bar and steps\' label',
             options: ['left', 'right'],
-            if: { arg:'variant', eq: 'compact' }
+            if: { arg:'variant', eq: 'compact' },
+            table: {
+                category: 'ifx-stepper props'
+            }
         },
         showStepNumber: { 
             control: 'boolean', 
             defaultValue: { summary: 'false' },
             description: 'Shows the step number when set true',
-            if: { arg: 'variant', eq: 'default' }
+            if: { arg: 'variant', eq: 'default' },
+            table: {
+                category: 'ifx-stepper props'
+            }
         },
         variant: {
             options: ['default', 'compact'],
             defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
-            control: 'radio'
+            control: 'radio',
+            table: {
+                category: 'ifx-stepper props'
+            }
         },
         ifxChange: {
             action: 'ifxChange',
             description: 'A custom event emitted when active step changes',
             table: {
+                category: 'custom events',
                 type: {
                     summary: 'Framework integration',
                     detail: `
