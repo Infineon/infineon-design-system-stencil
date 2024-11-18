@@ -30,15 +30,20 @@ export class DatePicker {
   @Event() ifxDate: EventEmitter;
 
   getDate(e) { 
-    const selectedDate = new Date(e.target.value);
+    const inputValue = e.target.value;
+    const selectedDate = new Date(inputValue);
     const day = selectedDate.getDate();
     const month = selectedDate.getMonth() + 1; 
     const year = selectedDate.getFullYear();
 
-    if(day && month && year) { 
-      this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
-      this.ifxDate.emit({day, month, year})
+    if (!inputValue) {
+      this.internals.setFormValue(null);
+      this.ifxDate.emit({day, month, year});
+      return;
     }
+
+    this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
+    this.ifxDate.emit({day, month, year})
   }
 
   handleInputFocusOnIconClick() { 
