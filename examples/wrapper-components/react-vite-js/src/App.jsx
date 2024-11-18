@@ -37,6 +37,7 @@ import Stepper from './components/Stepper/Stepper';
 import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 import SegmentedControl from './components/SegmentedControl/SegmentedControl';
+import Textarea from './components/Textarea/Textarea';
 
 function App() {
  
@@ -181,6 +182,10 @@ function App() {
 
       <h2>Tag</h2>
       <Tag />
+      <br />
+
+      <h2>Textarea</h2>
+      <Textarea />
       <br />
 
       <h2>Text Field</h2>
