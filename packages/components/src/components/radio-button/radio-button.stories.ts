@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { table } from 'console';
 
 export default {
   title: 'Components/Radio Button',
@@ -14,9 +15,72 @@ export default {
     value: 'radio',
   },
   argTypes: {
+    error: {
+      description: 'Indicates whether the radio button is in an error state.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    disabled: {
+      description: 'Disables the radio button.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    checked: {
+      description: 'Determines whether the radio button is selected by default.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    label: {
+      description: 'Defines the text displayed alongside the radio button.',
+      table: {
+        category: 'ifx-radio-button props',
+      }
+    },
+    size: {
+      description: 'Specifies the size of the radio button. Options: s (20px) and m (24px)',
+      control: 'radio',
+      options: ['s', 'm'],
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: 's'
+        },
+        type: {
+          summary: 's | m'
+        }
+      }
+    },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.',
+      table: {
+        category: 'ifx-radio-button props'
+      }
+    },
+    value: {
+      description: 'The value that gets submitted, when the radio button is checked',
+      table: {
+        category: 'ifx-radio-button props'
+      }
+    },
     ifxChange: {
       description: 'Custom event emitted when radio button checked and unchecked',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -25,17 +89,6 @@ export default {
       },
 
       action: 'ifxChange',
-    },
-    size: {
-      description: 'Size options: s (20px) and m (24px) - default: s',
-      options: ['s', 'm'],
-      control: { type: 'radio' },
-    },
-    name: {
-      description: 'Name of the element, that is used as reference when a form is submitted.'
-    },
-    value: {
-      description: 'The value that gets submitted, when the radio button is checked'
     }
   },
 };
