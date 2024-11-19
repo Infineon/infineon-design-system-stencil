@@ -37,6 +37,7 @@ export default {
     },
     button: {
       options: ['button', 'link', 'none'],
+      description: 'Sets the button type of the card',
       control: { type: 'radio' },
       table: {
         category: 'story controls',

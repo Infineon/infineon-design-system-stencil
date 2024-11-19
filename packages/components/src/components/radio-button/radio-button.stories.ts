@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { table } from 'console';
 
 export default {
   title: 'Components/Radio Button',
