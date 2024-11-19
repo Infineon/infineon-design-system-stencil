@@ -1,3 +1,15 @@
+# v27.6.0 (Tue Nov 19 2024)
+
+#### 🚀 Enhancement
+
+- Date-picker: implemented value, min and max, label and caption props [#1592](https://github.com/Infineon/infineon-design-system-stencil/pull/1592) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.5.0 (Tue Nov 19 2024)
 
 #### 🚀 Enhancement
