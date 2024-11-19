@@ -4,6 +4,6 @@ export interface StepperState {
     showStepNumber: boolean;
     variant: 'default' | 'compact';
 
-    setActiveStep?(stepId: number): null;
+    setActiveStep?(stepId: number, setByClick: boolean): null;
 }
   

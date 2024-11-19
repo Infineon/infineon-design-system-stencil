@@ -29,6 +29,7 @@ export class Stepper {
 
     @State() stepsCount: number;
     @State() shouldEmitEvent: boolean = true;
+    @State() emittedByClick: boolean = false;
 
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
@@ -77,11 +78,14 @@ export class Stepper {
             }
         }
     }
-
+    
     emitIfxChange(activeStep: number, previousActiveStep: number) {
         this.ifxChange.emit({activeStep: activeStep, 
             previousActiveStep: previousActiveStep, 
-            totalSteps: this.stepsCount });
+            totalSteps: this.stepsCount,
+            emittedByClick: this.emittedByClick
+        });
+        this.emittedByClick = false;
     }
 
     getSteps() {
@@ -100,7 +104,8 @@ export class Stepper {
     }
 
 
-    setActiveStep(stepId: number) {
+    setActiveStep(stepId: number, setByClick: boolean = false) {
+        this.emittedByClick = setByClick;
         this.activeStep = stepId;
     }
 
