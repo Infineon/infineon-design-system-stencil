@@ -7,18 +7,31 @@ export default {
 
   args: {
     amountOfItems: 4,
+    label: 'Item',
     value: 'item',
     icon: 'applications-16'
 
   },
   argTypes: {
     amountOfItems: {
+      name: 'Amount of Items',
       control: { type: 'number' },
       description: 'Set the number of content-switcher-items to be rendered.',
       table: {
         category: 'story controls',
         type: {
           summary: 'number'
+        }
+      }
+    },
+    label: {
+      name: 'Label',
+      control: { type: 'text' },
+      description: 'Set the label of the content-switcher-item.',
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'string'
         }
       }
     },
@@ -58,20 +71,18 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ amountOfItems, value, icon }) => {
+const DefaultTemplate = ({ amountOfItems, label, value, icon }) => {
   const element = document.createElement('ifx-content-switcher');
 
   for (let i = 0; i < amountOfItems; i++) {
     const item = document.createElement('ifx-content-switcher-item');
     item.setAttribute('value', `${value} ${i + 1}`);
     item.innerHTML = `
-      <ifx-icon icon="${icon}"></ifx-icon>Item ${i + 1}
+      <ifx-icon icon="${icon}"></ifx-icon> ${label} ${i + 1}
     `;
 
     element.appendChild(item);
   }
-
-
   element.addEventListener('ifxChange', action('ifxChange'));
 
   return element;
