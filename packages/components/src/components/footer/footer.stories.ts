@@ -5,7 +5,13 @@ export default {
     copyrightText: '© 1999 - 2024 Infineon Technologies AG',
   },
   argTypes: {
-    copyrightText: { control: 'text' },
+    copyrightText: {
+      control: 'text',
+      table: {
+        category: 'ifx-footer props',
+      }
+    },
+
   },
 };
 

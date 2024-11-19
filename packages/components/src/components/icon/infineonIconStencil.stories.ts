@@ -12,11 +12,15 @@ export default {
     icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      table: {
+        category: 'ifx-icon props',
+      }
     },
     consoleError: {
       action: 'consoleError',
       description: 'Custom event emitted when icon is invalid',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
