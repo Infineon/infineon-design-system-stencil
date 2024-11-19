@@ -49,13 +49,13 @@ export class Step {
 
     handleStepClick() {
         if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
-            this.stepperState.setActiveStep(this.stepId)
+            this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
 
     handleStepKeyDown(event: KeyboardEvent) {
         if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
-            this.stepperState.setActiveStep(this.stepId)
+            this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
     
