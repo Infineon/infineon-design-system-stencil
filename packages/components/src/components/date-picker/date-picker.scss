@@ -1,7 +1,37 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-  :host { 
-    display: block;
+  .date__picker-container { 
+    display: flex;
+    flex-direction: column;
+
+    & .label__wrapper {
+      color: tokens.$ifxColorBaseBlack;
+      font: tokens.$ifxBodyBody03;
+    }
+
+    &.disabled { 
+      .label__wrapper { 
+        color: tokens.$ifxColorEngineering500;
+      }
+    }
+
+    &.error { 
+      .caption__wrapper { 
+        color: tokens.$ifxColorRed500;
+      }
+    }
+
+    &.disabled { 
+      .caption__wrapper { 
+        color: tokens.$ifxColorEngineering500;
+      }
+    }
+
+    & .caption__wrapper { 
+      margin-top: tokens.$ifxSpace50;
+      color: tokens.$ifxColorBaseBlack;
+      font: tokens.$ifxBodyBody05;
+    }
   }
 
   .date__picker-input { 
@@ -42,7 +72,7 @@
       border-color: tokens.$ifxColorRed500;
     }
 
-    &.success {
+    &.success:not(.error) {
       border-color: tokens.$ifxColorGreen500;
     }
 
