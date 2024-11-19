@@ -52,18 +52,24 @@ export class Step {
             this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
-
+    
     handleStepKeyDown(event: KeyboardEvent) {
         if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
     
+    stopOnClickPropogation(event: Event) {
+        if (this.disabled) {
+            event.stopPropagation();
+        }
+    }
 
     render() {
         return (
             <div aria-current = {this.active ? 'step': false}
                 aria-disabled = {this.active || this.complete ? false : true}
+                onClick={ (e) => this.stopOnClickPropogation(e) }
                 class = {`step-wrapper ${this.stepId === 1 ? 'first-step': ''} 
                         ${this.error ? 'error': ''}
                         ${this.stepperState.variant}
