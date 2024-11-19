@@ -80,6 +80,9 @@ export class DatePicker {
 
   componentDidLoad() { 
     this.setFireFoxClasses()
+    if (this.value) {
+      this.getDate({ target: { value: this.value } });
+    }
   }
 
   formResetCallback() {
