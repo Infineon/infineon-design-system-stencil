@@ -79,5 +79,6 @@ export const DIRECTIVES = [
   d.IfxTemplate,
   d.IfxTemplatesUi,
   d.IfxTextField,
+  d.IfxTextarea,
   d.IfxTooltip
 ];

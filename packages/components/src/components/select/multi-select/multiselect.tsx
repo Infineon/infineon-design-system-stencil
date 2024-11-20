@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, h, Watch } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
 import { Option } from './interfaces';
 
 // Debounce function
@@ -17,13 +17,15 @@ function debounce(func, wait) {
 @Component({
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 
 
 export class Multiselect {
 
+  @Prop() name: string;
   @Prop() options: any[] | string;
   @Prop() batchSize: number = 50;
   @Prop() size: string = 'medium (40px)';
@@ -55,6 +57,20 @@ export class Multiselect {
 
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
+
+  @AttachInternals() internals: ElementInternals;
+
+
+  @Watch('options')
+  updateOptions() { 
+    this.loadedOptions = [];
+    this.filteredOptions = [];
+    this.optionCount = 0;
+    this.optionsProcessed = false;
+    this.persistentSelectedOptions = [];
+
+    this.loadInitialOptions();
+  }
 
 
   async loadInitialOptions() {
@@ -93,6 +109,7 @@ export class Multiselect {
     if (typeof this.options === 'string') {
       try {
         allOptions = JSON.parse(this.options);
+       
       } catch (err) {
         console.error('Failed to parse options:', err);
       }
@@ -194,7 +211,6 @@ export class Multiselect {
     // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
   }
 
-
   componentWillLoad() {
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
@@ -215,6 +231,12 @@ export class Multiselect {
     this.filteredOptions = [...this.loadedOptions];
   }
 
+  @Watch('persistentSelectedOptions')
+  onSelectionChange(newValue: Option[], _: Option[]) {
+    const formData = new FormData();
+    newValue.forEach(option => formData.append(this.name, option.value));
+    this.internals.setFormValue(formData);
+  }
 
   handleOptionClick(option: Option) {
     this.internalError = false;
@@ -377,7 +399,7 @@ export class Multiselect {
     const options = this.dropdownElement.querySelectorAll('.option');
     
     switch (event.code) {
-      case 'Enter' || ' ':
+      case 'Enter':
         this.toggleDropdown();
         // Wait a bit for the dropdown to finish rendering
         this.waitForElement(() => {
@@ -492,7 +514,7 @@ export class Multiselect {
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
           role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
-          <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
+          <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
           <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
         {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
@@ -548,7 +570,7 @@ export class Multiselect {
         onKeyDown={(e) => !disableCheckbox && this.handleOptionKeyDown(e, option)}
         onClick={() => !disableCheckbox && this.handleOptionClick(option)}
         tabindex="0">
-        <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" value={isSelected} disabled={disableCheckbox}></ifx-checkbox>
+        <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isSelected} disabled={disableCheckbox}></ifx-checkbox>
         <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
       </div>
     );
@@ -577,7 +599,7 @@ export class Multiselect {
 
     return <div class="select-all-wrapper">
       <div class={`option ${this.getSizeClass()}`} tabindex='0' onKeyDown={(e) => handleSelectAllKeydown(e)} onClick={toggleSelectAll}>
-        <ifx-checkbox tabIndex={-1} id='selectAll' value={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
+        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
         <label htmlFor='selectAll'>Select all</label>
       </div>
       <ifx-dropdown-separator></ifx-dropdown-separator>
@@ -639,7 +661,7 @@ export class Multiselect {
             {/* Clear Button - will show only if there's a selection */}
             {this.persistentSelectedOptions.length > 0 && (   
               <div class="ifx-clear-button" onClick={this.disabled ? undefined : () => this.clearSelection()}>
-                <ifx-icon icon="cremove24"></ifx-icon>
+                <ifx-icon icon="cremove16"></ifx-icon>
               </div>
             )}
             <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>

@@ -826,6 +826,21 @@
   <br />
   <br />
 
+  <h2>Textarea</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-textarea (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false"
+      placeholder="Placeholder" />
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+    <ifx-button variant="secondary" type="reset">Reset</ifx-button>
+
+  </form>
+  <span>Textarea value: {{ textareaValue }}</span>
+  <br />
+  <br />
+  
   <h2>Text Field</h2>
   <form (ngSubmit)="handleSubmit()">
     <ifx-text-field (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
@@ -901,6 +916,9 @@
       <ifx-link href="http://xing.com/infineon">
         <ifx-icon icon="filejpg16"></ifx-icon>
       </ifx-link>
+    </div>
+    <div slot="info">
+      <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
     </div>
   </ifx-footer>
 </div>

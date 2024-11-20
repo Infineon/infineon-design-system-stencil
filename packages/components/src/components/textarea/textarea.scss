@@ -1,0 +1,56 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper__label {
+    color: tokens.$ifxColorBaseBlack;
+    font: tokens.$ifxBodyBody03;
+}
+:host(.wrapper--disabled) .wrapper__label {
+    color: tokens.$ifxColorEngineering500;
+}
+
+.wrapper__textarea textarea {
+    border: 1px solid tokens.$ifxColorEngineering400;
+    border-radius: tokens.$ifxSpace12;
+    padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+    
+    background-color: tokens.$ifxColorBaseWhite;
+    color: tokens.$ifxColorBaseBlack;
+    font: tokens.$ifxBodyBody03;
+    
+    transition: all 100ms ease;
+    transition-property: border-color;
+
+    &:hover {
+        border: 1px solid tokens.$ifxColorEngineering500;
+    }
+    
+    &:focus-within {
+        outline: none;
+        border: 1px solid tokens.$ifxColorOcean500;
+    }
+}
+:host(.wrapper--error) .wrapper__textarea textarea {
+    border: 1px solid tokens.$ifxColorRed500;
+}
+:host(.wrapper--disabled) .wrapper__textarea textarea {
+    border: 1px solid tokens.$ifxColorEngineering500;
+
+    background-color: tokens.$ifxColorEngineering200;
+}
+
+.wrapper__caption {
+    color: tokens.$ifxColorBaseBlack;
+    font: tokens.$ifxBodyBody05;
+}
+:host(.wrapper--error) .wrapper__caption {
+    color: tokens.$ifxColorRed500;
+}
+:host(.wrapper--disabled) .wrapper__caption {
+    color: tokens.$ifxColorEngineering500;
+}
