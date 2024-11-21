@@ -42,6 +42,20 @@ export class Chip {
     }
   }
 
+  @Listen('keydown')
+  handleKeyDown(event: KeyboardEvent) {
+    // override behavior of all keys except Tab. Users should be able to tab out of the component.
+    if (event.code !== 'Tab') {
+      event.preventDefault(); 
+    }
+
+    if ((event.target as HTMLElement).tagName === 'IFX-CHIP') {
+      this.handleWrapperKeyDown(event);
+    } else if ((event.target as HTMLElement).tagName === 'IFX-CHIP-ITEM') {
+      this.handleDropdownKeyDown(event);
+    }
+  }
+
   @Listen('ifxChipItemSelect')
   updateSelectedOptions(event: CustomEvent<ChipItemSelectEvent>) {
     const eventDetail: ChipItemSelectEvent = event.detail;
@@ -102,6 +116,38 @@ export class Chip {
     this.opened = !this.opened;
   }
 
+  /**
+   * Focuses the chip item at the specified index.
+   * @param index the index of the chip item to focus. -1 will focus the last chip item.
+   */
+  focusChipItemAt(index: number = 0) {
+    this.opened = true;
+    const chipItems: NodeList = this.getChipItems();
+    let item: HTMLIfxChipItemElement;
+    
+    if (index === -1) {
+      item = chipItems.item(chipItems.length - 1) as HTMLIfxChipItemElement;
+    } else if (index >= 0 && index < chipItems.length) {
+      item = chipItems.item(index) as HTMLIfxChipItemElement;
+    } else {
+      console.error(`Invalid index: ${index}`);
+      return;
+    }
+
+    const shadowItem = item.shadowRoot.querySelector('.chip-item') as HTMLDivElement;
+    if (shadowItem) {
+      // Delay needed for the shadow item to be rendered.
+      setTimeout(() => {
+        shadowItem.focus();
+      }, 1);
+    }
+  }
+
+  focusChip() {
+    const chipWrapper: HTMLElement = this.chip.shadowRoot.querySelector('.chip__wrapper');
+    chipWrapper.focus();
+  }
+
   handleUnselectButtonClick(event: MouseEvent) {
     event.stopPropagation();
     this.opened = false;
@@ -139,10 +185,67 @@ export class Chip {
   }
 
   handleWrapperKeyDown(event: KeyboardEvent) {
-    if (!this.readOnly && (event.code === 'Space' || event.code === 'Enter')) {
-      this.toggleDropdownMenu();
+    // Keymap oriented at https://www.w3.org/WAI/ARIA/apg/patterns/combobox/#keyboard_interaction
+    if (this.readOnly) return;
+
+    if (!this.opened) {
+      switch (event.code) {
+        case 'Space':
+        case 'Enter':
+        case 'ArrowDown':
+          this.focusChipItemAt(0);
+          break;
+        case 'ArrowUp':
+          this.focusChipItemAt(-1);
+          break;
+      }
+    } else {
+      switch (event.code) {
+        case 'Escape':
+          this.opened = false;
+          this.focusChip();
+          break;
+      }
     }
   }
+
+  handleDropdownKeyDown(event: KeyboardEvent) {
+    let chipitems = this.getChipItems();
+
+    let targetIndex = Array.from(chipitems).indexOf(event.target as HTMLIfxChipItemElement);
+    if (targetIndex === -1) {
+      console.error('Target not found in chip items');
+      return;
+    }
+
+    switch (event.code) {
+      case 'ArrowDown':
+        if (targetIndex === chipitems.length - 1) break;
+        this.focusChipItemAt(targetIndex + 1);
+        break;
+      case 'ArrowUp':
+        if (targetIndex === 0) break;
+        this.focusChipItemAt( targetIndex - 1);
+        break;
+      case 'Escape':
+        this.opened = false;
+        this.focusChip();
+        break;
+      case 'Space':
+        // selection is handled by the chip-item component
+        if (this.variant === 'single') {
+          // only close dropdown if single select
+          this.opened = false;
+          this.focusChip();
+        }
+        break;
+      case 'Enter':
+        // selection is handled by the chip-item component
+        this.opened = false;
+        this.focusChip();
+        break;
+      }
+    }
 
   syncChipState() {
     const chipItems: NodeList = this.getChipItems();
@@ -200,7 +303,6 @@ export class Chip {
                   ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
           tabIndex={0}
           onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
-          onKeyDown={!this.readOnly ? (e) => { this.handleWrapperKeyDown(e) } : undefined}
           role='combobox'
           aria-label={this.AriaLabel}
           aria-value={this.getSelectedOptions()}
