@@ -15,8 +15,8 @@ export class Table {
   @State() gridApi: GridApi;
   @Prop() cols: any[] | string;
   @Prop() rows: any[] | string;
-  @Prop() columnDefs: any[] = [];
-  @Prop() rowData: any[] = [];
+  @State() columnDefs: any[] = [];
+  @State() rowData: any[] = [];
   @Prop() rowHeight: string = 'default'; //default or compact
   @Prop() tableHeight: string = 'auto';
   @State() uniqueKey: string;
@@ -24,9 +24,38 @@ export class Table {
   @Element() host: HTMLElement;
 
 
-
   componentWillLoad() {
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
+    this.setColsAndRows()
+    this.setGridOptions()
+  }
+
+  setGridOptions() { 
+    this.gridOptions = {
+      rowHeight: this.rowHeight === 'default' ? 40 : 32,
+      headerHeight: 40,
+      defaultColDef: {
+        resizable: true,
+      },
+      suppressCellFocus: true,
+      suppressDragLeaveHidesColumns: true,
+      suppressRowHoverHighlight: true,
+      onFirstDataRendered: this.onFirstDataRendered,
+      columnDefs: this.columnDefs,
+      rowData: this.rowData,
+      loadingOverlayComponent: CustomLoadingOverlay,
+      noRowsOverlayComponent: CustomNoRowsOverlay,
+      icons: {
+        sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
+        sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
+        sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowtrianglevertikal16"></ifx-icon></a>'
+      },
+      rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
+      animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
+    };
+  }
+
+  setColsAndRows() { 
     if (typeof this.rows === 'string' && typeof this.cols === 'string') {
       try {
         this.columnDefs = JSON.parse(this.cols);
@@ -41,41 +70,6 @@ export class Table {
     } else {
       console.error('Unexpected value for cols and rows:', this.rows, this.cols);
     }
-
-
-    this.gridOptions = {
-      rowHeight: this.rowHeight === 'default' ? 40 : 32,
-      headerHeight: 40,
-      defaultColDef: {
-        resizable: true,
-      },
-      autoSizeStrategy: {
-        type: 'fitGridWidth',
-        defaultMinWidth: 100,
-
-      },
-      suppressCellFocus: true,
-      suppressDragLeaveHidesColumns: true,
-      suppressRowHoverHighlight: true,
-      onFirstDataRendered: this.onFirstDataRendered,
-      columnDefs: this.columnDefs,
-      rowData: this.rowData,
-      loadingOverlayComponent: CustomLoadingOverlay,
-      noRowsOverlayComponent: CustomNoRowsOverlay,
-      noRowsOverlayComponentParams: {
-        noRowsMessageFunc: () =>
-          'No rows found at: ' + new Date().toLocaleTimeString(),
-      },
-
-      icons: {
-        sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
-        sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
-        sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowtrianglevertikal16"></ifx-icon></a>'
-      },
-      rowDragManaged: this.columnDefs.some(col => col.dndSource === true) ? true : false,
-      animateRows: this.columnDefs.some(col => col.dndSource === true) ? true : false,
-    };
-
   }
 
 
@@ -121,6 +115,7 @@ export class Table {
   }
 
   componentWillUpdate() {
+    this.setColsAndRows()
     this.gridOptions.columnDefs = this.columnDefs;
     this.gridOptions.rowData = this.rowData;
     if (this.gridApi) {
@@ -138,8 +133,6 @@ export class Table {
         });
         this.gridApi.setGridOption('columnDefs', this.getColData());
         this.gridApi.setGridOption('rowData', this.getRowData());
-
-
       }
     }
   }
