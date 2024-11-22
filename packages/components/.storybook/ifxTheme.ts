@@ -1,4 +1,4 @@
-
+import logo from './public/logo.png';
 import { create } from '@storybook/theming/create';
 
 const ifxColors = {
@@ -41,7 +41,7 @@ export default create({
 
 
   brandTitle: 'Infineon Technologies AG',
-
+  brandImage: logo,
   brandTarget: '_self',
 
   //
