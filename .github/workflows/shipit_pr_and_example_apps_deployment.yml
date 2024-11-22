@@ -34,6 +34,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Cache node modules
+        run: npm cache clean --force
         id: cache-npm
         uses: actions/cache@v3
         with:
