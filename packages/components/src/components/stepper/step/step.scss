@@ -1,16 +1,16 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
-.step-wrapper{
+.step-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     gap: tokens.$ifxSize100;
-    max-width: tokens.$ifxSize2000;
     font: tokens.$ifxBodyBody03;
     
-    &.compact{
+    &.compact {
         gap: 0;
         max-width: 100%;
         .step-label{
@@ -148,6 +148,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .step-icon{
@@ -163,6 +164,7 @@
 
 .step-connector-r, .step-connector-l{
     height: 2px;
-    width: tokens.$ifxSize800 + tokens.$ifxSize50;
+    min-width: tokens.$ifxSize500;
+    flex-grow: 1;
     background-color: tokens.$ifxColorEngineering400;
 }

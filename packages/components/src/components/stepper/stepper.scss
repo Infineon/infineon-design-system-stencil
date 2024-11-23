@@ -23,6 +23,13 @@
 .stepper-wrapper{
     display: flex;
     flex-direction: row;
+    width: 100%;
+}
+
+.stepper-wrapper ::slotted(*){
+    display: flex;
+    flex: 1;
+    justify-content: center;
 }
 
 .stepper-progress{
