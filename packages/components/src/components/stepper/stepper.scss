@@ -1,11 +1,11 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-.stepper{
+.stepper {
     display: flex;
     align-items: center;
     
-    &.compact{
+    &.compact {
         justify-content: space-between;
         align-items: center;
         
@@ -13,14 +13,29 @@
             flex-direction: row-reverse;
             text-align: left;
         }
-
+        
         .stepper-wrapper{
+            width: unset;
             flex-direction: column;
+        }
+    }
+
+    &.vertical {
+        height: 100%;
+
+        .stepper-wrapper {
+            flex-direction: column;
+            width: unset;
+            height: 100%;
+
+            ::slotted(:first-child), ::slotted(:last-child) {
+                flex: 0.5;
+            }
         }
     }
 }
 
-.stepper-wrapper{
+.stepper-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -29,10 +44,10 @@
 .stepper-wrapper ::slotted(*){
     display: flex;
     flex: 1;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
-.stepper-progress{
+.stepper-progress {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,7 +57,7 @@
     border-radius: tokens.$ifxBorderRadiusRound;
     background: conic-gradient(tokens.$ifxColorOcean500 var(--pb, 0%), tokens.$ifxColorEngineering400 0);
     
-    .progress-detail{
+    .progress-detail {
         display: flex;
         justify-content: center;
         align-items: center;

@@ -9,6 +9,19 @@
     width: 100%;
     gap: tokens.$ifxSize100;
     font: tokens.$ifxBodyBody03;
+
+    &.vertical {
+        flex-direction: row;
+        gap: tokens.$ifxSize150;
+        width: unset;
+        height: 100%;
+        
+        .step-icon-wrapper {
+            flex-direction: column;
+            width: unset;
+            height: 100%;
+        }
+    }
     
     &.compact {
         gap: 0;
@@ -45,7 +58,7 @@
     }
 
     
-    &.first-step{
+    &.first-step {
         .step-connector-l{
             height: 0px;
         }
@@ -57,6 +70,24 @@
         }
     }
 
+    &.vertical {
+        &.first-step .step-label {
+            align-self: flex-start;
+        }
+        &.last-step .step-label {
+            align-self: flex-end;
+        }
+    
+        &.first-step .step-connector-l, 
+        &.last-step .step-connector-r {
+            flex: 0;
+            min-height: unset;
+        }
+        &.first-step .step-connector-r, 
+        &.last-step .step-connector-l {
+            flex-shrink: 2;
+        }
+    }
     
     &.complete{
         .step-connector-l, .step-connector-r, .step-icon {
@@ -77,22 +108,29 @@
     } 
     
     &.disabled{
-        .step-connector-l, .step-connector-r, .step-icon {
+        .step-connector-l, 
+        .step-connector-r, 
+        .step-icon {
             background-color: tokens.$ifxColorEngineering400;
         }
-        .step-label, .step-label :hover{
+        .step-label, 
+        .step-label :hover{
             color: tokens.$ifxColorEngineering400;
         }
     }
     
     &.active{
-        .step-connector-l, .step-connector-r, .step-icon {
+        .step-connector-l, 
+        .step-connector-r, 
+        .step-icon {
             background: tokens.$ifxColorOcean500;
-            &.active, &.error {
+            &.active, 
+            &.error {
                 background: tokens.$ifxColorEngineering400;
             }
         }
-        .step-label, .step-label :hover{
+        .step-label, 
+        .step-label :hover{
             color: tokens.$ifxColorBaseBlack;
         }
         &.complete .step-label { 
@@ -122,13 +160,16 @@
 
     &:hover{
         &.complete:not(.disabled):not(.active){
-            .step-connector-l, .step-connector-r, .step-icon {
+            .step-connector-l, 
+            .step-connector-r, 
+            .step-icon {
                 background: tokens.$ifxColorOcean600;
-                &.active, &.error {
+                &.active, 
+                &.error {
                     background: tokens.$ifxColorEngineering400;
                 }
             } 
-            .step-label{
+            .step-label {
                 color: tokens.$ifxColorOcean600;
             }
         }
@@ -136,14 +177,14 @@
     
 }
 
-.active-indic{
+.active-indic {
     width: tokens.$ifxSize200;
     height: tokens.$ifxSize200;
     border-radius: tokens.$ifxBorderRadiusRound;
     background: white;
 }
 
-.step-icon-wrapper{
+.step-icon-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -151,7 +192,7 @@
     width: 100%;
 }
 
-.step-icon{
+.step-icon {
     width: tokens.$ifxSize300;
     height: tokens.$ifxSize300;
     background-color: tokens.$ifxColorEngineering400;
@@ -162,9 +203,20 @@
     color: white;
 }
 
-.step-connector-r, .step-connector-l{
+.step-connector-r, 
+.step-connector-l {
     height: 2px;
     min-width: tokens.$ifxSize500;
     flex-grow: 1;
     background-color: tokens.$ifxColorEngineering400;
+}
+
+.vertical {
+    .step-connector-r, 
+    .step-connector-l {
+        height: unset;
+        min-width: unset;
+        width: 2px;
+        min-height: tokens.$ifxSize500;
+    }
 }
