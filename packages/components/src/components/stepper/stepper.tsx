@@ -24,7 +24,7 @@ export class Stepper {
     @Prop({ mutable: true }) activeStep: number = 1;
     @Prop() indicatorPosition?: 'left' | 'right' = 'left';
     @Prop() showStepNumber?: boolean = false;
-    @Prop() variant?: 'default' | 'compact' = 'default';
+    @Prop() variant?: 'default' | 'compact' | 'vertical' = 'default';
 
 
     @State() stepsCount: number;
@@ -123,7 +123,7 @@ export class Stepper {
                 activeStep: this.activeStep,
                 indicatorPosition: (this.indicatorPosition !== 'right' ? 'left' : 'right'), 
                 showStepNumber: this.showStepNumber, 
-                variant: (this.variant !== 'compact' ? 'default' : 'compact'), 
+                variant: ((this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant), 
                 setActiveStep: this.setActiveStep.bind(this)
             };
             steps[i].stepperState = stepperState;
@@ -153,7 +153,7 @@ export class Stepper {
         return (
             <div aria-label = 'a stepper' 
                 role = 'navigation' 
-                class = {`stepper ${this.variant !== 'compact' ? 'default' : 'compact'} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
+                class = {`stepper ${(this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
                     /* Progress bar for compact variant. */
                     (this.variant === 'compact') && 
