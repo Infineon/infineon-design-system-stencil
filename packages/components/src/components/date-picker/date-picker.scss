@@ -109,6 +109,11 @@
     right: 15px;
     font-size: 19px;
     cursor: pointer;
+    border-radius: 1px;
+    &:focus-within {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
+    }
   }
 
  .input__wrapper { 
@@ -135,9 +140,8 @@
 
  .icon__wrapper { 
   position: absolute;
-  right: 14px;
+  right: 17px;
   padding: 2px;
-  width: 25px;
   display: flex;
   justify-content: flex-end;
   pointer-events: none;
@@ -148,4 +152,5 @@
   & ifx-icon {  
     vertical-align: middle;
   }
+
  }
