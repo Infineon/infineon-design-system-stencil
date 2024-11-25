@@ -1,3 +1,15 @@
+# v27.6.2 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: display latest library version in storybook [#1611](https://github.com/Infineon/infineon-design-system-stencil/pull/1611) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.6.1 (Sun Nov 24 2024)
 
 #### 🐛 Bug Fix
