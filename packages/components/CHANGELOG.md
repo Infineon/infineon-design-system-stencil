@@ -1,3 +1,16 @@
+# v27.6.1 (Sun Nov 24 2024)
+
+#### 🐛 Bug Fix
+
+- Stencil/core updated to 4.22.3. RangeError in React now resolved [#1606](https://github.com/Infineon/infineon-design-system-stencil/pull/1606) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.6.0 (Tue Nov 19 2024)
 
 #### 🚀 Enhancement
