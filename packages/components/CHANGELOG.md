@@ -1,3 +1,15 @@
+# v27.7.0 (Mon Nov 25 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: reverts back previously made feature changes enabling dynamic updates [#1608](https://github.com/Infineon/infineon-design-system-stencil/pull/1608) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.6.2 (Mon Nov 25 2024)
 
 #### 🐛 Bug Fix
