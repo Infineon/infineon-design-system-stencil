@@ -24,8 +24,34 @@ module.exports = {
     defaultName: 'Development',
   },
   staticDirs: ['../public-storybook'],
+  managerHead: async (head)=>{
+    const style = `
+    <style>
+    .sidebar-header > div > a {
+        margin-bottom: 36px;
+        position: relative;
+    }
+
+    .sidebar-header > div > a::after {
+        display: block;
+        content: 'Latest Version ${await getLatestLibraryVersion()}';
+        margin: 10px 0 0 0;
+        color: #005DA9;
+        font-size: 18px;
+        font-weight: normal;
+    }
+    </style>
+    `;
+    return `${head}\n${style}`;
+  },
 
 };
+
+async function getLatestLibraryVersion() {
+  const response = await fetch('https://registry.npmjs.org/@infineon/infineon-design-system-stencil/latest')
+  const result = await response.json();
+  return result.version;
+}
 
 function getAbsolutePath(value) {
   return dirname(require.resolve(join(value, "package.json")));
