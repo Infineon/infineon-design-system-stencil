@@ -38,7 +38,7 @@ module.exports = {
         margin: 10px 0 0 0;
         color: #005DA9;
         font-size: 18px;
-        font-weight: normal;
+        font-weight: bold;
     }
     </style>
     `;
