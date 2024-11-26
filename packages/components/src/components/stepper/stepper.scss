@@ -35,10 +35,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    ::slotted(:first-child), 
-    ::slotted(:last-child) {
-        flex: 0.5;
-    }
 }
 
 .stepper-wrapper ::slotted(*){

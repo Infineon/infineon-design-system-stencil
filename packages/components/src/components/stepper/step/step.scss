@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     gap: tokens.$ifxSize100;
     font: tokens.$ifxBodyBody03;
@@ -43,7 +43,7 @@
     }
 
     .step-label {
-        max-width: tokens.$ifxSize1800;
+        max-width: 90%;
         color: tokens.$ifxColorEngineering400; 
         word-wrap: break-word;
         &.curr-label{
@@ -62,31 +62,14 @@
         .step-connector-l{
             height: 0px;
         }
-        .step-label {
-            align-self: flex-start;
-        }
     }
     
     &.last-step{
         .step-connector-r{
             height: 0px;
         }
-        .step-label {
-            align-self: flex-end;
-        }
     }
-    
-    &.first-step .step-connector-l, 
-    &.last-step .step-connector-r {
-        flex: 0;
-        min-height: unset;
-        min-width: unset;
-    }
-    &.first-step .step-connector-r, 
-    &.last-step .step-connector-l {
-        flex-shrink: 2;
-    }
-    
+
     &.complete{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
