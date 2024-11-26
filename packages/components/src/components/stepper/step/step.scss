@@ -62,31 +62,29 @@
         .step-connector-l{
             height: 0px;
         }
+        .step-label {
+            align-self: flex-start;
+        }
     }
     
     &.last-step{
         .step-connector-r{
             height: 0px;
         }
-    }
-
-    &.vertical {
-        &.first-step .step-label {
-            align-self: flex-start;
-        }
-        &.last-step .step-label {
+        .step-label {
             align-self: flex-end;
         }
+    }
     
-        &.first-step .step-connector-l, 
-        &.last-step .step-connector-r {
-            flex: 0;
-            min-height: unset;
-        }
-        &.first-step .step-connector-r, 
-        &.last-step .step-connector-l {
-            flex-shrink: 2;
-        }
+    &.first-step .step-connector-l, 
+    &.last-step .step-connector-r {
+        flex: 0;
+        min-height: unset;
+        min-width: unset;
+    }
+    &.first-step .step-connector-r, 
+    &.last-step .step-connector-l {
+        flex-shrink: 2;
     }
     
     &.complete{
