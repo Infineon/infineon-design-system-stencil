@@ -70,6 +70,13 @@
         }
     }
 
+    &.vertical {
+        &.first-step .step-connector-l,
+        &.last-step .step-connector-r {
+            width: 0px;
+        }
+    }
+
     &.complete{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
