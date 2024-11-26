@@ -48,13 +48,13 @@ export class Step {
 
 
     handleStepClick() {
-        if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete)) {
+        if (!this.disabled && this.stepperState.variant !== 'compact' && (this.clickable || this.complete)) {
             this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
     
     handleStepKeyDown(event: KeyboardEvent) {
-        if (!this.disabled && this.stepperState.variant === 'default' && (this.clickable || this.complete) && event.key === 'Enter') {
+        if (!this.disabled && this.stepperState.variant !== 'compact' && (this.clickable || this.complete) && event.key === 'Enter') {
             this.stepperState.setActiveStep(this.stepId, true)
         } 
     }
@@ -82,10 +82,10 @@ export class Step {
 
                 <div class = 'step-icon-wrapper'>
                     {/* Left connector */}
-                    {this.stepperState.variant === 'default' && <span class = 'step-connector-l'/>}
+                    {this.stepperState.variant !== 'compact' && <span class = 'step-connector-l'/>}
 
                     {
-                        (this.stepperState.variant === 'default' && (!this.error || (this.error && this.active))) && 
+                        (this.stepperState.variant !== 'compact' && (!this.error || (this.error && this.active))) && 
                         <div class = 'step-icon'>
                             {(this.stepperState.showStepNumber && !this.complete && !this.active) ? this.stepId : ''}
                             {(this.complete && !this.active) && <ifx-icon icon='check16'></ifx-icon>}
@@ -93,21 +93,21 @@ export class Step {
                         </div>
                     }
 
-                    {(this.stepperState.variant ==='default' && this.error && !this.active) && <ifx-icon icon='warningf24'></ifx-icon>}
+                    {(this.stepperState.variant !=='compact' && this.error && !this.active) && <ifx-icon icon='warningf24'></ifx-icon>}
                     
                     {/* Right connector */}
-                    {this.stepperState.variant === 'default' && <span class = {`step-connector-r ${this.active ? 'active' : ''}`}/>}
+                    {this.stepperState.variant !== 'compact' && <span class = {`step-connector-r ${this.active ? 'active' : ''}`}/>}
                 </div>
 
                 {
                     /* Step labels */
-                    (this.stepperState.variant === 'default' || (this.stepperState.variant === 'compact' && (this.active || this.stepId === this.stepperState.activeStep+1))) && 
+                    (this.stepperState.variant !== 'compact' || (this.stepperState.variant === 'compact' && (this.active || this.stepId === this.stepperState.activeStep+1))) && 
                     <div tabIndex={!this.disabled && this.complete && !this.active ? 0 : -1} 
                         class = {`step-label ${this.stepperState.variant === 'compact' ? (this.active ? 'curr-label' : 'next-label') : ''}`} 
                         onClick={() => { this.handleStepClick() }} 
                         onKeyDown={(e) => { this.handleStepKeyDown(e) }}>
 
-                        {(this.stepperState.variant === 'default') && <slot/>}
+                        {(this.stepperState.variant !== 'compact') && <slot/>}
 
                         {this.stepperState.variant === 'compact' &&  !this.active  ? 'Next: ' : ''}
                         {this.stepperState.variant === 'compact' && <slot/>}
