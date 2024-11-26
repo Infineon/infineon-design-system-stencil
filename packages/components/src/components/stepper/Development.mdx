@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story } from '@storybook/blocks';
+import { Meta, Primary, Controls, Story, Canvas } from '@storybook/blocks';
 import * as StepperStories from './stepper.stories';
 
  <Meta of={StepperStories} />
@@ -82,6 +82,12 @@ return(
   </div>
 )
 ```
+
+### Vertical
+<Canvas of={StepperStories.Vertical} sourceState="shown" />
+
+### Compact
+<Canvas of={StepperStories.Compact} sourceState="shown" />
 
 
 
