@@ -3,10 +3,16 @@ export interface ButtonInterface {
   variant?: string,
   size?: string,
   target?: string,
-  color?: string,
+  href?: string,
+  theme?: string,
+  type?: string,
+  fullWidth?: boolean,
+  icon?: string,
+  iconPosition?: string,
   text: string
 }
 
-export const ButtonKeys: Array<keyof ButtonInterface> = ['disabled', 'variant', 'size', 'target', 'color', 'text'];
+export const ButtonKeys: Array<keyof ButtonInterface> = 
+['disabled', 'variant', 'size', 'target', 'href', 'theme', 'type', 'fullWidth', 'text'];
 
 

@@ -33,17 +33,42 @@ const columnDefsWithButtonCol = [
 
 const rowDataWithButtonCol = [
   {
-    make: 'Toyota', model: 'Celica', price: 35000, age: 10, button: 'something about Toyota'
+    make: 'Toyota', model: 'Celica', price: 35000, age: 10, button: {
+      disabled: false,
+      variant: "secondary",
+      size: "s",
+      target: "_blank",
+      href: "https://www.w3schools.com/",
+      theme: "default",
+      type: "button",
+      fullWidth: true,
+      text: "Toyota Button"
+    }
   },
-  { make: 'Ford', model: 'Mondeo', price: 32000, age: 12, button: 'something about Ford' },
+  { make: 'Ford', model: 'Mondeo', price: 32000, age: 12, button: {
+    disabled: false,
+    variant: "secondary",
+    size: "s",
+    target: "_blank",
+    href: "https://www.w3schools.com/",
+    theme: "default",
+    type: "button",
+    fullWidth: true,
+    text: "Ford Button"
+  } },
   {
     make: 'Porsche', model: 'Boxster', price: 72000, button: {
       disabled: false,
       variant: "secondary",
       size: "s",
       target: "_blank",
-      color: "secondary",
-      text: "Button"
+      href: "https://www.w3schools.com/",
+      theme: "default",
+      type: "button",
+      fullWidth: true,
+      // icon: "arrow-right",
+      // iconPosition: "right",
+      text: "Porsche Button"
       // ... you can extend this as per the properties of `ifx-button`
     }
   }

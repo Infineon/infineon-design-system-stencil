@@ -96,6 +96,16 @@
 }
 
 
+.ifx-ag-grid .ag-header-cell:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: calc(50% - 12px);
+  height: 24px; 
+  width: 1px;
+  background-color: tokens.$ifxColorEngineering300; 
+}
+
 
 .ag-overlay-loading-center {
   border: none;

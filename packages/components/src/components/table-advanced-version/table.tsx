@@ -339,6 +339,7 @@ export class Table {
       rows = [...JSON.parse(this.rows)];
     }
     else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
+      console.log("object", this.rows);
       rows = [...this.rows];
     }
     else {

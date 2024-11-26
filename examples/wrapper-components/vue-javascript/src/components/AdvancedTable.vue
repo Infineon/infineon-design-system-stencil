@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Table (Advanced)</h2>
+    <h3>Table with sidebar filters</h3>
     <ifx-table
     row-height="default"
     cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
@@ -39,6 +40,19 @@
       </ifx-filter-accordion>
     
     </ifx-filter-type-group>
+</ifx-table>
+
+<br/>
+<br>
+<h3>Table with button</h3>
+<ifx-table
+    row-height="default"
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
+    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Toyota Button"}},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Ford Button"}},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Porsche Button"}}]'
+    table-height="auto"
+    pagination="false"
+    pagination-page-size="10"
+    filter-orientation="none">
 </ifx-table>
   </div>
 </template>

@@ -7,7 +7,8 @@
 // :host {
 //   --table-height: '200px';
 //   /* Default value */
-// }
+// } ag-ltr .ag-header-cell-resize
+
 
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
@@ -38,7 +39,15 @@
   outline: none;
 }
 
-
+.ifx-ag-grid .ag-header-cell:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: calc(50% - 12px);
+  height: 24px; 
+  width: 1px;
+  background-color: tokens.$ifxColorEngineering300; 
+}
 
 .ag-overlay-loading-center {
   border: none;
@@ -51,8 +60,6 @@
 .ag-root-wrapper {
   border: none;
 }
-
-
 
 .ag-header {
   background-color: tokens.$ifxColorEngineering100;

@@ -57,29 +57,7 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
-  const accordionItemRef = ref();
-  const content = ref('Short content')
-  
-  function handleItems(event) {
-    console.log("An accordion item was opened. Event details:", event);
-  }
-  
-  async function handleButtonClick() {
-    const accordionItem = accordionItemRef.value;
-    accordionItem.open = !accordionItem.open;
-    console.log("accordion item: ", accordionItem);
-  }
-  
-  async function updateContent() { 
-    content.value = `   Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam
-          bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-          cursus ipsum, nec egestas odio sapien eget neque.
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl
-          cursus ipsum, nec egestas odio sapien eget neque.`
-  }
-  
+ 
   </script>
   
    
