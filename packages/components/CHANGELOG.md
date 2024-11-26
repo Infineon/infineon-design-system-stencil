@@ -1,3 +1,15 @@
+# v27.7.1 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Datepicker: fixed focused-state style of calendar icon [#1612](https://github.com/Infineon/infineon-design-system-stencil/pull/1612) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.7.0 (Mon Nov 25 2024)
 
 #### 🚀 Enhancement
