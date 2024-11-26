@@ -5,6 +5,8 @@ import StepperEditable from '../../../public-storybook/images/stepper/stepper-ed
 import StepperCompact from '../../../public-storybook/images/stepper/stepper-compact-stepper.png';
 import StepperNonEditable from '../../../public-storybook/images/stepper/stepper-non-editable-steppers.png';
 import StepperStepsStates from '../../../public-storybook/images/stepper/stepper-steps-states.png';
+import StepperVerticalResponsive from '../../../public-storybook/images/stepper/stepper-ver-default-flexible.png';
+import StepperHorizontalResponsive from '../../../public-storybook/images/stepper/stepper-hor-default-flexible.png';
 
 
 <Meta of={StepperStories} />
@@ -36,11 +38,11 @@ Horizontal steppers are helpful when the content of each step relies on the comp
 
 ### Vertical
 Vertical steppers are tailored for narrow screens.
-<img src={StepperVertical} alt="Vertical Stepper" />
+<img src={StepperVertical} alt="Vertical Stepper" width="50%"/>
 
 ### Compact
 The compact stepper is a streamlined version of the default stepper component, optimized for mobile devices with limited screen space.
-<img src={StepperCompact} alt="Compact Stepper" />
+<img src={StepperCompact} alt="Compact Stepper" width="50%"/>
 
 ## Types of steps
 
@@ -51,6 +53,13 @@ Editable steps enable users to revisit and modify a step at any point.
 ### Non-editable
 Non-editable steps are used when users are not allowed to modify a step once it is completed.
 <img src={StepperNonEditable} alt="Non-Editable Stepper" />
+
+## Responsive behaviour
+The stepper is designed to be fully responsive, adjusting dynamically to its parent container's width. This adaptability allows the stepper to integrate seamlessly into different UI layouts, whether it is displayed in narrow side panels or wide content areas.
+
+> We recommend to use a connector min-width of 80px.
+<img src={StepperVerticalResponsive} alt="Responsive Vertical Stepper" />
+<img src={StepperHorizontalResponsive} alt="Responsive Horizontal Stepper" />
 
 
 ## States

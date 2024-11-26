@@ -1,3 +1,41 @@
+# v27.10.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: added documentation [#1602](https://github.com/Infineon/infineon-design-system-stencil/pull/1602) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.9.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Chip [#1605](https://github.com/Infineon/infineon-design-system-stencil/pull/1605) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.8.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: implement vertical stepper and improved responsiveness [#1609](https://github.com/Infineon/infineon-design-system-stencil/pull/1609) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.7.1 (Mon Nov 25 2024)
 
 #### 🐛 Bug Fix
