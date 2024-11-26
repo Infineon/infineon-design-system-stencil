@@ -9,7 +9,6 @@ export class ButtonCellRenderer implements ICellRendererComp {
 
   // gets called once before the renderer is used
   init(params: ICellRendererParams) {
-
     const config = params.data.button;
     this.eGui = document.createElement('div');
 
