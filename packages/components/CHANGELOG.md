@@ -1,3 +1,52 @@
+# v27.7.1 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Datepicker: fixed focused-state style of calendar icon [#1612](https://github.com/Infineon/infineon-design-system-stencil/pull/1612) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.7.0 (Mon Nov 25 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: reverts back previously made feature changes enabling dynamic updates [#1608](https://github.com/Infineon/infineon-design-system-stencil/pull/1608) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.6.2 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: display latest library version in storybook [#1611](https://github.com/Infineon/infineon-design-system-stencil/pull/1611) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.6.1 (Sun Nov 24 2024)
+
+#### 🐛 Bug Fix
+
+- Stencil/core updated to 4.22.3. RangeError in React now resolved [#1606](https://github.com/Infineon/infineon-design-system-stencil/pull/1606) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.6.0 (Tue Nov 19 2024)
 
 #### 🚀 Enhancement
