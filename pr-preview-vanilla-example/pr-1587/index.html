@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@27.7.1--canary.1612.311c952145dc02128811e36cd72259cb2c87898c.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@27.9.1--canary.1602.ec6fab548be85a123ee1baf1c195bdc5f10df507.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -503,6 +503,8 @@
     <h2>
       Table (Advanced)
     </h2>
+    <h3>Table with sidebar filter</h3>
+
     <div>
       <ifx-table id="adv-table" row-height="default" cols="" rows="" table-height="auto" pagination="false"
         pagination-page-size="10" enable-filtering="true" filter-orientation="sidebar">
@@ -553,6 +555,17 @@
 
         </ifx-filter-type-group>
       </ifx-table>
+
+      <h3>Table with button</h3>
+      <ifx-table
+      row-height="default"
+      cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
+      rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Toyota Button"}},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Ford Button"}},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Porsche Button"}}]'
+      table-height="auto"
+      pagination="false"
+      pagination-page-size="10"
+      filter-orientation="none">
+  </ifx-table>
     </div>
     <br />
     <br />
