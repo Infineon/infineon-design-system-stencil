@@ -1,3 +1,15 @@
+# v27.8.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: implement vertical stepper and improved responsiveness [#1609](https://github.com/Infineon/infineon-design-system-stencil/pull/1609) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.7.1 (Mon Nov 25 2024)
 
 #### 🐛 Bug Fix
