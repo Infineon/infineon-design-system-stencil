@@ -71,7 +71,7 @@ export default{
             if: { arg: 'variant', eq: 'default' }
         },
         variant: {
-            options: ['default', 'compact'],
+            options: ['default', 'compact', 'vertical'],
             defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
             control: 'radio'
@@ -129,3 +129,8 @@ export const Compact = Template.bind({});
 Compact.args = {
     variant: 'compact'
 };
+
+export const Vertical = Template.bind({});
+Vertical.args = {
+    variant: 'vertical'
+}
