@@ -13,61 +13,134 @@ export default {
     caption: {
       control: 'text',
       description: 'Title for the modal',
+      table: {
+        category: 'ifx-modal props',
+      },
     },
     opened: {
       control: {
         disable: true,
       },
       table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'false',
+        },
         type: {
           summary: 'Example (in VanillaJs)',
           detail:
             "const modal = document.getElementById('modal'); \nconst openButton = document.getElementById('open'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}",
         },
       },
-      description: 'Defaults to false - Can be set by referring to the component and setting it to false/true',
+      description: 'Default state of the modal',
     },
     closeOnOverlayClick: {
       control: 'boolean',
       description: 'Close the modal when clicking outside the window',
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'false',
+        }
+      }
     },
     showCloseButton: {
       control: 'boolean',
-      description: "Show or hide close button 'x'",
+      description: "Show or hide close button in the modal's header",
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'true',
+        },
+      },
     },
     alertIcon: {
       options: Object.keys(icons),
       control: { type: 'select' },
-      description: 'When specified together with alertIcon then an border to the right is shown',
+      description: 'Icon to be displayed in the alert modal',
+      table: {
+        category: 'ifx-modal props',
+        type: {
+          summary: 'string',
+        },
+      },
     },
     size: {
       options: ['s', 'm', 'l'],
-      control: { type: 'radio'},
-      description: 'Usable only when screen width is more than 1024px'
+      control: { type: 'radio' },
+      description: 'Usable only when screen width is more than 1024px',
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 's',
+        },
+        type: {
+          summary: 's | m | l',
+        }
+      }
     },
     variant: {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
-    },
-    ifxModalOpen: {
-      action: 'ifxModalOpen',
-      description: 'Custom event emitted when modal opens',
+      description: 'Variant of the modal',
       table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'default',
+        },
         type: {
-          summary: 'Framework integration',
-          detail:
-            'React: onIfxModalOpen={handleChange}\nVue:@ifxModalOpen="handleChange"\nAngular:(ifxModalOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxModalOpen", (event) => {//handle change});',
+          summary: 'default | alert-brand | alert-danger',
         },
       },
     },
-    ifxModalClose: {
-      action: 'ifxModalClose',
-      description: 'Custom event emitted when modal closes',
+    cancelButtonLabel: {
+      control: 'text',
+      description: 'Label for the cancel button',
       table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'Cancel',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    okButtonLabel: {
+      control: 'text',
+      description: 'Label for the OK button',
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'OK',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+
+    ifxOpen: {
+      action: 'ifxOpen',
+      description: 'Custom event emitted when modal opens',
+      table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
-            'React: onIfxModalClose={handleChange}\nVue:@ifxModalClose="handleChange"\nAngular:(ifxModalClose)="handleChange()"\nVanillaJs:.addEventListener("ifxModalClose", (event) => {//handle change});',
+            'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
+        },
+      },
+    },
+    ifxClose: {
+      action: 'ifxClose',
+      description: 'Custom event emitted when modal closes',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxClose={handleChange}\nVue:@ifxClose="handleChange"\nAngular:(ifxClose)="handleChange()"\nVanillaJs:.addEventListener("ifxClose", (event) => {//handle change});',
         },
       },
     },
@@ -86,8 +159,8 @@ const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size
   modal.setAttribute('show-close-button', showCloseButton);
   modal.setAttribute('size', size)
 
-  modal.addEventListener('ifxModalOpen', action('ifxModalOpen'));
-  modal.addEventListener('ifxModalClose', action('ifxModalClose'));
+  modal.addEventListener('ifxOpen', action('ifxOpen'));
+  modal.addEventListener('ifxClose', action('ifxClose'));
 
   const content = document.createElement('div');
   content.setAttribute('slot', 'content');
