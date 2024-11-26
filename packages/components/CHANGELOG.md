@@ -1,3 +1,16 @@
+# v27.9.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Chip [#1605](https://github.com/Infineon/infineon-design-system-stencil/pull/1605) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.8.0 (Tue Nov 26 2024)
 
 #### 🚀 Enhancement
