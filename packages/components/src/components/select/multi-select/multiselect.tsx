@@ -53,7 +53,7 @@ export class Multiselect {
 
 
   @Event() ifxSelect: EventEmitter;
-  @Event() ifxMultiselectIsOpen: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
 
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
@@ -340,8 +340,8 @@ export class Multiselect {
       this.dropdownOpen = false;
       document.removeEventListener('click', this.handleDocumentClick);
 
-      // Dispatch the ifxMultiselectIsOpen event
-      this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
+      // Dispatch the ifxOpen event
+      this.ifxOpen.emit(this.dropdownOpen);
     }
   }
 
@@ -357,8 +357,8 @@ export class Multiselect {
       if (this.dropdownOpen) {
         document.addEventListener('click', this.handleDocumentClick);
       }
-      // Dispatch the ifxMultiselectIsOpen event
-      this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
+      // Dispatch the ifxOpen event
+      this.ifxOpen.emit(this.dropdownOpen);
     }, 0);
     this.zIndex = Multiselect.globalZIndex++;
   }
