@@ -1,3 +1,102 @@
+# v27.7.1 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Datepicker: fixed focused-state style of calendar icon [#1612](https://github.com/Infineon/infineon-design-system-stencil/pull/1612) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.7.0 (Mon Nov 25 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: reverts back previously made feature changes enabling dynamic updates [#1608](https://github.com/Infineon/infineon-design-system-stencil/pull/1608) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.6.2 (Mon Nov 25 2024)
+
+#### 🐛 Bug Fix
+
+- Storybook: display latest library version in storybook [#1611](https://github.com/Infineon/infineon-design-system-stencil/pull/1611) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.6.1 (Sun Nov 24 2024)
+
+#### 🐛 Bug Fix
+
+- Stencil/core updated to 4.22.3. RangeError in React now resolved [#1606](https://github.com/Infineon/infineon-design-system-stencil/pull/1606) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.6.0 (Tue Nov 19 2024)
+
+#### 🚀 Enhancement
+
+- Date-picker: implemented value, min and max, label and caption props [#1592](https://github.com/Infineon/infineon-design-system-stencil/pull/1592) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.5.0 (Tue Nov 19 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: implemented `emittedByClick` key in event object emitted by ifxChange [#1594](https://github.com/Infineon/infineon-design-system-stencil/pull/1594) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.4.0 (Mon Nov 18 2024)
+
+#### 🚀 Enhancement
+
+- New component: textarea [#1546](https://github.com/Infineon/infineon-design-system-stencil/pull/1546) ([@akashyeole](https://github.com/akashyeole) [@tishoyanchev](https://github.com/tishoyanchev) [@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.3.0 (Fri Nov 15 2024)
+
+#### 🚀 Enhancement
+
+- Single Select: Implemented delete-single-selection button [#1588](https://github.com/Infineon/infineon-design-system-stencil/pull/1588) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.2.0 (Thu Nov 14 2024)
 
 #### 🚀 Enhancement
