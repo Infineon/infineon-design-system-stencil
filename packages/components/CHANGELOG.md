@@ -1,3 +1,16 @@
+# v27.10.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: added documentation [#1602](https://github.com/Infineon/infineon-design-system-stencil/pull/1602) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.9.0 (Tue Nov 26 2024)
 
 #### 🚀 Enhancement
