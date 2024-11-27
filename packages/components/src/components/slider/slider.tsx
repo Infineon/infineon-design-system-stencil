@@ -71,6 +71,7 @@ export class IfxSlider {
     }
     this.ifxChange.emit({minVal: this.internalMinValue, maxVal: this.internalMaxValue});
     this.updateValuePercent();
+    this.updateZIndexIfRangeSlider(target.id)
   }
   
   handleOnMouseLeaveOfRangeSlider(event: Event) {
@@ -131,6 +132,18 @@ export class IfxSlider {
         this.inputRef.style.setProperty('--value-percent', `${percentage}%`);
       }
 
+    }
+  }  
+  
+  // Ensures that the last used slider thumb stays on top of the other thumb in order to handle correct overlapping 
+  // if min and max thumbs take the same value.
+  updateZIndexIfRangeSlider(targetId: string = '') {
+    if (targetId === 'max-slider') {
+      this.minInputRef.style.zIndex = '1';
+      this.maxInputRef.style.zIndex = '2';
+    } else {
+      this.minInputRef.style.zIndex = '2';
+      this.maxInputRef.style.zIndex = '1';
     }
   }
 

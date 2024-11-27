@@ -24,11 +24,12 @@ export class Stepper {
     @Prop({ mutable: true }) activeStep: number = 1;
     @Prop() indicatorPosition?: 'left' | 'right' = 'left';
     @Prop() showStepNumber?: boolean = false;
-    @Prop() variant?: 'default' | 'compact' = 'default';
+    @Prop() variant?: 'default' | 'compact' | 'vertical' = 'default';
 
 
     @State() stepsCount: number;
     @State() shouldEmitEvent: boolean = true;
+    @State() emittedByClick: boolean = false;
 
     @Listen('ifxChange') 
     onStepChange(event: CustomEvent) {
@@ -77,11 +78,14 @@ export class Stepper {
             }
         }
     }
-
+    
     emitIfxChange(activeStep: number, previousActiveStep: number) {
         this.ifxChange.emit({activeStep: activeStep, 
             previousActiveStep: previousActiveStep, 
-            totalSteps: this.stepsCount });
+            totalSteps: this.stepsCount,
+            emittedByClick: this.emittedByClick
+        });
+        this.emittedByClick = false;
     }
 
     getSteps() {
@@ -100,7 +104,8 @@ export class Stepper {
     }
 
 
-    setActiveStep(stepId: number) {
+    setActiveStep(stepId: number, setByClick: boolean = false) {
+        this.emittedByClick = setByClick;
         this.activeStep = stepId;
     }
 
@@ -118,7 +123,7 @@ export class Stepper {
                 activeStep: this.activeStep,
                 indicatorPosition: (this.indicatorPosition !== 'right' ? 'left' : 'right'), 
                 showStepNumber: this.showStepNumber, 
-                variant: (this.variant !== 'compact' ? 'default' : 'compact'), 
+                variant: ((this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant), 
                 setActiveStep: this.setActiveStep.bind(this)
             };
             steps[i].stepperState = stepperState;
@@ -148,7 +153,7 @@ export class Stepper {
         return (
             <div aria-label = 'a stepper' 
                 role = 'navigation' 
-                class = {`stepper ${this.variant !== 'compact' ? 'default' : 'compact'} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
+                class = {`stepper ${(this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
                     /* Progress bar for compact variant. */
                     (this.variant === 'compact') && 
