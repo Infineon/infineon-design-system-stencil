@@ -31,6 +31,10 @@
         outline: none;
         border: 1px solid tokens.$ifxColorEngineering500;
     }
+
+    &:focus {
+        border: 1px solid tokens.$ifxColorOcean500;
+    }
     
     &.chip__wrapper--small {
         padding: tokens.$ifxSpace50 tokens.$ifxSpace150;
