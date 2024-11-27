@@ -1,3 +1,15 @@
+# v27.10.2 (Wed Nov 27 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Use canary release of Tokens package to consume fonts from CDN [#1561](https://github.com/Infineon/infineon-design-system-stencil/pull/1561) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v27.10.1 (Wed Nov 27 2024)
 
 #### 🐛 Bug Fix
