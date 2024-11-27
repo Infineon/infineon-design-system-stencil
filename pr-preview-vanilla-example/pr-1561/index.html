@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.91e0dcb8d6e4866e0a3cc72455bb0157b3d658c1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.91e0dcb8d6e4866e0a3cc72455bb0157b3d658c1.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.ad404e6a80c6183b04ecbe5d515bf11b1c7a3034.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@25.15.1--canary.1561.ad404e6a80c6183b04ecbe5d515bf11b1c7a3034.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
   
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
@@ -367,7 +367,13 @@
 
 
     <h2>Radio Button</h2>
-    <ifx-radio-button id="radio-btn" error="false" disabled="false" value="false" size="s">Text</ifx-radio-button>
+    <form id="radio-form">
+      <ifx-radio-button id="radio-btn" error="false" disabled="false" size="s" name="fruit" value="apple">Apple</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="pear">Pear</ifx-radio-button>
+      <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
+      <ifx-button type="submit">Submit</ifx-button>
+    </form>
+
     <br />
 
     <h2>Spinner</h2>
@@ -597,7 +603,7 @@
 
 
     <h2>Footer</h2>
-    <ifx-footer variant="medium" terms-url="https://yourwebsite.com/terms">
+    <ifx-footer variant="medium">
       <ifx-footer-column slot="col">
         <h5 slot="title">Title</h5>
         <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
@@ -645,6 +651,9 @@
         <ifx-link variant="title" href="http://xing.com/infineon">
           <ifx-icon icon="xing"></ifx-icon>
         </ifx-link>
+      </div>
+      <div slot="info">
+        <ifx-link variant="menu" href="https://yourwebsite.com/terms" target="_blank">Terms</ifx-link>
       </div>
     </ifx-footer>
   </div>
@@ -767,9 +776,12 @@
       updateValues();
     });
 
-    radioBtn.addEventListener('ifxChange', (event) => {
-      console.log("radio btn value change", event.detail);
-      radioChecked = !radioChecked;
+    document.getElementById('radio-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        formData.forEach((value, key) => {
+          console.log(`${key}: ${value}`);
+        });
     });
 
     openModalBtn.addEventListener('click', (event) => {
