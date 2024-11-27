@@ -1,3 +1,15 @@
+# v27.10.1 (Wed Nov 27 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: made search-field position fixed on scroll [#1614](https://github.com/Infineon/infineon-design-system-stencil/pull/1614) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.10.0 (Tue Nov 26 2024)
 
 #### 🚀 Enhancement
