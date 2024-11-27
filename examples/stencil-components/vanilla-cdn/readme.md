@@ -4,7 +4,7 @@ This example application demonstrates the usage of some of our Stencil web compo
 
 The `index.html` at the root of this example application includes the CDN link to the latest npm package. 
 For testing purposes, however, we want to use the locally built Stencil components. 
-When not working on the Master branch, per default, the CDN link will point to the locally built components in the ```dist``` folder.
+When not working on the Master branch, per default, the CDN links will point to the locally built components in the ```dist``` folder as well as the stylesheet.
 To test the compiled components locally, follow the steps below.
 
 ## Run locally
