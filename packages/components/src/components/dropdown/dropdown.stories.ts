@@ -5,22 +5,22 @@ export default {
   title: 'Components/Dropdown',
   tags: ['autodocs'],
   args: {
-    Label: 'Dropdown',
-    variant: 'primary',
     disabled: false,
-    icon: 'c-check-16',
-    size: 'm',
-    Search: false,
-    Header: false,
-    href: '',
-    target: '_self',
-    Separator: false,
-    DropDownMenuItemIcon: false,
     defaultOpen: false,
     noCloseOnOutsideClick: false,
     noCloseOnMenuClick: false,
     noAppendToBody: false,
+    Label: 'Dropdown',
+    variant: 'primary',
     placement: 'bottom-start',
+    size: 'm',
+    searchField: false,
+    Header: false,
+    Separator: false,
+    href: '',
+    target: '_self',
+    showIcon: false,
+    icon: 'c-check-16',
   },
   argTypes: {
     placement: {
@@ -42,57 +42,116 @@ export default {
         'left-end',
       ],
       control: { type: 'select' },
+      table: {
+        category: 'ifx-dropdown props'
+      }
     },
     Label: { 
       description: 'The visible name or label for the dropdown button',
+      table: {
+        category: 'ifx-dropdown-trigger-button props'
+      }
       // if: { arg: 'Type', eq: 'Default' }
     },
     size: {
       description: 'Font Size options for menu items: s (14px) and m (16px) - default: m',
       options: ['s', 'm'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-dropdown-menu props'
+      }
     },
-    disabled: { description: 'Determines if the dropdown button should be disabled' },
+    disabled: { 
+      description: 'Determines if the dropdown button should be disabled',
+      table: {
+        category: 'ifx-dropdown props'
+      }
+    },
     variant: {
       description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
       options: ['primary', 'secondary', 'tertiary'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-dropdown-trigger-button props'
+      }
       // if: { arg: 'Type', eq: 'Default' }
     },
 
     target: {
       options: ['_self', '_blank'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-dropdown-item props'
+      }
     },
     href: {
-      description: 'href link to menu item'
+      description: 'href link to menu item',
+      table: {
+        category: 'ifx-dropdown-item props'
+      }
     },
     icon: {
       description: 'The icon to be displayed on the dropdown button',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      table: {
+        category: 'ifx-dropdown-item props'
+      }
       // if: { arg: 'Type', eq: 'Label Trigger' }
     },
-    Search :{
-      description: 'Show Search Bar'
+    searchField :{
+      description: 'Show Search Bar',
+      table: {
+        category: 'ifx-dropdown-menu props'
+      }
     },
     Header: {
-      description: 'Add Header Text'
+      description: 'Add Header Text',
+      table: {
+        category: 'ifx-dropdown-menu props'
+      }
     },
     Separator:{
-      description: 'Use seperator in dropdown'
+      description: 'Use separator in dropdown',
+      table: {
+        category: 'ifx-dropdown-menu props'
+      }
     },
-    DropDownMenuItemIcon: {
-      description: 'Show menu item icon in dropdown'
+    showIcon: {
+      description: 'Show menu item icon in dropdown',
+      table: {
+        category: 'ifx-dropdown-item props'
+      }
     },
-    defaultOpen: { description: 'Determines if the dropdown should be open by default' },
-    noCloseOnOutsideClick: { description: 'Determines if the dropdown should not close when a click outside the dropdown happens' },
-    noCloseOnMenuClick: { description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens' },
-    noAppendToBody: { description: 'Determines if the dropdown should not be appended to the body' },
+    defaultOpen: { 
+      description: 'Determines if the dropdown should be open by default',
+      table: {
+        category: 'ifx-dropdown props'
+      }
+    },
+    noCloseOnOutsideClick: { 
+      description: 'Determines if the dropdown should not close when a click outside the dropdown happens',
+      table: {
+        category: 'ifx-dropdown props'
+      }
+    },
+    noCloseOnMenuClick: { 
+      description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens',
+      table: {
+        category: 'ifx-dropdown props'
+      }
+    },
+    noAppendToBody: { 
+      description: 'Determines if the dropdown should not be appended to the body',
+      table: {
+        category: 'ifx-dropdown props'
+      }
+    },
     ifxOpen: {
       action: 'ifxOpen',
       description: 'Custom event that is emitted when the dropdown opens',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -104,6 +163,7 @@ export default {
       action: 'ifxClose',
       description: 'Custom event emitted when dropdown closes',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -115,6 +175,7 @@ export default {
       action: 'ifxDropdownMenuItem',
       description: 'Custom event emitted when an item is selected',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -140,13 +201,13 @@ const DefaultTemplate = args => {
 
   <ifx-dropdown-menu size="${args.size}">
     ${args.Header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
-    ${args.Search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
-    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    ${args.searchField ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
+    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
     ${args.Separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
-    <ifx-dropdown-item icon="${args.DropDownMenuItemIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 

@@ -9,30 +9,66 @@ export default {
     variant: 'primary',
     showIcon: true,
     closable: true,
-    iconName: 'c-info-24',
+    icon: 'c-info-24',
     AriaLive: 'assertive',
   },
 
   argTypes: {
-    variant: {
-      options: ['primary', 'success', 'danger', 'warning'],
-      control: { type: 'radio' },
+    label: {
+      description: 'Sets the label of *<ifx-alert>*.',
+      table: {
+        category: 'story controls'
+      }
     },
-
-    iconName: {
-      options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' },
-    },
-
-    closable: {
+    showIcon: {
+      description: 'Show or hide icon.',
       control: 'boolean',
-      default: true,
+      table: {
+        category: 'story controls',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
+    variant: {
+      description: 'Sets the style variant of the alert.',
+      options: ['primary', 'success', 'danger', 'warning'],
+      control: 'radio',
+      table: {
+        category: 'ifx-alert props',
+        defaultValue: {
+          summary: 'primary'
+        }
+      }
+    },
+
+    icon: {
+      description: 'The icon to be displayed.',
+      options: Object.values(icons).map(i => i['name']),
+      control: 'select',
+      table: {
+        category: 'ifx-alert props',
+        defaultValue: {
+          summary: 'c-info-24'
+        }
+      }
+    },
+    closable: {
+      description: '',
+      control: 'boolean',
+      table: {
+        category: 'ifx-alert props',
+        defaultValue: {
+          summary: 'true'
+        }
+      }
     },
 
     ifxClose: {
       action: 'ifxClose',
-      description: 'Custom event emitted when close button clicked',
+      description: 'Custom event emitted when close button clicked.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -43,13 +79,19 @@ export default {
 
     AriaLive: { 
       options: ['off', 'polite', 'assertive'],
-      control: { type: 'radio' },
-      description: 'The aria-live attribute to indicate a dynamic content.' 
+      control: 'radio',
+      description: 'The aria-live attribute to indicate a dynamic content.',
+      table: {
+        category: 'ifx-alert props',
+        defaultValue: {
+          summary: 'assertive'
+        }
+      }
     },
   },
 };
 
-const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.iconName : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.icon : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 
@@ -68,7 +110,7 @@ Info.argTypes = {
       disable: true,
     },
   },
-  iconName: {
+  icon: {
     table: {
       disable: true,
     },
