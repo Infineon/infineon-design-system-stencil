@@ -82,6 +82,14 @@
     font-weight: 400;
     line-height: 24px;
   }
+
+  &.has-value::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorBaseBlack;
+  }
+
+  &.has-value::-webkit-datetime-edit {
+    color: tokens.$ifxColorBaseBlack;
+  }
 }
 
 ::-webkit-datetime-edit {

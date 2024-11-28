@@ -35,12 +35,15 @@ export class DatePicker {
     const day = selectedDate.getDate();
     const month = selectedDate.getMonth() + 1; 
     const year = selectedDate.getFullYear();
-
+      
     if (!inputValue) {
       this.internals.setFormValue(null);
       this.ifxDate.emit({day, month, year});
       return;
     }
+
+    const input = this.el.shadowRoot.querySelector('.date__picker-input') as HTMLInputElement;
+    input.classList.add('has-value');
 
     this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
     this.ifxDate.emit({day, month, year})
