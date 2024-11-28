@@ -97,12 +97,12 @@ export class DatePicker {
         { this.label?.trim() }
         </label>
 
-        <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : undefined}`}>
+        <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ''}`}>
           <input
           type="date"
           class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
           disabled={this.disabled ? true : undefined}
-          aria-invalid={this.error}
+          aria-invalid={this.error ? true : undefined}
           aria-label={this.AriaLabel}
           max={this.max}
           min={this.min}
@@ -110,7 +110,7 @@ export class DatePicker {
           required={this.required}
           onChange={(e) => this.getDate(e)} />
           <div class="icon__wrapper" role="button" onClick={() => this.handleInputFocusOnIconClick()}>
-            <ifx-icon icon='calendar16'></ifx-icon>
+            <ifx-icon icon='calendar16' aria-hidden="true"></ifx-icon>
           </div>
         </div>
 
