@@ -1,3 +1,16 @@
+# v27.11.1 (Fri Nov 29 2024)
+
+#### 🐛 Bug Fix
+
+- Bump micromatch from 4.0.7 to 4.0.8 [#1431](https://github.com/Infineon/infineon-design-system-stencil/pull/1431) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.11.0 (Fri Nov 29 2024)
 
 #### 🚀 Enhancement
