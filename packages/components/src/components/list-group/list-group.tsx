@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, Host } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-list-group',
@@ -11,6 +12,7 @@ export class ListGroup {
   @Prop() flush: boolean = false;
   @Prop() bulletpoint: boolean = false;
   @Prop() notification: boolean = false;
+
 
   render() {
     return (

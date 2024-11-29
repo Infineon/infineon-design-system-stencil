@@ -1,5 +1,6 @@
 import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
 import classNames from 'classnames';
+ 
 
 
 @Component({
@@ -21,6 +22,8 @@ export class SearchField {
   @Prop() disabled: boolean = false;
   @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
+  @Prop() placeholder: string = "Search...";
+  @Prop() maxlength?: number = null;  
 
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -42,22 +45,24 @@ export class SearchField {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
     this.ifxInput.emit(this.value);
-    
   };
 
   handleDelete = () => {
     this.inputElement.value = '';
     this.value = "";
-    this.ifxInput.emit(null);
+    this.ifxInput.emit(this.value);
   }
 
   focusInput() {
     this.inputElement.focus();
     this.isFocused = true;
   }
+  
 
-  componentWillUpdate() { 
-    if(this.value !== "") { 
+
+
+  componentWillUpdate() {
+    if (this.value !== "") {
       this.showDeleteIconInternalState = true;
     } else this.showDeleteIconInternalState = false;
   }
@@ -75,8 +80,9 @@ export class SearchField {
             ref={(el) => (this.inputElement = el)}
             type="text"
             onInput={() => this.handleInput()}
-            placeholder="Search..."
+            placeholder={this.placeholder}
             disabled={this.disabled}
+            maxlength={this.maxlength}
             value={this.value} // bind the value property to input element
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (

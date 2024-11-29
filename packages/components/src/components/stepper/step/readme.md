@@ -7,12 +7,14 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type      | Default                                                  |
-| -------------- | --------------- | ----------- | --------- | -------------------------------------------------------- |
-| `error`        | `error`         |             | `boolean` | `false`                                                  |
-| `lastStep`     | `last-step`     |             | `boolean` | `false`                                                  |
-| `stepId`       | `step-id`       |             | `number`  | `1`                                                      |
-| `stepperState` | `stepper-state` |             | `any`     | `{activeStep: 1, showNumber: false, variant: 'default'}` |
+| Property       | Attribute   | Description | Type           | Default                                                                                                                                                                                                                                                                             |
+| -------------- | ----------- | ----------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `complete`     | `complete`  |             | `boolean`      | `false`                                                                                                                                                                                                                                                                             |
+| `disabled`     | `disabled`  |             | `boolean`      | `false`                                                                                                                                                                                                                                                                             |
+| `error`        | `error`     |             | `boolean`      | `false`                                                                                                                                                                                                                                                                             |
+| `lastStep`     | `last-step` |             | `boolean`      | `false`                                                                                                                                                                                                                                                                             |
+| `stepId`       | `step-id`   |             | `number`       | `1`                                                                                                                                                                                                                                                                                 |
+| `stepperState` | --          |             | `StepperState` | `{ activeStep: 1,                                                               showStepNumber: false,                                                               variant: 'default',                                                               indicatorPosition: 'left' }` |
 
 
 ## Dependencies

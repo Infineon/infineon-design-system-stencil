@@ -9,6 +9,7 @@
 
 | Property    | Attribute    | Description | Type                                     | Default     |
 | ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
+| `AriaLabel` | `aria-label` |             | `string`                                 | `undefined` |
 | `disabled`  | `disabled`   |             | `boolean`                                | `false`     |
 | `fullWidth` | `full-width` |             | `boolean`                                | `false`     |
 | `href`      | `href`       |             | `string`                                 | `undefined` |
@@ -37,11 +38,15 @@ Type: `Promise<void>`
 ### Used by
 
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
+ - [ifx-filter-bar](../table-advanced-version/filter-bar)
+ - [ifx-table](../table-advanced-version)
 
 ### Graph
 ```mermaid
 graph TD;
   ifx-dropdown-trigger-button --> ifx-button
+  ifx-filter-bar --> ifx-button
+  ifx-table --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

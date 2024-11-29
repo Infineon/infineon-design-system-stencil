@@ -1,4 +1,4 @@
-import { Component, h, Element, State, Prop } from '@stencil/core';
+import { Component, h, Element, State } from '@stencil/core';
 
 @Component({
   tag: 'ifx-card-headline',
@@ -10,7 +10,6 @@ export class CardHeadline {
   @Element() el;
   @State() direction: string;
   @State() hasDesc: boolean;
-  @Prop() isHovered: boolean = false;
 
   componentWillLoad() {
     const cardElement = this.el.closest('ifx-card');
@@ -33,7 +32,7 @@ export class CardHeadline {
   render() {
     return (
       <div class={`card__headline-wrapper ${this.hasDesc ? 'withDesc' : ""}`}>
-        <div class={`card-headline ${this.direction} ${this.isHovered ? 'isHovered' : ""}`}>
+        <div class={`card-headline ${this.direction}`}>
           <slot />
         </div>
       </div>

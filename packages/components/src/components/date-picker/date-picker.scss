@@ -1,7 +1,37 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
-  :host { 
-    display: inline-block;
+  .date__picker-container { 
+    display: flex;
+    flex-direction: column;
+
+    & .label__wrapper {
+      color: tokens.$ifxColorBaseBlack;
+      font: tokens.$ifxBodyBody03;
+    }
+
+    &.disabled { 
+      .label__wrapper { 
+        color: tokens.$ifxColorEngineering500;
+      }
+    }
+
+    &.error { 
+      .caption__wrapper { 
+        color: tokens.$ifxColorRed500;
+      }
+    }
+
+    &.disabled { 
+      .caption__wrapper { 
+        color: tokens.$ifxColorEngineering500;
+      }
+    }
+
+    & .caption__wrapper { 
+      margin-top: tokens.$ifxSpace50;
+      color: tokens.$ifxColorBaseBlack;
+      font: tokens.$ifxBodyBody05;
+    }
   }
 
   .date__picker-input { 
@@ -11,6 +41,8 @@
     cursor: pointer;
     border-radius: 1px;
     border: 1px solid tokens.$ifxColorEngineering400;
+    height: 100%;
+    
 
     &.firefox__classes { 
       padding: 8px 16px;
@@ -40,7 +72,7 @@
       border-color: tokens.$ifxColorRed500;
     }
 
-    &.success {
+    &.success:not(.error) {
       border-color: tokens.$ifxColorGreen500;
     }
 
@@ -77,6 +109,11 @@
     right: 15px;
     font-size: 19px;
     cursor: pointer;
+    border-radius: 1px;
+    &:focus-within {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
+    }
   }
 
  .input__wrapper { 
@@ -86,13 +123,12 @@
     align-self: stretch;
     background: tokens.$ifxColorBaseWhite;
     position: relative;
-
-    &.large { 
-      width: 400px;
+    &.large {
+      height: 40px;
     }
-
-    &.small { 
-      width: 173px;
+  
+    &.small {
+      height: 36px;
     }
 
     &.disabled { 
@@ -104,9 +140,8 @@
 
  .icon__wrapper { 
   position: absolute;
-  right: 14px;
+  right: 17px;
   padding: 2px;
-  width: 25px;
   display: flex;
   justify-content: flex-end;
   pointer-events: none;
@@ -117,4 +152,5 @@
   & ifx-icon {  
     vertical-align: middle;
   }
+
  }

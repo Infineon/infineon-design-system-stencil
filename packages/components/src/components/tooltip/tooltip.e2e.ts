@@ -24,6 +24,5 @@ describe('ifx-tooltip', () => {
     expect(tooltipEl).not.toBeNull();
   });
 
-
 });
 

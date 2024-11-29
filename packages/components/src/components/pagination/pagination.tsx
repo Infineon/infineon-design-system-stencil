@@ -1,4 +1,5 @@
 import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-pagination',
@@ -31,6 +32,7 @@ export class Pagination {
     var paginationElement = this.el.shadowRoot.querySelector(".pagination");
     let leftArrow = paginationElement.querySelector('.prev')
     this.navigateSinglePage(leftArrow, true)
+
   }
 
   calculateNumberOfPages() {
@@ -172,18 +174,17 @@ export class Pagination {
           <div class='items__per-page-label'>Results per Page</div>
           <div class='items__per-page-field'>
             <ifx-select
-              type='single'
               value='undefined'
-              ifx-size='s'
+              size='s'
               placeholder='false'
-              search-enabled='false'
+              show-search='false'
               search-placeholder-value='Search...'
-              ifx-disabled='false'
-              ifx-error='false'
-              ifx-error-message='Error'
-              ifx-label=''
-              ifx-placeholder-value='Placeholder'
-              ifx-options='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]' >
+              disabled={false}
+              error={false}
+              error-message='Error'
+              label=''
+              placeholder-value='Placeholder'
+              options='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]' >
             </ifx-select>
           </div>
         </div>

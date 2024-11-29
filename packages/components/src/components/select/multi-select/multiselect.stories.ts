@@ -3,32 +3,55 @@ import { action } from '@storybook/addon-actions';
 const options = [
   {
     value: 'a',
-    label: 'option a',
+    label: 'Option a',
     selected: false,
   },
   {
     value: 'b',
-    label: 'option b',
+    label: 'Option b',
     selected: false,
   },
   {
-    value: 'z',
-    label: 'option z',
+    value: 'c',
+    label: 'Option c',
     selected: false,
     children: [
       {
         value: 'z1',
-        label: 'option z1',
+        label: 'Option c1',
         selected: false,
       },
       {
         value: 'z2',
-        label: 'option z2',
+        label: 'Option c2',
         selected: false,
       },
     ],
   },
 ];
+
+const longOptions = [];
+for (let i=1; i<=50; i++) {
+  let children = undefined;
+  if (i % 3 == 0) {
+    children = [{
+      "value":  `${i}.1`,
+      "label": `Option ${i}.1`,
+      "selected": i % 2 == 0 ? true : false
+    },{
+      "value": `${i}.2`,
+      "label": `Option ${i}.2`,
+      "selected": i % 4 == 0 ? true : false
+    }];
+  }
+  longOptions.push({
+    "value": i,
+    "label": `Option ${i}`,
+    "selected": i % 2 == 0 ? true : false,
+    "children": children
+  })
+}
+
 
 export default {
   title: 'Components/Select/Multi Select',
@@ -37,16 +60,15 @@ export default {
     size: 'm',
     batchSize: 10,
     maxItemCount: 10,
-    searchEnabled: true,
+    showSearch: true,
+    showSelectAll: true,
     error: false,
     errorMessage: 'Some error',
     label: '',
-    disabled: false,
     placeholder: 'Placeholder',
   },
   argTypes: {
     size: {
-      name: 'Size',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm',
@@ -56,50 +78,41 @@ export default {
       },
     },
     batchSize: {
-      name: 'Batch size',
       description: 'Batch size used during lazy loading options',
       control: {
         type: 'number',
       },
     },
     maxItemCount: {
-      name: 'Maximum selectable items',
       control: { type: 'number' },
       description: 'Number of maximum selectable items',
     },
-    disabled: {
-      name: 'Disabled',
+    showSearch: {
       options: [true, false],
       control: { type: 'radio' },
     },
-    searchEnabled: {
-      name: 'Enable search',
+    showSelectAll: {
+      description: 'Show a checkbox to select all options',
       options: [true, false],
       control: { type: 'radio' },
     },
     error: {
-      name: 'Error',
       options: [true, false],
       control: { type: 'radio' },
     },
     errorMessage: {
-      name: 'Error message',
       control: 'text',
     },
     label: {
-      name: 'Label',
       control: 'text',
     },
     placeholder: {
-      name: 'Placeholder',
       control: 'text',
     },
     options: {
-      name: 'Options',
       description: 'Takes an array of objects in the following format',
     },
     ifxSelect: {
-      name: 'Custom event: ifxSelect',
       action: 'ifxSelect',
       description: 'Custom event emitted when item is selected or unselected',
       table: {
@@ -113,7 +126,7 @@ export default {
   },
 };
 
-const DefaultTemplate = args => {
+const Template = args => {
   const template = `<ifx-multiselect 
   options='${JSON.stringify(args.options)}' 
   batch-size='${args.batchSize}'
@@ -123,8 +136,8 @@ const DefaultTemplate = args => {
   error-message='${args.errorMessage}'
   label='${args.label}'
   placeholder='${args.placeholder}'
-  disabled='${args.disabled}'
-  search-enabled='${args.searchEnabled}'>
+  show-search='${args.showSearch}'
+  show-select-all='${args.showSelectAll}'>
 </ifx-multiselect>`;
 
   setTimeout(() => {
@@ -134,7 +147,14 @@ const DefaultTemplate = args => {
   return template;
 };
 
-export const Default = DefaultTemplate.bind({});
+export const Default = Template.bind({});
 Default.args = {
   options: options,
+};
+
+export const WithLazyLoading = Template.bind({});
+WithLazyLoading.args = {
+  options: longOptions,
+  batchSize: 5,
+  maxItemCount: undefined
 };

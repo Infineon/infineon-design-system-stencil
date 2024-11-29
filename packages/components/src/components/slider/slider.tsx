@@ -1,4 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-slider',
@@ -8,6 +9,7 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '
 export class IfxSlider {
   @Prop() min: number = 0;
   @Prop() max: number = 100;
+  @Prop() step: number = 1;
   @Prop() value: number;
   @Prop() minValueHandle: number;
   @Prop() maxValueHandle: number;
@@ -55,7 +57,7 @@ export class IfxSlider {
 
   handleInputChangeOfRangeSlider(event: Event) {
     const target = event.target as HTMLInputElement;
-    if(parseInt(this.maxInputRef.value) - parseInt(this.minInputRef.value) <= 0) {
+    if(parseFloat(this.maxInputRef.value) - parseFloat(this.minInputRef.value) <= 0) {
       if(target.id === 'max-slider') {
         this.maxInputRef.value = this.minInputRef.value;
       }else{
@@ -63,12 +65,13 @@ export class IfxSlider {
       }
     }
     if(target.id === 'max-slider') {
-      this.internalMaxValue = parseInt(this.maxInputRef.value);
+      this.internalMaxValue = parseFloat(this.maxInputRef.value);
     } else {
-      this.internalMinValue = parseInt(this.minInputRef.value);
+      this.internalMinValue = parseFloat(this.minInputRef.value);
     }
     this.ifxChange.emit({minVal: this.internalMinValue, maxVal: this.internalMaxValue});
     this.updateValuePercent();
+    this.updateZIndexIfRangeSlider(target.id)
   }
   
   handleOnMouseLeaveOfRangeSlider(event: Event) {
@@ -89,30 +92,58 @@ export class IfxSlider {
 
   handleInputChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.internalValue = parseInt(target.value);
+    this.internalValue = parseFloat(target.value);
     this.ifxChange.emit(this.internalValue);
     this.calculatePercentageValue();
     this.updateValuePercent();
   }
 
+  private roundToValidStep(value: number) {
+    const relativeValue = value - this.min;
+    const remainder = relativeValue % this.step;
+    if (remainder >= this.step / 2) {
+      return this.min + relativeValue + (this.step - remainder);
+    } else {
+      return this.min + relativeValue - remainder;
+    }
+  }
+
   updateValuePercent() {
+    const den = this.max - this.min;
     if(this.type === 'double'){
       if (this.minInputRef) {
-        const minPercent = ((this.internalMinValue - this.min) / (this.max - this.min)) * 100;
+        const num = (this.roundToValidStep(this.internalMinValue) - this.min) * 1.0;
+        const minPercent = (num/den) * 100;
         this.minInputRef.parentElement.style.setProperty('--min-value-percent', `${minPercent}%`);
       }
 
       if (this.maxInputRef) {
-        const maxPercent = ((this.internalMaxValue - this.min) / (this.max - this.min)) * 100;
+        const num = (this.roundToValidStep(this.internalMaxValue) - this.min) * 1.0;
+        const maxPercent = (num/den) * 100;
         this.maxInputRef.parentElement.style.setProperty('--max-value-percent', `${maxPercent}%`);
       }
 
     } else {
 
       if (this.inputRef) {
-        this.inputRef.style.setProperty('--value-percent', `${this.percentage}%`);
+        const num = (this.roundToValidStep(this.internalValue) - this.min) * 1.0;
+        const den = this.max - this.min;
+        const percentage = (num/den) * 100;
+        this.inputRef.style.setProperty('--value-percent', `${percentage}%`);
       }
 
+    }
+  }  
+  
+  // Ensures that the last used slider thumb stays on top of the other thumb in order to handle correct overlapping 
+  // if min and max thumbs take the same value.
+  updateZIndexIfRangeSlider(targetId: string = '') {
+    if (targetId === 'max-slider') {
+      this.minInputRef.style.zIndex = '1';
+      this.maxInputRef.style.zIndex = '2';
+    } else {
+      this.minInputRef.style.zIndex = '2';
+      this.maxInputRef.style.zIndex = '1';
     }
   }
 
@@ -133,6 +164,7 @@ export class IfxSlider {
 
   componentDidLoad() {
     this.updateValuePercent();
+
   }
 
 
@@ -153,8 +185,9 @@ export class IfxSlider {
               type="range"
               min={this.min}
               max={this.max}
-              disabled={this.disabled}
+              step={this.step}
               value={this.internalValue}
+              disabled={this.disabled}
               ref={(el) => (this.inputRef = el as HTMLInputElement)}
               onInput={(event) => this.handleInputChange(event)}
               aria-label='a slider'
@@ -163,12 +196,12 @@ export class IfxSlider {
               /> 
               :
             <div class = 'range-slider__wrapper' aria-label='a range slider' aria-value={this.value} aria-disabled={this.disabled} >
-
               <input 
                 id='min-slider'
                 type='range'
                 min={this.min}
                 max={this.max}
+                step={this.step}
                 value={this.internalMinValue}
                 disabled={this.disabled}
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
@@ -180,6 +213,7 @@ export class IfxSlider {
                 type='range'
                 min={this.min}
                 max={this.max}
+                step={this.step}
                 value={this.internalMaxValue}
                 disabled={this.disabled}
                 ref={(el) => (this.maxInputRef = el as HTMLInputElement)}

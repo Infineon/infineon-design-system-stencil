@@ -64,18 +64,16 @@ describe('SearchField', () => {
     expect(eventSpy).toHaveReceivedEventDetail(null);
   });
 
-  it('should set focus on input click', async () => {
+
+  it('should not update value when maxlength is set', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-search-field></ifx-search-field>');
+    await page.setContent('<ifx-search-field maxlength="2"></ifx-search-field>');
 
     const input = await page.find('ifx-search-field >>> input');
-    const wrapper = await page.find('ifx-search-field >>> .search-field__wrapper');
+    await input.press('KeyA');
+    await input.press('KeyB');
+    await input.press('KeyC');
 
-    await wrapper.click();
-
-    expect(await input.getProperty('value')).toBe('');
-    expect(await input.getProperty('disabled')).toBeFalsy();
-    expect(await input.getProperty('placeholder')).toBe('Search...');
-    expect(await wrapper.getProperty('className')).toContain('focused');
-  });
+    expect(await input.getProperty('value')).toBe('ab');
+  })
 });

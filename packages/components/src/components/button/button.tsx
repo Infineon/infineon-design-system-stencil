@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
 import classNames from 'classnames';
+ 
 
 @Component({
   tag: 'ifx-button',
@@ -16,6 +17,7 @@ export class Button {
   @Prop() target: string = '_self';
   @Prop() type: "button" | "submit" | "reset" = "button";
   @Prop() fullWidth: boolean = false;
+  @Prop() AriaLabel: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -65,6 +67,8 @@ export class Button {
     this.handleButtonWidth()
   }
 
+
+
   handleClick = (ev: Event) => {
     if (this.el.shadowRoot) {
       const parentForm = this.el.closest('form');
@@ -90,7 +94,7 @@ export class Button {
 
   resetClickHandler() {
     const formElement = this.el.closest('form');
-    const customElements = formElement.querySelectorAll('ifx-text-field');
+    const customElements = formElement.querySelectorAll('ifx-text-field, ifx-textarea');
     customElements.forEach(element => {
       element.reset();
     });
@@ -98,8 +102,8 @@ export class Button {
 
   @Listen('keydown')
   handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key === 'Enter' && !this.disabled) {
-      this.handleClick(ev as unknown as MouseEvent);
+    if ( ev.key === " " || ev.key === 'Enter' && !this.disabled) {
+      this.focusableElement.click();
     }
   }
 
@@ -121,7 +125,8 @@ export class Button {
     return (
       <Host>
         <a
-          tabIndex={0}
+          role={this.href ? 'link' : 'button'}
+          tabIndex={this.disabled ? -1 : 0}
           ref={(el) => (this.focusableElement = el)}
           class={this.getClassNames()}
           href={!this.disabled ? this.internalHref : undefined}
@@ -129,8 +134,9 @@ export class Button {
           onClick={this.handleClick}
           rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           onFocus={(event) => this.handleFocus(event)}
-          aria-disabled={this.disabled}
-          aria-labelledby="label"
+          aria-disabled={this.disabled ? 'true' : null}
+          aria-describedby={this.theme === 'danger' ? 'Dangerous action' : undefined}
+          aria-label={this.AriaLabel || undefined}
         >
           <slot></slot>
         </a>
