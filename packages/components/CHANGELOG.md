@@ -1,3 +1,16 @@
+# v28.0.0 (Fri Nov 29 2024)
+
+#### 💥 Breaking Change
+
+- Bump @vitejs/plugin-vue-jsx from 3.1.0 to 4.0.0 in /examples/wrapper-components/vue-javascript [#1273](https://github.com/Infineon/infineon-design-system-stencil/pull/1273) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v27.11.1 (Fri Nov 29 2024)
 
 #### 🐛 Bug Fix
