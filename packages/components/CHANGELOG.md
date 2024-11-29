@@ -1,3 +1,16 @@
+# v29.0.0 (Fri Nov 29 2024)
+
+#### 💥 Breaking Change
+
+- Bump @vitejs/plugin-vue from 4.6.2 to 5.0.5 in /examples/wrapper-components/vue-javascript [#1274](https://github.com/Infineon/infineon-design-system-stencil/pull/1274) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v28.0.0 (Fri Nov 29 2024)
 
 #### 💥 Breaking Change
