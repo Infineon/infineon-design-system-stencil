@@ -1,3 +1,15 @@
+# v27.11.0 (Fri Nov 29 2024)
+
+#### 🚀 Enhancement
+
+- Text-field: implemented a delete button to clear the text content [#1616](https://github.com/Infineon/infineon-design-system-stencil/pull/1616) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.10.2 (Wed Nov 27 2024)
 
 #### 🐛 Bug Fix
