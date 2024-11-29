@@ -8,7 +8,6 @@
 
 
 .ifx-select-container {
-  background-color: tokens.$ifxColorBaseWhite;
   box-sizing: border-box;
   font-family: var(--ifx-font-family);
 
@@ -46,6 +45,7 @@
   }
 
   .ifx-choices__wrapper {
+    background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
     position: relative;
     display: flex;
@@ -157,6 +157,12 @@
       &:hover {
         cursor: pointer;
       }
+    }
+
+    & .ifx-choices__icon-wrapper-delete {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
   }

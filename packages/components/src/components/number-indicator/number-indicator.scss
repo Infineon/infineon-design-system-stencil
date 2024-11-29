@@ -8,6 +8,7 @@
 .numberIndicator__container {
   display: inline-flex;
   padding: 0px 4px;
+  max-height: 16px;
   justify-content: center;
   align-items: center;
   border-radius: 100px;
@@ -20,7 +21,7 @@
     font-size: tokens.$ifxFontSizeS;
     font-style: normal;
     font-weight: tokens.$ifxFontWeightSemibold;
-    line-height: 15px;
+    line-height: 16px;
   }
 
   &.inverted {

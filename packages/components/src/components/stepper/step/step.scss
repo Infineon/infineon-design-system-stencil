@@ -1,20 +1,35 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../../global/font.scss";
 
-.step-wrapper{
+.step-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
     gap: tokens.$ifxSize100;
-    max-width: tokens.$ifxSize2000;
     font: tokens.$ifxBodyBody03;
+
+    &.vertical {
+        flex-direction: row;
+        gap: tokens.$ifxSize150;
+        width: unset;
+        height: 100%;
+        
+        .step-icon-wrapper {
+            flex-direction: column;
+            width: unset;
+            height: 100%;
+        }
+    }
     
-    &.compact{
+    &.compact {
         gap: 0;
         max-width: 100%;
         .step-label{
             max-width: 100%;
+            cursor: auto;
+            align-self: flex-start;
         }
         
         &.indicator-left {
@@ -25,14 +40,10 @@
         &.indicator-right {
             align-items: flex-start;
         }
-        
-        .step-label{
-            cursor: auto;
-        }
     }
 
-    .step-label{
-        max-width: tokens.$ifxSize1800;
+    .step-label {
+        max-width: 90%;
         color: tokens.$ifxColorEngineering400; 
         word-wrap: break-word;
         &.curr-label{
@@ -41,9 +52,13 @@
         &.next-label{
             font: tokens.$ifxBodyBody05;
         }
+        :hover{
+            color: tokens.$ifxColorEngineering400;
+        }
     }
+
     
-    &.first-step{
+    &.first-step {
         .step-connector-l{
             height: 0px;
         }
@@ -54,54 +69,118 @@
             height: 0px;
         }
     }
-    
-    &.complete, &.active{
+
+    &.vertical {
+        &.first-step .step-connector-l,
+        &.last-step .step-connector-r {
+            width: 0px;
+        }
+    }
+
+    &.complete{
         .step-connector-l, .step-connector-r, .step-icon {
             background: tokens.$ifxColorOcean500;
             &.active, &.error {
                 background: tokens.$ifxColorEngineering400;
             }
         }
-        .step-label{
-            color: tokens.$ifxColorBaseBlack;
+        &:not(.disabled) {
+            .step-label{
+                cursor: pointer;
+                color: tokens.$ifxColorBaseBlack;
+                :hover {
+                    color: tokens.$ifxColorOcean600;
+                }
+            }
         }
     } 
     
-    &.complete, &.clickable{
-        .step-label{
-            cursor: pointer;
+    &.disabled{
+        .step-connector-l, 
+        .step-connector-r, 
+        .step-icon {
+            background-color: tokens.$ifxColorEngineering400;
+        }
+        .step-label, 
+        .step-label :hover{
+            color: tokens.$ifxColorEngineering400;
         }
     }
     
     &.active{
-        .step-label{
+        .step-connector-l, 
+        .step-connector-r, 
+        .step-icon {
+            background: tokens.$ifxColorOcean500;
+            &.active, 
+            &.error {
+                background: tokens.$ifxColorEngineering400;
+            }
+        }
+        .step-label, 
+        .step-label :hover{
+            color: tokens.$ifxColorBaseBlack;
+        }
+        &.complete .step-label { 
             cursor: auto;
         }
+    } 
+
+    &.clickable:not(.active) .step-label{
+        cursor: pointer;
     }
 
     &.error:not(.active){
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
+            :hover{
+                color: tokens.$ifxColorOcean500;
+            }
         }
     }
+
+    &.disabled{
+        .step-label{
+            cursor: auto;
+        }
+    }
+
+    &:hover{
+        &.complete:not(.disabled):not(.active){
+            .step-connector-l, 
+            .step-connector-r, 
+            .step-icon {
+                background: tokens.$ifxColorOcean600;
+                &.active, 
+                &.error {
+                    background: tokens.$ifxColorEngineering400;
+                }
+            } 
+            .step-label {
+                color: tokens.$ifxColorOcean600;
+            }
+        }
+    }
+    
 }
 
-.active-indic{
+.active-indic {
     width: tokens.$ifxSize200;
     height: tokens.$ifxSize200;
     border-radius: tokens.$ifxBorderRadiusRound;
     background: white;
 }
 
-.step-icon-wrapper{
+.step-icon-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-.step-icon{
+.step-icon {
     width: tokens.$ifxSize300;
     height: tokens.$ifxSize300;
     background-color: tokens.$ifxColorEngineering400;
@@ -112,8 +191,20 @@
     color: white;
 }
 
-.step-connector-r, .step-connector-l{
+.step-connector-r, 
+.step-connector-l {
     height: 2px;
-    width: tokens.$ifxSize800 + tokens.$ifxSize50;
+    min-width: tokens.$ifxSize500;
+    flex-grow: 1;
     background-color: tokens.$ifxColorEngineering400;
+}
+
+.vertical {
+    .step-connector-r, 
+    .step-connector-l {
+        height: unset;
+        min-width: unset;
+        width: 2px;
+        min-height: tokens.$ifxSize500;
+    }
 }

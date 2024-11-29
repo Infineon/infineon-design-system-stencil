@@ -1,17 +1,17 @@
 {
   "name": "@infineon/infineon-design-system-react",
-  "version": "24.6.1--canary.1428.dd1241a5597012b5b0d40b9aa7a534165dae1e16.0",
+  "version": "27.11.0--canary.1616.471b05f3fb4e6a8ed8badc84ad7020b58a4758f1.0",
   "description": "Infineon design system Stencil web components for React",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "module": "./dist/index.js",
   "scripts": {
     "test": "node ./__tests__/react-library.test.js",
     "build": "npm run tsc",
     "tsc": "tsc -p ."
   },
   "files": [
-    "dist"
+    "dist/*"
   ],
   "author": "",
   "license": "MIT",
@@ -22,13 +22,14 @@
     "@types/node": "^20.1.4",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.2",
-    "@infineon/infineon-design-system-stencil": "24.6.1--canary.1428.dd1241a5597012b5b0d40b9aa7a534165dae1e16.0"
+    "@infineon/design-system-tokens": "3.3.4",
+    "@infineon/infineon-design-system-stencil": "^27.11.0--canary.1616.471b05f3fb4e6a8ed8badc84ad7020b58a4758f1.0",
+    "@stencil/react-output-target": "^0.7.1"
   },
   "auto": {
     "plugins": [

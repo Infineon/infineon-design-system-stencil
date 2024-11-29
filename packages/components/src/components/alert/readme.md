@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                                                        | Default     |
-| ---------- | ---------- | ----------- | ----------------------------------------------------------- | ----------- |
-| `closable` | `closable` |             | `boolean`                                                   | `true`      |
-| `icon`     | `icon`     |             | `string`                                                    | `undefined` |
-| `variant`  | `variant`  |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'` |
+| Property   | Attribute   | Description | Type                                                        | Default       |
+| ---------- | ----------- | ----------- | ----------------------------------------------------------- | ------------- |
+| `AriaLive` | `aria-live` |             | `string`                                                    | `'assertive'` |
+| `closable` | `closable`  |             | `boolean`                                                   | `true`        |
+| `icon`     | `icon`      |             | `string`                                                    | `undefined`   |
+| `variant`  | `variant`   |             | `"danger" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'`   |
 
 
 ## Events

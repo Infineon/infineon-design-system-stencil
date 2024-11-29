@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { IfxAccordion, IfxButton } from '@infineon/infineon-design-system-react';
-import { IfxAccordionItem } from '@infineon/infineon-design-system-react';
+import { IfxAccordion, IfxAccordionItem, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Accordion() {
 

@@ -2,11 +2,11 @@ import { action } from '@storybook/addon-actions';
 
 export default{
     title: 'Components/Stepper',
-    // tags: ['autodocs'],
     args: { 
         activeStep: 2,
         amountOfSteps: 5,
         errorStep: 0,
+        disabled: false,
         indicatorPosition: 'left',
         showStepNumber: false,
         variant: 'default'
@@ -37,6 +37,18 @@ export default{
                 }
             }
         },
+        disabled: {
+            name: 'disabled',
+            control: 'boolean',
+            description: 'A boolean prop to make the step unclickable:',
+            table: {
+                defaultValue: { summary: false },
+                type: {
+                    summary: `<ifx-step disabled=true> </ifx-step>`
+                }
+            },
+            if: { arg:'variant', eq: 'default' }
+        },
         errorStep: {
             name: 'error',
             control: 'number',
@@ -59,7 +71,7 @@ export default{
             if: { arg: 'variant', eq: 'default' }
         },
         variant: {
-            options: ['default', 'compact'],
+            options: ['default', 'compact', 'vertical'],
             defaultValue: { summary: 'default' },
             description: 'Allows to switch between default and compact variant',
             control: 'radio'
@@ -95,6 +107,7 @@ variant=${args.variant}>
                 const step = document.createElement('ifx-step')
                 step.innerHTML = `Step Label ${stepId+1}`
                 if (args.errorStep === stepId+1) step.setAttribute('error', 'true')
+                if (args.disabled) step.setAttribute('disabled', 'true')
                 return step.outerHTML
             }).join(`\n    `)
         })()
@@ -116,3 +129,8 @@ export const Compact = Template.bind({});
 Compact.args = {
     variant: 'compact'
 };
+
+export const Vertical = Template.bind({});
+Vertical.args = {
+    variant: 'vertical'
+}

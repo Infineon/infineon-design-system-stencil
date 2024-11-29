@@ -20,12 +20,12 @@ export class BreadcrumbItemLabel {
 
   render() {
     return (
-      <a href={this.url} target={this.target} class="breadcrumb-item-label-container">
-        <ifx-icon icon={this.icon}></ifx-icon>
+      <a href={this.url} target={this.target} class="breadcrumb-item-label-container" role='link'>
+        <ifx-icon icon={this.icon} aria-hidden="true"></ifx-icon>
         <span class="label-wrapper">
           <slot />
         </span>
-       <span class="menu-icon-wrapper">
+       <span class="menu-icon-wrapper" aria-hiden="true">
         <ifx-icon icon="chevron-down-12"></ifx-icon>
        </span>
       </a>

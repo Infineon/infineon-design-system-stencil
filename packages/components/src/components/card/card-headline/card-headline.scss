@@ -26,10 +26,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &.isHovered {
-    color: #0A8276;
-  }
-
   &.horizontal {
     font-size: tokens.$ifxFontSizeXl;
     line-height: 28px;

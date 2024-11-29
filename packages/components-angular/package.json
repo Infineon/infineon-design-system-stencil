@@ -1,13 +1,13 @@
 {
   "name": "components-angular",
-  "version": "24.6.1--canary.1428.dd1241a5597012b5b0d40b9aa7a534165dae1e16.0",
+  "version": "27.11.0--canary.1616.471b05f3fb4e6a8ed8badc84ad7020b58a4758f1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:library": "ng build @infineon/infineon-design-system-angular",
     "watch": "ng build --watch --configuration development",
-    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm i && npm link && cd ../components-angular/projects/component-library && npm i && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
+    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm link && cd ../components-angular/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
     "link": "cd ../components-angular/dist/@infineon/infineon-design-system-angular && npm link && cd ../../../projects/my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
@@ -26,9 +26,10 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@infineon/infineon-design-system-angular": "^24.6.1--canary.1428.dd1241a5597012b5b0d40b9aa7a534165dae1e16.0",
+    "@infineon/infineon-design-system-angular": "^27.11.0--canary.1616.471b05f3fb4e6a8ed8badc84ad7020b58a4758f1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "typescript": "~5.4.4",
     "zone.js": "~0.14.4"
   },
   "devDependencies": {
@@ -40,7 +41,6 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^18.2.0",
-    "typescript": "~5.4.4"
+    "ng-packagr": "^18.2.0"
   }
 }

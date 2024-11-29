@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property        | Attribute       | Description | Type      | Default |
-| --------------- | --------------- | ----------- | --------- | ------- |
-| `disabled`      | `disabled`      |             | `boolean` | `false` |
-| `error`         | `error`         |             | `boolean` | `false` |
-| `indeterminate` | `indeterminate` |             | `boolean` | `false` |
-| `size`          | `size`          |             | `string`  | `'m'`   |
-| `value`         | `value`         |             | `boolean` | `false` |
+| Property        | Attribute       | Description | Type      | Default     |
+| --------------- | --------------- | ----------- | --------- | ----------- |
+| `checked`       | `checked`       |             | `boolean` | `false`     |
+| `disabled`      | `disabled`      |             | `boolean` | `false`     |
+| `error`         | `error`         |             | `boolean` | `false`     |
+| `indeterminate` | `indeterminate` |             | `boolean` | `false`     |
+| `size`          | `size`          |             | `string`  | `'m'`       |
+| `value`         | `value`         |             | `string`  | `undefined` |
 
 
 ## Events
@@ -24,6 +25,16 @@
 
 
 ## Methods
+
+### `isChecked() => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
 
 ### `toggleCheckedState(newVal: boolean) => Promise<void>`
 
@@ -46,6 +57,8 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [ifx-chip-item](../chip/chip-item)
+ - [ifx-list-entry](../table-advanced-version/list/list-entry)
  - [ifx-multiselect](../select/multi-select)
 
 ### Depends on
@@ -56,6 +69,8 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-checkbox --> ifx-icon
+  ifx-chip-item --> ifx-checkbox
+  ifx-list-entry --> ifx-checkbox
   ifx-multiselect --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```

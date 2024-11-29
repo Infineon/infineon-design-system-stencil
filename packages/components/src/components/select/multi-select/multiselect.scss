@@ -3,7 +3,6 @@
 @use "../../../global/font.scss";
 
 .ifx-multiselect-container {
-  background-color: tokens.$ifxColorBaseWhite;
   position: relative;
   box-sizing: border-box;
   font-family: var(--ifx-font-family);
@@ -41,6 +40,7 @@
   }
 
   .ifx-multiselect-wrapper {
+    background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
     position: relative;
     display: flex;
@@ -161,7 +161,6 @@
 
 
   .ifx-clear-button {
-    margin-right: tokens.$ifxSpace100; // Space between clear button and icons
     display: flex;
   }
 
@@ -179,9 +178,10 @@
     z-index: var(--dynamic-z-index, 1); // Fallback to 1
 
     .search-input {
-      // position: sticky;
-      // top: 0;
-      // z-index: 2;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 1;
       width: 100%;
       padding: 8px 16px;
       font-size: tokens.$ifxFontSizeM;

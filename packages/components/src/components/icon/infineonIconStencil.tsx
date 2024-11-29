@@ -56,7 +56,6 @@ export class InfineonIconStencil {
       const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
-      this.consoleError.emit(false)
       return SVG;
     } else if(this.icon !== "") {
       console.error('Icon not found!')
