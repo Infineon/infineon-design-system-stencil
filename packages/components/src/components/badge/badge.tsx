@@ -7,6 +7,8 @@ import { Component, h } from '@stencil/core';
 })
 export class Badge {
 
+
+
   render() {
     return (
       <div class="badge__container">

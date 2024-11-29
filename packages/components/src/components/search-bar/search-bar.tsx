@@ -1,4 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element, Method } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-search-bar',
@@ -10,6 +11,7 @@ export class SearchBar {
   @Prop() disabled: boolean = false;
   @State() internalState: boolean;
   @Prop({ mutable: true }) value: string;
+  @Prop() maxlength?: number;
   @Event() ifxInput: EventEmitter;
   @Event() ifxSearchBarIsOpen: EventEmitter;
   @Element() el;
@@ -34,10 +36,13 @@ export class SearchBar {
     this.internalState = this.isOpen;
   }
 
+  
+
   componentWillLoad() {
     this.setInitialState();
     this.ifxSearchBarIsOpen.emit(this.internalState)
   }
+
 
   handleInput(event: CustomEvent) {
     this.value = event.detail;
@@ -53,7 +58,7 @@ export class SearchBar {
       <div aria-label='a search bar' aria-disabled={this.disabled} class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
-            <ifx-search-field disabled={this.disabled} value={this.value} onIfxInput={this.handleInput.bind(this)}>
+            <ifx-search-field disabled={this.disabled} value={this.value} maxlength={this.maxlength} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
 

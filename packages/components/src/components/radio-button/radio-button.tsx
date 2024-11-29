@@ -1,41 +1,71 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Method } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-radio-button',
   styleUrl: 'radio-button.scss',
-  shadow: true
+  shadow: false,
+  formAssociated: false
 })
 export class RadioButton {
   @Element() el;
   @Prop() disabled: boolean = false;
-  @Prop() value: boolean = false;
+  @Prop() value: string;
   @Prop() error: boolean = false;
   @Prop() size: "s" | "m" = "s";
-  @State() internalValue: boolean;
+  @Prop() name: string;
+  @Prop() checked: boolean;
+  @State() internalChecked: boolean = false;
   @State() hasSlot: boolean = true;
+
+  @State() inputElement: HTMLInputElement;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
-  @Watch('value')
-  valueChanged(newValue: boolean, oldValue: boolean) {
-    if (newValue !== oldValue) {
-      this.internalValue = newValue;
-    }
+  /**
+   * @returns whether the radio button is checked.
+   */
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
   }
-
+  
   componentWillLoad() {
-    this.internalValue = this.value;
+    if (this.checked) this.internalChecked = this.checked;
     const slot = this.el.innerHTML;
     if (slot) {
       this.hasSlot = true;
     } else this.hasSlot = false;
   }
 
-  handleRadioButtonClick() {
-    if (!this.disabled && !this.error && !this.internalValue) {
-      this.internalValue = !this.internalValue;
-      this.el.shadowRoot.querySelector('.radioButton__wrapper').focus();
-      this.ifxChange.emit(this.internalValue);
+
+  /**
+   * Click the hidden input element to let it handle the state
+   * and emit ifxChange event.
+   */
+  handleRadioButtonClick(event: PointerEvent) {
+    if (this.disabled) {
+      event.stopPropagation();
+      return;
+    }
+
+    this.inputElement.click();
+    this.internalChecked = this.inputElement.checked;
+    this.ifxChange.emit(this.internalChecked);
+  }
+
+  /**
+   * Listen to all change events.
+   * Needed to get informed when another button of the group gets chcked 
+   * and this one needs to become unchecked. 
+   * 
+   * @param event 
+   */
+  @Listen('change', { target: 'window' }) 
+  handleChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.name === this.name) {
+      this.internalChecked = this.inputElement.checked;
     }
   }
 
@@ -48,18 +78,27 @@ export class RadioButton {
       >
         <div
           class={`radioButton__wrapper 
-          ${this.internalValue ? 'checked' : ''} 
+          ${this.internalChecked ? 'checked' : ''} 
           ${this.disabled ? 'disabled' : ''} 
           ${this.error ? 'error' : ''}`}
           tabIndex={this.disabled ? -1 : 0}
         >
-          {this.internalValue && <div class="radioButton__wrapper-mark"></div>}
+          {this.internalChecked && <div class="radioButton__wrapper-mark"></div>}
         </div>
         {this.hasSlot && (
           <div class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ''}`}>
             <slot />
           </div>
         )}
+        <input
+          type="radio" 
+          hidden 
+          ref={el => this.inputElement = el as HTMLInputElement} 
+          name={this.name}  
+          value={this.value}
+          checked={this.internalChecked}        
+          disabled={this.disabled}
+          onClick={(e) => e.stopPropagation()}></input>
       </div>
     );
   }

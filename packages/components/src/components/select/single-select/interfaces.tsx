@@ -128,7 +128,7 @@ export interface IChoicesProps {
   duplicateItemsAllowed?: boolean;
   delimiter?: string;
   paste?: boolean;
-  searchEnabled?: boolean;
+  showSearch?: boolean;
   searchChoices?: boolean;
   searchFloor?: number;
   searchResultLimit?: number;
@@ -183,6 +183,4 @@ export interface IChoicesMethods {
   setChoiceByValue(value: string | Array<string>);
   clearStore();
   clearInput();
-  disable();
-  enable();
 }

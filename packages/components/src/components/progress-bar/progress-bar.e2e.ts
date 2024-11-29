@@ -9,16 +9,14 @@ describe('ifx-progress-bar', () => {
     expect(element).toHaveClass('hydrated');
   });
 
-  it('should reflect value and label props', async () => {
+  it('should reflect value prop', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-progress-bar value="70" label="Progress"></ifx-progress-bar>');
+    await page.setContent('<ifx-progress-bar value="70"></ifx-progress-bar>');
 
     const progressBar = await page.find('ifx-progress-bar');
     const value = await progressBar.getProperty('value');
-    const label = await progressBar.getProperty('label');
 
     expect(value).toBe(70);
-    expect(label).toBe('Progress');
   });
 
   it('should show label when showLabel is true', async () => {

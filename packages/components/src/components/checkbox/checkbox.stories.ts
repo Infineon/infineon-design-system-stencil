@@ -5,11 +5,12 @@ export default {
   tags: ['autodocs'],
   args: {
     error: false,
-    disabled: false,
-    value: false,
+    checked: false,
     label: 'Text',
     size: 's',
     indeterminate: false,
+    name: 'checkbox',
+    value: 'checkbox',
   },
 
   argTypes: {
@@ -29,16 +30,22 @@ export default {
         },
       },
     },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: {
+      description: 'The value that gets submitted, when the checkbox is seleted'
+    }
   },
 };
 
-const DefaultTemplate = ({ error, disabled, value, indeterminate, size, label }) => {
+const DefaultTemplate = ({ error, checked, indeterminate, size, label, name }) => {
   const checkbox = document.createElement('ifx-checkbox');
   checkbox.setAttribute('error', error);
-  checkbox.setAttribute('disabled', disabled);
-  checkbox.setAttribute('value', value);
+  checkbox.setAttribute('checked', checked);
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
+  checkbox.setAttribute('name', name);
 
   checkbox.addEventListener('ifxChange', action('ifxChange'));
 

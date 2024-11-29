@@ -1,9 +1,11 @@
-import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-text-field',
   styleUrl: 'text-field.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 export class TextField {
@@ -20,9 +22,13 @@ export class TextField {
   @Prop() optional: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() maxlength?: number;
+  @Prop() showDeleteIcon: boolean = false;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
+
+  @AttachInternals() internals: ElementInternals;
 
 
   @Watch('value')
@@ -38,11 +44,21 @@ export class TextField {
     this.inputElement.value = '';
   }
 
+  handleDeleteContent() {
+    this.reset();
+    this.ifxInput.emit(this.value);
+  }
 
   handleInput() {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
+    this.internals.setFormValue(query) // update form value
     this.ifxInput.emit(this.value);
+  }
+
+  formResetCallback() {
+    this.internals.setValidity({});
+    this.internals.setFormValue("");
   }
 
   render() {
@@ -56,7 +72,7 @@ export class TextField {
             ) : this.optional ? (
               <span class="optional">(optional)</span>
             ) : this.required ? (
-              <span class="required">*</span>
+              <span class={`required ${this.error ? 'error' : ""}`}>*</span>
             ) : null}
           </label>
         </div>
@@ -64,7 +80,7 @@ export class TextField {
         <div class="textInput__bottom-wrapper">
           <div class="input-container">
             {this.icon && (
-              <ifx-icon icon={this.icon} />
+              <ifx-icon class='input-icon' icon={this.icon} />
             )}
             <input
               ref={(el) => (this.inputElement = el)}
@@ -74,11 +90,16 @@ export class TextField {
               value={this.value}
               onInput={() => this.handleInput()}
               placeholder={this.placeholder}
+              maxlength={this.maxlength}
               class={
                 `${this.icon ? 'icon' : ""}
                 ${this.error ? 'error' : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`} />
+
+              { (this.showDeleteIcon && this.value) && (
+                <ifx-icon class="delete-icon" icon="cremove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
+              )}
           </div>
           {this.caption && !this.error &&
             <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>

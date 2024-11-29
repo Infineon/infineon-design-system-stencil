@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-tag',
@@ -7,6 +8,8 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class Tag {
   @Prop() icon: string;
+
+
 
   render() {
     return (

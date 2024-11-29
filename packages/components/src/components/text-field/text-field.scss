@@ -71,6 +71,10 @@
 
       & .required {
         margin-left: 4px;
+        
+        &.error {
+          color: #CD002F;
+        }
       }
     }
   }
@@ -172,7 +176,7 @@
       }
     }
 
-    & ifx-icon {
+    & .input-icon {
       // Position the icon within the icon container
       // Adjust the positioning as needed
       position: absolute;
@@ -206,5 +210,14 @@
       }
     }
 
+    
+  }
+  .delete-icon {
+    position: absolute;
+    right: tokens.$ifxSpace200;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 }

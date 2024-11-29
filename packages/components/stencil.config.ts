@@ -15,27 +15,27 @@ export const config: Config = {
 
   outputTargets: [
     {
+      type: 'dist-custom-elements',
+      externalRuntime: false,
+    },
+    {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './', warn: true },
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: '../../public-storybook/fonts', warn: true },
       ]
     },
     ...frameworkTargets,
-    {
-      type: 'dist-custom-elements',
-      dir: 'stencil-components'
-    },
     {
       type: 'docs-readme',
     },
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-      copy: [
-        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: 'build/fonts', warn: true },
+       copy: [
+        { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
       ]
     }
   ],
+
 };

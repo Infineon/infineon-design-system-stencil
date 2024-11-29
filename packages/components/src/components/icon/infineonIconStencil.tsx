@@ -1,5 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
+ 
 
 
 @Component({
@@ -55,12 +56,13 @@ export class InfineonIconStencil {
       const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
-      this.consoleError.emit(false)
       return SVG;
-    } else {
+    } else if(this.icon !== "") {
       console.error('Icon not found!')
       this.consoleError.emit(true)
-      return ""
+      return;
+    }  else { 
+      return;
     }
   }
 
@@ -68,6 +70,8 @@ export class InfineonIconStencil {
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
+
+
 
   render() {
     return (

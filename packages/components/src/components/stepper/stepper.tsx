@@ -1,4 +1,14 @@
-import { Component, h, Prop, Element, State, EventEmitter, Event, Watch } from "@stencil/core";
+import { h, 
+         Component, 
+         Element, 
+         Event, 
+         EventEmitter, 
+         Listen, 
+         Prop, 
+         State, 
+         Watch } from "@stencil/core";
+import { StepperState } from "./interfaces";
+ 
 
 @Component({
     tag: 'ifx-stepper',
@@ -7,31 +17,85 @@ import { Component, h, Prop, Element, State, EventEmitter, Event, Watch } from "
 })
 
 export class Stepper {
-
-    @Prop() showNumber: boolean = false;
-    @Prop() activeStep: number = 1;
-    @State() internalActiveStep = undefined;
-    @Prop() variant: string = 'default';
     @Element() el: HTMLElement;
-    @Event() ifxActiveStepChange: EventEmitter;
-    private stepsCount: number;
+
+    @Event() ifxChange: EventEmitter;
+
+    @Prop({ mutable: true }) activeStep: number = 1;
+    @Prop() indicatorPosition?: 'left' | 'right' = 'left';
+    @Prop() showStepNumber?: boolean = false;
+    @Prop() variant?: 'default' | 'compact' | 'vertical' = 'default';
+
+
+    @State() stepsCount: number;
+    @State() shouldEmitEvent: boolean = true;
+    @State() emittedByClick: boolean = false;
+
+    @Listen('ifxChange') 
+    onStepChange(event: CustomEvent) {
+        const steps = this.getSteps();
+        const previousActiveStep = steps[event.detail.previousActiveStep-1];
+        if (previousActiveStep && !previousActiveStep.complete) {
+            previousActiveStep.setAttribute('error', 'true');
+        }
+    } 
 
     @Watch('activeStep')
-    activeStepHandler() {
-        this.updateActiveStep();
-    }
-
-    // Syncing children (steps) with parent state
-    updateChildren() {
-        const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
-        for (let i = 0; i < steps.length; i++) {
-            steps[i].stepperState = { activeStep: this.internalActiveStep, showNumber: this.showNumber, variant: this.variant };
+    handleActiveStep(newStep: number, oldStep: number) {
+        const steps = this.getSteps();
+        if (!this.shouldEmitEvent) {
+            this.shouldEmitEvent = true;
+            return;
         }
-
+        // Skipping until the enabled step is found 
+        if (!steps[newStep-1].disabled) {
+            this.emitIfxChange(newStep, oldStep);
+        } else {
+            // If coming from higher step number to the lower step number
+            if (newStep < oldStep) {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i >= 1 && steps[i-1].disabled) i--;
+                // if all the steps are disabled no change.
+                if (i < 1) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            } 
+            // If coming from lower step number to the higher step number
+            else {
+                let i = newStep;
+                this.shouldEmitEvent = false;
+                while (i <= this.stepsCount && steps[i-1].disabled) i++;
+                if (i > this.stepsCount) {
+                    this.activeStep = oldStep;
+                } else {
+                    this.emitIfxChange(i, oldStep);
+                    this.activeStep = i;
+                }
+            }
+        }
     }
+    
+    emitIfxChange(activeStep: number, previousActiveStep: number) {
+        this.ifxChange.emit({activeStep: activeStep, 
+            previousActiveStep: previousActiveStep, 
+            totalSteps: this.stepsCount,
+            emittedByClick: this.emittedByClick
+        });
+        this.emittedByClick = false;
+    }
+
+    getSteps() {
+        const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
+        return steps;
+    }
+
 
     addStepIdsToStepsAndCountSteps() {
-        const steps: NodeListOf<HTMLIfxStepElement> = this.el.querySelectorAll('ifx-step');
+        const steps = this.getSteps()
         steps[steps.length - 1].lastStep = true;
         for (let i = 0; i < steps.length; i++) {
             steps[i].stepId = i + 1;
@@ -39,36 +103,69 @@ export class Stepper {
         this.stepsCount = steps.length;
     }
 
-    updateActiveStep() {
-        let newActiveStep = Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
-        if (this.internalActiveStep === undefined || newActiveStep != this.internalActiveStep) {
-            this.ifxActiveStepChange.emit({ activeStep: newActiveStep, totalSteps: this.stepsCount });
-        }
-        this.internalActiveStep = newActiveStep;
+
+    setActiveStep(stepId: number, setByClick: boolean = false) {
+        this.emittedByClick = setByClick;
+        this.activeStep = stepId;
     }
+
+    setStepsBeforeActiveToComplete() {
+        const steps = this.getSteps();
+        steps.forEach( (step, stepId) => {
+            if (stepId+1 < this.activeStep) step.complete = true;
+        });
+    }
+
+    syncIfxSteps() {
+        const steps = this.getSteps()
+        for (let i = 0; i < steps.length; i++) {
+            const stepperState: StepperState = { 
+                activeStep: this.activeStep,
+                indicatorPosition: (this.indicatorPosition !== 'right' ? 'left' : 'right'), 
+                showStepNumber: this.showStepNumber, 
+                variant: ((this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant), 
+                setActiveStep: this.setActiveStep.bind(this)
+            };
+            steps[i].stepperState = stepperState;
+        }
+    }
+
+    setInitialActiveStep() {
+        this.activeStep = Math.max(1, Math.min(this.stepsCount + (this.variant !== 'compact' ? 1 : 0), this.activeStep));
+    }
+
 
     componentWillLoad() {
         this.addStepIdsToStepsAndCountSteps();
-        this.updateActiveStep();
-        this.updateChildren();
+        this.setInitialActiveStep();
+        this.setStepsBeforeActiveToComplete();
+    }
+    
+    componentDidLoad() {
+        this.syncIfxSteps();
     }
 
     componentWillUpdate() {
-        this.updateChildren();
+        this.syncIfxSteps();
     }
 
     render() {
         return (
-            <div class={`stepper ${this.variant}`}>
+            <div aria-label = 'a stepper' 
+                role = 'navigation' 
+                class = {`stepper ${(this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {
-                    this.variant === 'compact' && <div class='stepper-progress'>
-                        <div class='progress-detail'>
-                            {`${Math.min(this.internalActiveStep, this.stepsCount)} of ${this.stepsCount}`}
+                    /* Progress bar for compact variant. */
+                    (this.variant === 'compact') && 
+                    <div class = 'stepper-progress'>
+                        <div class = 'progress-detail'>
+                            {`${Math.min(this.activeStep, this.stepsCount)} of ${this.stepsCount}`}
                         </div>
                     </div>
                 }
-
-                <div class={`stepper-wrapper`}>
+                
+                {/* Slot for ifx-steps. */}
+                <div class = {`stepper-wrapper`}>
                     <slot />
                 </div>
             </div>
@@ -76,10 +173,10 @@ export class Stepper {
     };
 
     componentDidRender() {
-        // Updating progress bar in compact version
+        /* Updating progress bar in compact version. */
         if (this.variant == 'compact') {
-            const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress')
-            progressBar.style.setProperty('--pb', `${(this.internalActiveStep / (this.stepsCount)) * 100}%`);
+            const progressBar: HTMLElement = this.el.shadowRoot.querySelector('.stepper-progress');
+            progressBar.style.setProperty('--pb', `${(this.activeStep / (this.stepsCount)) * 100}%`);
         }
     }
 }

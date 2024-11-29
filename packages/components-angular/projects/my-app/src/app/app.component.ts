@@ -19,6 +19,7 @@ export class AppComponent {
   radioError = false;
   radioDisabled = false;
   radioChecked = false;
+  textareaValue = ''
   textFieldValue = '';
   searchFieldValue = '';
   searchBarValue = '';
@@ -117,7 +118,7 @@ export class AppComponent {
   handleTextInput(event: any) {
     console.log("textInput value change")
     this.textFieldValue = event.detail;
-
+    this.textareaValue = event.detail
   }
 
 

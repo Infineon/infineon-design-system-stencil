@@ -1,4 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-number-indicator',

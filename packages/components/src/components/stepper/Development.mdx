@@ -1,0 +1,94 @@
+import { Meta, Primary, Controls, Story, Canvas } from '@storybook/blocks';
+import * as StepperStories from './stepper.stories';
+
+ <Meta of={StepperStories} />
+# Stepper
+
+<Primary />
+
+## Props
+
+<Controls />
+
+## General usage
+Examples of general usage
+
+<b>Vanilla</b>
+
+```js
+
+const incrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  if('some form condition') { 
+    const steps = myStepper.querySelectorAll('ifx-step')
+    if(steps[myStepper.activeStep-1]) {
+      steps[myStepper.activeStep-1].complete = true;
+    } 
+    myStepper.activeStep++;
+  }
+}
+
+const decrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  myStepper.activeStep--;
+}
+
+<ifx-button variant='primary' onClick="decrementStep()">Decrement Step</ifx-button>
+<ifx-button variant='primary' onClick="incrementStep()">Increment Step</ifx-button>
+```
+
+<b>React</b>
+
+```js
+const [activeStep, setActiveStep] = useState(3);
+
+useEffect(() => { 
+  const myStepper = document.getElementById('myStepper')
+  myStepper.addEventListener('ifxChange', (e) => { 
+      setActiveStep(e.detail.activeStep)
+  })
+
+}, [])
+
+const incrementStep = () => {
+  const myStepper = document.getElementById('myStepper')
+  if('some form condition') { 
+    const steps = myStepper.querySelectorAll('ifx-step')
+    if(steps[myStepper.activeStep-1]) {
+      steps[myStepper.activeStep-1].complete = true;
+    } 
+    setActiveStep(activeStep+1)
+  }
+}
+
+const decrementStep = () => {
+  if('some form condition') { 
+    setActiveStep(activeStep-1)
+  }
+}
+
+return(
+  <div>
+    <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
+      <IfxStep>Step 1</IfxStep>
+      <IfxStep>Step 2</IfxStep>
+      <IfxStep>Step 3</IfxStep>
+      <IfxStep>Step 4</IfxStep>
+      <IfxStep>Step 5</IfxStep>
+    </IfxStepper>
+
+    <IfxButton onClick={decrementStep}>Decrement</IfxButton>
+    <IfxButton onClick={incrementStep}>Increment</IfxButton>
+  </div>
+)
+```
+
+### Vertical
+<Canvas of={StepperStories.Vertical} sourceState="shown" />
+
+### Compact
+<Canvas of={StepperStories.Compact} sourceState="shown" />
+
+
+
+

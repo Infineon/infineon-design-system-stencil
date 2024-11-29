@@ -1,5 +1,6 @@
 import { Component, Prop, h, State } from "@stencil/core";
 import classNames from 'classnames';
+ 
 
 @Component({
   tag: 'ifx-link',
@@ -30,6 +31,7 @@ export class Link {
   componentWillRender(){
     this.setInternalStates();
   }
+
 
   render() {
     return (

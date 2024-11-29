@@ -3,7 +3,6 @@
 @use "../../../global/font.scss";
 
 .ifx-multiselect-container {
-  background-color: tokens.$ifxColorBaseWhite;
   position: relative;
   box-sizing: border-box;
   font-family: var(--ifx-font-family);
@@ -41,6 +40,7 @@
   }
 
   .ifx-multiselect-wrapper {
+    background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
     position: relative;
     display: flex;
@@ -91,7 +91,7 @@
       background: tokens.$ifxColorEngineering200;
       color: #575352;
       border-color: #575352;
-      cursor: not-allowed;
+      cursor: default;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
@@ -161,7 +161,6 @@
 
 
   .ifx-clear-button {
-    margin-right: tokens.$ifxSpace100; // Space between clear button and icons
     display: flex;
   }
 
@@ -179,9 +178,10 @@
     z-index: var(--dynamic-z-index, 1); // Fallback to 1
 
     .search-input {
-      // position: sticky;
-      // top: 0;
-      // z-index: 2;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 1;
       width: 100%;
       padding: 8px 16px;
       font-size: tokens.$ifxFontSizeM;
@@ -228,7 +228,7 @@
       background-color: tokens.$ifxColorEngineering200;
     }
 
-    &:focus {
+    &:focus:not(.disabled) {
       background-color: tokens.$ifxColorEngineering300;
       outline: none;
     }
@@ -246,8 +246,22 @@
       padding-left: 30px;
       /* or however much indentation you want */
     }
+
+    &.disabled {
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    label {
+      cursor: inherit;
+    }
   }
 
 
 
+}
+
+.select-all-wrapper {
+  padding-top: 8px;
 }

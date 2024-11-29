@@ -1,9 +1,11 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+ 
 
 @Component({
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
-  shadow: true
+  shadow: true,
+  formAssociated: true
 })
 
 export class Checkbox {
@@ -11,34 +13,55 @@ export class Checkbox {
 
   @Element() el;
   @Prop() disabled: boolean = false;
-  @Prop() value: boolean = false;
+  @Prop() checked: boolean = false;
   @Prop() error: boolean = false;
-  @Prop() name: string = '';
   @Prop() size: string = 'm';
-  @State() internalValue: boolean;
   @Prop() indeterminate: boolean = false;
+  @Prop() value: string;
+  @State() internalChecked: boolean;
   @State() internalIndeterminate: boolean;
+
+  @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
       if (this.inputElement.indeterminate) {
-        this.internalValue = true;
+        this.internalChecked = true;
         this.internalIndeterminate = false;
       } else {
-        this.internalValue = !this.internalValue;
+        this.internalChecked = !this.internalChecked;
       }
-      this.ifxChange.emit(this.internalValue);
+      
+      if (this.internalChecked) {
+        if (this.value !== undefined) {
+          this.internals.setFormValue(this.value);
+        } else {
+          this.internals.setFormValue("on")
+        }
+      } else {
+        this.internals.setFormValue(null)
+      }
+      this.ifxChange.emit(this.internalChecked);
     }
   }
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
 
-  @Watch('value')
+  @Method()
+  async toggleCheckedState(newVal: boolean) {
+    this.internalChecked = newVal;
+  }
+
+  @Watch('checked')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this.internalValue = newValue;
-      this.inputElement.checked = this.internalValue; // update the checkbox's checked property
+      this.internalChecked = newValue;
+      this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
     }
   }
 
@@ -60,7 +83,7 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalValue = this.value;
+    this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
 
@@ -68,18 +91,26 @@ export class Checkbox {
     this.inputElement.indeterminate = this.internalIndeterminate;
   }
 
+
+  /**
+   * Callback for form association.
+   * Called whenever the form is reset.
+   */
+  formResetCallback() {
+    this.internals.setFormValue(null);
+  }
+
   getCheckedClassName() {
     if (this.error) {
-      if (this.internalValue) {
+      if (this.internalChecked) {
         return "checked error"
       } else {
         return "error"
       }
-    } else if (this.internalValue) {
+    } else if (this.internalChecked) {
       return "checked";
     } else return ""
   }
-
 
   render() {
     const slot = this.el.innerHTML;
@@ -95,19 +126,19 @@ export class Checkbox {
           type="checkbox"
           hidden
           ref={(el) => (this.inputElement = el)}
-          name={this.name}
-          checked={this.internalValue}
+          checked={this.internalChecked}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
-          value={`${this.internalValue}`}
+          value={`${this.value}`}
+          disabled={this.disabled ? true : undefined}
         />
 
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}
           onKeyDown={this.handleKeydown.bind(this)}
-          role="checkbox"  // role attribute
-          aria-value={this.internalValue}
+          role="checkbox"
+          aria-checked={this.indeterminate ? 'mixed' : this.internalChecked.toString()}
           aria-disabled={this.disabled}
           aria-labelledby="label"
           class={`checkbox__wrapper 
@@ -116,7 +147,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalValue && <ifx-icon icon="check-12"></ifx-icon>}
+          {this.internalChecked && <ifx-icon icon="check-12"  aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>

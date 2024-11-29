@@ -5,11 +5,18 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    value: false,
-    disabled: false,
+    checked: false,
     label: 'Switch',
+    name: 'switch',
+    value: 'switch',
   },
   argTypes: {
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: {
+      description: 'The value that gets submitted, when the radio button is checked'
+    },
     ifxChange: {
       description: 'Custom event emitted on change',
       table: {
@@ -28,7 +35,8 @@ const DefaultTemplate = args => {
   const element = document.createElement('ifx-switch') as HTMLIfxSwitchElement;
 
   // Set the attributes
-  element.setAttribute('disabled', args.disabled);
+  element.setAttribute('checked', args.checked);
+  element.setAttribute('name', args.name);
   element.setAttribute('value', args.value);
 
   // Add the event listener

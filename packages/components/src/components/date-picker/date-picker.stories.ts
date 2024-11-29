@@ -9,12 +9,24 @@ export default {
     size: 's',
     success: false,
     error: false,
+    name: 'date-picker',
+    value: '',
+    max: '',
+    min: '',
+    label: "Label Text",
+    caption: "Caption text, description, error notification",
   },
   argTypes: {
     size: {
-      description: 'Size options: small (173px) and large (400px) - default: small',
+      description: 'Size options: Height small  (36px) and Height large (40px) - default: small',
       options: ['s', 'l'],
       control: { type: 'radio' },
+    },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.'
+    },
+    value: { 
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd'
     },
     ifxDate: {
       action: 'ifxDate',
@@ -30,12 +42,17 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
   element.setAttribute('success', success);
+  element.setAttribute('value', value);
+  element.setAttribute('max', max);
+  element.setAttribute('min', min);
+  element.setAttribute('label', label);
+  element.setAttribute('caption', caption);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };

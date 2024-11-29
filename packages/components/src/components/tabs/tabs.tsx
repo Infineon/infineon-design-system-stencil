@@ -1,5 +1,6 @@
 //ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
+ 
 
 
 @Component({
@@ -10,7 +11,6 @@ import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch 
 export class IfxTabs {
   @Element() el: HTMLElement;
 
-  @Prop() tabs: { header: string, disabled?: boolean }[] = [];
   @Prop() orientation: string = "horizontal";
   @Prop({ mutable: true }) activeTabIndex: number = 0;
 
@@ -24,18 +24,30 @@ export class IfxTabs {
 
   @Event() ifxTabChange: EventEmitter;
 
+  @Listen('resize', {target: 'window'})
+  updateBorderOnWindowResize() {
+    this.updateBorderAndFocus();
+  }
 
   setActiveAndFocusedTab(index: number) {
-    this.internalActiveTabIndex = index;
-    this.internalFocusedTabIndex = index;
+    if (index >= this.tabObjects.length) {
+      index = this.tabObjects.length - 1;
+    }
+    if (index < 0) {
+      index = 0;
+    }
+    if (!this.tabObjects[index]?.disabled) {
+      this.internalActiveTabIndex = index;
+      this.internalFocusedTabIndex = index;
+    }
   }
+  
 
   @Watch('activeTabIndex')
   activeTabIndexChanged(newValue: number, oldValue: number) {
     if (newValue !== oldValue) {
       this.setActiveAndFocusedTab(newValue);
     }
-
   }
 
 
@@ -45,10 +57,9 @@ export class IfxTabs {
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
     };
-    // this.internalActiveTabIndex = this.activeTabIndex;
-    this.internalFocusedTabIndex = this.internalActiveTabIndex;
-    this.updateTabStyles();
     this.onSlotChange();
+    this.setActiveAndFocusedTab(this.activeTabIndex);
+    this.updateTabStyles();
   }
 
   updateTabStyles() {
@@ -113,6 +124,7 @@ export class IfxTabs {
     this.tabHeaderRefs.forEach((tab, index) => {
       tab.addEventListener('focus', this.onTabFocus(index));
     });
+
   }
 
   onTabFocus(index) {

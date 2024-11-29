@@ -1,4 +1,3 @@
-
 <template>
   <Navbar />
   <h1>Stencil Framework integration - Vue + JS </h1>
@@ -10,6 +9,8 @@
   <Button />
   <Card />
   <Checkbox />
+  <Chip />
+  <ContentSwitcher />
   <DatePicker />
   <Dropdown />
   <IconButton />
@@ -17,21 +18,25 @@
   <Link />
   <Modal />
   <MultiSelect />
+  <Notification />
   <NumberIndicator />
   <Pagination />
   <ProgressBar />
   <RadioButton />
   <SearchField />
   <SearchBar />
+  <SegmentedControl />
   <SingleSelect />
   <Slider />
   <Spinner />
   <Status />
   <Stepper />
   <Switch />
-  <Table />
+  <TableBasic />
+  <TableAdvanced />
   <Tabs />
   <Tag />
+  <Textarea />
   <TextField />
   <Tooltip />
   <Footer />
@@ -44,6 +49,7 @@ import Alert from './components/Alert.vue'
 import Accordion from './components/Accordion.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
+import Chip from './components/Chip.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import RadioButton from './components/RadioButton.vue'
 import TextField from './components/TextField.vue'
@@ -65,7 +71,8 @@ import SingleSelect from './components/SingleSelect.vue'
 import MultiSelect from './components/MultiSelect.vue'
 import Modal from './components/Modal.vue'
 import Pagination from './components/Pagination.vue'
-import Table from './components/BasicTable.vue'
+import TableBasic from './components/BasicTable.vue'
+import TableAdvanced from './components/AdvancedTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
 import SearchBar from './components/SearchBar.vue'
 import Badge from './components/Badge.vue'
@@ -73,7 +80,9 @@ import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
 import Stepper from './components/Stepper.vue'
-
+import ContentSwitcher from './components/ContentSwitcher.vue'
+import Notification from './components/Notification.vue'
+import SegmentedControl from './components/SegmentedControl.vue'
+import Textarea from './components/Textarea.vue'
 
 </script>
-

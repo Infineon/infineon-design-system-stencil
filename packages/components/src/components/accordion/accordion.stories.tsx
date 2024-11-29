@@ -7,13 +7,16 @@ export default {
 
   args: {
     autoCollapse: false,
-    initialCollapse: true,
+    AriaLevel: 3,
   },
 
   argTypes: {
     amountOfItems: { control: 'number' },
-    initialCollapse: {
-      description: 'If set on more than one accordion-item, auto-collapse must be false',
+    AriaLevel: { 
+      control: 'number', 
+      min: 1, 
+      max: 6, 
+      description: 'The aria-level attribute for the accordion item header.' 
     },
   },
 };
@@ -21,9 +24,9 @@ export default {
 const Template = args => {
   const accordionElement = document.createElement('ifx-accordion');
   const initialItem = document.createElement('ifx-accordion-item');
-  initialItem.setAttribute('initialCollapse', args.initialCollapse);
   initialItem.setAttribute('caption', `Label`);
   initialItem.setAttribute('open', `true`);
+  initialItem.setAttribute('aria-level', args.AriaLevel);
 
   initialItem.innerHTML = `
   Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -40,9 +43,12 @@ const Template = args => {
     const item = document.createElement('ifx-accordion-item');
     item.setAttribute('caption', `Label`);
     item.setAttribute('open', `false`);
+    item.setAttribute('aria-level', args.AriaLevel);
 
     item.innerHTML = `
-        Content for Item #${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Content for Item #${
+          i + 1
+        }. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     `;

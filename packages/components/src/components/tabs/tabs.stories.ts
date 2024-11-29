@@ -1,20 +1,5 @@
 import { action } from '@storybook/addon-actions';
 
-const tabHeaders = [
-  {
-    header: 'tab a',
-    disabled: false,
-  },
-  {
-    header: 'tab b',
-    disabled: true,
-  },
-  {
-    header: 'tab c',
-    disabled: false,
-  },
-];
-
 export default {
   title: 'Components/Tabs',
   tags: ['autodocs'],
@@ -59,13 +44,15 @@ export default {
 const Template = args => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
-  tabsElement.setAttribute('active-tab-index', tabHeaders[args.activeTabIndex].disabled ? '' : args.activeTabIndex);
+  tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));
   
   for (let i = 0; i < args.amountOfTabs; i++) {
     const tabContent = document.createElement('ifx-tab');
-    tabContent.setAttribute('header', tabHeaders[i].header);
-    tabContent.setAttribute('disabled', tabHeaders[i].disabled.toString());
+    tabContent.setAttribute('header', `tab ${i+1}`);
+    if(i == 1) {
+      tabContent.setAttribute('disabled', 'true');
+    }
     if(args.icon){
       tabContent.setAttribute('icon', 'c-check-16');
       tabContent.setAttribute('icon-position', args.iconPosition);
