@@ -179,6 +179,7 @@ export default {
     },
     //ifx-search-bar props
     searchBarIsOpen: {
+      name: 'isOpen',
       control: { type: 'boolean' },
       description: 'Show the search bar',
       table: {
