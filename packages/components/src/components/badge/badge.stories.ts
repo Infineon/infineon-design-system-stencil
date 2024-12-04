@@ -6,7 +6,7 @@ export default {
 
   args: {
     label: 'Badge label',
-    showIcon: false,
+    icon: 'none',
   },
 
   argTypes: {
@@ -20,22 +20,15 @@ export default {
         }
       }
     },
-    showIcon: {
-      name: 'Show Icon',
-      control: { type: 'boolean' },
-      table: {
-        category: 'story controls',
-        type: {
-          summary: 'boolean'
-        }
-      }
-    },
-    iconName: {
-      name: 'Icon Name',
-      options: Object.values(icons).map(i => i['name']),
+    icon: {
       control: { type: 'select' },
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      description: 'Set the icon of the tab. Choose "none" to display no icon',
       table: {
-        category: 'story controls',
+        category: 'ifx-tab props',
+        defaultValue: {
+          summary: ''
+        },
         type: {
           summary: 'string'
         }
@@ -44,11 +37,14 @@ export default {
   },
 };
 
-const DefaultTemplate = args =>
-  `<ifx-badge>
-    ${args.showIcon ? `<ifx-icon icon="${args.iconName}"></ifx-icon>` : ''}
-    ${args.label}
-  </ifx-badge>`;
+const DefaultTemplate = args => {
+  const icon = args.icon === 'none' ? '' : args.icon;
+
+  return `<ifx-badge>
+  ${args.label}
+  ${icon ? `<ifx-icon icon="${icon}"></ifx-icon>` : ''}
+</ifx-badge>`;
+};
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};

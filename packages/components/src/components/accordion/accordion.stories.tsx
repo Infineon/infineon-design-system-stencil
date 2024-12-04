@@ -22,21 +22,19 @@ export default {
           summary: 'number'
         }
       }
-
     },
-    AriaLevel: { 
+    AriaLevel: {
       control: 'number', 
       min: 1, 
       max: 6, 
       description: 'The aria-level attribute for the accordion item header',
       table: {
-      
       category: 'ifx-accordion-item props',
       type: {
         summary: 'number'
       }
-    }
-    },
+    }  
+  },  
     mutable: {
       control: 'boolean',
       description: 'Set the mutable attribute',
@@ -69,12 +67,12 @@ export default {
         type: {
           summary: 'Framework integration',
           detail:`React: onIfxItemOpen={handleOpen}
-          Vue: @ifxItemOpen="handleOpen"
-          Angular: (ifxItemOpen)="handleOpen()"
-          VanillaJs: .addEventListener("ifxItemOpen", (event) => {/*handle open*/});`
-        }
+            Vue: @ifxItemOpen="handleOpen"
+            Angular: (ifxItemOpen)="handleOpen()"
+            VanillaJs: .addEventListener("ifxItemOpen", (event) => {/*handle open*/});`
+            }
+          },
       },
-    },
     ifxItemClose: { 
       action: 'ifxItemClose',
       description: 'Event emitted when an accordion item is closed',

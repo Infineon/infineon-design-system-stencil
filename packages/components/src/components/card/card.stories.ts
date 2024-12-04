@@ -15,6 +15,7 @@ export default {
 
   argTypes: {
     overline: {
+      name: 'Overline',
       description: 'Sets the overline text of the card',
       type: { name: 'string' },
       table: {
@@ -22,6 +23,7 @@ export default {
       },
     },
     headline: {
+      name: 'Headline',
       description: 'Sets the headline text of the card',
       type: { name: 'string' },
       table: {
@@ -29,6 +31,7 @@ export default {
       },
     },
     description: {
+      name: 'Description',
       description: 'Sets the description text of the card',
       type: { name: 'string' },
       table: {
@@ -36,6 +39,7 @@ export default {
       },
     },
     button: {
+      name: 'Button',
       options: ['button', 'link', 'none'],
       description: 'Sets the button type of the card',
       control: { type: 'radio' },

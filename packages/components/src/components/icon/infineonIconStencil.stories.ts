@@ -24,7 +24,7 @@ export default {
         type: {
           summary: 'Framework integration',
           detail:
-            'React: onConsoleError={handleChange}\nVue:@consoleError="handleChange"\nAngular:(consoleError)="handleChange()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle change});',
+            'React: onConsoleError={handleError}\nVue:@consoleError="handleError"\nAngular:(consoleError)="handleError()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle error});',
         },
       },
     },

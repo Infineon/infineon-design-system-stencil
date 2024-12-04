@@ -8,6 +8,8 @@ export default {
 
   args: {
     opened: false,
+    cancelButtonLabel: 'Cancel',
+    okButtonLabel: 'OK',
   },
   argTypes: {
     caption: {
@@ -147,7 +149,7 @@ export default {
   },
 };
 
-const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size, alertIcon }) => {
+const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
   modal.setAttribute('variant', variant);
@@ -173,13 +175,13 @@ const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size
 
   const cancelButton = document.createElement('ifx-button');
   cancelButton.setAttribute('variant', 'secondary');
-  cancelButton.textContent = 'Button 1';
+  cancelButton.textContent = cancelButtonLabel;
   cancelButton.addEventListener('click', () => {
     console.log('Button 1 clicked');
   });
 
   const primaryButton = document.createElement('ifx-button');
-  primaryButton.textContent = 'Button 2';
+  primaryButton.textContent = okButtonLabel;
   primaryButton.addEventListener('click', () => {
     console.log('Button 2 clicked');
   });
@@ -223,4 +225,7 @@ Alert.args = {
   alertIcon: 'arrowdoen24',
   size: 's',
   variant: 'alert-brand',
+  cancelButtonLabel: 'Cancel',
+  okButtonLabel: 'OK',
+  showCloseButton: false,
 };
