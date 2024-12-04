@@ -1,3 +1,15 @@
+# v29.0.1 (Wed Dec 04 2024)
+
+#### 🐛 Bug Fix
+
+- Updated GitHub issues' templates to add more description and make techstack environment required field [#1625](https://github.com/Infineon/infineon-design-system-stencil/pull/1625) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+
+#### Authors: 1
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+
+---
+
 # v29.0.0 (Fri Nov 29 2024)
 
 #### 💥 Breaking Change
