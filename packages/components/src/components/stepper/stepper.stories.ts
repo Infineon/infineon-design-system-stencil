@@ -34,7 +34,7 @@ export default{
         },
         completeStep: {
             name: 'complete',
-            description: 'A boolean prop to mark a step as complete.<br>Usage:',
+            description: 'A boolean prop to mark one or more steps as complete.<br>Usage:',
             table: {
                 category: 'ifx-step props',
                 defaultValue: { summary: false },
@@ -46,7 +46,7 @@ export default{
         disabled: {
             name: 'disabled',
             control: 'boolean',
-            description: 'A boolean prop to make all the steps unclickable.',
+            description: 'A boolean prop to make one or more steps unclickable.',
             table: {
                 category: 'ifx-step props',
                 defaultValue: { summary: false },

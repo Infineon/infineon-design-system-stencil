@@ -21,8 +21,8 @@ export default {
       control: { type: 'select' },
       table: {
         category: 'ifx-icon-button props',
-        type: {
-          summary: 'string'
+        defaultValue: {
+          summary: 'c-info-24'
         }
       }
     },

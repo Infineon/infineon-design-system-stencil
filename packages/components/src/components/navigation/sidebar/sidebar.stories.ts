@@ -6,7 +6,6 @@ export default {
   // tags: ['autodocs'],
 
   args: {
-    showIcon: true,
     icon: 'image-16',
     applicationName: 'Application Name',
     showFooter: true,
@@ -79,21 +78,10 @@ export default {
         category: 'ifx-sidebar props'
       }
     },
-    showIcon: {
-      description: 'Determines whether icons should be displayed for sidebar items.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-sidebar-item props',
-        defaultValue: {
-          summary: true
-        }
-      }
-    },
     icon: {
-      description: 'The icon to display for the sidebar items. Only visible if showIcon is true.',
-      options: Object.values(icons).map(i => i['name']),
+      description: 'The icon to display for the sidebar items. Choose ***none*** to display no icon',
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
-      if: { arg: 'showIcon', eq: true },
       table: {
         category: 'ifx-sidebar-item props',
         defaultValue: {
@@ -143,13 +131,13 @@ const DefaultTemplate = args => {
   
   sidebarElement.innerHTML = `
     <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item>
     Section
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item icon='image-16'>
     Menu Item
     <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
@@ -160,8 +148,8 @@ const DefaultTemplate = args => {
     <ifx-sidebar-item href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Item 1</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.showIcon ? args.icon : ''}">Item 2</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Item 1</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Item 2</ifx-sidebar-item>
   `
   return sidebarElement;
 };

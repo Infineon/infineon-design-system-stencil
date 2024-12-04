@@ -10,7 +10,7 @@ export default {
     label: {
       description: 'Specifies the number to be displayed within the indicator.',
       table: {
-        category: 'ifx-number-indicator props'
+        category: 'story controls'
       }
     },
     inverted: {
@@ -18,7 +18,7 @@ export default {
       control: 'boolean',
       table: {
         category: 'ifx-number-indicator props',
-        defautlValue: {
+        defaultValue: {
           summary: false
         }
       }
