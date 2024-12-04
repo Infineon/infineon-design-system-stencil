@@ -88,7 +88,10 @@ export default {
       description: 'When set to **true**, expands the button to take the full width of its container.',
       control: 'boolean',
       table: {
-        category: 'ifx-button props'
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'false'
+        }
       }
     },
     disabled: {
@@ -106,7 +109,10 @@ export default {
       control: 'radio',
       options: ['left', 'right'],
       table: {
-        category: 'ifx-button props'
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'left'
+        }
       }
     },
     href: {

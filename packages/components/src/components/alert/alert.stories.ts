@@ -7,7 +7,6 @@ export default {
   args: {
     label: 'Attention! This is an alert message — check it out!',
     variant: 'primary',
-    showIcon: true,
     closable: true,
     icon: 'c-info-24',
     AriaLive: 'assertive',
@@ -18,16 +17,6 @@ export default {
       description: 'Sets the label of *<ifx-alert>*.',
       table: {
         category: 'story controls'
-      }
-    },
-    showIcon: {
-      description: 'Show or hide icon.',
-      control: 'boolean',
-      table: {
-        category: 'story controls',
-        defaultValue: {
-          summary: true
-        }
       }
     },
     variant: {
@@ -43,8 +32,8 @@ export default {
     },
 
     icon: {
-      description: 'The icon to be displayed.',
-      options: Object.values(icons).map(i => i['name']),
+      description: 'The icon to be displayed. Choose ***none*** to display no icon',
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
       table: {
         category: 'ifx-alert props',
@@ -91,7 +80,7 @@ export default {
   },
 };
 
-const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.showIcon ? args.icon : ''}" closable="${args.closable}">${args.label}</ifx-alert>`;
+const DefaultTemplate = args => `<ifx-alert aria-live="${args.AriaLive}" variant="${args.variant}" icon="${args.icon === 'none' ? '' : args.icon}" closable="${args.closable}">${args.label}</ifx-alert>`;
 
 export const Default = DefaultTemplate.bind({});
 

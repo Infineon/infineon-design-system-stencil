@@ -5,12 +5,12 @@ export default {
   title: 'Components/Dropdown',
   tags: ['autodocs'],
   args: {
+    label: 'Dropdown',
     disabled: false,
     defaultOpen: false,
     noCloseOnOutsideClick: false,
     noCloseOnMenuClick: false,
     noAppendToBody: false,
-    label: 'Dropdown',
     variant: 'primary',
     placement: 'bottom-start',
     size: 'm',
@@ -19,7 +19,6 @@ export default {
     separator: false,
     href: '',
     target: '_self',
-    showIcon: false,
     icon: 'c-info-16',
   },
   argTypes: {
@@ -53,7 +52,7 @@ export default {
     label: { 
       description: 'The visible name or label for the dropdown button',
       table: {
-        category: 'ifx-dropdown-trigger-button props',
+        category: 'story controls',
         defaultValue: {
           summary: 'Dropdown'
         }
@@ -112,10 +111,9 @@ export default {
       }
     },
     icon: {
-      description: 'The icon to be displayed on the dropdown button',
-      options: Object.values(icons).map(i => i['name']),
+      description: 'The icon to be displayed on the dropdown items',
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
-      if: { arg: 'showIcon', eq: true },
       table: {
         category: 'ifx-dropdown-item props',
         defaultValue: {
@@ -146,16 +144,6 @@ export default {
       description: 'Use separator in dropdown',
       table: {
         category: 'ifx-dropdown-menu props',
-        defaultValue: {
-          summary: false
-        }
-      }
-    },
-    showIcon: {
-      description: 'Show menu item icon in dropdown',
-      control: 'boolean',
-      table: {
-        category: 'ifx-dropdown-item props',
         defaultValue: {
           summary: false
         }
@@ -256,12 +244,12 @@ const DefaultTemplate = args => {
   <ifx-dropdown-menu size="${args.size}">
     ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
     ${args.searchField ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
     ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
-    <ifx-dropdown-item icon="${args.showIcon ? 'c-info-16' : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
@@ -296,12 +284,12 @@ const LabelTriggerTemplate = args => {
   <ifx-dropdown-menu size="${args.size}">
     ${args.header ? `<ifx-dropdown-header>Header Text</ifx-dropdown-header>` : ''}
     ${args.search ? `<ifx-search-field show-delete-icon="false"></ifx-search-field>` : ''}
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
     ${args.separator ? `<ifx-dropdown-separator></ifx-dropdown-separator>` : ''}
-    <ifx-dropdown-item icon="${args.showIcon ? args.icon : ''}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
+    <ifx-dropdown-item icon="${args.icon === 'none' ? '' : args.icon}" target="${args.target}" href="${args.href !== '' ? args.href : ''}">Menu Item</ifx-dropdown-item>
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 

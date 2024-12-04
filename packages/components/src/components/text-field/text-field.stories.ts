@@ -25,7 +25,7 @@ export default {
     label: {
       description: 'The text label displayed above the text field.',
       table: {
-        category: 'ifx-text-field props',
+        category: 'story controls',
       }
     },
     error: {

@@ -5,11 +5,11 @@ export default {
   // tags: ['autodocs'],
 
   args: {
+    label: 'Text',
     error: false,
     disabled: false,
     checked: false,
     size: 's',
-    label: 'Text',
     name: 'radio-button',
     value: 'radio',
   },
@@ -47,7 +47,7 @@ export default {
     label: {
       description: 'Defines the text displayed alongside the radio button.',
       table: {
-        category: 'ifx-radio-button props',
+        category: 'story controls',
       }
     },
     size: {

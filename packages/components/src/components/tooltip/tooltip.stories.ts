@@ -22,13 +22,16 @@ export default {
       }
     },
     icon: {
-      description: 'The icon to be displayed.',
+      description: 'The icon to be displayed. This control is only applicable when the variant is set to ***extended***.',
       options: Object.values(icons).map(i => i['name']),
       control: 'select',
       table: {
         category: 'ifx-tooltip props',
         type: {
-          summary: 'string'
+          summary: 'string',
+          defaultValue: {
+            summary: 'c-info-24'
+          }
         }
       }
     },
