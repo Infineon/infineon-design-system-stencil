@@ -18,7 +18,7 @@ body:
   - type: textarea
     attributes:
       label: Why do you need this feature?
-      description: Describe the context and use case.
+      description: How would your users benefit if we implemented your request? Describe the context and use case.
     validations:
       required: true 
   - type: textarea
