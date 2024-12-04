@@ -119,7 +119,7 @@ export class Template {
   }
 
   handleCurrentTemplate(e) { 
-    if(e) { 
+    if(e && !this.showDetails) { 
       this.togglePadding('remove')
       const targetTemplate = e.currentTarget;
       this.toggleTemplates.emit(targetTemplate)

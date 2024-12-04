@@ -72,9 +72,16 @@
 
 .image__wrapper { 
   img { 
+    position: relative;
     width: 300px;
     height: 100%;
     border-radius: 3px;
-    object-fit: fill;
+    object-fit: contain;
+    transition: transform .2s;
+    &:hover { 
+      transform: scale(2);
+      top: 50px;
+      z-index: 100;
+    }
   }
 }
