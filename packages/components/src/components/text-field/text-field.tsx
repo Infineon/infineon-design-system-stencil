@@ -23,6 +23,7 @@ export class TextField {
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() maxlength?: number;
+  @Prop() showDeleteIcon: boolean = false;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
@@ -43,6 +44,10 @@ export class TextField {
     this.inputElement.value = '';
   }
 
+  handleDeleteContent() {
+    this.reset();
+    this.ifxInput.emit(this.value);
+  }
 
   handleInput() {
     const query = this.inputElement.value;
@@ -75,7 +80,7 @@ export class TextField {
         <div class="textInput__bottom-wrapper">
           <div class="input-container">
             {this.icon && (
-              <ifx-icon icon={this.icon} />
+              <ifx-icon class='input-icon' icon={this.icon} />
             )}
             <input
               ref={(el) => (this.inputElement = el)}
@@ -91,6 +96,10 @@ export class TextField {
                 ${this.error ? 'error' : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`} />
+
+              { (this.showDeleteIcon && this.value) && (
+                <ifx-icon class="delete-icon" icon="cremove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
+              )}
           </div>
           {this.caption && !this.error &&
             <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>

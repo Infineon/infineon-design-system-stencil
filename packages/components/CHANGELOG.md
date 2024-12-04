@@ -1,3 +1,116 @@
+# v29.0.0 (Fri Nov 29 2024)
+
+#### 💥 Breaking Change
+
+- Bump @vitejs/plugin-vue from 4.6.2 to 5.0.5 in /examples/wrapper-components/vue-javascript [#1274](https://github.com/Infineon/infineon-design-system-stencil/pull/1274) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v28.0.0 (Fri Nov 29 2024)
+
+#### 💥 Breaking Change
+
+- Bump @vitejs/plugin-vue-jsx from 3.1.0 to 4.0.0 in /examples/wrapper-components/vue-javascript [#1273](https://github.com/Infineon/infineon-design-system-stencil/pull/1273) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.11.1 (Fri Nov 29 2024)
+
+#### 🐛 Bug Fix
+
+- Bump micromatch from 4.0.7 to 4.0.8 [#1431](https://github.com/Infineon/infineon-design-system-stencil/pull/1431) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.11.0 (Fri Nov 29 2024)
+
+#### 🚀 Enhancement
+
+- Text-field: implemented a delete button to clear the text content [#1616](https://github.com/Infineon/infineon-design-system-stencil/pull/1616) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.10.2 (Wed Nov 27 2024)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Use canary release of Tokens package to consume fonts from CDN [#1561](https://github.com/Infineon/infineon-design-system-stencil/pull/1561) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
+# v27.10.1 (Wed Nov 27 2024)
+
+#### 🐛 Bug Fix
+
+- Multi-select: made search-field position fixed on scroll [#1614](https://github.com/Infineon/infineon-design-system-stencil/pull/1614) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
+# v27.10.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: added documentation [#1602](https://github.com/Infineon/infineon-design-system-stencil/pull/1602) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.9.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to Chip [#1605](https://github.com/Infineon/infineon-design-system-stencil/pull/1605) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v27.8.0 (Tue Nov 26 2024)
+
+#### 🚀 Enhancement
+
+- Stepper: implement vertical stepper and improved responsiveness [#1609](https://github.com/Infineon/infineon-design-system-stencil/pull/1609) ([@akashyeole](https://github.com/akashyeole))
+
+#### Authors: 1
+
+- Akash Yeole ([@akashyeole](https://github.com/akashyeole))
+
+---
+
 # v27.7.1 (Mon Nov 25 2024)
 
 #### 🐛 Bug Fix

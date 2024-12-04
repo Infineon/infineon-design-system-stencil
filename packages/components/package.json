@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "27.7.2--canary.1496.8a2bf389d071805f3b7bc87fe8d34bdd9bc7e2a8.0",
+  "version": "29.0.0--canary.1274.70bd4b0b0965df2da4c87c1b833b25dcd46022da.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -38,7 +38,7 @@
     "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.3",
+    "@infineon/design-system-tokens": "3.3.4",
     "@infineon/infineon-icons": "^2.1.2",
     "@popperjs/core": "^2.11.8",
     "@stencil/angular-output-target": "^0.9.0",
