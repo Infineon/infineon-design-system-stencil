@@ -1,156 +1,165 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
+@use '~@infineon/design-system-tokens/dist/tokens';
 
-  .date__picker-container { 
-    display: flex;
-    flex-direction: column;
+.date__picker-container {
+  display: flex;
+  flex-direction: column;
 
-    & .label__wrapper {
-      color: tokens.$ifxColorBaseBlack;
-      font: tokens.$ifxBodyBody03;
-    }
+  & .label__wrapper {
+    color: tokens.$ifxColorBaseBlack;
+    font: tokens.$ifxBodyBody03;
+  }
 
-    &.disabled { 
-      .label__wrapper { 
-        color: tokens.$ifxColorEngineering500;
-      }
-    }
-
-    &.error { 
-      .caption__wrapper { 
-        color: tokens.$ifxColorRed500;
-      }
-    }
-
-    &.disabled { 
-      .caption__wrapper { 
-        color: tokens.$ifxColorEngineering500;
-      }
-    }
-
-    & .caption__wrapper { 
-      margin-top: tokens.$ifxSpace50;
-      color: tokens.$ifxColorBaseBlack;
-      font: tokens.$ifxBodyBody05;
+  &.disabled {
+    .label__wrapper {
+      color: tokens.$ifxColorEngineering500;
     }
   }
 
-  .date__picker-input { 
-    font-family: "Source Sans 3";
-    outline: none;
-    width: 100%;
-    cursor: pointer;
-    border-radius: 1px;
-    border: 1px solid tokens.$ifxColorEngineering400;
-    height: 100%;
-    
-
-    &.firefox__classes { 
-      padding: 8px 16px;
-      color: tokens.$ifxColorEngineering400;
-      font-size: 16px;
-      text-transform: uppercase;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px; 
-      cursor: pointer;
-    }
-
-    &:focus:not(.error, .success) {
-      border-color: tokens.$ifxColorOcean500;
-    }
-
-    &:hover:not(:disabled, :focus, .error, .success) {
-      border-color: tokens.$ifxColorEngineering500;
-    }
-
-    &:disabled { 
-      border-color: tokens.$ifxColorEngineering500;
-      background-color: tokens.$ifxColorEngineering200;
-    }
-
-    &.error {
-      border-color: tokens.$ifxColorRed500;
-    }
-
-    &.success:not(.error) {
-      border-color: tokens.$ifxColorGreen500;
-    }
-
-    &::-webkit-datetime-edit-text { 
-      color: tokens.$ifxColorEngineering400;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 24px; 
+  &.error {
+    .caption__wrapper {
+      color: tokens.$ifxColorRed500;
     }
   }
 
-  ::-webkit-datetime-edit { 
+  &.disabled {
+    .caption__wrapper {
+      color: tokens.$ifxColorEngineering500;
+    }
+  }
+
+  & .caption__wrapper {
+    margin-top: tokens.$ifxSpace50;
+    color: tokens.$ifxColorBaseBlack;
+    font: tokens.$ifxBodyBody05;
+  }
+}
+
+.date__picker-input {
+  font-family: 'Source Sans 3';
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 1px;
+  border: 1px solid tokens.$ifxColorEngineering400;
+  height: 100%;
+
+  &.firefox__classes {
+    padding: 8px 16px;
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
     text-transform: uppercase;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; 
-  }
-
-  ::-webkit-datetime-edit-fields-wrapper { 
-    padding: 8px 16px;
-    padding-bottom: 9px;
-    transform: translateY(1px);
-  }
-
-  ::-webkit-inner-spin-button { 
-    display: none;
-  }
-
-  ::-webkit-calendar-picker-indicator { 
-    position: absolute;
-    right: 15px;
-    font-size: 19px;
+    line-height: 24px;
     cursor: pointer;
-    border-radius: 1px;
-    &:focus-within {
-      outline: 2px solid tokens.$ifxColorOcean500;
-      outline-offset: 2px;
-    }
   }
 
- .input__wrapper { 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    background: tokens.$ifxColorBaseWhite;
-    position: relative;
-    &.large {
-      height: 40px;
-    }
-  
-    &.small {
-      height: 36px;
-    }
+  &:focus:not(.error, .success) {
+    border-color: tokens.$ifxColorOcean500;
+  }
 
-    &.disabled { 
-      & .icon__wrapper { 
-        background-color: tokens.$ifxColorEngineering200;
-      }
-    }
- }
+  &:hover:not(:disabled, :focus, .error, .success) {
+    border-color: tokens.$ifxColorEngineering500;
+  }
 
- .icon__wrapper { 
+  &:disabled {
+    border-color: tokens.$ifxColorEngineering500;
+    background-color: tokens.$ifxColorEngineering200;
+  }
+
+  &.error {
+    border-color: tokens.$ifxColorRed500;
+  }
+
+  &.success:not(.error) {
+    border-color: tokens.$ifxColorGreen500;
+  }
+
+  &::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorEngineering400;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  &.has-value::-webkit-datetime-edit-text {
+    color: tokens.$ifxColorBaseBlack;
+  }
+
+  &.has-value::-webkit-datetime-edit {
+    color: tokens.$ifxColorBaseBlack;
+  }
+}
+
+::-webkit-datetime-edit {
+  color: tokens.$ifxColorEngineering400;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+::-webkit-datetime-edit-fields-wrapper {
+  padding: 8px 16px;
+  padding-bottom: 9px;
+  transform: translateY(1px);
+}
+
+::-webkit-inner-spin-button {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 15px;
+  font-size: 19px;
+  cursor: pointer;
+  border-radius: 1px;
+  &:focus-within {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 2px;
+  }
+}
+
+.input__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  background: tokens.$ifxColorBaseWhite;
+  position: relative;
+  &.large {
+    height: 40px;
+  }
+
+  &.small {
+    height: 36px;
+  }
+
+  &.disabled {
+    & .icon__wrapper {
+      background-color: tokens.$ifxColorEngineering200;
+    }
+  }
+}
+
+.icon__wrapper {
   position: absolute;
   right: 17px;
   padding: 2px;
+  width: tokens.$ifxSize300;
+  height: tokens.$ifxSize300;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   pointer-events: none;
   z-index: 100;
   background-color: tokens.$ifxColorBaseWhite;
   line-height: 16px;
 
-  & ifx-icon {  
+  & ifx-icon {
     vertical-align: middle;
   }
-
- }
+}
