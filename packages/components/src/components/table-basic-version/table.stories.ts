@@ -1,3 +1,5 @@
+import { table } from "console";
+
 //default
 const columnDefs = [
   { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
@@ -16,11 +18,14 @@ export default {
   // tags: ['autodocs'],
   args: {
     tableHeight: 'auto',
-    rowHeight: 40,
+    rowHeight: 'default',
   },
   argTypes: {
     tableHeight: {
+      description: 'Controls the height of the table.',
       table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'auto' },
         type: {
           summary: 'Options',
           detail: 'Default: "auto"\nExample for fixed height: "400px"',
@@ -28,11 +33,21 @@ export default {
       },
     },
     rowHeight: {
+      description: 'Controls the height of the rows.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'default' },
+        type: {
+          summary: 'Options',
+          detail: 'Default: 40\nCompact: 32\nOptions: 40, 32',
+        },
+      },
       options: ['compact', 'default'],
       control: { type: 'radio' },
     },
     columnDefs: {
       table: {
+        category: 'ifx-table props',
         type: {
           summary: 'Column header options',
           detail:
@@ -42,6 +57,7 @@ export default {
     },
     rowData: {
       table: {
+        category: 'ifx-table props',
         type: {
           summary: 'Row data options',
           detail:
@@ -53,20 +69,22 @@ export default {
 };
 
 const DefaultTemplate = args => `<ifx-basic-table 
-cols='${JSON.stringify(args.columnDefs)}' 
+cols='${JSON.stringify(args.columnDefs)}' s
 rows='${JSON.stringify(args.rowData)}'
-table-height='${args.tableHeight}'>
+table-height='${args.tableHeight}'
+row-height='${args.rowHeight}'>
 </ifx-basic-table>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
   columnDefs: columnDefs,
   rowData: rowData,
+  tableHeight: 'auto',
+  rowHeight: 'default',
 };
 
 export const FixedHeight = DefaultTemplate.bind({});
 FixedHeight.args = {
-  tableHeight: '400px',
   columnDefs: columnDefs,
   rowData: rowData,
 };
