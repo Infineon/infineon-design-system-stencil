@@ -26,7 +26,7 @@ export default {
     profileLabel: {
       name: 'Label',
       control: { type: 'text' },
-      description: 'Label for the profile',
+      description: 'Label for the profile.',
       table: {
         category: 'story controls',
       },
@@ -34,7 +34,7 @@ export default {
     //ifx-navbar props
     applicationName: {
       control: { type: 'text' },
-      description: 'The name of the application',
+      description: 'The name of the application.',
       table: {
         category: 'ifx-navbar props',
       },
@@ -42,7 +42,7 @@ export default {
     navbarPositionFixed: {
       name: 'fixed',
       control: { type: 'boolean' },
-      description: 'Fix the navbar to the top of the page',
+      description: 'Fix the navbar to the top of the page.',
       table: {
         defaultValue: { summary: 'true' },
         category: 'ifx-navbar props',
@@ -50,7 +50,7 @@ export default {
     },
     showLogoAndAppname: {
       control: { type: 'boolean' },
-      description: 'Show the logo and application name',
+      description: 'Show the logo and application name.',
       table: {
         defaultValue: { summary: 'true' },
         category: 'ifx-navbar props',
@@ -58,16 +58,17 @@ export default {
     },
     logoHref: {
       control: { type: 'text' },
-      description: 'The URL of the logo link',
+      description: 'The URL of the logo link.',
       table: {
         category: 'ifx-navbar props',
       },
     },
     logoHrefTarget: {
-      description: 'The target of the logo link',
+      description: 'The target of the logo link.',
       options: ['_self', '_blank', '_parent'],
       control: { type: 'radio' },
       table: {
+        defaultValue: { summary: '_self' },
         category: 'ifx-navbar props',
         type: {
           summary: '_self | _blank | _parent',
@@ -78,7 +79,7 @@ export default {
     showLabelOfNavbarItem: {
       name: 'showLabel',
       control: { type: 'boolean' },
-      description: 'Show the label of the navbar item',
+      description: 'Show the label of the navbar item.',
       table: {
         defaultValue: { summary: 'true' },
         category: 'ifx-navbar-item props',
@@ -88,7 +89,7 @@ export default {
       name: 'icon',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
-      description: 'The icon to display in the navbar item',
+      description: 'The icon to display in the navbar item.',
       table: {
         category: 'ifx-navbar-item props',
         type: {
@@ -99,7 +100,7 @@ export default {
     hrefOfNavbarItem: {
       name: 'href',
       control: { type: 'text' },
-      description: 'The URL of the navbar item link',
+      description: 'The URL of the navbar item link.',
       table: {
         category: 'ifx-navbar-item props',
       },
@@ -109,7 +110,7 @@ export default {
       name: 'target',
       control: { type: 'radio' },
       options: ['_self'],
-      description: 'The target of the navbar item link',
+      description: 'The target of the navbar item link.',
       table: {
         defaultValue: { summary: '_self' },
         category: 'ifx-navbar-item props',
@@ -120,7 +121,7 @@ export default {
     },
     hideOnMobile: {
       control: { type: 'boolean' },
-      description: 'Hide the navbar item on mobile',
+      description: 'Hide the navbar item on mobile.',
       table: {
         defaultValue: { summary: 'true' },
         category: 'ifx-navbar-item props',
@@ -130,7 +131,7 @@ export default {
     showNavbarProfileLabel: {
       name: 'showLabel',
       control: { type: 'boolean' },
-      description: 'Show label for the profile',
+      description: 'Show label for the profile.',
       table: {
         defaultValue: { summary: 'true' },
         category: 'ifx-navbar-profile props',
@@ -138,7 +139,7 @@ export default {
     },
     href: {
       control: { type: 'text' },
-      description: 'The URL of the profile link',
+      description: 'The URL of the profile link.',
       table: {
         category: 'ifx-navbar-profile props',
       },
@@ -146,7 +147,7 @@ export default {
     profileImageUrl: {
       name: 'imageUrl',
       control: { type: 'text' },
-      description: 'The URL of the image',
+      description: 'The URL of the image.',
       table: {
         category: 'ifx-navbar-profile props',
       },
@@ -154,7 +155,7 @@ export default {
     target: {
       control: { type: 'radio' },
       options: ['_self', '_blank', '_parent'],
-      description: 'The target of the link',
+      description: 'The target of the link.',
       table: {
         defaultValue: { summary: '_self' },
         category: 'ifx-navbar-profile props',
@@ -165,14 +166,14 @@ export default {
     },
     alt: {
       control: { type: 'text' },
-      description: 'The alternative text of the image',
+      description: 'The alternative text of the image.',
       table: {
         category: 'ifx-navbar-profile props',
       },
     },
     userName: {
       control: { type: 'text' },
-      description: 'The name of the user',
+      description: 'The name of the user.',
       table: {
         category: 'ifx-navbar-profile props',
       },
@@ -181,12 +182,13 @@ export default {
     searchBarIsOpen: {
       name: 'isOpen',
       control: { type: 'boolean' },
-      description: 'Show the search bar',
+      description: 'Show the search bar.',
       table: {
         category: 'ifx-search-bar props',
       },
     },
     searchBarPosition: {
+      description: 'The position of the search bar.',
       options: ['left', 'right'],
       control: { type: 'radio' },
       table: {
@@ -198,7 +200,7 @@ export default {
     },
     ifxNavbarMobileMenuIsOpen: {
       action: 'ifxNavbarMobileMenuIsOpen',
-      description: 'Event emitted when the mobile menu is opened',
+      description: 'Event emitted when the mobile menu is opened.',
       table: {
         category: 'custom events',
         type: {
@@ -212,7 +214,7 @@ export default {
     },
     ifxNavItem: {
       action: 'ifxNavItem',
-      description: 'Event emitted when a navbar item is clicked',
+      description: 'Event emitted when a navbar item is clicked.',
       table: {
         category: 'custom events',
         type: {

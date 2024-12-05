@@ -15,7 +15,7 @@ export default {
     icon: {
       control: { type: 'select' },
       options: ['none', ...Object.values(icons).map(i => i['name'])],
-      description: 'Set the icon of the tab. Choose "none" to display no icon',
+      description: 'Set the icon of the tab. Choose "none" to display no icon.',
       table: {
         category: 'ifx-breadcrumb-item-label props',
         defaultValue: {
@@ -28,7 +28,7 @@ export default {
     },
     target: {
       control: { type: 'text' },
-      description: 'Set the target of the link',
+      description: 'Set the target of the link.',
       table: {
         category: 'ifx-breadcrumb-item-label props',
         defaultValue: {
@@ -41,7 +41,7 @@ export default {
     },
     iconArialLabel: {
       control: { type: 'text' },
-      description: 'Set the aria label of the icon',
+      description: 'Set the aria label of the icon.',
       table: {
         category: 'ifx-breadcrumb-item-label props',
         defaultValue: {
@@ -54,7 +54,7 @@ export default {
     },
     url: {
       control: { type: 'text' },
-      description: 'Set the url of the link',
+      description: 'Set the url of the link.',
       table: {
         category: 'ifx-dropdown-item props',
         defaultValue: {
@@ -67,7 +67,7 @@ export default {
     },
     ifxDropdownMenuItem: {
       action: 'ifxDropdownMenuItem',
-      description: 'Custom event emitted when an item is selected',
+      description: 'Custom event emitted when an item is selected.',
       table: {
         category: 'custom events',
         type: {

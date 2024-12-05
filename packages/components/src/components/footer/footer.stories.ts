@@ -6,6 +6,7 @@ export default {
   },
   argTypes: {
     copyrightText: {
+      description: 'Sets the text for the copyright.',
       control: 'text',
       table: {
         category: 'ifx-footer props',

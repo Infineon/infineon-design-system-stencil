@@ -6,11 +6,12 @@ export default {
 
   args: {
     label: 'Badge label',
-    icon: 'none',
+    icon: '',
   },
 
   argTypes: {
     label: {
+      description: 'The label of the badge.',
       name: 'Label',
       control: { type: 'text' },
       table: {
@@ -23,12 +24,9 @@ export default {
     icon: {
       control: { type: 'select' },
       options: ['none', ...Object.values(icons).map(i => i['name'])],
-      description: 'Set the icon of the tab. Choose "none" to display no icon',
+      description: 'Set the icon of the tab. Choose "none" to display no icon.',
       table: {
         category: 'ifx-tab props',
-        defaultValue: {
-          summary: ''
-        },
         type: {
           summary: 'string'
         }

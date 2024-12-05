@@ -9,9 +9,10 @@ export default {
     isOpen: true,
     value: '',
   },
+
   argTypes: {
     isOpen: {
-      description: 'Search bar state',
+      description: 'Search bar state.',
       control: { type: 'boolean' },
       table:
       {
@@ -22,7 +23,7 @@ export default {
       },
     },
     disabled: {
-      description: 'Search bar state',
+      description: 'Search bar state.',
       control: { type: 'boolean' },
       table:
       {
@@ -33,7 +34,7 @@ export default {
       },
     },
     value: {
-      description: 'The value is used to handle the search bar input',
+      description: 'The value is used to handle the search bar input.',
       control: { type: 'text' },
       table:
       {
@@ -44,7 +45,7 @@ export default {
       },
     },
     maxlength: {
-      description: 'Maximum input length',
+      description: 'Maximum input length.',
       control: { type: 'number' },
       table:
       {
@@ -56,7 +57,7 @@ export default {
     },
     ifxInput: {
       action: 'ifxInput',
-      description: 'Custom event emitted on input',
+      description: 'Custom event emitted on input.',
       table: {
         category: 'custom events',
         type: {
@@ -67,7 +68,7 @@ export default {
     },
     ifxOpen: {
       action: 'ifxOpen',
-      description: 'Custom event emitted when the state of *isOpen* changes',
+      description: 'Custom event emitted when the state of *isOpen* changes.',
       table: {
         category: 'custom events',
         type: {

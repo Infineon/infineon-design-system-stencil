@@ -10,6 +10,7 @@ export default {
   },
   argTypes: {
     icon: {
+      description: 'Set the icon.',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
       table: {
@@ -18,7 +19,7 @@ export default {
     },
     consoleError: {
       action: 'consoleError',
-      description: 'Custom event emitted when icon is invalid',
+      description: 'Custom event emitted when icon is invalid.',
       table: {
         category: 'custom events',
         type: {

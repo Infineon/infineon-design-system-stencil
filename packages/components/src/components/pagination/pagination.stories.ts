@@ -10,7 +10,7 @@ export default {
   },
   argTypes: {
     currentPage: {
-      description: 'Current page number',
+      description: 'Current page number.',
       table: {
         category: 'Ifx-pagination props',
         defaultValue: {
@@ -23,7 +23,7 @@ export default {
     },
 
     total: {
-      description: 'Total number of items',
+      description: 'Total number of items.',
       table: {
         category: 'Ifx-pagination props',
         defaultValue: {
@@ -37,7 +37,7 @@ export default {
 
     ifxPageChange: {
       action: 'ifxPageChange',
-      description: 'Custom event emitted page is changed',
+      description: 'Custom event emitted page is changed.',
       table: {
         category: 'custom events',
         type: {
@@ -49,7 +49,7 @@ export default {
     },
     ifxNextPage: {
       action: 'ifxNextPage',
-      description: 'Custom event emitted when next page button clicked',
+      description: 'Custom event emitted when next page button clicked.',
       table: {
         category: 'custom events',
         type: {
@@ -61,7 +61,7 @@ export default {
     },
     ifxPrevPage: {
       action: 'ifxPrevPage',
-      description: 'Custom event emitted when previous page button clicked',
+      description: 'Custom event emitted when previous page button clicked.',
       table: {
         category: 'custom events',
         type: {

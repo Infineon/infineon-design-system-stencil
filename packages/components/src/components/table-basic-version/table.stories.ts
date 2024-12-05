@@ -1,5 +1,3 @@
-import { table } from "console";
-
 //default
 const columnDefs = [
   { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },

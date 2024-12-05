@@ -12,7 +12,7 @@ export default {
     label: {
       name: 'Label',
       control: { type: 'text' },
-      description: 'Set the label of the tag',
+      description: 'Set the label of the tag.',
       table: {
         category: 'story controls',
         type: {
@@ -23,7 +23,7 @@ export default {
     icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
-      description: 'Set the icon of the tag',
+      description: 'Set the icon of the tag.',
       table: {
         category: 'ifx-tag props',
         type: {

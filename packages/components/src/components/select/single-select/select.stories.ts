@@ -42,7 +42,7 @@ export default {
     //   control: false,
     // },
     size: {
-      description: 'Specifies the size. Options: small - s (36px) medium - m (40px)',
+      description: 'Specifies the size. Options: small - s (36px) medium - m (40px).',
       control: 'radio',
       options: ['s', 'm'],
       table: {
@@ -67,7 +67,7 @@ export default {
       table: {
         category: 'ifx-select props'
       }
-      },
+    },
     error: {
       description: 'Displays an error state.',
       control: 'boolean',
@@ -117,14 +117,14 @@ export default {
       }
     },
     options: {
-      description: 'Takes an array of objects in the following format',
+      description: 'Takes an array of objects in the following format.',
       table: {
         category: 'ifx-select props'
       }
     },
     ifxSelect: {
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected',
+      description: 'Custom event emitted when item is selected.',
       table: {
         category: 'custom events',
         type: {
@@ -136,7 +136,7 @@ export default {
     },
     ifxInput: {
       action: 'ifxInput',
-      description: 'A custom event *ifxInput* is emitted immediately after the value of *Search* changes',
+      description: 'A custom event *ifxInput* is emitted immediately after the value of *Search* changes.',
       table: {
         category: 'custom events',
         type: {

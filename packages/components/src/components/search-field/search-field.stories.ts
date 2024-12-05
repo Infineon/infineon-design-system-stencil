@@ -31,7 +31,7 @@ export default {
       }
     },
     size: {
-      description: 'Size options: s (36px) and m (40px) - default: m',
+      description: 'Size options: s (36px) and m (40px) - default: m.',
       control: 'radio',
       options: ['s', 'm'],
       table: {
@@ -78,8 +78,8 @@ const DefaultTemplate = ({ disabled, size, showDeleteIcon, placeholder, maxlengt
   element.setAttribute('size', size);
   element.setAttribute('disabled', disabled);
   element.setAttribute('show-delete-icon', showDeleteIcon);
-  if(placeholder != undefined) element.setAttribute('placeholder', placeholder);
-  if(maxlength != undefined) element.setAttribute('maxlength', maxlength);
+  if (placeholder != undefined) element.setAttribute('placeholder', placeholder);
+  if (maxlength != undefined) element.setAttribute('maxlength', maxlength);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   return element;

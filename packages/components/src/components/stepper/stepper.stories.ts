@@ -1,8 +1,8 @@
 import { action } from '@storybook/addon-actions';
 
-export default{
+export default {
     title: 'Components/Stepper',
-    args: { 
+    args: {
         amountOfSteps: 5,
         activeStep: 2,
         errorStep: 0,
@@ -16,17 +16,17 @@ export default{
             control: {
                 type: 'number',
                 min: 1
-            }, 
-            description: 'Indicates the current active step', 
+            },
+            description: 'Indicates the current active step.',
             table: {
                 category: 'ifx-stepper props',
                 defaultValue: { summary: 2 }
             }
         },
-        amountOfSteps: { 
+        amountOfSteps: {
             name: 'Amount of steps',
-            control: 'number', 
-            description: 'Indicates the number of steps in stepper in a story',
+            control: 'number',
+            description: 'Indicates the number of steps in stepper in a story.',
             table: {
                 category: 'story controls',
                 defaultValue: { summary: 5 }
@@ -54,12 +54,12 @@ export default{
                     summary: `<ifx-step disabled=true> </ifx-step>`
                 }
             },
-            if: { arg:'variant', eq: 'default' }
+            if: { arg: 'variant', eq: 'default' }
         },
         errorStep: {
             name: 'error',
             control: 'number',
-            description: 'Specified step number indicates to have an error',
+            description: 'Specified step number indicates to have an error.',
             table: {
                 category: 'ifx-step props'
             },
@@ -67,17 +67,17 @@ export default{
         indicatorPosition: {
             control: 'radio',
             defaultValue: { summary: 'left' },
-            description: 'Allows to swap the progress bar and steps\' label',
+            description: 'Allows to swap the progress bar and steps\' label.',
             options: ['left', 'right'],
-            if: { arg:'variant', eq: 'compact' },
+            if: { arg: 'variant', eq: 'compact' },
             table: {
                 category: 'ifx-stepper props'
             }
         },
-        showStepNumber: { 
-            control: 'boolean', 
+        showStepNumber: {
+            control: 'boolean',
             defaultValue: { summary: 'false' },
-            description: 'Shows the step number when set true',
+            description: 'Shows the step number when set true.',
             if: { arg: 'variant', eq: 'default' },
             table: {
                 category: 'ifx-stepper props'
@@ -86,7 +86,7 @@ export default{
         variant: {
             options: ['default', 'compact'],
             defaultValue: { summary: 'default' },
-            description: 'Allows to switch between default and compact variant',
+            description: 'Allows to switch between default and compact variant.',
             control: 'radio',
             table: {
                 category: 'ifx-stepper props'
@@ -94,7 +94,7 @@ export default{
         },
         ifxChange: {
             action: 'ifxChange',
-            description: 'A custom event emitted when active step changes',
+            description: 'A custom event emitted when active step changes.',
             table: {
                 category: 'custom events',
                 type: {
@@ -118,22 +118,21 @@ active-step=${args.activeStep}
 ${args.variant === 'compact' ? `indicator-position=${args.indicatorPosition}` : ''} 
 ${args.variant === 'default' ? `show-step-number=${args.showStepNumber}` : ''} 
 variant=${args.variant}>
-    ${
-        (()=>{
+    ${(() => {
             return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
                 const step = document.createElement('ifx-step')
-                step.innerHTML = `Step Label ${stepId+1}`
-                if (args.errorStep === stepId+1) step.setAttribute('error', 'true')
+                step.innerHTML = `Step Label ${stepId + 1}`
+                if (args.errorStep === stepId + 1) step.setAttribute('error', 'true')
                 if (args.disabled) step.setAttribute('disabled', 'true')
                 return step.outerHTML
             }).join(`\n    `)
         })()
-    }
+        }
 </ifx-stepper>`
 
     const stepper = wrapper.querySelector('ifx-stepper');
     stepper.addEventListener('ifxChange', action('ifxChange'));
-    
+
     return stepper;
 };
 

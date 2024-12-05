@@ -70,7 +70,7 @@ export default {
   },
   argTypes: {
     size: {
-      description: 'Size of the input field',
+      description: 'Size of the input field.',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm',
@@ -89,7 +89,7 @@ export default {
       },
     },
     disabled: {
-      description: 'Disable the input field',
+      description: 'Disable the input field.',
       options: [true, false],
       control: { type: 'boolean' },
       table: {
@@ -103,7 +103,7 @@ export default {
       },
     },
     name: {
-      description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted`,
+      description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
       control: 'text',
       table: {
         category: 'ifx-multiselect props',
@@ -113,7 +113,7 @@ export default {
       },
     },
     batchSize: {
-      description: 'Batch size used during lazy loading options',
+      description: 'Batch size used during lazy loading options.',
       control: {
         type: 'number',
       },
@@ -129,7 +129,7 @@ export default {
     },
     maxItemCount: {
       control: { type: 'number' },
-      description: 'Number of maximum selectable items',
+      description: 'Number of maximum selectable items.',
       table: {
         category: 'ifx-multiselect props',
         type: {
@@ -138,7 +138,7 @@ export default {
       }
     },
     showSearch: {
-      description: 'Show a search input',
+      description: 'Show a search input.',
       options: [true, false],
       control: { type: 'radio' },
       table: {
@@ -152,7 +152,7 @@ export default {
       },
     },
     showSelectAll: {
-      description: 'Show a checkbox to select all options',
+      description: 'Show a checkbox to select all options.',
       options: [true, false],
       control: { type: 'radio' },
       table: {
@@ -166,7 +166,7 @@ export default {
       },
     },
     error: {
-      description: 'Show error state',
+      description: 'Show error state.',
       options: [true, false],
       control: { type: 'radio' },
       table: {
@@ -181,7 +181,7 @@ export default {
     },
     errorMessage: {
       control: 'text',
-      description: 'Error message to display',
+      description: 'Error message to display.',
       table: {
         category: 'ifx-multiselect props',
         defaultValue: {
@@ -193,7 +193,7 @@ export default {
       },
     },
     label: {
-      description: 'Label over the input field',
+      description: 'Label over the input field.',
       control: 'text',
       table: {
         category: 'ifx-multiselect props',
@@ -203,7 +203,7 @@ export default {
       },
     },
     placeholder: {
-      description: 'Label inside the input field',
+      description: 'Label inside the input field.',
       control: 'text',
       table: {
         category: 'ifx-multiselect props',
@@ -213,7 +213,7 @@ export default {
       },
     },
     options: {
-      description: 'Takes an array of objects in the following format',
+      description: 'Takes an array of objects in the following format.',
       table: {
         category: 'ifx-multiselect props',
         type: {
@@ -224,7 +224,7 @@ export default {
     },
     ifxSelect: {
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected or unselected',
+      description: 'Custom event emitted when item is selected or unselected.',
       table: {
         category: 'custom events',
         type: {
@@ -236,7 +236,7 @@ export default {
     },
     ifxOpen: {
       action: 'ifxOpen',
-      description: 'Custom event emitted when multiselect is opened',
+      description: 'Custom event emitted when multiselect is opened.',
       table: {
         category: 'custom events',
         type: {

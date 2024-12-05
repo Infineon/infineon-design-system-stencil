@@ -10,7 +10,7 @@ export default {
   },
   argTypes: {
     size: {
-      description: 'Size options: s (24px) and m (40px)',
+      description: 'Size options: s (24px) and m (40px).',
       options: ['s', 'm'],
       control: { type: 'radio' },
       table: {
@@ -24,7 +24,7 @@ export default {
       }
     },
     variant: {
-      description: 'Variant of the spinner',
+      description: 'Variant of the spinner.',
       options: ['default', 'brand'],
       control: { type: 'radio' },
       table: {
@@ -38,7 +38,7 @@ export default {
       },
     },
     inverted: {
-      description: 'Changes the color of spinner to white',
+      description: 'Changes the color of spinner to white.',
       table: {
         category: 'ifx-spinner props',
         defaultValue: {

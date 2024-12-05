@@ -51,7 +51,7 @@ export default {
       }
     },
     size: {
-      description: 'Specifies the size of the radio button. Options: s (20px) and m (24px)',
+      description: 'Specifies the size of the radio button. Options: s (20px) and m (24px).',
       control: 'radio',
       options: ['s', 'm'],
       table: {
@@ -71,13 +71,13 @@ export default {
       }
     },
     value: {
-      description: 'The value that gets submitted, when the radio button is checked',
+      description: 'The value that gets submitted, when the radio button is checked.',
       table: {
         category: 'ifx-radio-button props'
       }
     },
     ifxChange: {
-      description: 'Custom event emitted when radio button checked and unchecked',
+      description: 'Custom event emitted when radio button checked and unchecked.',
       table: {
         category: 'custom events',
         type: {

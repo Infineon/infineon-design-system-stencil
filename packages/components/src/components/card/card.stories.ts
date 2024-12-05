@@ -16,7 +16,7 @@ export default {
   argTypes: {
     overline: {
       name: 'Overline',
-      description: 'Sets the overline text of the card',
+      description: 'Sets the overline text of the card.',
       type: { name: 'string' },
       table: {
         category: 'story controls',
@@ -24,7 +24,7 @@ export default {
     },
     headline: {
       name: 'Headline',
-      description: 'Sets the headline text of the card',
+      description: 'Sets the headline text of the card.',
       type: { name: 'string' },
       table: {
         category: 'story controls',
@@ -32,7 +32,7 @@ export default {
     },
     description: {
       name: 'Description',
-      description: 'Sets the description text of the card',
+      description: 'Sets the description text of the card.',
       type: { name: 'string' },
       table: {
         category: 'story controls',
@@ -41,14 +41,14 @@ export default {
     button: {
       name: 'Button',
       options: ['button', 'link', 'none'],
-      description: 'Sets the button type of the card',
+      description: 'Sets the button type of the card.',
       control: { type: 'radio' },
       table: {
         category: 'story controls',
       },
     },
     direction: {
-      description: 'Sets the direction of the card layout',
+      description: 'Sets the direction of the card layout.',
       table: {
         category: 'ifx-card props',
         defaultValue: {
@@ -64,6 +64,7 @@ export default {
     },
 
     position: {
+      description: 'Sets the position of the image in the card.',
       table: {
         category: 'ifx-card-image props',
       },
@@ -72,7 +73,7 @@ export default {
       if: { arg: 'direction', eq: 'horizontal' },
     },
     href: {
-      description: 'Sets the hyperlink reference',
+      description: 'Sets the hyperlink reference.',
       type: { name: 'string' },
       table: {
         category: 'ifx-card props',
@@ -90,7 +91,7 @@ export default {
       control: { type: 'radio' },
     },
     isHovered: {
-      description: 'Changes the color of the headline when hovered',
+      description: 'Changes the color of the headline when hovered.',
       type: 'boolean',
       table: {
         defaultValue: {
@@ -100,14 +101,14 @@ export default {
       },
     },
     src: {
-      description: 'Sets the image source',
+      description: 'Sets the image source.',
       type: { name: 'string' },
       table: {
         category: 'ifx-card-image props',
       },
     },
     alt: {
-      description: 'Sets the alternative text for the image',
+      description: 'Sets the alternative text for the image.',
       type: { name: 'string' },
       table: {
         category: 'ifx-card-image props',

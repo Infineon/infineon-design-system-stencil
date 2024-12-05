@@ -79,7 +79,7 @@ export default {
       }
     },
     icon: {
-      description: 'The icon to display for the sidebar items. Choose ***none*** to display no icon',
+      description: 'The icon to display for the sidebar items. Choose ***none*** to display no icon.',
       options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
       table: {
@@ -91,21 +91,21 @@ export default {
     },
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
-      description: 'Custom event emitted when a navigation item becomes active on selection',
+      description: 'Custom event emitted when a navigation item becomes active on selection.',
       table: {
         category: 'custom events'
       }
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
-      description: 'Custom event emitted when an action item is selected',
+      description: 'Custom event emitted when an action item is selected.',
       table: {
         category: 'custom events'
       }
     },
     ifxSidebarMenu: {
       action: 'ifxSidebarMenu',
-      description: 'Custom event emitted when a menu is expanded or closed',
+      description: 'Custom event emitted when a menu is expanded or closed.',
       table: {
         category: 'custom events'
       }
@@ -128,7 +128,7 @@ const DefaultTemplate = args => {
   sidebarElement.setAttribute('imprint', args.imprint);
   sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
   sidebarElement.setAttribute('copyright-text', args.copyrightText);
-  
+
   sidebarElement.innerHTML = `
     <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
     <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
