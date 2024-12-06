@@ -18,7 +18,7 @@ export default {
     optional: false,
     name: 'text-field',
     showDeleteIcon: false,
-    maxLength: '',
+    maxlength: '',
   },
 
   argTypes: {
@@ -122,7 +122,7 @@ export default {
         }
       }
     },
-    maxLength: {
+    maxlength: {
       description: 'Specifies the maximum number of characters that can be entered into the text field.',
       control: 'number',
       table: {
@@ -144,7 +144,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxLength }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -156,7 +156,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
   element.setAttribute('name', name);
-  if (maxLength) element.setAttribute('maxLength', maxLength);
+  if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
 
