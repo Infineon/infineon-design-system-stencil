@@ -1431,7 +1431,15 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td >
+                  <td>
+                  <ul>
+                    <li>
+                      <span>
+                        <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                      </span>
+                      <span>Vertical variant</span>
+                    </li>
+                    </ul>
                   </td>
                   <td></td>
                 </tr>
