@@ -33,7 +33,7 @@ export default {
     },
 
     icon: {
-      description: 'The icon to be displayed. Choose ***none*** to display no icon',
+      description: 'The icon to be displayed. Choose ***none*** to display no icon.',
       options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
       table: {
@@ -44,7 +44,7 @@ export default {
       }
     },
     closable: {
-      description: '',
+      description: 'Defines whether the alert should be closable or not.',
       control: 'boolean',
       table: {
         category: 'ifx-alert props',
