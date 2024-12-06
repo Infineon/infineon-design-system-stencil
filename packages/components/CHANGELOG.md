@@ -1,3 +1,16 @@
+# v29.2.0 (Fri Dec 06 2024)
+
+#### 🚀 Enhancement
+
+- (internal dev update) Updated package scripts to run example apps from root [#1633](https://github.com/Infineon/infineon-design-system-stencil/pull/1633) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.1.1 (Fri Dec 06 2024)
 
 #### 🐛 Bug Fix
