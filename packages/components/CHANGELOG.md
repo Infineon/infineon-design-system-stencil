@@ -1,3 +1,16 @@
+# v29.1.1 (Fri Dec 06 2024)
+
+#### 🐛 Bug Fix
+
+- Alert: Updated documentation [#1630](https://github.com/Infineon/infineon-design-system-stencil/pull/1630) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.1.0 (Fri Dec 06 2024)
 
 #### 🚀 Enhancement
