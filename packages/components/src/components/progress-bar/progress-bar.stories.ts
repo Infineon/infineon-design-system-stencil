@@ -19,7 +19,7 @@ export default {
       }
     },
     showLabel: {
-      description: 'Shows the percentage of the progress bar. Does not fit in size ***s***',
+      description: 'Shows the percentage of the progress bar. Does not fit in size ***s***.',
       control: 'boolean',
       table: {
         category: 'ifx-progress-bar props',
@@ -29,7 +29,7 @@ export default {
       }
     },
     size: {
-      description: 'Sets the size of the progress bar. Options: s (36px) and m (40px)',
+      description: 'Sets the size of the progress bar. Options: s (36px) and m (40px).',
       control: 'radio',
       options: ['s', 'm'],
       table: {

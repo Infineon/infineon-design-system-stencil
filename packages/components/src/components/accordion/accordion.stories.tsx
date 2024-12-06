@@ -15,31 +15,30 @@ export default {
     amountOfItems: { 
       control: 'number', 
       name: 'Amount of Items',
-      description: 'Control the number of *<ifx-accordion-item>* ',
+      description: 'Control the number of *<ifx-accordion-item>*.',
       table: {
         category: 'story controls',
         type: {
           summary: 'number'
         }
       }
-
     },
-    AriaLevel: { 
+    AriaLevel: {
       control: 'number', 
       min: 1, 
       max: 6, 
-      description: 'The aria-level attribute for the accordion item header',
+      description: 'The aria-level attribute for the accordion item header.',
       table: {
-      
+        defaultValue: {summary: '3'},
       category: 'ifx-accordion-item props',
       type: {
         summary: 'number'
       }
-    }
-    },
+    }  
+  },  
     mutable: {
       control: 'boolean',
-      description: 'Set the mutable attribute',
+      description: 'Set the mutable attribute.',
       table: {
         category: 'ifx-accordion-item props',
         defaultValue: {summary: 'true'},
@@ -50,7 +49,7 @@ export default {
     },
     autoCollapse: {
       control: 'boolean',
-      description: 'Collapse the other items when one item is opened',
+      description: 'Collapse the other items when one item is opened.',
       table: {
         category: 'ifx-accordion props',
         defaultValue: { 
@@ -63,21 +62,21 @@ export default {
     },
     ifxItemOpen: { 
       action: 'ifxItemOpen',
-      description: 'Event emitted when an accordion item is opened',
+      description: 'Event emitted when an accordion item is opened.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:`React: onIfxItemOpen={handleOpen}
-          Vue: @ifxItemOpen="handleOpen"
-          Angular: (ifxItemOpen)="handleOpen()"
-          VanillaJs: .addEventListener("ifxItemOpen", (event) => {/*handle open*/});`
-        }
+            Vue: @ifxItemOpen="handleOpen"
+            Angular: (ifxItemOpen)="handleOpen()"
+            VanillaJs: .addEventListener("ifxItemOpen", (event) => {/*handle open*/});`
+            }
+          },
       },
-    },
     ifxItemClose: { 
       action: 'ifxItemClose',
-      description: 'Event emitted when an accordion item is closed',
+      description: 'Event emitted when an accordion item is closed.',
       table: {
         category: 'custom events',
         type: {

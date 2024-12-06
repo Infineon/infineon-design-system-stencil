@@ -14,6 +14,7 @@ export default {
   },
   argTypes: {
     content: {
+      name: 'Content',
       description: 'Text inside the notification is passed as slot.',
       table: {
         category: 'story controls',
@@ -38,7 +39,7 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed in the notification.',
-      options: Object.values(icons).map(i => i['name']),
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: { type: 'select' },
       table: {
         category: 'ifx-notification props',
@@ -82,14 +83,18 @@ export default {
   },
 };
 
-const DefaultTemplate = args => `<ifx-notification 
-  icon="${args.icon}" 
+const DefaultTemplate = args => {
+  const icon = args.icon === 'none' ? '' : args.icon;
+
+  return `<ifx-notification 
+  icon = "${icon}"
   variant="${args.variant}" 
   link-text="${args.linkText}" 
   link-href="${args.linkHref}"
   link-target="${args.linkTarget}">
   ${args.content}
 </ifx-notification>`;
+}
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};

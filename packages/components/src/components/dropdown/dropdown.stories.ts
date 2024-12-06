@@ -49,8 +49,8 @@ export default {
         }
       }
     },
-    label: { 
-      description: 'The visible name or label for the dropdown button',
+    label: {
+      description: 'The visible name or label for the dropdown button.',
       table: {
         category: 'story controls',
         defaultValue: {
@@ -60,7 +60,7 @@ export default {
       // if: { arg: 'Type', eq: 'Default' }
     },
     size: {
-      description: 'Font Size options for menu items: s (14px) and m (16px) - default: m',
+      description: 'Font Size options for menu items: s (14px) and m (16px) - default: m.',
       options: ['s', 'm'],
       control: 'radio',
       table: {
@@ -70,8 +70,8 @@ export default {
         }
       }
     },
-    disabled: { 
-      description: 'Determines if the dropdown button should be disabled',
+    disabled: {
+      description: 'Determines if the dropdown button should be disabled.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -81,7 +81,7 @@ export default {
       }
     },
     variant: {
-      description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary"',
+      description: 'The visual style of the dropdown button. Accepted values are "primary", "secondary", "tertiary".',
       options: ['primary', 'secondary', 'tertiary'],
       control: 'radio',
       table: {
@@ -105,13 +105,13 @@ export default {
       }
     },
     href: {
-      description: 'href link to menu item',
+      description: 'href link to menu item.',
       table: {
         category: 'ifx-dropdown-item props'
       }
     },
     icon: {
-      description: 'The icon to be displayed on the dropdown items',
+      description: 'The icon to be displayed on the dropdown items.',
       options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: 'select',
       table: {
@@ -122,8 +122,8 @@ export default {
       }
       // if: { arg: 'Type', eq: 'Label Trigger' }
     },
-    searchField :{
-      description: 'Show Search Bar',
+    searchField: {
+      description: 'Show Search Bar.',
       table: {
         category: 'ifx-dropdown-menu props',
         defaultValue: {
@@ -132,7 +132,7 @@ export default {
       }
     },
     header: {
-      description: 'Add Header Text',
+      description: 'Add Header Text.',
       table: {
         category: 'ifx-dropdown-menu props',
         defaultValue: {
@@ -140,8 +140,8 @@ export default {
         }
       }
     },
-    separator:{
-      description: 'Use separator in dropdown',
+    separator: {
+      description: 'Use separator in dropdown.',
       table: {
         category: 'ifx-dropdown-menu props',
         defaultValue: {
@@ -149,8 +149,8 @@ export default {
         }
       }
     },
-    defaultOpen: { 
-      description: 'Determines if the dropdown should be open by default',
+    defaultOpen: {
+      description: 'Determines if the dropdown should be open by default.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -159,8 +159,8 @@ export default {
         }
       }
     },
-    noCloseOnOutsideClick: { 
-      description: 'Determines if the dropdown should not close when a click outside the dropdown happens',
+    noCloseOnOutsideClick: {
+      description: 'Determines if the dropdown should not close when a click outside the dropdown happens.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -169,8 +169,8 @@ export default {
         }
       }
     },
-    noCloseOnMenuClick: { 
-      description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens',
+    noCloseOnMenuClick: {
+      description: 'Determines if the dropdown should not close when a click inside the dropdown menu happens.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -179,8 +179,8 @@ export default {
         }
       }
     },
-    noAppendToBody: { 
-      description: 'Determines if the dropdown should not be appended to the body',
+    noAppendToBody: {
+      description: 'Determines if the dropdown should not be appended to the body.',
       control: 'boolean',
       table: {
         category: 'ifx-dropdown props',
@@ -191,7 +191,7 @@ export default {
     },
     ifxOpen: {
       action: 'ifxOpen',
-      description: 'Custom event that is emitted when the dropdown opens',
+      description: 'Custom event that is emitted when the dropdown opens.',
       table: {
         category: 'custom events',
         type: {
@@ -203,7 +203,7 @@ export default {
     },
     ifxClose: {
       action: 'ifxClose',
-      description: 'Custom event emitted when dropdown closes',
+      description: 'Custom event emitted when dropdown closes.',
       table: {
         category: 'custom events',
         type: {
@@ -215,7 +215,7 @@ export default {
     },
     ifxDropdownMenuItem: {
       action: 'ifxDropdownMenuItem',
-      description: 'Custom event emitted when an item is selected',
+      description: 'Custom event emitted when an item is selected.',
       table: {
         category: 'custom events',
         type: {

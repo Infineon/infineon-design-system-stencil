@@ -8,7 +8,7 @@ export default {
 
   argTypes: {
     min: { control: 'number',
-      description: 'The minimum value of the slider',
+      description: 'The minimum value of the slider.',
     table:{
       category: 'ifx-slider props',
       defaultValue: { summary: '0' },
@@ -16,7 +16,7 @@ export default {
     }
   },
     max: { control: 'number',
-      description: 'The maximum value of the slider',
+      description: 'The maximum value of the slider.',
       table:{
         category: 'ifx-slider props',
         defaultValue: { summary: '100' },
@@ -24,7 +24,7 @@ export default {
       } 
     },
     step: { control: 'number',
-      description: 'The step value of the slider',
+      description: 'The step value of the slider.',
       table:{
         category: 'ifx-slider props',
         defaultValue: { summary: '1' },
@@ -32,7 +32,7 @@ export default {
       }
      },
     type: { control: 'radio', options: ['single', 'double'],
-      description: 'The type of the slider',
+      description: 'The type of the slider.',
         table: {
           category: 'ifx-slider props',
           defaultValue: { summary: 'single' },
@@ -40,21 +40,21 @@ export default {
        }
     },
     value: { control: 'number', if: { arg: 'type', eq: 'single'},
-      description: 'The current value of the slider',
+      description: 'The current value of the slider.',
       table: {  
         category: 'ifx-slider props',
         type: { summary: 'number ' }
       }
     },  
     minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'},
-      description: 'The minimum value of the handle in double slider',
+      description: 'The minimum value of the handle in double slider.',
       table: {
       category: 'ifx-slider props',
       type: { summary: 'number' }
     }
   },
     maxValueHandle : {control :'number', if: { arg: 'type', eq: 'double'},
-      description: 'The maximum value of the handle in double slider',
+      description: 'The maximum value of the handle in double slider.',
       table: {
       category: 'ifx-slider props',
       type: { summary: 'number' }
@@ -62,7 +62,7 @@ export default {
   }, 
     showPercentage: { 
       control: 'boolean', if: { arg: 'type', eq: 'single'},
-      description: 'Show the percentage of the slider value',
+      description: 'Show the percentage of the slider value.',
       table: {
         category: 'ifx-slider props',
         defaultValue: { summary: 'false' },
@@ -70,7 +70,7 @@ export default {
       }
     },
     disabled: { control: 'boolean',
-      description: 'Disable the slider',
+      description: 'Disable the slider.',
       table: {
         category: 'ifx-slider props',
         defaultValue: { summary: 'false' },
@@ -80,7 +80,7 @@ export default {
     leftIcon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select'},
-        description: 'The icon on the left of the slider',
+        description: 'The icon on the left of the slider.',
         table: {
           category: 'ifx-slider props',
           type: { summary: 'string' }
@@ -89,21 +89,21 @@ export default {
     rightIcon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
-      description: 'The icon on the right of the slider',
+      description: 'The icon on the right of the slider.',
       table: {
         category: 'ifx-slider props',
         type: { summary: 'string' }
       }
     },
     leftText: { control: 'text',
-      description: 'The text on the left side',
+      description: 'The text on the left side.',
       table: {
         category: 'ifx-slider props',
         type: { summary: 'string' }
       }
     },
     rightText: { control: 'text',
-      description: 'The text on the right side',
+      description: 'The text on the right side.',
       table: {
         category: 'ifx-slider props',
         type: { summary: 'string' }
@@ -111,7 +111,7 @@ export default {
     },
     ifxChange: {
       action: 'ifxChange',
-      description: 'Custom event emitted on input change',
+      description: 'Custom event emitted on input change.',
       table: {
         category: 'custom events',
         type: {

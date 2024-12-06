@@ -16,7 +16,7 @@ export default {
   argTypes: {
     amountOfTabs: {
       name: 'Amount of Tabs', control: 'number',
-      description: 'Set the number of tabs',
+      description: 'Set the number of tabs.',
       table: {
         category: 'story controls',
         type: {
@@ -27,7 +27,7 @@ export default {
     orientation: {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
-      description: 'Set the orientation of the tabs',
+      description: 'Set the orientation of the tabs.',
       table: {
         category:
           'ifx-tabs props',
@@ -43,7 +43,7 @@ export default {
       name: 'icon',
       control: { type: 'select' },
       options: ['none', ...Object.values(icons).map(i => i['name'])],
-      description: 'Set the icon of the tab. Choose "none" to display no icon',
+      description: 'Set the icon of the tab. Choose "none" to display no icon.',
       table: {
         category: 'ifx-tab props',
         defaultValue: {
@@ -57,7 +57,7 @@ export default {
     iconPosition: {
       options: ['left', 'right'],
       control: { type: 'radio' },
-      description: 'Set the position of the icon',
+      description: 'Set the position of the icon.',
       table: {
         category: 'ifx-tab props',
         defaultValue: {
@@ -69,7 +69,7 @@ export default {
       },
     },
     activeTabIndex: {
-      description: 'Set the tab as active by providing the index (tab can not be disabled)',
+      description: 'Set the tab as active by providing the index (tab can not be disabled).',
       table: {
         category: 'ifx-tabs props',
         defaultValue: { summary: '0' },
@@ -80,7 +80,7 @@ export default {
     },
     header: {
       control: 'text',
-      description: 'Set the header of the tab',
+      description: 'Set the header of the tab.',
       table: {
         defaultValue: { summary: 'Tab' },
         category: 'ifx-tab props',
@@ -91,7 +91,7 @@ export default {
     },
     disabled: {
       control: 'boolean',
-      description: 'Set the tab to disabled. In the storybook, the second tab will be disabled',
+      description: 'Set the tab to disabled. In the storybook, the second tab will be disabled.',
       table: {
         category: 'ifx-tab props',
         defaultValue: { summary: 'false' },
@@ -99,7 +99,7 @@ export default {
     },
     ifxTabChange: {
       action: 'ifxTabChange',
-      description: 'Custom event emitted on tab index change, containing the current (currentTab) and the previous tab (previousTab)',
+      description: 'Custom event emitted on tab index change, containing the current (currentTab) and the previous tab (previousTab).',
       table: {
         category: 'custom events',
         type: {

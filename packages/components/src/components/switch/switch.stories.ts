@@ -45,7 +45,7 @@ export default {
       }
     },
     value: {
-      description: 'The value that gets submitted, when the radio button is checked',
+      description: 'The value that gets submitted, when the radio button is checked.',
       table: {
         category: 'ifx-switch props',
         type: {
@@ -54,7 +54,7 @@ export default {
       }
     },
     disabled: {
-      description: 'The value that gets submitted, when the radio button is checked',
+      description: 'The value that gets submitted, when the radio button is checked.',
       table: {
         category: 'ifx-switch props',
         defaultValue: {
@@ -66,7 +66,7 @@ export default {
       }
     },
     ifxChange: {
-      description: 'Custom event emitted on change',
+      description: 'Custom event emitted on change.',
       table: {
         category: 'custom events',
         type: {

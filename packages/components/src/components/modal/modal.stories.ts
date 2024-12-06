@@ -8,11 +8,13 @@ export default {
 
   args: {
     opened: false,
+    cancelButtonLabel: 'Cancel',
+    okButtonLabel: 'OK',
   },
   argTypes: {
     caption: {
       control: 'text',
-      description: 'Title for the modal',
+      description: 'Title for the modal.',
       table: {
         category: 'ifx-modal props',
       },
@@ -21,6 +23,7 @@ export default {
       control: {
         disable: true,
       },
+      description: 'Default state of the modal.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -32,11 +35,10 @@ export default {
             "const modal = document.getElementById('modal'); \nconst openButton = document.getElementById('open'); \n//add DOM event listeners (e.g. click and/or keypress)\n\nfunction openModal() { \nmodal.opened=true;\n\nfunction closeModal() { \nmodal.opened = false; \n}",
         },
       },
-      description: 'Default state of the modal',
     },
     closeOnOverlayClick: {
       control: 'boolean',
-      description: 'Close the modal when clicking outside the window',
+      description: 'Close the modal when clicking outside the window.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -46,7 +48,7 @@ export default {
     },
     showCloseButton: {
       control: 'boolean',
-      description: "Show or hide close button in the modal's header",
+      description: "Show or hide close button in the modal's header.",
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -57,7 +59,7 @@ export default {
     alertIcon: {
       options: Object.keys(icons),
       control: { type: 'select' },
-      description: 'Icon to be displayed in the alert modal',
+      description: 'Icon to be displayed in the alert modal.',
       table: {
         category: 'ifx-modal props',
         type: {
@@ -68,7 +70,7 @@ export default {
     size: {
       options: ['s', 'm', 'l'],
       control: { type: 'radio' },
-      description: 'Usable only when screen width is more than 1024px',
+      description: 'Usable only when screen width is more than 1024px.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -82,7 +84,7 @@ export default {
     variant: {
       options: ['default', 'alert-brand', 'alert-danger'],
       control: { type: 'radio' },
-      description: 'Variant of the modal',
+      description: 'Variant of the modal.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -95,7 +97,7 @@ export default {
     },
     cancelButtonLabel: {
       control: 'text',
-      description: 'Label for the cancel button',
+      description: 'Label for the cancel button.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -108,7 +110,7 @@ export default {
     },
     okButtonLabel: {
       control: 'text',
-      description: 'Label for the OK button',
+      description: 'Label for the OK button.',
       table: {
         category: 'ifx-modal props',
         defaultValue: {
@@ -122,7 +124,7 @@ export default {
 
     ifxOpen: {
       action: 'ifxOpen',
-      description: 'Custom event emitted when modal opens',
+      description: 'Custom event emitted when modal opens.',
       table: {
         category: 'custom events',
         type: {
@@ -134,7 +136,7 @@ export default {
     },
     ifxClose: {
       action: 'ifxClose',
-      description: 'Custom event emitted when modal closes',
+      description: 'Custom event emitted when modal closes.',
       table: {
         category: 'custom events',
         type: {
@@ -147,7 +149,7 @@ export default {
   },
 };
 
-const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size, alertIcon }) => {
+const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
   modal.setAttribute('variant', variant);
@@ -173,13 +175,13 @@ const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size
 
   const cancelButton = document.createElement('ifx-button');
   cancelButton.setAttribute('variant', 'secondary');
-  cancelButton.textContent = 'Button 1';
+  cancelButton.textContent = cancelButtonLabel;
   cancelButton.addEventListener('click', () => {
     console.log('Button 1 clicked');
   });
 
   const primaryButton = document.createElement('ifx-button');
-  primaryButton.textContent = 'Button 2';
+  primaryButton.textContent = okButtonLabel;
   primaryButton.addEventListener('click', () => {
     console.log('Button 2 clicked');
   });
@@ -223,4 +225,7 @@ Alert.args = {
   alertIcon: 'arrowdoen24',
   size: 's',
   variant: 'alert-brand',
+  cancelButtonLabel: 'Cancel',
+  okButtonLabel: 'OK',
+  showCloseButton: false,
 };

@@ -131,7 +131,7 @@ export default {
     },
     ifxInput: {
       action: 'ifxInput',
-      description: 'Custom event',
+      description: 'Custom event emitted on input change.',
       table: {
         category: 'custom events',
         type: {
