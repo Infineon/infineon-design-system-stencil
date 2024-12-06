@@ -23,6 +23,7 @@ export default {
 
   argTypes: {
     label: {
+      name: 'Label of Text Field',
       description: 'The text label displayed above the text field.',
       table: {
         category: 'story controls',

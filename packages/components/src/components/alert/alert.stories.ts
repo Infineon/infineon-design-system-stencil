@@ -14,6 +14,7 @@ export default {
 
   argTypes: {
     label: {
+      name: 'Label of Alert',
       description: 'Sets the label of *<ifx-alert>*.',
       table: {
         category: 'story controls'

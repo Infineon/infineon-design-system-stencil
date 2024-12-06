@@ -24,7 +24,7 @@ export default {
             }
         },
         amountOfSteps: {
-            name: 'Amount of steps',
+            name: 'Amount of Steps',
             control: 'number',
             description: 'Indicates the number of steps in stepper in a story.',
             table: {
