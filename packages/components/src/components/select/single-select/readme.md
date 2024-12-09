@@ -142,6 +142,16 @@ Type: `Promise<void>`
 
 
 
+### `handleDeleteIcon() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `hideDropdown(blurInput?: boolean) => Promise<this>`
 
 
