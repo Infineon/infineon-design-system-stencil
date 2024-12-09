@@ -37,6 +37,7 @@ Type: `Promise<void>`
 
  - [ifx-modal](../modal)
  - [ifx-pagination](../pagination)
+ - [ifx-templates-ui](../templates/templates-ui)
 
 ### Depends on
 
@@ -48,6 +49,7 @@ graph TD;
   ifx-icon-button --> ifx-icon
   ifx-modal --> ifx-icon-button
   ifx-pagination --> ifx-icon-button
+  ifx-templates-ui --> ifx-icon-button
   style ifx-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
