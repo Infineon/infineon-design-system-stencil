@@ -11,45 +11,15 @@
 
   <style defer>
 
-    .wrapper { 
-      width: 190px;
-    }
-
   </style>
 
   <script>
-
-    const handleResize = () => { 
-      const wrapper = document.querySelector('.wrapper') 
-      wrapper.style.width = '170px'
-    }
 
   </script>
 
 </head>
 
 <body> 
-
-  <ifx-pagination total="50" current-page="1"></ifx-pagination>
- 
-
-  <div class="wrapper">
-    <ifx-select 
-    size='m'
-    placeholder='true'
-    show-search='true'
-    search-placeholder-value='Search...'
-    disabled='false'
-    error='false'
-    error-message='Some error'
-    label=''
-    placeholder-value='Placeholder'
-    options='[{"value":"a","label":"option a","selected":true},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]' >
-   </ifx-select>
-  </div>
-
-  <ifx-button onclick="handleResize()">resize</ifx-button>
-
 
 </body>
 

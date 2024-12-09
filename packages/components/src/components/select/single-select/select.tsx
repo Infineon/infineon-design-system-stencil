@@ -104,8 +104,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.setPreSelected(null);
     this.closeDropdown();
     this.ifxSelect.emit(null);
-
-
     this.optionIsSelected = false;
   }
 
@@ -252,10 +250,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
     @Method()
-    async checkComponentWidth() {
+    async handleDeleteIcon() {
       const width = this.root.offsetWidth;
       const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
-      console.log('invoked')
       if(deleteIconWrapper) { 
         if (width <= 180) {
           deleteIconWrapper.classList.add('hide')
@@ -294,21 +291,25 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     
   }
 
-  protected componentDidLoad() {
-    this.init();
-    this.addEventListenersToHandleCustomFocusAndActiveState();
-    this.checkComponentWidth();
-
+  addResizeObserver() { 
     this.resizeObserver = new ResizeObserver(() => {
-      this.checkComponentWidth();
+      this.handleDeleteIcon();
     });
   
     const componentWrapper = this.root.querySelector('.ifx-choices__wrapper');
     this.resizeObserver.observe(componentWrapper);
   }
 
+  protected componentDidLoad() {
+    this.init();
+    this.addEventListenersToHandleCustomFocusAndActiveState();
+    this.handleDeleteIcon();
+    this.addResizeObserver()
+  }
+
   protected componentDidUpdate() {
     this.init();
+    this.handleDeleteIcon()
   }
 
   protected disconnectedCallback() {
