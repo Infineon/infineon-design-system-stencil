@@ -83,6 +83,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @State() selectedOption: any | null = null;
   @State() optionIsSelected: boolean = false;
 
+  private resizeObserver: ResizeObserver;
+
   @Element() private readonly root: HTMLElement;
   private choice;
   private element;
@@ -296,6 +298,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.init();
     this.addEventListenersToHandleCustomFocusAndActiveState();
     this.checkComponentWidth();
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.checkComponentWidth();
+    });
+  
+    const componentWrapper = this.root.querySelector('.ifx-choices__wrapper');
+    this.resizeObserver.observe(componentWrapper);
   }
 
   protected componentDidUpdate() {
@@ -304,6 +313,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected disconnectedCallback() {
     this.destroy();
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
 
   protected render(): any {
