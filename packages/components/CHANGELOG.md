@@ -1,3 +1,15 @@
+# v29.2.1 (Mon Dec 09 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: added condition that checks if right-items exist before querying them to prevent edge case errors [#1638](https://github.com/Infineon/infineon-design-system-stencil/pull/1638) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.2.0 (Fri Dec 06 2024)
 
 #### 🚀 Enhancement
