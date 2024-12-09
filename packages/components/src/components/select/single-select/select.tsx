@@ -248,7 +248,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   protected componentDidLoad() {
     this.init();
     this.addEventListenersToHandleCustomFocusAndActiveState();
-
   }
 
   protected componentDidUpdate() {
