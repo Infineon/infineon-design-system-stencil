@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "MIT",
-  "publishConfig": {v
+  "publishConfig": {
     "access": "public"
   },
   "dependencies": {
