@@ -14,24 +14,91 @@ export default {
     max: '',
     min: '',
     label: "Label Text",
-    caption: "Caption text, description, error notification",
+    caption: "Caption text, description, error notification.",
   },
   argTypes: {
+    label: {
+      description: 'Label of Date Picker.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    caption: {
+      description: 'Caption text, description, error notification.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    min: {
+      description: 'Minimum date that can be selected',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    max: {
+      description: 'The latest date that can be selected.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    disabled: {
+      description: 'Disables the date picker',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    success: {
+      description: 'Indicates success in the date picker.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    error: {
+      description: 'Indicates error in the date picker.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     size: {
-      description: 'Size options: Height small  (36px) and Height large (40px) - default: small',
+      description: 'Sets the size of the date picker. Options: Height small  (36px) and Height large (40px)',
+      control: 'radio',
       options: ['s', 'l'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: 's'
+        }
+      }
     },
     name: {
-      description: 'Name of the element, that is used as reference when a form is submitted.'
+      description: 'Name of the element, that is used as reference when a form is submitted.',
+      table: {
+        category: 'ifx-date-picker props'
+      }
     },
     value: { 
-      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd'
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd',
+      table: {
+        category: 'ifx-date-picker props'
+      }
     },
     ifxDate: {
       action: 'ifxDate',
-      description: 'Custom event',
+      description: 'A custom event emitted when a date in the calendar is being selected.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
