@@ -1,3 +1,16 @@
+# v30.1.0 (Tue Dec 10 2024)
+
+#### 🚀 Enhancement
+
+- Grid: Updated documentation [#1600](https://github.com/Infineon/infineon-design-system-stencil/pull/1600) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.0.0 (Tue Dec 10 2024)
 
 #### 💥 Breaking Change
