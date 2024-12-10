@@ -14,9 +14,33 @@ export default {
     max: '',
     min: '',
     label: "Label Text",
-    caption: "Caption text, description, error notification",
+    caption: "Caption text, description, error notification.",
   },
   argTypes: {
+    label: {
+      description: 'Label of Date Picker.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    caption: {
+      description: 'Caption text, description, error notification.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    min: {
+      description: 'Minimum date that can be selected',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
+    max: {
+      description: 'The latest date that can be selected.',
+      table: {
+        category: 'ifx-date-picker props',
+      }
+    },
     disabled: {
       description: 'Disables the date picker',
       control: 'boolean',
