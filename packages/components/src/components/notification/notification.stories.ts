@@ -38,7 +38,7 @@ export default {
       }
     },
     icon: {
-      description: 'The icon to be displayed in the notification.',
+      description: 'The icon to be displayed in the notification. Choose "none" to display no icon.',
       options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: { type: 'select' },
       table: {

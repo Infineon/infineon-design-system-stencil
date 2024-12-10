@@ -14,8 +14,8 @@ export default {
     isOpen: {
       description: 'Search bar state.',
       control: { type: 'boolean' },
-      table:
-      {
+      table: {
+        defaultValue: { summary: 'true' },
         category: 'ifx-search-bar props',
         type: {
           summary: 'boolean',
@@ -25,8 +25,8 @@ export default {
     disabled: {
       description: 'Search bar state.',
       control: { type: 'boolean' },
-      table:
-      {
+      table: {
+        defaultValue: { summary: 'false' },
         category: 'ifx-search-bar props',
         type: {
           summary: 'boolean',

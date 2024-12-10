@@ -21,7 +21,6 @@ export default {
     target: "_self",
     alt: "profile image",
   },
-  //Story controls
   argTypes: {
     profileLabel: {
       name: 'Label',
@@ -31,7 +30,6 @@ export default {
         category: 'story controls',
       },
     },
-    //ifx-navbar props
     applicationName: {
       control: { type: 'text' },
       description: 'The name of the application.',
@@ -75,7 +73,6 @@ export default {
         },
       },
     },
-    //ifx-navbar-item props
     showLabelOfNavbarItem: {
       name: 'showLabel',
       control: { type: 'boolean' },
@@ -127,7 +124,6 @@ export default {
         category: 'ifx-navbar-item props',
       },
     },
-    //ifx-navbar-profile props
     showNavbarProfileLabel: {
       name: 'showLabel',
       control: { type: 'boolean' },
@@ -178,12 +174,12 @@ export default {
         category: 'ifx-navbar-profile props',
       },
     },
-    //ifx-search-bar props
     searchBarIsOpen: {
       name: 'isOpen',
       control: { type: 'boolean' },
       description: 'Show the search bar.',
       table: {
+        defaultValue: { summary: 'true' },
         category: 'ifx-search-bar props',
       },
     },
@@ -192,6 +188,7 @@ export default {
       options: ['left', 'right'],
       control: { type: 'radio' },
       table: {
+        defaultValue: { summary: 'left' },
         category: 'ifx-search-bar props',
         type: {
           summary: 'left | right',
