@@ -9,10 +9,37 @@ export default {
     currentPage: 1,
   },
   argTypes: {
+    currentPage: {
+      description: 'Current page number.',
+      table: {
+        category: 'Ifx-pagination props',
+        defaultValue: {
+          'summary': '0'
+        },
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+
+    total: {
+      description: 'Total number of items.',
+      table: {
+        category: 'Ifx-pagination props',
+        defaultValue: {
+          'summary': '1'
+        },
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+
     ifxPageChange: {
       action: 'ifxPageChange',
-      description: 'Custom event emitted page is changed',
+      description: 'Custom event emitted page is changed.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -22,8 +49,9 @@ export default {
     },
     ifxNextPage: {
       action: 'ifxNextPage',
-      description: 'Custom event emitted when next page button clicked',
+      description: 'Custom event emitted when next page button clicked.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -33,8 +61,9 @@ export default {
     },
     ifxPrevPage: {
       action: 'ifxPrevPage',
-      description: 'Custom event emitted when previous page button clicked',
+      description: 'Custom event emitted when previous page button clicked.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:

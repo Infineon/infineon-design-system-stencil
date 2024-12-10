@@ -17,10 +17,10 @@
 
 ## Events
 
-| Event                | Description | Type               |
-| -------------------- | ----------- | ------------------ |
-| `ifxInput`           |             | `CustomEvent<any>` |
-| `ifxSearchBarIsOpen` |             | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxInput` |             | `CustomEvent<any>` |
+| `ifxOpen`  |             | `CustomEvent<any>` |
 
 
 ## Methods

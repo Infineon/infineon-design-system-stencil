@@ -10,23 +10,59 @@ export default {
     size: 'm',
   },
   argTypes: {
+    showDeleteIcon: {
+      description: 'Determines whether a delete icon is shown in the search field.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-search-field props',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
+    disabled: {
+      description: 'Disables the search field, preventing user interaction.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-search-field props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
     size: {
-      description: 'Size options: s (36px) and m (40px) - default: m',
+      description: 'Size options: s (36px) and m (40px) - default: m.',
+      control: 'radio',
       options: ['s', 'm'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-search-field props',
+        defaultValue: {
+          summary: 'm'
+        }
+      }
     },
     placeholder: {
-      description: 'Place holder text - default value: "Search..."',
-      control: { type: 'text'}
+      description: 'Placeholder text displayed in the search field when it is empty.',
+      control: 'text',
+      table: {
+        category: 'ifx-search-field props',
+        defaultValue: {
+          summary: 'Search...'
+        }
+      }
     },
     maxlength: {
-      description: 'Maximum input length',
-      control: {type: 'number'}
+      description: 'Specifies the maximum number of characters that can be entered into the search field.',
+      control: 'number',
+      table: {
+        category: 'ifx-search-field props'
+      }
     },
     ifxInput: {
       action: 'ifxInput',
-      description: 'Custom event',
+      description: 'A custom event triggered whenever there is input in the search field.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -42,8 +78,8 @@ const DefaultTemplate = ({ disabled, size, showDeleteIcon, placeholder, maxlengt
   element.setAttribute('size', size);
   element.setAttribute('disabled', disabled);
   element.setAttribute('show-delete-icon', showDeleteIcon);
-  if(placeholder != undefined) element.setAttribute('placeholder', placeholder);
-  if(maxlength != undefined) element.setAttribute('maxlength', maxlength);
+  if (placeholder != undefined) element.setAttribute('placeholder', placeholder);
+  if (maxlength != undefined) element.setAttribute('maxlength', maxlength);
   element.addEventListener('ifxInput', action('ifxInput'));
 
   return element;

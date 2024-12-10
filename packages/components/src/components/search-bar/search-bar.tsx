@@ -13,12 +13,12 @@ export class SearchBar {
   @Prop({ mutable: true }) value: string;
   @Prop() maxlength?: number;
   @Event() ifxInput: EventEmitter;
-  @Event() ifxSearchBarIsOpen: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
   @Element() el;
 
   @Method()
   async onNavbarMobile() {
-    this.ifxSearchBarIsOpen.emit(false)
+    this.ifxOpen.emit(false)
     this.internalState = false;
   }
 
@@ -29,7 +29,7 @@ export class SearchBar {
 
   handleCloseButton = () => {
     this.internalState = !this.internalState;
-    this.ifxSearchBarIsOpen.emit(this.internalState)
+    this.ifxOpen.emit(this.internalState)
   }
 
   setInitialState() {
@@ -40,7 +40,7 @@ export class SearchBar {
 
   componentWillLoad() {
     this.setInitialState();
-    this.ifxSearchBarIsOpen.emit(this.internalState)
+    this.ifxOpen.emit(this.internalState)
   }
 
 

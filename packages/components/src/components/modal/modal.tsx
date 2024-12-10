@@ -20,8 +20,8 @@ export class IfxModal {
   @Prop() caption: string = 'Modal Title';
   @Prop() closeOnOverlayClick: boolean = true;
 
-  @Event() ifxModalOpen: EventEmitter;
-  @Event() ifxModalClose: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
+  @Event() ifxClose: EventEmitter;
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
   
@@ -96,12 +96,12 @@ export class IfxModal {
           this.getLastFocusableElement()?.blur();
         }, 0);
 
-        this.ifxModalOpen.emit();
+        this.ifxOpen.emit();
       });
 
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
-      this.ifxModalOpen.emit();
+      this.ifxOpen.emit();
 
     }
 
@@ -115,12 +115,12 @@ export class IfxModal {
       });
       anim.addEventListener('finish', () => {
         this.showModal = false;
-        this.ifxModalClose.emit();
+        this.ifxClose.emit();
       });
       this.hostElement.removeEventListener('keydown', this.handleKeypress);
     } catch (err) {
       this.showModal = false;
-      this.ifxModalClose.emit();
+      this.ifxClose.emit();
     }
   }
 

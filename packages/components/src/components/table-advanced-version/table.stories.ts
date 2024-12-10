@@ -93,56 +93,276 @@ export default {
     tableHeight: 'auto',
     pagination: false,
     paginationPageSize: 10,
-    currentPage: 1,
     rowHeight: 40,
     showLoading: false,
+    maxVisibleItemsOfList: 6,
+    filterNameOfFilterSearch: 'Search',
 
   },
+
   argTypes: {
     tableHeight: {
+      description: 'Set the height of the table. Example for fixed height: "400px".',
       table: {
+        defaultValue: { summary: 'auto' },
+        category: 'ifx-table props',
         type: {
-          summary: 'Options',
-          detail: 'Default: "auto"\nExample for fixed height: "400px"',
+          summary: 'String',
         }
       },
     },
+    pagination: {
+      description: 'Add pagination to the table.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: true },
+        type: {
+          summary: 'Boolean',
+        }
+      }
+    },
     paginationPageSize: {
-      description: "Results per page: minimum 10 - maximum 30",
-      control: { type: 'number', min: 10, max: 30, step: 10 }
+      description: "Set the number of results per page.",
+      control: { type: 'number', min: 10, max: 30, step: 10 },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 10 },
+        type: {
+          summary: 'Details',
+          detail: 'Minimum: 10\nMaximum: 30',
+        }
+      }
     },
     showLoading: {
+      description: 'Show loading spinner.',
       options: [true, false],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: false },
+        type: {
+          summary: 'boolean',
+        }
+      }
     },
     rowHeight: {
+      description: 'Set the height of the rows.',
       options: ['compact', 'default'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'default' },
+        type: {
+          summary: 'Options',
+          detail: 'Default: 40px\nCompact: 32px',
+        }
+      },
     },
     filterOrientation: {
+      description: 'Filter position options for the table.',
       options: ['sidebar', 'topbar', 'none'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'sidebar' },
+        type: {
+          summary: 'Options',
+          detail: 'Sidebar: filter on the left side\nTopbar: filter on the top\nNone: no filter',
+        },
+      }
     },
     columnDefs: {
+      description: 'Column header options.',
       table: {
+        category: 'ifx-table props',
         type: {
-          summary: 'Column header options',
+          summary: 'Options',
           detail: 'Standard columns:\nheaderName: "Model", \nfield: "model", \nsortable: true (optional),\nsort: "desc" (optional) => descending sort (show icon)\nunSortIcon: true (optional) => unsorted (show icon)\n\nSpecial columns:\nheaderName: "",\nfield: "button"\nheaderName: "",\nfield: "link"',
         },
       },
     },
     rowData: {
+      description: 'Row data options.',
       table: {
+        category: 'ifx-table props',
         type: {
-          summary: 'Row data options',
+          summary: 'Options',
           detail: 'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000 \n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
         },
       },
-    }
+    },
+    filterGroupName: {
+      description: 'Set the filter group name.',
+      control: { type: 'text' },
+      table: {
+        category: 'ifx-filter-accordion props',
+        type: {
+          summary: 'String',
+        }
+      }
+    },
+    filterNameOfFilterSearch: {
+      name: 'filterName',
+      description: 'Set the filter name.',
+      control: { type: 'text' },
+      table: {
+        category: 'ifx-filter-search props',
+        type: {
+          summary: 'String',
+        }
+      }
+    },
+    filterLabel: {
+      description: 'Set the filter label.',
+      control: { type: 'text' },
+      table: {
+        category: 'ifx-set-filter props',
+        type: {
+          summary: 'String',
+        }
+      }
+    },
+    filterName: {
+      description: 'Set the filter name.',
+      control: { type: 'text' },
+      table: {
+        category: 'ifx-set-filter props',
+        type: {
+          summary: 'String',
+        }
+      }
+    },
+    type: {
+      description: 'Set the type of filter.',
+      options: ['text', 'single-select', 'multi-select'],
+      control: { type: 'radio' },
+      table: {
+        defaultValue: { summary: 'text' },
+        category: 'ifx-set-filter props',
+        type: {
+          summary: 'text | single-select | multi-select',
+        }
+      }
+    },
+    maxShownFilters: {
+      description: 'Set the maximum number of shown filters.',
+      control: { type: 'number' },
+      table: {
+        defaultValue: {
+          summary: 4
+        },
+        category: 'ifx-filter-bar props',
+        type: {
+          summary: 'Number',
+        }
+      }
+    },
+    typeOfList: {
+      name: 'type',
+      description: 'Set the type of list.',
+      control: { type: 'radio' },
+      table: {
+        category: 'ifx-list props',
+        defaultValue: { summary: 'checkbox' },
+        type: {
+          summary: 'String',
+        },
+      }
+    },
+    maxVisibleItemsOfList: {
+      name: 'maxVisibleItems',
+      description: 'Set the maximum number of visible items in the list.',
+      control: { type: 'number' },
+      table: {
+        defaultValue: {
+          summary: 6
+        },
+        category: 'ifx-list props',
+        type: {
+          summary: 'Number',
+        }
+      }
+    },
+    labelOfListEntry: {
+      name: 'label',
+      description: 'Set the label of the list entry.',
+      control: { type: 'text' },
+      table: {
+        category: 'ifx-list-entry props',
+        type: {
+          summary: 'String',
+        }
+      }
+    },
+    valueOfListEntry: {
+      name: 'value',
+      description: 'Set the value of the list entry.',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-list-entry props',
+        type: {
+          summary: 'Boolean',
+        }
+      }
+    },
+    ifxSidebarFilterChange: {
+      description: 'Custom event emitted when the filter is changed in the sidebar.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+          React: onIfxSidebarFilterChange={handleChange}
+          Vue: @ifxSidebarFilterChange="handleChange"
+          Angular: (ifxSidebarFilterChange)="handleChange()"
+          VanillaJs: .addEventListener("ifxSidebarFilterChange", (event) => {/*handle change*/});`
+        }
+      }
+    },
+    ifxFilterSearchChange: {
+      description: 'Custom event emitted when the filter search is changed.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+          React: onIfxFilterSearchChange={handleChange}
+          Vue: @ifxFilterSearchChange="handleChange"
+          Angular: (ifxFilterSearchChange)="handleChange()"
+          VanillaJs: .addEventListener("ifxFilterSearchChange", (event) => {/*handle change*/});`
+        }
+      }
+    },
+    ifxFilterSelect: {
+      description: 'Custom event emitted when the filter is selected.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+          React: onIfxFilterSelect={handleSelect}
+          Vue: @ifxFilterSelect="handleSelect"
+          Angular: (ifxFilterSelect)="handleSelect()"
+          VanillaJs: .addEventListener("ifxFilterSelect", (event) => {/*handle select*/});`
+        }
+      }
+    },
+    ifxFilterAccordionChange: {
+      description: 'Custom event emitted when the filter accordion is changed.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+          React: onIfxFilterAccordionChange={handleChange}
+          Vue: @ifxFilterAccordionChange="handleChange"
+          Angular: (ifxFilterAccordionChange)="handleChange()"
+          VanillaJs: .addEventListener("ifxFilterAccordionChange", (event) => {/*handle change*/});`
+        }
+      }
+    },
   }
 };
-
-
 
 const DefaultTemplate = (args) => {
   if (args.filterOrientation === 'none') {
@@ -161,40 +381,40 @@ const DefaultTemplate = (args) => {
     const filterAccordions = args.columnDefs.map(column => {
       const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
       const filterOptions = uniqueColValues.map((option, index) => {
-        return `<ifx-list-entry slot="slot${index}" label="${option}" value="false"></ifx-list-entry>`;
+        return `<ifx-list-entry slot="slot${index}" label="${option}" value="${args.valueOfListEntry}"></ifx-list-entry>`;
       }).join('');
 
       return `
       <ifx-filter-accordion slot="filter-accordion" filter-group-name="${column.field}">
-        <ifx-list slot="list" type="checkbox" name="${column.field}" max-visible-items="6">
+        <ifx-list slot="list" type="checkbox" name="${column.field}" max-visible-items="${args.maxVisibleItemsOfList}">
           ${filterOptions}
         </ifx-list>
       </ifx-filter-accordion>
     `;
     }).join('');
 
-//topbar
-const filterComponents = args.columnDefs.map((column, index) => {
-  const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
-  const options = uniqueColValues.map(option => ({
-    value: option,
-    label: option,
-    selected: false
-  }));
+    //topbar
+    const filterComponents = args.columnDefs.map((column, index) => {
+      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+      const options = uniqueColValues.map(option => ({
+        value: option,
+        label: option,
+        selected: false
+      }));
 
-  // Directly use JSON.stringify without replacing quotes
-  const optionsString = JSON.stringify(options);
+      // Directly use JSON.stringify without replacing quotes
+      const optionsString = JSON.stringify(options);
 
-  return `
+      return `
         <ifx-set-filter slot="filter-component-${index + 1}"
             options='${optionsString}' 
             filter-label='${column.headerName}'
             filter-name='${column.field}'
-            type='multi-select'
+            type='${args.type}'
             search-enabled='true'>
           </ifx-set-filter>
           `;
-          }).join('\n');
+    }).join('\n');
 
 
 
@@ -206,7 +426,7 @@ const filterComponents = args.columnDefs.map((column, index) => {
         ${filterAccordions}
     </ifx-filter-type-group>`
       :
-      `<ifx-filter-bar slot="topbar-filter" max-shown-filters="3">
+      `<ifx-filter-bar slot="topbar-filter" max-shown-filters="${args.maxShownFilters}">
         <ifx-filter-search slot="filter-search" filter-orientation="topbar"></ifx-filter-search>
         ${filterComponents}
    </ifx-filter-bar>`;
@@ -219,6 +439,7 @@ const filterComponents = args.columnDefs.map((column, index) => {
     pagination="${args.pagination}"
     pagination-page-size="${args.paginationPageSize}"
     filter-orientation="${args.filterOrientation}">
+    
     ${filterTypeGroupComponent}
 </ifx-table>`;
 
@@ -255,7 +476,7 @@ SidebarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  filterOrientation: 'sidebar'
+  filterOrientation: 'sidebar',
 };
 
 
