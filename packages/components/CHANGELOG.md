@@ -1,3 +1,66 @@
+# v29.3.0 (Tue Dec 10 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: removes the close button on small resolution and adds it when default option is selected [#1639](https://github.com/Infineon/infineon-design-system-stencil/pull/1639) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v29.2.1 (Mon Dec 09 2024)
+
+#### 🐛 Bug Fix
+
+- Navbar: added condition that checks if right-items exist before querying them to prevent edge case errors [#1638](https://github.com/Infineon/infineon-design-system-stencil/pull/1638) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v29.2.0 (Fri Dec 06 2024)
+
+#### 🚀 Enhancement
+
+- (internal dev update) Updated package scripts to run example apps from root [#1633](https://github.com/Infineon/infineon-design-system-stencil/pull/1633) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v29.1.1 (Fri Dec 06 2024)
+
+#### 🐛 Bug Fix
+
+- Alert: Updated documentation [#1630](https://github.com/Infineon/infineon-design-system-stencil/pull/1630) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v29.1.0 (Fri Dec 06 2024)
+
+#### 🚀 Enhancement
+
+- Accessibility enhancement added to datepicker [#1627](https://github.com/Infineon/infineon-design-system-stencil/pull/1627) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.0.1 (Wed Dec 04 2024)
 
 #### 🐛 Bug Fix

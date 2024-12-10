@@ -426,7 +426,9 @@ export class Navbar {
         if(this.searchBarIsOpen) { 
           searchBarRight.onNavbarMobile()
         }
-        searchBarRight.setAttribute('slot', 'search-bar-left')
+        if(searchBarRight) { 
+          searchBarRight.setAttribute('slot', 'search-bar-left')
+        }
       }
 
       //left-side
