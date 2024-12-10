@@ -91,24 +91,48 @@ export default {
     },
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
-      description: 'Custom event emitted when a navigation item becomes active on selection.',
+      description: 'Custom event emitted when a navigation item becomes active on selection',
       table: {
-        category: 'custom events'
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: 
+          `React: onIfxSidebarNavigationItem={handleChange}
+          Vue: @ifxSidebarNavigationItem="handleChange"
+          Angular: (ifxSidebarNavigationItem)="handleChange()"
+          VanillaJs: .addEventListener("ifxSidebarNavigationItem", (event) => {/*handle change*/});`
+        }
       }
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
-      description: 'Custom event emitted when an action item is selected.',
+      description: 'Custom event emitted when an action item is selected',
       table: {
-        category: 'custom events'
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: 
+          `React: onIfxSidebarActionItem={handleAction}
+          Vue: @ifxSidebarActionItem="handleAction"
+          Angular: (ifxSidebarActionItem)="handleAction()"
+          VanillaJs: .addEventListener("ifxSidebarActionItem", (event) => {/*handle action*/});`
+        },
       }
     },
     ifxSidebarMenu: {
       action: 'ifxSidebarMenu',
-      description: 'Custom event emitted when a menu is expanded or closed.',
+      description: 'Custom event emitted when a menu is expanded or closed',
       table: {
-        category: 'custom events'
-      }
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: 
+          `React: onIfxSidebarMenu={handleMenu}
+          Vue: @ifxSidebarMenu="handleMenu"
+          Angular: (ifxSidebarMenu)="handleMenu()"
+          VanillaJs: .addEventListener("ifxSidebarMenu", (event) => {/*handle menu*/});`
+        },
+      },
     },
   },
 };
