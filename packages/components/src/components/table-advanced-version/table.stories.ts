@@ -410,7 +410,7 @@ const DefaultTemplate = (args) => {
             options='${optionsString}' 
             filter-label='${column.headerName}'
             filter-name='${column.field}'
-            type='multi-select'
+            type='${args.type}'
             search-enabled='true'>
           </ifx-set-filter>
           `;
