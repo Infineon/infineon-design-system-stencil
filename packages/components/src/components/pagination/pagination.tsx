@@ -24,7 +24,11 @@ export class Pagination {
 
   @Listen('ifxSelect')
   setItemsPerPage(e) {
-    this.itemsPerPage = parseInt(e.detail.label)
+    if(e.detail) {
+      this.itemsPerPage = parseInt(e.detail.label)
+    } else { 
+      this.itemsPerPage = 10;
+    }
   }
 
   componentDidLoad() {
