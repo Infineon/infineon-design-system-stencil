@@ -45,6 +45,7 @@ export default {
       }
     },
     label: {
+      name: 'Label of Radio Button',
       description: 'Defines the text displayed alongside the radio button.',
       table: {
         category: 'story controls',

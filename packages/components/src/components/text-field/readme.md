@@ -14,7 +14,7 @@
 | `error`       | `error`       |             | `boolean` | `false`         |
 | `icon`        | `icon`        |             | `string`  | `""`            |
 | `label`       | `label`       |             | `string`  | `""`            |
-| `maxLength`   | `max-length`  |             | `number`  | `undefined`     |
+| `maxlength`   | `max-length`  |             | `number`  | `undefined`     |
 | `optional`    | `optional`    |             | `boolean` | `false`         |
 | `placeholder` | `placeholder` |             | `string`  | `"Placeholder"` |
 | `required`    | `required`    |             | `boolean` | `false`         |

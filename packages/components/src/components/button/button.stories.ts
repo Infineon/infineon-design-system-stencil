@@ -21,6 +21,7 @@ export default {
 
   argTypes: {
     label: {
+      name: 'Label of Button',
       description: 'Sets the text displayed on the button.',
       table: {
         category: 'story controls',

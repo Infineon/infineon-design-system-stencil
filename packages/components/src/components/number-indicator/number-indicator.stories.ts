@@ -8,6 +8,7 @@ export default {
   },
   argTypes: {
     label: {
+      name: 'Label of Number Indicator',
       description: 'Specifies the number to be displayed within the indicator.',
       table: {
         category: 'story controls'

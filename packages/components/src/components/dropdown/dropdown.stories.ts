@@ -50,6 +50,7 @@ export default {
       }
     },
     label: {
+      name: 'Label of Dropdown',
       description: 'The visible name or label for the dropdown button.',
       table: {
         category: 'story controls',

@@ -1,6 +1,3 @@
-import { action } from "@storybook/addon-actions/*";
-import { act } from "react";
-
 //default
 const columnDefs = [
   { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
