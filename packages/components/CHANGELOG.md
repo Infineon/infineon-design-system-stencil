@@ -1,3 +1,15 @@
+# v30.0.0 (Tue Dec 10 2024)
+
+#### 💥 Breaking Change
+
+- Update tokens library to latest version [#1626](https://github.com/Infineon/infineon-design-system-stencil/pull/1626) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.3.0 (Tue Dec 10 2024)
 
 #### 🚀 Enhancement
