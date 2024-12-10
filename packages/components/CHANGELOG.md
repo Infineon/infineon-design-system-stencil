@@ -1,3 +1,15 @@
+# v29.3.0 (Tue Dec 10 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: removes the close button on small resolution and adds it when default option is selected [#1639](https://github.com/Infineon/infineon-design-system-stencil/pull/1639) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v29.2.1 (Mon Dec 09 2024)
 
 #### 🐛 Bug Fix
