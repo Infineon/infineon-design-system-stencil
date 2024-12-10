@@ -9,7 +9,12 @@ export default {
     size: 's',
     success: false,
     error: false,
-    name: 'date-picker'
+    name: 'date-picker',
+    value: '',
+    max: '',
+    min: '',
+    label: "Label Text",
+    caption: "Caption text, description, error notification",
   },
   argTypes: {
     disabled: {
@@ -59,6 +64,12 @@ export default {
         category: 'ifx-date-picker props'
       }
     },
+    value: { 
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd',
+      table: {
+        category: 'ifx-date-picker props'
+      }
+    },
     ifxDate: {
       action: 'ifxDate',
       description: 'A custom event emitted when a date in the calendar is being selected.',
@@ -74,14 +85,19 @@ export default {
   },
 };
 
-const Template = ({ error, disabled, success, size }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
   element.setAttribute('success', success);
+  element.setAttribute('value', value);
+  element.setAttribute('max', max);
+  element.setAttribute('min', min);
+  element.setAttribute('label', label);
+  element.setAttribute('caption', caption);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };
 
-export const Default = Template.bind({});
+export const Default = DefaultTemplate.bind({});

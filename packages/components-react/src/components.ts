@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -83,6 +83,7 @@ import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } fr
 import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tabs.js";
 import { IfxTag as IfxTagElement, defineCustomElement as defineIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tag.js";
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
+import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
@@ -971,6 +972,17 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
     react: React,
     events: { onIfxInput: 'ifxInput' } as IfxTextFieldEvents,
     defineCustomElement: defineIfxTextField
+});
+
+type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<String>> };
+
+export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
+    tagName: 'ifx-textarea',
+    elementClass: IfxTextareaElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onIfxInput: 'ifxInput' } as IfxTextareaEvents,
+    defineCustomElement: defineIfxTextarea
 });
 
 type IfxTooltipEvents = NonNullable<unknown>;

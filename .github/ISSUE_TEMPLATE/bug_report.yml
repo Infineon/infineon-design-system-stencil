@@ -21,6 +21,8 @@ body:
     attributes:
       label: Describe the development framework
       description: Tech stack, environment, versions, and any other relevant information to help us reproduce the bug
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Expected behavior

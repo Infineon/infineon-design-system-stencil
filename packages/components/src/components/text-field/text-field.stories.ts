@@ -145,7 +145,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -157,6 +157,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
   element.setAttribute('name', name);
+  element.setAttribute('show-delete-icon', showDeleteIcon);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
