@@ -59,10 +59,12 @@
   // Reduced padding values
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
+  flex: 1;
   
   &.icon__right {
     flex-direction: row-reverse;
