@@ -45,6 +45,10 @@ export class Table {
       rowData: this.rowData,
       loadingOverlayComponent: CustomLoadingOverlay,
       noRowsOverlayComponent: CustomNoRowsOverlay,
+      noRowsOverlayComponentParams: {
+        noRowsMessageFunc: () =>
+          'No rows found at: ' + new Date().toLocaleTimeString(),
+      },
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
