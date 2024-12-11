@@ -347,20 +347,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class='single__select-input-field' disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
-          { this.optionIsSelected && (
-            <div class="ifx-choices__icon-wrapper-delete">
-              <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
-            </div>
-          )}
-          <div class="ifx-choices__icon-wrapper-up">
-            <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
-          </div>
-          <div class="ifx-choices__icon-wrapper-down">
-            <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+          <div class="single__select-icon-container">
+            { this.optionIsSelected && (
+                <div class="ifx-choices__icon-wrapper-delete">
+                  <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+                </div>
+              )}
+              <div class="ifx-choices__icon-wrapper-up">
+                <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
+              </div>
+              <div class="ifx-choices__icon-wrapper-down">
+                <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+              </div>
           </div>
         </div>
         {this.error ? (
