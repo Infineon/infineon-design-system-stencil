@@ -1,3 +1,15 @@
+# v30.3.0 (Wed Dec 11 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: Reverts back noRowsOverlayComponentParams prop [#1642](https://github.com/Infineon/infineon-design-system-stencil/pull/1642) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.2.0 (Wed Dec 11 2024)
 
 #### 🚀 Enhancement
