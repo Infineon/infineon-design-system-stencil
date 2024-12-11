@@ -1,3 +1,15 @@
+# v30.2.0 (Wed Dec 11 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: truncating selected option [#1641](https://github.com/Infineon/infineon-design-system-stencil/pull/1641) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.1.0 (Tue Dec 10 2024)
 
 #### 🚀 Enhancement
