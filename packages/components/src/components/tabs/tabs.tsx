@@ -13,6 +13,7 @@ export class IfxTabs {
 
   @Prop() orientation: string = "horizontal";
   @Prop({ mutable: true }) activeTabIndex: number = 0;
+  @Prop() fullWidth: boolean = false;
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
@@ -182,7 +183,7 @@ export class IfxTabs {
     const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
     const isDisabled = this.tabObjects[index].disabled;
     const iconPosition = this.tabObjects[index].iconPosition
-    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition}`;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition}`;
   }
 
   private handleClick(tab, index) {
