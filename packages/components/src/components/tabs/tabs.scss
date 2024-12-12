@@ -55,15 +55,24 @@
   padding-left: 32px;
 }
 
+.tabs:not(.vertical) {
+  & .tab-item {
+    &.full-width { 
+      flex: 1;
+    }
+  }
+}
+
 .tab-item {
   // Reduced padding values
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
   cursor: pointer;
   position: relative;
-  
+
   &.icon__right {
     flex-direction: row-reverse;
     justify-content: flex-end;
