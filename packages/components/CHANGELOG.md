@@ -1,3 +1,15 @@
+# v30.4.0 (Thu Dec 12 2024)
+
+#### 🚀 Enhancement
+
+- Table components: makes text selectable [#1645](https://github.com/Infineon/infineon-design-system-stencil/pull/1645) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.3.1 (Thu Dec 12 2024)
 
 #### 🐛 Bug Fix
