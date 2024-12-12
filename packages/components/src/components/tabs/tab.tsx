@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop } from '@stencil/core';
+import { Component, h, Element, Prop, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'ifx-tab',
@@ -11,6 +11,11 @@ export class IfxTab {
   @Prop() disabled: boolean;
   @Prop() icon: string = '';
   @Prop() iconPosition: 'left' | 'right' = 'left';
+  @Event() tabHeaderChange: EventEmitter;
+
+  componentWillUpdate() { 
+    this.tabHeaderChange.emit(this.header)
+  }
 
   render() {
     return <slot />;

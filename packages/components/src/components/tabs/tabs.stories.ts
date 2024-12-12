@@ -16,6 +16,11 @@ export default {
       name: 'Show icon',
       control: {type: 'boolean'}
     },
+    fullWidth: {
+      name: 'Full width',
+      control: {type: 'boolean'},
+      description: "Adds flex: 1 to the ifx-tab child components, thus making them occupy the full width of their parent"
+    },
     iconPosition: {
       name: 'Icon position',
       options: ['left', 'right'],
@@ -45,6 +50,7 @@ const Template = args => {
   const tabsElement = document.createElement('ifx-tabs') as HTMLIfxTabsElement;
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
+  tabsElement.setAttribute('full-width', args.fullWidth);
   tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));
   
   for (let i = 0; i < args.amountOfTabs; i++) {
