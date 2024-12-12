@@ -1,3 +1,15 @@
+# v30.3.1 (Thu Dec 12 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: implements full-width prop for tabs, and makes tabs header dynamically updatable [#1643](https://github.com/Infineon/infineon-design-system-stencil/pull/1643) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.3.0 (Wed Dec 11 2024)
 
 #### 🚀 Enhancement
