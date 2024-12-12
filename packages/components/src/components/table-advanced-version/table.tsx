@@ -231,6 +231,7 @@ export class Table {
         resizable: true,
       },
       suppressDragLeaveHidesColumns: true,
+      enableCellTextSelection: true,
       onFirstDataRendered: this.onFirstDataRendered.bind(this),
       columnDefs: this.colData,
       rowData: this.rowData,
