@@ -38,6 +38,7 @@ export class Table {
         resizable: true,
       },
       suppressCellFocus: true,
+      enableCellTextSelection: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,
       onFirstDataRendered: this.onFirstDataRendered,
