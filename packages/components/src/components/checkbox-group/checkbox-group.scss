@@ -1,0 +1,14 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.checkbox-group {
+    display: flex;
+}
+
+.checkbox-group.horizontal {
+    flex-direction: row;
+}
+
+.checkbox-group.vertical {
+    flex-direction: column;
+}

@@ -23,6 +23,7 @@ import { IfxCardLinks as IfxCardLinksElement, defineCustomElement as defineIfxCa
 import { IfxCardOverline as IfxCardOverlineElement, defineCustomElement as defineIfxCardOverline } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-overline.js";
 import { IfxCardText as IfxCardTextElement, defineCustomElement as defineIfxCardText } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card-text.js";
 import { IfxCard as IfxCardElement, defineCustomElement as defineIfxCard } from "@infineon/infineon-design-system-stencil/dist/components/ifx-card.js";
+import { IfxCheckboxGroup as IfxCheckboxGroupElement, defineCustomElement as defineIfxCheckboxGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-checkbox-group.js";
 import { IfxCheckbox as IfxCheckboxElement, defineCustomElement as defineIfxCheckbox } from "@infineon/infineon-design-system-stencil/dist/components/ifx-checkbox.js";
 import { IfxChipItem as IfxChipItemElement, defineCustomElement as defineIfxChipItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip-item.js";
 import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-chip.js";
@@ -269,6 +270,17 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxCheckboxEvents,
     defineCustomElement: defineIfxCheckbox
+});
+
+type IfxCheckboxGroupEvents = NonNullable<unknown>;
+
+export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents> = /*@__PURE__*/ createComponent<IfxCheckboxGroupElement, IfxCheckboxGroupEvents>({
+    tagName: 'ifx-checkbox-group',
+    elementClass: IfxCheckboxGroupElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxCheckboxGroupEvents,
+    defineCustomElement: defineIfxCheckboxGroup
 });
 
 type IfxChipEvents = { onIfxChipChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
