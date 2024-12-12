@@ -42,6 +42,13 @@ export class IfxTabs {
       this.internalFocusedTabIndex = index;
     }
   }
+
+  @Listen('tabHeaderChange')
+  handleTabHeaderChange(e) { 
+    const tabIndex = e.target.getAttribute('slot').replace('tab-', '');
+    this.tabObjects[tabIndex].header = e.detail;
+    this.tabObjects = [...this.tabObjects]; 
+  }
   
 
   @Watch('activeTabIndex')
