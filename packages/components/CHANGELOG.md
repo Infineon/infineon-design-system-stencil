@@ -1,3 +1,15 @@
+# v30.6.1 (Fri Dec 13 2024)
+
+#### 🐛 Bug Fix
+
+- Advanced-table: removes bug where default sort order icon appears [#1656](https://github.com/Infineon/infineon-design-system-stencil/pull/1656) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.6.0 (Fri Dec 13 2024)
 
 #### 🚀 Enhancement
