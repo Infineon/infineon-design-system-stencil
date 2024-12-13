@@ -1,3 +1,15 @@
+# v30.6.0 (Fri Dec 13 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: clears select field when options updated [#1655](https://github.com/Infineon/infineon-design-system-stencil/pull/1655) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.5.0 (Fri Dec 13 2024)
 
 #### 🚀 Enhancement
