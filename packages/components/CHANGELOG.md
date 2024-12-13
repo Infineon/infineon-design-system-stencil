@@ -1,3 +1,15 @@
+# v30.5.0 (Fri Dec 13 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: fixes error on initial empty table load [#1653](https://github.com/Infineon/infineon-design-system-stencil/pull/1653) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.4.0 (Thu Dec 12 2024)
 
 #### 🚀 Enhancement
