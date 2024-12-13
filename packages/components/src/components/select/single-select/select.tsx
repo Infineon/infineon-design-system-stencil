@@ -100,11 +100,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   handleDeleteSelection() {
     this.clearInput()
-    this.selectedOption = null;
+    this.clearSelectField()
     this.setPreSelected(null);
     this.closeDropdown();
-    this.ifxSelect.emit(null);
     this.optionIsSelected = false;
+  }
+
+  clearSelectField() { 
+    this.selectedOption = null;
+    this.ifxSelect.emit(null);
   }
 
   @Method()
@@ -288,8 +292,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected componentWillUpdate() { 
     this.handleCloseButton()
-    
+    this.clearSelectField()
   }
+
+
 
   addResizeObserver() { 
     this.resizeObserver = new ResizeObserver(() => {
