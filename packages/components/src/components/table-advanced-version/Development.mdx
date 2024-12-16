@@ -122,8 +122,67 @@ document.addEventListener('DOMContentLoaded', () => {
 ```
 <b>Adding the button event handler in Vue::</b> 
 
-Unfortunately, this is not yet possible.
+```js
+//template
+    <ifx-table
+      v-if="ready"
+      :cols="tableColumnsWithBtn"
+      :rows="tableRowsWithBtn"
+      :buttonRendererOptions="buttonRendererOptions"
+      row-height="default"
+      table-height="auto"
+      pagination="false"
+      pagination-page-size="10"
+      filter-orientation="none">
+    </ifx-table>
 
+//script
+<script>
+export default {
+  data() {
+    return {
+       tableColumnsWithBtn: [
+        { headerName: "Make", field: "make", sortable: true, sort: "desc", unSortIcon: true },
+        { headerName: "Model", field: "model", sortable: true, unSortIcon: true },
+        { headerName: "Price", field: "price" },
+        { headerName: "Age", field: "age" },
+        { headerName: "", field: "button" }
+      ],
+      // Define your rows
+      tableRowsWithBtn: [
+        {
+          make: "Toyota",
+          model: "Celica",
+          price: 35000,
+          age: 10,
+          button: {
+            disabled: false,
+            variant: "secondary",
+            size: "s",
+            target: "_blank",
+            href: "https://www.w3schools.com/",
+            theme: "default",
+            type: "button",
+            fullWidth: true,
+            text: "Toyota Button"
+          }
+        },
+       ],
+       buttonRendererOptions: {
+        onButtonClick: (params, event) => {
+          console.log('Button clicked:', params.data);
+         }
+      },
+       ready: false
+    };
+  },
+  mounted() {
+     // Ensure all data is set before rendering the table
+    this.ready = true;
+  }
+};
+</script>
+```
 
 ### Sidebar filter
 

@@ -67,7 +67,7 @@ export class Table {
 
   @Watch('buttonRendererOptions')
   onButtonRendererOptionsChanged() {
-    this.colData = this.getColData();  // Re-fetch column data to apply new renderer options
+     this.colData = this.getColData();  // Re-fetch column data to apply new renderer options
     if (this.gridApi) {
       this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
     }
