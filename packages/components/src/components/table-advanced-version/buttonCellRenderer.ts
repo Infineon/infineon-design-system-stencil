@@ -1,99 +1,81 @@
 import { ICellRendererComp, ICellRendererParams } from 'ag-grid-community';
-import { ButtonInterface, ButtonKeys } from './interfaces';
+import { ButtonInterface } from './interfaces';
 
 export class ButtonCellRenderer implements ICellRendererComp {
   eGui!: HTMLDivElement;
-  eValue: any;
-  cellValue: any;
-  eventListener!: () => void;
+  eButton!: HTMLElement;  // Change to a generic HTMLElement to accommodate custom elements
+  eventListener!: (event: Event) => void;
 
-  // gets called once before the renderer is used
   init(params: ICellRendererParams) {
-    const config = params.data.button;
-    this.eGui = document.createElement('div');
-
-    if (this.hasRequiredKeys(config)) {
-      // create the cell
-      this.eGui.innerHTML = `
-        <span>
-          <ifx-button
-          disabled=${config.disabled}
-          variant=${config.variant}
-          theme=${config.theme}
-          type=${config.type}
-          size=${config.size}
-          full-width=${config.fullWidth}
-          target=${config.target}
-          href=${config.href}>
-          ${config.text}
-        </ifx-button>
-        </span>
-       `;
-
-    }
-    else {
-      this.eGui.innerHTML = `
-      <span>
-        ${config}
-      </span>
-     `;
-    }
+    this.createButton(params);
   }
-
 
   getGui() {
     return this.eGui;
   }
 
-  // gets called whenever the cell refreshes
   refresh(params: ICellRendererParams) {
-    // set value into cell again
-    const config = params.data.button;
-    this.eGui = document.createElement('div');
-    if (this.hasRequiredKeys(config)) {
-      // create the cell
-      this.eGui.innerHTML = `
-        <span>
-          <ifx-button
-          disabled=${config.disabled}
-          variant=${config.variant}
-          theme=${config.theme}
-          type=${config.type}
-          size=${config.size}
-          full-width=${config.fullWidth}
-          target=${config.target}
-          href=${config.href}>
-          ${config.text}
-        </ifx-button>
-        </span>
-       `;
-
-    }
-
-    else {
-      this.eGui.innerHTML = `
-      <span>
-        ${config}
-      </span>
-     `;
-    }
-    // return true to tell the grid we refreshed successfully
+    this.updateButton(params);
     return true;
   }
 
-
-  getFieldValueToDisplay(params: ICellRendererParams) {
-    return params.valueFormatted ? params.valueFormatted : params.value;
+  private createButton(params: ICellRendererParams) {
+    const config = params.data.button;
+    const options = params.colDef.cellRendererParams || {};
+    
+    this.eGui = document.createElement('div');
+    this.eButton = document.createElement('ifx-button') as HTMLElement;
+    
+    if (this.hasRequiredKeys(config)) {
+      this.setButtonAttributes(config);
+      this.eGui.appendChild(this.eButton);
+      this.attachEventListener(options, params);
+    } else {
+      this.eGui.innerHTML = `<span>${config}</span>`;
+    }
   }
 
-  isObject(value: any): value is Object {
-    return value && typeof value === 'object' && value.constructor === Object;
+  private updateButton(params: ICellRendererParams) {
+    const config = params.data.button;
+    const options = params.colDef.cellRendererParams || {};
+    
+    if (this.hasRequiredKeys(config)) {
+      this.setButtonAttributes(config);
+      this.detachEventListener();
+      this.attachEventListener(options, params);
+    } else {
+      this.eGui.innerHTML = `<span>${config}</span>`;
+    }
   }
 
-  hasRequiredKeys(obj: any): obj is ButtonInterface {
-    if (!this.isObject(obj)) return false;
-    return ButtonKeys.every(key => key in obj);
+  private setButtonAttributes(config: ButtonInterface) {
+    this.eButton.setAttribute('disabled', config.disabled.toString());
+    this.eButton.setAttribute('variant', config.variant);
+    this.eButton.setAttribute('theme', config.theme);
+    this.eButton.setAttribute('type', config.type);
+    this.eButton.setAttribute('size', config.size);
+    this.eButton.setAttribute('full-width', config.fullWidth.toString());
+    this.eButton.setAttribute('target', config.target);
+    this.eButton.setAttribute('href', config.href);
+    this.eButton.textContent = config.text;
   }
 
+  private attachEventListener(options: any, params: ICellRendererParams) {
+    this.eventListener = (event: Event) => {
+      if (options.onButtonClick) {
+        options.onButtonClick(params, event);
+      }
+    };
+    this.eButton.addEventListener('click', this.eventListener);
+  }
 
+  private detachEventListener() {
+    if (this.eventListener) {
+      this.eButton.removeEventListener('click', this.eventListener);
+    }
+  }
+
+  private hasRequiredKeys(config: ButtonInterface): boolean {
+    return config && config.text !== '' && config.variant !== '' && config.size !== '' && config.type !== '';
+  }
 }

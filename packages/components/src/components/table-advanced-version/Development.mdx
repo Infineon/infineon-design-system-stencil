@@ -51,21 +51,78 @@ const rowDataWithButtonCol = [
 ];
 ```
 
-#### Button column
+#### Example: Including a button column
 
 <Canvas of={TableStories.IncludesButtons} sourceState="shown" />
 
+<b>Adding the button event handler in Angular:</b> 
 
-<b>Hint for Vue Developers:</b> 
-The Radio Button component is not usable in combination with v-model. Instead, use v-bind/v-on.
+ ```js
+// in the component.ts file:
+  buttonRendererOptions = {
+    onButtonClick: (params: any, event: Event) => {
+      console.log("button clicked", params.data);
+    }
+  };
+// in the component.html file:
+  <h3>Table with button</h3>
+  <ifx-table
+    row-height="default"
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
+    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Toyota Button"}},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Ford Button"}},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Porsche Button"}}]'
+    [buttonRendererOptions]="buttonRendererOptions"
+    table-height="auto"
+    pagination="false"
+    pagination-page-size="10"
+    filter-orientation="none">
+</ifx-table>
+```
+
+<b>Adding the button event handler in React:</b> 
 
 ```js
-`<ifx-table 
-row-height='${args.rowHeight}'
-cols='${JSON.stringify(args.columnDefs)}' 
-rows='${JSON.stringify(args.rowData)}'>
-</ifx-table>`
+function App() {
+  const tableRef = useRef(null);
+
+  useEffect(() => {
+    if (tableRef.current) {
+      tableRef.current.buttonRendererOptions = {
+        onButtonClick: (params, event) => console.log('Button clicked:', params.data)
+      };
+    }
+  }, []);
+
+  return (
+    <ifx-table
+      cols={[{headerName: "Make", field: "make"}, ...]}
+      rows={[{make: "Toyota", ...}]}
+      ref={tableRef}
+      row-height="default"
+      table-height="auto"
+      pagination="false"
+      pagination-page-size="10"
+      filter-orientation="none"
+    ></ifx-table>
+  );
+}
 ```
+
+<b>Adding the button event handler in Vanilla/PlainJs:</b> 
+
+```js
+document.addEventListener('DOMContentLoaded', () => {
+    const tableWithBtn = document.querySelector('#table-with-btn');
+
+    tableWithBtn.buttonRendererOptions = {
+      onButtonClick: (params, event) => {
+        console.log("button clicked", params.data);
+      }
+    };
+});
+```
+<b>Adding the button event handler in Vue::</b> 
+
+Unfortunately, this is not yet possible.
 
 
 ### Sidebar filter

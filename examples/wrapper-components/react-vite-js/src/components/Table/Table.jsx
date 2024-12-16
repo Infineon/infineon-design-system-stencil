@@ -1,19 +1,66 @@
 import { IfxTable, IfxFilterTypeGroup, IfxFilterAccordion, IfxFilterSearch, IfxList, IfxListEntry } from '@infineon/infineon-design-system-react';
+import React, { useRef, useEffect } from 'react';
 
 function Table() {
+    const tableRef = useRef(null);
+
+    const tableRowsWithBtn = `[
+    {
+      "make": "Toyota",
+      "model": "Celica",
+      "price": 35000,
+      "age": 10,
+      "button": {
+        "disabled": false,
+        "variant": "secondary",
+        "size": "s",
+        "target": "_blank",
+        "href": "https://www.example.com",
+        "theme": "default",
+        "type": "button",
+        "fullWidth": false,
+        "text": "Click Me"
+      }
+    }
+  ]`;
+
+    const tableColumnsWithBtn = `[
+    { "headerName": "Make", "field": "make", "sortable": true, "sort": "desc", "unSortIcon": true },
+    { "headerName": "Model", "field": "model", "sortable": true, "unSortIcon": true },
+    { "headerName": "Price", "field": "price" },
+    { "headerName": "Age", "field": "age" },
+    { "headerName": "", "field": "button" }
+  ]`;
+
+    // Define your button click handler
+    const handleButtonClick = (params, event) => {
+        console.log('Button clicked for:', params.data.make);
+    };
+
+    useEffect(() => {
+        if (tableRef.current) {
+            // Assign the property directly to the element
+            tableRef.current.buttonRendererOptions = {
+                onButtonClick: handleButtonClick
+            };
+        }
+    }, []);
 
     return (
-        <div>
+        <div style={{ padding: '20px' }}>
             <h3>Table with button</h3>
+
             <ifx-table
+                ref={tableRef}
                 row-height="default"
-                cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"},{"headerName":"","field":"button"}]'
-                rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Toyota Button"}},{"make":"Ford","model":"Mondeo","price":32000,"age":12,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Ford Button"}},{"make":"Porsche","model":"Boxster","price":72000,"button":{"disabled":false,"variant":"secondary","size":"s","target":"_blank","href":"https://www.w3schools.com/","theme":"default","type":"button","fullWidth":true,"text":"Porsche Button"}}]'
+                cols={tableColumnsWithBtn}
+                rows={tableRowsWithBtn}
                 table-height="auto"
                 pagination="false"
                 pagination-page-size="10"
-                filter-orientation="none">
-            </ifx-table>
+                filter-orientation="none"
+            ></ifx-table>
+
             <br />
             <h3>Table with sidebar filter</h3>
             <IfxTable
@@ -56,9 +103,8 @@ function Table() {
                 </IfxFilterTypeGroup>
             </IfxTable>
         </div>
-
-
     );
 }
 
 export default Table;
+
