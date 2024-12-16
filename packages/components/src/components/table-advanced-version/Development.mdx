@@ -120,8 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 });
 ```
-<b>Adding the button event handler in Vue::</b> 
+<b>Adding the button event handler in Vue:</b> 
 
+Using ```v-if``` to ensure all data is set before rendering the table. There are other ways to guarantee data readiness, but this is the solution we have tested and used in our example applications.
 ```js
 //template
     <ifx-table
