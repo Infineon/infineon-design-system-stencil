@@ -151,8 +151,7 @@ const DefaultTemplate = (args) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-page-size="${args.paginationPageSize}"
-      filter-orientation="${args.filterOrientation}"
-      button-renderer-options='${JSON.stringify(args.buttonRendererOptions)}'>
+      filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
@@ -166,32 +165,20 @@ Pagination.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   filterOrientation: 'none',
-  buttonRendererOptions: {
-    onButtonClick: (params, event) => {
-      console.log('Button clicked:', params, event);
-    }
-  }
 };
 
-
-const handleButtonClick = (params, _event) => {
-  console.log('Button clicked:', params.data.make);
-};
 
 const CustomCellTemplate = (args) => {
-  const table = document.createElement('ifx-table');
-  
-  table.setAttribute('cols', JSON.stringify(args.columnDefs));
-  table.setAttribute('rows', JSON.stringify(args.rowData));
-  table.setAttribute('row-height', args.rowHeight);
-  table.setAttribute('table-height', args.tableHeight);
-  table.setAttribute('pagination', String(args.pagination));
-  table.setAttribute('pagination-page-size', String(args.paginationPageSize));
-  table.setAttribute('filter-orientation', args.filterOrientation);
-  
-  // Set the property directly (not as an attribute)
-  table.buttonRendererOptions = args.buttonRendererOptions
-
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      pagination-page-size="${args.paginationPageSize}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
   return table;
 };
 
@@ -205,9 +192,6 @@ IncludesButtons.args = {
   filterOrientation: 'none',
   pagination: false,
   paginationPageSize: 10,
-  buttonRendererOptions: {
-    onButtonClick: handleButtonClick
-  }
 };
 
 export const SidebarFilter = DefaultTemplate.bind({});
