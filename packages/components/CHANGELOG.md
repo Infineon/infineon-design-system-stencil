@@ -1,3 +1,15 @@
+# v30.8.0 (Tue Dec 17 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: clears the field only on options update (prevents double re-rendering of component) [#1658](https://github.com/Infineon/infineon-design-system-stencil/pull/1658) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.7.0 (Tue Dec 17 2024)
 
 #### 🚀 Enhancement
