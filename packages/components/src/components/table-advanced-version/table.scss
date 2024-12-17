@@ -190,6 +190,10 @@
   line-height: 12px;
 }
 
+.ag-sort-indicator-container .ag-sort-order { 
+  display: none;
+}
+
 .unsort-icon-custom-color {
   color: tokens.$ifxColorEngineering400;
 }

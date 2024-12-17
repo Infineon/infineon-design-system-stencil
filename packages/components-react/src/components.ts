@@ -49,9 +49,6 @@ import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from 
 import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icons-preview.js";
 import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/infineon-design-system-stencil/dist/components/ifx-link.js";
 import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
-import { IfxListGroup as IfxListGroupElement, defineCustomElement as defineIfxListGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-group.js";
-import { IfxListItem as IfxListItemElement, defineCustomElement as defineIfxListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-item.js";
-import { IfxListNotification as IfxListNotificationElement, defineCustomElement as defineIfxListNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-notification.js";
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
@@ -572,39 +569,6 @@ export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEnt
     defineCustomElement: defineIfxListEntry
 });
 
-type IfxListGroupEvents = NonNullable<unknown>;
-
-export const IfxListGroup: StencilReactComponent<IfxListGroupElement, IfxListGroupEvents> = /*@__PURE__*/ createComponent<IfxListGroupElement, IfxListGroupEvents>({
-    tagName: 'ifx-list-group',
-    elementClass: IfxListGroupElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: {} as IfxListGroupEvents,
-    defineCustomElement: defineIfxListGroup
-});
-
-type IfxListItemEvents = NonNullable<unknown>;
-
-export const IfxListItem: StencilReactComponent<IfxListItemElement, IfxListItemEvents> = /*@__PURE__*/ createComponent<IfxListItemElement, IfxListItemEvents>({
-    tagName: 'ifx-list-item',
-    elementClass: IfxListItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: {} as IfxListItemEvents,
-    defineCustomElement: defineIfxListItem
-});
-
-type IfxListNotificationEvents = NonNullable<unknown>;
-
-export const IfxListNotification: StencilReactComponent<IfxListNotificationElement, IfxListNotificationEvents> = /*@__PURE__*/ createComponent<IfxListNotificationElement, IfxListNotificationEvents>({
-    tagName: 'ifx-list-notification',
-    elementClass: IfxListNotificationElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: {} as IfxListNotificationEvents,
-    defineCustomElement: defineIfxListNotification
-});
-
 type IfxModalEvents = {
     onIfxModalOpen: EventName<CustomEvent<any>>,
     onIfxModalClose: EventName<CustomEvent<any>>
@@ -931,14 +895,14 @@ export const IfxSwitch: StencilReactComponent<IfxSwitchElement, IfxSwitchEvents>
     defineCustomElement: defineIfxSwitch
 });
 
-type IfxTabEvents = NonNullable<unknown>;
+type IfxTabEvents = { onTabHeaderChange: EventName<CustomEvent<any>> };
 
 export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__PURE__*/ createComponent<IfxTabElement, IfxTabEvents>({
     tagName: 'ifx-tab',
     elementClass: IfxTabElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {} as IfxTabEvents,
+    events: { onTabHeaderChange: 'tabHeaderChange' } as IfxTabEvents,
     defineCustomElement: defineIfxTab
 });
 
