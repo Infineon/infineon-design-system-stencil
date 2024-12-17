@@ -84,6 +84,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @State() optionIsSelected: boolean = false;
 
   private resizeObserver: ResizeObserver;
+  private previousOptions: any[] = [];
 
   @Element() private readonly root: HTMLElement;
   private choice;
@@ -292,9 +293,16 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   protected componentWillUpdate() { 
     this.handleCloseButton()
-    this.clearSelectField()
+    this.previousOptions = [...this.options];
+    const optionsAreEqual = this.isEqual(this.options, this.previousOptions);
+    if (this.options && !optionsAreEqual) {
+      this.clearSelectField();
+    }
   }
 
+  isEqual(a: any, b: any[]) {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
 
 
   addResizeObserver() { 
