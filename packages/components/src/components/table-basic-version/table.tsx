@@ -26,7 +26,7 @@ export class Table {
 
   componentWillLoad() {
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
-    this.setColsAndRows();
+    this.setColsAndRows(); //needed?
     this.setGridOptions();
   }
 
@@ -38,6 +38,7 @@ export class Table {
         resizable: true,
       },
       suppressCellFocus: true,
+      enableCellTextSelection: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,
       onFirstDataRendered: this.onFirstDataRendered,
@@ -45,6 +46,10 @@ export class Table {
       rowData: this.rowData,
       loadingOverlayComponent: CustomLoadingOverlay,
       noRowsOverlayComponent: CustomNoRowsOverlay,
+      noRowsOverlayComponentParams: {
+        noRowsMessageFunc: () =>
+          'No rows found at: ' + new Date().toLocaleTimeString(),
+      },
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
         sortDescending: '<ifx-icon icon="arrowtriangledown16"></ifx-icon>',
@@ -58,8 +63,12 @@ export class Table {
   setColsAndRows() {
     if (typeof this.rows === 'string' && typeof this.cols === 'string') {
       try {
-        this.columnDefs = JSON.parse(this.cols);
-        this.rowData = JSON.parse(this.rows);
+        if(this.cols) {
+          this.columnDefs = JSON.parse(this.cols);
+        }
+        if(this.rows) {
+          this.rowData = JSON.parse(this.rows);
+        }
       } catch (err) {
         console.error('Failed to parse input:', err);
       }
@@ -75,7 +84,9 @@ export class Table {
     let rows: any[] = [];
     if (typeof this.rows === 'string') {
       try {
-        rows = JSON.parse(this.rows);
+        if(this.rows) {
+          rows = JSON.parse(this.rows);
+        }
       } catch (err) {
         console.error('Failed to parse input:', err);
       }
@@ -93,7 +104,9 @@ export class Table {
 
     if (typeof this.cols === 'string') {
       try {
-        cols = JSON.parse(this.cols);
+        if(this.cols) { 
+          cols = JSON.parse(this.cols);
+        }
       } catch (err) {
         console.error('Failed to parse input:', err);
       }

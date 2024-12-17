@@ -16,7 +16,8 @@ export default {
     required: true,
     optional: false,
     icon: 'c-info-16',
-    name: 'text-field'
+    name: 'text-field',
+    showDeleteIcon: false
   },
 
   argTypes: {
@@ -36,6 +37,9 @@ export default {
       description: 'Maximum input length',
       control: {type: 'number'}
     },
+    showDeleteIcon: {
+      description: 'Show the delete icon'
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event',
@@ -50,7 +54,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -62,6 +66,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
   element.setAttribute('name', name);
+  element.setAttribute('show-delete-icon', showDeleteIcon);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));

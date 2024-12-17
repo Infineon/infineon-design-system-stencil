@@ -81,6 +81,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop({ mutable: true }) options: any[] | string;
   @Prop() size: string = 'medium (40px)';
   @State() selectedOption: any | null = null;
+  @State() optionIsSelected: boolean = false;
+
+  private resizeObserver: ResizeObserver;
+  private previousOptions: any[] = [];
 
   @Element() private readonly root: HTMLElement;
   private choice;
@@ -97,9 +101,14 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   handleDeleteSelection() {
     this.clearInput()
-    this.selectedOption = null;
+    this.clearSelectField()
     this.setPreSelected(null);
     this.closeDropdown();
+    this.optionIsSelected = false;
+  }
+
+  clearSelectField() { 
+    this.selectedOption = null;
     this.ifxSelect.emit(null);
   }
 
@@ -245,18 +254,85 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
+    @Method()
+    async handleDeleteIcon() {
+      const width = this.root.offsetWidth;
+      const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
+      if(deleteIconWrapper) { 
+        if (width <= 180) {
+          deleteIconWrapper.classList.add('hide')
+        } else { 
+          deleteIconWrapper.classList.remove('hide')
+        }
+      }
+    }
+
+
+  handleCloseButton() { 
+    if(typeof this.options === 'string') { 
+      const optionsToArray = JSON.parse(this.options);
+      const optionIsSelected = optionsToArray.find(option => option.selected === true)
+      if(optionIsSelected) { 
+        this.optionIsSelected = true;
+      } else { 
+        this.optionIsSelected = false;
+      }
+    } else if(this.options && Array.isArray(this.options)) { 
+      const optionIsSelected = this.options.find(option => option.selected === true)
+      if(optionIsSelected) { 
+        this.optionIsSelected = true;
+      } else { 
+        this.optionIsSelected = false;
+      }
+    }
+  }
+
+  protected componentWillLoad() { 
+   this.handleCloseButton()
+  }
+
+  protected componentWillUpdate() { 
+    this.handleCloseButton()
+    this.previousOptions = [...this.options];
+    const optionsAreEqual = this.isEqual(this.options, this.previousOptions);
+    if (this.options && !optionsAreEqual) {
+      this.clearSelectField();
+    }
+  }
+
+  isEqual(a: any, b: any[]) {
+    return JSON.stringify(a) === JSON.stringify(b);
+  }
+
+
+  addResizeObserver() { 
+    this.resizeObserver = new ResizeObserver(() => {
+      this.handleDeleteIcon();
+    });
+  
+    const componentWrapper = this.root.querySelector('.ifx-choices__wrapper');
+    this.resizeObserver.observe(componentWrapper);
+  }
+
   protected componentDidLoad() {
     this.init();
     this.addEventListenersToHandleCustomFocusAndActiveState();
-
+    this.handleDeleteIcon();
+    this.addResizeObserver()
   }
 
   protected componentDidUpdate() {
     this.init();
+    this.handleDeleteIcon()
   }
 
   protected disconnectedCallback() {
     this.destroy();
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
 
   protected render(): any {
@@ -285,20 +361,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class='single__select-input-field' disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
-          { this.selectedOption && (
-            <div class="ifx-choices__icon-wrapper-delete">
-              <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
-            </div>
-          )}
-          <div class="ifx-choices__icon-wrapper-up">
-            <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
-          </div>
-          <div class="ifx-choices__icon-wrapper-down">
-            <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+          <div class="single__select-icon-container">
+            { this.optionIsSelected && (
+                <div class="ifx-choices__icon-wrapper-delete">
+                  <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+                </div>
+              )}
+              <div class="ifx-choices__icon-wrapper-up">
+                <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
+              </div>
+              <div class="ifx-choices__icon-wrapper-down">
+                <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+              </div>
           </div>
         </div>
         {this.error ? (
