@@ -1,7 +1,4 @@
-import { Component, State, Prop, h} from '@stencil/core';
-//import { Checkbox } from '../checkbox/checkbox';
-//import { Console } from 'console';
-
+import { Component, State, Prop, h, Watch, Element} from '@stencil/core';
 @Component({
     tag: 'ifx-checkbox-group',
     styleUrl: 'checkbox-group.scss',
@@ -11,40 +8,112 @@ import { Component, State, Prop, h} from '@stencil/core';
 
 export class CheckboxGroup {
   @Prop() orientation: 'horizontal' | 'vertical' = 'vertical';
-  @State() selectedItems: string[] = [];
+  @Prop() size: string;
+  @Prop() selectedItems: string[] = [];
+  @Prop() disabledItems: string[] = [];
+  @Prop() errorItems: string[] = [];  
+  @Prop() indeterminate: string[] = [];
+  @State() internalSelectedItems: string[] = [];
+  @State() internalDisabledItems: string[] = [];
+  @State() internalErrorItems: string[] = [];
+  @State() internalIndeterminateItems: string[] = [];
+  @Element() el: HTMLElement;
+
+  componentWillLoad() {
+    this.internalSelectedItems = [...this.selectedItems];
+    this.internalDisabledItems = [...this.disabledItems];
+    this.internalErrorItems = [...this.errorItems];
+    this.internalIndeterminateItems = [...this.indeterminate];
+  }
+
+  @Watch('selectedItems')
+  handleSelectedItemsChange(newValue: string[]) {
+    this.internalSelectedItems = [...newValue];
+    this.updateCheckboxStates();
+  }
+
+  @Watch('disabledItems')
+  handleDisabledItemsChange(newValue: string[]) {
+    this.internalDisabledItems = [...newValue];
+    this.updateCheckboxStates();
+  }
+
+  @Watch('errorItems')
+  handleErrorItemsChange(newValue: string[]) {
+    this.internalErrorItems = [...newValue];
+    this.updateCheckboxStates();
+  }
+
+  @Watch('size')
+  handleSizeChange() {
+    this.updateCheckboxStates();
+  }
+
+  @Watch('indeterminate')
+  handleIndeterminateChange(newValue: string[]) {
+    this.internalIndeterminateItems = [...newValue];
+    this.updateCheckboxStates();
+  }
+
+handleCheckboxChange(value: string) {
+    this.internalSelectedItems = this.internalSelectedItems.includes(value)
+      ? this.internalSelectedItems.filter(item => item !== value)
+      : [...this.internalSelectedItems, value];
+    this.updateCheckboxStates();
+  }
+
+  updateCheckboxStates() {
+    const slot = this.el.shadowRoot.querySelector('slot');
+    if (slot) {
+      const children = slot.assignedElements();
+      children.forEach((child: HTMLElement) => {
+        if (child.tagName.toLowerCase() === 'custom-checkbox') {
+          const value = child.getAttribute('value');
+          if (value) {
+            this.internalSelectedItems.includes(value)
+              ? child.setAttribute('selected', 'true')
+              : child.removeAttribute('selected');
+
+            this.internalDisabledItems.includes(value)
+              ? child.setAttribute('disabled', 'true')
+              : child.removeAttribute('disabled');
+
+            this.internalErrorItems.includes(value)
+              ? child.setAttribute('error', 'true')
+              : child.removeAttribute('error');
+            
+              this.internalIndeterminateItems.includes(value)
+              ? child.setAttribute('indeterminate', 'true')
+              : child.removeAttribute('indeterminate');
+
+              if (this.size) {
+                child.setAttribute('size', this.size);
+              } else {
+                child.removeAttribute('size');
+              }
+          }
+        }
+      });
+    }
+  }
+  
+  render() {
+    return (
+      <div class={`checkbox-group ${this.orientation}`}>
+        <slot
+          onSlotchange={() => {
+            this.updateCheckboxStates();
+          }}
+        ></slot>
+      </div>
+    );
+  }
 
   onSelectionChanged(value: string) {
     /*this.selectedItems = this.selectedItems.includes(value)
       ? this.selectedItems.filter(item => item !== value)
       : [...this.selectedItems, value];*/
       console.log(value);
-      
-  }
-
-  render() {
-    return (
-      <div class={`checkbox-group ${this.orientation}`}>
-        <slot onSlotchange={(event: Event) => {
-            const slot = event.target as HTMLSlotElement;
-            const children = slot.assignedElements();
-            children.forEach((child: HTMLElement) => {
-              // Check if the child is a custom-checkbox element
-              if (child.tagName.toLowerCase() === 'ifx-checkbox') {
-                child.addEventListener('ifxChange', (e: CustomEvent) => {
-                  this.onSelectionChanged(e.detail);
-                });
-                const value = child.getAttribute('value');
-                if (value && this.selectedItems.includes(value)) {
-                  child.setAttribute('checked', 'true');
-                } else {
-                  child.removeAttribute('checked');
-                }
-              }
-            });
-          }}></slot>
-      </div>
-    );
   }
 }
-
     

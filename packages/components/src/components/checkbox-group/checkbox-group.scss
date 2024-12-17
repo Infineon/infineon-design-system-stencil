@@ -3,12 +3,15 @@
 
 .checkbox-group {
     display: flex;
+    font-family: var(--ifx-font-family);
 }
 
 .checkbox-group.horizontal {
     flex-direction: row;
+    column-gap: 12px;
 }
 
 .checkbox-group.vertical {
     flex-direction: column;
+    row-gap: 12px;
 }
