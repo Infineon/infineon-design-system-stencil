@@ -1,4 +1,4 @@
-import { Component, h, Host, Method, Element, Prop, State, Listen } from '@stencil/core';
+import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
 import classNames from 'classnames';
 
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
@@ -18,6 +18,7 @@ export class Table {
   @State() currentPage: number = 1;
   @Prop() cols: any;
   @Prop() rows: any;
+  @Prop() buttonRendererOptions?: { onButtonClick?: (params: any, event: Event) => void;}; 
   @State() rowData: any[] = [];
   @State() colData: any[] = [];
   @State() filterOptions: { [key: string]: string[] } = {};
@@ -64,7 +65,13 @@ export class Table {
     this.updateTableView();
   }
 
-
+  @Watch('buttonRendererOptions')
+  onButtonRendererOptionsChanged() {
+     this.colData = this.getColData();  // Re-fetch column data to apply new renderer options
+    if (this.gridApi) {
+      this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
+    }
+  }
 
   toggleSidebarFilters() {
     this.showSidebarFilters = !this.showSidebarFilters;
@@ -209,8 +216,6 @@ export class Table {
   }
 
 
-
-
   @Method()
   async onBtShowLoading() {
     this.gridApi.showLoadingOverlay();
@@ -335,12 +340,12 @@ export class Table {
     if (this.rows === undefined || this.rows === null) {
       return rows;
     }
-
+ 
     if (this.isJSONParseable(this.rows)) {
       rows = [...JSON.parse(this.rows)];
     }
     else if (Array.isArray(this.rows) || typeof this.rows === 'object') {
-      rows = [...this.rows];
+       rows = [...this.rows];
     }
     else {
       console.error('Unexpected value for rows: ', this.rows);
@@ -359,7 +364,7 @@ export class Table {
     if (this.cols === undefined || this.cols === null) {
       return cols;
     }
-
+  
     if (this.isJSONParseable(this.cols)) {
       cols = [...JSON.parse(this.cols)];
     } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
@@ -367,14 +372,24 @@ export class Table {
     } else {
       console.error('Unexpected value for cols: ', this.cols);
     }
-
-    let buttonColumn = cols.find(column => column.field === 'button');
+  
+    const buttonColumn = cols.find(column => column.field === 'button');
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
+  
+      // No JSON.parse needed now
+      if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
+        if (this.buttonRendererOptions.onButtonClick) {
+          buttonColumn.cellRendererParams = {
+            onButtonClick: this.buttonRendererOptions.onButtonClick
+          };
+        }
+      }
     }
-
+  
     return cols;
   }
+  
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
     params.api.sizeColumnsToFit();
