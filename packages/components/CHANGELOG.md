@@ -1,3 +1,15 @@
+# v30.7.0 (Tue Dec 17 2024)
+
+#### 🚀 Enhancement
+
+- Removes list-group from internal project [#1659](https://github.com/Infineon/infineon-design-system-stencil/pull/1659) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.6.1 (Fri Dec 13 2024)
 
 #### 🐛 Bug Fix
