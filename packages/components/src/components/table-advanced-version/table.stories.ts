@@ -82,6 +82,11 @@ export default {
     currentPage: 1,
     rowHeight: 40,
     showLoading: false,
+    buttonRendererOptions: {
+      onButtonClick: (params, event) => {
+        console.log('Button clicked:', params, event);
+      }
+    }
   },
   argTypes: {
     tableHeight: {
@@ -123,7 +128,17 @@ export default {
           detail: 'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000 \n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
         },
       },
-    }
+    },
+    buttonRendererOptions: {
+      control: 'object',
+      description: 'Options for button cell renderer, including event handlers.',
+      table: {
+        type: {
+          summary: 'Button Renderer Options',
+          detail: 'Custom event handlers and other options for the button cell renderer in the table.'
+        },
+      },
+    },
   }
 };
 
@@ -255,7 +270,12 @@ SidebarFilter.args = {
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
-  filterOrientation: 'sidebar'
+  filterOrientation: 'sidebar',
+  buttonRendererOptions: {
+    onButtonClick: (params, event) => {
+      console.log('Button clicked:', params, event);
+    }
+  }
 };
 
 export const TopbarFilter = DefaultTemplate.bind({});
