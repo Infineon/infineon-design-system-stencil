@@ -1,3 +1,16 @@
+# v30.9.0 (Wed Dec 18 2024)
+
+#### 🚀 Enhancement
+
+- Advanced table: restores column divider, and enables customization on nested button (href / event handler) [#1587](https://github.com/Infineon/infineon-design-system-stencil/pull/1587) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.8.0 (Tue Dec 17 2024)
 
 #### 🚀 Enhancement
