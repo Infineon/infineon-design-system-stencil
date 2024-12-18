@@ -376,7 +376,8 @@ export class Table {
     const buttonColumn = cols.find(column => column.field === 'button');
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
-  
+      buttonColumn.valueFormatter = params => params.value.text;
+      
       // No JSON.parse needed now
       if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
         if (this.buttonRendererOptions.onButtonClick) {
