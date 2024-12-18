@@ -28,12 +28,18 @@ export class AppComponent {
 
   @ViewChild('ifxTabs') ifxTabs: IfxTabs | undefined;
   @ViewChild('ifxAccordionItem') ifxAccordionItemRef: IfxAccordionItem | undefined;
-
+ 
 
   ngOnInit() {
     this.setTab();
     setInterval(() => this.setTab(), 20000);
   }
+
+  buttonRendererOptions = {
+    onButtonClick: (params: any, event: Event) => {
+      console.log("button clicked", params.data);
+    }
+  };
 
   setTab() {
     const next = Math.floor(Math.random() * (3));
@@ -43,6 +49,7 @@ export class AppComponent {
     }
   }
 
+ 
   handleChange(event: any) {
     console.log("emitting active tab index: ", event.detail);
   };
