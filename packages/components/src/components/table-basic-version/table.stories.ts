@@ -1,11 +1,11 @@
 //default
-const columnDefs = [
+const cols = [
   { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
   { headerName: 'Price', field: 'price' },
   { headerName: 'Age', field: 'age' },
 ];
-const rowData = [
+const rows = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
   { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
   { make: 'Porsche', model: 'Boxster', price: 72000 },
@@ -43,7 +43,7 @@ export default {
       options: ['compact', 'default'],
       control: { type: 'radio' },
     },
-    columnDefs: {
+    cols: {
       table: {
         category: 'ifx-table props',
         type: {
@@ -53,7 +53,7 @@ export default {
         },
       },
     },
-    rowData: {
+    rows: {
       table: {
         category: 'ifx-table props',
         type: {
@@ -67,22 +67,22 @@ export default {
 };
 
 const DefaultTemplate = args => `<ifx-basic-table 
-cols='${JSON.stringify(args.columnDefs)}' s
-rows='${JSON.stringify(args.rowData)}'
-table-height='${args.tableHeight}'
-row-height='${args.rowHeight}'>
+cols='${JSON.stringify(args.cols)}' 
+rows='${JSON.stringify(args.rows)}'
+table-height='${args.tableHeight}'>
 </ifx-basic-table>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
-  columnDefs: columnDefs,
-  rowData: rowData,
+  cols: cols,
+  rows: rows,
   tableHeight: 'auto',
   rowHeight: 'default',
 };
 
 export const FixedHeight = DefaultTemplate.bind({});
 FixedHeight.args = {
-  columnDefs: columnDefs,
-  rowData: rowData,
+  tableHeight: '400px',
+  cols: cols,
+  rows: rows,
 };

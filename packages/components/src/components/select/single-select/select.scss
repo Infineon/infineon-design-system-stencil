@@ -159,6 +159,16 @@
       }
     }
 
+    & .ifx-choices__icon-wrapper-delete {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.hide { 
+        display: none;
+      }
+    }
+
   }
 
 

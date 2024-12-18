@@ -81,6 +81,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop({ mutable: true }) options: any[] | string;
   @Prop() size: string = 'medium (40px)';
   @State() selectedOption: any | null = null;
+  @State() optionIsSelected: boolean = false;
+
+  private resizeObserver: ResizeObserver;
 
   @Element() private readonly root: HTMLElement;
   private choice;
@@ -93,6 +96,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     } else {
       this.choice.enable();
     }
+  }
+
+  handleDeleteSelection() {
+    this.clearInput()
+    this.selectedOption = null;
+    this.setPreSelected(null);
+    this.closeDropdown();
+    this.ifxSelect.emit(null);
+    this.optionIsSelected = false;
   }
 
   @Method()
@@ -237,18 +249,76 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
+    @Method()
+    async handleDeleteIcon() {
+      const width = this.root.offsetWidth;
+      const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
+      if(deleteIconWrapper) { 
+        if (width <= 180) {
+          deleteIconWrapper.classList.add('hide')
+        } else { 
+          deleteIconWrapper.classList.remove('hide')
+        }
+      }
+    }
+
+
+  handleCloseButton() { 
+    if(typeof this.options === 'string') { 
+      const optionsToArray = JSON.parse(this.options);
+      const optionIsSelected = optionsToArray.find(option => option.selected === true)
+      if(optionIsSelected) { 
+        this.optionIsSelected = true;
+      } else { 
+        this.optionIsSelected = false;
+      }
+    } else if(this.options && Array.isArray(this.options)) { 
+      const optionIsSelected = this.options.find(option => option.selected === true)
+      if(optionIsSelected) { 
+        this.optionIsSelected = true;
+      } else { 
+        this.optionIsSelected = false;
+      }
+    }
+  }
+
+  protected componentWillLoad() { 
+   this.handleCloseButton()
+  }
+
+  protected componentWillUpdate() { 
+    this.handleCloseButton()
+    
+  }
+
+  addResizeObserver() { 
+    this.resizeObserver = new ResizeObserver(() => {
+      this.handleDeleteIcon();
+    });
+  
+    const componentWrapper = this.root.querySelector('.ifx-choices__wrapper');
+    this.resizeObserver.observe(componentWrapper);
+  }
+
   protected componentDidLoad() {
     this.init();
     this.addEventListenersToHandleCustomFocusAndActiveState();
-
+    this.handleDeleteIcon();
+    this.addResizeObserver()
   }
 
   protected componentDidUpdate() {
     this.init();
+    this.handleDeleteIcon()
   }
 
   protected disconnectedCallback() {
     this.destroy();
+
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+      this.resizeObserver = null;
+    }
   }
 
   protected render(): any {
@@ -281,6 +351,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             {this.createSelectOptions(this.options)}
           </select>
 
+          { this.optionIsSelected && (
+            <div class="ifx-choices__icon-wrapper-delete">
+              <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+            </div>
+          )}
           <div class="ifx-choices__icon-wrapper-up">
             <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
           </div>

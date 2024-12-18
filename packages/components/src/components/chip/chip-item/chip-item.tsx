@@ -91,8 +91,9 @@ render() {
                     chip-item--${(this.selected && this.chipState.variant) === 'single' ? 'selected' : ''}`} 
            tabIndex={0}
            onClick={() => {this.handleItemClick()}}
-           onKeyDown={(e) => {this.handleItemKeyDown(e)}}>
-
+           onKeyDown={(e) => {this.handleItemKeyDown(e)}}
+           role="option"
+           aria-selected={this.selected.toString()}>    
            {/* Checkbox; renders only in 'multi' variant. */}
            { 
                this.chipState.variant === 'multi' &&

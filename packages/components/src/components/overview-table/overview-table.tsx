@@ -1431,7 +1431,15 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td >
+                  <td>
+                  <ul>
+                    <li>
+                      <span>
+                        <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                      </span>
+                      <span>Vertical variant</span>
+                    </li>
+                    </ul>
                   </td>
                   <td></td>
                 </tr>
@@ -1779,7 +1787,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Segmented Controls</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
                   </td>
                   <td>
                     <ul>
@@ -1800,6 +1808,29 @@ export class OverviewTable {
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
                         <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Textarea</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a customizable multi-line text input interface, enabling users to input, edit, and view large amounts of text, while adhering to web standards for accessibility and usability.</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Form integration</span>
                       </li>
                     </ul>
                   </td>
@@ -1882,24 +1913,6 @@ export class OverviewTable {
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Radio Group</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-            
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Text Area</ifx-link>
                   </td>
                   <td>
                     <ul>

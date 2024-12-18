@@ -161,7 +161,6 @@
 
 
   .ifx-clear-button {
-    margin-right: tokens.$ifxSpace100; // Space between clear button and icons
     display: flex;
   }
 
@@ -179,9 +178,10 @@
     z-index: var(--dynamic-z-index, 1); // Fallback to 1
 
     .search-input {
-      // position: sticky;
-      // top: 0;
-      // z-index: 2;
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 1;
       width: 100%;
       padding: 8px 16px;
       font-size: tokens.$ifxFontSizeM;

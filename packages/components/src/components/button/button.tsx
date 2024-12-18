@@ -94,7 +94,7 @@ export class Button {
 
   resetClickHandler() {
     const formElement = this.el.closest('form');
-    const customElements = formElement.querySelectorAll('ifx-text-field');
+    const customElements = formElement.querySelectorAll('ifx-text-field, ifx-textarea');
     customElements.forEach(element => {
       element.reset();
     });
@@ -136,7 +136,7 @@ export class Button {
           onFocus={(event) => this.handleFocus(event)}
           aria-disabled={this.disabled ? 'true' : null}
           aria-describedby={this.theme === 'danger' ? 'Dangerous action' : undefined}
-          aria-label={this.AriaLabel || "Button label"}
+          aria-label={this.AriaLabel || undefined}
         >
           <slot></slot>
         </a>

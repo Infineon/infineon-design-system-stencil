@@ -19,13 +19,14 @@
   height: auto;
   font-family: var(--ifx-font-family);
 
-
-  &.linkHovered {
-    border-color: tokens.$ifxColorEngineering200;
-  }
-
-  &.cardHovered {
+  // when the link is focused or hovered, the border color changes
+  &:has(.card-href:focus), &:has(.card-href:hover) {
+    outline: none;
     border-color: tokens.$ifxColorOcean500;
+
+    ::slotted(ifx-card-headline) {
+      color: tokens.$ifxColorOcean500;
+    }
   }
 
   &.noBtns {
@@ -129,11 +130,8 @@
       }
     }
   }
-}
 
-.card:focus,
-.card:focus-visible,
-.focus {
-  outline: none;
-  border-color: tokens.$ifxColorOcean500 !important;
+  & .card-href:focus {
+    outline: none;
+  }
 }
