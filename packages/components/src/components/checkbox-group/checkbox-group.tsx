@@ -7,12 +7,18 @@ import { Component, State, Prop, h, Watch, Element} from '@stencil/core';
   })
 
 export class CheckboxGroup {
-  @Prop() orientation: 'horizontal' | 'vertical' = 'vertical';
+  @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
   @Prop() size: string;
   @Prop() selectedItems: string[] = [];
   @Prop() disabledItems: string[] = [];
   @Prop() errorItems: string[] = [];  
   @Prop() indeterminate: string[] = [];
+  @Prop() showGroupLabel: boolean;
+  @Prop() groupLabelText: string;
+  @Prop() showCaption: boolean;
+  @Prop() captionText: string;
+  @Prop() showCaptionIcon: boolean;
+  @Prop() showCaptionError: boolean;
   @State() internalSelectedItems: string[] = [];
   @State() internalDisabledItems: string[] = [];
   @State() internalErrorItems: string[] = [];
@@ -99,7 +105,7 @@ handleCheckboxChange(value: string) {
   
   render() {
     return (
-      <div class={`checkbox-group ${this.orientation}`}>
+      <div class={`checkbox-group ${this.alignment}`}>
         <slot
           onSlotchange={() => {
             this.updateCheckboxStates();
