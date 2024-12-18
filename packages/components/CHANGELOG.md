@@ -1,3 +1,124 @@
+# v30.9.0 (Wed Dec 18 2024)
+
+#### 🚀 Enhancement
+
+- Advanced table: restores column divider, and enables customization on nested button (href / event handler) [#1587](https://github.com/Infineon/infineon-design-system-stencil/pull/1587) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.8.0 (Tue Dec 17 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: clears the field only on options update (prevents double re-rendering of component) [#1658](https://github.com/Infineon/infineon-design-system-stencil/pull/1658) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.7.0 (Tue Dec 17 2024)
+
+#### 🚀 Enhancement
+
+- Removes list-group from internal project [#1659](https://github.com/Infineon/infineon-design-system-stencil/pull/1659) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.6.1 (Fri Dec 13 2024)
+
+#### 🐛 Bug Fix
+
+- Advanced-table: removes bug where default sort order icon appears [#1656](https://github.com/Infineon/infineon-design-system-stencil/pull/1656) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.6.0 (Fri Dec 13 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: clears select field when options updated [#1655](https://github.com/Infineon/infineon-design-system-stencil/pull/1655) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.5.0 (Fri Dec 13 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: fixes error on initial empty table load [#1653](https://github.com/Infineon/infineon-design-system-stencil/pull/1653) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.4.0 (Thu Dec 12 2024)
+
+#### 🚀 Enhancement
+
+- Table components: makes text selectable [#1645](https://github.com/Infineon/infineon-design-system-stencil/pull/1645) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.3.1 (Thu Dec 12 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: implements full-width prop for tabs, and makes tabs header dynamically updatable [#1643](https://github.com/Infineon/infineon-design-system-stencil/pull/1643) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.3.0 (Wed Dec 11 2024)
+
+#### 🚀 Enhancement
+
+- Basic-table: Reverts back noRowsOverlayComponentParams prop [#1642](https://github.com/Infineon/infineon-design-system-stencil/pull/1642) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.2.0 (Wed Dec 11 2024)
+
+#### 🚀 Enhancement
+
+- Single-select: truncating selected option [#1641](https://github.com/Infineon/infineon-design-system-stencil/pull/1641) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.1.0 (Tue Dec 10 2024)
 
 #### 🚀 Enhancement

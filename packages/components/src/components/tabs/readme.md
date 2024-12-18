@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type     | Default        |
-| ---------------- | ------------------ | ----------- | -------- | -------------- |
-| `activeTabIndex` | `active-tab-index` |             | `number` | `0`            |
-| `orientation`    | `orientation`      |             | `string` | `"horizontal"` |
+| Property         | Attribute          | Description | Type      | Default        |
+| ---------------- | ------------------ | ----------- | --------- | -------------- |
+| `activeTabIndex` | `active-tab-index` |             | `number`  | `0`            |
+| `fullWidth`      | `full-width`       |             | `boolean` | `false`        |
+| `orientation`    | `orientation`      |             | `string`  | `"horizontal"` |
 
 
 ## Events
