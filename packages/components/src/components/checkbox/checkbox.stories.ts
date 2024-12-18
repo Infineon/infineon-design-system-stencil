@@ -86,7 +86,7 @@ export default {
     },
     ifxChange: {
       action: 'ifxChange',
-      description: 'Custom event emitted when accordion-item is closed',
+      description: 'Custom event that is triggered when the checkbox is clicked.',
       table: {
         category: 'custom events',
         type: {
