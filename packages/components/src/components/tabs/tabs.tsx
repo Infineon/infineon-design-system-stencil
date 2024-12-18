@@ -242,7 +242,7 @@ export class IfxTabs {
             <li
               class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
-              tabindex="0"
+              onMouseDown={(event) => event.preventDefault()}
               onClick={() => this.handleClick(tab, index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}
