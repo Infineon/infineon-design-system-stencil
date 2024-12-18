@@ -1,3 +1,15 @@
+# v30.9.1 (Wed Dec 18 2024)
+
+#### 🐛 Bug Fix
+
+- Tabs: removes focus state on mouse click [#1663](https://github.com/Infineon/infineon-design-system-stencil/pull/1663) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.9.0 (Wed Dec 18 2024)
 
 #### 🚀 Enhancement
