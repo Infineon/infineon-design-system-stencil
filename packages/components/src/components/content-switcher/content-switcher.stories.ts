@@ -9,6 +9,7 @@ export default {
     amountOfItems: 4,
     label: 'Item',
     value: 'item',
+    selected: false,
     icon: 'applications-16'
 
   },
@@ -45,6 +46,19 @@ export default {
         }
       }
     },
+    selected: {
+      control: { type: 'boolean' },
+      description: 'Set the selected state of the content-switcher-item. Only one item can be selected at the time. If there initially exists more than one selected item, then only the first item will be selected.',
+      table: {
+        category: 'content-switcher-item props',
+        defaultValue: {
+          summary: 'false'
+        },
+        type: {
+          summary: 'boolean'
+        }
+      }
+    },
     icon: {
       description: 'The icon of the content-switcher-item.',
       options: Object.values(icons).map(i => i['name']),
@@ -71,7 +85,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ amountOfItems, label, value, icon }) => {
+const DefaultTemplate = ({ amountOfItems, label, value, icon, selected }) => {
   const element = document.createElement('ifx-content-switcher');
 
   for (let i = 0; i < amountOfItems; i++) {
@@ -80,6 +94,9 @@ const DefaultTemplate = ({ amountOfItems, label, value, icon }) => {
     item.innerHTML = `
       <ifx-icon icon="${icon}"></ifx-icon> ${label} ${i + 1}
     `;
+    if (i === 1 && selected) {
+      item.setAttribute('selected', 'true');
+    }
 
     element.appendChild(item);
   }
