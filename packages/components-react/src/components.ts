@@ -558,8 +558,8 @@ export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEnt
 });
 
 type IfxModalEvents = {
-    onIfxModalOpen: EventName<CustomEvent<any>>,
-    onIfxModalClose: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
@@ -568,15 +568,15 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = 
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onIfxModalOpen: 'ifxModalOpen',
-        onIfxModalClose: 'ifxModalClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxModalEvents,
     defineCustomElement: defineIfxModal
 });
 
 type IfxMultiselectEvents = {
     onIfxSelect: EventName<CustomEvent<any>>,
-    onIfxMultiselectIsOpen: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents>({
@@ -586,7 +586,7 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
-        onIfxMultiselectIsOpen: 'ifxMultiselectIsOpen'
+        onIfxOpen: 'ifxOpen'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
 });
@@ -700,7 +700,7 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
 
 type IfxSearchBarEvents = {
     onIfxInput: EventName<CustomEvent<any>>,
-    onIfxSearchBarIsOpen: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents>({
@@ -710,7 +710,7 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     react: React,
     events: {
         onIfxInput: 'ifxInput',
-        onIfxSearchBarIsOpen: 'ifxSearchBarIsOpen'
+        onIfxOpen: 'ifxOpen'
     } as IfxSearchBarEvents,
     defineCustomElement: defineIfxSearchBar
 });
