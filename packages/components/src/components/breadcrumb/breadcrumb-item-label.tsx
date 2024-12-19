@@ -7,7 +7,7 @@ import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core'
 })
 export class BreadcrumbItemLabel {
   @Prop() icon: string;
-  @Prop() url: string;
+  @Prop() href: string;
   @Prop() target: string = "_self"
   @Element() el;
   @Event() breadcrumbMenuIconWrapper: EventEmitter<CustomEvent>;
@@ -20,7 +20,7 @@ export class BreadcrumbItemLabel {
 
   render() {
     return (
-      <a href={this.url} target={this.target} class="breadcrumb-item-label-container" role='link'>
+      <a href={this.href} target={this.target} class="breadcrumb-item-label-container" role='link'>
         <ifx-icon icon={this.icon} aria-hidden="true"></ifx-icon>
         <span class="label-wrapper">
           <slot />

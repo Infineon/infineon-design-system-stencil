@@ -9,9 +9,9 @@
 
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
+| `href`   | `href`    |             | `string` | `undefined` |
 | `icon`   | `icon`    |             | `string` | `undefined` |
 | `target` | `target`  |             | `string` | `"_self"`   |
-| `url`    | `url`     |             | `string` | `undefined` |
 
 
 ## Events

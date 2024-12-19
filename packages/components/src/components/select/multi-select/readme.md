@@ -25,10 +25,10 @@
 
 ## Events
 
-| Event                  | Description | Type               |
-| ---------------------- | ----------- | ------------------ |
-| `ifxMultiselectIsOpen` |             | `CustomEvent<any>` |
-| `ifxSelect`            |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `ifxOpen`   |             | `CustomEvent<any>` |
+| `ifxSelect` |             | `CustomEvent<any>` |
 
 
 ## Dependencies
