@@ -18,7 +18,8 @@ export default {
     variant: 'single',
     readOnly: false,
     selected: false,
-    value: 'Item Value'
+    value: 'Item Value',
+    AriaLabel: 'Chip'
   },
   argTypes: {
     amountOfChipItems: {
@@ -84,6 +85,13 @@ export default {
         }
       }
     },
+    AriaLabel: {
+      control: { type: 'text' },
+      description: 'Set the aria label of the chip item. Enhances accessibility.',
+      table: {
+        category: 'ifx-chip props'
+      }
+    },
     selected: {
       description: 'Set the *selected* prop to pre-select the chip item.',
       table: {
@@ -101,21 +109,7 @@ export default {
     },
     ifxChange: {
       action: 'ifxChange',
-      description: `A custom event emitted when the selection in a *<ifx-chip>* is updated.\n
-      event.detail: 
-      {
-        currentSelection: Array<Option>,
-        previousSelection: Array<Option>
-      }
-
-      Option:
-      {
-        key: number,
-        label: string,
-        selected: boolean,
-        value: string
-      }
-      `,
+      description: 'A custom event emitted when the selection in a *<ifx-chip>* is updated.',
       table: {
         category: 'custom events',
         type: {
@@ -139,6 +133,7 @@ placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
 read-only="${args.readOnly}"
+AriaLabel="${args.AriaLabel}"
 >
   ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
