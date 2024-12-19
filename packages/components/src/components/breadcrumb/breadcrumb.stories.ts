@@ -82,7 +82,7 @@ export default {
     },
     ifxDropdownMenuItem: {
       action: 'ifxDropdownMenuItem',
-      description: 'Custom event emitted when the ifxDropdownItem event is emitted internally. It is used to handle the event in the parent component.',
+      description: 'Custom event emitted by ifx-dropdown-menu when an item is selected.',
       table: {
         category: 'custom events',
         type: {
