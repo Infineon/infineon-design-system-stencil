@@ -16,12 +16,9 @@ export default {
   argTypes: {
     label: {
       name: 'Label of Checkbox',
-      description: 'Sets the label of *<ifx-checkbox>*.',
+      description: 'Set the label displayed next to *<ifx-checkbox>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-checkbox> `label` </ifx-checkbox>'
-        }
       }
     },
     error: {

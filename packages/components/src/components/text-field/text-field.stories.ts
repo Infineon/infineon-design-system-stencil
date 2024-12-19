@@ -24,7 +24,7 @@ export default {
   argTypes: {
     label: {
       name: 'Label of Text Field',
-      description: 'The text label displayed above the text field.',
+      description: 'The text label displayed above the *<ifx-text-field>*.',
       table: {
         category: 'story controls',
       }

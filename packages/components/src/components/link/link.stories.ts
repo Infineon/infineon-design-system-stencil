@@ -14,12 +14,9 @@ export default {
   argTypes: {
     label: {
       name: 'Label of Link',
-      description: 'Sets the label of *<ifx-link>*.',
+      description: 'Set the label of *<ifx-link>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-link> `label` </ifx-link>'
-        }
       }
     },
     href: {

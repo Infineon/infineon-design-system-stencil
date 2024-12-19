@@ -15,7 +15,7 @@ export default {
   argTypes: {
     content: {
       name: 'Content',
-      description: 'Text inside the notification is passed as slot.',
+      description: 'Set the text content of the *<ifx-notification>*.',
       table: {
         category: 'story controls',
         type: {

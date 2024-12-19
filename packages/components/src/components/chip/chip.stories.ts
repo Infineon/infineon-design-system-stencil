@@ -37,9 +37,6 @@ export default {
       description: 'Set the label of *<ifx-chip-item>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-chip-item> `label` </ifx-chip-item>'
-        }
       }
     },
     placeholder: {
@@ -143,8 +140,7 @@ size="${args.size}"
 variant="${args.variant}"
 read-only="${args.readOnly}"
 >
-  ${
-    (() => {
+  ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
         const chipItem: HTMLIfxChipItemElement = document.createElement('ifx-chip-item');
         chipItem.innerHTML = args.chipItemLabel + ' ' + (chipItemId + 1);
@@ -159,7 +155,7 @@ read-only="${args.readOnly}"
         return chipItem.outerHTML;
       }).join(`\n    `);
     })()
-  }
+    }
 </ifx-chip>`;
 
   const chip = wrapper.querySelector('ifx-chip');

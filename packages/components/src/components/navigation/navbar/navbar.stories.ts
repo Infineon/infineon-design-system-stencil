@@ -23,9 +23,9 @@ export default {
   },
   argTypes: {
     profileLabel: {
-      name: 'Label',
+      name: 'Label of Profile',
       control: { type: 'text' },
-      description: 'Label for the profile.',
+      description: 'Set the label of *<ifx-navbar-profile>*.',
       table: {
         category: 'story controls',
       },

@@ -26,9 +26,9 @@ export default {
       }
     },
     label: {
-      name: 'Label',
+      name: 'Label of Content Switcher Item',
       control: { type: 'text' },
-      description: 'Set the label of the content-switcher-item.',
+      description: 'Set the label of the *<ifx-content-switcher-item>*.',
       table: {
         category: 'story controls',
         type: {

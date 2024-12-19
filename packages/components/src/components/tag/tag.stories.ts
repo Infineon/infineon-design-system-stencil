@@ -10,9 +10,9 @@ export default {
   },
   argTypes: {
     label: {
-      name: 'Label',
+      name: 'Label of Tag',
       control: { type: 'text' },
-      description: 'Set the label of the tag.',
+      description: 'Set the label of *<ifx-tag>*.',
       table: {
         category: 'story controls',
         type: {

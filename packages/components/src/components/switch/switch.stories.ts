@@ -13,13 +13,10 @@ export default {
   },
   argTypes: {
     label: {
-      name: 'Label',
-      description: 'Set the label of <ifx-switch>.',
+      name: 'Label of Switch',
+      description: 'Set the label of *<ifx-switch>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-switch> `label` </ifx-switch>'
-        }
       }
     },
     name: {

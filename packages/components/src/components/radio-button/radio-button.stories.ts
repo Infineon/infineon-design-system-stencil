@@ -46,7 +46,7 @@ export default {
     },
     label: {
       name: 'Label of Radio Button',
-      description: 'Defines the text displayed alongside the radio button.',
+      description: 'Set the label displayed next to *<ifx-radio-button>*.',
       table: {
         category: 'story controls',
       }

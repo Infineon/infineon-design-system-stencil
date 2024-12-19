@@ -22,12 +22,9 @@ export default {
   argTypes: {
     label: {
       name: 'Label of Button',
-      description: 'Sets the text displayed on the button.',
+      description: 'Sets the text displayed on the *<ifx-button>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-button> `label` </ifx-button>'
-        }
       }
     },
     icon: {

@@ -50,8 +50,8 @@ export default {
       }
     },
     label: {
-      name: 'Label of Dropdown',
-      description: 'The visible name or label for the dropdown button.',
+      name: 'Label of Dropdown Trigger Button',
+      description: 'Set the label displayed on the *<ifx-dropdown-trigger-button>*.',
       table: {
         category: 'story controls',
         defaultValue: {
