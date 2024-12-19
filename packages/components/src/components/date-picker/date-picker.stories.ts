@@ -15,6 +15,8 @@ export default {
     min: '',
     label: "Label Text",
     caption: "Caption text, description, error notification.",
+    AriaLabel: 'Date Picker',
+    required: false,
   },
   argTypes: {
     label: {
@@ -88,10 +90,27 @@ export default {
         category: 'ifx-date-picker props'
       }
     },
-    value: { 
+    value: {
       description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd',
       table: {
         category: 'ifx-date-picker props'
+      }
+    },
+    AriaLabel: {
+      control: { type: 'text' },
+      description: 'Set the aria label of the date picker. Enhances accessibility.',
+      table: {
+        category: 'ifx-date-picker props'
+      }
+    },
+    required: {
+      description: 'Set the required attribute to true to make the date picker mandatory.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-date-picker props',
+        defaultValue: {
+          summary: false
+        }
       }
     },
     ifxDate: {
@@ -109,7 +128,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -120,6 +139,8 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('min', min);
   element.setAttribute('label', label);
   element.setAttribute('caption', caption);
+  element.setAttribute('AreaLabel', AriaLabel);
+  element.setAttribute('required', required);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };
