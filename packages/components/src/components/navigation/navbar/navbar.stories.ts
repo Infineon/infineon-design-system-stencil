@@ -184,42 +184,16 @@ export default {
       },
     },
     searchBarPosition: {
-      description: 'The position of the search bar.',
+      name: 'search-bar-',
+      description: 'The position of the search-bar within the Navbar as specified in the slot name.',
       options: ['left', 'right'],
       control: { type: 'radio' },
       table: {
         defaultValue: { summary: 'left' },
-        category: 'ifx-search-bar props',
+        category: 'ifx-search-bar-slot',
         type: {
           summary: 'left | right',
         },
-      },
-    },
-    ifxNavbarMobileMenuIsOpen: {
-      action: 'ifxNavbarMobileMenuIsOpen',
-      description: 'Event emitted when the mobile menu is opened.',
-      table: {
-        category: 'custom events',
-        type: {
-          summary: 'Framework integration',
-          detail: `React: onifxNavbarMobileMenuIsOpen={handleOpen} 
-          Vue: @ifxNavbarMobileMenuIsOpen="handleOpen" 
-          Angular: (ifxNavbarMobileMenuIsOpen)="handleOpen()" 
-          VanillaJs: .addEventListener("ifxNavbarMobileMenuIsOpen", (event) => {/*handle open*/});`
-        },
-      },
-    },
-    ifxNavItem: {
-      action: 'ifxNavItem',
-      description: 'Event emitted when a navbar item is clicked.',
-      table: {
-        category: 'custom events',
-        type: {
-          summary: 'Framework integration',
-          detail: `React: onifxNavItem={handleClick}
-          Vue: @ifxNavItem="handleClick" 
-          Angular: (ifxNavItem)="handleClick()"
-          VanillaJs: .addEventListener("ifxNavItem", (event) => {/*handle click*/});`},
       },
     },
   },
