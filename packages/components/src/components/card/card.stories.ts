@@ -11,6 +11,7 @@ export default {
     target: '_blank',
     position: 'right',
     src: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg',
+    AriaLabel: 'Card',
   },
 
   argTypes: {
@@ -62,6 +63,13 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
+    AriaLabel: {
+      control: { type: 'text' },
+      description: 'Sets the aria-label attribute of the card. Enhances accessibility.',
+      table: {
+        category: 'ifx-card props',
+      },
+    },
 
     position: {
       description: 'Sets the position of the image in the card.',
@@ -90,16 +98,6 @@ export default {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' },
     },
-    isHovered: {
-      description: 'Changes the color of the headline when hovered.',
-      type: 'boolean',
-      table: {
-        defaultValue: {
-          summary: false
-        },
-        category: 'ifx-card-headline props',
-      },
-    },
     src: {
       description: 'Sets the image source.',
       type: { name: 'string' },
@@ -118,7 +116,7 @@ export default {
 };
 
 const DefaultTemplate = args =>
-  `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}">
+  `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.AriaLabel}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="" slot="img"></ifx-card-image>
     ${args.overline
     ? `<ifx-card-overline>
