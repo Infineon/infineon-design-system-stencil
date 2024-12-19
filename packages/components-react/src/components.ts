@@ -268,14 +268,14 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     defineCustomElement: defineIfxCheckbox
 });
 
-type IfxChipEvents = { onIfxChipChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
+type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
     elementClass: IfxChipElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxChipChange: 'ifxChipChange' } as IfxChipEvents,
+    events: { onIfxChange: 'ifxChange' } as IfxChipEvents,
     defineCustomElement: defineIfxChip
 });
 
