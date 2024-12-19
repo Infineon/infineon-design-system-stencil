@@ -98,8 +98,8 @@ export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordi
 });
 
 type IfxAccordionItemEvents = {
-    onIfxItemOpen: EventName<CustomEvent<any>>,
-    onIfxItemClose: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents>({
@@ -108,8 +108,8 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onIfxItemOpen: 'ifxItemOpen',
-        onIfxItemClose: 'ifxItemClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxAccordionItemEvents,
     defineCustomElement: defineIfxAccordionItem
 });

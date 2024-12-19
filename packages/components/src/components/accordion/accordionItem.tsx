@@ -13,8 +13,8 @@ export class IfxAccordionItem {
   }) open: boolean = false;
   @Prop() AriaLevel = 3;
   @State() internalOpen: boolean = false;
-  @Event() ifxItemOpen: EventEmitter;
-  @Event() ifxItemClose: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
+  @Event() ifxClose: EventEmitter;
   private contentEl!: HTMLElement;
 
 
@@ -42,9 +42,9 @@ export class IfxAccordionItem {
     this.open = this.internalOpen;
 
     if (this.internalOpen) {
-      this.ifxItemOpen.emit({ isOpen: this.internalOpen });
+      this.ifxOpen.emit({ isOpen: this.internalOpen });
     } else {
-      this.ifxItemClose.emit({ isClosed: !this.internalOpen });
+      this.ifxClose.emit({ isClosed: !this.internalOpen });
     }
   }
 

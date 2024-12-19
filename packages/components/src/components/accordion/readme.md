@@ -16,10 +16,10 @@
 
 ## Events
 
-| Event          | Description | Type               |
-| -------------- | ----------- | ------------------ |
-| `ifxItemClose` |             | `CustomEvent<any>` |
-| `ifxItemOpen`  |             | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxClose` |             | `CustomEvent<any>` |
+| `ifxOpen`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies

@@ -60,32 +60,32 @@ export default {
         }
       }
     },
-    ifxItemOpen: { 
-      action: 'ifxItemOpen',
+    ifxOpen: { 
+      action: 'ifxOpen',
       description: 'Event emitted when an accordion item is opened.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
-          detail:`React: onIfxItemOpen={handleOpen}
-            Vue: @ifxItemOpen="handleOpen"
-            Angular: (ifxItemOpen)="handleOpen()"
-            VanillaJs: .addEventListener("ifxItemOpen", (event) => {/*handle open*/});`
+          detail:`React: onIfxOpen={handleOpen}
+            Vue: @ifxOpen="handleOpen"
+            Angular: (ifxOpen)="handleOpen()"
+            VanillaJs: .addEventListener("ifxOpen", (event) => {/*handle open*/});`
             }
           },
       },
-    ifxItemClose: { 
-      action: 'ifxItemClose',
+    ifxClose: { 
+      action: 'ifxClose',
       description: 'Event emitted when an accordion item is closed.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail: 
-          `React: onIfxItemClose={handleClose}
-          Vue: @ifxItemClose="handleClose"
-          Angular: (ifxItemClose)="handleClose()"
-          VanillaJs: .addEventListener("ifxItemClose", (event) => {/*handle close*/});`
+          `React: onIfxClose={handleClose}
+          Vue: @ifxClose="handleClose"
+          Angular: (ifxClose)="handleClose()"
+          VanillaJs: .addEventListener("ifxClose", (event) => {/*handle close*/});`
         }
       },
     }
@@ -99,8 +99,8 @@ const Template = args => {
   initialItem.setAttribute('open', `true`);
   initialItem.setAttribute('aria-level', args.AriaLevel);
   initialItem.setAttribute('mutable', args.mutable);
-  initialItem.addEventListener('ifxItemOpen', action('ifxItemOpen'));
-  initialItem.addEventListener('ifxItemClose', action('ifxItemClose'));
+  initialItem.addEventListener('ifxOpen', action('ifxOpen'));
+  initialItem.addEventListener('ifxClose', action('ifxClose'));
 
   initialItem.innerHTML = `
   Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -108,8 +108,8 @@ const Template = args => {
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
 `;
 initialItem.setAttribute('caption', `Label`);
-  initialItem.addEventListener('ifxItemOpen', action('ifxItemOpen'));
-  initialItem.addEventListener('ifxItemClose', action('ifxItemClose'));
+  initialItem.addEventListener('ifxOpen', action('ifxOpen'));
+  initialItem.addEventListener('ifxClose', action('ifxClose'));
 
   accordionElement.append(initialItem);
 
@@ -128,8 +128,8 @@ initialItem.setAttribute('caption', `Label`);
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     `;
-    item.addEventListener('ifxItemOpen', action('ifxItemOpen'));
-    item.addEventListener('ifxItemClose', action('ifxItemClose'));
+    item.addEventListener('ifxOpen', action('ifxOpen'));
+    item.addEventListener('ifxClose', action('ifxClose'));
 
     accordionElement.append(item);
   }
