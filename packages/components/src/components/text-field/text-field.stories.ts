@@ -19,6 +19,7 @@ export default {
     name: 'text-field',
     showDeleteIcon: false,
     maxlength: '',
+    value: '',
   },
 
   argTypes: {
@@ -130,6 +131,16 @@ export default {
         category: 'ifx-text-field props',
       }
     },
+    value: {
+      description: 'The value of the text field. It is used for the form submission.',
+      control: 'text',
+      table: {
+        category: 'ifx-text-field props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input change.',
@@ -145,7 +156,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -158,6 +169,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('optional', optional);
   element.setAttribute('name', name);
   element.setAttribute('show-delete-icon', showDeleteIcon);
+  element.setAttribute('value', value);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
