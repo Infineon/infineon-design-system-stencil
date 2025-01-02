@@ -79,42 +79,84 @@ export default {
     tableHeight: 'auto',
     pagination: false,
     paginationPageSize: 10,
-    currentPage: 1,
     rowHeight: 40,
     showLoading: false,
-    buttonRendererOptions: {
-      onButtonClick: (params, event) => {
-        console.log('Button clicked:', params, event);
-      }
-    }
   },
   argTypes: {
     tableHeight: {
+      description: 'Set the height of the table.',
       table: {
+        category: 'ifx-table props',
         type: {
           summary: 'Options',
           detail: 'Default: "auto"\nExample for fixed height: "400px"',
         }
       },
     },
+    pagination: {
+      description: 'Show pagination control.',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: true
+        },
+        type: {
+          summary: 'Boolean',
+        },
+      },
+    },
     paginationPageSize: {
-      description: "Results per page: minimum 10 - maximum 30",
-      control: { type: 'number', min: 10, max: 30, step: 10 }
+      description: "Results per page: minimum 10 - maximum 30.",
+      control: { type: 'number', min: 10, max: 30, step: 10 },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: 10
+        },
+        type: {
+          summary: 'Number',
+        },
+      },
     },
     showLoading: {
+      description: 'Show loading spinner.',
       options: [true, false],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: false
+        },
+      },
     },
     rowHeight: {
+      description: 'Set the height of the rows.',
       options: ['compact', 'default'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: 'default'
+        },
+      },
     },
     filterOrientation: {
+      description: 'Set the filter orientation.',
       options: ['sidebar', 'topbar', 'none'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: 'none'
+        },
+      },
     },
     columnDefs: {
+      description: 'Column header options',
+      name: 'cols',
       table: {
+        category: 'ifx-table props',
         type: {
           summary: 'Column header options',
           detail: 'Standard columns:\nheaderName: "Model", \nfield: "model", \nsortable: true (optional),\nsort: "desc" (optional) => descending sort (show icon)\nunSortIcon: true (optional) => unsorted (show icon)\n\nSpecial columns:\nheaderName: "",\nfield: "button"\nheaderName: "",\nfield: "link"',
@@ -122,20 +164,13 @@ export default {
       },
     },
     rowData: {
+      description: 'Row data options',
+      name: 'rows',
       table: {
+        category: 'ifx-table props',
         type: {
           summary: 'Row data options',
           detail: 'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000 \n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
-        },
-      },
-    },
-    buttonRendererOptions: {
-      control: 'object',
-      description: 'Options for button cell renderer, including event handlers.',
-      table: {
-        type: {
-          summary: 'Button Renderer Options',
-          detail: 'Custom event handlers and other options for the button cell renderer in the table.'
         },
       },
     },
@@ -271,11 +306,6 @@ SidebarFilter.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   filterOrientation: 'sidebar',
-  buttonRendererOptions: {
-    onButtonClick: (params, event) => {
-      console.log('Button clicked:', params, event);
-    }
-  }
 };
 
 export const TopbarFilter = DefaultTemplate.bind({});
@@ -284,9 +314,4 @@ TopbarFilter.args = {
   columnDefs: columnDefs,
   rowData: rowData,
   filterOrientation: 'topbar',
-  buttonRendererOptions: {
-    onButtonClick: (params, event) => {
-      console.log('Button clicked:', params, event);
-    }
-  }
 };
