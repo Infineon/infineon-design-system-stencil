@@ -657,22 +657,14 @@ export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, If
     defineCustomElement: defineIfxOverviewTable
 });
 
-type IfxPaginationEvents = {
-    onIfxPageChange: EventName<CustomEvent<any>>,
-    onIfxNextPage: EventName<CustomEvent<any>>,
-    onIfxPrevPage: EventName<CustomEvent<any>>
-};
+type IfxPaginationEvents = { onIfxPageChange: EventName<CustomEvent<any>> };
 
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
     tagName: 'ifx-pagination',
     elementClass: IfxPaginationElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {
-        onIfxPageChange: 'ifxPageChange',
-        onIfxNextPage: 'ifxNextPage',
-        onIfxPrevPage: 'ifxPrevPage'
-    } as IfxPaginationEvents,
+    events: { onIfxPageChange: 'ifxPageChange' } as IfxPaginationEvents,
     defineCustomElement: defineIfxPagination
 });
 
