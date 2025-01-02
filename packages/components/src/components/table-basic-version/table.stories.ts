@@ -9,6 +9,15 @@ const rows = [
   { make: 'Toyota', model: 'Celica', price: 35000, age: 10 },
   { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
   { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Toyota', model: 'Celica', price: 37000, age: 8 },
+  { make: 'Ford', model: 'Mondeo', price: 34000, age: 10 },
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Toyota', model: 'Celica', price: 38000, age: 7 },
+  { make: 'Ford', model: 'Mondeo', price: 36000, age: 8 },
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Toyota', model: 'Celica', price: 39000, age: 2 },
+  { make: 'Ford', model: 'Mondeo', price: 38000, age: 6 },
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
 ];
 
 export default {
@@ -44,22 +53,24 @@ export default {
       control: { type: 'radio' },
     },
     cols: {
+      description: 'The array must be a string for Vanilla JavaScript, and stringified or array object for React/Vue/Angular.',
       table: {
         category: 'ifx-table props',
         type: {
           summary: 'Column header options',
           detail:
-            'Standard columns:\nheaderName: "Model", \nfield: "model", \nsortable: true (optional),\nsort: "desc" (optional) => descending sort (show icon)\nunSortIcon: true (optional) => unsorted (show icon)\n\nSpecial columns:\nheaderName: "",\nfield: "button"\nheaderName: "",\nfield: "link"',
+            'Standard columns:\nheaderName: "Model", \nfield: "model", \nsortable: true (optional),\nsort: "desc" (optional) => descending sort (show icon)\nunSortIcon: true (optional) => unsorted (show icon)\nresizable: false\nflex: 1\nminWidth: 50px\nwidth: 100px\n\nSpecial columns:\nheaderName: "",\nfield: "button"\nheaderName: "",\nfield: "link",',
         },
       },
     },
     rows: {
+      description: 'The array must be a string for Vanilla JavaScript, and stringified or array object for React/Vue/Angular.',
       table: {
         category: 'ifx-table props',
         type: {
           summary: 'Row data options',
           detail:
-            'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000 \n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
+            'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000\nresizable: false\nflex: 1\nminWidth: 50px\nwidth: 100px\n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
         },
       },
     },
