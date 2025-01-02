@@ -95,13 +95,7 @@ See the 2nd *<ifx-segment>* for effects`,
             }
         },
         ifxChange: {
-            description: `A custom event *ifxChange* is emitted whenever the *<ifx-segmented-control>* is clicked/selected.\n
-    event.detail: 
-    {
-        previousValue: string,
-        selectedValue: string
-    }
-            `,
+            description: `Custom event emitted when the segment is changed.`,
             table: {
                 category: 'custom events',
                 type: {
