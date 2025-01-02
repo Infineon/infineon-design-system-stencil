@@ -897,14 +897,14 @@ export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = 
     defineCustomElement: defineIfxTable
 });
 
-type IfxTabsEvents = { onIfxTabChange: EventName<CustomEvent<any>> };
+type IfxTabsEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents>({
     tagName: 'ifx-tabs',
     elementClass: IfxTabsElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxTabChange: 'ifxTabChange' } as IfxTabsEvents,
+    events: { onIfxChange: 'ifxChange' } as IfxTabsEvents,
     defineCustomElement: defineIfxTabs
 });
 

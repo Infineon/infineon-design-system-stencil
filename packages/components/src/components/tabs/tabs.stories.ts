@@ -111,15 +111,15 @@ export default {
         defaultValue: { summary: 'false' },
       }
     },
-    ifxTabChange: {
-      action: 'ifxTabChange',
+    ifxChange: {
+      action: 'ifxChange',
       description: 'Custom event emitted on tab index change, containing the current (currentTab) and the previous tab (previousTab).',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
-            'React: onIfxTabChange={handleChange}\nVue:@ifxTabChange="handleChange"\nAngular:(ifxTabChange)="handleChange()"\nVanillaJs:.addEventListener("ifxTabChange", (event) => {//handle change});',
+            'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
     },
@@ -131,7 +131,7 @@ const Template = args => {
   tabsElement.setAttribute('orientation', args.orientation);
   tabsElement.setAttribute('active-tab-index', args.activeTabIndex);
   tabsElement.setAttribute('full-width', args.fullWidth);
-  tabsElement.addEventListener('ifxTabChange', action(`ifxTabChange`));
+  tabsElement.addEventListener('ifxChange', action(`ifxChange`));
 
   for (let i = 0; i < args.amountOfTabs; i++) {
     const tabContent = document.createElement('ifx-tab');
