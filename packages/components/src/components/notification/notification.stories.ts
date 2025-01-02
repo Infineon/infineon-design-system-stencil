@@ -5,7 +5,7 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    content: "Sample Notification",
+    label: "Sample Notification",
     variant: 'success',
     icon: 'c-check-16',
     linkText: 'Link',
@@ -13,13 +13,13 @@ export default {
     linkTarget: '_blank',
   },
   argTypes: {
-    content: {
-      name: 'Content',
-      description: 'Set the text content of the *<ifx-notification>*.',
+    label: {
+      name: 'Label of Notification',
+      description: 'Set the text label of the *<ifx-notification>*.',
       table: {
         category: 'story controls',
         type: {
-          summary: null
+          summary: 'string'
         }
       }
     },
@@ -92,7 +92,7 @@ const DefaultTemplate = args => {
   link-text="${args.linkText}" 
   link-href="${args.linkHref}"
   link-target="${args.linkTarget}">
-  ${args.content}
+  ${args.label}
 </ifx-notification>`;
 }
 
