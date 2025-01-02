@@ -5,7 +5,7 @@ export default {
   tags: ['autodocs'],
 
   args: {
-    content: "Sample Notification",
+    label: "Sample Notification",
     variant: 'success',
     icon: 'c-check-16',
     linkText: 'Link',
@@ -13,40 +13,88 @@ export default {
     linkTarget: '_blank',
   },
   argTypes: {
-    content: {
-      description: 'Text inside the notification is passed as slot.',
+    label: {
+      name: 'Label of Notification',
+      description: 'Set the text label of the *<ifx-notification>*.',
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'string'
+        }
+      }
     },
     variant: {
       description: 'Variant of the notification.',
       options: ['success', 'warning', 'error'],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-notification props',
+        defaultValue: {
+          summary: 'success'
+        },
+        type: {
+          summary: 'success | warning | error'
+        }
+      }
     },
     icon: {
-      description: 'The icon to be displayed in the notification.',
-      options: Object.values(icons).map(i => i['name']),
+      description: 'The icon to be displayed in the notification. Choose "none" to display no icon.',
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
       control: { type: 'select' },
+      table: {
+        category: 'ifx-notification props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
     linkText: {
       description: 'Text for the link.',
+      table: {
+        category: 'ifx-notification props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
     linkHref: {
       description: 'URL for the link.',
+      table: {
+        category: 'ifx-notification props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
-    linkTarget:{
+    linkTarget: {
       options: ['_blank', '_self', '_parent'],
       control: { type: 'radio' },
+      description: 'Specifies where to open the linked document.',
+      table: {
+        category: 'ifx-notification props',
+        defaultValue: {
+          summary: '_blank'
+        },
+        type: {
+          summary: '_blank | _self | _parent'
+        }
+      }
     },
   },
 };
 
-const DefaultTemplate = args => `<ifx-notification 
-  icon="${args.icon}" 
+const DefaultTemplate = args => {
+  const icon = args.icon === 'none' ? '' : args.icon;
+
+  return `<ifx-notification 
+  icon = "${icon}"
   variant="${args.variant}" 
   link-text="${args.linkText}" 
   link-href="${args.linkHref}"
   link-target="${args.linkTarget}">
-  ${args.content}
+  ${args.label}
 </ifx-notification>`;
+}
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};

@@ -24,6 +24,7 @@ export default {
   title: 'Components/Select/Single Select',
   // tags: ['autodocs'],
   args: {
+    label: '',
     size: 'm',
     showSearch: true,
     searchPlaceholderValue: 'Search...',
@@ -31,7 +32,6 @@ export default {
     placeholderValue: 'Placeholder',
     error: false,
     errorMessage: 'Some error',
-    label: '',
     disabled: false,
     // type: 'single', //for later implementation
   },
@@ -42,50 +42,107 @@ export default {
     //   control: false,
     // },
     size: {
-      options: {
-        'small (36px)': 's',
-        'medium (40px)': 'm',
-      },
-      control: {
-        type: 'radio',
-      },
+      description: 'Specifies the size. Options: small - s (36px) medium - m (40px).',
+      control: 'radio',
+      options: ['s', 'm'],
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: 'm'
+        }
+      }
     },
     placeholder: {
-      options: [true, false],
-      control: { type: 'radio' },
+      description: 'Determines whether a placeholder is displayed or not.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: true
+        }
+      }
     },
-    placeholderValue: { control: 'text' },
-    // value: { for later implementation
-    //   control: 'text',
-    //   description: 'Programmatically set the selected value',
-    // },
+    placeholderValue: {
+      description: 'Sets the text displayed as the placeholder when placeholder is set to true.',
+      table: {
+        category: 'ifx-select props'
+      }
+    },
     error: {
-      options: [true, false],
-      control: { type: 'radio' },
+      description: 'Displays an error state.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: false
+        }
+      }
     },
-    errorMessage: { control: 'text' },
-    label: { control: 'text' },
+    errorMessage: {
+      description: 'Message displayed when error is set to true.',
+      table: {
+        category: 'ifx-select props'
+      }
+    },
+    label: {
+      description: 'Sets the label.',
+      table: {
+        category: 'ifx-select props'
+      }
+    },
     disabled: {
-      options: [true, false],
-      control: { type: 'radio' },
+      description: 'Disables the dropdown.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: false
+        }
+      }
     },
     showSearch: {
-      options: [true, false],
-      control: { type: 'radio' },
+      description: 'Enables a search bar inside the dropdown to filter options.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: true
+        }
+      }
     },
-    searchPlaceholderValue: { control: { type: 'text' } },
-
+    searchPlaceholderValue: {
+      description: 'Placeholder text for the search input field.',
+      table: {
+        category: 'ifx-select props'
+      }
+    },
     options: {
-      description: 'Takes an array of objects in the following format',
+      description: 'Takes an array of objects in the following format.',
+      table: {
+        category: 'ifx-select props'
+      }
     },
     ifxSelect: {
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected',
+      description: 'Custom event emitted when item is selected.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
             'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
+        },
+      },
+    },
+    ifxInput: {
+      action: 'ifxInput',
+      description: 'A custom event *ifxInput* is emitted immediately after the value of *Search* changes.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxInput={handleInput}\nVue:@ifxInput="handleInput"\nAngular:(ifxInput)="handleInput()"\nVanillaJs:.addEventListener("ifxInput", (event) => {//handle input});',
         },
       },
     },
