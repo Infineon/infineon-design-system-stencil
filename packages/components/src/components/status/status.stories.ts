@@ -8,13 +8,37 @@ export default {
     border: true,
   },
   argTypes: {
+    label: {
+      name: 'Label of Status',
+      description: 'Set the label of *<ifx-status>*.',
+      table: {
+        category: 'ifx-status props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     border: {
+      description: 'When set to **true** the status has a border.',
       control: 'boolean',
       attr: 'border',
+      table: {
+        category: 'ifx-status props',
+        defaultValue: {
+          summary: true
+        }
+      }
     },
     color: {
+      description: 'Sets the color of the status.',
+      control: 'radio',
       options: ['orange', 'ocean', 'grey', 'light-grey', 'red', 'green', 'berry'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-status props',
+        defaultValue: {
+          summary: 'orange'
+        }
+      }
     },
   },
 };

@@ -38,7 +38,7 @@ export class Table {
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
 
-  @Listen('ifxChipChange')
+  @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
     const { name, currentSelection } = event.detail;
 

@@ -9,9 +9,27 @@ export default {
     icon: 'chevron-up-16',
   },
   argTypes: {
+    label: {
+      name: 'Label of Tag',
+      control: { type: 'text' },
+      description: 'Set the label of *<ifx-tag>*.',
+      table: {
+        category: 'story controls',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     icon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      description: 'Set the icon of the tag.',
+      table: {
+        category: 'ifx-tag props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
   },
 };
