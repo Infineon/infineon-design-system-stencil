@@ -8,6 +8,8 @@ export default {
     showDeleteIcon: true,
     disabled: false,
     size: 'm',
+    value: '',
+    placeholder: 'Search...',
   },
   argTypes: {
     showDeleteIcon: {
@@ -58,6 +60,13 @@ export default {
         category: 'ifx-search-field props'
       }
     },
+    value: {
+      description: 'The value of the search field. It is used for the form submission.',
+      control: 'text',
+      table: {
+        category: 'ifx-search-field props'
+      }
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'A custom event triggered whenever there is input in the search field.',
@@ -73,11 +82,12 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ disabled, size, showDeleteIcon, placeholder, maxlength }) => {
+const DefaultTemplate = ({ disabled, size, showDeleteIcon, placeholder, maxlength, value }) => {
   const element = document.createElement('ifx-search-field');
   element.setAttribute('size', size);
   element.setAttribute('disabled', disabled);
   element.setAttribute('show-delete-icon', showDeleteIcon);
+  element.setAttribute('value', value)
   if (placeholder != undefined) element.setAttribute('placeholder', placeholder);
   if (maxlength != undefined) element.setAttribute('maxlength', maxlength);
   element.addEventListener('ifxInput', action('ifxInput'));
