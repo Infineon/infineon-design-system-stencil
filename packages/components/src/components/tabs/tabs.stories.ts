@@ -12,6 +12,7 @@ export default {
     icon: '',
     header: 'Tab',
     disabled: false,
+    fullWidth: false,
   },
   argTypes: {
     amountOfTabs: {
@@ -55,9 +56,17 @@ export default {
       }
     },
     fullWidth: {
-      name: 'Full width',
-      control: {type: 'boolean'},
-      description: "Adds flex: 1 to the ifx-tab child components, thus making them occupy the full width of their parent"
+      control: { type: 'boolean' },
+      description: "Adds flex: 1 to the ifx-tab child components, thus making them occupy the full width of their parent",
+      table: {
+        category: 'ifx-tabs props',
+        defaultValue: {
+          summary: 'false'
+        },
+        type: {
+          summary: 'boolean'
+        }
+      }
     },
     iconPosition: {
       options: ['left', 'right'],
