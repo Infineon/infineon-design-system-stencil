@@ -5,11 +5,11 @@ export default {
     args: {
         amountOfSteps: 5,
         activeStep: 2,
-        errorStep: 0,
         disabled: false,
         indicatorPosition: 'left',
         showStepNumber: false,
-        variant: 'default'
+        variant: 'default',
+        error: false,
     },
     argTypes: {
         activeStep: {
@@ -56,12 +56,14 @@ export default {
             },
             if: { arg: 'variant', eq: 'default' }
         },
-        errorStep: {
-            name: 'error',
-            control: 'number',
-            description: 'Specified step number indicates to have an error.',
+        error: {
+            control: 'boolean',
+            description: 'Sets the error state for a step.',
             table: {
-                category: 'ifx-step props'
+                category: 'ifx-step props',
+                type: {
+                    summary: 'boolean'
+                }
             },
         },
         indicatorPosition: {
@@ -89,7 +91,10 @@ export default {
             description: 'Allows to switch between default and compact variant.',
             control: 'radio',
             table: {
-                category: 'ifx-stepper props'
+                category: 'ifx-stepper props',
+                type: {
+                    summary: 'default | compact | vertical'
+                },
             }
         },
         ifxChange: {
@@ -120,15 +125,19 @@ ${args.variant === 'default' ? `show-step-number=${args.showStepNumber}` : ''}
 variant=${args.variant}>
     ${(() => {
             return Array.from({ length: args.amountOfSteps }, (_, stepId) => {
-                const step = document.createElement('ifx-step')
-                step.innerHTML = `Step Label ${stepId + 1}`
-                if (args.errorStep === stepId + 1) step.setAttribute('error', 'true')
-                if (args.disabled) step.setAttribute('disabled', 'true')
-                return step.outerHTML
+                const step = document.createElement('ifx-step');
+                step.innerHTML = `Step Label ${stepId + 1}`;
+                if (args.disabled && stepId === 0) {
+                    step.setAttribute('disabled', 'true');
+                }
+                if (args.error && stepId === 0) {
+                    step.setAttribute('error', 'true');
+                }
+                return step.outerHTML;
             }).join(`\n    `)
         })()
         }
-</ifx-stepper>`
+</ifx-stepper>`;
 
     const stepper = wrapper.querySelector('ifx-stepper');
     stepper.addEventListener('ifxChange', action('ifxChange'));
