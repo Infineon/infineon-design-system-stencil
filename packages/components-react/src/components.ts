@@ -98,8 +98,8 @@ export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordi
 });
 
 type IfxAccordionItemEvents = {
-    onIfxItemOpen: EventName<CustomEvent<any>>,
-    onIfxItemClose: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, IfxAccordionItemEvents> = /*@__PURE__*/ createComponent<IfxAccordionItemElement, IfxAccordionItemEvents>({
@@ -108,8 +108,8 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onIfxItemOpen: 'ifxItemOpen',
-        onIfxItemClose: 'ifxItemClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxAccordionItemEvents,
     defineCustomElement: defineIfxAccordionItem
 });
@@ -268,14 +268,14 @@ export const IfxCheckbox: StencilReactComponent<IfxCheckboxElement, IfxCheckboxE
     defineCustomElement: defineIfxCheckbox
 });
 
-type IfxChipEvents = { onIfxChipChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
+type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
     elementClass: IfxChipElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxChipChange: 'ifxChipChange' } as IfxChipEvents,
+    events: { onIfxChange: 'ifxChange' } as IfxChipEvents,
     defineCustomElement: defineIfxChip
 });
 
@@ -558,8 +558,8 @@ export const IfxListEntry: StencilReactComponent<IfxListEntryElement, IfxListEnt
 });
 
 type IfxModalEvents = {
-    onIfxModalOpen: EventName<CustomEvent<any>>,
-    onIfxModalClose: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>,
+    onIfxClose: EventName<CustomEvent<any>>
 };
 
 export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = /*@__PURE__*/ createComponent<IfxModalElement, IfxModalEvents>({
@@ -568,15 +568,15 @@ export const IfxModal: StencilReactComponent<IfxModalElement, IfxModalEvents> = 
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
     events: {
-        onIfxModalOpen: 'ifxModalOpen',
-        onIfxModalClose: 'ifxModalClose'
+        onIfxOpen: 'ifxOpen',
+        onIfxClose: 'ifxClose'
     } as IfxModalEvents,
     defineCustomElement: defineIfxModal
 });
 
 type IfxMultiselectEvents = {
     onIfxSelect: EventName<CustomEvent<any>>,
-    onIfxMultiselectIsOpen: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMultiselectEvents> = /*@__PURE__*/ createComponent<IfxMultiselectElement, IfxMultiselectEvents>({
@@ -586,7 +586,7 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     react: React,
     events: {
         onIfxSelect: 'ifxSelect',
-        onIfxMultiselectIsOpen: 'ifxMultiselectIsOpen'
+        onIfxOpen: 'ifxOpen'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
 });
@@ -657,22 +657,14 @@ export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, If
     defineCustomElement: defineIfxOverviewTable
 });
 
-type IfxPaginationEvents = {
-    onIfxPageChange: EventName<CustomEvent<any>>,
-    onIfxNextPage: EventName<CustomEvent<any>>,
-    onIfxPrevPage: EventName<CustomEvent<any>>
-};
+type IfxPaginationEvents = { onIfxPageChange: EventName<CustomEvent<any>> };
 
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
     tagName: 'ifx-pagination',
     elementClass: IfxPaginationElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {
-        onIfxPageChange: 'ifxPageChange',
-        onIfxNextPage: 'ifxNextPage',
-        onIfxPrevPage: 'ifxPrevPage'
-    } as IfxPaginationEvents,
+    events: { onIfxPageChange: 'ifxPageChange' } as IfxPaginationEvents,
     defineCustomElement: defineIfxPagination
 });
 
@@ -700,7 +692,7 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
 
 type IfxSearchBarEvents = {
     onIfxInput: EventName<CustomEvent<any>>,
-    onIfxSearchBarIsOpen: EventName<CustomEvent<any>>
+    onIfxOpen: EventName<CustomEvent<any>>
 };
 
 export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchBarEvents> = /*@__PURE__*/ createComponent<IfxSearchBarElement, IfxSearchBarEvents>({
@@ -710,7 +702,7 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     react: React,
     events: {
         onIfxInput: 'ifxInput',
-        onIfxSearchBarIsOpen: 'ifxSearchBarIsOpen'
+        onIfxOpen: 'ifxOpen'
     } as IfxSearchBarEvents,
     defineCustomElement: defineIfxSearchBar
 });
@@ -905,14 +897,14 @@ export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = 
     defineCustomElement: defineIfxTable
 });
 
-type IfxTabsEvents = { onIfxTabChange: EventName<CustomEvent<any>> };
+type IfxTabsEvents = { onIfxChange: EventName<CustomEvent<any>> };
 
 export const IfxTabs: StencilReactComponent<IfxTabsElement, IfxTabsEvents> = /*@__PURE__*/ createComponent<IfxTabsElement, IfxTabsEvents>({
     tagName: 'ifx-tabs',
     elementClass: IfxTabsElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxTabChange: 'ifxTabChange' } as IfxTabsEvents,
+    events: { onIfxChange: 'ifxChange' } as IfxTabsEvents,
     defineCustomElement: defineIfxTabs
 });
 
