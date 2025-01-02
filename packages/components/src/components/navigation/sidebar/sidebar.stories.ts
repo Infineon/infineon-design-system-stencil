@@ -15,6 +15,11 @@ export default {
     imprint: 'https://yourwebsite.com/imprint',
     privacyPolicy: 'https://yourwebsite.com/privacy-policy',
     copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`,
+    numberIndicatorOfSidebarItem: "",
+    hrefOfSidebarItem: 'https://google.com',
+    targetOfSidebarItem: '_self',
+    activeSidebarItem: false,
+    isActionItem: false,
   },
 
   argTypes: {
@@ -89,48 +94,112 @@ export default {
         }
       }
     },
+    hrefOfSidebarItem: {
+      name: 'href',
+      description: 'The URL of the sidebar item link.',
+      control: 'text',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        },
+      }
+    },
+    targetOfSidebarItem: {
+      name: 'target',
+      description: 'The target attribute of the sidebar item link.',
+      options: ['_self'],
+      control: 'radio',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        },
+        defaultValue: {
+          summary: '_self'
+        }
+      }
+    },
+    numberIndicatorOfSidebarItem: {
+      name: 'numberIndicator',
+      description: 'The number indicator to display on the sidebar item.',
+      control: 'text',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
+    activeSidebarItem: {
+      name: 'active',
+      description: 'Set to true manually or by clicking on a navigation item.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'boolean'
+        },
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    isActionItem: {
+      description: 'If an item is an action item, it can not become active.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'boolean'
+        },
+        defaultValue: {
+          summary: false
+        },
+      }
+    },
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
-      description: 'Custom event emitted when a navigation item becomes active on selection',
+      description: 'Custom event emitted by ifx-sidebar-item when a navigation item becomes active on selection.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
-          detail: 
-          `React: onIfxSidebarNavigationItem={handleChange}
-          Vue: @ifxSidebarNavigationItem="handleChange"
-          Angular: (ifxSidebarNavigationItem)="handleChange()"
-          VanillaJs: .addEventListener("ifxSidebarNavigationItem", (event) => {/*handle change*/});`
+          detail: `
+React: onIfxSidebarNavigationItem={handleChange}
+Vue: @ifxSidebarNavigationItem="handleChange"
+Angular: (ifxSidebarNavigationItem)="handleChange()"
+VanillaJs: .addEventListener("ifxSidebarNavigationItem", (event) => {/*handle change*/});`
         }
       }
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
-      description: 'Custom event emitted when an action item is selected',
+      description: 'Custom event emitted by ifx-sidebar-item when an action item is selected.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
-          detail: 
-          `React: onIfxSidebarActionItem={handleAction}
-          Vue: @ifxSidebarActionItem="handleAction"
-          Angular: (ifxSidebarActionItem)="handleAction()"
-          VanillaJs: .addEventListener("ifxSidebarActionItem", (event) => {/*handle action*/});`
+          detail: `
+React: onIfxSidebarActionItem={handleAction}
+Vue: @ifxSidebarActionItem="handleAction"
+Angular: (ifxSidebarActionItem)="handleAction()"
+VanillaJs: .addEventListener("ifxSidebarActionItem", (event) => {/*handle action*/});`
         },
       }
     },
     ifxSidebarMenu: {
       action: 'ifxSidebarMenu',
-      description: 'Custom event emitted when a menu is expanded or closed',
+      description: 'Custom event emitted by ifx-sidebar-item when a menu is expanded or closed.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
-          detail: 
-          `React: onIfxSidebarMenu={handleMenu}
-          Vue: @ifxSidebarMenu="handleMenu"
-          Angular: (ifxSidebarMenu)="handleMenu()"
-          VanillaJs: .addEventListener("ifxSidebarMenu", (event) => {/*handle menu*/});`
+          detail: `
+React: onIfxSidebarMenu={handleMenu}
+Vue: @ifxSidebarMenu="handleMenu"
+Angular: (ifxSidebarMenu)="handleMenu()"
+VanillaJs: .addEventListener("ifxSidebarMenu", (event) => {/*handle menu*/});`
         },
       },
     },
@@ -172,7 +241,7 @@ const DefaultTemplate = args => {
     <ifx-sidebar-item href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Item 1</ifx-sidebar-item>
+    <ifx-sidebar-item href="${args.hrefOfSidebarItem}" target="${args.targetOfSidebarItem}" icon="${args.icon === 'none' ? '' : args.icon}" number-indicator="${args.numberIndicatorOfSidebarItem === "" ? '' : args.numberIndicatorOfSidebarItem}" isActionItem="${args.isActionItem}" active="${args.activeSidebarItem}">Item 1</ifx-sidebar-item>
     <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Item 2</ifx-sidebar-item>
   `
   return sidebarElement;
@@ -240,7 +309,7 @@ const NumberIndicatorTemplate = () =>
       3rd layer Menu Item
       </ifx-sidebar-item>
 
-      <ifx-sidebar-item target="_blank" active="false" icon="image-16" value="thisPage">
+      <ifx-sidebar-item target="_blank" active="false" icon="image-16">
       This Page
       </ifx-sidebar-item>
 
@@ -272,7 +341,7 @@ const NumberIndicatorTemplate = () =>
     <ifx-sidebar-item active="false" is-action-item="false" target="_blank" icon="image-16">
     Sub Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item is-action-item="true" icon="image-16" value="thisPage">
+    <ifx-sidebar-item is-action-item="true" icon="image-16">
     This one too
     </ifx-sidebar-item>
     <ifx-sidebar-item is-action-item="false" target="_blank" icon="image-16">

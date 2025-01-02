@@ -26,8 +26,6 @@ export class SidebarItem {
   @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
 
-
-  @Prop() value: string = ""
   @Prop() handleItemClick: (item: HTMLElement) => void;
 
 
