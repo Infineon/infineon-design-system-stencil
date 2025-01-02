@@ -31,9 +31,6 @@ export default {
             description: 'Set the label of *<ifx-segmented-control>*.',
             table: {
                 category: 'story controls',
-                type: {
-                    summary: '<ifx-segment> `label` </ifx-segment>'
-                }
             }
         },
         caption: {
@@ -127,18 +124,17 @@ const Template = (args) => {
 caption = '${args.caption}'
 label = '${args.label}'
 size = '${args.size}'>
-    ${
-        (() => {
+    ${(() => {
             return Array.from({ length: args.amountOfSegments }, (_, segmentId) => {
                 const segment = document.createElement('ifx-segment');
                 segment.innerText = args.labelOfSegment;
-                segment.setAttribute('value', `${args.value}${segmentId+1}`);
+                segment.setAttribute('value', `${args.value}${segmentId + 1}`);
                 segment.setAttribute('icon', `${args.icon}`);
                 if (args.selected === true && segmentId === 1) segment.setAttribute('selected', 'true');
                 return segment.outerHTML;
             }).join(`\n    `);
         })()
-    }
+        }
 </ifx-segmented-control>  
 `;
     const segmentedControl = wrapper.querySelector('ifx-segmented-control');
