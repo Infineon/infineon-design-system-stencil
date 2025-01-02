@@ -9,11 +9,12 @@ export default {
   },
   argTypes: {
     label: {
+      name: 'Label of Status',
       description: 'Set the label of *<ifx-status>*.',
       table: {
         category: 'ifx-status props',
         type: {
-          summary: '<ifx-status> `label` </ifx-status>'
+          summary: 'string'
         }
       }
     },
