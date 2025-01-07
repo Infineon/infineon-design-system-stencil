@@ -1030,8 +1030,13 @@
     "compiledValue": "1200px"
   },
   {
-    "name": "$ifxBreakpointXxl",
+    "name": "$ifxBreakpoint2xl",
     "value": "1400px",
     "compiledValue": "1400px"
+  },
+  {
+    "name": "$ifxBreakpoint3xl",
+    "value": "1920px",
+    "compiledValue": "1920px"
   }
 ]

@@ -14,7 +14,7 @@ export class CheckboxGroup {
   @Prop() errorItems: string[] = [];  
   @Prop() indeterminate: string[] = [];
   @Prop() showGroupLabel: boolean;
-  @Prop() groupLabelText: string;
+  @Prop() groupLabelText: string = 'Label Text';
   @Prop() showCaption: boolean;
   @Prop() captionText: string;
   @Prop() showCaptionIcon: boolean;
@@ -105,7 +105,13 @@ handleCheckboxChange(value: string) {
   
   render() {
     return (
-      <div class={`checkbox-group ${this.alignment}`}>
+      <div class={`checkbox-group 
+      ${this.alignment} 
+      ${this.size} 
+     `}>
+        {this.showGroupLabel && (
+          <span class="show-group-label">{this.groupLabelText}</span>
+        )}
         <slot
           onSlotchange={() => {
             this.updateCheckboxStates();

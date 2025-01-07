@@ -3,16 +3,18 @@ export default {
     tags: ['autodocs'],
     args: {
         amountOfItems: 3,
-        orientation: 'vertical',
+        alignment: 'vertical',
         checked: false,
         disabled: false,
         indeterminate: false,
         error: false,
         size: 'm',
+        showGroupLabel: false,
+        groupLabelText: '',
 
     },
     argTypes: {
-        orientation: {
+        alignment: {
             description: 'Set the orientation of the checkbox group.',
             options: ['vertical', 'horizontal'],
             control: { type: 'radio' },
@@ -75,19 +77,41 @@ export default {
                 category: 'ifx-checkbox props',
                 defaultValue: { summary: 'false' }
             }
-        }
+        },
+        showGroupLabel: {
+            description: 'Show the group label.',
+            control: { type: 'boolean' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: 'false' }
+            }
+        },
+        groupLabelText: {
+            description: 'Set the group label text.',
+            control: { type: 'text' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: '' }
+            }
+        },
     }
-}
+};
 const Template = args => {
 
-    const template =
-        `<ifx-checkbox-group
-    orientation = "${args.orientation}">
-    <ifx-checkbox value="a" disabled="${args.disabled}" checked="${args.checked}" error="${args.error}" size="${args.size}" indeterminate="${args.indeterminate}">Option a</ifx-checkbox>
-    <ifx-checkbox value="b" size="${args.size}">Option b</ifx-checkbox>
-    <ifx-checkbox value="c" size="${args.size}">Option c</ifx-checkbox>
-</ifx-checkbox-group>`;
+    let checkboxes = '';
+    for (let i = 0; i < args.amountOfItems; i++) {
+        if (i === 0) {
+            checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" error="${args.error}" size="${args.size}" indeterminate="${args.indeterminate}">Option ${i}</ifx-checkbox>`;
+        } else {
+            checkboxes += `<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`;
+        }
+    }
 
-    return template
+    const template = `
+        <ifx-checkbox-group alignment="${args.alignment} show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}">
+            ${checkboxes}
+    `;
+
+    return template;
 };
 export const Default = Template.bind({});
