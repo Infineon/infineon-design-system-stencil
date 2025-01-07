@@ -108,8 +108,6 @@ const Template = args => {
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
 `;
 initialItem.setAttribute('caption', `Label`);
-  initialItem.addEventListener('ifxOpen', action('ifxOpen'));
-  initialItem.addEventListener('ifxClose', action('ifxClose'));
 
   accordionElement.append(initialItem);
 
