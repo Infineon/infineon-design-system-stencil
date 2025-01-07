@@ -14,7 +14,7 @@ export class CheckboxGroup {
   @Prop() errorItems: string[] = [];  
   @Prop() indeterminate: string[] = [];
   @Prop() showGroupLabel: boolean;
-  @Prop() groupLabelText: string = 'Label Text';
+  @Prop() groupLabelText: string = 'Group Label Text';
   @Prop() showCaption: boolean;
   @Prop() captionText: string;
   @Prop() showCaptionIcon: boolean;
@@ -59,6 +59,11 @@ export class CheckboxGroup {
   handleIndeterminateChange(newValue: string[]) {
     this.internalIndeterminateItems = [...newValue];
     this.updateCheckboxStates();
+  }
+  handleDisplayGroupLabel() {
+    if (this.showGroupLabel) {
+      return this.groupLabelText;
+    }
   }
 
 handleCheckboxChange(value: string) {
@@ -105,13 +110,15 @@ handleCheckboxChange(value: string) {
   
   render() {
     return (
-      <div class={`checkbox-group 
-      ${this.alignment} 
-      ${this.size} 
-     `}>
-        {this.showGroupLabel && (
-          <span class="show-group-label">{this.groupLabelText}</span>
-        )}
+      <div
+        class={`checkbox-group 
+        ${this.alignment} 
+        ${this.size} 
+        ${this.showGroupLabel ? 'show-group-label' : ''}
+        `}
+      >
+        {this.showGroupLabel && <div>{this.groupLabelText}</div>}
+        
         <slot
           onSlotchange={() => {
             this.updateCheckboxStates();

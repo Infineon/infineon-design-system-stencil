@@ -11,7 +11,10 @@ export default {
         size: 'm',
         showGroupLabel: false,
         groupLabelText: '',
-
+        showCaption: false,
+        captionText: '',
+        showCaptionIcon: false,
+        showCaptionError: false,
     },
     argTypes: {
         alignment: {
@@ -94,6 +97,38 @@ export default {
                 defaultValue: { summary: '' }
             }
         },
+        showCaption: {
+            description: 'Show the caption.',
+            control: { type: 'boolean' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: 'false' }
+            }
+        },
+        captionText: {
+            description: 'Set the caption text.',
+            control: { type: 'text' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: '' }
+            }
+        },
+        showCaptionIcon: {
+            description: 'Show the caption icon.',
+            control: { type: 'boolean' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: 'false' }
+            }
+        },
+        showCaptionError: {
+            description: 'Show the caption error.',
+            control: { type: 'boolean' },
+            table: {
+                category: 'ifx-checkbox-group props',
+                defaultValue: { summary: 'false' }
+            }
+        },
     }
 };
 const Template = args => {
@@ -108,7 +143,7 @@ const Template = args => {
     }
 
     const template = `
-        <ifx-checkbox-group alignment="${args.alignment} show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}">
+        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText} show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" show-caption-error="${args.showCaptionError}">
             ${checkboxes}
     `;
 
