@@ -10,6 +10,7 @@ export default {
         showStepNumber: false,
         variant: 'default',
         error: false,
+        completeStep: false,
     },
     argTypes: {
         activeStep: {
@@ -35,11 +36,12 @@ export default {
         completeStep: {
             name: 'complete',
             description: 'A boolean prop to mark one or more steps as complete.<br>Usage:',
+            control: 'boolean',
             table: {
                 category: 'ifx-step props',
                 defaultValue: { summary: false },
                 type: {
-                    summary: `<ifx-step complete=true> </ifx-step>`
+                    summary: 'boolean'
                 }
             }
         },
@@ -132,6 +134,9 @@ variant=${args.variant}>
                 }
                 if (args.error && stepId === 0) {
                     step.setAttribute('error', 'true');
+                }
+                if (args.completeStep && stepId === 2) {
+                    step.setAttribute('complete', args.completeStep);
                 }
                 return step.outerHTML;
             }).join(`\n    `)
