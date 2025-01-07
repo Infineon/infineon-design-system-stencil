@@ -12,6 +12,7 @@ export default {
     size: 'm',
     fullWidth: false,
     disabled: false,
+    icon: '',
     iconPosition: 'left',
     href: false,
     url: '',
@@ -19,37 +20,128 @@ export default {
   },
 
   argTypes: {
+    label: {
+      name: 'Label of Button',
+      description: 'Sets the text displayed on the *<ifx-button>*.',
+      table: {
+        category: 'story controls',
+      }
+    },
     icon: {
+      description: 'The icon to be displayed.',
+      control: 'select',
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' },
+      table: {
+        category: 'ifx-button props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
     variant: {
+      description: 'Sets the style variant of the button.',
+      control: 'radio',
       options: ['primary', 'secondary', 'tertiary'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'primary'
+        }
+      }
     },
     theme: {
+      description: 'Specifies the theme style of the button.',
+      control: 'radio',
       options: ['default', 'danger', 'inverse'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'default'
+        }
+      }
     },
     type: {
+      description: 'Sets the type attribute of the button.',
+      control: 'radio',
       options: ['button', 'submit', 'reset'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'button'
+        }
+      }
     },
     size: {
-      description: 'Size options: xs (32px) s (36px),  m (40px), l (48px) - default: m',
+      description: 'Sets the size of the button. Options: xs (32px) s (36px),  m (40px), l (48px)',
+      control: 'radio',
       options: ['xs', 's', 'm', 'l'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'm'
+        }
+      }
     },
     fullWidth: {
-      control: { type: 'boolean' },
+      description: 'When set to **true**, expands the button to take the full width of its container.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
+    },
+    disabled: {
+      description: 'Disables the button when set to true.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
     },
     iconPosition: {
+      description: 'Determines the position of an icon within the button if an icon is used.',
+      control: 'radio',
       options: ['left', 'right'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'left'
+        }
+      }
+    },
+    href: {
+      description: 'When set to **true**, treats the button as a link by setting a URL.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
+    },
+    url: {
+      description: 'Specifies the destination URL for the button when it acts as a link.',
+      table: {
+        category: 'ifx-button props',
+        type: {
+          summary: 'string'
+        }
+      }
     },
     target: {
+      description: 'Determines where to open the linked document when the button is clicked.',
+      control: 'radio',
       options: ['_blank', '_self', '_parent'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: '_blank'
+        }
+      }
     },
   },
 };
