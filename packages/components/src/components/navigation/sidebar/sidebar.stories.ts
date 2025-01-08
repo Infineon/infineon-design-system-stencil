@@ -108,8 +108,7 @@ export default {
     targetOfSidebarItem: {
       name: 'target',
       description: 'The target attribute of the sidebar item link.',
-      options: ['_self'],
-      control: 'radio',
+      control: 'text',
       table: {
         category: 'ifx-sidebar-item props',
         type: {

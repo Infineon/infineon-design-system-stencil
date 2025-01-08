@@ -113,7 +113,7 @@ export default {
     },
     ifxChange: {
       action: 'ifxChange',
-      description: 'Custom event emitted on tab index change, containing the current (currentTab) and the previous tab (previousTab).',
+      description: 'Custom event that is emitted when the active tab changes.',
       table: {
         category: 'custom events',
         type: {
