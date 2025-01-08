@@ -5,18 +5,82 @@ export default {
   // tags: ['autodocs'],
 
   args: {
+    label: 'Text',
     error: false,
     disabled: false,
     checked: false,
     size: 's',
-    label: 'Text',
     name: 'radio-button',
     value: 'radio',
   },
   argTypes: {
-    ifxChange: {
-      description: 'Custom event emitted when radio button checked and unchecked',
+    error: {
+      description: 'Indicates whether the radio button is in an error state.',
+      control: 'boolean',
       table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    disabled: {
+      description: 'Disables the radio button.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    checked: {
+      description: 'Determines whether the radio button is selected by default.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    label: {
+      name: 'Label of Radio Button',
+      description: 'Set the label displayed next to *<ifx-radio-button>*.',
+      table: {
+        category: 'story controls',
+      }
+    },
+    size: {
+      description: 'Specifies the size of the radio button. Options: s (20px) and m (24px).',
+      control: 'radio',
+      options: ['s', 'm'],
+      table: {
+        category: 'ifx-radio-button props',
+        defaultValue: {
+          summary: 's'
+        },
+        type: {
+          summary: 's | m'
+        }
+      }
+    },
+    name: {
+      description: 'Name of the element, that is used as reference when a form is submitted.',
+      table: {
+        category: 'ifx-radio-button props'
+      }
+    },
+    value: {
+      description: 'The value that gets submitted, when the radio button is checked.',
+      table: {
+        category: 'ifx-radio-button props'
+      }
+    },
+    ifxChange: {
+      description: 'Custom event emitted when radio button checked and unchecked.',
+      table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -25,17 +89,6 @@ export default {
       },
 
       action: 'ifxChange',
-    },
-    size: {
-      description: 'Size options: s (20px) and m (24px) - default: s',
-      options: ['s', 'm'],
-      control: { type: 'radio' },
-    },
-    name: {
-      description: 'Name of the element, that is used as reference when a form is submitted.'
-    },
-    value: {
-      description: 'The value that gets submitted, when the radio button is checked'
     }
   },
 };
