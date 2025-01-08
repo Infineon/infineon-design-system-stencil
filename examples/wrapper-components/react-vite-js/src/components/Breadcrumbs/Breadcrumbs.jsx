@@ -1,4 +1,4 @@
- import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel, IfxDropdownMenu, IfxDropdownItem } from '@infineon/infineon-design-system-react';
+import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel, IfxDropdownMenu, IfxDropdownItem } from '@infineon/infineon-design-system-react';
 
 function Breadcrumbs() {
   return (
@@ -7,25 +7,25 @@ function Breadcrumbs() {
         <IfxBreadcrumbItem>
           <IfxBreadcrumbItemLabel slot="label" icon="">Breadcrumb 1</IfxBreadcrumbItemLabel>
           <IfxDropdownMenu>
-            <IfxDropdownItem url="http://google.com">Google</IfxDropdownItem>
-            <IfxDropdownItem url="http://bing.com">Bing</IfxDropdownItem>
-            <IfxDropdownItem url="http://yahoo.com">Yahoo</IfxDropdownItem>
-            <IfxDropdownItem url="http://naver.com">Naver</IfxDropdownItem>
+            <IfxDropdownItem href="http://google.com">Google</IfxDropdownItem>
+            <IfxDropdownItem href="http://bing.com">Bing</IfxDropdownItem>
+            <IfxDropdownItem href="http://yahoo.com">Yahoo</IfxDropdownItem>
+            <IfxDropdownItem href="http://naver.com">Naver</IfxDropdownItem>
           </IfxDropdownMenu>
         </IfxBreadcrumbItem>
 
         <IfxBreadcrumbItem>
           <IfxBreadcrumbItemLabel slot="label" icon="">Breadcrumb 2</IfxBreadcrumbItemLabel>
           <IfxDropdownMenu>
-          <IfxDropdownItem url="http://google.com">Google</IfxDropdownItem>
-          <IfxDropdownItem url="http://bing.com">Bing</IfxDropdownItem>
-          <IfxDropdownItem url="http://yahoo.com">Yahoo</IfxDropdownItem>
-          <IfxDropdownItem url="http://naver.com">Naver</IfxDropdownItem>
+            <IfxDropdownItem href="http://google.com">Google</IfxDropdownItem>
+            <IfxDropdownItem href="http://bing.com">Bing</IfxDropdownItem>
+            <IfxDropdownItem href="http://yahoo.com">Yahoo</IfxDropdownItem>
+            <IfxDropdownItem href="http://naver.com">Naver</IfxDropdownItem>
           </IfxDropdownMenu>
         </IfxBreadcrumbItem>
 
         <IfxBreadcrumbItem>
-          <IfxBreadcrumbItemLabel slot="label" icon="" url="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
+          <IfxBreadcrumbItemLabel slot="label" icon="" href="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
         </IfxBreadcrumbItem>
       </IfxBreadcrumb>
     </div>

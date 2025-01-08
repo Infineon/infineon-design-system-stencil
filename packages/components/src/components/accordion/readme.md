@@ -7,19 +7,19 @@
 
 ## Properties
 
-| Property   | Attribute   | Description | Type      | Default     |
-| ---------- | ----------- | ----------- | --------- | ----------- |
-| `AriaLive` | `aria-live` |             | `number`  | `3`         |
-| `caption`  | `caption`   |             | `string`  | `undefined` |
-| `open`     | `open`      |             | `boolean` | `false`     |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `AriaLevel` | `aria-level` |             | `number`  | `3`         |
+| `caption`   | `caption`    |             | `string`  | `undefined` |
+| `open`      | `open`       |             | `boolean` | `false`     |
 
 
 ## Events
 
-| Event          | Description | Type               |
-| -------------- | ----------- | ------------------ |
-| `ifxItemClose` |             | `CustomEvent<any>` |
-| `ifxItemOpen`  |             | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxClose` |             | `CustomEvent<any>` |
+| `ifxOpen`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies
