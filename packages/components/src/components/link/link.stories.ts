@@ -12,18 +12,67 @@ export default {
   },
 
   argTypes: {
+    label: {
+      name: 'Label of Link',
+      description: 'Set the label of *<ifx-link>*.',
+      table: {
+        category: 'story controls',
+      }
+    },
+    href: {
+      description: 'Specifies the URL of the link.',
+      table: {
+        category: 'ifx-link props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     target: {
+      description: 'Determines where to open the linked URL when the link is clicked.',
+      control: 'radio',
       options: ['_blank', '_self', '_parent'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-link props',
+        defaultValue: {
+          summary: '_blank'
+        }
+      }
+    },
+    disabled: {
+      description: 'Disables the link.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-link props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
     },
     size: {
-      description: 'Font Size options: s (14px), m (16px), l (18px), xl (20px) - default: m',
+      description: 'Sets the Font Size of the link. Options: s (14px), m (16px), l (18px), xl (20px)',
+      control: 'radio',
       options: ['s', 'm', 'l', 'xl'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-link props',
+        defaultValue: {
+          summary: 'm'
+        },
+        type: {
+          summary: 's | m | l | xl'
+        }
+      }
     },
     variant: {
+      description: 'Sets the style variant of the link.',
+      control: 'radio',
       options: ['bold', 'underlined', 'title', 'menu'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-link props',
+        defaultValue: {
+          summary: 'bold'
+        }
+      }
     },
   },
 };
