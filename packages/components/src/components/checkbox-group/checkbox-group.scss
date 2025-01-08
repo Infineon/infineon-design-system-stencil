@@ -7,29 +7,43 @@
 
 
 
+
     &.checkbox-group.horizontal {
         flex-direction: row;
-        column-gap: 12px;
+        column-gap: tokens.$ifxSpace150;
+        display: inline-block;
     }
 
     &.checkbox-group.vertical {
         flex-direction: column;
-        row-gap: 12px;
+        row-gap: tokens.$ifxSpace150;
     }
 
     &.show-group-label {
-        &.horizontal {
+        font-family: Source Sans 3;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
+    }
 
+    &.show-caption {
+        font-family: Source Sans 3;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+        text-align: left;
+        text-underline-position: from-font;
+        text-decoration-skip-ink: none;
 
+        &.default {
+            color: tokens.$ifxColorBaseBlack;
+        }
 
-            font-family: Source Sans 3;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 16px;
-            text-align: left;
-            text-underline-position: from-font;
-            text-decoration-skip-ink: none;
-
+        &.error {
+            color: tokens.$ifxColorRed500;
         }
     }
 }

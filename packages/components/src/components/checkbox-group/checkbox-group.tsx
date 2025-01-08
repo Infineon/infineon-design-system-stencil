@@ -115,6 +115,7 @@ handleCheckboxChange(value: string) {
         ${this.alignment} 
         ${this.size} 
         ${this.showGroupLabel ? 'show-group-label' : ''}
+        ${this.showCaption ? 'show-caption' : ''}
         `}
       >
         {this.showGroupLabel && <div>{this.groupLabelText}</div>}
