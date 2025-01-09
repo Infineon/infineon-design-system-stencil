@@ -86,7 +86,7 @@ export class Chip {
           this.selectedOptions = [...this.selectedOptions, eventDetail];
         }
       } else {
-        this.selectedOptions = this.selectedOptions.filter((option) => option.key !== eventDetail.key);
+        this.selectedOptions = this.selectedOptions.filter((option) => option.value !== eventDetail.value);
       }
       this.value = this.selectedOptions.map((option) => option.value);
     }
