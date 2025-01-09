@@ -10,9 +10,9 @@ export default {
         error: false,
         size: 'm',
         showGroupLabel: false,
-        groupLabelText: '',
+        groupLabelText: 'Group Label',
         showCaption: false,
-        captionText: '',
+        captionText: 'Caption text, description, error notification',
         showCaptionIcon: false,
         showCaptionError: false,
     },
@@ -143,9 +143,9 @@ const Template = args => {
     }
 
     const template = `
-        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText} show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" show-caption-error="${args.showCaptionError}">
+        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" show-caption-error="${args.showCaptionError}">
             ${checkboxes}
-    `;
+        </ifx-checkbox-group>`;
 
     return template;
 };

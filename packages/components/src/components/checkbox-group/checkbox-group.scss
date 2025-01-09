@@ -1,49 +1,69 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
+.checkbox-group-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .checkbox-group {
     display: flex;
     font-family: var(--ifx-font-family);
+    gap: tokens.$ifxSpace100;
 
-
-
-
-    &.checkbox-group.horizontal {
+    &.horizontal {
         flex-direction: row;
         column-gap: tokens.$ifxSpace150;
-        display: inline-block;
     }
 
-    &.checkbox-group.vertical {
+    &.vertical {
         flex-direction: column;
         row-gap: tokens.$ifxSpace150;
     }
+}
 
-    &.show-group-label {
-        font-family: Source Sans 3;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-        text-align: left;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;
+
+
+.group-label {
+    margin-bottom: tokens.$ifxSpace100;
+    font: tokens.$ifxBodyBody05;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.caption {
+    margin-top: tokens.$ifxSpace100;
+    align-self: flex-start;
+    display: flex;
+    width: 100%;
+    column-gap: tokens.$ifxSpace100;
+    justify-content: space-between;
+
+    &.default {
+        color: tokens.$ifxColorBaseBlack;
     }
 
-    &.show-caption {
-        font-family: Source Sans 3;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-        text-align: left;
-        text-underline-position: from-font;
-        text-decoration-skip-ink: none;
+    &.error {
+        color: tokens.$ifxColorRed500;
 
-        &.default {
-            color: tokens.$ifxColorBaseBlack;
-        }
-
-        &.error {
-            color: tokens.$ifxColorRed500;
-        }
     }
+}
+
+.caption-text {
+    flex: 1;
+    font-family: Source Sans 3;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+
+}
+
+.caption-icon {
+    align-self: flex-start;
+    display: block;
 }

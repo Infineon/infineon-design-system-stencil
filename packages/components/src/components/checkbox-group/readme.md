@@ -23,6 +23,19 @@
 | `size`             | `size`               |             | `string`                     | `undefined`          |
 
 
+## Dependencies
+
+### Depends on
+
+- [ifx-icon](../icon)
+
+### Graph
+```mermaid
+graph TD;
+  ifx-checkbox-group --> ifx-icon
+  style ifx-checkbox-group fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
