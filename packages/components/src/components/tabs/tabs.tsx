@@ -13,6 +13,7 @@ export class IfxTabs {
 
   @Prop() orientation: string = "horizontal";
   @Prop({ mutable: true }) activeTabIndex: number = 0;
+  @Prop() fullWidth: boolean = false;
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
@@ -40,6 +41,13 @@ export class IfxTabs {
       this.internalActiveTabIndex = index;
       this.internalFocusedTabIndex = index;
     }
+  }
+
+  @Listen('tabHeaderChange')
+  handleTabHeaderChange(e) { 
+    const tabIndex = e.target.getAttribute('slot').replace('tab-', '');
+    this.tabObjects[tabIndex].header = e.detail;
+    this.tabObjects = [...this.tabObjects]; 
   }
   
 
@@ -182,7 +190,7 @@ export class IfxTabs {
     const isActive = index === this.internalActiveTabIndex && !this.tabObjects[index].disabled;
     const isDisabled = this.tabObjects[index].disabled;
     const iconPosition = this.tabObjects[index].iconPosition
-    return `tab-item ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition}`;
+    return `tab-item ${this.fullWidth ? 'full-width' : ""} ${isActive ? 'active' : ''} ${isDisabled ? 'disabled' : ''} ${'icon__'+iconPosition}`;
   }
 
   private handleClick(tab, index) {
@@ -234,7 +242,7 @@ export class IfxTabs {
             <li
               class={this.getTabItemClass(index)}
               ref={(el) => (this.tabHeaderRefs[index] = el)}
-              tabindex="0"
+              onMouseDown={(event) => event.preventDefault()}
               onClick={() => this.handleClick(tab, index)}
               aria-selected={index === this.internalActiveTabIndex ? 'true' : 'false'}
               aria-disabled={tab.disabled ? 'true' : 'false'}

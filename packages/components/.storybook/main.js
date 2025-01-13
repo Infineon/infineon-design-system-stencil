@@ -36,7 +36,7 @@ module.exports = {
         display: block;
         content: 'Latest Version ${await getLatestLibraryVersion()}';
         margin: 10px 0 0 0;
-        color: #005DA9;
+        color: #0A8276;
         font-size: 18px;
         font-weight: bold;
     }
