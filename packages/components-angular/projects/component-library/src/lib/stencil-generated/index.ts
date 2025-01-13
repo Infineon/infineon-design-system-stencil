@@ -73,6 +73,8 @@ export const DIRECTIVES = [
   d.IfxTable,
   d.IfxTabs,
   d.IfxTag,
+  d.IfxTemplate,
+  d.IfxTemplatesUi,
   d.IfxTextField,
   d.IfxTextarea,
   d.IfxTooltip
