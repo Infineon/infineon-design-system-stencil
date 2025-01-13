@@ -40,6 +40,7 @@ Type: `Promise<void>`
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
  - [ifx-filter-bar](../table-advanced-version/filter-bar)
  - [ifx-table](../table-advanced-version)
+ - [ifx-template](../templates/template)
 
 ### Graph
 ```mermaid
@@ -47,6 +48,7 @@ graph TD;
   ifx-dropdown-trigger-button --> ifx-button
   ifx-filter-bar --> ifx-button
   ifx-table --> ifx-button
+  ifx-template --> ifx-button
   style ifx-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
