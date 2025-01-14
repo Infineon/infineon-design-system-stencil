@@ -16,9 +16,9 @@
 
 ## Events
 
-| Event          | Description | Type               |
-| -------------- | ----------- | ------------------ |
-| `ifxTabChange` |             | `CustomEvent<any>` |
+| Event       | Description | Type               |
+| ----------- | ----------- | ------------------ |
+| `ifxChange` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

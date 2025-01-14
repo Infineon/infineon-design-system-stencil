@@ -38,31 +38,32 @@ export class Table {
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
 
-  @Listen('ifxChipChange')
+  @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
-    const { name, currentSelection } = event.detail;
-
-    // Clone the current filters state
-    const updatedFilters = { ...this.currentFilters };
-
-    if (currentSelection.length === 0) {
-      // If there are no selections for this filter, delete the filter
-      delete updatedFilters[name];
-
-      // Emit event with specific filter name
-      const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
-      this.host.dispatchEvent(customEvent);
-    } else {
-      // Otherwise, update the filter values with the current selection
-      updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
+    const { name, currentSelection, previousSelection } = event.detail;
+    if(currentSelection && previousSelection) { 
+      // Clone the current filters state
+      const updatedFilters = { ...this.currentFilters };
+  
+      if (currentSelection.length === 0) {
+        // If there are no selections for this filter, delete the filter
+        delete updatedFilters[name];
+  
+        // Emit event with specific filter name
+        const customEvent = new CustomEvent('ifxUpdateSidebarFilter', { detail: { filterName: name }, bubbles: true, composed: true });
+        this.host.dispatchEvent(customEvent);
+      } else {
+        // Otherwise, update the filter values with the current selection
+        updatedFilters[name].filterValues = currentSelection.map(selection => selection.value);
+      }
+  
+      // Update the component's filters
+      this.currentFilters = updatedFilters;
+  
+      // Ensure table data is updated
+      this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
+      this.updateTableView();
     }
-
-    // Update the component's filters
-    this.currentFilters = updatedFilters;
-
-    // Ensure table data is updated
-    this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
-    this.updateTableView();
   }
 
   @Watch('buttonRendererOptions')

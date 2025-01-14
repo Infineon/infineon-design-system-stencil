@@ -16,26 +16,81 @@ export default {
 
   argTypes: {
     icon: {
+      description: 'The icon to be displayed.',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: 'c-info-24'
+        }
+      }
     },
     variant: {
+      description: 'Sets the style variant of the icon button.',
+      control: 'radio',
       options: ['primary', 'secondary', 'tertiary'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: 'primary'
+        }
+      }
     },
-
+    disabled: {
+      description: 'Disables the icon button when set to true.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
+    },
+    href: {
+      description: 'Specifies the URL to which the icon button will link.',
+      table: {
+        category: 'ifx-icon-button props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     size: {
-      description: 'Size options: s (24px), m (40px) and l (48px) - default: m',
+      description: 'Sets the size of the icon button. Options: s (24px), m (40px) and l (48px).',
+      control: 'radio',
       options: ['s', 'm', 'l'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: 'm'
+        },
+        type: {
+          summary: 's | m | l'
+        }
+      }
     },
     target: {
+      description: 'Determines where to open the linked URL when the button is clicked.',
+      control: 'radio',
       options: ['_blank', '_self', '_parent'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: '_blank'
+        }
+      }
     },
     shape: {
+      description: 'Defines the shape of the icon button.',
+      control: 'radio',
       options: ['round', 'square'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-icon-button props',
+        defaultValue: {
+          summary: 'round'
+        }
+      }
     },
   },
 };

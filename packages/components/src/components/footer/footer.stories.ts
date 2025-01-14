@@ -1,11 +1,38 @@
+import { icons } from '@infineon/infineon-icons';
 export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
   args: {
     copyrightText: '© 1999 - 2024 Infineon Technologies AG',
+    href: 'http://infineon.com',
+    icon: 'home-16'
   },
   argTypes: {
-    copyrightText: { control: 'text' },
+    copyrightText: {
+      description: 'Sets the text for the copyright.',
+      control: 'text',
+      table: {
+        category: 'ifx-footer props',
+      }
+    },
+    icon: {
+      description: 'Sets the icon for the footer.',
+      options: Object.values(icons).map(i => i['name']),
+      control: { type: 'select' },
+      table: {
+        category: 'ifx-icon props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
+    href: {
+      description: 'Sets the link for the footer.',
+      control: 'text',
+      table: {
+        category: 'ifx-link props',
+      },
+    },
   },
 };
 
@@ -13,6 +40,9 @@ const DefaultTemplate = args => {
   return `
     <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
+    <ifx-link variant="title" href=${args.href}>
+        <ifx-icon icon=${args.icon}></ifx-icon>
+      </ifx-link>
       <ifx-link variant="title" href="http://facebook.com/infineon">
         <ifx-icon icon="facebook"></ifx-icon>
       </ifx-link>

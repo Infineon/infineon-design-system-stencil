@@ -1,11 +1,12 @@
 import { action } from '@storybook/addon-actions';
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Navigation/Sidebar',
   // tags: ['autodocs'],
 
   args: {
-    icon: true,
+    icon: 'image-16',
     applicationName: 'Application Name',
     showFooter: true,
     showHeader: true,
@@ -14,29 +15,193 @@ export default {
     imprint: 'https://yourwebsite.com/imprint',
     privacyPolicy: 'https://yourwebsite.com/privacy-policy',
     copyrightText: `© 1999 - ${new Date().getFullYear()} Infineon Technologies AG`,
+    numberIndicatorOfSidebarItem: "",
+    hrefOfSidebarItem: 'https://google.com',
+    targetOfSidebarItem: '_self',
+    activeSidebarItem: false,
+    isActionItem: false,
   },
 
   argTypes: {
+    applicationName: {
+      description: 'The name of the application to display at the top of the sidebar.',
+      table: {
+        category: 'ifx-sidebar props'
+      }
+    },
+    showHeader: {
+      description: 'Determines whether the header is displayed in the sidebar.',
+      table: {
+        category: 'ifx-sidebar props',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
+    showFooter: {
+      description: 'Determines whether the footer is displayed in the sidebar.',
+      table: {
+        category: 'ifx-sidebar props',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
+    initialCollapse: {
+      description: 'Determines if the sidebar should be collapsed by default when it first loads.',
+      table: {
+        category: 'ifx-sidebar props',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
+    imprint: {
+      description: 'The URL link for the "Imprint" section in the sidebar footer.',
+      if: { arg: 'showFooter', eq: true },
+      table: {
+        category: 'ifx-sidebar props'
+      }
+    },
+    termsOfUse: {
+      description: 'The URL link for the "Terms of Use" section in the sidebar footer.',
+      if: { arg: 'showFooter', eq: true },
+      table: {
+        category: 'ifx-sidebar props'
+      }
+    },
+    privacyPolicy: {
+      description: 'The URL link for the "Privacy Policy" section in the sidebar footer.',
+      if: { arg: 'showFooter', eq: true },
+      table: {
+        category: 'ifx-sidebar props'
+      }
+    },
+    copyrightText: {
+      description: 'The copyright text to display at the bottom of the sidebar.',
+      table: {
+        category: 'ifx-sidebar props'
+      }
+    },
+    icon: {
+      description: 'The icon to display for the sidebar items. Choose ***none*** to display no icon.',
+      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      control: 'select',
+      table: {
+        category: 'ifx-sidebar-item props',
+        defaultValue: {
+          summary: 'image-16'
+        }
+      }
+    },
+    hrefOfSidebarItem: {
+      name: 'href',
+      description: 'The URL of the sidebar item link.',
+      control: 'text',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        },
+      }
+    },
+    targetOfSidebarItem: {
+      name: 'target',
+      description: 'The target attribute of the sidebar item link.',
+      control: { type: 'radio' },
+      options: ['_self'],
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        },
+        defaultValue: {
+          summary: '_self'
+        }
+      }
+    },
+    numberIndicatorOfSidebarItem: {
+      name: 'numberIndicator',
+      description: 'The number indicator to display on the sidebar item.',
+      control: 'text',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
+    activeSidebarItem: {
+      name: 'active',
+      description: 'Set to true manually or by clicking on a navigation item.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'boolean'
+        },
+        defaultValue: {
+          summary: false
+        }
+      }
+    },
+    isActionItem: {
+      description: 'If an item is an action item, it can not become active.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-sidebar-item props',
+        type: {
+          summary: 'boolean'
+        },
+        defaultValue: {
+          summary: false
+        },
+      }
+    },
     ifxSidebarNavigationItem: {
       action: 'ifxSidebarNavigationItem',
-      description: 'Custom event emitted when a navigation item becomes active on selection',
+      description: 'Custom event emitted by ifx-sidebar-item when a navigation item becomes active on selection.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+React: onIfxSidebarNavigationItem={handleChange}
+Vue: @ifxSidebarNavigationItem="handleChange"
+Angular: (ifxSidebarNavigationItem)="handleChange()"
+VanillaJs: .addEventListener("ifxSidebarNavigationItem", (event) => {/*handle change*/});`
+        }
+      }
     },
     ifxSidebarActionItem: {
       action: 'ifxSidebarActionItem',
-      description: 'Custom event emitted when an action item is selected',
+      description: 'Custom event emitted by ifx-sidebar-item when an action item is selected.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+React: onIfxSidebarActionItem={handleAction}
+Vue: @ifxSidebarActionItem="handleAction"
+Angular: (ifxSidebarActionItem)="handleAction()"
+VanillaJs: .addEventListener("ifxSidebarActionItem", (event) => {/*handle action*/});`
+        },
+      }
     },
     ifxSidebarMenu: {
       action: 'ifxSidebarMenu',
-      description: 'Custom event emitted when a menu is expanded or closed',
-    },
-    imprint: {
-      if: { arg: 'showFooter', eq: true },
-    },
-    termsOfUse: {
-      if: { arg: 'showFooter', eq: true },
-    },
-    privacyPolicy: {
-      if: { arg: 'showFooter', eq: true },
+      description: 'Custom event emitted by ifx-sidebar-item when a menu is expanded or closed.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail: `
+React: onIfxSidebarMenu={handleMenu}
+Vue: @ifxSidebarMenu="handleMenu"
+Angular: (ifxSidebarMenu)="handleMenu()"
+VanillaJs: .addEventListener("ifxSidebarMenu", (event) => {/*handle menu*/});`
+        },
+      },
     },
   },
 };
@@ -56,16 +221,16 @@ const DefaultTemplate = args => {
   sidebarElement.setAttribute('imprint', args.imprint);
   sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
   sidebarElement.setAttribute('copyright-text', args.copyrightText);
-  
+
   sidebarElement.innerHTML = `
     <ifx-sidebar-title>Menu Items</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Menu Item</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item>
     Section
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Menu Item</ifx-sidebar-item>
     <ifx-sidebar-item icon='image-16'>
     Menu Item
     <ifx-sidebar-item>Sub menu item</ifx-sidebar-item>
@@ -76,8 +241,8 @@ const DefaultTemplate = args => {
     <ifx-sidebar-item href='https://google.com' target='_blank'>Menu Item</ifx-sidebar-item>
     </ifx-sidebar-item>
     <ifx-sidebar-title>Items group</ifx-sidebar-title>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Item 1</ifx-sidebar-item>
-    <ifx-sidebar-item href='https://google.com' target='_blank' icon='image-16'>Item 2</ifx-sidebar-item>
+    <ifx-sidebar-item href="${args.hrefOfSidebarItem}" target="${args.targetOfSidebarItem}" icon="${args.icon === 'none' ? '' : args.icon}" number-indicator="${args.numberIndicatorOfSidebarItem === "" ? '' : args.numberIndicatorOfSidebarItem}" isActionItem="${args.isActionItem}" active="${args.activeSidebarItem}">Item 1</ifx-sidebar-item>
+    <ifx-sidebar-item href='https://google.com' target='_blank' icon="${args.icon === 'none' ? '' : args.icon}">Item 2</ifx-sidebar-item>
   `
   return sidebarElement;
 };
@@ -144,7 +309,7 @@ const NumberIndicatorTemplate = () =>
       3rd layer Menu Item
       </ifx-sidebar-item>
 
-      <ifx-sidebar-item target="_blank" active="false" icon="image-16" value="thisPage">
+      <ifx-sidebar-item target="_blank" active="false" icon="image-16">
       This Page
       </ifx-sidebar-item>
 
@@ -176,7 +341,7 @@ const NumberIndicatorTemplate = () =>
     <ifx-sidebar-item active="false" is-action-item="false" target="_blank" icon="image-16">
     Sub Menu Item
     </ifx-sidebar-item>
-    <ifx-sidebar-item is-action-item="true" icon="image-16" value="thisPage">
+    <ifx-sidebar-item is-action-item="true" icon="image-16">
     This one too
     </ifx-sidebar-item>
     <ifx-sidebar-item is-action-item="false" target="_blank" icon="image-16">

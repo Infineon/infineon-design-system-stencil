@@ -29,8 +29,8 @@ export class Breadcrumb {
           const breadcrumbItem = node as HTMLIfxBreadcrumbItemElement;
           const breadcrumbItemLabel = breadcrumbItem.querySelector('ifx-breadcrumb-item-label');
           const breadcrumbDropdown = breadcrumbItem.querySelector('ifx-dropdown-menu');
-          if (breadcrumbItemLabel.hasAttribute('url') && breadcrumbDropdown) {
-            throw new Error('ifx-breadcrumb-item cannot have both a url and a dropdown menu.');
+          if (breadcrumbItemLabel.hasAttribute('href') && breadcrumbDropdown) {
+            throw new Error('ifx-breadcrumb-item cannot have both a href and a dropdown menu.');
           }
         }
       }

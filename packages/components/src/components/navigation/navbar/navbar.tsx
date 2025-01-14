@@ -181,7 +181,7 @@ export class Navbar {
   }
   
   
-  @Listen('ifxSearchBarIsOpen')
+  @Listen('ifxOpen')
   handleSearchBarToggle(event: CustomEvent) {
    
     if(event.detail) { 
