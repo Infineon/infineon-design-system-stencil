@@ -9,7 +9,7 @@ import { ChipItemSelectEvent } from './interfaces';
 export class Chip {
   @Element() chip: HTMLIfxChipElement;
 
-  @Event() ifxChipChange: EventEmitter<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>;
+  @Event() ifxChange: EventEmitter<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>;
   @Prop() placeholder: string = '';
   @Prop() size: 'small' | 'large' = 'large';
   @Prop({ mutable: true }) value: Array<string> | string = undefined;
@@ -91,8 +91,8 @@ export class Chip {
       this.value = this.selectedOptions.map((option) => option.value);
     }
 
-    if (eventDetail.emitIfxChipChange) {
-      this.ifxChipChange.emit({
+    if (eventDetail.emitIfxChange) {
+      this.ifxChange.emit({
         previousSelection: previousSelection,
         currentSelection: this.selectedOptions,
         name: this.placeholder
@@ -170,7 +170,7 @@ export class Chip {
       const previousSelection: Array<ChipItemSelectEvent> = this.selectedOptions;
       this.selectedOptions = [];
       this.value = [];
-      this.ifxChipChange.emit({
+      this.ifxChange.emit({
         previousSelection: previousSelection,
         currentSelection: [],
         name: this.placeholder
@@ -275,7 +275,7 @@ export class Chip {
         label: value,
         selected: true,
         key: generateKey(),
-        emitIfxChipChange: true
+        emitIfxChange: true
       }));
     } else if (typeof newValue === 'string') {
       this.selectedOptions = [{
@@ -283,7 +283,7 @@ export class Chip {
         label: newValue,
         selected: true,
         key: generateKey(),
-        emitIfxChipChange: true
+        emitIfxChange: true
       }];
     }
 
