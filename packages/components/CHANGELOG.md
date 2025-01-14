@@ -1,3 +1,15 @@
+# v30.9.2 (Fri Jan 10 2025)
+
+#### 🐛 Bug Fix
+
+- Chip: replaces key with value when filtering the selectedOptions. Fixes selection bug where the last two items were not selected [#1673](https://github.com/Infineon/infineon-design-system-stencil/pull/1673) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.9.1 (Wed Dec 18 2024)
 
 #### 🐛 Bug Fix
