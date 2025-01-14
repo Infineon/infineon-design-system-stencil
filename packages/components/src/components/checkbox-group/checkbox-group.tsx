@@ -111,16 +111,16 @@ handleCheckboxChange(value: string) {
   render() {
     return (
       <div class='checkbox-group-container'>
-        <div class={`checkbox-group ${this.alignment} ${this.size}`}>
         {this.showGroupLabel ? <div class='group-label'>{this.groupLabelText}</div> : ''}
-        <slot onSlotchange={() => {this.updateCheckboxStates();}}></slot>
-        {this.showCaption ? (
+        <div class={`checkbox-group ${this.alignment} ${this.size}`}>
+        <slot onSlotchange={() => {this.updateCheckboxStates();}}></slot>  
+      </div>
+      {this.showCaption ? (
           <div class={`caption ${this.showCaptionError ? 'error' : 'default'}`}>
             {this.showCaptionIcon ? <div class='caption-icon'><ifx-icon icon="c-info-16">
               </ifx-icon></div> : ''}
             <div class='caption-text'>{this.captionText}</div>
           </div>) : ''}
-      </div>
       </div>
     );
   }
