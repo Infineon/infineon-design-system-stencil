@@ -117,7 +117,7 @@ export default {
 
 const DefaultTemplate = args =>
   `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.AriaLabel}">
-    <ifx-card-image position="${args.position}" src="${args.src}" alt="" slot="img"></ifx-card-image>
+    <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${args.overline
     ? `<ifx-card-overline>
         ${args.overline}

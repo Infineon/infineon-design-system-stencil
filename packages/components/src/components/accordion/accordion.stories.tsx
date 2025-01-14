@@ -38,7 +38,7 @@ export default {
   },  
     mutable: {
       control: 'boolean',
-      description: 'Set the mutable attribute.',
+      description: 'Set the mutable attribute to allow or not allow the accordion item to be opened and closed.',
       table: {
         category: 'ifx-accordion-item props',
         defaultValue: {summary: 'true'},

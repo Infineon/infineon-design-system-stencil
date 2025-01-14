@@ -140,6 +140,9 @@ AriaLabel="${args.AriaLabel}"
         const chipItem: HTMLIfxChipItemElement = document.createElement('ifx-chip-item');
         chipItem.innerHTML = args.chipItemLabel + ' ' + (chipItemId + 1);
         chipItem.setAttribute('value', args.value + ' ' + (chipItemId + 1));
+        if (args.selected && chipItemId === 1) {
+          chipItem.setAttribute('selected', 'true');
+        }
         if (args.readOnly) {
           if (args.variant === 'multi') {
             chipItem.setAttribute('selected', 'true');

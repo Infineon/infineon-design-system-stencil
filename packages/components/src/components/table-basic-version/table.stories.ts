@@ -80,7 +80,8 @@ export default {
 const DefaultTemplate = args => `<ifx-basic-table 
 cols='${JSON.stringify(args.cols)}' 
 rows='${JSON.stringify(args.rows)}'
-table-height='${args.tableHeight}'>
+table-height='${args.tableHeight}'
+row-height='${args.rowHeight}'>
 </ifx-basic-table>`;
 
 export const Default = DefaultTemplate.bind({});
@@ -88,7 +89,6 @@ Default.args = {
   cols: cols,
   rows: rows,
   tableHeight: 'auto',
-  rowHeight: 'default',
 };
 
 export const FixedHeight = DefaultTemplate.bind({});

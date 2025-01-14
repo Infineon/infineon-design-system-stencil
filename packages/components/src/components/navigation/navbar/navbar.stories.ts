@@ -150,13 +150,13 @@ export default {
     },
     target: {
       control: { type: 'radio' },
-      options: ['_self', '_blank', '_parent'],
+      options: ['_self'],
       description: 'The target of the link.',
       table: {
         defaultValue: { summary: '_self' },
         category: 'ifx-navbar-profile props',
         type: {
-          summary: '_self | _blank | _parent',
+          summary: '_self',
         },
       },
     },

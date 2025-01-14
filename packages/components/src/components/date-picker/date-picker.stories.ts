@@ -32,13 +32,13 @@ export default {
       }
     },
     min: {
-      description: 'Minimum date that can be selected',
+      description: 'Minimum date that can be selected. The parsed value is always formatted as yyyy-mm-dd.',
       table: {
         category: 'ifx-date-picker props',
       }
     },
     max: {
-      description: 'The latest date that can be selected.',
+      description: 'The latest date that can be selected. The parsed value is always formatted as yyyy-mm-dd.',
       table: {
         category: 'ifx-date-picker props',
       }
@@ -74,7 +74,7 @@ export default {
       }
     },
     size: {
-      description: 'Sets the size of the date picker. Options: Height small  (36px) and Height large (40px)',
+      description: 'Sets the size of the date picker. Options: Height small  (36px) and Height large (40px).S',
       control: 'radio',
       options: ['s', 'l'],
       table: {
@@ -86,12 +86,13 @@ export default {
     },
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.',
+      control: 'text',
       table: {
         category: 'ifx-date-picker props'
       }
     },
     value: {
-      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted yyyy-mm-dd',
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted as yyyy-mm-dd.',
       table: {
         category: 'ifx-date-picker props'
       }
@@ -128,8 +129,9 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name }) => {
   const element = document.createElement('ifx-date-picker');
+  element.setAttribute('name', name);
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
   element.setAttribute('size', size);
@@ -139,7 +141,7 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('min', min);
   element.setAttribute('label', label);
   element.setAttribute('caption', caption);
-  element.setAttribute('AreaLabel', AriaLabel);
+  element.setAttribute('AriaLabel', AriaLabel);
   element.setAttribute('required', required);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;

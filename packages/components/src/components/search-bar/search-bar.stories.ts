@@ -12,7 +12,7 @@ export default {
 
   argTypes: {
     isOpen: {
-      description: 'Search bar state.',
+      description: 'Controls the display of the search bar.',
       control: { type: 'boolean' },
       table: {
         defaultValue: { summary: 'true' },
@@ -23,7 +23,7 @@ export default {
       },
     },
     disabled: {
-      description: 'Search bar state.',
+      description: 'Disables the search bar.',
       control: { type: 'boolean' },
       table: {
         defaultValue: { summary: 'false' },
