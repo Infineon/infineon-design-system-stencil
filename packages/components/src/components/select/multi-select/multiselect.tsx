@@ -284,6 +284,7 @@ export class Multiselect {
         if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
           opt.selected = true;
           this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
+          this.optionCount = this.countOptions( this.persistentSelectedOptions)
         }
       }
     }
