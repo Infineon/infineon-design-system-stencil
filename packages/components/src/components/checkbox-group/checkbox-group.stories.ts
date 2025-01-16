@@ -14,7 +14,6 @@ export default {
         showCaption: false,
         captionText: 'Caption text, description, error notification',
         showCaptionIcon: false,
-        showCaptionError: false,
     },
     argTypes: {
         alignment: {
@@ -115,14 +114,6 @@ export default {
         },
         showCaptionIcon: {
             description: 'Show the caption icon.',
-            control: { type: 'boolean' },
-            table: {
-                category: 'ifx-checkbox-group props',
-                defaultValue: { summary: 'false' }
-            }
-        },
-        showCaptionError: {
-            description: 'Show the caption error.',
             control: { type: 'boolean' },
             table: {
                 category: 'ifx-checkbox-group props',

@@ -7,20 +7,15 @@
 
 ## Properties
 
-| Property           | Attribute            | Description | Type                         | Default              |
-| ------------------ | -------------------- | ----------- | ---------------------------- | -------------------- |
-| `alignment`        | `alignment`          |             | `"horizontal" \| "vertical"` | `'vertical'`         |
-| `captionText`      | `caption-text`       |             | `string`                     | `undefined`          |
-| `disabledItems`    | --                   |             | `string[]`                   | `[]`                 |
-| `errorItems`       | --                   |             | `string[]`                   | `[]`                 |
-| `groupLabelText`   | `group-label-text`   |             | `string`                     | `'Group Label Text'` |
-| `indeterminate`    | --                   |             | `string[]`                   | `[]`                 |
-| `selectedItems`    | --                   |             | `string[]`                   | `[]`                 |
-| `showCaption`      | `show-caption`       |             | `boolean`                    | `undefined`          |
-| `showCaptionError` | `show-caption-error` |             | `boolean`                    | `undefined`          |
-| `showCaptionIcon`  | `show-caption-icon`  |             | `boolean`                    | `undefined`          |
-| `showGroupLabel`   | `show-group-label`   |             | `boolean`                    | `undefined`          |
-| `size`             | `size`               |             | `string`                     | `undefined`          |
+| Property          | Attribute           | Description | Type                         | Default              |
+| ----------------- | ------------------- | ----------- | ---------------------------- | -------------------- |
+| `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `'vertical'`         |
+| `captionText`     | `caption-text`      |             | `string`                     | `undefined`          |
+| `groupLabelText`  | `group-label-text`  |             | `string`                     | `'Group Label Text'` |
+| `showCaption`     | `show-caption`      |             | `boolean`                    | `undefined`          |
+| `showCaptionIcon` | `show-caption-icon` |             | `boolean`                    | `undefined`          |
+| `showGroupLabel`  | `show-group-label`  |             | `boolean`                    | `undefined`          |
+| `size`            | `size`              |             | `string`                     | `undefined`          |
 
 
 ## Dependencies
