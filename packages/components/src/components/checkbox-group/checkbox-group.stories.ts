@@ -134,7 +134,7 @@ const Template = args => {
     }
 
     const template = `
-        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" show-caption-error="${args.showCaptionError}">
+        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
             ${checkboxes}
         </ifx-checkbox-group>`;
 
