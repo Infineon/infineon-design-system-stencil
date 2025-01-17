@@ -505,13 +505,13 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
-                        <span>Range feature</span>
+                        <span>Range</span>
                       </li>
                       <li>
                         <span>
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
-                        <span>Default value feature</span>
+                        <span>Default value</span>
                       </li>
                     </ul>
                   </td>
