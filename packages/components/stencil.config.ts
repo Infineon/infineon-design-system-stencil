@@ -5,9 +5,17 @@ import { frameworkTargets } from './framework-output-targets';
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
   globalStyle: 'src/global/global.scss',
+  testing: {
+    browserHeadless: false,
+    browserDevtools: true,
+    browserArgs: ['--no-sandbox'],
+  
+  },
   plugins: [
-    sass()
+    sass(),
+    
   ],
+ 
   extras: {
     cloneNodeFix: true,
     enableImportInjection: true,
