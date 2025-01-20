@@ -20,6 +20,7 @@ export class NavbarItem {
   @State() isSidebarMenuItem: boolean = false;
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
+  @Prop() numberIndicator: number;
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -363,6 +364,10 @@ export class NavbarItem {
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+              {this.icon && !isNaN(this.numberIndicator) && 
+              <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+              </div>}
             </div>
 
             {this.itemPosition === 'left' 

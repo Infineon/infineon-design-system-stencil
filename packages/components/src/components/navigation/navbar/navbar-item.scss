@@ -73,6 +73,12 @@
     order: 0;
     flex-grow: 0;
 
+    & .number__indicator-wrapper { 
+      position: absolute;
+      top: -10px;
+      left: 8px;
+    }
+
     & .username__tooltip { 
       display: none;
       position: absolute;
