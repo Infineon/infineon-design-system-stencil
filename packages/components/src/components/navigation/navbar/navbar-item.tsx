@@ -190,6 +190,7 @@ export class NavbarItem {
   }
 
   componentDidLoad() { 
+    this.handleLabelWrapper()
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.relocateItemsToFirstlayer(navItems)
@@ -348,6 +349,17 @@ export class NavbarItem {
           this.handleClassList(itemMenu, 'remove', 'right')
         }
       }
+    }
+  }
+
+  handleLabelWrapper() { 
+    const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper');
+    const navItem = this.getNavBarItem();
+    const slot = labelWrapper.querySelector('slot');
+    if (!slot.assignedNodes().length) {
+      navItem.classList.add('removeLabel')
+    } else if(navItem.classList.contains('removeLabel')) {
+      navItem.classList.remove('removeLabel')
     }
   }
 
