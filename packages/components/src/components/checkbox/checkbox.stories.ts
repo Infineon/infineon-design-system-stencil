@@ -48,6 +48,7 @@ const DefaultTemplate = ({ error, checked, indeterminate, size, label, name }) =
   checkbox.setAttribute('name', name);
 
   checkbox.addEventListener('ifxChange', action('ifxChange'));
+  checkbox.addEventListener('ifxError', action('ifxError'));
 
   checkbox.innerHTML = `
     ${label}

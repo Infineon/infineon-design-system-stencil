@@ -22,9 +22,20 @@
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `ifxChange` |             | `CustomEvent<any>` |
+| `ifxError`  |             | `CustomEvent<any>` |
 
 
 ## Methods
+
+### `hasError() => Promise<boolean>`
+
+
+
+#### Returns
+
+Type: `Promise<boolean>`
+
+
 
 ### `isChecked() => Promise<boolean>`
 
@@ -37,6 +48,22 @@ Type: `Promise<boolean>`
 
 
 ### `toggleCheckedState(newVal: boolean) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name     | Type      | Description |
+| -------- | --------- | ----------- |
+| `newVal` | `boolean` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `toggleErrorState(newVal: boolean) => Promise<void>`
 
 
 

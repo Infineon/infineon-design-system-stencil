@@ -1,4 +1,4 @@
-import { Component, State, Prop, h, Element } from '@stencil/core';
+import { Component, State, Prop, h, Element, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox-group',
@@ -18,6 +18,12 @@ export class CheckboxGroup {
   @Prop() showCaptionIcon: boolean;
   @State() hasErrors: boolean = false;
   private errorStates: Map<HTMLElement, boolean> = new Map();
+
+  @Listen('ifxError')
+  handleCheckboxError(event: CustomEvent) {
+    this.errorStates.set(event.target as HTMLElement, event.detail);
+    this.updateHasErrors();
+  }
 
   componentWillLoad() {
     this.initializeState();

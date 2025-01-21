@@ -43,9 +43,7 @@ export default {
             control: { type: 'number' },
             table: {
                 category: 'story controls',
-                defaultValue: {
-                    summary: 3
-                }
+                defaultValue: { summary: 3 }
             }
         },
         checked: {
@@ -122,13 +120,15 @@ export default {
         },
     }
 };
+
 const Template = args => {
 
     let checkboxes = '';
     for (let i = 0; i < args.amountOfItems; i++) {
         if (i === 0) {
             checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" error="${args.error}" size="${args.size}" indeterminate="${args.indeterminate}">Option ${i}</ifx-checkbox>`;
-        } else {
+        }
+        else {
             checkboxes += `<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`;
         }
     }
@@ -140,4 +140,5 @@ const Template = args => {
 
     return template;
 };
+
 export const Default = Template.bind({});

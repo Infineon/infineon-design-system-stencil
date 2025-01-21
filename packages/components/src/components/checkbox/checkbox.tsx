@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
- 
+
 
 @Component({
   tag: 'ifx-checkbox',
@@ -18,12 +18,14 @@ export class Checkbox {
   @Prop() size: string = 'm';
   @Prop() indeterminate: boolean = false;
   @Prop() value: string;
+  @State() internalError: boolean;
   @State() internalChecked: boolean;
   @State() internalIndeterminate: boolean;
 
   @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
@@ -33,7 +35,9 @@ export class Checkbox {
       } else {
         this.internalChecked = !this.internalChecked;
       }
-      
+      if (this.error === true) {
+        this.internalError = false;
+      }
       if (this.internalChecked) {
         if (this.value !== undefined) {
           this.internals.setFormValue(this.value);
@@ -44,6 +48,7 @@ export class Checkbox {
         this.internals.setFormValue(null)
       }
       this.ifxChange.emit(this.internalChecked);
+      this.ifxError.emit(this.internalError);
     }
   }
 
@@ -57,6 +62,16 @@ export class Checkbox {
     this.internalChecked = newVal;
   }
 
+  @Method()
+  async hasError(): Promise<boolean> {
+    return this.internalError;
+  }
+
+  @Method()
+  async toggleErrorState(newVal: boolean) {
+    this.internalError = newVal;
+  }
+
   @Watch('checked')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
@@ -65,6 +80,12 @@ export class Checkbox {
     }
   }
 
+  @Watch('error')
+  errorChanged(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) {
+      this.internalError = newValue;
+    }
+  }
 
   @Watch('indeterminate')
   indeterminateChanged(newValue: boolean, oldValue: boolean) {
@@ -83,6 +104,7 @@ export class Checkbox {
   }
 
   componentWillLoad() {
+    this.internalError = this.error;
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
@@ -127,6 +149,7 @@ export class Checkbox {
           hidden
           ref={(el) => (this.inputElement = el)}
           checked={this.internalChecked}
+          onError={this.handleCheckbox.bind(this)}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
           value={`${this.value}`}
@@ -147,7 +170,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalChecked && <ifx-icon icon="check-12"  aria-hidden="true"></ifx-icon>}
+          {this.internalChecked && <ifx-icon icon="check-12" aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
