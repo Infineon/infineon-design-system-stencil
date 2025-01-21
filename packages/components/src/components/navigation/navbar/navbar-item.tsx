@@ -358,7 +358,7 @@ export class NavbarItem {
     const slot = labelWrapper.querySelector('slot');
     if (!slot.assignedNodes().length) {
       navItem.classList.add('removeLabel')
-    } else if(navItem.classList.contains('removeLabel')) {
+    } else if(this.showLabel && navItem.classList.contains('removeLabel')) {
       navItem.classList.remove('removeLabel')
     }
   }
