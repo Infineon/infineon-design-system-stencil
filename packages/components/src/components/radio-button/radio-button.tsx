@@ -91,6 +91,7 @@ export class RadioButton {
           </div>
         )}
         <input
+          id='hidden__input'
           type="radio" 
           hidden 
           ref={el => this.inputElement = el as HTMLInputElement} 

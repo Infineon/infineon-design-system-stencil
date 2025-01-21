@@ -157,3 +157,9 @@
         }
     }
 }
+
+.radioButton__container {
+    & #hidden__input { 
+        display: none!important;
+    }
+}
