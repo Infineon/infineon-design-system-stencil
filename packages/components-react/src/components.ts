@@ -59,6 +59,7 @@ import { IfxNumberIndicator as IfxNumberIndicatorElement, defineCustomElement as
 import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-overview-table.js";
 import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/infineon-design-system-stencil/dist/components/ifx-pagination.js";
 import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-progress-bar.js";
+import { IfxRadioButtonGroup as IfxRadioButtonGroupElement, defineCustomElement as defineIfxRadioButtonGroup } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button-group.js";
 import { IfxRadioButton as IfxRadioButtonElement, defineCustomElement as defineIfxRadioButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-radio-button.js";
 import { IfxSearchBar as IfxSearchBarElement, defineCustomElement as defineIfxSearchBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-bar.js";
 import { IfxSearchField as IfxSearchFieldElement, defineCustomElement as defineIfxSearchField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-search-field.js";
@@ -696,6 +697,17 @@ export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRad
     react: React,
     events: { onIfxChange: 'ifxChange' } as IfxRadioButtonEvents,
     defineCustomElement: defineIfxRadioButton
+});
+
+type IfxRadioButtonGroupEvents = NonNullable<unknown>;
+
+export const IfxRadioButtonGroup: StencilReactComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonGroupElement, IfxRadioButtonGroupEvents>({
+    tagName: 'ifx-radio-button-group',
+    elementClass: IfxRadioButtonGroupElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxRadioButtonGroupEvents,
+    defineCustomElement: defineIfxRadioButtonGroup
 });
 
 type IfxSearchBarEvents = {
