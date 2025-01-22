@@ -24,6 +24,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-icons-preview](../icons-preview)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -32,6 +36,7 @@
 ```mermaid
 graph TD;
   ifx-alert --> ifx-icon
+  ifx-icons-preview --> ifx-alert
   style ifx-alert fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

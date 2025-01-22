@@ -20,6 +20,7 @@
 
 ### Used by
 
+ - [ifx-icons-preview](../icons-preview)
  - [ifx-list](../table-advanced-version/list)
  - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
@@ -27,6 +28,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ifx-icons-preview --> ifx-link
   ifx-list --> ifx-link
   ifx-notification --> ifx-link
   ifx-overview-table --> ifx-link
