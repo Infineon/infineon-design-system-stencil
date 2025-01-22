@@ -6,8 +6,9 @@ export const config: Config = {
   namespace: 'infineon-design-system-stencil',
   globalStyle: 'src/global/global.scss',
   plugins: [
-    sass()
+    sass(),
   ],
+ 
   extras: {
     cloneNodeFix: true,
     enableImportInjection: true,

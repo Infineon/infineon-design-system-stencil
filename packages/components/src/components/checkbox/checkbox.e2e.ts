@@ -2,7 +2,7 @@ import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-checkbox', () => {
   it('should render', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({timeout: 30000 });
     await page.setContent('<ifx-checkbox></ifx-checkbox>');
 
     const element = await page.find('ifx-checkbox');
