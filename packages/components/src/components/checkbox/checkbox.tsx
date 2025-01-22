@@ -1,6 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 
-
 @Component({
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
@@ -35,9 +34,6 @@ export class Checkbox {
       } else {
         this.internalChecked = !this.internalChecked;
       }
-      if (this.error === true) {
-        this.internalError = false;
-      }
       if (this.internalChecked) {
         if (this.value !== undefined) {
           this.internals.setFormValue(this.value);
@@ -63,11 +59,6 @@ export class Checkbox {
   }
 
   @Method()
-  async hasError(): Promise<boolean> {
-    return this.internalError;
-  }
-
-  @Method()
   async toggleErrorState(newVal: boolean) {
     this.internalError = newVal;
   }
@@ -84,6 +75,7 @@ export class Checkbox {
   errorChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this.internalError = newValue;
+      this.ifxError.emit(this.internalError);
     }
   }
 
@@ -123,7 +115,7 @@ export class Checkbox {
   }
 
   getCheckedClassName() {
-    if (this.error) {
+    if (this.internalError) {
       if (this.internalChecked) {
         return "checked error"
       } else {

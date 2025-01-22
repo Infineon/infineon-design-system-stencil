@@ -8,6 +8,8 @@ import { Component, State, Prop, h, Element, Listen } from '@stencil/core';
 })
 
 export class CheckboxGroup {
+  private errorStates: Map<HTMLElement, boolean> = new Map();
+
   @Element() el: HTMLElement;
   @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
   @Prop() size: string;
@@ -17,12 +19,15 @@ export class CheckboxGroup {
   @Prop() captionText: string;
   @Prop() showCaptionIcon: boolean;
   @State() hasErrors: boolean = false;
-  private errorStates: Map<HTMLElement, boolean> = new Map();
 
   @Listen('ifxError')
   handleCheckboxError(event: CustomEvent) {
-    this.errorStates.set(event.target as HTMLElement, event.detail);
-    this.updateHasErrors();
+    const checkbox = event.target as HTMLElement;
+
+    if (checkbox.tagName === 'ifx-checkbox') {
+      this.errorStates.set(checkbox, event.detail);
+      this.updateHasErrors();
+    }
   }
 
   componentWillLoad() {
@@ -43,6 +48,7 @@ export class CheckboxGroup {
     });
     this.updateHasErrors();
   }
+
   private updateHasErrors() {
     this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
   }

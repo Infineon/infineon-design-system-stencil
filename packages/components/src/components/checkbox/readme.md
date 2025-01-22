@@ -27,16 +27,6 @@
 
 ## Methods
 
-### `hasError() => Promise<boolean>`
-
-
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-
-
 ### `isChecked() => Promise<boolean>`
 
 
