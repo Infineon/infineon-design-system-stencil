@@ -8,7 +8,6 @@ import { Component, State, Prop, h, Element, Listen } from '@stencil/core';
 })
 
 export class CheckboxGroup {
-  private errorStates: Map<HTMLElement, boolean> = new Map();
 
   @Element() el: HTMLElement;
   @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
@@ -20,13 +19,38 @@ export class CheckboxGroup {
   @Prop() showCaptionIcon: boolean;
   @State() hasErrors: boolean = false;
 
+  private checkboxes: HTMLIfxCheckboxElement[] = [];
+
   @Listen('ifxError')
   handleCheckboxError(event: CustomEvent) {
     const checkbox = event.target as HTMLElement;
 
     if (checkbox.tagName === 'ifx-checkbox') {
-      this.errorStates.set(checkbox, event.detail);
-      this.updateHasErrors();
+      this.hasErrors = event.detail;
+      this.checkboxes.forEach((checkbox) => {
+        if (event.target !== checkbox) {
+          checkbox.error = event.detail;
+        }
+      }
+      );
+    }
+  }
+
+  private initializeState() {
+    this.checkboxes = [];
+    this.checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
+    let anyErrors = this.checkboxes.some((checkbox) => checkbox.error);
+    if (anyErrors) {
+      this.hasErrors = true;
+      this.checkboxes.forEach((checkbox) => {
+        checkbox.error = true;
+      });
+    }
+    else {
+      this.hasErrors = false;
+      this.checkboxes.forEach((checkbox) => {
+        checkbox.error = false;
+      });
     }
   }
 
@@ -38,20 +62,9 @@ export class CheckboxGroup {
     this.initializeState();
   };
 
-  private initializeState() {
-    this.errorStates.clear();
-    const checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
-    checkboxes.forEach((checkbox) => {
-      if (!this.errorStates.has(checkbox)) {
-        this.errorStates.set(checkbox, (checkbox as any).error || false);
-      }
-    });
-    this.updateHasErrors();
-  }
-
-  private updateHasErrors() {
-    this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
-  }
+  onslotchange() {
+    this.initializeState();
+  };
 
   render() {
     return (
