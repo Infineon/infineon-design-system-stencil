@@ -8,7 +8,6 @@ import { Component, State, Prop, h, Element, Listen } from '@stencil/core';
 })
 
 export class CheckboxGroup {
-
   @Element() el: HTMLElement;
   @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
   @Prop() size: string;
@@ -23,23 +22,31 @@ export class CheckboxGroup {
 
   @Listen('ifxError')
   handleCheckboxError(event: CustomEvent) {
-    const checkbox = event.target as HTMLElement;
+    const targetCheckbox = event.target as HTMLIfxCheckboxElement;
 
-    if (checkbox.tagName === 'ifx-checkbox') {
+    if (targetCheckbox) {
       this.hasErrors = event.detail;
       this.checkboxes.forEach((checkbox) => {
-        if (event.target !== checkbox) {
+        if (event.target !== targetCheckbox) {
           checkbox.error = event.detail;
         }
-      }
-      );
+      });
     }
   }
 
-  private initializeState() {
+  componentWillLoad() {
+    this.initialize();
+  }
+
+  handleSlotChange = () => {
+    this.initialize();
+  };
+
+  private initialize() {
     this.checkboxes = [];
     this.checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
     let anyErrors = this.checkboxes.some((checkbox) => checkbox.error);
+
     if (anyErrors) {
       this.hasErrors = true;
       this.checkboxes.forEach((checkbox) => {
@@ -53,18 +60,6 @@ export class CheckboxGroup {
       });
     }
   }
-
-  componentWillLoad() {
-    this.initializeState();
-  }
-
-  handleSlotChange = () => {
-    this.initializeState();
-  };
-
-  onslotchange() {
-    this.initializeState();
-  };
 
   render() {
     return (
