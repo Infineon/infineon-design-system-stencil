@@ -43,9 +43,14 @@ export class IconsPreview {
     return (
       <div class='container'>
         <div class="alert__wrapper">
-          <ifx-alert aria-live="assertive" variant="primary" icon="c-info-24" closable={false}>
-            You can also find the UI icons in Figma for use in mockups. <ifx-link href="https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=13284-1289&p=f&t=SD6EdmXaSufsjPCv-0" target="_blank" size="m" variant="bold">FIGMA icon library <ifx-icon icon="arrow-right-16"></ifx-icon></ifx-link>
-            </ifx-alert>
+            <ifx-notification 
+              icon="c-check-16" 
+              variant="success" 
+              link-text="Figma icon library" 
+              link-href="https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=13284-1289&p=f&t=SD6EdmXaSufsjPCv-0"
+              link-target="_blank">
+              You can also find the UI icons in Figma for use in mockups.
+            </ifx-notification>
         </div>
         <div class='html-wrapper'>
           <span class="html-tag">&lt;</span>

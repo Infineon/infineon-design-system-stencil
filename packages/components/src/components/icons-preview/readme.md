@@ -9,17 +9,16 @@
 
 ### Depends on
 
-- [ifx-alert](../alert)
-- [ifx-link](../link)
+- [ifx-notification](../notification)
 - [ifx-icon](../icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-icons-preview --> ifx-alert
-  ifx-icons-preview --> ifx-link
+  ifx-icons-preview --> ifx-notification
   ifx-icons-preview --> ifx-icon
-  ifx-alert --> ifx-icon
+  ifx-notification --> ifx-icon
+  ifx-notification --> ifx-link
   style ifx-icons-preview fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
