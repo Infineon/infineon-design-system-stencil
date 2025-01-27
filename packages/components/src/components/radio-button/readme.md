@@ -34,7 +34,7 @@
 
 Type: `Promise<boolean>`
 
-whether the radio button is checked.
+
 
 
 ## Dependencies
