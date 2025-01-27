@@ -12,12 +12,12 @@ export class RadioButton {
   @Prop() value: string;
   @Prop() error: boolean = false;
   @Prop() size: "s" | "m" = "s";
-  @Prop({ reflect: true }) name: string; // Reflect prop to attribute
+  @Prop({ reflect: true }) name: string;
   @Prop() checked: boolean;
   @State() internalChecked: boolean = false;
   @State() hasSlot: boolean = true;
-  @State() inputElement: HTMLInputElement;
 
+  private inputElement: HTMLInputElement;
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
 
   @Method()
@@ -51,7 +51,9 @@ export class RadioButton {
   @Listen('change', { target: 'document' })
   handleChange(event: Event) {
     const target = event.target as HTMLElement;
-    if (target === this.el) return; // Ignore self
+    if (target === this.el) {
+      return; 
+    }
 
     const targetName = target.getAttribute('name');
     if (targetName === this.name) {
