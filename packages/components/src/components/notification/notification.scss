@@ -38,6 +38,14 @@
     }
   }
 
+  &.ifx-notification__wrapper--ocean{
+    border-left: tokens.$ifxBorderWidth50 solid tokens.$ifxColorOcean500;
+
+    & .ifx-notification__icon {
+      color: tokens.$ifxColorOcean500;
+    }
+  }
+
   & .ifx-notification__icon {
     margin-right: tokens.$ifxSpace100;
     display: flex;
