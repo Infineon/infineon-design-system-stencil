@@ -126,7 +126,6 @@ export class Multiselect {
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
       this.optionsProcessed = true;
     }
-    
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
     return slicedOptions;
@@ -149,7 +148,9 @@ export class Multiselect {
           // if parent is selected, then select all child options
           selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
         } else {
-          selectedOptions.push(option);
+          if (!selectedOptions.some(existingOption => existingOption.value === option.value)) {
+            selectedOptions.push(option);
+          }
         }
       } else {
         if (option.children && option.children.length > 0) {
@@ -157,6 +158,7 @@ export class Multiselect {
         }
       }
     }
+
     return selectedOptions;
   }
 
@@ -293,6 +295,7 @@ export class Multiselect {
         if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
           opt.selected = true;
           this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
+          this.optionCount = this.countOptions( this.persistentSelectedOptions)
         }
       }
     }
@@ -360,7 +363,7 @@ export class Multiselect {
     if (!path.includes(this.dropdownElement)) {
       this.dropdownOpen = false;
       document.removeEventListener('click', this.handleDocumentClick);
-
+      this.filteredOptions = this.loadedOptions;
       // Dispatch the ifxMultiselectIsOpen event
       this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
     }
@@ -513,7 +516,7 @@ export class Multiselect {
     const isSelected = option.children ? isIndeterminate || this.isOptionSelected(option) : this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
     const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
-
+   
     return (
       <div class="option-wrapper">
         <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 
