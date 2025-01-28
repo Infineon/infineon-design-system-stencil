@@ -1,6 +1,6 @@
 import { Component, h, Host, Prop } from '@stencil/core';
  
-export type NotificationVariant = 'success' | 'warning' | 'error';
+export type NotificationVariant = 'success' | 'warning' | 'error' | 'ocean';
 
 @Component({
   tag: 'ifx-notification',
@@ -23,6 +23,8 @@ export class Notification {
         return 'ifx-notification__wrapper--warning';
       case 'error':
         return 'ifx-notification__wrapper--error';
+      case 'ocean':
+        return 'ifx-notification__wrapper--ocean';
       default:
         return 'ifx-notification__wrapper--success';
     }
