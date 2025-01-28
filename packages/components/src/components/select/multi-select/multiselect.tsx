@@ -201,7 +201,16 @@ export class Multiselect {
     if (searchTerm === '') {
       this.filteredOptions = this.loadedOptions;
     } else {
-      this.filteredOptions = this.loadedOptions.filter(option => option.label.toLowerCase().includes(searchTerm))
+      this.filteredOptions = this.loadedOptions.filter(option => {
+        const matchesSearchTerm = option.label.toLowerCase().includes(searchTerm);
+        if (option.children) {
+          const childrenMatch = option.children.some(child => {
+            return child.label.toLowerCase().includes(searchTerm);
+          });
+          return matchesSearchTerm || childrenMatch;
+        }
+        return matchesSearchTerm;
+      });
     }
   }, 300);
 
