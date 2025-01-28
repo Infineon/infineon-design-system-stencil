@@ -1,3 +1,15 @@
+# v30.11.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: fixes bugs related to option selection, and search filter [#1680](https://github.com/Infineon/infineon-design-system-stencil/pull/1680) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.10.0 (Tue Jan 28 2025)
 
 #### 🚀 Enhancement
