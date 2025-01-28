@@ -42,16 +42,19 @@
     margin-right: tokens.$ifxSpace100;
     display: flex;
     align-self: flex-start;
-    padding-top: 2px;
+    padding-top: 3px;
   }
 
   & .ifx-notification__body {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    font-size: tokens.$ifxFontSizeS;
 
     & .ifx-notification__slot {
       flex-grow: 1;
+      display: inline-flex;
+      align-items: center;
     }
   }
 
