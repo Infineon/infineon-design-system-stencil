@@ -1,3 +1,15 @@
+# v30.10.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Temporarily remove e2e unit tests from github actions [#1689](https://github.com/Infineon/infineon-design-system-stencil/pull/1689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.9.2 (Fri Jan 10 2025)
 
 #### 🐛 Bug Fix
