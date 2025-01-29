@@ -3,7 +3,6 @@
 
 @import "~ag-grid-community/styles/ag-grid.css";
 
-
 .table-container {
   display: block;
 }
@@ -36,7 +35,6 @@
 #table-wrapper {
   flex: 1; // allows the table to take up the remaining space
 }
-
 
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
@@ -230,4 +228,8 @@
 
 .matching-results-text {
   font-weight: 400;
+}
+
+#table-pagination {
+  align-self: end;
 }

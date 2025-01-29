@@ -529,7 +529,7 @@ export class Table {
                 <div id={`ifxTable-${this.uniqueKey}`} class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
+              {this.pagination ? <ifx-pagination id="table-pagination" total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
             </div>
           </div>
         </div>
