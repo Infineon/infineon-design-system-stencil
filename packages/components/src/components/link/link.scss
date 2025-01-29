@@ -16,6 +16,10 @@
   line-height: 1.6;
   font-family: var(--ifx-font-family);
 
+  &:hover {
+      cursor: pointer;
+    }
+
   &:focus {
     outline-width: 2px;
     outline-style: solid;
@@ -29,7 +33,6 @@
 
     &:hover {
       text-decoration: underline;
-      cursor: pointer;
     }
 
     &:active {
@@ -48,8 +51,7 @@
     text-underline-offset: 8px;
     
     &:hover {
-      color: tokens.$ifxColorOcean500;;
-      cursor: pointer;
+      color: tokens.$ifxColorOcean500;
     }
     
     &:active {
@@ -69,7 +71,6 @@
 
     &:hover {
       color: tokens.$ifxColorOcean500;
-      cursor: pointer;
     }
 
     &:active {
@@ -85,7 +86,6 @@
 
     &:hover {
       color: tokens.$ifxColorOcean500;
-      cursor: pointer;
     }
 
     &:active {
