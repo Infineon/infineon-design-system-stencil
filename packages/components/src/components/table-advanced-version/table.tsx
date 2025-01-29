@@ -244,7 +244,7 @@ export class Table {
       noRowsOverlayComponent: CustomNoRowsOverlay,
       noRowsOverlayComponentParams: {
         noRowsMessageFunc: () =>
-          'No rows found' //at: ' + new Date().toLocaleTimeString(),
+          "We're sorry. We couldn't find any results." //at: ' + new Date().toLocaleTimeString(),
       },
       icons: {
         sortAscending: '<ifx-icon icon="arrowtriangleup16"></ifx-icon>',
