@@ -365,7 +365,7 @@ export class Multiselect {
       document.removeEventListener('click', this.handleDocumentClick);
       this.filteredOptions = this.loadedOptions;
       // Dispatch the ifxMultiselectIsOpen event
-      this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
+      this.ifxOpen.emit(this.dropdownOpen);
     }
   }
 
