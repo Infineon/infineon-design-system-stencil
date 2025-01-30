@@ -24,19 +24,6 @@
 | `ifxChange` |             | `CustomEvent<any>` |
 
 
-## Methods
-
-### `isChecked() => Promise<boolean>`
-
-
-
-#### Returns
-
-Type: `Promise<boolean>`
-
-whether the radio button is checked.
-
-
 ## Dependencies
 
 ### Used by
