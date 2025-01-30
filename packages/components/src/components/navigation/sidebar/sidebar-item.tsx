@@ -303,7 +303,7 @@ export class SidebarItem {
             <slot />
           </div>
           {
-          (this.isExpandable || (this.numberIndicator !== undefined && this.numberIndicator !== null && !isNaN(this.numberIndicator))) &&
+          (this.isExpandable || !isNaN(this.numberIndicator)) &&
             <div class="sidebar__nav-item-indicator">
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
@@ -311,7 +311,7 @@ export class SidebarItem {
                 </span>
               }
 
-              {this.numberIndicator != undefined && this.numberIndicator !== null && !isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
+              {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
                 <span class='item__number-indicator'>
                   <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
                 </span>}

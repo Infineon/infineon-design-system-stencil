@@ -133,9 +133,9 @@ export const WithSubmenu = SubmenuTemplate.bind({});
 
 const NumberIndicatorTemplate = () =>
   `<ifx-sidebar application-name="Application name">
-  <ifx-sidebar-item icon="image-16" number-indicator=5>Menu Item</ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16" number-indicator=1>Menu Item</ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16" number-indicator=23>Menu Item</ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16" number-indicator="5">Menu Item</ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16" number-indicator="1">Menu Item</ifx-sidebar-item>
+  <ifx-sidebar-item icon="image-16" number-indicator="23">Menu Item</ifx-sidebar-item>
   <ifx-sidebar-item active="false">
     Header Section
     <ifx-sidebar-item icon="image-16" active="false" >
