@@ -16,9 +16,9 @@
   line-height: 1.6;
   font-family: var(--ifx-font-family);
 
-  &:hover {
-      cursor: pointer;
-    }
+  &:hover { 
+    cursor: pointer;
+  }
 
   &:focus {
     outline-width: 2px;
@@ -51,7 +51,7 @@
     text-underline-offset: 8px;
     
     &:hover {
-      color: tokens.$ifxColorOcean500;
+      color: tokens.$ifxColorOcean500;;
     }
     
     &:active {
@@ -93,8 +93,6 @@
     }
   }
 
-
-
   &.small {
     font-size: tokens.$ifxFontSizeS;
   }
@@ -110,30 +108,6 @@
   &.extraLarge {
     font-size: tokens.$ifxFontSizeXl;
   }
-
-  // &.bold {
-  //   font-weight: tokens.$ifxFontWeightSemibold;
-  // }
-
-  // &.primary {
-  //   color: tokens.$ifxColorOcean500;
-  // }
-
-  // &.secondary {
-  //   color: tokens.$ifxColorBerry500;
-  // }
-
-  // &.warning {
-  //   color: tokens.$ifxColorOrange500;
-  // }
-
-  // &.danger {
-  //   color: tokens.$ifxColorRed500;
-  // }
-
-  // &.success {
-  //   color: tokens.$ifxColorGreen500;
-  // }
 
   &.underline {
     text-decoration: underline;
