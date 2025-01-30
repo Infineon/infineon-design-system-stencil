@@ -17,9 +17,7 @@
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
-| `ifxNextPage`   |             | `CustomEvent<any>` |
 | `ifxPageChange` |             | `CustomEvent<any>` |
-| `ifxPrevPage`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies

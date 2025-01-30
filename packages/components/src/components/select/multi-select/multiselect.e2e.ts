@@ -1,7 +1,7 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 function getOptions(selected: boolean) {
-  return  [
+  return [
     { value: 'a', label: 'Option A', selected: selected },
     { value: 'b', label: 'Option B', selected: selected },
     {
@@ -26,12 +26,12 @@ describe('ifx-multiselect', () => {
     expect(element).toHaveClass('hydrated');
   });
 
-  it('should emit ifxMultiselectIsOpen when dropdown is toggled', async () => {
+  it('should emit ifxOpen when dropdown is toggled', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-multiselect></ifx-multiselect>');
 
     const select = await page.find('ifx-multiselect');
-    const openEvent = await select.spyOnEvent('ifxMultiselectIsOpen');
+    const openEvent = await select.spyOnEvent('ifxOpen');
 
     const multiselectWrapper = await page.find('ifx-multiselect >>> .ifx-multiselect-wrapper ');
     await multiselectWrapper.click();
@@ -103,13 +103,13 @@ describe('ifx-multiselect', () => {
     // open dropdown
     const component = await page.find('ifx-multiselect');
     await component.click();
-    
+
 
     const selectAllButton = await page.find('ifx-multiselect >>> .select-all-wrapper');
 
     expect(selectAllButton).toBeNull();
   });
 
-  
+
   // Add more tests for keyboard navigation, clearing selections, error message rendering, dropdown positioning, etc.
 });
