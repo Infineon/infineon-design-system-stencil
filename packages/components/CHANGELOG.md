@@ -1,3 +1,16 @@
+# v30.12.1 (Thu Jan 30 2025)
+
+#### 🐛 Bug Fix
+
+- Link: changes cursor to pointer [#1686](https://github.com/Infineon/infineon-design-system-stencil/pull/1686) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.12.0 (Tue Jan 28 2025)
 
 #### 🚀 Enhancement
