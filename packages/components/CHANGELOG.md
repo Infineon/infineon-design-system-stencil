@@ -1,3 +1,15 @@
+# v30.14.0 (Thu Jan 30 2025)
+
+#### 🚀 Enhancement
+
+- radio-button: enables shadow dom [#1702](https://github.com/Infineon/infineon-design-system-stencil/pull/1702) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.12.1 (Thu Jan 30 2025)
 
 #### 🐛 Bug Fix
