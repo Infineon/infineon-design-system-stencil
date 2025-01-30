@@ -28,6 +28,17 @@ export class RadioButton {
     this.fallbackInput = document.createElement('input');
     this.fallbackInput.type = 'radio';
     this.fallbackInput.hidden = true;
+    this.fallbackInput.className = '_ifx-radiobutton-fallback';
+    this.fallbackInput.style.cssText = `
+      display: none !important;
+      position: absolute !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    `;
+    this.fallbackInput.setAttribute('aria-hidden', 'true');
+    this.fallbackInput.tabIndex = -1;
     this.el.appendChild(this.fallbackInput);
 
     // Initialize ElementInternals if supported
