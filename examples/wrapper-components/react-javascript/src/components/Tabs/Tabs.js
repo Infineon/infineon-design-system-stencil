@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { IfxTabs, IfxTab } from '@infineon/infineon-design-system-react';
 
 function Tabs() {
-  
+
   const tabIndex = useRef(0);
   const INTERVAL = 20000;
 
@@ -26,7 +26,7 @@ function Tabs() {
   }
 
   return (
-    <IfxTabs onIfxTabChange={handleChange} active-tab-index={tabIndex} orientation="horizontal">
+    <IfxTabs onIfxChange={handleChange} active-tab-index={tabIndex} orientation="horizontal">
       <IfxTab header="tab header a" disabled={false} icon='c-check-16'>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec

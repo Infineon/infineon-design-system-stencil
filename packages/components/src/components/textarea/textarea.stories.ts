@@ -4,7 +4,7 @@ export default {
 	title: 'Components/Textarea',
 	tags: ['autodocs'],
 	args: {
-		caption:'Caption text, description, error notification',
+		caption: 'Caption text, description, error notification',
 		cols: 43,
 		disabled: false,
 		error: false,
@@ -130,9 +130,7 @@ export default {
 			},
 		},
 		ifxInput: {
-			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.\n
-	event.detail: string
-			`,
+			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.`,
 			table: {
 				category: 'custom events',
 				type: {

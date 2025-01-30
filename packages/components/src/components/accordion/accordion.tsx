@@ -11,7 +11,7 @@ export class Accordion {
   @Prop() autoCollapse: boolean = false;
 
 
-  @Listen('ifxItemOpen')
+  @Listen('ifxOpen')
   async onItemOpen(event: CustomEvent) {
     if (this.autoCollapse) {
       const items = Array.from(this.el.querySelectorAll('ifx-accordion-item'));

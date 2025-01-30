@@ -55,8 +55,8 @@ toggleItemSelection() {
 }
    
 
-emitIfxChipItemSelectEvent(emitIfxChipChange: boolean = true) {
-   this.ifxChipItemSelect.emit({ emitIfxChipChange: emitIfxChipChange,
+emitIfxChipItemSelectEvent(emitIfxChange: boolean = true) {
+   this.ifxChipItemSelect.emit({ emitIfxChange: emitIfxChange,
                            key: this.chipState.key,
                            label: this.getItemLabel(), 
                            selected: this.selected, 

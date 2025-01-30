@@ -11,19 +11,63 @@ export default {
     icon: 'c-info-24',
   },
   argTypes: {
+    text: {
+      description: 'Defines the main content of the tooltip.',
+      control: 'text',
+      table: {
+        category: 'ifx-tooltip props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     icon: {
+      description: 'The icon to be displayed. This control is only applicable when the variant is set to ***extended***.',
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' },
+      control: 'select',
+      table: {
+        category: 'ifx-tooltip props',
+        type: {
+          summary: 'string',
+          defaultValue: {
+            summary: 'c-info-24'
+          }
+        }
+      }
     },
     position: {
+      description: 'Determines the position of the tooltip relative to the reference element.',
       options: ['auto', 'bottom-start', 'top-start', 'left', 'bottom-end', 'top-end', 'right', 'bottom', 'top'],
-      control: { type: 'radio' },
+      control: 'radio',
+      table: {
+        category: 'ifx-tooltip props',
+        defaultValue: {
+          summary: 'auto'
+        }
+      }
     },
     variant: {
+      description: 'Sets the style variant of the tooltip.',
+      control: 'radio',
       options: ['compact', 'dismissible', 'extended'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-tooltip props',
+        defaultValue: {
+          summary: 'compact'
+        }
+      }
     },
-    header: { control: 'text', if: { arg: 'variant', neq: 'compact' } },
+    header: {
+      description: 'Specifies the header or title of the tooltip. This field is only applicable when the variant is set to ***dismissible*** or ***extended***.',
+      control: 'text', 
+      if: { arg: 'variant', neq: 'compact' },
+      table: {
+        category: 'ifx-tooltip props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
   },
 };
 

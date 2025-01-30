@@ -18,7 +18,8 @@ export default {
     variant: 'single',
     readOnly: false,
     selected: false,
-    value: 'Item Value'
+    value: 'Item Value',
+    AriaLabel: 'Chip'
   },
   argTypes: {
     amountOfChipItems: {
@@ -37,9 +38,6 @@ export default {
       description: 'Set the label of *<ifx-chip-item>*.',
       table: {
         category: 'story controls',
-        type: {
-          summary: '<ifx-chip-item> `label` </ifx-chip-item>'
-        }
       }
     },
     placeholder: {
@@ -87,6 +85,13 @@ export default {
         }
       }
     },
+    AriaLabel: {
+      control: { type: 'text' },
+      description: 'Set the aria label of the chip item. Enhances accessibility.',
+      table: {
+        category: 'ifx-chip props'
+      }
+    },
     selected: {
       description: 'Set the *selected* prop to pre-select the chip item.',
       table: {
@@ -102,32 +107,18 @@ export default {
         category: 'ifx-chip-item props',
       }
     },
-    ifxChipChange: {
-      action: 'ifxChipChange',
-      description: `A custom event emitted when the selection in a *<ifx-chip>* is updated.\n
-      event.detail: 
-      {
-        currentSelection: Array<Option>,
-        previousSelection: Array<Option>
-      }
-
-      Option:
-      {
-        key: number,
-        label: string,
-        selected: boolean,
-        value: string
-      }
-      `,
+    ifxChange: {
+      action: 'ifxChange',
+      description: 'A custom event emitted when the selection in a *<ifx-chip>* is updated.',
       table: {
         category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail: `
-React: onIfxChipChange={handleChange}
-Vue: @ifxChipChange="handleChange"
-Angular: (ifxChipChange)="handleChange()"
-VanillaJs: .addEventListener("ifxChipChange", (event) => {/*handle change*/});`,
+React: onIfxChange={handleChange}
+Vue: @ifxChange="handleChange"
+Angular: (ifxChange)="handleChange()"
+VanillaJs: .addEventListener("ifxChange", (event) => {/*handle change*/});`,
         }
       }
     }
@@ -142,13 +133,16 @@ placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
 read-only="${args.readOnly}"
+AriaLabel="${args.AriaLabel}"
 >
-  ${
-    (() => {
+  ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
         const chipItem: HTMLIfxChipItemElement = document.createElement('ifx-chip-item');
         chipItem.innerHTML = args.chipItemLabel + ' ' + (chipItemId + 1);
         chipItem.setAttribute('value', args.value + ' ' + (chipItemId + 1));
+        if (args.selected && chipItemId === 1) {
+          chipItem.setAttribute('selected', 'true');
+        }
         if (args.readOnly) {
           if (args.variant === 'multi') {
             chipItem.setAttribute('selected', 'true');
@@ -159,11 +153,11 @@ read-only="${args.readOnly}"
         return chipItem.outerHTML;
       }).join(`\n    `);
     })()
-  }
+    }
 </ifx-chip>`;
 
   const chip = wrapper.querySelector('ifx-chip');
-  chip.addEventListener('ifxChipChange', action('ifxChipChange'));
+  chip.addEventListener('ifxChange', action('ifxChange'));
 
   return chip;
 };

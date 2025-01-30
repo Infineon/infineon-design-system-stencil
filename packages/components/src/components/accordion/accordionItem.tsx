@@ -11,10 +11,10 @@ export class IfxAccordionItem {
   @Prop({
     mutable: true,
   }) open: boolean = false;
-  @Prop() AriaLive = 3;
+  @Prop() AriaLevel = 3;
   @State() internalOpen: boolean = false;
-  @Event() ifxItemOpen: EventEmitter;
-  @Event() ifxItemClose: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
+  @Event() ifxClose: EventEmitter;
   private contentEl!: HTMLElement;
 
 
@@ -42,9 +42,9 @@ export class IfxAccordionItem {
     this.open = this.internalOpen;
 
     if (this.internalOpen) {
-      this.ifxItemOpen.emit({ isOpen: this.internalOpen });
+      this.ifxOpen.emit({ isOpen: this.internalOpen });
     } else {
-      this.ifxItemClose.emit({ isClosed: !this.internalOpen });
+      this.ifxClose.emit({ isClosed: !this.internalOpen });
     }
   }
 
@@ -98,7 +98,7 @@ export class IfxAccordionItem {
     return (
       <div class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
         <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0'>
-          <span aria-hidden="true" role="heading" aria-level={String(this.AriaLive) as string} class="accordion-icon">
+          <span aria-hidden="true" role="heading" aria-level={String(this.AriaLevel) as string} class="accordion-icon">
             <ifx-icon icon="chevron-down-12"/>
           </span>
           <span id="accordion-caption" class="accordion-caption">{this.caption}</span>
