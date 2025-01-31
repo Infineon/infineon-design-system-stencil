@@ -1,3 +1,15 @@
+# v30.15.0 (Fri Jan 31 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds notification in the icon library [#1696](https://github.com/Infineon/infineon-design-system-stencil/pull/1696) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.14.2 (Fri Jan 31 2025)
 
 #### 🐛 Bug Fix
