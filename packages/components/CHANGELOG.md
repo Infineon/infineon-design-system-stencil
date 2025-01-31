@@ -1,3 +1,90 @@
+# v30.14.2 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Status and Typography documentation [#1703](https://github.com/Infineon/infineon-design-system-stencil/pull/1703) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.1 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar-item: internal code optimization [#1687](https://github.com/Infineon/infineon-design-system-stencil/pull/1687) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.0 (Thu Jan 30 2025)
+
+#### 🚀 Enhancement
+
+- radio-button: enables shadow dom [#1702](https://github.com/Infineon/infineon-design-system-stencil/pull/1702) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.12.1 (Thu Jan 30 2025)
+
+#### 🐛 Bug Fix
+
+- Link: changes cursor to pointer [#1686](https://github.com/Infineon/infineon-design-system-stencil/pull/1686) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.12.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: implements search by children option [#1683](https://github.com/Infineon/infineon-design-system-stencil/pull/1683) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.11.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: fixes bugs related to option selection, and search filter [#1680](https://github.com/Infineon/infineon-design-system-stencil/pull/1680) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.10.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Temporarily remove e2e unit tests from github actions [#1689](https://github.com/Infineon/infineon-design-system-stencil/pull/1689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.9.2 (Fri Jan 10 2025)
 
 #### 🐛 Bug Fix
