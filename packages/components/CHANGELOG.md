@@ -1,3 +1,16 @@
+# v30.14.2 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Status and Typography documentation [#1703](https://github.com/Infineon/infineon-design-system-stencil/pull/1703) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.14.1 (Fri Jan 31 2025)
 
 #### 🐛 Bug Fix
