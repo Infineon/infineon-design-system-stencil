@@ -1,3 +1,16 @@
+# v30.14.1 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar-item: internal code optimization [#1687](https://github.com/Infineon/infineon-design-system-stencil/pull/1687) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.14.0 (Thu Jan 30 2025)
 
 #### 🚀 Enhancement
