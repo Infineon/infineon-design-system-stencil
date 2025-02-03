@@ -16,7 +16,7 @@ export class SidebarItem {
   @State() isExpandable: boolean = false;
   @State() isNested: boolean = true;
   @State() isSubMenuItem: boolean = false;
-  @Prop() numberIndicator: string;
+  @Prop() numberIndicator: number;
   @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
 
@@ -303,7 +303,7 @@ export class SidebarItem {
             <slot />
           </div>
           {
-          (this.isExpandable || this.numberIndicator?.trim()) && 
+          (this.isExpandable || !isNaN(this.numberIndicator)) &&
             <div class="sidebar__nav-item-indicator">
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
@@ -311,7 +311,7 @@ export class SidebarItem {
                 </span>
               }
 
-              {this.numberIndicator?.trim() && !this.isExpandable && !this.isNested &&
+              {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
                 <span class='item__number-indicator'>
                   <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
                 </span>}
