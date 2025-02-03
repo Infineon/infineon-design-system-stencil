@@ -17,32 +17,112 @@
     padding: 0; // Remove padding when border is not present
   }
 
-  &.border-orange {
-    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOrange500;
+  &.border-engineering-100{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering100;
   }
 
-  &.border-ocean {
-    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean500;
+  &.border-engineering-200{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
   }
 
-  &.border-grey {
-    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering500;
-  }
-
-  &.border-light-grey {
+  &.border-engineering-300{
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering300;
   }
 
-  &.border-red {
+  &.border-engineering-400{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering400;
+  }
+
+  &.border-engineering-500{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering500;
+  }
+
+  &.border-engineering-600{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering600;
+  }
+
+  &.border-ocean-100 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean100;
+  }
+
+  &.border-ocean-200 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean200;
+  }
+
+  &.border-ocean-300 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean300;
+  }
+
+  &.border-ocean-400 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean400;
+  }
+
+  &.border-ocean-500 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean500;
+  }
+
+  &.border-ocean-600 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean600;
+  }
+
+  &.border-ocean-700 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOcean700;
+  }
+
+  &.border-red-500 {
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorRed500;
   }
 
-  &.border-green {
+  &.border-red-600 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorRed600;
+  }
+
+  &.border-red-700 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorRed700;
+  }
+
+  &.border-orange-500 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorOrange500;
+  }
+
+  &.border-green-500 {
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorGreen500;
   }
 
-  &.border-berry {
+  &.border-lawn-400 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorLawn400;
+  }
+
+  &.border-lawn-500 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorLawn500;
+  }
+
+  &.border-lawn-700 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorLawn700;
+  }
+
+  &.border-berry-400 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorBerry400;
+  }
+
+  &.border-berry-500 {
     border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorBerry500;
+  }
+
+  &.border-sun-400 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorSun400;
+  }
+
+  &.border-sun-500 {
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorSun500;
+  }
+
+  &.border-sand-400{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorSand400;
+  }
+
+  &.border-sand-500{
+    border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorSand500;
   }
 
 
@@ -68,31 +148,111 @@
 
 
 .dot {
-  &.orange {
-    background-color: tokens.$ifxColorOrange500;
+  &.engineering-100 {
+    background-color: tokens.$ifxColorEngineering100;
   }
 
-  &.ocean {
-    background-color: tokens.$ifxColorOcean500;
+  &.engineering-200 {
+    background-color: tokens.$ifxColorEngineering200;
   }
 
-  &.grey {
-    background-color: tokens.$ifxColorEngineering500;
-  }
-
-  &.light-grey {
+  &.engineering-300 {
     background-color: tokens.$ifxColorEngineering300;
   }
 
-  &.red {
+  &.engineering-400 {
+    background-color: tokens.$ifxColorEngineering400;
+  }
+
+  &.engineering-500 {
+    background-color: tokens.$ifxColorEngineering500;
+  }
+
+  &.engineering-600 {
+    background-color: tokens.$ifxColorEngineering600;
+  }
+
+  &.ocean-100 {
+    background-color: tokens.$ifxColorOcean100;
+  }
+
+  &.ocean-200 {
+    background-color: tokens.$ifxColorOcean200;
+  }
+
+  &.ocean-300 {
+    background-color: tokens.$ifxColorOcean300;
+  }
+
+  &.ocean-400 {
+    background-color: tokens.$ifxColorOcean400;
+  }
+
+  &.ocean-500 {
+    background-color: tokens.$ifxColorOcean500;
+  }
+
+  &.ocean-600 {
+    background-color: tokens.$ifxColorOcean600;
+  }
+
+  &.ocean-700 {
+    background-color: tokens.$ifxColorOcean700;
+  }
+
+  &.red-500 {
     background-color: tokens.$ifxColorRed500;
   }
 
-  &.green {
+  &.red-600 {
+    background-color: tokens.$ifxColorRed600;
+  }
+
+  &.red-700 {
+    background-color: tokens.$ifxColorRed700;
+  }
+
+  &.orange-500 {
+    background-color: tokens.$ifxColorOrange500;
+  }
+
+  &.green-500 {
     background-color: tokens.$ifxColorGreen500;
   }
 
-  &.berry {
+  &.lawn-400{
+    background-color: tokens.$ifxColorLawn400;
+  }
+
+  &.lawn-500{
+    background-color: tokens.$ifxColorLawn500;
+  }
+
+  &.lawn-700 {
+    background-color: tokens.$ifxColorLawn700;
+  }
+
+  &.berry-400 {
+    background-color: tokens.$ifxColorBerry400;
+  }
+
+  &.berry-500 {
     background-color: tokens.$ifxColorBerry500;
+  }
+
+  &.sun-400 {
+    background-color: tokens.$ifxColorSun400;
+  }
+
+  &.sun-500 {
+    background-color: tokens.$ifxColorSun500;
+  }
+
+  &.sand-400{
+    background-color: tokens.$ifxColorSand400;
+  }
+
+  &.sand-500{
+    background-color: tokens.$ifxColorSand500;
   }
 }
