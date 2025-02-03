@@ -18,7 +18,7 @@ export default {
     },
     variant: {
       description: 'Variant of the notification.',
-      options: ['success', 'warning', 'error', 'ocean'],
+      options: ['success', 'locked', 'error', 'neutral'],
       control: { type: 'radio' },
     },
     icon: {
