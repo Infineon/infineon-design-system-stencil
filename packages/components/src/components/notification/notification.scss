@@ -65,6 +65,10 @@
     }
   }
 
+  & .ifx-notification__link {
+    font-size: tokens.$ifxFontSizeS;
+  }
+
   @media (max-width: tokens.$ifxBreakpointXs) {
     & .ifx-notification__icon {
       align-self: flex-start;
