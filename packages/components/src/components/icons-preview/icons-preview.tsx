@@ -42,6 +42,16 @@ export class IconsPreview {
   render() {
     return (
       <div class='container'>
+        <div class="alert__wrapper">
+            <ifx-notification 
+              icon="c-check-16" 
+              variant="success" 
+              link-text="Figma icon library" 
+              link-href="https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=13284-1289&p=f&t=SD6EdmXaSufsjPCv-0"
+              link-target="_blank">
+              You can also find the UI icons in Figma for use in mockups.
+            </ifx-notification>
+        </div>
         <div class='html-wrapper'>
           <span class="html-tag">&lt;</span>
           <span class="component-name">ifx-icon</span>
