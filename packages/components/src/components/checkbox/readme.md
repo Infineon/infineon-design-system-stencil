@@ -22,7 +22,6 @@
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `ifxChange` |             | `CustomEvent<any>` |
-| `ifxError`  |             | `CustomEvent<any>` |
 
 
 ## Methods
@@ -38,22 +37,6 @@ Type: `Promise<boolean>`
 
 
 ### `toggleCheckedState(newVal: boolean) => Promise<void>`
-
-
-
-#### Parameters
-
-| Name     | Type      | Description |
-| -------- | --------- | ----------- |
-| `newVal` | `boolean` |             |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `toggleErrorState(newVal: boolean) => Promise<void>`
 
 
 

@@ -63,10 +63,10 @@ export default {
             }
         },
         error: {
-            description: 'Set the error state.',
+            description: 'Set the error state for the entire checkbox group.',
             control: { type: 'boolean' },
             table: {
-                category: 'ifx-checkbox props',
+                category: 'ifx-checkbox-group props',
                 defaultValue: { summary: 'false' }
             }
         },
@@ -122,11 +122,11 @@ export default {
 };
 
 const Template = args => {
-
     let checkboxes = '';
+
     for (let i = 0; i < args.amountOfItems; i++) {
         if (i === 0) {
-            checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" error="${args.error}" size="${args.size}" indeterminate="${args.indeterminate}">Option ${i}</ifx-checkbox>`;
+            checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" size="${args.size}" indeterminate="${args.indeterminate}">Option ${i}</ifx-checkbox>`;
         }
         else {
             checkboxes += `<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`;
@@ -134,7 +134,7 @@ const Template = args => {
     }
 
     const template = `
-        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
+        <ifx-checkbox-group alignment="${args.alignment}" error="${args.error}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
             ${checkboxes}
         </ifx-checkbox-group>`;
 

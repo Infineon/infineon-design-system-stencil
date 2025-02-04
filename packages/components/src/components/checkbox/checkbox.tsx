@@ -17,14 +17,12 @@ export class Checkbox {
   @Prop() size: string = 'm';
   @Prop() indeterminate: boolean = false;
   @Prop() value: string;
-  @State() internalError: boolean;
   @State() internalChecked: boolean;
   @State() internalIndeterminate: boolean;
 
   @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
-  @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
@@ -44,7 +42,6 @@ export class Checkbox {
         this.internals.setFormValue(null)
       }
       this.ifxChange.emit(this.internalChecked);
-      this.ifxError.emit(this.internalError);
     }
   }
 
@@ -58,24 +55,11 @@ export class Checkbox {
     this.internalChecked = newVal;
   }
 
-  @Method()
-  async toggleErrorState(newVal: boolean) {
-    this.internalError = newVal;
-  }
-
   @Watch('checked')
   valueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
       this.internalChecked = newValue;
       this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
-    }
-  }
-
-  @Watch('error')
-  errorChanged(newValue: boolean, oldValue: boolean) {
-    if (newValue !== oldValue) {
-      this.internalError = newValue;
-      this.ifxError.emit(this.internalError);
     }
   }
 
@@ -96,7 +80,6 @@ export class Checkbox {
   }
 
   componentWillLoad() {
-    this.internalError = this.error;
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
@@ -104,7 +87,6 @@ export class Checkbox {
   componentDidRender() {
     this.inputElement.indeterminate = this.internalIndeterminate;
   }
-
 
   /**
    * Callback for form association.
@@ -115,7 +97,7 @@ export class Checkbox {
   }
 
   getCheckedClassName() {
-    if (this.internalError) {
+    if (this.error) {
       if (this.internalChecked) {
         return "checked error"
       } else {

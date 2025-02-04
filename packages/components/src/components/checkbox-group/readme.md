@@ -11,6 +11,7 @@
 | ----------------- | ------------------- | ----------- | ---------------------------- | -------------------- |
 | `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `'vertical'`         |
 | `captionText`     | `caption-text`      |             | `string`                     | `undefined`          |
+| `error`           | `error`             |             | `boolean`                    | `undefined`          |
 | `groupLabelText`  | `group-label-text`  |             | `string`                     | `'Group Label Text'` |
 | `showCaption`     | `show-caption`      |             | `boolean`                    | `undefined`          |
 | `showCaptionIcon` | `show-caption-icon` |             | `boolean`                    | `undefined`          |

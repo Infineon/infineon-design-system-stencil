@@ -46,13 +46,8 @@ const DefaultTemplate = ({ error, checked, indeterminate, size, label, name }) =
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
   checkbox.setAttribute('name', name);
-
   checkbox.addEventListener('ifxChange', action('ifxChange'));
-  checkbox.addEventListener('ifxError', action('ifxError'));
-
-  checkbox.innerHTML = `
-    ${label}
-  `;
+  checkbox.innerHTML = `${label}`;
 
   return checkbox;
 };
