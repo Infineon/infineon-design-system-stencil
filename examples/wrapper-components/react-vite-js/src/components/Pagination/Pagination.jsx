@@ -43,6 +43,7 @@ export default function App() {
         currentPage={1}
         total={36}
         onIfxPageChange={handlePageChange}
+        items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'
       />
     </div>
   );
