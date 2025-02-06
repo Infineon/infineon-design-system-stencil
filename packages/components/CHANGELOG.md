@@ -1,3 +1,17 @@
+# v31.0.0 (Thu Feb 06 2025)
+
+#### 💥 Breaking Change
+
+- Changes event names for consistency, and enhances Storybook UI [#1640](https://github.com/Infineon/infineon-design-system-stencil/pull/1640) ([@agata-kim](https://github.com/agata-kim) [@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.15.0 (Fri Jan 31 2025)
 
 #### 🚀 Enhancement

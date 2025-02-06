@@ -26,7 +26,7 @@
   "devDependencies": {
     "@rollup/plugin-replace": "^6.0.1",
     "@types/node": "^20.12.7",
-    "lerna": "^7.0.0",
+    "lerna": "^8.1.9",
     "nx": "^16.10.0",
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
