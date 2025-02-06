@@ -18,6 +18,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-icons-preview](../icons-preview)
+
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -28,6 +32,7 @@
 graph TD;
   ifx-notification --> ifx-icon
   ifx-notification --> ifx-link
+  ifx-icons-preview --> ifx-notification
   style ifx-notification fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

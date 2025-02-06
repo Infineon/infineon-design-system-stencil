@@ -1,3 +1,41 @@
+# v30.15.0 (Fri Jan 31 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds notification in the icon library [#1696](https://github.com/Infineon/infineon-design-system-stencil/pull/1696) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.2 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Status and Typography documentation [#1703](https://github.com/Infineon/infineon-design-system-stencil/pull/1703) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.1 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar-item: internal code optimization [#1687](https://github.com/Infineon/infineon-design-system-stencil/pull/1687) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.14.0 (Thu Jan 30 2025)
 
 #### 🚀 Enhancement
