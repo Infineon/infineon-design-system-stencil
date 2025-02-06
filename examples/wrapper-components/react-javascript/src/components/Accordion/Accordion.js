@@ -18,7 +18,7 @@ function Accordion() {
     console.log("accordion item: ", accordionItem)
   }
 
-  const updateContent = () => { 
+  const updateContent = () => {
     setContent(`Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.`)
@@ -26,9 +26,9 @@ function Accordion() {
 
   return (
     <div>
-      <IfxAccordion auto-collapse={true} onIfxItemOpen={handleItems}>
+      <IfxAccordion auto-collapse={true} onIfxOpen={handleItems}>
         <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
-         <div>{content}</div>
+          <div>{content}</div>
         </IfxAccordionItem>
         <IfxAccordionItem open={false} caption="Label">
           Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
