@@ -19,10 +19,13 @@ export class Template {
   @Prop() thumbnail: string;
 
   authUser() { 
-    const clientId = process.env.CLIENT_ID;
+    //const clientId = process.env.CLIENT_ID;
+    const clientId = 'Ov23lixmXiNTTNb6V5W6'
     const redirectUri = 'http://localhost:6262/?path=/docs/dds-templates--development';
-    const scope = process.env.SCOPE;
-    const state = process.env.STATE;
+    //const scope = process.env.SCOPE;
+    const scope = 'repo workflow'
+    //const state = process.env.STATE;
+    const state = 'template123'
 
     const authorizationUrl = `https://github.com/login/oauth/authorize?` +
       `client_id=${clientId}&` +
