@@ -15,7 +15,7 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-vue": "31.0.0--canary.1640.e80c846ce332e4ddd95d97b8ad01c8da2d639e74.0",
+    "@infineon/infineon-design-system-vue": "31.0.1--canary.1496.3b8f22c6ec16ea739bfa9efd21af0bf6bf27f0ef.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "vite": "^5.0.12",

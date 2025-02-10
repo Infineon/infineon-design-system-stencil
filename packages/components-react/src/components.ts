@@ -79,6 +79,8 @@ import { IfxTab as IfxTabElement, defineCustomElement as defineIfxTab } from "@i
 import { IfxTable as IfxTableElement, defineCustomElement as defineIfxTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-table.js";
 import { IfxTabs as IfxTabsElement, defineCustomElement as defineIfxTabs } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tabs.js";
 import { IfxTag as IfxTagElement, defineCustomElement as defineIfxTag } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tag.js";
+import { IfxTemplate as IfxTemplateElement, defineCustomElement as defineIfxTemplate } from "@infineon/infineon-design-system-stencil/dist/components/ifx-template.js";
+import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineIfxTemplatesUi } from "@infineon/infineon-design-system-stencil/dist/components/ifx-templates-ui.js";
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
 import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
@@ -917,6 +919,34 @@ export const IfxTag: StencilReactComponent<IfxTagElement, IfxTagEvents> = /*@__P
     react: React,
     events: {} as IfxTagEvents,
     defineCustomElement: defineIfxTag
+});
+
+type IfxTemplateEvents = {
+    onToggleTemplates: EventName<CustomEvent<any>>,
+    onFieldError: EventName<CustomEvent<any>>
+};
+
+export const IfxTemplate: StencilReactComponent<IfxTemplateElement, IfxTemplateEvents> = /*@__PURE__*/ createComponent<IfxTemplateElement, IfxTemplateEvents>({
+    tagName: 'ifx-template',
+    elementClass: IfxTemplateElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onToggleTemplates: 'toggleTemplates',
+        onFieldError: 'fieldError'
+    } as IfxTemplateEvents,
+    defineCustomElement: defineIfxTemplate
+});
+
+type IfxTemplatesUiEvents = NonNullable<unknown>;
+
+export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents> = /*@__PURE__*/ createComponent<IfxTemplatesUiElement, IfxTemplatesUiEvents>({
+    tagName: 'ifx-templates-ui',
+    elementClass: IfxTemplatesUiElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxTemplatesUiEvents,
+    defineCustomElement: defineIfxTemplatesUi
 });
 
 type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<String>> };
