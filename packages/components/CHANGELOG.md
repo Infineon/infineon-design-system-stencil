@@ -1,3 +1,15 @@
+# v31.1.0 (Mon Feb 10 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: Introduces DDS Templates [#1496](https://github.com/Infineon/infineon-design-system-stencil/pull/1496) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.0.0 (Thu Feb 06 2025)
 
 #### 💥 Breaking Change
