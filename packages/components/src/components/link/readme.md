@@ -23,6 +23,7 @@
  - [ifx-list](../table-advanced-version/list)
  - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
+ - [ifx-template](../templates/template)
 
 ### Graph
 ```mermaid
@@ -30,6 +31,7 @@ graph TD;
   ifx-list --> ifx-link
   ifx-notification --> ifx-link
   ifx-overview-table --> ifx-link
+  ifx-template --> ifx-link
   style ifx-link fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
