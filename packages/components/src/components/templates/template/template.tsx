@@ -17,21 +17,18 @@ export class Template {
   @Event() toggleTemplates: EventEmitter;
   @Event() fieldError: EventEmitter;
   @Prop() thumbnail: string;
+  
+  private clientId = 'Ov23lixmXiNTTNb6V5W6'
+  private redirectUri = 'https://infineon.github.io/infineon-design-system-stencil/?path=/docs/dds-templates--development';
+  private scope = 'repo workflow'
+  private state = 'template123'
 
   authUser() { 
-    //const clientId = process.env.CLIENT_ID;
-    const clientId = 'Ov23lixmXiNTTNb6V5W6'
-    const redirectUri = 'http://localhost:6262/?path=/docs/dds-templates--development';
-    //const scope = process.env.SCOPE;
-    const scope = 'repo workflow'
-    //const state = process.env.STATE;
-    const state = 'template123'
-
     const authorizationUrl = `https://github.com/login/oauth/authorize?` +
-      `client_id=${clientId}&` +
-      `redirect_uri=${redirectUri}&` +
-      `scope=${scope}&` +
-      `state=${state}`;
+      `client_id=${this.clientId}&` +
+      `redirect_uri=${this.redirectUri}&` +
+      `scope=${this.scope}&` +
+      `state=${this.state}`;
     
       window.open(authorizationUrl, '_blank'); 
   }
@@ -58,7 +55,7 @@ export class Template {
   async getUserToken(authCode) {
     const { repoName, repoDesc, repoFramework, templateName } = this.getLocalStorageValues();
 
-    fetch(`http://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
+    fetch(`https://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
       if (response.ok) {
         return response.text();
