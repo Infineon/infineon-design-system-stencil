@@ -55,7 +55,7 @@ export class Template {
   async getUserToken(authCode) {
     const { repoName, repoDesc, repoFramework, templateName } = this.getLocalStorageValues();
 
-    fetch(`https://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
+    fetch(`http://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
       if (response.ok) {
         return response.text();
