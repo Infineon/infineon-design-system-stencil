@@ -25,7 +25,7 @@ export default {
     },
     variant: {
       description: 'Variant of the notification.',
-      options: ['success', 'warning', 'error'],
+      options: ['success', 'locked', 'error', 'neutral'],
       control: { type: 'radio' },
       table: {
         category: 'ifx-notification props',
