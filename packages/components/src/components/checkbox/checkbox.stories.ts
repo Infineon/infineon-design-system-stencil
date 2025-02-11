@@ -30,6 +30,17 @@ export default {
         },
       },
     },
+    ifxError: {
+      action: 'ifxError',
+      description: 'Custom event emitted when an checkbox has an error.',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxError={handleError}\nVue:@ifxError="handleError"\nAngular:(ifxError)="handleError()"\nVanillaJs:.addEventListener("ifxError", (event) => {//handle error});',
+        },
+      },
+    },
     name: {
       description: 'Name of the element, that is used as reference when a form is submitted.'
     },
@@ -47,6 +58,7 @@ const DefaultTemplate = ({ error, checked, indeterminate, size, label, name }) =
   checkbox.setAttribute('indeterminate', indeterminate);
   checkbox.setAttribute('name', name);
   checkbox.addEventListener('ifxChange', action('ifxChange'));
+  checkbox.addEventListener('ifxError', action('ifxError'));
   checkbox.innerHTML = `${label}`;
 
   return checkbox;

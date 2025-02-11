@@ -1,4 +1,4 @@
-import { Component, State, Prop, h, Element, Watch } from '@stencil/core';
+import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
 
 @Component({
   tag: 'ifx-checkbox-group',
@@ -8,6 +8,8 @@ import { Component, State, Prop, h, Element, Watch } from '@stencil/core';
 })
 
 export class CheckboxGroup {
+  private errorStates: Map<HTMLElement, boolean> = new Map();
+
   @Element() el: HTMLElement;
   @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
   @Prop() size: string;
@@ -15,32 +17,48 @@ export class CheckboxGroup {
   @Prop() groupLabelText: string = 'Group Label Text';
   @Prop() showCaption: boolean;
   @Prop() captionText: string;
-  @Prop() error: boolean;
   @Prop() showCaptionIcon: boolean;
-  @State() internalError: boolean = false;
+  @State() hasErrors: boolean = false;
 
-  private checkboxes: HTMLIfxCheckboxElement[] = [];
-
-  componentWillLoad() {
-    this.checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
-    this.updateErrorStateAndCheckboxes(this.error);
+  @Listen('ifxError')
+  handleCheckboxError(event: CustomEvent) {
+    const checkbox = event.target as HTMLElement;
+    if (checkbox.tagName === 'ifx-checkbox') {
+      this.errorStates.set(checkbox, event.detail);
+      this.updateHasErrors();
+    }
   }
 
-  @Watch('error')
-  handleErrorChange(newValue: boolean) {
-    this.updateErrorStateAndCheckboxes(newValue);
+  // Method to set the error state of all checkboxes in the group
+  @Method()
+  async setGroupError(error: boolean) {
+    const checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
+    checkboxes.forEach((checkbox) => {
+      (checkbox as any).error = error;
+    });
+  }
+
+  componentWillLoad() {
+    this.initializeState();
   }
 
   handleSlotChange = () => {
-    this.checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
-    this.updateErrorStateAndCheckboxes(this.error);
+    this.initializeState();
   };
 
-  updateErrorStateAndCheckboxes(error: boolean) {
-    this.internalError = error;
-    this.checkboxes.forEach((checkbox) => {
-      checkbox.error = this.internalError;
+  private initializeState() {
+    this.errorStates.clear();
+    const checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
+    checkboxes.forEach((checkbox) => {
+      if (!this.errorStates.has(checkbox)) {
+        this.errorStates.set(checkbox, (checkbox as any).error || false);
+      }
     });
+    this.updateHasErrors();
+  }
+
+  private updateHasErrors() {
+    this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
   }
 
   render() {
@@ -51,7 +69,7 @@ export class CheckboxGroup {
           <slot onSlotchange={this.handleSlotChange}></slot>
         </div>
         {this.showCaption ? (
-          <div class={`caption ${this.internalError ? 'error' : 'default'}`}>
+          <div class={`caption ${this.hasErrors ? 'error' : 'default'}`}>
             {this.showCaptionIcon ? <div class='caption-icon'><ifx-icon icon="c-info-16">
             </ifx-icon></div> : ''}
             <div class='caption-text'>{this.captionText}</div>

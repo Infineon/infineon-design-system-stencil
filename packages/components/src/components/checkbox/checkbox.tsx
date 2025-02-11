@@ -23,6 +23,7 @@ export class Checkbox {
   @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
@@ -60,6 +61,14 @@ export class Checkbox {
     if (newValue !== oldValue) {
       this.internalChecked = newValue;
       this.inputElement.checked = this.internalChecked; // update the checkbox's checked property
+    }
+  }
+
+  @Watch('error')
+  errorChanged(newValue: boolean, oldValue: boolean) {
+    console.log('error changed', newValue);
+    if (newValue !== oldValue) {
+      this.ifxError.emit(newValue);
     }
   }
 
@@ -111,11 +120,9 @@ export class Checkbox {
   render() {
     const slot = this.el.innerHTML;
     let hasSlot = false;
-
     if (slot) {
       hasSlot = true;
     }
-
     return (
       <div class="checkbox__container">
         <input
@@ -129,7 +136,6 @@ export class Checkbox {
           value={`${this.value}`}
           disabled={this.disabled ? true : undefined}
         />
-
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}

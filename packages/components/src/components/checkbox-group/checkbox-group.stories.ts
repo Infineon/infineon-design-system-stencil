@@ -66,7 +66,7 @@ export default {
             description: 'Set the error state for the entire checkbox group.',
             control: { type: 'boolean' },
             table: {
-                category: 'ifx-checkbox-group props',
+                category: 'ifx-checkbox props',
                 defaultValue: { summary: 'false' }
             }
         },
@@ -118,6 +118,17 @@ export default {
                 defaultValue: { summary: 'false' }
             }
         },
+        setGroupError: {
+            action: 'setGroupError',
+            description: 'Method to set the error state of all checkboxes in the group.',
+            table: {
+                category: 'ifx-checkbox-group methods',
+                type: {
+                    summary: 'error : boolean',
+                    detail: 'CheckboxGroup.setGroupError(error)'
+                }
+            }
+        }
     }
 };
 
@@ -126,7 +137,7 @@ const Template = args => {
 
     for (let i = 0; i < args.amountOfItems; i++) {
         if (i === 0) {
-            checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" size="${args.size}" indeterminate="${args.indeterminate}">Option ${i}</ifx-checkbox>`;
+            checkboxes += `<ifx-checkbox value="${i}" disabled="${args.disabled}" checked="${args.checked}" size="${args.size}" indeterminate="${args.indeterminate}" error="${args.error}">Option ${i}</ifx-checkbox>`;
         }
         else {
             checkboxes += `<ifx-checkbox value="${i}" size="${args.size}">Option ${i}</ifx-checkbox>`;
@@ -134,7 +145,7 @@ const Template = args => {
     }
 
     const template = `
-        <ifx-checkbox-group alignment="${args.alignment}" error="${args.error}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
+        <ifx-checkbox-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
             ${checkboxes}
         </ifx-checkbox-group>`;
 
