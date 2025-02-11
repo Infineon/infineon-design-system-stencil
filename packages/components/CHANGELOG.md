@@ -1,3 +1,16 @@
+# v31.2.0 (Tue Feb 11 2025)
+
+#### 🚀 Enhancement
+
+- Status: adds all token colors as available options [#1678](https://github.com/Infineon/infineon-design-system-stencil/pull/1678) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.1.0 (Mon Feb 10 2025)
 
 #### 🚀 Enhancement
