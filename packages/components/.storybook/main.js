@@ -40,6 +40,10 @@ module.exports = {
         font-size: 18px;
         font-weight: bold;
     }
+
+        .css-10g5mev:hover:not(.css-10g5mev[data-selected="true"]) { 
+          background-color: #DFF4F3!important;
+        }
     </style>
     `;
     return `${head}\n${style}`;
