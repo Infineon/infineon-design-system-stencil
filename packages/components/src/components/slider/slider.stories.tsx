@@ -7,29 +7,113 @@ export default {
   tags: ['autodocs'],
 
   argTypes: {
-    min: { control: 'number' },
-    max: { control: 'number' },
-    step: { control: 'number' },
-    type: { control: 'radio', options: ['single', 'double']},
-    value: { control: 'number', if: { arg: 'type', eq: 'single'} },
-    minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},
-    maxValueHandle : {control :'number', if: { arg: 'type', eq: 'double'}},
-    showPercentage: { control: 'boolean', if: { arg: 'type', eq: 'single'} },
-    disabled: { control: 'boolean' },
+    min: { control: 'number',
+      description: 'The minimum value of the slider.',
+    table:{
+      category: 'ifx-slider props',
+      defaultValue: { summary: '0' },
+      type: { summary: 'number' }
+    }
+  },
+    max: { control: 'number',
+      description: 'The maximum value of the slider.',
+      table:{
+        category: 'ifx-slider props',
+        defaultValue: { summary: '100' },
+        type: { summary: 'number' }
+      } 
+    },
+    step: { control: 'number',
+      description: 'The step value of the slider.',
+      table:{
+        category: 'ifx-slider props',
+        defaultValue: { summary: '1' },
+        type: { summary: 'number' }
+      }
+     },
+    type: { control: 'radio', options: ['single', 'double'],
+      description: 'The type of the slider.',
+        table: {
+          category: 'ifx-slider props',
+          defaultValue: { summary: 'single' },
+          type: { summary: 'single | double' }
+       }
+    },
+    value: { control: 'number', if: { arg: 'type', eq: 'single'},
+      description: 'The current value of the slider.',
+      table: {  
+        category: 'ifx-slider props',
+        type: { summary: 'number ' }
+      }
+    },  
+    minValueHandle : {control :'number', if: { arg: 'type', eq: 'double'},
+      description: 'The minimum value of the handle in double slider.',
+      table: {
+      category: 'ifx-slider props',
+      type: { summary: 'number' }
+    }
+  },
+    maxValueHandle : {control :'number', if: { arg: 'type', eq: 'double'},
+      description: 'The maximum value of the handle in double slider.',
+      table: {
+      category: 'ifx-slider props',
+      type: { summary: 'number' }
+    },
+  }, 
+    showPercentage: { 
+      control: 'boolean', if: { arg: 'type', eq: 'single'},
+      description: 'Show the percentage of the slider value.',
+      table: {
+        category: 'ifx-slider props',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' }
+      }
+    },
+    disabled: { control: 'boolean',
+      description: 'Disable the slider.',
+      table: {
+        category: 'ifx-slider props',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' }
+      }
+    },
     leftIcon: {
       options: Object.values(icons).map(i => i['name']),
-      control: { type: 'select' },
-    },
+      control: { type: 'select'},
+        description: 'The icon on the left of the slider.',
+        table: {
+          category: 'ifx-slider props',
+          type: { summary: 'string' }
+        }
+       },
     rightIcon: {
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      description: 'The icon on the right of the slider.',
+      table: {
+        category: 'ifx-slider props',
+        type: { summary: 'string' }
+      }
     },
-    leftText: { control: 'text' },
-    rightText: { control: 'text' },
+    leftText: { control: 'text',
+      description: 'The text on the left side.',
+      table: {
+        category: 'ifx-slider props',
+        type: { summary: 'string' }
+      }
+    },
+    rightText: { control: 'text',
+      description: 'The text on the right side.',
+      table: {
+        category: 'ifx-slider props',
+        type: { summary: 'string' }
+      }
+    },
     ifxChange: {
       action: 'ifxChange',
-      description: 'Custom event emitted on input change',
+      description: 'Custom event emitted on input change.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -37,8 +121,8 @@ export default {
         },
       },
     },
-  },
-};
+  }
+}
 
 const Template = args => {
   const sliderElement = document.createElement('ifx-slider');

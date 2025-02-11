@@ -10,17 +10,22 @@ export default {
   },
   argTypes: {
     icon: {
+      description: 'Set the icon.',
       options: Object.values(icons).map(i => i['name']),
       control: { type: 'select' },
+      table: {
+        category: 'ifx-icon props',
+      }
     },
     consoleError: {
       action: 'consoleError',
-      description: 'Custom event emitted when icon is invalid',
+      description: 'Custom event emitted when icon is invalid.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
-            'React: onConsoleError={handleChange}\nVue:@consoleError="handleChange"\nAngular:(consoleError)="handleChange()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle change});',
+            'React: onConsoleError={handleError}\nVue:@consoleError="handleError"\nAngular:(consoleError)="handleError()"\nVanillaJs:.addEventListener("consoleError", (event) => {//handle error});',
         },
       },
     },

@@ -499,9 +499,20 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td >
+                  <td>
                     <ul>
-
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Range</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Default value</span>
+                      </li>
                     </ul>
                   </td>
                   <td></td>
@@ -1858,24 +1869,6 @@ export class OverviewTable {
             
                 <tr>
                   <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Advanced Date Picker</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Upload</ifx-link>
                   </td>
                   <td>
@@ -1954,9 +1947,9 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
                         </span>
-                        <span>On Hold</span>
+                        <span>In Progress</span>
                       </li>
                     </ul>
                   </td>

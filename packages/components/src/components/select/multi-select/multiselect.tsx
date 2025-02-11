@@ -53,7 +53,7 @@ export class Multiselect {
 
 
   @Event() ifxSelect: EventEmitter;
-  @Event() ifxMultiselectIsOpen: EventEmitter;
+  @Event() ifxOpen: EventEmitter;
 
   @Element() el: HTMLElement;
   dropdownElement!: HTMLElement;
@@ -126,7 +126,6 @@ export class Multiselect {
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
       this.optionsProcessed = true;
     }
-    
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
     return slicedOptions;
@@ -149,7 +148,9 @@ export class Multiselect {
           // if parent is selected, then select all child options
           selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
         } else {
-          selectedOptions.push(option);
+          if (!selectedOptions.some(existingOption => existingOption.value === option.value)) {
+            selectedOptions.push(option);
+          }
         }
       } else {
         if (option.children && option.children.length > 0) {
@@ -157,6 +158,7 @@ export class Multiselect {
         }
       }
     }
+
     return selectedOptions;
   }
 
@@ -199,7 +201,16 @@ export class Multiselect {
     if (searchTerm === '') {
       this.filteredOptions = this.loadedOptions;
     } else {
-      this.filteredOptions = this.loadedOptions.filter(option => option.label.toLowerCase().includes(searchTerm))
+      this.filteredOptions = this.loadedOptions.filter(option => {
+        const matchesSearchTerm = option.label.toLowerCase().includes(searchTerm);
+        if (option.children) {
+          const childrenMatch = option.children.some(child => {
+            return child.label.toLowerCase().includes(searchTerm);
+          });
+          return matchesSearchTerm || childrenMatch;
+        }
+        return matchesSearchTerm;
+      });
     }
   }, 300);
 
@@ -284,6 +295,7 @@ export class Multiselect {
         if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
           opt.selected = true;
           this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
+          this.optionCount = this.countOptions( this.persistentSelectedOptions)
         }
       }
     }
@@ -351,9 +363,9 @@ export class Multiselect {
     if (!path.includes(this.dropdownElement)) {
       this.dropdownOpen = false;
       document.removeEventListener('click', this.handleDocumentClick);
-
+      this.filteredOptions = this.loadedOptions;
       // Dispatch the ifxMultiselectIsOpen event
-      this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
+      this.ifxOpen.emit(this.dropdownOpen);
     }
   }
 
@@ -369,8 +381,8 @@ export class Multiselect {
       if (this.dropdownOpen) {
         document.addEventListener('click', this.handleDocumentClick);
       }
-      // Dispatch the ifxMultiselectIsOpen event
-      this.ifxMultiselectIsOpen.emit(this.dropdownOpen);
+      // Dispatch the ifxOpen event
+      this.ifxOpen.emit(this.dropdownOpen);
     }, 0);
     this.zIndex = Multiselect.globalZIndex++;
   }
@@ -504,7 +516,7 @@ export class Multiselect {
     const isSelected = option.children ? isIndeterminate || this.isOptionSelected(option) : this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
     const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
     const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
-
+   
     return (
       <div class="option-wrapper">
         <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 

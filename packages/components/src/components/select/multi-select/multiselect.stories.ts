@@ -31,14 +31,14 @@ const options = [
 ];
 
 const longOptions = [];
-for (let i=1; i<=50; i++) {
+for (let i = 1; i <= 50; i++) {
   let children = undefined;
   if (i % 3 == 0) {
     children = [{
-      "value":  `${i}.1`,
+      "value": `${i}.1`,
       "label": `Option ${i}.1`,
       "selected": i % 2 == 0 ? true : false
-    },{
+    }, {
       "value": `${i}.2`,
       "label": `Option ${i}.2`,
       "selected": i % 4 == 0 ? true : false
@@ -52,12 +52,13 @@ for (let i=1; i<=50; i++) {
   })
 }
 
-
 export default {
   title: 'Components/Select/Multi Select',
   // tags: ['autodocs'],
   args: {
+    name: 'multiselect',
     size: 'm',
+    disabled: false,
     batchSize: 10,
     maxItemCount: 10,
     showSearch: true,
@@ -69,6 +70,7 @@ export default {
   },
   argTypes: {
     size: {
+      description: 'Size of the input field.',
       options: {
         'small (36px)': 's',
         'medium (40px)': 'm',
@@ -76,46 +78,155 @@ export default {
       control: {
         type: 'radio',
       },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'medium (40px)',
+        },
+        type: {
+          summary: '36px | 40px',
+        },
+      },
+    },
+    disabled: {
+      description: 'Disable the input field.',
+      options: [true, false],
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    name: {
+      description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
+      control: 'text',
+      table: {
+        category: 'ifx-multiselect props',
+        type: {
+          summary: 'string',
+        },
+      },
     },
     batchSize: {
-      description: 'Batch size used during lazy loading options',
+      description: 'Batch size used during lazy loading options.',
       control: {
         type: 'number',
+      },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: '50',
+        },
+        type: {
+          summary: 'number',
+        },
       },
     },
     maxItemCount: {
       control: { type: 'number' },
-      description: 'Number of maximum selectable items',
+      description: 'Number of maximum selectable items.',
+      table: {
+        category: 'ifx-multiselect props',
+        type: {
+          summary: 'number'
+        }
+      }
     },
     showSearch: {
+      description: 'Show a search input.',
       options: [true, false],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
     },
     showSelectAll: {
-      description: 'Show a checkbox to select all options',
+      description: 'Show a checkbox to select all options.',
       options: [true, false],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
     },
     error: {
+      description: 'Show error state.',
       options: [true, false],
       control: { type: 'radio' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
     },
     errorMessage: {
       control: 'text',
+      description: 'Error message to display.',
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'Error',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
     },
     label: {
+      description: 'Label over the input field.',
       control: 'text',
+      table: {
+        category: 'ifx-multiselect props',
+        type: {
+          summary: 'string',
+        },
+      },
     },
     placeholder: {
+      description: 'Label inside the input field.',
       control: 'text',
+      table: {
+        category: 'ifx-multiselect props',
+        type: {
+          summary: 'string',
+        },
+      },
     },
     options: {
-      description: 'Takes an array of objects in the following format',
+      description: 'Takes an array of objects in the following format.',
+      table: {
+        category: 'ifx-multiselect props',
+        type: {
+          summary: 'Details',
+          detail: `'Array<{ value: string, label: string, selected: boolean, children?: Array<{ value: string, label: string, selected: boolean }> }>'`,
+        },
+      },
     },
     ifxSelect: {
       action: 'ifxSelect',
-      description: 'Custom event emitted when item is selected or unselected',
+      description: 'Custom event emitted when item is selected or unselected.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -123,14 +234,29 @@ export default {
         },
       },
     },
+    ifxOpen: {
+      action: 'ifxOpen',
+      description: 'Custom event emitted when multiselect is opened.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
+        },
+      },
+
+    }
   },
 };
 
 const Template = args => {
   const template = `<ifx-multiselect 
+  name='${args.name}'
   options='${JSON.stringify(args.options)}' 
   batch-size='${args.batchSize}'
   size='${args.size}'
+  disabled='${args.disabled}'
   max-item-count='${args.maxItemCount}'
   error='${args.error}'
   error-message='${args.errorMessage}'
@@ -142,6 +268,7 @@ const Template = args => {
 
   setTimeout(() => {
     document.querySelector('ifx-multiselect').addEventListener('ifxSelect', action('ifxSelect'));
+    document.querySelector('ifx-multiselect').addEventListener('ifxOpen', action('ifxOpen'));
   }, 0);
 
   return template;

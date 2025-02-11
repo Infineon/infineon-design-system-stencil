@@ -40,6 +40,10 @@ module.exports = {
         font-size: 18px;
         font-weight: bold;
     }
+
+        .css-10g5mev:hover:not(.css-10g5mev[data-selected="true"]) { 
+          background-color: #DFF4F3!important;
+        }
     </style>
     `;
     return `${head}\n${style}`;
@@ -62,11 +66,15 @@ function getAbsolutePath(value) {
     ...glob.sync(path.join(__dirname, '../src/**/*.stories.@(js|jsx|ts|tsx)').replaceAll('\\', '/')),
     ...glob.sync(path.join(__dirname, '../src/**/*.mdx').replaceAll('\\', '/'))
   ];
+
+
   
   // Exclude specific files or patterns
   const filteredStories = allStories.filter(story => {
     return !(story.includes('components/table-advanced-version/filter-type-group') || story.includes('components/table-advanced-version/list'));
   });
+
+
 
   const sortedStories = filteredStories.sort();
   return sortedStories;
