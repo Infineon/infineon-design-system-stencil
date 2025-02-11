@@ -1,3 +1,15 @@
+# v31.3.0 (Tue Feb 11 2025)
+
+#### 🚀 Enhancement
+
+- Notification: centralizes text, changes font-size and adds new color [#1720](https://github.com/Infineon/infineon-design-system-stencil/pull/1720) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.2.0 (Tue Feb 11 2025)
 
 #### 🚀 Enhancement
