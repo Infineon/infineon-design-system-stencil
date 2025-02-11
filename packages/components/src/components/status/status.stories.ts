@@ -4,7 +4,7 @@ export default {
 
   args: {
     label: 'text',
-    color: 'orange',
+    color: 'orange-500',
     border: true,
   },
   argTypes: {
@@ -30,15 +30,8 @@ export default {
       }
     },
     color: {
-      description: 'Sets the color of the status.',
-      control: 'radio',
-      options: ['orange', 'ocean', 'grey', 'light-grey', 'red', 'green', 'berry'],
-      table: {
-        category: 'ifx-status props',
-        defaultValue: {
-          summary: 'orange'
-        }
-      }
+      options: ['engineering-100', 'engineering-200', 'engineering-300', 'engineering-400', 'engineering-500', 'engineering-600', 'ocean-100', 'ocean-200', 'ocean-300', 'ocean-400', 'ocean-500', 'ocean-600', 'ocean-700', 'red-500', 'red-600', 'red-700', 'orange-500', 'green-500', 'lawn-400', 'lawn-500', 'lawn-700', 'berry-400', 'berry-500', 'sun-400', 'sun-500', 'sand-400', 'sand-500'],
+      control: { type: 'select' },
     },
   },
 };
