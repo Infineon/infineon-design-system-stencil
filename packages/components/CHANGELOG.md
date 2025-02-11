@@ -1,3 +1,42 @@
+# v31.2.0 (Tue Feb 11 2025)
+
+#### 🚀 Enhancement
+
+- Status: adds all token colors as available options [#1678](https://github.com/Infineon/infineon-design-system-stencil/pull/1678) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.1.0 (Mon Feb 10 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: Introduces DDS Templates [#1496](https://github.com/Infineon/infineon-design-system-stencil/pull/1496) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.0.0 (Thu Feb 06 2025)
+
+#### 💥 Breaking Change
+
+- Changes event names for consistency, and enhances Storybook UI [#1640](https://github.com/Infineon/infineon-design-system-stencil/pull/1640) ([@agata-kim](https://github.com/agata-kim) [@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.15.0 (Fri Jan 31 2025)
 
 #### 🚀 Enhancement

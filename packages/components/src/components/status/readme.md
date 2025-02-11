@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                                                                           | Default     |
-| -------- | --------- | ----------- | ------------------------------------------------------------------------------ | ----------- |
-| `border` | `border`  |             | `boolean`                                                                      | `false`     |
-| `color`  | `color`   |             | `"berry" \| "green" \| "grey" \| "light-grey" \| "ocean" \| "orange" \| "red"` | `'orange'`  |
-| `label`  | `label`   |             | `string`                                                                       | `undefined` |
+| Property | Attribute | Description | Type      | Default        |
+| -------- | --------- | ----------- | --------- | -------------- |
+| `border` | `border`  |             | `boolean` | `false`        |
+| `color`  | `color`   |             | `string`  | `'orange-500'` |
+| `label`  | `label`   |             | `string`  | `undefined`    |
 
 
 ----------------------------------------------
