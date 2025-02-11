@@ -4,7 +4,7 @@ export default {
 
   args: {
     label: 'text',
-    color: 'orange',
+    color: 'orange-500',
     border: true,
   },
   argTypes: {
