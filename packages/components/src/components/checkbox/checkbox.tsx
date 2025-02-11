@@ -129,7 +129,6 @@ export class Checkbox {
           hidden
           ref={(el) => (this.inputElement = el)}
           checked={this.internalChecked}
-          onError={this.handleCheckbox.bind(this)}
           onChange={this.handleCheckbox.bind(this)} // Listen for changes here
           id='checkbox'
           value={`${this.value}`}
