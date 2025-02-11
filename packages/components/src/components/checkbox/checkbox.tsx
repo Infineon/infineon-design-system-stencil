@@ -66,7 +66,6 @@ export class Checkbox {
 
   @Watch('error')
   errorChanged(newValue: boolean, oldValue: boolean) {
-    console.log('error changed', newValue);
     if (newValue !== oldValue) {
       this.ifxError.emit(newValue);
     }
