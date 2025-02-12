@@ -1,5 +1,4 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
- 
 
 @Component({
   tag: 'ifx-checkbox',
@@ -24,6 +23,7 @@ export class Checkbox {
   @AttachInternals() internals: ElementInternals;
 
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
+  @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
     if (!this.disabled) {
@@ -33,7 +33,6 @@ export class Checkbox {
       } else {
         this.internalChecked = !this.internalChecked;
       }
-      
       if (this.internalChecked) {
         if (this.value !== undefined) {
           this.internals.setFormValue(this.value);
@@ -65,6 +64,12 @@ export class Checkbox {
     }
   }
 
+  @Watch('error')
+  errorChanged(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue) {
+      this.ifxError.emit(newValue);
+    }
+  }
 
   @Watch('indeterminate')
   indeterminateChanged(newValue: boolean, oldValue: boolean) {
@@ -91,7 +96,6 @@ export class Checkbox {
     this.inputElement.indeterminate = this.internalIndeterminate;
   }
 
-
   /**
    * Callback for form association.
    * Called whenever the form is reset.
@@ -115,11 +119,9 @@ export class Checkbox {
   render() {
     const slot = this.el.innerHTML;
     let hasSlot = false;
-
     if (slot) {
       hasSlot = true;
     }
-
     return (
       <div class="checkbox__container">
         <input
@@ -132,7 +134,6 @@ export class Checkbox {
           value={`${this.value}`}
           disabled={this.disabled ? true : undefined}
         />
-
         <div
           tabindex="0"
           onClick={this.handleCheckbox.bind(this)}
@@ -147,7 +148,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalChecked && <ifx-icon icon="check-12"  aria-hidden="true"></ifx-icon>}
+          {this.internalChecked && <ifx-icon icon="check-12" aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>

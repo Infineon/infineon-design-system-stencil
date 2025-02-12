@@ -22,6 +22,7 @@
 | Event       | Description | Type               |
 | ----------- | ----------- | ------------------ |
 | `ifxChange` |             | `CustomEvent<any>` |
+| `ifxError`  |             | `CustomEvent<any>` |
 
 
 ## Methods

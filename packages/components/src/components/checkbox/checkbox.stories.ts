@@ -93,6 +93,17 @@ export default {
         },
       },
     },
+    ifxError: {
+      action: 'ifxError',
+      description: 'Custom event emitted when an checkbox has an error.',
+      table: {
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxError={handleError}\nVue:@ifxError="handleError"\nAngular:(ifxError)="handleError()"\nVanillaJs:.addEventListener("ifxError", (event) => {//handle error});',
+        },
+      },
+    },
   },
 };
 
@@ -104,12 +115,9 @@ const Template = ({ error, disabled, checked, indeterminate, size, label, name }
   checkbox.setAttribute('size', size);
   checkbox.setAttribute('indeterminate', indeterminate);
   checkbox.setAttribute('name', name);
-
   checkbox.addEventListener('ifxChange', action('ifxChange'));
-
-  checkbox.innerHTML = `
-    ${label}
-  `;
+  checkbox.addEventListener('ifxError', action('ifxError'));
+  checkbox.innerHTML = `${label}`;
 
   return checkbox;
 };

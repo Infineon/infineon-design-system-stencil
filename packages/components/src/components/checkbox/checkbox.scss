@@ -5,12 +5,11 @@
     vertical-align: top;
 }
 
-
 .checkbox__container {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: row;
-    align-items: center;
+    align-items: top;
     padding: 0px;
     gap: tokens.$ifxSpace100;
     font-family: var(--ifx-font-family);
@@ -35,7 +34,6 @@
             height: tokens.$ifxSize300;
             width: tokens.$ifxSize300;
         }
-
 
         &.error {
             border-color: #CD002F;
@@ -144,5 +142,4 @@
             cursor: pointer;
         }
     }
-
 }

@@ -18,6 +18,7 @@ export const DIRECTIVES = [
   d.IfxCardOverline,
   d.IfxCardText,
   d.IfxCheckbox,
+  d.IfxCheckboxGroup,
   d.IfxChip,
   d.IfxChipItem,
   d.IfxContentSwitcher,
