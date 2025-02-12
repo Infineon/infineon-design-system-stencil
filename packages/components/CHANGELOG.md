@@ -1,3 +1,16 @@
+# v31.3.1 (Wed Feb 12 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Button, Status and Table documentation [#1716](https://github.com/Infineon/infineon-design-system-stencil/pull/1716) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.3.0 (Tue Feb 11 2025)
 
 #### 🚀 Enhancement
