@@ -45,7 +45,7 @@ export class IconsPreview {
         <div class="alert__wrapper">
             <ifx-notification 
               icon="c-check-16" 
-              variant="success" 
+              variant="neutral" 
               link-text="Figma icon library" 
               link-href="https://www.figma.com/design/yWwaLoqsWLWygDxXfvdym9/Infineon-DDS-%7C-UI-icon-library?node-id=13284-1289&p=f&t=SD6EdmXaSufsjPCv-0"
               link-target="_blank">
