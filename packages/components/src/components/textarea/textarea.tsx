@@ -28,7 +28,7 @@ export class TextArea {
 	@Prop() rows: number;
 	@Prop({ mutable: true }) value: string;
 	@Prop() wrap: 'hard' | 'soft' | 'off' = 'soft';
-	@Prop() fullWidth: boolean = false;
+	@Prop({ reflect: true }) fullWidth: string = "false";
 
 	@Method()
 	async reset() {
@@ -37,7 +37,9 @@ export class TextArea {
 
 	handleComponentWidth() {
 		const textareaWrapper = this.el.shadowRoot.querySelector('.wrapper__textarea')
-    if (this.fullWidth) {
+		const isFullWidth = this.fullWidth.toLowerCase() === "true";
+		
+    if (isFullWidth) {
 			textareaWrapper.classList.add('fullWidth')
     } else if(textareaWrapper.classList.contains('fullWidth')) {
 			textareaWrapper.classList.remove('fullWidth');
@@ -71,9 +73,7 @@ export class TextArea {
 
 	render() {
 		return (
-			<Host class={`wrapper 
-						wrapper--${this.error ? 'error' : ''}
-						wrapper--${this.disabled ? 'disabled': ''}`}>
+			<Host class={`wrapper--${this.error ? 'error' : ''} wrapper--${this.disabled ? 'disabled': ''}`}>
 				<label class='wrapper__label' htmlFor={ this.inputId }>
 					{ this.label?.trim() }
 				</label>
