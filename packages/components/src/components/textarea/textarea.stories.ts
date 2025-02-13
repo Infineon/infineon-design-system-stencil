@@ -173,7 +173,7 @@ const Template = (args) => {
 	rows="${args.rows}"
 	value="${args.value}"
 	wrap="${args.wrap}"
-	fullWidth="${args.fullWidth}"
+	full-width="${args.fullWidth}"
 />
 `;
 	const textarea = wrapper.querySelector('ifx-textarea');
