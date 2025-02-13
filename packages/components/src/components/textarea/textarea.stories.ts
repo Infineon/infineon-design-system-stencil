@@ -129,6 +129,16 @@ export default {
 				},
 			},
 		},
+		fullWidth: {
+			description: 'When set to **true**, expands the textarea to take the full width of its container.',
+			control: 'boolean',
+			table: {
+				category: 'ifx-textarea props',
+				defaultValue: {
+					summary: 'false',
+				},
+			},
+		},
 		ifxInput: {
 			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.`,
 			table: {
@@ -163,6 +173,7 @@ const Template = (args) => {
 	rows="${args.rows}"
 	value="${args.value}"
 	wrap="${args.wrap}"
+	full-width="${args.fullWidth}"
 />
 `;
 	const textarea = wrapper.querySelector('ifx-textarea');
