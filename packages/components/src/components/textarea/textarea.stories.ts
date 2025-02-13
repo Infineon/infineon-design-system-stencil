@@ -16,7 +16,8 @@ export default {
 		resize: 'both',
 		rows: 5,
 		value: '',
-		wrap: 'soft'
+		wrap: 'soft',
+		fullWidth: false,
 	},
 	argTypes: {
 		caption: {
@@ -130,15 +131,15 @@ export default {
 			},
 		},
 		fullWidth: {
-			description: 'When set to **true**, expands the textarea to take the full width of its container.',
-			control: 'boolean',
-			table: {
-				category: 'ifx-textarea props',
-				defaultValue: {
-					summary: 'false',
-				},
-			},
-		},
+      description: 'When set to **true**, expands the textarea to take the full width of its container.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-textarea props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
+    },
 		ifxInput: {
 			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.`,
 			table: {
