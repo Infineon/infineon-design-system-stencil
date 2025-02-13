@@ -1,4 +1,4 @@
-import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop } from "@stencil/core"
+import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
 
 @Component({
 	formAssociated: true,
@@ -14,7 +14,7 @@ export class TextArea {
 	@AttachInternals() internals: ElementInternals;
 
 	@Event() ifxInput: EventEmitter<String>;
-
+	@Element() el;
 	@Prop() caption: string;
 	@Prop() cols: number;
 	@Prop() disabled: boolean = false;
@@ -28,11 +28,25 @@ export class TextArea {
 	@Prop() rows: number;
 	@Prop({ mutable: true }) value: string;
 	@Prop() wrap: 'hard' | 'soft' | 'off' = 'soft';
+	@Prop() fullWidth: boolean = false;
 
 	@Method()
 	async reset() {
 		this.resetTextarea();
 	}
+
+	handleComponentWidth() {
+		const textareaWrapper = this.el.shadowRoot.querySelector('.wrapper__textarea')
+    if (this.fullWidth) {
+			textareaWrapper.classList.add('fullWidth')
+    } else if(textareaWrapper.classList.contains('fullWidth')) {
+			textareaWrapper.classList.remove('fullWidth');
+    }
+  }
+
+	componentDidRender() {
+    this.handleComponentWidth()
+  }
 	
 	formResetCallback(): void {
 		this.resetTextarea();
