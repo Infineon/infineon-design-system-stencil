@@ -13,6 +13,7 @@
 | `cols`        | `cols`        |             | `number`                                         | `undefined` |
 | `disabled`    | `disabled`    |             | `boolean`                                        | `false`     |
 | `error`       | `error`       |             | `boolean`                                        | `false`     |
+| `fullWidth`   | `full-width`  |             | `string`                                         | `"false"`   |
 | `label`       | `label`       |             | `string`                                         | `undefined` |
 | `maxlength`   | `maxlength`   |             | `number`                                         | `undefined` |
 | `name`        | `name`        |             | `string`                                         | `undefined` |
