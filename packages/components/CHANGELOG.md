@@ -1,3 +1,15 @@
+# v31.4.0 (Fri Feb 14 2025)
+
+#### 🚀 Enhancement
+
+- Textarea: implements full-width prop [#1722](https://github.com/Infineon/infineon-design-system-stencil/pull/1722) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.3.1 (Wed Feb 12 2025)
 
 #### 🐛 Bug Fix
