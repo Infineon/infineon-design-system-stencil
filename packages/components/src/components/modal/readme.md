@@ -22,10 +22,10 @@
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `ifxModalClose` |             | `CustomEvent<any>` |
-| `ifxModalOpen`  |             | `CustomEvent<any>` |
+| Event      | Description | Type               |
+| ---------- | ----------- | ------------------ |
+| `ifxClose` |             | `CustomEvent<any>` |
+| `ifxOpen`  |             | `CustomEvent<any>` |
 
 
 ## Dependencies

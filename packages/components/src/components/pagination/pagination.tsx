@@ -9,8 +9,6 @@ import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from 
 export class Pagination {
   @Element() el;
   @Event() ifxPageChange: EventEmitter;
-  @Event() ifxNextPage: EventEmitter;
-  @Event() ifxPrevPage: EventEmitter;
   @Prop() currentPage: number = 0;
   @State() internalPage: number = 1;
   @State() internalItemsPerPage: number = 10;
