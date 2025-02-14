@@ -7,6 +7,7 @@ export default {
   args: {
     total: 50,
     currentPage: 1,
+    itemsPerPage: '[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'
   },
   argTypes: {
     currentPage: {
@@ -54,6 +55,7 @@ const DefaultTemplate = args => {
   const element = document.createElement('ifx-pagination');
   element.setAttribute('total', args.total);
   element.setAttribute('current-page', args.currentPage);
+  element.setAttribute('items-per-page', args.itemsPerPage);
   element.addEventListener('ifxPageChange', action('ifxPageChange'));
   return element;
 };
