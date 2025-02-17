@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Pagination',
@@ -7,6 +6,7 @@ export default {
   args: {
     total: 50,
     currentPage: 1,
+    itemsPerPage: '[{"label":"10","selected":true}, {"label":"20","selected":false}, {"label":"30","selected":false}]'
   },
   argTypes: {
     currentPage: {
@@ -34,6 +34,15 @@ export default {
         },
       },
     },
+    itemsPerPage: {
+      description: 'Stringified array of objects setting up the items per page.',
+      table: {
+        category: 'Ifx-pagination props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
 
     ifxPageChange: {
       action: 'ifxPageChange',
@@ -50,13 +59,17 @@ export default {
   },
 };
 
-const DefaultTemplate = args => {
-  const element = document.createElement('ifx-pagination');
-  element.setAttribute('total', args.total);
-  element.setAttribute('current-page', args.currentPage);
-  element.addEventListener('ifxPageChange', action('ifxPageChange'));
-  return element;
-};
+const DefaultTemplate = args => 
+  `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`
+
+// const DefaultTemplate = args => {
+//   const element = document.createElement('ifx-pagination');
+//   element.setAttribute('total', args.total);
+//   element.setAttribute('current-page', args.currentPage);
+//   element.setAttribute('items-per-page', args.itemsPerPage);
+//   element.addEventListener('ifxPageChange', action('ifxPageChange'));
+//   return element;
+// };
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};
