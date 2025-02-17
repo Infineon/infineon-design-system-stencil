@@ -34,6 +34,15 @@ export default {
         },
       },
     },
+    itemsPerPage: {
+      description: 'Stringified array of objects setting up the items per page.',
+      table: {
+        category: 'Ifx-pagination props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
 
     ifxPageChange: {
       action: 'ifxPageChange',
