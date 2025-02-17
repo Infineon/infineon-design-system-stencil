@@ -15,6 +15,7 @@ export class Pagination {
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
   @Prop() itemsPerPage: any[] | string;
+  @State() filteredItemsPerPage: any[]
 
   private CLASS_DISABLED = "disabled"
   private CLASS_ACTIVE = "active"
@@ -55,8 +56,20 @@ export class Pagination {
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
   }
 
+  filterOptionsArray() { 
+    let obj: any[] = Array.isArray(this.itemsPerPage) ? this.itemsPerPage : JSON.parse(this.itemsPerPage);
+    for(let i = 0; i < obj.length; i++) { 
+      let item = obj[i];
+      if(!item.value) { 
+        item.value = item.label;
+      }
+    }
+    this.filteredItemsPerPage = obj;
+  }
+
   componentWillLoad() {
     this.calculateNumberOfPages()
+    this.filterOptionsArray()
   }
 
   componentDidUpdate() {
@@ -187,7 +200,7 @@ export class Pagination {
               error-message='Error'
               label=''
               placeholder-value='Placeholder'
-              options={this.itemsPerPage} >
+              options={this.filteredItemsPerPage} >
             </ifx-select>
           </div>
         </div>
