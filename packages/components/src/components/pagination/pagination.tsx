@@ -11,9 +11,11 @@ export class Pagination {
   @Event() ifxPageChange: EventEmitter;
   @Prop() currentPage: number = 0;
   @State() internalPage: number = 1;
-  @State() itemsPerPage: number = 10;
+  @State() internalItemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
+  @Prop() itemsPerPage: any[] | string;
+  @State() filteredItemsPerPage: any[]
 
   private CLASS_DISABLED = "disabled"
   private CLASS_ACTIVE = "active"
@@ -23,9 +25,9 @@ export class Pagination {
   @Listen('ifxSelect')
   setItemsPerPage(e) {
     if(e.detail) {
-      this.itemsPerPage = parseInt(e.detail.label)
+      this.internalItemsPerPage = parseInt(e.detail.label)
     } else { 
-      this.itemsPerPage = 10;
+      this.internalItemsPerPage = 10;
     }
   }
 
@@ -41,8 +43,8 @@ export class Pagination {
     if (isNaN(this.currentPage)) {
       this.currentPage = 1;
     }
-    const total = this.total <= this.itemsPerPage ? this.itemsPerPage : this.total;
-    const itemsPerPage = this.itemsPerPage;
+    const total = this.total <= this.internalItemsPerPage ? this.internalItemsPerPage : this.total;
+    const itemsPerPage = this.internalItemsPerPage;
     const totalPageNumber = Math.ceil(total / itemsPerPage);
 
     if (this.currentPage <= 0) {
@@ -54,8 +56,20 @@ export class Pagination {
     this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
   }
 
+  filterOptionsArray() { 
+    let obj: any[] = Array.isArray(this.itemsPerPage) ? this.itemsPerPage : JSON.parse(this.itemsPerPage);
+    for(let i = 0; i < obj.length; i++) { 
+      let item = obj[i];
+      if(!item.value) { 
+        item.value = item.label;
+      }
+    }
+    this.filteredItemsPerPage = obj;
+  }
+
   componentWillLoad() {
     this.calculateNumberOfPages()
+    this.filterOptionsArray()
   }
 
   componentDidUpdate() {
@@ -79,7 +93,7 @@ export class Pagination {
     let totalPages = this.numberOfPages.length;
     let prevPage = currActive === 0 ? null : currActive;
     let nextPage = currActive + 2 > totalPages ? null : currActive + 2;
-    let itemsPerPage = this.itemsPerPage
+    let itemsPerPage = this.internalItemsPerPage
     this.ifxPageChange.emit({ currentPage, totalPages, prevPage, nextPage, itemsPerPage })
   }
 
@@ -186,7 +200,7 @@ export class Pagination {
               error-message='Error'
               label=''
               placeholder-value='Placeholder'
-              options='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]' >
+              options={this.filteredItemsPerPage} >
             </ifx-select>
           </div>
         </div>
