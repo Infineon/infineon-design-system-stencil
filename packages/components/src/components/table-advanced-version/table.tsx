@@ -530,7 +530,7 @@ export class Table {
                 <div id={`ifxTable-${this.uniqueKey}`} class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage}></ifx-pagination> : null}
+              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination> : null}
             </div>
           </div>
         </div>
