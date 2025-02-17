@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Pagination',
@@ -59,17 +60,14 @@ export default {
   },
 };
 
-const DefaultTemplate = args => 
-  `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`
 
-// const DefaultTemplate = args => {
-//   const element = document.createElement('ifx-pagination');
-//   element.setAttribute('total', args.total);
-//   element.setAttribute('current-page', args.currentPage);
-//   element.setAttribute('items-per-page', args.itemsPerPage);
-//   element.addEventListener('ifxPageChange', action('ifxPageChange'));
-//   return element;
-// };
+const DefaultTemplate = args => {
+  const element = `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`
+  setTimeout(() => {
+    document.querySelector('ifx-pagination')?.addEventListener('ifxPageChange', action('ifxPageChange'));
+  }, 0);
+  return element;
+};
 
 export const Default = DefaultTemplate.bind({});
 Default.argTypes = {};
