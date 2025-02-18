@@ -34,12 +34,14 @@ export class Template {
   }
 
   componentDidLoad() { 
+    console.log('first on load')
     const url = new URL(window.location.href);
     const code = url.searchParams.get('code');
     const { templateName } = this.getLocalStorageValues()
     if(code && this.name === templateName) { 
       this.isTemplatePage = true;
       this.toggleTemplates.emit('details')
+      console.log('before invoke')
       this.getUserToken(code)
     } 
   }
@@ -54,9 +56,10 @@ export class Template {
 
   async getUserToken(authCode) {
     const { repoName, repoDesc, repoFramework, templateName } = this.getLocalStorageValues();
-
-    fetch(`https://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
+    console.log('get user token')
+    fetch(`https://dds-templates-server.onrender.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
+      console.log('here')
       if (response.ok) {
         return response.text();
       } else {
