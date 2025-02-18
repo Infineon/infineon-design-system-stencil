@@ -11,7 +11,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && npm run compile",
-    "clean": "del -f dist",
+    "clean": "rm -rf dist",
     "compile": "npm run tsc",
     "tsc": "tsc -p ."
   },
