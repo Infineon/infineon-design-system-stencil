@@ -1,3 +1,41 @@
+# v31.4.1 (Fri Feb 14 2025)
+
+#### 🐛 Bug Fix
+
+- Bump vite from 5.4.11 to 5.4.14 in /examples/wrapper-components/react-vite-js [#1693](https://github.com/Infineon/infineon-design-system-stencil/pull/1693) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.4.0 (Fri Feb 14 2025)
+
+#### 🚀 Enhancement
+
+- Textarea: implements full-width prop [#1722](https://github.com/Infineon/infineon-design-system-stencil/pull/1722) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.3.1 (Wed Feb 12 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Button, Status and Table documentation [#1716](https://github.com/Infineon/infineon-design-system-stencil/pull/1716) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.3.0 (Tue Feb 11 2025)
 
 #### 🚀 Enhancement
