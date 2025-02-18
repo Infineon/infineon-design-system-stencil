@@ -60,8 +60,8 @@ export class Pagination {
     let obj: any[] = Array.isArray(this.itemsPerPage) ? this.itemsPerPage : JSON.parse(this.itemsPerPage);
     for(let i = 0; i < obj.length; i++) { 
       let item = obj[i];
-      if(!item.value) { 
-        item.value = item.label;
+      if(!item.label) { 
+        item.label = item.value;
       }
     }
     this.filteredItemsPerPage = obj;

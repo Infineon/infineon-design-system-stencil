@@ -7,7 +7,7 @@ export default {
   args: {
     total: 50,
     currentPage: 1,
-    itemsPerPage: '[{"label":"10","selected":true}, {"label":"20","selected":false}, {"label":"30","selected":false}]'
+    itemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
   },
   argTypes: {
     currentPage: {
@@ -36,7 +36,7 @@ export default {
       },
     },
     itemsPerPage: {
-      description: 'Stringified array of objects setting up the items per page.',
+      description: 'Stringified array of objects setting up the items per page. *Value* and *selected* are required.',
       table: {
         category: 'Ifx-pagination props',
         type: {
