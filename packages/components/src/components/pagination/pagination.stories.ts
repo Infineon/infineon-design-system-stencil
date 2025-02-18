@@ -7,6 +7,7 @@ export default {
   args: {
     total: 50,
     currentPage: 1,
+    itemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
   },
   argTypes: {
     currentPage: {
@@ -34,6 +35,15 @@ export default {
         },
       },
     },
+    itemsPerPage: {
+      description: 'Stringified array of objects setting up the items per page. *Value* and *selected* are required.',
+      table: {
+        category: 'Ifx-pagination props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
 
     ifxPageChange: {
       action: 'ifxPageChange',
@@ -50,11 +60,12 @@ export default {
   },
 };
 
+
 const DefaultTemplate = args => {
-  const element = document.createElement('ifx-pagination');
-  element.setAttribute('total', args.total);
-  element.setAttribute('current-page', args.currentPage);
-  element.addEventListener('ifxPageChange', action('ifxPageChange'));
+  const element = `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`
+  setTimeout(() => {
+    document.querySelector('ifx-pagination')?.addEventListener('ifxPageChange', action('ifxPageChange'));
+  }, 0);
   return element;
 };
 
