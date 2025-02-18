@@ -1,3 +1,15 @@
+# v32.0.0 (Tue Feb 18 2025)
+
+#### 💥 Breaking Change
+
+- Pagination: implements items per page prop [#1697](https://github.com/Infineon/infineon-design-system-stencil/pull/1697) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v31.4.1 (Fri Feb 14 2025)
 
 #### 🐛 Bug Fix
