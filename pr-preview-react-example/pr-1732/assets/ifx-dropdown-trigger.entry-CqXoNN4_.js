@@ -1,0 +1,1 @@
+import{r as o,h as s}from"./index-aClBrBle.js";const t=":host{display:inline-block;cursor:pointer}",e=t,n=class{constructor(r){o(this,r),this.isOpen=!1}render(){return s("slot",{key:"f0a65116af72f52d895802a989a5a44396f8aafb"})}};n.style=e;export{n as ifx_dropdown_trigger};
