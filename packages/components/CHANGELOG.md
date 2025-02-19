@@ -1,3 +1,16 @@
+# v32.1.0 (Wed Feb 19 2025)
+
+#### 🚀 Enhancement
+
+- New component: Checkbox-group [#1681](https://github.com/Infineon/infineon-design-system-stencil/pull/1681) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.0.0 (Tue Feb 18 2025)
 
 #### 💥 Breaking Change
