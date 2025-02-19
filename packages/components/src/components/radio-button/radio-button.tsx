@@ -22,6 +22,7 @@ export class RadioButton {
   private fallbackInput: HTMLInputElement;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
+  @Event({ eventName: 'ifxError' }) ifxError: EventEmitter;
 
   componentWillLoad() {
     // Fallback for form association
@@ -71,6 +72,13 @@ export class RadioButton {
     this.fallbackInput.value = this.value;
     this.fallbackInput.disabled = this.disabled;
   }
+
+  @Watch('error')
+    errorChanged(newValue: boolean, oldValue: boolean) {
+      if (newValue !== oldValue) {
+        this.ifxError.emit(newValue);
+      }
+    }
 
   handleRadioButtonClick(event: Event) {
     if (this.disabled) {
