@@ -700,14 +700,20 @@ export const IfxProgressBar: StencilReactComponent<IfxProgressBarElement, IfxPro
     defineCustomElement: defineIfxProgressBar
 });
 
-type IfxRadioButtonEvents = { onIfxChange: EventName<CustomEvent<any>> };
+type IfxRadioButtonEvents = {
+    onIfxChange: EventName<CustomEvent<any>>,
+    onIfxError: EventName<CustomEvent<any>>
+};
 
 export const IfxRadioButton: StencilReactComponent<IfxRadioButtonElement, IfxRadioButtonEvents> = /*@__PURE__*/ createComponent<IfxRadioButtonElement, IfxRadioButtonEvents>({
     tagName: 'ifx-radio-button',
     elementClass: IfxRadioButtonElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxChange: 'ifxChange' } as IfxRadioButtonEvents,
+    events: {
+        onIfxChange: 'ifxChange',
+        onIfxError: 'ifxError'
+    } as IfxRadioButtonEvents,
     defineCustomElement: defineIfxRadioButton
 });
 

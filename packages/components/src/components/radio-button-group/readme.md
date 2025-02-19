@@ -12,11 +12,29 @@
 | `alignment`       | `alignment`         |             | `"horizontal" \| "vertical"` | `'vertical'`         |
 | `captionText`     | `caption-text`      |             | `string`                     | `undefined`          |
 | `groupLabelText`  | `group-label-text`  |             | `string`                     | `'Group Label Text'` |
-| `hasErrors`       | `has-errors`        |             | `boolean`                    | `false`              |
 | `showCaption`     | `show-caption`      |             | `boolean`                    | `undefined`          |
 | `showCaptionIcon` | `show-caption-icon` |             | `boolean`                    | `undefined`          |
 | `showGroupLabel`  | `show-group-label`  |             | `boolean`                    | `undefined`          |
 | `size`            | `size`              |             | `string`                     | `undefined`          |
+
+
+## Methods
+
+### `setGroupError(error: boolean) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name    | Type      | Description |
+| ------- | --------- | ----------- |
+| `error` | `boolean` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

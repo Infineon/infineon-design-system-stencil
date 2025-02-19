@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, } from '@stencil/core';
+import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
 
 @Component({
     tag: 'ifx-radio-button-group',
@@ -8,6 +8,8 @@ import { Component, h, Prop, Element, } from '@stencil/core';
 })
 
 export class RadioButtonGroup {
+    private errorStates: Map<HTMLElement, boolean> = new Map();
+
     @Element() el: HTMLElement;
     @Prop() alignment: 'horizontal' | 'vertical' = 'vertical';
     @Prop() size: string;
@@ -16,8 +18,25 @@ export class RadioButtonGroup {
     @Prop() showCaption: boolean;
     @Prop() captionText: string;
     @Prop() showCaptionIcon: boolean;
-    @Prop() hasErrors: boolean = false;
-    private errorStates: Map<HTMLElement, boolean> = new Map();
+    @State() hasErrors: boolean = false;
+    
+    @Listen('ifxError')
+    handleRadioButtonError(event: CustomEvent) {
+        const radioButton = event.target as HTMLElement;
+        if (radioButton.tagName === 'ifx-radio-button') {
+            this.errorStates.set(radioButton, event.detail);
+            this.updateHasErrors();
+        }
+    }
+
+     // Method to set the error state of all radio-butttons in the group
+      @Method()
+      async setGroupError(error: boolean) {
+        const radioButtons = Array.from(this.el.querySelectorAll('ifx-radio-button'));
+        radioButtons.forEach((radioButton) => {
+          (radioButton as any).error = error;
+        });
+      }
 
     componentWillLoad() {
         this.initializeState();
@@ -37,6 +56,7 @@ export class RadioButtonGroup {
         });
         this.updateHasErrors();
     }
+
     private updateHasErrors() {
         this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
     }

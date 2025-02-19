@@ -7,7 +7,6 @@ export default {
         size: 'm',
         checked: false,
         disabled: false,
-        indeterminate: false,
         error: false,
         showGroupLabel: false,
         groupLabelText: 'Group Label',
@@ -15,7 +14,6 @@ export default {
         captionText: 'Caption text, description, error notification',
         showCaptionIcon: false,
     },
-
     argTypes: {
         amountOfItems: {
             categpry: 'story controls',
@@ -58,14 +56,6 @@ export default {
         },
         disabled: {
             description: 'Disable the radio button.',
-            control: { type: 'boolean' },
-            table: {
-                category: 'ifx-radio-button props',
-                defaultValue: { summary: 'false' }
-            }
-        },
-        indeterminate: {
-            description: 'Set the indeterminate state.',
             control: { type: 'boolean' },
             table: {
                 category: 'ifx-radio-button props',
@@ -118,6 +108,17 @@ export default {
             table: {
                 category: 'ifx-radio-button-group props',
                 defaultValue: { summary: 'false' }
+            }
+        },
+        setGroupError: {
+            action: 'setGroupError',
+            description: 'Method to set the error state of all checkboxes in the group.',
+            table: {
+                category: 'ifx-radio-buttton-group methods',
+                type: {
+                    summary: 'error : boolean',
+                    detail: 'RadioButttonGroup.setGroupError(error)'
+                }
             }
         }
     },
