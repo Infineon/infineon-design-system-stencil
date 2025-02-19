@@ -194,8 +194,12 @@
 
     <br />
 
+    <h2>Checkbox Group</h2>
+    <ifx-checkbox-group alignment="vertical" show-group-label="false" group-label-text="Group Label" show-caption="false" caption-text="Caption text, description, error notification" show-caption-icon="false">
+      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
+  </ifx-checkbox-group>
 
-
+  <br />
 
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
@@ -356,7 +360,7 @@
     <br />
 
     <h2>Pagination</h2>
-    <ifx-pagination total="500" current-page="1"></ifx-pagination>
+    <ifx-pagination total="500" current-page="1" items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination>
     <br />
 
     <h2>Progress bar</h2>

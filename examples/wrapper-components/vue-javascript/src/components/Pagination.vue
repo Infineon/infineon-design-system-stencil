@@ -4,6 +4,7 @@
     <ifx-pagination
       @ifxPageChange="handleChange"
       total="500"
+       items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'
       :current-page="current"
     ></ifx-pagination>
   </div>

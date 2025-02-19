@@ -544,6 +544,16 @@
   <br />
   <br />
 
+  <h2>Checkbox Group</h2>
+  <ifx-checkbox-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true">
+    <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 0</ifx-checkbox>
+    <ifx-checkbox value="1" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 1</ifx-checkbox>
+    <ifx-checkbox value="2" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 2</ifx-checkbox>
+    <ifx-checkbox value="3" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 3</ifx-checkbox>
+  </ifx-checkbox-group>
+  <br />
+  <br />
+
   <h2>Chip</h2>
   <ifx-chip placeholder="Label" size="large" variant="multi" read-only="false">
     <ifx-chip-item value="Item Value 0" selected="true">Item Label 0</ifx-chip-item>
@@ -647,7 +657,7 @@
   <br />
 
   <h2>Pagination</h2>
-  <ifx-pagination total="500" current-page="1"></ifx-pagination>
+  <ifx-pagination total="500" current-page="1" items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination>
   <br />
   <br />
 
