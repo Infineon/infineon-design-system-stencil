@@ -6,6 +6,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
+import RadioButttonGroup from './components/RadioButtonGroup/RadioButtonGroup';
 import Sidebar from './components/Sidebar/Sidebar'
 import Notification from './components/Notification/Notification'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
@@ -134,6 +135,10 @@ function App() {
 
       <h2>Radio Button</h2>
       <RadioButton />
+      <br />
+
+      <h2>Radio Button Group</h2>
+      <RadioButtonGroup />
       <br />
 
 
