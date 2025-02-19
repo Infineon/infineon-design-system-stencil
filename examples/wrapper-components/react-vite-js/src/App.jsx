@@ -38,6 +38,7 @@ import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 import Textarea from './components/Textarea/Textarea';
+import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 
 function App() {
  
@@ -73,6 +74,10 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+      <br />
+
+      <h2>CheckboxGroup</h2>
+      <CheckboxGroup />
       <br />
 
       <h2>Chip</h2>
