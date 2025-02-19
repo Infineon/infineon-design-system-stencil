@@ -24,6 +24,7 @@
   <Pagination />
   <ProgressBar />
   <RadioButton />
+  <RadioButtonGroup />
   <SearchField />
   <SearchBar />
   <SegmentedControl />
@@ -54,6 +55,7 @@ import CheckboxGroup from './components/CheckboxGroup.vue'
 import Chip from './components/Chip.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import RadioButton from './components/RadioButton.vue'
+import RadioButtonGroup from './components/RadioButtonGroup.vue'
 import TextField from './components/TextField.vue'
 import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
