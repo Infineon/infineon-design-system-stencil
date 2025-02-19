@@ -1,3 +1,15 @@
+# v32.1.2 (Wed Feb 19 2025)
+
+#### 🐛 Bug Fix
+
+- Single select: removes reserved space for inactive dropdown [#1731](https://github.com/Infineon/infineon-design-system-stencil/pull/1731) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.1.1 (Wed Feb 19 2025)
 
 #### 🐛 Bug Fix
