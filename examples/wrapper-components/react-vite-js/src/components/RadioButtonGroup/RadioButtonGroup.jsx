@@ -14,4 +14,4 @@ function RadioButtonGroup() {
   );
 }
 
-export default RadioButttonGroup;
+export default RadioButtonGroup;
