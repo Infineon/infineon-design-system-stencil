@@ -430,6 +430,7 @@ END Select options: item alignment
   }
 
   .choices__list--dropdown {
+    display: none;
     visibility: hidden;
     box-sizing: border-box;
     position: absolute;
@@ -449,6 +450,7 @@ END Select options: item alignment
   }
 
   .choices__list--dropdown.is-active {
+    display: block;
     visibility: visible;
   }
 
