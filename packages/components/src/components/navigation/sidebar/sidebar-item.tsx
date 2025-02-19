@@ -8,15 +8,15 @@ import { Component, h, Prop, Element, State, Listen, Watch, Event, EventEmitter,
 export class SidebarItem {
   @Element() el;
   @Prop() icon: string = ""
-  @State() hasIcon: boolean = true;
-  @State() hasIconWrapper: boolean = false;
+  @State() showIcon: boolean = true;
+  @State() showIconWrapper: boolean = false;
   @Prop() href: string = "";
   @State() internalHref: string = "";
   @Prop() target: string = "_self";
   @State() isExpandable: boolean = false;
   @State() isNested: boolean = true;
   @State() isSubMenuItem: boolean = false;
-  @Prop() numberIndicator: string;
+  @Prop() numberIndicator: number;
   @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
 
@@ -26,8 +26,6 @@ export class SidebarItem {
   @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
 
-
-  @Prop() value: string = ""
   @Prop() handleItemClick: (item: HTMLElement) => void;
 
 
@@ -55,9 +53,9 @@ export class SidebarItem {
   @Listen('consoleError')
   handleConsoleError(event: CustomEvent<boolean>) {
     if (event.detail) {
-      this.hasIcon = false;
+      this.showIcon = false;
     } else {
-      this.hasIcon = true;
+      this.showIcon = true;
     }
   }
 
@@ -296,14 +294,14 @@ export class SidebarItem {
       <div>
         <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}>
           {this.icon &&
-            <div class={`sidebar__nav-item-icon-wrapper ${!this.hasIcon ? 'noIcon' : ""}`}>
+            <div class={`sidebar__nav-item-icon-wrapper ${!this.showIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
             </div>}
           <div class="sidebar__nav-item-label">
             <slot />
           </div>
           {
-          (this.isExpandable || this.numberIndicator?.trim()) && 
+          (this.isExpandable || !isNaN(this.numberIndicator)) &&
             <div class="sidebar__nav-item-indicator">
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
@@ -311,7 +309,7 @@ export class SidebarItem {
                 </span>
               }
 
-              {this.numberIndicator?.trim() && !this.isExpandable && !this.isNested &&
+              {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
                 <span class='item__number-indicator'>
                   <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
                 </span>}

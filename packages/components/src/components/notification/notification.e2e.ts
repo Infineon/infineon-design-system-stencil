@@ -17,12 +17,12 @@ describe('Notification', () => {
     expect(notification).toHaveClass('ifx-notification__wrapper--success');
   });
 
-  it('should apply warning class', async () => {
+  it('should apply locked class', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-notification variant="warning">42</ifx-notification>');
+    await page.setContent('<ifx-notification variant="locked">42</ifx-notification>');
 
     const notification = await page.find('ifx-notification >>> .ifx-notification__wrapper');
-    expect(notification).toHaveClass('ifx-notification__wrapper--warning');
+    expect(notification).toHaveClass('ifx-notification__wrapper--locked');
   });
 
   it('should apply error class', async () => {

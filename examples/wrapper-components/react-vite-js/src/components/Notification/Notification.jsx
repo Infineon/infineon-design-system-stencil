@@ -5,7 +5,7 @@ function Notification() {
     <div>
       <IfxNotification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success notification</IfxNotification>
       <br />
-      <IfxNotification icon="lock-16" variant="warning" link-text="Link" link-href="https://www.example.com">Warning notification</IfxNotification>
+      <IfxNotification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked notification</IfxNotification>
       <br />
       <IfxNotification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error notification</IfxNotification>
     </div>
