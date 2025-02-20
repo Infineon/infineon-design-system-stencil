@@ -1,12 +1,12 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-.checkbox-group-container {
+.radio-button-group-container {
     display: flex;
     flex-direction: column;
 }
 
-.checkbox-group {
+.radio-button-group {
     display: flex;
     font-family: var(--ifx-font-family);
     gap: tokens.$ifxSpace100;
