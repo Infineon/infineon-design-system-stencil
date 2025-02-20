@@ -79,6 +79,7 @@ export default {
     },
     ifxChange: {
       description: 'Custom event emitted when radio button checked and unchecked.',
+      action: 'ifxChange',
       table: {
         category: 'custom events',
         type: {
@@ -87,8 +88,18 @@ export default {
             'React: onIfxChange={handleChange}\nVue:@ifxChange="handleChange"\nAngular:(ifxChange)="handleChange()"\nVanillaJs:.addEventListener("ifxChange", (event) => {//handle change});',
         },
       },
-
-      action: 'ifxChange',
+    },
+    ifxError: {
+      description: 'Custom event emitted when radio button is in error state.',
+      action: 'ifxError',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxError={handleError}\nVue:@ifxError="handleError"\nAngular:(ifxError)="handleError()"\nVanillaJs:.addEventListener("ifxError", (event) => {//handle error});',
+        },
+      },
     }
   },
 };
@@ -110,6 +121,7 @@ const DefaultTemplate = args => {
 
   // Add the event listener
   element.addEventListener('ifxChange', action('ifxChange'));
+  element.addEventListener('ifxError', action('ifxError'));
 
   // Return the element
   return element;

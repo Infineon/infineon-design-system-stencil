@@ -431,6 +431,47 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-checkbox-group--development" size="s" variant="bold">Checkbox Group</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a simple and customizable interface for grouping multiple checkbox inputs</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Allows users to set and display group label, caption text and caption icon</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Allows to display individual or group error</span>
+                      </li>
+                      <li>
+                          <span>
+                            <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                          </span>
+                          <span>React, Vue and Angular wrapper integration</span>
+                        </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                    </td>
+                    <td></td>
+                  <td></td>
+                  </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Chip</ifx-link>
                   </td>
                   <td >
@@ -1044,6 +1085,47 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-radio-button-group--development" size="s" variant="bold">Radio Button Group</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Provides a customizable interface for grouping multiple radio-button inputs</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Allows users to set and display group label, caption text and caption icon</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Allows to display individual or group error</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>React, Vue and Angular wrapper integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check12"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td ></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -1870,42 +1952,6 @@ export class OverviewTable {
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Upload</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Checkbox Group</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Radio Group</ifx-link>
                   </td>
                   <td>
                     <ul>
