@@ -37,6 +37,7 @@
     width: 100%;
     column-gap: tokens.$ifxSpace100;
     justify-content: space-between;
+    align-items: center;
 
     &.default {
         color: tokens.$ifxColorBaseBlack;
@@ -56,6 +57,6 @@
 }
 
 .caption-icon {
-    align-self: flex-start;
-    display: block;
+    flex:0;
+    display: flex;
 }
