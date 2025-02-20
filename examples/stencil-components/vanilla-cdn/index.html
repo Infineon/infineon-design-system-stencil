@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <link rel="stylesheet" href="./dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
-  
+  <script src="./main.js"></script>
+
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -132,6 +133,11 @@
     <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
     <br />
 
+    <h2>Badge</h2>
+    <ifx-badge>
+      Badge label
+    </ifx-badge>
+    <br />
 
     <h2>Breadcrumb</h2>
     <ifx-breadcrumb>
@@ -258,6 +264,10 @@
 
     <br>
 
+    <h2>Date Picker</h2>
+    <ifx-date-picker name="date-picker" error="false" disabled="false" size="s" success="false" value="" max="" min="" label="Label Text" caption="Caption text, description, error notification." arialabel="Date Picker" required="false"></ifx-date-picker>
+    <br />
+
 
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
@@ -306,8 +316,10 @@
         </div>
       </ifx-filter-type-group>
     </div>
-
     <br />
+
+    <h2>Icon</h2>
+    <ifx-icon icon="c-check-16"></ifx-icon>
     <br />
 
     <h2>Icon Button</h2>
@@ -446,17 +458,23 @@
     <h2>Search field</h2>
     <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
     <br />
-    <br />
 
     <h2>Search bar</h2>
     <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
     <br />
     <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
     <br />
+
+    <h2>Segmented Control</h2>
+    <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular">
+      <ifx-segment value="Value1" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value2" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value3" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value4" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value5" icon="star-16">Label</ifx-segment>
+    </ifx-segmented-control>
     <br />
 
-    <br />
-    <br />
     <h2>Status</h2>
     <ifx-status label="Status with border" color="ocean-500" border="true"></ifx-status>
     <ifx-status label="Status without border" color="orange-500" border="false"></ifx-status>
@@ -596,6 +614,11 @@
     <br />
     <br />
 
+    <h2>Textarea</h2>
+    <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" maxlength="undefined" name="textarea" placeholder="Placeholder" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false">
+    </ifx-textarea>
+    <br />
+
     <h2>Tooltip</h2>
     <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
       element -
@@ -675,295 +698,5 @@
   </div>
 
 </body>
-
-<script>
-  let disabled = false;
-  let checked = false;
-  let error = false;
-  let textInputValue = "";
-  let radioChecked = false;
-  let number = 1;
-  let switchChecked = false;
-  const form = document.querySelector("#form");
-  const anotherForm = document.querySelector("#another-form");
-
-  const checkbox = document.querySelector("#checkbox");
-  const progressBar = document.querySelector('#progress-bar');
-  const textInput = document.querySelector('#text-field');
-  const radioBtn = document.querySelector('#radio-btn');
-  const numberIndicator = document.querySelector('#number-indicator');
-  const switchToggle = document.querySelector('#switch');
-  const singleSelect = document.querySelector('#single-select');
-  const singleSelectDisabledBtn = document.querySelector('#single-select-disabled-btn');
-  const singleSelectErrorBtn = document.querySelector('#single-select-error-btn');
-  const openModalBtn = document.querySelector("#open-modal-btn");
-  const modal = document.querySelector("#modal");
-
-  const searchField = document.querySelector('#search-field');
-  const searchBar = document.querySelector('#search-bar');
-
-  const cardBtn = document.querySelector('#cardBtn');
-
-  const toggleDisabledButton = document.querySelector("#toggleDisabled");
-  const toggleErrorButton = document.querySelector("#toggleError");
-  const toggleValueButton = document.querySelector("#toggleValue");
-  const disabledSpan = document.querySelector("#disabledSpan");
-  const errorSpan = document.querySelector("#errorSpan");
-  const valueSpan = document.querySelector("#valueSpan");
-  const textInputSpan = document.querySelector("#textInputSpan");
-  const sidebarItem = document.querySelector('#sidebarItemClickable');
-
-  const basicTable = document.querySelector('#basic-table');
-  const advancedTable = document.querySelector('#adv-table');
-  const tableWithBtn = document.querySelector('#table-with-btn');
-
-
-  function updateValues() {
-    checkbox.setAttribute('disabled', disabled);
-    checkbox.setAttribute('value', checked);
-    checkbox.setAttribute('error', error);
-    disabledSpan.textContent = `Disabled: ${disabled}`;
-    errorSpan.textContent = `Error: ${error}`;
-    valueSpan.textContent = `Value: ${checked}`;
-    textInputSpan.textContent = `Text field: ${textInputValue}`;
-    switchToggle.setAttribute('value', switchChecked);
-  }
-
-  function increaseNumber() {
-    numberIndicator.textContent = Number(numberIndicator.textContent) + 1;
-
-  }
-
-  function decreaseNumber() {
-    numberIndicator.textContent = Number(numberIndicator.textContent) - 1;
-  }
-
-  function updateProgress() {
-    const newValue = Math.floor(Math.random() * 101);
-    progressBar.setAttribute('value', newValue);
-  }
-
-  document.addEventListener('DOMContentLoaded', (event) => {
-    form.addEventListener('submit', () => {
-      event.preventDefault();
-      console.log('Form submitted. \nCheckbox value:', checked, '\nSwitchToggle value', switchChecked);
-    });
-
-    anotherForm.addEventListener('submit', () => {
-      event.preventDefault();
-      console.log('Form submitted. Text field value: ', textInputValue);
-    });
-    anotherForm.addEventListener('reset', () => {
-      event.preventDefault();
-      console.log('Form reset. Text field value: ', textInputValue);
-    });
-
-
-    checkbox.addEventListener('ifxChange', (event) => {
-      console.log("checked value change", event.detail);
-      checked = !checked;
-      updateValues();
-    });
-
-    switchToggle.addEventListener('ifxChange', (event) => {
-      console.log("switchToggle value change", event.detail);
-      switchChecked = !switchChecked;
-      updateValues();
-    });
-
-    toggleDisabledButton.addEventListener('click', () => {
-      disabled = !disabled;
-      updateValues();
-    });
-
-    toggleErrorButton.addEventListener('click', () => {
-      error = !error;
-      updateValues();
-    });
-
-    toggleValueButton.addEventListener('click', () => {
-      checked = !checked;
-      updateValues();
-    });
-
-
-    textInput.addEventListener('ifxInput', (event) => {
-      console.log("Text field: ", event.detail);
-      textInputValue = event.detail;
-      updateValues();
-    });
-
-    document.getElementById('radio-form').addEventListener('submit', event => {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-      });
-    });
-
-    openModalBtn.addEventListener('click', (event) => {
-      modal.opened = true;
-    });
-
-    singleSelect.addEventListener('ifxChange', (event) => {
-      console.log("single select value change", event.detail);
-    });
-
-    //set single select values using a json array
-    const singleSelectOptions = '[{ "value": "a", "label": "option a", "selected": true }, { "value": "b", "label": "option b", "selected": false }, { "value": "c", "label": "option c", "selected": false }]';
-    singleSelect.setAttribute('options', singleSelectOptions);
-
-
-    //set advanced table row values using a json array
-    const tableRows = `[
-  { "make": "Toyota", "model": "Celica", "price": 35000, "age": 10 },
-  { "make": "Ford", "model": "Mondeo", "price": 32000, "age": 12 },
-  { "make": "Porsche", "model": "Boxster", "price": 72000 },
-  { "make": "Bmw", "model": "x", "price": 72000 },
-  { "make": "Mercedes", "model": "y", "price": 72000 },
-  { "make": "Ferrari", "model": "z", "price": 72000 },
-  { "make": "Chrysler", "model": "a", "price": 72000 },
-  { "make": "Range rover", "model": "b", "price": 72000 },
-  { "make": "Tesla", "model": "x", "price": 72000 },
-  { "make": "Audi", "model": "3", "price": 72000 },
-  { "make": "Landrover", "model": "x", "price": 72000 }
-]`;
-
-    const tableRowsWithBtn = `[
-    {
-      "make": "Toyota",
-      "model": "Celica",
-      "price": 35000,
-      "age": 10,
-      "button": {
-        "disabled": false,
-        "variant": "secondary",
-        "size": "s",
-        "target": "_blank",
-        "href": "https://www.example.com",
-        "theme": "default",
-        "type": "button",
-        "fullWidth": false,
-        "text": "Click Me"
-      }
-    }
-  ]`;
-
-    basicTable.setAttribute('rows', tableRows);
-    advancedTable.setAttribute('rows', tableRows);
-    tableWithBtn.setAttribute('rows', tableRowsWithBtn);
-    
-
-    //set advanced table row values using a json array
-    const tableColumns = `[
-  { "headerName": "Make", "field": "make", "sortable": true, "sort": "desc", "unSortIcon": true },
-  { "headerName": "Model", "field": "model", "sortable": true, "unSortIcon": true },
-  { "headerName": "Price", "field": "price" },
-  { "headerName": "Age", "field": "age" }
-]`;
-
-    const tableColumnsWithBtn = `[
-  { "headerName": "Make", "field": "make", "sortable": true, "sort": "desc", "unSortIcon": true },
-  { "headerName": "Model", "field": "model", "sortable": true, "unSortIcon": true },
-  { "headerName": "Price", "field": "price" },
-  { "headerName": "Age", "field": "age" },
-  { "": "Age", "field": "button" }
-]`;
-    basicTable.setAttribute('cols', tableColumns);
-    advancedTable.setAttribute('cols', tableColumns);
-    tableWithBtn.setAttribute('cols', tableColumnsWithBtn);
-
-    tableWithBtn.buttonRendererOptions = {
-      onButtonClick: (params, event) => {
-        console.log("button clicked", params.data);
-      }
-    };
-
-    cardBtn.addEventListener('click', () => {
-      console.log("card button click event");
-    });
-
-    searchField.addEventListener('ifxInput', (event) => {
-      console.log("search field value", event.detail);
-    });
-
-    searchBar.addEventListener('ifxInput', (event) => {
-      console.log("search bar value", event.detail);
-    });
-
-    sidebarItem.addEventListener('ifxSidebarNavigationItem', function (event) {
-      console.log('Sidebar item clicked', event.detail);
-    });
-
-
-    advancedTable.addEventListener('ifxFilterTypeGroupChange', (event) => {
-      console.log("table filter value", event.detail);
-    });
-
-  });
-
-
-
-  function handleModalButton2Click() {
-    console.log("Modal Button 2 clicked")
-    modal.opened = false;
-  }
-
-  const stepper = document.querySelector('#stepper');
-  function nextStep() {
-    stepper.activeStep += 1;
-    stepper.activeStep = Math.min(stepper.activeStep, 6);
-  }
-
-  function prevStep() {
-    stepper.activeStep -= 1;
-    stepper.activeStep = Math.max(0, stepper.activeStep);
-  }
-
-  function toggleShowNumber() {
-    stepper.showNumber = !stepper.showNumber;
-  }
-
-  function toggleVariant() {
-    if (!stepper.variant || stepper.variant === 'default') {
-      stepper.variant = 'compact';
-    } else {
-      stepper.variant = 'default';
-    }
-  }
-  stepper.addEventListener('ifxActiveStepChange', (event) => {
-    console.log('Stepper active step changed ', event.detail)
-  })
-
-  updateValues();
-
-  function toggleButtonWidth() {
-    const btn = document.getElementById('btn-in-div');
-    btn.fullWidth = !btn.fullWidth;
-    console.log(btn.fullWidth);
-  }
-
-  // Slider
-  const singleSlider = document.querySelector('#single-slider');
-  const doubleSlider = document.querySelector('#double-slider');
-
-  const singleSliderSpan = document.querySelector('#single-slider-value');
-  const doubleSliderSpanMin = document.querySelector('#double-slider-value-min');
-  const doubleSliderSpanMax = document.querySelector('#double-slider-value-max');
-
-  function singleSliderChange(event) {
-    singleSliderSpan.innerHTML = event.detail;
-  }
-
-  function doubleSliderChange(event) {
-    doubleSliderSpanMin.innerHTML = `Min Value: ${event.detail.minVal}`;
-    doubleSliderSpanMax.innerHTML = `Max Value: ${event.detail.maxVal}`;
-  }
-
-  singleSlider.addEventListener('ifxChange', singleSliderChange);
-  doubleSlider.addEventListener('ifxChange', doubleSliderChange);
-
-</script>
-
 
 </html>
