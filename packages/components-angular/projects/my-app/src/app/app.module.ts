@@ -28,6 +28,7 @@ import { NumberIndicatorComponent } from './components/number-indicator/number-i
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { ProgressBarComponent } from "./components/progress-bar/progress-bar.component";
 import { RadioButtonComponent } from "./components/radio-button/radio-button.component";
+import { RadioButtonGroupComponent } from "./components/radio-button-group/radio-button-group.component";
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { SearchFieldComponent } from "./components/search-field/search-field.component";
 import { SegmentedControlComponent } from "./components/segmented-control/segmented-control.component";
@@ -80,6 +81,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     PaginationComponent,
     ProgressBarComponent,
     RadioButtonComponent,
+    RadioButtonGroupComponent,
     SpinnerComponent,
     SearchFieldComponent,
     SearchBarComponent,
@@ -95,7 +97,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     TextFieldComponent,
     TextareaComponent,
     TooltipComponent,
-    CheckboxGroupComponent
+    CheckboxGroupComponent,
 ],
   providers: [],
   bootstrap: [AppComponent]
