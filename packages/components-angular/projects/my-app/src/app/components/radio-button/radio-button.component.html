@@ -1,0 +1,14 @@
+<h2>Radio Button</h2>
+  <form>
+    <ifx-radio-button [error]="radioError" [disabled]="radioDisabled" [value]="radioChecked"
+      (ifxChange)="handleRadioButtonChange($event)">
+      Text
+    </ifx-radio-button>
+  </form>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleRadioBtnValue()">Toggle Value</ifx-button>
+  <span>Disabled: {{ radioDisabled }} </span>
+  <span>Error: {{ radioError }} </span>
+  <span>Value: {{ radioChecked }}</span>
+  <span>Radio button value: {{ radioButtonValue }}</span>
