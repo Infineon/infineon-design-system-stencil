@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@32.1.2--canary.1731.3fd7f9c0f096716fb3c31291a3ab92da9790285b.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@32.1.2--canary.1731.3fd7f9c0f096716fb3c31291a3ab92da9790285b.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@32.1.3--canary.1732.d3813f209f738a14784b9c29ce072ceb36068e2f.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@32.1.3--canary.1732.d3813f209f738a14784b9c29ce072ceb36068e2f.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
   
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
@@ -381,7 +381,15 @@
       <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
       <ifx-button type="submit">Submit</ifx-button>
     </form>
+    <br />
 
+    <h2>Radio Button Group</h2>
+    <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true">
+      <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="false">Option 0</ifx-radio-button>
+      <ifx-radio-button value="1" disabled="false" checked="false" size="m" error="false">Option 1</ifx-radio-button>
+      <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
+      <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
+    </ifx-radio-button-group>
     <br />
 
     <h2>Spinner</h2>
