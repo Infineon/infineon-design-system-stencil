@@ -1,3 +1,16 @@
+# v32.2.0 (Thu Feb 20 2025)
+
+#### 🚀 Enhancement
+
+- New component: Radio button group [#1732](https://github.com/Infineon/infineon-design-system-stencil/pull/1732) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.1.2 (Wed Feb 19 2025)
 
 #### 🐛 Bug Fix
