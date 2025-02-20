@@ -11,6 +11,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 import { ChipComponent } from './components/chip/chip.component';
 import { ContentSwitcherComponent } from './components/content-switcher/content-switcher.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
@@ -62,6 +63,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     ButtonComponent,
     CardComponent,
     CheckboxComponent,
+    CheckboxComponent,
     ChipComponent,
     ContentSwitcherComponent,
     DatePickerComponent,
@@ -92,7 +94,8 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     TagComponent,
     TextFieldComponent,
     TextareaComponent,
-    TooltipComponent
+    TooltipComponent,
+    CheckboxGroupComponent
 ],
   providers: [],
   bootstrap: [AppComponent]
