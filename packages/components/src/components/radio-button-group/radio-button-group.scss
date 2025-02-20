@@ -1,0 +1,62 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.radio-button-group-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-button-group {
+    display: flex;
+    font-family: var(--ifx-font-family);
+    gap: tokens.$ifxSpace100;
+
+    &.horizontal {
+        flex-direction: row;
+        column-gap: tokens.$ifxSpace150;
+    }
+
+    &.vertical {
+        flex-direction: column;
+        row-gap: tokens.$ifxSpace150;
+    }
+}
+
+.group-label {
+    font: tokens.$ifxBodyBody05;
+    margin-bottom: tokens.$ifxSpace100;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.caption {
+    margin-top: tokens.$ifxSpace100;
+    align-self: flex-start;
+    display: flex;
+    width: 100%;
+    column-gap: tokens.$ifxSpace100;
+    justify-content: space-between;
+    align-items: center;
+
+    &.default {
+        color: tokens.$ifxColorBaseBlack;
+    }
+
+    &.error {
+        color: tokens.$ifxColorRed500;
+    }
+}
+
+.caption-text {
+    font: tokens.$ifxBodyBody05;
+    flex: 1;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.caption-icon {
+    flex:0;
+    display: flex;
+}

@@ -6,6 +6,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar';
 import SearchBar from './components/SearchBar/SearchBar';
 import Accordion from './components/Accordion/Accordion';
 import RadioButton from './components/RadioButton/RadioButton';
+import RadioButtonGroup from './components/RadioButtonGroup/RadioButtonGroup';
 import Sidebar from './components/Sidebar/Sidebar'
 import Notification from './components/Notification/Notification'
 import NumberIndicator from './components/NumberIndicator/NumberIndicator'
@@ -38,6 +39,7 @@ import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 import Textarea from './components/Textarea/Textarea';
+import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 
 function App() {
  
@@ -73,6 +75,10 @@ function App() {
 
       <h2>Checkbox</h2>
       <Checkbox />
+      <br />
+
+      <h2>CheckboxGroup</h2>
+      <CheckboxGroup />
       <br />
 
       <h2>Chip</h2>
@@ -129,6 +135,10 @@ function App() {
 
       <h2>Radio Button</h2>
       <RadioButton />
+      <br />
+
+      <h2>Radio Button Group</h2>
+      <RadioButtonGroup />
       <br />
 
 

@@ -37,8 +37,38 @@ This variant offers the strongest contrast when it comes to displaying very comp
 <img src={StatusUsageTable} alt="Status Usage Table" />
 
 ### Simple
-This variant can be placed singly next to the corresponding element.
+This variant can be placed next to the corresponding element. 
 <img src={StatusVariantSimple} alt="Status Variant Simple" />
 
 #### Example
 <img src={StatusUsageInfo} alt="Status Usage Simple" />
+
+## Use case examples
+
+> In general, we recommend using our predefined set of 7 colors ([see Figma status component](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=51031-10802&t=khz9mkvtcKcx9zOk-4)[](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=51031-10802&t=khz9mkvtcKcx9zOk-4)). In case you need more status colors, please refer to our [Color Foundations](https://infineon.github.io/infineon-design-system-stencil/?path=/docs/foundations-colors--development).
+
+### Project status
+We recommend the following color coding for the most common status conditions:
+
+Error = `$ifxColorRed500`
+
+In Progress = `$ifxColorOcean500`
+
+Completed = `$ifxColorLawn500`
+
+Blocked = `$ifxColorSun500`
+
+### Semantic coloring
+
+To reinforce semantic relationships, use similar colors for related items. For example apply `$ifxColorRed500` , `$ifxColorRed600` and `$ifxColorRed700` for different error states to maintain hue consistency.
+
+### User activity
+We recommend the following color coding for the most common user activities:
+
+Not available = `$ifxColorEngineering200`
+
+Active = `$ifxColorOcean400`
+
+Blocked = `$ifxColorRed500`
+
+Also check out the infineon [Colors Foundation →](https://infineon.github.io/infineon-design-system-stencil/?path=/docs/foundations-colors--development)

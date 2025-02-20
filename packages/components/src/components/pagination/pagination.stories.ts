@@ -7,12 +7,49 @@ export default {
   args: {
     total: 50,
     currentPage: 1,
+    itemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
   },
   argTypes: {
+    currentPage: {
+      description: 'Current page number.',
+      table: {
+        category: 'Ifx-pagination props',
+        defaultValue: {
+          'summary': '0'
+        },
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+
+    total: {
+      description: 'Total number of items.',
+      table: {
+        category: 'Ifx-pagination props',
+        defaultValue: {
+          'summary': '1'
+        },
+        type: {
+          summary: 'number',
+        },
+      },
+    },
+    itemsPerPage: {
+      description: 'Stringified array of objects setting up the items per page. *Value* and *selected* are required.',
+      table: {
+        category: 'Ifx-pagination props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+
     ifxPageChange: {
       action: 'ifxPageChange',
-      description: 'Custom event emitted page is changed',
+      description: 'Custom event emitted when page is changed.',
       table: {
+        category: 'custom events',
         type: {
           summary: 'Framework integration',
           detail:
@@ -20,36 +57,15 @@ export default {
         },
       },
     },
-    ifxNextPage: {
-      action: 'ifxNextPage',
-      description: 'Custom event emitted when next page button clicked',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail:
-            'React: onIfxNextPage={handlePageChange}\nVue:@ifxNextPage="handlePageChange"\nAngular:(ifxNextPage)="handlePageChange()"\nVanillaJs:.addEventListener("ifxNextPage", (event) => {//handle page change});',
-        },
-      },
-    },
-    ifxPrevPage: {
-      action: 'ifxPrevPage',
-      description: 'Custom event emitted when previous page button clicked',
-      table: {
-        type: {
-          summary: 'Framework integration',
-          detail:
-            'React: onIfxPrevPage={handlePageChange}\nVue:@ifxPrevPage="handlePageChange"\nAngular:(ifxPrevPage)="handlePageChange()"\nVanillaJs:.addEventListener("ifxPrevPage", (event) => {//handle page change});',
-        },
-      },
-    },
   },
 };
 
+
 const DefaultTemplate = args => {
-  const element = document.createElement('ifx-pagination');
-  element.setAttribute('total', args.total);
-  element.setAttribute('current-page', args.currentPage);
-  element.addEventListener('ifxPageChange', action('ifxPageChange'));
+  const element = `<ifx-pagination total="${args.total}" current-page="${args.currentPage}" items-per-page='${args.itemsPerPage}'></ifx-pagination>`
+  setTimeout(() => {
+    document.querySelector('ifx-pagination')?.addEventListener('ifxPageChange', action('ifxPageChange'));
+  }, 0);
   return element;
 };
 

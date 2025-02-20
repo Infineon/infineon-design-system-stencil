@@ -7,19 +7,18 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type     | Default |
-| ------------- | -------------- | ----------- | -------- | ------- |
-| `currentPage` | `current-page` |             | `number` | `0`     |
-| `total`       | `total`        |             | `number` | `1`     |
+| Property       | Attribute        | Description | Type              | Default     |
+| -------------- | ---------------- | ----------- | ----------------- | ----------- |
+| `currentPage`  | `current-page`   |             | `number`          | `0`         |
+| `itemsPerPage` | `items-per-page` |             | `any[] \| string` | `undefined` |
+| `total`        | `total`          |             | `number`          | `1`         |
 
 
 ## Events
 
 | Event           | Description | Type               |
 | --------------- | ----------- | ------------------ |
-| `ifxNextPage`   |             | `CustomEvent<any>` |
 | `ifxPageChange` |             | `CustomEvent<any>` |
-| `ifxPrevPage`   |             | `CustomEvent<any>` |
 
 
 ## Dependencies

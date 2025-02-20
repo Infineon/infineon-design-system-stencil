@@ -194,8 +194,12 @@
 
     <br />
 
+    <h2>Checkbox Group</h2>
+    <ifx-checkbox-group alignment="vertical" show-group-label="false" group-label-text="Group Label" show-caption="false" caption-text="Caption text, description, error notification" show-caption-icon="false">
+      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
+  </ifx-checkbox-group>
 
-
+  <br />
 
     <h2>Card</h2>
     <ifx-card href="http://google.com" target="_blank" direction="vertical">
@@ -339,7 +343,7 @@
     <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success
       notification</ifx-notification>
     <br />
-    <ifx-notification icon="lock-16" variant="warning" link-text="Link" link-href="https://www.example.com">Warning
+    <ifx-notification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked
       notification</ifx-notification>
     <br />
     <ifx-notification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error
@@ -356,7 +360,7 @@
     <br />
 
     <h2>Pagination</h2>
-    <ifx-pagination total="500" current-page="1"></ifx-pagination>
+    <ifx-pagination total="500" current-page="1" items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination>
     <br />
 
     <h2>Progress bar</h2>
@@ -376,7 +380,15 @@
       <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
       <ifx-button type="submit">Submit</ifx-button>
     </form>
+    <br />
 
+    <h2>Radio Button Group</h2>
+    <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true">
+      <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="false">Option 0</ifx-radio-button>
+      <ifx-radio-button value="1" disabled="false" checked="false" size="m" error="false">Option 1</ifx-radio-button>
+      <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
+      <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
+    </ifx-radio-button-group>
     <br />
 
     <h2>Spinner</h2>
@@ -454,8 +466,8 @@
     <br />
     <br />
     <h2>Status</h2>
-    <ifx-status label="Status with border" color="orange" border="true"></ifx-status>
-    <ifx-status label="Status without border" color="orange" border="false"></ifx-status>
+    <ifx-status label="Status with border" color="ocean-500" border="true"></ifx-status>
+    <ifx-status label="Status without border" color="orange-500" border="false"></ifx-status>
     <br />
     <br />
 

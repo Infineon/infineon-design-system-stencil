@@ -4,17 +4,40 @@ export default {
 
   args: {
     size: 'm',
-    percentage: 50,
+    value: 50,
     showLabel: false,
   },
   argTypes: {
-    percentage: {
+    value: {
+      description: 'The percentage of the progress bar.',
       control: { type: 'range', min: 0, max: 100 },
+      table: {
+        category: 'ifx-progress-bar props',
+        defaultValue: {
+          summary: 50
+        }
+      }
+    },
+    showLabel: {
+      description: 'Shows the percentage of the progress bar. Does not fit in size ***s***.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-progress-bar props',
+        defaultValue: {
+          summary: false
+        }
+      }
     },
     size: {
-      description: 'Size options: s (36px) and m (40px) - default: m',
+      description: 'Sets the size of the progress bar. Options: s (36px) and m (40px).',
+      control: 'radio',
       options: ['s', 'm'],
-      control: { type: 'radio' },
+      table: {
+        category: 'ifx-progress-bar props',
+        defaultValue: {
+          summary: 'm'
+        }
+      }
     },
   },
 };
@@ -23,7 +46,7 @@ const Template = args => {
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
     <ifx-progress-bar
-      value="${args.percentage}"
+      value="${args.value}"
       size="${args.size}"
       show-label="${args.showLabel}"
     ></ifx-progress-bar>
@@ -35,18 +58,18 @@ const Template = args => {
 export const Default = Template.bind({});
 Default.args = {
   size: 'm',
-  percentage: 50,
+  value: 50,
   showLabel: false,
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  percentage: 75,
+  value: 75,
   size: 's',
 };
 
 export const WithLabel = Template.bind({});
 WithLabel.args = {
-  percentage: 25,
+  value: 25,
   showLabel: true,
 };

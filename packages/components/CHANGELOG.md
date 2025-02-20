@@ -1,3 +1,254 @@
+# v32.2.0 (Thu Feb 20 2025)
+
+#### 🚀 Enhancement
+
+- New component: Radio button group [#1732](https://github.com/Infineon/infineon-design-system-stencil/pull/1732) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.1.2 (Wed Feb 19 2025)
+
+#### 🐛 Bug Fix
+
+- Single select: removes reserved space for inactive dropdown [#1731](https://github.com/Infineon/infineon-design-system-stencil/pull/1731) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.1.1 (Wed Feb 19 2025)
+
+#### 🐛 Bug Fix
+
+- Status and Content Switcher: documentation update [#1725](https://github.com/Infineon/infineon-design-system-stencil/pull/1725) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.1.0 (Wed Feb 19 2025)
+
+#### 🚀 Enhancement
+
+- New component: Checkbox-group [#1681](https://github.com/Infineon/infineon-design-system-stencil/pull/1681) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.0.0 (Tue Feb 18 2025)
+
+#### 💥 Breaking Change
+
+- Pagination: implements items per page prop [#1697](https://github.com/Infineon/infineon-design-system-stencil/pull/1697) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.4.1 (Fri Feb 14 2025)
+
+#### 🐛 Bug Fix
+
+- Bump vite from 5.4.11 to 5.4.14 in /examples/wrapper-components/react-vite-js [#1693](https://github.com/Infineon/infineon-design-system-stencil/pull/1693) ([@dependabot[bot]](https://github.com/dependabot[bot]) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@dependabot[bot]](https://github.com/dependabot[bot])
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.4.0 (Fri Feb 14 2025)
+
+#### 🚀 Enhancement
+
+- Textarea: implements full-width prop [#1722](https://github.com/Infineon/infineon-design-system-stencil/pull/1722) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.3.1 (Wed Feb 12 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Button, Status and Table documentation [#1716](https://github.com/Infineon/infineon-design-system-stencil/pull/1716) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.3.0 (Tue Feb 11 2025)
+
+#### 🚀 Enhancement
+
+- Notification: centralizes text, changes font-size and adds new color [#1720](https://github.com/Infineon/infineon-design-system-stencil/pull/1720) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.2.0 (Tue Feb 11 2025)
+
+#### 🚀 Enhancement
+
+- Status: adds all token colors as available options [#1678](https://github.com/Infineon/infineon-design-system-stencil/pull/1678) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.1.0 (Mon Feb 10 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: Introduces DDS Templates [#1496](https://github.com/Infineon/infineon-design-system-stencil/pull/1496) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v31.0.0 (Thu Feb 06 2025)
+
+#### 💥 Breaking Change
+
+- Changes event names for consistency, and enhances Storybook UI [#1640](https://github.com/Infineon/infineon-design-system-stencil/pull/1640) ([@agata-kim](https://github.com/agata-kim) [@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.15.0 (Fri Jan 31 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds notification in the icon library [#1696](https://github.com/Infineon/infineon-design-system-stencil/pull/1696) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.2 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Updates Status and Typography documentation [#1703](https://github.com/Infineon/infineon-design-system-stencil/pull/1703) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.1 (Fri Jan 31 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar-item: internal code optimization [#1687](https://github.com/Infineon/infineon-design-system-stencil/pull/1687) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.14.0 (Thu Jan 30 2025)
+
+#### 🚀 Enhancement
+
+- radio-button: enables shadow dom [#1702](https://github.com/Infineon/infineon-design-system-stencil/pull/1702) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.12.1 (Thu Jan 30 2025)
+
+#### 🐛 Bug Fix
+
+- Link: changes cursor to pointer [#1686](https://github.com/Infineon/infineon-design-system-stencil/pull/1686) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.12.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: implements search by children option [#1683](https://github.com/Infineon/infineon-design-system-stencil/pull/1683) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.11.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: fixes bugs related to option selection, and search filter [#1680](https://github.com/Infineon/infineon-design-system-stencil/pull/1680) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v30.10.0 (Tue Jan 28 2025)
+
+#### 🚀 Enhancement
+
+- Temporarily remove e2e unit tests from github actions [#1689](https://github.com/Infineon/infineon-design-system-stencil/pull/1689) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v30.9.2 (Fri Jan 10 2025)
 
 #### 🐛 Bug Fix

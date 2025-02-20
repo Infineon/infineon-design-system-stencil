@@ -23,7 +23,7 @@ export class IfxTabs {
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
 
-  @Event() ifxTabChange: EventEmitter;
+  @Event() ifxChange: EventEmitter;
 
   @Listen('resize', {target: 'window'})
   updateBorderOnWindowResize() {
@@ -63,7 +63,7 @@ export class IfxTabs {
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
-      this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
+      this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
     };
     this.onSlotChange();
     this.setActiveAndFocusedTab(this.activeTabIndex);
@@ -194,7 +194,7 @@ export class IfxTabs {
   }
 
   private handleClick(tab, index) {
-    this.ifxTabChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
+    this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
     if (!tab.disabled) this.internalActiveTabIndex = index;
 
   }
@@ -228,7 +228,7 @@ export class IfxTabs {
       if (this.internalFocusedTabIndex !== -1 && !this.tabObjects[this.internalFocusedTabIndex].disabled) {
         const previouslyActiveTabIndex = this.internalActiveTabIndex;
         this.internalActiveTabIndex = this.internalFocusedTabIndex;
-        this.ifxTabChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
+        this.ifxChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
       }
     }
   }

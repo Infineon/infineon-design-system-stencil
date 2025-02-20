@@ -4,6 +4,7 @@
 :host {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .wrapper__label {
@@ -12,6 +13,17 @@
 }
 :host(.wrapper--disabled) .wrapper__label {
     color: tokens.$ifxColorEngineering500;
+}
+
+.wrapper__textarea {
+    width: 100%;
+    &.fullWidth { 
+        width: 100%;
+        & textarea { 
+            width: 100%;
+            box-sizing: border-box; 
+        }
+    }
 }
 
 .wrapper__textarea textarea {
@@ -35,6 +47,7 @@
         border: 1px solid tokens.$ifxColorOcean500;
     }
 }
+
 :host(.wrapper--error) .wrapper__textarea textarea {
     border: 1px solid tokens.$ifxColorRed500;
 }

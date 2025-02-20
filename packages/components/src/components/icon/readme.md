@@ -28,6 +28,7 @@
  - [ifx-alert](../alert)
  - [ifx-breadcrumb-item-label](../breadcrumb)
  - [ifx-checkbox](../checkbox)
+ - [ifx-checkbox-group](../checkbox-group)
  - [ifx-chip](../chip)
  - [ifx-chip-item](../chip/chip-item)
  - [ifx-date-picker](../date-picker)
@@ -44,6 +45,7 @@
  - [ifx-navbar-item](../navigation/navbar)
  - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
+ - [ifx-radio-button-group](../radio-button-group)
  - [ifx-search-bar](../search-bar)
  - [ifx-search-field](../search-field)
  - [ifx-segment](../segmented-control/segment)
@@ -65,6 +67,7 @@ graph TD;
   ifx-alert --> ifx-icon
   ifx-breadcrumb-item-label --> ifx-icon
   ifx-checkbox --> ifx-icon
+  ifx-checkbox-group --> ifx-icon
   ifx-chip --> ifx-icon
   ifx-chip-item --> ifx-icon
   ifx-date-picker --> ifx-icon
@@ -81,6 +84,7 @@ graph TD;
   ifx-navbar-item --> ifx-icon
   ifx-notification --> ifx-icon
   ifx-overview-table --> ifx-icon
+  ifx-radio-button-group --> ifx-icon
   ifx-search-bar --> ifx-icon
   ifx-search-field --> ifx-icon
   ifx-segment --> ifx-icon

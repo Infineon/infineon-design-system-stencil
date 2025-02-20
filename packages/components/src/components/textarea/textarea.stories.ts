@@ -4,7 +4,7 @@ export default {
 	title: 'Components/Textarea',
 	tags: ['autodocs'],
 	args: {
-		caption:'Caption text, description, error notification',
+		caption: 'Caption text, description, error notification',
 		cols: 43,
 		disabled: false,
 		error: false,
@@ -16,7 +16,8 @@ export default {
 		resize: 'both',
 		rows: 5,
 		value: '',
-		wrap: 'soft'
+		wrap: 'soft',
+		fullWidth: false,
 	},
 	argTypes: {
 		caption: {
@@ -129,10 +130,18 @@ export default {
 				},
 			},
 		},
+		fullWidth: {
+      description: 'When set to **true**, expands the textarea to take the full width of its container.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-textarea props',
+        defaultValue: {
+          summary: 'false'
+        }
+      }
+    },
 		ifxInput: {
-			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.\n
-	event.detail: string
-			`,
+			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.`,
 			table: {
 				category: 'custom events',
 				type: {
@@ -165,6 +174,7 @@ const Template = (args) => {
 	rows="${args.rows}"
 	value="${args.value}"
 	wrap="${args.wrap}"
+	full-width="${args.fullWidth}"
 />
 `;
 	const textarea = wrapper.querySelector('ifx-textarea');

@@ -1,0 +1,44 @@
+* { 
+  padding: 0;
+  margin: 0;
+}
+
+.templates__container { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .back__btn-wrapper { 
+    display: none;
+    &.show { 
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    & .alert__wrapper { 
+      display: none;
+
+      &.show { 
+        display: block;
+      }
+    }
+  }
+
+  & .templates__wrapper { 
+    display: flex;
+    padding: 20px 0px;
+    gap: 20px;
+    // justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  & .templates__title { 
+    &.hide { 
+      display: none;
+    }
+  }
+}
+
+
+
