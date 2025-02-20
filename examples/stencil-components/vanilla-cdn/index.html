@@ -133,6 +133,11 @@
     <ifx-alert color="primary" icon="c-info-24">Attention! This is an alert message — check it out!</ifx-alert>
     <br />
 
+    <h2>Badge</h2>
+    <ifx-badge>
+      Badge label
+    </ifx-badge>
+    <br />
 
     <h2>Breadcrumb</h2>
     <ifx-breadcrumb>
@@ -259,6 +264,10 @@
 
     <br>
 
+    <h2>Date Picker</h2>
+    <ifx-date-picker name="date-picker" error="false" disabled="false" size="s" success="false" value="" max="" min="" label="Label Text" caption="Caption text, description, error notification." arialabel="Date Picker" required="false"></ifx-date-picker>
+    <br />
+
 
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
@@ -307,8 +316,10 @@
         </div>
       </ifx-filter-type-group>
     </div>
-
     <br />
+
+    <h2>Icon</h2>
+    <ifx-icon icon="c-check-16"></ifx-icon>
     <br />
 
     <h2>Icon Button</h2>
@@ -447,17 +458,23 @@
     <h2>Search field</h2>
     <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
     <br />
-    <br />
 
     <h2>Search bar</h2>
     <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
     <br />
     <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
     <br />
+
+    <h2>Segmented Control</h2>
+    <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular">
+      <ifx-segment value="Value1" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value2" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value3" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value4" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value5" icon="star-16">Label</ifx-segment>
+    </ifx-segmented-control>
     <br />
 
-    <br />
-    <br />
     <h2>Status</h2>
     <ifx-status label="Status with border" color="ocean-500" border="true"></ifx-status>
     <ifx-status label="Status without border" color="orange-500" border="false"></ifx-status>
@@ -595,6 +612,11 @@
     </form>
     <span id="textInputSpan"></span>
     <br />
+    <br />
+
+    <h2>Textarea</h2>
+    <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" maxlength="undefined" name="textarea" placeholder="Placeholder" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false">
+    </ifx-textarea>
     <br />
 
     <h2>Tooltip</h2>
