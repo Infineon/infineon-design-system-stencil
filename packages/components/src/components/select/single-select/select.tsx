@@ -335,6 +335,17 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  private handleWrapperClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const isSearchInput = target.classList.contains('choices__input') || target.closest('.choices__input');
+    const isDropdownItem = target.closest('.choices__list--dropdown .choices__item');
+  
+    // Only toggle dropdown if clicking on wrapper itself
+    if (!isSearchInput && !isDropdownItem) {
+      this.toggleDropdown();
+    }
+  }
+
   protected render(): any {
     const attributes = {
       'data-selector': 'root',
@@ -358,7 +369,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           class={`${choicesWrapperClass} 
             ${this.disabled ? 'disabled' : ''} 
             ${this.error ? 'error' : ''}`}
-          onClick={this.disabled ? undefined : () => this.toggleDropdown()}
+          onClick={this.disabled ? undefined : (e) => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
           <select class='single__select-input-field' disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
