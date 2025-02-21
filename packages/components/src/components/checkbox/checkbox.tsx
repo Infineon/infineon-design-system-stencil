@@ -105,15 +105,26 @@ export class Checkbox {
   }
 
   getCheckedClassName() {
-    if (this.error) {
-      if (this.internalChecked) {
-        return "checked error"
-      } else {
-        return "error"
+    // Prioritize the indeterminate state over the checked state to avoid displaying both states at the same time.
+    if (this.internalIndeterminate) {
+      if (this.error) {
+        return "error";
       }
-    } else if (this.internalChecked) {
-      return "checked";
-    } else return ""
+      else {
+        return "";
+      }
+    }
+    else {
+      if (this.error) {
+        if (this.internalChecked) {
+          return "checked error";
+        } else {
+          return "error";
+        }
+      } else if (this.internalChecked) {
+        return "checked";
+      } else return "";
+    }
   }
 
   render() {
@@ -148,7 +159,7 @@ export class Checkbox {
         ${this.indeterminate ? 'indeterminate' : ""}
         ${this.disabled ? 'disabled' : ""}`}
         >
-          {this.internalChecked && <ifx-icon icon="check-12" aria-hidden="true"></ifx-icon>}
+          {!this.indeterminate && this.internalChecked && <ifx-icon icon="check-12" aria-hidden="true"></ifx-icon>}
         </div>
         {hasSlot &&
           <div id="label" class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ""} `} onClick={this.handleCheckbox.bind(this)}>
