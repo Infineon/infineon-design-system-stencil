@@ -188,7 +188,7 @@
   { "headerName": "Model", "field": "model", "sortable": true, "unSortIcon": true },
   { "headerName": "Price", "field": "price" },
   { "headerName": "Age", "field": "age" },
-  { "": "Age", "field": "button" }
+  { "headerName": "Age", "field": "button" }
 ]`;
     basicTable.setAttribute('cols', tableColumns);
     advancedTable.setAttribute('cols', tableColumns);

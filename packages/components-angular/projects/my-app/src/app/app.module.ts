@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +28,7 @@ import { NumberIndicatorComponent } from './components/number-indicator/number-i
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { ProgressBarComponent } from "./components/progress-bar/progress-bar.component";
 import { RadioButtonComponent } from "./components/radio-button/radio-button.component";
-import { RadioButtonGroupComponent } from "./components/radio-button-group/radio-button-group.component";
+import { RadioButtonGroupComponent } from './components/radio-button-group/radio-button-group.component';
 import { SearchBarComponent } from "./components/search-bar/search-bar.component";
 import { SearchFieldComponent } from "./components/search-field/search-field.component";
 import { SegmentedControlComponent } from "./components/segmented-control/segmented-control.component";
@@ -99,6 +99,7 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     TooltipComponent,
     CheckboxGroupComponent,
 ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
