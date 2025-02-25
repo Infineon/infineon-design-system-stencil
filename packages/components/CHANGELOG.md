@@ -1,3 +1,15 @@
+# v32.3.0 (Fri Feb 21 2025)
+
+#### 🚀 Enhancement
+
+- ifx-select: prevents dropdown menu from closing on search-field click [#1735](https://github.com/Infineon/infineon-design-system-stencil/pull/1735) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.2.0 (Thu Feb 20 2025)
 
 #### 🚀 Enhancement
