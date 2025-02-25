@@ -31,5 +31,8 @@
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "@infineon/infineon-design-system-angular": "^32.1.0--canary.1681.de13163f46db2951612558fb9ef687c8e4b40763.0"
+  }
 }
