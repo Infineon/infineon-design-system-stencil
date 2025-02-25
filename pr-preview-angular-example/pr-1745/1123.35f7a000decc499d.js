@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[1123],{1123:(p,e,s)=>{s.r(e),s.d(e,{ifx_dropdown_trigger:()=>t});var r=s(787);const t=(()=>{let o=class{constructor(d){(0,r.r)(this,d),this.isOpen=!1}render(){return(0,r.h)("slot",{key:"89bd5e8f427fea2329e032469132190fd71acd54"})}};return o.style=":host{display:inline-block;cursor:pointer}",o})()}}]);
