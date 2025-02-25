@@ -121,8 +121,11 @@ export class Checkbox {
         } else {
           return "error";
         }
-      } else if (this.internalChecked) {
-        return "checked";
+      } else if (this.internalChecked && this.internalIndeterminate) {
+        return "indeterminate";
+      }
+        else if (this.internalChecked) {
+          return "checked";
       } else return "";
     }
   }
