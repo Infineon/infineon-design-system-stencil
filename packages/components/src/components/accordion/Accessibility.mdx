@@ -1,0 +1,29 @@
+import { Meta, Description } from '@storybook/blocks';
+import * as AccordionStories from './accordion.stories';
+import { data } from './accessibility.ts';
+import { getCompliancePercentageOfComponent, getMaxRating } from '../../global/utils/accessibility.ts';
+
+export const componentName = "Accordion";
+
+export const compliancePercentage =  getCompliancePercentageOfComponent(data);
+export const componentRating = getMaxRating(compliancePercentage);
+
+<Meta of={AccordionStories}/>
+
+# Accessibility of {componentName}
+Overall this component has a rating of **{componentRating}**.
+
+## Compliance Percentage
+The table below shows the percentage of accessibility rules that are fulfilled for each level (A, AA, AAA).
+
+| Level | Percentage |
+|-------|------------|
+| A     | {(compliancePercentage.A*100).toFixed(0)}% |
+| AA    | {(compliancePercentage.AA*100).toFixed(0)}% |
+| AAA   | {(compliancePercentage.AAA*100).toFixed(0)}% |
+
+## Notes on Usage
+### Set AriaLevel
+Set the `AriaLevel` attribute to the correct level to ensure that the screen reader reads the content in the correct order.  
+It refers to the heading level of the caption.
+ 
