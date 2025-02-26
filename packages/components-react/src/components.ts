@@ -30,6 +30,7 @@ import { IfxChip as IfxChipElement, defineCustomElement as defineIfxChip } from 
 import { IfxContentSwitcherItem as IfxContentSwitcherItemElement, defineCustomElement as defineIfxContentSwitcherItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher-item.js";
 import { IfxContentSwitcher as IfxContentSwitcherElement, defineCustomElement as defineIfxContentSwitcher } from "@infineon/infineon-design-system-stencil/dist/components/ifx-content-switcher.js";
 import { IfxDatePicker as IfxDatePickerElement, defineCustomElement as defineIfxDatePicker } from "@infineon/infineon-design-system-stencil/dist/components/ifx-date-picker.js";
+import { IfxDownload as IfxDownloadElement, defineCustomElement as defineIfxDownload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-download.js";
 import { IfxDropdownHeader as IfxDropdownHeaderElement, defineCustomElement as defineIfxDropdownHeader } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-header.js";
 import { IfxDropdownItem as IfxDropdownItemElement, defineCustomElement as defineIfxDropdownItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-item.js";
 import { IfxDropdownMenu as IfxDropdownMenuElement, defineCustomElement as defineIfxDropdownMenu } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-menu.js";
@@ -342,6 +343,17 @@ export const IfxDatePicker: StencilReactComponent<IfxDatePickerElement, IfxDateP
     react: React,
     events: { onIfxDate: 'ifxDate' } as IfxDatePickerEvents,
     defineCustomElement: defineIfxDatePicker
+});
+
+type IfxDownloadEvents = NonNullable<unknown>;
+
+export const IfxDownload: StencilReactComponent<IfxDownloadElement, IfxDownloadEvents> = /*@__PURE__*/ createComponent<IfxDownloadElement, IfxDownloadEvents>({
+    tagName: 'ifx-download',
+    elementClass: IfxDownloadElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxDownloadEvents,
+    defineCustomElement: defineIfxDownload
 });
 
 type IfxDropdownEvents = {
