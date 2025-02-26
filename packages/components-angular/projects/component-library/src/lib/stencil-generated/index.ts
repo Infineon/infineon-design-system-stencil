@@ -24,6 +24,7 @@ export const DIRECTIVES = [
   d.IfxContentSwitcher,
   d.IfxContentSwitcherItem,
   d.IfxDatePicker,
+  d.IfxDownload,
   d.IfxDropdown,
   d.IfxDropdownHeader,
   d.IfxDropdownItem,
