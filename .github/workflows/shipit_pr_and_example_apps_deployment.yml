@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm install
+        run: npm install --no-package-lock
 
       - name: Build and deploy Stencil core package
         id: build
@@ -55,8 +55,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm run build:components
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package-lock.json
+          git commit -m "Update package-lock.json" || echo "No changes to commit"
+          
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
+            echo "Skipping creation of a canary release..."
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
             cd packages/components
@@ -64,8 +69,6 @@ jobs:
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-            echo "Publishing: $CANARY_VERSION"
             auto shipit
           fi
 
