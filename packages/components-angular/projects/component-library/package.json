@@ -10,7 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^18.0.0",
     "@angular/core": "^18.0.0",
-    "@infineon/design-system-tokens": "3.3.4",
+    "@infineon/design-system-tokens": "^4.0.0",
     "@infineon/infineon-design-system-stencil": "32.4.0--canary.1737.304ab72cc32aeef14cf97f9276d6f3bd04247dea.0"
   },
   "dependencies": {

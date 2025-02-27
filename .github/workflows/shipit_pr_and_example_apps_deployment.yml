@@ -47,7 +47,7 @@ jobs:
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm install --no-package-lock
+        run: npm install --legacy-peer-deps
 
       - name: Build and deploy Stencil core package
         id: build
