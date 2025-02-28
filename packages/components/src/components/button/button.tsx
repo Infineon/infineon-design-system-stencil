@@ -60,6 +60,7 @@ export class Button {
   }
 
   componentWillLoad() {
+    console.log('test')
     this.handleFormAndInternalHref()
   }
 
