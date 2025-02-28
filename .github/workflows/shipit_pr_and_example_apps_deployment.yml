@@ -21,6 +21,11 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0 # fetch all tags for ship-it
 
+      - name: Clean previous builds
+        run: |
+          echo "Cleaning dist folders..."
+          rm -rf **/dist  # Clean dist folders only (avoid node_modules)
+
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
@@ -41,7 +46,7 @@ jobs:
             ~/.npm
             **/node_modules
 
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
@@ -54,18 +59,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
-            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else 
-            cd packages/components
-            CANARY_VERSION=$(auto shipit --dry-run --quiet)
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-            echo "Publishing: $CANARY_VERSION"
+            # ...
+          else
+            # ...
             auto shipit
           fi
 
@@ -156,14 +156,15 @@ jobs:
           cd ../../..
 
       - name: Commit and push all changes
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.build.outputs.SKIP_REMAINING == 'false'  # Keep this condition
         env:
-          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}  # Keep this env
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "Update Stencil library version to $CANARY_VERSION"
+          git add package-lock.json **/package.json  # Explicitly add lockfile and package.jsons
+          git commit -m "chore: update versions to $CANARY_VERSION [skip ci]"  # Add [skip ci] to avoid loops
+          git pull --rebase origin $BRANCH_NAME  # Rebase to avoid conflicts
           git push origin HEAD:$BRANCH_NAME
 
   #deploy gh-pages previews for example applications:
@@ -176,6 +177,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4

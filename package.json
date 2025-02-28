@@ -1,6 +1,10 @@
 {
   "name": "root",
   "private": true,
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.x"
+  },
   "scripts": {
     "list:packages": "lerna list --all",
     "storybook": "lerna run storybook --scope @infineon/infineon-design-system-stencil",
@@ -17,7 +21,7 @@
     "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
     "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
     "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && npm run test:local",
-    "angular:dev": "cd packages/components-angular && npm run test:local"
+    "angular:dev": "cd packages/components-angular && npm run test:local" 
   },
   "workspaces": [
     "packages/*",
