@@ -52,7 +52,8 @@
     "i": "^0.3.7",
     "lerna": "8.1.9",
     "npm": "^10.2.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "sass-embedded": "^1.85.1"
   },
   "peerDependencies": {
     "@floating-ui/dom": "^1.4.5",
