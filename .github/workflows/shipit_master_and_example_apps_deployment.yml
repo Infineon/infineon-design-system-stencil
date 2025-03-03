@@ -44,7 +44,7 @@ jobs:
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm install
+        run: npm ci
 
       - name: Build and deploy Stencil core package
         id: build
@@ -88,14 +88,14 @@ jobs:
         
           # Check if package-lock.json exists and update it
           if [ -f package-lock.json ]; then
-            jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
+            npm install @infineon/infineon-design-system-stencil@$VERSION --no-package-lock > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
           else
-            npm install
+            npm install --no-package-lock
           fi
 
           cd ../../
 
-          npm ci
+          npm ci --no-package-lock
 
           # Verify updates
           echo "Verifying updates in Angular package"
@@ -212,7 +212,7 @@ jobs:
           cd examples/wrapper-components/react-vite-js
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
-          npm install
+          npm install --no-package-lock
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
           npm run build
 
