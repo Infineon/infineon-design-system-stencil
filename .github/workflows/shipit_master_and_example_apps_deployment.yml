@@ -87,11 +87,8 @@ jobs:
           jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION | sub("^"; "")' package.json > package.json.tmp && mv package.json.tmp package.json
         
           # Check if package-lock.json exists and update it
-          if [ -f package-lock.json ]; then
-            npm install @infineon/infineon-design-system-stencil@$VERSION --no-package-lock > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
-          else
-            npm install --no-package-lock
-          fi
+          npm install @infineon/infineon-design-system-stencil@$VERSION --package-lock-only
+          npm ci
 
           cd ../../
 
