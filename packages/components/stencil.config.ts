@@ -15,6 +15,7 @@ export const config: Config = {
       'process.env.CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
       'process.env.SCOPE': JSON.stringify(process.env.SCOPE),
       'process.env.STATE': JSON.stringify(process.env.STATE),
+      'preventAssignment' : true
     }),
   ],
   extras: {
