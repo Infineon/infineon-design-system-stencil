@@ -59,6 +59,10 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
           echo "Set version as Github Env and Github Output: $VERSION"
           echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
+
+          # Debug what changed
+          git diff ../../package-lock.json
+          
           auto shipit
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
