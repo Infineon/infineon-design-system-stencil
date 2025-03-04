@@ -68,11 +68,8 @@ jobs:
             echo "Publishing: $CANARY_VERSION"
 
             # Debug what changed
-            git diff package-lock.json
+            git diff ../../package-lock.json
             
-            # Prevent package-lock changes from failing the build
-            git checkout -- package-lock.json
-
             auto shipit
           fi
 

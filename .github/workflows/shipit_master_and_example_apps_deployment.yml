@@ -61,10 +61,7 @@ jobs:
           echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
 
           # Debug what changed
-          git diff package-lock.json
-          
-          # Prevent package-lock changes from failing the build
-          git checkout -- package-lock.json
+          git diff ../../package-lock.json
           
           auto shipit
 
