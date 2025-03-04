@@ -14,6 +14,7 @@ export class Link {
   @Prop() variant: string = 'bold';
   @Prop() size: string;
   @Prop() disabled: boolean = false;
+  @Prop() download: string;
   @State() internalHref: string ='';
   @State() internalTarget: string = '';
   @State() internalVariant: string = '';
@@ -35,7 +36,7 @@ export class Link {
 
   render() {
     return (
-      <a aria-label='a navigation link button' href={this.internalHref} target={this.internalTarget} class={this.linkClassNames()}>
+      <a aria-label='a navigation link button' href={this.internalHref} download={this.download} target={this.internalTarget} class={this.linkClassNames()}>
         <slot></slot>
       </a>
     )
