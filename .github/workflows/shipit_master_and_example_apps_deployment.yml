@@ -65,6 +65,9 @@ jobs:
           
           auto shipit
 
+      - name: Log package-lock.json after build
+        run: git diff HEAD package-lock.json
+
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: sleep 10s
         shell: bash
