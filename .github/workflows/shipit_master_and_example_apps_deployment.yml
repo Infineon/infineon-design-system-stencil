@@ -78,7 +78,7 @@ jobs:
           if [ "$current_version" != "$VERSION" ]; then
             jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           fi
-          cd ../../../../../
+          cd ../../../../
 
           # Vue Package
           cd packages/components-vue
