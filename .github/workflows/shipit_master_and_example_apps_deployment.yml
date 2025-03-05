@@ -71,7 +71,6 @@ jobs:
         run: | 
           echo "VERSION: $VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
-          lerna version $VERSION --no-git-tag-version --y
           
           # Update Angular package
           cd packages/components-angular/projects/component-library
@@ -79,7 +78,7 @@ jobs:
           if [ "$current_version" != "$VERSION" ]; then
             jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           fi
-          cd ../../../../
+          cd ../../../../../
 
           # Vue Package
           cd packages/components-vue
@@ -94,7 +93,7 @@ jobs:
           if [ "$current_react_version" != "$VERSION" ]; then
             jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           fi
-          cd ../../../
+          cd ../../
 
           # Sync package-lock.json
           npm install --package-lock-only
