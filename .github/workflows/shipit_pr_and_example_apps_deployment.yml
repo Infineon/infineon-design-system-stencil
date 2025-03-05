@@ -90,22 +90,30 @@ jobs:
       
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          current_version=$(jq -r '.peerDependencies["@infineon/infineon-design-system-stencil"]' package.json)
+          if [ "$current_version" != "$VERSION" ]; then
+            jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          fi
           cd ../../../../
       
-          # Update Vue package
+          # Vue Package
           cd packages/components-vue
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          current_vue_version=$(jq -r '.dependencies["@infineon/infineon-design-system-stencil"]' package.json)
+          if [ "$current_vue_version" != "$CANARY_VERSION" ]; then
+            jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          fi
       
-          # Update React package
+          # React Package
           cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" \
-            '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
-            package.json > package.json.tmp && mv package.json.tmp package.json
+          current_react_version=$(jq -r '.dependencies["@infineon/infineon-design-system-stencil"]' package.json)
+          if [ "$current_react_version" != "$CANARY_VERSION" ]; then
+            jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          fi
+          cd ../../../
 
-          # Install the updated dependency
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
-          cd ../../
+          # Sync package-lock.json
+          npm install --package-lock-only
+          git add packages/components-angular/projects/component-library/package.json packages/components-vue/package.json packages/components-react/package.json package-lock.json
                  
           npm install
       
@@ -122,7 +130,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          lerna version $CANARY_VERSION --no-git-tag-version --y
           npm run build:components-angular
           npm run build:components-react
           npm run build:components-vue
@@ -156,15 +163,19 @@ jobs:
           cd ../../..
 
       - name: Commit and push all changes
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: env.CHANGES_DETECTED == 'true' && steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add .
-          git commit -m "Update Stencil library version to $CANARY_VERSION"
-          git push origin HEAD:$BRANCH_NAME
+          if ! git diff --staged --quiet; then
+            git commit -m "Update Stencil library version to $VERSION"
+            git push origin HEAD:master
+          else
+            echo "No changes to commit."
+          fi
 
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
