@@ -66,7 +66,7 @@ jobs:
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
-            auto shipit --force  # Add --force
+            auto shipit
           fi
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
