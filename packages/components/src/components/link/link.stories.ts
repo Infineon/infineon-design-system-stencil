@@ -9,6 +9,7 @@ export default {
     size: 'm',
     disabled: false,
     variant: 'bold',
+    download: ""
   },
 
   argTypes: {
@@ -49,6 +50,15 @@ export default {
         }
       }
     },
+    download: {
+      description: 'Sets the download attribute',
+      table: {
+        category: 'ifx-link props',
+        defaultValue: {
+          summary: 'string'
+        }
+      }
+    },
     size: {
       description: 'Sets the Font Size of the link. Options: s (14px), m (16px), l (18px), xl (20px)',
       control: 'radio',
@@ -78,7 +88,7 @@ export default {
 };
 
 const DefaultTemplate = args =>
-  `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" >
+  `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" download="${args.download}" >
   ${args.label}
   </ifx-link>`;
 
