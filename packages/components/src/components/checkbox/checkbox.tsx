@@ -88,6 +88,7 @@ export class Checkbox {
   }
 
   componentWillLoad() {
+    console.log('here')
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
