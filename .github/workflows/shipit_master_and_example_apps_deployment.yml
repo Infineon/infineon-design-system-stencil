@@ -94,6 +94,7 @@ jobs:
           fi
 
           cd ../../
+          npm install
 
           npm ci
 
