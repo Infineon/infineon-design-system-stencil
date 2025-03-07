@@ -3,7 +3,8 @@
   "version": "32.4.0--canary.1769.bca60a5c6154f87717ccc21371d6b19c857beded.0",
   "command": {
     "publish": {
-      "verifyAccess": false
+      "verifyAccess": false,
+      "skipGit": true
     }
   }
 }
