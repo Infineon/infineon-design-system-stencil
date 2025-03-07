@@ -41,16 +41,14 @@ jobs:
             ~/.npm
             **/node_modules
 
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}  # Ensure lock file hash is included
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: |
-          npm install
-          npm ci --force
-          
+        run: npm install
+
       - name: Build and deploy Stencil core package
         id: build
         env:
@@ -164,7 +162,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add package-lock.json
           git add .
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
