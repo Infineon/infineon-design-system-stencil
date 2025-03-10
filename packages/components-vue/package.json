@@ -29,8 +29,8 @@
     "vue": "^3.2.47"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.4",
-    "@infineon/infineon-design-system-stencil": "^32.4.0--canary.1750.0b7649a50adcec1f191cdb52a017f9b83da72a90.0"
+    "@infineon/design-system-tokens": "4.0.0",
+    "@infineon/infineon-design-system-stencil": "32.4.0--canary.1750.0b7649a50adcec1f191cdb52a017f9b83da72a90.0"
   },
   "auto": {
     "plugins": [
