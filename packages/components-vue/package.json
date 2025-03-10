@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-vue",
-  "version": "32.4.0--canary.1750.0b7649a50adcec1f191cdb52a017f9b83da72a90.0",
+  "version": "32.4.0--canary.1771.7d3d10dbaed34495e681a9fb20a84ba4c5ee3923.0",
   "description": "Infineon design system Stencil web components for Vue",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
