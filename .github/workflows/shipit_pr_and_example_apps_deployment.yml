@@ -53,10 +53,6 @@ jobs:
         run: |
           rm -rf node_modules
           rm -rf package-lock.json
-          cd packages/components
-          rm -rf node_modules
-          rm -rf package-lock.json
-          cd ../../
 
       - name: Build and deploy Stencil core package
         id: build
