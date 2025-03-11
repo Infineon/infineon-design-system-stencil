@@ -49,6 +49,15 @@ jobs:
       - name: Install dependencies for all packages
         run: npm install
 
+      - name: Clean
+        run: |
+          rm -rf node_modules
+          rm -rf package-lock.json
+          cd packages/components
+          rm -rf node_modules
+          rm -rf package-lock.json
+          cd ../../
+
       - name: Build and deploy Stencil core package
         id: build
         env:
