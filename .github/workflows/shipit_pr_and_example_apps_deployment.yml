@@ -103,6 +103,10 @@ jobs:
             '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
             package.json > package.json.tmp && mv package.json.tmp package.json
 
+          # Clean the working directory
+          rm -rf node_modules
+          rm -rf package-lock.json
+
           # Install the updated dependency
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
