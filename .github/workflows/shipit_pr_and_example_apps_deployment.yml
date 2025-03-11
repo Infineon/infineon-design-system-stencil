@@ -46,11 +46,6 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
 
-      - name: Clean
-        run: |
-          rm -rf node_modules
-          rm -rf package-lock.json
-    
       - name: Install dependencies for all packages
         run: npm install
 
@@ -60,6 +55,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm run build:components
+          rm -rf node_modules
+          rm -rf package-lock.json
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
