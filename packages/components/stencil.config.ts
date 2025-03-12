@@ -1,21 +1,12 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { frameworkTargets } from './framework-output-targets';
-import dotenv from 'dotenv';
-import replace from '@rollup/plugin-replace';
-
-dotenv.config();
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
   globalStyle: 'src/global/global.scss',
   plugins: [
-    sass(),
-    replace({
-      'process.env.CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
-      'process.env.SCOPE': JSON.stringify(process.env.SCOPE),
-      'process.env.STATE': JSON.stringify(process.env.STATE),
-    }),
+    sass()
   ],
   extras: {
     cloneNodeFix: true,
