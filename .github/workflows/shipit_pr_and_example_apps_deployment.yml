@@ -49,7 +49,7 @@ jobs:
       - name: Install dependencies for all packages
         run: |
           npm install
-          git checkout -- package-lock.json 
+          npm ci
 
       - name: Build and deploy Stencil core package
         id: build
@@ -105,11 +105,12 @@ jobs:
             '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
             package.json > package.json.tmp && mv package.json.tmp package.json
 
-          # Install the updated dependency
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
+          npm install  # Updates root package-lock.json to match new package.json files
+          git add package-lock.json packages/**/package.json
+          git commit -m "Update lockfile for $VERSION"
                  
-          npm install
+          npm ci
       
           # Verify updates
           echo "Verifying updates in Angular package"
@@ -190,7 +191,7 @@ jobs:
       - name: Install and Build
         run: |
           cd examples/wrapper-components/vue-javascript
-          npm i
+          npm ci
           npm run build
 
       - name: Deploy preview
