@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies for all packages
         run: |
           npm install
-          git checkout -- package-lock.json 
+          npm ci 
 
       - name: Build and deploy Stencil core package
         id: build
@@ -88,14 +88,10 @@ jobs:
           cd ../components-react
           jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION | sub("^"; "")' package.json > package.json.tmp && mv package.json.tmp package.json
         
-          # Check if package-lock.json exists and update it
-          if [ -f package-lock.json ]; then
-            jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
-          else
-            npm install
-          fi
-
           cd ../../
+          npm install  # Updates root package-lock.json to match new package.json files
+          git add package-lock.json packages/**/package.json
+          git commit -m "Update lockfile for $VERSION"
 
           npm ci
 
