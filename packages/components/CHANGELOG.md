@@ -1,3 +1,15 @@
+# v32.4.1 (Thu Mar 13 2025)
+
+#### 🐛 Bug Fix
+
+- Revert back stencil version to 4.27.2 [#1779](https://github.com/Infineon/infineon-design-system-stencil/pull/1779) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.4.0 (Wed Mar 12 2025)
 
 #### 🚀 Enhancement
