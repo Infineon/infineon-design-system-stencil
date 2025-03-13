@@ -137,7 +137,7 @@ const Template = args => {
     const template = `
         <ifx-radio-button-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
             ${radioButtons}
-        </ifx-radion-button-group>`;
+        </ifx-radio-button-group>`;
 
     return template;
 }
