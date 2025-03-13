@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
 @Component({
@@ -11,5 +11,9 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+  @Output() selectComponent = new EventEmitter<string>();
 
+  onSelect(component: string): void {
+    this.selectComponent.emit(component);
+  }
 }
