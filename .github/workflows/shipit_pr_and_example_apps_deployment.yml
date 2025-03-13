@@ -41,13 +41,15 @@ jobs:
             ~/.npm
             **/node_modules
 
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}-${{ github.run_id }}
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
       - name: Install dependencies for all packages
-        run: npm install
+        run: |
+          npm install
+          git checkout -- package-lock.json 
 
       - name: Build and deploy Stencil core package
         id: build
