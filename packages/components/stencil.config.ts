@@ -22,6 +22,11 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
+        { 
+          src: '../../public-storybook/tokens',
+          dest: 'storybook/tokens', 
+          warn: true 
+        },
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './', warn: true },
       ]
     },
