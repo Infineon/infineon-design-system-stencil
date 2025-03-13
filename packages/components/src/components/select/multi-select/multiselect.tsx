@@ -40,8 +40,7 @@ export class Multiselect {
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
   @Prop() maxItemCount: number;
-  @State() zIndex: number = 1; // default z-index value
-  static globalZIndex = 1; // This will be shared among all instances of the component.
+  static globalZIndex = 1000; // This will be shared among all instances of the component.
   private currentIndex: number = 0; //needed for option selection using keyboard
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
@@ -384,7 +383,6 @@ export class Multiselect {
       // Dispatch the ifxOpen event
       this.ifxOpen.emit(this.dropdownOpen);
     }, 0);
-    this.zIndex = Multiselect.globalZIndex++;
   }
 
 
@@ -660,8 +658,7 @@ export class Multiselect {
           </div>
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu"
-              onScroll={(event) => this.handleScroll(event)}
-              style={{ '--dynamic-z-index': this.zIndex.toString() }}>
+              onScroll={(event) => this.handleScroll(event)}>
               {this.showSearch && <input type="text" role="textbox" class="search-input" onKeyDown={(e) => { e.stopPropagation() }} onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
               {this.showSelectAll && this.renderSelectAll()}
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
