@@ -1,3 +1,32 @@
+# v32.4.1 (Thu Mar 13 2025)
+
+#### 🐛 Bug Fix
+
+- Revert back stencil version to 4.27.2 [#1779](https://github.com/Infineon/infineon-design-system-stencil/pull/1779) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.4.0 (Wed Mar 12 2025)
+
+#### 🚀 Enhancement
+
+- Link: implements download prop [#1747](https://github.com/Infineon/infineon-design-system-stencil/pull/1747) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Temporary fix on workflow. Reverts back package-lock to previous working version after npm install [#1775](https://github.com/Infineon/infineon-design-system-stencil/pull/1775) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Resolves rollup error on React app [#1750](https://github.com/Infineon/infineon-design-system-stencil/pull/1750) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.3.0 (Fri Feb 21 2025)
 
 #### 🚀 Enhancement
