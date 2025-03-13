@@ -22,11 +22,6 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
-        { 
-          src: './public-storybook/tokens', 
-          dest: 'storybook/tokens', 
-          warn: true 
-        },
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './', warn: true },
       ]
     },
@@ -38,6 +33,11 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
        copy: [
+        { 
+          src: '../public-storybook/tokens', 
+          dest: 'storybook/tokens', 
+          warn: true 
+        },
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
       ]
     }
