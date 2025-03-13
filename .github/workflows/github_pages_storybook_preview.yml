@@ -35,7 +35,7 @@ jobs:
               ~/.npm
               **/node_modules
   
-            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
               ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
               ${{ runner.os }}-build-
