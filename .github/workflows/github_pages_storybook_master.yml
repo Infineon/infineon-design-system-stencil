@@ -1,5 +1,6 @@
 name: Deploy Master Storybook
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
