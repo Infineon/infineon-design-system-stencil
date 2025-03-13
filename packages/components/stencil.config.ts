@@ -35,7 +35,7 @@ export const config: Config = {
        copy: [
         { 
           src: '../public-storybook/tokens', 
-          dest: 'storybook/tokens', 
+          dest: './build/tokens', 
           warn: true 
         },
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
