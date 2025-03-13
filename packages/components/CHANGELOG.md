@@ -1,3 +1,15 @@
+# v32.5.0 (Thu Mar 13 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds a tokens page with infineon brand theme tokens provided via a cdn and a file, including a full list of all existing tokens [#1745](https://github.com/Infineon/infineon-design-system-stencil/pull/1745) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.4.2 (Thu Mar 13 2025)
 
 #### 🐛 Bug Fix
