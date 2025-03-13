@@ -63,7 +63,7 @@
             flex-grow: 0;
         }
 
-        &.checked {
+        &.checked:not(.indeterminate) {
             background-color: #0A8276;
             border-radius: tokens.$ifxBorderRadius12;
             border-color: tokens.$ifxColorBaseTransparent;

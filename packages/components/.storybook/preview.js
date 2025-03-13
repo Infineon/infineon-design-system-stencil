@@ -1,7 +1,5 @@
 
 import { defineCustomElements } from '../loader';
-import prettier from 'prettier/standalone';
-import prettierBabel from 'prettier/parser-babel';
 import ifxTheme from './ifxTheme';
 import tokens from './exported-sass-array.json';
 import "../public-storybook/fonts/ifx-fonts.css";
@@ -37,11 +35,6 @@ export const parameters = {
     canvas: {
       sourceState: "shown"
     },
-    transformSource: input =>
-      prettier.format(input, {
-        parser: 'babel',
-        plugins: [prettierBabel],
-      }),
   },
   options: {
     storySort: {

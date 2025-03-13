@@ -24,7 +24,6 @@
     "packages/components-angular/projects/*"
   ],
   "devDependencies": {
-    "@rollup/plugin-replace": "^6.0.1",
     "@types/node": "^20.12.7",
     "lerna": "^8.1.9",
     "nx": "^16.10.0",
