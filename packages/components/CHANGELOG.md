@@ -1,3 +1,15 @@
+# v32.4.2 (Thu Mar 13 2025)
+
+#### 🐛 Bug Fix
+
+- Checkbox: solves intermediate and checked states overlapping bug [#1768](https://github.com/Infineon/infineon-design-system-stencil/pull/1768) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.4.1 (Thu Mar 13 2025)
 
 #### 🐛 Bug Fix
