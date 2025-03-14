@@ -1,0 +1,9 @@
+<app-navbar (selectComponent)="loadComponent($event)"></app-navbar>
+
+<div class="design-container">
+    <ng-container *ngIf="currentComponent">
+        <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+    </ng-container>
+</div>
+
+<app-footer class="footer"></app-footer>
