@@ -24,6 +24,7 @@ export class DatePicker {
   @Prop() required: boolean = false;
   @Prop() label: string;
   @Prop() caption: string;
+  @Prop() autocomplete: string = 'on';
 
   @AttachInternals() internals: ElementInternals;
 
@@ -103,6 +104,7 @@ export class DatePicker {
         <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ''}`}>
           <input
           type="date"
+          autocomplete={this.autocomplete}
           class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
           disabled={this.disabled ? true : undefined}
           aria-invalid={this.error ? true : undefined}
