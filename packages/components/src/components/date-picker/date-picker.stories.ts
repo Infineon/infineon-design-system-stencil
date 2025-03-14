@@ -17,6 +17,7 @@ export default {
     caption: "Caption text, description, error notification.",
     AriaLabel: 'Date Picker',
     required: false,
+    autocomplete: "on"
   },
   argTypes: {
     label: {
@@ -114,6 +115,12 @@ export default {
         }
       }
     },
+    autocomplete: {
+      description: 'Sets the autocomplete attribute. "on" by default.',
+      table: {
+        category: 'ifx-date-picker props'
+      }
+    },
     ifxDate: {
       action: 'ifxDate',
       description: 'A custom event emitted when a date in the calendar is being selected.',
@@ -129,7 +136,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name, autocomplete }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('name', name);
   element.setAttribute('error', error);
@@ -143,6 +150,7 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('caption', caption);
   element.setAttribute('AriaLabel', AriaLabel);
   element.setAttribute('required', required);
+  element.setAttribute('autocomplete', autocomplete);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };

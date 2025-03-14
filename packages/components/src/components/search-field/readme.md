@@ -9,6 +9,7 @@
 
 | Property         | Attribute          | Description | Type      | Default       |
 | ---------------- | ------------------ | ----------- | --------- | ------------- |
+| `autocomplete`   | `autocomplete`     |             | `string`  | `"on"`        |
 | `disabled`       | `disabled`         |             | `boolean` | `false`       |
 | `maxlength`      | `maxlength`        |             | `number`  | `null`        |
 | `placeholder`    | `placeholder`      |             | `string`  | `"Search..."` |
