@@ -20,6 +20,7 @@ export default {
     showDeleteIcon: false,
     maxlength: '',
     value: '',
+    autocomplete: 'on'
   },
 
   argTypes: {
@@ -141,6 +142,16 @@ export default {
         }
       }
     },
+    autocomplete: {
+      description: 'Sets the autocomplete attribute. "on" by default.',
+      control: 'text',
+      table: {
+        category: 'ifx-text-field props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input change.',
@@ -156,7 +167,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -170,6 +181,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('name', name);
   element.setAttribute('show-delete-icon', showDeleteIcon);
   element.setAttribute('value', value);
+  element.setAttribute('autocomplete', autocomplete);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));

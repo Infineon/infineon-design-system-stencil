@@ -9,6 +9,7 @@
 
 | Property         | Attribute          | Description | Type      | Default         |
 | ---------------- | ------------------ | ----------- | --------- | --------------- |
+| `autocomplete`   | `autocomplete`     |             | `string`  | `'on'`          |
 | `caption`        | `caption`          |             | `string`  | `""`            |
 | `disabled`       | `disabled`         |             | `boolean` | `false`         |
 | `error`          | `error`            |             | `boolean` | `false`         |

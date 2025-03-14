@@ -1,3 +1,15 @@
+# v32.5.1 (Fri Mar 14 2025)
+
+#### 🐛 Bug Fix
+
+- Adds autocomplete prop to text-field, date-picker, search-bar and search-field [#1782](https://github.com/Infineon/infineon-design-system-stencil/pull/1782) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.5.0 (Thu Mar 13 2025)
 
 #### 🚀 Enhancement
