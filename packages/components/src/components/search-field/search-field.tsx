@@ -23,6 +23,7 @@ export class SearchField {
   @Prop() size: string = 'l';
   @State() isFocused: boolean = false;
   @Prop() placeholder: string = "Search...";
+  @Prop() autocomplete: string = "on";
   @Prop() maxlength?: number = null;  
 
   @Listen('mousedown', { target: 'document' })
@@ -79,6 +80,7 @@ export class SearchField {
           <input
             ref={(el) => (this.inputElement = el)}
             type="text"
+            autocomplete={this.autocomplete}
             onInput={() => this.handleInput()}
             placeholder={this.placeholder}
             disabled={this.disabled}
