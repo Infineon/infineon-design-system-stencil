@@ -12,7 +12,7 @@ export class Download {
     const fileName = `infineon-tokens.${this.tokens}`;
     
     return (
-      <ifx-link href={`/build/tokens/${fileName}`} download={fileName} class="download__wrapper" size="m" variant="bold">
+      <ifx-link href={`./build/tokens/${fileName}`} download={fileName} class="download__wrapper" size="m" variant="bold">
         <slot />
       </ifx-link>
     );
