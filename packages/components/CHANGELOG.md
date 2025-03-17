@@ -1,3 +1,15 @@
+# v32.5.2 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path, and radio-button snippet typo [#1781](https://github.com/Infineon/infineon-design-system-stencil/pull/1781) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.5.1 (Fri Mar 14 2025)
 
 #### 🐛 Bug Fix
