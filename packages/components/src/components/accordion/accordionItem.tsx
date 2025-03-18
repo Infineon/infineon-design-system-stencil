@@ -1,5 +1,5 @@
 //ifxAccordionItem
-import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen } from '@stencil/core';
+import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen, Element } from '@stencil/core';
 
 @Component({
   tag: 'ifx-accordion-item',
@@ -7,6 +7,7 @@ import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen } from '@
   shadow: true,
 })
 export class IfxAccordionItem {
+  @Element() el;
   @Prop() caption: string;
   @Prop({
     mutable: true,
@@ -16,6 +17,7 @@ export class IfxAccordionItem {
   @Event() ifxOpen: EventEmitter;
   @Event() ifxClose: EventEmitter;
   private contentEl!: HTMLElement;
+  private titleEl!: HTMLElement;
 
 
   componentWillLoad() {
@@ -84,6 +86,12 @@ export class IfxAccordionItem {
 
   @Listen('keydown')
   handleKeydown(ev: KeyboardEvent) {
+    const path = ev.composedPath();
+
+    if(!path.includes(this.titleEl)) { 
+      return;
+    }
+
     switch (ev.key) {
       case 'Enter': // fallthrough
       case ' ': // space
@@ -97,7 +105,7 @@ export class IfxAccordionItem {
   render() {
     return (
       <div class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
-        <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0'>
+        <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0' ref={(el) => (this.titleEl = el as HTMLElement)}>
           <span aria-hidden="true" role="heading" aria-level={String(this.AriaLevel) as string} class="accordion-icon">
             <ifx-icon icon="chevron-down-12"/>
           </span>
