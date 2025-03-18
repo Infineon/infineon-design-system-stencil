@@ -1,3 +1,15 @@
+# v32.5.3 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path [#1786](https://github.com/Infineon/infineon-design-system-stencil/pull/1786) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.5.2 (Mon Mar 17 2025)
 
 #### 🐛 Bug Fix
