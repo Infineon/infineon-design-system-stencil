@@ -22,6 +22,7 @@
 | `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false`         |
 | `size`           | `size`             |             | `string`  | `'m'`           |
 | `success`        | `success`          |             | `boolean` | `false`         |
+| `type`           | `type`             |             | `string`  | `'text'`        |
 | `value`          | `value`            |             | `string`  | `''`            |
 
 

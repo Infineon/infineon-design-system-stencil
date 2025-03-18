@@ -25,6 +25,7 @@ export class TextField {
   @Prop() maxlength?: number;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() autocomplete: string = 'on'
+  @Prop() type: string = 'text'
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
@@ -87,7 +88,7 @@ export class TextField {
               ref={(el) => (this.inputElement = el)}
               disabled={this.disabled}
               autocomplete={this.autocomplete}
-              type="text"
+              type={this.type}
               id='text-field'
               value={this.value}
               onInput={() => this.handleInput()}
