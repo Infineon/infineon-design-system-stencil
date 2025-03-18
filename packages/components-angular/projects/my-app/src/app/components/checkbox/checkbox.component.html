@@ -1,0 +1,18 @@
+<h2>Checkbox</h2>
+
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-checkbox [disabled]="checkboxDisabled" [value]="checkboxChecked" [error]="checkboxError" name="name"
+      (ifxChange)="toggleCheckboxValue()">label</ifx-checkbox>
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+  </form>
+
+  <ifx-button variant="secondary" (click)="toggleCheckboxDisabled()">Toggle Disabled</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxError()">Toggle Error</ifx-button>
+  <ifx-button variant="secondary" (click)="toggleCheckboxValue()">Toggle Value</ifx-button>
+
+  <span>Disabled: {{ checkboxDisabled }} </span>
+  <span>Error: {{ checkboxError }} </span>
+  <span>Value: {{ checkboxChecked }}</span>
