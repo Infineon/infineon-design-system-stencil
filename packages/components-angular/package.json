@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "32.5.3--canary.1786.57e7e4c9d4872f3517750dfb6387d0427a746286.1",
+  "version": "32.5.4--canary.1723.74a419a3b697aaa055ecf2d9d89378807b48c5b8.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@infineon/infineon-design-system-angular": "^32.5.3--canary.1786.57e7e4c9d4872f3517750dfb6387d0427a746286.1",
+    "@infineon/infineon-design-system-angular": "^32.5.4--canary.1723.74a419a3b697aaa055ecf2d9d89378807b48c5b8.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.4.4",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.0",
-    "@angular/cli": "^18.0.0",
+    "@angular/cli": "^18.2.14",
     "@angular/compiler-cli": "^18.0.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
