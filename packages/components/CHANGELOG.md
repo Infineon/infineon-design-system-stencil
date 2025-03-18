@@ -1,3 +1,15 @@
+# v32.6.0 (Tue Mar 18 2025)
+
+#### 🚀 Enhancement
+
+- Accordion: prevents item toggle if content is focused [#1790](https://github.com/Infineon/infineon-design-system-stencil/pull/1790) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.5.3 (Mon Mar 17 2025)
 
 #### 🐛 Bug Fix
