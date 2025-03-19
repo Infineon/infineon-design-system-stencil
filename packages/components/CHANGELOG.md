@@ -1,3 +1,15 @@
+# v32.7.0 (Wed Mar 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-field: adds type "password" [#1791](https://github.com/Infineon/infineon-design-system-stencil/pull/1791) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.6.0 (Tue Mar 18 2025)
 
 #### 🚀 Enhancement
