@@ -20,7 +20,8 @@ export default {
     showDeleteIcon: false,
     maxlength: '',
     value: '',
-    autocomplete: 'on'
+    autocomplete: 'on',
+    type: 'text'
   },
 
   argTypes: {
@@ -152,6 +153,20 @@ export default {
         }
       }
     },
+    type: {
+      description: 'Sets the type attribute. "Text" by default.',
+      options: ['text', 'password'],
+      control: 'radio',
+      table: {
+        category: 'ifx-text-field props',
+        type: {
+          summary: 'string'
+        },
+        defaultValue: {
+          summary: 'text'
+        }
+      }
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input change.',
@@ -167,7 +182,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -182,6 +197,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('show-delete-icon', showDeleteIcon);
   element.setAttribute('value', value);
   element.setAttribute('autocomplete', autocomplete);
+  element.setAttribute('type', type);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));

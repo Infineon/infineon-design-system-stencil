@@ -1,4 +1,4 @@
-import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals, State } from '@stencil/core';
  
 
 @Component({
@@ -25,6 +25,8 @@ export class TextField {
   @Prop() maxlength?: number;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() autocomplete: string = 'on'
+  @Prop() type: 'text' | 'password' = 'text';
+  @State() internalType: string;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
   // resetOnSubmit: boolean = false;
@@ -57,9 +59,17 @@ export class TextField {
     this.ifxInput.emit(this.value);
   }
 
+  handleTypeProp() { 
+   this.internalType = this.type === 'text' || this.type === 'password' ? this.type : 'text'
+  }
+
   formResetCallback() {
     this.internals.setValidity({});
     this.internals.setFormValue("");
+  }
+
+  componentWillLoad() { 
+    this.handleTypeProp()
   }
 
   render() {
@@ -87,7 +97,7 @@ export class TextField {
               ref={(el) => (this.inputElement = el)}
               disabled={this.disabled}
               autocomplete={this.autocomplete}
-              type="text"
+              type={this.internalType}
               id='text-field'
               value={this.value}
               onInput={() => this.handleInput()}
