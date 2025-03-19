@@ -155,11 +155,15 @@ export default {
     },
     type: {
       description: 'Sets the type attribute. "Text" by default.',
-      control: 'text',
+      options: ['text', 'password'],
+      control: 'radio',
       table: {
         category: 'ifx-text-field props',
         type: {
           summary: 'string'
+        },
+        defaultValue: {
+          summary: 'text'
         }
       }
     },
