@@ -7,22 +7,23 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type      | Default         |
-| ---------------- | ------------------ | ----------- | --------- | --------------- |
-| `autocomplete`   | `autocomplete`     |             | `string`  | `'on'`          |
-| `caption`        | `caption`          |             | `string`  | `""`            |
-| `disabled`       | `disabled`         |             | `boolean` | `false`         |
-| `error`          | `error`            |             | `boolean` | `false`         |
-| `icon`           | `icon`             |             | `string`  | `""`            |
-| `label`          | `label`            |             | `string`  | `""`            |
-| `maxlength`      | `maxlength`        |             | `number`  | `undefined`     |
-| `optional`       | `optional`         |             | `boolean` | `false`         |
-| `placeholder`    | `placeholder`      |             | `string`  | `"Placeholder"` |
-| `required`       | `required`         |             | `boolean` | `false`         |
-| `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false`         |
-| `size`           | `size`             |             | `string`  | `'m'`           |
-| `success`        | `success`          |             | `boolean` | `false`         |
-| `value`          | `value`            |             | `string`  | `''`            |
+| Property         | Attribute          | Description | Type                   | Default         |
+| ---------------- | ------------------ | ----------- | ---------------------- | --------------- |
+| `autocomplete`   | `autocomplete`     |             | `string`               | `'on'`          |
+| `caption`        | `caption`          |             | `string`               | `""`            |
+| `disabled`       | `disabled`         |             | `boolean`              | `false`         |
+| `error`          | `error`            |             | `boolean`              | `false`         |
+| `icon`           | `icon`             |             | `string`               | `""`            |
+| `label`          | `label`            |             | `string`               | `""`            |
+| `maxlength`      | `maxlength`        |             | `number`               | `undefined`     |
+| `optional`       | `optional`         |             | `boolean`              | `false`         |
+| `placeholder`    | `placeholder`      |             | `string`               | `"Placeholder"` |
+| `required`       | `required`         |             | `boolean`              | `false`         |
+| `showDeleteIcon` | `show-delete-icon` |             | `boolean`              | `false`         |
+| `size`           | `size`             |             | `string`               | `'m'`           |
+| `success`        | `success`          |             | `boolean`              | `false`         |
+| `type`           | `type`             |             | `"password" \| "text"` | `'text'`        |
+| `value`          | `value`            |             | `string`               | `''`            |
 
 
 ## Events
