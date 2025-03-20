@@ -15,11 +15,62 @@
   
   <script>
 
+function openModal() {
+  const modal = document.getElementById('my-modal');
+  modal.opened = true;
+}
+
   </script>
 
 </head>
 
 <body> 
+
+
+
+<ifx-select 
+  size='m'
+  placeholder='true'
+  show-search='true'
+  search-placeholder-value='Search...'
+  disabled='false'
+  error='false'
+  error-message='Some error'
+  label=''
+  placeholder-value='Placeholder'
+  options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]' >
+ </ifx-select>
+
+  <div>
+    <ifx-modal id="my-modal" caption="Modal Title" variant="default" close-on-overlay-click="false" show-close-button="true" size="s"><div slot="content">
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <h1>Test</h1>
+      <ifx-multiselect 
+        name='multiselect'
+        options='[{"value":"a","label":"Option a","selected":false}, {"value":"a23","label":"Option a","selected":false}, {"value":"b","label":"Option b","selected":false},{"value":"c","label":"Option c","selected":false,"children":[{"value":"z1","label":"Option c1","selected":false},{"value":"z2","label":"Option c2","selected":false}]}]' 
+        batch-size='10'
+        size='m'
+        disabled='false'
+        max-item-count='10'
+        error='false'
+        error-message='Some error'
+        label=''
+        placeholder='Placeholder'
+        show-search='true'
+        show-select-all='true'>
+      </ifx-multiselect>
+  </div>
+  <div slot="buttons">
+    <ifx-button variant="secondary">Cancel</ifx-button>
+    <ifx-button>OK</ifx-button>
+  </div>
+</ifx-modal>
+
+<ifx-button id="open" onclick="openModal()">Open Modal</ifx-button>
+
+</div>
 
 </body>
 
