@@ -1,3 +1,15 @@
+# v32.8.1 (Thu Mar 20 2025)
+
+#### 🐛 Bug Fix
+
+- DDS templates: fixes broken url [#1793](https://github.com/Infineon/infineon-design-system-stencil/pull/1793) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.8.0 (Thu Mar 20 2025)
 
 #### 🚀 Enhancement
