@@ -225,6 +225,12 @@ export class IfxTabs {
         }
       }
     } else if (ev.key === 'Enter') {
+      const path = ev.composedPath();
+      const isTabHeader = path.some(el => this.tabHeaderRefs.includes(el as HTMLElement));
+      if (!isTabHeader) {
+        return;
+      }
+      
       if (this.internalFocusedTabIndex !== -1 && !this.tabObjects[this.internalFocusedTabIndex].disabled) {
         const previouslyActiveTabIndex = this.internalActiveTabIndex;
         this.internalActiveTabIndex = this.internalFocusedTabIndex;
