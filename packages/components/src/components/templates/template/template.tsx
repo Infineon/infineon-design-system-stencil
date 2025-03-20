@@ -19,7 +19,7 @@ export class Template {
   @Prop() thumbnail: string;
   
   private clientId = 'Ov23lixmXiNTTNb6V5W6'
-  private redirectUri = 'https://infineon.github.io/infineon-design-system-stencil/?path=/docs/dds-templates--development';
+  private redirectUri = 'http://localhost:6262/?path=/docs/dds-templates--development';
   private scope = 'repo workflow'
   private state = 'template123'
 
@@ -55,7 +55,7 @@ export class Template {
   async getUserToken(authCode) {
     const { repoName, repoDesc, repoFramework, templateName } = this.getLocalStorageValues();
 
-    fetch(`https://dds-templates.eu-central-1.elasticbeanstalk.com/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
+    fetch(`https://port5000-workspaces-ws-ff5s9.eu10.applicationstudio.cloud.sap/token/${authCode}/${repoName}/${repoDesc}/${repoFramework}/${templateName}`)
     .then(response => {
       if (response.ok) {
         return response.text();
