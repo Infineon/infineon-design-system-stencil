@@ -1,3 +1,63 @@
+# v32.7.0 (Wed Mar 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-field: adds type "password" [#1791](https://github.com/Infineon/infineon-design-system-stencil/pull/1791) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.6.0 (Tue Mar 18 2025)
+
+#### 🚀 Enhancement
+
+- Accordion: prevents item toggle if content is focused [#1790](https://github.com/Infineon/infineon-design-system-stencil/pull/1790) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.3 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path [#1786](https://github.com/Infineon/infineon-design-system-stencil/pull/1786) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.2 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path, and radio-button snippet typo [#1781](https://github.com/Infineon/infineon-design-system-stencil/pull/1781) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.1 (Fri Mar 14 2025)
+
+#### 🐛 Bug Fix
+
+- Adds autocomplete prop to text-field, date-picker, search-bar and search-field [#1782](https://github.com/Infineon/infineon-design-system-stencil/pull/1782) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.5.0 (Thu Mar 13 2025)
 
 #### 🚀 Enhancement

@@ -37,5 +37,4 @@ export const config: Config = {
       ]
     }
   ],
-
 };

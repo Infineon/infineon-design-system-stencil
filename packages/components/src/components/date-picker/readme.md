@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default     |
-| ----------- | ------------ | ----------- | --------- | ----------- |
-| `AriaLabel` | `aria-label` |             | `string`  | `undefined` |
-| `caption`   | `caption`    |             | `string`  | `undefined` |
-| `disabled`  | `disabled`   |             | `boolean` | `false`     |
-| `error`     | `error`      |             | `boolean` | `false`     |
-| `label`     | `label`      |             | `string`  | `undefined` |
-| `max`       | `max`        |             | `string`  | `undefined` |
-| `min`       | `min`        |             | `string`  | `undefined` |
-| `required`  | `required`   |             | `boolean` | `false`     |
-| `size`      | `size`       |             | `string`  | `'s'`       |
-| `success`   | `success`    |             | `boolean` | `false`     |
-| `value`     | `value`      |             | `string`  | `undefined` |
+| Property       | Attribute      | Description | Type      | Default     |
+| -------------- | -------------- | ----------- | --------- | ----------- |
+| `AriaLabel`    | `aria-label`   |             | `string`  | `undefined` |
+| `autocomplete` | `autocomplete` |             | `string`  | `'on'`      |
+| `caption`      | `caption`      |             | `string`  | `undefined` |
+| `disabled`     | `disabled`     |             | `boolean` | `false`     |
+| `error`        | `error`        |             | `boolean` | `false`     |
+| `label`        | `label`        |             | `string`  | `undefined` |
+| `max`          | `max`          |             | `string`  | `undefined` |
+| `min`          | `min`          |             | `string`  | `undefined` |
+| `required`     | `required`     |             | `boolean` | `false`     |
+| `size`         | `size`         |             | `string`  | `'s'`       |
+| `success`      | `success`      |             | `boolean` | `false`     |
+| `value`        | `value`        |             | `string`  | `undefined` |
 
 
 ## Events

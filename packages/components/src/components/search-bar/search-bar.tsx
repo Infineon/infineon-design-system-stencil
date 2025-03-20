@@ -14,6 +14,7 @@ export class SearchBar {
   @Prop() maxlength?: number;
   @Event() ifxInput: EventEmitter;
   @Event() ifxOpen: EventEmitter;
+   @Prop() autocomplete: string = "on";
   @Element() el;
 
   @Method()
@@ -58,7 +59,7 @@ export class SearchBar {
       <div aria-label='a search bar' aria-disabled={this.disabled} class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
-            <ifx-search-field disabled={this.disabled} value={this.value} maxlength={this.maxlength} onIfxInput={this.handleInput.bind(this)}>
+            <ifx-search-field autocomplete={this.autocomplete} disabled={this.disabled} value={this.value} maxlength={this.maxlength} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
 
