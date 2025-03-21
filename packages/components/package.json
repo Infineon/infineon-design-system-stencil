@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "32.8.1--canary.1793.24442beee009c87d186debd86009962fde8a0d1c.1",
+  "version": "32.8.2--canary.1797.1b07cf6d90ba2c5784a101211845a449e31b0bdb.1",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -42,7 +42,7 @@
     "@infineon/infineon-icons": "^2.1.2",
     "@popperjs/core": "^2.11.8",
     "@stencil/angular-output-target": "^0.9.0",
-    "@stencil/core": "4.27.2",
+    "@stencil/core": "^4.27.2",
     "@stencil/vue-output-target": "^0.8.9",
     "@storybook/cli": "^8.3.0",
     "@storybook/test": "^8.3.0",
