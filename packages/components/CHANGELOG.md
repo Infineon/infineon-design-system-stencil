@@ -1,3 +1,176 @@
+# v32.8.3 (Tue Mar 25 2025)
+
+#### 🐛 Bug Fix
+
+- Stepper: fixes incrementation error [#1801](https://github.com/Infineon/infineon-design-system-stencil/pull/1801) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.8.2 (Tue Mar 25 2025)
+
+#### 🐛 Bug Fix
+
+- Multi-select: increases z-index, removes incrementation logic, and allows dropdown overflow on modal [#1736](https://github.com/Infineon/infineon-design-system-stencil/pull/1736) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.8.1 (Thu Mar 20 2025)
+
+#### 🐛 Bug Fix
+
+- DDS templates: fixes broken url [#1793](https://github.com/Infineon/infineon-design-system-stencil/pull/1793) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.8.0 (Thu Mar 20 2025)
+
+#### 🚀 Enhancement
+
+- ifx-tab: prevent enter key from re-focusing tab when content is focused [#1794](https://github.com/Infineon/infineon-design-system-stencil/pull/1794) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.7.0 (Wed Mar 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-field: adds type "password" [#1791](https://github.com/Infineon/infineon-design-system-stencil/pull/1791) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.6.0 (Tue Mar 18 2025)
+
+#### 🚀 Enhancement
+
+- Accordion: prevents item toggle if content is focused [#1790](https://github.com/Infineon/infineon-design-system-stencil/pull/1790) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.3 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path [#1786](https://github.com/Infineon/infineon-design-system-stencil/pull/1786) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.2 (Mon Mar 17 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes token files download path, and radio-button snippet typo [#1781](https://github.com/Infineon/infineon-design-system-stencil/pull/1781) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.1 (Fri Mar 14 2025)
+
+#### 🐛 Bug Fix
+
+- Adds autocomplete prop to text-field, date-picker, search-bar and search-field [#1782](https://github.com/Infineon/infineon-design-system-stencil/pull/1782) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.5.0 (Thu Mar 13 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds a tokens page with infineon brand theme tokens provided via a cdn and a file, including a full list of all existing tokens [#1745](https://github.com/Infineon/infineon-design-system-stencil/pull/1745) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.4.2 (Thu Mar 13 2025)
+
+#### 🐛 Bug Fix
+
+- Checkbox: solves intermediate and checked states overlapping bug [#1768](https://github.com/Infineon/infineon-design-system-stencil/pull/1768) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.4.1 (Thu Mar 13 2025)
+
+#### 🐛 Bug Fix
+
+- Revert back stencil version to 4.27.2 [#1779](https://github.com/Infineon/infineon-design-system-stencil/pull/1779) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.4.0 (Wed Mar 12 2025)
+
+#### 🚀 Enhancement
+
+- Link: implements download prop [#1747](https://github.com/Infineon/infineon-design-system-stencil/pull/1747) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### 🐛 Bug Fix
+
+- Temporary fix on workflow. Reverts back package-lock to previous working version after npm install [#1775](https://github.com/Infineon/infineon-design-system-stencil/pull/1775) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Resolves rollup error on React app [#1750](https://github.com/Infineon/infineon-design-system-stencil/pull/1750) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.3.0 (Fri Feb 21 2025)
+
+#### 🚀 Enhancement
+
+- ifx-select: prevents dropdown menu from closing on search-field click [#1735](https://github.com/Infineon/infineon-design-system-stencil/pull/1735) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.2.0 (Thu Feb 20 2025)
 
 #### 🚀 Enhancement

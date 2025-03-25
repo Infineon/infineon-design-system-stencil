@@ -10,6 +10,7 @@
 | Property   | Attribute  | Description | Type      | Default     |
 | ---------- | ---------- | ----------- | --------- | ----------- |
 | `disabled` | `disabled` |             | `boolean` | `false`     |
+| `download` | `download` |             | `string`  | `undefined` |
 | `href`     | `href`     |             | `string`  | `undefined` |
 | `size`     | `size`     |             | `string`  | `undefined` |
 | `target`   | `target`   |             | `string`  | `'_self'`   |
@@ -20,6 +21,7 @@
 
 ### Used by
 
+ - [ifx-download](../download)
  - [ifx-list](../table-advanced-version/list)
  - [ifx-notification](../notification)
  - [ifx-overview-table](../overview-table)
@@ -28,6 +30,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ifx-download --> ifx-link
   ifx-list --> ifx-link
   ifx-notification --> ifx-link
   ifx-overview-table --> ifx-link

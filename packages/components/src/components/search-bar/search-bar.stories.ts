@@ -8,6 +8,7 @@ export default {
     disabled: false,
     isOpen: true,
     value: '',
+    autocomplete: 'on'
   },
 
   argTypes: {
@@ -35,6 +36,17 @@ export default {
     },
     value: {
       description: 'The value is used to handle the search bar input.',
+      control: { type: 'text' },
+      table:
+      {
+        category: 'ifx-search-bar props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    autocomplete: {
+      description: 'The value of the search field. It is used for the form submission.',
       control: { type: 'text' },
       table:
       {
@@ -81,11 +93,12 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ isOpen, disabled, maxlength, value }) => {
+const DefaultTemplate = ({ isOpen, disabled, maxlength, value, autocomplete }) => {
   const element = document.createElement('ifx-search-bar');
   element.setAttribute('is-open', isOpen);
   element.setAttribute('disabled', disabled);
   element.setAttribute('value', value);
+  element.setAttribute('autocomplete', autocomplete);
   element.addEventListener('ifxInput', action('ifxInput'));
   element.addEventListener('ifxOpen', action('ifxOpen'));
 
