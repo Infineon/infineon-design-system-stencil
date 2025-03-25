@@ -106,9 +106,11 @@ jobs:
             package.json > package.json.tmp && mv package.json.tmp package.json
 
           # Install the updated dependency
+          echo "exec npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION in $(pwd)"
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
 
+          echo "exec npm install in $(pwd)"
           npm install
 
           # Verify updates
