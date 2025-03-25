@@ -48,32 +48,34 @@ export class Stepper {
             return;
         }
         // Skipping until the enabled step is found 
-        if (!steps[newStep-1].disabled) {
-            this.emitIfxChange(newStep, oldStep);
-        } else {
-            // If coming from higher step number to the lower step number
-            if (newStep < oldStep) {
-                let i = newStep;
-                this.shouldEmitEvent = false;
-                while (i >= 1 && steps[i-1].disabled) i--;
-                // if all the steps are disabled no change.
-                if (i < 1) {
-                    this.activeStep = oldStep;
-                } else {
-                    this.emitIfxChange(i, oldStep);
-                    this.activeStep = i;
-                }
-            } 
-            // If coming from lower step number to the higher step number
-            else {
-                let i = newStep;
-                this.shouldEmitEvent = false;
-                while (i <= this.stepsCount && steps[i-1].disabled) i++;
-                if (i > this.stepsCount) {
-                    this.activeStep = oldStep;
-                } else {
-                    this.emitIfxChange(i, oldStep);
-                    this.activeStep = i;
+        if(steps[newStep-1]) { 
+            if (!steps[newStep-1].disabled) {
+                this.emitIfxChange(newStep, oldStep);
+            } else {
+                // If coming from higher step number to the lower step number
+                if (newStep < oldStep) {
+                    let i = newStep;
+                    this.shouldEmitEvent = false;
+                    while (i >= 1 && steps[i-1].disabled) i--;
+                    // if all the steps are disabled no change.
+                    if (i < 1) {
+                        this.activeStep = oldStep;
+                    } else {
+                        this.emitIfxChange(i, oldStep);
+                        this.activeStep = i;
+                    }
+                } 
+                // If coming from lower step number to the higher step number
+                else {
+                    let i = newStep;
+                    this.shouldEmitEvent = false;
+                    while (i <= this.stepsCount && steps[i-1].disabled) i++;
+                    if (i > this.stepsCount) {
+                        this.activeStep = oldStep;
+                    } else {
+                        this.emitIfxChange(i, oldStep);
+                        this.activeStep = i;
+                    }
                 }
             }
         }
