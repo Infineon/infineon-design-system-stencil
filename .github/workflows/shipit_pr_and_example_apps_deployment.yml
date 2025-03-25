@@ -45,11 +45,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
-    
+
       - name: Install dependencies for all packages
         run: |
           npm install
-          git checkout -- package-lock.json 
+          git diff package-lock.json
 
       - name: Build and deploy Stencil core package
         id: build
@@ -60,7 +60,7 @@ jobs:
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else 
+          else
             cd packages/components
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
@@ -73,10 +73,10 @@ jobs:
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
-          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"
           sleep 10s
         shell: bash
-      
+
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -86,19 +86,20 @@ jobs:
           CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
 
         run: |
+          git status
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
-      
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../../../
-      
+
           # Update Vue package
           cd packages/components-vue
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-      
+
           # Update React package
           cd ../components-react
           jq --arg CANARY_VERSION "$CANARY_VERSION" \
@@ -106,11 +107,15 @@ jobs:
             package.json > package.json.tmp && mv package.json.tmp package.json
 
           # Install the updated dependency
+          echo "exec npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION in $(pwd)"
           npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
-                 
+
+          echo "exec npm install in $(pwd)"
           npm install
-      
+
+          git status
+
           # Verify updates
           echo "Verifying updates in Angular package"
           jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
@@ -118,7 +123,7 @@ jobs:
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
-            
+
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -134,10 +139,11 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
+          git status
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
-          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"
           sleep 10s
         shell: bash
 
@@ -151,7 +157,7 @@ jobs:
           cd examples/wrapper-components/vue-javascript
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-vue"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd ../../..
-  
+
           # Update React wrapper component
           cd examples/wrapper-components/react-vite-js
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-react"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
@@ -165,12 +171,13 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add .
+          git status
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
 
   #deploy gh-pages previews for example applications:
   deploy-preview-vue:
-    needs: stencil-library-release  
+    needs: stencil-library-release
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
@@ -194,7 +201,7 @@ jobs:
           npm run build
 
       - name: Deploy preview
-        id: preview       
+        id: preview
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: ./examples/wrapper-components/vue-javascript/dist
@@ -202,7 +209,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
   deploy-preview-react:
-    needs: stencil-library-release  
+    needs: stencil-library-release
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
@@ -238,7 +245,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
   deploy-preview-angular:
-    needs: stencil-library-release  
+    needs: stencil-library-release
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     outputs:
       deployment-url: ${{ steps.preview.outputs.deployment-url }}
@@ -260,7 +267,7 @@ jobs:
           cd packages/components-angular
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd projects/component-library
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
       - name: Install and Build
         run: |
           cd packages/components-angular
@@ -276,7 +283,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
   deploy-preview-vanilla:
-    needs: stencil-library-release  
+    needs: stencil-library-release
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
     outputs:
@@ -294,7 +301,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Update CDN Link in Vanilla example app & build
-        run: | 
+        run: |
           cd examples/stencil-components/vanilla-cdn
           npm install
           npm run update-link
@@ -307,7 +314,7 @@ jobs:
           source-dir: ./examples/stencil-components/vanilla-cdn/dist
           umbrella-dir: pr-preview-vanilla-example
           token: ${{ secrets.GH_TOKEN }}
-  
+
   update-pr-comment: # add comment on github
     needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
     runs-on: ubuntu-latest
@@ -325,7 +332,7 @@ jobs:
             const vanillaUrl = "${{ needs.deploy-preview-vanilla.outputs.deployment-url }}";
             const EXAMPLE_APPS_IDENTIFIER = "--EXAMPLE-APPS-PREVIEW--";
             const newText = `--EXAMPLE-APPS-PREVIEW--\nPR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
-  
+
             const {data: comments} = await github.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -350,4 +357,3 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          
