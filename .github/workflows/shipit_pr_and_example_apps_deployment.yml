@@ -86,6 +86,7 @@ jobs:
           CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
 
         run: |
+          git status
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
@@ -113,6 +114,8 @@ jobs:
           echo "exec npm install in $(pwd)"
           npm install
 
+          git status
+
           # Verify updates
           echo "Verifying updates in Angular package"
           jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
@@ -136,6 +139,7 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
+          git status
 
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
