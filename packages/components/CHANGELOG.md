@@ -1,3 +1,27 @@
+# v32.8.1 (Thu Mar 20 2025)
+
+#### 🐛 Bug Fix
+
+- DDS templates: fixes broken url [#1793](https://github.com/Infineon/infineon-design-system-stencil/pull/1793) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.8.0 (Thu Mar 20 2025)
+
+#### 🚀 Enhancement
+
+- ifx-tab: prevent enter key from re-focusing tab when content is focused [#1794](https://github.com/Infineon/infineon-design-system-stencil/pull/1794) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.7.0 (Wed Mar 19 2025)
 
 #### 🚀 Enhancement
