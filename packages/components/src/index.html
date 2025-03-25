@@ -20,6 +20,58 @@
 </head>
 
 <body>
+
+  <ifx-navbar  show-logo-and-appname="true" application-name="Application name" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+    <ifx-navbar-item icon="undefined" slot="left-item" target="_self" href="" hide-on-mobile="true">
+      Menu Item
+      <ifx-navbar-item icon="">
+        Layer 1 Nested Item 1
+        <ifx-navbar-item>
+          Layer 2 Nested Item 2
+          <ifx-navbar-item href="http://google.com" target="_blank">Link Layer 3 Nested Item 1</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 2</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 3</ifx-navbar-item>
+          <ifx-navbar-item>Layer 3 Nested Item 4</ifx-navbar-item>
+        </ifx-navbar-item>
+        <ifx-navbar-item >Layer 2 Nested Item 3</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 4</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Nested Item 5</ifx-navbar-item>
+      </ifx-navbar-item>
+  
+      <ifx-navbar-item>
+        Layer 1 Nested Item 2
+        <ifx-navbar-item>Layer 2 Item 1</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 2</ifx-navbar-item>
+        <ifx-navbar-item>Layer 2 Item 3</ifx-navbar-item>
+      </ifx-navbar-item>
+  
+      <ifx-navbar-item>Nested Item 3</ifx-navbar-item>
+  
+      <ifx-navbar-item>
+        Layer 1 Nested Item 4
+        <ifx-navbar-item>Nested Item 4</ifx-navbar-item>
+      </ifx-navbar-item>
+  
+    </ifx-navbar-item>
+  
+    <ifx-navbar-item href="" target="_self" slot="left-item" icon="" show-label="true">
+      Menu Item
+    </ifx-navbar-item>
+  
+    <ifx-navbar-item slot="left-item">
+      More
+      <ifx-navbar-item>Item1</ifx-navbar-item>
+      <ifx-navbar-item>Item2</ifx-navbar-item>
+    </ifx-navbar-item>
+  
+    <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
+  
+    <ifx-navbar-item number-indicator="99+" slot="right-item" hide-on-mobile="false" show-label='false' icon="cart-16">
+    </ifx-navbar-item>
+  
+  </ifx-navbar>
+
+  <ifx-number-indicator inverted="false">99+</ifx-number-indicator>
   
 </body>
 

@@ -6,16 +6,17 @@
 }
 
 .numberIndicator__container {
+  height: 16px;
   display: inline-flex;
-  padding: 0px 4px;
-  max-height: 16px;
+  padding: 0; // Remove fixed padding
+  min-width: 16px; // Ensure minimum size for small numbers
   justify-content: center;
   align-items: center;
   border-radius: 100px;
   background-color: tokens.$ifxColorOcean500;
-  font-family: var(--ifx-font-family);
 
   & span {
+    padding: 0 4px;
     color: tokens.$ifxColorBaseWhite;
     text-align: center;
     font-size: tokens.$ifxFontSizeS;
