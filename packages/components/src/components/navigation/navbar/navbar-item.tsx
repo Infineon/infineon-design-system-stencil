@@ -20,6 +20,7 @@ export class NavbarItem {
   @State() isSidebarMenuItem: boolean = false;
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
+  @Prop() numberIndicator: number;
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -189,6 +190,7 @@ export class NavbarItem {
   }
 
   componentDidLoad() { 
+    this.handleLabelWrapper()
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.relocateItemsToFirstlayer(navItems)
@@ -350,6 +352,17 @@ export class NavbarItem {
     }
   }
 
+  handleLabelWrapper() { 
+    const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper');
+    const navItem = this.getNavBarItem();
+    const slot = labelWrapper.querySelector('slot');
+    if (!slot.assignedNodes().length) {
+      navItem.classList.add('removeLabel')
+    } else if(this.showLabel && navItem.classList.contains('removeLabel')) {
+      navItem.classList.remove('removeLabel')
+    }
+  }
+
   render() {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
@@ -363,6 +376,10 @@ export class NavbarItem {
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+              {this.icon && !isNaN(this.numberIndicator) && 
+              <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+              </div>}
             </div>
 
             {this.itemPosition === 'left' 
