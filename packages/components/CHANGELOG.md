@@ -1,3 +1,27 @@
+# v32.8.3 (Tue Mar 25 2025)
+
+#### 🐛 Bug Fix
+
+- Stepper: fixes incrementation error [#1801](https://github.com/Infineon/infineon-design-system-stencil/pull/1801) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.8.2 (Tue Mar 25 2025)
+
+#### 🐛 Bug Fix
+
+- Multi-select: increases z-index, removes incrementation logic, and allows dropdown overflow on modal [#1736](https://github.com/Infineon/infineon-design-system-stencil/pull/1736) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.8.1 (Thu Mar 20 2025)
 
 #### 🐛 Bug Fix

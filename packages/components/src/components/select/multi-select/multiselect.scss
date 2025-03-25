@@ -175,7 +175,7 @@
     max-height: 300px;
     /* Adjust based on your design */
     overflow-y: auto;
-    z-index: var(--dynamic-z-index, 1); // Fallback to 1
+    z-index: 1000; 
 
     .search-input {
       position: sticky;
