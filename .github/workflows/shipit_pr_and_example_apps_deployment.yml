@@ -108,11 +108,11 @@ jobs:
 
           # Install the updated dependency
           echo "exec npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION in $(pwd)"
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          #npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
 
-          echo "exec npm install in $(pwd)"
-          npm install
+          #echo "exec npm install in $(pwd)"
+          #npm install
 
           git status
 
