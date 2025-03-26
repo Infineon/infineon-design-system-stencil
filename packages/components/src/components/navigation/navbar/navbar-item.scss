@@ -61,6 +61,12 @@
     }
   }
 
+  & .number__indicator-wrapper { 
+    position: relative;
+    top: -11px;
+    //left: 16px;
+  }
+
   & .navbar__container-right-content-navigation-item-icon-wrapper {
     position: relative;
     display: flex;
@@ -73,13 +79,11 @@
     order: 0;
     flex-grow: 0;
 
-    & .number__indicator-wrapper { 
-      position: absolute;
-      top: -11px;
-      //right: -16px;
-      left: 16px;
-      //margin-left: -16px;
-    }
+    // & .number__indicator-wrapper { 
+    //   position: relative;
+    //   top: -11px;
+    //   //left: 16px;
+    // }
 
     & .username__tooltip { 
       display: none;
@@ -180,6 +184,7 @@
   }
 
   & .inner__content-wrapper { 
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -187,6 +192,19 @@
     &.no-gap { 
       gap: 0px;
     }
+
+    & .navbar__container-right-content-navigation-item-icon-wrapper {
+      &.no-gap { 
+        gap: 0px;
+      }
+    }
+
+    & .number__indicator-wrapper { 
+      position: relative;
+      top: -11px;
+      //left: 16px;
+    }
+
   }
 }
 

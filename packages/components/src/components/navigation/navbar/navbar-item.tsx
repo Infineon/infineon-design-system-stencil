@@ -190,6 +190,7 @@ export class NavbarItem {
   }
 
   componentDidLoad() { 
+    this.handleItemGap()
     this.handleLabelWrapper()
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
@@ -363,6 +364,18 @@ export class NavbarItem {
     }
   }
 
+  handleItemGap() { 
+    const innerContentWrapper = this.el.shadowRoot.querySelector('.navbar__item')
+    //const numberIndicatorWrapper = innerContentWrapper.querySelector('.navbar__container-right-content-navigation-item-icon-wrapper');
+    // if(this.numberIndicator) { 
+    //   this.handleClassList(numberIndicatorWrapper, 'add', 'no-gap')
+    //   this.handleClassList(innerContentWrapper, 'add', 'no-gap')
+    // } else { 
+    //   this.handleClassList(numberIndicatorWrapper, 'remove', 'no-gap')
+    //   this.handleClassList(innerContentWrapper, 'remove', 'no-gap')
+    // }
+  }
+
   render() {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
@@ -376,7 +389,7 @@ export class NavbarItem {
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
-              {this.icon && !isNaN(this.numberIndicator) && 
+              {this.icon && !this.showLabel && !isNaN(this.numberIndicator) && 
               <div class="number__indicator-wrapper">
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
               </div>}
@@ -392,7 +405,17 @@ export class NavbarItem {
             <span class="label__wrapper">
               <slot />
             </span>
+
+            {/* {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 
+            <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+            </div>} */}
           </div>
+
+          {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 
+            <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+            </div>}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />
