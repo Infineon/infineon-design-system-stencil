@@ -20,6 +20,7 @@ export class NavbarItem {
   @State() isSidebarMenuItem: boolean = false;
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
+  @Prop() numberIndicator: number;
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -186,9 +187,12 @@ export class NavbarItem {
     this.setHref()
     this.checkIfItemIsNested()
     this.checkIfItemHasChildren()
+    this.emitEmptyItem()
   }
 
   componentDidLoad() { 
+    this.handleItemGap()
+    this.handleLabelWrapper()
     if(this.hasChildNavItems) { 
       const navItems = this.getNavbarItems();
       this.relocateItemsToFirstlayer(navItems)
@@ -350,6 +354,33 @@ export class NavbarItem {
     }
   }
 
+  handleLabelWrapper() { 
+    const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper');
+    const navItem = this.getNavBarItem();
+    const slot = labelWrapper.querySelector('slot');
+    if (!slot.assignedNodes().length) {
+      navItem.classList.add('removeLabel')
+    } else if(this.showLabel && navItem.classList.contains('removeLabel')) {
+      navItem.classList.remove('removeLabel')
+    }
+  }
+
+  handleItemGap() { 
+    const innerContentWrapper = this.el.shadowRoot.querySelector('.navbar__item')
+    const numberIndicatorWrapper = innerContentWrapper.querySelector('.navbar__container-right-content-navigation-item-icon-wrapper');
+    if(this.numberIndicator) { 
+      this.handleClassList(numberIndicatorWrapper, 'add', 'no-gap')
+    } else { 
+      this.handleClassList(numberIndicatorWrapper, 'remove', 'no-gap')
+    }
+  }
+
+  emitEmptyItem() { 
+    if(!this.showLabel && !this.icon) { 
+      this.ifxNavItem.emit(this.el)
+    } 
+  }
+
   render() {
     return (
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
@@ -363,6 +394,10 @@ export class NavbarItem {
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
+              {this.icon && !this.showLabel && !isNaN(this.numberIndicator) && 
+              <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+              </div>}
             </div>
 
             {this.itemPosition === 'left' 
@@ -376,6 +411,11 @@ export class NavbarItem {
               <slot />
             </span>
           </div>
+
+          {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 
+            <div class="number__indicator-wrapper">
+                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+            </div>}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />
