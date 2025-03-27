@@ -294,9 +294,11 @@ export class Navbar {
   }
 
   removeEmptyItem(el) { 
+    console.log('el', el)
     const { rightSideItemSlot } = this.getWrappers();
     if(el) {  
-      rightSideItemSlot.style.display = 'none'
+      console.log('removing this element', rightSideItemSlot)
+      //rightSideItemSlot.style.display = 'none'
     } else { 
       rightSideItemSlot.style.display = 'block'
     }

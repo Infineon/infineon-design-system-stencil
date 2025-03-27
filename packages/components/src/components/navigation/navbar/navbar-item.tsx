@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter, Host } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-item',
@@ -21,6 +21,7 @@ export class NavbarItem {
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
   @Prop() numberIndicator: number;
+  @Prop() dotIndicator: boolean = false;
  
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
@@ -377,12 +378,15 @@ export class NavbarItem {
 
   emitEmptyItem() { 
     if(!this.showLabel && !this.icon) { 
+      console.log('emit this el', this.el)
       this.ifxNavItem.emit(this.el)
+      this.el.shadowRoot.host.classList.add('hidden')
     } 
   }
 
   render() {
     return (
+      <Host>
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <div class="sub__layer-back-button">
           <div class="back__button-wrapper" onClick={() => this.returnToFirstLayer()}>
@@ -412,10 +416,10 @@ export class NavbarItem {
             </span>
           </div>
 
-          {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 
+          {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) ? 
             <div class="number__indicator-wrapper">
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
-            </div>}
+            </div> : ""}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />
@@ -430,6 +434,7 @@ export class NavbarItem {
         {this.isSidebarMenuItem && <ul class='sub__layer-menu'> <slot name="second__layer" /> </ul>}
 
       </div>
+      </Host>
     )
   }
 }

@@ -1,5 +1,8 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+:host(.hidden) {
+  display: none;
+}
 
 .navbar__item {
   position: relative;
