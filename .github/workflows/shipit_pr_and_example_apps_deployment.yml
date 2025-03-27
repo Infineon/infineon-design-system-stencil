@@ -90,6 +90,8 @@ jobs:
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
+          echo "lerna executed"
+          git status
 
           # Update Angular package
           cd packages/components-angular/projects/component-library
@@ -108,11 +110,11 @@ jobs:
 
           # Install the updated dependency
           echo "exec npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION in $(pwd)"
-          #npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
           cd ../../
 
-          #echo "exec npm install in $(pwd)"
-          #npm install
+          echo "exec npm install in $(pwd)"
+          npm install
 
           git status
 
