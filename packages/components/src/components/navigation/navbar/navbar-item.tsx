@@ -187,6 +187,7 @@ export class NavbarItem {
     this.setHref()
     this.checkIfItemIsNested()
     this.checkIfItemHasChildren()
+    this.emitEmptyItem()
   }
 
   componentDidLoad() { 
@@ -366,14 +367,18 @@ export class NavbarItem {
 
   handleItemGap() { 
     const innerContentWrapper = this.el.shadowRoot.querySelector('.navbar__item')
-    //const numberIndicatorWrapper = innerContentWrapper.querySelector('.navbar__container-right-content-navigation-item-icon-wrapper');
-    // if(this.numberIndicator) { 
-    //   this.handleClassList(numberIndicatorWrapper, 'add', 'no-gap')
-    //   this.handleClassList(innerContentWrapper, 'add', 'no-gap')
-    // } else { 
-    //   this.handleClassList(numberIndicatorWrapper, 'remove', 'no-gap')
-    //   this.handleClassList(innerContentWrapper, 'remove', 'no-gap')
-    // }
+    const numberIndicatorWrapper = innerContentWrapper.querySelector('.navbar__container-right-content-navigation-item-icon-wrapper');
+    if(this.numberIndicator) { 
+      this.handleClassList(numberIndicatorWrapper, 'add', 'no-gap')
+    } else { 
+      this.handleClassList(numberIndicatorWrapper, 'remove', 'no-gap')
+    }
+  }
+
+  emitEmptyItem() { 
+    if(!this.showLabel && !this.icon) { 
+      this.ifxNavItem.emit(this.el)
+    } 
   }
 
   render() {
@@ -405,11 +410,6 @@ export class NavbarItem {
             <span class="label__wrapper">
               <slot />
             </span>
-
-            {/* {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 
-            <div class="number__indicator-wrapper">
-                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
-            </div>} */}
           </div>
 
           {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) && 

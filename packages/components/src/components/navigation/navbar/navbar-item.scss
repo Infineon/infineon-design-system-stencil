@@ -64,7 +64,6 @@
   & .number__indicator-wrapper { 
     position: relative;
     top: -11px;
-    //left: 16px;
   }
 
   & .navbar__container-right-content-navigation-item-icon-wrapper {
@@ -79,12 +78,7 @@
     order: 0;
     flex-grow: 0;
 
-    // & .number__indicator-wrapper { 
-    //   position: relative;
-    //   top: -11px;
-    //   //left: 16px;
-    // }
-
+ 
     & .username__tooltip { 
       display: none;
       position: absolute;
@@ -202,7 +196,6 @@
     & .number__indicator-wrapper { 
       position: relative;
       top: -11px;
-      //left: 16px;
     }
 
   }
