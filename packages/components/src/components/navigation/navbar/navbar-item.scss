@@ -1,5 +1,8 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 
+:host(.hidden) {
+  display: none;
+}
 
 .navbar__item {
   position: relative;
@@ -61,6 +64,24 @@
     }
   }
 
+  & .number__indicator-wrapper { 
+    position: relative;
+    top: -11px;
+  }
+
+  & .dot__indicator-wrapper { 
+    display: flex;
+    width: 8px;
+    height: 8px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: tokens.$ifxColorOcean500;
+    position: relative;
+    top: -11px;
+  }
+
   & .navbar__container-right-content-navigation-item-icon-wrapper {
     position: relative;
     display: flex;
@@ -73,6 +94,7 @@
     order: 0;
     flex-grow: 0;
 
+ 
     & .username__tooltip { 
       display: none;
       position: absolute;
@@ -172,6 +194,7 @@
   }
 
   & .inner__content-wrapper { 
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,6 +202,18 @@
     &.no-gap { 
       gap: 0px;
     }
+
+    & .navbar__container-right-content-navigation-item-icon-wrapper {
+      &.no-gap { 
+        gap: 0px;
+      }
+    }
+
+    & .number__indicator-wrapper { 
+      position: relative;
+      top: -11px;
+    }
+
   }
 }
 

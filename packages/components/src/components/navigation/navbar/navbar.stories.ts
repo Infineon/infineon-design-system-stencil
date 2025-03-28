@@ -20,6 +20,8 @@ export default {
     href: "http://google.com",
     target: "_self",
     alt: "profile image",
+    numberIndicator: "",
+    dotIndicator: false
   },
   argTypes: {
     profileLabel: {
@@ -91,6 +93,29 @@ export default {
         category: 'ifx-navbar-item props',
         type: {
           summary: 'string',
+        },
+      },
+    },
+    numberIndicator: {
+      name: 'numberIndicator',
+      control: { type: 'number' },
+      description: 'A notifiying number indicator',
+      table: {
+        category: 'ifx-navbar-item props',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    dotIndicator: {
+      name: 'dotIndicator',
+      control: { type: 'boolean' },
+      description: 'A notifiying dot indicator',
+      table: {
+        category: 'ifx-navbar-item props',
+        type: {
+          defaultValue: { summary: 'false' },
+          summary: 'boolean',
         },
       },
     },
@@ -245,9 +270,9 @@ const DefaultTemplate = args =>
 
   <ifx-search-bar slot="search-bar-${args.searchBarPosition}" is-open="${args.searchBarIsOpen}"></ifx-search-bar>
 
-  <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="${args.hideOnMobile}" show-label="true" icon="image-16">
+  <ifx-navbar-item number-indicator="${args.numberIndicator}" slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="${args.hideOnMobile}" show-label="true" icon="image-16">
   </ifx-navbar-item>
-  <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='false' icon="image-16">
+  <ifx-navbar-item dot-indicator="${args.dotIndicator}" slot="right-item" hide-on-mobile="true" show-label='false' icon="image-16">
   </ifx-navbar-item>
 
   <ifx-navbar-profile user-name="${args.userName}" slot="right-item" image-url="${args.profileImageUrl}" show-label="${args.showNavbarProfileLabel}" href="" target="${args.target}" alt="${args.alt}">${args.profileLabel}</ifx-navbar-profile>

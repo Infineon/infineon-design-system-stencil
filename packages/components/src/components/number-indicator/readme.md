@@ -18,6 +18,7 @@
 
  - [ifx-chip](../chip)
  - [ifx-filter-accordion](../table-advanced-version/filter-type-group/filter-accordion)
+ - [ifx-navbar-item](../navigation/navbar)
  - [ifx-overview-table](../overview-table)
  - [ifx-sidebar-item](../navigation/sidebar)
 
@@ -26,6 +27,7 @@
 graph TD;
   ifx-chip --> ifx-number-indicator
   ifx-filter-accordion --> ifx-number-indicator
+  ifx-navbar-item --> ifx-number-indicator
   ifx-overview-table --> ifx-number-indicator
   ifx-sidebar-item --> ifx-number-indicator
   style ifx-number-indicator fill:#f9f,stroke:#333,stroke-width:4px
