@@ -108,8 +108,6 @@ export class Navbar {
         }
       }
     }
-
-    this.removeEmptyItem(event.detail)
   }
 
   getWrappers() {
@@ -291,17 +289,6 @@ export class Navbar {
       this.moveNavItemsToSidebar();
     }
 
-  }
-
-  removeEmptyItem(el) { 
-    console.log('el', el)
-    const { rightSideItemSlot } = this.getWrappers();
-    if(el) {  
-      console.log('removing this element', rightSideItemSlot)
-      //rightSideItemSlot.style.display = 'none'
-    } else { 
-      rightSideItemSlot.style.display = 'block'
-    }
   }
 
   handleMobileMenuBottom(e) { 

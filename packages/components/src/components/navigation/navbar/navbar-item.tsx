@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter, Host } from "@stencil/core";
+import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter } from "@stencil/core";
 
 @Component({
   tag: 'ifx-navbar-item',
@@ -188,7 +188,7 @@ export class NavbarItem {
     this.setHref()
     this.checkIfItemIsNested()
     this.checkIfItemHasChildren()
-    this.emitEmptyItem()
+    this.removeEmptyItem()
   }
 
   componentDidLoad() { 
@@ -376,17 +376,15 @@ export class NavbarItem {
     }
   }
 
-  emitEmptyItem() { 
+  removeEmptyItem() { 
+    const hostElement = this.el.shadowRoot.host;
     if(!this.showLabel && !this.icon) { 
-      console.log('emit this el', this.el)
-      this.ifxNavItem.emit(this.el)
-      this.el.shadowRoot.host.classList.add('hidden')
-    } 
+      this.handleClassList(hostElement, 'add', 'hidden')
+    }
   }
 
   render() {
     return (
-      <Host>
       <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <div class="sub__layer-back-button">
           <div class="back__button-wrapper" onClick={() => this.returnToFirstLayer()}>
@@ -434,7 +432,6 @@ export class NavbarItem {
         {this.isSidebarMenuItem && <ul class='sub__layer-menu'> <slot name="second__layer" /> </ul>}
 
       </div>
-      </Host>
     )
   }
 }
