@@ -369,7 +369,7 @@ export class NavbarItem {
   handleItemGap() { 
     const innerContentWrapper = this.el.shadowRoot.querySelector('.navbar__item')
     const numberIndicatorWrapper = innerContentWrapper.querySelector('.navbar__container-right-content-navigation-item-icon-wrapper');
-    if(this.numberIndicator) { 
+    if(this.numberIndicator || this.dotIndicator) { 
       this.handleClassList(numberIndicatorWrapper, 'add', 'no-gap')
     } else { 
       this.handleClassList(numberIndicatorWrapper, 'remove', 'no-gap')
@@ -400,6 +400,8 @@ export class NavbarItem {
               <div class="number__indicator-wrapper">
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
               </div>}
+              {this.icon && !this.showLabel && !this.numberIndicator && this.dotIndicator && 
+            <div class="dot__indicator-wrapper"></div>}
             </div>
 
             {this.itemPosition === 'left' 
@@ -418,6 +420,9 @@ export class NavbarItem {
             <div class="number__indicator-wrapper">
                 <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
             </div> : ""}
+
+            {this.showLabel && !this.numberIndicator && this.dotIndicator ? 
+            <div class="dot__indicator-wrapper"></div> : ""}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />
