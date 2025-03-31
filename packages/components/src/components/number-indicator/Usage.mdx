@@ -1,8 +1,12 @@
 
 import { Meta } from '@storybook/blocks';
 import * as NumberIndicatorStories from './number-indicator.stories';
-import NumberIndicatorStyle from '../../../public-storybook/images/number-indicator/number-indicator-style.png';
-import NumberIndicatorUse from '../../../public-storybook/images/number-indicator/number-indicator-use.png';
+import NumberIndicatorVarDot from '../../../public-storybook/images/number-indicator/indicator-variant-dot.png';
+import NumberIndicatorVarNumber from '../../../public-storybook/images/number-indicator/indicator-variant-number.png';
+import NumberIndicatorVarNumberExceeds from '../../../public-storybook/images/number-indicator/indicator-variant-number-exceeds-99.png';
+import NumberIndicatorFeatureIconLabel from '../../../public-storybook/images/number-indicator/indicator-feature-icon-label.png';
+import NumberIndicatorFeatureIconOnly from '../../../public-storybook/images/number-indicator/indicator-feature-icon-only.png';
+import NumberIndicatorFeatureLabelOnly from '../../../public-storybook/images/number-indicator/indicator-feature-label-only.png';
 
 
 <Meta of={NumberIndicatorStories} />
@@ -23,9 +27,29 @@ The number indicator component refers to some of our UI elements that visually r
 - If you want to use it as different style for a numbered list. Use an icon or native numbered list style instead.
 
 ## Variants
-The number indicator component can be used in different use cases. As a counter in a shopping cart, or as indicator for unseen items. The "+" affix communicates to users that there are additional selected options beyond what's currently visible.
-<img src={NumberIndicatorUse} alt="Number Indicator Variants" />
+Our indicator component is a concise, attention-grabbing element used to highlight status or quantity.
 
-## Style
-The number indicator is available in two different styles: default and inverted.
-<img src={NumberIndicatorStyle} alt="Number Indicator Style" />
+### Dot
+A small circular badge, typically used to signal new or unread items or notifications.
+<img src={NumberIndicatorVarDot} alt="Indicator Dot" />
+
+### Number
+Displays a numeric value within a badge to convey the count of items, messages, or alerts.
+<img src={NumberIndicatorVarNumber} alt="Indicator Number" />
+
+## Features
+### Icon only
+Displays just the indicator icon, making it ideal for scenarios where visual conciseness is desired. This feature is perfect for small spaces or when the icon itself is easily recognizable.
+<img src={NumberIndicatorFeatureIconOnly} alt="Indicator Icon Only" />
+
+### Label only
+Shows only the text label without an icon. This option is useful when space is limited or when a textual description is sufficient to convey the necessary information.
+<img src={label NumberIndicatorFeatureLabelOnly} alt="Indicator Label Only" />
+
+### Icon and label
+Combines the indicator icon with an accompanying text label. This configuration provides additional context and clarity, ensuring users understand the purpose of the indicator.
+<img src={label NumberIndicatorFeatureIconLabel} alt="Indicator Icon And Label" />
+
+## Number Indicator: Maximum Display of 99+
+In the number indicator variant, the counter displays numeric values up to 99. If the actual count exceeds 99, it will automatically show "99+" to indicate that there are more than 99 items.
+<img src={NumberIndicatorVarNumber} alt="Indicator Number" />
