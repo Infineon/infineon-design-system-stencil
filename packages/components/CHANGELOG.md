@@ -1,3 +1,15 @@
+# v32.9.0 (Mon Mar 31 2025)
+
+#### 🚀 Enhancement
+
+- navbar-item: implements a notification feature [#1690](https://github.com/Infineon/infineon-design-system-stencil/pull/1690) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.8.3 (Tue Mar 25 2025)
 
 #### 🐛 Bug Fix
