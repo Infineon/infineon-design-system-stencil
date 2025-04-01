@@ -21,7 +21,8 @@ export default {
     maxlength: '',
     value: '',
     autocomplete: 'on',
-    type: 'text'
+    type: 'text',
+    internalId: 'text-field'
   },
 
   argTypes: {
@@ -143,6 +144,19 @@ export default {
         }
       }
     },
+    internalId: {
+      description: 'Sets the ID of the internal input and the value of htmlFor for the label element',
+      control: 'text',
+      table: {
+        category: 'ifx-text-field props',
+        defaultValue: {
+          summary: 'text-field'
+        },
+        type: {
+          summary: 'string'
+        }
+      }
+    },
     autocomplete: {
       description: 'Sets the autocomplete attribute. "on" by default.',
       control: 'text',
@@ -182,7 +196,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -198,6 +212,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('value', value);
   element.setAttribute('autocomplete', autocomplete);
   element.setAttribute('type', type);
+  element.setAttribute('internal-id', internalId);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
