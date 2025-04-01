@@ -26,6 +26,7 @@ export class TextField {
   @Prop() showDeleteIcon: boolean = false;
   @Prop() autocomplete: string = 'on'
   @Prop() type: 'text' | 'password' = 'text';
+  @Prop() internalId: string = "text-field"
   @State() internalType: string;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
@@ -76,7 +77,7 @@ export class TextField {
     return (
       <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
-          <label htmlFor="text-field">
+          <label htmlFor={this.internalId}>
             <slot></slot>
             {this.optional && this.required ? (
               <span class="optional-required">(optional) *</span>
@@ -98,7 +99,7 @@ export class TextField {
               disabled={this.disabled}
               autocomplete={this.autocomplete}
               type={this.internalType}
-              id='text-field'
+              id={this.internalId}
               value={this.value}
               onInput={() => this.handleInput()}
               placeholder={this.placeholder}
