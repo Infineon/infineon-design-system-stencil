@@ -14,7 +14,7 @@
 | `disabled`       | `disabled`         |             | `boolean`              | `false`         |
 | `error`          | `error`            |             | `boolean`              | `false`         |
 | `icon`           | `icon`             |             | `string`               | `""`            |
-| `internalId`     | `internal-id`      |             | `string`               | `""`            |
+| `internalId`     | `internal-id`      |             | `string`               | `"text-field"`  |
 | `label`          | `label`            |             | `string`               | `""`            |
 | `maxlength`      | `maxlength`        |             | `number`               | `undefined`     |
 | `optional`       | `optional`         |             | `boolean`              | `false`         |
