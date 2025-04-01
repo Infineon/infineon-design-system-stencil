@@ -1,3 +1,15 @@
+# v32.10.0 (Tue Apr 01 2025)
+
+#### 🚀 Enhancement
+
+- text-field: makes internal input id customizable via a prop [#1807](https://github.com/Infineon/infineon-design-system-stencil/pull/1807) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.9.0 (Mon Mar 31 2025)
 
 #### 🚀 Enhancement
