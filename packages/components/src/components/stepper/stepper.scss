@@ -6,8 +6,8 @@
     align-items: center;
     
     &.compact {
-        justify-content: space-between;
         align-items: center;
+        gap: 8px;
         
         &.compact-right {
             flex-direction: row-reverse;
