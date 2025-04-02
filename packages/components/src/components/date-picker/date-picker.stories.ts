@@ -94,7 +94,7 @@ export default {
       }
     },
     value: {
-      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted as yyyy-mm-dd.',
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted as yyyy-mm-dd. For "datetime-local" type, it is yyyy-mm-ddTHH:MM. Example: "2018-06-12T19:30"',
       table: {
         category: 'ifx-date-picker props'
       }
