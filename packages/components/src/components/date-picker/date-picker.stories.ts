@@ -17,7 +17,8 @@ export default {
     caption: "Caption text, description, error notification.",
     AriaLabel: 'Date Picker',
     required: false,
-    autocomplete: "on"
+    autocomplete: "on",
+    type: 'date'
   },
   argTypes: {
     label: {
@@ -93,7 +94,7 @@ export default {
       }
     },
     value: {
-      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted as yyyy-mm-dd.',
+      description: 'Displayed date is formatted based on the locale of the user`s browser, but the parsed value is always formatted as yyyy-mm-dd. For "datetime-local" type, it is yyyy-mm-ddTHH:MM. Example: "2018-06-12T19:30"',
       table: {
         category: 'ifx-date-picker props'
       }
@@ -121,6 +122,17 @@ export default {
         category: 'ifx-date-picker props'
       }
     },
+    type: {
+      description: 'Sets the type of the date-picker. "Date" by default.',
+      control: 'radio',
+      options: ['date', 'datetime-local'],
+      defaultValue: {
+        summary: 'date'
+      },
+      table: {
+        category: 'ifx-date-picker props'
+      }
+    },
     ifxDate: {
       action: 'ifxDate',
       description: 'A custom event emitted when a date in the calendar is being selected.',
@@ -136,7 +148,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name, autocomplete }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name, autocomplete, type }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('name', name);
   element.setAttribute('error', error);
@@ -151,6 +163,7 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('AriaLabel', AriaLabel);
   element.setAttribute('required', required);
   element.setAttribute('autocomplete', autocomplete);
+  element.setAttribute('type', type);
   element.addEventListener('ifxDate', action('ifxDate'));
   return element;
 };
