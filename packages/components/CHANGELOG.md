@@ -1,3 +1,15 @@
+# v32.10.1 (Wed Apr 02 2025)
+
+#### 🐛 Bug Fix
+
+- Stepper: fixes the gap between label and indicator [#1808](https://github.com/Infineon/infineon-design-system-stencil/pull/1808) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.10.0 (Tue Apr 01 2025)
 
 #### 🚀 Enhancement
