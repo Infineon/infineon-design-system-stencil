@@ -111,8 +111,10 @@ export class Navbar {
   }
 
   getWrappers() {
+    const rightContentNavigationGroup = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-group')
     const searchBarRightWrapper = this.el.shadowRoot.querySelector('.navbar__container-right-content-navigation-item-search-bar-icon-wrapper')
     const searchBarLeftWrapper = this.el.shadowRoot.querySelector('.navbar__container-left-content-navigation-item-search-bar')
+    const rightSideItemSlot = rightContentNavigationGroup.querySelector('slot[name="right-item"]');
     const rightSideSlot = searchBarRightWrapper.querySelector('slot');
     const leftSideSlot = searchBarLeftWrapper.querySelector('slot');
     const rightAssignedNodes = rightSideSlot.assignedNodes();
@@ -122,7 +124,7 @@ export class Navbar {
     const rightMenuItems = this.el.querySelectorAll('[slot="right-item"]');
     const topRowWrapper = this.el.shadowRoot.querySelector('.navbar__sidebar-top-row-wrapper')
     
-    return {rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
+    return {rightSideItemSlot, rightSideSlot, leftSideSlot, rightAssignedNodes, leftAssignedNodes, navbarProfile, leftMenuItems, rightMenuItems, topRowWrapper};
   }
 
   hideNavItems() {
@@ -280,7 +282,7 @@ export class Navbar {
   componentDidLoad() {
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
-
+ 
     const mediaQueryList = this.getMediaQueryList()
 
     if (mediaQueryList.matches) {
