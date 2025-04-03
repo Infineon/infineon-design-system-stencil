@@ -26,6 +26,7 @@ export default {
   args: {
     tableHeight: 'auto',
     rowHeight: 'default',
+    variant: 'default'
   },
   argTypes: {
     tableHeight: {
@@ -74,6 +75,15 @@ export default {
         },
       },
     },
+    variant: {
+      description: 'Sets the variant of the table.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'default' },
+      },
+      options: ['default', 'zebra'],
+      control: { type: 'radio' },
+    },
   },
 };
 
@@ -81,7 +91,8 @@ const DefaultTemplate = args => `<ifx-basic-table
 cols='${JSON.stringify(args.cols)}' 
 rows='${JSON.stringify(args.rows)}'
 table-height='${args.tableHeight}'
-row-height='${args.rowHeight}'>
+row-height='${args.rowHeight}'
+variant='${args.variant}'>
 </ifx-basic-table>`;
 
 export const Default = DefaultTemplate.bind({});
