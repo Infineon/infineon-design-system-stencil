@@ -1,3 +1,15 @@
+# v32.11.0 (Thu Apr 03 2025)
+
+#### 🚀 Enhancement
+
+- Date-picker: implements time feature [#1809](https://github.com/Infineon/infineon-design-system-stencil/pull/1809) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.10.1 (Wed Apr 02 2025)
 
 #### 🐛 Bug Fix

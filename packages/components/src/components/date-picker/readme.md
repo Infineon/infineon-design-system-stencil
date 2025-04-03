@@ -20,6 +20,7 @@
 | `required`     | `required`     |             | `boolean` | `false`     |
 | `size`         | `size`         |             | `string`  | `'s'`       |
 | `success`      | `success`      |             | `boolean` | `false`     |
+| `type`         | `type`         |             | `string`  | `'date'`    |
 | `value`        | `value`        |             | `string`  | `undefined` |
 
 
