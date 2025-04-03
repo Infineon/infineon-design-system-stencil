@@ -19,6 +19,7 @@ export class DatePicker {
   @Prop() disabled: boolean = false;
   @Prop() AriaLabel: string;
   @Prop() value: string;
+  @Prop() type: string = 'date'
   @Prop() max: string;
   @Prop() min: string;
   @Prop() required: boolean = false;
@@ -36,10 +37,19 @@ export class DatePicker {
     const day = selectedDate.getDate();
     const month = selectedDate.getMonth() + 1; 
     const year = selectedDate.getFullYear();
+
+ 
       
     if (!inputValue) {
       this.internals.setFormValue(null);
-      this.ifxDate.emit({day, month, year});
+
+      if(this.type === 'datetime-local') { 
+        const hours = selectedDate.getHours();
+        const minutes = selectedDate.getMinutes();
+        this.ifxDate.emit({day, month, year, hours, minutes});
+      } else { 
+        this.ifxDate.emit({day, month, year});
+      }
       return;
     }
 
@@ -47,7 +57,13 @@ export class DatePicker {
     input.classList.add('has-value');
 
     this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
-    this.ifxDate.emit({day, month, year})
+    if(this.type === 'datetime-local') { 
+      const hours = selectedDate.getHours();
+      const minutes = selectedDate.getMinutes();
+      this.ifxDate.emit({day, month, year, hours, minutes});
+    } else { 
+      this.ifxDate.emit({day, month, year})
+    }
   }
 
   handleInputFocusOnIconClick() { 
@@ -103,7 +119,7 @@ export class DatePicker {
 
         <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ''}`}>
           <input
-          type="date"
+          type={this.type}
           autocomplete={this.autocomplete}
           class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
           disabled={this.disabled ? true : undefined}
