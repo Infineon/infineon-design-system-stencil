@@ -27,7 +27,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "4.0.0",
+    "@infineon/design-system-tokens": "5.0.0",
     "@infineon/infineon-design-system-stencil": "^33.0.0--canary.1809.545a64b0c76d8360a52f7939feda2dc55d6ccf2d.0",
     "@stencil/react-output-target": "^0.7.1"
   },
