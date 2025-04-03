@@ -1,3 +1,15 @@
+# v33.0.1 (Thu Apr 03 2025)
+
+#### 🐛 Bug Fix
+
+- Tokens: update tokens package to latest version and the heading token's value across the DDS [#1810](https://github.com/Infineon/infineon-design-system-stencil/pull/1810) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.11.0 (Thu Apr 03 2025)
 
 #### 🚀 Enhancement
