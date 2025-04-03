@@ -10,7 +10,7 @@ export default {
     error: false,
     disabled: false,
     size: 'm',
-    icon: 'c-info-16',
+    icon: '',
     success: false,
     placeholder: 'Placeholder',
     caption: 'Caption',
@@ -69,7 +69,7 @@ export default {
       table: {
         category: 'ifx-text-field props',
         defaultValue: {
-          summary: 'c-info-16'
+          summary: ''
         }
       }
     },
