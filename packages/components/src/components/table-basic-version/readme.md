@@ -13,6 +13,7 @@
 | `rowHeight`   | `row-height`   |             | `string`          | `'default'` |
 | `rows`        | `rows`         |             | `any[] \| string` | `undefined` |
 | `tableHeight` | `table-height` |             | `string`          | `'auto'`    |
+| `variant`     | `variant`      |             | `string`          | `'default'` |
 
 
 ----------------------------------------------
