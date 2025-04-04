@@ -13,19 +13,15 @@
   & .ag-row-odd { 
     background-color: tokens.$ifxColorEngineering100!important;
   }
-  & .ag-header-row { 
-    background-color: tokens.$ifxColorEngineering200!important;
-  }
 
   & .ag-row { 
     border-bottom: none!important;
   }
-
-  & .ag-root-wrapper { 
-    border: 1px solid tokens.$ifxColorEngineering200!important;
-  }
 }
 
+.ag-header-row { 
+  background-color: tokens.$ifxColorEngineering200!important;
+}
 
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
@@ -75,7 +71,7 @@
 
 
 .ag-root-wrapper {
-  border: none;
+  border: 1px solid tokens.$ifxColorEngineering200;
 }
 
 .ag-header {
