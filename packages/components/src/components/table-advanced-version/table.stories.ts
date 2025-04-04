@@ -198,7 +198,8 @@ const DefaultTemplate = (args) => {
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     pagination-page-size="${args.paginationPageSize}"
-    filter-orientation="${args.filterOrientation}">
+    filter-orientation="${args.filterOrientation}"
+    variant='${args.variant}'>
 </ifx-table>`;
     return table;
   } else {
@@ -293,8 +294,7 @@ const CustomCellTemplate = (args) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-page-size="${args.paginationPageSize}"
-      filter-orientation="${args.filterOrientation}"
-      variant='${args.variant}'>
+      filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
 };
