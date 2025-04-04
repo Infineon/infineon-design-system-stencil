@@ -32,6 +32,7 @@ export class Table {
   @Prop() filterOrientation: string = 'sidebar'; // topbar / none
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
+  @Prop() variant: string = 'default'
 
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
@@ -527,7 +528,7 @@ export class Table {
               )}
 
               <div id="table-wrapper" class={this.getTableClassNames()}>
-                <div id={`ifxTable-${this.uniqueKey}`} class='ifx-ag-grid' style={style} ref={(el) => this.container = el}>
+                <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
               {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination> : null}
