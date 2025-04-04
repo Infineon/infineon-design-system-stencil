@@ -81,6 +81,7 @@ export default {
     paginationPageSize: 10,
     rowHeight: 40,
     showLoading: false,
+    variant: 'default'
   },
   argTypes: {
     tableHeight: {
@@ -173,6 +174,15 @@ export default {
           detail: 'Standard row values:\nmake: "Toyota", \nmodel: "Celica", \nprice: 35000 \n\nSpecial row values (incl buttons):\nmake: "Porsche",\nmodel: "Boxster",\nprice: "72000",\nbutton: { \ndisabled: false (optional),\nvariant: "outline" (optional)\nsize: "s" (optional),\ntext: "Button"\n...other ifx-button properties\n}',
         },
       },
+    },
+    variant: {
+      description: 'Sets the variant of the table.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'default' },
+      },
+      options: ['default', 'zebra'],
+      control: { type: 'radio' },
     },
   }
 };
@@ -283,7 +293,8 @@ const CustomCellTemplate = (args) => {
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
       pagination-page-size="${args.paginationPageSize}"
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="${args.filterOrientation}"
+      variant='${args.variant}'>
     </ifx-table>`;
   return table;
 };
