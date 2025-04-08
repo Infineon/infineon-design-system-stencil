@@ -3,6 +3,20 @@
 
 @import "~ag-grid-community/styles/ag-grid.css";
 
+.zebra { 
+  & .ag-row-odd { 
+    background-color: tokens.$ifxColorEngineering100!important;
+  }
+
+  & .ag-row { 
+    border-bottom: none!important;
+  }
+}
+
+.ag-header-viewport { 
+  background-color: tokens.$ifxColorEngineering200!important;
+}
+
 
 .table-container {
   display: block;
@@ -35,6 +49,7 @@
 
 #table-wrapper {
   flex: 1; // allows the table to take up the remaining space
+  padding-bottom: tokens.$ifxSpace100;
 }
 
 
@@ -77,7 +92,7 @@
   height: 100%;
   width: 100%;
   min-width: 100px;
-  padding-bottom: tokens.$ifxSpace100;
+  //padding-bottom: tokens.$ifxSpace100;
 }
 
 
@@ -116,7 +131,7 @@
 
 
 .ag-root-wrapper {
-  border: none;
+  border: 1px solid tokens.$ifxColorEngineering200;
 }
 
 

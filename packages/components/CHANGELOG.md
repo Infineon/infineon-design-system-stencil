@@ -1,3 +1,15 @@
+# v33.1.0 (Mon Apr 07 2025)
+
+#### 🚀 Enhancement
+
+- Tables: implements zebra variant [#1811](https://github.com/Infineon/infineon-design-system-stencil/pull/1811) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.0.1 (Thu Apr 03 2025)
 
 #### 🐛 Bug Fix

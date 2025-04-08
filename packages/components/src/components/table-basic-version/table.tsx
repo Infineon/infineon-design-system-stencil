@@ -17,6 +17,7 @@ export class Table {
   @State() rowData: any[] = [];
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
+  @Prop() variant: string = 'default'
   @State() uniqueKey: string;
   @Element() host: HTMLElement;
   
@@ -166,7 +167,7 @@ export class Table {
     return (
       <Host>
         <div id="table-wrapper" class={this.getClassNames()}>
-          <div id={`ifxTable-${this.uniqueKey}`} class="ifx-ag-grid" style={this.getTableStyle()} ref={(el) => (this.container = el)}></div>
+          <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={this.getTableStyle()} ref={(el) => (this.container = el)}></div>
         </div>
       </Host>
     );
