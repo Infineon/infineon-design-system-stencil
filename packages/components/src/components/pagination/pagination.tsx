@@ -1,5 +1,4 @@
 import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
- 
 
 @Component({
   tag: 'ifx-pagination',
@@ -7,213 +6,173 @@ import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from 
   shadow: true
 })
 export class Pagination {
-  @Element() el;
+  @Element() el: HTMLElement;
   @Event() ifxPageChange: EventEmitter;
-  @Prop() currentPage: number = 0;
+  @Prop() currentPage: number = 1;
   @State() internalPage: number = 1;
   @State() internalItemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
   @Prop() itemsPerPage: any[] | string;
-  @State() filteredItemsPerPage: any[]
+  @State() filteredItemsPerPage: any[] = [];
+  @State() visiblePages: (number | string)[] = [];
 
-  private CLASS_DISABLED = "disabled"
-  private CLASS_ACTIVE = "active"
-  private CLASS_SIBLING_ACTIVE = "active-sibling"
-  private DATA_KEY = "pagination";
+  private CLASS_DISABLED = "disabled";
+  private CLASS_ACTIVE = "active";
+  private prevInternalPage: number;
 
   @Listen('ifxSelect')
-  setItemsPerPage(e) {
-    if(e.detail) {
-      this.internalItemsPerPage = parseInt(e.detail.label)
-    } else { 
-      this.internalItemsPerPage = 10;
-    }
+  setItemsPerPage(e: CustomEvent) {
+    this.internalItemsPerPage = e.detail?.label ? parseInt(e.detail.label) : 10;
   }
 
   componentDidLoad() {
-    this.calculateVisiblePageIndices()
-    var paginationElement = this.el.shadowRoot.querySelector(".pagination");
-    let leftArrow = paginationElement.querySelector('.prev')
-    this.navigateSinglePage(leftArrow, true)
+    this.initPagination();
+  }
 
+  updateVisiblePages() {
+    const buffer = 2;
+    const totalPages = this.numberOfPages.length;
+    const current = this.internalPage;
+    let pages: (number | string)[] = [];
+
+    if (totalPages <= 7) {
+      pages = [...this.numberOfPages];
+    } else {
+      pages.push(1);
+      if (current > buffer + 2) pages.push('...');
+      
+      const start = Math.max(2, current - buffer);
+      const end = Math.min(totalPages - 1, current + buffer);
+      for (let i = start; i <= end; i++) pages.push(i);
+      
+      if (current < totalPages - buffer - 1) pages.push('...');
+      pages.push(totalPages);
+    }
+
+    this.visiblePages = pages.filter((v, i, a) => a.indexOf(v) === i);
   }
 
   calculateNumberOfPages() {
-    if (isNaN(this.currentPage)) {
-      this.currentPage = 1;
-    }
-    const total = this.total <= this.internalItemsPerPage ? this.internalItemsPerPage : this.total;
-    const itemsPerPage = this.internalItemsPerPage;
-    const totalPageNumber = Math.ceil(total / itemsPerPage);
-
-    if (this.currentPage <= 0) {
-      this.internalPage = 1;
-    } else if (this.currentPage > totalPageNumber) {
-      this.internalPage = totalPageNumber;
-    } else this.internalPage = this.currentPage;
-
-    this.numberOfPages = Array.from({ length: totalPageNumber }, (_, index) => index + 1);
+    const totalPages = Math.ceil(this.total / this.internalItemsPerPage);
+    this.numberOfPages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.internalPage = Math.max(1, Math.min(this.currentPage, totalPages));
   }
 
   filterOptionsArray() { 
-    let obj: any[] = Array.isArray(this.itemsPerPage) ? this.itemsPerPage : JSON.parse(this.itemsPerPage);
-    for(let i = 0; i < obj.length; i++) { 
-      let item = obj[i];
-      if(!item.label) { 
-        item.label = item.value;
-      }
-    }
-    this.filteredItemsPerPage = obj;
+    const items = typeof this.itemsPerPage === 'string' ? 
+      JSON.parse(this.itemsPerPage) : this.itemsPerPage;
+    this.filteredItemsPerPage = items.map(item => ({
+      ...item,
+      label: item.label || item.value
+    }));
   }
 
   componentWillLoad() {
-    this.calculateNumberOfPages()
-    this.filterOptionsArray()
+    this.calculateNumberOfPages();
+    this.filterOptionsArray();
+    this.updateVisiblePages();
   }
 
   componentDidUpdate() {
-    var paginationElement = this.el.shadowRoot.querySelector(".pagination");
-    var listItems = paginationElement.querySelectorAll("li");
-    this.addEventListenersToPageItems(listItems, paginationElement)
-
-    if (paginationElement.dataset[this.DATA_KEY] < this.numberOfPages) {
-      paginationElement.dataset[this.DATA_KEY] = paginationElement.dataset[this.DATA_KEY];
-    } else paginationElement.dataset[this.DATA_KEY] = 0;
-
-    this.changePage(paginationElement, false)
+    if (this.prevInternalPage !== this.internalPage) {
+      this.updateVisiblePages();
+      this.prevInternalPage = this.internalPage;
+    }
+    this.initPagination();
   }
 
-  componentWillUpdate() {
-    this.calculateNumberOfPages()
-  }
-
-  handleEventEmission(currActive) {
-    let currentPage = currActive + 1;
-    let totalPages = this.numberOfPages.length;
-    let prevPage = currActive === 0 ? null : currActive;
-    let nextPage = currActive + 2 > totalPages ? null : currActive + 2;
-    let itemsPerPage = this.internalItemsPerPage
-    this.ifxPageChange.emit({ currentPage, totalPages, prevPage, nextPage, itemsPerPage })
-  }
-
-  addEventListenersToPageItems(listItems, paginationContainer) {
-    listItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        var parent = paginationContainer;
-        let listItems = parent.querySelectorAll("li");
-        parent.dataset[this.DATA_KEY] = Array.from(listItems).indexOf(e.currentTarget)
-        this.changePage(parent, false)
-      });
+  handleEventEmission() {
+    this.ifxPageChange.emit({
+      currentPage: this.internalPage,
+      totalPages: this.numberOfPages.length,
+      itemsPerPage: this.internalItemsPerPage
     });
   }
 
-  initPagination(paginationContainer) {
-    var listItems = paginationContainer.querySelectorAll("li");
+  initPagination() {
+    const pagination = this.el.shadowRoot.querySelector('.pagination');
+    if (!pagination) return;
 
-    paginationContainer.dataset[this.DATA_KEY] = Array.from(listItems).indexOf(paginationContainer.querySelector(".active"));
-
-    paginationContainer.querySelector(".prev").addEventListener("click", (e) => this.navigateSinglePage(e, false));
-    paginationContainer.querySelector(".next").addEventListener("click", (e) => this.navigateSinglePage(e, false));
-
-    this.addEventListenersToPageItems(listItems, paginationContainer)
-  }
-
-  navigateSinglePage(e, initialValue) {
-    let el = e;
-    if (typeof e.target === 'object') {
-      el = e.target
-    }
-
-    if (!el.classList.contains(this.CLASS_DISABLED)) {
-      var parent = el.closest(".pagination");
-      var currActive = parseInt(parent.dataset[this.DATA_KEY], 10);
-      currActive += 1 * (el.classList.contains("prev") ? -1 : 1);
-
-      if (currActive === -1) {
-        currActive = 0;
+    const updateButtons = () => {
+      const prev = pagination.querySelector<HTMLButtonElement>('.prev');
+      const next = pagination.querySelector<HTMLButtonElement>('.next');
+      if (prev) {
+        prev.disabled = this.internalPage === 1;
+        prev.classList.toggle(this.CLASS_DISABLED, this.internalPage === 1);
       }
+      if (next) {
+        next.disabled = this.internalPage === this.numberOfPages.length;
+        next.classList.toggle(this.CLASS_DISABLED, this.internalPage === this.numberOfPages.length);
+      }
+    };
 
-      parent.dataset[this.DATA_KEY] = currActive;
-      this.changePage(parent, initialValue)
-    }
-  }
-
-  changePage(pagination, initialValue) {
-    const paginationContainer = pagination;
-    var listItems = paginationContainer.querySelectorAll("li");
-    var currActive = parseInt(paginationContainer.dataset[this.DATA_KEY], 10);
-
-    listItems.forEach((item) => {
-      item.classList.remove(this.CLASS_ACTIVE);
-      item.classList.remove(this.CLASS_SIBLING_ACTIVE);
+    pagination.querySelectorAll('li').forEach(li => {
+      li.removeEventListener('click', this.handlePageClick);
+      li.addEventListener('click', this.handlePageClick);
     });
 
-    if (initialValue && this.internalPage > 1) {
-      currActive = Math.floor(this.internalPage - 1);
-      paginationContainer.dataset[this.DATA_KEY] = currActive;
-    }
-
-    this.handleEventEmission(currActive)
-
-    listItems[currActive].classList.add(this.CLASS_ACTIVE);
-
-    if (currActive === 0) {
-      paginationContainer.querySelector(".prev").classList.add(this.CLASS_DISABLED);
-      paginationContainer.querySelector(".prev").disabled = true;
-
-    } else {
-      listItems[currActive - 1].classList.add(this.CLASS_SIBLING_ACTIVE);
-      paginationContainer.querySelector(".prev").classList.remove(this.CLASS_DISABLED);
-      paginationContainer.querySelector(".prev").disabled = false;
-    }
-
-    if (currActive === (listItems.length - 1)) {
-      paginationContainer.querySelector(".next").classList.add(this.CLASS_DISABLED);
-      paginationContainer.querySelector(".next").disabled = true;
-
-    } else {
-      paginationContainer.querySelector(".next").classList.remove(this.CLASS_DISABLED);
-      paginationContainer.querySelector(".next").disabled = false;
-    }
+    updateButtons();
   }
 
-  calculateVisiblePageIndices() {
-    var paginationElement = this.el.shadowRoot.querySelector(".pagination");
-    this.initPagination(paginationElement)
+  private handlePageClick = (e: Event) => {
+    const li = e.currentTarget as HTMLLIElement;
+    const page = parseInt(li.dataset.page);
+    if (!isNaN(page)) this.changePage(page);
+  };
+
+  changePage(newPage: number) {
+    newPage = Math.max(1, Math.min(newPage, this.numberOfPages.length));
+    if (newPage === this.internalPage) return;
+    
+    this.internalPage = newPage;
+    this.handleEventEmission();
+    this.initPagination();
   }
 
   render() {
     return (
-      <div aria-label='a pagination' aria-value={this.currentPage} class="container">
-        <div class='items__per-page-wrapper'>
-          <div class='items__per-page-label'>Results per Page</div>
-          <div class='items__per-page-field'>
+      <div class="container">
+        <div class="items__per-page-wrapper">
+          <div class="items__per-page-label">Results per Page</div>
+          <div class="items__per-page-field">
             <ifx-select
-              value='undefined'
-              size='s'
-              placeholder='false'
-              show-search='false'
-              search-placeholder-value='Search...'
-              disabled={false}
-              error={false}
-              error-message='Error'
-              label=''
-              placeholder-value='Placeholder'
-              options={this.filteredItemsPerPage} >
-            </ifx-select>
+              value={undefined}
+              size="s"
+              options={this.filteredItemsPerPage}
+              placeholder-value="Select"
+            ></ifx-select>
           </div>
         </div>
-        <div class='items__total-wrapper'>
-          <div class='page__numbers-wrapper'>
-            <div class="pagination">
-              <ifx-icon-button variant='secondary' class="prev" color='primary' icon='arrow-left-24'></ifx-icon-button>
-              <ol>
-                {this.numberOfPages.map((item) =>
-                  <li class={`${this.internalPage === item ? 'active' : ""}`}><a href={undefined}>{item}</a></li>)}
-              </ol>
-              <ifx-icon-button class="next" variant='secondary' color='primary' icon='arrow-right-24'></ifx-icon-button>
-            </div>
+        
+        <div class="items__total-wrapper">
+          <div class="pagination">
+            <ifx-icon-button
+              class="prev"
+              icon="arrow-left-24"
+              onClick={() => this.changePage(this.internalPage - 1)}
+            ></ifx-icon-button>
+            
+            <ol>
+              {this.visiblePages.map((page, i) => typeof page === 'number' ? (
+                <li 
+                  class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
+                  data-page={page}
+                >
+                  <a href="javascript:void(0)">{page}</a>
+                </li>
+              ) : (
+                <li class="ellipsis" key={`ellipsis-${i}`}>
+                  <span>...</span>
+                </li>
+              ))}
+            </ol>
+            
+            <ifx-icon-button
+              class="next"
+              icon="arrow-right-24"
+              onClick={() => this.changePage(this.internalPage + 1)}
+            ></ifx-icon-button>
           </div>
         </div>
       </div>
