@@ -18,6 +18,7 @@
 | `rows`                  | `rows`                 |             | `any`                                                      | `undefined` |
 | `showLoading`           | `show-loading`         |             | `boolean`                                                  | `false`     |
 | `tableHeight`           | `table-height`         |             | `string`                                                   | `'auto'`    |
+| `variant`               | `variant`              |             | `string`                                                   | `'default'` |
 
 
 ## Methods
