@@ -1,4 +1,4 @@
-import { Component, h, State, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter, Prop, Method, Element } from '@stencil/core';
 
 interface UploadTask {
   file: File;
@@ -13,20 +13,23 @@ interface UploadTask {
   shadow: true
 })
 export class IfxFileUpload {
+  @Element() hostElement: HTMLElement;
+
   @Prop() dragAndDrop: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
   @Prop() uploadHandler?: (file: File) => Promise<void>;
 
-  @Prop() labels: {
-    browseFiles?: string;
-    dragAndDrop?: string;
-    fileTooLarge?: string;
-    unsupportedFileType?: string;
-    uploading?: string;
-    uploaded?: string;
-    supportedFormats?: string;
-  } = {};
+
+  // Einzelne Label Props
+  @Prop() labelBrowseFiles: string = 'Browse files';
+  @Prop() labelDragAndDrop: string = 'Drag & Drop or browse files to upload';
+  @Prop() labelFileTooLarge: string = 'Upload failed. Max file size: {{size}}MB.';
+  @Prop() labelUnsupportedFileType: string = 'Unsupported file typ.';
+  @Prop() labelUploaded: string = 'Successfully uploaded';
+  @Prop() labelSupportedFormatsTemplate: string = 'Supported file formats: {{types}}. Max file size: {{size}}MB.';
+
+  private showDemoStates?: boolean;
 
   @State() isDragOver: boolean = false;
   @State() files: File[] = [];
@@ -56,10 +59,6 @@ export class IfxFileUpload {
     mp3: 'audio/mpeg',
     mp4: 'video/mp4'
   };
-
-  private getLabel(key: keyof typeof this.labels, fallback: string): string {
-    return this.labels?.[key] ?? fallback;
-  }
 
   private getNormalizedFileTypes(): string[] {
     if (Array.isArray(this.allowedFileTypes)) {
@@ -302,11 +301,40 @@ export class IfxFileUpload {
     return this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase()).join(',');
   }
 
-  getSupportedFileText(): string {
-    return this.getLabel(
-      'supportedFormats',
-      `Supported file formats: ${this.getNormalizedFileTypes().map(ext => ext.toUpperCase()).join(', ')}. Max file size: ${this.maxFileSizeMB}MB.`
-    );
+  private getSupportedFileText(): string {
+    return this.labelSupportedFormatsTemplate
+      .replace('{{types}}', this.getNormalizedFileTypes().map(ext => ext.toUpperCase()).join(', '))
+      .replace('{{size}}', this.maxFileSizeMB.toString());
+  }
+
+  private getFormattedFileTooLargeText(): string {
+    return this.labelFileTooLarge.replace('{{size}}', this.maxFileSizeMB.toString());
+  }
+
+  componentDidLoad() {
+    if (this.hostElement.hasAttribute('show-demo-states')) {
+      this.showDemoStates = true;
+    }
+
+    if (this.showDemoStates) {
+      this.injectDemoState();
+    }
+  }
+
+  @Method()
+  async injectDemoState() {
+    const uploading = new File(['demo'], 'Image.jpg', { type: 'image/jpeg' });
+    const uploaded = new File(['demo'], 'File.pdf', { type: 'application/pdf' });
+    const tooLarge = new File(['demo'], 'Video.mp4', { type: 'video/mp4' });
+    const unsupported = new File(['demo'], 'Script.exe', { type: 'application/x-msdownload' });
+
+    this.files = [uploaded, uploading];
+    this.uploadTasks = [
+      { file: uploaded, progress: 100, intervalId: null, completed: true },
+      { file: uploading, progress: 35, intervalId: null, completed: false }
+    ];
+    this.rejectedSizeFiles = [tooLarge.name];
+    this.rejectedTypeFiles = [unsupported.name];
   }
 
   render() {
@@ -339,7 +367,7 @@ export class IfxFileUpload {
                 </div>
                 <div class="file-middle-row">
                   <span class="file-status">
-                    {this.getLabel('fileTooLarge', `File is too large (>${this.maxFileSizeMB}MB)`)}
+                    {this.getFormattedFileTooLargeText()}
                   </span>
                 </div>
               </div>
@@ -370,7 +398,7 @@ export class IfxFileUpload {
                 </div>
                 <div class="file-middle-row">
                   <span class="file-status">
-                    {this.getLabel('unsupportedFileType', 'Unsupported file type')}
+                    {this.labelUnsupportedFileType}
                   </span>
                 </div>
               </div>
@@ -427,7 +455,7 @@ export class IfxFileUpload {
                       {!isUploading && (
                         <span>
                           <ifx-icon icon="check-12"></ifx-icon>&nbsp;
-                          {this.getLabel('uploaded', 'Successfully uploaded')}
+                          {this.labelUploaded}
                         </span>
                       )}
                     </span>
@@ -457,7 +485,7 @@ export class IfxFileUpload {
         <label>
           <ifx-button variant="secondary">
             <ifx-icon icon="upload-16"></ifx-icon>
-            {this.getLabel('browseFiles', 'Browse files')}
+            {this.labelBrowseFiles}
           </ifx-button>
           <input
             ref={handleInputRef}
@@ -495,7 +523,7 @@ export class IfxFileUpload {
         onDrop={(e) => this.handleDrop(e)}
       >
         <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
-        <p>{this.getLabel('dragAndDrop', 'Drag & Drop or browse files to upload')}</p>
+        <p>{this.labelDragAndDrop}</p>
         <p class="file-upload-info">
           {this.getSupportedFileText()}
         </p>

@@ -35,6 +35,7 @@ Type: `Promise<void>`
 
 ### Used by
 
+ - [ifx-file-upload](../file-upload)
  - [ifx-modal](../modal)
  - [ifx-pagination](../pagination)
  - [ifx-templates-ui](../templates/templates-ui)
@@ -47,6 +48,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-icon-button --> ifx-icon
+  ifx-file-upload --> ifx-icon-button
   ifx-modal --> ifx-icon-button
   ifx-pagination --> ifx-icon-button
   ifx-templates-ui --> ifx-icon-button

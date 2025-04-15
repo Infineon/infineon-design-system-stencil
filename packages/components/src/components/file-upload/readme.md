@@ -1,111 +1,75 @@
 # ifx-file-upload
 
-The `ifx-file-upload` component provides an intuitive file upload functionality, supporting traditional click-to-browse or drag-and-drop interaction methods.
 
----
 
-## Usage
+<!-- Auto Generated Below -->
 
-### Standard usage
-
-```html
-<ifx-file-upload></ifx-file-upload>
-```
-
-### With drag-and-drop enabled
-
-```html
-<ifx-file-upload drag-and-drop></ifx-file-upload>
-```
-
-### Custom configuration
-
-```html
-<ifx-file-upload
-  drag-and-drop
-  max-file-size-m-b="10"
-  allowed-file-types="['pdf','png']"
-></ifx-file-upload>
-```
-
-### With custom labels
-
-```html
-<ifx-file-upload
-  labels="{
-    browseFiles: 'Select files',
-    fileTooLarge: 'File exceeds allowed size.',
-    unsupportedFileType: 'Unsupported format',
-    uploading: 'File is uploading...',
-    uploaded: 'Upload completed!',
-    supportedFormats: 'Allowed formats: PDF, PNG.'
-  }"
-></ifx-file-upload>
-```
-
----
 
 ## Properties
 
-| Name               | Type                            | Default                                              | Description                                               |
-| ------------------ | ------------------------------- | ---------------------------------------------------- | --------------------------------------------------------- |
-| `dragAndDrop`      | `boolean`                       | `false`                                              | Enables drag-and-drop functionality                       |
-| `maxFileSizeMB`    | `number`                        | `7`                                                  | Maximum allowed file size in megabytes                    |
-| `allowedFileTypes` | `string \| string[]`            | `['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4']` | Allowed file extensions                                   |
-| `labels`           | `object`                        | `{}`                                                 | Customizable text labels for component states and actions |
-| `uploadHandler`    | `(file: File) => Promise<void>` | `undefined`                                          | Custom handler function for file uploads (optional)       |
+| Property                        | Attribute                          | Description | Type                            | Default                                                           |
+| ------------------------------- | ---------------------------------- | ----------- | ------------------------------- | ----------------------------------------------------------------- |
+| `allowedFileTypes`              | `allowed-file-types`               |             | `string \| string[]`            | `['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4']`              |
+| `dragAndDrop`                   | `drag-and-drop`                    |             | `boolean`                       | `false`                                                           |
+| `labelBrowseFiles`              | `label-browse-files`               |             | `string`                        | `'Browse files'`                                                  |
+| `labelDragAndDrop`              | `label-drag-and-drop`              |             | `string`                        | `'Drag & Drop or browse files to upload'`                         |
+| `labelFileTooLarge`             | `label-file-too-large`             |             | `string`                        | `'Upload failed. Max file size: {{size}}MB.'`                     |
+| `labelSupportedFormatsTemplate` | `label-supported-formats-template` |             | `string`                        | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
+| `labelUnsupportedFileType`      | `label-unsupported-file-type`      |             | `string`                        | `'Unsupported file typ.'`                                         |
+| `labelUploaded`                 | `label-uploaded`                   |             | `string`                        | `'Successfully uploaded'`                                         |
+| `maxFileSizeMB`                 | `max-file-size-m-b`                |             | `number`                        | `7`                                                               |
+| `uploadHandler`                 | --                                 |             | `(file: File) => Promise<void>` | `undefined`                                                       |
 
----
 
 ## Events
 
-| Event Name              | Payload Detail                                                           | Beschreibung                                                                           |
-| ----------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `ifxFileUploadAdd`      | `{ addedFiles: File[], files: File[] }`                                  | Wird ausgelöst, wenn neue Dateien hinzugefügt wurden.                                  |
-| `ifxFileUploadRemove`   | `{ removedFile: File, files: File[] }`                                   | Wird ausgelöst, wenn eine Datei entfernt wurde.                                        |
-| `ifxFileUploadChange`   | `{ files: File[] }`                                                      | Wird immer ausgelöst, wenn sich die Liste der Dateien ändert.                          |
-| `ifxFileUploadError`    | `{ errorType: string, file: File, message: string }`                     | Wird ausgelöst, wenn beim Upload ein Fehler auftritt.                                  |
-| `ifxFileUploadInvalid`  | `{ file: File, reason: 'invalid-type' \| 'invalid-size' }`               | Wird ausgelöst, wenn eine Datei wegen Typ oder Größe abgelehnt wird.                   |
-| `ifxFileUploadStart`    | `{ file: File }`                                                         | Wird ausgelöst, wenn der Upload einer Datei gestartet wird.                            |
-| `ifxFileUploadComplete` | `{ file: File }`                                                         | Wird ausgelöst, wenn eine Datei erfolgreich hochgeladen wurde.                         |
-| `ifxFileUploadAbort`    | `{ file: File }`                                                         | Wird ausgelöst, wenn ein Upload abgebrochen wurde.                                     |
-| `ifxFileUploadDrop`     | `{ droppedFiles: File[], acceptedFiles: File[], rejectedFiles: File[] }` | Wird bei Drag & Drop ausgelöst. Enthält alle gedroppten, gültigen & invaliden Dateien. |
-| `ifxFileUploadClick`    | `void`                                                                   | Wird ausgelöst, wenn auf den Dateiupload geklickt wird (nur bei Drag&Drop).            |
+| Event                   | Description | Type                                                                                   |
+| ----------------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `ifxFileUploadAbort`    |             | `CustomEvent<{ file: File; }>`                                                         |
+| `ifxFileUploadAdd`      |             | `CustomEvent<{ addedFiles: File[]; files: File[]; }>`                                  |
+| `ifxFileUploadChange`   |             | `CustomEvent<{ files: File[]; }>`                                                      |
+| `ifxFileUploadClick`    |             | `CustomEvent<void>`                                                                    |
+| `ifxFileUploadComplete` |             | `CustomEvent<{ file: File; }>`                                                         |
+| `ifxFileUploadDrop`     |             | `CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>` |
+| `ifxFileUploadError`    |             | `CustomEvent<{ errorType: string; file: File; message: string; }>`                     |
+| `ifxFileUploadInvalid`  |             | `CustomEvent<{ file: File; reason: string; }>`                                         |
+| `ifxFileUploadRemove`   |             | `CustomEvent<{ removedFile: File; files: File[]; }>`                                   |
+| `ifxFileUploadStart`    |             | `CustomEvent<{ file: File; }>`                                                         |
 
-
----
 
 ## Methods
 
-### `cancelUpload(file: File)`
-Cancels an ongoing upload.
+### `injectDemoState() => Promise<void>`
 
-### `removeFile(file: File)`
-Removes a file from the upload list.
 
----
 
-## Slots
+#### Returns
 
-No slots available.
+Type: `Promise<void>`
 
----
 
-## CSS Custom Properties
 
-The component uses Shadow DOM styling, adhering to Infineon's Design System styling guidelines.
-
----
 
 ## Dependencies
 
-- `ifx-button`
-- `ifx-icon`
-- `ifx-icon-button`
-- `ifx-progress-bar`
+### Depends on
 
+- [ifx-icon](../icon)
+- [ifx-icon-button](../icon-button)
+- [ifx-progress-bar](../progress-bar)
+- [ifx-button](../button)
 
----
+### Graph
+```mermaid
+graph TD;
+  ifx-file-upload --> ifx-icon
+  ifx-file-upload --> ifx-icon-button
+  ifx-file-upload --> ifx-progress-bar
+  ifx-file-upload --> ifx-button
+  ifx-icon-button --> ifx-icon
+  style ifx-file-upload fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
-
