@@ -34,7 +34,16 @@ export class IfxFileUpload {
   @State() rejectedSizeFiles: string[] = [];
   @State() rejectedTypeFiles: string[] = [];
 
-  @Event() fileUploadComplete: EventEmitter<File[]>;
+  @Event() ifxFileUploadAdd: EventEmitter<{ addedFiles: File[]; files: File[] }>;
+  @Event() ifxFileUploadRemove: EventEmitter<{ removedFile: File; files: File[] }>;
+  @Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
+  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string }>;
+  @Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
+  @Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
+  @Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;
+  @Event() ifxFileUploadAbort: EventEmitter<{ file: File }>;
+  @Event() ifxFileUploadDrop: EventEmitter<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>;
+  @Event() ifxFileUploadClick: EventEmitter<void>;
 
   private fileInputEl: HTMLInputElement | null = null;
 
@@ -74,6 +83,27 @@ export class IfxFileUpload {
     event.stopPropagation();
     this.isDragOver = false;
     if (event.dataTransfer?.files) {
+      const droppedFiles = Array.from(event.dataTransfer.files);
+      const allowedMimes = this.getNormalizedFileTypes()
+        .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
+        .filter(Boolean);
+
+      const acceptedFiles: File[] = [];
+      const rejectedFiles: File[] = [];
+
+      droppedFiles.forEach(file => {
+        const isValidType = allowedMimes.includes(file.type);
+        const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
+        if (isValidType && isValidSize) acceptedFiles.push(file);
+        else rejectedFiles.push(file);
+      });
+
+      this.ifxFileUploadDrop.emit({
+        droppedFiles,
+        acceptedFiles,
+        rejectedFiles
+      });
+
       this.processFiles(event.dataTransfer.files);
     }
   }
@@ -105,8 +135,15 @@ export class IfxFileUpload {
       if (isValidType && isValidSize) {
         validFiles.push(file);
       } else {
-        if (!isValidType) rejectedType.push(file.name);
-        if (!isValidSize) rejectedSize.push(file.name);
+        if (!isValidType) {
+          rejectedType.push(file.name);
+          this.ifxFileUploadInvalid.emit({ file, reason: 'invalid-type' });
+        }
+        if (!isValidSize) {
+          rejectedSize.push(file.name);
+          this.ifxFileUploadInvalid.emit({ file, reason: 'invalid-size' });
+        }
+        this.ifxFileUploadError.emit({ file, errorType: !isValidType ? 'invalid-type' : 'file-too-large', message: 'Invalid file rejected' });
       }
     });
 
@@ -115,9 +152,16 @@ export class IfxFileUpload {
 
     validFiles.forEach(file => this.startUpload(file));
     this.files = [...this.files, ...validFiles];
+
+    if (validFiles.length > 0) {
+      this.ifxFileUploadAdd.emit({ addedFiles: validFiles, files: this.files });
+      this.ifxFileUploadChange.emit({ files: this.files });
+    }
   }
 
   startUpload(file: File) {
+    this.ifxFileUploadStart.emit({ file });
+
     const task: UploadTask = {
       file,
       progress: 0,
@@ -145,18 +189,19 @@ export class IfxFileUpload {
         task.progress = 100;
         task.completed = true;
         this.uploadTasks = [...this.uploadTasks];
-        this.fileUploadComplete.emit(this.files);
+        this.ifxFileUploadComplete.emit({ file });
+        this.ifxFileUploadChange.emit({ files: this.files });
       }).catch(() => {
         console.error('Upload failed');
+        this.ifxFileUploadError.emit({ file, errorType: 'upload-failed', message: 'Upload handler rejected file' });
       });
     } else {
-      // Fake Upload for Demo / Storybook
       const totalSize = file.size;
-      const fakeUploadSpeed = 500000; // 500 KB/s
+      const fakeUploadSpeed = 500000;
       let uploaded = 0;
 
       task.intervalId = window.setInterval(() => {
-        uploaded += fakeUploadSpeed / 5; // 200ms Interval
+        uploaded += fakeUploadSpeed / 5;
         const progress = Math.min(100, Math.round((uploaded / totalSize) * 100));
         task.progress = progress;
         this.uploadTasks = [...this.uploadTasks];
@@ -166,7 +211,8 @@ export class IfxFileUpload {
           task.completed = true;
           task.intervalId = null;
           this.uploadTasks = [...this.uploadTasks];
-          this.fileUploadComplete.emit(this.files);
+          this.ifxFileUploadComplete.emit({ file });
+          this.ifxFileUploadChange.emit({ files: this.files });
         }
       }, 200);
     }
@@ -184,6 +230,8 @@ export class IfxFileUpload {
       this.uploadTasks = this.uploadTasks.filter((_, i) => i !== taskIndex);
     }
     this.files = this.files.filter(f => f.name !== file.name);
+    this.ifxFileUploadAbort.emit({ file });
+    this.ifxFileUploadChange.emit({ files: this.files });
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
     }
@@ -192,6 +240,8 @@ export class IfxFileUpload {
   removeFile(file: File) {
     this.uploadTasks = this.uploadTasks.filter(task => task.file.name !== file.name);
     this.files = this.files.filter(f => f.name !== file.name);
+    this.ifxFileUploadRemove.emit({ removedFile: file, files: this.files });
+    this.ifxFileUploadChange.emit({ files: this.files });
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
     }

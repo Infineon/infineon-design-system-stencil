@@ -59,9 +59,19 @@ The `ifx-file-upload` component provides an intuitive file upload functionality,
 
 ## Events
 
-| Name                 | Detail   | Description                                           |
-| -------------------- | -------- | ----------------------------------------------------- |
-| `fileUploadComplete` | `File[]` | Emits when one or more files have completed uploading |
+| Event Name              | Payload Detail                                                           | Beschreibung                                                                           |
+| ----------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| `ifxFileUploadAdd`      | `{ addedFiles: File[], files: File[] }`                                  | Wird ausgelöst, wenn neue Dateien hinzugefügt wurden.                                  |
+| `ifxFileUploadRemove`   | `{ removedFile: File, files: File[] }`                                   | Wird ausgelöst, wenn eine Datei entfernt wurde.                                        |
+| `ifxFileUploadChange`   | `{ files: File[] }`                                                      | Wird immer ausgelöst, wenn sich die Liste der Dateien ändert.                          |
+| `ifxFileUploadError`    | `{ errorType: string, file: File, message: string }`                     | Wird ausgelöst, wenn beim Upload ein Fehler auftritt.                                  |
+| `ifxFileUploadInvalid`  | `{ file: File, reason: 'invalid-type' \| 'invalid-size' }`               | Wird ausgelöst, wenn eine Datei wegen Typ oder Größe abgelehnt wird.                   |
+| `ifxFileUploadStart`    | `{ file: File }`                                                         | Wird ausgelöst, wenn der Upload einer Datei gestartet wird.                            |
+| `ifxFileUploadComplete` | `{ file: File }`                                                         | Wird ausgelöst, wenn eine Datei erfolgreich hochgeladen wurde.                         |
+| `ifxFileUploadAbort`    | `{ file: File }`                                                         | Wird ausgelöst, wenn ein Upload abgebrochen wurde.                                     |
+| `ifxFileUploadDrop`     | `{ droppedFiles: File[], acceptedFiles: File[], rejectedFiles: File[] }` | Wird bei Drag & Drop ausgelöst. Enthält alle gedroppten, gültigen & invaliden Dateien. |
+| `ifxFileUploadClick`    | `void`                                                                   | Wird ausgelöst, wenn auf den Dateiupload geklickt wird (nur bei Drag&Drop).            |
+
 
 ---
 
