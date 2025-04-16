@@ -34,6 +34,7 @@
  - [ifx-date-picker](../date-picker)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
+ - [ifx-file-upload](../file-upload)
  - [ifx-filter-accordion](../table-advanced-version/filter-type-group/filter-accordion)
  - [ifx-filter-bar](../table-advanced-version/filter-bar)
  - [ifx-icon-button](../icon-button)
@@ -73,6 +74,7 @@ graph TD;
   ifx-date-picker --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
+  ifx-file-upload --> ifx-icon
   ifx-filter-accordion --> ifx-icon
   ifx-filter-bar --> ifx-icon
   ifx-icon-button --> ifx-icon

@@ -38,6 +38,7 @@ Type: `Promise<void>`
 ### Used by
 
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
+ - [ifx-file-upload](../file-upload)
  - [ifx-filter-bar](../table-advanced-version/filter-bar)
  - [ifx-table](../table-advanced-version)
  - [ifx-template](../templates/template)
@@ -46,6 +47,7 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   ifx-dropdown-trigger-button --> ifx-button
+  ifx-file-upload --> ifx-button
   ifx-filter-bar --> ifx-button
   ifx-table --> ifx-button
   ifx-template --> ifx-button
