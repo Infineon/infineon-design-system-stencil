@@ -9,7 +9,7 @@
   align-items: flex-start;
   align-self: stretch;
   gap: tokens.$ifxSpace50;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
   background: tokens.$ifxColorEngineering200;
 }
 
@@ -19,7 +19,7 @@
   align-items: flex-start;
   align-self: stretch;
   gap: tokens.$ifxSpace50;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
 }
 
 .topbar-filter-search-wrapper ifx-search-field {
