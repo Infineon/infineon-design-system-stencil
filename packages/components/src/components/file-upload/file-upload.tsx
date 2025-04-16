@@ -20,12 +20,10 @@ export class IfxFileUpload {
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
   @Prop() uploadHandler?: (file: File) => Promise<void>;
 
-
-  // Einzelne Label Props
   @Prop() labelBrowseFiles: string = 'Browse files';
   @Prop() labelDragAndDrop: string = 'Drag & Drop or browse files to upload';
   @Prop() labelFileTooLarge: string = 'Upload failed. Max file size: {{size}}MB.';
-  @Prop() labelUnsupportedFileType: string = 'Unsupported file typ.';
+  @Prop() labelUnsupportedFileType: string = 'Unsupported file type.';
   @Prop() labelUploaded: string = 'Successfully uploaded';
   @Prop() labelSupportedFormatsTemplate: string = 'Supported file formats: {{types}}. Max file size: {{size}}MB.';
 
@@ -289,14 +287,6 @@ export class IfxFileUpload {
       : `${sizeInKB.toFixed(0)} KB`;
   }
 
-  getEstimatedTime(progress: number): string {
-    const remaining = 100 - progress;
-    const time = (remaining / 10) * 0.2;
-    return time > 60
-      ? `${Math.ceil(time / 60)} min`
-      : `${Math.ceil(time)} seconds`;
-  }
-
   getAcceptAttribute(): string {
     return this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase()).join(',');
   }
@@ -449,7 +439,7 @@ export class IfxFileUpload {
                   <div class="file-middle-row">
                     <span class="file-size">{this.getFormattedSize(file)}</span>
                     {isUploading && (
-                      <span class="file-time">&nbsp;–&nbsp;{this.getEstimatedTime(progress)}</span>
+                      <span class="file-uploading">&nbsp;–&nbsp;Uploading …</span>
                     )}
                     <span class="file-status">
                       {!isUploading && (

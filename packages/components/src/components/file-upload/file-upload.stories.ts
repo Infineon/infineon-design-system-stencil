@@ -106,7 +106,7 @@ export const UploadFileButton: Story = {
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
-    labelUnsupportedFileType: 'Unsupported file typ.',
+    labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
     labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
   },
@@ -122,7 +122,7 @@ export const UploadAreaDragDrop: Story = {
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
-    labelUnsupportedFileType: 'Unsupported file typ.',
+    labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
     labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
   },

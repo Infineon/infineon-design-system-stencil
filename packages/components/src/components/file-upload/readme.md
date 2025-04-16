@@ -15,7 +15,7 @@
 | `labelDragAndDrop`              | `label-drag-and-drop`              |             | `string`                        | `'Drag & Drop or browse files to upload'`                         |
 | `labelFileTooLarge`             | `label-file-too-large`             |             | `string`                        | `'Upload failed. Max file size: {{size}}MB.'`                     |
 | `labelSupportedFormatsTemplate` | `label-supported-formats-template` |             | `string`                        | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
-| `labelUnsupportedFileType`      | `label-unsupported-file-type`      |             | `string`                        | `'Unsupported file typ.'`                                         |
+| `labelUnsupportedFileType`      | `label-unsupported-file-type`      |             | `string`                        | `'Unsupported file type.'`                                        |
 | `labelUploaded`                 | `label-uploaded`                   |             | `string`                        | `'Successfully uploaded'`                                         |
 | `maxFileSizeMB`                 | `max-file-size-m-b`                |             | `number`                        | `7`                                                               |
 | `uploadHandler`                 | --                                 |             | `(file: File) => Promise<void>` | `undefined`                                                       |
