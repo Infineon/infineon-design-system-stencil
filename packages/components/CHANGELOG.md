@@ -1,3 +1,75 @@
+# v33.1.0 (Mon Apr 07 2025)
+
+#### 🚀 Enhancement
+
+- Tables: implements zebra variant [#1811](https://github.com/Infineon/infineon-design-system-stencil/pull/1811) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.0.1 (Thu Apr 03 2025)
+
+#### 🐛 Bug Fix
+
+- Tokens: update tokens package to latest version and the heading token's value across the DDS [#1810](https://github.com/Infineon/infineon-design-system-stencil/pull/1810) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.11.0 (Thu Apr 03 2025)
+
+#### 🚀 Enhancement
+
+- Date-picker: implements time feature [#1809](https://github.com/Infineon/infineon-design-system-stencil/pull/1809) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.10.1 (Wed Apr 02 2025)
+
+#### 🐛 Bug Fix
+
+- Stepper: fixes the gap between label and indicator [#1808](https://github.com/Infineon/infineon-design-system-stencil/pull/1808) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.10.0 (Tue Apr 01 2025)
+
+#### 🚀 Enhancement
+
+- text-field: makes internal input id customizable via a prop [#1807](https://github.com/Infineon/infineon-design-system-stencil/pull/1807) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v32.9.0 (Mon Mar 31 2025)
+
+#### 🚀 Enhancement
+
+- navbar-item: implements a notification feature [#1690](https://github.com/Infineon/infineon-design-system-stencil/pull/1690) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v32.8.3 (Tue Mar 25 2025)
 
 #### 🐛 Bug Fix
