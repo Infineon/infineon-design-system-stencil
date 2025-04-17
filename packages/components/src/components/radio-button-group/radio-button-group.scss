@@ -8,7 +8,7 @@
 
 .radio-button-group {
     display: flex;
-    font-family: var(--ifx-font-family);
+    font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
     gap: tokens.$ifxSpace100;
 
     &.horizontal {

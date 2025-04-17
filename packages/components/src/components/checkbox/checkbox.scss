@@ -12,7 +12,7 @@
     align-items: top;
     padding: 0px;
     gap: tokens.$ifxSpace100;
-    font-family: var(--ifx-font-family);
+    font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
 
     & .checkbox__wrapper {
         box-sizing: border-box;

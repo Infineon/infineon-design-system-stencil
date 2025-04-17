@@ -14,7 +14,7 @@
   border: 1px solid tokens.$ifxColorEngineering200;
   background-color: tokens.$ifxColorEngineering200;
   border-radius: 100px;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
   font-size: tokens.$ifxFontSizeS;
   line-height: tokens.$ifxLineHeightS;
   font-weight: 400;
