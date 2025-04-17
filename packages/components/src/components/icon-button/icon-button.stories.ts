@@ -12,6 +12,7 @@ export default {
     href: '',
     target: '_blank',
     shape: 'round',
+    AriaLabel: 'Icon Button',
   },
 
   argTypes: {
@@ -92,11 +93,18 @@ export default {
         }
       }
     },
+    AriaLabel: {
+      control: { type: 'text' },
+      description: 'Set the aria label of the icon button. Enhances accessibility.',
+      table: {
+        category: 'ifx-icon-button props'
+      }
+    },
   },
 };
 
 const DefaultTemplate = args =>
-  `<ifx-icon-button shape="${args.shape}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}"  size="${args.size}" disabled="${args.disabled}">
+  `<ifx-icon-button shape="${args.shape}" variant="${args.variant}" icon="${args.icon}" href="${args.href}" target="${args.target}"  size="${args.size}" disabled="${args.disabled}" aria-label="${args.AriaLabel}">
   </ifx-icon-button>`;
 
 export const Default = DefaultTemplate.bind({});
