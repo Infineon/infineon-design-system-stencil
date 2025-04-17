@@ -2,6 +2,6 @@
 
 
 :root {
-  --ifx-font-family: "#{tokens.$ifxFontFamilyBody}";
+  --ifx-font-family: #{tokens.$ifxFontFamilyBody};
   font-family: var(--ifx-font-family, sans-serif);
 }
