@@ -18,7 +18,7 @@
   width: 100%; // Ensure the bar itself can grow up to 100% width
   overflow: hidden; // Ensures that the inner progress bar doesn't exceed the width of the outer progress bar
   background-color: tokens.$ifxColorEngineering200;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});  
+  font-family: tokens.$ifxFontFamilyBody;  
   
   &.s {
     height: 4px;

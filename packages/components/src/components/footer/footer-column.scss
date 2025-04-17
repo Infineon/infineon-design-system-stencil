@@ -8,7 +8,7 @@
   gap: tokens.$ifxSpace150;
   padding-right: 8px;
   color: tokens.$ifxColorBaseBlack;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
+  font-family: tokens.$ifxFontFamilyBody;
 
   & ::slotted([slot=title]) {
     box-sizing: border-box;

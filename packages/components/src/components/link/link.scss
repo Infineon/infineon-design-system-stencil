@@ -14,7 +14,7 @@
   color: tokens.$ifxColorOcean500;
   gap: tokens.$ifxSpace100;
   line-height: 1.6;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
+  font-family: tokens.$ifxFontFamilyBody;
 
   &:hover { 
     cursor: pointer;

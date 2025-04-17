@@ -16,7 +16,7 @@
   border-right: 1px solid #EEEDED;
   width: 264px;
   height: 100%;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
+  font-family: tokens.$ifxFontFamilyBody;
 
   & .sidebar__top-container {
     display: flex;

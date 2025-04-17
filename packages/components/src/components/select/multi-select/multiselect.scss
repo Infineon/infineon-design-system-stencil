@@ -5,7 +5,7 @@
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
+  font-family: tokens.$ifxFontFamilyBody;
 
   &.small-select {
     height: 36px;

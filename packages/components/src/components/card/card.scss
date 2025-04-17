@@ -17,7 +17,7 @@
   //width: 22rem;
   width: 350px;
   height: auto;
-  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
+  font-family: tokens.$ifxFontFamilyBody;
 
   // when the link is focused or hovered, the border color changes
   &:has(.card-href:focus), &:has(.card-href:hover) {
