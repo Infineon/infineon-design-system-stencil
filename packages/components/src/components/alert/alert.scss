@@ -8,9 +8,8 @@
 .alert__info-wrapper {
   display: flex;
   padding: 16px 24px;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
   box-shadow: 0px 6px 9px 0px #1D1D1D1A;
-
 
   & .info__text-wrapper {
     display: flex;
@@ -78,7 +77,7 @@
   border-radius: tokens.$ifxBorderRadius12;
   color: tokens.$ifxColorBaseBlack;
   background-color: tokens.$ifxColorBaseWhite;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
   box-shadow: 0px 6px 9px 0px #1D1D1D1A;
 
 

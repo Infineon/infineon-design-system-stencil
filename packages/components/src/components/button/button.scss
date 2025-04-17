@@ -19,7 +19,7 @@
   font-weight: tokens.$ifxFontWeightSemibold;
   border-radius: tokens.$ifxBorderRadius12;
   line-height: tokens.$ifxLineHeightM;
-  font-family: var(--ifx-font-family);
+  font-family: var(--ifx-font-family, #{tokens.$ifxFontFamilyBody});
   font-style: normal;
   text-decoration: none;
   user-select: none;
