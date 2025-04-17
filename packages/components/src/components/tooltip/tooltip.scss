@@ -9,7 +9,7 @@
   display: inline-flex;
   flex-direction: column;
   position: relative;
-  font-family: var(--ifx-font-family);
+  font-family: tokens.$ifxFontFamilyBody;
 
 }
 

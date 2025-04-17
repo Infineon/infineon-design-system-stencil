@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   gap: 32px;
-  font-family: var(--ifx-font-family);
+  font-family: tokens.$ifxFontFamilyBody;
 
 
   & .items__per-page-wrapper {

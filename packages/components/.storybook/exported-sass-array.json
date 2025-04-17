@@ -761,8 +761,8 @@
   },
   {
     "name": "$ifxLineHeight7xl",
-    "value": "3.25rem",
-    "compiledValue": "3.25rem"
+    "value": "3.5rem",
+    "compiledValue": "3.5rem"
   },
   {
     "name": "$ifxLineHeight8xl",
@@ -856,8 +856,8 @@
   },
   {
     "name": "$ifxHeadingHeading01",
-    "value": "600 2.75rem/3.25rem 'Source Sans 3'",
-    "compiledValue": "600 2.75rem/3.25rem Source Sans 3"
+    "value": "600 2.75rem/3.5rem 'Source Sans 3'",
+    "compiledValue": "600 2.75rem/3.5rem Source Sans 3"
   },
   {
     "name": "$ifxHeadingHeadingCompact01",
