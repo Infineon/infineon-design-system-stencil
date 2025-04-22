@@ -4,6 +4,9 @@
   "command": {
     "publish": {
       "verifyAccess": false
+    },
+    "version": {
+      "exact": true
     }
   }
 }
