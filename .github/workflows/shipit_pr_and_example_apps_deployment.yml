@@ -101,8 +101,7 @@ jobs:
           CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
-          jq '.dependencies["@infineon/infineon-design-system-stencil"]' package.json
-
+ 
           # Update React package
           cd ../components-react
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
