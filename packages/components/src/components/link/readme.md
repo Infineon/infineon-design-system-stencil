@@ -7,14 +7,15 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `disabled` | `disabled` |             | `boolean` | `false`     |
-| `download` | `download` |             | `string`  | `undefined` |
-| `href`     | `href`     |             | `string`  | `undefined` |
-| `size`     | `size`     |             | `string`  | `undefined` |
-| `target`   | `target`   |             | `string`  | `'_self'`   |
-| `variant`  | `variant`  |             | `string`  | `'bold'`    |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `AriaLabel` | `aria-label` |             | `string`  | `undefined` |
+| `disabled`  | `disabled`   |             | `boolean` | `false`     |
+| `download`  | `download`   |             | `string`  | `undefined` |
+| `href`      | `href`       |             | `string`  | `undefined` |
+| `size`      | `size`       |             | `string`  | `undefined` |
+| `target`    | `target`     |             | `string`  | `'_self'`   |
+| `variant`   | `variant`    |             | `string`  | `'bold'`    |
 
 
 ## Dependencies
