@@ -15,6 +15,7 @@ export class Link {
   @Prop() size: string;
   @Prop() disabled: boolean = false;
   @Prop() download: string;
+  @Prop() AriaLabel: string;
   @State() internalHref: string ='';
   @State() internalTarget: string = '';
   @State() internalVariant: string = '';
@@ -33,13 +34,27 @@ export class Link {
     this.setInternalStates();
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+    if (this.disabled) {
+      event.preventDefault();
+    } else if (event.key === 'Enter') {
+      window.open(this.internalHref, this.internalTarget);
+      event.preventDefault();
+    }
+  }
 
   render() {
     return (
-      <a aria-label='a navigation link button' href={this.internalHref} download={this.download} target={this.internalTarget} class={this.linkClassNames()}>
+      <a
+        role="link"
+        aria-label={this.AriaLabel}
+        aria-disabled={this.disabled || !this.internalHref}
+        href={this.disabled ? undefined : this.internalHref}
+        download={this.download}
+        target={this.internalTarget}
+        class={this.linkClassNames()}>
         <slot></slot>
-      </a>
-    )
+      </a>)
   }
 
   getSizeClass() {
@@ -88,4 +103,3 @@ export class Link {
     );
   }
 }
-
