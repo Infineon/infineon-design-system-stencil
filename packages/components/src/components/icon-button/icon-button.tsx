@@ -1,6 +1,5 @@
 import { Component, Prop, h, Host, Method, Element, Listen } from '@stencil/core';
 import classNames from 'classnames';
- 
 
 @Component({
   tag: 'ifx-icon-button',
@@ -16,10 +15,11 @@ export class IconButton {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Prop() shape: string = 'round';
+  @Prop() AriaLabel: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
-
+  
   @Listen('click', { capture: true })
   handleClick(event: Event) {
     if (this.disabled) {
@@ -40,14 +40,14 @@ export class IconButton {
 
   render() {
     return (
-      <Host>
+      <Host 
+        aria-disabled={this.disabled}
+        aria-label={this.AriaLabel}> 
         {this.href ? (
           <a
-            aria-disabled={this.disabled}
-            aria-label='a clickable icon button'
             ref={(el) => (this.focusableElement = el)}
             class={this.getClassNames()}
-            href={!this.disabled ? this.href : undefined}
+            href={!this.disabled ? this.href : undefined} 
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
@@ -57,6 +57,7 @@ export class IconButton {
           <button
             class={this.getClassNames()}
             type="button"
+            disabled={this.disabled}
           >
             <ifx-icon icon={this.icon}></ifx-icon>
           </button>
