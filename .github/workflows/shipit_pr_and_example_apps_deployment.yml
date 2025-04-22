@@ -89,28 +89,41 @@ jobs:
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           lerna version $CANARY_VERSION --no-git-tag-version --y
-      
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
           cd ../../../../
-      
+
           # Update Vue package
           cd packages/components-vue
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-      
+          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+          jq '.dependencies["@infineon/infineon-design-system-stencil"]' package.json
+
           # Update React package
           cd ../components-react
-          jq --arg CANARY_VERSION "$CANARY_VERSION" \
-            '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
-            package.json > package.json.tmp && mv package.json.tmp package.json
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
 
-          # Install the updated dependency
-          npm install @infineon/infineon-design-system-stencil@$CANARY_VERSION
+          # Retry install of published Stencil package (race condition safe)
+          RETRIES=5
+          for i in $(seq 1 $RETRIES); do
+            echo "Attempt $i to install Stencil version: $CANARY_VERSION"
+            if npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact; then
+              echo "✅ Installed successfully on attempt $i"
+              break
+            else
+              echo "❌ Failed, retrying in $((i * 5)) seconds..."
+              sleep $((i * 5))
+            fi
+          done
+
           cd ../../
-                 
           npm install
-      
+
           # Verify updates
           echo "Verifying updates in Angular package"
           jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
@@ -118,6 +131,7 @@ jobs:
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
+
             
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
