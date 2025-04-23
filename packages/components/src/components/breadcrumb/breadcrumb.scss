@@ -11,7 +11,7 @@
   margin: 0px;
   display: flex;
   flex-direction: row;
-  font-family: var(--ifx-font-family);
+  font-family: tokens.$ifxFontFamilyBody;
   font-size: tokens.$ifxFontSizeS;
   align-items: flex-start;
   //gap: tokens.$ifxSpace200; //this is where the gap comes from
