@@ -1,3 +1,15 @@
+# v33.1.1 (Wed Apr 23 2025)
+
+#### 🐛 Bug Fix
+
+- Bugfix: Fonts dont get displayed on Mac or iPhone [#1818](https://github.com/Infineon/infineon-design-system-stencil/pull/1818) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 1
+
+- [@verena-ifx](https://github.com/verena-ifx)
+
+---
+
 # v33.1.0 (Mon Apr 07 2025)
 
 #### 🚀 Enhancement
