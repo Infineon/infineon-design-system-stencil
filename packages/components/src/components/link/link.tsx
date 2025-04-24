@@ -15,7 +15,7 @@ export class Link {
   @Prop() size: string;
   @Prop() disabled: boolean = false;
   @Prop() download: string;
-  @Prop() ariaLabel: string;
+  @Prop() ariaLabel: string | null;
   @State() internalHref: string ='';
   @State() internalTarget: string = '';
   @State() internalVariant: string = '';
