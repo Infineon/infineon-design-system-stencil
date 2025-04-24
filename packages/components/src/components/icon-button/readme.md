@@ -9,7 +9,7 @@
 
 | Property    | Attribute    | Description | Type                                     | Default     |
 | ----------- | ------------ | ----------- | ---------------------------------------- | ----------- |
-| `AriaLabel` | `aria-label` |             | `string`                                 | `undefined` |
+| `ariaLabel` | `aria-label` |             | `string`                                 | `undefined` |
 | `disabled`  | `disabled`   |             | `boolean`                                | `undefined` |
 | `href`      | `href`       |             | `string`                                 | `undefined` |
 | `icon`      | `icon`       |             | `string`                                 | `undefined` |

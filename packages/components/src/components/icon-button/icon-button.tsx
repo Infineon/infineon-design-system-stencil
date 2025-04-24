@@ -15,7 +15,7 @@ export class IconButton {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Prop() shape: string = 'round';
-  @Prop() AriaLabel: string;
+  @Prop() ariaLabel: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -42,7 +42,7 @@ export class IconButton {
     return (
       <Host 
         aria-disabled={this.disabled}
-        aria-label={this.AriaLabel}> 
+        aria-label={this.ariaLabel}> 
         {this.href ? (
           <a
             ref={(el) => (this.focusableElement = el)}
