@@ -15,7 +15,7 @@ export class IconButton {
   @Prop() href: string;
   @Prop() target: string = '_self';
   @Prop() shape: string = 'round';
-  @Prop() ariaLabel: string;
+  @Prop() ariaLabel: string | null;
   @Element() el;
 
   private focusableElement: HTMLElement;
