@@ -15,7 +15,7 @@ export class Chip {
   @Prop({ mutable: true }) value: Array<string> | string = undefined;
   @Prop() variant: 'single' | 'multi' = 'single';
   @Prop() readOnly: boolean = false;
-  @Prop() AriaLabel: string;
+  @Prop() ariaLabel: string | null;
 
   @State() opened: boolean = false;
   @State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -304,7 +304,7 @@ export class Chip {
           tabIndex={0}
           onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
           role='combobox'
-          aria-label={this.AriaLabel}
+          aria-label={this.ariaLabel}
           aria-value={this.getSelectedOptions()}
           aria-haspopup={!this.readOnly ? 'listbox' : undefined}
           aria-expanded={!this.readOnly ? this.opened.toString() : undefined}
