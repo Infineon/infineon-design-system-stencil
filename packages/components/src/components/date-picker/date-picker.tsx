@@ -17,7 +17,7 @@ export class DatePicker {
   @Prop() error: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
-  @Prop() AriaLabel: string;
+  @Prop() ariaLabel: string | null;
   @Prop() value: string;
   @Prop() type: string = 'date'
   @Prop() max: string;
@@ -124,7 +124,7 @@ export class DatePicker {
           class={`date__picker-input ${this.error ? 'error' : ""} ${this.success ? "success" : ""}`}
           disabled={this.disabled ? true : undefined}
           aria-invalid={this.error ? true : undefined}
-          aria-label={this.AriaLabel}
+          aria-label={this.ariaLabel}
           max={this.max}
           min={this.min}
           value={this.value}
