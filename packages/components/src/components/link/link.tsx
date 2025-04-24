@@ -15,7 +15,7 @@ export class Link {
   @Prop() size: string;
   @Prop() disabled: boolean = false;
   @Prop() download: string;
-  @Prop() AriaLabel: string;
+  @Prop() ariaLabel: string;
   @State() internalHref: string ='';
   @State() internalTarget: string = '';
   @State() internalVariant: string = '';
@@ -47,7 +47,7 @@ export class Link {
     return (
       <a
         role="link"
-        aria-label={this.AriaLabel}
+        aria-label={this.ariaLabel}
         aria-disabled={this.disabled || !this.internalHref}
         href={this.disabled ? undefined : this.internalHref}
         download={this.download}
