@@ -160,7 +160,7 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('min', min);
   element.setAttribute('label', label);
   element.setAttribute('caption', caption);
-  element.setAttribute('ariaLabel', ariaLabel);
+  element.setAttribute('aria-label', ariaLabel);
   element.setAttribute('required', required);
   element.setAttribute('autocomplete', autocomplete);
   element.setAttribute('type', type);

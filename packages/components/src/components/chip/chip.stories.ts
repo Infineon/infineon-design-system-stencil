@@ -133,7 +133,7 @@ placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
 read-only="${args.readOnly}"
-ariaLabel="${args.ariaLabel}"
+aria-label="${args.ariaLabel}"
 >
   ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
