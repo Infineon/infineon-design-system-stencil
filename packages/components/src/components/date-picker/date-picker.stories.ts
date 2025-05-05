@@ -15,7 +15,7 @@ export default {
     min: '',
     label: "Label Text",
     caption: "Caption text, description, error notification.",
-    AriaLabel: 'Date Picker',
+    ariaLabel: 'Date Picker',
     required: false,
     autocomplete: "on",
     type: 'date'
@@ -99,7 +99,7 @@ export default {
         category: 'ifx-date-picker props'
       }
     },
-    AriaLabel: {
+    ariaLabel: {
       control: { type: 'text' },
       description: 'Set the aria label of the date picker. Enhances accessibility.',
       table: {
@@ -148,7 +148,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, AriaLabel, required, name, autocomplete, type }) => {
+const DefaultTemplate = ({ error, disabled, success, size, value, max, min, caption, label, ariaLabel, required, name, autocomplete, type }) => {
   const element = document.createElement('ifx-date-picker');
   element.setAttribute('name', name);
   element.setAttribute('error', error);
@@ -160,7 +160,7 @@ const DefaultTemplate = ({ error, disabled, success, size, value, max, min, capt
   element.setAttribute('min', min);
   element.setAttribute('label', label);
   element.setAttribute('caption', caption);
-  element.setAttribute('AriaLabel', AriaLabel);
+  element.setAttribute('aria-label', ariaLabel);
   element.setAttribute('required', required);
   element.setAttribute('autocomplete', autocomplete);
   element.setAttribute('type', type);
