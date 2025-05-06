@@ -38,7 +38,6 @@ export class Link {
     if (this.disabled) {
       event.preventDefault();
     } else if (event.key === 'Enter') {
-      window.open(this.internalHref, this.internalTarget);
       event.preventDefault();
     }
   }
