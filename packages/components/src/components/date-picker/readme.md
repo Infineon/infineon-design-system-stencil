@@ -9,7 +9,7 @@
 
 | Property       | Attribute      | Description | Type      | Default     |
 | -------------- | -------------- | ----------- | --------- | ----------- |
-| `AriaLabel`    | `aria-label`   |             | `string`  | `undefined` |
+| `ariaLabel`    | `aria-label`   |             | `string`  | `undefined` |
 | `autocomplete` | `autocomplete` |             | `string`  | `'on'`      |
 | `caption`      | `caption`      |             | `string`  | `undefined` |
 | `disabled`     | `disabled`     |             | `boolean` | `false`     |
