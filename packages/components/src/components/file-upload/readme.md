@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property                        | Attribute                          | Description | Type                            | Default                                                           |
-| ------------------------------- | ---------------------------------- | ----------- | ------------------------------- | ----------------------------------------------------------------- |
-| `allowedFileTypes`              | `allowed-file-types`               |             | `string \| string[]`            | `['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4']`              |
-| `dragAndDrop`                   | `drag-and-drop`                    |             | `boolean`                       | `false`                                                           |
-| `labelBrowseFiles`              | `label-browse-files`               |             | `string`                        | `'Browse files'`                                                  |
-| `labelDragAndDrop`              | `label-drag-and-drop`              |             | `string`                        | `'Drag & Drop or browse files to upload'`                         |
-| `labelFileTooLarge`             | `label-file-too-large`             |             | `string`                        | `'Upload failed. Max file size: {{size}}MB.'`                     |
-| `labelSupportedFormatsTemplate` | `label-supported-formats-template` |             | `string`                        | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
-| `labelUnsupportedFileType`      | `label-unsupported-file-type`      |             | `string`                        | `'Unsupported file type.'`                                        |
-| `labelUploaded`                 | `label-uploaded`                   |             | `string`                        | `'Successfully uploaded'`                                         |
-| `labelUploadedFilesHeading`     | `label-uploaded-files-heading`     |             | `string`                        | `'Uploaded Files'`                                                |
-| `maxFileSizeMB`                 | `max-file-size-m-b`                |             | `number`                        | `7`                                                               |
-| `uploadHandler`                 | --                                 |             | `(file: File) => Promise<void>` | `undefined`                                                       |
+| Property                        | Attribute                          | Description                                                                                                   | Type                            | Default                                                           |
+| ------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------- |
+| `additionalAllowedFileTypes`    | `additional-allowed-file-types`    |                                                                                                               | `string \| string[]`            | `[]`                                                              |
+| `allowedFileTypes`              | `allowed-file-types`               | Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. | `string \| string[]`            | `['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4']`              |
+| `dragAndDrop`                   | `drag-and-drop`                    |                                                                                                               | `boolean`                       | `false`                                                           |
+| `labelBrowseFiles`              | `label-browse-files`               |                                                                                                               | `string`                        | `'Browse files'`                                                  |
+| `labelDragAndDrop`              | `label-drag-and-drop`              |                                                                                                               | `string`                        | `'Drag & Drop or browse files to upload'`                         |
+| `labelFileTooLarge`             | `label-file-too-large`             |                                                                                                               | `string`                        | `'Upload failed. Max file size: {{size}}MB.'`                     |
+| `labelSupportedFormatsTemplate` | `label-supported-formats-template` |                                                                                                               | `string`                        | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
+| `labelUnsupportedFileType`      | `label-unsupported-file-type`      |                                                                                                               | `string`                        | `'Unsupported file type.'`                                        |
+| `labelUploaded`                 | `label-uploaded`                   |                                                                                                               | `string`                        | `'Successfully uploaded'`                                         |
+| `labelUploadedFilesHeading`     | `label-uploaded-files-heading`     |                                                                                                               | `string`                        | `'Uploaded Files'`                                                |
+| `maxFileSizeMB`                 | `max-file-size-m-b`                |                                                                                                               | `number`                        | `7`                                                               |
+| `uploadHandler`                 | --                                 |                                                                                                               | `(file: File) => Promise<void>` | `undefined`                                                       |
 
 
 ## Events

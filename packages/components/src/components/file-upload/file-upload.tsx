@@ -26,7 +26,9 @@ export class IfxFileUpload {
 
   @Prop() dragAndDrop: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
+  /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
+  @Prop() additionalAllowedFileTypes?: string | string[] = [];
   @Prop() uploadHandler?: (file: File) => Promise<void>;
 
   @Prop() labelBrowseFiles: string = 'Browse files';
@@ -61,14 +63,52 @@ export class IfxFileUpload {
   private fileInputEl: HTMLInputElement | null = null;
 
   private extensionToMimeMap: Record<string, string> = {
+    /**
+     * Maps file extensions to MIME types.
+     * This is only used for translating `allowedFileTypes` (extensions) into MIME types,
+     * and for labeling in the UI. It does NOT define which files are globally allowed.
+     */
+
+    // Images
     jpg: 'image/jpeg',
     jpeg: 'image/jpeg',
     png: 'image/png',
+    gif: 'image/gif',
+    svg: 'image/svg+xml',
+    webp: 'image/webp',
+
+    // Documents
     pdf: 'application/pdf',
-    mov: 'video/quicktime',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    xls: 'application/vnd.ms-excel',
+    xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    ppt: 'application/vnd.ms-powerpoint',
+    pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+    txt: 'text/plain',
+    csv: 'text/csv',
+    json: 'application/json',
+
+    // Audio/Video
     mp3: 'audio/mpeg',
-    mp4: 'video/mp4'
+    wav: 'audio/wav',
+    mp4: 'video/mp4',
+    mov: 'video/quicktime',
+    webm: 'video/webm',
+
+    // Archive / Code
+    zip: 'application/zip',
+    rar: 'application/vnd.rar',
+    tar: 'application/x-tar',
+    gz: 'application/gzip',
+
+    // Sonstiges
+    xml: 'application/xml',
+    html: 'text/html',
+    css: 'text/css',
+    js: 'application/javascript'
   };
+
 
   private getNormalizedFileTypes(): string[] {
     if (Array.isArray(this.allowedFileTypes)) {
@@ -79,6 +119,15 @@ export class IfxFileUpload {
     } catch {
       return this.allowedFileTypes.split(',').map(t => t.trim());
     }
+  }
+
+  private getLabelFromMimeType(mime: string): string {
+    for (const [ext, knownMime] of Object.entries(this.extensionToMimeMap)) {
+      if (knownMime === mime) {
+        return ext.toUpperCase();
+      }
+    }
+    return mime; // fallback: show raw MIME
   }
 
   handleFileChange(event: Event) {
@@ -93,9 +142,12 @@ export class IfxFileUpload {
     this.isDragOver = false;
     if (event.dataTransfer?.files) {
       const droppedFiles = Array.from(event.dataTransfer.files);
-      const allowedMimes = this.getNormalizedFileTypes()
-        .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-        .filter(Boolean);
+      const allowedMimes = [
+        ...this.getNormalizedFileTypes()
+          .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
+          .filter(Boolean),
+        ...this.getAdditionalMimeTypes()
+      ];
 
       const acceptedFiles: File[] = [];
       const rejectedFiles: File[] = [];
@@ -129,9 +181,12 @@ export class IfxFileUpload {
 
   processFiles(fileList: FileList) {
     const selectedFiles = Array.from(fileList);
-    const allowedMimes = this.getNormalizedFileTypes()
-      .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-      .filter(Boolean);
+    const allowedMimes = [
+      ...this.getNormalizedFileTypes()
+        .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
+        .filter(Boolean),
+      ...this.getAdditionalMimeTypes()
+    ];
 
     const validFiles: File[] = [];
     const rejectedSize: string[] = [];
@@ -306,7 +361,7 @@ export class IfxFileUpload {
       case 'mov': return 'file-mov-16';
       case 'mp3': return 'file-mp3-16';
       case 'mp4': return 'file-mp4-16';
-      default: return 'file';
+      default: return 'file-16';
     }
   }
 
@@ -318,12 +373,27 @@ export class IfxFileUpload {
   }
 
   getAcceptAttribute(): string {
-    return this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase()).join(',');
+    const extensionTypes = this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase());
+    const mimeTypes = this.getAdditionalMimeTypes();
+
+    return [...extensionTypes, ...mimeTypes].join(',');
+  }
+
+  private getAdditionalMimeTypes(): string[] {
+    if (!this.additionalAllowedFileTypes) return [];
+    if (Array.isArray(this.additionalAllowedFileTypes)) return this.additionalAllowedFileTypes;
+    return this.additionalAllowedFileTypes.split(',').map(t => t.trim());
   }
 
   private getSupportedFileText(): string {
+    const extensions = this.getNormalizedFileTypes().map(ext => ext.toUpperCase());
+    const mimeTypes = this.getAdditionalMimeTypes().map(mime => this.getLabelFromMimeType(mime));
+
+    const allTypes = [...extensions, ...mimeTypes];
+    const typesLabel = allTypes.join(', ');
+
     return this.labelSupportedFormatsTemplate
-      .replace('{{types}}', this.getNormalizedFileTypes().map(ext => ext.toUpperCase()).join(', '))
+      .replace('{{types}}', typesLabel)
       .replace('{{size}}', this.maxFileSizeMB.toString());
   }
 

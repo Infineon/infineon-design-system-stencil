@@ -26,6 +26,10 @@ const meta: Meta = {
       options: ['jpg', 'png', 'pdf', 'mov', 'mp3', 'mp4'],
       description: 'Select one or more allowed file extensions. Internally mapped to MIME types.'
     },
+    additionalAllowedFileTypes: {
+      control: 'text',
+      description: 'Adds additional allowed file types using exact MIME types. Values must be valid MIME types – not file extensions! Example: application/zip (for .zip files)'
+    },
     labelBrowseFiles: {
       control: 'text',
       description: 'Text for the file selection button (e.g., “Browse files”).'
@@ -139,6 +143,13 @@ const renderFileUpload = (args: any) => {
     return [type];
   });
 
+  if (args.additionalAllowedFileTypes) {
+    const value = Array.isArray(args.additionalAllowedFileTypes)
+      ? args.additionalAllowedFileTypes.join(',')
+      : args.additionalAllowedFileTypes;
+    el.setAttribute('additional-allowed-file-types', value);
+  }
+
   const uniqueTypes = Array.from(new Set(mappedTypes));
   el.setAttribute('allowed-file-types', uniqueTypes.join(','));
 
@@ -170,6 +181,7 @@ export const UploadFileButton: Story = {
     dragAndDrop: false,
     maxFileSizeMB: 7,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
+    additionalAllowedFileTypes: 'application/zip,text/csv',
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
     labelUploadedFilesHeading: 'Uploaded Files',
@@ -187,6 +199,7 @@ export const UploadAreaDragDrop: Story = {
     dragAndDrop: true,
     maxFileSizeMB: 5,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
+    additionalAllowedFileTypes: 'application/zip,text/csv',
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
     labelUploadedFilesHeading: 'Uploaded Files',
