@@ -1,3 +1,15 @@
+# v33.1.5 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Modal: prevents content overflow [#1839](https://github.com/Infineon/infineon-design-system-stencil/pull/1839) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.1.4 (Wed May 07 2025)
 
 #### 🐛 Bug Fix
