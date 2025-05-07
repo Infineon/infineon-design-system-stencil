@@ -31,6 +31,7 @@ export class IfxFileUpload {
 
   @Prop() labelBrowseFiles: string = 'Browse files';
   @Prop() labelDragAndDrop: string = 'Drag & Drop or browse files to upload';
+  @Prop() labelUploadedFilesHeading: string = 'Uploaded Files';
   @Prop() labelFileTooLarge: string = 'Upload failed. Max file size: {{size}}MB.';
   @Prop() labelUnsupportedFileType: string = 'Unsupported file type.';
   @Prop() labelUploaded: string = 'Successfully uploaded';
@@ -361,135 +362,140 @@ export class IfxFileUpload {
       <div class="file-upload-wrapper">
         {this.dragAndDrop ? this.renderDragAndDropArea() : this.renderUploadArea()}
 
-        <ul class="file-list">
-          {this.rejectedSizeFiles.map(fileName => (
-            <li class="file-item upload-failed">
-              <div class="file-icon">
-                <ifx-icon icon="file-16"></ifx-icon>
-              </div>
-              <div class="file-info">
-                <div class="file-top-row">
-                  <span class="file-name-wrapper">
-                    <span class="file-name-base">{this.splitFileNameParts({ name: fileName } as File).base}</span>
-                    <span class="file-name-ext">{this.splitFileNameParts({ name: fileName } as File).ext}</span>
-                  </span>
-                  <div class="file-actions">
-                    <ifx-icon-button
-                      shape="square"
-                      variant="tertiary"
-                      icon="delete-forever-16"
-                      size="s"
-                      aria-label="Remove file"
-                      onClick={() => this.clearRejectedFile(fileName, 'size')}>
-                    </ifx-icon-button>
+        {(this.files.length > 0 || this.rejectedSizeFiles.length > 0 || this.rejectedTypeFiles.length > 0) && (
+          <div class="file-list-wrapper">
+            <div class="upload-heading">{this.labelUploadedFilesHeading}</div>
+            <ul class="file-list">
+              {this.rejectedSizeFiles.map(fileName => (
+                <li class="file-item upload-failed">
+                  <div class="file-icon">
+                    <ifx-icon icon="file-16"></ifx-icon>
                   </div>
-                </div>
-                <div class="file-middle-row">
-                  <span class="file-status">
-                    {this.getFormattedFileTooLargeText()}
-                  </span>
-                </div>
-              </div>
-            </li>
-          ))}
-
-          {this.rejectedTypeFiles.map(fileName => (
-            <li class="file-item upload-failed">
-              <div class="file-icon">
-                <ifx-icon icon="file-16"></ifx-icon>
-              </div>
-              <div class="file-info">
-                <div class="file-top-row">
-                  <span class="file-name-wrapper">
-                    <span class="file-name-base">{this.splitFileNameParts({ name: fileName } as File).base}</span>
-                    <span class="file-name-ext">{this.splitFileNameParts({ name: fileName } as File).ext}</span>
-                  </span>
-                  <div class="file-actions">
-                    <ifx-icon-button
-                      shape="square"
-                      variant="tertiary"
-                      icon="delete-forever-16"
-                      size="s"
-                      aria-label="Remove file"
-                      onClick={() => this.clearRejectedFile(fileName, 'type')}>
-                    </ifx-icon-button>
-                  </div>
-                </div>
-                <div class="file-middle-row">
-                  <span class="file-status">
-                    {this.labelUnsupportedFileType}
-                  </span>
-                </div>
-              </div>
-            </li>
-          ))}
-
-          {this.files.map((file) => {
-            const task = this.uploadTasks.find(t => t.file.name === file.name);
-            const progress = task?.progress ?? 100;
-            const isUploading = task && !task.completed;
-            const itemClass = isUploading ? 'file-item uploading' : 'file-item upload-success';
-
-            const { base, ext } = this.splitFileNameParts(file);
-
-            return (
-              <li class={itemClass}>
-                <div class="file-icon">
-                  <ifx-icon icon={this.getFileIcon(file)}></ifx-icon>
-                </div>
-                <div class="file-info">
-                  <div class="file-top-row">
-                    <span class="file-name-wrapper">
-                      <span class="file-name-base">{base}</span>
-                      <span class="file-name-ext">{ext}</span>
-                    </span>
-                    <div class="file-actions">
-                      <ifx-icon-button
-                        shape="square"
-                        variant="tertiary"
-                        icon="cross-16"
-                        size="s"
-                        aria-label="Cancel upload"
-                        onClick={() => this.cancelUpload(file)}
-                        style={{ display: isUploading ? 'inline-flex' : 'none' }}>
-                      </ifx-icon-button>
-                      <ifx-icon-button
-                        shape="square"
-                        variant="tertiary"
-                        icon="delete-forever-16"
-                        size="s"
-                        aria-label="Remove file"
-                        onClick={() => this.removeFile(file)}
-                        style={{ display: !isUploading ? 'inline-flex' : 'none' }}>
-                      </ifx-icon-button>
+                  <div class="file-info">
+                    <div class="file-top-row">
+                      <span class="file-name-wrapper">
+                        <span class="file-name-base">{this.splitFileNameParts({ name: fileName } as File).base}</span>
+                        <span class="file-name-ext">{this.splitFileNameParts({ name: fileName } as File).ext}</span>
+                      </span>
+                      <div class="file-actions">
+                        <ifx-icon-button
+                          shape="square"
+                          variant="tertiary"
+                          icon="delete-forever-16"
+                          size="s"
+                          aria-label="Remove file"
+                          onClick={() => this.clearRejectedFile(fileName, 'size')}>
+                        </ifx-icon-button>
+                      </div>
+                    </div>
+                    <div class="file-middle-row">
+                      <span class="file-status">
+                        {this.getFormattedFileTooLargeText()}
+                      </span>
                     </div>
                   </div>
+                </li>
+              ))}
 
-                  <div class="file-middle-row">
-                    <span class="file-size">{this.getFormattedSize(file)}</span>
-                    {isUploading && (
-                      <span class="file-uploading">&nbsp;–&nbsp;Uploading …</span>
-                    )}
-                    <span class="file-status">
-                      {!isUploading && (
-                        <span>
-                          <ifx-icon icon="check-12"></ifx-icon>&nbsp;
-                          {this.labelUploaded}
+              {this.rejectedTypeFiles.map(fileName => (
+                <li class="file-item upload-failed">
+                  <div class="file-icon">
+                    <ifx-icon icon="file-16"></ifx-icon>
+                  </div>
+                  <div class="file-info">
+                    <div class="file-top-row">
+                      <span class="file-name-wrapper">
+                        <span class="file-name-base">{this.splitFileNameParts({ name: fileName } as File).base}</span>
+                        <span class="file-name-ext">{this.splitFileNameParts({ name: fileName } as File).ext}</span>
+                      </span>
+                      <div class="file-actions">
+                        <ifx-icon-button
+                          shape="square"
+                          variant="tertiary"
+                          icon="delete-forever-16"
+                          size="s"
+                          aria-label="Remove file"
+                          onClick={() => this.clearRejectedFile(fileName, 'type')}>
+                        </ifx-icon-button>
+                      </div>
+                    </div>
+                    <div class="file-middle-row">
+                      <span class="file-status">
+                        {this.labelUnsupportedFileType}
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              ))}
+
+              {this.files.map((file) => {
+                const task = this.uploadTasks.find(t => t.file.name === file.name);
+                const progress = task?.progress ?? 100;
+                const isUploading = task && !task.completed;
+                const itemClass = isUploading ? 'file-item uploading' : 'file-item upload-success';
+
+                const { base, ext } = this.splitFileNameParts(file);
+
+                return (
+                  <li class={itemClass}>
+                    <div class="file-icon">
+                      <ifx-icon icon={this.getFileIcon(file)}></ifx-icon>
+                    </div>
+                    <div class="file-info">
+                      <div class="file-top-row">
+                        <span class="file-name-wrapper">
+                          <span class="file-name-base">{base}</span>
+                          <span class="file-name-ext">{ext}</span>
                         </span>
-                      )}
-                    </span>
-                  </div>
+                        <div class="file-actions">
+                          <ifx-icon-button
+                            shape="square"
+                            variant="tertiary"
+                            icon="cross-16"
+                            size="s"
+                            aria-label="Cancel upload"
+                            onClick={() => this.cancelUpload(file)}
+                            style={{ display: isUploading ? 'inline-flex' : 'none' }}>
+                          </ifx-icon-button>
+                          <ifx-icon-button
+                            shape="square"
+                            variant="tertiary"
+                            icon="delete-forever-16"
+                            size="s"
+                            aria-label="Remove file"
+                            onClick={() => this.removeFile(file)}
+                            style={{ display: !isUploading ? 'inline-flex' : 'none' }}>
+                          </ifx-icon-button>
+                        </div>
+                      </div>
 
-                  {isUploading && (
-                    <div class="file-progress-row">
-                      <ifx-progress-bar size="s" value={progress} show-label="true"></ifx-progress-bar>
+                      <div class="file-middle-row">
+                        <span class="file-size">{this.getFormattedSize(file)}</span>
+                        {isUploading && (
+                          <span class="file-uploading">&nbsp;–&nbsp;Uploading …</span>
+                        )}
+                        <span class="file-status">
+                          {!isUploading && (
+                            <span>
+                              <ifx-icon icon="check-12"></ifx-icon>&nbsp;
+                              {this.labelUploaded}
+                            </span>
+                          )}
+                        </span>
+                      </div>
+
+                      {isUploading && (
+                        <div class="file-progress-row">
+                          <ifx-progress-bar size="s" value={progress} show-label="true"></ifx-progress-bar>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }

@@ -17,6 +17,7 @@
 | `labelSupportedFormatsTemplate` | `label-supported-formats-template` |             | `string`                        | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
 | `labelUnsupportedFileType`      | `label-unsupported-file-type`      |             | `string`                        | `'Unsupported file type.'`                                        |
 | `labelUploaded`                 | `label-uploaded`                   |             | `string`                        | `'Successfully uploaded'`                                         |
+| `labelUploadedFilesHeading`     | `label-uploaded-files-heading`     |             | `string`                        | `'Uploaded Files'`                                                |
 | `maxFileSizeMB`                 | `max-file-size-m-b`                |             | `number`                        | `7`                                                               |
 | `uploadHandler`                 | --                                 |             | `(file: File) => Promise<void>` | `undefined`                                                       |
 

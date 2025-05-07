@@ -34,6 +34,10 @@ const meta: Meta = {
       control: 'text',
       description: 'Text shown inside the drag-and-drop area.'
     },
+    labelUploadedFilesHeading: {
+      control: 'text',
+      description: 'Text shown as the heading above the uploaded files list.',
+    },
     labelFileTooLarge: {
       control: 'text',
       description: 'Shown when a file exceeds the allowed size. Use {{size}} for substitution.'
@@ -140,6 +144,7 @@ const renderFileUpload = (args: any) => {
 
   el.setAttribute('label-browse-files', args.labelBrowseFiles);
   el.setAttribute('label-drag-and-drop', args.labelDragAndDrop);
+  el.setAttribute('label-uploaded-files-heading', args.labelUploadedFilesHeading);
   el.setAttribute('label-file-too-large', args.labelFileTooLarge);
   el.setAttribute('label-unsupported-file-type', args.labelUnsupportedFileType);
   el.setAttribute('label-uploaded', args.labelUploaded);
@@ -167,6 +172,7 @@ export const UploadFileButton: Story = {
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
+    labelUploadedFilesHeading: 'Uploaded Files',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
@@ -183,6 +189,7 @@ export const UploadAreaDragDrop: Story = {
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
+    labelUploadedFilesHeading: 'Uploaded Files',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',

@@ -2,6 +2,7 @@
 @use "../../global/font.scss";
 
 :host {
+  // TODO remove
   font-family: var(--ifx-font-family, sans-serif);
 }
 
@@ -49,11 +50,19 @@
   margin-top: tokens.$ifxSpace50;
 }
 
+.upload-heading {
+  font: tokens.$ifxHeadingHeading06;
+  margin-bottom: tokens.$ifxSpace100;
+}
+
+.file-list-wrapper {
+  margin-top: tokens.$ifxSpace200;
+}
+
 .file-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: tokens.$ifxSpace200;
   display: flex;
   flex-direction: column;
   gap: tokens.$ifxSpace200;
