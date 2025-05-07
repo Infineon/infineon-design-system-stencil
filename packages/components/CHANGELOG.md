@@ -1,3 +1,28 @@
+# v33.1.3 (Tue May 06 2025)
+
+#### 🐛 Bug Fix
+
+- Accessibility enhancement added to Link [#1827](https://github.com/Infineon/infineon-design-system-stencil/pull/1827) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.1.2 (Tue May 06 2025)
+
+#### 🐛 Bug Fix
+
+- Changes AriaLabel property to lowercase for the Button, Chip and Date-Picker [#1833](https://github.com/Infineon/infineon-design-system-stencil/pull/1833) ([@agata-kim](https://github.com/agata-kim))
+
+#### Authors: 1
+
+- [@agata-kim](https://github.com/agata-kim)
+
+---
+
 # v33.1.1 (Wed Apr 23 2025)
 
 #### 🐛 Bug Fix
