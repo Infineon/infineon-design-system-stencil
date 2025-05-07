@@ -23,18 +23,19 @@
 
 ## Events
 
-| Event                   | Description | Type                                                                                   |
-| ----------------------- | ----------- | -------------------------------------------------------------------------------------- |
-| `ifxFileUploadAbort`    |             | `CustomEvent<{ file: File; }>`                                                         |
-| `ifxFileUploadAdd`      |             | `CustomEvent<{ addedFiles: File[]; files: File[]; }>`                                  |
-| `ifxFileUploadChange`   |             | `CustomEvent<{ files: File[]; }>`                                                      |
-| `ifxFileUploadClick`    |             | `CustomEvent<void>`                                                                    |
-| `ifxFileUploadComplete` |             | `CustomEvent<{ file: File; }>`                                                         |
-| `ifxFileUploadDrop`     |             | `CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>` |
-| `ifxFileUploadError`    |             | `CustomEvent<{ errorType: string; file: File; message: string; }>`                     |
-| `ifxFileUploadInvalid`  |             | `CustomEvent<{ file: File; reason: string; }>`                                         |
-| `ifxFileUploadRemove`   |             | `CustomEvent<{ removedFile: File; files: File[]; }>`                                   |
-| `ifxFileUploadStart`    |             | `CustomEvent<{ file: File; }>`                                                         |
+| Event                      | Description | Type                                                                                   |
+| -------------------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `ifxFileUploadAbort`       |             | `CustomEvent<{ file: File; }>`                                                         |
+| `ifxFileUploadAdd`         |             | `CustomEvent<{ addedFiles: File[]; files: File[]; }>`                                  |
+| `ifxFileUploadAllComplete` |             | `CustomEvent<{ files: File[]; }>`                                                      |
+| `ifxFileUploadChange`      |             | `CustomEvent<{ files: File[]; }>`                                                      |
+| `ifxFileUploadClick`       |             | `CustomEvent<void>`                                                                    |
+| `ifxFileUploadComplete`    |             | `CustomEvent<{ file: File; }>`                                                         |
+| `ifxFileUploadDrop`        |             | `CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>` |
+| `ifxFileUploadError`       |             | `CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>`    |
+| `ifxFileUploadInvalid`     |             | `CustomEvent<{ file: File; reason: string; }>`                                         |
+| `ifxFileUploadRemove`      |             | `CustomEvent<{ removedFile: File; files: File[]; }>`                                   |
+| `ifxFileUploadStart`       |             | `CustomEvent<{ file: File; }>`                                                         |
 
 
 ## Methods

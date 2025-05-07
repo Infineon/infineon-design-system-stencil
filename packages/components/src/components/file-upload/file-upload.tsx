@@ -7,6 +7,15 @@ interface UploadTask {
   completed: boolean;
 }
 
+export type FileUploadErrorReason =
+  | 'network-error'
+  | 'timeout'
+  | 'file-too-large'
+  | 'unsupported-type'
+  | 'invalid-type'
+  | 'custom'
+  | string;
+
 @Component({
   tag: 'ifx-file-upload',
   styleUrl: 'file-upload.scss',
@@ -38,13 +47,15 @@ export class IfxFileUpload {
   @Event() ifxFileUploadAdd: EventEmitter<{ addedFiles: File[]; files: File[] }>;
   @Event() ifxFileUploadRemove: EventEmitter<{ removedFile: File; files: File[] }>;
   @Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
-  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string }>;
+  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string; reason?: FileUploadErrorReason; }>;
   @Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
   @Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
   @Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;
+  @Event() ifxFileUploadAllComplete: EventEmitter<{ files: File[] }>;
   @Event() ifxFileUploadAbort: EventEmitter<{ file: File }>;
   @Event() ifxFileUploadDrop: EventEmitter<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>;
   @Event() ifxFileUploadClick: EventEmitter<void>;
+
 
   private fileInputEl: HTMLInputElement | null = null;
 
@@ -140,7 +151,12 @@ export class IfxFileUpload {
           rejectedSize.push(file.name);
           this.ifxFileUploadInvalid.emit({ file, reason: 'invalid-size' });
         }
-        this.ifxFileUploadError.emit({ file, errorType: !isValidType ? 'invalid-type' : 'file-too-large', message: 'Invalid file rejected' });
+        this.ifxFileUploadError.emit({
+          file,
+          errorType: !isValidType ? 'invalid-type' : 'file-too-large',
+          message: 'Invalid file rejected',
+          reason: !isValidType ? 'unsupported-type' : 'file-too-large'
+        });
       }
     });
 
@@ -188,9 +204,18 @@ export class IfxFileUpload {
         this.uploadTasks = [...this.uploadTasks];
         this.ifxFileUploadComplete.emit({ file });
         this.ifxFileUploadChange.emit({ files: this.files });
+
+        if (this.uploadTasks.every(t => t.completed)) {
+          this.ifxFileUploadAllComplete.emit({ files: this.files });
+        }
       }).catch(() => {
         console.error('Upload failed');
-        this.ifxFileUploadError.emit({ file, errorType: 'upload-failed', message: 'Upload handler rejected file' });
+        this.ifxFileUploadError.emit({
+          file,
+          errorType: 'upload-failed',
+          message: 'Upload handler rejected file',
+          reason: 'custom'
+        });
       });
     } else {
       const totalSize = file.size;
@@ -210,6 +235,10 @@ export class IfxFileUpload {
           this.uploadTasks = [...this.uploadTasks];
           this.ifxFileUploadComplete.emit({ file });
           this.ifxFileUploadChange.emit({ files: this.files });
+
+          if (this.uploadTasks.every(t => t.completed)) {
+            this.ifxFileUploadAllComplete.emit({ files: this.files });
+          }
         }
       }, 200);
     }

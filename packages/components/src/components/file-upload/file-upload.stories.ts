@@ -49,6 +49,68 @@ const meta: Meta = {
     labelSupportedFormatsTemplate: {
       control: 'text',
       description: 'Template showing supported file formats. Use {{types}} and {{size}}.'
+    },
+    // CUSTOM EVENTS
+    ifxFileUploadAdd: {
+      description: 'Custom Event emitted when one or more files are added via input or drop. Contains added and current file list.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadRemove: {
+      description: 'Custom Event emitted when a file is removed by the user. Contains the removed file and the updated file list.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadChange: {
+      description: 'Custom Event emitted whenever the list of uploaded files changes. Contains the updated file list.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadError: {
+      description:
+        'Emitted when an error occurs during file upload. Includes the affected file, a human-readable message, an error type, and an optional machine-readable reason (e.g., "file-too-large", "unsupported-type").',
+      table: {
+        category: 'CUSTOM EVENTS',
+        type: {
+          summary: '{ file: File; message: string; errorType: string; reason?: FileUploadErrorReason }',
+          detail: `
+            errorType: string – A general category of the error (e.g., "upload-failed", "invalid-type")
+            message: string – A human-readable description of the error
+            reason (optional): 'network-error' | 'timeout' | 'file-too-large' | 'unsupported-type' | 'invalid-type' | 'custom' | string – A structured reason for programmatic handling
+          `,
+        },
+      },
+    },
+    ifxFileUploadInvalid: {
+      description: 'Custom Event emitted when a file is invalid (e.g., wrong type or size). Contains the file and rejection reason.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadStart: {
+      description: 'Custom Event emitted when an upload process for a file starts.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadComplete: {
+      description: 'Custom Event emitted when a file upload has successfully completed.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadAllComplete: {
+      description:
+        'Emitted when all active uploads have been completed successfully. Includes the final list of uploaded files.',
+      table: {
+        category: 'CUSTOM EVENTS',
+        type: {
+          summary: '{ files: File[] }',
+        },
+      },
+    },
+    ifxFileUploadAbort: {
+      description: 'Custom Event emitted when a file upload is manually aborted.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadDrop: {
+      description: 'Custom Event emitted when files are dropped into the dropzone. Includes accepted and rejected files.',
+      table: { category: 'CUSTOM EVENTS' },
+    },
+    ifxFileUploadClick: {
+      description: 'Custom Event emitted when the user clicks the upload area (to trigger file dialog).',
+      table: { category: 'CUSTOM EVENTS' },
     }
   }
 };
