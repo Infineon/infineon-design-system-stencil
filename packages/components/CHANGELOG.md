@@ -1,3 +1,16 @@
+# v33.1.4 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Accessibility enhancement added to IconButton [#1826](https://github.com/Infineon/infineon-design-system-stencil/pull/1826) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.1.3 (Tue May 06 2025)
 
 #### 🐛 Bug Fix
