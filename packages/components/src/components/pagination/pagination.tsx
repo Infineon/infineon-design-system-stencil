@@ -154,7 +154,10 @@ export class Pagination {
       paginationContainer.dataset[this.DATA_KEY] = currActive;
     }
 
-    this.handleEventEmission(currActive)
+    if(!initialValue) { 
+      this.handleEventEmission(currActive)
+    }
+
 
     listItems[currActive].classList.add(this.CLASS_ACTIVE);
 
