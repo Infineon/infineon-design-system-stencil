@@ -1,3 +1,15 @@
+# v33.1.7 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Pagination: fires event only on page change [#1843](https://github.com/Infineon/infineon-design-system-stencil/pull/1843) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.1.6 (Wed May 07 2025)
 
 #### 🐛 Bug Fix
