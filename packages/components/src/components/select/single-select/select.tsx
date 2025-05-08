@@ -82,6 +82,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() size: string = 'medium (40px)';
   @State() selectedOption: any | null = null;
   @State() optionIsSelected: boolean = false;
+  @Prop() showClearButton: boolean = true;
 
   private resizeObserver: ResizeObserver;
   private previousOptions: any[] = [];
@@ -376,7 +377,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             {this.createSelectOptions(this.options)}
           </select>
 
-          <div class="single__select-icon-container">
+          <div class={`single__select-icon-container ${!this.showClearButton ? 'hide' : ''}`}>
             { this.optionIsSelected && (
                 <div class="ifx-choices__icon-wrapper-delete">
                   <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
