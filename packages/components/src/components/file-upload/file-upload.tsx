@@ -239,6 +239,20 @@ export class IfxFileUpload {
     selectedFiles.forEach(file => {
       const isValidType = allowedMimes.includes(file.type);
       const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
+      const isDuplicate = this.files.some(existing =>
+        existing.name === file.name && existing.size === file.size
+      );
+
+      if (isDuplicate) {
+        this.ifxFileUploadInvalid.emit({ file, reason: 'duplicate' });
+        this.ifxFileUploadError.emit({
+          file,
+          errorType: 'duplicate',
+          message: `File "${file.name}" is already added`,
+          reason: 'duplicate'
+        });
+        return;
+      }
 
       if (isValidType && isValidSize) {
         validFiles.push(file);
