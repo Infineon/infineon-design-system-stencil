@@ -370,7 +370,7 @@ export class IfxFileUpload {
       });
     } else {
       const totalSize = file.size;
-      const fakeUploadSpeed = 500000;
+      const fakeUploadSpeed = 100000;
       let uploaded = 0;
 
       task.intervalId = window.setInterval(() => {
@@ -478,8 +478,8 @@ export class IfxFileUpload {
     }
   }
 
-  getFormattedSize(file: File): string {
-    const sizeInKB = file.size / 1024;
+  formatSize(bytes: number): string {
+    const sizeInKB = bytes / 1024;
     return sizeInKB > 1024
       ? `${(sizeInKB / 1024).toFixed(1)} MB`
       : `${sizeInKB.toFixed(0)} KB`;
@@ -490,6 +490,13 @@ export class IfxFileUpload {
     const mimeTypes = this.getAdditionalMimeTypes();
 
     return [...extensionTypes, ...mimeTypes].join(',');
+  }
+
+  private getFormattedProgressText(task: UploadTask): string {
+    const uploadedSize = Math.round((task.progress / 100) * task.file.size);
+    const uploadedText = this.formatSize(uploadedSize);
+    const totalText = this.formatSize(task.file.size);
+    return `${uploadedText} / ${totalText} uploaded`;
   }
 
   private getAdditionalMimeTypes(): string[] {
@@ -701,18 +708,20 @@ export class IfxFileUpload {
                       </div>
 
                       <div class="file-middle-row">
-                        <span class="file-size">{this.getFormattedSize(file)}</span>
-                        {isUploading && (
-                          <span class="file-uploading">&nbsp;–&nbsp;Uploading …</span>
+                        {isUploading && task && (
+                          <span class="file-uploading">
+                            {this.getFormattedProgressText(task)}
+                          </span>
                         )}
-                        <span class="file-status">
-                          {!isUploading && (
-                            <span>
+                        {!isUploading && (
+                          <span>
+                            <span class="file-size">{this.formatSize(file.size)}</span>
+                            <span class="file-status">
                               <ifx-icon icon="check-12"></ifx-icon>&nbsp;
                               {this.labelUploaded}
                             </span>
-                          )}
-                        </span>
+                          </span>
+                        )}
                       </div>
 
                       {isUploading && (
