@@ -583,7 +583,7 @@ export class IfxFileUpload {
             <div class="upload-heading">{this.labelUploadedFilesHeading}</div>
             <ul class="file-list">
               {this.rejectedSizeFiles.map(fileName => (
-                <li class="file-item upload-failed">
+                <li class="file-item upload-failed" key={`rejected-size-${fileName}`}>
                   <div class="file-icon">
                     <ifx-icon icon="file-16"></ifx-icon>
                   </div>
@@ -614,7 +614,7 @@ export class IfxFileUpload {
               ))}
 
               {this.rejectedTypeFiles.map(fileName => (
-                <li class="file-item upload-failed">
+                <li class="file-item upload-failed" key={`rejected-type-${fileName}`}>
                   <div class="file-icon">
                     <ifx-icon icon="file-16"></ifx-icon>
                   </div>
@@ -649,11 +649,12 @@ export class IfxFileUpload {
                 const progress = task?.progress ?? 100;
                 const isUploading = task && !task.completed;
                 const itemClass = isUploading ? 'file-item uploading' : 'file-item upload-success';
+                const uniqueKey = `${file.name}-${file.size}`;
 
                 const { base, ext } = this.splitFileNameParts(file);
 
                 return (
-                  <li class={itemClass}>
+                  <li class={itemClass} key={uniqueKey}>
                     <div class="file-icon">
                       <ifx-icon icon={this.getFileIcon(file)}></ifx-icon>
                     </div>
