@@ -50,6 +50,28 @@
   margin-top: tokens.$ifxSpace50;
 }
 
+.file-upload-status {
+  font-style: normal;
+  font-weight: 400;
+  font-size: tokens.$ifxFontSizeXs;
+  line-height: tokens.$ifxLineHeightXs;
+  letter-spacing: 0.2px;
+  margin-top: tokens.$ifxSpace100;
+
+  &.file-upload-status__error {
+    display: flex;
+    align-items: center;
+    color: tokens.$ifxColorRed500;
+
+    ifx-icon {
+      position: relative;
+      top: - tokens.$ifxSpace12;
+      color: tokens.$ifxColorRed500;
+      margin-right: tokens.$ifxSpace100;
+    }
+  }
+}
+
 .upload-heading {
   font: tokens.$ifxHeadingHeading06;
   margin-bottom: tokens.$ifxSpace100;

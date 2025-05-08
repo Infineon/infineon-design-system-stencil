@@ -26,6 +26,7 @@ export class IfxFileUpload {
 
   @Prop() dragAndDrop: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
+  @Prop() maxFiles?: number; // If not set, unlimited
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
@@ -38,6 +39,11 @@ export class IfxFileUpload {
   @Prop() labelUnsupportedFileType: string = 'Unsupported file type.';
   @Prop() labelUploaded: string = 'Successfully uploaded';
   @Prop() labelSupportedFormatsTemplate: string = 'Supported file formats: {{types}}. Max file size: {{size}}MB.';
+  @Prop() labelFileSingular: string = 'file';
+  @Prop() labelFilePlural: string = 'files';
+  @Prop() labelMaxFilesInfo?: string = 'Up to {{count}} {{files}}.';
+  @Prop() labelMaxFilesExceeded: string = 'Upload limit exceeded. Only {{count}} {{files}} allowed.';
+
 
   private showDemoStates?: boolean;
 
@@ -46,6 +52,8 @@ export class IfxFileUpload {
   @State() uploadTasks: UploadTask[] = [];
   @State() rejectedSizeFiles: string[] = [];
   @State() rejectedTypeFiles: string[] = [];
+  @State() statusMessage: { type: 'error' | 'info' | 'success'; text: string } | null = null;
+
 
   @Event() ifxFileUploadAdd: EventEmitter<{ addedFiles: File[]; files: File[] }>;
   @Event() ifxFileUploadRemove: EventEmitter<{ removedFile: File; files: File[] }>;
@@ -58,6 +66,7 @@ export class IfxFileUpload {
   @Event() ifxFileUploadAbort: EventEmitter<{ file: File }>;
   @Event() ifxFileUploadDrop: EventEmitter<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>;
   @Event() ifxFileUploadClick: EventEmitter<void>;
+  @Event() ifxFileUploadMaxFilesExceeded: EventEmitter<{ maxFiles: number; attempted: number }>;
 
 
   private fileInputEl: HTMLInputElement | null = null;
@@ -109,6 +118,9 @@ export class IfxFileUpload {
     js: 'application/javascript'
   };
 
+  private pluralize(count: number): string {
+    return count === 1 ? this.labelFileSingular : this.labelFilePlural;
+  }
 
   private getNormalizedFileTypes(): string[] {
     if (Array.isArray(this.allowedFileTypes)) {
@@ -219,6 +231,41 @@ export class IfxFileUpload {
     this.rejectedSizeFiles = [...this.rejectedSizeFiles, ...rejectedSize];
     this.rejectedTypeFiles = [...this.rejectedTypeFiles, ...rejectedType];
 
+    if (this.maxFiles && this.files.length + validFiles.length > this.maxFiles) {
+      const availableSlots = this.maxFiles - this.files.length;
+      const limitedFiles = validFiles.slice(0, Math.max(availableSlots, 0));
+      const overflowFiles = validFiles.slice(availableSlots);
+
+      this.files = [...this.files, ...limitedFiles];
+
+      if (limitedFiles.length > 0) {
+        this.ifxFileUploadAdd.emit({ addedFiles: limitedFiles, files: this.files });
+        this.ifxFileUploadChange.emit({ files: this.files });
+      }
+
+      overflowFiles.forEach(file => {
+        this.ifxFileUploadInvalid.emit({ file, reason: 'too-many-files' });
+        this.ifxFileUploadError.emit({
+          file,
+          errorType: 'too-many-files',
+          message: `Upload limit exceeded. Max ${this.maxFiles} files allowed.`,
+          reason: 'too-many-files'
+        });
+        this.statusMessage = {
+          type: 'error',
+          text: this.labelMaxFilesExceeded
+            .replace('{{count}}', this.maxFiles.toString())
+            .replace('{{files}}', this.pluralize(this.maxFiles))
+        };
+        this.ifxFileUploadMaxFilesExceeded.emit({
+          maxFiles: this.maxFiles,
+          attempted: this.files.length + validFiles.length
+        });
+      });
+
+      return;
+    }
+
     validFiles.forEach(file => this.startUpload(file));
     this.files = [...this.files, ...validFiles];
 
@@ -327,6 +374,9 @@ export class IfxFileUpload {
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
     }
+    if (this.maxFiles && this.files.length < this.maxFiles) {
+      this.statusMessage = null;
+    }
   }
 
   clearRejectedFile(fileName: string, type: 'size' | 'type') {
@@ -338,6 +388,10 @@ export class IfxFileUpload {
 
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
+    }
+
+    if (this.maxFiles && this.files.length < this.maxFiles) {
+      this.statusMessage = null;
     }
   }
 
@@ -388,17 +442,39 @@ export class IfxFileUpload {
   private getSupportedFileText(): string {
     const extensions = this.getNormalizedFileTypes().map(ext => ext.toUpperCase());
     const mimeTypes = this.getAdditionalMimeTypes().map(mime => this.getLabelFromMimeType(mime));
-
     const allTypes = [...extensions, ...mimeTypes];
     const typesLabel = allTypes.join(', ');
 
-    return this.labelSupportedFormatsTemplate
+    let text = this.labelSupportedFormatsTemplate
       .replace('{{types}}', typesLabel)
       .replace('{{size}}', this.maxFileSizeMB.toString());
+
+    if (this.labelMaxFilesInfo && this.maxFiles) {
+      const fileWord = this.pluralize(this.maxFiles);
+      const maxFilesText = this.labelMaxFilesInfo
+        .replace('{{count}}', this.maxFiles.toString())
+        .replace('{{files}}', fileWord);
+      text += ` ${maxFilesText}`;
+    }
+
+    return text;
   }
 
   private getFormattedFileTooLargeText(): string {
     return this.labelFileTooLarge.replace('{{size}}', this.maxFileSizeMB.toString());
+  }
+
+  private renderStatusMessage() {
+    if (!this.statusMessage) return null;
+
+    return (
+      <div class={`file-upload-status file-upload-status__${this.statusMessage.type}`}>
+        {this.statusMessage.type === 'error' && (
+          <ifx-icon icon="c-warning-16"></ifx-icon>
+        )}
+        {this.statusMessage.text}
+      </div>
+    );
   }
 
   componentDidLoad() {
@@ -594,6 +670,7 @@ export class IfxFileUpload {
         <p class="file-upload-info">
           {this.getSupportedFileText()}
         </p>
+        {this.renderStatusMessage()}
       </div>
     );
   }
@@ -631,6 +708,7 @@ export class IfxFileUpload {
             onChange={(e) => this.handleFileChange(e)}
           />
         </div>
+        {this.renderStatusMessage()}
       </div>
     );
   }

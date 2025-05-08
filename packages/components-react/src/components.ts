@@ -470,7 +470,8 @@ type IfxFileUploadEvents = {
     onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
     onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>,
-    onIfxFileUploadClick: EventName<CustomEvent<void>>
+    onIfxFileUploadClick: EventName<CustomEvent<void>>,
+    onIfxFileUploadMaxFilesExceeded: EventName<CustomEvent<{ maxFiles: number; attempted: number }>>
 };
 
 export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents>({
@@ -489,7 +490,8 @@ export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileU
         onIfxFileUploadAllComplete: 'ifxFileUploadAllComplete',
         onIfxFileUploadAbort: 'ifxFileUploadAbort',
         onIfxFileUploadDrop: 'ifxFileUploadDrop',
-        onIfxFileUploadClick: 'ifxFileUploadClick'
+        onIfxFileUploadClick: 'ifxFileUploadClick',
+        onIfxFileUploadMaxFilesExceeded: 'ifxFileUploadMaxFilesExceeded'
     } as IfxFileUploadEvents,
     defineCustomElement: defineIfxFileUpload
 });

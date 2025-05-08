@@ -38,6 +38,26 @@ const meta: Meta = {
       control: 'text',
       description: 'Text shown inside the drag-and-drop area.'
     },
+    labelFileSingular: {
+      control: 'text',
+      description: 'Singular form of the word "file". Used for maxFiles-related messages (e.g., "1 file").'
+    },
+    labelFilePlural: {
+      control: 'text',
+      description: 'Plural form of the word "file". Used for maxFiles-related messages (e.g., "2 files").'
+    },
+    maxFiles: {
+      control: 'number',
+      description: 'Maximum number of files that can be uploaded in total. If unset, unlimited.',
+    },
+    labelMaxFilesInfo: {
+      control: 'text',
+      description: 'Optional message shown in the file info area when a file limit is set. Use {{count}} for substitution.',
+    },
+    labelMaxFilesExceeded: {
+      control: 'text',
+      description: 'Error message shown when a user exceeds the allowed number of files. Use {{count}} for substitution.',
+    },
     labelUploadedFilesHeading: {
       control: 'text',
       description: 'Text shown as the heading above the uploaded files list.',
@@ -119,7 +139,20 @@ const meta: Meta = {
     ifxFileUploadClick: {
       description: 'Custom Event emitted when the user clicks the upload area (to trigger file dialog).',
       table: { category: 'CUSTOM EVENTS' },
-    }
+    },
+    ifxFileUploadMaxFilesExceeded: {
+      description: 'Custom Event emitted when a user tries to upload more files than allowed by `maxFiles`. Provides the configured max and the attempted total.',
+      table: {
+        category: 'CUSTOM EVENTS',
+        type: {
+          summary: '{ maxFiles: number; attempted: number }',
+          detail: `
+            maxFiles: number – The configured upload limit
+            attempted: number – Total number of files user attempted to upload
+          `,
+        },
+      },
+    },
   }
 };
 
@@ -150,6 +183,10 @@ const renderFileUpload = (args: any) => {
     el.setAttribute('additional-allowed-file-types', value);
   }
 
+  if (args.maxFiles !== undefined && args.maxFiles !== null) {
+    el.setAttribute('max-files', String(args.maxFiles));
+  }
+
   const uniqueTypes = Array.from(new Set(mappedTypes));
   el.setAttribute('allowed-file-types', uniqueTypes.join(','));
 
@@ -160,6 +197,10 @@ const renderFileUpload = (args: any) => {
   el.setAttribute('label-unsupported-file-type', args.labelUnsupportedFileType);
   el.setAttribute('label-uploaded', args.labelUploaded);
   el.setAttribute('label-supported-formats-template', args.labelSupportedFormatsTemplate);
+  el.setAttribute('label-file-singular', args.labelFileSingular);
+  el.setAttribute('label-file-plural', args.labelFilePlural);
+  el.setAttribute('label-max-files-info', args.labelMaxFilesInfo);
+  el.setAttribute('label-max-files-exceeded', args.labelMaxFilesExceeded);
 
   el.addEventListener('ifxFileUploadAdd', action('ifxFileUploadAdd'));
   el.addEventListener('ifxFileUploadRemove', action('ifxFileUploadRemove'));
@@ -171,6 +212,7 @@ const renderFileUpload = (args: any) => {
   el.addEventListener('ifxFileUploadAbort', action('ifxFileUploadAbort'));
   el.addEventListener('ifxFileUploadDrop', action('ifxFileUploadDrop'));
   el.addEventListener('ifxFileUploadClick', action('ifxFileUploadClick'));
+  el.addEventListener('ifxFileUploadMaxFilesExceeded', action('ifxFileUploadMaxFilesExceeded'));
 
   return el;
 };
@@ -188,7 +230,11 @@ export const UploadFileButton: Story = {
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
-    labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
+    labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.',
+    labelFileSingular: 'file',
+    labelFilePlural: 'files',
+    labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
+    labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
   },
   render: renderFileUpload
 };
@@ -206,7 +252,11 @@ export const UploadAreaDragDrop: Story = {
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
-    labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
+    labelSupportedFormatsTemplate: 'Supported file formats: {{types}}. Max file size: {{size}}MB.',
+    labelFileSingular: 'file',
+    labelFilePlural: 'files',
+    labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
+    labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
   },
   render: renderFileUpload
 };
