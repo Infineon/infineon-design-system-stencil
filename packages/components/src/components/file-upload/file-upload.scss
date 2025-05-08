@@ -11,6 +11,23 @@
   flex-direction: column;
 }
 
+.file-upload-label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightM;
+  color: tokens.$ifxColorBaseBlack;
+
+  .required {
+    display: inline-block;
+    margin-left: 4px;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+  }
+}
+
 .upload-dropzone {
   border: 1px dashed tokens.$ifxColorEngineering300;
   padding: tokens.$ifxSpace500;
@@ -28,11 +45,17 @@
   &:hover {
     border: 1px dashed tokens.$ifxColorEngineering400;
   }
-}
 
-.upload-dropzone.drag-over {
-  border: 1px solid tokens.$ifxColorOcean500;
-  background: tokens.$ifxColorEngineering100;
+  &.drag-over {
+    &, &.error {
+      border: 1px solid tokens.$ifxColorOcean500;
+    }
+    background: tokens.$ifxColorEngineering100;
+  }
+
+  &.error {
+    border-color: tokens.$ifxColorRed500;
+  }
 }
 
 .upload-dropzone input {

@@ -25,6 +25,7 @@ export class IfxFileUpload {
   @Element() hostElement: HTMLElement;
 
   @Prop() dragAndDrop: boolean = false;
+  @Prop() required: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
   @Prop() maxFiles?: number; // If not set, unlimited
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
@@ -32,9 +33,11 @@ export class IfxFileUpload {
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
   @Prop() uploadHandler?: (file: File) => Promise<void>;
 
+  @Prop() label: string = 'Label';
+  @Prop() labelRequiredError: string = 'At least one file must be uploaded';
   @Prop() labelBrowseFiles: string = 'Browse files';
   @Prop() labelDragAndDrop: string = 'Drag & Drop or browse files to upload';
-  @Prop() labelUploadedFilesHeading: string = 'Uploaded Files';
+  @Prop() labelUploadedFilesHeading: string = 'Uploaded files';
   @Prop() labelFileTooLarge: string = 'Upload failed. Max file size: {{size}}MB.';
   @Prop() labelUnsupportedFileType: string = 'Unsupported file type.';
   @Prop() labelUploaded: string = 'Successfully uploaded';
@@ -44,14 +47,15 @@ export class IfxFileUpload {
   @Prop() labelMaxFilesInfo?: string = 'Up to {{count}} {{files}}.';
   @Prop() labelMaxFilesExceeded: string = 'Upload limit exceeded. Only {{count}} {{files}} allowed.';
 
-
   private showDemoStates?: boolean;
+  private internalId = `ifx-file-upload-${Math.random().toString(36).substr(2, 9)}`;
 
   @State() isDragOver: boolean = false;
   @State() files: File[] = [];
   @State() uploadTasks: UploadTask[] = [];
   @State() rejectedSizeFiles: string[] = [];
   @State() rejectedTypeFiles: string[] = [];
+  @State() requiredError: boolean = false;
   @State() statusMessage: { type: 'error' | 'info' | 'success'; text: string } | null = null;
 
 
@@ -67,6 +71,7 @@ export class IfxFileUpload {
   @Event() ifxFileUploadDrop: EventEmitter<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>;
   @Event() ifxFileUploadClick: EventEmitter<void>;
   @Event() ifxFileUploadMaxFilesExceeded: EventEmitter<{ maxFiles: number; attempted: number }>;
+  @Event() ifxFileUploadValidation: EventEmitter<{ valid: boolean }>;
 
 
   private fileInputEl: HTMLInputElement | null = null;
@@ -117,6 +122,29 @@ export class IfxFileUpload {
     css: 'text/css',
     js: 'application/javascript'
   };
+
+  private validateRequired(): void {
+    if (this.required && this.files.length === 0) {
+      this.requiredError = true;
+
+      if (this.statusMessage?.text !== this.labelRequiredError) {
+        this.statusMessage = {
+          type: 'error',
+          text: this.labelRequiredError
+        };
+      }
+
+      this.ifxFileUploadValidation.emit({ valid: false });
+    } else {
+      this.requiredError = false;
+
+      if (this.statusMessage?.text === this.labelRequiredError) {
+        this.statusMessage = null;
+      }
+
+      this.ifxFileUploadValidation.emit({ valid: true });
+    }
+  }
 
   private pluralize(count: number): string {
     return count === 1 ? this.labelFileSingular : this.labelFilePlural;
@@ -273,6 +301,8 @@ export class IfxFileUpload {
       this.ifxFileUploadAdd.emit({ addedFiles: validFiles, files: this.files });
       this.ifxFileUploadChange.emit({ files: this.files });
     }
+
+    this.validateRequired();
   }
 
   startUpload(file: File) {
@@ -364,6 +394,7 @@ export class IfxFileUpload {
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
     }
+    this.validateRequired();
   }
 
   removeFile(file: File) {
@@ -371,13 +402,21 @@ export class IfxFileUpload {
     this.files = this.files.filter(f => f.name !== file.name);
     this.ifxFileUploadRemove.emit({ removedFile: file, files: this.files });
     this.ifxFileUploadChange.emit({ files: this.files });
+    this.validateRequired();
+
     if (this.fileInputEl) {
       this.fileInputEl.value = '';
     }
-    if (this.maxFiles && this.files.length < this.maxFiles) {
+
+    if (
+      this.maxFiles &&
+      this.files.length < this.maxFiles &&
+      this.statusMessage?.text !== this.labelRequiredError
+    ) {
       this.statusMessage = null;
     }
   }
+
 
   clearRejectedFile(fileName: string, type: 'size' | 'type') {
     if (type === 'size') {
@@ -393,6 +432,8 @@ export class IfxFileUpload {
     if (this.maxFiles && this.files.length < this.maxFiles) {
       this.statusMessage = null;
     }
+
+    this.validateRequired();
   }
 
   splitFileNameParts(file: File): { base: string; ext: string } {
@@ -487,6 +528,7 @@ export class IfxFileUpload {
     }
   }
 
+  // Storybook Demo
   @Method()
   async injectDemoState() {
     const uploading = new File(['demo'], 'Image.jpg', { type: 'image/jpeg' });
@@ -503,9 +545,24 @@ export class IfxFileUpload {
     this.rejectedTypeFiles = [unsupported.name];
   }
 
+  // Storybook Demo
+  @Method()
+    async triggerDemoValidation(): Promise<void> {
+      this.validateRequired();
+    }
+
   render() {
     return (
       <div class="file-upload-wrapper">
+        {this.label && (
+          <label class="file-upload-label" htmlFor={this.internalId}>
+            {this.label}
+            {this.required && (
+              <span class={`required ${this.requiredError ? 'error' : ''}`}>*</span>
+            )}
+          </label>
+        )}
+
         {this.dragAndDrop ? this.renderDragAndDropArea() : this.renderUploadArea()}
 
         {(this.files.length > 0 || this.rejectedSizeFiles.length > 0 || this.rejectedTypeFiles.length > 0) && (
@@ -653,20 +710,19 @@ export class IfxFileUpload {
 
     return (
       <div class={{ 'upload-button': true }}>
-        <label>
-          <ifx-button variant="secondary">
-            <ifx-icon icon="upload-16"></ifx-icon>
-            {this.labelBrowseFiles}
-          </ifx-button>
-          <input
-            ref={handleInputRef}
-            type="file"
-            accept={this.getAcceptAttribute()}
-            multiple
-            onChange={(e) => this.handleFileChange(e)}
-            style={{ display: 'none' }}
-          />
-        </label>
+        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()}>
+          <ifx-icon icon="upload-16"></ifx-icon>
+          {this.labelBrowseFiles}
+        </ifx-button>
+        <input
+          id={this.internalId}
+          ref={handleInputRef}
+          type="file"
+          accept={this.getAcceptAttribute()}
+          multiple
+          onChange={(e) => this.handleFileChange(e)}
+          style={{ display: 'none' }}
+        />
         <p class="file-upload-info">
           {this.getSupportedFileText()}
         </p>
@@ -687,29 +743,33 @@ export class IfxFileUpload {
     };
 
     return (
-      <div
-        class={{ 'upload-dropzone': true, 'drag-over': this.isDragOver }}
-        onClick={triggerInputClick}
-        onDragOver={(e) => this.handleDragOver(e)}
-        onDragLeave={(e) => this.handleDragLeave(e)}
-        onDrop={(e) => this.handleDrop(e)}
-      >
-        <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
-        <p>{this.labelDragAndDrop}</p>
-        <p class="file-upload-info">
-          {this.getSupportedFileText()}
-        </p>
-        <div style={{ height: '0px', overflow: 'hidden' }}>
-          <input
-            ref={handleInputRef}
-            type="file"
-            accept={this.getAcceptAttribute()}
-            multiple
-            onChange={(e) => this.handleFileChange(e)}
-          />
+      <div>
+        <div
+          class={{ 'upload-dropzone': true, 'drag-over': this.isDragOver, 'error': this.requiredError }}
+          onClick={triggerInputClick}
+          onDragOver={(e) => this.handleDragOver(e)}
+          onDragLeave={(e) => this.handleDragLeave(e)}
+          onDrop={(e) => this.handleDrop(e)}
+        >
+          <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
+          <p>{this.labelDragAndDrop}</p>
+          <p class="file-upload-info">
+            {this.getSupportedFileText()}
+          </p>
+          <div style={{ height: '0px', overflow: 'hidden' }}>
+            <input
+              id={this.internalId}
+              ref={handleInputRef}
+              type="file"
+              accept={this.getAcceptAttribute()}
+              multiple
+              onChange={(e) => this.handleFileChange(e)}
+            />
+          </div>
         </div>
         {this.renderStatusMessage()}
       </div>
     );
+
   }
 }

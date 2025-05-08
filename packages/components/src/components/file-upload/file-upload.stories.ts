@@ -17,6 +17,18 @@ const meta: Meta = {
       control: 'boolean',
       description: 'Enables drag-and-drop area. If false, a button-based upload is shown instead.'
     },
+    label: {
+      control: 'text',
+      description: 'Label shown above the upload area.',
+    },
+    required: {
+      control: 'boolean',
+      description: 'If set to true, at least one file must be uploaded. Validation fails if empty.',
+    },
+    labelRequiredError: {
+      control: 'text',
+      description: 'Error message shown when no file is uploaded and `required` is true.',
+    },
     maxFileSizeMB: {
       control: 'number',
       description: 'Maximum file size allowed per file (in MB). Files larger than this will be rejected.'
@@ -96,14 +108,6 @@ const meta: Meta = {
         'Emitted when an error occurs during file upload. Includes the affected file, a human-readable message, an error type, and an optional machine-readable reason (e.g., "file-too-large", "unsupported-type").',
       table: {
         category: 'CUSTOM EVENTS',
-        type: {
-          summary: '{ file: File; message: string; errorType: string; reason?: FileUploadErrorReason }',
-          detail: `
-            errorType: string – A general category of the error (e.g., "upload-failed", "invalid-type")
-            message: string – A human-readable description of the error
-            reason (optional): 'network-error' | 'timeout' | 'file-too-large' | 'unsupported-type' | 'invalid-type' | 'custom' | string – A structured reason for programmatic handling
-          `,
-        },
       },
     },
     ifxFileUploadInvalid: {
@@ -123,10 +127,7 @@ const meta: Meta = {
         'Emitted when all active uploads have been completed successfully. Includes the final list of uploaded files.',
       table: {
         category: 'CUSTOM EVENTS',
-        type: {
-          summary: '{ files: File[] }',
-        },
-      },
+      }
     },
     ifxFileUploadAbort: {
       description: 'Custom Event emitted when a file upload is manually aborted.',
@@ -144,14 +145,11 @@ const meta: Meta = {
       description: 'Custom Event emitted when a user tries to upload more files than allowed by `maxFiles`. Provides the configured max and the attempted total.',
       table: {
         category: 'CUSTOM EVENTS',
-        type: {
-          summary: '{ maxFiles: number; attempted: number }',
-          detail: `
-            maxFiles: number – The configured upload limit
-            attempted: number – Total number of files user attempted to upload
-          `,
-        },
       },
+    },
+    ifxFileUploadValidation: {
+      description: 'Custom Event emitted when required validation is performed. True if valid, false if required file missing.',
+      table: { category: 'CUSTOM EVENTS' },
     },
   }
 };
@@ -187,9 +185,17 @@ const renderFileUpload = (args: any) => {
     el.setAttribute('max-files', String(args.maxFiles));
   }
 
+  if (args.required) {
+    el.setAttribute('required', '');
+  } else {
+    el.removeAttribute('required');
+  }
+
   const uniqueTypes = Array.from(new Set(mappedTypes));
   el.setAttribute('allowed-file-types', uniqueTypes.join(','));
 
+  el.setAttribute('label', args.label);
+  el.setAttribute('label-required-error', args.labelRequiredError);
   el.setAttribute('label-browse-files', args.labelBrowseFiles);
   el.setAttribute('label-drag-and-drop', args.labelDragAndDrop);
   el.setAttribute('label-uploaded-files-heading', args.labelUploadedFilesHeading);
@@ -213,6 +219,7 @@ const renderFileUpload = (args: any) => {
   el.addEventListener('ifxFileUploadDrop', action('ifxFileUploadDrop'));
   el.addEventListener('ifxFileUploadClick', action('ifxFileUploadClick'));
   el.addEventListener('ifxFileUploadMaxFilesExceeded', action('ifxFileUploadMaxFilesExceeded'));
+  el.addEventListener('ifxFileUploadValidation', action('ifxFileUploadValidation'));
 
   return el;
 };
@@ -221,12 +228,15 @@ export const UploadFileButton: Story = {
   name: 'Upload File (Button)',
   args: {
     dragAndDrop: false,
+    label: 'Label',
+    required: false,
+    labelRequiredError: 'You must upload at least one file.',
     maxFileSizeMB: 7,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     additionalAllowedFileTypes: 'application/zip,text/csv',
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
-    labelUploadedFilesHeading: 'Uploaded Files',
+    labelUploadedFilesHeading: 'Uploaded files',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
@@ -243,12 +253,15 @@ export const UploadAreaDragDrop: Story = {
   name: 'Upload Area (Drag&Drop)',
   args: {
     dragAndDrop: true,
-    maxFileSizeMB: 5,
+    label: 'Label',
+    required: false,
+    labelRequiredError: 'You must upload at least one file.',
+    maxFileSizeMB: 7,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     additionalAllowedFileTypes: 'application/zip,text/csv',
     labelBrowseFiles: 'Browse files',
     labelDragAndDrop: 'Drag & Drop or browse files to upload',
-    labelUploadedFilesHeading: 'Uploaded Files',
+    labelUploadedFilesHeading: 'Uploaded files',
     labelFileTooLarge: 'Upload failed. Max file size: {{size}}MB.',
     labelUnsupportedFileType: 'Unsupported file type.',
     labelUploaded: 'Successfully uploaded',
@@ -262,13 +275,14 @@ export const UploadAreaDragDrop: Story = {
 };
 
 export const UploadStatesDemo: Story = {
-  name: 'Upload States Demo',
+  name: 'Upload States (Demo)',
+  args: {
+    dragAndDrop: false
+  },
   parameters: {
-    controls: { disable: true },
-    actions: { disable: true },
     docs: {
       description: {
-        story: 'Visual preview of all file states (success, upload in progress, rejected).'
+        story: 'Visual preview of all file states (success, upload in progress, rejected). Only the `dragAndDrop` control is available.'
       }
     },
     previewTabs: {
@@ -278,11 +292,115 @@ export const UploadStatesDemo: Story = {
       'storybook/interactions/panel': { hidden: true }
     }
   },
-  render: () => {
+  argTypes: {
+    dragAndDrop: { control: 'boolean' },
+    // Disable all other controls
+    required: { table: { disable: true } },
+    label: { table: { disable: true } },
+    labelRequiredError: { table: { disable: true } },
+    maxFileSizeMB: { table: { disable: true } },
+    allowedFileTypes: { table: { disable: true } },
+    additionalAllowedFileTypes: { table: { disable: true } },
+    labelBrowseFiles: { table: { disable: true } },
+    labelDragAndDrop: { table: { disable: true } },
+    labelFileSingular: { table: { disable: true } },
+    labelFilePlural: { table: { disable: true } },
+    maxFiles: { table: { disable: true } },
+    labelMaxFilesInfo: { table: { disable: true } },
+    labelMaxFilesExceeded: { table: { disable: true } },
+    labelUploadedFilesHeading: { table: { disable: true } },
+    labelFileTooLarge: { table: { disable: true } },
+    labelUnsupportedFileType: { table: { disable: true } },
+    labelUploaded: { table: { disable: true } },
+    labelSupportedFormatsTemplate: { table: { disable: true } },
+    ifxFileUploadAdd: { table: { disable: true } },
+    ifxFileUploadRemove: { table: { disable: true } },
+    ifxFileUploadChange: { table: { disable: true } },
+    ifxFileUploadError: { table: { disable: true } },
+    ifxFileUploadInvalid: { table: { disable: true } },
+    ifxFileUploadStart: { table: { disable: true } },
+    ifxFileUploadComplete: { table: { disable: true } },
+    ifxFileUploadAllComplete: { table: { disable: true } },
+    ifxFileUploadAbort: { table: { disable: true } },
+    ifxFileUploadDrop: { table: { disable: true } },
+    ifxFileUploadClick: { table: { disable: true } },
+    ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
+    ifxFileUploadValidation: { table: { disable: true } }
+  },
+  render: (args) => {
     const el = document.createElement('ifx-file-upload');
+
+    if (args.dragAndDrop) {
+      el.setAttribute('drag-and-drop', '');
+    }
+
     setTimeout(() => {
       (el as any).injectDemoState?.();
     }, 0);
+
+    return el;
+  }
+};
+
+export const UploadRequiredError: Story = {
+  name: 'Upload Required Error (Demo)',
+  args: {
+    dragAndDrop: false
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstrates the error state when the upload is required but no files have been added. Only `dragAndDrop` is controllable in this demo.'
+      }
+    }
+  },
+  argTypes: {
+    dragAndDrop: { control: 'boolean' },
+    // Disable all other controls
+    required: { table: { disable: true } },
+    label: { table: { disable: true } },
+    labelRequiredError: { table: { disable: true } },
+    maxFileSizeMB: { table: { disable: true } },
+    allowedFileTypes: { table: { disable: true } },
+    additionalAllowedFileTypes: { table: { disable: true } },
+    labelBrowseFiles: { table: { disable: true } },
+    labelDragAndDrop: { table: { disable: true } },
+    labelFileSingular: { table: { disable: true } },
+    labelFilePlural: { table: { disable: true } },
+    maxFiles: { table: { disable: true } },
+    labelMaxFilesInfo: { table: { disable: true } },
+    labelMaxFilesExceeded: { table: { disable: true } },
+    labelUploadedFilesHeading: { table: { disable: true } },
+    labelFileTooLarge: { table: { disable: true } },
+    labelUnsupportedFileType: { table: { disable: true } },
+    labelUploaded: { table: { disable: true } },
+    labelSupportedFormatsTemplate: { table: { disable: true } },
+    ifxFileUploadAdd: { table: { disable: true } },
+    ifxFileUploadRemove: { table: { disable: true } },
+    ifxFileUploadChange: { table: { disable: true } },
+    ifxFileUploadError: { table: { disable: true } },
+    ifxFileUploadInvalid: { table: { disable: true } },
+    ifxFileUploadStart: { table: { disable: true } },
+    ifxFileUploadComplete: { table: { disable: true } },
+    ifxFileUploadAllComplete: { table: { disable: true } },
+    ifxFileUploadAbort: { table: { disable: true } },
+    ifxFileUploadDrop: { table: { disable: true } },
+    ifxFileUploadClick: { table: { disable: true } },
+    ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
+    ifxFileUploadValidation: { table: { disable: true } }
+  },
+  render: (args) => {
+    const el = document.createElement('ifx-file-upload');
+
+    if (args.dragAndDrop) el.setAttribute('drag-and-drop', '');
+
+    el.setAttribute('required', '');
+
+    // Fehlerzustand gezielt triggern
+    setTimeout(() => {
+      (el as any).triggerDemoValidation?.();
+    }, 100);
+
     return el;
   }
 };
