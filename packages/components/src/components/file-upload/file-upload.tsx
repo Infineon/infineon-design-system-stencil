@@ -522,6 +522,10 @@ export class IfxFileUpload {
     );
   }
 
+  private isInputDisabled(): boolean {
+    return this.disabled || (this.maxFiles !== undefined && this.files.length >= this.maxFiles);
+  }
+
   componentDidLoad() {
     if (this.hostElement.hasAttribute('show-demo-states')) {
       this.showDemoStates = true;
@@ -719,7 +723,7 @@ export class IfxFileUpload {
 
     return (
       <div class={{ 'upload-button': true }}>
-        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()} disabled={this.disabled}>
+        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()} disabled={this.isInputDisabled()}>
           <ifx-icon icon="upload-16"></ifx-icon>
           {this.labelBrowseFiles}
         </ifx-button>
@@ -731,7 +735,7 @@ export class IfxFileUpload {
           multiple
           onChange={(e) => this.handleFileChange(e)}
           style={{ display: 'none' }}
-          disabled={this.disabled}
+          disabled={this.isInputDisabled()}
         />
         <p class="file-upload-info">
           {this.getSupportedFileText()}
@@ -753,7 +757,7 @@ export class IfxFileUpload {
     };
 
     return (
-      <div>
+      <div class={{ 'disabled': this.isInputDisabled() }}>
         <div
           class={{ 'upload-dropzone': true, 'drag-over': this.isDragOver, 'error': this.requiredError }}
           onClick={triggerInputClick}
@@ -774,7 +778,7 @@ export class IfxFileUpload {
               accept={this.getAcceptAttribute()}
               multiple
               onChange={(e) => this.handleFileChange(e)}
-              disabled={this.disabled}
+              disabled={this.isInputDisabled()}
             />
           </div>
         </div>

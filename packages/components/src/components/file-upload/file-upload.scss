@@ -17,15 +17,6 @@
     .file-upload-info {
       color: tokens.$ifxColorEngineering500;
     }
-
-    .upload-dropzone {
-      border-color: tokens.$ifxColorEngineering300;
-      color: tokens.$ifxColorEngineering300;
-
-      ifx-icon {
-        color: tokens.$ifxColorEngineering300;
-      }
-    }
   }
 }
 
@@ -73,6 +64,16 @@
 
   &.error {
     border-color: tokens.$ifxColorRed500;
+  }
+
+  .disabled & {
+    pointer-events: none;
+    border-color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorEngineering300;
+
+    ifx-icon {
+      color: tokens.$ifxColorEngineering300;
+    }
   }
 }
 
