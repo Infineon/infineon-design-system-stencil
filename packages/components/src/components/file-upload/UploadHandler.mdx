@@ -1,0 +1,167 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/File Upload/Technical Integration" />
+
+# Technical Integration with uploadHandler
+
+This document provides advanced usage patterns and integration examples for the `<ifx-file-upload>` web component. It focuses on how to use the `uploadHandler` prop for custom upload logic, track upload progress, and hook into related events.
+
+---
+
+## Purpose of `uploadHandler`
+
+The `uploadHandler` is an optional function that lets you control how files are uploaded. It's ideal if you need to:
+
+- Upload files to a custom backend
+- Show live progress using a progress bar and uploaded size text
+- Handle success and error states manually
+
+---
+
+## Function signature
+
+```ts
+uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
+```
+
+- `file`: The selected file to upload
+- `onProgress`: (Optional) Callback to report percentage (0–100)
+- Returns a `Promise` that resolves when the upload is complete
+
+If you do not call `onProgress`, a small fake progress is shown automatically.
+
+> The component will automatically show both the progress bar and a readable label like `200 KB / 400 KB uploaded` based on the progress percentage. You don't have to calculate or format sizes manually.
+
+---
+
+## What `uploadHandler` does – and doesn't
+
+The component takes care of all file validation before calling your handler. Here's a breakdown:
+
+| Feature                           | Handled by component | Required in `uploadHandler` |
+|----------------------------------|------------------------|------------------------------|
+| Multiple file selection          | ✅ Yes                 | ❌ No                         |
+| Maximum file count (`maxFiles`)  | ✅ Yes                 | ❌ No                         |
+| Max file size (`maxFileSizeMB`)  | ✅ Yes                 | ❌ No                         |
+| Allowed file types               | ✅ Yes                 | ❌ No                         |
+| Error display and feedback       | ✅ Yes                 | ❌ No                         |
+| Upload start/finish              | ⬅️ via `uploadHandler` | ✅ Yes (`resolve/reject`)    |
+| Upload progress bar              | ⬅️ via `uploadHandler` | ✅ Optional (`onProgress`)   |
+
+If a file is invalid (e.g., wrong type or too large), the component will not call your handler.
+
+---
+
+## Example: JavaScript with simulated upload
+
+When using the component via HTML, you must assign the `uploadHandler` function via JavaScript:
+
+```html
+<ifx-file-upload id="uploader" label="Upload a file" max-files="2" allowed-file-types="jpg,jpeg" additional-allowed-file-types="image/png,application/zip"></ifx-file-upload>
+
+<script>
+  const uploader = document.getElementById('uploader');
+
+  uploader.uploadHandler = (file, onProgress) => {
+    return new Promise((resolve) => {
+      const total = file.size;
+      let uploaded = 0;
+      const interval = setInterval(() => {
+        uploaded += total / 20;
+        const percent = Math.min(100, Math.round((uploaded / total) * 100));
+        onProgress?.(percent);
+        if (percent >= 100) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 200);
+    });
+  };
+</script>
+```
+
+This will simulate progress updates every 200ms and show "xx KB / xx KB uploaded" in the UI.
+
+---
+
+## Example: Real upload with `XMLHttpRequest`
+
+```js
+const uploader = document.getElementById('uploader');
+
+uploader.uploadHandler = (file, onProgress) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/upload');
+
+    xhr.upload.addEventListener('progress', (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        onProgress?.(percent);
+      }
+    });
+
+    xhr.onload = () => {
+      xhr.status < 300 ? resolve() : reject();
+    };
+
+    xhr.onerror = () => reject();
+
+    const formData = new FormData();
+    formData.append('file', file);
+    xhr.send(formData);
+  });
+};
+```
+
+This example shows how to perform an actual upload with progress tracking.
+
+---
+
+## Optional Features
+
+### Cancelling an Upload
+
+You can optionally implement cancellation support using `AbortController`, or by providing your own cancellation logic:
+
+```ts
+uploadHandler = (file, onProgress) => {
+  const controller = new AbortController();
+  const promise = new Promise((resolve, reject) => {
+    // Use controller.signal if needed in your fetch/XHR logic
+  });
+
+  return Object.assign(promise, {
+    cancel: () => controller.abort()
+  });
+};
+```
+
+To trigger the cancellation from the outside, call:
+
+```ts
+document.querySelector('ifx-file-upload')?.cancelUpload(file);
+```
+
+> This is completely optional and the component will handle the UI state automatically.
+
+---
+
+## Related events
+
+| Event                         | Description                                                                 |
+|------------------------------|-----------------------------------------------------------------------------|
+| `ifxFileUploadStart`         | Fired when upload begins                                                    |
+| `ifxFileUploadProgress`*     | *(internal via progress bar only)*                                          |
+| `ifxFileUploadComplete`      | Fired when a file has been fully uploaded                                   |
+| `ifxFileUploadError`         | Fired when an error occurs (e.g., rejected file, server error)              |
+| `ifxFileUploadAbort`         | Fired when the user cancels the upload                                      |
+
+---
+
+## Notes
+
+- All uploads are triggered automatically after file validation.
+- You can combine `uploadHandler` with validation props like `maxFiles`, `maxFileSizeMB`, and `allowedFileTypes`.
+- The upload UI is automatically updated by the component; no manual DOM changes are needed.
+- The `uploadHandler` only needs to focus on uploading a single valid file.

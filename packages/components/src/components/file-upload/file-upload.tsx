@@ -32,7 +32,7 @@ export class IfxFileUpload {
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
-  @Prop() uploadHandler?: (file: File) => Promise<void>;
+  @Prop() uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
 
   @Prop() label: string = 'Label';
   @Prop() labelRequiredError: string = 'At least one file must be uploaded';
@@ -334,28 +334,20 @@ export class IfxFileUpload {
 
     const task: UploadTask = {
       file,
-      progress: 0,
+      progress: 3, // Start with initial progress for better UX
       intervalId: null,
       completed: false
     };
 
+    this.uploadTasks = [...this.uploadTasks, task];
+
     if (this.uploadHandler) {
-      // Real Upload
-
-      // <ifx-file-upload
-      //   uploadHandler={(file) => {
-      //     const formData = new FormData();
-      //     formData.append('file', file);
-      //     return fetch('/api/upload', {
-      //       method: 'POST',
-      //       body: formData
-      //     }).then(res => {
-      //       if (!res.ok) throw new Error('Upload failed');
-      //     });
-      //   }}
-      // ></ifx-file-upload>
-
-      this.uploadHandler(file).then(() => {
+      this.uploadHandler(file, (percent: number) => {
+        if (percent > task.progress) {
+          task.progress = Math.min(100, percent);
+          this.uploadTasks = [...this.uploadTasks];
+        }
+      }).then(() => {
         task.progress = 100;
         task.completed = true;
         this.uploadTasks = [...this.uploadTasks];
