@@ -9,6 +9,24 @@
 .file-upload-wrapper {
   display: flex;
   flex-direction: column;
+
+  &.disabled {
+    pointer-events: none;
+
+    label,
+    .file-upload-info {
+      color: tokens.$ifxColorEngineering500;
+    }
+
+    .upload-dropzone {
+      border-color: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorEngineering300;
+
+      ifx-icon {
+        color: tokens.$ifxColorEngineering300;
+      }
+    }
+  }
 }
 
 .file-upload-label {

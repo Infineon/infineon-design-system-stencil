@@ -29,6 +29,10 @@ const meta: Meta = {
       control: 'text',
       description: 'Error message shown when no file is uploaded and `required` is true.',
     },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables the component and prevents all interaction (upload, drag-and-drop, removal, etc.).',
+    },
     maxFileSizeMB: {
       control: 'number',
       description: 'Maximum file size allowed per file (in MB). Files larger than this will be rejected.'
@@ -191,6 +195,12 @@ const renderFileUpload = (args: any) => {
     el.removeAttribute('required');
   }
 
+  if (args.disabled) {
+    el.setAttribute('disabled', '');
+  } else {
+    el.removeAttribute('disabled');
+  }
+
   const uniqueTypes = Array.from(new Set(mappedTypes));
   el.setAttribute('allowed-file-types', uniqueTypes.join(','));
 
@@ -231,6 +241,7 @@ export const UploadFileButton: Story = {
     label: 'Label',
     required: false,
     labelRequiredError: 'You must upload at least one file.',
+    disabled: false,
     maxFileSizeMB: 7,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     additionalAllowedFileTypes: 'application/zip,text/csv',
@@ -256,6 +267,7 @@ export const UploadAreaDragDrop: Story = {
     label: 'Label',
     required: false,
     labelRequiredError: 'You must upload at least one file.',
+    disabled: false,
     maxFileSizeMB: 7,
     allowedFileTypes: ['jpg', 'png', 'pdf'],
     additionalAllowedFileTypes: 'application/zip,text/csv',

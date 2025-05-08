@@ -26,6 +26,7 @@ export class IfxFileUpload {
 
   @Prop() dragAndDrop: boolean = false;
   @Prop() required: boolean = false;
+  @Prop() disabled: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
   @Prop() maxFiles?: number; // If not set, unlimited
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
@@ -177,6 +178,7 @@ export class IfxFileUpload {
   }
 
   handleDrop(event: DragEvent) {
+    if (this.disabled) return;
     event.preventDefault();
     event.stopPropagation();
     this.isDragOver = false;
@@ -210,11 +212,13 @@ export class IfxFileUpload {
   }
 
   handleDragOver(event: DragEvent) {
+    if (this.disabled) return;
     event.preventDefault();
     this.isDragOver = true;
   }
 
   handleDragLeave(event: DragEvent) {
+    if (this.disabled) return;
     event.preventDefault();
     this.isDragOver = false;
   }
@@ -553,7 +557,12 @@ export class IfxFileUpload {
 
   render() {
     return (
-      <div class="file-upload-wrapper">
+      <div
+        class={{
+          'file-upload-wrapper': true,
+          'disabled': this.disabled
+        }}
+      >
         {this.label && (
           <label class="file-upload-label" htmlFor={this.internalId}>
             {this.label}
@@ -710,7 +719,7 @@ export class IfxFileUpload {
 
     return (
       <div class={{ 'upload-button': true }}>
-        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()}>
+        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()} disabled={this.disabled}>
           <ifx-icon icon="upload-16"></ifx-icon>
           {this.labelBrowseFiles}
         </ifx-button>
@@ -722,6 +731,7 @@ export class IfxFileUpload {
           multiple
           onChange={(e) => this.handleFileChange(e)}
           style={{ display: 'none' }}
+          disabled={this.disabled}
         />
         <p class="file-upload-info">
           {this.getSupportedFileText()}
@@ -764,6 +774,7 @@ export class IfxFileUpload {
               accept={this.getAcceptAttribute()}
               multiple
               onChange={(e) => this.handleFileChange(e)}
+              disabled={this.disabled}
             />
           </div>
         </div>
