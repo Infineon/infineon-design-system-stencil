@@ -284,6 +284,8 @@ export class IfxFileUpload {
 
       this.files = [...this.files, ...limitedFiles];
 
+      limitedFiles.forEach(file => this.startUpload(file));
+
       if (limitedFiles.length > 0) {
         this.ifxFileUploadAdd.emit({ addedFiles: limitedFiles, files: this.files });
         this.ifxFileUploadChange.emit({ files: this.files });
@@ -297,6 +299,9 @@ export class IfxFileUpload {
           message: `Upload limit exceeded. Max ${this.maxFiles} files allowed.`,
           reason: 'too-many-files'
         });
+      });
+
+      if (overflowFiles.length > 0) {
         this.statusMessage = {
           type: 'error',
           text: this.labelMaxFilesExceeded
@@ -307,10 +312,11 @@ export class IfxFileUpload {
           maxFiles: this.maxFiles,
           attempted: this.files.length + validFiles.length
         });
-      });
+      }
 
       return;
     }
+
 
     validFiles.forEach(file => this.startUpload(file));
     this.files = [...this.files, ...validFiles];
