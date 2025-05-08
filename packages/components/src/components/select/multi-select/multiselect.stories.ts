@@ -67,6 +67,7 @@ export default {
     errorMessage: 'Some error',
     label: '',
     placeholder: 'Placeholder',
+    showClearButton: true
   },
   argTypes: {
     size: {
@@ -164,6 +165,16 @@ export default {
           summary: 'boolean',
         },
       },
+    },
+    showClearButton: {
+      description: 'Shows the clear icon button.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: true
+        }
+      }
     },
     error: {
       description: 'Show error state.',
@@ -263,7 +274,8 @@ const Template = args => {
   label='${args.label}'
   placeholder='${args.placeholder}'
   show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'>
+  show-select-all='${args.showSelectAll}'
+  show-clear-button='${args.showClearButton}'>
 </ifx-multiselect>`;
 
   setTimeout(() => {

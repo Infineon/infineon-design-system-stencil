@@ -262,7 +262,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
       if(deleteIconWrapper) { 
         if (width <= 180) {
           deleteIconWrapper.classList.add('hide')
-        } else { 
+        } else if(this.showClearButton) { 
           deleteIconWrapper.classList.remove('hide')
         }
       }
@@ -377,9 +377,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             {this.createSelectOptions(this.options)}
           </select>
 
-          <div class={`single__select-icon-container ${!this.showClearButton ? 'hide' : ''}`}>
+          <div class='single__select-icon-container'>
             { this.optionIsSelected && (
-                <div class="ifx-choices__icon-wrapper-delete">
+                <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
                   <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
                 </div>
               )}
