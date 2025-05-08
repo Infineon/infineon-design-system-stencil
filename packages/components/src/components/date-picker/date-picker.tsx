@@ -100,6 +100,9 @@ export class DatePicker {
 
   componentDidLoad() { 
     this.setFireFoxClasses()
+  }
+
+  componentWillUpdate() { 
     if (this.value) {
       this.getDate({ target: { value: this.value } });
     }

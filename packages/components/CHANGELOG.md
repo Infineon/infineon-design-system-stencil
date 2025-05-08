@@ -1,3 +1,65 @@
+# v33.1.7 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Pagination: fires event only on page change [#1843](https://github.com/Infineon/infineon-design-system-stencil/pull/1843) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.1.6 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Date-picker: emit events on value change only [#1842](https://github.com/Infineon/infineon-design-system-stencil/pull/1842) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.1.5 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Modal: prevents content overflow [#1839](https://github.com/Infineon/infineon-design-system-stencil/pull/1839) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.1.4 (Wed May 07 2025)
+
+#### 🐛 Bug Fix
+
+- Accessibility enhancement added to IconButton [#1826](https://github.com/Infineon/infineon-design-system-stencil/pull/1826) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.1.3 (Tue May 06 2025)
+
+#### 🐛 Bug Fix
+
+- Accessibility enhancement added to Link [#1827](https://github.com/Infineon/infineon-design-system-stencil/pull/1827) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.1.2 (Tue May 06 2025)
 
 #### 🐛 Bug Fix
