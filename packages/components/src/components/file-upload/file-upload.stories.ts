@@ -94,6 +94,10 @@ const meta: Meta = {
       control: 'text',
       description: 'Template showing supported file formats. Use {{types}} and {{size}}.'
     },
+    labelUploadFailed: {
+      control: 'text',
+      description: 'Text shown when a file upload fails (e.g. due to network error).'
+    },
     // CUSTOM EVENTS
     ifxFileUploadAdd: {
       description: 'Custom Event emitted when one or more files are added via input or drop. Contains added and current file list.',
@@ -155,6 +159,10 @@ const meta: Meta = {
       description: 'Custom Event emitted when required validation is performed. True if valid, false if required file missing.',
       table: { category: 'CUSTOM EVENTS' },
     },
+    ifxFileUploadRetry: {
+      description: 'Fired when a retry is triggered on a previously failed file upload. Can be used to log retries or trigger custom logic.',
+      table: { category: 'CUSTOM EVENTS' },
+    }
   }
 };
 
@@ -217,6 +225,7 @@ const renderFileUpload = (args: any) => {
   el.setAttribute('label-file-plural', args.labelFilePlural);
   el.setAttribute('label-max-files-info', args.labelMaxFilesInfo);
   el.setAttribute('label-max-files-exceeded', args.labelMaxFilesExceeded);
+  el.setAttribute('label-upload-failed', args.labelUploadFailed);
 
   el.addEventListener('ifxFileUploadAdd', action('ifxFileUploadAdd'));
   el.addEventListener('ifxFileUploadRemove', action('ifxFileUploadRemove'));
@@ -230,6 +239,7 @@ const renderFileUpload = (args: any) => {
   el.addEventListener('ifxFileUploadClick', action('ifxFileUploadClick'));
   el.addEventListener('ifxFileUploadMaxFilesExceeded', action('ifxFileUploadMaxFilesExceeded'));
   el.addEventListener('ifxFileUploadValidation', action('ifxFileUploadValidation'));
+  el.addEventListener('ifxFileUploadRetry', action('ifxFileUploadRetry'));
 
   return el;
 };
@@ -256,6 +266,7 @@ export const UploadFileButton: Story = {
     labelFilePlural: 'files',
     labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
     labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
+    labelUploadFailed: 'Upload failed. Please try again.'
   },
   render: renderFileUpload
 };
@@ -282,6 +293,7 @@ export const UploadAreaDragDrop: Story = {
     labelFilePlural: 'files',
     labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
     labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
+    labelUploadFailed: 'Upload failed. Please try again.'
   },
   render: renderFileUpload
 };
@@ -307,6 +319,8 @@ export const UploadStatesDemo: Story = {
   argTypes: {
     dragAndDrop: { control: 'boolean' },
     // Disable all other controls
+    disabled: { table: { disable: true } },
+    labelUploadFailed: { table: { disable: true } },
     required: { table: { disable: true } },
     label: { table: { disable: true } },
     labelRequiredError: { table: { disable: true } },
@@ -337,7 +351,8 @@ export const UploadStatesDemo: Story = {
     ifxFileUploadDrop: { table: { disable: true } },
     ifxFileUploadClick: { table: { disable: true } },
     ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
-    ifxFileUploadValidation: { table: { disable: true } }
+    ifxFileUploadValidation: { table: { disable: true } },
+    ifxFileUploadRetry: { table: { disable: true } }
   },
   render: (args) => {
     const el = document.createElement('ifx-file-upload');
@@ -369,6 +384,8 @@ export const UploadRequiredError: Story = {
   argTypes: {
     dragAndDrop: { control: 'boolean' },
     // Disable all other controls
+    disabled: { table: { disable: true } },
+    labelUploadFailed: { table: { disable: true } },
     required: { table: { disable: true } },
     label: { table: { disable: true } },
     labelRequiredError: { table: { disable: true } },
@@ -399,7 +416,8 @@ export const UploadRequiredError: Story = {
     ifxFileUploadDrop: { table: { disable: true } },
     ifxFileUploadClick: { table: { disable: true } },
     ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
-    ifxFileUploadValidation: { table: { disable: true } }
+    ifxFileUploadValidation: { table: { disable: true } },
+    ifxFileUploadRetry: { table: { disable: true } }
   },
   render: (args) => {
     const el = document.createElement('ifx-file-upload');

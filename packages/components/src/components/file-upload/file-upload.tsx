@@ -5,6 +5,7 @@ interface UploadTask {
   progress: number;
   intervalId: number | null;
   completed: boolean;
+  error?: boolean;
 }
 
 export type FileUploadErrorReason =
@@ -42,6 +43,7 @@ export class IfxFileUpload {
   @Prop() labelFileTooLarge: string = 'Upload failed. Max file size: {{size}}MB.';
   @Prop() labelUnsupportedFileType: string = 'Unsupported file type.';
   @Prop() labelUploaded: string = 'Successfully uploaded';
+  @Prop() labelUploadFailed: string = 'Upload failed. Please try again.';
   @Prop() labelSupportedFormatsTemplate: string = 'Supported file formats: {{types}}. Max file size: {{size}}MB.';
   @Prop() labelFileSingular: string = 'file';
   @Prop() labelFilePlural: string = 'files';
@@ -73,7 +75,7 @@ export class IfxFileUpload {
   @Event() ifxFileUploadClick: EventEmitter<void>;
   @Event() ifxFileUploadMaxFilesExceeded: EventEmitter<{ maxFiles: number; attempted: number }>;
   @Event() ifxFileUploadValidation: EventEmitter<{ valid: boolean }>;
-
+  @Event() ifxFileUploadRetry: EventEmitter<{ file: File }>;
 
   private fileInputEl: HTMLInputElement | null = null;
 
@@ -329,6 +331,16 @@ export class IfxFileUpload {
     this.validateRequired();
   }
 
+  retryUpload(file: File) {
+    const taskIndex = this.uploadTasks.findIndex(t => t.file.name === file.name);
+    if (taskIndex !== -1) {
+      this.uploadTasks.splice(taskIndex, 1);
+      this.uploadTasks = [...this.uploadTasks];
+    }
+    this.ifxFileUploadRetry.emit({ file });
+    this.startUpload(file);
+  }
+
   startUpload(file: File) {
     this.ifxFileUploadStart.emit({ file });
 
@@ -336,7 +348,7 @@ export class IfxFileUpload {
       file,
       progress: 3, // Start with initial progress for better UX
       intervalId: null,
-      completed: false
+      completed: false,
     };
 
     this.uploadTasks = [...this.uploadTasks, task];
@@ -358,7 +370,8 @@ export class IfxFileUpload {
           this.ifxFileUploadAllComplete.emit({ files: this.files });
         }
       }).catch(() => {
-        console.error('Upload failed');
+        task.error = true;
+        this.uploadTasks = [...this.uploadTasks];
         this.ifxFileUploadError.emit({
           file,
           errorType: 'upload-failed',
@@ -558,19 +571,26 @@ export class IfxFileUpload {
   // Storybook Demo
   @Method()
   async injectDemoState() {
-    const uploading = new File(['demo'], 'Image.jpg', { type: 'image/jpeg' });
-    const uploaded = new File(['demo'], 'File.pdf', { type: 'application/pdf' });
-    const tooLarge = new File(['demo'], 'Video.mp4', { type: 'video/mp4' });
-    const unsupported = new File(['demo'], 'Script.exe', { type: 'application/x-msdownload' });
+    const dummyContent = new Array(50000).fill('a').join(''); // ~50 KB
+    const bigContent = dummyContent + dummyContent; // ~100 KB
 
-    this.files = [uploaded, uploading];
+    const uploading = new File([dummyContent], 'Image.jpg', { type: 'image/jpeg' }); // ~50 KB
+    const uploaded = new File([bigContent], 'File.pdf', { type: 'application/pdf' }); // ~100 KB
+    const failed = new File([dummyContent], 'Text.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }); // ~50 KB
+    const tooLarge = new File([bigContent + bigContent + bigContent], 'Video.mp4', { type: 'video/mp4' }); // ~300 KB
+    const unsupported = new File(['demo'], 'Script.exe', { type: 'application/x-msdownload' }); // very small
+
+    this.files = [uploaded, uploading, failed];
     this.uploadTasks = [
       { file: uploaded, progress: 100, intervalId: null, completed: true },
-      { file: uploading, progress: 35, intervalId: null, completed: false }
+      { file: uploading, progress: 40, intervalId: null, completed: false },
+      { file: failed, progress: 80, intervalId: null, completed: false, error: true }
     ];
     this.rejectedSizeFiles = [tooLarge.name];
     this.rejectedTypeFiles = [unsupported.name];
   }
+
+
 
   // Storybook Demo
   @Method()
@@ -667,7 +687,8 @@ export class IfxFileUpload {
                 const task = this.uploadTasks.find(t => t.file.name === file.name);
                 const progress = task?.progress ?? 100;
                 const isUploading = task && !task.completed;
-                const itemClass = isUploading ? 'file-item uploading' : 'file-item upload-success';
+                const isError = task?.error === true;
+                const itemClass = isError ? 'file-item upload-failed' : isUploading ? 'file-item uploading' : 'file-item upload-success';
                 const uniqueKey = `${file.name}-${file.size}`;
 
                 const { base, ext } = this.splitFileNameParts(file);
@@ -684,6 +705,15 @@ export class IfxFileUpload {
                           <span class="file-name-ext">{ext}</span>
                         </span>
                         <div class="file-actions">
+                          <ifx-icon-button
+                            shape="square"
+                            variant="tertiary"
+                            icon="refresh-16"
+                            size="s"
+                            aria-label="Retry upload"
+                            onClick={() => this.retryUpload(file)}
+                            style={{ display: isError ? 'inline-flex' : 'none' }}>
+                          </ifx-icon-button>
                           <ifx-icon-button
                             shape="square"
                             variant="tertiary"
@@ -706,7 +736,7 @@ export class IfxFileUpload {
                       </div>
 
                       <div class="file-middle-row">
-                        {isUploading && task && (
+                        {isUploading && task && !task.error && (
                           <span class="file-uploading">
                             {this.getFormattedProgressText(task)}
                           </span>
@@ -720,9 +750,12 @@ export class IfxFileUpload {
                             </span>
                           </span>
                         )}
+                        {isError && (
+                          <span class="file-status">{this.labelUploadFailed}</span>
+                        )}
                       </div>
 
-                      {isUploading && (
+                      {isUploading && task && !task.error && (
                         <div class="file-progress-row">
                           <ifx-progress-bar size="s" value={progress} show-label="true"></ifx-progress-bar>
                         </div>

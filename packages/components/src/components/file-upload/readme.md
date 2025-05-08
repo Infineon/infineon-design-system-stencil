@@ -24,6 +24,7 @@
 | `labelRequiredError`            | `label-required-error`             |                                                                                                               | `string`                                                                 | `'At least one file must be uploaded'`                            |
 | `labelSupportedFormatsTemplate` | `label-supported-formats-template` |                                                                                                               | `string`                                                                 | `'Supported file formats: {{types}}. Max file size: {{size}}MB.'` |
 | `labelUnsupportedFileType`      | `label-unsupported-file-type`      |                                                                                                               | `string`                                                                 | `'Unsupported file type.'`                                        |
+| `labelUploadFailed`             | `label-upload-failed`              |                                                                                                               | `string`                                                                 | `'Upload failed. Please try again.'`                              |
 | `labelUploaded`                 | `label-uploaded`                   |                                                                                                               | `string`                                                                 | `'Successfully uploaded'`                                         |
 | `labelUploadedFilesHeading`     | `label-uploaded-files-heading`     |                                                                                                               | `string`                                                                 | `'Uploaded files'`                                                |
 | `maxFileSizeMB`                 | `max-file-size-m-b`                |                                                                                                               | `number`                                                                 | `7`                                                               |
@@ -47,6 +48,7 @@
 | `ifxFileUploadInvalid`          |             | `CustomEvent<{ file: File; reason: string; }>`                                         |
 | `ifxFileUploadMaxFilesExceeded` |             | `CustomEvent<{ maxFiles: number; attempted: number; }>`                                |
 | `ifxFileUploadRemove`           |             | `CustomEvent<{ removedFile: File; files: File[]; }>`                                   |
+| `ifxFileUploadRetry`            |             | `CustomEvent<{ file: File; }>`                                                         |
 | `ifxFileUploadStart`            |             | `CustomEvent<{ file: File; }>`                                                         |
 | `ifxFileUploadValidation`       |             | `CustomEvent<{ valid: boolean; }>`                                                     |
 
