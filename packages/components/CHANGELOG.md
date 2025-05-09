@@ -1,3 +1,15 @@
+# v33.2.0 (Thu May 08 2025)
+
+#### 🚀 Enhancement
+
+- Select components: makes the clear button removable via a prop [#1844](https://github.com/Infineon/infineon-design-system-stencil/pull/1844) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.1.7 (Wed May 07 2025)
 
 #### 🐛 Bug Fix
