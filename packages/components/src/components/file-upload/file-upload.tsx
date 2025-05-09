@@ -50,6 +50,16 @@ export class IfxFileUpload {
   @Prop() labelMaxFilesInfo?: string = 'Up to {{count}} {{files}}.';
   @Prop() labelMaxFilesExceeded: string = 'Upload limit exceeded. Only {{count}} {{files}} allowed.';
 
+  @Prop() ariaLabelBrowseFiles: string = 'Browse files';
+  @Prop() ariaLabelDropzone: string = 'Upload area. Click to browse or drag and drop files.';
+  @Prop() ariaLabelFileInput: string = 'Upload file';
+  @Prop() ariaLabelRemoveFile: string = 'Remove file';
+  @Prop() ariaLabelCancelUpload: string = 'Cancel upload';
+  @Prop() ariaLabelRetryUpload: string = 'Retry upload';
+  @Prop() ariaLabelUploadingStatus: string = 'Upload in progress';
+  @Prop() ariaLabelUploadedStatus: string = 'Upload completed';
+  @Prop() ariaLabelUploadFailedStatus: string = 'Upload failed';
+
   private showDemoStates?: boolean;
   private internalId = `ifx-file-upload-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -643,13 +653,13 @@ export class IfxFileUpload {
                           variant="tertiary"
                           icon="delete-forever-16"
                           size="s"
-                          aria-label="Remove file"
-                          onClick={() => this.clearRejectedFile(fileName, 'size')}>
-                        </ifx-icon-button>
+                          aria-label={this.ariaLabelRemoveFile}
+                          onClick={() => this.clearRejectedFile(fileName, 'size')}
+                        ></ifx-icon-button>
                       </div>
                     </div>
                     <div class="file-middle-row">
-                      <span class="file-status">
+                      <span class="file-status" aria-label={this.labelFileTooLarge.replace('{{size}}', this.maxFileSizeMB.toString())}>
                         {this.getFormattedFileTooLargeText()}
                       </span>
                     </div>
@@ -674,13 +684,13 @@ export class IfxFileUpload {
                           variant="tertiary"
                           icon="delete-forever-16"
                           size="s"
-                          aria-label="Remove file"
-                          onClick={() => this.clearRejectedFile(fileName, 'type')}>
-                        </ifx-icon-button>
+                          aria-label={this.ariaLabelRemoveFile}
+                          onClick={() => this.clearRejectedFile(fileName, 'type')}
+                        ></ifx-icon-button>
                       </div>
                     </div>
                     <div class="file-middle-row">
-                      <span class="file-status">
+                      <span class="file-status" aria-label={this.labelUnsupportedFileType}>
                         {this.labelUnsupportedFileType}
                       </span>
                     </div>
@@ -695,7 +705,6 @@ export class IfxFileUpload {
                 const isError = task?.error === true;
                 const itemClass = isError ? 'file-item upload-failed' : isUploading ? 'file-item uploading' : 'file-item upload-success';
                 const uniqueKey = `${file.name}-${file.size}`;
-
                 const { base, ext } = this.splitFileNameParts(file);
 
                 return (
@@ -715,54 +724,60 @@ export class IfxFileUpload {
                             variant="tertiary"
                             icon="refresh-16"
                             size="s"
-                            aria-label="Retry upload"
+                            aria-label={this.ariaLabelRetryUpload}
                             onClick={() => this.retryUpload(file)}
-                            style={{ display: isError ? 'inline-flex' : 'none' }}>
-                          </ifx-icon-button>
+                            style={{ display: isError ? 'inline-flex' : 'none' }}
+                          ></ifx-icon-button>
                           <ifx-icon-button
                             shape="square"
                             variant="tertiary"
                             icon="cross-16"
                             size="s"
-                            aria-label="Cancel upload"
+                            aria-label={this.ariaLabelCancelUpload}
                             onClick={() => this.cancelUpload(file)}
-                            style={{ display: isUploading ? 'inline-flex' : 'none' }}>
-                          </ifx-icon-button>
+                            style={{ display: isUploading ? 'inline-flex' : 'none' }}
+                          ></ifx-icon-button>
                           <ifx-icon-button
                             shape="square"
                             variant="tertiary"
                             icon="delete-forever-16"
                             size="s"
-                            aria-label="Remove file"
+                            aria-label={this.ariaLabelRemoveFile}
                             onClick={() => this.removeFile(file)}
-                            style={{ display: !isUploading ? 'inline-flex' : 'none' }}>
-                          </ifx-icon-button>
+                            style={{ display: !isUploading ? 'inline-flex' : 'none' }}
+                          ></ifx-icon-button>
                         </div>
                       </div>
 
                       <div class="file-middle-row">
                         {isUploading && task && !task.error && (
-                          <span class="file-uploading">
+                          <span class="file-uploading" aria-label={this.ariaLabelUploadingStatus}>
                             {this.getFormattedProgressText(task)}
                           </span>
                         )}
-                        {!isUploading && (
+                        {!isUploading && !isError && (
                           <span>
                             <span class="file-size">{this.formatSize(file.size)}</span>
-                            <span class="file-status">
+                            <span class="file-status" aria-label={this.ariaLabelUploadedStatus}>
                               <ifx-icon icon="check-12"></ifx-icon>&nbsp;
                               {this.labelUploaded}
                             </span>
                           </span>
                         )}
                         {isError && (
-                          <span class="file-status">{this.labelUploadFailed}</span>
+                          <span class="file-status" aria-label={this.ariaLabelUploadFailedStatus}>
+                            {this.labelUploadFailed}
+                          </span>
                         )}
                       </div>
 
                       {isUploading && task && !task.error && (
                         <div class="file-progress-row">
-                          <ifx-progress-bar size="s" value={progress} show-label="true"></ifx-progress-bar>
+                          <ifx-progress-bar
+                            size="s"
+                            value={progress}
+                            show-label="true"
+                          ></ifx-progress-bar>
                         </div>
                       )}
                     </div>
@@ -783,7 +798,12 @@ export class IfxFileUpload {
 
     return (
       <div class={{ 'upload-button': true }}>
-        <ifx-button variant="secondary" onClick={() => this.fileInputEl?.click()} disabled={this.isInputDisabled()}>
+        <ifx-button
+          variant="secondary"
+          onClick={() => this.fileInputEl?.click()}
+          disabled={this.isInputDisabled()}
+          aria-label={this.ariaLabelBrowseFiles}
+        >
           <ifx-icon icon="upload-16"></ifx-icon>
           {this.labelBrowseFiles}
         </ifx-button>
@@ -796,6 +816,7 @@ export class IfxFileUpload {
           onChange={(e) => this.handleFileChange(e)}
           style={{ display: 'none' }}
           disabled={this.isInputDisabled()}
+          aria-label={this.ariaLabelFileInput}
         />
         <p class="file-upload-info">
           {this.getSupportedFileText()}
@@ -804,6 +825,7 @@ export class IfxFileUpload {
       </div>
     );
   }
+
 
   renderDragAndDropArea() {
     const handleInputRef = (el: HTMLInputElement | null) => {
@@ -824,6 +846,9 @@ export class IfxFileUpload {
           onDragOver={(e) => this.handleDragOver(e)}
           onDragLeave={(e) => this.handleDragLeave(e)}
           onDrop={(e) => this.handleDrop(e)}
+          role="button"
+          tabIndex={0}
+          aria-label={this.ariaLabelDropzone}
         >
           <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
           <p>{this.labelDragAndDrop}</p>
@@ -839,12 +864,13 @@ export class IfxFileUpload {
               multiple
               onChange={(e) => this.handleFileChange(e)}
               disabled={this.isInputDisabled()}
+              aria-label={this.ariaLabelFileInput}
             />
           </div>
         </div>
         {this.renderStatusMessage()}
       </div>
     );
-
   }
+
 }

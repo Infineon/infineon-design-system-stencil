@@ -98,6 +98,52 @@ const meta: Meta = {
       control: 'text',
       description: 'Text shown when a file upload fails (e.g. due to network error).'
     },
+    // ARIA LABELS
+    ariaLabelBrowseFiles: {
+      control: 'text',
+      description: 'ARIA label for the file upload button.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelDropzone: {
+      control: 'text',
+      description: 'ARIA label for the entire dropzone area.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelFileInput: {
+      control: 'text',
+      description: 'ARIA label for the hidden native file input.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelRemoveFile: {
+      control: 'text',
+      description: 'ARIA label for the remove file button.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelCancelUpload: {
+      control: 'text',
+      description: 'ARIA label for the cancel upload button.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelRetryUpload: {
+      control: 'text',
+      description: 'ARIA label for the retry upload button.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelUploadingStatus: {
+      control: 'text',
+      description: 'ARIA status text for an uploading file.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelUploadedStatus: {
+      control: 'text',
+      description: 'ARIA status text for a successfully uploaded file.',
+      table: { category: 'ARIA LABELS' }
+    },
+    ariaLabelUploadFailedStatus: {
+      control: 'text',
+      description: 'ARIA status text for a failed file upload.',
+      table: { category: 'ARIA LABELS' }
+    },
     // CUSTOM EVENTS
     ifxFileUploadAdd: {
       description: 'Custom Event emitted when one or more files are added via input or drop. Contains added and current file list.',
@@ -227,6 +273,16 @@ const renderFileUpload = (args: any) => {
   el.setAttribute('label-max-files-exceeded', args.labelMaxFilesExceeded);
   el.setAttribute('label-upload-failed', args.labelUploadFailed);
 
+  el.setAttribute('aria-label-browse-files', args.ariaLabelBrowseFiles);
+  el.setAttribute('aria-label-dropzone', args.ariaLabelDropzone);
+  el.setAttribute('aria-label-file-input', args.ariaLabelFileInput);
+  el.setAttribute('aria-label-remove-file', args.ariaLabelRemoveFile);
+  el.setAttribute('aria-label-cancel-upload', args.ariaLabelCancelUpload);
+  el.setAttribute('aria-label-retry-upload', args.ariaLabelRetryUpload);
+  el.setAttribute('aria-label-uploading-status', args.ariaLabelUploadingStatus);
+  el.setAttribute('aria-label-uploaded-status', args.ariaLabelUploadedStatus);
+  el.setAttribute('aria-label-upload-failed-status', args.ariaLabelUploadFailedStatus);
+
   el.addEventListener('ifxFileUploadAdd', action('ifxFileUploadAdd'));
   el.addEventListener('ifxFileUploadRemove', action('ifxFileUploadRemove'));
   el.addEventListener('ifxFileUploadChange', action('ifxFileUploadChange'));
@@ -266,7 +322,16 @@ export const UploadFileButton: Story = {
     labelFilePlural: 'files',
     labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
     labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
-    labelUploadFailed: 'Upload failed. Please try again.'
+    labelUploadFailed: 'Upload failed. Please try again.',
+    ariaLabelBrowseFiles: 'Browse files',
+    ariaLabelDropzone: 'Upload area. Click to browse or drag and drop files.',
+    ariaLabelFileInput: 'Upload file',
+    ariaLabelRemoveFile: 'Remove file',
+    ariaLabelCancelUpload: 'Cancel upload',
+    ariaLabelRetryUpload: 'Retry upload',
+    ariaLabelUploadingStatus: 'Upload in progress',
+    ariaLabelUploadedStatus: 'Upload completed',
+    ariaLabelUploadFailedStatus: 'Upload failed'
   },
   render: renderFileUpload
 };
@@ -293,7 +358,16 @@ export const UploadAreaDragDrop: Story = {
     labelFilePlural: 'files',
     labelMaxFilesInfo: 'You can upload up to {{count}} {{files}}.',
     labelMaxFilesExceeded: 'You have exceeded the maximum of {{count}} {{files}}.',
-    labelUploadFailed: 'Upload failed. Please try again.'
+    labelUploadFailed: 'Upload failed. Please try again.',
+    ariaLabelBrowseFiles: 'Browse files',
+    ariaLabelDropzone: 'Upload area. Click to browse or drag and drop files.',
+    ariaLabelFileInput: 'Upload file',
+    ariaLabelRemoveFile: 'Remove file',
+    ariaLabelCancelUpload: 'Cancel upload',
+    ariaLabelRetryUpload: 'Retry upload',
+    ariaLabelUploadingStatus: 'Upload in progress',
+    ariaLabelUploadedStatus: 'Upload completed',
+    ariaLabelUploadFailedStatus: 'Upload failed'
   },
   render: renderFileUpload
 };
@@ -352,7 +426,17 @@ export const UploadStatesDemo: Story = {
     ifxFileUploadClick: { table: { disable: true } },
     ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
     ifxFileUploadValidation: { table: { disable: true } },
-    ifxFileUploadRetry: { table: { disable: true } }
+    ifxFileUploadRetry: { table: { disable: true } },
+    // ARIA labels – disabled in demo
+    ariaLabelBrowseFiles: { table: { disable: true } },
+    ariaLabelDropzone: { table: { disable: true } },
+    ariaLabelFileInput: { table: { disable: true } },
+    ariaLabelRemoveFile: { table: { disable: true } },
+    ariaLabelCancelUpload: { table: { disable: true } },
+    ariaLabelRetryUpload: { table: { disable: true } },
+    ariaLabelUploadingStatus: { table: { disable: true } },
+    ariaLabelUploadedStatus: { table: { disable: true } },
+    ariaLabelUploadFailedStatus: { table: { disable: true } },
   },
   render: (args) => {
     const el = document.createElement('ifx-file-upload');
@@ -417,7 +501,17 @@ export const UploadRequiredError: Story = {
     ifxFileUploadClick: { table: { disable: true } },
     ifxFileUploadMaxFilesExceeded: { table: { disable: true } },
     ifxFileUploadValidation: { table: { disable: true } },
-    ifxFileUploadRetry: { table: { disable: true } }
+    ifxFileUploadRetry: { table: { disable: true } },
+    // ARIA labels – disabled in demo
+    ariaLabelBrowseFiles: { table: { disable: true } },
+    ariaLabelDropzone: { table: { disable: true } },
+    ariaLabelFileInput: { table: { disable: true } },
+    ariaLabelRemoveFile: { table: { disable: true } },
+    ariaLabelCancelUpload: { table: { disable: true } },
+    ariaLabelRetryUpload: { table: { disable: true } },
+    ariaLabelUploadingStatus: { table: { disable: true } },
+    ariaLabelUploadedStatus: { table: { disable: true } },
+    ariaLabelUploadFailedStatus: { table: { disable: true } },
   },
   render: (args) => {
     const el = document.createElement('ifx-file-upload');
