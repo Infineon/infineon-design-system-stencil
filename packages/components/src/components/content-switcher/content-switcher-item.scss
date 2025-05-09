@@ -9,7 +9,9 @@
     border: 3px solid transparent; // avoid jumping around
     padding: 7px tokens.$ifxSize250;
 
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
     font-weight: tokens.$ifxFontWeightSemibold;
     font-size: tokens.$ifxSize175;
     line-height: 20px;

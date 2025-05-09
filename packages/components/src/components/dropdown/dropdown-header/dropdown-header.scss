@@ -8,12 +8,16 @@
   gap: 8px;
   align-self: stretch;
   border-bottom: 1px solid tokens.$ifxColorEngineering200;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
 
   & span {
     color: tokens.$ifxColorEngineering500;
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

@@ -14,7 +14,9 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &.closed {
     display: flex;

@@ -16,7 +16,9 @@
 .card-headline {
   margin-top: 0;
   padding-top: 0;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   font-weight: tokens.$ifxFontWeightSemibold;
   font-size: tokens.$ifxFontSize3xl;
   line-height: tokens.$ifxLineHeight3xl;
