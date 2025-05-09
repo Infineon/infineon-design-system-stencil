@@ -16,7 +16,7 @@
   height: 100%;
   z-index: 1060;
   overflow-y: auto;
-  font-family: var(--ifx-font-family);
+  font-family: tokens.$ifxFontFamilyBody;
 
 }
 
@@ -44,7 +44,9 @@
   background-color: #fff;
   border-radius: tokens.$ifxBorderRadiusNone;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  // overflow: hidden;
+  
+  overflow: hidden;
+
   box-sizing: border-box;
   align-items: stretch;
 }
@@ -151,7 +153,8 @@
   min-height: 56px;
   box-sizing: border-box;
   flex: 1;
-  // overflow-y: auto;
+  
+  overflow-y: auto;
 }
 
 .modal-footer.buttons-present ::slotted(*){

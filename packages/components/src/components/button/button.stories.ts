@@ -17,6 +17,7 @@ export default {
     href: false,
     url: '',
     target: '_blank',
+    ariaLabel: 'Button',
   },
 
   argTypes: {
@@ -46,6 +47,16 @@ export default {
         category: 'ifx-button props',
         defaultValue: {
           summary: 'primary'
+        }
+      }
+    },
+    ariaLabel:{
+      description: 'Sets the aria-label attribute of the button.Enhances accessibility.',
+      control: 'text',
+      table: {
+        category: 'ifx-button props',
+        defaultValue: {
+          summary: 'Button'
         }
       }
     },
@@ -147,7 +158,7 @@ export default {
 };
 
 const DefaultTemplate = args =>
-  `<ifx-button type="${args.type}" disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ''} full-width="${args.fullWidth}">
+  `<ifx-button type="${args.type}" aria-label="${args.ariaLabel}" disabled="${args.disabled}" variant="${args.variant}" size="${args.size}" target="${args.target}" theme="${args.theme}" ${args.href ? `href="${args.url}"` : ''} full-width="${args.fullWidth}">
   ${args.icon && args.iconPosition.toUpperCase() === 'LEFT' ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ''}${args.label}${args.icon && args.iconPosition.toUpperCase() === 'RIGHT' ? `<ifx-icon icon="${args.icon}"></ifx-icon>` : ''} 
 </ifx-button>`;
 

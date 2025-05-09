@@ -47,6 +47,7 @@ export class Multiselect {
   @State() filteredOptions: Option[] = [];
   @Prop() showSearch: boolean = true;
   @Prop() showSelectAll: boolean = true;
+  @Prop() showClearButton: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
   @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
 
@@ -665,11 +666,11 @@ export class Multiselect {
               {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
-          <div class="ifx-multiselect-icon-container">
+          <div class='ifx-multiselect-icon-container'>
 
             {/* Clear Button - will show only if there's a selection */}
             {this.persistentSelectedOptions.length > 0 && (   
-              <div class="ifx-clear-button" onClick={this.disabled ? undefined : () => this.clearSelection()}>
+              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={this.disabled ? undefined : () => this.clearSelection()}>
                 <ifx-icon icon="cremove16"></ifx-icon>
               </div>
             )}

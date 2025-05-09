@@ -5,7 +5,7 @@
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
-  font-family: var(--ifx-font-family);
+  font-family: tokens.$ifxFontFamilyBody;
 
   &.small-select {
     height: 36px;
@@ -159,9 +159,11 @@
     display: flex;
   }
 
-
   .ifx-clear-button {
     display: flex;
+    &.hide { 
+      display: none;
+    }
   }
 
   .ifx-multiselect-dropdown-menu {
@@ -236,10 +238,6 @@
     &.is-highlighted {
       background-color: tokens.$ifxColorEngineering200;
       ;
-    }
-
-    &.selected {
-      // color: #0A8276;
     }
 
     &.sub-option {

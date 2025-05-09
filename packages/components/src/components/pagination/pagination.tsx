@@ -112,7 +112,36 @@ export class Pagination {
       li.addEventListener('click', this.handlePageClick);
     });
 
-    updateButtons();
+    if (initialValue && this.internalPage > 1) {
+      currActive = Math.floor(this.internalPage - 1);
+      paginationContainer.dataset[this.DATA_KEY] = currActive;
+    }
+
+    if(!initialValue) { 
+      this.handleEventEmission(currActive)
+    }
+
+
+    listItems[currActive].classList.add(this.CLASS_ACTIVE);
+
+    if (currActive === 0) {
+      paginationContainer.querySelector(".prev").classList.add(this.CLASS_DISABLED);
+      paginationContainer.querySelector(".prev").disabled = true;
+
+    } else {
+      listItems[currActive - 1].classList.add(this.CLASS_SIBLING_ACTIVE);
+      paginationContainer.querySelector(".prev").classList.remove(this.CLASS_DISABLED);
+      paginationContainer.querySelector(".prev").disabled = false;
+    }
+
+    if (currActive === (listItems.length - 1)) {
+      paginationContainer.querySelector(".next").classList.add(this.CLASS_DISABLED);
+      paginationContainer.querySelector(".next").disabled = true;
+
+    } else {
+      paginationContainer.querySelector(".next").classList.remove(this.CLASS_DISABLED);
+      paginationContainer.querySelector(".next").disabled = false;
+    }
   }
 
   private handlePageClick = (e: Event) => {
