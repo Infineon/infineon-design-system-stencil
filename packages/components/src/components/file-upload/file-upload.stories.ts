@@ -13,21 +13,14 @@ const meta: Meta = {
     }
   },
   argTypes: {
+    // GENERAL
     dragAndDrop: {
       control: 'boolean',
       description: 'Enables drag-and-drop area. If false, a button-based upload is shown instead.'
     },
-    label: {
-      control: 'text',
-      description: 'Label shown above the upload area.',
-    },
     required: {
       control: 'boolean',
-      description: 'If set to true, at least one file must be uploaded. Validation fails if empty.',
-    },
-    labelRequiredError: {
-      control: 'text',
-      description: 'Error message shown when no file is uploaded and `required` is true.',
+      description: 'If set to true, at least one file must be uploaded. Validation fails if empty.'
     },
     disabled: {
       control: 'boolean',
@@ -44,60 +37,85 @@ const meta: Meta = {
     },
     additionalAllowedFileTypes: {
       control: 'text',
-      description: 'Adds additional allowed file types using exact MIME types. Values must be valid MIME types – not file extensions! Example: application/zip (for .zip files)'
-    },
-    labelBrowseFiles: {
-      control: 'text',
-      description: 'Text for the file selection button (e.g., “Browse files”).'
-    },
-    labelDragAndDrop: {
-      control: 'text',
-      description: 'Text shown inside the drag-and-drop area.'
-    },
-    labelFileSingular: {
-      control: 'text',
-      description: 'Singular form of the word "file". Used for maxFiles-related messages (e.g., "1 file").'
-    },
-    labelFilePlural: {
-      control: 'text',
-      description: 'Plural form of the word "file". Used for maxFiles-related messages (e.g., "2 files").'
+      description: 'Adds additional allowed file types using exact MIME types. Example: application/zip'
     },
     maxFiles: {
       control: 'number',
-      description: 'Maximum number of files that can be uploaded in total. If unset, unlimited.',
+      description: 'Maximum number of files that can be uploaded in total. If unset, unlimited.'
     },
-    labelMaxFilesInfo: {
+
+    // LABELS
+    label: {
       control: 'text',
-      description: 'Optional message shown in the file info area when a file limit is set. Use {{count}} for substitution.',
+      description: 'Label shown above the upload area.',
+      table: { category: 'LABELS' }
     },
-    labelMaxFilesExceeded: {
+    labelRequiredError: {
       control: 'text',
-      description: 'Error message shown when a user exceeds the allowed number of files. Use {{count}} for substitution.',
+      description: 'Error message shown when no file is uploaded and `required` is true.',
+      table: { category: 'LABELS' }
+    },
+    labelBrowseFiles: {
+      control: 'text',
+      description: 'Text for the file selection button.',
+      table: { category: 'LABELS' }
+    },
+    labelDragAndDrop: {
+      control: 'text',
+      description: 'Text shown inside the drag-and-drop area.',
+      table: { category: 'LABELS' }
     },
     labelUploadedFilesHeading: {
       control: 'text',
-      description: 'Text shown as the heading above the uploaded files list.',
+      description: 'Heading above the uploaded files list.',
+      table: { category: 'LABELS' }
     },
     labelFileTooLarge: {
       control: 'text',
-      description: 'Shown when a file exceeds the allowed size. Use {{size}} for substitution.'
+      description: 'Shown when a file exceeds the allowed size. Use {{size}}.',
+      table: { category: 'LABELS' }
     },
     labelUnsupportedFileType: {
       control: 'text',
-      description: 'Shown when an unsupported file type is uploaded.'
+      description: 'Shown when an unsupported file type is uploaded.',
+      table: { category: 'LABELS' }
     },
     labelUploaded: {
       control: 'text',
-      description: 'Label shown after successful upload.'
-    },
-    labelSupportedFormatsTemplate: {
-      control: 'text',
-      description: 'Template showing supported file formats. Use {{types}} and {{size}}.'
+      description: 'Label shown after successful upload.',
+      table: { category: 'LABELS' }
     },
     labelUploadFailed: {
       control: 'text',
-      description: 'Text shown when a file upload fails (e.g. due to network error).'
+      description: 'Text shown when a file upload fails.',
+      table: { category: 'LABELS' }
     },
+    labelSupportedFormatsTemplate: {
+      control: 'text',
+      description: 'Template showing supported file formats. Use {{types}} and {{size}}.',
+      table: { category: 'LABELS' }
+    },
+    labelFileSingular: {
+      control: 'text',
+      description: 'Singular word for file.',
+      table: { category: 'LABELS' }
+    },
+    labelFilePlural: {
+      control: 'text',
+      description: 'Plural word for file.',
+      table: { category: 'LABELS' }
+    },
+    labelMaxFilesInfo: {
+      control: 'text',
+      description: 'Message for max file info. Use {{count}}.',
+      table: { category: 'LABELS' }
+    },
+    labelMaxFilesExceeded: {
+      control: 'text',
+      description: 'Error when exceeding max files. Use {{count}}.',
+      table: { category: 'LABELS' }
+    },
+
     // ARIA LABELS
     ariaLabelBrowseFiles: {
       control: 'text',
@@ -106,108 +124,101 @@ const meta: Meta = {
     },
     ariaLabelDropzone: {
       control: 'text',
-      description: 'ARIA label for the entire dropzone area.',
+      description: 'ARIA label for the dropzone.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelFileInput: {
       control: 'text',
-      description: 'ARIA label for the hidden native file input.',
+      description: 'ARIA label for the file input.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelRemoveFile: {
       control: 'text',
-      description: 'ARIA label for the remove file button.',
+      description: 'ARIA label for remove button.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelCancelUpload: {
       control: 'text',
-      description: 'ARIA label for the cancel upload button.',
+      description: 'ARIA label for cancel button.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelRetryUpload: {
       control: 'text',
-      description: 'ARIA label for the retry upload button.',
+      description: 'ARIA label for retry button.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelUploadingStatus: {
       control: 'text',
-      description: 'ARIA status text for an uploading file.',
+      description: 'ARIA status for uploading.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelUploadedStatus: {
       control: 'text',
-      description: 'ARIA status text for a successfully uploaded file.',
+      description: 'ARIA status for success.',
       table: { category: 'ARIA LABELS' }
     },
     ariaLabelUploadFailedStatus: {
       control: 'text',
-      description: 'ARIA status text for a failed file upload.',
+      description: 'ARIA status for failed upload.',
       table: { category: 'ARIA LABELS' }
     },
+
     // CUSTOM EVENTS
     ifxFileUploadAdd: {
-      description: 'Custom Event emitted when one or more files are added via input or drop. Contains added and current file list.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when files are added.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadRemove: {
-      description: 'Custom Event emitted when a file is removed by the user. Contains the removed file and the updated file list.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when a file is removed.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadChange: {
-      description: 'Custom Event emitted whenever the list of uploaded files changes. Contains the updated file list.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when file list changes.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadError: {
-      description:
-        'Emitted when an error occurs during file upload. Includes the affected file, a human-readable message, an error type, and an optional machine-readable reason (e.g., "file-too-large", "unsupported-type").',
-      table: {
-        category: 'CUSTOM EVENTS',
-      },
+      description: 'Emitted when an upload error occurs.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadInvalid: {
-      description: 'Custom Event emitted when a file is invalid (e.g., wrong type or size). Contains the file and rejection reason.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when file is invalid.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadStart: {
-      description: 'Custom Event emitted when an upload process for a file starts.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when upload starts.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadComplete: {
-      description: 'Custom Event emitted when a file upload has successfully completed.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when upload completes.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadAllComplete: {
-      description:
-        'Emitted when all active uploads have been completed successfully. Includes the final list of uploaded files.',
-      table: {
-        category: 'CUSTOM EVENTS',
-      }
+      description: 'Emitted when all uploads are done.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadAbort: {
-      description: 'Custom Event emitted when a file upload is manually aborted.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when an upload is cancelled.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadDrop: {
-      description: 'Custom Event emitted when files are dropped into the dropzone. Includes accepted and rejected files.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted on file drop.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadClick: {
-      description: 'Custom Event emitted when the user clicks the upload area (to trigger file dialog).',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted on click.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadMaxFilesExceeded: {
-      description: 'Custom Event emitted when a user tries to upload more files than allowed by `maxFiles`. Provides the configured max and the attempted total.',
-      table: {
-        category: 'CUSTOM EVENTS',
-      },
+      description: 'Emitted when too many files added.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadValidation: {
-      description: 'Custom Event emitted when required validation is performed. True if valid, false if required file missing.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted after required validation.',
+      table: { category: 'CUSTOM EVENTS' }
     },
     ifxFileUploadRetry: {
-      description: 'Fired when a retry is triggered on a previously failed file upload. Can be used to log retries or trigger custom logic.',
-      table: { category: 'CUSTOM EVENTS' },
+      description: 'Emitted when retry is triggered.',
+      table: { category: 'CUSTOM EVENTS' }
     }
   }
 };
