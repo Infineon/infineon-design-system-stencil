@@ -29,11 +29,24 @@ export class IfxFileUpload {
   @Prop() required: boolean = false;
   @Prop() disabled: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
-  @Prop() maxFiles?: number; // If not set, unlimited
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
   @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
   @Prop() uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
+
+  private _maxFiles?: number;
+  @Prop()
+  get maxFiles(): number | undefined {
+    return this._maxFiles;
+  }
+  set maxFiles(value: number | undefined) {
+    if (typeof value === 'number' && value < 1) {
+      console.warn('Invalid `maxFiles` value. Must be >= 1. Value ignored.');
+      this._maxFiles = undefined;
+    } else {
+      this._maxFiles = value;
+    }
+  }
 
   @Prop() label: string = 'Label';
   @Prop() labelRequiredError: string = 'At least one file must be uploaded';

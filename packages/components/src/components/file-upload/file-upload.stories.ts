@@ -40,8 +40,8 @@ const meta: Meta = {
       description: 'Adds additional allowed file types using exact MIME types. Example: application/zip'
     },
     maxFiles: {
-      control: 'number',
-      description: 'Maximum number of files that can be uploaded in total. If unset, unlimited.'
+      control: { type: 'number', min: 1, step: 1 },
+      description: 'Maximum number of files that can be uploaded in total. Must be at least 1. If unset, unlimited.'
     },
 
     // LABELS
