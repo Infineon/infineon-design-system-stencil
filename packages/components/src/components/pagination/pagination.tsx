@@ -35,22 +35,31 @@ export class Pagination {
     const totalPages = this.numberOfPages.length;
     const current = this.internalPage;
     let pages: (number | string)[] = [];
-
-    if (totalPages <= 7) {
+  
+    if (totalPages <= 5) {
       pages = [...this.numberOfPages];
     } else {
       pages.push(1);
-      if (current > buffer + 2) pages.push('...');
-      
-      const start = Math.max(2, current - buffer);
-      const end = Math.min(totalPages - 1, current + buffer);
+  
+      // Left side logic
+      if (current > buffer + 1) pages.push('...');
+  
+      // Central window calculation
+      let start = Math.max(2, current - buffer);
+      let end = Math.min(totalPages - 1, current + buffer);
+  
+      // Ensure minimum 5 items in center when possible
+      if (current <= buffer + 1) end = buffer * 2 + 1;
+      if (current >= totalPages - buffer) start = totalPages - buffer * 2;
+  
       for (let i = start; i <= end; i++) pages.push(i);
-      
-      if (current < totalPages - buffer - 1) pages.push('...');
+  
+      // Right side logic
+      if (current < totalPages - buffer) pages.push('...');
       pages.push(totalPages);
     }
-
-    this.visiblePages = pages.filter((v, i, a) => a.indexOf(v) === i);
+  
+    this.visiblePages = [...new Set(pages)]; // Better deduplication
   }
 
   calculateNumberOfPages() {
@@ -154,18 +163,19 @@ export class Pagination {
             ></ifx-icon-button>
             
             <ol>
-              {this.visiblePages.map((page, i) => typeof page === 'number' ? (
-                <li 
-                  class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
-                  data-page={page}
-                >
-                  <a href="javascript:void(0)">{page}</a>
-                </li>
-              ) : (
-                <li class="ellipsis" key={`ellipsis-${i}`}>
-                  <span>...</span>
-                </li>
-              ))}
+            {this.visiblePages.map((page, i) => typeof page === 'number' ? (
+              <li 
+                key={`page-${page}`} // Crucial key
+                class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
+                data-page={page}
+              >
+                <a href="javascript:void(0)">{page}</a>
+              </li>
+            ) : (
+              <li class="ellipsis" key={`ellipsis-${i}`}>
+                <span>...</span>
+              </li>
+            ))}
             </ol>
             
             <ifx-icon-button
