@@ -1,0 +1,13 @@
+<h2>Text Field</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-text-field (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" [success]="false"
+      placeholder="Placeholder">Text
+      field</ifx-text-field>
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+    <ifx-button variant="secondary" type="reset">Reset</ifx-button>
+
+  </form>
+  <span>Text field value: {{ textFieldValue }}</span>
