@@ -8,7 +8,9 @@
 
 .checkbox-group {
     display: flex;
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
     gap: tokens.$ifxSpace100;
 
     &.horizontal {
