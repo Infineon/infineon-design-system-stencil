@@ -772,7 +772,7 @@ export class IfxFileUpload {
                           <span>
                             <span class="file-size">{this.formatSize(file.size)}</span>
                             <span class="file-status" aria-label={this.ariaLabelUploadedStatus}>
-                              <ifx-icon icon="check-12"></ifx-icon>&nbsp;
+                              <ifx-icon icon="check-12"></ifx-icon>
                               {this.labelUploaded}
                             </span>
                           </span>

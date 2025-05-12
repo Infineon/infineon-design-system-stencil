@@ -134,9 +134,12 @@
 
 .file-item {
   border: 1px solid tokens.$ifxColorEngineering300;
-  padding: tokens.$ifxSpace200;
+  padding-top: tokens.$ifxSpace150;
+  padding-right: tokens.$ifxSpace200;
+  padding-bottom: tokens.$ifxSpace100;
+  padding-left: tokens.$ifxSpace200;
   display: flex;
-  gap: tokens.$ifxSpace200;
+  gap: tokens.$ifxSpace100;
 }
 
 .file-info {
@@ -188,12 +191,16 @@
   color: tokens.$ifxColorEngineering500;
 
   .file-status {
-    margin-left: tokens.$ifxSpace200;
+    margin-left: tokens.$ifxSpace150;
+
+    ifx-icon {
+      margin-right: tokens.$ifxSpace100;
+    }
   }
 }
 
 .file-progress-row {
-  margin-top: tokens.$ifxSpace200;
+  margin-top: tokens.$ifxSpace50;
 }
 
 .file-progress-row ifx-progress-bar {
@@ -206,7 +213,7 @@
   .file-status {
     ifx-icon {
       position: relative;
-      top: tokens.$ifxSpace25;
+      top: tokens.$ifxSpace12;
       color: tokens.$ifxColorGreen500;
     }
   }
