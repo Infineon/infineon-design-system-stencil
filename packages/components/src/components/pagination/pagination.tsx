@@ -21,10 +21,19 @@ export class Pagination {
   private CLASS_ACTIVE = "active";
   private prevInternalPage: number;
 
-  @Listen('ifxSelect')
-  setItemsPerPage(e: CustomEvent) {
-    this.internalItemsPerPage = e.detail?.label ? parseInt(e.detail.label) : 10;
-  }
+    @Listen('ifxSelect')
+    setItemsPerPage(e: CustomEvent) {
+      const selectedValue = e.detail?.value || e.detail?.label; 
+      const newItemsPerPage = parseInt(selectedValue) || 10;
+
+      if (newItemsPerPage === this.internalItemsPerPage) return;
+
+      this.internalItemsPerPage = newItemsPerPage;
+      this.internalPage = 1; 
+      this.calculateNumberOfPages();
+      this.updateVisiblePages();
+      this.handleEventEmission();
+    }
 
   componentDidLoad() {
     this.initPagination();
