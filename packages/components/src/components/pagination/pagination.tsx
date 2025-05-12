@@ -26,7 +26,9 @@ export class Pagination {
       const selectedValue = e.detail?.value || e.detail?.label; 
       const newItemsPerPage = parseInt(selectedValue) || 10;
 
-      if (newItemsPerPage === this.internalItemsPerPage) return;
+      if (newItemsPerPage === this.internalItemsPerPage) {
+        return;
+      }
 
       this.internalItemsPerPage = newItemsPerPage;
       this.internalPage = 1; 
@@ -50,25 +52,21 @@ export class Pagination {
     } else {
       pages.push(1);
   
-      // Left side logic
       if (current > buffer + 1) pages.push('...');
   
-      // Central window calculation
       let start = Math.max(2, current - buffer);
       let end = Math.min(totalPages - 1, current + buffer);
   
-      // Ensure minimum 5 items in center when possible
       if (current <= buffer + 1) end = buffer * 2 + 1;
       if (current >= totalPages - buffer) start = totalPages - buffer * 2;
   
       for (let i = start; i <= end; i++) pages.push(i);
   
-      // Right side logic
       if (current < totalPages - buffer) pages.push('...');
       pages.push(totalPages);
     }
   
-    this.visiblePages = [...new Set(pages)]; // Better deduplication
+    this.visiblePages = [...new Set(pages)];
   }
 
   calculateNumberOfPages() {
@@ -92,11 +90,14 @@ export class Pagination {
     this.updateVisiblePages();
   }
 
-  componentDidUpdate() {
-    if (this.prevInternalPage !== this.internalPage) {
+  componentWillUpdate() { 
+     if (this.prevInternalPage !== this.internalPage) {
       this.updateVisiblePages();
       this.prevInternalPage = this.internalPage;
     }
+  }
+
+  componentDidUpdate() {
     this.initPagination();
   }
 
@@ -174,7 +175,7 @@ export class Pagination {
             <ol>
             {this.visiblePages.map((page, i) => typeof page === 'number' ? (
               <li 
-                key={`page-${page}`} // Crucial key
+                key={`page-${page}`}
                 class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
                 data-page={page}
               >
