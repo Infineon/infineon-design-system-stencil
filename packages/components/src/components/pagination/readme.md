@@ -9,7 +9,7 @@
 
 | Property       | Attribute        | Description | Type              | Default     |
 | -------------- | ---------------- | ----------- | ----------------- | ----------- |
-| `currentPage`  | `current-page`   |             | `number`          | `0`         |
+| `currentPage`  | `current-page`   |             | `number`          | `1`         |
 | `itemsPerPage` | `items-per-page` |             | `any[] \| string` | `undefined` |
 | `total`        | `total`          |             | `number`          | `1`         |
 
