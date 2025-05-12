@@ -1,3 +1,15 @@
+# v33.3.0 (Mon May 12 2025)
+
+#### 🚀 Enhancement
+
+- Pagination: implements lazy loading [#1847](https://github.com/Infineon/infineon-design-system-stencil/pull/1847) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.2.0 (Thu May 08 2025)
 
 #### 🚀 Enhancement
