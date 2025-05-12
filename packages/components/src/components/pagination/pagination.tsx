@@ -156,7 +156,11 @@ export class Pagination {
           <div class="items__per-page-label">Results per Page</div>
           <div class="items__per-page-field">
             <ifx-select
+              placeholder='false'
+              show-search='false'
               value={undefined}
+              disabled={false}
+              error={false}
               size="s"
               options={this.filteredItemsPerPage}
               placeholder-value="Select"
