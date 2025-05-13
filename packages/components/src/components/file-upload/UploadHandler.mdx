@@ -1,0 +1,139 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/File Upload/Technical Integration" />
+
+# Technical Integration with uploadHandler
+
+This document provides advanced usage patterns and integration examples for the `<ifx-file-upload>` web component. It focuses on how to use the `uploadHandler` prop for custom upload logic, track upload progress, and hook into related events.
+
+> Everything related to UI, UX, error display, file validation, and retry logic is fully handled by the component. This guide only covers what developers need to implement themselves for real upload functionality.
+
+---
+
+## Purpose of `uploadHandler`
+
+The `uploadHandler` is an optional function that lets you control how files are uploaded. It's ideal if you need to:
+
+- Upload files to a custom backend
+- Show live progress using a progress bar and uploaded size text
+- Handle success and error states manually
+
+---
+
+## Function signature
+
+```ts
+uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
+```
+
+- `file`: The selected file to upload
+- `onProgress`: (Optional) Callback to report percentage (0–100)
+- Returns a `Promise` that resolves when the upload is complete
+
+If you do not call `onProgress`, a small fake progress is shown automatically.
+
+> The component will automatically show a progress bar and a readable label such as `200 KB / 400 KB uploaded`, calculated based on the file size and the reported progress percentage. You only need to call `onProgress(percent)` — formatting and rendering are handled automatically.
+
+---
+
+## What `uploadHandler` does – and doesn't
+
+The component takes care of all file validation before calling your handler. Here's a breakdown:
+
+| Feature                           | Handled by component | To do in `uploadHandler`                      |
+|----------------------------------|------------------------|-----------------------------------------------|
+| Multiple file selection          | ✅ Yes                 | ❌ No                                          |
+| Maximum file count (`maxFiles`)  | ✅ Yes                 | ❌ No                                          |
+| Max file size (`maxFileSizeMB`)  | ✅ Yes                 | ❌ No                                          |
+| Allowed file types               | ✅ Yes                 | ❌ No                                          |
+| Error display and feedback       | ✅ Yes                 | ❌ No                                          |
+| Trigger actual upload            | ✅ After validation     | ✅ Yes — start upload and resolve or reject    |
+| Mark upload as successful        | ✅ On promise resolve   | ✅ Yes — call `resolve()`                      |
+| Mark upload as failed            | ✅ On promise reject    | ✅ Yes — call `reject()`                       |
+| Show upload progress             | ✅ If progress is given | ✅ Optional — call `onProgress(percent)`       |
+
+If a file is invalid (e.g., wrong type or too large), the component will not call your handler.
+
+---
+
+## Example: Real upload with `XMLHttpRequest`
+
+```js
+const uploader = document.getElementById('uploader');
+
+uploader.uploadHandler = (file, onProgress) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/upload');
+
+    xhr.upload.addEventListener('progress', (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        onProgress?.(percent);
+      }
+    });
+
+    xhr.onload = () => {
+      xhr.status < 300 ? resolve() : reject();
+    };
+
+    xhr.onerror = () => reject();
+
+    const formData = new FormData();
+    formData.append('file', file);
+    xhr.send(formData);
+  });
+};
+```
+
+This example shows how to perform an actual upload with progress tracking.
+
+---
+
+## Retry on Failure
+
+If an upload fails (for example, due to a network error or server issue), the component will:
+
+- Display the file with a visual error state
+- Show a retry button next to the failed file
+- Emit a custom event `ifxFileUploadRetry` when retry is triggered
+
+Clicking the retry button automatically:
+
+- Reinvokes the `uploadHandler` with the same file
+- Clears the error state
+- Resets the progress to start a new upload attempt
+
+No changes are required to your `uploadHandler` function. It will be called again as if the file was just added.
+
+```ts
+document.querySelector('ifx-file-upload')?.addEventListener('ifxFileUploadRetry', (e) => {
+  console.log('Retry requested for file:', e.detail.file);
+});
+```
+
+This event can be useful to track retry attempts, report metrics, or handle partial state cleanup if needed.
+
+> Retry is handled entirely by the component UI and logic. Your upload handler only needs to support being called more than once with the same file.
+
+---
+
+## Related events
+
+| Event                         | Description                                                                 |
+|------------------------------|-----------------------------------------------------------------------------|
+| `ifxFileUploadStart`         | Fired when upload begins                                                    |
+| `ifxFileUploadProgress`*     | *(internal via progress bar only)*                                          |
+| `ifxFileUploadComplete`      | Fired when a file has been fully uploaded                                   |
+| `ifxFileUploadError`         | Fired when an error occurs (e.g., rejected file, server error)              |
+| `ifxFileUploadAbort`         | Fired when the user cancels the upload                                      |
+| `ifxFileUploadRetry`         | Fired when a retry is triggered on a failed upload                          |
+
+---
+
+## Notes
+
+- All uploads are triggered automatically after file validation.
+- You can combine `uploadHandler` with validation props like `maxFiles`, `maxFileSizeMB`, and `allowedFileTypes`.
+- The upload UI is automatically updated by the component; no manual DOM changes are needed.
+- The `uploadHandler` only needs to focus on uploading a single valid file.
