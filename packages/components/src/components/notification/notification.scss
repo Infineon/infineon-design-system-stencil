@@ -9,7 +9,9 @@
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
 
   background-color: tokens.$ifxColorBaseWhite;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   color: tokens.$ifxColorBaseBlack;
 
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;

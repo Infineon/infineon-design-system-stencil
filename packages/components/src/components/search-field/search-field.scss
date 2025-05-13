@@ -9,7 +9,9 @@
   box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
 
   .search-field__wrapper {

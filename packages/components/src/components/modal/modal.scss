@@ -16,7 +16,9 @@
   height: 100%;
   z-index: 1060;
   overflow-y: auto;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
 }
 

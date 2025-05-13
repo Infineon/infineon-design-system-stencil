@@ -164,7 +164,9 @@
   font-weight: 600;
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
 }
 
