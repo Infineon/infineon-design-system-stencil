@@ -33,6 +33,7 @@ export default {
     error: false,
     errorMessage: 'Some error',
     disabled: false,
+    showClearButton: true
     // type: 'single', //for later implementation
   },
 
@@ -110,6 +111,16 @@ export default {
         }
       }
     },
+    showClearButton: {
+      description: 'Shows the clear icon button.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: true
+        }
+      }
+    },
     searchPlaceholderValue: {
       description: 'Placeholder text for the search input field.',
       table: {
@@ -153,6 +164,7 @@ const DefaultTemplate = args => {
   const template = `<ifx-select 
   size='${args.size}'
   placeholder='${args.placeholder}'
+  show-clear-button='${args.showClearButton}'
   show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   disabled='${args.disabled}'

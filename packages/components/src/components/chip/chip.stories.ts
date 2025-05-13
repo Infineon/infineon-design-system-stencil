@@ -19,7 +19,7 @@ export default {
     readOnly: false,
     selected: false,
     value: 'Item Value',
-    AriaLabel: 'Chip'
+    ariaLabel: 'Chip'
   },
   argTypes: {
     amountOfChipItems: {
@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    AriaLabel: {
+    ariaLabel: {
       control: { type: 'text' },
       description: 'Set the aria label of the chip item. Enhances accessibility.',
       table: {
@@ -133,7 +133,7 @@ placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
 read-only="${args.readOnly}"
-AriaLabel="${args.AriaLabel}"
+aria-label="${args.ariaLabel}"
 >
   ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
