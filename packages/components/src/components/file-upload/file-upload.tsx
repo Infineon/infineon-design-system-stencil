@@ -15,8 +15,8 @@ export type FileUploadErrorReason =
   | 'unsupported-type'
   | 'invalid-type'
   | 'custom'
-  | string;
-
+  | (string & {});
+  
 @Component({
   tag: 'ifx-file-upload',
   styleUrl: 'file-upload.scss',
@@ -88,7 +88,7 @@ export class IfxFileUpload {
   @Event() ifxFileUploadAdd: EventEmitter<{ addedFiles: File[]; files: File[] }>;
   @Event() ifxFileUploadRemove: EventEmitter<{ removedFile: File; files: File[] }>;
   @Event() ifxFileUploadChange: EventEmitter<{ files: File[] }>;
-  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string; reason?: FileUploadErrorReason; }>;
+  @Event() ifxFileUploadError: EventEmitter<{ errorType: string; file: File; message: string; reason?: string; }>;
   @Event() ifxFileUploadInvalid: EventEmitter<{ file: File; reason: string }>;
   @Event() ifxFileUploadStart: EventEmitter<{ file: File }>;
   @Event() ifxFileUploadComplete: EventEmitter<{ file: File }>;

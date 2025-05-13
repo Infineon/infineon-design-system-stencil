@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type FileUploadErrorReason, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -463,7 +463,7 @@ type IfxFileUploadEvents = {
     onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
     onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: FileUploadErrorReason; }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
     onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
     onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
