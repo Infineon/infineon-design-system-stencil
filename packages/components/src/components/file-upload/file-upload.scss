@@ -56,10 +56,12 @@
   }
 
   &.drag-over {
-    &, &.error {
+    border: 1px solid tokens.$ifxColorOcean500;
+    background: tokens.$ifxColorEngineering100;
+
+    &.error {
       border: 1px solid tokens.$ifxColorOcean500;
     }
-    background: tokens.$ifxColorEngineering100;
   }
 
   &.error {
