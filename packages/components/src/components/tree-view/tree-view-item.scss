@@ -1,0 +1,89 @@
+.tree-item {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+  --tree-item-level: attr(data-level number, 0);
+
+  &.tree-item--expanded {
+    position: relative;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+
+    &:hover {
+      background-color: var(--ifx-color-hover, #f0f0f0);
+    }
+
+    &--disabled {
+      color: var(--ifx-color-disabled, #aaa);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &__checkbox-container {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &__checkbox {
+    cursor: pointer;
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__chevron-container {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+  }
+
+  &__chevron {
+    cursor: pointer;
+    font-size: 16px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 8px;
+      width: 1px;
+      background-color: var(--ifx-color-border, #ddd);
+    }
+  }
+
+  &__children {
+    display: none;
+    padding-left: 0;
+
+    .tree-item[aria-expanded="true"] > & {
+      display: block;
+    }
+  }
+}
+
+.tree-item__chevron.chevron-down {
+  transform: rotate(90deg);
+}
+
+.tree-item__chevron.chevron-right {
+  transform: rotate(0);
+}
+
+.tree-item__checkbox-container {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.tree-item__checkbox {
+  cursor: pointer;
+}
