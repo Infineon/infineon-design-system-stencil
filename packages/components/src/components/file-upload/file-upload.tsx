@@ -16,13 +16,13 @@ export type FileUploadErrorReason =
   | 'invalid-type'
   | 'custom'
   | (string & {});
-  
+
 @Component({
   tag: 'ifx-file-upload',
   styleUrl: 'file-upload.scss',
   shadow: true
 })
-export class IfxFileUpload {
+export class FileUpload {
   @Element() hostElement: HTMLElement;
 
   @Prop() dragAndDrop: boolean = false;

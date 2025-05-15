@@ -1,5 +1,5 @@
 import { newSpecPage, SpecPage } from '@stencil/core/testing';
-import { IfxFileUpload } from './file-upload';
+import { FileUpload } from './file-upload';
 
 describe('ifx-file-upload', () => {
   let page: SpecPage;
@@ -7,7 +7,7 @@ describe('ifx-file-upload', () => {
 
   const createTestPage = async (html = `<ifx-file-upload></ifx-file-upload>`) => {
     page = await newSpecPage({
-      components: [IfxFileUpload],
+      components: [FileUpload],
       html,
     });
     input = page.root.shadowRoot.querySelector('input[type="file"]');
