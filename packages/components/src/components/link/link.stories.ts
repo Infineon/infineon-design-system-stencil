@@ -9,7 +9,8 @@ export default {
     size: 'm',
     disabled: false,
     variant: 'bold',
-    download: ""
+    download: "",
+    ariaLabel: 'Link',
   },
 
   argTypes: {
@@ -18,6 +19,17 @@ export default {
       description: 'Set the label of *<ifx-link>*.',
       table: {
         category: 'story controls',
+      }
+    },
+    ariaLabel:{
+      name: 'ariaLabel',
+      description: 'Set the aria-label of *<ifx-link>*. Enhances accessibility.',
+      control: 'text',
+      table: {
+        category: 'ifx-link props',
+        type: {
+          summary: 'string'
+        }
       }
     },
     href: {
@@ -88,7 +100,7 @@ export default {
 };
 
 const DefaultTemplate = args =>
-  `<ifx-link href="${args.href}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" download="${args.download}" >
+  `<ifx-link href="${args.href}" aria-label="${args.ariaLabel}" target="${args.target}" size="${args.size}" variant="${args.variant}" disabled="${args.disabled}" download="${args.download}" >
   ${args.label}
   </ifx-link>`;
 

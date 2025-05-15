@@ -9,7 +9,7 @@
 
 | Property      | Attribute     | Description | Type                  | Default     |
 | ------------- | ------------- | ----------- | --------------------- | ----------- |
-| `AriaLabel`   | `aria-label`  |             | `string`              | `undefined` |
+| `ariaLabel`   | `aria-label`  |             | `string`              | `undefined` |
 | `placeholder` | `placeholder` |             | `string`              | `''`        |
 | `readOnly`    | `read-only`   |             | `boolean`             | `false`     |
 | `size`        | `size`        |             | `"large" \| "small"`  | `'large'`   |
