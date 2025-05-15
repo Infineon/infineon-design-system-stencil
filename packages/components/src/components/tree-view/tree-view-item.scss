@@ -1,20 +1,30 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
 .tree-item {
   position: relative;
   cursor: pointer;
   list-style: none;
   --tree-item-level: attr(data-level number, 0);
+  overflow: hidden;
+
+
 
   &.tree-item--expanded {
     position: relative;
   }
 
   &__header {
+    padding-top: tokens.$ifxSpace50;
+    padding-right: tokens.$ifxSpace100;
+    padding-bottom: tokens.$ifxSpace50;
+    padding-left: tokens.$ifxSpace100;
+
     display: flex;
     align-items: center;
     padding-left: 32px;
 
     &:hover {
-      background-color: var(--ifx-color-hover, #f0f0f0);
+      background-color: var(--ifx-color-hover, #f7f7f7);
     }
 
     &--disabled {
@@ -40,24 +50,40 @@
   }
 
   &__chevron-container {
-    display: flex;
+    display: none;
+    position: relative;
     align-items: center;
     margin-right: 8px;
+    height: 16px;
+
+    &::after {
+      display: none;
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: calc(50% - 1px);
+      width: 1px;
+      height: 100vh; // todo: fix this
+      background-color: var(--ifx-color-border, #be1919);
+    }
   }
+
+  &.tree-item--has-children {
+    .tree-item__header > .tree-item__chevron-container {
+      display: inline-block;
+    }
+
+    &.tree-item--expanded {
+      .tree-item__chevron-container::after {
+        display: block;
+      }
+    }
+  }
+
 
   &__chevron {
     cursor: pointer;
     font-size: 16px;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 8px;
-      width: 1px;
-      background-color: var(--ifx-color-border, #ddd);
-    }
   }
 
   &__children {
@@ -67,6 +93,10 @@
     .tree-item[aria-expanded="true"] > & {
       display: block;
     }
+  }
+
+  &__label {
+    padding-left: 4px;
   }
 }
 

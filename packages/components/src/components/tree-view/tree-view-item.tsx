@@ -1,199 +1,185 @@
 import { Component, h, Prop, State, Element } from '@stencil/core';
 
+interface TreeState {
+  isChecked: boolean;
+  partialChecked: boolean;
+}
+
+type HTMLIfxTreeViewItemElement = HTMLElement & { componentOnReady: () => Promise<unknown> };
+
 @Component({
   tag: 'ifx-tree-view-item',
   styleUrl: 'tree-view-item.scss',
   shadow: true,
 })
 export class TreeViewItem {
+  // Properties
   @Element() host: HTMLElement;
-
   @Prop() label: string;
   @Prop() icon: 'folder' | 'file' = 'file';
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false;
   @Prop() initiallyExpanded: boolean = false;
 
-  @State() hasChildren: boolean = false;
-  @State() isChecked: boolean = false;
-  @State() partialChecked: boolean = false;
-  @State() level: number = 0;
+  // State
+  @State() private hasChildren: boolean = false;
+  @State() private isChecked: boolean = false;
+  @State() private partialChecked: boolean = false;
+  @State() private level: number = 0;
 
-  componentWillLoad() {
-    if (this.initiallyExpanded) {
-      this.expanded = true;
+  // Tree Structure Methods
+  private findChildren = () => Array.from(this.host.children)
+    .filter((child): child is HTMLElement =>
+      child instanceof HTMLElement && child.tagName === 'IFX-TREE-VIEW-ITEM'
+    );
+
+  private calculateNodeLevel = (): number => {
+    let level = 0, parent = this.host.parentElement;
+    while (parent) {
+      if (parent.tagName === 'IFX-TREE-VIEW-ITEM') level++;
+      parent = parent.parentElement;
     }
+    return level;
+  };
 
-    const childItems = this.getTreeViewItems(this.host);
-    this.hasChildren = childItems.length > 0;
+  // Lifecycle & Initialization
+  componentWillLoad() {
+    this.initializeNode();
+    this.setupEventListeners();
+  }
 
-    this.level = this.calculateLevel(this.host);
+  private initializeNode() {
+    this.expanded = this.initiallyExpanded;
+    this.hasChildren = this.findChildren().length > 0;
+    this.level = this.calculateNodeLevel();
     this.host.setAttribute('data-level', this.level.toString());
   }
 
-  private getTreeViewItems(element: HTMLElement): HTMLElement[] {
-    const children = Array.from(element.children).filter(
-      (child): child is HTMLElement => child instanceof HTMLElement
-    );
-    return children.filter((child) => child.tagName === 'IFX-TREE-VIEW-ITEM');
+  private setupEventListeners() {
+    this.host.addEventListener('internal-check-state-change', this.handleStateChange);
   }
 
-  private calculateLevel(element: HTMLElement): number {
-    let level = 0;
-    let parent = element.parentElement;
+  // Event Handlers
+  private handleStateChange = (event: CustomEvent) => {
+    event.stopPropagation();
+    this.updateCheckState(event.detail.checked);
+  };
 
-    while (parent) {
-      if (parent.tagName === 'IFX-TREE-VIEW-ITEM') {
-        level++;
-      }
-      parent = parent.parentElement;
+  private handleCheckboxChange = (event: CustomEvent) => {
+    this.updateCheckState(event.detail?.checked ?? !this.isChecked);
+  };
+
+  private handleHeaderClick = ({ target }: MouseEvent) => {
+    if (!(target as HTMLElement).closest('.tree-item__checkbox-container, .tree-item__chevron-container')) {
+      this.updateCheckState(!this.isChecked);
     }
+  };
 
-    return level;
+  // State Management
+  private async updateCheckState(checked: boolean) {
+    this.setNodeState({ isChecked: checked, partialChecked: false });
+    await this.updateChildrenState(checked);
+    this.updateParentState();
   }
 
-  private toggleExpand() {
-    if (this.hasChildren) {
-      this.expanded = !this.expanded;
+  private setNodeState(state: TreeState) {
+    this.isChecked = state.isChecked;
+    this.partialChecked = state.partialChecked;
+  }
+
+  private async updateChildrenState(checked: boolean) {
+    const children = this.findChildren();
+    for (const child of children) {
+      await (child as HTMLIfxTreeViewItemElement).componentOnReady();
+      child.dispatchEvent(new CustomEvent('internal-check-state-change', {
+        detail: { checked },
+        bubbles: false,
+        composed: true
+      }));
     }
   }
 
-  private toggleCheckbox(event: CustomEvent | null = null, checked?: boolean) {
-    console.log('toggleCheckbox called:', { event, checked, isChecked: this.isChecked });
+  private findSiblingNodes(parent: HTMLElement): HTMLIfxTreeViewItemElement[] {
+    const parentEl = parent.parentElement;
+    if (!parentEl) return [];
 
-    if (event) {
-      this.isChecked = event.detail.checked;
-    } else if (checked !== undefined) {
-      this.isChecked = checked;
-    } else {
-      this.isChecked = !this.isChecked;
-    }
+    return Array.from(
+      parentEl.querySelectorAll('ifx-tree-view-item')
+    ).map(el => el as HTMLIfxTreeViewItemElement);
+  }
 
-    console.log('Updated isChecked:', this.isChecked);
+  private updateParentState() {
+    const parent = this.host.parentElement?.closest('ifx-tree-view-item') as HTMLIfxTreeViewItemElement;
+    if (!parent) return;
 
-    // Apply checkbox state to all child elements
-    const childItems = Array.from(this.host.querySelectorAll('ifx-tree-view-item')) as HTMLIfxTreeViewItemElement[];
-    console.log('Child items found:', childItems);
+    parent.componentOnReady().then(resolved => {
+      const parentNode = resolved as unknown as TreeViewItem;
+      if (!parentNode?.updateParentState) return;
 
-    childItems.forEach((childElement) => {
-      childElement.componentOnReady().then((resolvedChild) => {
-        const childComponent = resolvedChild as unknown as TreeViewItem;
-        if (childComponent && typeof childComponent.toggleCheckbox === 'function') {
-          console.log('Toggling child checkbox:', {
-            childComponent,
-            isChecked: this.isChecked,
-          });
-          childComponent.isChecked = this.isChecked;
-          childComponent.partialChecked = false; // Reset partial state for children
-          childComponent.toggleCheckbox(null, this.isChecked); // Recursively propagate state
-        } else {
-          console.warn('Resolved child does not have toggleCheckbox:', resolvedChild);
-        }
+      const siblings = this.findSiblingNodes(parent);
+      const states = this.calculateSiblingStates(siblings);
+
+      parentNode.setNodeState({
+        isChecked: states.allChecked,
+        partialChecked: !states.allChecked && states.someChecked
       });
+      parentNode.updateParentState();
     });
-
-    // Update parent elements based on child states
-    this.updateParentCheckboxState();
   }
 
-  private updateParentCheckboxState() {
-    console.log('updateParentCheckboxState called for:', this.host);
-
-    const parentElement = this.host.parentElement?.closest('ifx-tree-view-item') as HTMLIfxTreeViewItemElement;
-    if (parentElement) {
-      parentElement.componentOnReady().then((resolvedParent) => {
-        const parentComponent = resolvedParent as unknown as TreeViewItem;
-        if (parentComponent && typeof parentComponent.updateParentCheckboxState === 'function') {
-          const siblingItems = Array.from(
-            parentElement.parentElement?.querySelectorAll('ifx-tree-view-item') || []
-          ) as HTMLIfxTreeViewItemElement[];
-
-          console.log('Sibling items found:', siblingItems);
-
-          const allChecked = siblingItems.every((siblingElement) => {
-            const siblingComponent = siblingElement as unknown as TreeViewItem;
-            return siblingComponent.isChecked;
-          });
-
-          const someChecked = siblingItems.some((siblingElement) => {
-            const siblingComponent = siblingElement as unknown as TreeViewItem;
-            return siblingComponent.isChecked || siblingComponent.partialChecked;
-          });
-
-          console.log('Parent state update:', { allChecked, someChecked });
-
-          parentComponent.isChecked = allChecked;
-          parentComponent.partialChecked = !allChecked && someChecked;
-
-          parentComponent.updateParentCheckboxState();
-        } else {
-          console.warn('Resolved parent does not have updateParentCheckboxState:', resolvedParent);
-        }
-      });
-    } else {
-      console.warn('No parent element found for:', this.host);
-    }
+  private calculateSiblingStates(siblings: HTMLIfxTreeViewItemElement[]) {
+    return {
+      allChecked: siblings.every(sib => (sib as unknown as TreeViewItem).isChecked),
+      someChecked: siblings.some(sib => {
+        const node = sib as unknown as TreeViewItem;
+        return node.isChecked || node.partialChecked;
+      })
+    };
   }
 
-  private handleHeaderClick(event: MouseEvent) {
-    // Verhindere, dass der Klick auf den Chevron den Header-Klick auslöst
-    const target = event.target as HTMLElement;
-    if (target.closest('.tree-item__chevron-container')) {
-      return;
-    }
+  // UI Controls
+  private toggleExpand = () => this.hasChildren && (this.expanded = !this.expanded);
 
-    // Checkbox umschalten
-    this.toggleCheckbox();
-  }
-
+  // Render Methods
   render() {
-    const paddingLeft = `${this.level * 16 + 32}px`; // Berechnung der Einrückung
-
     return (
-      <div
-        class={{
-          'tree-item': true,
-          'tree-item--expanded': this.expanded,
-          'tree-item--has-children': this.hasChildren,
-        }}
-        role="treeitem"
-        aria-expanded={this.expanded ? 'true' : 'false'}
-        data-level={this.level}
-      >
-        <div
-          class="tree-item__header"
-          style={{ paddingLeft }}
-          onClick={(event: MouseEvent) => this.handleHeaderClick(event)}
-        >
-          <div class="tree-item__checkbox-container">
-            <ifx-checkbox
-              checked={this.isChecked}
-              indeterminate={this.partialChecked}
-              onIfxChange={(event: CustomEvent) => this.toggleCheckbox(event)}
-            ></ifx-checkbox>
-          </div>
-          <div class="tree-item__chevron-container" onClick={() => this.toggleExpand()}>
-            {this.hasChildren && (
-              <div>
-                <ifx-icon
-                  class={`tree-item__chevron ${this.expanded ? 'chevron-down' : 'chevron-right'}`}
-                  icon="chevron-right-16"
-                ></ifx-icon>
-              </div>
-            )}
-            <div class="tree-item__line"></div>
-          </div>
-          {this.icon === 'folder' && (
-            <ifx-icon icon="folder-16"></ifx-icon>
-          )}
-          {this.icon === 'file' && <ifx-icon icon="file-16"></ifx-icon>}
-          <span class="tree-item__label">{this.label}</span>
-        </div>
-        {this.expanded && (
-          <div class="tree-item__children">
-            <slot></slot>
-          </div>
-        )}
+      <div class={{ 'tree-item': true, 'tree-item--expanded': this.expanded, 'tree-item--has-children': this.hasChildren }}
+           role="treeitem" aria-expanded={this.expanded ? 'true' : 'false'} data-level={this.level}>
+        {this.renderHeader()}
+        {this.expanded && <div class="tree-item__children"><slot/></div>}
       </div>
     );
+  }
+
+  private renderHeader() {
+    return (
+      <div class="tree-item__header" style={{ paddingLeft: `${this.level * 24 + 32}px` }}
+           onClick={this.handleHeaderClick}>
+        {this.renderCheckbox()}
+        {this.renderControls()}
+      </div>
+    );
+  }
+
+  private renderCheckbox() {
+    return (
+      <div class="tree-item__checkbox-container" onClick={e => e.stopPropagation()}>
+        <ifx-checkbox size='s' checked={this.isChecked} indeterminate={this.partialChecked}
+                     onIfxChange={this.handleCheckboxChange}/>
+      </div>
+    );
+  }
+
+  private renderControls() {
+    return [
+      <div class="tree-item__chevron-container" onClick={this.toggleExpand}>
+        {this.hasChildren && (
+          <div><ifx-icon class={`tree-item__chevron ${this.expanded ? 'chevron-down' : 'chevron-right'}`}
+                        icon="chevron-right-16"/></div>
+        )}
+        <div class="tree-item__line"/>
+      </div>,
+      <ifx-icon icon={`${this.icon}-16`}/>,
+      <span class="tree-item__label">{this.label}</span>
+    ];
   }
 }

@@ -59,6 +59,7 @@
  - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
+ - [ifx-tree-view-item](../tree-view)
 
 ### Graph
 ```mermaid
@@ -98,6 +99,7 @@ graph TD;
   ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
+  ifx-tree-view-item --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
