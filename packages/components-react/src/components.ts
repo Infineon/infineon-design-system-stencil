@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -39,6 +39,7 @@ import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCust
 import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
 import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
 import { IfxFaq as IfxFaqElement, defineCustomElement as defineIfxFaq } from "@infineon/infineon-design-system-stencil/dist/components/ifx-faq.js";
+import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-file-upload.js";
 import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
 import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-bar.js";
 import { IfxFilterSearch as IfxFilterSearchElement, defineCustomElement as defineIfxFilterSearch } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-search.js";
@@ -456,6 +457,47 @@ export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__P
     react: React,
     events: {} as IfxFaqEvents,
     defineCustomElement: defineIfxFaq
+});
+
+type IfxFileUploadEvents = {
+    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
+    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
+    onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
+    onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
+    onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
+    onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
+    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>,
+    onIfxFileUploadClick: EventName<CustomEvent<void>>,
+    onIfxFileUploadMaxFilesExceeded: EventName<CustomEvent<{ maxFiles: number; attempted: number }>>,
+    onIfxFileUploadValidation: EventName<CustomEvent<{ valid: boolean }>>,
+    onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
+};
+
+export const IfxFileUpload: StencilReactComponent<IfxFileUploadElement, IfxFileUploadEvents> = /*@__PURE__*/ createComponent<IfxFileUploadElement, IfxFileUploadEvents>({
+    tagName: 'ifx-file-upload',
+    elementClass: IfxFileUploadElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxFileUploadAdd: 'ifxFileUploadAdd',
+        onIfxFileUploadRemove: 'ifxFileUploadRemove',
+        onIfxFileUploadChange: 'ifxFileUploadChange',
+        onIfxFileUploadError: 'ifxFileUploadError',
+        onIfxFileUploadInvalid: 'ifxFileUploadInvalid',
+        onIfxFileUploadStart: 'ifxFileUploadStart',
+        onIfxFileUploadComplete: 'ifxFileUploadComplete',
+        onIfxFileUploadAllComplete: 'ifxFileUploadAllComplete',
+        onIfxFileUploadAbort: 'ifxFileUploadAbort',
+        onIfxFileUploadDrop: 'ifxFileUploadDrop',
+        onIfxFileUploadClick: 'ifxFileUploadClick',
+        onIfxFileUploadMaxFilesExceeded: 'ifxFileUploadMaxFilesExceeded',
+        onIfxFileUploadValidation: 'ifxFileUploadValidation',
+        onIfxFileUploadRetry: 'ifxFileUploadRetry'
+    } as IfxFileUploadEvents,
+    defineCustomElement: defineIfxFileUpload
 });
 
 type IfxFilterAccordionEvents = { onIfxFilterAccordionChange: EventName<CustomEvent<any>> };
