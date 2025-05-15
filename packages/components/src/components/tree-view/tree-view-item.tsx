@@ -152,7 +152,7 @@ export class TreeViewItem {
 
   private renderHeader() {
     return (
-      <div class="tree-item__header" style={{ paddingLeft: `${this.level * 24 + 32}px` }}
+      <div class="tree-item__header" style={{ paddingLeft: `${this.level * 24 + 40}px` }}
            onClick={this.handleHeaderClick}>
         {this.renderCheckbox()}
         {this.renderControls()}

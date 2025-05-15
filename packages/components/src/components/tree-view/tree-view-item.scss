@@ -7,24 +7,21 @@
   --tree-item-level: attr(data-level number, 0);
   overflow: hidden;
 
-
-
   &.tree-item--expanded {
     position: relative;
   }
 
   &__header {
+    display: flex;
+    align-items: center;
+    height: 20px;
     padding-top: tokens.$ifxSpace50;
     padding-right: tokens.$ifxSpace100;
     padding-bottom: tokens.$ifxSpace50;
     padding-left: tokens.$ifxSpace100;
 
-    display: flex;
-    align-items: center;
-    padding-left: 32px;
-
     &:hover {
-      background-color: var(--ifx-color-hover, #f7f7f7);
+      background-color: tokens.$ifxColorEngineering100;
     }
 
     &--disabled {
@@ -35,10 +32,10 @@
   }
 
   &__checkbox-container {
-    position: absolute;
-    left: 0;
     display: flex;
     align-items: center;
+    position: absolute;
+    left: tokens.$ifxSpace50;
   }
 
   &__checkbox {
@@ -51,8 +48,6 @@
 
   &__chevron-container {
     display: none;
-    position: relative;
-    align-items: center;
     margin-right: 8px;
     height: 16px;
 
@@ -60,21 +55,25 @@
       display: none;
       content: '';
       position: absolute;
-      top: 100%;
-      left: calc(50% - 1px);
+      z-index: 99999;
+      top: 24px;
+      left: auto;
+      margin-left: 7px; // todo: fix this
       width: 1px;
-      height: 100vh; // todo: fix this
-      background-color: var(--ifx-color-border, #be1919);
+      height: calc(100% - 4px - 20px); // todo: fix this
+      background-color: tokens.$ifxColorEngineering200;
     }
   }
 
   &.tree-item--has-children {
-    .tree-item__header > .tree-item__chevron-container {
+    position: relative;
+
+    > .tree-item__header > .tree-item__chevron-container {
       display: inline-block;
     }
 
     &.tree-item--expanded {
-      .tree-item__chevron-container::after {
+      > .tree-item__header > .tree-item__chevron-container::after {
         display: block;
       }
     }
@@ -96,7 +95,7 @@
   }
 
   &__label {
-    padding-left: 4px;
+    padding-left: tokens.$ifxSpace100;
   }
 }
 
