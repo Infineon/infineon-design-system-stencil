@@ -1,0 +1,231 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+:host {
+  // TODO remove
+  font-family: var(--ifx-font-family, sans-serif);
+}
+
+.file-upload-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  &.disabled {
+    pointer-events: none;
+
+    label,
+    .file-upload-info {
+      color: tokens.$ifxColorEngineering500;
+    }
+  }
+}
+
+.file-upload-label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: tokens.$ifxFontSizeM;
+  line-height: tokens.$ifxLineHeightM;
+  color: tokens.$ifxColorBaseBlack;
+
+  .required {
+    display: inline-block;
+    margin-left: 4px;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+  }
+}
+
+.upload-dropzone {
+  border: 1px dashed tokens.$ifxColorEngineering300;
+  padding: tokens.$ifxSpace500;
+  text-align: center;
+  cursor: pointer;
+  color: tokens.$ifxColorBaseBlack;
+  transition: border-color 0.3s ease;
+  border-radius: tokens.$ifxBorderRadius12;
+  background: tokens.$ifxColorBaseWhite;
+
+  ifx-icon {
+    color: tokens.$ifxColorOcean500;
+  }
+
+  &:hover {
+    border: 1px dashed tokens.$ifxColorEngineering400;
+  }
+
+  &.drag-over {
+    border: 1px solid tokens.$ifxColorOcean500;
+    background: tokens.$ifxColorEngineering100;
+
+    &.error {
+      border: 1px solid tokens.$ifxColorOcean500;
+    }
+  }
+
+  &.error {
+    border-color: tokens.$ifxColorRed500;
+  }
+
+  .disabled & {
+    pointer-events: none;
+    border-color: tokens.$ifxColorEngineering300;
+    color: tokens.$ifxColorEngineering300;
+
+    ifx-icon {
+      color: tokens.$ifxColorEngineering300;
+    }
+  }
+}
+
+.upload-dropzone input {
+  display: none;
+}
+
+.file-upload-info {
+  font-style: normal;
+  font-weight: tokens.$ifxFontWeightRegular;
+  font-size: tokens.$ifxFontSizeXs;
+  line-height: tokens.$ifxLineHeightXs;
+  letter-spacing: tokens.$ifxLetterSpacingDefault;
+  color: tokens.$ifxColorBaseBlack;
+  margin: 0;
+  margin-top: tokens.$ifxSpace50;
+}
+
+.file-upload-status {
+  font-style: normal;
+  font-weight: 400;
+  font-size: tokens.$ifxFontSizeXs;
+  line-height: tokens.$ifxLineHeightXs;
+  letter-spacing: 0.2px;
+  margin-top: tokens.$ifxSpace100;
+
+  &.file-upload-status__error {
+    display: flex;
+    align-items: center;
+    color: tokens.$ifxColorRed500;
+
+    ifx-icon {
+      position: relative;
+      top: - tokens.$ifxSpace12;
+      color: tokens.$ifxColorRed500;
+      margin-right: tokens.$ifxSpace100;
+    }
+  }
+}
+
+.upload-heading {
+  font: tokens.$ifxHeadingHeading06;
+  margin-bottom: tokens.$ifxSpace100;
+}
+
+.file-list-wrapper {
+  margin-top: tokens.$ifxSpace200;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$ifxSpace200;
+}
+
+.file-item {
+  border: 1px solid tokens.$ifxColorEngineering300;
+  padding-top: tokens.$ifxSpace150;
+  padding-right: tokens.$ifxSpace200;
+  padding-bottom: tokens.$ifxSpace100;
+  padding-left: tokens.$ifxSpace200;
+  display: flex;
+  gap: tokens.$ifxSpace100;
+}
+
+.file-info {
+  width: 100%;
+  min-width: 0;
+}
+
+.file-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: tokens.$ifxSpace200;
+  margin-top: - tokens.$ifxSpace100;
+}
+
+.file-top-row ifx-icon {
+  flex-shrink: 0;
+}
+
+.file-name-wrapper {
+  display: flex;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: tokens.$ifxFontWeightRegular;
+  font-size: tokens.$ifxFontSizeS;
+}
+
+.file-name-base {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.file-name-ext {
+  flex-shrink: 0;
+  margin-left: 0;
+}
+
+.file-middle-row {
+  display: flex;
+  align-items: center;
+  font-size: tokens.$ifxFontSizeXs;
+  line-height: tokens.$ifxLineHeightXs;
+  flex-wrap: wrap;
+  color: tokens.$ifxColorEngineering500;
+
+  .file-status {
+    margin-left: tokens.$ifxSpace150;
+
+    ifx-icon {
+      margin-right: tokens.$ifxSpace100;
+    }
+  }
+}
+
+.file-progress-row {
+  margin-top: tokens.$ifxSpace50;
+}
+
+.file-progress-row ifx-progress-bar {
+  width: 100%;
+}
+
+.upload-success {
+  border-color: tokens.$ifxColorOcean500;
+
+  .file-status {
+    ifx-icon {
+      position: relative;
+      top: tokens.$ifxSpace12;
+      color: tokens.$ifxColorGreen500;
+    }
+  }
+}
+
+.upload-failed {
+  border-color: tokens.$ifxColorRed500;
+
+  .file-status {
+    color: tokens.$ifxColorRed500;
+    margin-left: 0;
+  }
+}
