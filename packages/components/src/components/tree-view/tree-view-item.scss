@@ -97,6 +97,20 @@
     }
   }
 
+  &__label-icon-container {
+    display: flex;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 4px;
+      border-radius: tokens.$ifxBorderRadius12;
+    }
+  }
+
   &__icon-container {
     position: relative;
     width: tokens.$ifxSize200;

@@ -246,6 +246,84 @@ export class TreeViewItem {
     this.hasChildren && (this.expanded = !this.expanded);
   };
 
+  private handleKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) return;
+
+    const allItems = Array.from(
+      this.host
+        .closest('ifx-tree-view')
+        ?.querySelectorAll('ifx-tree-view-item') || []
+    ).filter(el => !(el as any).disabled);
+
+    const visibleItems = allItems.filter(item => {
+      let parent = item.parentElement?.closest('ifx-tree-view-item');
+      while (parent) {
+        // @ts-ignore
+        const parentCmp = parent as any;
+        if (!(parentCmp.expandAllItems || parentCmp.expanded)) {
+          return false;
+        }
+        parent = parent.parentElement?.closest('ifx-tree-view-item');
+      }
+      return true;
+    });
+
+    const currentIndex = visibleItems.findIndex(el => el === this.host);
+
+    function focusLabelIcon(el: Element | null) {
+      (el as HTMLElement | null)?.focus();
+    }
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        event.preventDefault();
+        if (currentIndex < visibleItems.length - 1) {
+          const next = visibleItems[currentIndex + 1] as HTMLElement;
+          focusLabelIcon(next.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        event.preventDefault();
+        if (currentIndex > 0) {
+          const prev = visibleItems[currentIndex - 1] as HTMLElement;
+          focusLabelIcon(prev.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+        }
+        break;
+      }
+      case 'ArrowRight': {
+        event.preventDefault();
+        if (!this.isExpanded && this.hasChildren) {
+          this.expanded = true;
+        } else if (this.isExpanded && this.hasChildren) {
+          const firstChild = this.host.querySelector('ifx-tree-view-item');
+          if (firstChild) {
+            focusLabelIcon((firstChild as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+          }
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        event.preventDefault();
+        if (this.isExpanded && this.hasChildren) {
+          this.expanded = false;
+        } else {
+          const parent = this.host.parentElement?.closest('ifx-tree-view-item');
+          if (parent) {
+            focusLabelIcon((parent as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+          }
+        }
+        break;
+      }
+      case ' ': // Space
+      case 'Enter': {
+        event.preventDefault();
+        this.updateCheckState(!this.isChecked);
+        break;
+      }
+    }
+  };
+
   render() {
     return (
       <div
@@ -276,7 +354,7 @@ export class TreeViewItem {
         class="tree-item__header"
         style={{ paddingLeft: `${this.level * 24 + 10}px` }}
         onClick={this.handleHeaderClick}
-        tabIndex={this.disabled ? -1 : 0}
+        tabIndex={-1}
         aria-disabled={this.disabled ? 'true' : undefined}
       >
         {this.renderControls()}
@@ -307,17 +385,23 @@ export class TreeViewItem {
           <div class="tree-item__line"/>
         </div>
       ),
-      <div class="tree-item__icon-container">
-        {this.icon === 'folder' ? (
-          <Fragment>
-            <ifx-icon class={{'icon--hidden': this.isExpanded}} icon="folder-16"/>
-            <ifx-icon class={{'icon--hidden': !this.isExpanded}} icon="folder-open-16"/>
-          </Fragment>
-        ) : (
-          <ifx-icon icon="file-16"/>
-        )}
-      </div>,
-      <span class="tree-item__label">{this.label}</span>
+      <div
+        class="tree-item__label-icon-container"
+        tabIndex={this.disabled ? -1 : 0}
+        onKeyDown={this.handleKeyDown}
+      >
+        <div class="tree-item__icon-container">
+          {this.icon === 'folder' ? (
+            <Fragment>
+              <ifx-icon class={{'icon--hidden': this.isExpanded}} icon="folder-16"/>
+              <ifx-icon class={{'icon--hidden': !this.isExpanded}} icon="folder-open-16"/>
+            </Fragment>
+          ) : (
+            <ifx-icon icon="file-16"/>
+          )}
+        </div>
+        <span class="tree-item__label">{this.label}</span>
+      </div>
     ];
   }
 }
