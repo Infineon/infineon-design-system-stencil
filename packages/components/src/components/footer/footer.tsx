@@ -11,8 +11,7 @@ export class Footer {
   @Element() el: HTMLElement;
   @State() currentYear: number = new Date().getFullYear();
   @Prop() copyrightText: string = '© 1999 - ' + this.currentYear + ' Infineon Technologies AG';
-  @Prop() ariaLabel: string | null;
-
+ 
   private hasColSlot: boolean = false;
   private hasSocialsSlot: boolean = false;
 
@@ -25,7 +24,7 @@ export class Footer {
   render() {
     return (
       <Host>
-        <footer aria-label={this.ariaLabel} class="footer__container">
+        <footer class="footer__container">
           <div class="footer__wrapper">
             { (this.hasSocialsSlot || this.hasColSlot) &&
               <div class="footer__logo_top">

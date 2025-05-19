@@ -7,7 +7,6 @@ export default {
     href: 'http://infineon.com',
     icon: 'home-16',
     ariaLabelOfLink: 'Go to Homepage',
-    ariaLabelOfFooter: 'Footer navigation contains links to social media',
   },
   argTypes: {
     copyrightText: {
@@ -16,19 +15,6 @@ export default {
       table: {
         category: 'ifx-footer props',
       }
-    },
-    ariaLabelOfFooter:{
-      name: 'ariaLabel',
-      description: 'Sets the aria-label for the link. Enhances accessibility.',
-      control: 'text',
-      table: {
-        category: 'ifx-footer props',
-        type:{
-          summary: 'Options',
-          detail: 'Describe the content of the footer.'
-        }
-        
-      },
     },
     icon: {
       description: 'Sets the icon for the footer.',
@@ -66,7 +52,7 @@ export default {
 
 const DefaultTemplate = args => {
   return `
-    <ifx-footer copyright-text="${args.copyrightText}" aria-label="${args.ariaLabelOfFooter}">
+    <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
     <ifx-link variant="title" href="${args.href}" aria-label="${args.ariaLabelOfLink}">
         <ifx-icon icon=${args.icon}></ifx-icon>
@@ -101,7 +87,7 @@ const DefaultTemplate = args => {
 
 const SmallTemplate = args => {
   return `
-<ifx-footer aria-label="${args.ariaLabelOfFooter}" copyright-text="${args.copyrightText}">
+<ifx-footer copyright-text="${args.copyrightText}">
     <div slot="info">
       <ifx-link variant="menu" aria-label="${args.ariaLabelOfLink}" href="${args.href}" target="_blank">Terms</ifx-link>
       <ifx-link variant="menu" href="https://yourwebsite.com/imprint" target="_blank">Imprint</ifx-link>
@@ -113,7 +99,7 @@ const SmallTemplate = args => {
 
 const LargeTemplate = args => {
   return `
-  <ifx-footer copyright-text="${args.copyrightText}" aria-label="${args.ariaLabelOfFooter}">
+  <ifx-footer copyright-text="${args.copyrightText}">
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
     <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
