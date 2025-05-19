@@ -4,115 +4,114 @@
   position: relative;
   cursor: pointer;
   list-style: none;
-  --tree-item-level: attr(data-level number, 0);
-  overflow: hidden;
 
   &.tree-item--expanded {
     position: relative;
   }
 
+  &.tree-item--has-children {
+    position: relative;
+
+    .tree-item__header > .tree-item__chevron-container {
+      display: flex;
+    }
+
+    &.tree-item--expanded {
+      .tree-item__header > .tree-item__chevron-container::after {
+        display: block;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__checkbox-container {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    padding: tokens.$ifxSpace50;
+    background-color: tokens.$ifxColorBaseWhite;
+  }
+
   &__header {
+    flex-grow: 1;
     display: flex;
     align-items: center;
-    height: 20px;
+    white-space: nowrap;
+    height: tokens.$ifxSize250;
     padding-top: tokens.$ifxSpace50;
-    padding-right: tokens.$ifxSpace100;
+    padding-right: tokens.$ifxSpace200;
     padding-bottom: tokens.$ifxSpace50;
     padding-left: tokens.$ifxSpace100;
 
     &:hover {
       background-color: tokens.$ifxColorEngineering100;
     }
-
-    &--disabled {
-      color: var(--ifx-color-disabled, #aaa);
-      cursor: not-allowed;
-      opacity: 0.6;
-    }
-  }
-
-  &__checkbox-container {
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: tokens.$ifxSpace50;
-  }
-
-  &__checkbox {
-    cursor: pointer;
-  }
-
-  &__icon {
-    margin-right: 8px;
   }
 
   &__chevron-container {
     display: none;
-    margin-right: 8px;
-    height: 16px;
+    align-items: center;
+    margin-right: tokens.$ifxSpace100;
+    height: tokens.$ifxSize250;
 
     &::after {
+      --height-line-start: tokens.$ifxSize350;
+
       display: none;
       content: '';
       position: absolute;
-      z-index: 99999;
-      top: 24px;
+      z-index: 1;
+      top: var(--height-line-start);
       left: auto;
-      margin-left: 7px; // todo: fix this
-      width: 1px;
-      height: calc(100% - 4px - 20px); // todo: fix this
+      margin-left: tokens.$ifxSpace100;
+      width: tokens.$ifxSize12;
+      height: calc(100% - var(--height-line-start));
       background-color: tokens.$ifxColorEngineering200;
     }
   }
 
-  &.tree-item--has-children {
-    position: relative;
-
-    > .tree-item__header > .tree-item__chevron-container {
-      display: inline-block;
-    }
-
-    &.tree-item--expanded {
-      > .tree-item__header > .tree-item__chevron-container::after {
-        display: block;
-      }
-    }
-  }
-
-
   &__chevron {
-    cursor: pointer;
-    font-size: 16px;
+    &.chevron-down {
+      transform: rotate(90deg);
+    }
+
+    &.chevron-right {
+      transform: rotate(0);
+    }
   }
 
-  &__children {
-    display: none;
-    padding-left: 0;
+  &__icon-container {
+    position: relative;
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxSize200;
 
-    .tree-item[aria-expanded="true"] > & {
-      display: block;
+    ifx-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 1;
+      transition: opacity 0.2s ease-in-out;
+
+      &.icon--hidden {
+        opacity: 0;
+      }
     }
   }
 
   &__label {
     padding-left: tokens.$ifxSpace100;
   }
+
+  &__children {
+    display: none;
+
+    .tree-item[aria-expanded="true"] > & {
+      display: block;
+    }
+  }
 }
 
-.tree-item__chevron.chevron-down {
-  transform: rotate(90deg);
-}
-
-.tree-item__chevron.chevron-right {
-  transform: rotate(0);
-}
-
-.tree-item__checkbox-container {
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
-}
-
-.tree-item__checkbox {
-  cursor: pointer;
-}

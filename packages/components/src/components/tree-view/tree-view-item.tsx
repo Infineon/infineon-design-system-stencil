@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Element } from '@stencil/core';
+import { Component, h, Prop, State, Element, Fragment } from '@stencil/core';
 
 interface TreeState {
   isChecked: boolean;
@@ -144,7 +144,10 @@ export class TreeViewItem {
     return (
       <div class={{ 'tree-item': true, 'tree-item--expanded': this.expanded, 'tree-item--has-children': this.hasChildren }}
            role="treeitem" aria-expanded={this.expanded ? 'true' : 'false'} data-level={this.level}>
-        {this.renderHeader()}
+        <div class="tree-item__content">
+          {this.renderCheckbox()}
+          {this.renderHeader()}
+        </div>
         {this.expanded && <div class="tree-item__children"><slot/></div>}
       </div>
     );
@@ -152,9 +155,8 @@ export class TreeViewItem {
 
   private renderHeader() {
     return (
-      <div class="tree-item__header" style={{ paddingLeft: `${this.level * 24 + 40}px` }}
+      <div class="tree-item__header" style={{ paddingLeft: `${this.level * 24 + 10}px` }}
            onClick={this.handleHeaderClick}>
-        {this.renderCheckbox()}
         {this.renderControls()}
       </div>
     );
@@ -173,12 +175,21 @@ export class TreeViewItem {
     return [
       <div class="tree-item__chevron-container" onClick={this.toggleExpand}>
         {this.hasChildren && (
-          <div><ifx-icon class={`tree-item__chevron ${this.expanded ? 'chevron-down' : 'chevron-right'}`}
-                        icon="chevron-right-16"/></div>
+          <ifx-icon class={`tree-item__chevron ${this.expanded ? 'chevron-down' : 'chevron-right'}`}
+                        icon="chevron-right-16"/>
         )}
         <div class="tree-item__line"/>
       </div>,
-      <ifx-icon icon={`${this.icon}-16`}/>,
+      <div class="tree-item__icon-container">
+        {this.icon === 'folder' ? (
+          <Fragment>
+            <ifx-icon class={{'icon--hidden': this.expanded}} icon="folder-16"/>
+            <ifx-icon class={{'icon--hidden': !this.expanded}} icon="folder-open-16"/>
+          </Fragment>
+        ) : (
+          <ifx-icon icon="file-16"/>
+        )}
+      </div>,
       <span class="tree-item__label">{this.label}</span>
     ];
   }

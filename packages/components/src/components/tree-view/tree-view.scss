@@ -7,10 +7,10 @@
   font-family: var(--ifx-font-family, sans-serif);
   font-size: 14px;
   color: var(--ifx-color-text, #1a1a1a);
-}
 
-.tree-view__label {
-  font-weight: 600;
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--ifx-color-border, #ddd);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
