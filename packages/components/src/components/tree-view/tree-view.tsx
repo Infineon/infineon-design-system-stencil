@@ -8,6 +8,7 @@ import { Component, h, Prop } from '@stencil/core';
 export class TreeView {
   @Prop() label: string;
   @Prop() disableAllItems: boolean = false;
+  @Prop() expandAllItems: boolean = false;
 
   render() {
     return (
@@ -20,15 +21,22 @@ export class TreeView {
         aria-label={this.label}
       >
         {this.label && <div class="tree-view__label">{this.label}</div>}
-        <slot ref={el => {
-          if (el) {
-            if (this.disableAllItems) {
-              el.setAttribute('data-disable-all-items', 'true');
-            } else {
-              el.removeAttribute('data-disable-all-items');
+        <slot
+          ref={el => {
+            if (el) {
+              if (this.disableAllItems) {
+                el.setAttribute('data-disable-all-items', 'true');
+              } else {
+                el.removeAttribute('data-disable-all-items');
+              }
+              if (this.expandAllItems) {
+                el.setAttribute('data-expand-all-items', 'true');
+              } else {
+                el.removeAttribute('data-expand-all-items');
+              }
             }
-          }
-        }}></slot>
+          }}
+        ></slot>
       </div>
     );
   }

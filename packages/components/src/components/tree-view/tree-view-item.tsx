@@ -25,9 +25,14 @@ export class TreeViewItem {
   @State() private partialChecked: boolean = false;
   @State() private level: number = 0;
   @State() private disableAllItems: boolean = false;
+  @State() private expandAllItems: boolean = false;
 
   private get disabled() {
     return this.disableAllItems || this.disableItem;
+  }
+
+  private get isExpanded() {
+    return this.expandAllItems || this.expanded;
   }
 
   private findChildren = () => Array.from(this.host.children)
@@ -51,6 +56,37 @@ export class TreeViewItem {
 
   componentDidLoad() {
     this.observeDisableAllItems();
+    this.observeExpandAllItems();
+    if (this.shouldExpandFromParent()) {
+      this.expandAllDescendants();
+    }
+  }
+
+  private shouldExpandFromParent(): boolean {
+    let parent = this.host.parentElement;
+    while (parent) {
+      if (
+        parent.tagName === 'IFX-TREE-VIEW' &&
+        (parent.hasAttribute('expand-all-items') || parent.hasAttribute('data-expand-all-items'))
+      ) {
+        return true;
+      }
+      parent = parent.parentElement;
+    }
+    return false;
+  }
+
+  private expandAllDescendants() {
+    this.expanded = true;
+    const children = this.findChildren();
+    for (const child of children) {
+      if (typeof (child as any).expanded !== 'undefined') {
+        (child as any).expanded = true;
+      }
+      if (typeof (child as any).expandAllDescendants === 'function') {
+        (child as any).expandAllDescendants();
+      }
+    }
   }
 
   private observeDisableAllItems() {
@@ -71,6 +107,28 @@ export class TreeViewItem {
         observer.observe(parent, { attributes: true });
         const disableAll = (parent as any).disableAllItems;
         this.disableAllItems = !!disableAll || parent.hasAttribute('disable-all-items');
+        break;
+      }
+      parent = parent.parentElement;
+    }
+  }
+
+  private observeExpandAllItems() {
+    let parent = this.host.parentElement;
+    while (parent) {
+      if (parent.tagName === 'IFX-TREE-VIEW' || parent.hasAttribute('data-expand-all-items')) {
+        const observer = new MutationObserver(mutations => {
+          for (const mutation of mutations) {
+            if (
+              mutation.type === 'attributes' &&
+              mutation.attributeName === 'data-expand-all-items'
+            ) {
+              this.expandAllItems = parent.hasAttribute('data-expand-all-items');
+            }
+          }
+        });
+        observer.observe(parent, { attributes: true });
+        this.expandAllItems = parent.hasAttribute('data-expand-all-items');
         break;
       }
       parent = parent.parentElement;
@@ -174,12 +232,12 @@ export class TreeViewItem {
       <div
         class={{
           'tree-item': true,
-          'tree-item--expanded': this.expanded,
+          'tree-item--expanded': this.isExpanded,
           'tree-item--has-children': this.hasChildren,
           'tree-item--disabled': this.disabled,
         }}
         role="treeitem"
-        aria-expanded={this.expanded ? 'true' : 'false'}
+        aria-expanded={this.isExpanded ? 'true' : 'false'}
         data-level={this.level}
         aria-disabled={this.disabled ? 'true' : undefined}
       >
@@ -187,7 +245,7 @@ export class TreeViewItem {
           {this.renderCheckbox()}
           {this.renderHeader()}
         </div>
-        {this.expanded && <div class="tree-item__children"><slot/></div>}
+        {this.isExpanded && <div class="tree-item__children"><slot/></div>}
       </div>
     );
   }
@@ -224,7 +282,7 @@ export class TreeViewItem {
     return [
       this.hasChildren && (
         <div class="tree-item__chevron-container" onClick={this.toggleExpand}>
-          <ifx-icon class={`tree-item__chevron ${this.expanded ? 'chevron-down' : 'chevron-right'}`}
+          <ifx-icon class={`tree-item__chevron ${this.isExpanded ? 'chevron-down' : 'chevron-right'}`}
                     icon="chevron-right-16"/>
           <div class="tree-item__line"/>
         </div>
@@ -232,8 +290,8 @@ export class TreeViewItem {
       <div class="tree-item__icon-container">
         {this.icon === 'folder' ? (
           <Fragment>
-            <ifx-icon class={{'icon--hidden': this.expanded}} icon="folder-16"/>
-            <ifx-icon class={{'icon--hidden': !this.expanded}} icon="folder-open-16"/>
+            <ifx-icon class={{'icon--hidden': this.isExpanded}} icon="folder-16"/>
+            <ifx-icon class={{'icon--hidden': !this.isExpanded}} icon="folder-open-16"/>
           </Fragment>
         ) : (
           <ifx-icon icon="file-16"/>
