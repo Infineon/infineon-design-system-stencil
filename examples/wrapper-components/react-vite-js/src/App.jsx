@@ -40,6 +40,7 @@ import Table from './components/Table/Table';
 import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 import Textarea from './components/Textarea/Textarea';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
+import FileUpload from './components/FileUpload/FileUpload';
 
 function App() {
  
@@ -211,6 +212,10 @@ function App() {
 
       <h2>Table (advanced)</h2>
       <Table />
+      <br />
+
+      <h2>FileUpload</h2>
+      <FileUpload />
       <br />
 
       <h2>Footer</h2>

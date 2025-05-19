@@ -41,6 +41,7 @@
   <Textarea />
   <TextField />
   <Tooltip />
+  <FileUpload />
   <Footer />
 </template>
 
@@ -88,5 +89,6 @@ import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
+import FileUpload from './components/FileUpload.vue'
 
 </script>
