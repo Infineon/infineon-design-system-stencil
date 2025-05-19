@@ -32,6 +32,13 @@
   &__content {
     display: flex;
     flex-direction: row;
+
+    &:hover {
+      .tree-item__checkbox-container,
+      .tree-item__header {
+        background-color: tokens.$ifxColorEngineering100;
+      }
+    }
   }
 
   &__checkbox-container {
@@ -52,10 +59,6 @@
     padding-right: tokens.$ifxSpace200;
     padding-bottom: tokens.$ifxSpace50;
     padding-left: tokens.$ifxSpace100;
-
-    &:hover {
-      background-color: tokens.$ifxColorEngineering100;
-    }
   }
 
   &__chevron-container {
