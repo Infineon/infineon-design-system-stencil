@@ -1,3 +1,17 @@
+# v33.4.0 (Mon May 19 2025)
+
+#### 🚀 Enhancement
+
+- New Component: FileUpload [#1824](https://github.com/Infineon/infineon-design-system-stencil/pull/1824) ([@g-rdknt](https://github.com/g-rdknt) [@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.3.1 (Mon May 19 2025)
 
 #### 🐛 Bug Fix
