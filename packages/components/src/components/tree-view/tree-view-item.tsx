@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Element, Fragment } from '@stencil/core';
+import { Component, h, Prop, State, Element, Fragment, Event, EventEmitter, Watch } from '@stencil/core';
 
 interface TreeState {
   isChecked: boolean;
@@ -19,6 +19,11 @@ export class TreeViewItem {
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false;
   @Prop() initiallyExpanded: boolean = false;
   @Prop() disableItem: boolean = false;
+  @Prop() ariaLabel: string = 'Tree Item';
+
+  @Event() ifxTreeViewItemExpandChange: EventEmitter<boolean>;
+  @Event() ifxTreeViewItemCheckChange: EventEmitter<{ checked: boolean; indeterminate: boolean }>;
+  @Event() ifxTreeViewItemDisableChange: EventEmitter<boolean>;
 
   @State() private hasChildren: boolean = false;
   @State() private isChecked: boolean = false;
@@ -171,9 +176,23 @@ export class TreeViewItem {
     this.updateParentState();
   }
 
+  @Watch('expanded')
+  handleExpandedChange(newValue: boolean) {
+    this.ifxTreeViewItemExpandChange.emit(newValue);
+  }
+
+  @Watch('disableItem')
+  handleDisableItemChange(newValue: boolean) {
+    this.ifxTreeViewItemDisableChange.emit(newValue);
+  }
+
   private setNodeState(state: TreeState) {
     this.isChecked = state.isChecked;
     this.partialChecked = state.partialChecked;
+    this.ifxTreeViewItemCheckChange.emit({
+      checked: this.isChecked,
+      indeterminate: this.partialChecked,
+    });
   }
 
   private async updateChildrenState(checked: boolean) {
@@ -240,6 +259,7 @@ export class TreeViewItem {
         aria-expanded={this.isExpanded ? 'true' : 'false'}
         data-level={this.level}
         aria-disabled={this.disabled ? 'true' : undefined}
+        aria-label={this.ariaLabel}
       >
         <div class="tree-item__content">
           {this.renderCheckbox()}
