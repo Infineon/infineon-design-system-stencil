@@ -11,9 +11,24 @@ export class TreeView {
 
   render() {
     return (
-      <div class="tree-view" role="tree" aria-label={this.label}>
+      <div
+        class={{
+          'tree-view': true,
+          'tree-view--disabled': this.disableAllItems,
+        }}
+        role="tree"
+        aria-label={this.label}
+      >
         {this.label && <div class="tree-view__label">{this.label}</div>}
-        <slot></slot>
+        <slot ref={el => {
+          if (el) {
+            if (this.disableAllItems) {
+              el.setAttribute('data-disable-all-items', 'true');
+            } else {
+              el.removeAttribute('data-disable-all-items');
+            }
+          }
+        }}></slot>
       </div>
     );
   }

@@ -23,6 +23,12 @@
     }
   }
 
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: tokens.$ifxColorEngineering300;
+  }
+
   &__content {
     display: flex;
     flex-direction: row;
@@ -59,7 +65,7 @@
     height: tokens.$ifxSize250;
 
     &::after {
-      --height-line-start: tokens.$ifxSize350;
+      --height-line-start: 28px;
 
       display: none;
       content: '';
@@ -71,6 +77,10 @@
       width: tokens.$ifxSize12;
       height: calc(100% - var(--height-line-start));
       background-color: tokens.$ifxColorEngineering200;
+
+      .tree-item--disabled & {
+        color: tokens.$ifxColorEngineering200;
+      }
     }
   }
 
