@@ -99,6 +99,7 @@
 
   &__label-icon-container {
     display: flex;
+    align-items: center;
 
     &:focus {
       outline: none;
@@ -106,7 +107,7 @@
 
     &:focus-visible {
       outline: 2px solid tokens.$ifxColorOcean500;
-      outline-offset: 4px;
+      outline-offset: 2px;
       border-radius: tokens.$ifxBorderRadius12;
     }
   }

@@ -87,6 +87,8 @@ import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineI
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
 import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
+import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
+import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
@@ -1028,4 +1030,40 @@ export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEven
     react: React,
     events: {} as IfxTooltipEvents,
     defineCustomElement: defineIfxTooltip
+});
+
+type IfxTreeViewEvents = {
+    onIfxTreeViewExpandAllChange: EventName<CustomEvent<boolean>>,
+    onIfxTreeViewDisableAllChange: EventName<CustomEvent<boolean>>
+};
+
+export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents>({
+    tagName: 'ifx-tree-view',
+    elementClass: IfxTreeViewElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxTreeViewExpandAllChange: 'ifxTreeViewExpandAllChange',
+        onIfxTreeViewDisableAllChange: 'ifxTreeViewDisableAllChange'
+    } as IfxTreeViewEvents,
+    defineCustomElement: defineIfxTreeView
+});
+
+type IfxTreeViewItemEvents = {
+    onIfxTreeViewItemExpandChange: EventName<CustomEvent<boolean>>,
+    onIfxTreeViewItemCheckChange: EventName<CustomEvent<{ checked: boolean; indeterminate: boolean }>>,
+    onIfxTreeViewItemDisableChange: EventName<CustomEvent<boolean>>
+};
+
+export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents>({
+    tagName: 'ifx-tree-view-item',
+    elementClass: IfxTreeViewItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxTreeViewItemExpandChange: 'ifxTreeViewItemExpandChange',
+        onIfxTreeViewItemCheckChange: 'ifxTreeViewItemCheckChange',
+        onIfxTreeViewItemDisableChange: 'ifxTreeViewItemDisableChange'
+    } as IfxTreeViewItemEvents,
+    defineCustomElement: defineIfxTreeViewItem
 });

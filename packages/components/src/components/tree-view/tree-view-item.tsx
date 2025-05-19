@@ -15,7 +15,6 @@ type HTMLIfxTreeViewItemElement = HTMLElement & { componentOnReady: () => Promis
 export class TreeViewItem {
   @Element() host: HTMLElement;
   @Prop() label: string;
-  @Prop() icon: 'folder' | 'file' = 'file';
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false;
   @Prop() initiallyExpanded: boolean = false;
   @Prop() disableItem: boolean = false;
@@ -247,18 +246,16 @@ export class TreeViewItem {
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
-    if (this.disabled) return;
 
     const allItems = Array.from(
       this.host
         .closest('ifx-tree-view')
         ?.querySelectorAll('ifx-tree-view-item') || []
-    ).filter(el => !(el as any).disabled);
+    );
 
     const visibleItems = allItems.filter(item => {
       let parent = item.parentElement?.closest('ifx-tree-view-item');
       while (parent) {
-        // @ts-ignore
         const parentCmp = parent as any;
         if (!(parentCmp.expandAllItems || parentCmp.expanded)) {
           return false;
@@ -277,17 +274,27 @@ export class TreeViewItem {
     switch (event.key) {
       case 'ArrowDown': {
         event.preventDefault();
-        if (currentIndex < visibleItems.length - 1) {
-          const next = visibleItems[currentIndex + 1] as HTMLElement;
-          focusLabelIcon(next.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+        let nextIndex = currentIndex + 1;
+        while (nextIndex < visibleItems.length) {
+          const next = visibleItems[nextIndex] as any;
+          if (!next.disabled) {
+            focusLabelIcon(next.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            break;
+          }
+          nextIndex++;
         }
         break;
       }
       case 'ArrowUp': {
         event.preventDefault();
-        if (currentIndex > 0) {
-          const prev = visibleItems[currentIndex - 1] as HTMLElement;
-          focusLabelIcon(prev.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+        let prevIndex = currentIndex - 1;
+        while (prevIndex >= 0) {
+          const prev = visibleItems[prevIndex] as any;
+          if (!prev.disabled) {
+            focusLabelIcon(prev.shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            break;
+          }
+          prevIndex--;
         }
         break;
       }
@@ -297,7 +304,7 @@ export class TreeViewItem {
           this.expanded = true;
         } else if (this.isExpanded && this.hasChildren) {
           const firstChild = this.host.querySelector('ifx-tree-view-item');
-          if (firstChild) {
+          if (firstChild && !(firstChild as any).disabled) {
             focusLabelIcon((firstChild as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
@@ -309,13 +316,13 @@ export class TreeViewItem {
           this.expanded = false;
         } else {
           const parent = this.host.parentElement?.closest('ifx-tree-view-item');
-          if (parent) {
+          if (parent && !(parent as any).disabled) {
             focusLabelIcon((parent as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
         break;
       }
-      case ' ': // Space
+      case ' ':
       case 'Enter': {
         event.preventDefault();
         this.updateCheckState(!this.isChecked);
@@ -391,14 +398,16 @@ export class TreeViewItem {
         onKeyDown={this.handleKeyDown}
       >
         <div class="tree-item__icon-container">
-          {this.icon === 'folder' ? (
-            <Fragment>
-              <ifx-icon class={{'icon--hidden': this.isExpanded}} icon="folder-16"/>
-              <ifx-icon class={{'icon--hidden': !this.isExpanded}} icon="folder-open-16"/>
-            </Fragment>
-          ) : (
-            <ifx-icon icon="file-16"/>
-          )}
+          {
+            this.hasChildren ? (
+              <Fragment>
+                <ifx-icon class={{'icon--hidden': this.isExpanded}} icon="folder-16"/>
+                <ifx-icon class={{'icon--hidden': !this.isExpanded}} icon="folder-open-16"/>
+              </Fragment>
+            ) : (
+              <ifx-icon icon="file-16"/>
+            )
+          }
         </div>
         <span class="tree-item__label">{this.label}</span>
       </div>

@@ -7,12 +7,22 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type                 | Default     |
-| ------------------- | -------------------- | ----------- | -------------------- | ----------- |
-| `expanded`          | `expanded`           |             | `boolean`            | `false`     |
-| `icon`              | `icon`               |             | `"file" \| "folder"` | `'file'`    |
-| `initiallyExpanded` | `initially-expanded` |             | `boolean`            | `false`     |
-| `label`             | `label`              |             | `string`             | `undefined` |
+| Property            | Attribute            | Description | Type      | Default       |
+| ------------------- | -------------------- | ----------- | --------- | ------------- |
+| `ariaLabel`         | `aria-label`         |             | `string`  | `'Tree Item'` |
+| `disableItem`       | `disable-item`       |             | `boolean` | `false`       |
+| `expanded`          | `expanded`           |             | `boolean` | `false`       |
+| `initiallyExpanded` | `initially-expanded` |             | `boolean` | `false`       |
+| `label`             | `label`              |             | `string`  | `undefined`   |
+
+
+## Events
+
+| Event                          | Description | Type                                                         |
+| ------------------------------ | ----------- | ------------------------------------------------------------ |
+| `ifxTreeViewItemCheckChange`   |             | `CustomEvent<{ checked: boolean; indeterminate: boolean; }>` |
+| `ifxTreeViewItemDisableChange` |             | `CustomEvent<boolean>`                                       |
+| `ifxTreeViewItemExpandChange`  |             | `CustomEvent<boolean>`                                       |
 
 
 ## Dependencies
