@@ -1,3 +1,4 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
 
 :host {
   display: block;
@@ -13,4 +14,9 @@
   flex-direction: column;
   overflow-x: auto;
   overflow-y: hidden;
+
+  &__label {
+    font: tokens.$ifxHeadingHeading06;
+    margin-bottom: tokens.$ifxSpace100;
+  }
 }

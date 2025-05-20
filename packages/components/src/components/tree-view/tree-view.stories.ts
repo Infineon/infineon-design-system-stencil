@@ -56,6 +56,13 @@ const meta: Meta = {
       control: false,
     },
 
+    // --- Label ---
+    label: {
+      control: 'text',
+      description: 'Label / Heading for tree view.',
+      table: { category: 'Label', defaultValue: { summary: 'false' } },
+    },
+
     // --- ARIA LABELS ---
     ariaLabel: {
       control: 'text',
@@ -101,7 +108,7 @@ export default meta;
 
 const BaseTemplate: StoryFn = (args) => {
   const el = document.createElement('ifx-tree-view');
-  el.setAttribute('label', args.label);
+  if (args.label) el.setAttribute('label', args.label);
   el.setAttribute('aria-label', args.ariaLabel);
 
   if (args.disableAllItems) el.setAttribute('disable-all-items', 'true');
@@ -110,7 +117,6 @@ const BaseTemplate: StoryFn = (args) => {
   if (args.expandAllItems) el.setAttribute('expand-all-items', 'true');
   else el.removeAttribute('expand-all-items');
 
-  // Template: aria-label for items
   const ariaLabelItemAttr = args.ariaLabelItem
     ? `aria-label="${args.ariaLabelItem}"`
     : '';
@@ -154,9 +160,9 @@ const BaseTemplate: StoryFn = (args) => {
 
 export const Default = BaseTemplate.bind({});
 Default.args = {
-  label: 'Tree Example',
   disableAllItems: false,
   expandAllItems: false,
+  label: 'Tree Example',
   ariaLabel: 'Tree View',
   ariaLabelItem: 'Tree Item',
 };
@@ -250,9 +256,9 @@ export const ContainerDemo: StoryFn = (args) => {
 };
 
 ContainerDemo.args = {
-  label: 'Tree Example',
   disableAllItems: false,
   expandAllItems: false,
+  label: 'Tree Example',
   ariaLabel: 'Tree View',
   ariaLabelItem: 'Tree Item',
 };

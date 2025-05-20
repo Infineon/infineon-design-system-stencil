@@ -6,6 +6,7 @@ import { Component, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
   shadow: true,
 })
 export class TreeView {
+  @Prop() label?: string;
   @Prop() disableAllItems: boolean = false;
   @Prop() expandAllItems: boolean = false;
   @Prop() ariaLabel: string = 'Tree View';
@@ -33,6 +34,7 @@ export class TreeView {
         role="tree"
         aria-label={this.ariaLabel}
       >
+        {this.label && this.label.trim() !== '' && <div class="tree-view__label">{this.label}</div>}
         <slot ref={el => {
           if (el) {
             if (this.disableAllItems) {
