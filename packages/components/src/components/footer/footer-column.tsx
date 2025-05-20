@@ -1,4 +1,4 @@
-import { Component, h, Element } from '@stencil/core';
+import { Component, h, Element} from '@stencil/core';
 
 @Component({
   tag: 'ifx-footer-column',
@@ -6,14 +6,13 @@ import { Component, h, Element } from '@stencil/core';
   shadow: true,
 })
 
-export class Card {
+export class FooterColumn {
   @Element() el;
-
-
+  
   render() {
     return (
       <div class="col">
-        <slot name="title" />
+          <slot name="title" />
         <span aria-label='navigation link'>
           <slot name="link" />
         </span>

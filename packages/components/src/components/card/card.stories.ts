@@ -11,7 +11,7 @@ export default {
     target: '_blank',
     position: 'right',
     src: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg',
-    AriaLabel: 'Card',
+    ariaLabel: 'Card',
   },
 
   argTypes: {
@@ -63,7 +63,7 @@ export default {
       options: ['horizontal', 'vertical'],
       control: { type: 'radio' },
     },
-    AriaLabel: {
+    ariaLabel: {
       control: { type: 'text' },
       description: 'Sets the aria-label attribute of the card. Enhances accessibility.',
       table: {
@@ -116,7 +116,7 @@ export default {
 };
 
 const DefaultTemplate = args =>
-  `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.AriaLabel}">
+  `<ifx-card direction="${args.direction}" href="${args.href}" target="${args.target}" aria-label="${args.ariaLabel}">
     <ifx-card-image position="${args.position}" src="${args.src}" alt="${args.alt}" slot="img"></ifx-card-image>
     ${args.overline
     ? `<ifx-card-overline>
