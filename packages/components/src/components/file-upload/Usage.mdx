@@ -1,0 +1,49 @@
+import { Meta  } from '@storybook/blocks';
+import * as DropdownMenuStories from './dropdown.stories';
+import FileUploadButtonStates from '../../../public-storybook/images/file-upload/file-upload-button-states.png';
+import FileUploadButton from '../../../public-storybook/images/file-upload/file-upload-button.png';
+import FileUploadDropzoneStates from '../../../public-storybook/images/file-upload/file-upload-dropzone-states.png';
+import FileUploadDropzone from '../../../public-storybook/images/file-upload/file-upload-dropzone.png';
+import FileUploadButtonExample from '../../../public-storybook/images/file-upload/file-upload-upload-button-example.png';
+import FileUploadDropzoneExample from '../../../public-storybook/images/file-upload/file-upload-upload-dropzone-example.png';
+
+
+<Meta of={FileUploadStories} />
+
+# File Upload
+The file upload component enables users to transfer files from their devices to a web application. It supports both manual file selection and drag-and-drop interactions, providing real-time feedback on upload progress and status.
+
+## Usage
+### When to use
+- When users need to submit documents, images, or other files as part of a form or process.
+- To allow users to upload multiple files simultaneously or sequentially.
+
+### When not to use
+- If the necessary information can be obtained through other means, such as text fields, checkboxes, or selection menus.
+
+## Types
+### Button
+A simple element that allows users to select files from their device using the system's file picker dialog.
+<img src={FileUploadButton} alt="File Upload Button" />
+
+#### States
+<img src={FileUploadButtonStates} alt="File Upload Button States" />
+
+### Dropzone
+An area where users can drag and drop files to initiate uploads, often accompanied by a fallback button for manual selection.
+<img src={FileUploadDropzone} alt="File Upload Dropzone" />
+
+#### States
+<img src={FileUploadDropzoneStates} alt="File Upload Dropzone States" />
+
+## File Upload List Items
+Each file selected for upload is represented by an individual list item within the file upload component. These items display pertinent information and status indicators, ensuring users are informed about the progress and outcome of each file upload.
+
+<img src={FileUploadListItemStates} alt="File Upload List Item States" />
+
+## Examples
+### Using as button
+<img src={FileUploadButtonExample} alt="File Upload Button Example" />
+
+### Using as dropzone
+<img src={FileUploadDropzoneExample} alt="File Upload Dropzone Example" />
