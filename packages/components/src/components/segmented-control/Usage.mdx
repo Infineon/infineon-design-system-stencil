@@ -1,50 +1,66 @@
 import { Meta  } from '@storybook/blocks';
 import * as SegmentedControlStories from './segmented-control.stories';
-import FileUploadButtonStates from '../../../public-storybook/images/file-upload/file-upload-button-states.png';
-import FileUploadButton from '../../../public-storybook/images/file-upload/file-upload-button.png';
-import FileUploadDropzoneStates from '../../../public-storybook/images/file-upload/file-upload-dropzone-states.png';
-import FileUploadDropzone from '../../../public-storybook/images/file-upload/file-upload-dropzone.png';
-import FileUploadButtonExample from '../../../public-storybook/images/file-upload/file-upload-upload-button-example.png';
-import FileUploadDropzoneExample from '../../../public-storybook/images/file-upload/file-upload-upload-dropzone-example.png';
+import SegmentedControlStates from '../../../public-storybook/images/segmented-control/segmented-control-amount.png';
+import SegmentedControlAnatomy from '../../../public-storybook/images/segmented-control/segmented-control-anatomy.png';
+import SegmentedControlAmount from '../../../public-storybook/images/segmented-control/segmented-control-states.png';
 
 
 <Meta of={FileUploadStories} />
 
 # Segmented Control
-The file upload component enables users to transfer files from their devices to a web application. It supports both manual file selection and drag-and-drop interactions, providing real-time feedback on upload progress and status.
+A segmented control is a horizontal set of three or more segments, each functioning as a mutually exclusive button. It allows users to toggle between different views or states within the same context without leaving the current screen. 
+
+| Resources                                                                                                                      |
+|--------------------------------------------------------------------------------------------------------------------------------|
+| [Figma segmented control component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=63374-105) |
 
 ## Usage
 ### When to use
-- When users need to submit documents, images, or other files as part of a form or process.
-- To allow users to upload multiple files simultaneously or sequentially.
+- When users need to select one option from a small set (up to six) of related, mutually exclusive choices.
+- When toggling between different views or data representations within the same context.
 
 ### When not to use
-- If the necessary information can be obtained through other means, such as text fields, checkboxes, or selection menus.
+- When the number of options exceeds six. Use a dropdown menu instead.
+- For actions that perform functions like "Add" or "Edit". Use buttons for such actions instead.
+- When each option leads to entirely different views or pages.
 
-## Types
-### Button
-A simple element that allows users to select files from their device using the system's file picker dialog.
-<img src={FileUploadButton} alt="File Upload Button" />
+## Anatomy
+<img src={SegmentedControlAnatomy} alt="Segmented Control Anatomy" />
 
-#### States
-<img src={FileUploadButtonStates} alt="File Upload Button States" />
+**Group label (1)**\
+The group label is optional. It is located above the segmented control component.
 
-### Dropzone
-An area where users can drag and drop files to initiate uploads, often accompanied by a fallback button for manual selection.
-<img src={FileUploadDropzone} alt="File Upload Dropzone" />
 
-#### States
-<img src={FileUploadDropzoneStates} alt="File Upload Dropzone States" />
+**Segment container (2)**\
+The container that holds the segments and the active indicator."
 
-## File Upload List Items
-Each file selected for upload is represented by an individual list item within the file upload component. These items display pertinent information and status indicators, ensuring users are informed about the progress and outcome of each file upload.
 
-<img src={FileUploadListItemStates} alt="File Upload List Item States" />
+**Single segment (3)**\
+A single segment item container.
 
-## Examples
-### Using as button
-<img src={FileUploadButtonExample} alt="File Upload Button Example" />
 
-### Using as dropzone
-> We highly recommend to set the dropzone width to 100%.
-<img src={FileUploadDropzoneExample} alt="File Upload Dropzone Example" />
+**Label (4)**\
+Use a label to describe the purpose of the single segment to the user.
+
+
+**Icon (5)**\
+If needed an icon can be used to provide supportive information. It is also possible to provide an icon only segmented control. Icons should be self-explanatory e.g. a star rating.
+
+
+**Caption text (6)**\
+Use an optional caption text to provide additional context or information about the segmented control.
+
+
+## States
+<img src={SegmentedControlStates} alt="Segmented Control States" />
+
+
+## Use case examples
+### Task complexety
+Segmented controls can be used to quickly categorize tasks by their level of complexity. Selectable segments are: Low, Medium, High
+
+### Task location
+Use a segmented control to define the priority or suitability of a task’s location. Selectable segments are: Best, Mid, High
+
+### Time range
+A segmented control can offer users a fast way to switch between different time intervals in charts, reports, or data views. Selectable segments are: Day, Week, Month, Year, 3 Years, 5 Years
