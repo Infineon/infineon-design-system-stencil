@@ -1,3 +1,16 @@
+# v33.5.0 (Wed May 21 2025)
+
+#### 🚀 Enhancement
+
+- Date Picker: Updates documentation, and adds asterisk on label when required [#1855](https://github.com/Infineon/infineon-design-system-stencil/pull/1855) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.4.0 (Mon May 19 2025)
 
 #### 🚀 Enhancement
