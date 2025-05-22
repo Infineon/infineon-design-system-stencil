@@ -21,17 +21,17 @@ export default {
       }
     },
     number: {
-      name: 'Number of the Indicator',
+      name: 'Numberal value of the Indicator',
       description: 'Sets the number displayed on the Indicator.',
       table: {
         category: 'story controls'
       }
     },
     inverted: {
-      description: 'Toggles the color scheme of the number indicator.',
+      description: 'Toggles the color scheme of the indicator with a numerical value.',
       control: 'boolean',
       table: {
-        category: 'ifx-number-indicator props',
+        category: 'ifx-indicator props',
         defaultValue: {
           summary: false
         }
