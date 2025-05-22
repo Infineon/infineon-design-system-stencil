@@ -40,6 +40,7 @@
   <Tag />
   <Textarea />
   <TextField />
+  <TreeView />
   <Tooltip />
   <Footer />
 </template>
@@ -88,5 +89,6 @@ import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
+import TreeView from './components/TreeView.vue'
 
 </script>
