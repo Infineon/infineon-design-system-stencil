@@ -18,6 +18,8 @@ export class IfxModal {
   @State() showModal: boolean = this.opened || false;
 
   @Prop() caption: string = 'Modal Title';
+  @Prop() captionAriaLabel: string | null;
+
   @Prop() closeOnOverlayClick: boolean = true;
 
   @Event() ifxOpen: EventEmitter;
@@ -30,6 +32,8 @@ export class IfxModal {
   @Prop() alertIcon: string = '';
   @Prop() okButtonLabel: string = 'OK';
   @Prop() cancelButtonLabel: string = 'Cancel';
+  @Prop() closeButtonAriaLabel: string | null; 
+
   @Element() hostElement: HTMLElement;
 
   @State() slotButtonsPresent: boolean = false;
@@ -192,7 +196,7 @@ export class IfxModal {
             class={`modal-content-container ${this.size}`}
             role="dialog"
             aria-modal="true"
-            aria-label={this.caption}>
+            aria-label={this.captionAriaLabel}>
             {isAlertVariant ? (
               <div class={`modal-icon-container ${this.variant === 'alert-brand' ? '' : 'danger'}`}>
                 {this.alertIcon ? <ifx-icon icon={this.alertIcon} /> : null}
@@ -203,7 +207,7 @@ export class IfxModal {
                 <h2 class="modal-caption">{this.caption}</h2>
                 { 
                   this.showCloseButton && 
-                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
+                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" aria-label={this.closeButtonAriaLabel} onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
                   </ifx-icon-button>
                 }
               </div>

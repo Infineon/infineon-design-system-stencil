@@ -10,6 +10,8 @@ export default {
     opened: false,
     cancelButtonLabel: 'Cancel',
     okButtonLabel: 'OK',
+    closeButtonAriaLabel: 'Close modal',
+    captionAriaLabel: 'Modal title',
   },
   argTypes: {
     caption: {
@@ -121,7 +123,32 @@ export default {
         },
       },
     },
-
+    closeButtonAriaLabel: {
+      control: 'text',
+      description: 'Aria label for the close button.',
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'Close modal',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    captionAriaLabel: {
+      control: 'text',
+      description: 'Aria label for the modal title.',
+      table: {
+        category: 'ifx-modal props',
+        defaultValue: {
+          summary: 'Modal title is agata',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     ifxOpen: {
       action: 'ifxOpen',
       description: 'Custom event emitted when modal opens.',
@@ -149,9 +176,11 @@ export default {
   },
 };
 
-const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
+const Template = ({ caption,captionAriaLabel, closeButtonAriaLabel, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
+  modal.setAttribute('caption-aria-label', captionAriaLabel);
+  modal.setAttribute('close-button-aria-label', closeButtonAriaLabel);
   modal.setAttribute('variant', variant);
 
   if (alertIcon) {
@@ -212,6 +241,8 @@ const Template = ({ caption, showCloseButton, closeOnOverlayClick, variant, size
 export const Default = Template.bind({});
 Default.args = {
   caption: 'Modal Title',
+  captionAriaLabel: 'Additional information for caption',
+  closeButtonAriaLabel: 'Close modal',
   showCloseButton: true,
   closeOnOverlayClick: false,
   size: 's',
@@ -221,8 +252,10 @@ Default.args = {
 export const Alert = Template.bind({});
 Alert.args = {
   caption: 'Alert-Brand Modal Title',
+  captionAriaLabel: 'Additional information for caption',
+  closeButtonAriaLabel: 'Close alert modal',
   closeOnOverlayClick: true,
-  alertIcon: 'arrowdoen24',
+  alertIcon: 'arrowdown24',
   size: 's',
   variant: 'alert-brand',
   cancelButtonLabel: 'Cancel',
