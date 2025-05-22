@@ -1,4 +1,4 @@
-# ifx-number-indicator
+# ifx-indicator
 
 
 
