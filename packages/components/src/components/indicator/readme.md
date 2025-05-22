@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type      | Default       |
-| ----------- | ------------ | ----------- | --------- | ------------- |
-| `ariaLabel` | `aria-label` |             | `string`  | `'Indicator'` |
-| `inverted`  | `inverted`   |             | `boolean` | `false`       |
-| `number`    | `number`     |             | `number`  | `0`           |
-| `variant`   | `variant`    |             | `string`  | `'number'`    |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `ariaLabel` | `aria-label` |             | `string`  | `undefined` |
+| `inverted`  | `inverted`   |             | `boolean` | `false`     |
+| `number`    | `number`     |             | `number`  | `0`         |
+| `variant`   | `variant`    |             | `string`  | `'number'`  |
 
 
 ----------------------------------------------

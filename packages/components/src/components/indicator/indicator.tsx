@@ -10,7 +10,7 @@ export class Indicator {
   @Element() el;
   @State() filteredNumber: string | number;
   @Prop() inverted: boolean = false;
-  @Prop() ariaLabel: string = 'Indicator'
+  @Prop() ariaLabel: string | null;
   @Prop() variant: string = 'number'
   @Prop() number: number = 0;
 
