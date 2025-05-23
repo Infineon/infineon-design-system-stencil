@@ -1,0 +1,22 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+:host {
+  display: block;
+}
+
+.tree-view {
+  font-family: var(--ifx-font-family, sans-serif);
+  font-size: 14px;
+  color: var(--ifx-color-text, #1a1a1a);
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &__label {
+    font: tokens.$ifxHeadingHeading06;
+    margin-bottom: tokens.$ifxSpace100;
+  }
+}

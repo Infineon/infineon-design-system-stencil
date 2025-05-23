@@ -81,5 +81,7 @@ export const DIRECTIVES = [
   d.IfxTemplatesUi,
   d.IfxTextField,
   d.IfxTextarea,
-  d.IfxTooltip
+  d.IfxTooltip,
+  d.IfxTreeView,
+  d.IfxTreeViewItem
 ];

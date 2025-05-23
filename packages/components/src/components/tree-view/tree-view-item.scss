@@ -1,0 +1,145 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+
+.tree-item {
+  position: relative;
+  cursor: pointer;
+  list-style: none;
+
+  &.tree-item--expanded {
+    position: relative;
+  }
+
+  &.tree-item--has-children {
+    position: relative;
+
+    .tree-item__header > .tree-item__chevron-container {
+      display: flex;
+    }
+
+    &.tree-item--expanded {
+      .tree-item__header > .tree-item__chevron-container::after {
+        display: block;
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: tokens.$ifxColorEngineering300;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+
+    &:hover {
+      .tree-item__checkbox-container,
+      .tree-item__header {
+        background-color: tokens.$ifxColorEngineering100;
+      }
+    }
+  }
+
+  &__checkbox-container {
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    padding: tokens.$ifxSpace50;
+    background-color: tokens.$ifxColorBaseWhite;
+  }
+
+  &__header {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    height: tokens.$ifxSize250;
+    padding-top: tokens.$ifxSpace50;
+    padding-right: tokens.$ifxSpace200;
+    padding-bottom: tokens.$ifxSpace50;
+    padding-left: tokens.$ifxSpace100;
+  }
+
+  &__chevron-container {
+    display: none;
+    align-items: center;
+    margin-right: tokens.$ifxSpace100;
+    height: tokens.$ifxSize250;
+
+    &::after {
+      --height-line-start: 28px;
+
+      display: none;
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: var(--height-line-start);
+      left: auto;
+      margin-left: tokens.$ifxSpace100;
+      width: tokens.$ifxSize12;
+      height: calc(100% - var(--height-line-start));
+      background-color: tokens.$ifxColorEngineering200;
+
+      .tree-item--disabled & {
+        color: tokens.$ifxColorEngineering200;
+      }
+    }
+  }
+
+  &__chevron {
+    &.chevron-down {
+      transform: rotate(90deg);
+    }
+
+    &.chevron-right {
+      transform: rotate(0);
+    }
+  }
+
+  &__label-icon-container {
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
+      border-radius: tokens.$ifxBorderRadius12;
+    }
+  }
+
+  &__icon-container {
+    position: relative;
+    width: tokens.$ifxSize200;
+    height: tokens.$ifxSize200;
+
+    ifx-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 1;
+      transition: opacity 0.2s ease-in-out;
+
+      &.icon--hidden {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__label {
+    padding-left: tokens.$ifxSpace100;
+  }
+
+  &__children {
+    display: none;
+
+    .tree-item[aria-expanded="true"] > & {
+      display: block;
+    }
+  }
+}
+
