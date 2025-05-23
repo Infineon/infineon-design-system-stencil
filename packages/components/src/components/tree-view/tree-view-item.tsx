@@ -18,7 +18,7 @@ export class TreeViewItem {
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false;
   @Prop() initiallyExpanded: boolean = false;
   @Prop() disableItem: boolean = false;
-  @Prop() ariaLabel: string = 'Tree Item';
+  @Prop() ariaLabel: string | null;
 
   @Event() ifxTreeViewItemExpandChange: EventEmitter<boolean>;
   @Event() ifxTreeViewItemCheckChange: EventEmitter<{ checked: boolean; indeterminate: boolean }>;

@@ -7,13 +7,13 @@
 
 ## Properties
 
-| Property            | Attribute            | Description | Type      | Default       |
-| ------------------- | -------------------- | ----------- | --------- | ------------- |
-| `ariaLabel`         | `aria-label`         |             | `string`  | `'Tree Item'` |
-| `disableItem`       | `disable-item`       |             | `boolean` | `false`       |
-| `expanded`          | `expanded`           |             | `boolean` | `false`       |
-| `initiallyExpanded` | `initially-expanded` |             | `boolean` | `false`       |
-| `label`             | `label`              |             | `string`  | `undefined`   |
+| Property            | Attribute            | Description | Type      | Default     |
+| ------------------- | -------------------- | ----------- | --------- | ----------- |
+| `ariaLabel`         | `aria-label`         |             | `string`  | `undefined` |
+| `disableItem`       | `disable-item`       |             | `boolean` | `false`     |
+| `expanded`          | `expanded`           |             | `boolean` | `false`     |
+| `initiallyExpanded` | `initially-expanded` |             | `boolean` | `false`     |
+| `label`             | `label`              |             | `string`  | `undefined` |
 
 
 ## Events

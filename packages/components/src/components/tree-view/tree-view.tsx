@@ -9,7 +9,7 @@ export class TreeView {
   @Prop() label?: string;
   @Prop() disableAllItems: boolean = false;
   @Prop() expandAllItems: boolean = false;
-  @Prop() ariaLabel: string = 'Tree View';
+  @Prop() ariaLabel: string | null;
 
   @Event() ifxTreeViewExpandAllChange: EventEmitter<boolean>;
   @Event() ifxTreeViewDisableAllChange: EventEmitter<boolean>;
