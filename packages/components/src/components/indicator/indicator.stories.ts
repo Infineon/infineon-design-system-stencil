@@ -21,7 +21,7 @@ export default {
       }
     },
     number: {
-      name: 'Numberal value of the Indicator',
+      name: 'The numerical value of the Indicator',
       description: 'Sets the number displayed on the Indicator.',
       table: {
         category: 'story controls'
