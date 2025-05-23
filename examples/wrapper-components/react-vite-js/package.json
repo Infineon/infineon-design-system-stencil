@@ -18,7 +18,7 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-react": "34.0.0--canary.1868.0959c6c82ec1e27b70e977a3d1ccfe77c99cd2a8.0",
+    "@infineon/infineon-design-system-react": "34.0.0--canary.1868.af403d8f3ed4a4a5d75c3fad8e82f4370964c7c8.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
