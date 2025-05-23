@@ -35,7 +35,7 @@ export class OverviewTable {
   setPlannedComponentsNumber = () => { 
     const plannedComponents = this.getPlannedComponents()
     const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-planned')
-    numberIndicator.innerHTML = plannedComponents;
+    numberIndicator.number = plannedComponents;
   }
   
   getCompletedComponents = () => { 
@@ -46,7 +46,7 @@ export class OverviewTable {
   setCompletedComponentsNumber = () => { 
     const completedComponents = this.getCompletedComponents()
     const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-completed')
-    numberIndicator.innerHTML = completedComponents;
+    numberIndicator.number = completedComponents;
   }
   
   setTotalComponentsNumber = () => { 
@@ -54,7 +54,7 @@ export class OverviewTable {
     const completedComponents = this.getCompletedComponents()
     const numberIndicator = this.el.shadowRoot.getElementById('number__indicator-total')
     const totalNumberOfComponents = plannedComponents + completedComponents;
-    numberIndicator.innerHTML = totalNumberOfComponents;
+    numberIndicator.number = totalNumberOfComponents;
   }
 
   render() {
@@ -67,19 +67,19 @@ export class OverviewTable {
               <div class="basic__info">
                 <div>Total Number:</div>
                 <div>
-                  <ifx-number-indicator id="number__indicator-total"></ifx-number-indicator>
+                  <ifx-indicator id="number__indicator-total" variant="number"></ifx-indicator>
                 </div>
               </div>
               <div class="basic__info">
                 <div>Completed:</div>
                 <div>
-                  <ifx-number-indicator id="number__indicator-completed"></ifx-number-indicator>
+                  <ifx-indicator id="number__indicator-completed" variant="number"></ifx-indicator>
                 </div>
               </div>
               <div class="basic__info">
                 <div>In Progress:</div>
                 <div>
-                  <ifx-number-indicator id="number__indicator-planned"></ifx-number-indicator>
+                  <ifx-indicator id="number__indicator-planned" variant="number"></ifx-indicator>
                 </div>
               </div>
             </div>
@@ -925,7 +925,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-number-indicator--development" size="s" variant="bold">Number Indicator</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-indicator--development" size="s" variant="bold">Indicator</ifx-link>
                   </td>
                   <td >
                     <ul>
@@ -933,7 +933,7 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class='check__icon' icon="check12"></ifx-icon>
                         </span>
-                        <span>Provides a compact and configurable display for showcasing numeric data</span>
+                        <span>Provides a compact and configurable display for showcasing numeric data or dot indicator</span>
                       </li>
                       <li>
                         <span>
