@@ -9,7 +9,7 @@ import RadioButton from './components/RadioButton/RadioButton';
 import RadioButtonGroup from './components/RadioButtonGroup/RadioButtonGroup';
 import Sidebar from './components/Sidebar/Sidebar'
 import Notification from './components/Notification/Notification'
-import NumberIndicator from './components/NumberIndicator/NumberIndicator'
+import Indicator from './components/Indicator/Indicator'
 import Spinner from './components/Spinner/Spinner'
 import Checkbox from './components/Checkbox/Checkbox';
 import Navbar from './components/Navbar/Navbar';
@@ -122,8 +122,8 @@ function App() {
       <Notification />
       <br />
 
-      <h2>Number indicator</h2>
-      <NumberIndicator />
+      <h2>Indicator</h2>
+      <Indicator />
       <br />
 
       <h2>Pagination</h2>

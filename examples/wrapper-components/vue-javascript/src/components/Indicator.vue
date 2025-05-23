@@ -2,10 +2,11 @@
 
 <template>
   <div>
-    <h2>Number Indicator</h2>
-    <ifx-number-indicator inverted="false">{{ number }}</ifx-number-indicator>
+    <h2>Indicator</h2>
+    <ifx-indicator inverted="false" :variant="variant" :number="number"></ifx-indicator>
     <button @click="increaseNumber">+</button>
     <button @click="decreaseNumber">-</button>
+    <button @click="toggleVariant">toggle variant</button>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 import { ref } from 'vue';
 
 let number = ref(1);
+let variant = ref('number')
 
 
 function increaseNumber() {
@@ -22,6 +24,10 @@ function increaseNumber() {
 
 function decreaseNumber() {
   number.value = number.value - 1;
+}
+
+function toggleVariant() {
+  variant.value = variant.value === 'number' ? 'dot' : 'number'
 }
 </script>
 

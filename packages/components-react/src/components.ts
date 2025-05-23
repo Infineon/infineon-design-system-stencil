@@ -49,6 +49,7 @@ import { IfxFooter as IfxFooterElement, defineCustomElement as defineIfxFooter }
 import { IfxIconButton as IfxIconButtonElement, defineCustomElement as defineIfxIconButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon-button.js";
 import { IfxIcon as IfxIconElement, defineCustomElement as defineIfxIcon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icon.js";
 import { IfxIconsPreview as IfxIconsPreviewElement, defineCustomElement as defineIfxIconsPreview } from "@infineon/infineon-design-system-stencil/dist/components/ifx-icons-preview.js";
+import { IfxIndicator as IfxIndicatorElement, defineCustomElement as defineIfxIndicator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-indicator.js";
 import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from "@infineon/infineon-design-system-stencil/dist/components/ifx-link.js";
 import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
@@ -58,7 +59,6 @@ import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfx
 import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
 import { IfxNavbar as IfxNavbarElement, defineCustomElement as defineIfxNavbar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar.js";
 import { IfxNotification as IfxNotificationElement, defineCustomElement as defineIfxNotification } from "@infineon/infineon-design-system-stencil/dist/components/ifx-notification.js";
-import { IfxNumberIndicator as IfxNumberIndicatorElement, defineCustomElement as defineIfxNumberIndicator } from "@infineon/infineon-design-system-stencil/dist/components/ifx-number-indicator.js";
 import { IfxOverviewTable as IfxOverviewTableElement, defineCustomElement as defineIfxOverviewTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-overview-table.js";
 import { IfxPagination as IfxPaginationElement, defineCustomElement as defineIfxPagination } from "@infineon/infineon-design-system-stencil/dist/components/ifx-pagination.js";
 import { IfxProgressBar as IfxProgressBarElement, defineCustomElement as defineIfxProgressBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-progress-bar.js";
@@ -599,6 +599,17 @@ export const IfxIconsPreview: StencilReactComponent<IfxIconsPreviewElement, IfxI
     defineCustomElement: defineIfxIconsPreview
 });
 
+type IfxIndicatorEvents = NonNullable<unknown>;
+
+export const IfxIndicator: StencilReactComponent<IfxIndicatorElement, IfxIndicatorEvents> = /*@__PURE__*/ createComponent<IfxIndicatorElement, IfxIndicatorEvents>({
+    tagName: 'ifx-indicator',
+    elementClass: IfxIndicatorElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxIndicatorEvents,
+    defineCustomElement: defineIfxIndicator
+});
+
 type IfxLinkEvents = NonNullable<unknown>;
 
 export const IfxLink: StencilReactComponent<IfxLinkElement, IfxLinkEvents> = /*@__PURE__*/ createComponent<IfxLinkElement, IfxLinkEvents>({
@@ -708,17 +719,6 @@ export const IfxNotification: StencilReactComponent<IfxNotificationElement, IfxN
     react: React,
     events: {} as IfxNotificationEvents,
     defineCustomElement: defineIfxNotification
-});
-
-type IfxNumberIndicatorEvents = NonNullable<unknown>;
-
-export const IfxNumberIndicator: StencilReactComponent<IfxNumberIndicatorElement, IfxNumberIndicatorEvents> = /*@__PURE__*/ createComponent<IfxNumberIndicatorElement, IfxNumberIndicatorEvents>({
-    tagName: 'ifx-number-indicator',
-    elementClass: IfxNumberIndicatorElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: {} as IfxNumberIndicatorEvents,
-    defineCustomElement: defineIfxNumberIndicator
 });
 
 type IfxOverviewTableEvents = NonNullable<unknown>;

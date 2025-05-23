@@ -52,7 +52,7 @@ graph TD;
   ifx-table --> ifx-chip
   ifx-table --> ifx-chip-item
   ifx-table --> ifx-pagination
-  ifx-chip --> ifx-number-indicator
+  ifx-chip --> ifx-indicator
   ifx-chip --> ifx-icon
   ifx-chip-item --> ifx-checkbox
   ifx-chip-item --> ifx-icon

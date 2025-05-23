@@ -311,7 +311,7 @@ export class SidebarItem {
 
               {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
                 <span class='item__number-indicator'>
-                  <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+                  <ifx-indicator variant='number' number={this.numberIndicator}></ifx-indicator>
                 </span>}
 
             </div>
