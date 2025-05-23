@@ -42,6 +42,7 @@
   <TextField />
   <TreeView />
   <Tooltip />
+  <FileUpload />
   <Footer />
 </template>
 
@@ -89,6 +90,6 @@ import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
-import TreeView from './components/TreeView.vue'
+import FileUpload from './components/FileUpload.vue'
 
 </script>
