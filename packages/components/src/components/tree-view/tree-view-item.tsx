@@ -1,5 +1,11 @@
 import { Component, h, Prop, State, Element, Fragment, Event, EventEmitter, Watch } from '@stencil/core';
 
+export interface TreeViewCheckChangeEvent {
+  checked: boolean;
+  indeterminate: boolean;
+  affectedChildItems?: Array<{ label: string; checked: boolean; indeterminate: boolean }>;
+}
+
 interface TreeState {
   isChecked: boolean;
   partialChecked: boolean;
@@ -21,7 +27,7 @@ export class TreeViewItem {
   @Prop() ariaLabel: string | null;
 
   @Event() ifxTreeViewItemExpandChange: EventEmitter<boolean>;
-  @Event() ifxTreeViewItemCheckChange: EventEmitter<{ checked: boolean; indeterminate: boolean }>;
+  @Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
   @Event() ifxTreeViewItemDisableChange: EventEmitter<boolean>;
 
   @State() private hasChildren: boolean = false;
@@ -64,6 +70,7 @@ export class TreeViewItem {
     if (this.shouldExpandFromParent()) {
       this.expandAllDescendants();
     }
+    (this.host as any)['__stencil_instance'] = this;
   }
 
   private shouldExpandFromParent(): boolean {
@@ -168,11 +175,37 @@ export class TreeViewItem {
     }
   };
 
-  private async updateCheckState(checked: boolean) {
+  private async updateCheckState(checked: boolean, fromParent = false) {
     if (this.disabled) return;
-    this.setNodeState({ isChecked: checked, partialChecked: false });
-    await this.updateChildrenState(checked);
-    this.updateParentState();
+
+    if (!fromParent && this.hasChildren) {
+      const affected = this.collectDescendantStates(checked);
+      this.setNodeState({ isChecked: checked, partialChecked: false }, false);
+      await this.updateChildrenSilently(checked);
+      this.ifxTreeViewItemCheckChange.emit({
+        checked,
+        indeterminate: false,
+        affectedChildItems: affected,
+      });
+      this.updateParentState();
+    } else if (fromParent) {
+      this.setNodeState({ isChecked: checked, partialChecked: false }, false);
+    } else {
+      this.setNodeState({ isChecked: checked, partialChecked: false });
+      await this.updateChildrenState(checked);
+      this.updateParentState();
+    }
+  }
+
+  private async updateChildrenSilently(checked: boolean) {
+    const children = this.findChildren();
+    for (const child of children) {
+      const childInstance = (child as any)['__stencil_instance'];
+      if (childInstance) {
+        childInstance.setNodeState({ isChecked: checked, partialChecked: false }, false);
+        await childInstance.updateChildrenSilently(checked);
+      }
+    }
   }
 
   @Watch('expanded')
@@ -185,13 +218,41 @@ export class TreeViewItem {
     this.ifxTreeViewItemDisableChange.emit(newValue);
   }
 
-  private setNodeState(state: TreeState) {
+  private setNodeState(state: TreeState, emitEvent = true) {
     this.isChecked = state.isChecked;
     this.partialChecked = state.partialChecked;
-    this.ifxTreeViewItemCheckChange.emit({
-      checked: this.isChecked,
-      indeterminate: this.partialChecked,
-    });
+    if (emitEvent) {
+      this.ifxTreeViewItemCheckChange.emit({
+        checked: this.isChecked,
+        indeterminate: this.partialChecked,
+      });
+    }
+  }
+
+  private collectDescendantStates(checked: boolean) {
+    const descendants: Array<{ label: string; checked: boolean; indeterminate: boolean }> = [];
+    const collect = (el: Element) => {
+      let instance: any = null;
+      if (el === this.host) {
+        instance = this;
+      } else if ((el as any)['__stencil_instance']) {
+        instance = (el as any)['__stencil_instance'];
+      }
+      const label = instance?.label ?? (el as any).label ?? '';
+      descendants.push({
+        label,
+        checked,
+        indeterminate: false,
+      });
+      Array.from(el.children)
+        .forEach(child => {
+          if (child.tagName === 'IFX-TREE-VIEW-ITEM') {
+            collect(child);
+          }
+        });
+    };
+    collect(this.host);
+    return descendants;
   }
 
   private async updateChildrenState(checked: boolean) {

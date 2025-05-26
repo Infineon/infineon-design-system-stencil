@@ -120,6 +120,37 @@ describe('ifx-tree-view', () => {
     expect(spy).toHaveReceivedEventDetail({ checked: true, indeterminate: false });
   });
 
+  it('emits parent check event with affectedChildItems for parent items', async () => {
+    const page = await newE2EPage({
+      html: `
+        <ifx-tree-view>
+          <ifx-tree-view-item label="Parent">
+            <ifx-tree-view-item label="Child 1"></ifx-tree-view-item>
+            <ifx-tree-view-item label="Child 2"></ifx-tree-view-item>
+          </ifx-tree-view-item>
+        </ifx-tree-view>
+      `,
+    });
+
+    await page.waitForChanges();
+
+    const parentCheckbox = await page.find('ifx-tree-view-item >>> ifx-checkbox');
+    const spy = await page.spyOnEvent('ifxTreeViewItemCheckChange');
+
+    await parentCheckbox.click();
+    await page.waitForChanges();
+
+    expect(spy).toHaveReceivedEventDetail({
+      checked: true,
+      indeterminate: false,
+      affectedChildItems: [
+        { label: 'Parent', checked: true, indeterminate: false },
+        { label: 'Child 1', checked: true, indeterminate: false },
+        { label: 'Child 2', checked: true, indeterminate: false }
+      ]
+    });
+  });
+
   it('handles keyboard navigation (ArrowDown)', async () => {
     const page = await newE2EPage({
       html: `

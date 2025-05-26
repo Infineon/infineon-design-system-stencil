@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type TreeViewCheckChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -1093,7 +1093,7 @@ export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewE
 
 type IfxTreeViewItemEvents = {
     onIfxTreeViewItemExpandChange: EventName<CustomEvent<boolean>>,
-    onIfxTreeViewItemCheckChange: EventName<CustomEvent<{ checked: boolean; indeterminate: boolean }>>,
+    onIfxTreeViewItemCheckChange: EventName<IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>>,
     onIfxTreeViewItemDisableChange: EventName<CustomEvent<boolean>>
 };
 

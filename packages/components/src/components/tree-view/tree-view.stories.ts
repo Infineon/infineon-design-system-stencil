@@ -94,7 +94,7 @@ const meta: Meta = {
     ifxTreeViewItemCheckChange: {
       action: 'ifxTreeViewItemCheckChange',
       table: { category: 'Custom Events' },
-      description: 'Fired when a tree item is checked/unchecked.',
+      description: 'Fired when a tree item is checked/unchecked. For parent items, includes affectedChildItems array with all affected descendants.',
     },
     ifxTreeViewItemDisableChange: {
       action: 'ifxTreeViewItemDisableChange',
@@ -152,7 +152,14 @@ const BaseTemplate: StoryFn = (args) => {
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
   el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
-  el.addEventListener('ifxTreeViewItemCheckChange', action('ifxTreeViewItemCheckChange'));
+  el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemCheckChange')({
+      checked: customEvent.detail.checked,
+      indeterminate: customEvent.detail.indeterminate,
+      affectedChildItems: customEvent.detail.affectedChildItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
 
   return el;
@@ -189,7 +196,7 @@ Default.argTypes = {
   ifxTreeViewItemCheckChange: {
     action: 'ifxTreeViewItemCheckChange',
     table: { category: 'Custom Events' },
-    description: 'Fired when a tree item is checked/unchecked.',
+    description: 'Fired when a tree item is checked/unchecked. For parent items, includes affectedChildItems array with all affected descendants.',
   },
   ifxTreeViewItemDisableChange: {
     action: 'ifxTreeViewItemDisableChange',
@@ -248,7 +255,14 @@ export const ContainerDemo: StoryFn = (args) => {
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
   el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
-  el.addEventListener('ifxTreeViewItemCheckChange', action('ifxTreeViewItemCheckChange'));
+  el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemCheckChange')({
+      checked: customEvent.detail.checked,
+      indeterminate: customEvent.detail.indeterminate,
+      affectedChildItems: customEvent.detail.affectedChildItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
 
   wrapper.appendChild(el);
@@ -290,7 +304,14 @@ export const SingleItemStates: StoryFn = (args) => {
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
   el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
-  el.addEventListener('ifxTreeViewItemCheckChange', action('ifxTreeViewItemCheckChange'));
+  el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemCheckChange')({
+      checked: customEvent.detail.checked,
+      indeterminate: customEvent.detail.indeterminate,
+      affectedChildItems: customEvent.detail.affectedChildItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
 
   return el;
