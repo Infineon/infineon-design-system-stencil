@@ -48,7 +48,13 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+  }
 
+  componentWillRender() { 
+      if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
+      const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
+      modalContentContainer.classList.add('no-overflow')
+    }
   }
 
   getFirstFocusableElement(): HTMLElement | null {
@@ -168,6 +174,13 @@ export class IfxModal {
     }else{
       this.slotButtonsPresent = false;
     }
+  }
+
+  isModalContentContainerHeightReachedViewport() {
+    const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
+    const viewportHeight = window.innerHeight;
+    const modalContentHeight = modalContent.offsetHeight;
+    return modalContentHeight >= viewportHeight * 0.9;
   }
 
 
