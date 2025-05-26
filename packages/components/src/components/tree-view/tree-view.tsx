@@ -24,31 +24,30 @@ export class TreeView {
     this.ifxTreeViewDisableAllChange.emit(newValue);
   }
 
+  private handleSlotRef = (el: HTMLSlotElement | null) => {
+    if (el) {
+      if (this.disableAllItems) {
+        el.setAttribute('data-disable-all-items', 'true');
+      } else {
+        el.removeAttribute('data-disable-all-items');
+      }
+      if (this.expandAllItems) {
+        el.setAttribute('data-expand-all-items', 'true');
+      } else {
+        el.removeAttribute('data-expand-all-items');
+      }
+    }
+  };
+
   render() {
     return (
       <div
-        class={{
-          'tree-view': true,
-          'tree-view--disabled': this.disableAllItems,
-        }}
+        class={`tree-view ${this.disableAllItems ? ' tree-view--disabled' : ''}`}
         role="tree"
         aria-label={this.ariaLabel}
       >
         {this.label && this.label.trim() !== '' && <div class="tree-view__label">{this.label}</div>}
-        <slot ref={el => {
-          if (el) {
-            if (this.disableAllItems) {
-              el.setAttribute('data-disable-all-items', 'true');
-            } else {
-              el.removeAttribute('data-disable-all-items');
-            }
-            if (this.expandAllItems) {
-              el.setAttribute('data-expand-all-items', 'true');
-            } else {
-              el.removeAttribute('data-expand-all-items');
-            }
-          }
-        }}></slot>
+        <slot ref={this.handleSlotRef}></slot>
       </div>
     );
   }
