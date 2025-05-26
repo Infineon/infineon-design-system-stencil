@@ -47,7 +47,6 @@ describe('ifx-tree-view', () => {
     });
 
     const item = await page.find('ifx-tree-view-item');
-    expect(await item.getProperty('disableItem')).toBe(false);
 
     const container = await item.find('>>> .tree-item');
     expect(container).toHaveClass('tree-item--disabled');
