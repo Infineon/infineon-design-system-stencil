@@ -39,11 +39,12 @@ import ContentSwitcher from './components/ContentSwitcher/ContentSwitcher';
 import Table from './components/Table/Table';
 import SegmentedControl from './components/SegmentedControl/SegmentedControl';
 import Textarea from './components/Textarea/Textarea';
+import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
 
 function App() {
- 
+
   return (
     <>
       <h1>Vite + React</h1>
@@ -155,7 +156,7 @@ function App() {
       <h2>Search Bar</h2>
       <SearchBar />
       <br />
-      
+
       <h2>Segmented Control</h2>
       <SegmentedControl />
       <br />
@@ -199,8 +200,8 @@ function App() {
       <Textarea />
       <br />
 
-      <h2>Text Field</h2>
-      <TextField />
+      <h2>Tree View</h2>
+      <TreeView />
       <br />
 
       <h2>Tooltip</h2>
