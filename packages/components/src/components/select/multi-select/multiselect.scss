@@ -161,7 +161,7 @@
 
   .ifx-clear-button {
     display: flex;
-    &.hide { 
+    &.hide {
       display: none;
     }
   }
@@ -177,7 +177,7 @@
     max-height: 300px;
     /* Adjust based on your design */
     overflow-y: auto;
-    z-index: 1000; 
+    z-index: 1000;
 
     .search-input {
       position: sticky;
@@ -248,6 +248,12 @@
     &.disabled {
       &:hover {
         cursor: default;
+      }
+    }
+
+    &.option--expanded {
+      > .chevron-wrapper {
+        transform: rotate(90deg);
       }
     }
 

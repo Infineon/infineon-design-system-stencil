@@ -50,6 +50,7 @@ export class Multiselect {
   @Prop() showClearButton: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
   @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
+  @State() expandedOptions: Set<string> = new Set(); // Track which parent options are expanded
 
 
   @Event() ifxSelect: EventEmitter;
@@ -62,12 +63,13 @@ export class Multiselect {
 
 
   @Watch('options')
-  updateOptions() { 
+  updateOptions() {
     this.loadedOptions = [];
     this.filteredOptions = [];
     this.optionCount = 0;
     this.optionsProcessed = false;
     this.persistentSelectedOptions = [];
+    this.expandedOptions = new Set(); // Reset expanded state
 
     this.loadInitialOptions();
   }
@@ -109,7 +111,7 @@ export class Multiselect {
     if (typeof this.options === 'string') {
       try {
         allOptions = JSON.parse(this.options);
-       
+
       } catch (err) {
         console.error('Failed to parse options:', err);
       }
@@ -124,6 +126,10 @@ export class Multiselect {
       const initiallySelected = this.collectSelectedOptions(allOptions);
       const initallySelectedNotInState = initiallySelected.filter(init => !this.persistentSelectedOptions.some(opt => opt.value == init.value));
       this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initallySelectedNotInState];
+
+      // Calculate initial parent states for pre-selected items
+      this.updateParentStates(allOptions);
+
       this.optionsProcessed = true;
     }
     // Slice the options array based on startIndex and count
@@ -135,13 +141,13 @@ export class Multiselect {
    * Collects and returns all options that are selected.
    * When the parent is selected, then the value of the children will be overriden with selected as well.
    * It will only collect the leaves of the tree.
-   * 
+   *
    * @param options A list of options.
    * @returns A list with all selected options
    */
   private collectSelectedOptions(options: Option[]): Option[] {
     let selectedOptions: Option[] = [];
-  
+
     for (const option of options) {
       if (option.selected) {
         if (option.children && option.children.length > 0) {
@@ -164,19 +170,19 @@ export class Multiselect {
 
   /**
    * Collects all leaf children options.
-   * 
+   *
    * @param option A list with all leaf-children.
    */
   private collectLeafOptions(children: Option[]): Option[] {
     let leafOptions = [];
-  
+
     for (const child of children) {
       if (child.children && child.children.length > 0) {
         leafOptions = leafOptions.concat(this.collectLeafOptions(child.children));
       } else {
         leafOptions.push(child);
       }
-    }  
+    }
     return leafOptions;
   }
 
@@ -186,7 +192,7 @@ export class Multiselect {
   countOptions(options: Option[]): number {
     let count = 0;
     for (const option of options) {
-      if (option.children && option.children.length >= 0) {
+      if (option.children && option.children.length > 0) {
         count += this.countOptions(option.children);
       } else {
         count++;
@@ -195,6 +201,16 @@ export class Multiselect {
     return count;
   }
 
+  toggleOptionExpansion(optionValue: string, event: Event) {
+    event.stopPropagation();
+    const newExpandedOptions = new Set(this.expandedOptions);
+    if (newExpandedOptions.has(optionValue)) {
+      newExpandedOptions.delete(optionValue);
+    } else {
+      newExpandedOptions.add(optionValue);
+    }
+    this.expandedOptions = newExpandedOptions;
+  }
 
   handleSearch = debounce((targetElement: HTMLInputElement) => {
     const searchTerm = targetElement.value.toLowerCase();
@@ -249,17 +265,177 @@ export class Multiselect {
     this.internals.setFormValue(formData);
   }
 
+  /**
+   * Updates selection recursively for all descendants
+   */
+  private updateDescendantSelection(option: Option, selected: boolean) {
+    option.selected = selected;
+
+    if (option.children && option.children.length > 0) {
+      option.children.forEach(child => {
+        this.updateDescendantSelection(child, selected);
+      });
+    } else {
+      // Only update persistentSelectedOptions for leaf nodes
+      if (selected) {
+        if (!this.persistentSelectedOptions.some(opt => opt.value === option.value)) {
+          this.persistentSelectedOptions = [...this.persistentSelectedOptions, option];
+        }
+      } else {
+        this.persistentSelectedOptions = this.persistentSelectedOptions.filter(opt => opt.value !== option.value);
+      }
+    }
+  }
+
+  /**
+   * Recursively expands or collapses all descendants
+   */
+  private updateDescendantExpansion(option: Option, expanded: boolean) {
+    if (option.children && option.children.length > 0) {
+      const newExpandedOptions = new Set(this.expandedOptions);
+
+      if (expanded) {
+        newExpandedOptions.add(option.value);
+      } else {
+        newExpandedOptions.delete(option.value);
+      }
+
+      // Recursively handle children
+      option.children.forEach(child => {
+        this.updateDescendantExpansion(child, expanded);
+      });
+
+      this.expandedOptions = newExpandedOptions;
+    }
+  }
+
+  /**
+   * Expands all parent options to make a path visible
+   */
+  private expandParentPath(allOptions: Option[], targetValue: string): boolean {
+    for (const option of allOptions) {
+      if (option.value === targetValue) {
+        return true;
+      }
+
+      if (option.children && option.children.length > 0) {
+        const foundInChildren = this.expandParentPath(option.children, targetValue);
+        if (foundInChildren) {
+          // If target is found in children, expand this parent
+          const newExpandedOptions = new Set(this.expandedOptions);
+          newExpandedOptions.add(option.value);
+          this.expandedOptions = newExpandedOptions;
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Expands all parents for all selected leaf options
+   */
+  private expandParentsForSelectedOptions(allOptions: Option[]) {
+    this.persistentSelectedOptions.forEach(selectedOption => {
+      this.expandParentPath(allOptions, selectedOption.value);
+    });
+  }
+
+  /**
+   * Updates parent selection state based on children
+   */
+  private updateAncestorSelection(allOptions: Option[]) {
+    // Find all parent options and update their state
+    this.updateParentStates(allOptions);
+  }
+
+  /**
+   * Recursively updates parent states
+   */
+  private updateParentStates(options: Option[]) {
+    options.forEach(option => {
+      if (option.children && option.children.length > 0) {
+        // First update children
+        this.updateParentStates(option.children);
+
+        // Then update this parent based on children
+        const childStates = this.getChildrenStates(option.children);
+
+        if (childStates.allSelected) {
+          option.selected = true;
+          option.indeterminate = false;
+        } else if (childStates.noneSelected) {
+          option.selected = false;
+          option.indeterminate = false;
+        } else {
+          option.selected = false;
+          option.indeterminate = true;
+        }
+      }
+    });
+  }
+
+  /**
+   * Helper method to determine the collective state of children
+   */
+  private getChildrenStates(children: Option[]): { allSelected: boolean; noneSelected: boolean; someSelected: boolean } {
+    let selectedCount = 0;
+    let indeterminateCount = 0;
+
+    children.forEach(child => {
+      if (child.selected) {
+        selectedCount++;
+      } else if (child.indeterminate) {
+        indeterminateCount++;
+      }
+    });
+
+    const allSelected = selectedCount === children.length;
+    const noneSelected = selectedCount === 0 && indeterminateCount === 0;
+    const someSelected = selectedCount > 0 || indeterminateCount > 0;
+
+    return { allSelected, noneSelected, someSelected };
+  }
+
   handleOptionClick(option: Option) {
     this.internalError = false;
 
-    if (!option.selected && this.isSelectionLimitReached(option)) {
-      option.checkboxRef.toggleCheckedState(false)
+    // Get all options for state updates
+    let allOptions: Option[] = [];
+    if (typeof this.options === 'string') {
+      try {
+        allOptions = JSON.parse(this.options);
+      } catch (err) {
+        console.error('Failed to parse options:', err);
+        return;
+      }
+    } else if (Array.isArray(this.options)) {
+      allOptions = this.options;
+    }
+
+    const wasSelected = option.selected;
+
+    if (!wasSelected && this.isSelectionLimitReached(option)) {
+      option.checkboxRef?.toggleCheckedState(false);
       this.internalError = true;
       this.internalErrorMessage = "Please consider the maximum number of items to choose from";
       return;
     }
-    
-    this.updateSelection(option);
+
+    // Toggle selection for this option and all descendants
+    this.updateDescendantSelection(option, !wasSelected);
+
+    // Also expand/collapse all child elements when selecting/deselecting
+    if (option.children && option.children.length > 0) {
+      this.updateDescendantExpansion(option, !wasSelected);
+    }
+
+    // Update ancestor states
+    this.updateAncestorSelection(allOptions);
+
+    // Expand parent paths for all selected options to make them visible
+    this.expandParentsForSelectedOptions(allOptions);
+
     this.ifxSelect.emit(this.persistentSelectedOptions);
   }
 
@@ -270,93 +446,45 @@ export class Multiselect {
       !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)
   }
 
-  updateSelection(option: Option) {
-    const wasSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
-
-    if (option.children && option.children.length > 0) {
-      this.handleParentOptionClick(option);
-    } else {
-      this.handleChildOptionClick(option, wasSelected);
-    }
-  }
-
   async selectAll() {
     const allOptions = await this.fetchOptions(0, this.optionCount);
     this.selectAllRecursive(allOptions);
-    
+
+    // Also expand all parent options when selecting all
+    this.expandAllParents(allOptions);
+
     this.ifxSelect.emit(this.persistentSelectedOptions);
+  }
+
+  /**
+   * Expands all parent options recursively
+   */
+  private expandAllParents(options: Option[]) {
+    options.forEach(option => {
+      if (option.children && option.children.length > 0) {
+        const newExpandedOptions = new Set(this.expandedOptions);
+        newExpandedOptions.add(option.value);
+        this.expandedOptions = newExpandedOptions;
+
+        // Recursively expand all children that are also parents
+        this.expandAllParents(option.children);
+      }
+    });
   }
 
   private selectAllRecursive(options: Option[]) {
     for (const opt of options) {
       if (opt.children && opt.children.length > 0) {
+        opt.selected = true;
         this.selectAllRecursive(opt.children);
       } else {
         if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
           opt.selected = true;
           this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
-          this.optionCount = this.countOptions( this.persistentSelectedOptions)
         }
       }
     }
-
   }
-
-  handleParentOptionClick(option: Option) {
-    const allChildrenSelected = option.children.every(child =>
-      this.persistentSelectedOptions.some(selectedOption => selectedOption.value === child.value)
-    );
-
-    if (allChildrenSelected) {
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(
-        selectedOption => !option.children.some(child => child.value === selectedOption.value)
-      )];
-
-      option.selected = false;
-      option.children.forEach(child => {
-        child.selected = false;
-      })
-
-    } else {
-      const newChildren = [...option.children.filter(childOption =>
-            !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === childOption.value)
-      )];
-      option.selected = true;
-      option.children.forEach(child => {
-        child.selected = true;
-      })
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...newChildren];
-    }
-  }
-
-  handleChildOptionClick(option: Option, wasSelected: boolean) {
-    if (wasSelected) {
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions.filter(selectedOption => selectedOption.value !== option.value)];
-      option.selected = false;
-    } else {
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, option];
-      option.selected = true;
-    }
-    this.updateParentSelectedState();
-  }
-
-  updateParentSelectedState() {
-    this.loadedOptions.forEach(option => {
-      if(option.children?.length > 0) {
-        if(option.children.every(child => child.selected === true)) option.selected = true;
-        else {
-          option.selected = false;
-          if(this.isOptionIndeterminate(option)) {
-            option.indeterminate = true;
-          }else{
-            option.indeterminate = false;
-          }
-        }
-      }
-    });
-  }
-
-
 
   handleDocumentClick = (event: Event) => {
     const path = event.composedPath();
@@ -408,7 +536,7 @@ export class Multiselect {
     if (this.disabled) return; // If it's disabled, don't do anything.
 
     const options = this.dropdownElement.querySelectorAll('.option');
-    
+
     switch (event.code) {
       case 'Enter':
         this.toggleDropdown();
@@ -419,7 +547,7 @@ export class Multiselect {
             this.updateHighlightedOption(options);
         });
         break;
-      case 'Space': 
+      case 'Space':
         this.toggleDropdown();
         // Wait a bit for the dropdown to finish rendering
         this.waitForElement(() => {
@@ -453,9 +581,44 @@ export class Multiselect {
     }
   }
 
+  /**
+   * Recursively unselects all options
+   */
+  private unselectAllRecursive(options: Option[]) {
+    options.forEach(option => {
+      option.selected = false;
+      option.indeterminate = false;
+
+      if (option.children && option.children.length > 0) {
+        this.unselectAllRecursive(option.children);
+      }
+    });
+  }
+
   clearSelection() {
     this.persistentSelectedOptions = [];
-    this.ifxSelect.emit(this.persistentSelectedOptions); // if you want to emit empty selection after clearing
+
+    // Also collapse all expanded options when clearing selection
+    this.expandedOptions = new Set();
+
+    // Reset all option states to unselected in loadedOptions
+    if (this.loadedOptions.length > 0) {
+      this.unselectAllRecursive(this.loadedOptions);
+    }
+
+    // Also reset the original options data if it exists
+    if (typeof this.options === 'string') {
+      try {
+        const allOptions = JSON.parse(this.options);
+        this.unselectAllRecursive(allOptions);
+      } catch (err) {
+        console.error('Failed to parse options:', err);
+      }
+    } else if (Array.isArray(this.options)) {
+      this.unselectAllRecursive(this.options);
+    }
+
+    this.ifxSelect.emit(this.persistentSelectedOptions);
   }
 
   positionDropdown() {
@@ -502,56 +665,71 @@ export class Multiselect {
       this.currentIndex = options.length - 1; // Wrap to the end.
     }
   }
-  
+
   handleOptionKeyDown(e: KeyboardEvent, option: Option) {
     if(e.key !== 'ArrowUp' && e.key !== 'ArrowDown') e.stopPropagation();
     if(e.key === 'Enter' || e.key === ' ') {
       this.handleOptionClick(option);
     }
+    if(e.key === 'ArrowRight' && option.children && option.children.length > 0) {
+      this.expandedOptions = new Set([...this.expandedOptions, option.value]);
+    }
+    if(e.key === 'ArrowLeft' && option.children && option.children.length > 0) {
+      const newExpandedOptions = new Set(this.expandedOptions);
+      newExpandedOptions.delete(option.value);
+      this.expandedOptions = newExpandedOptions;
+    }
   }
 
-  renderOption(option: Option, index: number) {
-    const isIndeterminate = this.isOptionIndeterminate(option);
-    const isSelected = option.children ? isIndeterminate || this.isOptionSelected(option) : this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
+  renderOption(option: Option, index: number, depth: number = 0) {
+    const isIndeterminate = option.indeterminate || false;
+    const isSelected = option.selected || false;
     const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
-    const uniqueId = `checkbox-${option.value}-${index}`; // Generate a unique ID using the index
-   
+    const uniqueId = `checkbox-${option.value}-${index}`;
+    const hasChildren = option.children && option.children.length > 0;
+    const isExpanded = this.expandedOptions.has(option.value);
+    // Different indentation for parent vs child options
+    const paddingLeft = hasChildren ? depth * 30 : depth * 40; // 30px for parents, 40px for children
+
     return (
       <div class="option-wrapper">
-        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''} 
+        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''}
+        ${hasChildren ? 'option--parent' : 'option--child'}
+        ${hasChildren && isExpanded ? 'option--expanded' : ''}
+        ${hasChildren && !isExpanded ? 'option--collapsed' : ''}
         ${this.getSizeClass()}`}
+          style={{ paddingLeft: `${paddingLeft}px` }}
           data-value={option.value}
           onKeyDown={(e) => !disableCheckbox && this.handleOptionKeyDown(e, option)}
           onClick={() => !disableCheckbox && this.handleOptionClick(option)}
           tabindex="0"
-          role={`${option.children?.length > 0 ? "treeitem" : "option"}`}>
-          <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isIndeterminate ? false : isSelected} indeterminate={isIndeterminate} disabled={disableCheckbox}></ifx-checkbox>
+          role={`${hasChildren ? "treeitem" : "option"}`}
+          aria-expanded={hasChildren ? isExpanded.toString() : undefined}>
+
+          {hasChildren && (
+            <div class={`chevron-wrapper ${isExpanded ? 'chevron-wrapper--expanded' : 'chevron-wrapper--collapsed'}`} onClick={(e) => this.toggleOptionExpansion(option.value, e)}>
+              <ifx-icon icon="chevron-right-16"></ifx-icon>
+            </div>
+          )}
+
+          <ifx-checkbox
+            tabIndex={-1}
+            ref={(el) => option.checkboxRef = el}
+            id={uniqueId}
+            size="s"
+            checked={isSelected && !isIndeterminate}
+            indeterminate={isIndeterminate}
+            disabled={disableCheckbox}>
+          </ifx-checkbox>
           <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
         </div>
-        {option.children && option.children.map((child, childIndex) => this.renderSubOption(child, `${index}-${childIndex}`))}
+
+        {hasChildren && isExpanded && option.children.map((child, childIndex) =>
+          this.renderOption(child, `${index}-${childIndex}` as any, depth + 1)
+        )}
       </div>
     );
   }
-
-  isOptionSelected(option: Option): boolean {
-    if (!option.children) return false;
-
-    return option.children.every(child =>
-      this.persistentSelectedOptions.some(persistentOption => persistentOption.value === child.value)
-    );
-  }
-
-
-  isOptionIndeterminate(option: Option): boolean {
-    if (!option.children) return false;
-
-    const selectedChildren = option.children.filter(child =>
-      this.persistentSelectedOptions.some(persistentOption => persistentOption.value === child.value)
-    ).length;
-
-    return selectedChildren > 0 && selectedChildren < option.children.length;
-  }
-
 
   findInOptions(options: Option[], searchTerm: string): Option | null {
     for (const option of options) {
@@ -570,21 +748,8 @@ export class Multiselect {
 
 
   renderSubOption(option: Option, index: string) {
-    const isSelected = this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value);
-    const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
-    const uniqueId = `checkbox-${option.value}-${index}`;
-
-    return (
-      <div class={`option sub-option ${isSelected ? 'selected' : ''} ${this.getSizeClass()} ${disableCheckbox ? 'disabled' : ''}`}
-        data-value={option.value}
-        role={`${option.children?.length > 0 ? "option" : "treeitem"}`}
-        onKeyDown={(e) => !disableCheckbox && this.handleOptionKeyDown(e, option)}
-        onClick={() => !disableCheckbox && this.handleOptionClick(option)}
-        tabindex="0">
-        <ifx-checkbox tabIndex={-1} ref={(el) => option.checkboxRef = el} id={uniqueId} size="s" checked={isSelected} disabled={disableCheckbox}></ifx-checkbox>
-        <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
-      </div>
-    );
+    // This method is now handled by the recursive renderOption method
+    return this.renderOption(option, index as any, 1);
   }
 
   private renderSelectAll() {
@@ -641,16 +806,16 @@ export class Multiselect {
               <span>{this.label}</span>
             </div> : null
         }
-        <div class={`ifx-multiselect-wrapper 
-        ${this.getSizeClass()} 
-        ${this.dropdownOpen ? 'active' : ''} 
+        <div class={`ifx-multiselect-wrapper
+        ${this.getSizeClass()}
+        ${this.dropdownOpen ? 'active' : ''}
         ${this.dropdownFlipped ? 'is-flipped' : ''}
         ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           tabindex="0"
           onClick={this.disabled ? undefined : (event) => this.handleWrapperClick(event)}
           onKeyDown={this.disabled ? undefined : (event) => this.handleKeyDown(event)} >
-          <div class={`ifx-multiselect-input 
+          <div class={`ifx-multiselect-input
           ${this.persistentSelectedOptions.length === 0 ? 'placeholder' : ""}
           `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
@@ -662,27 +827,22 @@ export class Multiselect {
               onScroll={(event) => this.handleScroll(event)}>
               {this.showSearch && <input type="text" role="textbox" class="search-input" onKeyDown={(e) => { e.stopPropagation() }} onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
               {this.showSelectAll && this.renderSelectAll()}
-              {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
+              {this.filteredOptions.map((option, index) => this.renderOption(option, index, 0))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
           <div class='ifx-multiselect-icon-container'>
 
             {/* Clear Button - will show only if there's a selection */}
-            {this.persistentSelectedOptions.length > 0 && (   
-              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={this.disabled ? undefined : () => this.clearSelection()}>
-                <ifx-icon icon="cremove16"></ifx-icon>
+            {this.persistentSelectedOptions.length > 0 && (
+              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`}
+                   onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.clearSelection(); }}>
+                <ifx-icon icon="c-remove-16" key="clear-icon"></ifx-icon>
               </div>
             )}
-            <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
-              <ifx-icon
-                key='icon-up'
-                icon='chevronup-16'></ifx-icon>
-            </div>
-            <div class="icon-wrapper-down" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
-              <ifx-icon
-                key='icon-down'
-                icon='chevron-down-16'></ifx-icon>
+            <div class={`icon-wrapper ${this.dropdownOpen ? 'icon-wrapper--open' : 'icon-wrapper--closed'}`}
+                 onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.toggleDropdown(); }}>
+              <ifx-icon icon='chevron-right-16' key="chevron-icon"></ifx-icon>
             </div>
           </div>
 
