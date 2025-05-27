@@ -313,7 +313,7 @@ export const SingleItemStates: StoryFn = (args) => {
     <ifx-tree-view-item label="File disabled" ${ariaLabelItemAttr} disable-item="true"></ifx-tree-view-item>
     <ifx-tree-view-item label="Folder initially expanded" initially-expanded="true" ${ariaLabelItemAttr}>
       <ifx-tree-view-item label="File" initially-selected="true" ${ariaLabelItemAttr}></ifx-tree-view-item>
-      <ifx-tree-view-item label="File disabled" disable-item="true" ${ariaLabelItemAttr}></ifx-tree-view-item>
+      <ifx-tree-view-item label="File" ${ariaLabelItemAttr}></ifx-tree-view-item>
     </ifx-tree-view-item>
     <ifx-tree-view-item label="Normal Item" ${ariaLabelItemAttr}></ifx-tree-view-item>
     <ifx-tree-view-item label="Normal Item" ${ariaLabelItemAttr}></ifx-tree-view-item>

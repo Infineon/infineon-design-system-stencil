@@ -190,7 +190,7 @@ export class TreeViewItem {
   private async updateChildrenSilently(checked: boolean) {
     for (const child of this.findChildren()) {
       const childInstance = (child as any)['__stencil_instance'];
-      if (childInstance) {
+      if (childInstance && !childInstance.disabled) {
         childInstance.setNodeState({ isChecked: checked, partialChecked: false }, false);
         await childInstance.updateChildrenSilently(checked);
       }
@@ -227,11 +227,13 @@ export class TreeViewItem {
     const descendants: Array<{ label: string; checked: boolean; indeterminate: boolean }> = [];
     const collect = (el: Element) => {
       let instance: any = el === this.host ? this : (el as any)['__stencil_instance'];
-      descendants.push({
-        label: instance?.label ?? '',
-        checked,
-        indeterminate: false,
-      });
+      if (!instance?.disabled) {
+        descendants.push({
+          label: instance?.label ?? '',
+          checked,
+          indeterminate: false,
+        });
+      }
       Array.from(el.children)
         .forEach(child => {
           if (child.tagName === 'IFX-TREE-VIEW-ITEM') collect(child);
@@ -243,12 +245,15 @@ export class TreeViewItem {
 
   private async updateChildrenState(checked: boolean) {
     for (const child of this.findChildren()) {
-      await (child as HTMLIfxTreeViewItemElement).componentOnReady();
-      child.dispatchEvent(new CustomEvent('internal-check-state-change', {
-        detail: { checked },
-        bubbles: false,
-        composed: true
-      }));
+      const childInstance = (child as any)['__stencil_instance'];
+      if (childInstance && !childInstance.disabled) {
+        await (child as HTMLIfxTreeViewItemElement).componentOnReady();
+        child.dispatchEvent(new CustomEvent('internal-check-state-change', {
+          detail: { checked },
+          bubbles: false,
+          composed: true
+        }));
+      }
     }
   }
 
