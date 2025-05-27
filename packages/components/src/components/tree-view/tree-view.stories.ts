@@ -89,7 +89,7 @@ const meta: Meta = {
     ifxTreeViewItemExpandChange: {
       action: 'ifxTreeViewItemExpandChange',
       table: { category: 'Custom Events' },
-      description: 'Fired when a tree item is expanded/collapsed.',
+      description: 'Fired when a tree item is expanded/collapsed. For parent items, includes affectedItems array with all affected parent descendants.',
     },
     ifxTreeViewItemCheckChange: {
       action: 'ifxTreeViewItemCheckChange',
@@ -151,7 +151,13 @@ const BaseTemplate: StoryFn = (args) => {
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
-  el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
+  el.addEventListener('ifxTreeViewItemExpandChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemExpandChange')({
+      expanded: customEvent.detail.expanded,
+      affectedItems: customEvent.detail.affectedItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemCheckChange')({
@@ -191,7 +197,7 @@ Default.argTypes = {
   ifxTreeViewItemExpandChange: {
     action: 'ifxTreeViewItemExpandChange',
     table: { category: 'Custom Events' },
-    description: 'Fired when a tree item is expanded/collapsed.',
+    description: 'Fired when a tree item is expanded/collapsed. For parent items, includes affectedItems array with all affected parent descendants.',
   },
   ifxTreeViewItemCheckChange: {
     action: 'ifxTreeViewItemCheckChange',
@@ -254,7 +260,13 @@ export const ContainerDemo: StoryFn = (args) => {
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
-  el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
+  el.addEventListener('ifxTreeViewItemExpandChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemExpandChange')({
+      expanded: customEvent.detail.expanded,
+      affectedItems: customEvent.detail.affectedItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemCheckChange')({
@@ -303,7 +315,13 @@ export const SingleItemStates: StoryFn = (args) => {
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
   el.addEventListener('ifxTreeViewDisableAllChange', action('ifxTreeViewDisableAllChange'));
-  el.addEventListener('ifxTreeViewItemExpandChange', action('ifxTreeViewItemExpandChange'));
+  el.addEventListener('ifxTreeViewItemExpandChange', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxTreeViewItemExpandChange')({
+      expanded: customEvent.detail.expanded,
+      affectedItems: customEvent.detail.affectedItems || []
+    });
+  });
   el.addEventListener('ifxTreeViewItemCheckChange', (event) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemCheckChange')({

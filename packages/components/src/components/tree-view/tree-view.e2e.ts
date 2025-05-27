@@ -96,7 +96,10 @@ describe('ifx-tree-view', () => {
     await chevron.click();
     await page.waitForChanges();
 
-    expect(spy).toHaveReceivedEventDetail(true);
+    expect(spy).toHaveReceivedEventDetail({
+      expanded: true,
+      affectedItems: [{ label: 'Expandable', expanded: true }]
+    });
   });
 
   it('updates checkbox state and emits event', async () => {

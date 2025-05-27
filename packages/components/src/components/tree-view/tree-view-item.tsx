@@ -6,6 +6,11 @@ export interface TreeViewCheckChangeEvent {
   affectedChildItems?: Array<{ label: string; checked: boolean; indeterminate: boolean }>;
 }
 
+export interface TreeViewExpandChangeEvent {
+  expanded: boolean;
+  affectedItems?: Array<{ label: string; expanded: boolean }>;
+}
+
 interface TreeState {
   isChecked: boolean;
   partialChecked: boolean;
@@ -26,7 +31,7 @@ export class TreeViewItem {
   @Prop() disableItem: boolean = false;
   @Prop() ariaLabel: string | null;
 
-  @Event() ifxTreeViewItemExpandChange: EventEmitter<boolean>;
+  @Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
   @Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
   @Event() ifxTreeViewItemDisableChange: EventEmitter<boolean>;
 
@@ -36,6 +41,7 @@ export class TreeViewItem {
   @State() private level: number = 0;
   @State() private disableAllItems: boolean = false;
   @State() private expandAllItems: boolean = false;
+  @State() private suppressExpandEvents: boolean = false;
 
   private get disabled() {
     return this.disableAllItems || this.disableItem;
@@ -171,9 +177,84 @@ export class TreeViewItem {
   private handleHeaderClick = ({ target }: MouseEvent) => {
     if (this.disabled) return;
     if (!(target as HTMLElement).closest('.tree-item__checkbox-container, .tree-item__chevron-container')) {
-      this.updateCheckState(!this.isChecked);
+      if (this.hasChildren) {
+        const newCheckedState = !this.isChecked;
+        this.updateCheckState(newCheckedState);
+
+        if (newCheckedState) {
+          // When selecting: expand all descendants
+          const expandedItems = this.expandAllDescendantsRecursively();
+          this.ifxTreeViewItemExpandChange.emit({
+            expanded: true,
+            affectedItems: expandedItems
+          });
+        } else {
+          // When deselecting: collapse all descendants
+          const collapsedItems = this.collapseAllDescendantsRecursively();
+          this.ifxTreeViewItemExpandChange.emit({
+            expanded: false,
+            affectedItems: collapsedItems
+          });
+        }
+      } else {
+        this.updateCheckState(!this.isChecked);
+      }
     }
   };
+
+  private expandAllDescendantsRecursively(): Array<{ label: string; expanded: boolean }> {
+    this.suppressExpandEvents = true;
+    const affectedItems: Array<{ label: string; expanded: boolean }> = [];
+
+    this.expanded = true;
+    if (this.hasChildren) {
+      affectedItems.push({ label: this.label, expanded: true });
+    }
+
+    const children = this.findChildren();
+    for (const child of children) {
+      const childInstance = (child as any)['__stencil_instance'];
+      if (childInstance && childInstance.hasChildren) {
+        childInstance.suppressExpandEvents = true;
+        childInstance.expanded = true;
+        affectedItems.push({ label: childInstance.label, expanded: true });
+
+        if (childInstance.hasChildren) {
+          const childAffected = childInstance.expandAllDescendantsRecursively();
+          affectedItems.push(...childAffected.filter(item => item.label !== childInstance.label));
+        }
+      }
+    }
+    this.suppressExpandEvents = false;
+    return affectedItems;
+  }
+
+  private collapseAllDescendantsRecursively(): Array<{ label: string; expanded: boolean }> {
+    this.suppressExpandEvents = true;
+    const affectedItems: Array<{ label: string; expanded: boolean }> = [];
+
+    this.expanded = false;
+    if (this.hasChildren) {
+      affectedItems.push({ label: this.label, expanded: false });
+    }
+
+    const children = this.findChildren();
+    for (const child of children) {
+      const childInstance = (child as any)['__stencil_instance'];
+      if (childInstance && childInstance.hasChildren) {
+        childInstance.suppressExpandEvents = true;
+        childInstance.expanded = false;
+        affectedItems.push({ label: childInstance.label, expanded: false });
+
+        if (childInstance.hasChildren) {
+          const childAffected = childInstance.collapseAllDescendantsRecursively();
+          affectedItems.push(...childAffected.filter(item => item.label !== childInstance.label));
+        }
+      }
+    }
+    this.suppressExpandEvents = false;
+    return affectedItems;
+  }
 
   private async updateCheckState(checked: boolean, fromParent = false) {
     if (this.disabled) return;
@@ -210,7 +291,12 @@ export class TreeViewItem {
 
   @Watch('expanded')
   handleExpandedChange(newValue: boolean) {
-    this.ifxTreeViewItemExpandChange.emit(newValue);
+    if (!this.suppressExpandEvents) {
+      this.ifxTreeViewItemExpandChange.emit({
+        expanded: newValue,
+        affectedItems: [{ label: this.label, expanded: newValue }]
+      });
+    }
   }
 
   @Watch('disableItem')
@@ -303,7 +389,9 @@ export class TreeViewItem {
 
   private toggleExpand = () => {
     if (this.disabled) return;
-    this.hasChildren && (this.expanded = !this.expanded);
+    if (this.hasChildren) {
+      this.expanded = !this.expanded;
+    }
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {

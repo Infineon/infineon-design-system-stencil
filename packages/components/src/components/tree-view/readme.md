@@ -18,11 +18,11 @@
 
 ## Events
 
-| Event                          | Description | Type                                    |
-| ------------------------------ | ----------- | --------------------------------------- |
-| `ifxTreeViewItemCheckChange`   |             | `CustomEvent<TreeViewCheckChangeEvent>` |
-| `ifxTreeViewItemDisableChange` |             | `CustomEvent<boolean>`                  |
-| `ifxTreeViewItemExpandChange`  |             | `CustomEvent<boolean>`                  |
+| Event                          | Description | Type                                     |
+| ------------------------------ | ----------- | ---------------------------------------- |
+| `ifxTreeViewItemCheckChange`   |             | `CustomEvent<TreeViewCheckChangeEvent>`  |
+| `ifxTreeViewItemDisableChange` |             | `CustomEvent<boolean>`                   |
+| `ifxTreeViewItemExpandChange`  |             | `CustomEvent<TreeViewExpandChangeEvent>` |
 
 
 ## Dependencies
