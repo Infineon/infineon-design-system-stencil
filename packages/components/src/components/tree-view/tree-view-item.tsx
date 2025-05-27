@@ -219,7 +219,10 @@ export class TreeViewItem {
       this.ifxTreeViewItemCheckChange.emit({
         checked: this.isChecked,
         indeterminate: this.partialChecked,
-      });
+        label: this.label,
+        level: this.level,
+        disabled: this.disabled
+      } as any);
     }
   }
 

@@ -168,7 +168,11 @@ const BaseTemplate: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
-      affectedChildItems: customEvent.detail.affectedChildItems || []
+      affectedChildItems: customEvent.detail.affectedChildItems || [],
+      // Zeige die neuen Felder mit an:
+      label: customEvent.detail.label,
+      level: customEvent.detail.level,
+      disabled: customEvent.detail.disabled
     });
   });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
@@ -277,7 +281,11 @@ export const ContainerDemo: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
-      affectedChildItems: customEvent.detail.affectedChildItems || []
+      affectedChildItems: customEvent.detail.affectedChildItems || [],
+      // Zeige die neuen Felder mit an:
+      label: customEvent.detail.label,
+      level: customEvent.detail.level,
+      disabled: customEvent.detail.disabled
     });
   });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
@@ -333,7 +341,11 @@ export const SingleItemStates: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
-      affectedChildItems: customEvent.detail.affectedChildItems || []
+      affectedChildItems: customEvent.detail.affectedChildItems || [],
+      // Zeige die neuen Felder mit an:
+      label: customEvent.detail.label,
+      level: customEvent.detail.level,
+      disabled: customEvent.detail.disabled
     });
   });
   el.addEventListener('ifxTreeViewItemDisableChange', action('ifxTreeViewItemDisableChange'));
