@@ -50,6 +50,11 @@ const meta: Meta = {
       description: 'Expands this tree item initially (set as attribute on the item). No interactive control.',
       control: false,
     },
+    initiallySelected: {
+      table: { category: 'Function', type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
+      description: 'Selects this tree item initially (set as attribute on the item). No interactive control.',
+      control: false,
+    },
     disableItem: {
       table: { category: 'Function', type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
       description: 'Disables this tree item (set as attribute on the item). No interactive control.',
@@ -296,6 +301,7 @@ ContainerDemo.parameters = {
 
 export const SingleItemStates: StoryFn = (args) => {
   const el = document.createElement('ifx-tree-view');
+  if (args.label) el.setAttribute('label', args.label);
   el.setAttribute('aria-label', args.ariaLabel);
 
   const ariaLabelItemAttr = args.ariaLabelItem
@@ -306,7 +312,7 @@ export const SingleItemStates: StoryFn = (args) => {
     <ifx-tree-view-item label="File" ${ariaLabelItemAttr}></ifx-tree-view-item>
     <ifx-tree-view-item label="File disabled" ${ariaLabelItemAttr} disable-item="true"></ifx-tree-view-item>
     <ifx-tree-view-item label="Folder initially expanded" initially-expanded="true" ${ariaLabelItemAttr}>
-      <ifx-tree-view-item label="File" ${ariaLabelItemAttr}></ifx-tree-view-item>
+      <ifx-tree-view-item label="File" initially-selected="true" ${ariaLabelItemAttr}></ifx-tree-view-item>
       <ifx-tree-view-item label="File disabled" disable-item="true" ${ariaLabelItemAttr}></ifx-tree-view-item>
     </ifx-tree-view-item>
     <ifx-tree-view-item label="Normal Item" ${ariaLabelItemAttr}></ifx-tree-view-item>
@@ -336,6 +342,9 @@ export const SingleItemStates: StoryFn = (args) => {
 };
 
 SingleItemStates.args = {
+  disableAllItems: false,
+  expandAllItems: false,
+  label: 'Tree Example',
   ariaLabel: 'Tree View',
   ariaLabelItem: 'Tree Item',
 };

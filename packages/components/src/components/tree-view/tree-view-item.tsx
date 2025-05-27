@@ -30,6 +30,7 @@ export class TreeViewItem {
   @Prop() initiallyExpanded: boolean = false;
   @Prop() disableItem: boolean = false;
   @Prop() ariaLabel: string | null;
+  @Prop() initiallySelected: boolean = false;
 
   @Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
   @Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
@@ -77,6 +78,14 @@ export class TreeViewItem {
       this.expandAllDescendants();
     }
     (this.host as any)['__stencil_instance'] = this;
+
+    // Update parent state if this item is initially selected
+    if (this.initiallySelected) {
+      // Use setTimeout to ensure all components are ready
+      setTimeout(() => {
+        this.updateParentState();
+      }, 0);
+    }
   }
 
   private shouldExpandFromParent(): boolean {
@@ -157,6 +166,7 @@ export class TreeViewItem {
     this.hasChildren = this.findChildren().length > 0;
     this.level = this.calculateNodeLevel();
     this.host.setAttribute('data-level', this.level.toString());
+    this.isChecked = this.initiallySelected;
   }
 
   private setupEventListeners() {
