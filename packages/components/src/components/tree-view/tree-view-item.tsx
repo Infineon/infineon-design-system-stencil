@@ -354,36 +354,50 @@ export class TreeViewItem {
   }
 
   private findSiblingNodes(parent: HTMLElement): HTMLIfxTreeViewItemElement[] {
-    const parentEl = parent.parentElement;
-    if (!parentEl) return [];
-    return Array.from(
-      parentEl.querySelectorAll('ifx-tree-view-item')
-    ).map(el => el as HTMLIfxTreeViewItemElement);
+    return Array.from(parent.children)
+      .filter((child): child is HTMLIfxTreeViewItemElement =>
+        child instanceof HTMLElement && child.tagName === 'IFX-TREE-VIEW-ITEM'
+      );
   }
 
   private updateParentState() {
     const parent = this.host.parentElement?.closest('ifx-tree-view-item') as HTMLIfxTreeViewItemElement;
     if (!parent) return;
-    parent.componentOnReady().then(resolved => {
-      const parentNode = resolved as unknown as TreeViewItem;
-      if (!parentNode?.updateParentState) return;
+
+    // Use a small timeout to ensure the component is ready
+    setTimeout(() => {
+      const parentInstance = (parent as any)['__stencil_instance'] as TreeViewItem;
+      if (!parentInstance) return;
+
       const siblings = this.findSiblingNodes(parent);
       const states = this.calculateSiblingStates(siblings);
-      parentNode.setNodeState({
+
+      parentInstance.setNodeState({
         isChecked: states.allChecked,
         partialChecked: !states.allChecked && states.someChecked
-      });
-      parentNode.updateParentState();
-    });
+      }, false);
+
+      parentInstance.updateParentState();
+    }, 0);
   }
 
   private calculateSiblingStates(siblings: HTMLIfxTreeViewItemElement[]) {
+    const states = siblings.map(sib => {
+      const instance = (sib as any)['__stencil_instance'] as TreeViewItem;
+      if (!instance) return { checked: false, partial: false };
+
+      return {
+        checked: instance.isChecked,
+        partial: instance.partialChecked
+      };
+    });
+
+    const checkedCount = states.filter(state => state.checked).length;
+    const partialCount = states.filter(state => state.partial).length;
+
     return {
-      allChecked: siblings.every(sib => (sib as unknown as TreeViewItem).isChecked),
-      someChecked: siblings.some(sib => {
-        const node = sib as unknown as TreeViewItem;
-        return node.isChecked || node.partialChecked;
-      })
+      allChecked: states.length > 0 && checkedCount === states.length && partialCount === 0,
+      someChecked: checkedCount > 0 || partialCount > 0
     };
   }
 
@@ -523,7 +537,7 @@ export class TreeViewItem {
       <div class="tree-item__checkbox-container" onClick={e => e.stopPropagation()}>
         <ifx-checkbox
           size='s'
-          checked={this.isChecked}
+          checked={this.partialChecked ? false : this.isChecked}
           indeterminate={this.partialChecked}
           onIfxChange={this.handleCheckboxChange}
           disabled={this.disabled}
