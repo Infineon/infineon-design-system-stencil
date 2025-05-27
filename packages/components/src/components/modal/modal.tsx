@@ -51,9 +51,17 @@ export class IfxModal {
   }
 
   componentWillRender() { 
-      if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
-      const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
+    if(this.showModal) { 
+      this.handleComponentOverflow();
+    }
+  }
+
+  handleComponentOverflow() { 
+    const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
+    if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
       modalContentContainer.classList.add('no-overflow')
+    } else if(modalContentContainer?.classList.contains('no-overflow')) { 
+      modalContentContainer?.classList.remove('no-overflow')
     }
   }
 
