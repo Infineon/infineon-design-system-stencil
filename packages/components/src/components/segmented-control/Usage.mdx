@@ -1,0 +1,66 @@
+import { Meta  } from '@storybook/blocks';
+import * as SegmentedControlStories from './segmented-control.stories';
+import SegmentedControlStates from '../../../public-storybook/images/segmented-control/segmented-control-amount.png';
+import SegmentedControlAnatomy from '../../../public-storybook/images/segmented-control/segmented-control-anatomy.png';
+import SegmentedControlAmount from '../../../public-storybook/images/segmented-control/segmented-control-states.png';
+
+
+<Meta of={SegmentedControlStories} />
+
+# Segmented Control
+A segmented control is a horizontal set of three or more segments, each functioning as a mutually exclusive button. It allows users to toggle between different views or states within the same context without leaving the current screen. 
+
+| Resources                                                                                                                      |
+|--------------------------------------------------------------------------------------------------------------------------------|
+| [Figma segmented control component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=63374-105) |
+
+## Usage
+### When to use
+- When users need to select one option from a small set (up to six) of related, mutually exclusive choices.
+- When toggling between different views or data representations within the same context.
+
+### When not to use
+- When the number of options exceeds six. Use a dropdown menu instead.
+- For actions that perform functions like "Add" or "Edit". Use buttons for such actions instead.
+- When each option leads to entirely different views or pages.
+
+## Anatomy
+<img src={SegmentedControlAnatomy} alt="Segmented Control Anatomy" />
+
+**Group label (1)**\
+The group label is optional. It is located above the segmented control component.
+
+
+**Segment container (2)**\
+The container that holds the segments and the active indicator."
+
+
+**Single segment (3)**\
+A single segment item container.
+
+
+**Label (4)**\
+Use a label to describe the purpose of the single segment to the user.
+
+
+**Icon (5)**\
+If needed an icon can be used to provide supportive information. It is also possible to provide an icon only segmented control. Icons should be self-explanatory e.g. a star rating.
+
+
+**Caption text (6)**\
+Use an optional caption text to provide additional context or information about the segmented control.
+
+
+## States
+<img src={SegmentedControlStates} alt="Segmented Control States" />
+
+
+## Use case examples
+### Task complexety
+Segmented controls can be used to quickly categorize tasks by their level of complexity. Selectable segments are: Low, Medium, High
+
+### Task location
+Use a segmented control to define the priority or suitability of a task’s location. Selectable segments are: Best, Mid, High
+
+### Time range
+A segmented control can offer users a fast way to switch between different time intervals in charts, reports, or data views. Selectable segments are: Day, Week, Month, Year, 3 Years, 5 Years
