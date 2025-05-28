@@ -81,7 +81,7 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item>
+          <ifx-tree-view-item value="expandable-item">
             Expandable
             <ifx-tree-view-item slot="children">Child</ifx-tree-view-item>
           </ifx-tree-view-item>
@@ -101,7 +101,8 @@ describe('ifx-tree-view', () => {
 
     expect(spy).toHaveReceivedEventDetail({
       expanded: true,
-      affectedItems: [{ expanded: true }]
+      value: 'expandable-item',
+      affectedItems: [{ expanded: true, value: 'expandable-item' }]
     });
   });
 
@@ -109,7 +110,7 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item>Checkable</ifx-tree-view-item>
+          <ifx-tree-view-item value="checkable-item">Checkable</ifx-tree-view-item>
         </ifx-tree-view>
       `,
     });
@@ -126,6 +127,7 @@ describe('ifx-tree-view', () => {
     expect(spy).toHaveReceivedEventDetail({
       checked: true,
       indeterminate: false,
+      value: 'checkable-item',
       level: 0,
       disabled: false
     });
@@ -135,10 +137,10 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item>
+          <ifx-tree-view-item value="parent-item">
             Parent
-            <ifx-tree-view-item slot="children">Child 1</ifx-tree-view-item>
-            <ifx-tree-view-item slot="children">Child 2</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" value="child-1">Child 1</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" value="child-2">Child 2</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
@@ -156,9 +158,9 @@ describe('ifx-tree-view', () => {
       checked: true,
       indeterminate: false,
       affectedChildItems: [
-        { checked: true, indeterminate: false },
-        { checked: true, indeterminate: false },
-        { checked: true, indeterminate: false }
+        { checked: true, indeterminate: false, value: 'parent-item' },
+        { checked: true, indeterminate: false, value: 'child-1' },
+        { checked: true, indeterminate: false, value: 'child-2' }
       ]
     });
   });

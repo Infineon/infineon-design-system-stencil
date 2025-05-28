@@ -3,12 +3,14 @@ import { Component, h, Prop, State, Element, Fragment, Event, EventEmitter, Watc
 export interface TreeViewCheckChangeEvent {
   checked: boolean;
   indeterminate: boolean;
-  affectedChildItems?: Array<{ checked: boolean; indeterminate: boolean }>;
+  value?: string;
+  affectedChildItems?: Array<{ checked: boolean; indeterminate: boolean; value?: string }>;
 }
 
 export interface TreeViewExpandChangeEvent {
   expanded: boolean;
-  affectedItems?: Array<{ expanded: boolean }>;
+  value?: string;
+  affectedItems?: Array<{ expanded: boolean; value?: string }>;
 }
 
 interface TreeState {
@@ -31,6 +33,7 @@ export class TreeViewItem {
   @Prop() disableItem: boolean = false;
   @Prop() ariaLabel: string | null;
   @Prop() initiallySelected: boolean = false;
+  @Prop() value: string;
 
   @Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
   @Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
@@ -147,15 +150,15 @@ export class TreeViewItem {
 
   private expandOrCollapseAllDescendants(expand: boolean) {
     this.suppressExpandEvents = true;
-    const affectedItems: Array<{ expanded: boolean }> = [];
+    const affectedItems: Array<{ expanded: boolean; value?: string }> = [];
     this.expanded = expand;
-    if (this.hasChildren) affectedItems.push({ expanded: expand });
+    if (this.hasChildren) affectedItems.push({ expanded: expand, value: this.value });
     this.findChildren().forEach(child => {
       const childInstance = (child as any)['__stencil_instance'];
       if (childInstance && childInstance.hasChildren) {
         childInstance.suppressExpandEvents = true;
         childInstance.expanded = expand;
-        affectedItems.push({ expanded: expand });
+        affectedItems.push({ expanded: expand, value: childInstance.value });
         if (childInstance.hasChildren) {
           const childAffected = childInstance.expandOrCollapseAllDescendants(expand);
           affectedItems.push(...childAffected);
@@ -202,7 +205,8 @@ export class TreeViewItem {
     if (!this.suppressExpandEvents) {
       this.ifxTreeViewItemExpandChange.emit({
         expanded: newValue,
-        affectedItems: [{ expanded: newValue }]
+        value: this.value,
+        affectedItems: [{ expanded: newValue, value: this.value }]
       });
     }
   }
@@ -219,6 +223,7 @@ export class TreeViewItem {
       this.ifxTreeViewItemCheckChange.emit({
         checked: this.isChecked,
         indeterminate: this.partialChecked,
+        value: this.value,
         level: this.level,
         disabled: this.disabled
       } as any);
@@ -226,13 +231,14 @@ export class TreeViewItem {
   }
 
   private collectDescendantStates(checked: boolean) {
-    const descendants: Array<{ checked: boolean; indeterminate: boolean }> = [];
+    const descendants: Array<{ checked: boolean; indeterminate: boolean; value?: string }> = [];
     const collect = (el: Element) => {
       let instance: any = el === this.host ? this : (el as any)['__stencil_instance'];
       if (!instance?.disabled) {
         descendants.push({
           checked,
           indeterminate: false,
+          value: instance?.value,
         });
       }
       Array.from(el.children)

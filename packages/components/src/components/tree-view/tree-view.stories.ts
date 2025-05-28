@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/html';
 
 const hideAllControlsExcept = (allowedKeys: string[]) => {
   const allProps = [
-    'label', 'disableAllItems', 'expandAllItems', 'ariaLabel'
+    'label', 'disableAllItems', 'expandAllItems', 'ariaLabel', 'value'
   ];
   const argTypes: Record<string, any> = {};
   for (const prop of allProps) {
@@ -59,6 +59,11 @@ const meta: Meta = {
       table: { category: 'Function', type: { summary: 'boolean' }, defaultValue: { summary: 'false' } },
       description: 'Disables this tree item (set as attribute on the item). No interactive control.',
       control: false,
+    },
+    value: {
+      control: false,
+      table: { category: 'Function', type: { summary: 'string' }, defaultValue: { summary: 'undefined' } },
+      description: 'Optional value for each tree item (set as attribute on the item). No interactive control.',
     },
 
     // --- Label ---
@@ -127,38 +132,38 @@ const BaseTemplate: StoryFn = (args) => {
     : '';
 
   el.innerHTML = `
-    <ifx-tree-view-item icon="folder" initially-expanded="true" ${ariaLabelItemAttr}>
+    <ifx-tree-view-item icon="folder" initially-expanded="true" value="root-folder" ${ariaLabelItemAttr}>
       Root Folder
-      <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" ${ariaLabelItemAttr}>
+      <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" value="subfolder-1" ${ariaLabelItemAttr}>
         Subfolder 1
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-2.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+        <ifx-tree-view-item slot="children" icon="file" value="file-1-1" ${ariaLabelItemAttr}>File 1-1.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="file" value="file-1-2" ${ariaLabelItemAttr}>File 1-2.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="folder" value="subfolder-1-1" ${ariaLabelItemAttr}>
           Subfolder 1-1
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1-1.txt</ifx-tree-view-item>
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1-2.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-1-1" ${ariaLabelItemAttr}>File 1-1-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-1-2" ${ariaLabelItemAttr}>File 1-1-2.txt</ifx-tree-view-item>
         </ifx-tree-view-item>
       </ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+      <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2" ${ariaLabelItemAttr}>
         Subfolder 2
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+        <ifx-tree-view-item slot="children" icon="file" value="file-2-1" ${ariaLabelItemAttr}>File 2-1.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1" ${ariaLabelItemAttr}>
           Subfolder 2-1
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1-1.txt</ifx-tree-view-item>
-          <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+          <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1" ${ariaLabelItemAttr}>File 2-1-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1-1" ${ariaLabelItemAttr}>
             Subfolder 2-1-1
-            <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1-1-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1-1" ${ariaLabelItemAttr}>File 2-1-1-1.txt</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view-item>
       </ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File at root.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-at-root" ${ariaLabelItemAttr}>File at root.txt</ifx-tree-view-item>
     </ifx-tree-view-item>
-    <ifx-tree-view-item icon="folder" ${ariaLabelItemAttr}>
+    <ifx-tree-view-item icon="folder" value="another-root" ${ariaLabelItemAttr}>
       Another Root Folder
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File A.txt</ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File B.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-a" ${ariaLabelItemAttr}>File A.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-b" ${ariaLabelItemAttr}>File B.txt</ifx-tree-view-item>
     </ifx-tree-view-item>
-    <ifx-tree-view-item icon="file" ${ariaLabelItemAttr}>Single File</ifx-tree-view-item>
+    <ifx-tree-view-item icon="file" value="single-file" ${ariaLabelItemAttr}>Single File</ifx-tree-view-item>
   `;
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
@@ -167,6 +172,7 @@ const BaseTemplate: StoryFn = (args) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemExpandChange')({
       expanded: customEvent.detail.expanded,
+      value: customEvent.detail.value,
       affectedItems: customEvent.detail.affectedItems || []
     });
   });
@@ -175,6 +181,7 @@ const BaseTemplate: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
+      value: customEvent.detail.value,
       affectedChildItems: customEvent.detail.affectedChildItems || [],
       level: customEvent.detail.level,
       disabled: customEvent.detail.disabled
@@ -195,7 +202,7 @@ Default.args = {
 };
 
 Default.argTypes = {
-  ...hideAllControlsExcept(['label', 'disableAllItems', 'expandAllItems', 'ariaLabel']),
+  ...hideAllControlsExcept(['label', 'disableAllItems', 'expandAllItems', 'ariaLabel', 'value']),
   ...disableCustomEventControls,
 
   ifxTreeViewExpandAllChange: {
@@ -245,38 +252,38 @@ export const ContainerDemo: StoryFn = (args) => {
   if (args.expandAllItems) el.setAttribute('expand-all-items', 'true');
 
   el.innerHTML = `
-    <ifx-tree-view-item icon="folder" initially-expanded="true" ${ariaLabelItemAttr}>
+    <ifx-tree-view-item icon="folder" initially-expanded="true" value="root-folder" ${ariaLabelItemAttr}>
       Root Folder
-      <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" ${ariaLabelItemAttr}>
+      <ifx-tree-view-item slot="children" icon="folder" initially-expanded="true" value="subfolder-1" ${ariaLabelItemAttr}>
         Subfolder 1
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-2.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+        <ifx-tree-view-item slot="children" icon="file" value="file-1-1" ${ariaLabelItemAttr}>File 1-1.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="file" value="file-1-2" ${ariaLabelItemAttr}>File 1-2.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="folder" value="subfolder-1-1" ${ariaLabelItemAttr}>
           Subfolder 1-1
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1-1.txt</ifx-tree-view-item>
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 1-1-2.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-1-1" ${ariaLabelItemAttr}>File 1-1-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="file" value="file-1-1-2" ${ariaLabelItemAttr}>File 1-1-2.txt</ifx-tree-view-item>
         </ifx-tree-view-item>
       </ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+      <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2" ${ariaLabelItemAttr}>
         Subfolder 2
-        <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1.txt</ifx-tree-view-item>
-        <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+        <ifx-tree-view-item slot="children" icon="file" value="file-2-1" ${ariaLabelItemAttr}>File 2-1.txt</ifx-tree-view-item>
+        <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1" ${ariaLabelItemAttr}>
           Subfolder 2-1
-          <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1-1.txt</ifx-tree-view-item>
-          <ifx-tree-view-item slot="children" icon="folder" ${ariaLabelItemAttr}>
+          <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1" ${ariaLabelItemAttr}>File 2-1-1.txt</ifx-tree-view-item>
+          <ifx-tree-view-item slot="children" icon="folder" value="subfolder-2-1-1" ${ariaLabelItemAttr}>
             Subfolder 2-1-1
-            <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File 2-1-1-1.txt</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children" icon="file" value="file-2-1-1-1" ${ariaLabelItemAttr}>File 2-1-1-1.txt</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view-item>
       </ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File at root.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-at-root" ${ariaLabelItemAttr}>File at root.txt</ifx-tree-view-item>
     </ifx-tree-view-item>
-    <ifx-tree-view-item icon="folder" ${ariaLabelItemAttr}>
+    <ifx-tree-view-item icon="folder" value="another-root" ${ariaLabelItemAttr}>
       Another Root Folder
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File A.txt</ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" icon="file" ${ariaLabelItemAttr}>File B.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-a" ${ariaLabelItemAttr}>File A.txt</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" icon="file" value="file-b" ${ariaLabelItemAttr}>File B.txt</ifx-tree-view-item>
     </ifx-tree-view-item>
-    <ifx-tree-view-item icon="file" ${ariaLabelItemAttr}>Single File</ifx-tree-view-item>
+    <ifx-tree-view-item icon="file" value="single-file" ${ariaLabelItemAttr}>Single File</ifx-tree-view-item>
   `;
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
@@ -285,6 +292,7 @@ export const ContainerDemo: StoryFn = (args) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemExpandChange')({
       expanded: customEvent.detail.expanded,
+      value: customEvent.detail.value,
       affectedItems: customEvent.detail.affectedItems || []
     });
   });
@@ -293,6 +301,7 @@ export const ContainerDemo: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
+      value: customEvent.detail.value,
       affectedChildItems: customEvent.detail.affectedChildItems || [],
       level: customEvent.detail.level,
       disabled: customEvent.detail.disabled
@@ -327,15 +336,15 @@ export const SingleItemStates: StoryFn = (args) => {
     : '';
 
   el.innerHTML = `
-    <ifx-tree-view-item ${ariaLabelItemAttr}>File</ifx-tree-view-item>
-    <ifx-tree-view-item ${ariaLabelItemAttr} disable-item="true">File disabled</ifx-tree-view-item>
-    <ifx-tree-view-item initially-expanded="true" ${ariaLabelItemAttr}>
+    <ifx-tree-view-item value="file-1" ${ariaLabelItemAttr}>File</ifx-tree-view-item>
+    <ifx-tree-view-item value="file-disabled" ${ariaLabelItemAttr} disable-item="true">File disabled</ifx-tree-view-item>
+    <ifx-tree-view-item initially-expanded="true" value="folder-expanded" ${ariaLabelItemAttr}>
       Folder initially expanded
-      <ifx-tree-view-item slot="children" initially-selected="true" ${ariaLabelItemAttr}>File</ifx-tree-view-item>
-      <ifx-tree-view-item slot="children" ${ariaLabelItemAttr}>File</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" initially-selected="true" value="file-selected" ${ariaLabelItemAttr}>File</ifx-tree-view-item>
+      <ifx-tree-view-item slot="children" value="file-normal" ${ariaLabelItemAttr}>File</ifx-tree-view-item>
     </ifx-tree-view-item>
-    <ifx-tree-view-item ${ariaLabelItemAttr}>Normal Item</ifx-tree-view-item>
-    <ifx-tree-view-item ${ariaLabelItemAttr}>Normal Item</ifx-tree-view-item>
+    <ifx-tree-view-item value="item-1" ${ariaLabelItemAttr}>Normal Item</ifx-tree-view-item>
+    <ifx-tree-view-item value="item-2" ${ariaLabelItemAttr}>Normal Item</ifx-tree-view-item>
   `;
 
   el.addEventListener('ifxTreeViewExpandAllChange', action('ifxTreeViewExpandAllChange'));
@@ -344,6 +353,7 @@ export const SingleItemStates: StoryFn = (args) => {
     const customEvent = event as CustomEvent;
     action('ifxTreeViewItemExpandChange')({
       expanded: customEvent.detail.expanded,
+      value: customEvent.detail.value,
       affectedItems: customEvent.detail.affectedItems || []
     });
   });
@@ -352,6 +362,7 @@ export const SingleItemStates: StoryFn = (args) => {
     action('ifxTreeViewItemCheckChange')({
       checked: customEvent.detail.checked,
       indeterminate: customEvent.detail.indeterminate,
+      value: customEvent.detail.value,
       affectedChildItems: customEvent.detail.affectedChildItems || [],
       level: customEvent.detail.level,
       disabled: customEvent.detail.disabled
