@@ -1,3 +1,16 @@
+# v33.7.0 (Wed May 28 2025)
+
+#### 🚀 Enhancement
+
+- Adds a new github issue template for internal use [#1875](https://github.com/Infineon/infineon-design-system-stencil/pull/1875) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.6.0 (Tue May 27 2025)
 
 #### 🚀 Enhancement
