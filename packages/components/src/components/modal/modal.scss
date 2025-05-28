@@ -45,10 +45,19 @@
   border-radius: tokens.$ifxBorderRadiusNone;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   
-  overflow: hidden;
+  //overflow: hidden;
 
   box-sizing: border-box;
   align-items: stretch;
+}
+
+.modal-content-container {
+  &.no-overflow { 
+    overflow: hidden;
+    & .modal-body { 
+      overflow-y: auto;
+    }
+  }
 }
 
 /* Add desktop size here */
@@ -154,7 +163,7 @@
   box-sizing: border-box;
   flex: 1;
   
-  overflow-y: auto;
+  //overflow-y: auto;
 }
 
 .modal-footer.buttons-present ::slotted(*){
