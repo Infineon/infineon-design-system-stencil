@@ -157,8 +157,8 @@ describe('ifx-tree-view', () => {
     expect(spy).toHaveReceivedEventDetail({
       checked: true,
       indeterminate: false,
+      value: 'parent-item',
       affectedChildItems: [
-        { checked: true, indeterminate: false, value: 'parent-item' },
         { checked: true, indeterminate: false, value: 'child-1' },
         { checked: true, indeterminate: false, value: 'child-2' }
       ]

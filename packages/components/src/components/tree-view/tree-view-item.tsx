@@ -27,7 +27,6 @@ type HTMLIfxTreeViewItemElement = HTMLElement & { componentOnReady: () => Promis
 })
 export class TreeViewItem {
   @Element() host: HTMLElement;
-  // @Prop() label: string; // entfernt
   @Prop({ reflect: true, mutable: true }) expanded: boolean = false;
   @Prop() initiallyExpanded: boolean = false;
   @Prop() disableItem: boolean = false;
@@ -178,6 +177,7 @@ export class TreeViewItem {
       this.ifxTreeViewItemCheckChange.emit({
         checked,
         indeterminate: false,
+        value: this.value,
         affectedChildItems: affected,
       });
       this.updateParentState();
@@ -232,9 +232,9 @@ export class TreeViewItem {
 
   private collectDescendantStates(checked: boolean) {
     const descendants: Array<{ checked: boolean; indeterminate: boolean; value?: string }> = [];
-    const collect = (el: Element) => {
+    const collect = (el: Element, skipSelf = false) => {
       let instance: any = el === this.host ? this : (el as any)['__stencil_instance'];
-      if (!instance?.disabled) {
+      if (!skipSelf && !instance?.disabled) {
         descendants.push({
           checked,
           indeterminate: false,
@@ -243,10 +243,13 @@ export class TreeViewItem {
       }
       Array.from(el.children)
         .forEach(child => {
-          if (child.tagName === 'IFX-TREE-VIEW-ITEM') collect(child);
+          if (child.tagName === 'IFX-TREE-VIEW-ITEM') collect(child, false);
         });
     };
-    collect(this.host);
+    Array.from(this.host.children)
+      .forEach(child => {
+        if (child.tagName === 'IFX-TREE-VIEW-ITEM') collect(child, false);
+      });
     return descendants;
   }
 
