@@ -14,7 +14,6 @@
 | `expanded`          | `expanded`           |             | `boolean` | `false`     |
 | `initiallyExpanded` | `initially-expanded` |             | `boolean` | `false`     |
 | `initiallySelected` | `initially-selected` |             | `boolean` | `false`     |
-| `label`             | `label`              |             | `string`  | `undefined` |
 
 
 ## Events

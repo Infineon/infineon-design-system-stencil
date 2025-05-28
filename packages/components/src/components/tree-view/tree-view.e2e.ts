@@ -5,7 +5,7 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view label="Tree Root">
-          <ifx-tree-view-item label="Item 1"></ifx-tree-view-item>
+          <ifx-tree-view-item>Item 1</ifx-tree-view-item>
         </ifx-tree-view>
       `,
     });
@@ -22,8 +22,9 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view expand-all-items>
-          <ifx-tree-view-item label="Parent">
-            <ifx-tree-view-item label="Child"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Parent
+            <ifx-tree-view-item slot="children">Child</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
@@ -41,7 +42,7 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view disable-all-items>
-          <ifx-tree-view-item label="Disabled"></ifx-tree-view-item>
+          <ifx-tree-view-item>Disabled</ifx-tree-view-item>
         </ifx-tree-view>
       `,
     });
@@ -56,8 +57,9 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item label="Expandable">
-            <ifx-tree-view-item label="Child"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Expandable
+            <ifx-tree-view-item slot="children">Child</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
@@ -79,8 +81,9 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item label="Expandable">
-            <ifx-tree-view-item label="Child"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Expandable
+            <ifx-tree-view-item slot="children">Child</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
@@ -98,7 +101,7 @@ describe('ifx-tree-view', () => {
 
     expect(spy).toHaveReceivedEventDetail({
       expanded: true,
-      affectedItems: [{ label: 'Expandable', expanded: true }]
+      affectedItems: [{ expanded: true }]
     });
   });
 
@@ -106,7 +109,7 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item label="Checkable"></ifx-tree-view-item>
+          <ifx-tree-view-item>Checkable</ifx-tree-view-item>
         </ifx-tree-view>
       `,
     });
@@ -120,16 +123,22 @@ describe('ifx-tree-view', () => {
     await checkbox.click();
     await page.waitForChanges();
 
-    expect(spy).toHaveReceivedEventDetail({ checked: true, indeterminate: false });
+    expect(spy).toHaveReceivedEventDetail({
+      checked: true,
+      indeterminate: false,
+      level: 0,
+      disabled: false
+    });
   });
 
   it('emits parent check event with affectedChildItems for parent items', async () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view>
-          <ifx-tree-view-item label="Parent">
-            <ifx-tree-view-item label="Child 1"></ifx-tree-view-item>
-            <ifx-tree-view-item label="Child 2"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Parent
+            <ifx-tree-view-item slot="children">Child 1</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children">Child 2</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
@@ -147,9 +156,9 @@ describe('ifx-tree-view', () => {
       checked: true,
       indeterminate: false,
       affectedChildItems: [
-        { label: 'Parent', checked: true, indeterminate: false },
-        { label: 'Child 1', checked: true, indeterminate: false },
-        { label: 'Child 2', checked: true, indeterminate: false }
+        { checked: true, indeterminate: false },
+        { checked: true, indeterminate: false },
+        { checked: true, indeterminate: false }
       ]
     });
   });
@@ -158,10 +167,11 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view expand-all-items>
-          <ifx-tree-view-item label="Item 1">
-            <ifx-tree-view-item label="Child 1"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Item 1
+            <ifx-tree-view-item slot="children">Child 1</ifx-tree-view-item>
           </ifx-tree-view-item>
-          <ifx-tree-view-item label="Item 2"></ifx-tree-view-item>
+          <ifx-tree-view-item>Item 2</ifx-tree-view-item>
         </ifx-tree-view>
       `,
     });
@@ -178,9 +188,10 @@ describe('ifx-tree-view', () => {
     const page = await newE2EPage({
       html: `
         <ifx-tree-view expand-all-items>
-          <ifx-tree-view-item label="Parent">
-            <ifx-tree-view-item label="Child 1"></ifx-tree-view-item>
-            <ifx-tree-view-item label="Child 2"></ifx-tree-view-item>
+          <ifx-tree-view-item>
+            Parent
+            <ifx-tree-view-item slot="children">Child 1</ifx-tree-view-item>
+            <ifx-tree-view-item slot="children">Child 2</ifx-tree-view-item>
           </ifx-tree-view-item>
         </ifx-tree-view>
       `,
