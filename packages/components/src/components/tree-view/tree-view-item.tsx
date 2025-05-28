@@ -368,7 +368,19 @@ export class TreeViewItem {
       case ' ':
       case 'Enter': {
         event.preventDefault();
-        this.updateCheckState(!this.isChecked);
+        if (this.hasChildren) {
+          const newCheckedState = !this.isChecked;
+          this.updateCheckState(newCheckedState);
+          const affectedItems = newCheckedState
+            ? this.expandOrCollapseAllDescendants(true)
+            : this.expandOrCollapseAllDescendants(false);
+          this.ifxTreeViewItemExpandChange.emit({
+            expanded: newCheckedState,
+            affectedItems
+          });
+        } else {
+          this.updateCheckState(!this.isChecked);
+        }
         break;
       }
     }
