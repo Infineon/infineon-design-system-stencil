@@ -1,7 +1,7 @@
 name: DDS Developer Feature / Task
 description: Describe a new feature or technical task to be implemented by DDS Developers
 title: "Component name: short summary"
-labels: 
+labels:
   - enhancement
   - request
 assignees: []
@@ -36,9 +36,8 @@ body:
         - label: Sufficient custom events are emitted on changes/interactions with the component
         - label: Add Storybook view with controls
         - label: Fully covered by automated tests (unit/integration)
-        - label: Meets accessibility requirements (WCAG 2.1 AA where applicable)
-        - label: ARIA labels and roles are used correctly where needed
-        - label: Keyboard navigation is supported and focus states are visible
+        - label: Meets accessibility requirements (Keyboarybord navigation, ARIA roles, etc.)
+        - label: Test components in the example wrapper (Angular, React, Vanilla JS and Vue)
         - label: Reviewed and merged into the main branch
 
   - type: textarea
@@ -47,14 +46,14 @@ body:
       label: Task Checklist
       description: Break down the work into atomic developer tasks. These should be implementation-focused.
       placeholder: |
-        - [ ] Add loading state prop to Button component  
-        - [ ] Implement loading spinner in Button  
-        - [ ] Add unit custom event for loading state  
+        - [ ] Add loading state prop to Button component
+        - [ ] Implement loading spinner in Button
+        - [ ] Add unit custom event for loading state
         - [ ] Add Storybook example for loading state
         - [] …
 
         > Note: Please use the actual GitHub task checklist (checkbox list) in the issue so progress can be tracked.
-        
+
         > If a task is large or complex, consider creating a separate issue for it and reference it here.
 
   - type: textarea
@@ -63,13 +62,15 @@ body:
       label: References
       description: Include links to relevant specs, designs, documentation, or related issues.
       placeholder: |
-        - [Design in Figma](#)
-        - [API documentation](#)
-        - Related issue: #123
+        - [Figma Design Spec](url)
+        - [Component API Docs](url)
+        - [Accessibility Guidelines](url)
+        - Related issue: #456
 
   - type: textarea
     id: notes
     attributes:
       label: Notes
       description: Add any additional notes, constraints, or assumptions that are helpful for implementation.
-      placeholder: e.g. "This must be released together with #123"
+      placeholder: |
+        e.g. "Known limitation: does not support IE11"
