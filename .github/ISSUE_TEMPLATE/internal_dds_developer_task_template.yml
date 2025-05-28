@@ -1,6 +1,6 @@
-name: DDS Developer Feature / Task
-description: Describe a new feature or technical task to be implemented by DDS Developers
-title: "Component name: short summary"
+name: Internal DDS Developer Task Template
+description: A highly detailed technical requirements template for internal team usage
+title: "Title: short summary"
 labels:
   - enhancement
   - request
@@ -11,7 +11,7 @@ body:
     id: summary
     attributes:
       label: Summary
-      description: Provide a short, clear summary of the feature or technical task.
+      description: Provide a concise and clear summary of the task.
       placeholder: e.g. "Add loading state to Button component."
     validations:
       required: true
@@ -19,7 +19,7 @@ body:
   - type: textarea
     id: background
     attributes:
-      label: Background / Context
+      label: Context
       description: Describe the background of this request. Why is it needed? What problem are we solving?
       placeholder: |
         e.g. "Users need feedback when clicking the button, so a loading state is required to indicate progress."
@@ -27,18 +27,18 @@ body:
   - type: checkboxes
     id: acceptance_criteria
     attributes:
-      label: Acceptance Criteria / Definition of Done
+      label: Acceptance Criteria
       description: List the specific conditions that must be met for this task to be considered complete.
       options:
-        - label: Clearly defined behavior or output is implemented
-        - label: Matches the design and UX specifications
-        - label: Semantic HTML is used appropriately
-        - label: Sufficient custom events are emitted on changes/interactions with the component
-        - label: Add Storybook view with controls
-        - label: Fully covered by automated tests (unit/integration)
+        - label: Meets technical requirements
+        - label: Meets design requirements
+        - label: Proper use of Semantic HTML
+        - label: Custom events are implemented
+        - label: Storybook integration
+        - label: Unit test integration
         - label: Meets accessibility requirements (Keyboarybord navigation, ARIA roles, etc.)
-        - label: Test components in the example wrapper (Angular, React, Vanilla JS and Vue)
-        - label: Reviewed and merged into the main branch
+        - label: Component has been thoroughly tested (Storybook, Angular, React, Vanilla JS and Vue)
+        - label: Component has been thoroughly reviewed
 
   - type: textarea
     id: task_checklist
