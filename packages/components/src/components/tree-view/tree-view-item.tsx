@@ -5,12 +5,19 @@ export interface TreeViewCheckChangeEvent {
   indeterminate: boolean;
   value?: string;
   affectedChildItems?: Array<{ checked: boolean; indeterminate: boolean; value?: string }>;
+  component?: TreeViewItem;
 }
 
 export interface TreeViewExpandChangeEvent {
   expanded: boolean;
   value?: string;
   affectedItems?: Array<{ expanded: boolean; value?: string }>;
+  component?: TreeViewItem;
+}
+
+export interface TreeViewDisableChangeEvent {
+  disabled: boolean;
+  component?: TreeViewItem;
 }
 
 interface TreeState {
@@ -36,7 +43,7 @@ export class TreeViewItem {
 
   @Event() ifxTreeViewItemExpandChange: EventEmitter<TreeViewExpandChangeEvent>;
   @Event() ifxTreeViewItemCheckChange: EventEmitter<TreeViewCheckChangeEvent>;
-  @Event() ifxTreeViewItemDisableChange: EventEmitter<boolean>;
+  @Event() ifxTreeViewItemDisableChange: EventEmitter<TreeViewDisableChangeEvent>;
 
   @State() private hasChildren: boolean = false;
   @State() private isChecked: boolean = false;
@@ -139,7 +146,8 @@ export class TreeViewItem {
           : this.expandOrCollapseAllDescendants(false);
         this.ifxTreeViewItemExpandChange.emit({
           expanded: newCheckedState,
-          affectedItems
+          affectedItems,
+          component: this
         });
       } else {
         this.updateCheckState(!this.isChecked);
@@ -179,6 +187,7 @@ export class TreeViewItem {
         indeterminate: false,
         value: this.value,
         affectedChildItems: affected,
+        component: this,
       });
       this.updateParentState();
     } else if (fromParent) {
@@ -206,14 +215,15 @@ export class TreeViewItem {
       this.ifxTreeViewItemExpandChange.emit({
         expanded: newValue,
         value: this.value,
-        affectedItems: [{ expanded: newValue, value: this.value }]
+        affectedItems: [{ expanded: newValue, value: this.value }],
+        component: this
       });
     }
   }
 
   @Watch('disableItem')
   handleDisableItemChange(newValue: boolean) {
-    this.ifxTreeViewItemDisableChange.emit(newValue);
+    this.ifxTreeViewItemDisableChange.emit({ disabled: newValue, component: this });
   }
 
   private setNodeState(state: TreeState, emitEvent = true) {
@@ -225,7 +235,8 @@ export class TreeViewItem {
         indeterminate: this.partialChecked,
         value: this.value,
         level: this.level,
-        disabled: this.disabled
+        disabled: this.disabled,
+        component: this
       } as any);
     }
   }
@@ -383,7 +394,8 @@ export class TreeViewItem {
             : this.expandOrCollapseAllDescendants(false);
           this.ifxTreeViewItemExpandChange.emit({
             expanded: newCheckedState,
-            affectedItems
+            affectedItems,
+            component: this
           });
         } else {
           this.updateCheckState(!this.isChecked);
