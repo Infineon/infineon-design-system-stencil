@@ -1,3 +1,28 @@
+# v34.0.0 (Fri May 30 2025)
+
+#### 💥 Breaking Change
+
+- Number-indicator: renamed to Indicator, and implements dot variant [#1868](https://github.com/Infineon/infineon-design-system-stencil/pull/1868) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.7.0 (Wed May 28 2025)
+
+#### 🚀 Enhancement
+
+- Adds a new github issue template for internal use [#1875](https://github.com/Infineon/infineon-design-system-stencil/pull/1875) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.6.0 (Tue May 27 2025)
 
 #### 🚀 Enhancement
