@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -88,6 +88,8 @@ import { IfxTemplatesUi as IfxTemplatesUiElement, defineCustomElement as defineI
 import { IfxTextField as IfxTextFieldElement, defineCustomElement as defineIfxTextField } from "@infineon/infineon-design-system-stencil/dist/components/ifx-text-field.js";
 import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxTextarea } from "@infineon/infineon-design-system-stencil/dist/components/ifx-textarea.js";
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
+import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
+import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
@@ -1070,4 +1072,40 @@ export const IfxTooltip: StencilReactComponent<IfxTooltipElement, IfxTooltipEven
     react: React,
     events: {} as IfxTooltipEvents,
     defineCustomElement: defineIfxTooltip
+});
+
+type IfxTreeViewEvents = {
+    onIfxTreeViewExpandAllChange: EventName<CustomEvent<boolean>>,
+    onIfxTreeViewDisableAllChange: EventName<CustomEvent<boolean>>
+};
+
+export const IfxTreeView: StencilReactComponent<IfxTreeViewElement, IfxTreeViewEvents> = /*@__PURE__*/ createComponent<IfxTreeViewElement, IfxTreeViewEvents>({
+    tagName: 'ifx-tree-view',
+    elementClass: IfxTreeViewElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxTreeViewExpandAllChange: 'ifxTreeViewExpandAllChange',
+        onIfxTreeViewDisableAllChange: 'ifxTreeViewDisableAllChange'
+    } as IfxTreeViewEvents,
+    defineCustomElement: defineIfxTreeView
+});
+
+type IfxTreeViewItemEvents = {
+    onIfxTreeViewItemExpandChange: EventName<IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>>,
+    onIfxTreeViewItemCheckChange: EventName<IfxTreeViewItemCustomEvent<TreeViewCheckChangeEvent>>,
+    onIfxTreeViewItemDisableChange: EventName<IfxTreeViewItemCustomEvent<TreeViewDisableChangeEvent>>
+};
+
+export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents> = /*@__PURE__*/ createComponent<IfxTreeViewItemElement, IfxTreeViewItemEvents>({
+    tagName: 'ifx-tree-view-item',
+    elementClass: IfxTreeViewItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {
+        onIfxTreeViewItemExpandChange: 'ifxTreeViewItemExpandChange',
+        onIfxTreeViewItemCheckChange: 'ifxTreeViewItemCheckChange',
+        onIfxTreeViewItemDisableChange: 'ifxTreeViewItemDisableChange'
+    } as IfxTreeViewItemEvents,
+    defineCustomElement: defineIfxTreeViewItem
 });
