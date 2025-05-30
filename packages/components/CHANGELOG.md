@@ -1,3 +1,15 @@
+# v34.0.0 (Fri May 30 2025)
+
+#### 💥 Breaking Change
+
+- Number-indicator: renamed to Indicator, and implements dot variant [#1868](https://github.com/Infineon/infineon-design-system-stencil/pull/1868) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.7.0 (Wed May 28 2025)
 
 #### 🚀 Enhancement
