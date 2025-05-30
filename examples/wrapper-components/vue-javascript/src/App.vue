@@ -40,6 +40,7 @@
   <Tag />
   <Textarea />
   <TextField />
+  <TreeView />
   <Tooltip />
   <FileUpload />
   <Footer />
