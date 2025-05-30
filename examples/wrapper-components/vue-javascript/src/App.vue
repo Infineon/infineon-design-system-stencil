@@ -20,7 +20,7 @@
   <Modal />
   <MultiSelect />
   <Notification />
-  <NumberIndicator />
+  <Indicator />
   <Pagination />
   <ProgressBar />
   <RadioButton />
@@ -60,7 +60,7 @@ import RadioButtonGroup from './components/RadioButtonGroup.vue'
 import TextField from './components/TextField.vue'
 import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
-import NumberIndicator from './components/NumberIndicator.vue'
+import Indicator from './components/Indicator.vue'
 import Link from './components/Link.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
