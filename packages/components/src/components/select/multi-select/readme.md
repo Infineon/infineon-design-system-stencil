@@ -40,16 +40,16 @@
 
 ### Depends on
 
+- [ifx-icon](../../icon)
 - [ifx-checkbox](../../checkbox)
 - [ifx-dropdown-separator](../../dropdown/dropdown-seperator)
-- [ifx-icon](../../icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  ifx-multiselect --> ifx-icon
   ifx-multiselect --> ifx-checkbox
   ifx-multiselect --> ifx-dropdown-separator
-  ifx-multiselect --> ifx-icon
   ifx-checkbox --> ifx-icon
   ifx-set-filter --> ifx-multiselect
   style ifx-multiselect fill:#f9f,stroke:#333,stroke-width:4px

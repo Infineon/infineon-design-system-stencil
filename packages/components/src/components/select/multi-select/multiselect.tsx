@@ -26,6 +26,8 @@ function debounce(func, wait) {
 export class Multiselect {
 
   @Prop() name: string;
+  // Temporarily keep options prop to avoid breaking changes - marked as deprecated
+  /** @deprecated Use slot-based options instead */
   @Prop() options: any[] | string;
   @Prop() batchSize: number = 50;
   @Prop() size: string = 'medium (40px)';
@@ -62,63 +64,132 @@ export class Multiselect {
   @AttachInternals() internals: ElementInternals;
 
 
-  @Watch('options')
-  updateOptions() {
-    this.loadedOptions = [];
-    this.filteredOptions = [];
-    this.optionCount = 0;
-    this.optionsProcessed = false;
-    this.persistentSelectedOptions = [];
-    this.expandedOptions = new Set(); // Reset expanded state
+  // Remove @Watch('options') since we no longer have options prop
 
-    this.loadInitialOptions();
+  /**
+   * Parse child elements to create options structure
+   */
+  private parseChildOptions(): Option[] {
+    const options: Option[] = [];
+    const childElements = Array.from(this.el.children);
+
+    childElements.forEach((child, index) => {
+      if (child.tagName === 'IFX-MULTISELECT-OPTION') {
+        const option = this.parseOptionElement(child as HTMLElement, index);
+        if (option) {
+          options.push(option);
+        }
+      }
+    });
+
+    return options;
   }
 
+  /**
+   * Recursively parse option element and its children
+   */
+  private parseOptionElement(element: HTMLElement, index: number): Option | null {
+    const value = element.getAttribute('value') || `option-${index}`;
+    const selected = element.hasAttribute('selected');
+    const disabled = element.hasAttribute('disabled');
+    const indeterminate = element.hasAttribute('indeterminate');
+
+    const option: Option = {
+      value,
+      selected,
+      disabled,
+      indeterminate
+    };
+
+    // Check for nested options
+    const nestedOptions = Array.from(element.children)
+      .filter(child => child.tagName === 'IFX-MULTISELECT-OPTION')
+      .map((child, childIndex) => this.parseOptionElement(child as HTMLElement, childIndex))
+      .filter(opt => opt !== null) as Option[];
+
+    if (nestedOptions.length > 0) {
+      option.children = nestedOptions;
+    }
+
+    return option;
+  }
+
+  /**
+   * Get direct text content of element (excluding nested elements)
+   */
+  private getDirectTextContent(element: HTMLElement): string {
+    // Check for direct text content first
+    let text = '';
+    for (let i = 0; i < element.childNodes.length; i++) {
+      const node = element.childNodes[i];
+      if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent?.trim() || '';
+      }
+    }
+
+    // Fallback to value if no text content
+    return text || `Option ${element.getAttribute('value')}`;
+  }
 
   async loadInitialOptions() {
     this.isLoading = true;
     this.internalError = this.error;
     this.internalErrorMessage = this.errorMessage;
-    // Load the first batch of options (e.g., first 20)
-    this.loadedOptions = await this.fetchOptions(0, this.batchSize);
+
+    // Parse options from child elements instead of props
+    const allOptions = this.parseChildOptions();
+    this.loadedOptions = allOptions.slice(0, this.batchSize);
     this.isLoading = false;
   }
 
   async fetchMoreOptions() {
     this.isLoading = true;
-    const moreOptions = await this.fetchOptions(this.loadedOptions.length, this.batchSize);
+    const allOptions = this.parseChildOptions();
+    const moreOptions = allOptions.slice(this.loadedOptions.length, this.loadedOptions.length + this.batchSize);
     this.loadedOptions = [...this.loadedOptions, ...moreOptions];
     this.isLoading = false;
   }
 
-
-  handleScroll(event: UIEvent) {
-    const element = event.target as HTMLElement;
-    const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2); //loading more options when the user has scrolled halfway through the current list
-
-    if (element.scrollTop >= halfwayPoint) {
-      this.fetchMoreOptions();
-    }
-  }
-
-
-
-
   async fetchOptions(startIndex: number, count: number): Promise<Option[]> {
-    let allOptions: Option[] = [];
+    // Parse options from child elements first, fallback to prop for backward compatibility
+    let allOptions = this.parseChildOptions();
 
-    // Parse options if it's a string, or use directly if it's an array
-    if (typeof this.options === 'string') {
-      try {
-        allOptions = JSON.parse(this.options);
-
-      } catch (err) {
-        console.error('Failed to parse options:', err);
+    // Fallback to old options prop if no child options found
+    if (allOptions.length === 0 && this.options) {
+      if (typeof this.options === 'string') {
+        try {
+          const parsedOptions = JSON.parse(this.options);
+          // Convert old format to new format (remove label dependencies)
+          allOptions = parsedOptions.map((opt: any) => ({
+            value: opt.value,
+            selected: opt.selected || false,
+            disabled: opt.disabled || false,
+            indeterminate: opt.indeterminate || false,
+            children: opt.children ? opt.children.map((child: any) => ({
+              value: child.value,
+              selected: child.selected || false,
+              disabled: child.disabled || false,
+              indeterminate: child.indeterminate || false
+            })) : undefined
+          }));
+        } catch (err) {
+          console.error('Failed to parse options:', err);
+        }
+      } else if (Array.isArray(this.options)) {
+        // Convert old format to new format (remove label dependencies)
+        allOptions = this.options.map((opt: any) => ({
+          value: opt.value,
+          selected: opt.selected || false,
+          disabled: opt.disabled || false,
+          indeterminate: opt.indeterminate || false,
+          children: opt.children ? opt.children.map((child: any) => ({
+            value: child.value,
+            selected: child.selected || false,
+            disabled: child.disabled || false,
+            indeterminate: child.indeterminate || false
+          })) : undefined
+        }));
       }
-    } else if (Array.isArray(this.options)) {
-      allOptions = this.options;
-    } else {
-      console.error('Unexpected value for options:', this.options);
     }
 
     if (!this.optionsProcessed) {
@@ -132,6 +203,7 @@ export class Multiselect {
 
       this.optionsProcessed = true;
     }
+
     // Slice the options array based on startIndex and count
     const slicedOptions = allOptions.slice(startIndex, startIndex + count);
     return slicedOptions;
@@ -218,10 +290,16 @@ export class Multiselect {
       this.filteredOptions = this.loadedOptions;
     } else {
       this.filteredOptions = this.loadedOptions.filter(option => {
-        const matchesSearchTerm = option.label.toLowerCase().includes(searchTerm);
+        // Get text content from DOM element for search
+        const optionElement = this.el.querySelector(`ifx-multiselect-option[value="${option.value}"]`);
+        const textContent = optionElement?.textContent?.trim() || '';
+        const matchesSearchTerm = textContent.toLowerCase().includes(searchTerm);
+
         if (option.children) {
           const childrenMatch = option.children.some(child => {
-            return child.label.toLowerCase().includes(searchTerm);
+            const childElement = this.el.querySelector(`ifx-multiselect-option[value="${child.value}"]`);
+            const childTextContent = childElement?.textContent?.trim() || '';
+            return childTextContent.toLowerCase().includes(searchTerm);
           });
           return matchesSearchTerm || childrenMatch;
         }
@@ -235,12 +313,37 @@ export class Multiselect {
       this.positionDropdown();
     }, 500);
 
+    // Listen for option changes
+    this.el.addEventListener('ifx-option-changed', () => {
+      // Use requestAnimationFrame to ensure all DOM updates are complete
+      requestAnimationFrame(() => {
+        this.updateSlotBasedSelections();
+      });
+    });
+
+    // Initial synchronization after all components are loaded
+    setTimeout(() => {
+      this.updateSlotBasedSelections();
+      // Set initial parent states based on children
+      this.updateInitialParentStates();
+    }, 100);
+
     // setInterval(this.handleScroll, 5000); // Runs every 5 seconds (5000 milliseconds)
   }
 
   componentWillLoad() {
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
+
+    // Ensure all top-level options are visible by default
+    setTimeout(() => {
+      const topLevelOptions = this.el.querySelectorAll(':scope > ifx-multiselect-option');
+      topLevelOptions.forEach((option: any) => {
+        if (option.hasChildren && option.selected) {
+          option.isExpanded = true;
+        }
+      });
+    }, 0);
   }
 
   @Watch('error')
@@ -400,18 +503,8 @@ export class Multiselect {
   handleOptionClick(option: Option) {
     this.internalError = false;
 
-    // Get all options for state updates
-    let allOptions: Option[] = [];
-    if (typeof this.options === 'string') {
-      try {
-        allOptions = JSON.parse(this.options);
-      } catch (err) {
-        console.error('Failed to parse options:', err);
-        return;
-      }
-    } else if (Array.isArray(this.options)) {
-      allOptions = this.options;
-    }
+    // Get all options from child elements
+    const allOptions = this.parseChildOptions();
 
     const wasSelected = option.selected;
 
@@ -447,13 +540,42 @@ export class Multiselect {
   }
 
   async selectAll() {
-    const allOptions = await this.fetchOptions(0, this.optionCount);
-    this.selectAllRecursive(allOptions);
+    // Get all option elements
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
 
-    // Also expand all parent options when selecting all
-    this.expandAllParents(allOptions);
+    // First, expand all parent options and select all leaf options using instances
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance) {
+        if (instance.hasChildren) {
+          // Expand all parent options
+          instance.isExpanded = true;
+        } else {
+          // Select all leaf options
+          instance.selected = true;
+        }
+      }
+    });
 
-    this.ifxSelect.emit(this.persistentSelectedOptions);
+    // Update all parent states after selecting all leaves
+    setTimeout(() => {
+      this.updateInitialParentStates();
+      // Force update after selecting all
+      this.updateSlotBasedSelections();
+      this.ifxSelect.emit(this.persistentSelectedOptions);
+    }, 0);
+  }
+
+  // Make this method public so it can be called by child components
+  public updateSlotBasedSelections() {
+    // Re-parse the current state from DOM elements
+    const allOptions = this.parseChildOptions();
+    const selectedLeafOptions = this.collectSelectedOptions(allOptions);
+    this.persistentSelectedOptions = selectedLeafOptions;
+    this.optionCount = this.countOptions(allOptions);
+
+    // Force re-render by triggering state update
+    this.persistentSelectedOptions = [...this.persistentSelectedOptions];
   }
 
   /**
@@ -472,18 +594,29 @@ export class Multiselect {
     });
   }
 
-  private selectAllRecursive(options: Option[]) {
-    for (const opt of options) {
-      if (opt.children && opt.children.length > 0) {
-        opt.selected = true;
-        this.selectAllRecursive(opt.children);
-      } else {
-        if (!this.persistentSelectedOptions.some((some) => some.value === opt.value )) {
-          opt.selected = true;
-          this.persistentSelectedOptions = [...this.persistentSelectedOptions, opt];
+  clearSelection() {
+    // For slot-based options, clear all option elements directly using instances
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance) {
+        instance.selected = false;
+        instance.indeterminate = false;
+        // Collapse all parent options when clearing
+        if (instance.hasChildren) {
+          instance.isExpanded = false;
         }
       }
-    }
+    });
+
+    this.persistentSelectedOptions = [];
+    this.expandedOptions = new Set();
+
+    // Force update after clearing
+    setTimeout(() => {
+      this.updateSlotBasedSelections();
+      this.ifxSelect.emit(this.persistentSelectedOptions);
+    }, 0);
   }
 
   handleDocumentClick = (event: Event) => {
@@ -595,32 +728,6 @@ export class Multiselect {
     });
   }
 
-  clearSelection() {
-    this.persistentSelectedOptions = [];
-
-    // Also collapse all expanded options when clearing selection
-    this.expandedOptions = new Set();
-
-    // Reset all option states to unselected in loadedOptions
-    if (this.loadedOptions.length > 0) {
-      this.unselectAllRecursive(this.loadedOptions);
-    }
-
-    // Also reset the original options data if it exists
-    if (typeof this.options === 'string') {
-      try {
-        const allOptions = JSON.parse(this.options);
-        this.unselectAllRecursive(allOptions);
-      } catch (err) {
-        console.error('Failed to parse options:', err);
-      }
-    } else if (Array.isArray(this.options)) {
-      this.unselectAllRecursive(this.options);
-    }
-
-    this.ifxSelect.emit(this.persistentSelectedOptions);
-  }
-
   positionDropdown() {
     const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
     const spaceBelow = window.innerHeight - wrapperRect.bottom;
@@ -681,56 +788,6 @@ export class Multiselect {
     }
   }
 
-  renderOption(option: Option, index: number, depth: number = 0) {
-    const isIndeterminate = option.indeterminate || false;
-    const isSelected = option.selected || false;
-    const disableCheckbox = !isSelected && this.maxItemCount && this.persistentSelectedOptions.length >= this.maxItemCount;
-    const uniqueId = `checkbox-${option.value}-${index}`;
-    const hasChildren = option.children && option.children.length > 0;
-    const isExpanded = this.expandedOptions.has(option.value);
-    // Different indentation for parent vs child options
-    const paddingLeft = hasChildren ? depth * 30 : depth * 40; // 30px for parents, 40px for children
-
-    return (
-      <div class="option-wrapper">
-        <div class={`option ${isSelected ? 'selected' : ''} ${disableCheckbox ? 'disabled' : ''}
-        ${hasChildren ? 'option--parent' : 'option--child'}
-        ${hasChildren && isExpanded ? 'option--expanded' : ''}
-        ${hasChildren && !isExpanded ? 'option--collapsed' : ''}
-        ${this.getSizeClass()}`}
-          style={{ paddingLeft: `${paddingLeft}px` }}
-          data-value={option.value}
-          onKeyDown={(e) => !disableCheckbox && this.handleOptionKeyDown(e, option)}
-          onClick={() => !disableCheckbox && this.handleOptionClick(option)}
-          tabindex="0"
-          role={`${hasChildren ? "treeitem" : "option"}`}
-          aria-expanded={hasChildren ? isExpanded.toString() : undefined}>
-
-          {hasChildren && (
-            <div class={`chevron-wrapper ${isExpanded ? 'chevron-wrapper--expanded' : 'chevron-wrapper--collapsed'}`} onClick={(e) => this.toggleOptionExpansion(option.value, e)}>
-              <ifx-icon icon="chevron-right-16"></ifx-icon>
-            </div>
-          )}
-
-          <ifx-checkbox
-            tabIndex={-1}
-            ref={(el) => option.checkboxRef = el}
-            id={uniqueId}
-            size="s"
-            checked={isSelected && !isIndeterminate}
-            indeterminate={isIndeterminate}
-            disabled={disableCheckbox}>
-          </ifx-checkbox>
-          <label htmlFor={uniqueId} onClick={(e) => e.stopPropagation()}>{option.label}</label>
-        </div>
-
-        {hasChildren && isExpanded && option.children.map((child, childIndex) =>
-          this.renderOption(child, `${index}-${childIndex}` as any, depth + 1)
-        )}
-      </div>
-    );
-  }
-
   findInOptions(options: Option[], searchTerm: string): Option | null {
     for (const option of options) {
       if (option.value === searchTerm) {
@@ -746,16 +803,15 @@ export class Multiselect {
     return null;
   }
 
-
-  renderSubOption(option: Option, index: string) {
-    // This method is now handled by the recursive renderOption method
-    return this.renderOption(option, index as any, 1);
-  }
-
   private renderSelectAll() {
-    const allSelected = this.persistentSelectedOptions.length === this.optionCount;
-    const noneSelected = this.persistentSelectedOptions.length === 0;
-    const indeterminate = this.optionCount > 0 && !noneSelected && !allSelected;
+    // Calculate state from current DOM elements
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    const leafOptions = Array.from(allOptionElements).filter((el: any) => !el.hasChildren);
+    const selectedLeafOptions = Array.from(allOptionElements).filter((el: any) => !el.hasChildren && el.selected);
+
+    const allSelected = leafOptions.length > 0 && selectedLeafOptions.length === leafOptions.length;
+    const noneSelected = selectedLeafOptions.length === 0;
+    const indeterminate = leafOptions.length > 0 && !noneSelected && !allSelected;
 
     const that = this;
     function toggleSelectAll() {
@@ -784,19 +840,19 @@ export class Multiselect {
 
 
   render() {
-    // Create a label for the selected options
+    // Don't call updateSlotBasedSelections here as it causes infinite loops
+    // Instead, rely on the notifications from child components
+
     const selectedOptionsLabels = this.persistentSelectedOptions
-      .filter(option => {
-        // check if option is a child and its parent is selected
-        const isChildSelectedWithParent = this.persistentSelectedOptions.some(parentOption =>
-          parentOption.children &&
-          parentOption.children.some(child => child.value === option.value) &&
-          parentOption.selected
-        );
-        return !isChildSelectedWithParent;
+      .map((option) => {
+        // Get the actual element to extract text content
+        const optionElement = this.el.querySelector(`ifx-multiselect-option[value="${option.value}"]`);
+        return optionElement?.textContent?.trim() || option.value;
       })
-      .map(option => option.label)
       .join(', ');
+
+    // Also check if we have any selections for the clear button
+    const hasSelections = this.persistentSelectedOptions.length > 0;
 
     return (
       <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
@@ -816,25 +872,29 @@ export class Multiselect {
           onClick={this.disabled ? undefined : (event) => this.handleWrapperClick(event)}
           onKeyDown={this.disabled ? undefined : (event) => this.handleKeyDown(event)} >
           <div class={`ifx-multiselect-input
-          ${this.persistentSelectedOptions.length === 0 ? 'placeholder' : ""}
+          ${hasSelections ? '' : 'placeholder'}
           `}
             onClick={this.disabled ? undefined : () => this.toggleDropdown()}
           >
-            {this.persistentSelectedOptions.length > 0 ? selectedOptionsLabels : this.placeholder}
+            {hasSelections ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}>
               {this.showSearch && <input type="text" role="textbox" class="search-input" onKeyDown={(e) => { e.stopPropagation() }} onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
               {this.showSelectAll && this.renderSelectAll()}
-              {this.filteredOptions.map((option, index) => this.renderOption(option, index, 0))}
+
+              <div class="ifx-multiselect-options">
+                <slot />
+              </div>
+
               {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
           <div class='ifx-multiselect-icon-container'>
 
             {/* Clear Button - will show only if there's a selection */}
-            {this.persistentSelectedOptions.length > 0 && (
+            {hasSelections && (
               <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`}
                    onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.clearSelection(); }}>
                 <ifx-icon icon="c-remove-16" key="clear-icon"></ifx-icon>
@@ -855,6 +915,63 @@ export class Multiselect {
         }
       </div>
     );
+  }
+
+  handleScroll(event: UIEvent) {
+    const element = event.target as HTMLElement;
+    const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2);
+
+    if (element.scrollTop >= halfwayPoint) {
+      this.fetchMoreOptions();
+    }
+  }
+
+  /**
+   * Updates initial parent states based on their children's selection state
+   */
+  private updateInitialParentStates() {
+    // Get all option elements, starting from deepest level
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    const optionsByDepth = Array.from(allOptionElements)
+      .map(el => ({
+        element: el,
+        instance: (el as any)['__stencil_instance'],
+        depth: parseInt(el.getAttribute('data-level') || '0')
+      }))
+      .filter(item => item.instance)
+      .sort((a, b) => b.depth - a.depth); // Start with deepest level
+
+    // Update parent states from deepest to shallowest
+    optionsByDepth.forEach(({ instance }) => {
+      if (instance.hasChildren) {
+        this.updateParentState(instance);
+      }
+    });
+  }
+
+  /**
+   * Updates a single parent's state based on its children
+   */
+  private updateParentState(parentInstance: any) {
+    const directChildren = Array.from(parentInstance.el.children as HTMLCollection)
+      .filter((child: Element) => child.tagName === 'IFX-MULTISELECT-OPTION')
+      .map(child => (child as any)['__stencil_instance'])
+      .filter(instance => instance !== null);
+
+    const selectedCount = directChildren.filter(child => child.selected).length;
+    const indeterminateCount = directChildren.filter(child => child.indeterminate).length;
+    const totalCount = directChildren.length;
+
+    if (selectedCount === totalCount && indeterminateCount === 0) {
+      parentInstance.selected = true;
+      parentInstance.indeterminate = false;
+    } else if (selectedCount === 0 && indeterminateCount === 0) {
+      parentInstance.selected = false;
+      parentInstance.indeterminate = false;
+    } else {
+      parentInstance.selected = false;
+      parentInstance.indeterminate = true;
+    }
   }
 
 }
