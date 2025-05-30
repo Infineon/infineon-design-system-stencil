@@ -1,3 +1,16 @@
+# v34.1.0 (Fri May 30 2025)
+
+#### 🚀 Enhancement
+
+- New component: Tree view [#1869](https://github.com/Infineon/infineon-design-system-stencil/pull/1869) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.0.0 (Fri May 30 2025)
 
 #### 💥 Breaking Change
