@@ -1,4 +1,4 @@
-import { Component, Prop, Element, h, Host, State, Listen, Fragment } from '@stencil/core';
+import { Component, Prop, Element, h, Host, State, Listen } from '@stencil/core';
 
 @Component({
   tag: 'ifx-multiselect-option',
@@ -17,6 +17,8 @@ export class MultiselectOption {
   @State() private hasChildren: boolean = false;
   @State() private depth: number = 0;
   @State() private level: number = 0;
+  @State() private searchTerm: string = '';
+  @State() private isSearchActive: boolean = false;
 
   componentWillLoad() {
     this.hasChildren = this.el.children.length > 0;
@@ -37,6 +39,150 @@ export class MultiselectOption {
     (this.el as any)['__stencil_instance'] = this;
 
     this.notifyMultiselect();
+
+    this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
+  }
+
+  disconnectedCallback() {
+    this.el.removeEventListener('ifx-search-filter', this.handleSearchFilter);
+  }
+
+  private handleSearchFilter = (event: CustomEvent) => {
+    const { searchTerm, isActive } = event.detail;
+    this.searchTerm = searchTerm.toLowerCase();
+    this.isSearchActive = isActive;
+
+    requestAnimationFrame(() => {
+      this.updateSearchClasses();
+    });
+  }
+
+  private updateSearchClasses() {
+    const optionDiv = this.el.shadowRoot?.querySelector('.option');
+    if (!optionDiv) return;
+
+    if (!this.isSearchActive) {
+      optionDiv.classList.remove('search-hidden', 'search-parent', 'search-match');
+      this.removeHighlighting();
+      return;
+    }
+
+    const textContent = this.getTextContent().toLowerCase();
+    const matchesSearch = textContent.includes(this.searchTerm);
+
+    requestAnimationFrame(() => {
+      const hasMatchingChildren = this.hasMatchingChildren();
+
+      optionDiv.classList.remove('search-hidden', 'search-parent', 'search-match');
+
+      if (matchesSearch && !this.hasChildren) {
+        optionDiv.classList.add('search-match');
+        this.highlightSearchTerm();
+      } else if (matchesSearch && this.hasChildren) {
+        optionDiv.classList.add('search-match');
+        this.highlightSearchTerm();
+        this.isExpanded = true;
+      } else if (!matchesSearch && this.hasChildren && hasMatchingChildren) {
+        optionDiv.classList.add('search-parent');
+        this.removeHighlighting();
+        this.isExpanded = true;
+      } else {
+        optionDiv.classList.add('search-hidden');
+        this.removeHighlighting();
+      }
+    });
+  }
+
+  private highlightSearchTerm() {
+    if (!this.searchTerm) return;
+
+    const labelElement = this.el.shadowRoot?.querySelector('.option-label');
+    if (!labelElement) return;
+
+    const slotElement = labelElement.querySelector('slot');
+    if (!slotElement) return;
+
+    this.removeHighlighting();
+
+    const originalText = this.getTextContent();
+    const searchTermLower = this.searchTerm.toLowerCase();
+    const originalTextLower = originalText.toLowerCase();
+
+    if (!originalTextLower.includes(searchTermLower)) return;
+
+    const searchIndex = originalTextLower.indexOf(searchTermLower);
+
+    if (searchIndex === -1) return;
+
+    const beforeMatch = originalText.substring(0, searchIndex);
+    const matchText = originalText.substring(searchIndex, searchIndex + searchTermLower.length);
+    const afterMatch = originalText.substring(searchIndex + searchTermLower.length);
+
+    const highlightedContent = document.createElement('span');
+    highlightedContent.className = 'highlighted-text';
+
+    if (beforeMatch) {
+      highlightedContent.appendChild(document.createTextNode(beforeMatch));
+    }
+
+    const boldElement = document.createElement('strong');
+    boldElement.className = 'search-highlight';
+    boldElement.textContent = matchText;
+    highlightedContent.appendChild(boldElement);
+
+    if (afterMatch) {
+      highlightedContent.appendChild(document.createTextNode(afterMatch));
+    }
+
+    labelElement.setAttribute('data-original-content', 'true');
+    slotElement.style.display = 'none';
+    labelElement.appendChild(highlightedContent);
+  }
+
+  private removeHighlighting() {
+    const labelElement = this.el.shadowRoot?.querySelector('.option-label');
+    if (!labelElement) return;
+
+    const slotElement = labelElement.querySelector('slot');
+    const highlightedElement = labelElement.querySelector('.highlighted-text');
+
+    if (highlightedElement) {
+      labelElement.removeChild(highlightedElement);
+    }
+
+    if (slotElement) {
+      slotElement.style.display = '';
+    }
+
+    labelElement.removeAttribute('data-original-content');
+  }
+
+  private getTextContent(): string {
+    let text = '';
+    Array.from(this.el.childNodes).forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent?.trim() || '';
+      }
+    });
+    return text || this.value || '';
+  }
+
+  private hasMatchingChildren(): boolean {
+    if (!this.hasChildren) return false;
+
+    const childOptions = Array.from(this.el.children)
+      .filter(child => child.tagName === 'IFX-MULTISELECT-OPTION') as HTMLElement[];
+
+    return childOptions.some(child => {
+      const childInstance = (child as any)['__stencil_instance'];
+      if (!childInstance) return false;
+
+      const childText = childInstance.getTextContent().toLowerCase();
+      const childMatches = childText.includes(this.searchTerm);
+      const grandChildrenMatch = childInstance.hasMatchingChildren();
+
+      return childMatches || grandChildrenMatch;
+    });
   }
 
   private calculateDepth(): number {

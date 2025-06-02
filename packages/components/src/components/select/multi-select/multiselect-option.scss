@@ -1,5 +1,4 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../../global/font.scss";
 
 :host {
   display: block;
@@ -33,6 +32,28 @@
 
   &--selected {
     // Additional styles for selected state if needed
+  }
+
+  &.search-hidden {
+    display: none !important;
+  }
+
+  &.search-parent {
+    .option-item {
+      .option-label {
+        color: tokens.$ifxColorEngineering400;
+      }
+    }
+  }
+
+  &.search-match {
+    .option-item {
+      .option-label {
+        .search-highlight {
+          font-weight: bold;
+        }
+      }
+    }
   }
 }
 
