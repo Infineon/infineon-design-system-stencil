@@ -1,3 +1,15 @@
+# v34.2.0 (Mon Jun 02 2025)
+
+#### 🚀 Enhancement
+
+- Single-select: exposes clear method for public use [#1879](https://github.com/Infineon/infineon-design-system-stencil/pull/1879) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.1.0 (Fri May 30 2025)
 
 #### 🚀 Enhancement
