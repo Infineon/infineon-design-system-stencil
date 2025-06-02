@@ -107,6 +107,16 @@ Type: `Promise<this>`
 
 
 
+### `clearSelection() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `clearStore() => Promise<this>`
 
 
