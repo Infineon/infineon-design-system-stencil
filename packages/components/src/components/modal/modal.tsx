@@ -81,7 +81,6 @@ export class IfxModal {
     this.attemptFocus(this.getFirstFocusableElement());
   };
 
-
   attemptFocus(element: HTMLElement | null) {
     if (element == null) {
       setTimeout(() => { //wait until DOM is fully loaded
@@ -94,7 +93,6 @@ export class IfxModal {
       element.focus();
     }, 0);
   }
-
 
   open() {
     this.showModal = true;
@@ -116,10 +114,7 @@ export class IfxModal {
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
       this.ifxOpen.emit();
-
     }
-
-
   }
 
   close() {
@@ -147,7 +142,6 @@ export class IfxModal {
     }
   };
 
-
   doBeforeClose(trigger: CloseEventTrigger) {
     const triggers = [];
     triggers.push(trigger);
@@ -156,8 +150,6 @@ export class IfxModal {
       this.opened = false;
     }
   }
-
-
 
   @Watch('opened')
   openedChanged(newValue) {
@@ -168,13 +160,35 @@ export class IfxModal {
     }
   }
 
-
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
       this.doBeforeClose('BACKDROP')
     }
   }
 
+  handleContentUpdate(e) {
+  const slotElement = e.target;
+  const nodes = slotElement.assignedNodes();
+  if(nodes.length > 0) {
+    nodes.forEach(node => {
+      if (node.observer) {
+        node.observer.disconnect();
+        delete node.observer;
+      }
+      const observer = new MutationObserver((mutationsList, _) => {
+        for(let mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+            if(this.showModal) { 
+              this.handleComponentOverflow();
+            }
+          }
+        }
+        });
+        observer.observe(node, { attributes: true, childList: true, subtree: true });
+        node.observer = observer;
+      });
+    } 
+  }
 
   handleButtonsSlotChange(e) {
     if(e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
@@ -229,7 +243,7 @@ export class IfxModal {
                 }
               </div>
               <div class="modal-body">
-                <slot name="content" /*onSlotchange={() => console.log('slots children modified')}*/ />
+                <slot name="content" onSlotchange={(e) => this.handleContentUpdate(e)} />
               </div>
               <div class={`modal-footer ${this.slotButtonsPresent ? 'buttons-present' : ''}`}>
                 <slot name="buttons" onSlotchange={(e)=>this.handleButtonsSlotChange(e)}>
