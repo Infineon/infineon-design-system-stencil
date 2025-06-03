@@ -1,3 +1,15 @@
+# v34.3.0 (Tue Jun 03 2025)
+
+#### 🚀 Enhancement
+
+- Modal: adds changes to dynamically handle content overflow [#1882](https://github.com/Infineon/infineon-design-system-stencil/pull/1882) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.2.0 (Mon Jun 02 2025)
 
 #### 🚀 Enhancement
