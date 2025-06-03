@@ -175,6 +175,27 @@ export class IfxModal {
     }
   }
 
+   handleContentUpdate(e) {
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    
+    if(nodes.length > 0) {
+      nodes.forEach(node => {
+        const observer = new MutationObserver((mutationsList, _) => {
+          for(let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              console.log('mutation', mutation.target)
+              if(this.showModal) { 
+              this.handleComponentOverflow();
+              }
+            }
+          }
+        });
+        observer.observe(node, { attributes: true, childList: true, subtree: true });
+      });
+    }
+  }
+
 
   handleButtonsSlotChange(e) {
     if(e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
@@ -229,7 +250,7 @@ export class IfxModal {
                 }
               </div>
               <div class="modal-body">
-                <slot name="content" /*onSlotchange={() => console.log('slots children modified')}*/ />
+                <slot name="content" onSlotchange={(e) => this.handleContentUpdate(e)} />
               </div>
               <div class={`modal-footer ${this.slotButtonsPresent ? 'buttons-present' : ''}`}>
                 <slot name="buttons" onSlotchange={(e)=>this.handleButtonsSlotChange(e)}>
