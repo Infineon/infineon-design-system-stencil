@@ -1,3 +1,15 @@
+# v34.4.0 (Wed Jun 04 2025)
+
+#### 🚀 Enhancement
+
+- Content-switcher: fixes bug where divider is visible when item is pre-selected [#1884](https://github.com/Infineon/infineon-design-system-stencil/pull/1884) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.3.0 (Tue Jun 03 2025)
 
 #### 🚀 Enhancement
