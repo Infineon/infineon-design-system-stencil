@@ -1,3 +1,15 @@
+# v34.4.1 (Wed Jun 04 2025)
+
+#### 🐛 Bug Fix
+
+- Segmented control: prevents default item selection [#1885](https://github.com/Infineon/infineon-design-system-stencil/pull/1885) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.4.0 (Wed Jun 04 2025)
 
 #### 🚀 Enhancement
