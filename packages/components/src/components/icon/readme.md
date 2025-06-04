@@ -34,6 +34,7 @@
  - [ifx-date-picker](../date-picker)
  - [ifx-dropdown-item](../dropdown/dropdown-item)
  - [ifx-dropdown-trigger-button](../dropdown/dropdown-trigger-button)
+ - [ifx-file-upload](../file-upload)
  - [ifx-filter-accordion](../table-advanced-version/filter-type-group/filter-accordion)
  - [ifx-filter-bar](../table-advanced-version/filter-bar)
  - [ifx-icon-button](../icon-button)
@@ -59,6 +60,7 @@
  - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
+ - [ifx-tree-view-item](../tree-view)
 
 ### Graph
 ```mermaid
@@ -73,6 +75,7 @@ graph TD;
   ifx-date-picker --> ifx-icon
   ifx-dropdown-item --> ifx-icon
   ifx-dropdown-trigger-button --> ifx-icon
+  ifx-file-upload --> ifx-icon
   ifx-filter-accordion --> ifx-icon
   ifx-filter-bar --> ifx-icon
   ifx-icon-button --> ifx-icon
@@ -98,6 +101,7 @@ graph TD;
   ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
+  ifx-tree-view-item --> ifx-icon
   style ifx-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

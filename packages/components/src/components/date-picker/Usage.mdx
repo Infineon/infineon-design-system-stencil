@@ -3,10 +3,11 @@ import * as DatePickerStories from './date-picker.stories';
 import DatePickerAnatomy from '../../../public-storybook/images/date-picker/date-picker-anatomy.png';
 import DatePickerSizes from '../../../public-storybook/images/date-picker/date-picker-sizes.png';
 import DatePickerStates from '../../../public-storybook/images/date-picker/date-picker-states.png';
+import DatePickerMouseInteraction from '../../../public-storybook/images/date-picker/date-picker-mouse-interaction.png';
 
 <Meta of={DatePickerStories} />
 
-# Date picker
+# Date Picker
 The date picker allows users to select a date from a combination of an input field and a calendar view. It is essential for our applications where date input is required.
 
 | Resources                                                                                                                      |
@@ -48,7 +49,11 @@ Each date element (e.g. DD, MM, YYYY) is clickable and editable via keyboard.
 If required, use caption text to provide additional context or information about the date field.
 
 
-**Calendar view (7)**\
+**Time element (7)**\
+Each time element (e.g. --:--) is clickable and editable via keyboard.
+
+
+**Calendar view (8)**\
 The calendar view provides a visual representation of a calendar, enabling users to navigate through months and years to select a specific date.
 
 ## States
@@ -58,3 +63,6 @@ The calendar view provides a visual representation of a calendar, enabling users
 There are two date field sizes: 36px and 40px. This will give you more flexibility in structuring layouts due to e.g. different button heights. It's important to maintain uniform field height while combining form elements on a single page.
 
 <img src={DatePickerSizes} alt="Date Picker Sizes" />
+
+## Mouse interaction
+<img src={DatePickerMouseInteraction} alt="Date Picker Mouse Interaction" />

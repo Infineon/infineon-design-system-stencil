@@ -20,7 +20,7 @@
   <Modal />
   <MultiSelect />
   <Notification />
-  <NumberIndicator />
+  <Indicator />
   <Pagination />
   <ProgressBar />
   <RadioButton />
@@ -40,7 +40,9 @@
   <Tag />
   <Textarea />
   <TextField />
+  <TreeView />
   <Tooltip />
+  <FileUpload />
   <Footer />
 </template>
 
@@ -59,7 +61,7 @@ import RadioButtonGroup from './components/RadioButtonGroup.vue'
 import TextField from './components/TextField.vue'
 import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
-import NumberIndicator from './components/NumberIndicator.vue'
+import Indicator from './components/Indicator.vue'
 import Link from './components/Link.vue'
 import Tabs from './components/Tabs.vue'
 import Sidebar from './components/Sidebar.vue'
@@ -88,5 +90,6 @@ import ContentSwitcher from './components/ContentSwitcher.vue'
 import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
+import FileUpload from './components/FileUpload.vue'
 
 </script>

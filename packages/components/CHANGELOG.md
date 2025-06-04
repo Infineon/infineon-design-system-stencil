@@ -1,3 +1,141 @@
+# v34.4.1 (Wed Jun 04 2025)
+
+#### 🐛 Bug Fix
+
+- Segmented control: prevents default item selection [#1885](https://github.com/Infineon/infineon-design-system-stencil/pull/1885) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.4.0 (Wed Jun 04 2025)
+
+#### 🚀 Enhancement
+
+- Content-switcher: fixes bug where divider is visible when item is pre-selected [#1884](https://github.com/Infineon/infineon-design-system-stencil/pull/1884) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.3.0 (Tue Jun 03 2025)
+
+#### 🚀 Enhancement
+
+- Modal: adds changes to dynamically handle content overflow [#1882](https://github.com/Infineon/infineon-design-system-stencil/pull/1882) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.2.0 (Mon Jun 02 2025)
+
+#### 🚀 Enhancement
+
+- Single-select: exposes clear method for public use [#1879](https://github.com/Infineon/infineon-design-system-stencil/pull/1879) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.1.0 (Fri May 30 2025)
+
+#### 🚀 Enhancement
+
+- New component: Tree view [#1869](https://github.com/Infineon/infineon-design-system-stencil/pull/1869) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.0.0 (Fri May 30 2025)
+
+#### 💥 Breaking Change
+
+- Number-indicator: renamed to Indicator, and implements dot variant [#1868](https://github.com/Infineon/infineon-design-system-stencil/pull/1868) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.7.0 (Wed May 28 2025)
+
+#### 🚀 Enhancement
+
+- Adds a new github issue template for internal use [#1875](https://github.com/Infineon/infineon-design-system-stencil/pull/1875) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.6.0 (Tue May 27 2025)
+
+#### 🚀 Enhancement
+
+- Modal: allows only dropdown menus to overflow container [#1871](https://github.com/Infineon/infineon-design-system-stencil/pull/1871) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.5.0 (Wed May 21 2025)
+
+#### 🚀 Enhancement
+
+- Date Picker: Updates documentation, and adds asterisk on label when required [#1855](https://github.com/Infineon/infineon-design-system-stencil/pull/1855) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.4.0 (Mon May 19 2025)
+
+#### 🚀 Enhancement
+
+- New Component: FileUpload [#1824](https://github.com/Infineon/infineon-design-system-stencil/pull/1824) ([@g-rdknt](https://github.com/g-rdknt) [@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.3.1 (Mon May 19 2025)
+
+#### 🐛 Bug Fix
+
+- Footer: adds accessibility enhancement [#1848](https://github.com/Infineon/infineon-design-system-stencil/pull/1848) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.3.0 (Mon May 12 2025)
 
 #### 🚀 Enhancement
