@@ -1,3 +1,17 @@
+# v34.4.2 (Wed Jun 04 2025)
+
+#### 🐛 Bug Fix
+
+- Resolves issue with font-family not working on Mac [#1845](https://github.com/Infineon/infineon-design-system-stencil/pull/1845) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 3
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.4.1 (Wed Jun 04 2025)
 
 #### 🐛 Bug Fix
