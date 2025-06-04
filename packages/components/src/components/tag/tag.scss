@@ -13,7 +13,9 @@
   border-radius: tokens.$ifxBorderRadiusRound;
   background-color: tokens.$ifxColorBaseWhite;
   gap: tokens.$ifxSpace100;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &:hover {
     cursor: pointer;
