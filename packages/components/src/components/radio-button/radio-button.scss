@@ -26,7 +26,9 @@
     padding: 0px;
     gap: tokens.$ifxSpace100;
     cursor: pointer;
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
     &.m .radioButton__wrapper {
         width: tokens.$ifxSize300;
