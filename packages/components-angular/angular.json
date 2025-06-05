@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "project": "projects/component-library/ng-package.json"
           },
@@ -38,7 +38,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:browser",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/my-app",
             "index": "projects/my-app/src/index.html",
@@ -55,8 +55,7 @@
             "styles": [
               "projects/my-app/src/styles.scss"
             ],
-            "scripts": [],
-            "buildTarget": "es2020"
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -86,7 +85,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "my-app:build:production"
@@ -98,13 +97,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "my-app:build"
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
@@ -119,8 +118,7 @@
             "styles": [
               "projects/my-app/src/styles.scss"
             ],
-            "scripts": [],
-            "buildTarget": "es2020"
+            "scripts": []
           }
         }
       }
