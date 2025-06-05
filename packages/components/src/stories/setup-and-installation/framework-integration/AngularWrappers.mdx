@@ -34,7 +34,7 @@ defineCustomElements(window);
 
 **4. Additional steps**
 
-**Inside app.modules.ts file**:
+**Create app.modules.ts file inside your app folder, and copy inside the following code**:
 
 ```js
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -45,6 +45,17 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     CUSTOM_ELEMENTS_SCHEMA
   ],
  ...
+})
+```
+
+**Update app.ts file:**:
+
+```js
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  ...
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 ```
 
@@ -68,7 +79,7 @@ And any changes made in the view(s) are immediately reflected in the underlying 
 When app data changes, so does the UI, and conversely.
 
 ```js
-//app.component.ts
+//app.ts
 switchChecked = false;
 switchDisabled = false;
 ...
@@ -76,6 +87,6 @@ toggleSwitchValue(event: any) {
   console.log("switch value change")
   this.switchChecked = event.detail;
 }
-//app.component.html
+//app.html
 <ifx-<ifx-switch [disabled]="switchDisabled" [value]="switchChecked" (ifxChange)="toggleSwitchValue($event)"></ifx-switch>
 ```
