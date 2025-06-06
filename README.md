@@ -200,9 +200,17 @@ This can also be achieved by updating your start script in the ``package.json`` 
 Include the following script tag in your index.html
 
 ```bash
-<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>'
-
+<script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
 ```
+
+For Mac users, please also reference our custom stylesheet together with the above mentioned script link
+
+```bash
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css"></link>
+```
+
+
+
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
