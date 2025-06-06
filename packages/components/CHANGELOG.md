@@ -1,3 +1,15 @@
+# v34.5.0 (Fri Jun 06 2025)
+
+#### 🚀 Enhancement
+
+- Angular: updates to latest version 20 [#1889](https://github.com/Infineon/infineon-design-system-stencil/pull/1889) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.4.2 (Wed Jun 04 2025)
 
 #### 🐛 Bug Fix
