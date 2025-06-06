@@ -34,21 +34,6 @@ defineCustomElements(window);
 
 **4. Additional steps**
 
-**Create app.modules.ts file inside your app folder, and copy inside the following code**:
-
-```js
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-@NgModule({
-  declarations: [],
-  imports: [],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-})
-export class AppModule {}
-```
-
 **Update app.ts file:**:
 
 ```js
