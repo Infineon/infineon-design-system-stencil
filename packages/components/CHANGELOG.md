@@ -1,3 +1,15 @@
+# v34.5.1 (Fri Jun 06 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the repository README to document the additional steps for Mac users when using the CDN link [#1894](https://github.com/Infineon/infineon-design-system-stencil/pull/1894) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.5.0 (Fri Jun 06 2025)
 
 #### 🚀 Enhancement
