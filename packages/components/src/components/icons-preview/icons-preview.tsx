@@ -12,7 +12,7 @@ export class IconsPreview {
   @State() isCopied: boolean = false;
   @State() copiedIndex: number;
   @State() htmlTag: string = '<ifx-icon icon="calendar-16"></ifx-icon>';
-  @State() iconName: string = `"c-info-24"`;
+  @State() iconName: string = `"c-info-16"`;
   @Element() el;
 
   handleCopiedText() { 

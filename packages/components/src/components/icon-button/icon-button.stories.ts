@@ -23,7 +23,7 @@ export default {
       table: {
         category: 'ifx-icon-button props',
         defaultValue: {
-          summary: 'c-info-24'
+          summary: 'c-info-16'
         }
       }
     },

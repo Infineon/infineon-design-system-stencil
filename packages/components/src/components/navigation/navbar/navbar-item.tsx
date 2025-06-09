@@ -408,7 +408,7 @@ export class NavbarItem {
             && this.hasChildNavItems 
             && this.isMenuItem && 
             <div class="menuItemLeftIconWrapper">
-                <ifx-icon icon="chevron-left-12" />
+                <ifx-icon icon="chevron-left-16" />
             </div>}
 
             <span class="label__wrapper">
@@ -425,11 +425,11 @@ export class NavbarItem {
             <ifx-indicator variant="dot" /> : ""}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
-            <ifx-icon icon="chevron-down-12" />
+            <ifx-icon icon="chevron-down-16" />
           </div>
           
          {<div class={`menuItemRightIconWrapper ${((this.itemPosition === 'right' && this.hasChildNavItems && this.isMenuItem) || (this.isSidebarMenuItem && this.hasChildNavItems)) ? '' : "hide"}`}>
-            <ifx-icon icon="chevron-right-12" />
+            <ifx-icon icon="chevron-right-16" />
           </div>}
         </a>
         
