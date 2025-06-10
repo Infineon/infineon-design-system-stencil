@@ -20,6 +20,7 @@ export class InfineonIconStencil {
   }
 
   convertHtmlToObject(htmlElement) { 
+    
     let pathToObject = Array
       .from(htmlElement.attributes, ({ name, value }) => ({ name, value }))
       .reduce((acc, current) => {
@@ -53,7 +54,7 @@ export class InfineonIconStencil {
 
   constructIcon() {
     if(this.ifxIcon) {
-      const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
+      const htmlPath = this.convertStringToHtml(this.ifxIcon)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
       return SVG;
@@ -70,8 +71,6 @@ export class InfineonIconStencil {
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
-
-
 
   render() {
     return (
