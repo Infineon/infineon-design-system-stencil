@@ -1,8 +1,8 @@
-import { Meta  } from '@storybook/blocks';
+import { Meta } from '@storybook/blocks';
+
 import * as SegmentedControlStories from './segmented-control.stories';
 import SegmentedControlStates from '../../../public-storybook/images/segmented-control/segmented-control-states.png';
 import SegmentedControlAnatomy from '../../../public-storybook/images/segmented-control/segmented-control-anatomy.png';
-import SegmentedControlAmount from '../../../public-storybook/images/segmented-control/segmented-control-amount.png';
 
 
 <Meta of={SegmentedControlStories} />
@@ -23,6 +23,8 @@ A segmented control is a horizontal set of three or more segments, each function
 - When the number of options exceeds six. Use a dropdown menu instead.
 - For actions that perform functions like "Add" or "Edit". Use buttons for such actions instead.
 - When each option leads to entirely different views or pages.
+
+> We recommend to use a maximum set of six controls.
 
 ## Anatomy
 <img src={SegmentedControlAnatomy} alt="Segmented Control Anatomy" />
