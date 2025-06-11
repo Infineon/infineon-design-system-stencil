@@ -332,7 +332,7 @@ export class Chip {
 
             {
               (this.selectedOptions.length > 2 && this.variant === 'multi') &&
-              <ifx-number-indicator>  {`+${this.selectedOptions.length - 2}`} </ifx-number-indicator>
+              <ifx-indicator variant='number' number={this.selectedOptions.length - 2}></ifx-indicator>
             }
           </div>
 

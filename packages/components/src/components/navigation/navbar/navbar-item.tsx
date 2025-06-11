@@ -398,7 +398,7 @@ export class NavbarItem {
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
               {this.icon && !this.showLabel && !isNaN(this.numberIndicator) && 
               <div class="number__indicator-wrapper">
-                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+                <ifx-indicator variant="number" number={this.numberIndicator}></ifx-indicator>
               </div>}
               {this.icon && !this.showLabel && !this.numberIndicator && this.dotIndicator && 
             <div class="dot__indicator-wrapper"></div>}
@@ -418,11 +418,11 @@ export class NavbarItem {
 
           {this.showLabel && this.numberIndicator && !isNaN(this.numberIndicator) ? 
             <div class="number__indicator-wrapper">
-                <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+                <ifx-indicator variant="number" number={this.numberIndicator}></ifx-indicator>
             </div> : ""}
 
             {this.showLabel && !this.numberIndicator && this.dotIndicator ? 
-            <div class="dot__indicator-wrapper"></div> : ""}
+            <ifx-indicator variant="dot" /> : ""}
 
           <div class={`navItemIconWrapper ${this.hasChildNavItems && !this.isMenuItem && !this.isSidebarMenuItem ? '' : "hide"}`}>
             <ifx-icon icon="chevron-down-12" />

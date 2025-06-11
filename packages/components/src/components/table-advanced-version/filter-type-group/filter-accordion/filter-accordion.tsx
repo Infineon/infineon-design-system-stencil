@@ -54,7 +54,7 @@ handleCheckedChange = (event: CustomEvent) => {
           <div class={`text-and-icon ${this.expanded ? 'expanded' : ''}`}>
             <div class="text">
               <span>{this.filterGroupName}</span>
-              <ifx-number-indicator>{this.count}</ifx-number-indicator>
+              <ifx-indicator variant='number' number={this.count}></ifx-indicator>
             </div>
             <ifx-icon
               class={this.expanded ? '' : 'hidden'}

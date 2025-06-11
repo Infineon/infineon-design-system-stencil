@@ -43,6 +43,7 @@ export const DIRECTIVES = [
   d.IfxIcon,
   d.IfxIconButton,
   d.IfxIconsPreview,
+  d.IfxIndicator,
   d.IfxLink,
   d.IfxList,
   d.IfxListEntry,
@@ -52,7 +53,6 @@ export const DIRECTIVES = [
   d.IfxNavbarItem,
   d.IfxNavbarProfile,
   d.IfxNotification,
-  d.IfxNumberIndicator,
   d.IfxOverviewTable,
   d.IfxPagination,
   d.IfxProgressBar,
@@ -81,5 +81,7 @@ export const DIRECTIVES = [
   d.IfxTemplatesUi,
   d.IfxTextField,
   d.IfxTextarea,
-  d.IfxTooltip
+  d.IfxTooltip,
+  d.IfxTreeView,
+  d.IfxTreeViewItem
 ];
