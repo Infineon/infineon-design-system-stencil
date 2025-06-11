@@ -1,3 +1,16 @@
+# v34.5.2 (Wed Jun 11 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the documentation of File Upload and Segmented controls [#1866](https://github.com/Infineon/infineon-design-system-stencil/pull/1866) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.5.1 (Fri Jun 06 2025)
 
 #### 🐛 Bug Fix
