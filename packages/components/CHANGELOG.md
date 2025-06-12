@@ -1,3 +1,15 @@
+# v34.7.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds a search feature in the icon library [#1900](https://github.com/Infineon/infineon-design-system-stencil/pull/1900) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.6.0 (Thu Jun 12 2025)
 
 #### 🚀 Enhancement
