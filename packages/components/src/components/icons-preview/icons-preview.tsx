@@ -12,7 +12,8 @@ export class IconsPreview {
   @State() isCopied: boolean = false;
   @State() copiedIndex: number;
   @State() htmlTag: string = '<ifx-icon icon="calendar-16"></ifx-icon>';
-  @State() iconName: string = `"c-info-16"`;
+  @State() iconName: string = `""`;
+  @State() searchTerm: string = '';
   @Element() el;
 
   handleCopiedText() { 
@@ -33,10 +34,30 @@ export class IconsPreview {
     this.handleCopiedText()
   }
 
+  get filteredIcons() {
+    if (!this.searchTerm) {
+      return this.iconsArray;
+    }
+    return this.iconsArray.filter(icon => 
+      icon.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  handleIconFilter() { 
+    const searchField = this.el.shadowRoot.querySelector('#search__field');
+    searchField.addEventListener('ifxInput', (e) => { 
+      this.searchTerm = e.detail;
+    })
+  }
+
   componentWillLoad() { 
     for(let icon in icons) { 
       this.iconsArray.push(icon)
     }
+  }
+
+  componentDidLoad() { 
+    this.handleIconFilter()
   }
 
   render() {
@@ -52,21 +73,29 @@ export class IconsPreview {
               You can also find the UI icons in Figma for use in mockups.
             </ifx-notification>
         </div>
-        <div class='html-wrapper'>
-          <span class="html-tag">&lt;</span>
-          <span class="component-name">ifx-icon</span>
-          <span class="attribute-name"> icon</span>=<span class="attribute-value">{this.iconName}</span>
-          <span class="html-tag">&gt;</span>
-          <span class="html-tag">&lt;/</span>
-          <span class="component-name">ifx-icon</span>
-          <span class="html-tag">&gt;</span>
-          <button onClick={() => this.copyHtmlString()}>{this.isCopied ? 'Copied' : 'Copy'}</button>
+        <div class="snippet__wrapper">
+          <div class="search__wrapper">
+            <ifx-search-field id="search__field" size="m" show-delete-icon="true" value="" autocomplete="on" placeholder="Search icon"></ifx-search-field>
+          </div>
+          <div class='html-wrapper'>
+            <span class="html-tag">&lt;</span>
+            <span class="component-name">ifx-icon</span>
+            <span class="attribute-name"> icon</span>=<span class="attribute-value">{this.iconName}</span>
+            <span class="html-tag">&gt;</span>
+            <span class="html-tag">&lt;/</span>
+            <span class="component-name">ifx-icon</span>
+            <span class="html-tag">&gt;</span>
+            <button onClick={() => this.copyHtmlString()}>{this.isCopied ? 'Copied' : 'Copy'}</button>
+          </div>
         </div>
         <div class="preview__container">
-          {this.iconsArray.map((icon, index) => 
+          {this.filteredIcons.map((icon, index) => 
           <div class={`preview__container-item ${this.isCopied && this.copiedIndex === index ? 'copied' : ""}`} onClick={() => this.copyIconText(icon)}>
             <ifx-icon icon={icon}></ifx-icon>
           </div>)}
+          {this.filteredIcons.length === 0 && (
+          <div class="no-results">No icons found matching "{this.searchTerm}"</div>
+          )}
         </div>
       </div>
     )

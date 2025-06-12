@@ -1,3 +1,40 @@
+# v34.7.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds a search feature in the icon library [#1900](https://github.com/Infineon/infineon-design-system-stencil/pull/1900) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.6.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes bug where correct window height is not detected on Edge browser causing content overflow [#1899](https://github.com/Infineon/infineon-design-system-stencil/pull/1899) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.5.2 (Wed Jun 11 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the documentation of File Upload and Segmented controls [#1866](https://github.com/Infineon/infineon-design-system-stencil/pull/1866) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.5.1 (Fri Jun 06 2025)
 
 #### 🐛 Bug Fix

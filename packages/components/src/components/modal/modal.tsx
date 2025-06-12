@@ -198,12 +198,17 @@ export class IfxModal {
     }
   }
 
-  isModalContentContainerHeightReachedViewport() {
-    const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
-    const viewportHeight = window.innerHeight;
-    const modalContentHeight = modalContent.offsetHeight;
-    return modalContentHeight >= viewportHeight * 0.9;
-  }
+ isModalContentContainerHeightReachedViewport() {
+  //Adding timeout for proper height detection on Edge browser
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
+      const modalContentHeight = modalContent.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      resolve(modalContentHeight >= viewportHeight * 0.9);
+    }, 100);
+  });
+}
 
 
   render() {

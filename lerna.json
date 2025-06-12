@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "35.0.0--canary.1896.bd752bd5c16c367ec3fb0493b8ca8e6508a16e48.0",
+  "version": "34.7.0--canary.1900.8208b6e8047340fe22e9d82395c9cff3e35ff3d7.0",
   "command": {
     "publish": {
       "verifyAccess": false
