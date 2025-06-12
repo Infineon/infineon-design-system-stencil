@@ -1,3 +1,15 @@
+# v34.6.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes bug where correct window height is not detected on Edge browser causing content overflow [#1899](https://github.com/Infineon/infineon-design-system-stencil/pull/1899) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.5.2 (Wed Jun 11 2025)
 
 #### 🐛 Bug Fix
