@@ -10,15 +10,21 @@
   margin-bottom: 40px;
 }
 
+.snippet__wrapper { 
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
 .html-wrapper {
   background: rgb(38, 38, 38);
   padding: 20px;
   color: white;
   font-family: monospace;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 99;
 
   & button {
     position: absolute;
@@ -60,6 +66,11 @@
   padding: 2px;
   flex-wrap: wrap;
   gap: 4px;
+
+  & .no-results { 
+    width: 100%;
+    text-align: center;
+  }
 
   & .preview__container-item {
     display: flex;
