@@ -199,6 +199,7 @@ export class IfxModal {
   }
 
  isModalContentContainerHeightReachedViewport() {
+  //Adding timeout for proper height detection on Edge browser
   return new Promise(resolve => {
     setTimeout(() => {
       const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
