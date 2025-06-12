@@ -107,7 +107,7 @@ export class IfxAccordionItem {
       <div class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
         <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0' ref={(el) => (this.titleEl = el as HTMLElement)}>
           <span aria-hidden="true" role="heading" aria-level={String(this.AriaLevel) as string} class="accordion-icon">
-            <ifx-icon icon="chevron-down-12"/>
+            <ifx-icon icon="chevron-down-16"/>
           </span>
           <span id="accordion-caption" class="accordion-caption">{this.caption}</span>
         </div>
