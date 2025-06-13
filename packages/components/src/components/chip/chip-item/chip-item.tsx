@@ -107,7 +107,7 @@ render() {
 
            {/* Selected indicator only visible in 'single' variant. */}
            <div class='chip-item__selected-indicator'> 
-               <ifx-icon icon={`check${this.chipState.size === 'small' ? '12' : '16'}`}> </ifx-icon> 
+               <ifx-icon icon='check-16'> </ifx-icon> 
            </div>
 
        </div>
