@@ -26,7 +26,7 @@ export class BreadcrumbItemLabel {
           <slot />
         </span>
        <span class="menu-icon-wrapper" aria-hiden="true">
-        <ifx-icon icon="chevron-down-12"></ifx-icon>
+        <ifx-icon icon="chevron-down-16"></ifx-icon>
        </span>
       </a>
     );
