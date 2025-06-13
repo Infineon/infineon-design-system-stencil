@@ -1939,7 +1939,7 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="clock24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="clock16"></ifx-icon>
                         </span>
                         <span>On Hold</span>
                       </li>
@@ -1957,7 +1957,7 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm16"></ifx-icon>
                         </span>
                         <span>In Progress</span>
                       </li>
@@ -1975,7 +1975,7 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm16"></ifx-icon>
                         </span>
                         <span>In Progress</span>
                       </li>
@@ -1993,7 +1993,7 @@ export class OverviewTable {
                     <ul>
                       <li class="planned__component-wrapper">
                         <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm24"></ifx-icon>
+                          <ifx-icon class="planned__icon" icon="roboticarm16"></ifx-icon>
                         </span>
                         <span>In Progress</span>
                       </li>
