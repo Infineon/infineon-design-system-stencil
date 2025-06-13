@@ -8,7 +8,7 @@ export default {
     variant: 'primary',
     size: 'm',
     disabled: false,
-    icon: 'c-info-24',
+    icon: 'c-info-16',
     href: '',
     target: '_blank',
     shape: 'round',
@@ -23,7 +23,7 @@ export default {
       table: {
         category: 'ifx-icon-button props',
         defaultValue: {
-          summary: 'c-info-24'
+          summary: 'c-info-16'
         }
       }
     },
