@@ -11,6 +11,7 @@ export class IconsPreview {
   @State() iconsArray: string[] = [];
   @State() isCopied: boolean = false;
   @State() copiedIndex: number;
+  @State() copiedIcon: string | null = null;
   @State() htmlTag: string = '<ifx-icon icon="calendar-16"></ifx-icon>';
   @State() iconName: string = `""`;
   @State() searchTerm: string = '';
@@ -23,9 +24,10 @@ export class IconsPreview {
     }, 2000);
   }
 
-  copyIconText(icon) { 
+   copyIconText(icon: string) { 
     this.htmlTag = `<ifx-icon icon="${icon}"></ifx-icon>`;
-    this.iconName = `"${icon}"`
+    this.iconName = `"${icon}"`;
+    this.copiedIcon = icon;
   }
 
   copyHtmlString() { 
@@ -34,13 +36,17 @@ export class IconsPreview {
     this.handleCopiedText()
   }
 
-  get filteredIcons() {
-    if (!this.searchTerm) {
-      return this.iconsArray;
-    }
+    get filteredIcons() {
+    const term = this.searchTerm.toLowerCase().trim();
+    if (!term) return this.iconsArray;
+    
     return this.iconsArray.filter(icon => 
-      icon.toLowerCase().includes(this.searchTerm.toLowerCase())
+      icon.toLowerCase().includes(term)
     );
+  }
+
+  getIconIndex(icon: string): number {
+    return this.iconsArray.indexOf(icon);
   }
 
   handleIconFilter() { 
@@ -51,9 +57,7 @@ export class IconsPreview {
   }
 
   componentWillLoad() { 
-    for(let icon in icons) { 
-      this.iconsArray.push(icon)
-    }
+    this.iconsArray = Object.keys(icons);
   }
 
   componentDidLoad() { 
@@ -89,10 +93,17 @@ export class IconsPreview {
           </div>
         </div>
         <div class="preview__container">
-          {this.filteredIcons.map((icon, index) => 
-          <div class={`preview__container-item ${this.isCopied && this.copiedIndex === index ? 'copied' : ""}`} onClick={() => this.copyIconText(icon)}>
-            <ifx-icon icon={icon}></ifx-icon>
-          </div>)}
+       {this.filteredIcons.map((icon) => (
+            <div 
+              key={icon}
+              class={`preview__container-item ${
+                this.isCopied && this.copiedIcon === icon ? 'copied' : ""
+              }`} 
+              onClick={() => this.copyIconText(icon)}
+            >
+              <ifx-icon icon={icon}></ifx-icon>
+            </div>
+          ))}
           {this.filteredIcons.length === 0 && (
           <div class="no-results">No icons found matching "{this.searchTerm}"</div>
           )}
