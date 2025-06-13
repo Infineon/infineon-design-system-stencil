@@ -305,7 +305,7 @@ export class SidebarItem {
             <div class="sidebar__nav-item-indicator">
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
-                  <ifx-icon icon="chevron-down-12" />
+                  <ifx-icon icon="chevron-down-16" />
                 </span>
               }
 

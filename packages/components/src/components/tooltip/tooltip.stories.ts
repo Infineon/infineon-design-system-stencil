@@ -8,7 +8,7 @@ export default {
     text: "Hi, I'm a tooltip",
     position: 'auto',
     variant: 'compact',
-    icon: 'c-info-24',
+    icon: 'c-info-16',
   },
   argTypes: {
     text: {
@@ -30,7 +30,7 @@ export default {
         type: {
           summary: 'string',
           defaultValue: {
-            summary: 'c-info-24'
+            summary: 'c-info-16'
           }
         }
       }

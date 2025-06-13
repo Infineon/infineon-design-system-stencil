@@ -772,7 +772,7 @@ export class FileUpload {
                           <span>
                             <span class="file-size">{this.formatSize(file.size)}</span>
                             <span class="file-status" aria-label={this.ariaLabelUploadedStatus}>
-                              <ifx-icon icon="check-12"></ifx-icon>
+                              <ifx-icon icon="check-16"></ifx-icon>
                               {this.labelUploaded}
                             </span>
                           </span>
@@ -863,7 +863,7 @@ export class FileUpload {
           tabIndex={0}
           aria-label={this.ariaLabelDropzone}
         >
-          <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
+          <ifx-icon icon="upload-16" class="custom-icon"></ifx-icon>
           <p>{this.labelDragAndDrop}</p>
           <p class="file-upload-info">
             {this.getSupportedFileText()}

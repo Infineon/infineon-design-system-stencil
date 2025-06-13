@@ -157,7 +157,7 @@ export class List {
         {visibleItems.map(entry => <slot name={entry.getAttribute('slot')}></slot>)}
         {(remainingItems > 0 || this.showMore) && (
           <div class="link-wrapper" onClick={this.toggleShowMore}>
-            <ifx-icon key={this.showMore.toString()} icon={this.showMore ? 'chevron-up-12' : 'chevron-down-12'} />
+            <ifx-icon key={this.showMore.toString()} icon={this.showMore ? 'chevron-up-16' : 'chevron-down-16'} />
             <ifx-link size="s" href="" target="_blank" variant="underlined" disabled={false} >
               {this.showMore ? 'Show less' : `Show ${remainingItems} more`}
             </ifx-link>

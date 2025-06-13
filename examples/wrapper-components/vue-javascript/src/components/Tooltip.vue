@@ -18,7 +18,7 @@
         element - Please click me</ifx-tooltip>
       <br />
 
-      <ifx-tooltip header="Text + icon tooltip header" text="Hi, I'm a tooltip with text and an icon" icon="c-info-24"
+      <ifx-tooltip header="Text + icon tooltip header" text="Hi, I'm a tooltip with text and an icon" icon="c-info-16"
         variant="extended" position="auto">I'm the text+icon tooltip reference
         element - Please hover me</ifx-tooltip>
 

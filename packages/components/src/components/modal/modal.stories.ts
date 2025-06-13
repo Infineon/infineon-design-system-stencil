@@ -222,7 +222,7 @@ export const Alert = Template.bind({});
 Alert.args = {
   caption: 'Alert-Brand Modal Title',
   closeOnOverlayClick: true,
-  alertIcon: 'arrowdoen24',
+  alertIcon: 'arrowdoen16',
   size: 's',
   variant: 'alert-brand',
   cancelButtonLabel: 'Cancel',

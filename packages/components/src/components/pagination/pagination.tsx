@@ -172,7 +172,7 @@ export class Pagination {
           <div class="pagination">
             <ifx-icon-button
               class="prev"
-              icon="arrow-left-24"
+              icon="arrow-left-16"
               onClick={() => this.changePage(this.internalPage - 1)}
             ></ifx-icon-button>
             
@@ -194,7 +194,7 @@ export class Pagination {
             
             <ifx-icon-button
               class="next"
-              icon="arrow-right-24"
+              icon="arrow-right-16"
               onClick={() => this.changePage(this.internalPage + 1)}
             ></ifx-icon-button>
           </div>
