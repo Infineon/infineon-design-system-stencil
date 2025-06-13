@@ -863,7 +863,7 @@ export class FileUpload {
           tabIndex={0}
           aria-label={this.ariaLabelDropzone}
         >
-          <ifx-icon icon="upload-24" class="custom-icon"></ifx-icon>
+          <ifx-icon icon="upload-16" class="custom-icon"></ifx-icon>
           <p>{this.labelDragAndDrop}</p>
           <p class="file-upload-info">
             {this.getSupportedFileText()}
