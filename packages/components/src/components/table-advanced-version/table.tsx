@@ -454,7 +454,7 @@ export class Table {
                 full-width="false"
                 onClick={() => this.toggleSidebarFilters()}
               >
-                <ifx-icon icon="cross-12"></ifx-icon>{this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
+                <ifx-icon icon="cross-16"></ifx-icon>{this.showSidebarFilters ? 'Hide Filters' : 'Show Filters'}
               </ifx-button>
             </div>
           )}
