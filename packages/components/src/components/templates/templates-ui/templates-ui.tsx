@@ -59,7 +59,7 @@ export class TemplatesUI {
         <div class="back__btn-wrapper">
           <ifx-icon-button onClick={() => this.filterTemplates(false)} shape="round" variant="tertiary" icon="arrow-left-16" target="_blank" size="m" />
           <div class="alert__wrapper">
-            <ifx-alert onClick={() => this.closeAlert()} aria-live="assertive" variant="danger" icon="c-info-24">All fields are mandatory</ifx-alert>
+            <ifx-alert onClick={() => this.closeAlert()} aria-live="assertive" variant="danger" icon="c-info-16">All fields are mandatory</ifx-alert>
           </div>
         </div>
         <h2 class="templates__title">Choose your template</h2>
