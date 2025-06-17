@@ -47,13 +47,19 @@ export class InfineonIconStencil {
     return svgPaths
   }
 
-   getSVG(svgPath) {
-    return <svg class="inline-svg" width={this.ifxIcon.width} height={this.ifxIcon.height} xmlns="http://www.w3.org/2000/svg" fill={this.ifxIcon.fill} viewBox={this.ifxIcon.viewBox}>{...svgPath}</svg>
+  getSVG(svgPath) {
+    const htmlPath = this.convertStringToHtml(this.ifxIcon) as SVGElement;
+    const width = htmlPath.getAttribute('width');
+    const height = htmlPath.getAttribute('height');
+    const fill = htmlPath.getAttribute('fill');
+    const viewBox = htmlPath.getAttribute('viewBox');
+    
+    return <svg class="inline-svg" width={width} height={height} xmlns="http://www.w3.org/2000/svg" fill={fill} viewBox={viewBox}>{...svgPath}</svg>
   }
 
   constructIcon() {
     if(this.ifxIcon) {
-      const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
+      const htmlPath = this.convertStringToHtml(this.ifxIcon)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
       return SVG;
