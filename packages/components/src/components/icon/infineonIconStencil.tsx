@@ -47,7 +47,7 @@ export class InfineonIconStencil {
     return svgPaths
   }
 
-  getSVG(svgPath) {
+   getSVG(svgPath) {
     return <svg class="inline-svg" width={this.ifxIcon.width} height={this.ifxIcon.height} xmlns="http://www.w3.org/2000/svg" fill={this.ifxIcon.fill} viewBox={this.ifxIcon.viewBox}>{...svgPath}</svg>
   }
 
@@ -70,8 +70,6 @@ export class InfineonIconStencil {
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
     this.ifxIcon = getIcon(removeHyphen(this.icon));
   }
-
-
 
   render() {
     return (
