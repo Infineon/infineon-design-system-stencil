@@ -19,6 +19,12 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
+   &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff; /* Custom focus frame */
+    border-radius: 4px; /* Optional: rounded corners */
+  }
+
   &.hide { 
     display: none;
   }
@@ -161,6 +167,11 @@
 
 .container { 
   position: relative;
+  &.focus { 
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff; /* Custom focus frame */
+    border-radius: 4px; /* Optional: rounded corners */
+  }
 
   & .sub__layer-back-button { 
     display: none;
