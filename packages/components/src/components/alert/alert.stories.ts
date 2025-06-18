@@ -8,7 +8,7 @@ export default {
     label: 'Attention! This is an alert message — check it out!',
     variant: 'primary',
     closable: true,
-    icon: 'c-info-24',
+    icon: 'c-info-16',
     AriaLive: 'assertive',
   },
 
@@ -39,7 +39,7 @@ export default {
       table: {
         category: 'ifx-alert props',
         defaultValue: {
-          summary: 'c-info-24'
+          summary: 'c-info-16'
         }
       }
     },
