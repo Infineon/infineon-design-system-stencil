@@ -1,3 +1,15 @@
+# v34.8.0 (Wed Jun 18 2025)
+
+#### 🚀 Enhancement
+
+- Makes the icon prop of icon and icon-button components dynamic [#1905](https://github.com/Infineon/infineon-design-system-stencil/pull/1905) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.7.0 (Thu Jun 12 2025)
 
 #### 🚀 Enhancement

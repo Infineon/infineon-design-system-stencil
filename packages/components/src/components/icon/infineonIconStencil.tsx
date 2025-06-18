@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
  
 
@@ -11,8 +11,15 @@ import { getIcon } from '@infineon/infineon-icons'
 export class InfineonIconStencil {
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
+  @State() internalIcon: string;
   @Event() consoleError: EventEmitter<boolean>;
- 
+
+   @Watch('icon')
+    updateIcon(newIcon: string) { 
+      this.internalIcon = newIcon;
+      this.setIcon()
+    }
+
   convertStringToHtml(htmlString) { 
     const div = document.createElement('div')
     div.innerHTML = htmlString
@@ -72,9 +79,14 @@ export class InfineonIconStencil {
     }
   }
 
-  componentWillLoad() {
+  setIcon() { 
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
-    this.ifxIcon = getIcon(removeHyphen(this.icon));
+    this.ifxIcon = getIcon(removeHyphen(this.internalIcon));
+  }
+
+  componentWillLoad() {
+    this.internalIcon = this.icon;
+    this.setIcon()
   }
 
   render() {
