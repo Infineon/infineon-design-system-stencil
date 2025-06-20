@@ -1,3 +1,15 @@
+# v35.0.0 (Fri Jun 20 2025)
+
+#### 💥 Breaking Change
+
+- Icons: replaces all existing icons with single 16px-sized icons [#1896](https://github.com/Infineon/infineon-design-system-stencil/pull/1896) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v34.8.0 (Wed Jun 18 2025)
 
 #### 🚀 Enhancement
