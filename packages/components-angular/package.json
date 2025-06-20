@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "35.0.0--canary.1896.af600e4b8bd07013458c22c573c9caf55c938666.0",
+  "version": "35.0.1--canary.1909.1f903e44fb8808283afda112768d0580ec5297d9.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,7 +25,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@infineon/infineon-design-system-angular": "35.0.0--canary.1896.af600e4b8bd07013458c22c573c9caf55c938666.0",
+    "@infineon/infineon-design-system-angular": "35.0.1--canary.1909.1f903e44fb8808283afda112768d0580ec5297d9.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
