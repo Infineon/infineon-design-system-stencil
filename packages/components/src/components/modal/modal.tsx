@@ -243,7 +243,7 @@ export class IfxModal {
                 <h2 class="modal-caption">{this.caption}</h2>
                 { 
                   this.showCloseButton && 
-                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
+                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-16" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
                   </ifx-icon-button>
                 }
               </div>
