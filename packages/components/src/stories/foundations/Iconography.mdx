@@ -28,20 +28,18 @@ Icons play a crucial role in our design system, providing visual representation 
 - Avoid overcrowding interfaces with too many icons, as this can lead to visual clutter and confusion. Strive for a balanced composition that maintains a clean and intuitive design.  
 
 ## Size
-To ensure consistency and alignment, we utilize a 4px grid size for our icons. This grid aligns with the overall design system and facilitates seamless integration into our interfaces. We have established four fixed icon sizes: 12×12px, 16×16px, and 24×24px. 
-Choose the appropriate size based on the context and surrounding elements.
-> Icons within our DDS components come with the right icon size out of the box!  
+We offer a scalable 16×16px icon system that adapts seamlessly to different sizes. Our icons work for minimum sizes down to 12×12px and can be scaled up to a maximum of 32×32px.
+> Icons used within our DDS components come with the correct size out of the box!  
 
 <img src={IconSizes} alt="Icon Sizes" />  
 
 ## Structure
-All our icon sizes include the icon itself and the surrounding area. 
-
+Each icon consists of the icon itself and a 16×16px area that is used as a carrier area for the icon. To ensure that all icons achieve a consistent look, they are sometimes format-filling and sometimes surrounded by additional white space.
 <img src={IconStructure} alt="Icon Structure" width="50%"/> 
 
 ## Variants 
  
-The DDS provides two different kinds of icons: outlined and filled.
+The filled variant is also available for certain icons.
 
 <img src={IconVariants} alt="Icon Variants" width="50%" />  
  
@@ -49,7 +47,7 @@ The DDS provides two different kinds of icons: outlined and filled.
  
 ### Size alignment 
 Try to pair specific typographic styles with corresponding icon sizes. 
-The `$ifxBodyBody03` and `$ifxBodyBody04` typographic style is well-suited for 16px icons, while larger typography, such as the `$ifxHeadingHeading04`, works best with 24px icons. 
+For example the `$ifxBodyBody03` and `$ifxBodyBody04` typographic style is well-suited for 16px sized icons, while larger typography, such as the `$ifxHeadingHeading04`, works best with 24px sized icons. 
  
 <img src={IconSizeAlignment} alt="Icon Size Alignment" width="50%" />  
  
