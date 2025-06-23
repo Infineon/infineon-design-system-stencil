@@ -1,4 +1,4 @@
-import { icons } from '@infineon/infineon-icons';
+import * as icons from '@infineon/infineon-icons'; 
 import { action } from '@storybook/addon-actions';
 
 export default {
@@ -34,6 +34,7 @@ export default {
 
 const DefaultTemplate = ({ icon }) => {
   const ifxIcon = document.createElement('ifx-icon');
+  console.log("icon", icon);
   ifxIcon.setAttribute('icon', icon);
   ifxIcon.addEventListener('consoleError', action('consoleError'));
   return ifxIcon;

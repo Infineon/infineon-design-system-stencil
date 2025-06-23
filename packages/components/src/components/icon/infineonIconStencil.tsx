@@ -1,7 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
-import { getIcon } from '@infineon/infineon-icons'
+import { getIcon } from '@infineon/infineon-icons'; 
  
-
 
 @Component({
   tag: 'ifx-icon',
@@ -79,10 +78,27 @@ export class InfineonIconStencil {
     }
   }
 
-  setIcon() { 
-    const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
-    this.ifxIcon = getIcon(removeHyphen(this.internalIcon));
-  }
+setIcon() { 
+  const normalize = str =>
+    str
+      .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
+      .replace(/^([A-Z])/, m => m.toLowerCase())
+      .toLowerCase();
+
+  const iconName = normalize(this.internalIcon);
+  this.ifxIcon = getIcon(iconName); // <-- call as a function
+}
+
+// setIcon() { 
+//   const toCamelCase = str =>
+//     str
+//       .replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
+//       .replace(/^(.)/, (m) => m.toLowerCase()); // ensure first letter is lowercase
+
+//   const iconName = toCamelCase(this.internalIcon);
+//   this.ifxIcon = getIcon(iconName);
+// }
+
 
   componentWillLoad() {
     this.internalIcon = this.icon;
