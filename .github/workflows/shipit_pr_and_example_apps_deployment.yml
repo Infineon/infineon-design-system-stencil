@@ -51,6 +51,10 @@ jobs:
           npm install
           git checkout -- package-lock.json 
 
+      - name: Run tests
+        run: npm test
+
+        
       - name: Build and deploy Stencil core package
         id: build
         env:

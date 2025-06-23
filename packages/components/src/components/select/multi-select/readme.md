@@ -7,21 +7,21 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type              | Default           |
-| ----------------- | ------------------- | ----------- | ----------------- | ----------------- |
-| `batchSize`       | `batch-size`        |             | `number`          | `50`              |
-| `disabled`        | `disabled`          |             | `boolean`         | `false`           |
-| `error`           | `error`             |             | `boolean`         | `false`           |
-| `errorMessage`    | `error-message`     |             | `string`          | `"Error"`         |
-| `label`           | `label`             |             | `string`          | `""`              |
-| `maxItemCount`    | `max-item-count`    |             | `number`          | `undefined`       |
-| `name`            | `name`              |             | `string`          | `undefined`       |
-| `options`         | `options`           |             | `any[] \| string` | `undefined`       |
-| `placeholder`     | `placeholder`       |             | `string`          | `""`              |
-| `showClearButton` | `show-clear-button` |             | `boolean`         | `true`            |
-| `showSearch`      | `show-search`       |             | `boolean`         | `true`            |
-| `showSelectAll`   | `show-select-all`   |             | `boolean`         | `true`            |
-| `size`            | `size`              |             | `string`          | `'medium (40px)'` |
+| Property          | Attribute           | Description | Type                | Default           |
+| ----------------- | ------------------- | ----------- | ------------------- | ----------------- |
+| `batchSize`       | `batch-size`        |             | `number`            | `50`              |
+| `disabled`        | `disabled`          |             | `boolean`           | `false`           |
+| `error`           | `error`             |             | `boolean`           | `false`           |
+| `errorMessage`    | `error-message`     |             | `string`            | `"Error"`         |
+| `label`           | `label`             |             | `string`            | `""`              |
+| `maxItemCount`    | `max-item-count`    |             | `number`            | `undefined`       |
+| `name`            | `name`              |             | `string`            | `undefined`       |
+| `options`         | `options`           |             | `any[] \| string`   | `[]`              |
+| `placeholder`     | `placeholder`       |             | `string`            | `""`              |
+| `showClearButton` | `show-clear-button` |             | `boolean`           | `true`            |
+| `showSearch`      | `show-search`       |             | `boolean`           | `true`            |
+| `showSelectAll`   | `show-select-all`   |             | `boolean \| string` | `true`            |
+| `size`            | `size`              |             | `string`            | `'medium (40px)'` |
 
 
 ## Events
