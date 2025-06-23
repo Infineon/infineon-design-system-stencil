@@ -20,16 +20,14 @@ describe('ifx-multiselect', () => {
 
   it('should render without errors', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-multiselect></ifx-multiselect>');
-
+await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     const element = await page.find('ifx-multiselect');
     expect(element).toHaveClass('hydrated');
   });
 
   it('should emit ifxOpen when dropdown is toggled', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-multiselect></ifx-multiselect>');
-
+await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     const select = await page.find('ifx-multiselect');
     const openEvent = await select.spyOnEvent('ifxOpen');
 
@@ -41,8 +39,7 @@ describe('ifx-multiselect', () => {
 
   it('should toggle dropdown when clicked', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-multiselect></ifx-multiselect>');
-
+await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     const component = await page.find('ifx-multiselect');
 
     await component.click();
@@ -76,9 +73,9 @@ describe('ifx-multiselect', () => {
   it('should render the options, when dropdown is clicked', async () => {
     const page = await newE2EPage();
     await page.setContent(`
-      <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect show-select-all="false" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
-    `);
+  <div style="height: 1000px; width: 1000px;"></div>
+  <ifx-multiselect show-select-all="${false}" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
+`);
 
     // open dropdown
     const component = await page.find('ifx-multiselect');
@@ -97,7 +94,7 @@ describe('ifx-multiselect', () => {
     const page = await newE2EPage();
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
-      <ifx-multiselect show-select-all="false"></ifx-multiselect>
+      <ifx-multiselect options="[]" show-select-all=${false}></ifx-multiselect>
     `);
 
     // open dropdown

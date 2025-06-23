@@ -11,8 +11,8 @@ describe('Indicator', () => {
     const container = await page.find('ifx-indicator >>> .number__container');
     expect(container).toHaveClass('number__container');
 
-    const span = await page.find('ifx-indicator >>> .number__container > number__wrapper');
-    expect(await span.getProperty('textContent')).toBe('');
+    const span = await page.find('ifx-indicator >>> .number__container > .number__wrapper');
+    expect(await span.getProperty('textContent')).toBe('5');
   });
 
   it('should apply inverted class', async () => {

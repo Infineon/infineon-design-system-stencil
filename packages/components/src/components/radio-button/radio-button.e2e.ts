@@ -13,8 +13,7 @@ describe('ifx-radio-button', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button checked>Test</ifx-radio-button>');
     const element = await page.find('ifx-radio-button');
-    const checkmark = await page.find('.radioButton__wrapper-mark');
-
+    const checkmark = await page.find('ifx-radio-button >>> .radioButton__wrapper-mark');
     expect(await element.callMethod("isChecked")).toBe(true);
     expect(checkmark).not.toBeNull();
   });
@@ -23,8 +22,7 @@ describe('ifx-radio-button', () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
     const element = await page.find('ifx-radio-button');
-    const checkmark = await page.find('.radioButton__wrapper-mark');
-
+    const checkmark = await page.find('ifx-radio-button >>> .radioButton__wrapper-mark');
     expect(await element.callMethod("isChecked")).toBe(false);
     expect(checkmark).toBeNull();
   });
@@ -36,8 +34,7 @@ describe('ifx-radio-button', () => {
 
     const changeSpy = await component.spyOnEvent('ifxChange');
 
-    const button = await page.find('ifx-radio-button .radioButton__wrapper')
-
+    const button = await page.find('ifx-radio-button >>> .radioButton__wrapper');
     await button.click();
 
     expect(changeSpy).toHaveReceivedEventDetail(true);
@@ -50,7 +47,7 @@ describe('ifx-radio-button', () => {
 
     const changeSpy = await component.spyOnEvent('ifxChange');
 
-    const label = await page.find('ifx-radio-button .label')
+    const label = await page.find('ifx-radio-button >>> .label'); 
     await label.click();
 
     expect(changeSpy).toHaveReceivedEventDetail(true);
@@ -63,18 +60,18 @@ describe('ifx-radio-button', () => {
       <ifx-radio-button name="test" value="two" checked>Two</ifx-radio-button>
       `);
 
-      const button1 = await page.find('ifx-radio-button[value="one"]');
-      const button2 = await page.find('ifx-radio-button[value="two"]');
+    const button1 = await page.find('ifx-radio-button[value="one"]');
+    const button2 = await page.find('ifx-radio-button[value="two"]');
 
-      await button1.click();
+    await button1.click();
 
-      expect(await button1.callMethod('isChecked')).toBe(true);
-      expect(await button2.callMethod('isChecked')).toBe(false);
+    expect(await button1.callMethod('isChecked')).toBe(true);
+    expect(await button2.callMethod('isChecked')).toBe(false);
 
-      await button2.click();
+    await button2.click();
 
-      expect(await button1.callMethod('isChecked')).toBe(false);
-      expect(await button2.callMethod('isChecked')).toBe(true);
+    expect(await button1.callMethod('isChecked')).toBe(false);
+    expect(await button2.callMethod('isChecked')).toBe(true);
   });
 
   it('should have the correct value when form is submitted', async () => {

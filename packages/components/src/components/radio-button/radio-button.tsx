@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { Component, Method, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
 
 @Component({
   tag: 'ifx-radio-button',
@@ -17,6 +17,11 @@ export class RadioButton {
   @State() internalChecked: boolean = false;
   @State() hasSlot: boolean = false;
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
+  
   private inputElement: HTMLInputElement;
   private internals: ElementInternals;
   private fallbackInput: HTMLInputElement;
