@@ -31,7 +31,7 @@ export default {
     icon: {
       description: 'The icon to be displayed.',
       control: 'select',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       table: {
         category: 'ifx-button props',
         type: {

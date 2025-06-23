@@ -86,7 +86,7 @@ export default {
     },
     iconOfNavbarItem: {
       name: 'icon',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       description: 'The icon to display in the navbar item.',
       table: {
