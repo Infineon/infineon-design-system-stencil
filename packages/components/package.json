@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "5.0.0",
-    "@infineon/infineon-icons": "^4.0.0",
+    "@infineon/infineon-icons": "4.4.1--canary.89.d43561434a6639146a48f6a8f9b95687f6390ebd.0",
     "@popperjs/core": "^2.11.8",
     "@stencil/angular-output-target": "^0.9.0",
     "@stencil/core": "4.27.2",
