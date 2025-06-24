@@ -28,8 +28,6 @@ export class Multiselect {
   @Prop() name: string;
   /** @deprecated Use slot-based options instead */
   @Prop() options: any[] | string;
-  @Prop() batchSize: number = 50;
-  @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
   @State() internalError: boolean = false;
@@ -40,7 +38,6 @@ export class Multiselect {
   @Prop() placeholder: string = "";
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
-  @Prop() maxItemCount: number;
   @State() isLoading: boolean = false;
   @State() loadedOptions: Option[] = [];
   @State() filteredOptions: Option[] = [];
@@ -119,15 +116,7 @@ export class Multiselect {
 
     // Parse options from child elements instead of props
     const allOptions = this.parseChildOptions();
-    this.loadedOptions = allOptions.slice(0, this.batchSize);
-    this.isLoading = false;
-  }
-
-  async fetchMoreOptions() {
-    this.isLoading = true;
-    const allOptions = this.parseChildOptions();
-    const moreOptions = allOptions.slice(this.loadedOptions.length, this.loadedOptions.length + this.batchSize);
-    this.loadedOptions = [...this.loadedOptions, ...moreOptions];
+    this.loadedOptions = allOptions;
     this.isLoading = false;
   }
 
@@ -443,12 +432,6 @@ export class Multiselect {
     this.internals.setFormValue(formData);
   }
 
-  isSelectionLimitReached(option: Option): boolean {
-    let newOptionsLength = option.children ? option.children.length : 1;
-    return this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount &&
-      !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)
-  }
-
   collapseAll() {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     allOptionElements.forEach((optionEl: any) => {
@@ -618,14 +601,12 @@ export class Multiselect {
     const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2);
 
     if (element.scrollTop >= halfwayPoint) {
-      this.fetchMoreOptions();
+      // this.fetchMoreOptions();
     }
   }
 
   getSizeClass() {
-    return `${this.size}` === "s"
-      ? "small-select"
-      : "medium-select";
+    return '';
   }
 
   render() {
@@ -640,6 +621,13 @@ export class Multiselect {
     // Also check if we have any selections for the clear button
     const hasSelections = this.persistentSelectedOptions.length > 0;
 
+    // Prüfen, ob es ein flaches Multi Select ist (keine Option hat verschachtelte Childs)
+    let isFlatMultiselect = false;
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    if (allOptionElements.length > 0) {
+      isFlatMultiselect = Array.from(allOptionElements).every(option => option.children.length === 0);
+    }
+
     return (
       <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
@@ -649,7 +637,6 @@ export class Multiselect {
             </div> : null
         }
         <div class={`ifx-multiselect-wrapper
-        ${this.getSizeClass()}
         ${this.dropdownOpen ? 'active' : ''}
         ${this.dropdownFlipped ? 'is-flipped' : ''}
         ${this.internalError ? 'error' : ""}
@@ -682,10 +669,12 @@ export class Multiselect {
 
                 <div class="ifx-multiselect-dropdown-controls">
                   {this.showSelectAll && this.renderSelectAll()}
-                  <div class="expand-collapse-controls">
-                    <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
-                    <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
-                  </div>
+                  {!isFlatMultiselect && (
+                    <div class="expand-collapse-controls">
+                      <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
+                      <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -707,7 +696,7 @@ export class Multiselect {
             )}
             <div class={`icon-wrapper ${this.dropdownOpen ? 'icon-wrapper--open' : 'icon-wrapper--closed'}`}
                  onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.toggleDropdown(); }}>
-              <ifx-icon icon='chevron-right-16' key="chevron-icon"></ifx-icon>
+              <ifx-icon icon='chevron-down-16' key="chevron-icon"></ifx-icon>
             </div>
           </div>
 

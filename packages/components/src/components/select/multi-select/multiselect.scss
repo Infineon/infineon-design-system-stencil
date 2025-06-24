@@ -7,18 +7,9 @@
   box-sizing: border-box;
   font-family: tokens.$ifxFontFamilyBody;
 
-  &.small-select {
-    height: 36px;
-  }
-
-  &.medium-select {
-    height: 40px;
-  }
-
   &:hover {
     cursor: pointer;
   }
-
 
   .ifx-label-wrapper {
     font-size: tokens.$ifxFontSizeM;
@@ -49,17 +40,11 @@
     width: 100%;
     font-weight: 400;
     font-style: normal;
-
-
-    &.small-select {
-      height: 36px;
-      padding: 8px 12px;
-    }
-
-    &.medium-select {
-      height: 40px;
-      padding: 8px 16px;
-    }
+    height: 40px;
+    line-height: 24px;
+    padding: 8px 16px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
 
     &:focus-visible {
       outline: none;

@@ -59,8 +59,10 @@ export class SetFilter {
       case 'multi-select':
         return (
           <ifx-multiselect
-            label={this.filterLabel}                placeholder={this.placeholder}
-                onIfxSelect={event => this.handleMultiselectOptionChange(event)}
+            label={this.filterLabel}
+            placeholder={this.placeholder}
+            options={this.options}
+            onIfxSelect={event => this.handleMultiselectOptionChange(event)}
           />
         );
       default:

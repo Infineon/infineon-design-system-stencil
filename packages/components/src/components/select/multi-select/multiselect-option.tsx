@@ -414,9 +414,19 @@ export class MultiselectOption {
   }
 
   render() {
+
+    let isFlatMultiselect = false;
+    const parentMultiselect = this.el.closest('ifx-multiselect');
+    if (parentMultiselect) {
+      const allOptions = Array.from(parentMultiselect.querySelectorAll('ifx-multiselect-option'));
+      isFlatMultiselect = allOptions.every(option => option.children.length === 0);
+    }
+
     const basePadding = this.level * 28 + 16;
     const additionalPadding = this.hasChildren ? 0 : 28;
-    const totalPadding = basePadding + additionalPadding;
+    let totalPadding = basePadding + additionalPadding;
+
+    const optionItemStyle = isFlatMultiselect ? undefined : { paddingLeft: `${totalPadding}px` };
 
     return (
       <Host>
@@ -436,7 +446,7 @@ export class MultiselectOption {
         >
           <div
             class="option-item"
-            style={{ paddingLeft: `${totalPadding}px` }}
+            style={optionItemStyle}
           >
             <div class="chevron-wrapper" onClick={(e) => { e.stopPropagation(); this.toggleExpansion(); }}>
               {this.hasChildren && (
