@@ -480,6 +480,9 @@ export class Multiselect {
   }
 
   async selectAll() {
+    // Reset search when selecting all
+    this.resetSearch();
+
     // Get all option elements
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
 
