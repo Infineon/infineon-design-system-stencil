@@ -11,7 +11,7 @@ export default {
   argTypes: {
     icon: {
       description: 'Set the icon.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       table: {
         category: 'ifx-icon props',
