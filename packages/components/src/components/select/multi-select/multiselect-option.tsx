@@ -19,6 +19,7 @@ export class MultiselectOption {
   @State() private level: number = 0;
   @State() private searchTerm: string = '';
   @State() private isSearchActive: boolean = false;
+  @State() private isSearchDisabled: boolean = false;
 
   componentWillLoad() {
     this.hasChildren = this.el.children.length > 0;
@@ -30,7 +31,8 @@ export class MultiselectOption {
 
   componentDidLoad() {
     if (this.hasChildren) {
-      const hasSelectedChildren = this.el.querySelectorAll('ifx-multiselect-option[selected]').length > 0;
+      // Only expand if this parent has any selected children (direct or nested)
+      const hasSelectedChildren = this.hasAnySelectedChildren();
       if (hasSelectedChildren) {
         this.isExpanded = true;
       }
@@ -64,16 +66,19 @@ export class MultiselectOption {
     if (!this.isSearchActive) {
       optionDiv.classList.remove('search-hidden', 'search-parent', 'search-match');
       this.removeHighlighting();
+      this.isSearchDisabled = false;
       return;
     }
 
     const textContent = this.getTextContent().toLowerCase();
     const matchesSearch = textContent.includes(this.searchTerm);
+    const hasMatchingParent = this.hasMatchingParent();
 
     requestAnimationFrame(() => {
       const hasMatchingChildren = this.hasMatchingChildren();
 
       optionDiv.classList.remove('search-hidden', 'search-parent', 'search-match');
+      this.isSearchDisabled = false;
 
       if (matchesSearch && !this.hasChildren) {
         optionDiv.classList.add('search-match');
@@ -86,6 +91,10 @@ export class MultiselectOption {
         optionDiv.classList.add('search-parent');
         this.removeHighlighting();
         this.isExpanded = true;
+        this.isSearchDisabled = true;
+      } else if (hasMatchingParent) {
+        optionDiv.classList.add('search-match');
+        this.removeHighlighting();
       } else {
         optionDiv.classList.add('search-hidden');
         this.removeHighlighting();
@@ -185,7 +194,20 @@ export class MultiselectOption {
     });
   }
 
-  private calculateDepth(): number {
+  private hasMatchingParent(): boolean {
+    let parent = this.el.parentElement;
+    while (parent && parent.tagName === 'IFX-MULTISELECT-OPTION') {
+      const parentInstance = (parent as any)['__stencil_instance'];
+      if (parentInstance) {
+        const parentText = parentInstance.getTextContent().toLowerCase();
+        if (parentText.includes(this.searchTerm)) {
+          return true;
+        }
+      }
+      parent = parent.parentElement;
+    }
+    return false;
+  }  private calculateDepth(): number {
     let depth = 0;
     let parent = this.el.parentElement;
     while (parent && parent.tagName !== 'IFX-MULTISELECT') {
@@ -199,7 +221,7 @@ export class MultiselectOption {
 
   @Listen('click')
   handleClick(event: Event) {
-    if (this.disabled) return;
+    if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
     event.stopPropagation();
 
@@ -234,7 +256,7 @@ export class MultiselectOption {
 
   @Listen('keydown')
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) return;
+    if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
     if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
       event.stopPropagation();
@@ -337,6 +359,8 @@ export class MultiselectOption {
   }
 
   private handleCheckboxChange = (event: CustomEvent) => {
+    if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
+
     event.stopPropagation();
 
     const newSelectedState = event.detail;
@@ -358,14 +382,40 @@ export class MultiselectOption {
 
   private handleHeaderClick = (event: Event) => {
     event.stopPropagation();
-    if (!this.disabled) {
+    if (!this.disabled && !(this.isSearchActive && this.isSearchDisabled)) {
       this.handleClick(event);
     }
   }
 
+  private hasAnySelectedChildren(): boolean {
+    const childOptions = Array.from(this.el.children)
+      .filter(child => child.tagName === 'IFX-MULTISELECT-OPTION') as HTMLElement[];
+
+    return childOptions.some(child => {
+      const hasSelected = child.hasAttribute('selected');
+
+      // Check if this child has selected descendants
+      const hasSelectedDescendants = this.checkForSelectedDescendants(child);
+
+      return hasSelected || hasSelectedDescendants;
+    });
+  }
+
+  private checkForSelectedDescendants(element: HTMLElement): boolean {
+    const nestedOptions = Array.from(element.children)
+      .filter(child => child.tagName === 'IFX-MULTISELECT-OPTION') as HTMLElement[];
+
+    return nestedOptions.some(nestedChild => {
+      const isSelected = nestedChild.hasAttribute('selected');
+      const hasSelectedNested = this.checkForSelectedDescendants(nestedChild);
+
+      return isSelected || hasSelectedNested;
+    });
+  }
+
   render() {
-    const basePadding = this.level * 24 + 10;
-    const additionalPadding = this.hasChildren ? 0 : 24;
+    const basePadding = this.level * 28 + 16;
+    const additionalPadding = this.hasChildren ? 0 : 28;
     const totalPadding = basePadding + additionalPadding;
 
     return (
@@ -400,10 +450,10 @@ export class MultiselectOption {
             <div class="checkbox-wrapper" onClick={(e) => e.stopPropagation()}>
               <ifx-checkbox
                 size='s'
-                checked={this.indeterminate ? false : this.selected}
-                indeterminate={this.indeterminate}
+                checked={(this.isSearchActive && this.isSearchDisabled) ? false : (this.indeterminate ? false : this.selected)}
+                indeterminate={(this.isSearchActive && this.isSearchDisabled) ? false : this.indeterminate}
                 onIfxChange={this.handleCheckboxChange}
-                disabled={this.disabled}
+                disabled={this.disabled || (this.isSearchActive && this.isSearchDisabled)}
               />
             </div>
 

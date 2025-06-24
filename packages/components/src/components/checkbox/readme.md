@@ -61,6 +61,7 @@ Type: `Promise<void>`
  - [ifx-chip-item](../chip/chip-item)
  - [ifx-list-entry](../table-advanced-version/list/list-entry)
  - [ifx-multiselect](../select/multi-select)
+ - [ifx-multiselect-option](../select/multi-select)
 
 ### Depends on
 
@@ -73,6 +74,7 @@ graph TD;
   ifx-chip-item --> ifx-checkbox
   ifx-list-entry --> ifx-checkbox
   ifx-multiselect --> ifx-checkbox
+  ifx-multiselect-option --> ifx-checkbox
   style ifx-checkbox fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

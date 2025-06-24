@@ -53,6 +53,7 @@ import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from 
 import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
+import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-option.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
 import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
@@ -664,6 +665,17 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
         onIfxOpen: 'ifxOpen'
     } as IfxMultiselectEvents,
     defineCustomElement: defineIfxMultiselect
+});
+
+type IfxMultiselectOptionEvents = NonNullable<unknown>;
+
+export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents> = /*@__PURE__*/ createComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents>({
+    tagName: 'ifx-multiselect-option',
+    elementClass: IfxMultiselectOptionElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxMultiselectOptionEvents,
+    defineCustomElement: defineIfxMultiselectOption
 });
 
 type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<CustomEvent<any>> };

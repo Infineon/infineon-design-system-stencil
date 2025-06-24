@@ -32,18 +32,13 @@
 
   &--selected {
     // Additional styles for selected state if needed
+    // .option-item {
+    //   background: red;
+    // }
   }
 
   &.search-hidden {
     display: none !important;
-  }
-
-  &.search-parent {
-    .option-item {
-      .option-label {
-        color: tokens.$ifxColorEngineering400;
-      }
-    }
   }
 
   &.search-match {
@@ -51,6 +46,7 @@
       .option-label {
         .search-highlight {
           font-weight: bold;
+          // color: tokens.$ifxColorOcean400;
         }
       }
     }
@@ -63,7 +59,7 @@
   align-items: center;
   white-space: nowrap;
   min-height: tokens.$ifxSize250;
-  padding: tokens.$ifxSpace50 tokens.$ifxSpace200 tokens.$ifxSpace50 tokens.$ifxSpace100;
+  padding: tokens.$ifxSize50 tokens.$ifxSpace150;
   background-color: tokens.$ifxColorBaseWhite;
   transition: background-color 0.2s ease-in-out;
 
@@ -87,8 +83,8 @@
   align-items: center;
   justify-content: center;
   margin-right: tokens.$ifxSpace100;
-  width: tokens.$ifxSize200;
-  height: tokens.$ifxSize200;
+  width: tokens.$ifxSize250;
+  height: tokens.$ifxSize250;
   flex-shrink: 0;
 
   .option--has-children & {
@@ -122,6 +118,7 @@
   align-items: center;
   cursor: pointer;
   padding: tokens.$ifxSpace25 0;
+  font-size: tokens.$ifxFontSizeS;
 
   &:focus {
     outline: none;

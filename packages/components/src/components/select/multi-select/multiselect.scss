@@ -42,7 +42,6 @@
   .ifx-multiselect-wrapper {
     background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
-    position: relative;
     display: flex;
     align-items: center;
     border: 1px solid tokens.$ifxColorEngineering400;
@@ -55,15 +54,11 @@
     &.small-select {
       height: 36px;
       padding: 8px 12px;
-      font-size: tokens.$ifxFontSizeS;
-      line-height: tokens.$ifxLineHeightS;
     }
 
     &.medium-select {
       height: 40px;
       padding: 8px 16px;
-      font-size: tokens.$ifxFontSizeM;
-      line-height: tokens.$ifxLineHeightM;
     }
 
     &:focus-visible {
@@ -155,56 +150,75 @@
 
   .ifx-multiselect-icon-container {
     margin-left: auto;
-    align-items: center;
     display: flex;
+    align-items: center;
+    gap: tokens.$ifxSpace100;
+
+    .ifx-multiselect-icon-container {
+      display: flex;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .icon-wrapper--open {
+      transform: rotate(180deg);
+    }
   }
 
   .ifx-clear-button {
     display: flex;
+    align-items: center;
+
     &.hide {
       display: none;
     }
   }
 
   .ifx-multiselect-dropdown-menu {
+    box-sizing: border-box;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    margin-top: 2px;
+    margin-top: tokens.$ifxSpace50;
+    border: 1px solid tokens.$ifxColorEngineering200;
+    padding-bottom: tokens.$ifxSpace100;
     background-color: #fff;
     box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
     max-height: 300px;
     /* Adjust based on your design */
     overflow-y: auto;
     z-index: 1000;
+  }
+}
 
-    .search-input {
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      padding: 8px 16px;
-      font-size: tokens.$ifxFontSizeM;
-      line-height: tokens.$ifxLineHeightM;
-      font-style: normal;
-      font-weight: 400;
-      box-sizing: border-box;
-      background-color: tokens.$ifxColorBaseWhite;
-      border: none;
-      border-bottom: 1px solid tokens.$ifxColorEngineering400;
+.ifx-multiselect-dropdown-functions {
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  margin-bottom: tokens.$ifxSpace150;
+}
 
-      &:focus {
-        outline: none;
-        border: 1px solid tokens.$ifxColorOcean500;
-      }
+.ifx-multiselect-dropdown-search {
+  margin-bottom: tokens.$ifxSpace150;
+}
 
-      // Optional: Placeholder style
-      &::placeholder {
-        color: #999;
-      }
-    }
+.ifx-multiselect-dropdown-controls {
+  display: flex;
+
+  .expand-collapse-controls {
+    margin-left: auto;
+    display: flex;
+    gap: tokens.$ifxSpace150;
   }
 
+  .control-item {
+    font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
+  }
 }
+
+

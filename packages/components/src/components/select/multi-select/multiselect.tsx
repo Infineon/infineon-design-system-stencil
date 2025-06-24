@@ -323,14 +323,35 @@ export class Multiselect {
 
   // Make this method public so it can be called by child components
   public updateSlotBasedSelections() {
-    // Re-parse the current state from DOM elements
-    const allOptions = this.parseChildOptions();
-    const selectedLeafOptions = this.collectSelectedOptions(allOptions);
-    this.persistentSelectedOptions = selectedLeafOptions;
-    this.optionCount = this.countOptions(allOptions);
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    const selectedLeafOptions: Option[] = [];
 
-    // Force re-render by triggering state update
-    this.persistentSelectedOptions = [...this.persistentSelectedOptions];
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance && instance.selected && !instance.hasChildren) {
+        selectedLeafOptions.push({
+          value: instance.value,
+          selected: true,
+          disabled: instance.disabled,
+          indeterminate: instance.indeterminate
+        });
+      }
+    });
+
+    this.persistentSelectedOptions = selectedLeafOptions;
+    this.optionCount = this.countLeafOptions();
+  }
+
+  private countLeafOptions(): number {
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    let count = 0;
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance && !instance.hasChildren) {
+        count++;
+      }
+    });
+    return count;
   }
 
   private updateInitialParentStates() {
@@ -397,15 +418,7 @@ export class Multiselect {
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
 
-    // Ensure all top-level options are visible by default
-    setTimeout(() => {
-      const topLevelOptions = this.el.querySelectorAll(':scope > ifx-multiselect-option');
-      topLevelOptions.forEach((option: any) => {
-        if (option.hasChildren && option.selected) {
-          option.isExpanded = true;
-        }
-      });
-    }, 0);
+    // Removed automatic expansion logic - now handled by option components
   }
 
   @Watch('error')
@@ -434,6 +447,26 @@ export class Multiselect {
     let newOptionsLength = option.children ? option.children.length : 1;
     return this.maxItemCount && this.persistentSelectedOptions.length + newOptionsLength > this.maxItemCount &&
       !this.persistentSelectedOptions.some(selectedOption => selectedOption.value === option.value)
+  }
+
+  collapseAll() {
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance && instance.hasChildren) {
+        instance.isExpanded = false;
+      }
+    });
+  }
+
+  expandAll() {
+    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
+    allOptionElements.forEach((optionEl: any) => {
+      const instance = optionEl['__stencil_instance'];
+      if (instance && instance.hasChildren) {
+        instance.isExpanded = true;
+      }
+    });
   }
 
   async selectAll() {
@@ -513,9 +546,9 @@ export class Multiselect {
   private resetSearch() {
     this.searchTerm = '';
 
-    const searchInput = this.el.shadowRoot.querySelector('.search-input') as HTMLInputElement;
-    if (searchInput) {
-      searchInput.value = '';
+    const searchField = this.el.shadowRoot.querySelector('ifx-search-field') as any;
+    if (searchField) {
+      searchField.value = '';
     }
 
     const optionsContainer = this.el.shadowRoot.querySelector('.ifx-multiselect-options');
@@ -564,32 +597,18 @@ export class Multiselect {
     const selectedLeafOptions = Array.from(allOptionElements).filter((el: any) => !el.hasChildren && el.selected);
 
     const allSelected = leafOptions.length > 0 && selectedLeafOptions.length === leafOptions.length;
-    const noneSelected = selectedLeafOptions.length === 0;
-    const indeterminate = leafOptions.length > 0 && !noneSelected && !allSelected;
 
-    const that = this;
-    function toggleSelectAll() {
+    const toggleSelectAll = () => {
       if (allSelected) {
-        that.clearSelection();
+        this.clearSelection();
       } else {
-        that.selectAll();
+        this.selectAll();
       }
-    }
-
-    function handleSelectAllKeydown(e: KeyboardEvent) {
-      if(e.key !== 'ArrowUp' && e.key !== 'ArrowDown') e.stopPropagation();
-      if(e.key === 'Enter' || e.key === ' ') {
-        toggleSelectAll();
-      }
-    }
+    };
 
     return (
       <div class="select-all-wrapper">
-        <div class={`option ${this.getSizeClass()}`} tabindex='0' onKeyDown={(e) => handleSelectAllKeydown(e)} onClick={toggleSelectAll}>
-          <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} indeterminate={indeterminate} size="s"></ifx-checkbox>
-          <label htmlFor='selectAll'>Select all</label>
-        </div>
-        <ifx-dropdown-separator></ifx-dropdown-separator>
+        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} size="s" onClick={toggleSelectAll}>Select all</ifx-checkbox>
       </div>
     );
   }
@@ -648,8 +667,27 @@ export class Multiselect {
           {this.dropdownOpen && (
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}>
-              {this.showSearch && <input type="text" role="textbox" class="search-input" onKeyDown={(e) => { e.stopPropagation() }} onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
-              {this.showSelectAll && this.renderSelectAll()}
+
+              <div class="ifx-multiselect-dropdown-functions">
+                <div class="ifx-multiselect-dropdown-search">
+                  {this.showSearch && <ifx-search-field
+                    class="search-input"
+                    placeholder="Search..."
+                    size="s"
+                    show-delete-icon="true"
+                    onKeyDown={(e) => { e.stopPropagation() }}
+                    onIfxInput={(event) => this.handleSearch(event.target)}
+                  ></ifx-search-field>}
+                </div>
+
+                <div class="ifx-multiselect-dropdown-controls">
+                  {this.showSelectAll && this.renderSelectAll()}
+                  <div class="expand-collapse-controls">
+                    <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
+                    <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
+                  </div>
+                </div>
+              </div>
 
               <div class="ifx-multiselect-options">
                 <slot />
