@@ -36,6 +36,8 @@ export class Multiselect {
   @Prop() showSelectAll: boolean = true;
   @Prop() showClearButton: boolean = true;
   @Prop() showExpandCollapse: boolean = true;
+  @Prop() noResultsMessage: string = "No results found.";
+  @Prop() showNoResultsMessage: boolean = true;
 
   @State() internalError: boolean = false;
   @State() internalErrorMessage: string;
@@ -225,7 +227,44 @@ export class Multiselect {
           detail: { searchTerm, isActive: isSearchActive }
         });
         option.dispatchEvent(searchEvent);
-      });
+      });      // Simple check after filtering
+      if (isSearchActive) {
+        setTimeout(() => {
+          const allOptions = this.el.querySelectorAll('ifx-multiselect-option');
+          let visibleCount = 0;
+
+          allOptions.forEach(option => {
+            const style = window.getComputedStyle(option);
+            const rect = option.getBoundingClientRect();
+
+            // Check multiple conditions for visibility
+            if (style.display !== 'none' &&
+                style.visibility !== 'hidden' &&
+                style.opacity !== '0' &&
+                rect.height > 0) {
+              visibleCount++;
+            }
+          });
+
+          console.log('Visible options after search:', visibleCount, 'Search term:', searchTerm);
+
+          const optionsContainer = this.el.shadowRoot.querySelector('.ifx-multiselect-options');
+          if (optionsContainer) {
+            if (visibleCount === 0) {
+              console.log('Adding show-no-results class');
+              optionsContainer.classList.add('show-no-results');
+            } else {
+              console.log('Removing show-no-results class');
+              optionsContainer.classList.remove('show-no-results');
+            }
+          }
+        }, 200);
+      } else {
+        const optionsContainer = this.el.shadowRoot.querySelector('.ifx-multiselect-options');
+        if (optionsContainer) {
+          optionsContainer.classList.remove('show-no-results');
+        }
+      }
     });
   }, 150);
 
@@ -553,6 +592,19 @@ export class Multiselect {
     );
   }
 
+  /**
+   * Render no results message when search has no matches
+   */
+  private renderNoResultsMessage() {
+    return (
+      <div class="ifx-multiselect-no-results">
+        <div class="no-results-content">
+          <span class="no-results-text">{this.noResultsMessage}</span>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const selectedOptionsLabels = this.persistentSelectedOptions
       .map((option) => {
@@ -629,9 +681,8 @@ export class Multiselect {
 
               <div class="ifx-multiselect-options" onScroll={(event) => this.handleScroll(event)}>
                 <slot />
+                {this.searchTerm && this.showNoResultsMessage && this.renderNoResultsMessage()}
               </div>
-
-              {this.isLoading && <div>Loading more options...</div>}
             </div>
           )}
           <div class='ifx-multiselect-icon-container'>

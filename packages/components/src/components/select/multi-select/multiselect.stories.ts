@@ -13,7 +13,9 @@ export default {
     errorMessage: 'Some error',
     label: '',
     placeholder: 'Placeholder',
-    showClearButton: true
+    showClearButton: true,
+    noResultsMessage: 'No results found.',
+    showNoResultsMessage: true
   },
   argTypes: {
     disabled: {
@@ -91,6 +93,33 @@ export default {
           summary: true
         }
       }
+    },
+    noResultsMessage: {
+      description: 'Custom message to display when search has no results.',
+      control: 'text',
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'No results found.',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    showNoResultsMessage: {
+      description: 'Show/hide the no results message when search has no matches.',
+      options: [true, false],
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
     },
     error: {
       description: 'Show error state.',
@@ -190,7 +219,9 @@ const SlotBasedTemplate = args => {
   show-search='${args.showSearch}'
   show-select-all='${args.showSelectAll}'
   show-expand-collapse='${args.showExpandCollapse}'
-  show-clear-button='${args.showClearButton}'>
+  show-clear-button='${args.showClearButton}'
+  no-results-message='${args.noResultsMessage}'
+  show-no-results-message='${args.showNoResultsMessage}'>
 
   <ifx-multiselect-option value="frontend">
     Frontend Development

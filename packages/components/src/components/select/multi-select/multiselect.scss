@@ -214,6 +214,24 @@
   overflow-y: auto;
   padding-top: tokens.$ifxSpace150;
   padding-bottom: tokens.$ifxSpace150;
+
+  &.show-no-results {
+    .ifx-multiselect-no-results {
+      display: block;
+    }
+  }
 }
 
+.ifx-multiselect-no-results {
+  padding-left: tokens.$ifxSpace200;
+  padding-right: tokens.$ifxSpace200;
+  display: none;
+
+  .no-results-content {
+
+    .no-results-text {
+
+    }
+  }
+}
 
