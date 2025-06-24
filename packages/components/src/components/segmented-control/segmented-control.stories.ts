@@ -62,7 +62,7 @@ export default {
         },
         icon: {
             description: 'Set icon of a segment.',
-            options: Object.values(icons).map(i => i['name']),
+            options: Object.keys(icons),
             control: { type: 'select' },
             table: {
                 category: 'ifx-segment props'

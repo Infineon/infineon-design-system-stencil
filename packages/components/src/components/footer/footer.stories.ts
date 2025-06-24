@@ -18,7 +18,7 @@ export default {
     },
     icon: {
       description: 'Sets the icon for the footer.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       table: {
         category: 'ifx-icon props',
