@@ -8,6 +8,7 @@ export default {
     disabled: false,
     showSearch: true,
     showSelectAll: true,
+    showExpandCollapse: true,
     error: false,
     errorMessage: 'Some error',
     label: '',
@@ -55,6 +56,20 @@ export default {
     },
     showSelectAll: {
       description: 'Show a checkbox to select all options.',
+      options: [true, false],
+      control: { type: 'radio' },
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    showExpandCollapse: {
+      description: 'Show expand/collapse controls for nested options.',
       options: [true, false],
       control: { type: 'radio' },
       table: {
@@ -174,6 +189,7 @@ const SlotBasedTemplate = args => {
   placeholder='${args.placeholder}'
   show-search='${args.showSearch}'
   show-select-all='${args.showSelectAll}'
+  show-expand-collapse='${args.showExpandCollapse}'
   show-clear-button='${args.showClearButton}'>
 
   <ifx-multiselect-option value="frontend">
@@ -187,7 +203,7 @@ const SlotBasedTemplate = args => {
         <ifx-multiselect-option value="redux" slot="children">Redux</ifx-multiselect-option>
         <ifx-multiselect-option value="react-query" slot="children">React Query</ifx-multiselect-option>
       </ifx-multiselect-option>
-      <ifx-multiselect-option value="vue" selected slot="children">
+      <ifx-multiselect-option value="vue" slot="children">
         Vue.js
         <ifx-multiselect-option value="vuex" slot="children">Vuex</ifx-multiselect-option>
         <ifx-multiselect-option value="vue-router" slot="children">Vue Router</ifx-multiselect-option>
@@ -229,7 +245,7 @@ const SlotBasedTemplate = args => {
       <ifx-multiselect-option value="nodejs-frameworks" slot="children">
         Node.js Frameworks
         <ifx-multiselect-option value="express" slot="children">Express.js</ifx-multiselect-option>
-        <ifx-multiselect-option value="nestjs" slot="children">NestJS</ifx-multiselect-option>
+        <ifx-multiselect-option value="nestjs" selected slot="children">NestJS</ifx-multiselect-option>
         <ifx-multiselect-option value="fastify" slot="children">Fastify</ifx-multiselect-option>
       </ifx-multiselect-option>
     </ifx-multiselect-option>
@@ -244,7 +260,7 @@ const SlotBasedTemplate = args => {
           <ifx-multiselect-option value="django-channels" slot="children">Django Channels</ifx-multiselect-option>
         </ifx-multiselect-option>
         <ifx-multiselect-option value="flask" slot="children">Flask</ifx-multiselect-option>
-        <ifx-multiselect-option value="fastapi" selected slot="children">FastAPI</ifx-multiselect-option>
+        <ifx-multiselect-option value="fastapi" slot="children">FastAPI</ifx-multiselect-option>
       </ifx-multiselect-option>
     </ifx-multiselect-option>
 
@@ -252,7 +268,7 @@ const SlotBasedTemplate = args => {
       Java Ecosystem
       <ifx-multiselect-option value="java-frameworks" slot="children">
         Enterprise Frameworks
-        <ifx-multiselect-option value="spring" selected slot="children">
+        <ifx-multiselect-option value="spring" slot="children">
           Spring Framework
           <ifx-multiselect-option value="spring-boot" slot="children">Spring Boot</ifx-multiselect-option>
           <ifx-multiselect-option value="spring-security" slot="children">Spring Security</ifx-multiselect-option>

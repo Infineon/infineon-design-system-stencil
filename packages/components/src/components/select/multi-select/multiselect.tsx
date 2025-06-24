@@ -44,6 +44,7 @@ export class Multiselect {
   @Prop() showSearch: boolean = true;
   @Prop() showSelectAll: boolean = true;
   @Prop() showClearButton: boolean = true;
+  @Prop() showExpandCollapse: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
   @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
   @State() expandedOptions: Set<string> = new Set(); // Track which parent options are expanded
@@ -257,6 +258,21 @@ export class Multiselect {
 
     this.searchTerm = searchTerm;
 
+    // Remove active class from wrapper when search is active
+    const wrapper = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper');
+    if (wrapper) {
+      if (isSearchActive) {
+        wrapper.classList.remove('active');
+      } else {
+        // Check if search field has focus before adding active class back
+        const searchField = this.el.shadowRoot.querySelector('ifx-search-field');
+        const searchFieldHasFocus = searchField && searchField.matches(':focus-within');
+        if (!searchFieldHasFocus) {
+          wrapper.classList.add('active');
+        }
+      }
+    }
+
     const optionsContainer = this.el.shadowRoot.querySelector('.ifx-multiselect-options');
     if (optionsContainer) {
       if (isSearchActive) {
@@ -296,6 +312,17 @@ export class Multiselect {
       }
     });
   }, 150); // Reduced debounce delay for more responsive search
+
+  private handleSearchFocus(hasFocus: boolean) {
+    const wrapper = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper');
+    if (wrapper) {
+      if (hasFocus || this.searchTerm !== '') {
+        wrapper.classList.remove('active');
+      } else {
+        wrapper.classList.add('active');
+      }
+    }
+  }
 
   positionDropdown() {
     const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
@@ -603,9 +630,7 @@ export class Multiselect {
     if (element.scrollTop >= halfwayPoint) {
       // this.fetchMoreOptions();
     }
-  }
-
-  getSizeClass() {
+  }  getSizeClass() {
     return '';
   }
 
@@ -652,33 +677,38 @@ export class Multiselect {
             {hasSelections ? selectedOptionsLabels : this.placeholder}
           </div>
           {this.dropdownOpen && (
-            <div class="ifx-multiselect-dropdown-menu"
-              onScroll={(event) => this.handleScroll(event)}>
+            <div class="ifx-multiselect-dropdown-menu">
 
-              <div class="ifx-multiselect-dropdown-functions">
-                <div class="ifx-multiselect-dropdown-search">
-                  {this.showSearch && <ifx-search-field
-                    class="search-input"
-                    placeholder="Search..."
-                    size="s"
-                    show-delete-icon="true"
-                    onKeyDown={(e) => { e.stopPropagation() }}
-                    onIfxInput={(event) => this.handleSearch(event.target)}
-                  ></ifx-search-field>}
-                </div>
-
-                <div class="ifx-multiselect-dropdown-controls">
-                  {this.showSelectAll && this.renderSelectAll()}
-                  {!isFlatMultiselect && (
-                    <div class="expand-collapse-controls">
-                      <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
-                      <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
+              {(this.showSearch || this.showSelectAll || (this.showExpandCollapse && !isFlatMultiselect)) && (
+                <div class="ifx-multiselect-dropdown-functions">
+                  {this.showSearch && (
+                    <div class="ifx-multiselect-dropdown-search">
+                      <ifx-search-field
+                        class="search-input"
+                        placeholder="Search..."
+                        size="s"
+                        show-delete-icon="true"
+                        onKeyDown={(e) => { e.stopPropagation() }}
+                        onIfxInput={(event) => this.handleSearch(event.target)}
+                        onFocus={() => this.handleSearchFocus(true)}
+                        onBlur={() => this.handleSearchFocus(false)}
+                      ></ifx-search-field>
                     </div>
                   )}
-                </div>
-              </div>
 
-              <div class="ifx-multiselect-options">
+                  <div class="ifx-multiselect-dropdown-controls">
+                    {this.showSelectAll && this.renderSelectAll()}
+                    {this.showExpandCollapse && !isFlatMultiselect && (
+                      <div class="expand-collapse-controls">
+                        <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
+                        <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div class="ifx-multiselect-options" onScroll={(event) => this.handleScroll(event)}>
                 <slot />
               </div>
 
