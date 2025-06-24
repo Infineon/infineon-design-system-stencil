@@ -1,3 +1,15 @@
+# v35.1.0 (Tue Jun 24 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: fixes icons preview [#1912](https://github.com/Infineon/infineon-design-system-stencil/pull/1912) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.0.0 (Fri Jun 20 2025)
 
 #### 💥 Breaking Change
