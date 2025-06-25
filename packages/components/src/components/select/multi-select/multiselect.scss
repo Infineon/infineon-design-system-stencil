@@ -192,13 +192,15 @@
 
 .ifx-multiselect-dropdown-controls {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: tokens.$ifxSpace100;
 
   .select-all-wrapper {
     display: flex;
   }
 
   .expand-collapse-controls {
-    margin-left: auto;
     display: flex;
     gap: tokens.$ifxSpace150;
   }
