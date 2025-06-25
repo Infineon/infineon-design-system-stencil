@@ -436,10 +436,11 @@ export class MultiselectOption {
             'option--disabled': this.disabled,
             'option--selected': this.selected,
           }}
-          role="treeitem"
+          role="option"
           aria-expanded={this.hasChildren ? (this.isExpanded ? 'true' : 'false') : undefined}
+          aria-selected={this.selected ? 'true' : 'false'}
+          aria-disabled={this.disabled ? 'true' : 'false'}
           data-level={this.depth}
-          aria-disabled={this.disabled ? 'true' : undefined}
           data-value={this.value}
         >
           <div

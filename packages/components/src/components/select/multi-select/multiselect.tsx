@@ -40,6 +40,15 @@ export class Multiselect {
   @Prop() selectAllLabel: string = "Select all";
   @Prop() expandLabel: string = "Expand";
   @Prop() collapseLabel: string = "Collapse";
+  @Prop() ariaLabel: string = "Multi-select dropdown";
+  @Prop() ariaLabelledBy: string = "";
+  @Prop() ariaDescribedBy: string = "";
+  @Prop() ariaSearchLabel: string = "Search options";
+  @Prop() ariaClearLabel: string = "Clear all selections";
+  @Prop() ariaToggleLabel: string = "Toggle dropdown";
+  @Prop() ariaSelectAllLabel: string = "Select all options";
+  @Prop() ariaExpandAllLabel: string = "Expand all categories";
+  @Prop() ariaCollapseAllLabel: string = "Collapse all categories";
 
   @State() internalError: boolean = false;
   @State() internalErrorMessage: string;
@@ -534,7 +543,16 @@ export class Multiselect {
 
     return (
       <div class="select-all-wrapper">
-        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} size="s" onClick={toggleSelectAll}>{this.selectAllLabel}</ifx-checkbox>
+        <ifx-checkbox
+          tabIndex={-1}
+          id='selectAll'
+          checked={allSelected}
+          size="s"
+          aria-label={this.ariaSelectAllLabel}
+          onClick={toggleSelectAll}
+        >
+          {this.selectAllLabel}
+        </ifx-checkbox>
       </div>
     );
   }
@@ -584,6 +602,13 @@ export class Multiselect {
         ${this.dropdownFlipped ? 'is-flipped' : ''}
         ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
+          role="combobox"
+          aria-label={this.ariaLabel}
+          aria-labelledby={this.ariaLabelledBy || undefined}
+          aria-describedby={this.ariaDescribedBy || undefined}
+          aria-expanded={this.dropdownOpen}
+          aria-haspopup="listbox"
+          aria-disabled={this.disabled}
           tabindex="0"
           onClick={this.disabled ? undefined : (event) => this.handleWrapperClick(event)}
           onKeyDown={this.disabled ? undefined : (event) => this.handleKeyDown(event)} >
@@ -606,6 +631,7 @@ export class Multiselect {
                         placeholder={this.searchPlaceholder}
                         size="s"
                         show-delete-icon="true"
+                        aria-label={this.ariaSearchLabel}
                         onKeyDown={(e) => { e.stopPropagation() }}
                         onIfxInput={(event) => this.handleSearch(event.target)}
                         onFocus={() => this.handleSearchFocus(true)}
@@ -618,15 +644,33 @@ export class Multiselect {
                     {this.showSelectAll && this.renderSelectAll()}
                     {this.showExpandCollapse && !isFlatMultiselect && (
                       <div class="expand-collapse-controls">
-                        <span class="control-item" onClick={() => this.expandAll()}>{this.expandLabel}</span>
-                        <span class="control-item" onClick={() => this.collapseAll()}>{this.collapseLabel}</span>
+                        <span
+                          class="control-item"
+                          role="button"
+                          tabIndex={0}
+                          aria-label={this.ariaExpandAllLabel}
+                          onClick={() => this.expandAll()}
+                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') this.expandAll(); }}
+                        >
+                          {this.expandLabel}
+                        </span>
+                        <span
+                          class="control-item"
+                          role="button"
+                          tabIndex={0}
+                          aria-label={this.ariaCollapseAllLabel}
+                          onClick={() => this.collapseAll()}
+                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') this.collapseAll(); }}
+                        >
+                          {this.collapseLabel}
+                        </span>
                       </div>
                     )}
                   </div>
                 </div>
               )}
 
-              <div class="ifx-multiselect-options">
+              <div class="ifx-multiselect-options" role="listbox" aria-multiselectable="true">
                 <slot />
                 {this.searchTerm && this.showNoResultsMessage && this.renderNoResultsMessage()}
               </div>
@@ -637,12 +681,20 @@ export class Multiselect {
             {/* Clear Button - will show only if there's a selection */}
             {hasSelections && (
               <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`}
-                   onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.clearSelection(); }}>
+                   aria-label={this.ariaClearLabel}
+                   role="button"
+                   tabIndex={0}
+                   onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.clearSelection(); }}
+                   onKeyDown={this.disabled ? undefined : (e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); this.clearSelection(); } }}>
                 <ifx-icon icon="c-remove-16" key="clear-icon"></ifx-icon>
               </div>
             )}
             <div class={`icon-wrapper ${this.dropdownOpen ? 'icon-wrapper--open' : 'icon-wrapper--closed'}`}
-                 onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.toggleDropdown(); }}>
+                 aria-label={this.ariaToggleLabel}
+                 role="button"
+                 tabIndex={0}
+                 onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.toggleDropdown(); }}
+                 onKeyDown={this.disabled ? undefined : (e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); this.toggleDropdown(); } }}>
               <ifx-icon icon='chevron-down-16' key="chevron-icon"></ifx-icon>
             </div>
           </div>

@@ -24,7 +24,16 @@ export default {
     searchPlaceholder: 'Search',
     selectAllLabel: 'Select all',
     expandLabel: 'Expand',
-    collapseLabel: 'Collapse'
+    collapseLabel: 'Collapse',
+    ariaLabel: 'Multi-select dropdown',
+    ariaLabelledBy: '',
+    ariaDescribedBy: '',
+    ariaSearchLabel: 'Search options',
+    ariaClearLabel: 'Clear all selections',
+    ariaToggleLabel: 'Toggle dropdown',
+    ariaSelectAllLabel: 'Select all options',
+    ariaExpandAllLabel: 'Expand all categories',
+    ariaCollapseAllLabel: 'Collapse all categories'
   },
   argTypes: {
     // Function
@@ -245,6 +254,125 @@ export default {
       },
     },
 
+    // ARIA Labels
+    ariaLabel: {
+      description: 'ARIA label for the multiselect component.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Multi-select dropdown',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaLabelledBy: {
+      description: 'ID of element that labels the multiselect.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '""',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaDescribedBy: {
+      description: 'ID of element that describes the multiselect.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '""',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaSearchLabel: {
+      description: 'ARIA label for the search input field.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Search options',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaClearLabel: {
+      description: 'ARIA label for the clear all button.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Clear all selections',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaToggleLabel: {
+      description: 'ARIA label for the dropdown toggle button.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Toggle dropdown',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaSelectAllLabel: {
+      description: 'ARIA label for the select all checkbox.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Select all options',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaExpandAllLabel: {
+      description: 'ARIA label for the expand all control.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Expand all categories',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    ariaCollapseAllLabel: {
+      description: 'ARIA label for the collapse all control.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: 'Collapse all categories',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+
     // Custom Events
     ifxSelect: {
       action: 'ifxSelect',
@@ -290,7 +418,16 @@ const SlotBasedTemplate = args => {
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
-  collapse-label='${args.collapseLabel}'>
+  collapse-label='${args.collapseLabel}'
+  aria-label='${args.ariaLabel}'
+  aria-labelled-by='${args.ariaLabelledBy}'
+  aria-described-by='${args.ariaDescribedBy}'
+  aria-search-label='${args.ariaSearchLabel}'
+  aria-clear-label='${args.ariaClearLabel}'
+  aria-toggle-label='${args.ariaToggleLabel}'
+  aria-select-all-label='${args.ariaSelectAllLabel}'
+  aria-expand-all-label='${args.ariaExpandAllLabel}'
+  aria-collapse-all-label='${args.ariaCollapseAllLabel}'>
 
   <ifx-multiselect-option value="category-a">
     Category A - Main Section
@@ -423,7 +560,16 @@ const FlatTemplate = args => {
   search-placeholder='${args.searchPlaceholder}'
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
-  collapse-label='${args.collapseLabel}'>
+  collapse-label='${args.collapseLabel}'
+  aria-label='${args.ariaLabel}'
+  aria-labelled-by='${args.ariaLabelledBy}'
+  aria-described-by='${args.ariaDescribedBy}'
+  aria-search-label='${args.ariaSearchLabel}'
+  aria-clear-label='${args.ariaClearLabel}'
+  aria-toggle-label='${args.ariaToggleLabel}'
+  aria-select-all-label='${args.ariaSelectAllLabel}'
+  aria-expand-all-label='${args.ariaExpandAllLabel}'
+  aria-collapse-all-label='${args.ariaCollapseAllLabel}'>
 
   <ifx-multiselect-option value="option-1">Option 1</ifx-multiselect-option>
   <ifx-multiselect-option value="option-2">Option 2</ifx-multiselect-option>
