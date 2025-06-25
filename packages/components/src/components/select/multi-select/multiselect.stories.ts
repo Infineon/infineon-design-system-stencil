@@ -2,7 +2,12 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Select/Multi Select',
-  // tags: ['autodocs'],
+  parameters: {
+    controls: {
+      expanded: true,
+      sort: 'alpha'
+    }
+  },
   args: {
     name: 'multiselect',
     disabled: false,
@@ -22,6 +27,7 @@ export default {
     collapseLabel: 'Collapse'
   },
   argTypes: {
+    // Function
     disabled: {
       description: 'Disable the input field.',
       options: [true, false],
@@ -41,6 +47,9 @@ export default {
       control: 'text',
       table: {
         category: 'Function',
+        defaultValue: {
+          summary: 'undefined',
+        },
         type: {
           summary: 'string',
         },
@@ -94,22 +103,12 @@ export default {
       table: {
         category: 'Function',
         defaultValue: {
-          summary: true
-        }
-      }
-    },
-    noResultsMessage: {
-      description: 'Custom message to display when search has no results.',
-      control: 'text',
-      table: {
-        category: 'Label',
-        defaultValue: {
-          summary: 'No results found.',
+          summary: 'true',
         },
         type: {
-          summary: 'string',
+          summary: 'boolean',
         },
-      },
+      }
     },
     showNoResultsMessage: {
       description: 'Show/hide the no results message when search has no matches.',
@@ -122,6 +121,74 @@ export default {
         },
         type: {
           summary: 'boolean',
+        },
+      },
+    },
+    error: {
+      description: 'Show error state.',
+      options: [true, false],
+      control: { type: 'boolean' },
+      table: {
+        category: 'Function',
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+
+    // Label
+    label: {
+      description: 'Label over the input field.',
+      control: 'text',
+      table: {
+        category: 'Label',
+        defaultValue: {
+          summary: '""',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    placeholder: {
+      description: 'Label inside the input field.',
+      control: 'text',
+      table: {
+        category: 'Label',
+        defaultValue: {
+          summary: '""',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message to display.',
+      table: {
+        category: 'Label',
+        defaultValue: {
+          summary: 'Error',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    noResultsMessage: {
+      description: 'Custom message to display when search has no results.',
+      control: 'text',
+      table: {
+        category: 'Label',
+        defaultValue: {
+          summary: 'No results found.',
+        },
+        type: {
+          summary: 'string',
         },
       },
     },
@@ -177,53 +244,8 @@ export default {
         },
       },
     },
-    error: {
-      description: 'Show error state.',
-      options: [true, false],
-      control: { type: 'boolean' },
-      table: {
-        category: 'Function',
-        defaultValue: {
-          summary: 'false',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display.',
-      table: {
-        category: 'Label',
-        defaultValue: {
-          summary: 'Error',
-        },
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    label: {
-      description: 'Label over the input field.',
-      control: 'text',
-      table: {
-        category: 'Label',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
-    placeholder: {
-      description: 'Label inside the input field.',
-      control: 'text',
-      table: {
-        category: 'Label',
-        type: {
-          summary: 'string',
-        },
-      },
-    },
+
+    // Custom Events
     ifxSelect: {
       action: 'ifxSelect',
       description: 'Custom event emitted when item is selected or unselected.',
@@ -235,7 +257,6 @@ export default {
             'React: onIfxSelect={handleInput}\nVue:@ifxSelect="handleInput"\nAngular:(ifxSelect)="handleInput()"\nVanillaJs:.addEventListener("ifxSelect", (event) => {//handle input});',
         },
       },
-
     },
     ifxOpen: {
       action: 'ifxOpen',
@@ -248,7 +269,6 @@ export default {
             'React: onIfxOpen={handleChange}\nVue:@ifxOpen="handleChange"\nAngular:(ifxOpen)="handleChange()"\nVanillaJs:.addEventListener("ifxOpen", (event) => {//handle change});',
         },
       },
-
     }
   },
 };
@@ -272,174 +292,95 @@ const SlotBasedTemplate = args => {
   expand-label='${args.expandLabel}'
   collapse-label='${args.collapseLabel}'>
 
-  <ifx-multiselect-option value="frontend">
-    Frontend Development
+  <ifx-multiselect-option value="category-a">
+    Category A - Main Section
 
-    <ifx-multiselect-option value="frameworks" slot="children">
-      JavaScript Frameworks
-      <ifx-multiselect-option value="react" slot="children">
-        React
-        <ifx-multiselect-option value="react-router" slot="children">React Router</ifx-multiselect-option>
-        <ifx-multiselect-option value="redux" slot="children">Redux</ifx-multiselect-option>
-        <ifx-multiselect-option value="react-query" slot="children">React Query</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="vue" slot="children">
-        Vue.js
-        <ifx-multiselect-option value="vuex" slot="children">Vuex</ifx-multiselect-option>
-        <ifx-multiselect-option value="vue-router" slot="children">Vue Router</ifx-multiselect-option>
-        <ifx-multiselect-option value="nuxt" slot="children">Nuxt.js</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="angular" slot="children">
-        Angular
-        <ifx-multiselect-option value="angular-material" slot="children">Angular Material</ifx-multiselect-option>
-        <ifx-multiselect-option value="ngrx" slot="children">NgRx</ifx-multiselect-option>
-      </ifx-multiselect-option>
+    <ifx-multiselect-option value="category-a-1" slot="children">
+      Category A.1 - First Subsection
+      <ifx-multiselect-option value="option-a-1-1" slot="children">Option A.1.1 - Basic Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-1-2" selected slot="children">Option A.1.2 - Preselected Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-1-3" slot="children">Option A.1.3 - Another Item</ifx-multiselect-option>
     </ifx-multiselect-option>
 
-    <ifx-multiselect-option value="css-tools" slot="children">
-      CSS Tools & Frameworks
-      <ifx-multiselect-option value="preprocessors" slot="children">
-        CSS Preprocessors
-        <ifx-multiselect-option value="sass" slot="children">Sass/SCSS</ifx-multiselect-option>
-        <ifx-multiselect-option value="less" slot="children">Less</ifx-multiselect-option>
+    <ifx-multiselect-option value="category-a-2" slot="children">
+      Category A.2 - Second Subsection
+      <ifx-multiselect-option value="option-a-2-1" slot="children">Option A.2.1 - Nested Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-2-2" slot="children">
+        Option A.2.2 - Deep Nested Parent
+        <ifx-multiselect-option value="option-a-2-2-1" slot="children">Option A.2.2.1 - Level 4 Item</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-a-2-2-2" slot="children">Option A.2.2.2 - Level 4 Item</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-a-2-2-3" slot="children">
+          Option A.2.2.3 - Even Deeper
+          <ifx-multiselect-option value="option-a-2-2-3-1" slot="children">Option A.2.2.3.1 - Level 5 Item</ifx-multiselect-option>
+          <ifx-multiselect-option value="option-a-2-2-3-2" slot="children">Option A.2.2.3.2 - Level 5 Item</ifx-multiselect-option>
+        </ifx-multiselect-option>
       </ifx-multiselect-option>
-      <ifx-multiselect-option value="css-frameworks" slot="children">
-        CSS Frameworks
-        <ifx-multiselect-option value="tailwind" slot="children">Tailwind CSS</ifx-multiselect-option>
-        <ifx-multiselect-option value="bootstrap" slot="children">Bootstrap</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-2-3" slot="children">Option A.2.3 - Final Nested</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="option-a-3" slot="children">Option A.3 - Direct Child</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-a-4" slot="children">Option A.4 - Another Direct Child</ifx-multiselect-option>
+  </ifx-multiselect-option>
+
+  <ifx-multiselect-option value="category-b">
+    Category B - Secondary Section
+
+    <ifx-multiselect-option value="category-b-1" slot="children">
+      Category B.1 - Mixed Content
+      <ifx-multiselect-option value="option-b-1-1" slot="children">Option B.1.1 - Standard Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="category-b-1-2" slot="children">
+        Category B.1.2 - Sub-Category
+        <ifx-multiselect-option value="option-b-1-2-1" slot="children">Option B.1.2.1 - Nested Choice</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-b-1-2-2" slot="children">Option B.1.2.2 - Nested Choice</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-b-1-2-3" slot="children">Option B.1.2.3 - Nested Choice</ifx-multiselect-option>
       </ifx-multiselect-option>
+      <ifx-multiselect-option value="option-b-1-3" slot="children">Option B.1.3 - Standard Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="option-b-2" slot="children">Option B.2 - Standalone Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-b-3" slot="children">Option B.3 - Standalone Item</ifx-multiselect-option>
+  </ifx-multiselect-option>
+
+  <ifx-multiselect-option value="category-c">
+    Category C - Complex Structure
+
+    <ifx-multiselect-option value="category-c-1" slot="children">
+      Category C.1 - Multi-Level Group
+      <ifx-multiselect-option value="category-c-1-1" slot="children">
+        Category C.1.1 - Sub-Group Alpha
+        <ifx-multiselect-option value="option-c-1-1-1" slot="children">Option C.1.1.1 - Alpha Item 1</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-1-2" slot="children">Option C.1.1.2 - Alpha Item 2</ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="category-c-1-2" slot="children">
+        Category C.1.2 - Sub-Group Beta
+        <ifx-multiselect-option value="option-c-1-2-1" slot="children">Option C.1.2.1 - Beta Item 1</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-2-2" slot="children">Option C.1.2.2 - Beta Item 2</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-2-3" slot="children">Option C.1.2.3 - Beta Item 3</ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="option-c-1-3" slot="children">Option C.1.3 - Direct Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="category-c-2" slot="children">
+      Category C.2 - Another Group
+      <ifx-multiselect-option value="option-c-2-1" slot="children">Option C.2.1 - Group Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-c-2-2" slot="children">Option C.2.2 - Group Item</ifx-multiselect-option>
     </ifx-multiselect-option>
   </ifx-multiselect-option>
 
-  <ifx-multiselect-option value="backend">
-    Backend Development
+  <ifx-multiselect-option value="option-d">Option D - Top-Level Standalone</ifx-multiselect-option>
 
-    <ifx-multiselect-option value="nodejs-stack" slot="children">
-      Node.js Ecosystem
-      <ifx-multiselect-option value="runtime" slot="children">
-        Runtime Environment
-        <ifx-multiselect-option value="nodejs" slot="children">Node.js</ifx-multiselect-option>
-        <ifx-multiselect-option value="deno" slot="children">Deno</ifx-multiselect-option>
-        <ifx-multiselect-option value="bun" slot="children">Bun</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="nodejs-frameworks" slot="children">
-        Node.js Frameworks
-        <ifx-multiselect-option value="express" slot="children">Express.js</ifx-multiselect-option>
-        <ifx-multiselect-option value="nestjs" selected slot="children">NestJS</ifx-multiselect-option>
-        <ifx-multiselect-option value="fastify" slot="children">Fastify</ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
+  <ifx-multiselect-option value="option-e">Option E - Top-Level Standalone</ifx-multiselect-option>
 
-    <ifx-multiselect-option value="python-stack" slot="children">
-      Python Ecosystem
-      <ifx-multiselect-option value="python-frameworks" slot="children">
-        Web Frameworks
-        <ifx-multiselect-option value="django" slot="children">
-          Django
-          <ifx-multiselect-option value="django-rest" slot="children">Django REST Framework</ifx-multiselect-option>
-          <ifx-multiselect-option value="django-channels" slot="children">Django Channels</ifx-multiselect-option>
-        </ifx-multiselect-option>
-        <ifx-multiselect-option value="flask" slot="children">Flask</ifx-multiselect-option>
-        <ifx-multiselect-option value="fastapi" slot="children">FastAPI</ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
+  <ifx-multiselect-option value="category-f">
+    Category F - Final Section
 
-    <ifx-multiselect-option value="java-stack" slot="children">
-      Java Ecosystem
-      <ifx-multiselect-option value="java-frameworks" slot="children">
-        Enterprise Frameworks
-        <ifx-multiselect-option value="spring" slot="children">
-          Spring Framework
-          <ifx-multiselect-option value="spring-boot" slot="children">Spring Boot</ifx-multiselect-option>
-          <ifx-multiselect-option value="spring-security" slot="children">Spring Security</ifx-multiselect-option>
-          <ifx-multiselect-option value="spring-data" slot="children">Spring Data</ifx-multiselect-option>
-        </ifx-multiselect-option>
-        <ifx-multiselect-option value="quarkus" slot="children">Quarkus</ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
-  </ifx-multiselect-option>
-
-  <ifx-multiselect-option value="database">
-    Database Systems
-
-    <ifx-multiselect-option value="relational" slot="children">
-      Relational Databases
-      <ifx-multiselect-option value="postgresql-family" slot="children">
-        PostgreSQL Family
-        <ifx-multiselect-option value="postgresql" slot="children">PostgreSQL</ifx-multiselect-option>
-        <ifx-multiselect-option value="cockroachdb" slot="children">CockroachDB</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="mysql-family" slot="children">
-        MySQL Family
-        <ifx-multiselect-option value="mysql" slot="children">MySQL</ifx-multiselect-option>
-        <ifx-multiselect-option value="mariadb" slot="children">MariaDB</ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
-
-    <ifx-multiselect-option value="nosql" slot="children">
-      NoSQL Databases
-      <ifx-multiselect-option value="document" slot="children">
-        Document Stores
-        <ifx-multiselect-option value="mongodb-family" slot="children">
-          MongoDB Family
-          <ifx-multiselect-option value="mongodb" slot="children">MongoDB</ifx-multiselect-option>
-          <ifx-multiselect-option value="mongodb-atlas" slot="children">MongoDB Atlas</ifx-multiselect-option>
-        </ifx-multiselect-option>
-        <ifx-multiselect-option value="couchdb" slot="children">CouchDB</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="keyvalue" slot="children">
-        Key-Value Stores
-        <ifx-multiselect-option value="redis" slot="children">Redis</ifx-multiselect-option>
-        <ifx-multiselect-option value="memcached" slot="children">Memcached</ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
-  </ifx-multiselect-option>
-
-  <ifx-multiselect-option value="devops">
-    DevOps & Infrastructure
-
-    <ifx-multiselect-option value="cloud-providers" slot="children">
-      Cloud Platforms
-      <ifx-multiselect-option value="aws" slot="children">
-        Amazon Web Services
-        <ifx-multiselect-option value="aws-compute" slot="children">
-          Compute Services
-          <ifx-multiselect-option value="ec2" slot="children">EC2</ifx-multiselect-option>
-          <ifx-multiselect-option value="lambda" slot="children">Lambda</ifx-multiselect-option>
-          <ifx-multiselect-option value="fargate" slot="children">Fargate</ifx-multiselect-option>
-        </ifx-multiselect-option>
-        <ifx-multiselect-option value="aws-storage" slot="children">
-          Storage Services
-          <ifx-multiselect-option value="s3" slot="children">S3</ifx-multiselect-option>
-          <ifx-multiselect-option value="ebs" slot="children">EBS</ifx-multiselect-option>
-        </ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="azure" slot="children">
-        Microsoft Azure
-        <ifx-multiselect-option value="azure-compute" slot="children">
-          Compute Services
-          <ifx-multiselect-option value="azure-vms" slot="children">Virtual Machines</ifx-multiselect-option>
-          <ifx-multiselect-option value="azure-functions" slot="children">Azure Functions</ifx-multiselect-option>
-        </ifx-multiselect-option>
-      </ifx-multiselect-option>
-    </ifx-multiselect-option>
-
-    <ifx-multiselect-option value="containerization" slot="children">
-      Containerization & Orchestration
-      <ifx-multiselect-option value="container-runtimes" slot="children">
-        Container Runtimes
-        <ifx-multiselect-option value="docker" slot="children">Docker</ifx-multiselect-option>
-        <ifx-multiselect-option value="podman" slot="children">Podman</ifx-multiselect-option>
-      </ifx-multiselect-option>
-      <ifx-multiselect-option value="orchestration" slot="children">
-        Orchestration
-        <ifx-multiselect-option value="kubernetes" slot="children">
-          Kubernetes
-          <ifx-multiselect-option value="helm" slot="children">Helm</ifx-multiselect-option>
-          <ifx-multiselect-option value="kubectl" slot="children">kubectl</ifx-multiselect-option>
-        </ifx-multiselect-option>
-        <ifx-multiselect-option value="docker-swarm" slot="children">Docker Swarm</ifx-multiselect-option>
-      </ifx-multiselect-option>
+    <ifx-multiselect-option value="option-f-1" slot="children">Option F.1 - Simple Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-f-2" slot="children">Option F.2 - Simple Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="category-f-3" slot="children">
+      Category F.3 - Last Group
+      <ifx-multiselect-option value="option-f-3-1" slot="children">Option F.3.1 - Final Nested</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-f-3-2" slot="children">Option F.3.2 - Final Nested</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-f-3-3" slot="children">Option F.3.3 - Final Nested</ifx-multiselect-option>
     </ifx-multiselect-option>
   </ifx-multiselect-option>
 </ifx-multiselect>`;
@@ -454,6 +395,66 @@ const SlotBasedTemplate = args => {
 
 export const Default = SlotBasedTemplate.bind({});
 Default.args = {
-  label: 'Technology Stack Selection',
-  placeholder: 'Select technologies...',
+  label: 'Generic Multi-Level Selection',
+  placeholder: 'Select options...',
+};
+Default.parameters = {
+  docs: {
+    description: {
+      story: 'The multiselect component supports nested hierarchical options with search, select all, and expand/collapse functionality. Use slot-based syntax for defining options and their nested structure.'
+    }
+  }
+};
+
+const FlatTemplate = args => {
+  const template = `<ifx-multiselect
+  name='${args.name}'
+  disabled='${args.disabled}'
+  error='${args.error}'
+  error-message='${args.errorMessage}'
+  label='${args.label}'
+  placeholder='${args.placeholder}'
+  show-search='${args.showSearch}'
+  show-select-all='${args.showSelectAll}'
+  show-expand-collapse='${args.showExpandCollapse}'
+  show-clear-button='${args.showClearButton}'
+  no-results-message='${args.noResultsMessage}'
+  show-no-results-message='${args.showNoResultsMessage}'
+  search-placeholder='${args.searchPlaceholder}'
+  select-all-label='${args.selectAllLabel}'
+  expand-label='${args.expandLabel}'
+  collapse-label='${args.collapseLabel}'>
+
+  <ifx-multiselect-option value="option-1">Option 1</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-2">Option 2</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-3">Option 3</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-4">Option 4</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-5">Option 5</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-6">Option 6</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-7">Option 7</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-8">Option 8</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-9">Option 9</ifx-multiselect-option>
+  <ifx-multiselect-option value="option-10">Option 10</ifx-multiselect-option>
+</ifx-multiselect>`;
+
+  setTimeout(() => {
+    const multiselect = document.querySelectorAll('ifx-multiselect')[document.querySelectorAll('ifx-multiselect').length - 1];
+    multiselect.addEventListener('ifxSelect', action('ifxSelect'));
+    multiselect.addEventListener('ifxOpen', action('ifxOpen'));
+  }, 0);
+
+  return template;
+};
+
+export const SingleLevel = FlatTemplate.bind({});
+SingleLevel.args = {
+  label: 'Single Level Selection',
+  placeholder: 'Select options...',
+};
+SingleLevel.parameters = {
+  docs: {
+    description: {
+      story: 'A simple multiselect with single-level options - no nesting or hierarchical structure. Expand/Collapse controls are automatically hidden for single-level option lists.'
+    }
+  }
 };
