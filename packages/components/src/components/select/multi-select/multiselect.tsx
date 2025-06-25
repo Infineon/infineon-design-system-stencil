@@ -43,9 +43,6 @@ export class Multiselect {
   @State() persistentSelectedOptions: Option[] = [];
   @State() dropdownOpen = false;
   @State() dropdownFlipped: boolean;
-  @State() isLoading: boolean = false;
-  @State() optionCount: number = 0;
-  @State() optionsProcessed: boolean = false;
   @State() searchTerm: string = '';
 
   @Event() ifxSelect: EventEmitter;
@@ -105,23 +102,16 @@ export class Multiselect {
     return option;
   }
 
-  async loadInitialOptions() {
-    this.isLoading = true;
+  loadInitialOptions() {
     this.internalError = this.error;
     this.internalErrorMessage = this.errorMessage;
 
     const allOptions = this.parseChildOptions();
-    this.isLoading = false;
-
-    if (!this.optionsProcessed) {
-      this.optionCount = this.countOptions(allOptions);
-      const initiallySelected = this.collectSelectedOptions(allOptions);
-      const initiallySelectedNotInState = initiallySelected.filter(init =>
-        !this.persistentSelectedOptions.some(opt => opt.value == init.value)
-      );
-      this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelectedNotInState];
-      this.optionsProcessed = true;
-    }
+    const initiallySelected = this.collectSelectedOptions(allOptions);
+    const initiallySelectedNotInState = initiallySelected.filter(init =>
+      !this.persistentSelectedOptions.some(opt => opt.value == init.value)
+    );
+    this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelectedNotInState];
   }
 
   /**
@@ -171,21 +161,6 @@ export class Multiselect {
       }
     }
     return leafOptions;
-  }
-
-  /**
-   * Count the number of options. Only counts the leaves of the options tree.
-   */
-  countOptions(options: Option[]): number {
-    let count = 0;
-    for (const option of options) {
-      if (option.children && option.children.length > 0) {
-        count += this.countOptions(option.children);
-      } else {
-        count++;
-      }
-    }
-    return count;
   }
 
   // Search functionality
@@ -245,15 +220,11 @@ export class Multiselect {
             }
           });
 
-          console.log('Visible options after search:', visibleCount, 'Search term:', searchTerm);
-
           const optionsContainer = this.el.shadowRoot.querySelector('.ifx-multiselect-options');
           if (optionsContainer) {
             if (visibleCount === 0) {
-              console.log('Adding show-no-results class');
               optionsContainer.classList.add('show-no-results');
             } else {
-              console.log('Removing show-no-results class');
               optionsContainer.classList.remove('show-no-results');
             }
           }
@@ -310,19 +281,6 @@ export class Multiselect {
     });
 
     this.persistentSelectedOptions = selectedLeafOptions;
-    this.optionCount = this.countLeafOptions();
-  }
-
-  private countLeafOptions(): number {
-    const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
-    let count = 0;
-    allOptionElements.forEach((optionEl: any) => {
-      const instance = optionEl['__stencil_instance'];
-      if (instance && !instance.hasChildren) {
-        count++;
-      }
-    });
-    return count;
   }
 
   private updateInitialParentStates() {
@@ -400,11 +358,6 @@ export class Multiselect {
     this.internalErrorMessage = this.errorMessage;
   }
 
-  @Watch('loadedOptions')
-  loadedOptionsChanged() {
-    // No longer needed - removed loadedOptions state
-  }
-
   @Watch('persistentSelectedOptions')
   onSelectionChange(newValue: Option[], _: Option[]) {
     const formData = new FormData();
@@ -433,7 +386,7 @@ export class Multiselect {
     });
   }
 
-  async selectAll() {
+  selectAll() {
     // Reset search when selecting all
     this.resetSearch();
 
@@ -557,16 +510,6 @@ export class Multiselect {
     }
   }
 
-  handleScroll(event: UIEvent) {
-    // Scroll handling functionality - currently unused but kept for future features
-    const element = event.target as HTMLElement;
-    const halfwayPoint = Math.floor((element.scrollHeight - element.clientHeight) / 2);
-
-    if (element.scrollTop >= halfwayPoint) {
-      // Future: implement lazy loading or pagination
-    }
-  }
-
   // Rendering helper methods
   private renderSelectAll() {
     // Calculate state from current DOM elements
@@ -678,7 +621,7 @@ export class Multiselect {
                 </div>
               )}
 
-              <div class="ifx-multiselect-options" onScroll={(event) => this.handleScroll(event)}>
+              <div class="ifx-multiselect-options">
                 <slot />
                 {this.searchTerm && this.showNoResultsMessage && this.renderNoResultsMessage()}
               </div>

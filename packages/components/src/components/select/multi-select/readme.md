@@ -17,6 +17,10 @@
 
 ## Dependencies
 
+### Used by
+
+ - [ifx-set-filter](../../table-advanced-version/set-filter)
+
 ### Depends on
 
 - [ifx-icon](../../icon)
@@ -28,6 +32,7 @@ graph TD;
   ifx-multiselect-option --> ifx-icon
   ifx-multiselect-option --> ifx-checkbox
   ifx-checkbox --> ifx-icon
+  ifx-set-filter --> ifx-multiselect-option
   style ifx-multiselect-option fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

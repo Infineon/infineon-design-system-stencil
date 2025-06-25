@@ -57,13 +57,21 @@ export class SetFilter {
           ></ifx-select>
         );
       case 'multi-select':
+        // For slot-based multiselect, we need to render options as children
+        const optionsArray = Array.isArray(this.options) ? this.options : [];
+
         return (
           <ifx-multiselect
             label={this.filterLabel}
             placeholder={this.placeholder}
-            options={this.options}
             onIfxSelect={event => this.handleMultiselectOptionChange(event)}
-          />
+          >
+            {optionsArray.map(option => (
+              <ifx-multiselect-option value={option.value || option}>
+                {option.label || option}
+              </ifx-multiselect-option>
+            ))}
+          </ifx-multiselect>
         );
       default:
         return null;

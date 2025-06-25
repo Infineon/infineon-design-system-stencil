@@ -16,7 +16,6 @@ export class MultiselectOption {
   @State() private isExpanded: boolean = false;
   @State() private hasChildren: boolean = false;
   @State() private depth: number = 0;
-  @State() private level: number = 0;
   @State() private searchTerm: string = '';
   @State() private isSearchActive: boolean = false;
   @State() private isSearchDisabled: boolean = false;
@@ -24,7 +23,6 @@ export class MultiselectOption {
   componentWillLoad() {
     this.hasChildren = this.el.children.length > 0;
     this.depth = this.calculateDepth();
-    this.level = this.calculateDepth();
 
     this.el.setAttribute('data-level', this.depth.toString());
   }
@@ -422,7 +420,7 @@ export class MultiselectOption {
       isFlatMultiselect = allOptions.every(option => option.children.length === 0);
     }
 
-    const basePadding = this.level * 28 + 16;
+    const basePadding = this.depth * 28 + 16;
     const additionalPadding = this.hasChildren ? 0 : 28;
     let totalPadding = basePadding + additionalPadding;
 

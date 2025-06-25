@@ -46,7 +46,7 @@ export default {
     showSearch: {
       description: 'Show a search input.',
       options: [true, false],
-      control: { type: 'radio' },
+      control: { type: 'boolean' },
       table: {
         category: 'ifx-multiselect props',
         defaultValue: {
@@ -60,7 +60,7 @@ export default {
     showSelectAll: {
       description: 'Show a checkbox to select all options.',
       options: [true, false],
-      control: { type: 'radio' },
+      control: { type: 'boolean' },
       table: {
         category: 'ifx-multiselect props',
         defaultValue: {
@@ -74,7 +74,7 @@ export default {
     showExpandCollapse: {
       description: 'Show expand/collapse controls for nested options.',
       options: [true, false],
-      control: { type: 'radio' },
+      control: { type: 'boolean' },
       table: {
         category: 'ifx-multiselect props',
         defaultValue: {
@@ -138,7 +138,7 @@ export default {
     error: {
       description: 'Show error state.',
       options: [true, false],
-      control: { type: 'radio' },
+      control: { type: 'boolean' },
       table: {
         category: 'ifx-multiselect props',
         defaultValue: {
