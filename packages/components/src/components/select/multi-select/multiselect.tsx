@@ -37,6 +37,9 @@ export class Multiselect {
   @Prop() noResultsMessage: string = "No results found.";
   @Prop() showNoResultsMessage: boolean = true;
   @Prop() searchPlaceholder: string = "Search";
+  @Prop() selectAllLabel: string = "Select all";
+  @Prop() expandLabel: string = "Expand";
+  @Prop() collapseLabel: string = "Collapse";
 
   @State() internalError: boolean = false;
   @State() internalErrorMessage: string;
@@ -529,7 +532,7 @@ export class Multiselect {
 
     return (
       <div class="select-all-wrapper">
-        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} size="s" onClick={toggleSelectAll}>Select all</ifx-checkbox>
+        <ifx-checkbox tabIndex={-1} id='selectAll' checked={allSelected} size="s" onClick={toggleSelectAll}>{this.selectAllLabel}</ifx-checkbox>
       </div>
     );
   }
@@ -613,8 +616,8 @@ export class Multiselect {
                     {this.showSelectAll && this.renderSelectAll()}
                     {this.showExpandCollapse && !isFlatMultiselect && (
                       <div class="expand-collapse-controls">
-                        <span class="control-item" onClick={() => this.expandAll()}>Expand</span>
-                        <span class="control-item" onClick={() => this.collapseAll()}>Collapse</span>
+                        <span class="control-item" onClick={() => this.expandAll()}>{this.expandLabel}</span>
+                        <span class="control-item" onClick={() => this.collapseAll()}>{this.collapseLabel}</span>
                       </div>
                     )}
                   </div>
