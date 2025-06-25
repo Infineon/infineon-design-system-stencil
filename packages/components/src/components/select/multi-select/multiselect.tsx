@@ -267,7 +267,7 @@ export class Multiselect {
   }
 
   // Selection management methods
-  public updateSlotBasedSelections() {
+  public updateSlotBasedSelections(emitEvent: boolean = false) {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     const selectedLeafOptions: Option[] = [];
 
@@ -277,13 +277,17 @@ export class Multiselect {
         selectedLeafOptions.push({
           value: instance.value,
           selected: true,
-          disabled: instance.disabled,
-          indeterminate: instance.indeterminate
+          disabled: instance.disabled
         });
       }
     });
 
     this.persistentSelectedOptions = selectedLeafOptions;
+
+    // Only emit event when explicitly requested
+    if (emitEvent) {
+      this.ifxSelect.emit(this.persistentSelectedOptions);
+    }
   }
 
   private updateInitialParentStates() {
@@ -330,19 +334,17 @@ export class Multiselect {
   componentDidLoad() {
     setTimeout(() => {
       this.positionDropdown();
-    }, 500);
-
-    // Listen for option changes
+    }, 500);    // Listen for option changes
     this.el.addEventListener('ifx-option-changed', () => {
       // Use requestAnimationFrame to ensure all DOM updates are complete
       requestAnimationFrame(() => {
-        this.updateSlotBasedSelections();
+        this.updateSlotBasedSelections(true);
       });
     });
 
     // Initial synchronization after all components are loaded
     setTimeout(() => {
-      this.updateSlotBasedSelections();
+      this.updateSlotBasedSelections(false);
       this.updateInitialParentStates();
     }, 100);
   }
@@ -414,7 +416,7 @@ export class Multiselect {
     setTimeout(() => {
       this.updateInitialParentStates();
       // Force update after selecting all
-      this.updateSlotBasedSelections();
+      this.updateSlotBasedSelections(false);
       this.ifxSelect.emit(this.persistentSelectedOptions);
     }, 0);
   }
@@ -438,7 +440,7 @@ export class Multiselect {
 
     // Force update after clearing
     setTimeout(() => {
-      this.updateSlotBasedSelections();
+      this.updateSlotBasedSelections(false);
       this.ifxSelect.emit(this.persistentSelectedOptions);
     }, 0);
   }
