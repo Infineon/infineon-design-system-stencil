@@ -25,8 +25,6 @@ function debounce(func, wait) {
 
 export class Multiselect {
   @Prop() name: string;
-  /** @deprecated Use slot-based options instead */
-  @Prop() options: any[] | string;
   @Prop() disabled: boolean = false;
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = "Error";

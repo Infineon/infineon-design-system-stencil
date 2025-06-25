@@ -182,17 +182,6 @@ export default {
         },
       },
     },
-    options: {
-      description: 'Takes an array of objects in the following format.',
-      table: {
-        category: 'ifx-multiselect props',
-        type: {
-          summary: 'Details',
-          detail:
-            `'Array<{ value: string, label: string, selected: boolean, children?: Array<{ value: string, label: string, selected: boolean }> }>'`,
-        },
-      },
-    },
     ifxSelect: {
       action: 'ifxSelect',
       description: 'Custom event emitted when item is selected or unselected.',
