@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, AttachInternals, h, Watch } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, AttachInternals, h, Watch, Method } from '@stencil/core';
 import { Option } from './interfaces';
 
 // Debounce function
@@ -430,7 +430,8 @@ export class Multiselect {
     }, 0);
   }
 
-  clearSelection() {
+  @Method()
+  async clearSelection() {
     // For slot-based options, clear all option elements directly using instances
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     allOptionElements.forEach((optionEl: any) => {
