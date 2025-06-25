@@ -37,6 +37,7 @@ export class IfxAccordionItem {
   @Watch('open')
   openChanged(newValue: boolean) {
     this.internalOpen = newValue;
+    this.openAccordionItem();
   }
 
   toggleOpen() {
@@ -48,14 +49,20 @@ export class IfxAccordionItem {
     } else {
       this.ifxClose.emit({ isClosed: !this.internalOpen });
     }
+    this.openAccordionItem();
   }
 
   openAccordionItem() {
-    if (this.internalOpen) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
-    } else {
-      this.contentEl.style.maxHeight = '0';
-    }
+  if (this.internalOpen) {
+    this.contentEl.style.height = `${this.contentEl.scrollHeight}px`;
+    this.contentEl.style.overflow = 'hidden';
+    this.contentEl.addEventListener('transitionend', () => {
+      this.contentEl.style.overflow = 'visible';
+    }, { once: true });
+  } else {
+    this.contentEl.style.height = '0';
+    this.contentEl.style.overflow = 'hidden';
+  }
   }
 
   handleSlotChange(e) {
