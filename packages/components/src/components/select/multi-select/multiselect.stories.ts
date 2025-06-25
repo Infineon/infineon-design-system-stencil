@@ -15,7 +15,8 @@ export default {
     placeholder: 'Placeholder',
     showClearButton: true,
     noResultsMessage: 'No results found.',
-    showNoResultsMessage: true
+    showNoResultsMessage: true,
+    searchPlaceholder: 'Search'
   },
   argTypes: {
     disabled: {
@@ -121,6 +122,19 @@ export default {
         },
       },
     },
+    searchPlaceholder: {
+      description: 'Placeholder text for the search input field.',
+      control: 'text',
+      table: {
+        category: 'ifx-multiselect props',
+        defaultValue: {
+          summary: 'Search',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     error: {
       description: 'Show error state.',
       options: [true, false],
@@ -221,7 +235,8 @@ const SlotBasedTemplate = args => {
   show-expand-collapse='${args.showExpandCollapse}'
   show-clear-button='${args.showClearButton}'
   no-results-message='${args.noResultsMessage}'
-  show-no-results-message='${args.showNoResultsMessage}'>
+  show-no-results-message='${args.showNoResultsMessage}'
+  search-placeholder='${args.searchPlaceholder}'>
 
   <ifx-multiselect-option value="frontend">
     Frontend Development

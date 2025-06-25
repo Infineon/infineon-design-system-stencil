@@ -38,6 +38,7 @@ export class Multiselect {
   @Prop() showExpandCollapse: boolean = true;
   @Prop() noResultsMessage: string = "No results found.";
   @Prop() showNoResultsMessage: boolean = true;
+  @Prop() searchPlaceholder: string = "Search";
 
   @State() internalError: boolean = false;
   @State() internalErrorMessage: string;
@@ -656,7 +657,7 @@ export class Multiselect {
                     <div class="ifx-multiselect-dropdown-search">
                       <ifx-search-field
                         class="search-input"
-                        placeholder="Search..."
+                        placeholder={this.searchPlaceholder}
                         size="s"
                         show-delete-icon="true"
                         onKeyDown={(e) => { e.stopPropagation() }}
