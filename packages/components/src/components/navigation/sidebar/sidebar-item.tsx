@@ -305,13 +305,13 @@ export class SidebarItem {
             <div class="sidebar__nav-item-indicator">
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
-                  <ifx-icon icon="chevron-down-12" />
+                  <ifx-icon icon="chevron-down-16" />
                 </span>
               }
 
               {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
                 <span class='item__number-indicator'>
-                  <ifx-number-indicator>{this.numberIndicator}</ifx-number-indicator>
+                  <ifx-indicator variant='number' number={this.numberIndicator}></ifx-indicator>
                 </span>}
 
             </div>

@@ -2,6 +2,10 @@ import { Component, h, Element, Event, EventEmitter, Host, State } from '@stenci
 
 export type ChangeEvent = { oldValue: string; newValue: string };
 
+type ContentSwitcherItem = Element & {
+  selected: boolean;
+};
+
 @Component({
   tag: 'ifx-content-switcher',
   styleUrl: './content-switcher.scss',
@@ -79,16 +83,15 @@ export class ContentSwitcher {
     this.eventHandlers.clear();
   }
 
-  /**
-   * Ensure that only one item is selected at a time.
-   */
   ensureSingleSelectedItem() {
     this.items.forEach((item, index) => {
-      if (item.hasAttribute('selected')) {
+      const isSelected = (item.getAttribute('selected') === 'true') || (item as ContentSwitcherItem).selected;
+      if (isSelected) {
         if (this.activeIndex < 0) {
           this.selectItem(index);
         } else {
           item.removeAttribute('selected');
+          (item as ContentSwitcherItem).selected = false;
         }
       }
     });

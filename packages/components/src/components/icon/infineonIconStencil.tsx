@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
  
 
@@ -11,8 +11,15 @@ import { getIcon } from '@infineon/infineon-icons'
 export class InfineonIconStencil {
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
+  @State() internalIcon: string;
   @Event() consoleError: EventEmitter<boolean>;
- 
+
+   @Watch('icon')
+    updateIcon(newIcon: string) { 
+      this.internalIcon = newIcon;
+      this.setIcon()
+    }
+
   convertStringToHtml(htmlString) { 
     const div = document.createElement('div')
     div.innerHTML = htmlString
@@ -48,12 +55,18 @@ export class InfineonIconStencil {
   }
 
   getSVG(svgPath) {
-    return <svg class="inline-svg" width={this.ifxIcon.width} height={this.ifxIcon.height} xmlns="http://www.w3.org/2000/svg" fill={this.ifxIcon.fill} viewBox={this.ifxIcon.viewBox}>{...svgPath}</svg>
+    const htmlPath = this.convertStringToHtml(this.ifxIcon) as SVGElement;
+    const width = htmlPath.getAttribute('width');
+    const height = htmlPath.getAttribute('height');
+    const fill = htmlPath.getAttribute('fill');
+    const viewBox = htmlPath.getAttribute('viewBox');
+    
+    return <svg class="inline-svg" width={width} height={height} xmlns="http://www.w3.org/2000/svg" fill={fill} viewBox={viewBox}>{...svgPath}</svg>
   }
 
   constructIcon() {
     if(this.ifxIcon) {
-      const htmlPath = this.convertStringToHtml(this.ifxIcon.svgContent)
+      const htmlPath = this.convertStringToHtml(this.ifxIcon)
       const svgPath = this.convertPathsToVnode(htmlPath)
       const SVG = this.getSVG(svgPath)
       return SVG;
@@ -66,12 +79,15 @@ export class InfineonIconStencil {
     }
   }
 
-  componentWillLoad() {
+  setIcon() { 
     const removeHyphen = (str) => str.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (_m, chr) => chr);
-    this.ifxIcon = getIcon(removeHyphen(this.icon));
+    this.ifxIcon = getIcon(removeHyphen(this.internalIcon));
   }
 
-
+  componentWillLoad() {
+    this.internalIcon = this.icon;
+    this.setIcon()
+  }
 
   render() {
     return (

@@ -15,7 +15,9 @@
   order: 0;
   align-self: stretch;
   flex-grow: 0;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
 
   &.disabled {
@@ -111,7 +113,9 @@
       height: tokens.$ifxSize500;
       background-color: tokens.$ifxColorBaseWhite;
       color: tokens.$ifxColorBaseBlack;
-      font-family: tokens.$ifxFontFamilyBody;
+      font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       border: 1px solid tokens.$ifxColorEngineering400;

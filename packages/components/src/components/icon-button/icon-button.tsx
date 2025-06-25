@@ -1,4 +1,4 @@
-import { Component, Prop, h, Host, Method, Element, Listen } from '@stencil/core';
+import { Component, Prop, h, Host, Method, Element, Listen, Watch, State } from '@stencil/core';
 import classNames from 'classnames';
 
 @Component({
@@ -16,6 +16,7 @@ export class IconButton {
   @Prop() target: string = '_self';
   @Prop() shape: string = 'round';
   @Prop() ariaLabel: string | null;
+  @State() internalIcon: string;
   @Element() el;
 
   private focusableElement: HTMLElement;
@@ -27,6 +28,11 @@ export class IconButton {
     }
   }
 
+  @Watch('icon')
+  updateIcon(newIcon: string) { 
+    this.internalIcon = newIcon;
+  }
+
   @Method()
   async setFocus() {
     this.focusableElement.focus();
@@ -36,6 +42,7 @@ export class IconButton {
     if (this.shape === '') {
       this.shape = 'round';
     }
+    this.internalIcon = this.icon;
   }
 
   render() {
@@ -51,7 +58,7 @@ export class IconButton {
             target={this.target}
             rel={this.target === '_blank' ? 'noopener noreferrer' : undefined}
           >
-            <ifx-icon icon={this.icon}></ifx-icon>
+            <ifx-icon icon={this.internalIcon}></ifx-icon>
           </a>
         ) : (
           <button
@@ -59,7 +66,7 @@ export class IconButton {
             type="button"
             disabled={this.disabled}
           >
-            <ifx-icon icon={this.icon}></ifx-icon>
+            <ifx-icon icon={this.internalIcon}></ifx-icon>
           </button>
         )}
       </Host>

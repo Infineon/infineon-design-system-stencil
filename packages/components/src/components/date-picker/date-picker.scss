@@ -7,6 +7,19 @@
   & .label__wrapper {
     color: tokens.$ifxColorBaseBlack;
     font: tokens.$ifxBodyBody03;
+
+    & .asterisk { 
+      display: none;
+      &.required {
+        display: inline;
+        margin-left: 4px;
+        
+        &.error {
+          color: #CD002F;
+        }
+      }
+    }
+
   }
 
   &.disabled {

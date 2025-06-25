@@ -176,7 +176,7 @@ export default {
   },
 };
 
-const Template = ({ caption,captionAriaLabel, closeButtonAriaLabel, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
+const Template = ({ caption, captionAriaLabel, closeButtonAriaLabel, showCloseButton, closeOnOverlayClick, variant, size, alertIcon, cancelButtonLabel, okButtonLabel }) => {
   const modal = document.createElement('ifx-modal');
   modal.setAttribute('caption', caption);
   modal.setAttribute('caption-aria-label', captionAriaLabel);
@@ -255,7 +255,7 @@ Alert.args = {
   captionAriaLabel: 'Additional information for caption',
   closeButtonAriaLabel: 'Close alert modal',
   closeOnOverlayClick: true,
-  alertIcon: 'arrowdown24',
+  alertIcon: 'arrowdoen16',
   size: 's',
   variant: 'alert-brand',
   cancelButtonLabel: 'Cancel',

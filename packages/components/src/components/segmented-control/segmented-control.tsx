@@ -61,12 +61,7 @@ export class SegmentedControl {
                 }
             }
         });
-        if (!activeSegmentedControlFound && segments.length) {
-            (segments[0] as HTMLIfxSegmentElement).selected = true;
-            this.selectedValue = (segments[0] as HTMLIfxSegmentElement).value;
-        }
     }
-
 
     setSegmentSize(): void {
         const segments: NodeList = this.getSegments();

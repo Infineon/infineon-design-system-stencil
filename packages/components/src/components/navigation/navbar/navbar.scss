@@ -8,7 +8,9 @@
 
 
 .navbar__wrapper {
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   height: 63px;
   position: sticky;
   //overflow: hidden;
@@ -268,7 +270,9 @@
   padding: 8px 40px;
   gap: 16px;
   background-color: tokens.$ifxColorBaseWhite;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &.expanded { 
     justify-content: initial;

@@ -13,7 +13,9 @@
   flex: none;
   order: 0;
   flex-grow: 0;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   text-decoration: none;
   font-weight: 400;
   font-size: 16px;
@@ -35,6 +37,7 @@
 
   & .navItemIconWrapper { 
     transition: .3s;
+    display: flex;
   }
 
   &.open { 
@@ -71,19 +74,6 @@
   }
 
   & .number__indicator-wrapper { 
-    position: relative;
-    top: -11px;
-  }
-
-  & .dot__indicator-wrapper { 
-    display: flex;
-    width: 8px;
-    height: 8px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-color: tokens.$ifxColorOcean500;
     position: relative;
     top: -11px;
   }
@@ -240,7 +230,9 @@
   box-shadow: 0px 6px 9px 0px #1d1d1d1a;
   border: 1px solid tokens.$ifxColorEngineering200;
   padding: 8px 0px;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &.open:not(.itemInMobileMenu) {
     display: flex;
@@ -301,7 +293,9 @@
     justify-content: space-between;
     padding: 8px 16px;
     gap: 8px;
-    font-family: tokens.$ifxFontFamilyBody;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   
     &.hide {
       display: none;

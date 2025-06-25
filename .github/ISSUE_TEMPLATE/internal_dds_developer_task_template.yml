@@ -1,0 +1,76 @@
+name: Internal DDS Developer Task Template
+description: A highly detailed technical requirements template for internal team usage
+title: "Title: short summary"
+labels:
+  - enhancement
+  - request
+assignees: []
+
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Provide a concise and clear summary of the task.
+      placeholder: e.g. "Add loading state to Button component."
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: Context
+      description: Describe the background of this request. Why is it needed? What problem are we solving?
+      placeholder: |
+        e.g. "Users need feedback when clicking the button, so a loading state is required to indicate progress."
+
+  - type: checkboxes
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: List the specific conditions that must be met for this task to be considered complete.
+      options:
+        - label: Meets technical requirements
+        - label: Meets design requirements
+        - label: Proper use of Semantic HTML
+        - label: Custom events are implemented
+        - label: Storybook integration
+        - label: Unit test integration
+        - label: Meets accessibility requirements (Keyboarybord navigation, ARIA roles, etc.)
+        - label: Component has been thoroughly tested (Storybook, Angular, React, Vanilla JS and Vue)
+        - label: Component has been thoroughly reviewed
+
+  - type: textarea
+    id: task_checklist
+    attributes:
+      label: Task Checklist
+      description: Break down the work into atomic developer tasks. These should be implementation-focused.
+      placeholder: |
+        - [ ] Add loading state prop to Button component
+        - [ ] Implement loading spinner in Button
+        - [ ] Add unit custom event for loading state
+        - [ ] Add Storybook example for loading state
+        - [] …
+
+        > Note: Please use the actual GitHub task checklist (checkbox list) in the issue so progress can be tracked.
+
+        > If a task is large or complex, consider creating a separate issue for it and reference it here.
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Include links to relevant specs, designs, documentation, or related issues.
+      placeholder: |
+        - [Figma Design Spec](url)
+        - [Component API Docs](url)
+        - [Accessibility Guidelines](url)
+        - Related issue: #456
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Add any additional notes, constraints, or assumptions that are helpful for implementation.
+      placeholder: |
+        e.g. "Known limitation: does not support IE11"

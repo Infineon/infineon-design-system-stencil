@@ -8,7 +8,7 @@ export default {
     variant: 'primary',
     size: 'm',
     disabled: false,
-    icon: 'c-info-24',
+    icon: 'c-info-16',
     href: '',
     target: '_blank',
     shape: 'round',
@@ -18,12 +18,12 @@ export default {
   argTypes: {
     icon: {
       description: 'The icon to be displayed.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       table: {
         category: 'ifx-icon-button props',
         defaultValue: {
-          summary: 'c-info-24'
+          summary: 'c-info-16'
         }
       }
     },
