@@ -208,6 +208,16 @@
   .control-item {
     font-size: tokens.$ifxFontSizeS;
     line-height: tokens.$ifxLineHeightS;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
+      border-radius: tokens.$ifxBorderRadius12;
+    }
   }
 }
 

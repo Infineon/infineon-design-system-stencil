@@ -223,7 +223,8 @@ export class MultiselectOption {
 
     event.stopPropagation();
 
-    if ((event.target as HTMLElement).closest('.chevron-wrapper')) {
+    // Only check for chevron when it's an actual click event (not keyboard)
+    if (event.type === 'click' && (event.target as HTMLElement).closest('.chevron-wrapper')) {
       this.toggleExpansion();
       return;
     }
@@ -256,13 +257,17 @@ export class MultiselectOption {
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
-    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
-      event.stopPropagation();
+    // Only handle keyboard events that bubble up to the component level
+    // Individual element handlers (chevron, checkbox) will handle their own events
+    const target = event.target as HTMLElement;
+
+    // Don't handle if event came from chevron or checkbox (they have their own handlers)
+    if (target.closest('.chevron-wrapper') || target.closest('.checkbox-wrapper')) {
+      return;
     }
 
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.handleClick(event);
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') {
+      event.stopPropagation();
     }
 
     if (event.key === 'ArrowRight' && this.hasChildren) {
@@ -354,14 +359,20 @@ export class MultiselectOption {
 
   private toggleExpansion() {
     this.isExpanded = !this.isExpanded;
-  }
-
-  private handleCheckboxChange = (event: CustomEvent) => {
+  }  private handleCheckboxClick = (event: Event) => {
     if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
     event.stopPropagation();
 
-    const newSelectedState = event.detail;
+    // Use the same logic as handleClick for indeterminate state
+    let newSelectedState: boolean;
+
+    if (this.indeterminate) {
+      newSelectedState = true;
+    } else {
+      newSelectedState = !this.selected;
+    }
+
     this.selected = newSelectedState;
     this.indeterminate = false;
 
@@ -447,7 +458,20 @@ export class MultiselectOption {
             class="option-item"
             style={optionItemStyle}
           >
-            <div class="chevron-wrapper" onClick={(e) => { e.stopPropagation(); this.toggleExpansion(); }}>
+            <div
+              class="chevron-wrapper"
+              tabIndex={this.hasChildren ? 0 : -1}
+              role={this.hasChildren ? "button" : undefined}
+              aria-label={this.hasChildren ? (this.isExpanded ? "Collapse" : "Expand") : undefined}
+              onClick={(e) => { e.stopPropagation(); this.toggleExpansion(); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.toggleExpansion();
+                }
+              }}
+            >
               {this.hasChildren && (
                 <ifx-icon
                   class={`chevron ${this.isExpanded ? 'chevron--expanded' : 'chevron--collapsed'}`}
@@ -461,16 +485,22 @@ export class MultiselectOption {
                 size='s'
                 checked={(this.isSearchActive && this.isSearchDisabled) ? false : (this.indeterminate ? false : this.selected)}
                 indeterminate={(this.isSearchActive && this.isSearchDisabled) ? false : this.indeterminate}
-                onIfxChange={this.handleCheckboxChange}
+                onClick={this.handleCheckboxClick}
                 disabled={this.disabled || (this.isSearchActive && this.isSearchDisabled)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.handleCheckboxClick(e);
+                  }
+                }}
               />
             </div>
 
             <div
               class="option-label"
               onClick={this.handleHeaderClick}
-              tabIndex={this.disabled ? -1 : 0}
-              onKeyDown={this.handleKeyDown}
+              tabIndex={-1}
             >
               <slot/>
             </div>

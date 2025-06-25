@@ -87,6 +87,16 @@
   height: tokens.$ifxSize250;
   flex-shrink: 0;
 
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 2px;
+    border-radius: tokens.$ifxBorderRadius12;
+  }
+
   .option--has-children & {
     display: flex;
   }

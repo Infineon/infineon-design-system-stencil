@@ -21,8 +21,6 @@ function debounce(func, wait) {
   formAssociated: true
 })
 
-
-
 export class Multiselect {
   @Prop() name: string;
   @Prop() disabled: boolean = false;
@@ -511,17 +509,48 @@ export class Multiselect {
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled) return;
 
+    // If dropdown is closed, only allow opening
+    if (!this.dropdownOpen) {
+      switch (event.code) {
+        case 'Enter':
+        case 'Space':
+        case 'ArrowDown':
+          event.preventDefault();
+          this.toggleDropdown();
+          break;
+      }
+      return;
+    }
+
+    // Dropdown is open - handle navigation and controls
     switch (event.code) {
+      case 'Escape':
+        event.preventDefault();
+        this.toggleDropdown();
+        break;
       case 'Enter':
       case 'Space':
-        this.toggleDropdown();
+        // Don't close dropdown when pressing space/enter in controls area
+        const target = event.target as HTMLElement;
+        if (!target.closest('.ifx-multiselect-dropdown-functions')) {
+          event.preventDefault();
+          this.toggleDropdown();
+        }
         break;
       case 'ArrowDown':
       case 'ArrowUp':
-        if (this.dropdownOpen) {
-          // Handle keyboard navigation
-        }
+        // Focus first/last option for navigation
+        event.preventDefault();
+        this.focusFirstOption();
         break;
+    }
+  }
+
+  private focusFirstOption() {
+    const firstOption = this.el.querySelector('ifx-multiselect-option:not(.search-hidden)');
+    if (firstOption) {
+      const labelElement = firstOption.shadowRoot?.querySelector('.option-label') as HTMLElement;
+      labelElement?.focus();
     }
   }
 
@@ -534,7 +563,13 @@ export class Multiselect {
 
     const allSelected = leafOptions.length > 0 && selectedLeafOptions.length === leafOptions.length;
 
-    const toggleSelectAll = () => {
+    const toggleSelectAll = (event?: Event) => {
+      // Prevent event from bubbling up and closing dropdown
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
       if (allSelected) {
         this.clearSelection();
       } else {
@@ -545,12 +580,18 @@ export class Multiselect {
     return (
       <div class="select-all-wrapper">
         <ifx-checkbox
-          tabIndex={-1}
           id='selectAll'
           checked={allSelected}
           size="s"
           aria-label={this.ariaSelectAllLabel}
           onClick={toggleSelectAll}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleSelectAll(e);
+            }
+          }}
         >
           {this.selectAllLabel}
         </ifx-checkbox>
@@ -624,7 +665,7 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu">
 
               {(this.showSearch || this.showSelectAll || (this.showExpandCollapse && !isFlatMultiselect)) && (
-                <div class="ifx-multiselect-dropdown-functions">
+                <div class="ifx-multiselect-dropdown-functions" onClick={(e) => e.stopPropagation()}>
                   {this.showSearch && (
                     <div class="ifx-multiselect-dropdown-search">
                       <ifx-search-field
@@ -650,8 +691,14 @@ export class Multiselect {
                           role="button"
                           tabIndex={0}
                           aria-label={this.ariaExpandAllLabel}
-                          onClick={() => this.expandAll()}
-                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') this.expandAll(); }}
+                          onClick={(e) => { e.stopPropagation(); this.expandAll(); }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.expandAll();
+                            }
+                          }}
                         >
                           {this.expandLabel}
                         </span>
@@ -660,8 +707,14 @@ export class Multiselect {
                           role="button"
                           tabIndex={0}
                           aria-label={this.ariaCollapseAllLabel}
-                          onClick={() => this.collapseAll()}
-                          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') this.collapseAll(); }}
+                          onClick={(e) => { e.stopPropagation(); this.collapseAll(); }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.collapseAll();
+                            }
+                          }}
                         >
                           {this.collapseLabel}
                         </span>
