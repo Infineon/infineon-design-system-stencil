@@ -5,7 +5,6 @@
 
 .accordion-item {
   border-radius: 3px;
-  //overflow: hidden;
   transition: all 0.3s;
   font-family: var(--ifx-font-family) // tokens.$ifxFontFamilyBody;
 
@@ -53,8 +52,8 @@
 }
 
 .accordion-content {
-  height: 0;
-  transition: height 0.3s ease-in-out;
+  gap: tokens.$ifxSpace100;
+  //transition: max-height 0.3s ease-in-out;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
