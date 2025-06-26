@@ -15,11 +15,46 @@
   
   <script>
 
+    const changeContent = () => { 
+      const mycontent = document.getElementById('spanContent');
+      mycontent.innerHTML = 'shorter content'
+    }
+
   </script>
 
 </head>
 
 <body>
+
+  <ifx-accordion auto-collapse="false"><ifx-accordion-item caption="Label" open="true" aria-level="3" mutable="true">
+    <span id="spanContent"> Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.</span>
+    <ifx-select 
+    size='m'
+    placeholder='true'
+    show-clear-button='true'
+    show-search='true'
+    search-placeholder-value='Search...'
+    disabled='false'
+    error='false'
+    error-message='Some error'
+    label=''
+    placeholder-value='Placeholder'
+    options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]' >
+  </ifx-select>
+</ifx-accordion-item><ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+        Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item><ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+        Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item></ifx-accordion>
+
+
+    <ifx-button onclick="changeContent()">change content</ifx-button>
 
 </body>
 

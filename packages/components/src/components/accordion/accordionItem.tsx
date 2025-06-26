@@ -52,9 +52,12 @@ export class IfxAccordionItem {
 
   openAccordionItem() {
     if (this.internalOpen) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+      this.contentEl.style.height = `${this.contentEl.scrollHeight}px`;
+      console.log('contentEl height', this.contentEl.style.height)
+      this.contentEl.style.overflow = 'visible';
     } else {
-      this.contentEl.style.maxHeight = '0';
+      this.contentEl.style.height = '0';
+      this.contentEl.style.overflow = 'hidden';
     }
   }
 
@@ -68,7 +71,8 @@ export class IfxAccordionItem {
           for(let mutation of mutationsList) {
             if (mutation.type === 'childList') {
               if (this.internalOpen) {
-                this.openAccordionItem();
+                console.log('here')
+                //this.openAccordionItem();
               }
             }
           }
@@ -81,8 +85,6 @@ export class IfxAccordionItem {
       this.openAccordionItem();
     }
   }
-
-  
 
   @Listen('keydown')
   handleKeydown(ev: KeyboardEvent) {
