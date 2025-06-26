@@ -157,6 +157,12 @@ export default {
         },
       },
     },
+    clearSelection: {
+      description: 'Public method for clearing the selected options',
+      table: {
+        category: 'ifx-select public methods',
+      }
+    }
   },
 };
 

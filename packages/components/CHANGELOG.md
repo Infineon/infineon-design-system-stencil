@@ -1,3 +1,225 @@
+# v35.1.1 (Wed Jun 25 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: updates iconography's documentation [#1909](https://github.com/Infineon/infineon-design-system-stencil/pull/1909) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v35.1.0 (Tue Jun 24 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: fixes icons preview [#1912](https://github.com/Infineon/infineon-design-system-stencil/pull/1912) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v35.0.0 (Fri Jun 20 2025)
+
+#### 💥 Breaking Change
+
+- Icons: replaces all existing icons with single 16px-sized icons [#1896](https://github.com/Infineon/infineon-design-system-stencil/pull/1896) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.8.0 (Wed Jun 18 2025)
+
+#### 🚀 Enhancement
+
+- Makes the icon prop of icon and icon-button components dynamic [#1905](https://github.com/Infineon/infineon-design-system-stencil/pull/1905) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.7.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Storybook: adds a search feature in the icon library [#1900](https://github.com/Infineon/infineon-design-system-stencil/pull/1900) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.6.0 (Thu Jun 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes bug where correct window height is not detected on Edge browser causing content overflow [#1899](https://github.com/Infineon/infineon-design-system-stencil/pull/1899) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.5.2 (Wed Jun 11 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the documentation of File Upload and Segmented controls [#1866](https://github.com/Infineon/infineon-design-system-stencil/pull/1866) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.5.1 (Fri Jun 06 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the repository README to document the additional steps for Mac users when using the CDN link [#1894](https://github.com/Infineon/infineon-design-system-stencil/pull/1894) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.5.0 (Fri Jun 06 2025)
+
+#### 🚀 Enhancement
+
+- Angular: updates to latest version 20 [#1889](https://github.com/Infineon/infineon-design-system-stencil/pull/1889) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.4.2 (Wed Jun 04 2025)
+
+#### 🐛 Bug Fix
+
+- Resolves issue with font-family not working on Mac [#1845](https://github.com/Infineon/infineon-design-system-stencil/pull/1845) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@github-actions[bot]](https://github.com/github-actions[bot]))
+
+#### Authors: 3
+
+- [@github-actions[bot]](https://github.com/github-actions[bot])
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.4.1 (Wed Jun 04 2025)
+
+#### 🐛 Bug Fix
+
+- Segmented control: prevents default item selection [#1885](https://github.com/Infineon/infineon-design-system-stencil/pull/1885) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.4.0 (Wed Jun 04 2025)
+
+#### 🚀 Enhancement
+
+- Content-switcher: fixes bug where divider is visible when item is pre-selected [#1884](https://github.com/Infineon/infineon-design-system-stencil/pull/1884) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.3.0 (Tue Jun 03 2025)
+
+#### 🚀 Enhancement
+
+- Modal: adds changes to dynamically handle content overflow [#1882](https://github.com/Infineon/infineon-design-system-stencil/pull/1882) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.2.0 (Mon Jun 02 2025)
+
+#### 🚀 Enhancement
+
+- Single-select: exposes clear method for public use [#1879](https://github.com/Infineon/infineon-design-system-stencil/pull/1879) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.1.0 (Fri May 30 2025)
+
+#### 🚀 Enhancement
+
+- New component: Tree view [#1869](https://github.com/Infineon/infineon-design-system-stencil/pull/1869) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v34.0.0 (Fri May 30 2025)
+
+#### 💥 Breaking Change
+
+- Number-indicator: renamed to Indicator, and implements dot variant [#1868](https://github.com/Infineon/infineon-design-system-stencil/pull/1868) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.7.0 (Wed May 28 2025)
+
+#### 🚀 Enhancement
+
+- Adds a new github issue template for internal use [#1875](https://github.com/Infineon/infineon-design-system-stencil/pull/1875) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v33.6.0 (Tue May 27 2025)
+
+#### 🚀 Enhancement
+
+- Modal: allows only dropdown menus to overflow container [#1871](https://github.com/Infineon/infineon-design-system-stencil/pull/1871) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v33.5.0 (Wed May 21 2025)
 
 #### 🚀 Enhancement

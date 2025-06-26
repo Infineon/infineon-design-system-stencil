@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script type="module" src="./dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
   <link rel="stylesheet" href="./dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
-  
+
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
 
@@ -353,7 +353,7 @@
     <br />
 
     <h2>Number Indicator</h2>
-    <ifx-number-indicator id="number-indicator" inverted='false'>1</ifx-number-indicator>
+    <ifx-indicator id="number-indicator" inverted='false' variant="number" number="1"></ifx-indicator>
     <button onClick="increaseNumber()">+</button>
     <button onClick="decreaseNumber()">-</button>
     <br />
@@ -866,7 +866,7 @@
     basicTable.setAttribute('rows', tableRows);
     advancedTable.setAttribute('rows', tableRows);
     tableWithBtn.setAttribute('rows', tableRowsWithBtn);
-    
+
 
     //set advanced table row values using a json array
     const tableColumns = `[

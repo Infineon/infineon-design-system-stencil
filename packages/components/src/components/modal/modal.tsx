@@ -48,7 +48,21 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+  }
 
+  componentWillRender() { 
+    if(this.showModal) { 
+      this.handleComponentOverflow();
+    }
+  }
+
+  handleComponentOverflow() { 
+    const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
+    if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
+      modalContentContainer.classList.add('no-overflow')
+    } else if(modalContentContainer?.classList.contains('no-overflow')) { 
+      modalContentContainer?.classList.remove('no-overflow')
+    }
   }
 
   getFirstFocusableElement(): HTMLElement | null {
@@ -67,7 +81,6 @@ export class IfxModal {
     this.attemptFocus(this.getFirstFocusableElement());
   };
 
-
   attemptFocus(element: HTMLElement | null) {
     if (element == null) {
       setTimeout(() => { //wait until DOM is fully loaded
@@ -80,7 +93,6 @@ export class IfxModal {
       element.focus();
     }, 0);
   }
-
 
   open() {
     this.showModal = true;
@@ -102,10 +114,7 @@ export class IfxModal {
       this.hostElement.addEventListener('keydown', this.handleKeypress);
     } catch (err) {
       this.ifxOpen.emit();
-
     }
-
-
   }
 
   close() {
@@ -133,7 +142,6 @@ export class IfxModal {
     }
   };
 
-
   doBeforeClose(trigger: CloseEventTrigger) {
     const triggers = [];
     triggers.push(trigger);
@@ -142,8 +150,6 @@ export class IfxModal {
       this.opened = false;
     }
   }
-
-
 
   @Watch('opened')
   openedChanged(newValue) {
@@ -154,13 +160,35 @@ export class IfxModal {
     }
   }
 
-
   handleOverlayClick() {
     if (this.closeOnOverlayClick) {
       this.doBeforeClose('BACKDROP')
     }
   }
 
+  handleContentUpdate(e) {
+  const slotElement = e.target;
+  const nodes = slotElement.assignedNodes();
+  if(nodes.length > 0) {
+    nodes.forEach(node => {
+      if (node.observer) {
+        node.observer.disconnect();
+        delete node.observer;
+      }
+      const observer = new MutationObserver((mutationsList, _) => {
+        for(let mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+            if(this.showModal) { 
+              this.handleComponentOverflow();
+            }
+          }
+        }
+        });
+        observer.observe(node, { attributes: true, childList: true, subtree: true });
+        node.observer = observer;
+      });
+    } 
+  }
 
   handleButtonsSlotChange(e) {
     if(e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
@@ -169,6 +197,18 @@ export class IfxModal {
       this.slotButtonsPresent = false;
     }
   }
+
+ isModalContentContainerHeightReachedViewport() {
+  //Adding timeout for proper height detection on Edge browser
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
+      const modalContentHeight = modalContent.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      resolve(modalContentHeight >= viewportHeight * 0.9);
+    }, 100);
+  });
+}
 
 
   render() {
@@ -203,12 +243,12 @@ export class IfxModal {
                 <h2 class="modal-caption">{this.caption}</h2>
                 { 
                   this.showCloseButton && 
-                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-24" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
+                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-16" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
                   </ifx-icon-button>
                 }
               </div>
               <div class="modal-body">
-                <slot name="content" /*onSlotchange={() => console.log('slots children modified')}*/ />
+                <slot name="content" onSlotchange={(e) => this.handleContentUpdate(e)} />
               </div>
               <div class={`modal-footer ${this.slotButtonsPresent ? 'buttons-present' : ''}`}>
                 <slot name="buttons" onSlotchange={(e)=>this.handleButtonsSlotChange(e)}>

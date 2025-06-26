@@ -5,7 +5,9 @@
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &:hover {
     cursor: pointer;
