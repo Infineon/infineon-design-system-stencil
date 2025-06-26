@@ -29,7 +29,6 @@ export class MultiselectOption {
 
   componentDidLoad() {
     if (this.hasChildren) {
-      // Only expand if this parent has any selected children (direct or nested)
       const hasSelectedChildren = this.hasAnySelectedChildren();
       if (hasSelectedChildren) {
         this.isExpanded = true;
@@ -37,9 +36,7 @@ export class MultiselectOption {
     }
 
     (this.el as any)['__stencil_instance'] = this;
-
     this.notifyMultiselect();
-
     this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
   }
 
@@ -205,7 +202,9 @@ export class MultiselectOption {
       parent = parent.parentElement;
     }
     return false;
-  }  private calculateDepth(): number {
+  }
+
+  private calculateDepth(): number {
     let depth = 0;
     let parent = this.el.parentElement;
     while (parent && parent.tagName !== 'IFX-MULTISELECT') {
@@ -223,7 +222,6 @@ export class MultiselectOption {
 
     event.stopPropagation();
 
-    // Only check for chevron when it's an actual click event (not keyboard)
     if (event.type === 'click' && (event.target as HTMLElement).closest('.chevron-wrapper')) {
       this.toggleExpansion();
       return;
@@ -257,11 +255,8 @@ export class MultiselectOption {
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
-    // Only handle keyboard events that bubble up to the component level
-    // Individual element handlers (chevron, checkbox) will handle their own events
     const target = event.target as HTMLElement;
 
-    // Don't handle if event came from chevron or checkbox (they have their own handlers)
     if (target.closest('.chevron-wrapper') || target.closest('.checkbox-wrapper')) {
       return;
     }
@@ -359,12 +354,13 @@ export class MultiselectOption {
 
   private toggleExpansion() {
     this.isExpanded = !this.isExpanded;
-  }  private handleCheckboxClick = (event: Event) => {
+  }
+
+  private handleCheckboxClick = (event: Event) => {
     if (this.disabled || (this.isSearchActive && this.isSearchDisabled)) return;
 
     event.stopPropagation();
 
-    // Use the same logic as handleClick for indeterminate state
     let newSelectedState: boolean;
 
     if (this.indeterminate) {
@@ -402,8 +398,6 @@ export class MultiselectOption {
 
     return childOptions.some(child => {
       const hasSelected = child.hasAttribute('selected');
-
-      // Check if this child has selected descendants
       const hasSelectedDescendants = this.checkForSelectedDescendants(child);
 
       return hasSelected || hasSelectedDescendants;
@@ -423,7 +417,6 @@ export class MultiselectOption {
   }
 
   render() {
-
     let isFlatMultiselect = false;
     const parentMultiselect = this.el.closest('ifx-multiselect');
     if (parentMultiselect) {

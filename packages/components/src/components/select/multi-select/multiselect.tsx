@@ -1,7 +1,6 @@
 import { Component, Prop, State, Event, EventEmitter, Element, AttachInternals, h, Watch, Method } from '@stencil/core';
 import { Option } from './interfaces';
 
-// Debounce function
 function debounce(func, wait) {
   let timeout;
   return function executedFunction(...args) {
@@ -12,7 +11,7 @@ function debounce(func, wait) {
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
-};
+}
 
 @Component({
   tag: 'ifx-multiselect',
@@ -62,11 +61,6 @@ export class Multiselect {
   dropdownElement!: HTMLElement;
 
   @AttachInternals() internals: ElementInternals;
-
-
-  /**
-   * Parse child elements to create options structure
-   */
   private parseChildOptions(): Option[] {
     const options: Option[] = [];
     const childElements = Array.from(this.el.children);
@@ -83,9 +77,6 @@ export class Multiselect {
     return options;
   }
 
-  /**
-   * Recursively parse option element and its children
-   */
   private parseOptionElement(element: HTMLElement, index: number): Option | null {
     const value = element.getAttribute('value') || `option-${index}`;
     const selected = element.hasAttribute('selected');
@@ -99,7 +90,6 @@ export class Multiselect {
       indeterminate
     };
 
-    // Check for nested options
     const nestedOptions = Array.from(element.children)
       .filter(child => child.tagName === 'IFX-MULTISELECT-OPTION')
       .map((child, childIndex) => this.parseOptionElement(child as HTMLElement, childIndex))
@@ -124,21 +114,12 @@ export class Multiselect {
     this.persistentSelectedOptions = [...this.persistentSelectedOptions, ...initiallySelectedNotInState];
   }
 
-  /**
-   * Collects and returns all options that are selected.
-   * When the parent is selected, then the value of the children will be overriden with selected as well.
-   * It will only collect the leaves of the tree.
-   *
-   * @param options A list of options.
-   * @returns A list with all selected options
-   */
   private collectSelectedOptions(options: Option[]): Option[] {
     let selectedOptions: Option[] = [];
 
     for (const option of options) {
       if (option.selected) {
         if (option.children && option.children.length > 0) {
-          // if parent is selected, then select all child options
           selectedOptions = selectedOptions.concat(this.collectLeafOptions(option.children));
         } else {
           if (!selectedOptions.some(existingOption => existingOption.value === option.value)) {
@@ -155,11 +136,6 @@ export class Multiselect {
     return selectedOptions;
   }
 
-  /**
-   * Collects all leaf children options.
-   *
-   * @param option A list with all leaf-children.
-   */
   private collectLeafOptions(children: Option[]): Option[] {
     let leafOptions = [];
 
@@ -173,20 +149,17 @@ export class Multiselect {
     return leafOptions;
   }
 
-  // Search functionality
   handleSearch = debounce((targetElement: HTMLInputElement) => {
     const searchTerm = targetElement.value.toLowerCase();
     const isSearchActive = searchTerm !== '';
 
     this.searchTerm = searchTerm;
 
-    // Remove active class from wrapper when search is active
     const wrapper = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper');
     if (wrapper) {
       if (isSearchActive) {
         wrapper.classList.remove('active');
       } else {
-        // Check if search field has focus before adding active class back
         const searchField = this.el.shadowRoot.querySelector('ifx-search-field');
         const searchFieldHasFocus = searchField && searchField.matches(':focus-within');
         if (!searchFieldHasFocus) {
@@ -211,7 +184,8 @@ export class Multiselect {
           detail: { searchTerm, isActive: isSearchActive }
         });
         option.dispatchEvent(searchEvent);
-      });      // Simple check after filtering
+      });
+
       if (isSearchActive) {
         setTimeout(() => {
           const allOptions = this.el.querySelectorAll('ifx-multiselect-option');
@@ -221,7 +195,6 @@ export class Multiselect {
             const style = window.getComputedStyle(option);
             const rect = option.getBoundingClientRect();
 
-            // Check multiple conditions for visibility
             if (style.display !== 'none' &&
                 style.visibility !== 'hidden' &&
                 style.opacity !== '0' &&
@@ -259,13 +232,11 @@ export class Multiselect {
     }
   }
 
-  // Dropdown positioning and state management
   positionDropdown() {
     const wrapperRect = this.el.shadowRoot.querySelector('.ifx-multiselect-wrapper')?.getBoundingClientRect();
     const spaceBelow = window.innerHeight - wrapperRect.bottom;
     const spaceAbove = wrapperRect.top;
 
-    // If there's more space above than below the trigger and the dropdown doesn't fit below
     if ((spaceAbove > spaceBelow && wrapperRect.height > spaceBelow) || (wrapperRect.bottom > window.innerHeight)) {
       this.dropdownFlipped = true;
     } else {
@@ -273,7 +244,6 @@ export class Multiselect {
     }
   }
 
-  // Selection management methods
   public updateSlotBasedSelections(emitEvent: boolean = false) {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     const selectedLeafOptions: Option[] = [];
@@ -291,7 +261,6 @@ export class Multiselect {
 
     this.persistentSelectedOptions = selectedLeafOptions;
 
-    // Only emit event when explicitly requested
     if (emitEvent) {
       this.ifxSelect.emit(this.persistentSelectedOptions);
     }
@@ -337,19 +306,17 @@ export class Multiselect {
     }
   }
 
-  // Component lifecycle methods
   componentDidLoad() {
     setTimeout(() => {
       this.positionDropdown();
-    }, 500);    // Listen for option changes
+    }, 500);
+
     this.el.addEventListener('ifx-option-changed', () => {
-      // Use requestAnimationFrame to ensure all DOM updates are complete
       requestAnimationFrame(() => {
         this.updateSlotBasedSelections(true);
       });
     });
 
-    // Initial synchronization after all components are loaded
     setTimeout(() => {
       this.updateSlotBasedSelections(false);
       this.updateInitialParentStates();
@@ -376,8 +343,6 @@ export class Multiselect {
     newValue.forEach(option => formData.append(this.name, option.value));
     this.internals.setFormValue(formData);
   }
-
-  // Expansion and selection control methods
   collapseAll() {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     allOptionElements.forEach((optionEl: any) => {
@@ -399,30 +364,23 @@ export class Multiselect {
   }
 
   selectAll() {
-    // Reset search when selecting all
     this.resetSearch();
 
-    // Get all option elements
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
 
-    // First, expand all parent options and select all leaf options using instances
     allOptionElements.forEach((optionEl: any) => {
       const instance = optionEl['__stencil_instance'];
       if (instance) {
         if (instance.hasChildren) {
-          // Expand all parent options
           instance.isExpanded = true;
         } else {
-          // Select all leaf options
           instance.selected = true;
         }
       }
     });
 
-    // Update all parent states after selecting all leaves
     setTimeout(() => {
       this.updateInitialParentStates();
-      // Force update after selecting all
       this.updateSlotBasedSelections(false);
       this.ifxSelect.emit(this.persistentSelectedOptions);
     }, 0);
@@ -430,14 +388,12 @@ export class Multiselect {
 
   @Method()
   async clearSelection() {
-    // For slot-based options, clear all option elements directly using instances
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     allOptionElements.forEach((optionEl: any) => {
       const instance = optionEl['__stencil_instance'];
       if (instance) {
         instance.selected = false;
         instance.indeterminate = false;
-        // Collapse all parent options when clearing
         if (instance.hasChildren) {
           instance.isExpanded = false;
         }
@@ -446,14 +402,12 @@ export class Multiselect {
 
     this.persistentSelectedOptions = [];
 
-    // Force update after clearing
     setTimeout(() => {
       this.updateSlotBasedSelections(false);
       this.ifxSelect.emit(this.persistentSelectedOptions);
     }, 0);
   }
 
-  // Event handlers and document interaction
   handleDocumentClick = (event: Event) => {
     const path = event.composedPath();
     if (!path.includes(this.dropdownElement)) {
@@ -554,9 +508,7 @@ export class Multiselect {
     }
   }
 
-  // Rendering helper methods
   private renderSelectAll() {
-    // Calculate state from current DOM elements
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     const leafOptions = Array.from(allOptionElements).filter((el: any) => !el.hasChildren);
     const selectedLeafOptions = Array.from(allOptionElements).filter((el: any) => !el.hasChildren && el.selected);
@@ -564,7 +516,6 @@ export class Multiselect {
     const allSelected = leafOptions.length > 0 && selectedLeafOptions.length === leafOptions.length;
 
     const toggleSelectAll = (event?: Event) => {
-      // Prevent event from bubbling up and closing dropdown
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -599,9 +550,6 @@ export class Multiselect {
     );
   }
 
-  /**
-   * Render no results message when search has no matches
-   */
   private renderNoResultsMessage() {
     return (
       <div class="ifx-multiselect-no-results">
@@ -615,16 +563,13 @@ export class Multiselect {
   render() {
     const selectedOptionsLabels = this.persistentSelectedOptions
       .map((option) => {
-        // Get the actual element to extract text content
         const optionElement = this.el.querySelector(`ifx-multiselect-option[value="${option.value}"]`);
         return optionElement?.textContent?.trim() || option.value;
       })
       .join(', ');
 
-    // Also check if we have any selections for the clear button
     const hasSelections = this.persistentSelectedOptions.length > 0;
 
-    // Prüfen, ob es ein flaches Multi Select ist (keine Option hat verschachtelte Childs)
     let isFlatMultiselect = false;
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     if (allOptionElements.length > 0) {
