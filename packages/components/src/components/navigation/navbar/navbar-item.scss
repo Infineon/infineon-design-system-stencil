@@ -21,11 +21,7 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
-   &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff; /* Custom focus frame */
-    border-radius: 4px; /* Optional: rounded corners */
-  }
+  
 
   &.hide { 
     display: none;
@@ -120,6 +116,7 @@
       border-radius: 100%;
       background-color: tokens.$ifxColorOcean500;
 
+
       & .initials { 
         color: #FFF;
         text-align: center;
@@ -157,10 +154,10 @@
 
 .container { 
   position: relative;
-  &.focus { 
+  
+       &:focus{
     outline: none;
-    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #007bff; /* Custom focus frame */
-    border-radius: 4px; /* Optional: rounded corners */
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
   }
 
   & .sub__layer-back-button { 
