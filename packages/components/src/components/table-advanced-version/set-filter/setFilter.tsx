@@ -31,12 +31,29 @@ export class SetFilter {
 
 
   handleMultiselectOptionChange(event: CustomEvent) {
-    this.filterValues = event.detail; // Assuming that ifx-multiselect emits an array of selected options
+    this.filterValues = event.detail.map(option => ({
+      label: option.value,
+      value: option.value
+    }));
     this.ifxFilterSelect.emit({ filterName: this.filterName, filterValues: this.filterValues, type: this.type });
   }
 
 
   render() {
+    let optionsArray = [];
+
+    // Parse options if it's a string
+    if (typeof this.options === 'string') {
+      try {
+        optionsArray = JSON.parse(this.options);
+      } catch (e) {
+        console.error('Failed to parse options:', e);
+        optionsArray = [];
+      }
+    } else if (Array.isArray(this.options)) {
+      optionsArray = this.options;
+    }
+
     switch (this.type) {
       case 'text':
         return (
@@ -57,9 +74,6 @@ export class SetFilter {
           ></ifx-select>
         );
       case 'multi-select':
-        // For slot-based multiselect, we need to render options as children
-        const optionsArray = Array.isArray(this.options) ? this.options : [];
-
         return (
           <ifx-multiselect
             label={this.filterLabel}
