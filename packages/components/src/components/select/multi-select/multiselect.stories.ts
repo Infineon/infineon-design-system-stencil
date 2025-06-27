@@ -25,9 +25,9 @@ export default {
     selectAllLabel: 'Select all',
     expandLabel: 'Expand',
     collapseLabel: 'Collapse',
-    ariaLabel: 'Multi-select dropdown',
-    ariaLabelledBy: '',
-    ariaDescribedBy: '',
+    ariaMultiSelectLabel: 'Multi-select dropdown',
+    ariaMultiSelectLabelledBy: '',
+    ariaMultiSelectDescribedBy: '',
     ariaSearchLabel: 'Search options',
     ariaClearLabel: 'Clear all selections',
     ariaToggleLabel: 'Toggle dropdown',
@@ -255,7 +255,7 @@ export default {
     },
 
     // ARIA Labels
-    ariaLabel: {
+    ariaMultiSelectLabel: {
       description: 'ARIA label for the multiselect component.',
       control: 'text',
       table: {
@@ -268,7 +268,7 @@ export default {
         },
       },
     },
-    ariaLabelledBy: {
+    ariaMultiSelectLabelledBy: {
       description: 'ID of element that labels the multiselect.',
       control: 'text',
       table: {
@@ -281,7 +281,7 @@ export default {
         },
       },
     },
-    ariaDescribedBy: {
+    ariaMultiSelectDescribedBy: {
       description: 'ID of element that describes the multiselect.',
       control: 'text',
       table: {
@@ -419,9 +419,9 @@ const SlotBasedTemplate = args => {
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
   collapse-label='${args.collapseLabel}'
-  aria-label='${args.ariaLabel}'
-  aria-labelled-by='${args.ariaLabelledBy}'
-  aria-described-by='${args.ariaDescribedBy}'
+  aria-multi-select-label='${args.ariaMultiSelectLabel}'
+  aria-multi-select-labelled-by='${args.ariaMultiSelectLabelledBy}'
+  aria-multi-select-described-by='${args.ariaMultiSelectDescribedBy}'
   aria-search-label='${args.ariaSearchLabel}'
   aria-clear-label='${args.ariaClearLabel}'
   aria-toggle-label='${args.ariaToggleLabel}'
@@ -561,9 +561,9 @@ const FlatTemplate = args => {
   select-all-label='${args.selectAllLabel}'
   expand-label='${args.expandLabel}'
   collapse-label='${args.collapseLabel}'
-  aria-label='${args.ariaLabel}'
-  aria-labelled-by='${args.ariaLabelledBy}'
-  aria-described-by='${args.ariaDescribedBy}'
+  aria-multi-select-label='${args.ariaMultiSelectLabel}'
+  aria-multi-select-labelled-by='${args.ariaMultiSelectLabelledBy}'
+  aria-multi-select-described-by='${args.ariaMultiSelectDescribedBy}'
   aria-search-label='${args.ariaSearchLabel}'
   aria-clear-label='${args.ariaClearLabel}'
   aria-toggle-label='${args.ariaToggleLabel}'

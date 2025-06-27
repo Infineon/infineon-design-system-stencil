@@ -37,9 +37,9 @@ export class Multiselect {
   @Prop() selectAllLabel: string = "Select all";
   @Prop() expandLabel: string = "Expand";
   @Prop() collapseLabel: string = "Collapse";
-  @Prop() ariaLabel: string = "Multi-select dropdown";
-  @Prop() ariaLabelledBy: string = "";
-  @Prop() ariaDescribedBy: string = "";
+  @Prop() ariaMultiSelectLabel: string = "Multi-select dropdown";
+  @Prop() ariaMultiSelectLabelledBy: string = "";
+  @Prop() ariaMultiSelectDescribedBy: string = "";
   @Prop() ariaSearchLabel: string = "Search options";
   @Prop() ariaClearLabel: string = "Clear all selections";
   @Prop() ariaToggleLabel: string = "Toggle dropdown";
@@ -590,9 +590,9 @@ export class Multiselect {
         ${this.internalError ? 'error' : ""}
         ${this.disabled ? 'disabled' : ""}`}
           role="combobox"
-          aria-label={this.ariaLabel}
-          aria-labelledby={this.ariaLabelledBy || undefined}
-          aria-describedby={this.ariaDescribedBy || undefined}
+          aria-label={this.ariaMultiSelectLabel}
+          aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
+          aria-describedby={this.ariaMultiSelectDescribedBy || undefined}
           aria-expanded={this.dropdownOpen}
           aria-haspopup="listbox"
           aria-disabled={this.disabled}
