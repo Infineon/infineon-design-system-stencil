@@ -1,3 +1,16 @@
+# v35.1.1 (Wed Jun 25 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: updates iconography's documentation [#1909](https://github.com/Infineon/infineon-design-system-stencil/pull/1909) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.1.0 (Tue Jun 24 2025)
 
 #### 🚀 Enhancement
