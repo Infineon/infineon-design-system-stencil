@@ -25,15 +25,22 @@ export class MultiselectOption {
     this.depth = this.calculateDepth();
 
     this.el.setAttribute('data-level', this.depth.toString());
-  }
 
-  componentDidLoad() {
-    if (this.hasChildren) {
+     if (this.hasChildren) {
       const hasSelectedChildren = this.hasAnySelectedChildren();
       if (hasSelectedChildren) {
         this.isExpanded = true;
       }
     }
+  }
+
+  componentDidLoad() {
+    // if (this.hasChildren) {
+    //   const hasSelectedChildren = this.hasAnySelectedChildren();
+    //   if (hasSelectedChildren) {
+    //     this.isExpanded = true;
+    //   }
+    // }
 
     (this.el as any)['__stencil_instance'] = this;
     this.notifyMultiselect();
