@@ -35,13 +35,6 @@ export class MultiselectOption {
   }
 
   componentDidLoad() {
-    // if (this.hasChildren) {
-    //   const hasSelectedChildren = this.hasAnySelectedChildren();
-    //   if (hasSelectedChildren) {
-    //     this.isExpanded = true;
-    //   }
-    // }
-
     (this.el as any)['__stencil_instance'] = this;
     this.notifyMultiselect();
     this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
