@@ -1,3 +1,16 @@
+# v35.3.0 (Mon Jun 30 2025)
+
+#### 🚀 Enhancement
+
+- Updates icon name validation to only accept camelCase and kebab-case [#1915](https://github.com/Infineon/infineon-design-system-stencil/pull/1915) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.1.1 (Wed Jun 25 2025)
 
 #### 🐛 Bug Fix
