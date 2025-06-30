@@ -21,7 +21,7 @@ export default {
       }
     },
     icon: {
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       description: 'Set the icon of the tag.',
       table: {

@@ -8,7 +8,7 @@ export default {
     text: "Hi, I'm a tooltip",
     position: 'auto',
     variant: 'compact',
-    icon: 'c-info-24',
+    icon: 'c-info-16',
   },
   argTypes: {
     text: {
@@ -23,14 +23,14 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed. This control is only applicable when the variant is set to ***extended***.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: 'select',
       table: {
         category: 'ifx-tooltip props',
         type: {
           summary: 'string',
           defaultValue: {
-            summary: 'c-info-24'
+            summary: 'c-info-16'
           }
         }
       }

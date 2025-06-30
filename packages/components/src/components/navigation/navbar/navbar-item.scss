@@ -31,6 +31,7 @@
 
   & .navItemIconWrapper { 
     transition: .3s;
+    display: flex;
   }
 
   &.open { 

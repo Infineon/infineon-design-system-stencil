@@ -525,10 +525,10 @@ export class Navbar {
               {/* MOBILE MENU BUTTON */}
               <div class={`navbar__burger-icon-wrapper`} onClick={this.handleSidebar.bind(this)}>
                 <div class="navbar__burger-icon">
-                  <ifx-icon icon="menu-right-24"></ifx-icon>
+                  <ifx-icon icon="menu-right-16"></ifx-icon>
                 </div>
                 <div class="navbar__cross-icon">
-                  <ifx-icon icon="cross-24"></ifx-icon>
+                  <ifx-icon icon="cross-16"></ifx-icon>
                 </div>
               </div>
             </div>

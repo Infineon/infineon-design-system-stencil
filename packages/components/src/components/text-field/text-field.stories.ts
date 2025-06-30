@@ -64,7 +64,7 @@ export default {
     },
     icon: {
       description: 'Specifies an icon to display within the text field.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: 'select',
       table: {
         category: 'ifx-text-field props',
