@@ -677,7 +677,7 @@ export class Multiselect {
             <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
               <ifx-icon
                 key='icon-up'
-                icon='chevronup-16'></ifx-icon>
+                icon='chevron-up-16'></ifx-icon>
             </div>
             <div class="icon-wrapper-down" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
               <ifx-icon
