@@ -385,7 +385,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 </div>
               )}
               <div class="ifx-choices__icon-wrapper-up">
-                <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
+                <ifx-icon key="icon-up" icon="chevron-up-16"></ifx-icon>
               </div>
               <div class="ifx-choices__icon-wrapper-down">
                 <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
