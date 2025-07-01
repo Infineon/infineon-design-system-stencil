@@ -88,7 +88,7 @@ export class SearchField {
             value={this.value} // bind the value property to input element
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (
-            <ifx-icon icon="cremove16" class="delete-icon" onClick={this.handleDelete}>
+            <ifx-icon icon="cRemove16" class="delete-icon" onClick={this.handleDelete}>
             </ifx-icon>
           ) : null}
         </div>

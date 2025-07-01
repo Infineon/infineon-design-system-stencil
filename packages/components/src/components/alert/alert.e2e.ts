@@ -22,22 +22,22 @@ describe('ifx-alert', () => {
 
   it('should set the correct icon', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-alert icon="cinfo16"></ifx-alert>');
+    await page.setContent('<ifx-alert icon="c-info-16"></ifx-alert>');
 
     const element = await page.find('ifx-alert');
     const icon = await element.getProperty('icon');
 
-    expect(icon).toBe('cinfo16');
+    expect(icon).toBe('c-info-16');
   });
 
   it('should display the correct icon', async () => {
     const page = await newE2EPage();
-    await page.setContent('<ifx-alert icon="cinfo16"></ifx-alert>');
+    await page.setContent('<ifx-alert icon="c-info-16"></ifx-alert>');
 
     const iconElement = await page.find('ifx-alert >>> .icon-wrapper > ifx-icon');
     const iconProp = await iconElement.getProperty('icon');
 
-    expect(iconProp).toBe('cinfo16');
+    expect(iconProp).toBe('c-info-16');
   });
 
 });

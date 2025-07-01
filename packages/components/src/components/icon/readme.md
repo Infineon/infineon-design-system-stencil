@@ -42,6 +42,7 @@
  - [ifx-list](../table-advanced-version/list)
  - [ifx-modal](../modal)
  - [ifx-multiselect](../select/multi-select)
+ - [ifx-multiselect-option](../select/multi-select)
  - [ifx-navbar](../navigation/navbar)
  - [ifx-navbar-item](../navigation/navbar)
  - [ifx-notification](../notification)
@@ -83,6 +84,7 @@ graph TD;
   ifx-list --> ifx-icon
   ifx-modal --> ifx-icon
   ifx-multiselect --> ifx-icon
+  ifx-multiselect-option --> ifx-icon
   ifx-navbar --> ifx-icon
   ifx-navbar-item --> ifx-icon
   ifx-notification --> ifx-icon
