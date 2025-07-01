@@ -7,7 +7,7 @@
     <br />
 
     <ifx-button @click="updateProgress" variant="secondary" href="" target="_blank" theme="default" size="s"
-      disabled="false" icon="false">
+      disabled="false">
       Update Progress
     </ifx-button>
     <br />
