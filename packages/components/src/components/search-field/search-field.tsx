@@ -70,11 +70,11 @@ export class SearchField {
 
   render() {
     return (
-      <div aria-label="a search field for user input" aria-disabled={this.disabled} aria-value={this.value} class='search-field'>
+      <div role="search" aria-label="a search field for user input" aria-disabled={this.disabled} aria-value={this.value} class='search-field'>
         <div class={this.getWrapperClassNames()}
-          tabindex={1}
-          onFocus={() => this.focusInput()}
-          onClick={() => this.focusInput()}
+          tabindex={this.disabled ? -1 : 1}
+          onFocus={() => !this.disabled && this.focusInput()}
+          onClick={() => !this.disabled && this.focusInput()}
         >
           <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
           <input
