@@ -4,7 +4,7 @@
     <div>
       <ifx-breadcrumb>
         <ifx-breadcrumb-item>
-          <ifx-breadcrumb-item-label slot="label" icon=""
+          <ifx-breadcrumb-item-label slot="label"
             >Breadcrumb 1</ifx-breadcrumb-item-label
           >
           <ifx-dropdown-menu>
@@ -16,7 +16,7 @@
         </ifx-breadcrumb-item>
 
         <ifx-breadcrumb-item>
-          <ifx-breadcrumb-item-label slot="label" icon=""
+          <ifx-breadcrumb-item-label slot="label"
             >Breadcrumb 2</ifx-breadcrumb-item-label
           >
           <ifx-dropdown-menu>
@@ -28,7 +28,7 @@
         </ifx-breadcrumb-item>
 
         <ifx-breadcrumb-item>
-          <ifx-breadcrumb-item-label slot="label" icon="" href="http://google.com"
+          <ifx-breadcrumb-item-label slot="label" href="http://google.com"
             >Breadcrumb 3</ifx-breadcrumb-item-label
           >
         </ifx-breadcrumb-item>
