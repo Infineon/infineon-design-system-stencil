@@ -56,21 +56,22 @@ export class SearchBar {
 
   render() {
     return (
-      <div aria-label='a search bar' aria-disabled={this.disabled} class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
+      <div role="search" aria-disabled={this.disabled} class={`search-bar ${this.internalState ? 'open' : 'closed'}`}>
         {this.internalState ? (
           <div class="search-bar-wrapper">
             <ifx-search-field autocomplete={this.autocomplete} disabled={this.disabled} value={this.value} maxlength={this.maxlength} onIfxInput={this.handleInput.bind(this)}>
               <ifx-icon icon="search-16" slot="search-icon"></ifx-icon>
             </ifx-search-field>
 
-            <a tabindex="-1" href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>
+            <a aria-label="Close button" href='javascript:void(0)' onClick={this.handleCloseButton}>Close</a>
           </div>
         ) : (
-          <div class="search-bar__icon-wrapper" onClick={this.handleCloseButton}>
+          <div class="search-bar_icon-wrapper"
+          onClick={this.handleCloseButton}>
             <ifx-icon icon="search-16"></ifx-icon>
           </div>
         )}
-      </div>
+        </div>
     );
   }
 }
