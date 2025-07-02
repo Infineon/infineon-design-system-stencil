@@ -339,7 +339,7 @@ export class Chip {
           {
             !this.readOnly && (this.variant !== 'multi' || (this.variant === 'multi' && this.selectedOptions.length === 0)) &&
             <div class='wrapper__open-button'>
-              <ifx-icon key={1} icon={`chevrondown16`} />
+              <ifx-icon key={1} icon={`chevron-down-16`} />
             </div>
           }
 
