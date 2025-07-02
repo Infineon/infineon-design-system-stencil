@@ -5,7 +5,7 @@ function Breadcrumbs() {
     <div>
       <IfxBreadcrumb>
         <IfxBreadcrumbItem>
-          <IfxBreadcrumbItemLabel slot="label" icon="">Breadcrumb 1</IfxBreadcrumbItemLabel>
+          <IfxBreadcrumbItemLabel slot="label">Breadcrumb 1</IfxBreadcrumbItemLabel>
           <IfxDropdownMenu>
             <IfxDropdownItem href="http://google.com">Google</IfxDropdownItem>
             <IfxDropdownItem href="http://bing.com">Bing</IfxDropdownItem>
@@ -15,7 +15,7 @@ function Breadcrumbs() {
         </IfxBreadcrumbItem>
 
         <IfxBreadcrumbItem>
-          <IfxBreadcrumbItemLabel slot="label" icon="">Breadcrumb 2</IfxBreadcrumbItemLabel>
+          <IfxBreadcrumbItemLabel slot="label">Breadcrumb 2</IfxBreadcrumbItemLabel>
           <IfxDropdownMenu>
             <IfxDropdownItem href="http://google.com">Google</IfxDropdownItem>
             <IfxDropdownItem href="http://bing.com">Bing</IfxDropdownItem>
@@ -25,7 +25,7 @@ function Breadcrumbs() {
         </IfxBreadcrumbItem>
 
         <IfxBreadcrumbItem>
-          <IfxBreadcrumbItemLabel slot="label" icon="" href="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
+          <IfxBreadcrumbItemLabel slot="label" href="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
         </IfxBreadcrumbItem>
       </IfxBreadcrumb>
     </div>
