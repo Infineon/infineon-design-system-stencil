@@ -249,9 +249,9 @@ export class Table {
           'No rows found' //at: ' + new Date().toLocaleTimeString(),
       },
       icons: {
-        sortAscending: '<ifx-icon icon="arrowTriangleUp16"></ifx-icon>',
-        sortDescending: '<ifx-icon icon="arrowTriangleDown16"></ifx-icon>',
-        sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrowTriangleVertikal16"></ifx-icon></a>'
+        sortAscending: '<ifx-icon icon="arrow-triangle-up-16"></ifx-icon>',
+        sortDescending: '<ifx-icon icon="arrow-triangle-down-16"></ifx-icon>',
+        sortUnSort: '<a class="unsort-icon-custom-color"><ifx-icon icon="arrow-triangle-vertikal-16"></ifx-icon></a>'
       },
       rowDragManaged: this.colData.some(col => col.dndSource === true) ? true : false,
       animateRows: this.colData.some(col => col.dndSource === true) ? true : false,

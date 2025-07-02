@@ -678,23 +678,20 @@ export class Multiselect {
           <div class='ifx-multiselect-icon-container'>
 
             {/* Clear Button - will show only if there's a selection */}
-            {hasSelections && (
-              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`}
-                   aria-label={this.ariaClearLabel}
-                   role="button"
-                   tabIndex={0}
-                   onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.clearSelection(); }}
-                   onKeyDown={this.disabled ? undefined : (e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); this.clearSelection(); } }}>
-                <ifx-icon icon="c-remove-16" key="clear-icon"></ifx-icon>
+            {this.persistentSelectedOptions.length > 0 && (   
+              <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={this.disabled ? undefined : () => this.clearSelection()}>
+                <ifx-icon icon="cRemove16"></ifx-icon>
               </div>
             )}
-            <div class={`icon-wrapper ${this.dropdownOpen ? 'icon-wrapper--open' : 'icon-wrapper--closed'}`}
-                 aria-label={this.ariaToggleLabel}
-                 role="button"
-                 tabIndex={0}
-                 onClick={this.disabled ? undefined : (e) => { e.stopPropagation(); this.toggleDropdown(); }}
-                 onKeyDown={this.disabled ? undefined : (e) => { if (e.key === 'Enter' || e.key === ' ') { e.stopPropagation(); this.toggleDropdown(); } }}>
-              <ifx-icon icon='chevron-down-16' key="chevron-icon"></ifx-icon>
+            <div class="icon-wrapper-up" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
+              <ifx-icon
+                key='icon-up'
+                icon='chevron-up-16'></ifx-icon>
+            </div>
+            <div class="icon-wrapper-down" onClick={this.disabled ? undefined : () => this.toggleDropdown()}>
+              <ifx-icon
+                key='icon-down'
+                icon='chevron-down-16'></ifx-icon>
             </div>
           </div>
 

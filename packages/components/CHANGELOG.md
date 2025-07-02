@@ -1,3 +1,15 @@
+# v35.4.0 (Wed Jul 02 2025)
+
+#### 🚀 Enhancement
+
+- Accordion: allows the dropdown menu to overflow accordion-item [#1921](https://github.com/Infineon/infineon-design-system-stencil/pull/1921) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.3.0 (Mon Jun 30 2025)
 
 #### 🚀 Enhancement
