@@ -111,7 +111,7 @@ export class TextField {
               ${this.success ? "success" : ""}`} />
 
               { (this.showDeleteIcon && this.value) && (
-                <ifx-icon class="delete-icon" icon="cremove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
+                <ifx-icon class="delete-icon" icon="cRemove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
               )}
           </div>
           {this.caption && !this.error &&
