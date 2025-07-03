@@ -1,3 +1,15 @@
+# v35.4.1 (Thu Jul 03 2025)
+
+#### 🐛 Bug Fix
+
+- Slider: makes container's width 100% of its parent [#1932](https://github.com/Infineon/infineon-design-system-stencil/pull/1932) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.4.0 (Wed Jul 02 2025)
 
 #### 🚀 Enhancement
