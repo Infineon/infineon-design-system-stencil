@@ -33,7 +33,7 @@
     color: tokens.$ifxColorEngineering400;
 
     &.focused {
-      border: 1px solid tokens.$ifxColorOcean500;
+      border: 2px solid tokens.$ifxColorOcean500;
 
       & ifx-icon {
         color: tokens.$ifxColorEngineering500;

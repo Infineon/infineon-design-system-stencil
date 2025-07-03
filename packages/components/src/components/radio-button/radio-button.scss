@@ -27,8 +27,21 @@
     gap: tokens.$ifxSpace100;
     cursor: pointer;
     font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+    outline: none;
 
-
+    &:focus .radioButton__wrapper {
+        &::before {
+            content: '';
+            position: absolute;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid tokens.$ifxColorOcean500;
+            border-radius: 50%;
+        }
+    }
 
     &.m .radioButton__wrapper {
         width: tokens.$ifxSize300;
@@ -43,22 +56,6 @@
         border-radius: 50%;
         background-color: tokens.$ifxColorBaseWhite;
         border: 1px solid #575352;
-
-        &:focus {
-            outline: none;
-
-            &::before {
-                content: '';
-                position: absolute;
-                width: calc(100% + 4px);
-                height: calc(100% + 4px);
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                border: 2px solid tokens.$ifxColorOcean500;
-                border-radius: 50%;
-            }
-        }
 
         .radioButton__wrapper-mark {
             position: absolute;

@@ -31,6 +31,7 @@
     width: 100%;
 
     & a {
+      
       text-decoration: none;
       font-size: tokens.$ifxFontSizeM;
       font-style: normal;
@@ -38,8 +39,12 @@
       line-height: tokens.$ifxLineHeightM;
       color: tokens.$ifxColorOcean500;
       cursor: pointer;
+      &:focus{
+    outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
     }
 
+  }
     & ifx-search-field {
       width: 100%;
     }

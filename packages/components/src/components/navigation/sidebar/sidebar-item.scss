@@ -8,7 +8,8 @@
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
   &:focus {
-    outline: none;
+      outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
 
     & .sidebar__nav-item-icon-wrapper {
       color: tokens.$ifxColorOcean600;
