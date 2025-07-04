@@ -228,16 +228,15 @@ const DefaultTemplate = (args) => {
         selected: false
       }));
 
-      // Directly use JSON.stringify without replacing quotes
       const optionsString = JSON.stringify(options);
 
       return `
         <ifx-set-filter slot="filter-component-${index + 1}"
-            options='${optionsString}' 
+            options='${optionsString}'
             filter-label='${column.headerName}'
             filter-name='${column.field}'
             type='multi-select'
-            search-enabled='true'>
+            placeholder='Select ${column.headerName}'>
           </ifx-set-filter>
           `;
     }).join('\n');
