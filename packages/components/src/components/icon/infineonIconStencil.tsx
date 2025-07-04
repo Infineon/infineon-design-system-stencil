@@ -126,6 +126,7 @@ setIcon() {
   }
 
   componentWillLoad() {
+    console.log('invoked')
     this.internalIcon = this.icon;
     this.setIcon()
     this.initalizeTracking()
