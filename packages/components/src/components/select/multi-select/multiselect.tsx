@@ -244,6 +244,7 @@ export class Multiselect {
     }
   }
 
+  private pendingSelectionUpdate = false;
   public updateSlotBasedSelections(emitEvent: boolean = false) {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     const selectedLeafOptions: Option[] = [];
@@ -312,9 +313,15 @@ export class Multiselect {
     }, 500);
 
     this.el.addEventListener('ifx-option-changed', () => {
-      requestAnimationFrame(() => {
-        this.updateSlotBasedSelections(true);
-      });
+      if (!this.pendingSelectionUpdate) {
+        this.pendingSelectionUpdate = true;
+        requestAnimationFrame(() => {
+          this.updateSlotBasedSelections(true);
+          setTimeout(() => {
+            this.pendingSelectionUpdate = false;
+          }, 0);
+        });
+      }
     });
 
     setTimeout(() => {
@@ -678,7 +685,7 @@ export class Multiselect {
           <div class='ifx-multiselect-icon-container'>
 
             {/* Clear Button - will show only if there's a selection */}
-            {this.persistentSelectedOptions.length > 0 && (   
+            {this.persistentSelectedOptions.length > 0 && (
               <div class={`ifx-clear-button ${!this.showClearButton ? 'hide' : ''}`} onClick={this.disabled ? undefined : () => this.clearSelection()}>
                 <ifx-icon icon="cRemove16"></ifx-icon>
               </div>
