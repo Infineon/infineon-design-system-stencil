@@ -1,4 +1,5 @@
 import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-alert',
@@ -43,6 +44,7 @@ export class Alert {
     if (!this.uniqueId) {
       this.uniqueId = this.generateUniqueId('alert');
     }
+    trackComponent('ifx-alert')
   }
 
   render() {

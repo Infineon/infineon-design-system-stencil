@@ -1,5 +1,5 @@
 import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals, State } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
 
 @Component({
   tag: 'ifx-text-field',
@@ -70,6 +70,7 @@ export class TextField {
   }
 
   componentWillLoad() { 
+    trackComponent('ifx-text-field')
     this.handleTypeProp()
   }
 

@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
- 
+import { trackComponent } from '../../global/utils/tracking'; 
 
 
 @Component({
@@ -92,6 +92,7 @@ setIcon() {
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
+    trackComponent('ifx-icon')
   }
 
   render() {

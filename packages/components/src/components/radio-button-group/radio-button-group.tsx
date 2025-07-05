@@ -1,4 +1,5 @@
 import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
     tag: 'ifx-radio-button-group',
@@ -39,6 +40,7 @@ export class RadioButtonGroup {
       }
 
     componentWillLoad() {
+        trackComponent('ifx-radio-button-group')
         this.initializeState();
     }
 
