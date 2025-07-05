@@ -1,4 +1,5 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 import classNames from 'classnames';
  
 
@@ -33,42 +34,6 @@ export class Button {
     this.focusableElement.focus();
   }
 
-  initalizeTracking() { 
-    (function (t, r, kk, n, pp) {
-      if (typeof window.btntConfig !== "object") {
-        window.btntConfig = {
-        domain: "https://ssgtm.infineon.com",
-        withCookies: true,
-        maxBatchSize: 10
-        };
-      }
-
-      if (window["btnt"]) return;
-
-      window["btnt"] = function (z) {
-        if (typeof z !== "object") {
-          z = {};
-        }
-        if (typeof window.btntQueue !== "object") {
-          window.btntQueue = [];
-        }
-        window.btntQueue.push(z);
-      };
-
-      n = t.createElement(r);
-      pp = t.getElementsByTagName(r)[0];
-      n.async = 1;
-      n.src = window.btntConfig.domain + "/btnt.js";
-      pp.parentNode.insertBefore(n, pp);
-      
-    })(document, "script", );
-
-    window.btnt({
-    event_name: "component_initialized",
-    component_name: 'ifx-button',
-    })
-  }
-
   insertNativeButton() {
     this.nativeButton = document.createElement('button');
     this.nativeButton.type = this.type;
@@ -97,7 +62,7 @@ export class Button {
 
   componentWillLoad() {
     this.handleFormAndInternalHref()
-    this.initalizeTracking()
+    trackComponent('ifx-button')
   }
 
   componentWillRender() {

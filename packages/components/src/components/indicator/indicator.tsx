@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element, State } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
 
 @Component({
   tag: 'ifx-indicator',
@@ -20,6 +20,7 @@ export class Indicator {
 
   componentWillLoad() { 
     this.handleNumber()
+    trackComponent('ifx-indicator')
   }
 
   componentWillUpdate() {

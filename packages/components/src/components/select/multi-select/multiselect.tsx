@@ -1,4 +1,5 @@
 import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking'; 
 import { Option } from './interfaces';
 
 // Debounce function
@@ -223,6 +224,7 @@ export class Multiselect {
   }
 
   componentWillLoad() {
+    trackComponent('ifx-multiselect')
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
   }

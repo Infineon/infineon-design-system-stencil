@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 import classNames from 'classnames';
  
-
 @Component({
   tag: 'ifx-spinner',
   styleUrl: 'spinner.scss',
@@ -12,6 +12,9 @@ export class Spinner {
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
+  componentWillLoad() { 
+    trackComponent('ifx-spinner')
+  }
 
   render() {
     return (
