@@ -1,4 +1,5 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 import classNames from 'classnames';
  
 
@@ -61,6 +62,7 @@ export class Button {
 
   componentWillLoad() {
     this.handleFormAndInternalHref()
+    trackComponent('ifx-button')
   }
 
   componentWillRender() {

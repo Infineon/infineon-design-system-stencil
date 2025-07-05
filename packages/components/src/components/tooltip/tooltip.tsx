@@ -1,6 +1,6 @@
 import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
 import { createPopper } from '@popperjs/core';
- 
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-tooltip',
@@ -25,6 +25,7 @@ export class Tooltip {
 
 
   componentWillLoad() { 
+    trackComponent('ifx-tooltip')
     if(this.variant.toLowerCase().trim() === "") { 
       this.variant = 'compact'
     }
