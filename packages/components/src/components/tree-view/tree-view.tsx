@@ -1,4 +1,5 @@
 import { Component, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-tree-view',
@@ -38,6 +39,10 @@ export class TreeView {
       }
     }
   };
+
+  componentWillLoad() { 
+    trackComponent('ifx-tree-view')
+  }
 
   render() {
     return (

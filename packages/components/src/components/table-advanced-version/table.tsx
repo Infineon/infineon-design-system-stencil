@@ -1,6 +1,6 @@
 import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
 import classNames from 'classnames';
-
+import { trackComponent } from '../../global/utils/tracking'; 
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -224,6 +224,7 @@ export class Table {
   }
 
   componentWillLoad() {
+    trackComponent('ifx-table')
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
 
     this.rowData = this.getRowData();

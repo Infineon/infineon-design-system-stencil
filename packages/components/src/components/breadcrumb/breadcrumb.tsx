@@ -1,4 +1,5 @@
 import { Component, h, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-breadcrumb',
@@ -7,6 +8,10 @@ import { Component, h, Element } from '@stencil/core';
 })
 export class Breadcrumb {
   @Element() el;
+
+  componentWillLoad() { 
+    trackComponent('ifx-breadcrumb')
+  }
 
   componentDidLoad() {
     const element = this.el.shadowRoot.firstChild;

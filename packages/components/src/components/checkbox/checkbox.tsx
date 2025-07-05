@@ -1,4 +1,5 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-checkbox',
@@ -87,6 +88,7 @@ export class Checkbox {
   componentWillLoad() {
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
+    trackComponent('ifx-checkbox')
   }
 
   componentDidRender() {

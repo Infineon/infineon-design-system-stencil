@@ -1,4 +1,5 @@
 import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-checkbox-group',
@@ -40,6 +41,7 @@ export class CheckboxGroup {
 
   componentWillLoad() {
     this.initializeState();
+    trackComponent('ifx-checkbox-group')
   }
 
   handleSlotChange = () => {

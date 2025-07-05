@@ -1,4 +1,5 @@
 import { Component, h, Host, Prop } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
  
 export type NotificationVariant = 'success' | 'locked' | 'error' | 'neutral';
 
@@ -14,6 +15,9 @@ export class Notification {
   @Prop() linkHref: string;
   @Prop() linkTarget: string = '_blank';
 
+  componentWillLoad() { 
+    trackComponent('ifx-notification')
+  }
 
   private getClassName(): string {
     switch (this.variant) {

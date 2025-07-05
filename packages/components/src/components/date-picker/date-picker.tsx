@@ -1,7 +1,7 @@
 import { AttachInternals } from '@stencil/core';
 import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
  
-
 @Component({
   tag: 'ifx-date-picker',
   styleUrl: 'date-picker.scss',
@@ -106,6 +106,7 @@ export class DatePicker {
     if (this.value) {
       this.getDate({ target: { value: this.value } });
     }
+    trackComponent('ifx-date-picker')
   }
 
   formResetCallback() {

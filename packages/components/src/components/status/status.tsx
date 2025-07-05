@@ -1,5 +1,5 @@
 import { Component, h, Prop } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
 
 @Component({
   tag: 'ifx-status',
@@ -12,6 +12,9 @@ export class Status {
   @Prop() border: boolean = false;
   @Prop() color: string = 'orange-500';
 
+  componentWillLoad() { 
+    trackComponent('ifx-status')
+  }
 
   render() {
     const effectiveColor = this.color?.trim() ? this.color : 'orange-500';

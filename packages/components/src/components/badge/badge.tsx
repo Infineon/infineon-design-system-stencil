@@ -1,4 +1,5 @@
 import { Component, h } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
   tag: 'ifx-badge',
@@ -7,7 +8,9 @@ import { Component, h } from '@stencil/core';
 })
 export class Badge {
 
-
+   componentWillLoad() { 
+    trackComponent('ifx-badge')
+  }
 
   render() {
     return (

@@ -1,5 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
 
 @Component({
   tag: 'ifx-tag',
@@ -9,7 +9,9 @@ import { Component, Prop, h } from '@stencil/core';
 export class Tag {
   @Prop() icon: string;
 
-
+  componentWillLoad() { 
+    trackComponent('ifx-tag')
+  }
 
   render() {
     return (

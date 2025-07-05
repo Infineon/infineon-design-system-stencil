@@ -8,7 +8,7 @@ import { h,
          State, 
          Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
- 
+import { trackComponent } from '../../global/utils/tracking';
 
 @Component({
     tag: 'ifx-stepper',
@@ -138,6 +138,7 @@ export class Stepper {
 
 
     componentWillLoad() {
+        trackComponent('ifx-stepper')
         this.addStepIdsToStepsAndCountSteps();
         this.setInitialActiveStep();
         this.setStepsBeforeActiveToComplete();

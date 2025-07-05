@@ -1,7 +1,7 @@
 import { Component, Prop, h, State } from "@stencil/core";
+import { trackComponent } from '../../global/utils/tracking';
 import classNames from 'classnames';
  
-
 @Component({
   tag: 'ifx-link',
   styleUrl: 'link.scss',
@@ -40,6 +40,10 @@ export class Link {
     } else if (event.key === 'Enter') {
       event.preventDefault();
     }
+  }
+
+  componentWillLoad() { 
+    trackComponent('ifx-link')
   }
 
   render() {

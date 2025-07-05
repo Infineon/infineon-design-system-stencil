@@ -1,4 +1,5 @@
 import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
+import { trackComponent } from '../../global/utils/tracking'; 
 
 @Component({
 	formAssociated: true,
@@ -68,6 +69,7 @@ export class TextArea {
 	}
 
 	componentWillLoad() {
+		trackComponent('ifx-textarea')
 		this.internals.setFormValue(this.value);
 	}
 

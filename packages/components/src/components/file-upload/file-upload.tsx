@@ -1,4 +1,5 @@
 import { Component, h, State, Event, EventEmitter, Prop, Method, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
 
 interface UploadTask {
   file: File;
@@ -584,6 +585,10 @@ export class FileUpload {
 
   private isInputDisabled(): boolean {
     return this.disabled || (this.maxFiles !== undefined && this.files.length >= this.maxFiles);
+  }
+
+  componentWillLoad() { 
+    trackComponent('ifx-file-upload')
   }
 
   componentDidLoad() {

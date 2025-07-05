@@ -1,7 +1,6 @@
 import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking'; 
 import classNames from 'classnames';
- 
-
 
 @Component({
   tag: 'ifx-search-field',
@@ -58,10 +57,11 @@ export class SearchField {
     this.inputElement.focus();
     this.isFocused = true;
   }
+
+  componentWillLoad() { 
+    trackComponent('ifx-search-field')
+  }
   
-
-
-
   componentWillUpdate() {
     if (this.value !== "") {
       this.showDeleteIconInternalState = true;
