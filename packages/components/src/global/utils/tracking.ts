@@ -7,7 +7,7 @@ declare global {
 }
 
 function initializeTracking() { 
-    (function (t, r, kk, n, pp) {
+    (function (t, r, _kk, n, pp) {
       if (typeof window.btntConfig !== "object") {
         window.btntConfig = {
         domain: "https://ssgtm.infineon.com",
