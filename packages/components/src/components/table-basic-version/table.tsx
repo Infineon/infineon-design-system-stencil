@@ -1,4 +1,6 @@
 import { Component, h, Element, Host, Prop, State } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -26,6 +28,9 @@ export class Table {
   private gridInitialized = false;
 
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.host)) { 
+      trackComponent('ifx-basic-table')
+    }
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.setColsAndRows(); //needed?
     this.setGridOptions();
