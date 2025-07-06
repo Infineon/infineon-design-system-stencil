@@ -1,4 +1,6 @@
 import { Component, h, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-breadcrumb',
@@ -7,6 +9,12 @@ import { Component, h, Element } from '@stencil/core';
 })
 export class Breadcrumb {
   @Element() el;
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-breadcrumb')
+    }
+  }
 
   componentDidLoad() {
     const element = this.el.shadowRoot.firstChild;
