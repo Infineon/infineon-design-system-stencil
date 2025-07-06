@@ -1,5 +1,6 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking';  
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-slider',
@@ -148,6 +149,9 @@ export class IfxSlider {
   }
 
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-slider')
+    }
     if(this.value === undefined) {
       this.internalValue = (this.max-this.min) / 2;
     } else {
