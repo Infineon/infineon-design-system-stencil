@@ -1,6 +1,7 @@
 import { h, Component, Element, Event, EventEmitter, Listen, Prop, State, Watch } from '@stencil/core';
 import { ChipItemSelectEvent } from './interfaces';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-chip',
@@ -293,7 +294,9 @@ export class Chip {
 
   componentWillLoad() {
     this.syncSelectedOptionsWithProp(this.value);
-    trackComponent('ifx-chip')
+    if(!isNestedInIfxComponent(this.chip)) { 
+      trackComponent('ifx-chip')
+    }
   }
 
   render() {

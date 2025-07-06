@@ -1,5 +1,6 @@
-import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import classNames from 'classnames';
 
 @Component({
@@ -10,6 +11,7 @@ import classNames from 'classnames';
 
 
 export class SearchField {
+  @Element() el;
   private inputElement: HTMLInputElement;
   @Prop({ mutable: true }) value: string = '';
 
@@ -59,7 +61,9 @@ export class SearchField {
   }
 
   componentWillLoad() { 
-    trackComponent('ifx-search-field')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-search-field')
+    }
   }
   
   componentWillUpdate() {

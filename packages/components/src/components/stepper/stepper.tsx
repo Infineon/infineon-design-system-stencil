@@ -9,6 +9,7 @@ import { h,
          Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
     tag: 'ifx-stepper',
@@ -138,7 +139,9 @@ export class Stepper {
 
 
     componentWillLoad() {
-        trackComponent('ifx-stepper')
+        if(!isNestedInIfxComponent(this.el)) { 
+            trackComponent('ifx-stepper')
+        }
         this.addStepIdsToStepsAndCountSteps();
         this.setInitialActiveStep();
         this.setStepsBeforeActiveToComplete();

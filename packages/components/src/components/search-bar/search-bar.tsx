@@ -1,5 +1,6 @@
 import { Component, h, Prop, Event, EventEmitter, State, Watch, Element, Method } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-search-bar',
@@ -38,7 +39,9 @@ export class SearchBar {
   }
 
   componentWillLoad() {
-    trackComponent('ifx-search-bar')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-search-bar')
+    }
     this.setInitialState();
     this.ifxOpen.emit(this.internalState)
   }

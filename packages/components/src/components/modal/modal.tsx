@@ -1,5 +1,6 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
 import { animationTo, KEYFRAMES } from '../../global/utils/animation';
  
@@ -41,7 +42,9 @@ export class IfxModal {
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
 
   componentWillLoad() { 
-    trackComponent('ifx-modal')
+    if(!isNestedInIfxComponent(this.hostElement)) { 
+      trackComponent('ifx-modal')
+    }
   }
 
   componentDidLoad() {

@@ -1,5 +1,6 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, h, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-tag',
@@ -7,10 +8,13 @@ import { trackComponent } from '../../global/utils/tracking';
   shadow: true
 })
 export class Tag {
+  @Element() el: HTMLElement;
   @Prop() icon: string;
 
   componentWillLoad() { 
-    trackComponent('ifx-tag')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-tag')
+    }
   }
 
   render() {

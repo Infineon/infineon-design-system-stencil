@@ -1,5 +1,6 @@
 import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
 	formAssociated: true,
@@ -69,7 +70,9 @@ export class TextArea {
 	}
 
 	componentWillLoad() {
-		trackComponent('ifx-textarea')
+		if(!isNestedInIfxComponent(this.el)) { 
+			trackComponent('ifx-textarea')
+		}
 		this.internals.setFormValue(this.value);
 	}
 

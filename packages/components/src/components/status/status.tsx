@@ -1,5 +1,6 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-status',
@@ -8,12 +9,15 @@ import { trackComponent } from '../../global/utils/tracking';
 })
 
 export class Status {
+  @Element() el;
   @Prop() label: string;
   @Prop() border: boolean = false;
   @Prop() color: string = 'orange-500';
 
   componentWillLoad() { 
-    trackComponent('ifx-status')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-status')
+    }
   }
 
   render() {

@@ -1,5 +1,6 @@
-import { Component, Prop, h, State } from "@stencil/core";
+import { Component, Prop, h, State, Element } from "@stencil/core";
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import classNames from 'classnames';
  
 @Component({
@@ -9,6 +10,7 @@ import classNames from 'classnames';
 })
 
 export class Link {
+  @Element() el;
   @Prop() href: string = undefined;
   @Prop() target: string = '_self';
   @Prop() variant: string = 'bold';
@@ -43,7 +45,9 @@ export class Link {
   }
 
   componentWillLoad() { 
-    trackComponent('ifx-link')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-link')
+    }
   }
 
   render() {

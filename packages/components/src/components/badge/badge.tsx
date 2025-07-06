@@ -1,5 +1,6 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-badge',
@@ -7,9 +8,12 @@ import { trackComponent } from '../../global/utils/tracking';
   shadow: true
 })
 export class Badge {
+  @Element() el: HTMLElement;
 
    componentWillLoad() { 
-    trackComponent('ifx-badge')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-badge')
+    }
   }
 
   render() {

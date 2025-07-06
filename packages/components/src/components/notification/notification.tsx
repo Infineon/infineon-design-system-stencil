@@ -1,6 +1,6 @@
-import { Component, h, Host, Prop } from '@stencil/core';
+import { Component, h, Host, Prop, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
- 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 export type NotificationVariant = 'success' | 'locked' | 'error' | 'neutral';
 
 @Component({
@@ -9,6 +9,7 @@ export type NotificationVariant = 'success' | 'locked' | 'error' | 'neutral';
   shadow: true
 })
 export class Notification {
+  @Element() el;
   @Prop() icon: string;
   @Prop() variant: NotificationVariant = 'success';
   @Prop() linkText: string; 
@@ -16,7 +17,9 @@ export class Notification {
   @Prop() linkTarget: string = '_blank';
 
   componentWillLoad() { 
-    trackComponent('ifx-notification')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-notification')
+    }
   }
 
   private getClassName(): string {

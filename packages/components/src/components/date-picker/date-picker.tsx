@@ -1,6 +1,7 @@
 import { AttachInternals } from '@stencil/core';
 import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
  
 @Component({
   tag: 'ifx-date-picker',
@@ -98,6 +99,12 @@ export class DatePicker {
     }
   }
 
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-date-picker')
+    }
+  }
+
   componentDidLoad() { 
     this.setFireFoxClasses()
   }
@@ -106,7 +113,6 @@ export class DatePicker {
     if (this.value) {
       this.getDate({ target: { value: this.value } });
     }
-    trackComponent('ifx-date-picker')
   }
 
   formResetCallback() {

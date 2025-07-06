@@ -1,5 +1,6 @@
 import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
     tag: 'ifx-radio-button-group',
@@ -40,7 +41,9 @@ export class RadioButtonGroup {
       }
 
     componentWillLoad() {
-        trackComponent('ifx-radio-button-group')
+        if(!isNestedInIfxComponent(this.el)) { 
+            trackComponent('ifx-radio-button-group')
+        }
         this.initializeState();
     }
 

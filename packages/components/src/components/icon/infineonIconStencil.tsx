@@ -1,6 +1,7 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
+import { Component, Prop, h, Host, Event, EventEmitter, Watch, State, Element } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
 import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 
 @Component({
@@ -9,6 +10,7 @@ import { trackComponent } from '../../global/utils/tracking';
 })
 
 export class InfineonIconStencil {
+  @Element() el: HTMLElement;
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
   @State() internalIcon: string;
@@ -92,7 +94,10 @@ setIcon() {
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
-    trackComponent('ifx-icon')
+
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-icon')
+    }
   }
 
   render() {

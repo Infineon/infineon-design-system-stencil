@@ -1,5 +1,6 @@
-import { Component, Prop, h, State, Watch } from '@stencil/core';
+import { Component, Prop, h, State, Watch, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-progress-bar',
@@ -7,6 +8,7 @@ import { trackComponent } from '../../global/utils/tracking';
   shadow: true
 })
 export class ProgressBar {
+  @Element() el: HTMLElement;
   @Prop() value: number = 0;
   @Prop() size: string;
   @Prop() showLabel: boolean = false;
@@ -21,7 +23,9 @@ export class ProgressBar {
   }
 
   componentWillLoad() {
-    trackComponent('ifx-progress-bar')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-progress-bar')
+    }
     this.internalValue = this.value;
   }
 

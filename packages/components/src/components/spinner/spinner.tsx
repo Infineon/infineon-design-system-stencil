@@ -1,5 +1,6 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import classNames from 'classnames';
  
 @Component({
@@ -8,12 +9,15 @@ import classNames from 'classnames';
   shadow: true,
 })
 export class Spinner {
+  @Element() el;
   @Prop() size: string;
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
   componentWillLoad() { 
-    trackComponent('ifx-spinner')
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-spinner')
+    }
   }
 
   render() {
