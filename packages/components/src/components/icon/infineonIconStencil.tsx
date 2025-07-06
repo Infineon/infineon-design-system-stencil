@@ -91,12 +91,25 @@ setIcon() {
   this.ifxIcon = getIcon(iconName);
 }
 
+ isInsideAgGrid(el: HTMLElement): boolean {
+  let current = el;
+  while (current) {
+    if (current.className?.toLowerCase().startsWith('ag-')) {
+      return true;
+    }
+    current = current.parentElement;
+  }
+  return false;
+}
+
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
 
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-icon')
+      if(!this.isInsideAgGrid(this.el)) { 
+        trackComponent('ifx-icon')
+      }
     }
   }
 

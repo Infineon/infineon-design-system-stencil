@@ -7,7 +7,7 @@ export const isNestedInIfxComponent = (el: HTMLElement): boolean => {
       continue;
     }
     
-    if (parent instanceof HTMLElement && parent.tagName.toLowerCase().startsWith('ifx-')) {
+    if (parent instanceof HTMLElement && parent.tagName.toLowerCase().startsWith('ifx')) {
       return true;
     }
     
