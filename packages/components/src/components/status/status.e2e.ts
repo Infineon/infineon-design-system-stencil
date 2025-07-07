@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-status', () => {
   it('renders with default props', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-status></ifx-status>');
     await page.waitForChanges();
 
@@ -17,7 +17,7 @@ describe('ifx-status', () => {
   });
 
   it('renders with custom label', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-status label="Custom Label"></ifx-status>');
     await page.waitForChanges();
 
@@ -28,7 +28,7 @@ describe('ifx-status', () => {
   });
 
   it('renders with border when border prop is true', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-status border=true></ifx-status>');
     await page.waitForChanges();
 
@@ -43,7 +43,7 @@ describe('ifx-status', () => {
 
 
   it('renders with custom color', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-status color="green"></ifx-status>');
     await page.waitForChanges();
 

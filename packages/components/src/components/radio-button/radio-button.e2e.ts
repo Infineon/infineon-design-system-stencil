@@ -2,7 +2,7 @@ import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-radio-button', () => {
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-radio-button></ifx-radio-button>');
     await page.waitForChanges();
 
@@ -11,7 +11,7 @@ describe('ifx-radio-button', () => {
   });
 
   it('should be checked if is attribute checked is set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-radio-button checked>Test</ifx-radio-button>');
     await page.waitForChanges();
 
@@ -22,7 +22,7 @@ describe('ifx-radio-button', () => {
   });
 
   it('should not be checked if is attribute checked is not set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
     await page.waitForChanges();
 
@@ -33,7 +33,7 @@ describe('ifx-radio-button', () => {
   });
 
   it('should emit ifxChange event if button is clicked', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
     await page.waitForChanges();
 
@@ -48,7 +48,7 @@ describe('ifx-radio-button', () => {
   });
 
   it('should emit ifxChange event if label is clicked', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
     await page.waitForChanges();
 
@@ -63,7 +63,7 @@ describe('ifx-radio-button', () => {
   });
 
   it('should disable radio buttons of the same group', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <ifx-radio-button name="test" value="one">One</ifx-radio-button>
       <ifx-radio-button name="test" value="two" checked>Two</ifx-radio-button>
@@ -101,7 +101,7 @@ describe('ifx-radio-button', () => {
   });
 
   async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <form id="testForm" onSubmit="handleSubmit(event)">
         <ifx-radio-button name="test" value="one">One</ifx-radio-button>

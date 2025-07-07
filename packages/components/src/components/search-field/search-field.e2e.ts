@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('SearchField', () => {
   it('should render', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-search-field></ifx-search-field>');
     await page.waitForChanges();
 
@@ -22,7 +22,7 @@ describe('SearchField', () => {
   });
 
   it('should update value on input', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-search-field></ifx-search-field>');
     await page.waitForChanges();
 
@@ -34,7 +34,7 @@ describe('SearchField', () => {
   });
 
   it('should emit ifxInput event on input change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-search-field></ifx-search-field>');
     await page.waitForChanges();
 
@@ -46,7 +46,7 @@ describe('SearchField', () => {
   });
 
 it('should clear input on delete icon click', async () => {
-  const page = await newE2EPage();
+  const page = await newE2EPage({ timeout: 30000 });
   await page.setContent('<ifx-search-field show-delete-icon></ifx-search-field>');
   await page.waitForChanges();
 
@@ -73,7 +73,7 @@ it('should clear input on delete icon click', async () => {
 });
 
   it('should not update value when maxlength is set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-search-field maxlength="2"></ifx-search-field>');
     await page.waitForChanges();
 

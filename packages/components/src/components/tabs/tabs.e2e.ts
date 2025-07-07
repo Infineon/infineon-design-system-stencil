@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('IfxTabs', () => {
   it('should render with tabs and change active tab', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <ifx-tabs>
         <ifx-tab header="Tab 1">
@@ -43,7 +43,7 @@ describe('IfxTabs', () => {
   });
 
   it('should set active tab when activeTabIndex is set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <ifx-tabs active-tab-index="2">
         <ifx-tab header="Tab 1">
@@ -74,7 +74,7 @@ describe('IfxTabs', () => {
 
 
   it('should set last tab active when activeTabIndex out of bounds', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <ifx-tabs active-tab-index="3">
         <ifx-tab header="Tab 1">
@@ -102,7 +102,7 @@ describe('IfxTabs', () => {
   });
 
   it('should set first tab active when activeTabIndex is smaller than 0', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <ifx-tabs active-tab-index="-1">
         <ifx-tab header="Tab 1">

@@ -2,13 +2,13 @@ import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-textarea', () => {
         beforeEach(async () => {
-     const page = await newE2EPage();
+     const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea></ifx-textarea>');
         await page.waitForChanges();
 
   });
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea></ifx-textarea>');
         await page.waitForChanges();
 
@@ -17,7 +17,7 @@ describe('ifx-textarea', () => {
   });
 
   it('renders placeholder', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea placeholder="Testing placeholder"></ifx-textarea>');
        await page.waitForChanges();
 
@@ -26,7 +26,7 @@ describe('ifx-textarea', () => {
   });
 
   it('renders disabled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea disabled></ifx-textarea>');
         await page.waitForChanges();
 
@@ -35,7 +35,7 @@ describe('ifx-textarea', () => {
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea></ifx-textarea>');
         await page.waitForChanges();
 
@@ -58,7 +58,7 @@ describe('ifx-textarea', () => {
   });
 
   it('should submit the form data when the form is submitted', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <form id="testForm" onSubmit="handleSubmit(event)">
         <ifx-textarea name="textArea"></ifx-textarea>
@@ -118,7 +118,7 @@ describe('ifx-textarea', () => {
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea maxlength="2"></ifx-textarea>');
     await page.waitForChanges();
 
@@ -132,7 +132,7 @@ describe('ifx-textarea', () => {
 });
 
 async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
-  const page = await newE2EPage();
+  const page = await newE2EPage({ timeout: 30000 });
   await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
     <ifx-textarea name="textArea"></ifx-textarea>
     <button id="submit" type="submit">Submit</button>

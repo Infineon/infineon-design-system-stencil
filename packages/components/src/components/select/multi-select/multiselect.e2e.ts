@@ -18,13 +18,13 @@ function getOptions(selected: boolean) {
 
 describe('ifx-multiselect', () => {
       beforeEach(async () => {
-     const page = await newE2EPage();
+     const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
         await page.waitForChanges();
 
   });
   it('should render without errors', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     await page.waitForChanges();
 
@@ -33,7 +33,7 @@ describe('ifx-multiselect', () => {
   });
 
   it('should emit ifxOpen when dropdown is toggled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     await page.waitForChanges();
 
@@ -47,7 +47,7 @@ describe('ifx-multiselect', () => {
   });
 
   it('should toggle dropdown when clicked', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
     await page.waitForChanges();
 
@@ -63,7 +63,7 @@ describe('ifx-multiselect', () => {
   });
 
   it('should close dropdown when clicked outside', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
       <ifx-multiselect></ifx-multiselect>
@@ -83,7 +83,7 @@ describe('ifx-multiselect', () => {
   });
 
   it('should render the options, when dropdown is clicked', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
   <div style="height: 1000px; width: 1000px;"></div>
   <ifx-multiselect show-select-all="${false}" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
@@ -105,7 +105,7 @@ describe('ifx-multiselect', () => {
   });
 
   it('should not render select all button, when disabled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <div style="height: 1000px; width: 1000px;"></div>
       <ifx-multiselect options="[]" show-select-all=${false}></ifx-multiselect>

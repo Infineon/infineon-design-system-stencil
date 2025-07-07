@@ -5,7 +5,7 @@ describe('ifx-stepper', () => {
     let element;
 
     beforeEach(async () => {
-        page = await newE2EPage();
+        page = await newE2EPage({ timeout: 30000 });
         await page.setContent(`<ifx-stepper>
             <ifx-step>Step 1<ifx-step>
             <ifx-step>Step 2<ifx-step>

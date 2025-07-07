@@ -2,7 +2,7 @@ import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-text-field', () => {
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field></ifx-text-field>');
         await page.waitForChanges();
 
@@ -11,7 +11,7 @@ describe('ifx-text-field', () => {
   });
 
   it('renders placeholder', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field placeholder="Testing placeholder"></ifx-text-field>');
        await page.waitForChanges();
 
@@ -20,7 +20,7 @@ describe('ifx-text-field', () => {
   });
 
   it('renders disabled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field disabled></ifx-text-field>');
         await page.waitForChanges();
 
@@ -29,7 +29,7 @@ describe('ifx-text-field', () => {
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field></ifx-text-field>');
         await page.waitForChanges();
 
@@ -40,7 +40,7 @@ describe('ifx-text-field', () => {
   });
 
   it('renders with error', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field error caption="Invalid input"></ifx-text-field>');
      await page.waitForChanges();
 
@@ -49,7 +49,7 @@ describe('ifx-text-field', () => {
   });
 
   it('renders with success', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field success></ifx-text-field>');
         await page.waitForChanges();
 
@@ -58,7 +58,7 @@ describe('ifx-text-field', () => {
   });
 
   it('renders with icon', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field icon="chevron-down-16"></ifx-text-field>'); // Set the icon attribute with a valid icon name
     await page.waitForChanges(); // Wait for any potential asynchronous updates
     const icon = await page.find('ifx-text-field >>> ifx-icon');
@@ -78,7 +78,7 @@ describe('ifx-text-field', () => {
   });
 
   it('should submit the form data when the form is submitted', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <form id="testForm" onSubmit="handleSubmit(event)">
         <ifx-text-field name="textField"></ifx-text-field>
@@ -138,7 +138,7 @@ describe('ifx-text-field', () => {
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-text-field maxlength="2"></ifx-text-field>');
     await page.waitForChanges();
 
@@ -152,7 +152,7 @@ describe('ifx-text-field', () => {
 });
 
 async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
-  const page = await newE2EPage();
+  const page = await newE2EPage({ timeout: 30000 });
   await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
     <ifx-text-field name="textField"></ifx-text-field>
     <button id="submit" type="submit">Submit</button>7

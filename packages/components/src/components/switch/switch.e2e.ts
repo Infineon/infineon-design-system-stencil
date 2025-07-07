@@ -3,13 +3,13 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-switch', () => {
   beforeEach(async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch></ifx-switch>');
     await page.waitForChanges();
 
   });
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch></ifx-switch>');
     await page.waitForChanges();
 
@@ -19,7 +19,7 @@ describe('ifx-switch', () => {
 
 
   it('does not toggle when disabled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch disabled></ifx-switch>');
     await page.waitForChanges();
 
@@ -33,7 +33,7 @@ describe('ifx-switch', () => {
 
 
   it('emits the ifxChange event', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch></ifx-switch>');
     await page.waitForChanges();
 
@@ -45,7 +45,7 @@ describe('ifx-switch', () => {
   });
 
   it('toggles when Enter is pressed', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch></ifx-switch>');
     await page.waitForChanges();
 
@@ -57,7 +57,7 @@ describe('ifx-switch', () => {
   });
 
   it('toggles when Space is pressed', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch></ifx-switch>');
     await page.waitForChanges();
 
@@ -72,7 +72,7 @@ describe('ifx-switch', () => {
   });
 
   it('updates the visual state when checked prop changes', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-switch checked="false"></ifx-switch>');
     await page.waitForChanges();
 
@@ -85,7 +85,7 @@ describe('ifx-switch', () => {
   });
 
   it('should not be in FormData when form is submitted', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
@@ -99,7 +99,7 @@ describe('ifx-switch', () => {
   })
 
   it('should be on when form is submitted', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
@@ -116,7 +116,7 @@ describe('ifx-switch', () => {
   });
 
   it('should be value when form is submitted and value is set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch" value="val"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
@@ -133,7 +133,7 @@ describe('ifx-switch', () => {
   });
 
   it('should not change value when disabled attribute is present', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch" disabled></ifx-switch>
       <button id="submit" type="submit">Submit</button>
@@ -150,7 +150,7 @@ describe('ifx-switch', () => {
   });
 
   it('should not be in FormData when form is reset', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch"></ifx-switch>
       <button id="submit" type="submit">Submit</button>

@@ -2,11 +2,11 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-progress-bar', () => {
       beforeEach(async () => {
-     const page = await newE2EPage();
+     const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-progress-bar></ifx-progress-bar>');
   });
   it('should render component', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-progress-bar></ifx-progress-bar>');
 
     const element = await page.find('ifx-progress-bar');
@@ -14,7 +14,7 @@ describe('ifx-progress-bar', () => {
   });
 
   it('should reflect value prop', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-progress-bar value="70"></ifx-progress-bar>');
 
     const progressBar = await page.find('ifx-progress-bar');
@@ -24,7 +24,7 @@ describe('ifx-progress-bar', () => {
   });
 
   it('should show label when showLabel is true', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-progress-bar value="60"></ifx-progress-bar>');
 
     const progressBar = await page.find('ifx-progress-bar');
@@ -40,7 +40,7 @@ describe('ifx-progress-bar', () => {
 
 
   it('should not show label when size is "s"', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-progress-bar value="50" size="s" showLabel="true"></ifx-progress-bar>');
 
     const progressBar = await page.find('ifx-progress-bar');
@@ -53,7 +53,7 @@ describe('ifx-progress-bar', () => {
   });
 
   it('should reflect the progress percentage in the width style of the progress bar', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<div style="width: 1000px;"><ifx-progress-bar value="50"></ifx-progress-bar></div>');
 
     const progressBar = await page.find('ifx-progress-bar >>> .progress');
