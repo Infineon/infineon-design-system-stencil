@@ -1,5 +1,6 @@
 import { Component, h, Element, Prop, State, Host } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-footer',
@@ -18,6 +19,9 @@ export class Footer {
   componentWillLoad() {
     this.hasColSlot = !!this.el.querySelector('[slot="col"]');
     this.hasSocialsSlot = !!this.el.querySelector('[slot="socials"]');
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-footer')
+    }
 }
 
  

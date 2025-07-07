@@ -1,5 +1,6 @@
 import { Component, h, Event, Element, Prop, EventEmitter, Watch, Method, AttachInternals, State } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-text-field',
@@ -70,6 +71,9 @@ export class TextField {
   }
 
   componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-text-field')
+    }
     this.handleTypeProp()
   }
 

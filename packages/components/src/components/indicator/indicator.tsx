@@ -1,5 +1,6 @@
 import { Component, h, Prop, Element, State } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-indicator',
@@ -20,6 +21,9 @@ export class Indicator {
 
   componentWillLoad() { 
     this.handleNumber()
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-indicator')
+    }
   }
 
   componentWillUpdate() {

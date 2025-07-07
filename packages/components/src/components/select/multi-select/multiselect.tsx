@@ -1,4 +1,6 @@
 import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
 import { Option } from './interfaces';
 
 // Debounce function
@@ -223,6 +225,9 @@ export class Multiselect {
   }
 
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-multiselect')
+    }
     this.loadInitialOptions();
     this.filteredOptions = [...this.loadedOptions];
   }
