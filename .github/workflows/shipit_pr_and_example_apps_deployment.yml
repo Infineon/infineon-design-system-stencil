@@ -46,10 +46,11 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
-      - name: Clear and reinstall dependencies
+
+      - name: Install dependencies for all packages
         run: |
-          rm -rf node_modules
           npm install
+          git checkout -- package-lock.json 
 
       - name: Run tests
         run: npm test
