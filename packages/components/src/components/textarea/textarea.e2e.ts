@@ -4,6 +4,8 @@ describe('ifx-textarea', () => {
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
     const element = await page.find('ifx-textarea');
     expect(element).toHaveClass('hydrated');
   });
@@ -11,6 +13,8 @@ describe('ifx-textarea', () => {
   it('renders placeholder', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea placeholder="Testing placeholder"></ifx-textarea>');
+       await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     expect(await input.getProperty('placeholder')).toEqual('Testing placeholder');
   });
@@ -18,6 +22,8 @@ describe('ifx-textarea', () => {
   it('renders disabled', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea disabled></ifx-textarea>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     expect(await input.getProperty('disabled')).toBeTruthy();
   });
@@ -25,6 +31,8 @@ describe('ifx-textarea', () => {
   it('handles value change', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     const newValue = 'New value';
     await input.type(newValue);
@@ -52,7 +60,8 @@ describe('ifx-textarea', () => {
         <button id="reset" type="reset">Reset</button>
       </form>
     `);
-  
+      await page.waitForChanges();
+
     await page.addScriptTag({
       content: `
         function handleSubmit(event) {
@@ -105,6 +114,7 @@ describe('ifx-textarea', () => {
   it('handles value change', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea maxlength="2"></ifx-textarea>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-textarea >>> textarea');
     await input.press('KeyA');
@@ -122,6 +132,7 @@ async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
     <button id="submit" type="submit">Submit</button>
     <button id="reset" type="reset">Reset</button>
   </form>`);
+    await page.waitForChanges();
 
   // convert formdata to serializable Object and set to window.formData
   await page.addScriptTag({

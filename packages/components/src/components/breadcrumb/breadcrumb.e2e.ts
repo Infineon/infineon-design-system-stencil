@@ -4,6 +4,7 @@ describe('ifx-breadcrumb', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-breadcrumb></ifx-breadcrumb>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-breadcrumb');
     expect(element).toHaveClass('hydrated');
@@ -21,6 +22,7 @@ describe('ifx-breadcrumb', () => {
         </ifx-breadcrumb-item>
       </ifx-breadcrumb>
     `);
+    await page.waitForChanges();
 
     const breadcrumb = await page.find('ifx-breadcrumb');
     const breadcrumbItems = await breadcrumb.findAll('ifx-breadcrumb-item');
@@ -40,6 +42,7 @@ describe('ifx-breadcrumb', () => {
         </ifx-breadcrumb-item>
       </ifx-breadcrumb>
     `);
+    await page.waitForChanges();
 
     const breadcrumbItems = await page.findAll('ifx-breadcrumb-item');
 
@@ -59,7 +62,7 @@ describe('ifx-breadcrumb', () => {
         </ifx-breadcrumb-item>
       </ifx-breadcrumb>
     `);
-
+ 
     await page.waitForChanges();
 
   });
@@ -81,6 +84,8 @@ describe('ifx-breadcrumb', () => {
           </ifx-breadcrumb-item>
         </ifx-breadcrumb>
       `);
+          await page.waitForChanges();
+
     } catch (e) {
       expect(e.message).toBe('ifx-breadcrumb-item cannot have both a href and a dropdown menu.');
     }
@@ -107,6 +112,7 @@ describe('ifx-breadcrumb', () => {
             <ifx-breadcrumb-item-label id="item-4" slot="label" href="http://bing.com">Breadcrumb 4</ifx-breadcrumb-item-label>
           </ifx-breadcrumb-item>
         </ifx-breadcrumb>`);
+    await page.waitForChanges();
 
     await page.keyboard.press('Tab');
     let activeElId = await page.evaluate(() => document.activeElement!.id);
@@ -134,6 +140,7 @@ describe('ifx-breadcrumb', () => {
           </ifx-dropdown-menu>
         </ifx-breadcrumb-item>
       </ifx-breadcrumb>`);
+    await page.waitForChanges();
 
     await page.keyboard.press('Tab');
     await page.keyboard.press('Enter');

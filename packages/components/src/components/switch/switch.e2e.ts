@@ -5,6 +5,7 @@ describe('ifx-switch', () => {
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch></ifx-switch>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-switch');
     expect(element).toHaveClass('hydrated');
@@ -14,6 +15,7 @@ describe('ifx-switch', () => {
   it('does not toggle when disabled', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch disabled></ifx-switch>');
+    await page.waitForChanges();
 
     const switchDiv = await page.find('ifx-switch >>> div[role="switch"]');
 
@@ -27,6 +29,7 @@ describe('ifx-switch', () => {
   it('emits the ifxChange event', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch></ifx-switch>');
+    await page.waitForChanges();
 
     const component = await page.find('ifx-switch');
     const ifxChangeEvent = await component.spyOnEvent('ifxChange');
@@ -38,6 +41,7 @@ describe('ifx-switch', () => {
   it('toggles when Enter is pressed', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch></ifx-switch>');
+    await page.waitForChanges();
 
     const component = await page.find('ifx-switch');
     await component.press('Enter');
@@ -49,6 +53,7 @@ describe('ifx-switch', () => {
   it('toggles when Space is pressed', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch></ifx-switch>');
+    await page.waitForChanges();
 
     const switchDiv = await page.find('ifx-switch >>> div[role="switch"]');
     await switchDiv.press('Space');
@@ -63,6 +68,7 @@ describe('ifx-switch', () => {
   it('updates the visual state when checked prop changes', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-switch checked="false"></ifx-switch>');
+    await page.waitForChanges();
 
     const component = await page.find('ifx-switch');
     component.setProperty('checked', true);
@@ -78,6 +84,8 @@ describe('ifx-switch', () => {
       <ifx-switch name="switch"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const value = await submitAndGetValue(page);
@@ -90,6 +98,8 @@ describe('ifx-switch', () => {
       <ifx-switch name="switch"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
     const switchEl = await page.find('ifx-switch');
 
@@ -105,6 +115,8 @@ describe('ifx-switch', () => {
       <ifx-switch name="switch" value="val"></ifx-switch>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
     const switchEl = await page.find('ifx-switch');
 
@@ -113,13 +125,15 @@ describe('ifx-switch', () => {
     const value = await submitAndGetValue(page);
     expect(value).toBe('val')
   });
-  
+
   it('should not change value when disabled attribute is present', async () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-switch name="switch" disabled></ifx-switch>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
     const switchEl = await page.find('ifx-switch');
 
@@ -136,6 +150,8 @@ describe('ifx-switch', () => {
       <button id="submit" type="submit">Submit</button>
       <button id="reset" type="reset">Reset</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const switchEl = await page.find('ifx-switch');

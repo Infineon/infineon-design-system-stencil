@@ -4,6 +4,7 @@ describe('ifx-radio-button', () => {
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button></ifx-radio-button>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-radio-button');
     expect(element).toHaveClass('hydrated');
@@ -12,6 +13,8 @@ describe('ifx-radio-button', () => {
   it('should be checked if is attribute checked is set', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button checked>Test</ifx-radio-button>');
+    await page.waitForChanges();
+
     const element = await page.find('ifx-radio-button');
     const checkmark = await page.find('ifx-radio-button >>> .radioButton__wrapper-mark');
     expect(await element.callMethod("isChecked")).toBe(true);
@@ -21,6 +24,8 @@ describe('ifx-radio-button', () => {
   it('should not be checked if is attribute checked is not set', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
+    await page.waitForChanges();
+
     const element = await page.find('ifx-radio-button');
     const checkmark = await page.find('ifx-radio-button >>> .radioButton__wrapper-mark');
     expect(await element.callMethod("isChecked")).toBe(false);
@@ -30,6 +35,8 @@ describe('ifx-radio-button', () => {
   it('should emit ifxChange event if button is clicked', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
+    await page.waitForChanges();
+
     const component = await page.find('ifx-radio-button');
 
     const changeSpy = await component.spyOnEvent('ifxChange');
@@ -43,11 +50,13 @@ describe('ifx-radio-button', () => {
   it('should emit ifxChange event if label is clicked', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-radio-button>Test</ifx-radio-button>');
+    await page.waitForChanges();
+
     const component = await page.find('ifx-radio-button');
 
     const changeSpy = await component.spyOnEvent('ifxChange');
 
-    const label = await page.find('ifx-radio-button >>> .label'); 
+    const label = await page.find('ifx-radio-button >>> .label');
     await label.click();
 
     expect(changeSpy).toHaveReceivedEventDetail(true);
@@ -59,6 +68,7 @@ describe('ifx-radio-button', () => {
       <ifx-radio-button name="test" value="one">One</ifx-radio-button>
       <ifx-radio-button name="test" value="two" checked>Two</ifx-radio-button>
       `);
+    await page.waitForChanges();
 
     const button1 = await page.find('ifx-radio-button[value="one"]');
     const button2 = await page.find('ifx-radio-button[value="two"]');
@@ -101,6 +111,7 @@ describe('ifx-radio-button', () => {
         <button id="reset" type="reset">Reset</button>
       </form>
     `);
+    await page.waitForChanges();
 
     // convert form data to a serializable object and set it to window.formData
     await page.addScriptTag({

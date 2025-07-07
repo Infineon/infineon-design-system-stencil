@@ -4,6 +4,7 @@ describe('SearchField', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field></ifx-search-field>');
+    await page.waitForChanges();
 
     const searchInput = await page.find('ifx-search-field');
     expect(searchInput).toHaveClass('hydrated');
@@ -23,6 +24,7 @@ describe('SearchField', () => {
   it('should update value on input', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field></ifx-search-field>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-search-field >>> input');
     await input.press('KeyA');
@@ -34,6 +36,7 @@ describe('SearchField', () => {
   it('should emit ifxInput event on input change', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field></ifx-search-field>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-search-field >>> input');
 
@@ -45,6 +48,7 @@ describe('SearchField', () => {
   it('should clear input on delete icon click', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field show-delete-icon value="Search text"></ifx-search-field>');
+    await page.waitForChanges();
 
     const searchField = await page.find('ifx-search-field');
     const deleteIcon = await searchField.find('.delete-icon');
@@ -68,6 +72,7 @@ describe('SearchField', () => {
   it('should not update value when maxlength is set', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-search-field maxlength="2"></ifx-search-field>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-search-field >>> input');
     await input.press('KeyA');

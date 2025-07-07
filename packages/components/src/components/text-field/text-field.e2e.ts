@@ -4,6 +4,8 @@ describe('ifx-text-field', () => {
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field></ifx-text-field>');
+        await page.waitForChanges();
+
     const element = await page.find('ifx-text-field');
     expect(element).toHaveClass('hydrated');
   });
@@ -11,6 +13,8 @@ describe('ifx-text-field', () => {
   it('renders placeholder', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field placeholder="Testing placeholder"></ifx-text-field>');
+       await page.waitForChanges();
+
     const input = await page.find('ifx-text-field >>> input');
     expect(await input.getProperty('placeholder')).toEqual('Testing placeholder');
   });
@@ -18,6 +22,8 @@ describe('ifx-text-field', () => {
   it('renders disabled', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field disabled></ifx-text-field>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-text-field >>> input');
     expect(await input.getProperty('disabled')).toBeTruthy();
   });
@@ -25,6 +31,8 @@ describe('ifx-text-field', () => {
   it('handles value change', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field></ifx-text-field>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-text-field >>> input');
     const newValue = 'New value';
     await input.type(newValue);
@@ -34,6 +42,8 @@ describe('ifx-text-field', () => {
   it('renders with error', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field error caption="Invalid input"></ifx-text-field>');
+     await page.waitForChanges();
+
     const errorDiv = await page.find('ifx-text-field >>> .textInput__bottom-wrapper-caption.error');
     expect(errorDiv.innerText).toBe('Invalid input');
   });
@@ -41,6 +51,8 @@ describe('ifx-text-field', () => {
   it('renders with success', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field success></ifx-text-field>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-text-field >>> input');
     expect(input).toHaveClass('success');
   });
@@ -74,7 +86,8 @@ describe('ifx-text-field', () => {
         <button id="reset" type="reset">Reset</button>
       </form>
     `);
-  
+      await page.waitForChanges();
+
     await page.addScriptTag({
       content: `
         function handleSubmit(event) {
@@ -127,6 +140,7 @@ describe('ifx-text-field', () => {
   it('handles value change', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-text-field maxlength="2"></ifx-text-field>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-text-field >>> input');
     await input.press('KeyA');
@@ -144,6 +158,7 @@ async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
     <button id="submit" type="submit">Submit</button>7
     <button id="reset" type="reset">Reset</button>
   </form>`);
+    await page.waitForChanges();
 
   // convert formdata to serializable Object and set to window.formData
   await page.addScriptTag({

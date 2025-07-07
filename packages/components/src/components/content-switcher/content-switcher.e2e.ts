@@ -4,6 +4,7 @@ describe('ifx-content-switcher', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-content-switcher></ifx-content-switcher>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-content-switcher');
     expect(element).toHaveClass('hydrated');
@@ -15,6 +16,7 @@ describe('ifx-content-switcher', () => {
         <ifx-content-switcher-item>Item 1</ifx-content-switcher-item>
         <ifx-content-switcher-item>Item 2</ifx-content-switcher-item>
       </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const selectedItems = await page.findAll('ifx-content-switcher >>> [selected]');
     expect(selectedItems.length).toBe(0);
@@ -26,6 +28,7 @@ describe('ifx-content-switcher', () => {
         <ifx-content-switcher-item selected>Item 1</ifx-content-switcher-item>
         <ifx-content-switcher-item>Item 2</ifx-content-switcher-item>
       </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const selectedItems = await page.findAll('ifx-content-switcher [selected]');
     expect(selectedItems.length).toBe(1);
@@ -37,6 +40,7 @@ describe('ifx-content-switcher', () => {
         <ifx-content-switcher-item selected>Item 1</ifx-content-switcher-item>
         <ifx-content-switcher-item selected>Item 2</ifx-content-switcher-item>
       </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const selectedItems = await page.findAll('ifx-content-switcher [selected]');
     expect(selectedItems.length).toBe(1);
@@ -48,6 +52,7 @@ describe('ifx-content-switcher', () => {
         <ifx-content-switcher-item>Item 1</ifx-content-switcher-item>
         <ifx-content-switcher-item>Item 2</ifx-content-switcher-item>
       </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const items = await page.findAll('ifx-content-switcher ifx-content-switcher-item');
     await items[0].click();
@@ -64,6 +69,7 @@ describe('ifx-content-switcher', () => {
         <ifx-content-switcher-item>Item 1</ifx-content-switcher-item>
         <ifx-content-switcher-item>Item 2</ifx-content-switcher-item>
       </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const items = await page.findAll('ifx-content-switcher ifx-content-switcher-item');
     await items[1].click();
@@ -80,6 +86,7 @@ describe('ifx-content-switcher', () => {
       <ifx-content-switcher-item>Item 1</ifx-content-switcher-item>
       <ifx-content-switcher-item>Item 2</ifx-content-switcher-item>
     </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     const component = await page.find('ifx-content-switcher');
     const changeEventSpy = await component.spyOnEvent('ifxChange');
@@ -101,6 +108,7 @@ describe('ifx-content-switcher', () => {
       <ifx-content-switcher-item>Item 4</ifx-content-switcher-item>
       <ifx-content-switcher-item>Item 5</ifx-content-switcher-item>
     </ifx-content-switcher>`);
+    await page.waitForChanges();
 
     let dividers = await page.findAll('ifx-content-switcher .ifx-content-switcher-divider');
     expect(dividers.length).toBe(4);
