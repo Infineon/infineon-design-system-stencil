@@ -7,6 +7,8 @@ describe('ifx-radio-button-group', () => {
     beforeEach(async () => {
         page = await newE2EPage();
         await page.setContent('<ifx-radio-button-group></ifx-radio-button-group>');
+           await page.waitForChanges();
+
         element = await page.find('ifx-radio-button-group');
     });
 

@@ -45,29 +45,32 @@ describe('SearchField', () => {
 
   });
 
-  it('should clear input on delete icon click', async () => {
-    const page = await newE2EPage();
-    await page.setContent('<ifx-search-field show-delete-icon value="Search text"></ifx-search-field>');
-    await page.waitForChanges();
+it('should clear input on delete icon click', async () => {
+  const page = await newE2EPage();
+  await page.setContent('<ifx-search-field show-delete-icon></ifx-search-field>');
+  await page.waitForChanges();
 
-    const searchField = await page.find('ifx-search-field');
-    const deleteIcon = await searchField.find('.delete-icon');
-    const input = await searchField.find('input');
-    const eventSpy = await page.spyOnEvent('ifxInput');
+  const searchField = await page.find('ifx-search-field');
+  expect(searchField).not.toBeNull();
 
-    if (deleteIcon) {
-      await deleteIcon.click();
-    }
+  const input = await page.find('ifx-search-field >>> input');
+  expect(input).not.toBeNull();
 
-    if (!input) {
-      console.error('Input not found!');
-      return; // Exit the test early.
-    }
+  // Enter some text to make the delete icon appear
+  await input.press('KeyA');
+  await page.waitForChanges();
 
-    expect(await input.getProperty('value')).toBe('');
-    expect(eventSpy).toHaveReceivedEventDetail(null);
-  });
+  const deleteIcon = await page.find('ifx-search-field >>> .delete-icon');
+  expect(deleteIcon).not.toBeNull();
 
+  const eventSpy = await page.spyOnEvent('ifxInput');
+
+  await deleteIcon.click();
+  await page.waitForChanges();
+
+  expect(await input.getProperty('value')).toBe('');
+  expect(eventSpy).toHaveReceivedEventDetail('');
+});
 
   it('should not update value when maxlength is set', async () => {
     const page = await newE2EPage();

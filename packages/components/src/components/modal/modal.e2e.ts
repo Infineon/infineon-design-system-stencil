@@ -1,6 +1,12 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-modal', () => {
+        beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-modal></ifx-modal>');
+        await page.waitForChanges();
+
+  });
   it('opens and closes the modal', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-modal></ifx-modal>');

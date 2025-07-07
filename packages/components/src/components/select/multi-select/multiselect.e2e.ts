@@ -17,7 +17,12 @@ function getOptions(selected: boolean) {
 }
 
 describe('ifx-multiselect', () => {
+      beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+        await page.waitForChanges();
 
+  });
   it('should render without errors', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');

@@ -1,6 +1,12 @@
 import { newE2EPage } from "@stencil/core/testing";
 
 describe('Notification', () => {
+  beforeEach(async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-notification>42</ifx-notification>');
+        await page.waitForChanges();
+
+  });
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');

@@ -14,8 +14,9 @@ export const config: Config = {
   },
   testing: {
     browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'], // Puppeteer settings
+    // headless: true, // Enable headless mode (deprecated)
   },
-   outputTargets: [
+  outputTargets: [
     {
       type: 'dist-custom-elements',
       externalRuntime: false,
@@ -34,7 +35,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-       copy: [
+      copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
       ]
     }

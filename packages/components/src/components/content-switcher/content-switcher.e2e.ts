@@ -1,6 +1,13 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-content-switcher', () => {
+      beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-content-switcher></ifx-content-switcher>');
+        await page.waitForChanges();
+
+  });
+
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-content-switcher></ifx-content-switcher>');

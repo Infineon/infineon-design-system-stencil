@@ -10,6 +10,8 @@ describe('ifx-basic-table', () => {
     rows='[{"name":"Test"}]'
   ></ifx-basic-table>
 `);
+    await page.waitForChanges();
+
     const element = await page.find('ifx-basic-table');
     expect(element).toHaveClass('hydrated');
   });
@@ -18,7 +20,9 @@ describe('ifx-basic-table', () => {
     const page = await newE2EPage();
     await page.setContent(`<ifx-basic-table cols='[{"field":"name","headerName":"Name"}]'
 rows='[{"name":"Test"}]' table-height="auto"></ifx-basic-table>`);
-    const wrapperElement = await page.find('ifx-basic-table');
+    await page.waitForChanges();
+   
+const wrapperElement = await page.find('ifx-basic-table');
 
     const autoHeight = await wrapperElement.getProperty('tableHeight');
     expect(autoHeight).toBe('auto');

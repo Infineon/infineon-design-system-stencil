@@ -1,6 +1,19 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-tree-view', () => {
+  beforeEach(async () => {
+    const page = await newE2EPage({
+      html: `
+        <ifx-tree-view label="Tree Root">
+          <ifx-tree-view-item>Item 1</ifx-tree-view-item>
+        </ifx-tree-view>
+      `,
+    });
+    await page.waitForChanges();
+
+  });
+
+
   it('renders with label and children', async () => {
     const page = await newE2EPage({
       html: `

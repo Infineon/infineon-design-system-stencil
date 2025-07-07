@@ -1,6 +1,13 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-checkbox', () => {
+    beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-checkbox></ifx-checkbox>');
+        await page.waitForChanges();
+
+  });
+
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox></ifx-checkbox>');

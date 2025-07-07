@@ -1,6 +1,10 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-progress-bar', () => {
+      beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-progress-bar></ifx-progress-bar>');
+  });
   it('should render component', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-progress-bar></ifx-progress-bar>');

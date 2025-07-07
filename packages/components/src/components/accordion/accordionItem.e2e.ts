@@ -7,6 +7,7 @@ describe('ifx-accordion-item', () => {
   beforeEach(async () => {
     page = await newE2EPage();
     await page.setContent('<ifx-accordion-item caption="Test"></ifx-accordion-item>');
+    await page.waitForChanges();
 
     element = await page.find('ifx-accordion-item');
   });

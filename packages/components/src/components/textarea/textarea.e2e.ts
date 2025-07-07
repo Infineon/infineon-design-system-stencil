@@ -1,6 +1,12 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-textarea', () => {
+        beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
+  });
   it('renders', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-textarea></ifx-textarea>');

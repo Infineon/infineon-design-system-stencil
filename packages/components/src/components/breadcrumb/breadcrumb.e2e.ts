@@ -1,6 +1,11 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-breadcrumb', () => {
+  beforeEach(async () => {
+    const page = await newE2EPage();
+    await page.setContent('<ifx-breadcrumb></ifx-breadcrumb>');
+
+  });
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-breadcrumb></ifx-breadcrumb>');
@@ -62,7 +67,7 @@ describe('ifx-breadcrumb', () => {
         </ifx-breadcrumb-item>
       </ifx-breadcrumb>
     `);
- 
+
     await page.waitForChanges();
 
   });
@@ -84,7 +89,7 @@ describe('ifx-breadcrumb', () => {
           </ifx-breadcrumb-item>
         </ifx-breadcrumb>
       `);
-          await page.waitForChanges();
+      await page.waitForChanges();
 
     } catch (e) {
       expect(e.message).toBe('ifx-breadcrumb-item cannot have both a href and a dropdown menu.');
