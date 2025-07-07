@@ -47,7 +47,7 @@ function Navbar() {
 
     <IfxSearchBar id="myBar" slot="search-bar-left" is-open="false"></IfxSearchBar>
 
-    <IfxNavbarItem numberIndicator={5} slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartf16">Right Item</IfxNavbarItem>
+    <IfxNavbarItem numberIndicator={5} slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartF16">Right Item</IfxNavbarItem>
     <IfxNavbarItem slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
       Right Item
       <IfxNavbarItem>

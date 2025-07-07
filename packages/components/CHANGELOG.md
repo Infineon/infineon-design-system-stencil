@@ -1,3 +1,53 @@
+# v35.4.2 (Thu Jul 03 2025)
+
+#### 🐛 Bug Fix
+
+- Footer: Updates documentation [#1929](https://github.com/Infineon/infineon-design-system-stencil/pull/1929) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v35.4.1 (Thu Jul 03 2025)
+
+#### 🐛 Bug Fix
+
+- Slider: makes container's width 100% of its parent [#1932](https://github.com/Infineon/infineon-design-system-stencil/pull/1932) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v35.4.0 (Wed Jul 02 2025)
+
+#### 🚀 Enhancement
+
+- Accordion: allows the dropdown menu to overflow accordion-item [#1921](https://github.com/Infineon/infineon-design-system-stencil/pull/1921) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v35.3.0 (Mon Jun 30 2025)
+
+#### 🚀 Enhancement
+
+- Updates icon name validation to only accept camelCase and kebab-case [#1915](https://github.com/Infineon/infineon-design-system-stencil/pull/1915) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.1.1 (Wed Jun 25 2025)
 
 #### 🐛 Bug Fix
