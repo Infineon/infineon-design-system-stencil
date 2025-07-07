@@ -79,26 +79,14 @@ export class InfineonIconStencil {
   }
 
 setIcon() { 
-  const normalize = str =>
+  const toCamelCase = str =>
     str
-      .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
-      .replace(/^([A-Z])/, m => m.toLowerCase())
-      .toLowerCase();
+      .replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
+      .replace(/^(.)/, (m) => m.toLowerCase()); // ensure first letter is lowercase
 
-  const iconName = normalize(this.internalIcon);
-  this.ifxIcon = getIcon(iconName); // <-- call as a function
+  const iconName = toCamelCase(this.internalIcon);
+  this.ifxIcon = getIcon(iconName);
 }
-
-// setIcon() { 
-//   const toCamelCase = str =>
-//     str
-//       .replace(/[-_]+(.)/g, (_, chr) => chr.toUpperCase()) // handle - and _ to uppercase
-//       .replace(/^(.)/, (m) => m.toLowerCase()); // ensure first letter is lowercase
-
-//   const iconName = toCamelCase(this.internalIcon);
-//   this.ifxIcon = getIcon(iconName);
-// }
-
 
   componentWillLoad() {
     this.internalIcon = this.icon;

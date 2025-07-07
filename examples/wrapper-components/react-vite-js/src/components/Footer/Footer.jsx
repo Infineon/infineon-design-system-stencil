@@ -44,7 +44,7 @@ function Footer() {
         <IfxLink href="http://linkedin.com/infineon">
           <IfxIcon icon="c-info-16"></IfxIcon>
         </IfxLink>
-        <IfxLink href="http://twitter.com/infineon">
+        <IfxLink href="http://x.com/infineon">
           <IfxIcon icon="c-info-16"></IfxIcon>
         </IfxLink>
         <IfxLink href="http://xing.com/infineon">

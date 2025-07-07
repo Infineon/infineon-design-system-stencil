@@ -18,7 +18,7 @@ export default {
     },
     icon: {
       description: 'Sets the icon for the footer.',
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       table: {
         category: 'ifx-icon props',
@@ -69,8 +69,8 @@ const DefaultTemplate = args => {
       <ifx-link variant="title" href="http://linkedin.com/infineon" aria-label="Follow us on LinkedIn">
         <ifx-icon icon="linkedin"></ifx-icon>
       </ifx-link>
-      <ifx-link variant="title" href="http://twitter.com/infineon" aria-label="Follow us on Twitter">
-        <ifx-icon icon="twitter"></ifx-icon>
+      <ifx-link variant="title" href="http://x.com/infineon" aria-label="Follow us on X">
+        <ifx-icon icon="x"></ifx-icon>
       </ifx-link>
       <ifx-link variant="title" href="http://xing.com/infineon" aria-label="Follow us on Xing">
         <ifx-icon icon="xing"></ifx-icon>
@@ -141,8 +141,8 @@ const LargeTemplate = args => {
     <ifx-link variant="title" href="http://linkedin.com/infineon">
       <ifx-icon icon="linkedin"></ifx-icon>
     </ifx-link>
-    <ifx-link variant="title" href="http://twitter.com/infineon">
-      <ifx-icon icon="twitter"></ifx-icon>
+    <ifx-link variant="title" href="http://x.com/infineon">
+      <ifx-icon icon="x"></ifx-icon>
     </ifx-link>
     <ifx-link variant="title" href="http://xing.com/infineon">
       <ifx-icon icon="xing"></ifx-icon>

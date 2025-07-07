@@ -10,10 +10,10 @@ function TextField() {
     <div>
       <form id="another-form">
         <IfxTextField onIfxInput={handleInput} />
-        <IfxButton type="submit" theme="default" size="s" disabled="false" icon="false">
+        <IfxButton type="submit" theme="default" size="s" disabled="false">
           Submit form
         </IfxButton>
-        <IfxButton type="reset" variant="secondary" theme="default" size="s" disabled="false" icon="false">
+        <IfxButton type="reset" variant="secondary" theme="default" size="s" disabled="false">
           Reset form
         </IfxButton>
       </form>
