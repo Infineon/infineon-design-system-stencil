@@ -102,12 +102,23 @@ setIcon() {
   return false;
 }
 
+   isInsideChoices(el: HTMLElement): boolean {
+    let current = el;
+    while (current) {
+      if (current.className?.toLowerCase().startsWith('choices__')) {
+        return true;
+      }
+      current = current.parentElement;
+    }
+    return false;
+  }
+
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
 
     if(!isNestedInIfxComponent(this.el)) { 
-      if(!this.isInsideAgGrid(this.el)) { 
+      if(!this.isInsideAgGrid(this.el) && !this.isInsideChoices(this.el)) { 
         trackComponent('ifx-icon')
       }
     }
