@@ -4,6 +4,7 @@ describe('ifx-slider', () => {
     it('renders', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider');
         expect(element).toHaveClass('hydrated');
@@ -12,6 +13,7 @@ describe('ifx-slider', () => {
     it('renders changes to the value data', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider value="50"></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> input');
 
@@ -22,6 +24,7 @@ describe('ifx-slider', () => {
     it('handles input change', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> input');
         await element.press('ArrowRight');
@@ -33,6 +36,7 @@ describe('ifx-slider', () => {
     it('disables when the disabled property is set', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider disabled></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> input');
         expect(element.getAttribute('disabled')).not.toBeNull();
@@ -41,6 +45,7 @@ describe('ifx-slider', () => {
     it('renders left text', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider left-text="Left Text"></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> .left-text');
         expect(element.textContent).toEqual('Left Text');
@@ -49,6 +54,7 @@ describe('ifx-slider', () => {
     it('renders right text', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider right-text="Right Text"></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> .right-text');
         expect(element.textContent).toEqual('Right Text');
@@ -57,6 +63,7 @@ describe('ifx-slider', () => {
     it('renders percentage if showPercentage is true', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider value="30" show-percentage></ifx-slider>');
+        await page.waitForChanges();
 
         const element = await page.find('ifx-slider >>> .percentage-display');
         expect(element.textContent).toEqual('30%');
@@ -65,6 +72,7 @@ describe('ifx-slider', () => {
     it('emits the ifxChange event when the input changes', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider value="50"></ifx-slider>');
+        await page.waitForChanges();
         const spy = await page.spyOnEvent('ifxChange');
 
         const input = await page.find('ifx-slider >>> input');
@@ -76,6 +84,8 @@ describe('ifx-slider', () => {
     it('increments the value according to step size', async () => {
         const page = await newE2EPage();
         await page.setContent('<ifx-slider value="50" step="0.1"></ifx-slider>');
+        await page.waitForChanges();
+
         const element = await page.find('ifx-slider >>> input');
 
         await element.press('ArrowRight');

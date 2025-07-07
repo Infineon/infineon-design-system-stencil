@@ -20,14 +20,18 @@ describe('ifx-multiselect', () => {
 
   it('should render without errors', async () => {
     const page = await newE2EPage();
-await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.waitForChanges();
+
     const element = await page.find('ifx-multiselect');
     expect(element).toHaveClass('hydrated');
   });
 
   it('should emit ifxOpen when dropdown is toggled', async () => {
     const page = await newE2EPage();
-await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.waitForChanges();
+
     const select = await page.find('ifx-multiselect');
     const openEvent = await select.spyOnEvent('ifxOpen');
 
@@ -39,7 +43,9 @@ await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
 
   it('should toggle dropdown when clicked', async () => {
     const page = await newE2EPage();
-await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
+    await page.waitForChanges();
+
     const component = await page.find('ifx-multiselect');
 
     await component.click();
@@ -57,6 +63,7 @@ await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
       <div style="height: 1000px; width: 1000px;"></div>
       <ifx-multiselect></ifx-multiselect>
     `);
+    await page.waitForChanges();
 
     const component = await page.find('ifx-multiselect');
 
@@ -76,6 +83,8 @@ await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
   <div style="height: 1000px; width: 1000px;"></div>
   <ifx-multiselect show-select-all="${false}" options='${JSON.stringify(getOptions(false))}'></ifx-multiselect>
 `);
+    await page.waitForChanges();
+
 
     // open dropdown
     const component = await page.find('ifx-multiselect');
@@ -96,6 +105,7 @@ await page.setContent('<ifx-multiselect options="[]"></ifx-multiselect>');
       <div style="height: 1000px; width: 1000px;"></div>
       <ifx-multiselect options="[]" show-select-all=${false}></ifx-multiselect>
     `);
+    await page.waitForChanges();
 
     // open dropdown
     const component = await page.find('ifx-multiselect');

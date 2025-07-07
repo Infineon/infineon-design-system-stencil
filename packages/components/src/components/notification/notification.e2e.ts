@@ -4,6 +4,7 @@ describe('Notification', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');
+    await page.waitForChanges();
 
     const notification = await page.find('ifx-notification');
     expect(notification).toHaveClass('hydrated');
@@ -12,6 +13,7 @@ describe('Notification', () => {
   it('should apply success class', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification variant="success">42</ifx-notification>');
+    await page.waitForChanges();
 
     const notification = await page.find('ifx-notification >>> .ifx-notification__wrapper');
     expect(notification).toHaveClass('ifx-notification__wrapper--success');
@@ -20,6 +22,7 @@ describe('Notification', () => {
   it('should apply locked class', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification variant="locked">42</ifx-notification>');
+    await page.waitForChanges();
 
     const notification = await page.find('ifx-notification >>> .ifx-notification__wrapper');
     expect(notification).toHaveClass('ifx-notification__wrapper--locked');
@@ -28,6 +31,7 @@ describe('Notification', () => {
   it('should apply error class', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification variant="error">42</ifx-notification>');
+    await page.waitForChanges();
 
     const notification = await page.find('ifx-notification >>> .ifx-notification__wrapper');
     expect(notification).toHaveClass('ifx-notification__wrapper--error');
@@ -36,6 +40,7 @@ describe('Notification', () => {
   it('should render icon', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification icon="c-check-16">42</ifx-notification>');
+    await page.waitForChanges();
 
     const icon = await page.find('ifx-notification >>> .ifx-notification__icon');
     expect(icon).not.toBeNull();
@@ -44,6 +49,7 @@ describe('Notification', () => {
   it('should render link', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification link-text="Link" link-href="https://www.example.com">42</ifx-notification>');
+    await page.waitForChanges();
 
     const link = await page.find('ifx-notification >>> .ifx-notification__link');
     expect(await link.find('ifx-link')).not.toBeNull();
@@ -53,6 +59,7 @@ describe('Notification', () => {
   it('should render content', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');
+    await page.waitForChanges();
 
     const content = await page.find('ifx-notification >>> .ifx-notification__slot');
     expect(content).not.toBeNull();
@@ -61,6 +68,7 @@ describe('Notification', () => {
   it('should render slot content', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-notification>42</ifx-notification>');
+    await page.waitForChanges();
 
     const content = await page.find('ifx-notification >>> .ifx-notification__slot');
     expect(await content.find('slot')).not.toBeNull();
