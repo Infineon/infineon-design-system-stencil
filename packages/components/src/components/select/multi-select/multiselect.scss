@@ -211,6 +211,14 @@
     font-size: tokens.$ifxFontSizeS;
     line-height: tokens.$ifxLineHeightS;
 
+    &:hover {
+      color: tokens.$ifxColorOcean500;
+    }
+
+    &:active {
+      color: tokens.$ifxColorOcean600;
+    }
+
     &:focus {
       outline: none;
     }
