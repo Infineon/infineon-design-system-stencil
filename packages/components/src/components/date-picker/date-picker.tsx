@@ -117,7 +117,8 @@ export class DatePicker {
       <div class={`date__picker-container ${this.error ? 'error' : ''} ${this.disabled ? 'disabled': ''}`}>
 
         <label class='label__wrapper' htmlFor={ this.inputId }>
-        { this.label?.trim() }
+          { this.label?.trim() }
+          <span class={`asterisk ${this.required ? 'required' : ""} ${this.error ? 'error' : ""}`}>*</span>
         </label>
 
         <div class={`input__wrapper ${this.size === 'l' ? 'large' : 'small'} ${this.disabled ? 'disabled' : ''}`}>

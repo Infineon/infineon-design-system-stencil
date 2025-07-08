@@ -78,7 +78,7 @@ export default {
       }
     },
     leftIcon: {
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select'},
         description: 'The icon on the left of the slider.',
         table: {
@@ -87,7 +87,7 @@ export default {
         }
        },
     rightIcon: {
-      options: Object.values(icons).map(i => i['name']),
+      options: Object.keys(icons),
       control: { type: 'select' },
       description: 'The icon on the right of the slider.',
       table: {

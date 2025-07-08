@@ -32,13 +32,13 @@
 
 ### Depends on
 
-- [ifx-number-indicator](../number-indicator)
+- [ifx-indicator](../indicator)
 - [ifx-icon](../icon)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-chip --> ifx-number-indicator
+  ifx-chip --> ifx-indicator
   ifx-chip --> ifx-icon
   ifx-table --> ifx-chip
   style ifx-chip fill:#f9f,stroke:#333,stroke-width:4px

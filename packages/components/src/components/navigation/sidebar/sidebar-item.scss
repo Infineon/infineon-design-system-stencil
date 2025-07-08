@@ -63,7 +63,9 @@
   text-decoration: none;
   color: tokens.$ifxColorBaseBlack;
   cursor: pointer;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
 
   &.extra-padding__bottom {
     padding: 8px 0px 16px 0px;

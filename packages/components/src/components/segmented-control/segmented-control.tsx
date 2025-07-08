@@ -61,12 +61,7 @@ export class SegmentedControl {
                 }
             }
         });
-        if (!activeSegmentedControlFound && segments.length) {
-            (segments[0] as HTMLIfxSegmentElement).selected = true;
-            this.selectedValue = (segments[0] as HTMLIfxSegmentElement).value;
-        }
     }
-
 
     setSegmentSize(): void {
         const segments: NodeList = this.getSegments();
@@ -93,7 +88,7 @@ export class SegmentedControl {
                 {
                     this.caption.trim() &&
                     <div class='group__caption'>
-                        <ifx-icon icon='cinfo16'></ifx-icon> { this.caption.trim() }
+                        <ifx-icon icon='c-info-16'></ifx-icon> { this.caption.trim() }
                     </div>
                 }
             </div>

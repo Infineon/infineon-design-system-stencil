@@ -332,14 +332,14 @@ export class Chip {
 
             {
               (this.selectedOptions.length > 2 && this.variant === 'multi') &&
-              <ifx-number-indicator>  {`+${this.selectedOptions.length - 2}`} </ifx-number-indicator>
+              <ifx-indicator variant='number' number={this.selectedOptions.length - 2}></ifx-indicator>
             }
           </div>
 
           {
             !this.readOnly && (this.variant !== 'multi' || (this.variant === 'multi' && this.selectedOptions.length === 0)) &&
             <div class='wrapper__open-button'>
-              <ifx-icon key={1} icon={`chevrondown16`} />
+              <ifx-icon key={1} icon={`chevron-down-16`} />
             </div>
           }
 

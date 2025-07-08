@@ -100,7 +100,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  handleDeleteSelection() {
+  @Method()
+  async clearSelection() {
     this.clearInput()
     this.clearSelectField()
     this.setPreSelected(null);
@@ -380,11 +381,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           <div class='single__select-icon-container'>
             { this.optionIsSelected && (
                 <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
-                  <ifx-icon icon="cremove16" onClick={() => this.handleDeleteSelection()}></ifx-icon>
+                  <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
                 </div>
               )}
               <div class="ifx-choices__icon-wrapper-up">
-                <ifx-icon key="icon-up" icon="chevronup-16"></ifx-icon>
+                <ifx-icon key="icon-up" icon="chevron-up-16"></ifx-icon>
               </div>
               <div class="ifx-choices__icon-wrapper-down">
                 <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>

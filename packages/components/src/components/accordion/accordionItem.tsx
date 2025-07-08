@@ -18,7 +18,7 @@ export class IfxAccordionItem {
   @Event() ifxClose: EventEmitter;
   private contentEl!: HTMLElement;
   private titleEl!: HTMLElement;
-
+  private resizeObserver!: ResizeObserver;
 
   componentWillLoad() {
     this.internalOpen = this.open;
@@ -26,13 +26,16 @@ export class IfxAccordionItem {
 
   componentDidLoad() {
     this.openAccordionItem()
+
+     this.contentEl = this.el.shadowRoot.querySelector('#accordion-content');
+      if (this.contentEl) {
+        this.attachResizeObserver();
+      }
   }
 
   componentDidUpdate() {
     this.openAccordionItem()
   }
-
-
 
   @Watch('open')
   openChanged(newValue: boolean) {
@@ -51,38 +54,32 @@ export class IfxAccordionItem {
   }
 
   openAccordionItem() {
-    if (this.internalOpen) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
-    } else {
-      this.contentEl.style.maxHeight = '0';
+    if (this.contentEl) {
+      if (this.internalOpen) {
+      this.contentEl.style.height = 'auto'; 
+      const updatedHeight = this.contentEl.scrollHeight; 
+      this.contentEl.style.height = `${updatedHeight}px`; 
+        this.contentEl.style.overflow = 'visible';
+      } else {
+        this.contentEl.style.height = '0';
+        this.contentEl.style.overflow = 'hidden';
+      }
     }
   }
 
-  handleSlotChange(e) {
-    const slotElement = e.target;
-    const nodes = slotElement.assignedNodes();
-    
-    if(nodes.length > 0) {
-      nodes.forEach(node => {
-        const observer = new MutationObserver((mutationsList, _) => {
-          for(let mutation of mutationsList) {
-            if (mutation.type === 'childList') {
-              if (this.internalOpen) {
-                this.openAccordionItem();
-              }
-            }
-          }
-        });
-        observer.observe(node, { attributes: true, childList: true, subtree: true });
+  attachResizeObserver() { 
+    const innerContentEl = this.el.shadowRoot.querySelector('.inner-content');
+
+    if (innerContentEl) {
+      this.resizeObserver = new ResizeObserver(() => {
+        if (this.internalOpen) {
+          this.openAccordionItem();
+        }
       });
-    }
 
-    if (this.internalOpen) {
-      this.openAccordionItem();
+      this.resizeObserver.observe(innerContentEl); 
     }
   }
-
-  
 
   @Listen('keydown')
   handleKeydown(ev: KeyboardEvent) {
@@ -107,13 +104,13 @@ export class IfxAccordionItem {
       <div class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
         <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0' ref={(el) => (this.titleEl = el as HTMLElement)}>
           <span aria-hidden="true" role="heading" aria-level={String(this.AriaLevel) as string} class="accordion-icon">
-            <ifx-icon icon="chevron-down-12"/>
+            <ifx-icon icon="chevron-down-16"/>
           </span>
           <span id="accordion-caption" class="accordion-caption">{this.caption}</span>
         </div>
         <div id="accordion-content" class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)} role="region" aria-labelledby="accordion-caption">
           <div class="inner-content">
-            <slot onSlotchange={(e) => this.handleSlotChange(e)} />
+            <slot />
           </div>
         </div>
       </div>

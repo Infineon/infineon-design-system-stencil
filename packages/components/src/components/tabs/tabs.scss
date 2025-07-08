@@ -8,7 +8,9 @@
 
 .tabs {
   display: flex;
-  font-family: tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+
   width: 100%;
 }
 
