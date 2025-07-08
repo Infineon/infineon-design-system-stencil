@@ -147,6 +147,31 @@
 
         .suggestion-text {
           flex: 1;
+          display: flex;
+          align-items: baseline;
+          min-width: 0; // Important for flexbox truncation
+
+          .suggestion-main-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex-shrink: 1;
+            min-width: 0;
+          }
+
+          .suggestion-scope {
+            color: tokens.$ifxColorEngineering400;
+            flex-shrink: 0; // Never truncate the scope
+            white-space: nowrap;
+            margin-left: 0.25em; // Add space before the scope
+          }
+        }
+
+        .suggestion-count {
+          color: tokens.$ifxColorEngineering400;
+          font-size: 0.85em;
+          margin-left: auto;
+          flex-shrink: 0;
         }
 
         .suggestion-delete-icon {

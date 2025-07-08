@@ -5,6 +5,8 @@ export interface SuggestionItem {
   id: string;
   text: string;
   type?: 'suggestion' | 'history';
+  scope?: string;
+  resultCount?: number;
   metadata?: any;
 }
 
@@ -312,9 +314,12 @@ export class SearchField {
       // For empty query DO NOT show external suggestions
     }
 
-    // Remove duplicates based on text (history takes precedence over external)
+    // Remove duplicates based on text and scope combination (history takes precedence over external)
     const uniqueSuggestions = suggestions.reduce((unique: SuggestionItem[], current) => {
-      const existingIndex = unique.findIndex(item => item.text.toLowerCase() === current.text.toLowerCase());
+      const existingIndex = unique.findIndex(item =>
+        item.text.toLowerCase() === current.text.toLowerCase() &&
+        item.scope === current.scope
+      );
       if (existingIndex === -1) {
         unique.push(current);
       } else {
@@ -490,8 +495,17 @@ export class SearchField {
                     <ifx-icon icon="search-16" class="suggestion-icon suggestion-icon--suggestion"></ifx-icon>
                   )}
                   <span class="suggestion-text">
-                    {this.renderHighlightedText(suggestion.text, this.value)}
+                    <span class="suggestion-main-text">
+                      {this.renderHighlightedText(suggestion.text, this.value)}
+                    </span>
+                    {suggestion.scope && (
+                      <span class="suggestion-scope">– {suggestion.scope}</span>
+                    )}
                   </span>
+
+                  {suggestion.resultCount !== undefined && suggestion.scope && (
+                    <span class="suggestion-count">{suggestion.resultCount}</span>
+                  )}
 
                   {/* Delete Button only for history entries */}
                   {suggestion.type === 'history' && (
