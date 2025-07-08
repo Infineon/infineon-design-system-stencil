@@ -12,10 +12,7 @@ export const config: Config = {
     cloneNodeFix: true,
     enableImportInjection: true,
   },
-  testing: {
-    browserArgs: ['--no-sandbox', '--disable-setuid-sandbox'], // Puppeteer settings
-    // headless: true, // Enable headless mode (deprecated)
-  },
+ 
   outputTargets: [
     {
       type: 'dist-custom-elements',
