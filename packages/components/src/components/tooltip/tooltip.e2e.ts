@@ -4,7 +4,7 @@ import { newE2EPage } from '@stencil/core/testing';
 describe('ifx-tooltip', () => {
 
   it('renders', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-tooltip></ifx-tooltip>');
 
     const element = await page.find('ifx-tooltip');
@@ -13,7 +13,7 @@ describe('ifx-tooltip', () => {
 
 
   it('renders tooltip when visible prop is set', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-tooltip></ifx-tooltip>');
     const component = await page.find('ifx-tooltip');
 

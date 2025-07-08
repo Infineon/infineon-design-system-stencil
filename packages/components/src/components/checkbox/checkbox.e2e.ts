@@ -1,9 +1,17 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-checkbox', () => {
+    beforeEach(async () => {
+     const page = await newE2EPage();
+    await page.setContent('<ifx-checkbox></ifx-checkbox>');
+        await page.waitForChanges();
+
+  });
+
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox></ifx-checkbox>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-checkbox');
     expect(element).toHaveClass('hydrated');
@@ -12,7 +20,7 @@ describe('ifx-checkbox', () => {
   it('should display slotted content', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox>Test content</ifx-checkbox>');
-
+    await page.waitForChanges();
     const labelContent = await page.evaluate(() => {
       const checkbox = document.querySelector('ifx-checkbox');
       const slot = checkbox.shadowRoot.querySelector('slot');
@@ -26,6 +34,7 @@ describe('ifx-checkbox', () => {
   it('should be checked when checked attribute is set', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox checked="true">Test content</ifx-checkbox>');
+    await page.waitForChanges();
 
     const checkbox = await page.find('ifx-checkbox');
     const checkmark = await page.find('ifx-checkbox >>> .checkbox__wrapper')
@@ -37,6 +46,7 @@ describe('ifx-checkbox', () => {
   it('should not be checked when checked attribute is not set', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox>Test content</ifx-checkbox>');
+    await page.waitForChanges();
 
     const checkbox = await page.find('ifx-checkbox');
     const checkmark = await page.find('ifx-checkbox >>> .checkbox__wrapper')
@@ -48,6 +58,7 @@ describe('ifx-checkbox', () => {
   it('should emit ifxChange event when clicked', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-checkbox></ifx-checkbox>');
+    await page.waitForChanges();
 
     const checkbox = await page.find('ifx-checkbox');
     const ifxChange = await checkbox.spyOnEvent('ifxChange');
@@ -64,6 +75,8 @@ describe('ifx-checkbox', () => {
       <ifx-checkbox name="checkbox"></ifx-checkbox>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const value = await submitAndGetValue(page);
@@ -76,6 +89,8 @@ describe('ifx-checkbox', () => {
       <ifx-checkbox name="checkbox"></ifx-checkbox>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
 
@@ -91,6 +106,7 @@ describe('ifx-checkbox', () => {
       <ifx-checkbox name="checkbox" value="check"></ifx-checkbox>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
 
@@ -106,6 +122,7 @@ describe('ifx-checkbox', () => {
       <ifx-checkbox name="checkbox" disabled></ifx-checkbox>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
     await addHandleSubmitScript(page);
     const checkbox = await page.find('ifx-checkbox');
 
@@ -122,6 +139,7 @@ describe('ifx-checkbox', () => {
       <button id="submit" type="submit">Submit</button>
       <button id="reset" type="reset">Reset</button>
     </form>`);
+    await page.waitForChanges();
     await addHandleSubmitScript(page);
 
     const checkbox = await page.find('ifx-checkbox');
