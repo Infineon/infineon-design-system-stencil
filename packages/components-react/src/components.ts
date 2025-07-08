@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -801,14 +801,26 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     defineCustomElement: defineIfxSearchBar
 });
 
-type IfxSearchFieldEvents = { onIfxInput: EventName<IfxSearchFieldCustomEvent<String>> };
+type IfxSearchFieldEvents = {
+    onIfxInput: EventName<CustomEvent<string>>,
+    onIfxSuggestionRequested: EventName<CustomEvent<string>>,
+    onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
+    onIfxFocus: EventName<CustomEvent<void>>,
+    onIfxBlur: EventName<CustomEvent<void>>
+};
 
 export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents>({
     tagName: 'ifx-search-field',
     elementClass: IfxSearchFieldElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxInput: 'ifxInput' } as IfxSearchFieldEvents,
+    events: {
+        onIfxInput: 'ifxInput',
+        onIfxSuggestionRequested: 'ifxSuggestionRequested',
+        onIfxSuggestionSelected: 'ifxSuggestionSelected',
+        onIfxFocus: 'ifxFocus',
+        onIfxBlur: 'ifxBlur'
+    } as IfxSearchFieldEvents,
     defineCustomElement: defineIfxSearchField
 });
 

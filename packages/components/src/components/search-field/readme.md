@@ -7,22 +7,32 @@
 
 ## Properties
 
-| Property         | Attribute          | Description | Type      | Default       |
-| ---------------- | ------------------ | ----------- | --------- | ------------- |
-| `autocomplete`   | `autocomplete`     |             | `string`  | `"on"`        |
-| `disabled`       | `disabled`         |             | `boolean` | `false`       |
-| `maxlength`      | `maxlength`        |             | `number`  | `null`        |
-| `placeholder`    | `placeholder`      |             | `string`  | `"Search..."` |
-| `showDeleteIcon` | `show-delete-icon` |             | `boolean` | `false`       |
-| `size`           | `size`             |             | `string`  | `'l'`         |
-| `value`          | `value`            |             | `string`  | `''`          |
+| Property            | Attribute             | Description | Type               | Default                |
+| ------------------- | --------------------- | ----------- | ------------------ | ---------------------- |
+| `autocomplete`      | `autocomplete`        |             | `string`           | `"off"`                |
+| `disabled`          | `disabled`            |             | `boolean`          | `false`                |
+| `enableHistory`     | `enable-history`      |             | `boolean`          | `true`                 |
+| `historyHeaderText` | `history-header-text` |             | `string`           | `'Recent Searches'`    |
+| `historyKey`        | `history-key`         |             | `string`           | `'ifx-search-history'` |
+| `maxSuggestions`    | `max-suggestions`     |             | `number`           | `10`                   |
+| `maxlength`         | `maxlength`           |             | `number`           | `null`                 |
+| `placeholder`       | `placeholder`         |             | `string`           | `"Search..."`          |
+| `showDeleteIcon`    | `show-delete-icon`    |             | `boolean`          | `false`                |
+| `showSuggestions`   | `show-suggestions`    |             | `boolean`          | `true`                 |
+| `size`              | `size`                |             | `string`           | `'l'`                  |
+| `suggestions`       | --                    |             | `SuggestionItem[]` | `[]`                   |
+| `value`             | `value`               |             | `string`           | `''`                   |
 
 
 ## Events
 
-| Event      | Description | Type                  |
-| ---------- | ----------- | --------------------- |
-| `ifxInput` |             | `CustomEvent<String>` |
+| Event                    | Description | Type                          |
+| ------------------------ | ----------- | ----------------------------- |
+| `ifxBlur`                |             | `CustomEvent<void>`           |
+| `ifxFocus`               |             | `CustomEvent<void>`           |
+| `ifxInput`               |             | `CustomEvent<string>`         |
+| `ifxSuggestionRequested` |             | `CustomEvent<string>`         |
+| `ifxSuggestionSelected`  |             | `CustomEvent<SuggestionItem>` |
 
 
 ## Dependencies

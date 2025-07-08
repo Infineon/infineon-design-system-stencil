@@ -9,10 +9,8 @@
   box-sizing: border-box;
   background-color: tokens.$ifxColorBaseWhite;
   width: 100%;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
-
+  font-family: var(--ifx-font-family);
+  position: relative; // Wichtig für absolute positioning des Dropdowns
 
   .search-field__wrapper {
     box-sizing: border-box;
@@ -85,5 +83,99 @@
     &:has(input[disabled]) {
       background-color: #EEEDED;
     }
+  }
+
+  // Suggestions Dropdown Styles
+  .suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: tokens.$ifxColorBaseWhite;
+    margin-top: tokens.$ifxSpace50;
+    border: 1px solid tokens.$ifxColorEngineering200;
+    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
+    z-index: 1000;
+    max-height: 300px;
+    overflow-y: auto;
+
+    .suggestions-header {
+      // font: tokens.$ifxEyebrowEyebrow02; TODO
+      font-family: Source Sans 3;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: tokens.$ifxColorEngineering500;
+      border-bottom: 1px solid tokens.$ifxColorEngineering200;
+      padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+    }
+
+    .suggestion-item {
+      padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover,
+      &--selected {
+        background-color: tokens.$ifxColorEngineering200;
+      }
+
+      &--selected {
+
+      }
+
+      .suggestion-content {
+        display: flex;
+        align-items: center;
+        gap: tokens.$ifxSpace150;
+
+        .suggestion-icon {
+          color: tokens.$ifxColorEngineering500;
+          flex-shrink: 0;
+
+          &--history {
+            color: tokens.$ifxColorEngineering500;
+          }
+        }
+
+        .suggestion-text {
+          flex: 1;
+        }
+
+        .suggestion-delete-icon {
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.2s ease, visibility 0.2s ease;
+          cursor: pointer;
+          margin-left: auto;
+          flex-shrink: 0;
+          color: tokens.$ifxColorEngineering500;
+
+          &:hover {
+            color: tokens.$ifxColorEngineering600;
+          }
+        }
+      }
+
+      &:hover {
+        .suggestion-delete-icon {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  // Wrapper modifications when dropdown is open
+  .search-field__wrapper.dropdown-open {
+    border-radius: tokens.$ifxBorderRadius12 tokens.$ifxBorderRadius12 0 0;
+    border-color: tokens.$ifxColorOcean500;
   }
 }
