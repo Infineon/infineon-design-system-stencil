@@ -383,16 +383,22 @@ export class NavbarItem {
     }
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+      this.toggleItemMenu()
+    }
+}
+
   render() {
     return (
-      <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
+      <div tabIndex={1} class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)} onKeyDown={(e) => this.handleKeyDown(e)} onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <div class="sub__layer-back-button">
           <div class="back__button-wrapper" onClick={() => this.returnToFirstLayer()}>
             <ifx-icon icon="arrow-left-16" />
             <span>Back</span>
           </div>
         </div>
-        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
+        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()}  class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
