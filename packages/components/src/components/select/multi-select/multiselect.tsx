@@ -26,7 +26,7 @@ function debounce(func, wait) {
 export class Multiselect {
 
   @Prop() name: string;
-  @Prop() options: any[] | string;
+@Prop() options: any[] | string = [];
   @Prop() batchSize: number = 50;
   @Prop() size: string = 'medium (40px)';
   @Prop() disabled: boolean = false;
@@ -46,7 +46,7 @@ export class Multiselect {
   @State() loadedOptions: Option[] = [];
   @State() filteredOptions: Option[] = [];
   @Prop() showSearch: boolean = true;
-  @Prop() showSelectAll: boolean = true;
+  @Prop() showSelectAll: boolean | string = true;
   @Prop() showClearButton: boolean = true;
   @State() optionCount: number = 0; // number of all options (leaves of the tree)
   @State() optionsProcessed: boolean = false; // flag whether options have already been counted, intial selections saved
@@ -632,6 +632,7 @@ export class Multiselect {
       })
       .map(option => option.label)
       .join(', ');
+    const showSelectAll = this.showSelectAll === true || this.showSelectAll === 'true';
 
     return (
       <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
@@ -661,7 +662,7 @@ export class Multiselect {
             <div class="ifx-multiselect-dropdown-menu"
               onScroll={(event) => this.handleScroll(event)}>
               {this.showSearch && <input type="text" role="textbox" class="search-input" onKeyDown={(e) => { e.stopPropagation() }} onInput={(event) => this.handleSearch(event.target)} placeholder="Search..."></input>}
-              {this.showSelectAll && this.renderSelectAll()}
+              {showSelectAll && this.renderSelectAll()}
               {this.filteredOptions.map((option, index) => this.renderOption(option, index))}
               {this.isLoading && <div>Loading more options...</div>}
             </div>

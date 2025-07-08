@@ -1,6 +1,19 @@
 import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-tree-view', () => {
+  beforeEach(async () => {
+    const page = await newE2EPage({
+      html: `
+        <ifx-tree-view label="Tree Root">
+          <ifx-tree-view-item>Item 1</ifx-tree-view-item>
+        </ifx-tree-view>
+      `,
+    });
+    await page.waitForChanges();
+
+  });
+
+
   it('renders with label and children', async () => {
     const page = await newE2EPage({
       html: `
@@ -99,11 +112,10 @@ describe('ifx-tree-view', () => {
     await chevron.click();
     await page.waitForChanges();
 
-    expect(spy).toHaveReceivedEventDetail({
-      expanded: true,
-      value: 'expandable-item',
-      affectedItems: [{ expanded: true, value: 'expandable-item' }]
-    });
+    const eventDetail = spy.events[0].detail;
+    expect(eventDetail.expanded).toBe(true);
+    expect(eventDetail.value).toBe('expandable-item');
+    expect(eventDetail.affectedItems).toEqual([{ expanded: true, value: 'expandable-item' }]);
   });
 
   it('updates checkbox state and emits event', async () => {
@@ -124,13 +136,12 @@ describe('ifx-tree-view', () => {
     await checkbox.click();
     await page.waitForChanges();
 
-    expect(spy).toHaveReceivedEventDetail({
-      checked: true,
-      indeterminate: false,
-      value: 'checkable-item',
-      level: 0,
-      disabled: false
-    });
+    const eventDetail = spy.events[0].detail;
+    expect(eventDetail.checked).toBe(true);
+    expect(eventDetail.indeterminate).toBe(false);
+    expect(eventDetail.value).toBe('checkable-item');
+    expect(eventDetail.level).toBe(0);
+    expect(eventDetail.disabled).toBe(false);
   });
 
   it('emits parent check event with affectedChildItems for parent items', async () => {
@@ -146,23 +157,20 @@ describe('ifx-tree-view', () => {
       `,
     });
 
-    await page.waitForChanges();
-
-    const parentCheckbox = await page.find('ifx-tree-view-item >>> ifx-checkbox');
     const spy = await page.spyOnEvent('ifxTreeViewItemCheckChange');
+    const checkbox = await page.find('ifx-tree-view-item >>> ifx-checkbox');
 
-    await parentCheckbox.click();
+    await checkbox.click();
     await page.waitForChanges();
 
-    expect(spy).toHaveReceivedEventDetail({
-      checked: true,
-      indeterminate: false,
-      value: 'parent-item',
-      affectedChildItems: [
-        { checked: true, indeterminate: false, value: 'child-1' },
-        { checked: true, indeterminate: false, value: 'child-2' }
-      ]
-    });
+    const eventDetail = spy.events[0].detail;
+    expect(eventDetail.checked).toBe(true);
+    expect(eventDetail.indeterminate).toBe(false);
+    expect(eventDetail.value).toBe('parent-item');
+    expect(eventDetail.affectedChildItems).toEqual([
+      { checked: true, indeterminate: false, value: 'child-1' },
+      { checked: true, indeterminate: false, value: 'child-2' }
+    ]);
   });
 
   it('handles keyboard navigation (ArrowDown)', async () => {

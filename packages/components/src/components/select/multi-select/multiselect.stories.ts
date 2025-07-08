@@ -262,28 +262,32 @@ export default {
 };
 
 const Template = args => {
-  const template = `<ifx-multiselect 
-  name='${args.name}'
-  options='${JSON.stringify(args.options)}' 
-  batch-size='${args.batchSize}'
-  size='${args.size}'
-  disabled='${args.disabled}'
-  max-item-count='${args.maxItemCount}'
-  error='${args.error}'
-  error-message='${args.errorMessage}'
-  label='${args.label}'
-  placeholder='${args.placeholder}'
-  show-search='${args.showSearch}'
-  show-select-all='${args.showSelectAll}'
-  show-clear-button='${args.showClearButton}'>
-</ifx-multiselect>`;
+  const el = document.createElement('ifx-multiselect') as any;
 
-  setTimeout(() => {
-    document.querySelector('ifx-multiselect').addEventListener('ifxSelect', action('ifxSelect'));
-    document.querySelector('ifx-multiselect').addEventListener('ifxOpen', action('ifxOpen'));
-  }, 0);
+  // Set boolean properties directly
+  el.disabled = args.disabled;
+  el.error = args.error;
+  el.showSearch = args.showSearch;
+  el.showSelectAll = args.showSelectAll;
+  el.showClearButton = args.showClearButton;
 
-  return template;
+  // Set string/number attributes
+  el.setAttribute('name', args.name);
+  el.setAttribute('size', args.size);
+  el.setAttribute('batch-size', args.batchSize);
+  if (args.maxItemCount !== undefined) el.setAttribute('max-item-count', args.maxItemCount);
+  el.setAttribute('error-message', args.errorMessage);
+  el.setAttribute('label', args.label);
+  el.setAttribute('placeholder', args.placeholder);
+
+  // Set options as a property (not attribute)
+  el.options = args.options;
+
+  // Add event listeners
+  el.addEventListener('ifxSelect', action('ifxSelect'));
+  el.addEventListener('ifxOpen', action('ifxOpen'));
+
+  return el;
 };
 
 export const Default = Template.bind({});

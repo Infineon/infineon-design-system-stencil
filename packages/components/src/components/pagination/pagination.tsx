@@ -13,8 +13,7 @@ export class Pagination {
   @State() internalItemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
-  @Prop() itemsPerPage: any[] | string;
-  @State() filteredItemsPerPage: any[] = [];
+@Prop() itemsPerPage: any[] | string = '[{"label":"10","value":10},{"label":"20","value":20}]';  @State() filteredItemsPerPage: any[] = [];
   @State() visiblePages: (number | string)[] = [];
 
   private CLASS_DISABLED = "disabled";

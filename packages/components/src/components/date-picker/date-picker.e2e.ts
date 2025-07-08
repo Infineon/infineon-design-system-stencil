@@ -5,6 +5,7 @@ describe('ifx-date-picker', () => {
   it('should render', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-date-picker></ifx-date-picker>');
+    await page.waitForChanges();
 
     const element = await page.find('ifx-date-picker');
     expect(element).toHaveClass('hydrated');
@@ -13,7 +14,8 @@ describe('ifx-date-picker', () => {
   it('should display the correct size', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-date-picker size="l"></ifx-date-picker>');
-  
+    await page.waitForChanges();
+
     const element = await page.find('ifx-date-picker >>> .input__wrapper');
     expect(element).toHaveClass('large');
   });
@@ -21,7 +23,8 @@ describe('ifx-date-picker', () => {
   it('should be disabled when the disabled prop is true', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-date-picker disabled="true"></ifx-date-picker>');
-  
+    await page.waitForChanges();
+
     const input = await page.find('ifx-date-picker >>> .date__picker-input');
     const disabled = await input.getProperty('disabled');
     expect(disabled).toBeTruthy();
@@ -30,27 +33,30 @@ describe('ifx-date-picker', () => {
   it('should update the input value when a date is selected', async () => {
     const page = await newE2EPage();
     await page.setContent('<ifx-date-picker></ifx-date-picker>');
-  
+    await page.waitForChanges();
+
     const date = new Date(2023, 0, 1);
-    const dateString = date.toISOString().substring(0,10);
-  
+    const dateString = date.toISOString().substring(0, 10);
+
     await page.$eval('ifx-date-picker', (el: any, value: string) => {
       const input = el.shadowRoot.querySelector('.date__picker-input');
       input.value = value;
       input.dispatchEvent(new Event('change'));
     }, dateString);
-    
+
     const inputValue = await page.$eval('ifx-date-picker >>> .date__picker-input', (el: any) => el.value);
     expect(inputValue).toBe(dateString);
   });
-  
-  
+
+
   it('should not be in FormData when form is submitted', async () => {
     const page = await newE2EPage();
     await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
       <ifx-date-picker name="date"></ifx-date-picker>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const value = await submitAndGetValue(page);
@@ -63,10 +69,12 @@ describe('ifx-date-picker', () => {
       <ifx-date-picker name="date"></ifx-date-picker>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const date = new Date(2024, 5, 24);
-    const dateString = date.toISOString().substring(0,10);
+    const dateString = date.toISOString().substring(0, 10);
     await page.$eval('ifx-date-picker', (el: any, value: string) => {
       const input = el.shadowRoot.querySelector('.date__picker-input');
       input.value = value;
@@ -83,11 +91,13 @@ describe('ifx-date-picker', () => {
       <ifx-date-picker name="date" disabled></ifx-date-picker>
       <button id="submit" type="submit">Submit</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
-    
+
     const date = new Date(2024, 5, 24);
-    const dateString = date.toISOString().substring(0,10);
+    const dateString = date.toISOString().substring(0, 10);
     await page.$eval('ifx-date-picker', (el: any, value: string) => {
       const input = el.shadowRoot.querySelector('.date__picker-input');
       input.value = value;
@@ -105,6 +115,8 @@ describe('ifx-date-picker', () => {
       <button id="submit" type="submit">Submit</button>
       <button id="reset" type="reset">Reset</button>
     </form>`);
+    await page.waitForChanges();
+
     await addHandleSubmitScript(page);
 
     const datepicker = await page.find('ifx-date-picker');

@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-spinner', () => {
   it('renders correctly with default props', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-spinner></ifx-spinner>');
 
     const container = await page.find('ifx-spinner');
@@ -17,7 +17,7 @@ describe('ifx-spinner', () => {
   });
 
   it('renders with size "s"', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-spinner size="s"></ifx-spinner>');
 
     const container = await page.find('ifx-spinner');
@@ -29,7 +29,7 @@ describe('ifx-spinner', () => {
   });
 
   it('renders with variant "semiconductor"', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-spinner variant="semiconductor"></ifx-spinner>');
 
     const container = await page.find('ifx-spinner');

@@ -1,6 +1,5 @@
 import { Component, h, Element, State } from "@stencil/core";
-import { icons } from '@infineon/infineon-icons';
-
+import { getIcon } from '@infineon/infineon-icons'; 
 @Component({
   tag: 'ifx-icons-preview',
   styleUrl: './icons-preview.scss',
@@ -57,7 +56,7 @@ export class IconsPreview {
   }
 
   componentWillLoad() { 
-    this.iconsArray = Object.keys(icons);
+    this.iconsArray = Object.keys(getIcon);
   }
 
   componentDidLoad() { 

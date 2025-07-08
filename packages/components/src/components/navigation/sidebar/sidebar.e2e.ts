@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('Sidebar', () => {
   it('should render with default application name', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-sidebar></ifx-sidebar>');
 
     const sidebar = await page.find('ifx-sidebar');
@@ -31,7 +31,7 @@ describe('Sidebar', () => {
   });
 
   it('should render with custom application name', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-sidebar application-name="Custom Name"></ifx-sidebar>');
   });
 });

@@ -31,7 +31,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public value: string;
   @Prop() public name: string;
   @Prop() public items: Array<any>;
-  @Prop() public choices: Array<any> | string;
+  @Prop() public choices: Array<any> | string = [];
   @Prop() public renderChoiceLimit: number;
   @Prop() public maxItemCount: number;
   @Prop() public addItems: boolean;
