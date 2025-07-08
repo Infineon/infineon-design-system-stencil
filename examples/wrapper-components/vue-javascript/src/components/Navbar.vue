@@ -47,7 +47,7 @@
 
     <ifx-search-bar slot="search-bar-left" is-open="false"></ifx-search-bar>
 
-    <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartf16">Right Item</ifx-navbar-item>
+    <ifx-navbar-item slot="right-item" target="_blank" href="http://google.com" hide-on-mobile="false" show-label="false" icon="cartF16">Right Item</ifx-navbar-item>
     <ifx-navbar-item slot="right-item" hide-on-mobile="true" show-label='true' icon="airplane16">
       Right Item
       <ifx-navbar-item>
