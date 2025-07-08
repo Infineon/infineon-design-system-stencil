@@ -1,3 +1,15 @@
+# v36.0.0 (Tue Jul 08 2025)
+
+#### 💥 Breaking Change
+
+- Removes X (former Twitter) icon from Icon Library [#1941](https://github.com/Infineon/infineon-design-system-stencil/pull/1941) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v35.4.2 (Thu Jul 03 2025)
 
 #### 🐛 Bug Fix
