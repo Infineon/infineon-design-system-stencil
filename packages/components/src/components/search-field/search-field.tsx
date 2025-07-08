@@ -44,7 +44,7 @@ export class SearchField {
 
   handleInput = () => {
     const query = this.inputElement.value;
-    this.value = query; // update the value property when input changes
+    this.value = query;
     this.ifxInput.emit(this.value);
   };
 
@@ -58,9 +58,6 @@ export class SearchField {
     this.inputElement.focus();
     this.isFocused = true;
   }
-  
-
-
 
   componentWillUpdate() {
     if (this.value !== "") {
@@ -70,11 +67,19 @@ export class SearchField {
 
   render() {
     return (
-      <div role="search" aria-label="a search field for user input" aria-disabled={this.disabled} aria-value={this.value} class='search-field'>
+      <div role="search" 
+      aria-label="a search field for user input" 
+      aria-disabled={this.disabled} 
+      aria-value={this.value} class='search-field'>
         <div class={this.getWrapperClassNames()}
-          tabindex={this.disabled ? -1 : 1}
+          tabindex={this.disabled ? -1 : 0}
           onFocus={() => !this.disabled && this.focusInput()}
           onClick={() => !this.disabled && this.focusInput()}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' '){
+              this.handleInput();
+              event.preventDefault();
+            }}}
         >
           <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
           <input
@@ -85,10 +90,18 @@ export class SearchField {
             placeholder={this.placeholder}
             disabled={this.disabled}
             maxlength={this.maxlength}
-            value={this.value} // bind the value property to input element
+            value={this.value}
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (
-            <ifx-icon icon="cRemove16" class="delete-icon" onClick={this.handleDelete}>
+            <ifx-icon icon="cRemove16" 
+            class="delete-icon" 
+            onClick={this.handleDelete} 
+            tabindex={0} 
+            onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' '){
+              this.handleDelete();
+              event.preventDefault();
+            }}}>
             </ifx-icon>
           ) : null}
         </div>
@@ -101,7 +114,6 @@ export class SearchField {
       ? "search-field__wrapper-s"
       : "";
   }
-
 
   getWrapperClassNames() {
     return classNames(

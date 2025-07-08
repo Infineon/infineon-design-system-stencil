@@ -51,13 +51,19 @@
 
     &:focus {
       outline: none;
-      border: 1px solid #0A8276;
+      border: 2px solid tokens.$ifxColorOcean500;
     }
 
 
     .delete-icon {
       right: 12px;
       cursor: pointer;
+      &:focus {
+      outline: none;
+      border: 2px solid tokens.$ifxColorOcean500;
+      border-radius: 12px;
+
+      }
     }
 
     input[type='text'] {
