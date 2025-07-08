@@ -21,6 +21,8 @@
   font-size: 16px;
   color: tokens.$ifxColorBaseBlack;
 
+  
+
   &.hide { 
     display: none;
   }
@@ -114,6 +116,7 @@
       border-radius: 100%;
       background-color: tokens.$ifxColorOcean500;
 
+
       & .initials { 
         color: #FFF;
         text-align: center;
@@ -151,6 +154,11 @@
 
 .container { 
   position: relative;
+  
+       &:focus{
+    outline: none;
+      box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+  }
 
   & .sub__layer-back-button { 
     display: none;
