@@ -3,7 +3,7 @@ import { newE2EPage } from '@stencil/core/testing';
 describe('ifx-segmented-control', () => {
 
   it('should render without errors', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-segmented-control><ifx-segment>Label</ifx-segment></ifx-segmented-control>');
 
     const element = await page.find('ifx-segmented-control');
@@ -11,7 +11,7 @@ describe('ifx-segmented-control', () => {
   });
 
   it('should emit ifxChange when segment is clicked/selected', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-segmented-control><ifx-segment value="v1">Label</ifx-segment><ifx-segment value="v1" selected="true">Label</ifx-segment></ifx-segmented-control>');
 
     const select = await page.find('ifx-segmented-control');

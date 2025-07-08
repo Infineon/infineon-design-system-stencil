@@ -1,7 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
-import { getIcon } from '@infineon/infineon-icons'
+import { getIcon } from '@infineon/infineon-icons'; 
  
-
 
 @Component({
   tag: 'ifx-icon',

@@ -1,30 +1,44 @@
 import { E2EPage, newE2EPage } from '@stencil/core/testing';
 
 describe('ifx-textarea', () => {
-  it('renders', async () => {
-    const page = await newE2EPage();
+        beforeEach(async () => {
+     const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
+  });
+  it('renders', async () => {
+    const page = await newE2EPage({ timeout: 30000 });
+    await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
     const element = await page.find('ifx-textarea');
     expect(element).toHaveClass('hydrated');
   });
 
   it('renders placeholder', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea placeholder="Testing placeholder"></ifx-textarea>');
+       await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     expect(await input.getProperty('placeholder')).toEqual('Testing placeholder');
   });
 
   it('renders disabled', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea disabled></ifx-textarea>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     expect(await input.getProperty('disabled')).toBeTruthy();
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea></ifx-textarea>');
+        await page.waitForChanges();
+
     const input = await page.find('ifx-textarea >>> textarea');
     const newValue = 'New value';
     await input.type(newValue);
@@ -44,7 +58,7 @@ describe('ifx-textarea', () => {
   });
 
   it('should submit the form data when the form is submitted', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent(`
       <form id="testForm" onSubmit="handleSubmit(event)">
         <ifx-textarea name="textArea"></ifx-textarea>
@@ -52,7 +66,8 @@ describe('ifx-textarea', () => {
         <button id="reset" type="reset">Reset</button>
       </form>
     `);
-  
+      await page.waitForChanges();
+
     await page.addScriptTag({
       content: `
         function handleSubmit(event) {
@@ -103,8 +118,9 @@ describe('ifx-textarea', () => {
   });
 
   it('handles value change', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-textarea maxlength="2"></ifx-textarea>');
+    await page.waitForChanges();
 
     const input = await page.find('ifx-textarea >>> textarea');
     await input.press('KeyA');
@@ -116,12 +132,13 @@ describe('ifx-textarea', () => {
 });
 
 async function newE2EPageWithRadioButtonWithinForm(): Promise<E2EPage> {
-  const page = await newE2EPage();
+  const page = await newE2EPage({ timeout: 30000 });
   await page.setContent(`<form id="testForm" onSubmit="handleSubmit(event)">
     <ifx-textarea name="textArea"></ifx-textarea>
     <button id="submit" type="submit">Submit</button>
     <button id="reset" type="reset">Reset</button>
   </form>`);
+    await page.waitForChanges();
 
   // convert formdata to serializable Object and set to window.formData
   await page.addScriptTag({

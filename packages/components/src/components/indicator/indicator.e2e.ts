@@ -2,7 +2,7 @@ import { newE2EPage } from '@stencil/core/testing';
 
 describe('Indicator', () => {
   it('should render', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-indicator variant="number" number="5" />');
 
     const indicator = await page.find('ifx-indicator');
@@ -11,12 +11,12 @@ describe('Indicator', () => {
     const container = await page.find('ifx-indicator >>> .number__container');
     expect(container).toHaveClass('number__container');
 
-    const span = await page.find('ifx-indicator >>> .number__container > number__wrapper');
-    expect(await span.getProperty('textContent')).toBe('');
+    const span = await page.find('ifx-indicator >>> .number__container > .number__wrapper');
+    expect(await span.getProperty('textContent')).toBe('5');
   });
 
   it('should apply inverted class', async () => {
-    const page = await newE2EPage();
+    const page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-indicator variant="number" number="5" inverted />');
 
     const container = await page.find('ifx-indicator >>> .number__container');

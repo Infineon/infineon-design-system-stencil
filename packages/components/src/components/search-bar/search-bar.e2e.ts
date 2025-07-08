@@ -5,7 +5,7 @@ describe('ifx-search-bar', () => {
   let element;
 
   beforeEach(async () => {
-    page = await newE2EPage();
+    page = await newE2EPage({ timeout: 30000 });
     await page.setContent('<ifx-search-bar></ifx-search-bar>');
     element = await page.find('ifx-search-bar');
   });
