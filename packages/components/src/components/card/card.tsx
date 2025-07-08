@@ -1,5 +1,6 @@
 import { Component, h, Host, Element, Prop, State, Listen } from '@stencil/core';
- 
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-card',
@@ -47,6 +48,9 @@ export class Card {
 
   componentWillLoad() {
     this.handleComponentAdjustment()
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-card')
+    }
   }
 
   componentWillUpdate() {
