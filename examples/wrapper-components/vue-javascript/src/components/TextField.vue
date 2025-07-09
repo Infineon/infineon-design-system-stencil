@@ -9,10 +9,10 @@
         <ifx-text-field v-model="inputValue" error="false" disabled="false" success="false" placeholder="Placeholder"
           caption="">Label</ifx-text-field>
         <br />
-        <ifx-button type="submit" theme="default" size="s" disabled="false" icon="false">
+        <ifx-button type="submit" theme="default" size="s" disabled="false">
           Submit form
         </ifx-button>
-        <ifx-button type="reset" variant="secondary" theme="default" size="s" disabled="false" icon="false">
+        <ifx-button type="reset" variant="secondary" theme="default" size="s" disabled="false">
           Reset form
         </ifx-button>
       </div>
