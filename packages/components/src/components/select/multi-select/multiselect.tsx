@@ -1,4 +1,4 @@
-import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals } from '@stencil/core';
+import { Component, Prop, State, Event, EventEmitter, Element, h, Watch, AttachInternals, Method } from '@stencil/core';
 import { trackComponent } from '../../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
 import { Option } from './interfaces';
