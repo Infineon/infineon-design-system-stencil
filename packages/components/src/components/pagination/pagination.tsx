@@ -1,4 +1,6 @@
 import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-pagination',
@@ -85,6 +87,9 @@ export class Pagination {
   }
 
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-pagination')
+    }
     this.calculateNumberOfPages();
     this.filterOptionsArray();
     this.updateVisiblePages();
