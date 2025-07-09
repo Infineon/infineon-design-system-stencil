@@ -1,3 +1,15 @@
+# v36.1.0 (Wed Jul 09 2025)
+
+#### 🚀 Enhancement
+
+- Implements tracking of DDS components [#1904](https://github.com/Infineon/infineon-design-system-stencil/pull/1904) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v36.0.0 (Tue Jul 08 2025)
 
 #### 💥 Breaking Change
