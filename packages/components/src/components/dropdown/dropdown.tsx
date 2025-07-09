@@ -1,5 +1,7 @@
 //dropdown.tsx
 import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter, Event } from "@stencil/core";
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { createPopper } from '@popperjs/core';
  
 
@@ -64,6 +66,9 @@ export class Dropdown {
     //maybe not needed
     this.updateSlotContent();
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-dropdown')
+    }
   }
 
 

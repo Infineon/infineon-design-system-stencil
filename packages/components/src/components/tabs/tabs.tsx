@@ -1,7 +1,6 @@
-//ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
- 
-
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-tabs',
@@ -58,9 +57,10 @@ export class IfxTabs {
     }
   }
 
-
-
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-tabs')
+    }
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
