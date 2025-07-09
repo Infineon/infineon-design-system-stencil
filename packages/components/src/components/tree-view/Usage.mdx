@@ -1,0 +1,66 @@
+import { Meta  } from '@storybook/blocks';
+import * as TreeViewStories from './tree-view.stories';
+import TreeViewAnatomy from '../../../public-storybook/images/tree-view/tree-view-anatomy.png';
+import TreeViewExampleWithCheckboxes from '../../../public-storybook/images/tree-view/tree-view-example-with-checkboxes.png';
+import TreeViewExampleWithoutCheckboxes from '../../../public-storybook/images/tree-view/tree-view-example-without-checkboxes.png';
+import TreeViewStates from '../../../public-storybook/images/tree-view/tree-view-states.png';
+
+
+<Meta of={TextFieldStories} />
+
+# Tree View
+The tree view component presents hierarchical data in a structured, expandable format. It enables users to navigate complex information architectures by expanding or collapsing nodes, revealing nested content as needed.
+
+| Resources                                                                                                               |
+|-------------------------------------------------------------------------------------------------------------------------|
+| [Figma tree view component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=71476-1851) |
+
+## Usage
+### When to use
+- When users need to display data with multiple levels, such as directories, categories, or organizational structures.
+- When users need to explore data incrementally, expanding only the sections relevant to them.
+- If applications requiring navigation through deeply nested information.
+
+### When not to use
+- Using tree view as the main navigation. Use dedicated navigation patterns for primary site navigation.
+
+## Anatomy
+<img src={TreeViewAnatomy} alt="Tree View Anatomy" />
+
+
+**Branch node (1)**\
+This node is any item in the tree hierarchy that has at least one child nodes beneath it.
+
+
+**Leaf node (2)**\
+Leaf nodes are the final items you can’t expand anymore—theyn’t have any further levels under them.
+
+
+**Chevron (3)**\
+Used to either expand or collapse a child tree view.
+
+
+**Checkbox (4)**\
+Use an optional checkbox to select multiple items across the tree structure.
+
+
+**Icon (5)**\
+Icons clarify tree view entries by signaling content types, making the hierarchy more navigable.
+
+
+**Label (6)**\
+Use a label to describe the purpose of the tree view item to the user.
+
+
+**Subordinate branch node (7)**\
+Another branch node which is under its parental branch node.
+
+## Examples
+### With checkboxes
+<img src={TreeViewExampleWithCheckboxes} alt="Tree View With Checkboxes" />
+
+### Without checkboxes
+<img src={TreeViewExampleWithoutCheckboxes} alt="Tree View Without Checkboxes" />
+
+## States
+<img src={TreeViewStates} alt="Tree View States" />
