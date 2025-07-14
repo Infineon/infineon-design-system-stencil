@@ -98,6 +98,7 @@
     z-index: 1000;
     max-height: 300px;
     overflow-y: auto;
+    container-type: inline-size; // Enable container queries
 
     .suggestions-header {
       // font: tokens.$ifxEyebrowEyebrow02; TODO
@@ -127,10 +128,6 @@
         background-color: tokens.$ifxColorEngineering200;
       }
 
-      &--selected {
-
-      }
-
       .suggestion-content {
         display: flex;
         align-items: center;
@@ -148,7 +145,7 @@
         .suggestion-text {
           flex: 1;
           display: flex;
-          align-items: baseline;
+          align-items: center;
           min-width: 0; // Important for flexbox truncation
 
           .suggestion-main-text {
@@ -164,6 +161,29 @@
             flex-shrink: 0; // Never truncate the scope
             white-space: nowrap;
             margin-left: 0.25em; // Add space before the scope
+            font-weight: tokens.$ifxFontWeightSemibold;
+            font-size: tokens.$ifxFontSizeXs;
+          }
+
+          // When container is narrow, stack scope below main text
+          @container (max-width: 500px) {
+            flex-direction: column;
+            align-items: flex-start;
+
+            .suggestion-main-text {
+              width: 100%;
+              max-width: 100%;
+            }
+
+            .suggestion-scope {
+              margin-left: 0;
+              margin-top: tokens.$ifxSpace50;
+              width: 100%;
+              max-width: 100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              flex-shrink: 1; // Allow truncation when narrow
+            }
           }
         }
 
