@@ -14,11 +14,12 @@
 | `enableHistory`     | `enable-history`      |             | `boolean`          | `true`                 |
 | `historyHeaderText` | `history-header-text` |             | `string`           | `'Recent Searches'`    |
 | `historyKey`        | `history-key`         |             | `string`           | `'ifx-search-history'` |
+| `maxHistoryItems`   | `max-history-items`   |             | `number`           | `5`                    |
 | `maxSuggestions`    | `max-suggestions`     |             | `number`           | `10`                   |
 | `maxlength`         | `maxlength`           |             | `number`           | `null`                 |
 | `placeholder`       | `placeholder`         |             | `string`           | `"Search..."`          |
 | `showDeleteIcon`    | `show-delete-icon`    |             | `boolean`          | `false`                |
-| `showSuggestions`   | `show-suggestions`    |             | `boolean`          | `true`                 |
+| `showSuggestions`   | `show-suggestions`    |             | `boolean`          | `false`                |
 | `size`              | `size`                |             | `string`           | `'l'`                  |
 | `suggestions`       | --                    |             | `SuggestionItem[]` | `[]`                   |
 | `value`             | `value`               |             | `string`           | `''`                   |
