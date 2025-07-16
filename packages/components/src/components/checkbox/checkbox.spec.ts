@@ -1,7 +1,6 @@
 import { newSpecPage } from 'jest-stencil-runner';
 import { Checkbox } from './checkbox';
-import { A } from 'storybook/internal/components';
-
+ 
 // Create a mock implementation
 const mockSetFormValue = jest.fn();
 
