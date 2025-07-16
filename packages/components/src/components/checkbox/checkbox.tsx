@@ -1,3 +1,4 @@
+
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 
 @Component({
@@ -25,23 +26,28 @@ export class Checkbox {
   @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
-  handleCheckbox() {
-    if (!this.disabled) {
-      if (!this.inputElement.indeterminate) {
-        this.internalChecked = !this.internalChecked;
-      } 
+handleCheckbox() {
+  if (!this.disabled) {
+    if (!this.inputElement.indeterminate) {
+      this.internalChecked = !this.internalChecked;
+    }
+    if (this.internals && typeof this.internals.setFormValue === 'function') {
       if (this.internalChecked && !this.internalIndeterminate) {
         if (this.value !== undefined) {
           this.internals.setFormValue(this.value);
         } else {
-          this.internals.setFormValue("on")
+          this.internals.setFormValue("on");
         }
       } else {
-        this.internals.setFormValue(null)
+        this.internals.setFormValue(null);
       }
-      this.ifxChange.emit(this.internalChecked);
+    } else {
+      console.warn('setFormValue is not a function on this.internals');
     }
+    this.ifxChange.emit(this.internalChecked);
   }
+}
+
 
   @Method()
   async isChecked(): Promise<boolean> {
@@ -155,3 +161,4 @@ export class Checkbox {
     );
   }
 }
+
