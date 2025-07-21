@@ -152,7 +152,7 @@ describe('ifx-tree-view', () => {
         // Verify root item rendered correctly
         const rootItem = treeView.querySelector('ifx-tree-view-item[value="root-folder"]') as TreeViewItemElement;
         expect(rootItem).toBeTruthy();
-        expect(rootItem.getAttribute('initially-expanded')).toBe('true'); // Check attribute instead
+        expect(rootItem.getAttribute('initially-expanded')).toBe('true'); 
 
         // Verify child items exist
         const subfolderItem = rootItem.querySelector('ifx-tree-view-item[value="subfolder-1"]');
