@@ -1,7 +1,7 @@
 export const detectFramework = (): string => {
   const win = window as any;
 
-  console.log('here')
+  console.log('here', win)
 
   if(!!win.React || !!document.querySelector('[data-reactroot], [data-reactid]') ||
    Array.from(document.querySelectorAll('*')).some((e: any) => e._reactRootContainer !== undefined || Object.keys(e).some(k => k.startsWith('__reactContainer')))
@@ -35,7 +35,7 @@ export const detectFramework = (): string => {
 
   if(!!win.Backbone) console.log('Backbone.js');
   if(!!win.Ember) console.log('Ember.js');
-  if(!!win.Vue) console.log('Vue.js');
+  if(!!win.__VUE__) console.log('Vue.js');
   if(!!win.Meteor) console.log('Meteor.js');
   if(!!win.Zepto) console.log('Zepto.js');
   if(!!win.jQuery) console.log('jQuery.js');
