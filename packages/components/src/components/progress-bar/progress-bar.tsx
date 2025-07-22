@@ -1,6 +1,7 @@
 import { Component, Prop, h, State, Watch, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-progress-bar',
@@ -24,7 +25,8 @@ export class ProgressBar {
 
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-progress-bar')
+      const framework = detectFramework();
+      trackComponent('ifx-progress-bar', { framework })
     }
     this.internalValue = this.value;
   }
