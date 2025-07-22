@@ -12,7 +12,7 @@
     "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
     "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
     "build:components-angular": "lerna run build:library --scope components-angular",
-    "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
+    "test": "lerna run test --scope @infineon/infineon-design-system-stencil -- --config /home/lechneve/dev/wrk/infineon-design-system-stencil/packages/components/jest.config.js",
     "graph": "nx graph",
     "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
     "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",

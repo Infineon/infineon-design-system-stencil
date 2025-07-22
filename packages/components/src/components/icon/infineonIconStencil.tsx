@@ -3,7 +3,6 @@ import { getIcon } from '@infineon/infineon-icons'
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
-
 @Component({
   tag: 'ifx-icon',
   styleUrl: './infineonIconStencil.scss'
