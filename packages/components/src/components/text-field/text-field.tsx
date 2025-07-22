@@ -95,6 +95,7 @@ export class TextField {
               <ifx-icon class='input-icon' icon={this.icon} />
             )}
             <input
+            tabindex={this.disabled ? '-1' : '0'}
               ref={(el) => (this.inputElement = el)}
               disabled={this.disabled}
               autocomplete={this.autocomplete}
@@ -111,7 +112,11 @@ export class TextField {
               ${this.success ? "success" : ""}`} />
 
               { (this.showDeleteIcon && this.value) && (
-                <ifx-icon class="delete-icon" icon="cRemove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
+                <ifx-icon tabindex={this.disabled ? '-1' : '0'} 
+                class="delete-icon" 
+                icon="cRemove16" 
+                onKeyDown={(event) => event.key === 'Enter' && this.handleDeleteContent()} 
+                onClick={() => this.handleDeleteContent()}></ifx-icon> 
               )}
           </div>
           {this.caption && !this.error &&
