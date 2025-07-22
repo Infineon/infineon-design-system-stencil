@@ -1,13 +1,6 @@
 let defineCustomElements;
 process.env.NODE_ENV = 'test';  
 
-// First, mock tracking to prevent the pp.parentNode error
-jest.mock('./global/utils/tracking', () => ({
-  trackComponent: jest.fn(),
-  isNestedInIfxComponent: jest.fn().mockReturnValue(false),
-  initializeTracking: jest.fn()
-}));
-
 try {
   // Attempt to import defineCustomElements
   const loader = await import('../types/loader');
