@@ -92,7 +92,8 @@ export class Switch {
         class="container"
         role="switch"
         aria-checked={this.internalChecked ? 'true' : 'false'}
-        aria-label={this.name}
+        aria-disabled={this.disabled ? 'true' : 'false'}
+        aria-labelledby="switch-label"
         onClick={() => this.toggleSwitch()}
         onKeyDown={(event) => this.handleKeyDown(event)}
         >
