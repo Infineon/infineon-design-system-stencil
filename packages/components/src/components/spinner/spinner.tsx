@@ -15,7 +15,10 @@ export class Spinner {
 
   render() {
     return (
-      <div aria-label="spinner indicating a loading process" class={this.getClassNames()}>
+      <div role="status" 
+      aria-label="spinner indicating a loading process" 
+      aria-live="polite" 
+        class={this.getClassNames()}>
         <div class={`${this.variant !== 'brand' ? 'border' : ""} ${this.inverted ? 'inverted' : ""}`}></div>
         {this.variant === 'brand'
           && <div class={`semiconductor ${this.inverted ? 'inverted' : ""} ${this.getSizeClass()}`}>
