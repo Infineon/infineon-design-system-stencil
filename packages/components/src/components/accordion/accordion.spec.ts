@@ -2,6 +2,7 @@
 import { newSpecPage } from 'jest-stencil-runner';
 import { Accordion } from './accordion';
 
+
 describe('ifx-accordion', () => {
   it('renders with correct structure', async () => {
     const { root } = await newSpecPage({

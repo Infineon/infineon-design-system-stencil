@@ -2,6 +2,8 @@
 import { newSpecPage } from 'jest-stencil-runner';
 import { AccordionItem } from './accordionItem';
 
+ 
+
 // Mock ResizeObserver Observes its content container
 // E.g: When the accordion opens, measures the content's natural height
 global.ResizeObserver = jest.fn().mockImplementation(() => ({

@@ -1,5 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
-// Create a standalone mock component that doesn't import the original
+ // Create a standalone mock component that doesn't import the original
 class MockChoices {
   // Properties
   placeholderValue = 'Placeholder';

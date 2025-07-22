@@ -1,12 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { Download } from './download';
 
-// Mock the Link component
-const MockLink = () => {
-  const el = document.createElement('mock-link');
-  el.textContent = 'Mock Link';
-  return el;
-};
+ 
 
 describe('ifx-download', () => {
   it('should render with default props', async () => {

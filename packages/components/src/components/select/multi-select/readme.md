@@ -7,29 +7,12 @@
 
 ## Properties
 
-| Property          | Attribute           | Description | Type                | Default           |
-| ----------------- | ------------------- | ----------- | ------------------- | ----------------- |
-| `batchSize`       | `batch-size`        |             | `number`            | `50`              |
-| `disabled`        | `disabled`          |             | `boolean`           | `false`           |
-| `error`           | `error`             |             | `boolean`           | `false`           |
-| `errorMessage`    | `error-message`     |             | `string`            | `"Error"`         |
-| `label`           | `label`             |             | `string`            | `""`              |
-| `maxItemCount`    | `max-item-count`    |             | `number`            | `undefined`       |
-| `name`            | `name`              |             | `string`            | `undefined`       |
-| `options`         | `options`           |             | `any[] \| string`   | `[]`              |
-| `placeholder`     | `placeholder`       |             | `string`            | `""`              |
-| `showClearButton` | `show-clear-button` |             | `boolean`           | `true`            |
-| `showSearch`      | `show-search`       |             | `boolean`           | `true`            |
-| `showSelectAll`   | `show-select-all`   |             | `boolean \| string` | `true`            |
-| `size`            | `size`              |             | `string`            | `'medium (40px)'` |
-
-
-## Events
-
-| Event       | Description | Type               |
-| ----------- | ----------- | ------------------ |
-| `ifxOpen`   |             | `CustomEvent<any>` |
-| `ifxSelect` |             | `CustomEvent<any>` |
+| Property        | Attribute       | Description | Type      | Default     |
+| --------------- | --------------- | ----------- | --------- | ----------- |
+| `disabled`      | `disabled`      |             | `boolean` | `false`     |
+| `indeterminate` | `indeterminate` |             | `boolean` | `false`     |
+| `selected`      | `selected`      |             | `boolean` | `false`     |
+| `value`         | `value`         |             | `string`  | `undefined` |
 
 
 ## Dependencies
@@ -40,19 +23,17 @@
 
 ### Depends on
 
-- [ifx-checkbox](../../checkbox)
-- [ifx-dropdown-separator](../../dropdown/dropdown-seperator)
 - [ifx-icon](../../icon)
+- [ifx-checkbox](../../checkbox)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-multiselect --> ifx-checkbox
-  ifx-multiselect --> ifx-dropdown-separator
-  ifx-multiselect --> ifx-icon
+  ifx-multiselect-option --> ifx-icon
+  ifx-multiselect-option --> ifx-checkbox
   ifx-checkbox --> ifx-icon
-  ifx-set-filter --> ifx-multiselect
-  style ifx-multiselect fill:#f9f,stroke:#333,stroke-width:4px
+  ifx-set-filter --> ifx-multiselect-option
+  style ifx-multiselect-option fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

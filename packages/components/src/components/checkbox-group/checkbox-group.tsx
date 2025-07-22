@@ -1,4 +1,6 @@
 import { Component, State, Prop, h, Element, Listen, Method } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-checkbox-group',
@@ -40,6 +42,9 @@ export class CheckboxGroup {
 
   componentWillLoad() {
     this.initializeState();
+    if(!isNestedInIfxComponent(this.el)) { 
+      trackComponent('ifx-checkbox-group')
+    }
   }
 
   handleSlotChange = () => {

@@ -160,8 +160,7 @@ describe('ifx-chip', () => {
         });
 
         // Mock the chipItem selection behavior
-        const chipItem = page.root.querySelector('ifx-chip-item');
-        const chip = page.rootInstance;
+         const chip = page.rootInstance;
 
         // Simulate chip item selection with value and matching label
         chip.updateSelectedOptions(new CustomEvent('ifxChipItemSelect', {

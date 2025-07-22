@@ -18,7 +18,7 @@ class MockTab extends HTMLElement {
     return ['header', 'disabled', 'icon', 'icon-position'];
   }
   
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback(name, newValue) {
     if (name === 'header') {
       this._header = newValue;
     } else if (name === 'disabled') {

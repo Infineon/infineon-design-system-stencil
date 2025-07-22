@@ -1,6 +1,7 @@
-import { Component, Prop, h, Host, Event, EventEmitter, Watch, State } from '@stencil/core';
-import { getIcon } from '@infineon/infineon-icons'; 
- 
+import { Component, Prop, h, Host, Event, EventEmitter, Watch, State, Element } from '@stencil/core';
+import { getIcon } from '@infineon/infineon-icons'
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 
 @Component({
   tag: 'ifx-icon',
@@ -8,6 +9,7 @@ import { getIcon } from '@infineon/infineon-icons';
 })
 
 export class InfineonIconStencil {
+  @Element() el: HTMLElement;
   @Prop({ mutable: true }) icon: string = ""
   @Prop({ mutable: true }) ifxIcon: any;
   @State() internalIcon: string;
@@ -88,9 +90,37 @@ setIcon() {
   this.ifxIcon = getIcon(iconName);
 }
 
+ isInsideAgGrid(el: HTMLElement): boolean {
+  let current = el;
+  while (current) {
+    if (current.className?.toLowerCase().startsWith('ag-')) {
+      return true;
+    }
+    current = current.parentElement;
+  }
+  return false;
+}
+
+   isInsideChoices(el: HTMLElement): boolean {
+    let current = el;
+    while (current) {
+      if (current.className?.toLowerCase().startsWith('choices__')) {
+        return true;
+      }
+      current = current.parentElement;
+    }
+    return false;
+  }
+
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
+
+    if(!isNestedInIfxComponent(this.el)) { 
+      if(!this.isInsideAgGrid(this.el) && !this.isInsideChoices(this.el)) { 
+        trackComponent('ifx-icon')
+      }
+    }
   }
 
   render() {

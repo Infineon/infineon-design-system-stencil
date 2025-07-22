@@ -19,8 +19,7 @@ describe('ifx-dropdown', () => {
     Dropdown.prototype.updateSlotContent = jest.fn();
     
     // Override openDropdown to avoid the createPopper call issue
-    const originalOpenDropdown = Dropdown.prototype.openDropdown;
-    Dropdown.prototype.openDropdown = function() {
+     Dropdown.prototype.openDropdown = function() {
       if (!this.internalIsOpen && !this.disabled) {
         this.internalIsOpen = true;
         if (this.trigger) {

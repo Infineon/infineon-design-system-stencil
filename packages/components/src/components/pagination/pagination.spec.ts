@@ -128,9 +128,7 @@ describe('ifx-pagination', () => {
         const eventSpy = jest.fn();
         page.win.addEventListener('ifxPageChange', eventSpy);
         
-        // Simulate clicking on page 3
-        const pageLinks = page.root.shadowRoot.querySelectorAll('ol li');
-        
+ 
         // Mock the dataset and trigger click
         const mockEvent = {
             currentTarget: {

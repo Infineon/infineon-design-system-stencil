@@ -1,4 +1,6 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 
@@ -289,7 +291,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  protected componentWillLoad() { 
+  protected componentWillLoad() {
+    if(!isNestedInIfxComponent(this.root)) { 
+      trackComponent('ifx-select')
+    }
    this.handleCloseButton()
   }
 

@@ -1,8 +1,13 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { FileUpload } from './file-upload';
 
-// Mock the DOM APIs used in the component
-const originalCreateObjectURL = window.URL.createObjectURL;
+jest.mock('../../global/utils/tracking', () => ({
+  trackComponent: jest.fn(),
+  isNestedInIfxComponent: jest.fn().mockReturnValue(false),
+  initializeTracking: jest.fn()
+}));
+
+ const originalCreateObjectURL = window.URL.createObjectURL;
 window.URL.createObjectURL = jest.fn(() => 'mock-object-url');
 
 // Mock clearInterval since we use it for fake uploads
@@ -12,33 +17,7 @@ window.clearInterval = jest.fn();
 // Mock setInterval since we use it for fake uploads
 const originalSetInterval = window.setInterval;
 window.setInterval = jest.fn(() => 123) as unknown as typeof window.setInterval;
-
-// Mock the child components
-const MockIcon = () => {
-  const el = document.createElement('mock-icon');
-  return el;
-};
-
-const MockIconButton = () => {
-  const el = document.createElement('mock-icon-button');
-  el.setAttribute('shape', 'square');
-  el.setAttribute('variant', 'tertiary');
-  el.setAttribute('size', 's');
-  return el;
-};
-
-const MockButton = () => {
-  const el = document.createElement('mock-button');
-  el.setAttribute('variant', 'secondary');
-  return el;
-};
-
-const MockProgressBar = () => {
-  const el = document.createElement('mock-progress-bar');
-  el.setAttribute('size', 's');
-  return el;
-};
-
+ 
 describe('ifx-file-upload', () => {
   afterAll(() => {
     // Restore original implementations
@@ -337,7 +316,7 @@ describe('ifx-file-upload', () => {
 // For the uploadHandler immutability issue
 it('should use custom upload handler when provided', async () => {
   // Create a mock upload handler
-  const mockUploadHandler = jest.fn((file, onProgress) => {
+  const mockUploadHandler = jest.fn((_file, onProgress) => {
     onProgress(50);
     return Promise.resolve();
   });
@@ -350,12 +329,11 @@ it('should use custom upload handler when provided', async () => {
 
   const fileUpload = page.rootInstance;
   
-  // Instead of directly setting the prop, use a different approach:
-  // Option 1: Mock the method that uses the upload handler
+  // Mock the method that uses the upload handler
   const originalStartUpload = fileUpload.startUpload;
-  fileUpload.startUpload = function(file) {
+  fileUpload.startUpload = function(file: { name: any; }) {
     // Call the mock handler directly
-    mockUploadHandler(file, (progress) => {
+    mockUploadHandler(file, (progress: any) => {
       const taskIndex = this.uploadTasks.findIndex(t => t.file.name === file.name);
       if (taskIndex !== -1) {
         this.uploadTasks[taskIndex].progress = progress;
