@@ -7,7 +7,10 @@ const mockSetFormValue = jest.fn();
 // Save original method before overriding
 const originalHandleCheckbox = Checkbox.prototype.handleCheckbox;
 
-// Create our test-specific implementation of handleCheckbox
+// Create test-specific implementation of handleCheckbox
+// Mocking Browser Form API: The original implementation uses the browser's form API 
+// (setFormValue() or similar methods) that aren't available in the Jest testing environment. 
+// The mock simulates this behavior.
 Checkbox.prototype.handleCheckbox = function() {
   if (!this.disabled) {
     if (!this.inputElement.indeterminate) {
