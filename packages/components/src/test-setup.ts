@@ -3,9 +3,7 @@ process.env.NODE_ENV = 'test';
 
 // First, mock tracking to prevent the pp.parentNode error
 jest.mock('./global/utils/tracking', () => ({
-  trackComponent: jest.fn(() => {
-    console.log('Mock tracking called with:', { event_name: 'component_initialized', component_name: 'test' });
-  }),
+  trackComponent: jest.fn(),
   isNestedInIfxComponent: jest.fn().mockReturnValue(false),
   initializeTracking: jest.fn()
 }));
