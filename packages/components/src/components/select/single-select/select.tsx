@@ -381,7 +381,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           <div class='single__select-icon-container'>
             { this.optionIsSelected && (
                 <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
-                  <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
+                  <ifx-icon tabindex={0} icon="cRemove16" onKeyDown={e => this.clearSelectionWhenEnterPressed(e)} onClick={() => this.clearSelection()}></ifx-icon>
                 </div>
               )}
               <div class="ifx-choices__icon-wrapper-up">
@@ -429,6 +429,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  clearSelectionWhenEnterPressed(event: KeyboardEvent) {
+    if (event.code === 'Enter') {
+      this.clearSelection();
+    }
+  }
+
   handleKeyDown(event: KeyboardEvent) {
     if (this.disabled) return;
 
@@ -446,6 +452,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     // Only prevent default space behavior when it's not from the search input.
     if (event.code === 'Space' && !isSearchInput) {
       event.preventDefault(); // Prevent default page scrolling.
+    }
+
+    // This prevents tabbing at all when the search box is focused. What we want is that we find the container
+    // with the option items and focus the first item in the list.
+    if (event.code === 'Tab' && isSearchInput) {
+      event.preventDefault();
+      const firstItem = document.querySelector<HTMLDivElement>('div.choices_item');
+      firstItem?.focus(); // Focus the first item in the list if it exists.
+      // Todo: find first option item in the container (via DOM) and focus it by calling focus() on it.
     }
   }
 
@@ -539,15 +554,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               },
               input: ({ classNames }) => {
                 return template(`
-              <input type="search"
-              class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
-              autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
-              role="textbox"
-              aria-autocomplete="list"
-              aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
-              `);
+                  <input 
+                    type="search"
+                    class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    role="textbox"
+                    aria-autocomplete="list"
+                    aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}">`);
               },
 
               //modifying the template of each item in the options list
@@ -560,7 +575,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
                     data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
                     data-value="${data.value}"
-                    data-select-text="${this.config.itemSelectText}">
+                    data-select-text="${this.config.itemSelectText}"
+                    tabindex="0">
                 <span>${data.label}</span>
                 ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
               </div>
