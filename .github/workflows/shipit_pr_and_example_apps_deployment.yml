@@ -53,7 +53,9 @@ jobs:
           git checkout -- package-lock.json 
 
       - name: Run tests
-        run: npm test
+        run: |
+          cd packages/components
+          npm test
 
         
       - name: Build and deploy Stencil core package

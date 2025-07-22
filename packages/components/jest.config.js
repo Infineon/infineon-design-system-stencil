@@ -33,4 +33,5 @@ module.exports = createJestStencilPreset({
 
   // Additional Jest options
   verbose: true,
-setupFilesAfterEnv: ['./src/test-setup.ts']});
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts']
+});
