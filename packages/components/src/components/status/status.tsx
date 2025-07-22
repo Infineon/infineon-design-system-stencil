@@ -18,7 +18,7 @@ export class Status {
     const containerClass = this.border ? `container border-${effectiveColor}` : 'container no-border';
 
     return (
-      <div aria-label="a status indicator" aria-value={this.label} class={containerClass}>
+      <div role="status" aria-live="polite" aria-label="a status indicator" aria-value={this.label} class={containerClass}>
         <span class={`dot ${effectiveColor}`}></span>
         <p class="text">{this.label}</p>
       </div>
