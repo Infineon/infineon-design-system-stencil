@@ -50,9 +50,7 @@ export class Alert {
 
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework();
-      console.log('framework', framework)
-       trackComponent('ifx-alert', { framework });
-
+      trackComponent('ifx-alert', { framework });
     }
   }
 

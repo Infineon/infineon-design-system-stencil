@@ -2,6 +2,7 @@ import { h, Component, Element, Event, EventEmitter, Listen, Prop, State, Watch 
 import { ChipItemSelectEvent } from './interfaces';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-chip',
@@ -295,7 +296,8 @@ export class Chip {
   componentWillLoad() {
     this.syncSelectedOptionsWithProp(this.value);
     if(!isNestedInIfxComponent(this.chip)) { 
-      trackComponent('ifx-chip')
+      const framework = detectFramework();
+      trackComponent('ifx-chip', { framework })
     }
   }
 
