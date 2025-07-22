@@ -1,6 +1,7 @@
 import { Component, h, Element, Event, EventEmitter, Host, State } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 export type ChangeEvent = { oldValue: string; newValue: string };
 
@@ -33,7 +34,8 @@ export class ContentSwitcher {
     this.addEventListeners();
     this.ensureSingleSelectedItem();
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-content-switcher')
+      const framework = detectFramework();
+      trackComponent('ifx-content-switcher', { framework })
     }
   }
 
