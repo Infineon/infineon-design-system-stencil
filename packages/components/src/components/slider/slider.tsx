@@ -190,12 +190,14 @@ export class IfxSlider {
               disabled={this.disabled}
               ref={(el) => (this.inputRef = el as HTMLInputElement)}
               onInput={(event) => this.handleInputChange(event)}
-              aria-label='a slider'
-              aria-value={this.value}
-              aria-disabled={this.disabled}
+              aria-label="Slider"
+              aria-valuemin={this.min}
+              aria-valuemax={this.max}
+              aria-valuenow={this.internalValue}
+              aria-disabled={this.disabled ? "true" : "false"}
               /> 
               :
-            <div class = 'range-slider__wrapper' aria-label='a range slider' aria-value={this.value} aria-disabled={this.disabled} >
+            <div class = 'range-slider__wrapper' aria-label='Range slider' aria-value={this.value} aria-disabled={this.disabled} >
               <input 
                 id='min-slider'
                 type='range'
@@ -204,9 +206,14 @@ export class IfxSlider {
                 step={this.step}
                 value={this.internalMinValue}
                 disabled={this.disabled}
+                role="group"
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
                 onMouseUp={(event) => this.handleOnMouseLeaveOfRangeSlider(event)}
+                aria-label="Minimum value slider"
+                aria-valuemin={this.min}
+                aria-valuemax={this.max}
+                aria-valuenow={this.internalMinValue}aria-disabled={this.disabled ? "true" : "false"}
               />
               <input 
                 id='max-slider'
@@ -219,8 +226,12 @@ export class IfxSlider {
                 ref={(el) => (this.maxInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
                 onMouseUp={(event) => this.handleOnMouseLeaveOfRangeSlider(event)}
+                aria-label="Maximum value slider"
+                aria-valuemin={this.min}
+                aria-valuemax={this.max}
+                aria-valuenow={this.internalMaxValue}
+                aria-disabled={this.disabled ? "true" : "false"}
               />
-
             </div>
         }
         {this.rightIcon && (
