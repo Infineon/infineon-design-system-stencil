@@ -29,7 +29,7 @@
 
   &:focus:not(:active, .active) {
     outline: none;
-    border-color: tokens.$ifxColorBaseBlack;
+    border-color: tokens.$ifxColorOcean500;
   }
 
   .label-wrapper {
