@@ -1,3 +1,15 @@
+# v37.1.0 (Wed Jul 23 2025)
+
+#### 🚀 Enhancement
+
+- Internal resolution: fixes Angular app [#1951](https://github.com/Infineon/infineon-design-system-stencil/pull/1951) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.0.0 (Tue Jul 15 2025)
 
 #### 💥 Breaking Change
