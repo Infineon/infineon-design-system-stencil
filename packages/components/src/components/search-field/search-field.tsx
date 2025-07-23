@@ -29,6 +29,16 @@ export class SearchField {
   @Prop() historyKey: string = 'ifx-search-history';
   @Prop() historyHeaderText: string = 'Recent Searches';
 
+  // ARIA Labels and Accessibility Props
+  @Prop() ariaLabel: string = 'Search field';
+  @Prop() ariaLabelledBy?: string;
+  @Prop() ariaDescribedBy?: string;
+  @Prop() deleteIconAriaLabel: string = 'Clear search';
+  @Prop() historyDeleteAriaLabel: string = 'Remove from history';
+  @Prop() dropdownAriaLabel: string = 'Search suggestions and history';
+  @Prop() suggestionAriaLabel: string = 'Search suggestion';
+  @Prop() historyItemAriaLabel: string = 'Search history item';
+
   @Event() ifxInput: EventEmitter<string>;
   @Event() ifxSuggestionRequested: EventEmitter<string>;
   @Event() ifxSuggestionSelected: EventEmitter<SuggestionItem>;
@@ -427,7 +437,9 @@ export class SearchField {
   render() {
     return (
       <div
-        aria-label="a search field for user input"
+        aria-label={this.ariaLabel}
+        aria-labelledby={this.ariaLabelledBy}
+        aria-describedby={this.ariaDescribedBy}
         aria-disabled={this.disabled}
         aria-value={this.value}
         class='search-field'
@@ -454,12 +466,26 @@ export class SearchField {
             aria-expanded={this.showDropdown}
             aria-autocomplete="list"
             aria-haspopup="listbox"
+            aria-label={this.ariaLabel}
+            aria-labelledby={this.ariaLabelledBy}
+            aria-describedby={this.ariaDescribedBy}
+            aria-owns={this.showDropdown ? 'suggestions-dropdown' : undefined}
+            aria-activedescendant={this.selectedSuggestionIndex >= 0 ? `suggestion-${this.selectedSuggestionIndex}` : undefined}
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (
             <ifx-icon
               icon="cRemove16"
               class="delete-icon"
-              onClick={this.handleDelete}>
+              onClick={this.handleDelete}
+              role="button"
+              tabindex="0"
+              aria-label={this.deleteIconAriaLabel}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  this.handleDelete();
+                }
+              }}>
             </ifx-icon>
           ) : null}
         </div>
@@ -468,8 +494,10 @@ export class SearchField {
         {this.showDropdown && this.filteredSuggestions.length > 0 && (
           <div
             ref={(el) => (this.dropdownElement = el)}
+            id="suggestions-dropdown"
             class="suggestions-dropdown"
             role="listbox"
+            aria-label={this.dropdownAriaLabel}
           >
             {/* History Header - only show when exclusively showing history entries */}
             {this.isShowingOnlyHistory() && (
@@ -481,9 +509,11 @@ export class SearchField {
             {this.filteredSuggestions.map((suggestion, index) => (
               <div
                 key={suggestion.id}
+                id={`suggestion-${index}`}
                 class={this.getSuggestionClassNames(index)}
                 role="option"
                 aria-selected={index === this.selectedSuggestionIndex}
+                aria-label={`${suggestion.type === 'history' ? this.historyItemAriaLabel : this.suggestionAriaLabel}: ${suggestion.text}${suggestion.scope ? `, ${suggestion.scope}` : ''}${suggestion.resultCount ? `, ${suggestion.resultCount} results` : ''}`}
                 onClick={() => this.selectSuggestion(suggestion)}
                 onMouseEnter={() => this.selectedSuggestionIndex = index}
               >
@@ -512,8 +542,16 @@ export class SearchField {
                     <ifx-icon
                       icon="cross16"
                       class="suggestion-delete-icon"
+                      role="button"
+                      tabindex="0"
+                      aria-label={`${this.historyDeleteAriaLabel}: ${suggestion.text}`}
                       onClick={(event) => this.handleHistoryDelete(event, suggestion.text)}
-                      title="Remove from history"
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          this.handleHistoryDelete(event, suggestion.text);
+                        }
+                      }}
                     ></ifx-icon>
                   )}
                 </div>

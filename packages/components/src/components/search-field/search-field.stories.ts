@@ -84,7 +84,13 @@ export default {
     maxSuggestions: 10,
     maxHistoryItems: 5,
     historyKey: 'ifx-search-history',
-    historyHeaderText: 'Recent Searches'
+    historyHeaderText: 'Recent Searches',
+    ariaLabel: 'Search field',
+    deleteIconAriaLabel: 'Clear search',
+    historyDeleteAriaLabel: 'Remove from history',
+    dropdownAriaLabel: 'Search suggestions and history',
+    suggestionAriaLabel: 'Search suggestion',
+    historyItemAriaLabel: 'Search history item'
   },
   argTypes: {
     showDeleteIcon: {
@@ -221,6 +227,80 @@ export default {
         }
       }
     },
+    ariaLabel: {
+      description: 'ARIA label for the search field component.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Search field'
+        }
+      }
+    },
+    ariaLabelledBy: {
+      description: 'ID of element that labels the search field.',
+      control: 'text',
+      table: {
+        category: 'Accessibility'
+      }
+    },
+    ariaDescribedBy: {
+      description: 'ID of element that describes the search field.',
+      control: 'text',
+      table: {
+        category: 'Accessibility'
+      }
+    },
+    deleteIconAriaLabel: {
+      description: 'ARIA label for the delete/clear icon.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Clear search'
+        }
+      }
+    },
+    historyDeleteAriaLabel: {
+      description: 'ARIA label for history delete buttons.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Remove from history'
+        }
+      }
+    },
+    dropdownAriaLabel: {
+      description: 'ARIA label for the suggestions dropdown.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Search suggestions and history'
+        }
+      }
+    },
+    suggestionAriaLabel: {
+      description: 'ARIA label prefix for suggestion items.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Search suggestion'
+        }
+      }
+    },
+    historyItemAriaLabel: {
+      description: 'ARIA label prefix for history items.',
+      control: 'text',
+      table: {
+        category: 'Accessibility',
+        defaultValue: {
+          summary: 'Search history item'
+        }
+      }
+    },
     ifxSuggestionRequested: {
       action: 'ifxSuggestionRequested',
       description: 'Event triggered when the component requests suggestions for a query.',
@@ -281,7 +361,15 @@ const DefaultTemplate = ({
   maxSuggestions,
   maxHistoryItems,
   historyKey,
-  historyHeaderText
+  historyHeaderText,
+  ariaLabel,
+  ariaLabelledBy,
+  ariaDescribedBy,
+  deleteIconAriaLabel,
+  historyDeleteAriaLabel,
+  dropdownAriaLabel,
+  suggestionAriaLabel,
+  historyItemAriaLabel
 }) => {
   const element = document.createElement('ifx-search-field');
   element.setAttribute('size', size);
@@ -297,6 +385,14 @@ const DefaultTemplate = ({
   element.setAttribute('autocomplete', autocomplete);
   if (placeholder != undefined) element.setAttribute('placeholder', placeholder);
   if (maxlength != undefined) element.setAttribute('maxlength', maxlength);
+  if (ariaLabel != undefined) element.setAttribute('aria-label', ariaLabel);
+  if (ariaLabelledBy != undefined) element.setAttribute('aria-labelledby', ariaLabelledBy);
+  if (ariaDescribedBy != undefined) element.setAttribute('aria-describedby', ariaDescribedBy);
+  if (deleteIconAriaLabel != undefined) element.setAttribute('delete-icon-aria-label', deleteIconAriaLabel);
+  if (historyDeleteAriaLabel != undefined) element.setAttribute('history-delete-aria-label', historyDeleteAriaLabel);
+  if (dropdownAriaLabel != undefined) element.setAttribute('dropdown-aria-label', dropdownAriaLabel);
+  if (suggestionAriaLabel != undefined) element.setAttribute('suggestion-aria-label', suggestionAriaLabel);
+  if (historyItemAriaLabel != undefined) element.setAttribute('history-item-aria-label', historyItemAriaLabel);
 
   // Set initial suggestions if showSuggestions is enabled
   setTimeout(() => {
@@ -349,7 +445,15 @@ const DropdownTemplate = ({
   maxSuggestions,
   maxHistoryItems,
   historyKey,
-  historyHeaderText
+  historyHeaderText,
+  ariaLabel,
+  ariaLabelledBy,
+  ariaDescribedBy,
+  deleteIconAriaLabel,
+  historyDeleteAriaLabel,
+  dropdownAriaLabel,
+  suggestionAriaLabel,
+  historyItemAriaLabel
 }) => {
   const element = document.createElement('ifx-search-field');
   element.setAttribute('size', size);
@@ -365,6 +469,14 @@ const DropdownTemplate = ({
   element.setAttribute('autocomplete', autocomplete);
   if (placeholder != undefined) element.setAttribute('placeholder', placeholder);
   if (maxlength != undefined) element.setAttribute('maxlength', maxlength);
+  if (ariaLabel != undefined) element.setAttribute('aria-label', ariaLabel);
+  if (ariaLabelledBy != undefined) element.setAttribute('aria-labelledby', ariaLabelledBy);
+  if (ariaDescribedBy != undefined) element.setAttribute('aria-describedby', ariaDescribedBy);
+  if (deleteIconAriaLabel != undefined) element.setAttribute('delete-icon-aria-label', deleteIconAriaLabel);
+  if (historyDeleteAriaLabel != undefined) element.setAttribute('history-delete-aria-label', historyDeleteAriaLabel);
+  if (dropdownAriaLabel != undefined) element.setAttribute('dropdown-aria-label', dropdownAriaLabel);
+  if (suggestionAriaLabel != undefined) element.setAttribute('suggestion-aria-label', suggestionAriaLabel);
+  if (historyItemAriaLabel != undefined) element.setAttribute('history-item-aria-label', historyItemAriaLabel);
 
   // Initialize with mock data
   setTimeout(() => {
@@ -413,5 +525,11 @@ SearchSuggestions.args = {
   maxSuggestions: 10,
   maxHistoryItems: 5,
   historyKey: 'storybook-search-history',
-  historyHeaderText: 'Recent Searches'
+  historyHeaderText: 'Recent Searches',
+  ariaLabel: 'Search field',
+  deleteIconAriaLabel: 'Clear search',
+  historyDeleteAriaLabel: 'Remove from history',
+  dropdownAriaLabel: 'Search suggestions and history',
+  suggestionAriaLabel: 'Search suggestion',
+  historyItemAriaLabel: 'Search history item'
 };
