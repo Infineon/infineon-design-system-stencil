@@ -1,4 +1,5 @@
 import { Component, h, Element, Prop, State, Listen } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking';
 
 const ACTIVE = 'active';
 const ACTIVE_SECTION = 'active-section';
@@ -369,6 +370,7 @@ export class Sidebar {
   }
 
   componentWillLoad() {
+    trackComponent('ifx-sidebar')
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
     this.internalImprint = this.imprint.trim();

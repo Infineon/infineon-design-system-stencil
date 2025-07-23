@@ -50,6 +50,7 @@
 
  - [ifx-filter-search](../table-advanced-version/filter-type-group/filter-search)
  - [ifx-icons-preview](../icons-preview)
+ - [ifx-multiselect](../select/multi-select)
  - [ifx-search-bar](../search-bar)
 
 ### Depends on
@@ -62,6 +63,7 @@ graph TD;
   ifx-search-field --> ifx-icon
   ifx-filter-search --> ifx-search-field
   ifx-icons-preview --> ifx-search-field
+  ifx-multiselect --> ifx-search-field
   ifx-search-bar --> ifx-search-field
   style ifx-search-field fill:#f9f,stroke:#333,stroke-width:4px
 ```

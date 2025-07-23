@@ -1,4 +1,6 @@
-import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import classNames from 'classnames';
 
 export interface SuggestionItem {
@@ -17,6 +19,7 @@ export interface SuggestionItem {
 })
 
 export class SearchField {
+  @Element() el;
   private inputElement: HTMLInputElement;
   private dropdownElement: HTMLDivElement;
 

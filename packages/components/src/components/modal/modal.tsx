@@ -1,8 +1,9 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
 import { animationTo, KEYFRAMES } from '../../global/utils/animation';
  
-
 type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 
 export interface BeforeCloseEventDetail {
@@ -39,6 +40,12 @@ export class IfxModal {
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.hostElement)) { 
+      trackComponent('ifx-modal')
+    }
+  }
 
   componentDidLoad() {
     // Query all focusable elements and store them in `focusableElements`.
