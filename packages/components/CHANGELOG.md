@@ -1,3 +1,16 @@
+# v37.2.0 (Wed Jul 23 2025)
+
+#### 🚀 Enhancement
+
+- Tree view: Adds documentation [#1935](https://github.com/Infineon/infineon-design-system-stencil/pull/1935) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.1.0 (Wed Jul 23 2025)
 
 #### 🚀 Enhancement
