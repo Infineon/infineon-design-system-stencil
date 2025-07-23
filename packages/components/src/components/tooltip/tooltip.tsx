@@ -15,7 +15,7 @@ export class Tooltip {
   @Prop() text: string = '';
   @Prop() position: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
   @State() internalPosition: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto' = 'auto';
-
+  @Prop() ariaLabel: string | null;
   @Prop() variant: 'compact' | 'dismissible' | 'extended' = 'compact';
   @Prop() icon: string;
 
@@ -191,7 +191,7 @@ export class Tooltip {
     };
 
     return (
-      <div aria-label="a tooltip showing important information" aria-value={this.header} class="tooltip__container" >
+      <div aria-label={this.ariaLabel} aria-value={this.header} class="tooltip__container" >
         <slot></slot>
 
         {this.variant.toLowerCase() === 'dismissible' && <div class={tooltipDismissible}>
