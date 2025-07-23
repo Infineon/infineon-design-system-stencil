@@ -59,6 +59,8 @@ export class SearchField {
   @Prop() autocomplete: string = "off";
   @Prop() maxlength?: number = null;
 
+  private focusEmitted: boolean = false;
+
   componentDidLoad() {
     this.loadSearchHistory();
   }
@@ -142,9 +144,17 @@ export class SearchField {
   }
 
   focusInput() {
-    this.inputElement.focus();
-    this.isFocused = true;
-    this.ifxFocus.emit();
+    // Don't call focus() if the input is already focused to prevent unnecessary operations
+    if (document.activeElement !== this.inputElement) {
+      this.inputElement.focus();
+    }
+
+    // Only emit focus event if it hasn't been emitted already
+    if (!this.focusEmitted) {
+      this.focusEmitted = true;
+      this.isFocused = true;
+      this.ifxFocus.emit();
+    }
 
     if (this.showSuggestions) {
       // On focus without input: Show only history
@@ -163,6 +173,7 @@ export class SearchField {
   blurInput() {
     setTimeout(() => {
       this.isFocused = false;
+      this.focusEmitted = false; // Reset focus flag when blur occurs
       this.ifxBlur.emit();
     }, 150);
   }
@@ -447,7 +458,6 @@ export class SearchField {
         <div
           class={this.getWrapperClassNames()}
           tabindex={1}
-          onFocus={() => this.focusInput()}
           onClick={() => this.focusInput()}
         >
           <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
