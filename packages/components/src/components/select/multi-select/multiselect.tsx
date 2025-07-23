@@ -30,7 +30,7 @@ export class Multiselect {
   @Prop() label: string = "";
   @Prop() placeholder: string = "";
   @Prop() showSearch: boolean = true;
-  @Prop() showSelectAll: boolean = true;
+  @Prop() showSelectAll: boolean | string = true;
   @Prop() showClearButton: boolean = true;
   @Prop() showExpandCollapse: boolean = true;
   @Prop() noResultsMessage: string = "No results found.";
@@ -579,7 +579,7 @@ export class Multiselect {
         return optionElement?.textContent?.trim() || option.value;
       })
       .join(', ');
-
+ 
     const hasSelections = this.persistentSelectedOptions.length > 0;
 
     let isFlatMultiselect = false;
