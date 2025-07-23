@@ -130,12 +130,10 @@
 
       .suggestion-content {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         gap: tokens.$ifxSpace150;
 
         .suggestion-icon {
-          position: relative;
-          top: tokens.$ifxSpace25;
           color: tokens.$ifxColorEngineering500;
           flex-shrink: 0;
 
@@ -179,7 +177,7 @@
 
             .suggestion-scope {
               margin-left: 0;
-              margin-top: tokens.$ifxSpace12;
+              margin-top: 0;
               width: 100%;
               max-width: 100%;
               overflow: hidden;
@@ -191,7 +189,6 @@
 
         .suggestion-count {
           color: tokens.$ifxColorEngineering400;
-          font-size: 0.85em;
           margin-left: auto;
           flex-shrink: 0;
         }
@@ -204,8 +201,6 @@
           margin-left: auto;
           flex-shrink: 0;
           color: tokens.$ifxColorEngineering500;
-          position: relative;
-          top: tokens.$ifxSpace25;
 
           &:hover {
             color: tokens.$ifxColorEngineering600;
