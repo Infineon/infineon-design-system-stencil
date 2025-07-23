@@ -33,9 +33,9 @@ export class SearchField {
   @Prop() historyHeaderText: string = 'Recent Searches';
 
   // ARIA Labels and Accessibility Props
-  @Prop() ariaLabel: string = 'Search field';
-  @Prop() ariaLabelledBy?: string;
-  @Prop() ariaDescribedBy?: string;
+  @Prop() ariaLabel: string | null = "Search Field"
+  @Prop() ariaLabelledBy?: string | null;
+  @Prop() ariaDescribedBy?: string | null;
   @Prop() deleteIconAriaLabel: string = 'Clear search';
   @Prop() historyDeleteAriaLabel: string = 'Remove from history';
   @Prop() dropdownAriaLabel: string = 'Search suggestions and history';

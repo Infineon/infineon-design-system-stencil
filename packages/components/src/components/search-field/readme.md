@@ -10,7 +10,7 @@
 | Property                 | Attribute                   | Description | Type               | Default                            |
 | ------------------------ | --------------------------- | ----------- | ------------------ | ---------------------------------- |
 | `ariaDescribedBy`        | `aria-described-by`         |             | `string`           | `undefined`                        |
-| `ariaLabel`              | `aria-label`                |             | `string`           | `'Search field'`                   |
+| `ariaLabel`              | `aria-label`                |             | `string`           | `"Search Field"`                   |
 | `ariaLabelledBy`         | `aria-labelled-by`          |             | `string`           | `undefined`                        |
 | `autocomplete`           | `autocomplete`              |             | `string`           | `"off"`                            |
 | `deleteIconAriaLabel`    | `delete-icon-aria-label`    |             | `string`           | `'Clear search'`                   |
