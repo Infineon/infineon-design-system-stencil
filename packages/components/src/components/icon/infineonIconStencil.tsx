@@ -2,6 +2,7 @@ import { Component, Prop, h, Host, Event, EventEmitter, Watch, State, Element } 
 import { getIcon } from '@infineon/infineon-icons'
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 
 @Component({
@@ -119,7 +120,8 @@ setIcon() {
 
     if(!isNestedInIfxComponent(this.el)) { 
       if(!this.isInsideAgGrid(this.el) && !this.isInsideChoices(this.el)) { 
-        trackComponent('ifx-icon')
+        const framework = detectFramework();
+        trackComponent('ifx-icon', { framework })
       }
     }
   }
