@@ -442,6 +442,12 @@ export class SearchField {
     ];
   }
 
+  componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) {
+      trackComponent('ifx-search-field')
+    }
+  }
+
   componentWillUpdate() {
     if (this.value !== "") {
       this.showDeleteIconInternalState = true;
