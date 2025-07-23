@@ -1,3 +1,28 @@
+# v37.1.0 (Wed Jul 23 2025)
+
+#### 🚀 Enhancement
+
+- Internal resolution: fixes Angular app [#1951](https://github.com/Infineon/infineon-design-system-stencil/pull/1951) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.0.0 (Tue Jul 15 2025)
+
+#### 💥 Breaking Change
+
+- Multi-Select: introduces a new structure with nestable sub-component, and expandable and collapsible groups [#1926](https://github.com/Infineon/infineon-design-system-stencil/pull/1926) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v36.1.0 (Wed Jul 09 2025)
 
 #### 🚀 Enhancement
