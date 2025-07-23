@@ -1,4 +1,4 @@
-import { Component, signal, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { IfxAccordionItem, IfxTabs } from '@infineon/infineon-design-system-angular';
 import { RouterOutlet } from '@angular/router';
 
