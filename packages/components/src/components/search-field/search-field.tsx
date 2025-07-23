@@ -1,6 +1,7 @@
 import { Component, EventEmitter, h, Event, Prop, Watch, State, Listen, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
 
 @Component({
@@ -62,7 +63,8 @@ export class SearchField {
 
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-search-field')
+      const framework = detectFramework();
+      trackComponent('ifx-search-field', { framework })
     }
   }
   
