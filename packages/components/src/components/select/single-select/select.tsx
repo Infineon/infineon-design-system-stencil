@@ -1,5 +1,5 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { trackComponent } from '../../../global/utils/tracking'; 
+import { trackComponent } from '../../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
@@ -33,7 +33,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public value: string;
   @Prop() public name: string;
   @Prop() public items: Array<any>;
-  @Prop() public choices: Array<any> | string;
+  @Prop() public choices: Array<any> | string = undefined;
   @Prop() public renderChoiceLimit: number;
   @Prop() public maxItemCount: number;
   @Prop() public addItems: boolean;
@@ -111,7 +111,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.optionIsSelected = false;
   }
 
-  clearSelectField() { 
+  clearSelectField() {
     this.selectedOption = null;
     this.ifxSelect.emit(null);
   }
@@ -258,47 +258,47 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return this;
   }
 
-    @Method()
-    async handleDeleteIcon() {
-      const width = this.root.offsetWidth;
-      const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
-      if(deleteIconWrapper) { 
-        if (width <= 180) {
-          deleteIconWrapper.classList.add('hide')
-        } else if(this.showClearButton) { 
-          deleteIconWrapper.classList.remove('hide')
-        }
+  @Method()
+  async handleDeleteIcon() {
+    const width = this.root.offsetWidth;
+    const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
+    if (deleteIconWrapper) {
+      if (width <= 180) {
+        deleteIconWrapper.classList.add('hide')
+      } else if (this.showClearButton) {
+        deleteIconWrapper.classList.remove('hide')
       }
     }
+  }
 
 
-  handleCloseButton() { 
-    if(typeof this.options === 'string') { 
+  handleCloseButton() {
+    if (typeof this.options === 'string') {
       const optionsToArray = JSON.parse(this.options);
       const optionIsSelected = optionsToArray.find(option => option.selected === true)
-      if(optionIsSelected) { 
+      if (optionIsSelected) {
         this.optionIsSelected = true;
-      } else { 
+      } else {
         this.optionIsSelected = false;
       }
-    } else if(this.options && Array.isArray(this.options)) { 
+    } else if (this.options && Array.isArray(this.options)) {
       const optionIsSelected = this.options.find(option => option.selected === true)
-      if(optionIsSelected) { 
+      if (optionIsSelected) {
         this.optionIsSelected = true;
-      } else { 
+      } else {
         this.optionIsSelected = false;
       }
     }
   }
 
   protected componentWillLoad() {
-    if(!isNestedInIfxComponent(this.root)) { 
+    if (!isNestedInIfxComponent(this.root)) {
       trackComponent('ifx-select')
     }
-   this.handleCloseButton()
+    this.handleCloseButton()
   }
 
-  protected componentWillUpdate() { 
+  protected componentWillUpdate() {
     this.handleCloseButton()
     this.previousOptions = [...this.options];
     const optionsAreEqual = this.isEqual(this.options, this.previousOptions);
@@ -312,11 +312,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
 
-  addResizeObserver() { 
+  addResizeObserver() {
     this.resizeObserver = new ResizeObserver(() => {
       this.handleDeleteIcon();
     });
-  
+
     const componentWrapper = this.root.querySelector('.ifx-choices__wrapper');
     this.resizeObserver.observe(componentWrapper);
   }
@@ -346,7 +346,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const target = event.target as HTMLElement;
     const isSearchInput = target.classList.contains('choices__input') || target.closest('.choices__input');
     const isDropdownItem = target.closest('.choices__list--dropdown .choices__item');
-  
+
     // Only toggle dropdown if clicking on wrapper itself
     if (!isSearchInput && !isDropdownItem) {
       this.toggleDropdown();
@@ -379,22 +379,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled ? undefined : (e) => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class='single__select-input-field' disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class='single__select-input-field' disabled={this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
           <div class='single__select-icon-container'>
-            { this.optionIsSelected && (
-                <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
-                  <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
-                </div>
-              )}
-              <div class="ifx-choices__icon-wrapper-up">
-                <ifx-icon key="icon-up" icon="chevron-up-16"></ifx-icon>
+            {this.optionIsSelected && (
+              <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
+                <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
               </div>
-              <div class="ifx-choices__icon-wrapper-down">
-                <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
-              </div>
+            )}
+            <div class="ifx-choices__icon-wrapper-up">
+              <ifx-icon key="icon-up" icon="chevron-up-16"></ifx-icon>
+            </div>
+            <div class="ifx-choices__icon-wrapper-down">
+              <ifx-icon key="icon-down" icon="chevron-down-16"></ifx-icon>
+            </div>
           </div>
         </div>
         {this.error ? (

@@ -46,11 +46,18 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
+
       - name: Install dependencies for all packages
         run: |
           npm install
           git checkout -- package-lock.json 
 
+      - name: Run tests
+        run: |
+          cd packages/components
+          npm test
+
+        
       - name: Build and deploy Stencil core package
         id: build
         env:
