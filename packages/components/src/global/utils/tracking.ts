@@ -15,9 +15,9 @@ function initializeTracking() {
   // Skip actual tracking initialization in test environment
   if (isTestEnvironment) {
     if (!window.btnt) {
-      window.btnt = (data: object) => {
+      window.btnt = (_data: object) => {
         // Mock implementation that does nothing
-        console.log('Mock tracking called with:', data);
+        //console.log('Mock tracking called with:', data);
       };
     }
     return;
@@ -65,14 +65,5 @@ export function trackComponent(componentName: string) {
     component_name: componentName
   });
 }
-
-export function isNestedInIfxComponent(el: HTMLElement): boolean {
-  // Implementation remains the same
-  return false; // Simplified for this example
-}
-
-export function getTrackingStatus(): boolean {
-  return false; // Simplified for this example
-}
-
+ 
 export default trackComponent;
