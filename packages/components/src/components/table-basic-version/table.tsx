@@ -31,7 +31,7 @@ export class Table {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.host)) { 
       const framework = detectFramework();
-      trackComponent('ifx-basic-table', { framework })
+      trackComponent('ifx-basic-table', framework)
     }
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.setColsAndRows(); //needed?

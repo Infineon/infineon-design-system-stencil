@@ -92,7 +92,7 @@ export class Checkbox {
     this.internalIndeterminate = this.indeterminate;
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-checkbox', { framework })
+      trackComponent('ifx-checkbox', framework)
     }
   }
 

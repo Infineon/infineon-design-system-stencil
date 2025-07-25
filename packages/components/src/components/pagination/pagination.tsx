@@ -90,7 +90,7 @@ export class Pagination {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-pagination', { framework })
+      trackComponent('ifx-pagination', framework)
     }
     this.calculateNumberOfPages();
     this.filterOptionsArray();

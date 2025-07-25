@@ -37,13 +37,13 @@ function initializeTracking() {
     })(document, "script", );
   }
 
-  export function trackComponent(componentName: string, metadata: Record<string, string> = {}) {
+  export function trackComponent(componentName: string, environment: string) {
   if (!window.btnt) initializeTracking();
   
   window.btnt({
     event_name: "component_initialized",
     component_name: componentName,
-    ...metadata
+    environment: environment
   });
  } 
 

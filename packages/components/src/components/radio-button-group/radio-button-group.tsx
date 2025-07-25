@@ -44,7 +44,7 @@ export class RadioButtonGroup {
     componentWillLoad() {
         if(!isNestedInIfxComponent(this.el)) { 
             const framework = detectFramework();
-            trackComponent('ifx-radio-button-group', { framework })
+            trackComponent('ifx-radio-button-group', framework)
         }
         this.initializeState();
     }

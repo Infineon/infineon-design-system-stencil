@@ -22,7 +22,7 @@ export class Footer {
     this.hasSocialsSlot = !!this.el.querySelector('[slot="socials"]');
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-footer', { framework })
+      trackComponent('ifx-footer', framework)
     }
 }
 

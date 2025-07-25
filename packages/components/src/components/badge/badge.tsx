@@ -14,7 +14,7 @@ export class Badge {
    componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-badge', { framework })
+      trackComponent('ifx-badge', framework)
     }
   }
 

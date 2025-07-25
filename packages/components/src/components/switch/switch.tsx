@@ -31,7 +31,7 @@ export class Switch {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-switch', { framework })
+      trackComponent('ifx-switch', framework)
     }
     this.internalChecked = this.checked;
   }

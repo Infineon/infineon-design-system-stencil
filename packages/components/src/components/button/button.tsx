@@ -65,7 +65,7 @@ export class Button {
     this.handleFormAndInternalHref()
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-button', { framework })
+      trackComponent('ifx-button', framework)
     }
   }
 

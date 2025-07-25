@@ -321,7 +321,7 @@ export class Navbar {
  
   componentWillLoad() {
     const framework = detectFramework();
-    trackComponent('ifx-navbar', { framework })
+    trackComponent('ifx-navbar', framework)
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')

@@ -14,7 +14,7 @@ export class Breadcrumb {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-breadcrumb', { framework })
+      trackComponent('ifx-breadcrumb', framework)
     }
   }
 

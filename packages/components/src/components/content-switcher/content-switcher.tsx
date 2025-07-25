@@ -35,7 +35,7 @@ export class ContentSwitcher {
     this.ensureSingleSelectedItem();
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-content-switcher', { framework })
+      trackComponent('ifx-content-switcher', framework)
     }
   }
 

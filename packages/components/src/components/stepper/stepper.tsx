@@ -142,7 +142,7 @@ export class Stepper {
     componentWillLoad() {
         if(!isNestedInIfxComponent(this.el)) { 
             const framework = detectFramework();
-            trackComponent('ifx-stepper', { framework })
+            trackComponent('ifx-stepper', framework)
         }
         this.addStepIdsToStepsAndCountSteps();
         this.setInitialActiveStep();

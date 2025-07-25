@@ -30,7 +30,7 @@ export class RadioButton {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-radio-button', { framework })
+      trackComponent('ifx-radio-button', framework)
     }
     // Fallback for form association
     this.fallbackInput = document.createElement('input');

@@ -61,7 +61,7 @@ export class IfxTabs {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tabs', { framework })
+      trackComponent('ifx-tabs', framework)
     }
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {

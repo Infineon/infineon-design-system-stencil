@@ -64,7 +64,7 @@ export class SearchField {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-search-field', { framework })
+      trackComponent('ifx-search-field', framework)
     }
   }
   

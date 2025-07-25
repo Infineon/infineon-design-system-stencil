@@ -20,7 +20,7 @@ export class Notification {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-notification', { framework })
+      trackComponent('ifx-notification', framework)
     }
   }
 

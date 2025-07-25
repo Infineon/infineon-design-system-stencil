@@ -336,7 +336,7 @@ export class Multiselect {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-multiselect', { framework })
+      trackComponent('ifx-multiselect', framework)
     }
     this.loadInitialOptions();
   }

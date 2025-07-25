@@ -48,7 +48,7 @@ export class Link {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-link', { framework })
+      trackComponent('ifx-link', framework)
     }
   }
 

@@ -15,7 +15,7 @@ export class Tag {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tag', { framework })
+      trackComponent('ifx-tag', framework)
     }
   }
 

@@ -295,7 +295,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   protected componentWillLoad() {
     if(!isNestedInIfxComponent(this.root)) { 
       const framework = detectFramework();
-      trackComponent('ifx-select', { framework })
+      trackComponent('ifx-select', framework)
     }
    this.handleCloseButton()
   }

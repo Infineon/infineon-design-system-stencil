@@ -29,7 +29,7 @@ export class Tooltip {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tooltip', { framework })
+      trackComponent('ifx-tooltip', framework)
     }
     if(this.variant.toLowerCase().trim() === "") { 
       this.variant = 'compact'

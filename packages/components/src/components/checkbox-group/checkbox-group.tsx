@@ -45,7 +45,7 @@ export class CheckboxGroup {
     this.initializeState();
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-checkbox-group', { framework })
+      trackComponent('ifx-checkbox-group', framework)
     }
   }
 

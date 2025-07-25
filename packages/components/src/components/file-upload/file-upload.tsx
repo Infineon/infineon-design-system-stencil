@@ -592,7 +592,7 @@ export class FileUpload {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.hostElement)) { 
       const framework = detectFramework();
-      trackComponent('ifx-file-upload', { framework })
+      trackComponent('ifx-file-upload', framework)
     }
   }
 

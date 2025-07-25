@@ -18,7 +18,7 @@ export class Status {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-status', { framework })
+      trackComponent('ifx-status', framework)
     }
   }
 

@@ -45,7 +45,7 @@ export class IfxModal {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.hostElement)) { 
       const framework = detectFramework();
-      trackComponent('ifx-modal', { framework })
+      trackComponent('ifx-modal', framework)
     }
   }
 

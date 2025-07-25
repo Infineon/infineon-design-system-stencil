@@ -228,7 +228,7 @@ export class Table {
   componentWillLoad() {
     if(!isNestedInIfxComponent(this.host)) { 
       const framework = detectFramework();
-      trackComponent('ifx-table', { framework })
+      trackComponent('ifx-table', framework)
     }
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
 

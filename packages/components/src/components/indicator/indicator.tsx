@@ -24,7 +24,7 @@ export class Indicator {
     this.handleNumber()
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-indicator', { framework })
+      trackComponent('ifx-indicator', framework)
     }
   }
 

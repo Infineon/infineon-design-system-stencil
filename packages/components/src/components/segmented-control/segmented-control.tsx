@@ -76,7 +76,7 @@ export class SegmentedControl {
     componentWillLoad() { 
         if(!isNestedInIfxComponent(this.SegmentedControl)) { 
             const framework = detectFramework();
-            trackComponent('ifx-segmented-control', { framework })
+            trackComponent('ifx-segmented-control', framework)
         }
     }
 

@@ -18,7 +18,7 @@ export class Spinner {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-spinner', { framework })
+      trackComponent('ifx-spinner', framework)
     }
   }
 

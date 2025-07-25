@@ -48,7 +48,7 @@ export class IconButton {
     this.internalIcon = this.icon;
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-icon-button', { framework })
+      trackComponent('ifx-icon-button', framework)
     }
   }
 

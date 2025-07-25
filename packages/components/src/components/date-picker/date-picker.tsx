@@ -103,7 +103,7 @@ export class DatePicker {
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-date-picker', { framework })
+      trackComponent('ifx-date-picker', framework)
     }
   }
 
