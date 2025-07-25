@@ -1,6 +1,7 @@
 import { Component, h, Prop, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-status',
@@ -16,7 +17,8 @@ export class Status {
 
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-status')
+      const framework = detectFramework();
+      trackComponent('ifx-status', framework)
     }
   }
 

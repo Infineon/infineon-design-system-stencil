@@ -1,6 +1,7 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
  
 @Component({
@@ -63,7 +64,8 @@ export class Button {
   componentWillLoad() {
     this.handleFormAndInternalHref()
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-button')
+      const framework = detectFramework();
+      trackComponent('ifx-button', framework)
     }
   }
 

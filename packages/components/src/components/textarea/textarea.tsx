@@ -1,6 +1,7 @@
 import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
 	formAssociated: true,
@@ -71,7 +72,8 @@ export class TextArea {
 
 	componentWillLoad() {
 		if(!isNestedInIfxComponent(this.el)) { 
-			trackComponent('ifx-textarea')
+			const framework = detectFramework();
+			trackComponent('ifx-textarea', framework)
 		}
 		this.internals.setFormValue(this.value);
 	}

@@ -1,6 +1,7 @@
 import { Component, Prop, h, Event, EventEmitter, State, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-alert',
@@ -48,7 +49,8 @@ export class Alert {
     }
 
     if(!isNestedInIfxComponent(this.el)) {
-      trackComponent('ifx-alert')
+      const framework = detectFramework();
+      trackComponent('ifx-alert', framework);
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
 import { animationTo, KEYFRAMES } from '../../global/utils/animation';
  
@@ -43,7 +44,8 @@ export class IfxModal {
 
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.hostElement)) { 
-      trackComponent('ifx-modal')
+      const framework = detectFramework();
+      trackComponent('ifx-modal', framework)
     }
   }
 

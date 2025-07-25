@@ -37,12 +37,13 @@ function initializeTracking() {
     })(document, "script", );
   }
 
-  export function trackComponent(componentName: string) {
+  export function trackComponent(componentName: string, environment: string) {
   if (!window.btnt) initializeTracking();
   
   window.btnt({
     event_name: "component_initialized",
-    component_name: componentName
+    component_name: componentName,
+    environment: environment
   });
  } 
 

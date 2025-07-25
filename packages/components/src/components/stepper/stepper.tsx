@@ -10,6 +10,7 @@ import { h,
 import { StepperState } from "./interfaces";
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
     tag: 'ifx-stepper',
@@ -140,7 +141,8 @@ export class Stepper {
 
     componentWillLoad() {
         if(!isNestedInIfxComponent(this.el)) { 
-            trackComponent('ifx-stepper')
+            const framework = detectFramework();
+            trackComponent('ifx-stepper', framework)
         }
         this.addStepIdsToStepsAndCountSteps();
         this.setInitialActiveStep();

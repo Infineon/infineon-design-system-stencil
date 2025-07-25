@@ -1,6 +1,7 @@
 import { Component, h, Host, Prop, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 export type NotificationVariant = 'success' | 'locked' | 'error' | 'neutral';
 
 @Component({
@@ -18,7 +19,8 @@ export class Notification {
 
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-notification')
+      const framework = detectFramework();
+      trackComponent('ifx-notification', framework)
     }
   }
 
