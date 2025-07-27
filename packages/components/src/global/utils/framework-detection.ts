@@ -1,24 +1,59 @@
+let frameworkCache: string | null = null;
+
 export const detectFramework = (): string => {
+  if (frameworkCache) return frameworkCache;
+  
   const win = window as any;
+  const doc = document;
 
-  if(!!win.React || !!document.querySelector('[data-reactroot], [data-reactid]') ||
-   Array.from(document.querySelectorAll('*')).some((e: any) => e._reactRootContainer !== undefined || Object.keys(e).some(k => k.startsWith('__reactContainer')))
-  ) { 
-    return 'React'
+  // Check for React
+  if (win.React) {
+    frameworkCache = 'React';
+    return frameworkCache;
   }
   
- 
-  if(!!win.getAllAngularRootElements || 
-   !!document.querySelector('[ng-version], [ng-app], [data-ng-app], [ng-controller], [data-ng-controller], [ng-repeat], [data-ng-repeat]') ||
-   !!document.querySelector('script[src*="angular.js"], script[src*="angular.min.js"]')
-) {
-  return 'Angular'
-}
+  // Check for React 16+ roots
+  const reactRoots = doc.querySelector('[data-reactroot], [data-reactid]');
+  if (reactRoots) {
+    frameworkCache = 'React';
+    return frameworkCache;
+  }
   
-
-  if(!!win.__VUE__) {
-    return 'Vue'
+  // Check for React 18+ root containers
+  const rootContainers = Array.from(doc.querySelectorAll('body > div'));
+  const hasReactRoot = rootContainers.some(container => {
+    const keys = Object.keys(container);
+    return keys.some(key => key.startsWith('__reactContainer'));
+  });
+  
+  if (hasReactRoot) {
+    frameworkCache = 'React';
+    return frameworkCache;
   }
 
-  return 'vanilla'
+  // Check for Angular
+  if (win.ng || win.getAllAngularRootElements) {
+    frameworkCache = 'Angular';
+    return frameworkCache;
+  }
+  
+  if (doc.querySelector('[ng-version], [ng-app]')) {
+    frameworkCache = 'Angular';
+    return frameworkCache;
+  }
+  
+  // Check for Vue
+  if (win.Vue || win.__VUE__) {
+    frameworkCache = 'Vue';
+    return frameworkCache;
+  }
+  
+  if (doc.querySelector('[data-v-app]')) {
+    frameworkCache = 'Vue';
+    return frameworkCache;
+  }
+
+  // Default to Vanilla
+  frameworkCache = 'Vanilla';
+  return frameworkCache;
 };
