@@ -1,6 +1,7 @@
 import { Component, h, Element } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-breadcrumb',
@@ -12,7 +13,8 @@ export class Breadcrumb {
 
   componentWillLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-breadcrumb')
+      const framework = detectFramework();
+      trackComponent('ifx-breadcrumb', framework)
     }
   }
 
