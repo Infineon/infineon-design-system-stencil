@@ -1,6 +1,7 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Watch, Method, AttachInternals } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-checkbox',
@@ -90,7 +91,8 @@ export class Checkbox {
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-checkbox')
+      const framework = detectFramework();
+      trackComponent('ifx-checkbox', framework)
     }
   }
 

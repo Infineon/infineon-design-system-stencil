@@ -1,3 +1,40 @@
+# v37.3.0 (Mon Jul 28 2025)
+
+#### 🚀 Enhancement
+
+- Implements framework detection of DDS components [#1950](https://github.com/Infineon/infineon-design-system-stencil/pull/1950) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.2.0 (Wed Jul 23 2025)
+
+#### 🚀 Enhancement
+
+- Tree view: Adds documentation [#1935](https://github.com/Infineon/infineon-design-system-stencil/pull/1935) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@SergejLust](https://github.com/SergejLust)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.1.0 (Wed Jul 23 2025)
+
+#### 🚀 Enhancement
+
+- Internal resolution: fixes Angular app [#1951](https://github.com/Infineon/infineon-design-system-stencil/pull/1951) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.0.0 (Tue Jul 15 2025)
 
 #### 💥 Breaking Change
