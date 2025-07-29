@@ -2,6 +2,7 @@
 import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter, Event } from "@stencil/core";
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import { createPopper } from '@popperjs/core';
  
 
@@ -67,7 +68,8 @@ export class Dropdown {
     this.updateSlotContent();
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
     if(!isNestedInIfxComponent(this.el)) { 
-      trackComponent('ifx-dropdown')
+      const framework = detectFramework();
+      trackComponent('ifx-dropdown', framework)
     }
   }
 
