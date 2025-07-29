@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { IfxAccordionItem, IfxTabs } from '@infineon/infineon-design-system-angular';
 import { RouterOutlet } from '@angular/router';
@@ -9,7 +10,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class App {
+export class AppComponent {
+  title = 'my-app';
+  export class App {
 
    title = 'my-app';
 
