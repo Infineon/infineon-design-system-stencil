@@ -1,3 +1,15 @@
+# v37.3.0 (Mon Jul 28 2025)
+
+#### 🚀 Enhancement
+
+- Implements framework detection of DDS components [#1950](https://github.com/Infineon/infineon-design-system-stencil/pull/1950) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.2.0 (Wed Jul 23 2025)
 
 #### 🚀 Enhancement
