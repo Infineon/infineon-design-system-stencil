@@ -8,7 +8,7 @@ module.exports = ({ config }) => {
     resolve: {
       alias: {
         // This tells Webpack to resolve "~" to the node_modules directory
-        '~': path.resolve(__dirname, 'node_modules'),
+        '~': path.resolve(__dirname, '../../../node_modules'),
       },
     },
   });
