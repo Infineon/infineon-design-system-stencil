@@ -65,10 +65,6 @@ export class SearchField {
 
   private focusEmitted: boolean = false;
 
-  componentDidLoad() {
-    this.loadSearchHistory();
-  }
-
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -444,6 +440,7 @@ export class SearchField {
   }
 
   componentWillLoad() {
+    this.loadSearchHistory();
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework()
       trackComponent('ifx-search-field', framework)
