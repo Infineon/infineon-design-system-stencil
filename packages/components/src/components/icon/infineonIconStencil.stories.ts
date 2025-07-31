@@ -34,7 +34,6 @@ export default {
 
 const DefaultTemplate = ({ icon }) => {
   const ifxIcon = document.createElement('ifx-icon');
-  console.log("icon", icon);
   ifxIcon.setAttribute('icon', icon);
   ifxIcon.addEventListener('consoleError', action('consoleError'));
   return ifxIcon;
