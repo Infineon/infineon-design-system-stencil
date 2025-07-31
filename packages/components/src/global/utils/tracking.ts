@@ -2,27 +2,25 @@ declare global {
   interface Window {
     btntConfig?: any;
     btntQueue?: any[];
-    btnt?: (data: object) => void; 
+    btnt?: (data: object) => void;
   }
 }
 
 // Check if we're in a test environment
-const isTestEnvironment = typeof process !== 'undefined' && 
-                          process.env && 
-                          process.env.NODE_ENV === 'test';
+const isTestEnvironment = typeof process !== 'undefined' &&
+  process.env &&
+  process.env.NODE_ENV === 'test';
 
 function initializeTracking() {
   // Skip actual tracking initialization in test environment
   if (isTestEnvironment) {
-    if (!window.btnt) {
-      window.btnt = (_data: object) => {
-        // Mock implementation that does nothing
-        //console.log('Mock tracking called with:', data);
-      };
+    if (!window.btnt) { 
+      // The component code calls window.btnt({...}) to send tracking data. If window.btnt is not defined, calling it will throw a TypeError, so set it to empty function
+      window.btnt = () => { };
     }
     return;
   }
-  
+
   // Original implementation for production
   (function (t, r, _kk, n, pp) {
     if (typeof window.btntConfig !== "object") {
@@ -46,7 +44,7 @@ function initializeTracking() {
     };
 
     n = t.createElement(r);
-    
+
     // Add safety check for test environments
     pp = t.getElementsByTagName(r)[0];
     if (pp && pp.parentNode) {
@@ -57,14 +55,14 @@ function initializeTracking() {
   })(document, "script");
 }
 
-  export function trackComponent(componentName: string, environment: string) {
+export function trackComponent(componentName: string, environment: string) {
   if (!window.btnt) initializeTracking();
-  
+
   window.btnt({
     event_name: "component_initialized",
     component_name: componentName,
     environment: environment
   });
 }
- 
+
 export default trackComponent;
