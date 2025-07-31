@@ -4,14 +4,14 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class App {
-
-   title = 'my-app';
+export class AppComponent {
+  title = 'my-app';
 
   progressValue = 10;
   activeTabIndex = 0;
