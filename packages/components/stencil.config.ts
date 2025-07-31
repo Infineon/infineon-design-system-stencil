@@ -12,7 +12,7 @@ export const config: Config = {
     cloneNodeFix: true,
     enableImportInjection: true,
   },
-
+ 
   outputTargets: [
     {
       type: 'dist-custom-elements',
@@ -32,7 +32,7 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null, // disable service workers
-       copy: [
+      copy: [
         { src: '../../../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
       ]
     }

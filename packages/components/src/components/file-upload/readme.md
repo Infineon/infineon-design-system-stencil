@@ -39,7 +39,7 @@
 | `maxFileSizeMB`                 | `max-file-size-m-b`                |                                                                                                               | `number`                                                                 | `7`                                                               |
 | `maxFiles`                      | `max-files`                        |                                                                                                               | `number`                                                                 | `undefined`                                                       |
 | `required`                      | `required`                         |                                                                                                               | `boolean`                                                                | `false`                                                           |
-| `uploadHandler`                 | --                                 |                                                                                                               | `(file: File, onProgress?: (progress: number) => void) => Promise<void>` | `undefined`                                                       |
+| `uploadHandler`                 | `upload-handler`                   |                                                                                                               | `(file: File, onProgress?: (progress: number) => void) => Promise<void>` | `undefined`                                                       |
 
 
 ## Events
