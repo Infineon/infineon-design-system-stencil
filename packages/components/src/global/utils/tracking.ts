@@ -15,7 +15,7 @@ function initializeTracking() {
   // Skip actual tracking initialization in test environment
   if (isTestEnvironment) {
     if (!window.btnt) { 
-      // The component code calls window.btnt({...}) to send tracking data. If window.btnt is not defined, calling it will throw a TypeError, so set it to empty function
+      // The component code calls window.btnt({...}) to send tracking data; If window.btnt is not defined, it will throw a TypeError, so set it to empty function
       window.btnt = () => { };
     }
     return;
