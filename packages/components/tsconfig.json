@@ -18,12 +18,14 @@
     "baseUrl": "./",
     "paths": {
       "*": ["src/types/*"]
-    }
+    },
+    "types": ["jest", "jest-stencil-runner"],
+
   },
   "include": [
     "src",
     "types/**/*"
-  ],
+, "test-setup.ts"  ],
   "exclude": [
     "node_modules"
   ]

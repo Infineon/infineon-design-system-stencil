@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <h1>Stencil Framework integration - Vue + JS </h1>
+  <h1>Stencil Framework integration - VueJs </h1>
   <Sidebar />
   <Alert />
   <Accordion />
