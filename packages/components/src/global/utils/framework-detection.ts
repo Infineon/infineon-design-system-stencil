@@ -22,12 +22,14 @@ export const detectFramework = (): string => {
   }
 
   // 3. Detect Storybook environment
-  const isStorybook = win.location.search.includes('?path=/docs') || 
-                      win.location.href.includes('storybook') ||
+  const isStorybook = win.location.search.includes('viewMode') || 
+                      win.location.href.includes('viewMode') ||
                       win.__STORYBOOK_ENV__;
+  
+
   if (isStorybook) {
-    frameworkCache = 'storybook';
-    return frameworkCache;
+  frameworkCache = 'storybook';
+  return frameworkCache;
   }
 
   // 4. Detect localhost environment
