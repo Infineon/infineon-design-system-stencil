@@ -9,7 +9,9 @@
 }
 
 .group__label {
-    font: tokens.$ifxBodyBody05;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
+    font-weight: tokens.$ifxFontWeightRegular;
 
     &:empty {
         display: none;
