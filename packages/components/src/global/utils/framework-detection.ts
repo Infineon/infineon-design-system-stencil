@@ -42,13 +42,27 @@ export const detectFramework = (): string => {
   // 5. Framework detection logic
   try {
     // React detection
+    // Check for React
     if (win.React) {
       frameworkCache = 'React';
       return frameworkCache;
     }
     
-    const reactRoot = doc.querySelector('[data-reactroot], [data-reactid]');
-    if (reactRoot) {
+    // Check for React 16+ roots
+    const reactRoots = doc.querySelector('[data-reactroot], [data-reactid]');
+    if (reactRoots) {
+      frameworkCache = 'React';
+      return frameworkCache;
+    }
+    
+    // Check for React 18+ root containers
+    const rootContainers = Array.from(doc.querySelectorAll('body > div'));
+    const hasReactRoot = rootContainers.some(container => {
+      const keys = Object.keys(container);
+      return keys.some(key => key.startsWith('__reactContainer'));
+    });
+    
+    if (hasReactRoot) {
       frameworkCache = 'React';
       return frameworkCache;
     }
