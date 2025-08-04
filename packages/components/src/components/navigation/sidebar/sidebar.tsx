@@ -1,4 +1,6 @@
 import { Component, h, Element, Prop, State, Listen } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking';
+import { detectFramework } from '../../../global/utils/framework-detection';
 
 const ACTIVE = 'active';
 const ACTIVE_SECTION = 'active-section';
@@ -369,6 +371,8 @@ export class Sidebar {
   }
 
   componentWillLoad() {
+    const framework = detectFramework();
+    trackComponent('ifx-sidebar', framework)
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
     this.internalImprint = this.imprint.trim();

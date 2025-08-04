@@ -1,4 +1,7 @@
 import { Component, Prop, h, Host, Method, Element, Listen, Watch, State } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
 
 @Component({
@@ -43,6 +46,10 @@ export class IconButton {
       this.shape = 'round';
     }
     this.internalIcon = this.icon;
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-icon-button', framework)
+    }
   }
 
   render() {

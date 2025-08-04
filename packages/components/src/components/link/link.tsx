@@ -1,7 +1,9 @@
-import { Component, Prop, h, State } from "@stencil/core";
+import { Component, Prop, h, State, Element } from "@stencil/core";
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
  
-
 @Component({
   tag: 'ifx-link',
   styleUrl: 'link.scss',
@@ -9,6 +11,7 @@ import classNames from 'classnames';
 })
 
 export class Link {
+  @Element() el;
   @Prop() href: string = undefined;
   @Prop() target: string = '_self';
   @Prop() variant: string = 'bold';
@@ -39,6 +42,13 @@ export class Link {
       event.preventDefault();
     } else if (event.key === 'Enter') {
       event.preventDefault();
+    }
+  }
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-link', framework)
     }
   }
 

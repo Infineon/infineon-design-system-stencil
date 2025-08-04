@@ -1,4 +1,7 @@
-import { Component, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Prop, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-tree-view',
@@ -6,6 +9,7 @@ import { Component, h, Prop, Event, EventEmitter, Watch } from '@stencil/core';
   shadow: true,
 })
 export class TreeView {
+  @Element() el: HTMLElement;
   @Prop() label?: string;
   @Prop() disableAllItems: boolean = false;
   @Prop() expandAllItems: boolean = false;
@@ -38,6 +42,13 @@ export class TreeView {
       }
     }
   };
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-tree-view', framework)
+    }
+  }
 
   render() {
     return (

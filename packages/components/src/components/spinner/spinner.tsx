@@ -1,17 +1,26 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Prop, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
  
-
 @Component({
   tag: 'ifx-spinner',
   styleUrl: 'spinner.scss',
   shadow: true,
 })
 export class Spinner {
+  @Element() el;
   @Prop() size: string;
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-spinner', framework)
+    }
+  }
 
   render() {
     return (

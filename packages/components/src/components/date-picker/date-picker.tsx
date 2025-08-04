@@ -1,7 +1,9 @@
 import { AttachInternals } from '@stencil/core';
 import { Component, Prop, h, Element, Event, EventEmitter } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
  
-
 @Component({
   tag: 'ifx-date-picker',
   styleUrl: 'date-picker.scss',
@@ -95,6 +97,13 @@ export class DatePicker {
       input.classList.add('firefox__classes')
     } else if(input.classList.contains('firefox__classes')) { 
       input.classList.remove('firefox__classes')
+    }
+  }
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-date-picker', framework)
     }
   }
 

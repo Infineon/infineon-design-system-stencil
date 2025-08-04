@@ -1,4 +1,7 @@
-import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, State, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-alert',
@@ -6,6 +9,7 @@ import { Component, Prop, h, Event, EventEmitter, State } from '@stencil/core';
   shadow: true,
 })
 export class Alert {
+  @Element() el: HTMLElement;
   @Prop() variant: 'primary' | 'success' | 'danger' | 'warning' | 'info' = 'primary';
   @Prop() icon: string;
   @Event() ifxClose: EventEmitter;
@@ -42,6 +46,11 @@ export class Alert {
   componentWillLoad() { 
     if (!this.uniqueId) {
       this.uniqueId = this.generateUniqueId('alert');
+    }
+
+    if(!isNestedInIfxComponent(this.el)) {
+      const framework = detectFramework();
+      trackComponent('ifx-alert', framework);
     }
   }
 

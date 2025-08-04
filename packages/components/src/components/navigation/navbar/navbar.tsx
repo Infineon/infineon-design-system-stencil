@@ -1,4 +1,6 @@
 import { Component, h, Element, State, Prop, Listen, Event, EventEmitter } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking';
+import { detectFramework } from '../../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-navbar',
@@ -318,6 +320,8 @@ export class Navbar {
 
  
   componentWillLoad() {
+    const framework = detectFramework();
+    trackComponent('ifx-navbar', framework)
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')

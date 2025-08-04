@@ -1,5 +1,7 @@
-import { Component, h, Prop } from '@stencil/core';
- 
+import { Component, h, Prop, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-status',
@@ -8,10 +10,17 @@ import { Component, h, Prop } from '@stencil/core';
 })
 
 export class Status {
+  @Element() el;
   @Prop() label: string;
   @Prop() border: boolean = false;
   @Prop() color: string = 'orange-500';
 
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-status', framework)
+    }
+  }
 
   render() {
     const effectiveColor = this.color?.trim() ? this.color : 'orange-500';

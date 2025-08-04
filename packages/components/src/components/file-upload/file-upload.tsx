@@ -1,4 +1,7 @@
 import { Component, h, State, Event, EventEmitter, Prop, Method, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 interface UploadTask {
   file: File;
@@ -584,6 +587,13 @@ export class FileUpload {
 
   private isInputDisabled(): boolean {
     return this.disabled || (this.maxFiles !== undefined && this.files.length >= this.maxFiles);
+  }
+
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.hostElement)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-file-upload', framework)
+    }
   }
 
   componentDidLoad() {

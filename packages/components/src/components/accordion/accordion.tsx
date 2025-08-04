@@ -1,5 +1,7 @@
-//ifxAccordion.tsx
 import { Component, h, Listen, Element, Prop } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-accordion',
@@ -10,6 +12,12 @@ export class Accordion {
   @Element() el: HTMLElement;
   @Prop() autoCollapse: boolean = false;
 
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-accordion', framework)
+    }
+  }
 
   @Listen('ifxOpen')
   async onItemOpen(event: CustomEvent) {

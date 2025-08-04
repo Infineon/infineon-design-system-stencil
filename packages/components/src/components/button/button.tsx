@@ -1,7 +1,9 @@
 import { Component, Prop, h, Host, Method, Element, Listen, State, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';
  
-
 @Component({
   tag: 'ifx-button',
   styleUrl: 'button.scss',
@@ -61,6 +63,10 @@ export class Button {
 
   componentWillLoad() {
     this.handleFormAndInternalHref()
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-button', framework)
+    }
   }
 
   componentWillRender() {

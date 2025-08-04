@@ -1,4 +1,7 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-radio-button',
@@ -25,6 +28,10 @@ export class RadioButton {
   @Event({ eventName: 'ifxError' }) ifxError: EventEmitter;
 
   componentWillLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-radio-button', framework)
+    }
     // Fallback for form association
     this.fallbackInput = document.createElement('input');
     this.fallbackInput.type = 'radio';

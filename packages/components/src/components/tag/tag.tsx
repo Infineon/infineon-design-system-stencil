@@ -1,5 +1,7 @@
-import { Component, Prop, h } from '@stencil/core';
- 
+import { Component, Prop, h, Element } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-tag',
@@ -7,10 +9,16 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true
 })
 export class Tag {
+  @Element() el: HTMLElement;
   @Prop() icon: string;
   @Prop() ariaLabel: string;
 
-
+  componentWillLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-tag', framework)
+    }
+  }
 
   render() {
     return (
