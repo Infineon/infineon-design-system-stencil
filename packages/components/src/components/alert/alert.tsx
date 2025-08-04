@@ -47,7 +47,9 @@ export class Alert {
     if (!this.uniqueId) {
       this.uniqueId = this.generateUniqueId('alert');
     }
+  }
 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework();
       trackComponent('ifx-alert', framework);
