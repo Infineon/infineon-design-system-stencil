@@ -28,10 +28,6 @@ export class RadioButton {
   @Event({ eventName: 'ifxError' }) ifxError: EventEmitter;
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-radio-button', framework)
-    }
     // Fallback for form association
     this.fallbackInput = document.createElement('input');
     this.fallbackInput.type = 'radio';
@@ -61,6 +57,13 @@ export class RadioButton {
     // Initial state
     this.internalChecked = this.checked || false;
     this.hasSlot = !!this.el.querySelector('[slot]') || this.el.innerHTML.trim() !== '';
+  }
+
+  componentDidLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-radio-button', framework)
+    }
   }
 
   @Watch('checked')

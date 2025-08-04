@@ -12,7 +12,7 @@ export class Tag {
   @Element() el: HTMLElement;
   @Prop() icon: string;
 
-  componentWillLoad() { 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-tag', framework)

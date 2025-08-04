@@ -29,10 +29,6 @@ export class Switch {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-switch', framework)
-    }
     this.internalChecked = this.checked;
   }
   
@@ -48,8 +44,11 @@ export class Switch {
   }
   
   componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-switch', framework)
+    }
     this.toggleLabelGap();
-
   }
     
   @Watch('checked')

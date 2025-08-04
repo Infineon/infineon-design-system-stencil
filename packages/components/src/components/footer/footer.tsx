@@ -20,11 +20,14 @@ export class Footer {
   componentWillLoad() {
     this.hasColSlot = !!this.el.querySelector('[slot="col"]');
     this.hasSocialsSlot = !!this.el.querySelector('[slot="socials"]');
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-footer', framework)
     }
-}
+  }
 
  
   render() {
