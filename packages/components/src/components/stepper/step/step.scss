@@ -10,6 +10,7 @@
     gap: tokens.$ifxSize100;
     font: tokens.$ifxBodyBody03;
 
+
     &.vertical {
         flex-direction: row;
         gap: tokens.$ifxSize150;
@@ -49,6 +50,10 @@
         &.curr-label{
             font: tokens.$ifxHeadingHeadingCompact04; 
         }
+        &:focus {
+        outline: 2px solid tokens.$ifxColorOcean500; 
+        outline-offset: 2px;
+    }
         &.next-label{
             font: tokens.$ifxBodyBody05;
         }
@@ -124,6 +129,7 @@
         &.complete .step-label { 
             cursor: auto;
         }
+        
     } 
 
     &.clickable:not(.active) .step-label{
