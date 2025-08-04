@@ -295,6 +295,9 @@ export class Chip {
 
   componentWillLoad() {
     this.syncSelectedOptionsWithProp(this.value);
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.chip)) { 
       const framework = detectFramework();
       trackComponent('ifx-chip', framework)

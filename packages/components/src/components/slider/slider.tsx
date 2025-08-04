@@ -150,10 +150,6 @@ export class IfxSlider {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-slider', framework)
-    }
     if(this.value === undefined) {
       this.internalValue = (this.max-this.min) / 2;
     } else {
@@ -169,8 +165,11 @@ export class IfxSlider {
   }
 
   componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-slider', framework)
+    }
     this.updateValuePercent();
-
   }
 
 

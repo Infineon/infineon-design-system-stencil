@@ -17,7 +17,7 @@ export class Notification {
   @Prop() linkHref: string;
   @Prop() linkTarget: string = '_blank';
 
-  componentWillLoad() { 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-notification', framework)

@@ -46,6 +46,9 @@ export class IconButton {
       this.shape = 'round';
     }
     this.internalIcon = this.icon;
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-icon-button', framework)
