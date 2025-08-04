@@ -29,10 +29,6 @@ export class Table {
   private gridInitialized = false;
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.host)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-basic-table', framework)
-    }
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.setColsAndRows(); //needed?
     this.setGridOptions();
@@ -142,6 +138,10 @@ export class Table {
 
   componentDidLoad() {
     if (this.container && !this.gridInitialized) {
+      if(!isNestedInIfxComponent(this.host)) { 
+        const framework = detectFramework();
+        trackComponent('ifx-basic-table', framework)
+      }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
         this.gridApi.sizeColumnsToFit({

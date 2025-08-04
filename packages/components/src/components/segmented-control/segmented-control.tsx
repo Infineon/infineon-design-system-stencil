@@ -73,14 +73,11 @@ export class SegmentedControl {
         });
     }
 
-    componentWillLoad() { 
+    componentDidLoad() {
         if(!isNestedInIfxComponent(this.SegmentedControl)) { 
             const framework = detectFramework();
             trackComponent('ifx-segmented-control', framework)
         }
-    }
-
-    componentDidLoad() {
         this.setActiveSegment();
     }
 

@@ -100,14 +100,11 @@ export class DatePicker {
     }
   }
 
-  componentWillLoad() { 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-date-picker', framework)
     }
-  }
-
-  componentDidLoad() { 
     this.setFireFoxClasses()
   }
 

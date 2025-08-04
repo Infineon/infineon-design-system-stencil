@@ -40,12 +40,15 @@ export class SearchBar {
   }
 
   componentWillLoad() {
+    this.setInitialState();
+    this.ifxOpen.emit(this.internalState)
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-search-bar', framework)
     }
-    this.setInitialState();
-    this.ifxOpen.emit(this.internalState)
   }
 
   handleInput(event: CustomEvent) {
