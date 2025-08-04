@@ -6,24 +6,18 @@ declare global {
   }
 }
 
-// Check if we're in a test environment
 const isTestEnvironment = typeof process !== 'undefined' &&
   process.env &&
   process.env.NODE_ENV === 'test';
 
 function initializeTracking() {
-  // Skip actual tracking initialization in test environment
   if (isTestEnvironment) {
     if (!window.btnt) { 
-      // The component code calls window.btnt({...}) to send tracking data; 
-      // If window.btnt is not defined, it will throw a TypeError, 
-      // so set it to empty function
       window.btnt = () => { };
     }
     return;
   }
 
-  // Original implementation for production
   (function (t, r, _kk, n, pp) {
     if (typeof window.btntConfig !== "object") {
       window.btntConfig = {
@@ -58,8 +52,7 @@ function initializeTracking() {
 }
 
 export function trackComponent(componentName: string, environment: string) {
-  // ADD THIS SECTION: Skip tracking for these environments
-  const skipEnvironments = ['jest', 'non-browser', 'localhost', 'error'];
+  const skipEnvironments = ['jest', 'localhost', 'error', 'pending'];
   if (skipEnvironments.includes(environment)) {
     return;
   }
