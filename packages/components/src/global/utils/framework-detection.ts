@@ -41,7 +41,7 @@ export const detectFramework = (): string => {
     const isDOMReady = document.readyState === 'complete';
     setTimeout(() => {
       console.log('document.readyState', document.readyState)
-    }, 1000);
+    }, 5000);
     
     // React detection
     if (win.React || win.ReactDOM) {
