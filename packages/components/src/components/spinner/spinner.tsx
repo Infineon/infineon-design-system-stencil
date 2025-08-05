@@ -15,7 +15,7 @@ export class Spinner {
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
-  componentWillLoad() { 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-spinner', framework)

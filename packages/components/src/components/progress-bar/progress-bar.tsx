@@ -24,11 +24,14 @@ export class ProgressBar {
   }
 
   componentWillLoad() {
+    this.internalValue = this.value;
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-progress-bar', framework)
     }
-    this.internalValue = this.value;
   }
 
   render() {

@@ -90,6 +90,9 @@ export class Checkbox {
   componentWillLoad() {
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
+  }
+
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-checkbox', framework)

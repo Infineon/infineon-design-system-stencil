@@ -41,6 +41,10 @@ export class Pagination {
     }
 
   componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-pagination', framework)
+    }
     this.initPagination();
   }
 
@@ -88,10 +92,6 @@ export class Pagination {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-pagination', framework)
-    }
     this.calculateNumberOfPages();
     this.filterOptionsArray();
     this.updateVisiblePages();
