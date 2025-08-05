@@ -39,6 +39,9 @@ export const detectFramework = (): string => {
   try {
     // Universal timing-safe checks
     const isDOMReady = document.readyState === 'complete';
+    setTimeout(() => {
+      console.log('document.readyState', document.readyState)
+    }, 1000);
     
     // React detection
     if (win.React || win.ReactDOM) {
