@@ -1,5 +1,5 @@
 import { h, AttachInternals, Component, Event, EventEmitter, Host, Method, Prop, Element } from "@stencil/core"
-import { trackComponent } from '../../global/utils/tracking'; 
+import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 
@@ -26,6 +26,7 @@ export class TextArea {
 	@Prop() maxlength: number;
 	@Prop() name: string;
 	@Prop() placeholder: string;
+	@Prop() required: boolean = false;
 	@Prop() readOnly: boolean = false;
 	@Prop() resize: 'both' | 'horizontal' | 'vertical' | 'none' = 'both';
 	@Prop() rows: number;
@@ -41,23 +42,23 @@ export class TextArea {
 	handleComponentWidth() {
 		const textareaWrapper = this.el.shadowRoot.querySelector('.wrapper__textarea')
 		const isFullWidth = this.fullWidth.toLowerCase() === "true";
-		
-    if (isFullWidth) {
+
+		if (isFullWidth) {
 			textareaWrapper.classList.add('fullWidth')
-    } else if(textareaWrapper.classList.contains('fullWidth')) {
+		} else if (textareaWrapper.classList.contains('fullWidth')) {
 			textareaWrapper.classList.remove('fullWidth');
-    }
-  }
+		}
+	}
 
 	componentDidRender() {
-    this.handleComponentWidth()
-  }
-	
+		this.handleComponentWidth()
+	}
+
 	formResetCallback(): void {
 		this.resetTextarea();
 		this.internals.setFormValue("");
 	}
-	
+
 	handleOnInput(e: InputEvent): void {
 		this.value = (e.target as HTMLTextAreaElement).value;
 		this.internals.setFormValue(this.value);
@@ -71,7 +72,7 @@ export class TextArea {
 	}
 
 	componentWillLoad() {
-		if(!isNestedInIfxComponent(this.el)) { 
+		if (!isNestedInIfxComponent(this.el)) {
 			const framework = detectFramework();
 			trackComponent('ifx-textarea', framework)
 		}
@@ -80,35 +81,38 @@ export class TextArea {
 
 	render() {
 		return (
-			<Host class={`wrapper--${this.error ? 'error' : ''} wrapper--${this.disabled ? 'disabled': ''}`}>
-				<label class='wrapper__label' htmlFor={ this.inputId }>
-					{ this.label?.trim() }
+			<Host class={`wrapper--${this.error ? 'error' : ''} wrapper--${this.disabled ? 'disabled' : ''}`}>
+				<label class='wrapper__label' htmlFor={this.inputId}>
+					{this.label?.trim()}
+					{this.required && (
+						<span class={`required ${this.error ? 'error' : ""}`}>*</span>
+					)}
 				</label>
 
 				<div class='wrapper__textarea'>
 					<textarea
 						aria-label='a textarea'
-						aria-value={ this.value }
-						aria-disabled={ this.disabled }
-						id={ this.inputId }
-						style={ {resize: this.resize} }
-						name={ this.name ? this.name : this.inputId}
-						cols={ this.cols }
-						rows={ this.rows }
-						maxlength={ this.maxlength }
-						wrap={ this.wrap }
-						disabled={ this.disabled }
-						readonly={ this.readOnly }
-						placeholder={ this.placeholder }
-						value={ this.value }
-						onInput={ (e) => this.handleOnInput(e) }
+						aria-value={this.value}
+						aria-disabled={this.disabled}
+						id={this.inputId}
+						style={{ resize: this.resize }}
+						name={this.name ? this.name : this.inputId}
+						cols={this.cols}
+						rows={this.rows}
+						maxlength={this.maxlength}
+						wrap={this.wrap}
+						disabled={this.disabled}
+						readonly={this.readOnly}
+						placeholder={this.placeholder}
+						value={this.value}
+						onInput={(e) => this.handleOnInput(e)}
 					/>
 				</div>
 
-				{ this.caption?.trim() && (
+				{this.caption?.trim() && (
 					<div class='wrapper__caption'>
-						{ this.caption.trim() }
-					</div> 
+						{this.caption.trim()}
+					</div>
 				)}
 			</Host>
 		);

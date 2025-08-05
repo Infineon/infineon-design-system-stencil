@@ -22,7 +22,7 @@
 | `resize`      | `resize`      |             | `"both" \| "horizontal" \| "none" \| "vertical"` | `'both'`    |
 | `rows`        | `rows`        |             | `number`                                         | `undefined` |
 | `value`       | `value`       |             | `string`                                         | `undefined` |
-| `wrap`        | `wrap`        |             | `"hard" \| "off" \| "soft"`                      | `'soft'`    |
+| `required`    | `required`    |             | `boolean`                                        | `false`     |
 
 
 ## Events

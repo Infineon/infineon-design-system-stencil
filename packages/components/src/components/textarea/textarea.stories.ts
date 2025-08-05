@@ -18,6 +18,7 @@ export default {
 		value: '',
 		wrap: 'soft',
 		fullWidth: false,
+		required: true,
 	},
 	argTypes: {
 		caption: {
@@ -82,6 +83,15 @@ export default {
 				category: 'ifx-textarea props',
 			}
 		},
+		required: {
+			description: 'Marks the text area as required for form submission. Displays an asterisk next to the label when set to **true**.',
+			table: {
+				category: 'ifx-textarea props',
+				defaultValue: {
+					summary: true
+				}
+			}
+		},
 		readOnly: {
 			name: 'read-only',
 			description: `Text cannot be edited when set to true.\n 
@@ -131,15 +141,15 @@ export default {
 			},
 		},
 		fullWidth: {
-      description: 'When set to **true**, expands the textarea to take the full width of its container.',
-      control: 'boolean',
-      table: {
-        category: 'ifx-textarea props',
-        defaultValue: {
-          summary: 'false'
-        }
-      }
-    },
+			description: 'When set to **true**, expands the textarea to take the full width of its container.',
+			control: 'boolean',
+			table: {
+				category: 'ifx-textarea props',
+				defaultValue: {
+					summary: 'false'
+				}
+			}
+		},
 		ifxInput: {
 			description: `A custom event *ifxInput* is emitted immediately after the value of *<ifx-textarea>* changes.`,
 			table: {
@@ -169,6 +179,7 @@ const Template = (args) => {
 	maxlength="${args.maxlength}"
 	name="${args.name}"
 	placeholder="${args.placeholder}"
+	required="${args.required}"
 	read-only="${args.readOnly}"
 	resize="${args.resize}"
 	rows="${args.rows}"
