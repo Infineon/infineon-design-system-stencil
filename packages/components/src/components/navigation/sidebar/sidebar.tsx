@@ -143,6 +143,8 @@ export class Sidebar {
   }
   
   componentDidLoad() {
+    const framework = detectFramework();
+    trackComponent('ifx-sidebar', framework)
     this.adjustTopBorder();
     this.setInitialActiveItem();
     if(!this.initialCollapse){
@@ -371,8 +373,6 @@ export class Sidebar {
   }
 
   componentWillLoad() {
-    const framework = detectFramework();
-    trackComponent('ifx-sidebar', framework)
     this.internalTermsofUse = this.termsOfUse.trim();
     this.internalPrivacyPolicy = this.privacyPolicy.trim();
     this.internalImprint = this.imprint.trim();

@@ -117,7 +117,9 @@ setIcon() {
   componentWillLoad() {
     this.internalIcon = this.icon;
     this.setIcon()
+  }
 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       if(!this.isInsideAgGrid(this.el) && !this.isInsideChoices(this.el)) { 
         const framework = detectFramework();

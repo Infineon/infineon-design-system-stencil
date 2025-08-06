@@ -12,7 +12,7 @@ export class Accordion {
   @Element() el: HTMLElement;
   @Prop() autoCollapse: boolean = false;
 
-  componentWillLoad() { 
+  componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-accordion', framework)
