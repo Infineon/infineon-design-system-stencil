@@ -61,10 +61,10 @@ export class SearchField {
     this.isFocused = true;
   }
 
-  componentWillLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-search-field', framework)
+      trackComponent('ifx-search-field', await framework)
     }
   }
   
