@@ -226,12 +226,7 @@ export class Table {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.host)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-table', framework)
-    }
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
-
     this.rowData = this.getRowData();
     this.colData = this.getColData();
     this.updateFilterOptions();
@@ -271,10 +266,12 @@ export class Table {
     }
   }
 
-
-
-  componentDidLoad() {
+  async componentDidLoad() {
     if (this.container) {
+      if(!isNestedInIfxComponent(this.host)) { 
+        const framework = detectFramework();
+        trackComponent('ifx-table', await framework)
+      }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
         this.gridApi.sizeColumnsToFit({

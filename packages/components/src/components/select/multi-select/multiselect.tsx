@@ -310,7 +310,11 @@ export class Multiselect {
     }
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-multiselect', await framework)
+    }
     setTimeout(() => {
       this.positionDropdown();
     }, 500);
@@ -334,10 +338,6 @@ export class Multiselect {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-multiselect', framework)
-    }
     this.loadInitialOptions();
   }
 
