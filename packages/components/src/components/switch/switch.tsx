@@ -43,10 +43,10 @@ export class Switch {
     }
   }
   
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-switch', framework)
+      trackComponent('ifx-switch', await framework)
     }
     this.toggleLabelGap();
   }

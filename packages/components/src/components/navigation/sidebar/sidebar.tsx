@@ -142,9 +142,9 @@ export class Sidebar {
 
   }
   
-  componentDidLoad() {
+  async componentDidLoad() {
     const framework = detectFramework();
-    trackComponent('ifx-sidebar', framework)
+    trackComponent('ifx-sidebar', await framework)
     this.adjustTopBorder();
     this.setInitialActiveItem();
     if(!this.initialCollapse){

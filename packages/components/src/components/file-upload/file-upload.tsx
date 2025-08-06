@@ -589,10 +589,10 @@ export class FileUpload {
     return this.disabled || (this.maxFiles !== undefined && this.files.length >= this.maxFiles);
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.hostElement)) { 
       const framework = detectFramework();
-      trackComponent('ifx-file-upload', framework)
+      trackComponent('ifx-file-upload', await framework)
     }
 
     if (this.hostElement.hasAttribute('show-demo-states')) {

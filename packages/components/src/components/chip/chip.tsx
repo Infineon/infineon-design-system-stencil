@@ -297,10 +297,10 @@ export class Chip {
     this.syncSelectedOptionsWithProp(this.value);
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.chip)) { 
       const framework = detectFramework();
-      trackComponent('ifx-chip', framework)
+      trackComponent('ifx-chip', await framework)
     }
   }
 

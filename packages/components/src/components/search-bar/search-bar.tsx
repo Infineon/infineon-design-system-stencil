@@ -44,10 +44,10 @@ export class SearchBar {
     this.ifxOpen.emit(this.internalState)
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-search-bar', framework)
+      trackComponent('ifx-search-bar', await framework)
     }
   }
 

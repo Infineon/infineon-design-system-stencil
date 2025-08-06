@@ -11,10 +11,10 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class Breadcrumb {
   @Element() el;
 
-  componentDidLoad() {
+  async componentDidLoad() {
      if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-breadcrumb', framework)
+      trackComponent('ifx-breadcrumb', await framework)
     }
     const element = this.el.shadowRoot.firstChild;
     this.validateBreadcrumbItemStructure(element);

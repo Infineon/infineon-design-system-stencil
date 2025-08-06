@@ -27,10 +27,10 @@ export class ProgressBar {
     this.internalValue = this.value;
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-progress-bar', framework)
+      trackComponent('ifx-progress-bar', await framework)
     }
   }
 

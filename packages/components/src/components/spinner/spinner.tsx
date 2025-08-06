@@ -15,10 +15,10 @@ export class Spinner {
   @Prop() variant: string;
   @Prop() inverted: boolean = false;
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-spinner', framework)
+      trackComponent('ifx-spinner', await framework)
     }
   }
 

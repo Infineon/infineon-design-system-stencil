@@ -124,10 +124,10 @@ export class IfxTabs {
     } else this.internalOrientation = this.orientation;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tabs', framework)
+      trackComponent('ifx-tabs', await framework)
     }
     this.updateBorderAndFocus();
     // Add keyboard event listeners for each tab header

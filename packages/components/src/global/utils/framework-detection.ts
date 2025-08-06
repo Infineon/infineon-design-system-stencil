@@ -1,6 +1,8 @@
+// framework-detection.ts
 let frameworkCache: string | null = null;
+import { waitForDOMReady } from './dom-ready';
 
-export const detectFramework = (): string => {
+export const detectFramework = async (): Promise<string> => {
   if (frameworkCache) return frameworkCache;
   
   // Check for non-browser environments
@@ -12,6 +14,7 @@ export const detectFramework = (): string => {
   const win = window as any;
   const doc = document;
 
+  // Detect environments that don't need DOM
   const isJest = typeof process !== 'undefined' && 
                  process.env && 
                  process.env.NODE_ENV === 'test';
@@ -35,70 +38,59 @@ export const detectFramework = (): string => {
     return frameworkCache;
   }
 
-  // 5. Framework detection logic with timing safeguards
   try {
-    // Universal timing-safe checks
-    const isDOMReady = document.readyState === 'complete';
-    setTimeout(() => {
-      console.log('document.readyState', document.readyState)
-    }, 5000);
-    
-    // React detection
+    // 1. First check sync-safe framework indicators
     if (win.React || win.ReactDOM) {
       frameworkCache = 'React';
       return frameworkCache;
     }
     
-    if(isDOMReady) { 
-      // Check for React 16+ roots
-      const reactRoots = doc.querySelector('[data-reactroot], [data-reactid]');
-      if (reactRoots) {
-        frameworkCache = 'React';
-        return frameworkCache;
-      }
-      
-      // Check for React 18+ root containers
-      const rootContainers = Array.from(doc.querySelectorAll('body > div'));
-      const hasReactRoot = rootContainers.some(container => {
-        const keys = Object.keys(container);
-        return keys.some(key => key.startsWith('__reactContainer'));
-      });
-      
-      if (hasReactRoot) {
-        frameworkCache = 'React';
-        return frameworkCache;
-      }
-    }
-    
-    // Angular detection
     if (win.ng || win.getAllAngularRootElements) {
       frameworkCache = 'Angular';
       return frameworkCache;
     }
     
-    if (isDOMReady && doc.querySelector('[ng-version], [ng-app]')) {
-      frameworkCache = 'Angular';
-      return frameworkCache;
-    }
-    
-    // Vue detection
     if (win.Vue || win.__VUE__) {
       frameworkCache = 'Vue';
       return frameworkCache;
     }
+
+    // 2. Wait for DOM to be ready for DOM-based detection
+    await waitForDOMReady();
+
+    // 3. Now perform DOM-based framework detection
+    // React DOM checks
+    const reactRoot = doc.querySelector('[data-reactroot], [data-reactid]');
+    if (reactRoot) {
+      frameworkCache = 'React';
+      return frameworkCache;
+    }
     
-    if (isDOMReady && doc.querySelector('[data-v-app]')) {
+    const rootContainers = Array.from(doc.querySelectorAll('body > div'));
+    const hasReactRoot = rootContainers.some(container => {
+      const keys = Object.keys(container);
+      return keys.some(key => key.startsWith('__reactContainer'));
+    });
+    
+    if (hasReactRoot) {
+      frameworkCache = 'React';
+      return frameworkCache;
+    }
+    
+    // Angular DOM checks
+    if (doc.querySelector('[ng-version], [ng-app]')) {
+      frameworkCache = 'Angular';
+      return frameworkCache;
+    }
+    
+    // Vue DOM check
+    if (doc.querySelector('[data-v-app]')) {
       frameworkCache = 'Vue';
       return frameworkCache;
     }
 
     // Default to Vanilla
-    if (isDOMReady) {
-      frameworkCache = 'Vanilla';
-      return frameworkCache;
-    }
-    
-    frameworkCache = 'pending';
+    frameworkCache = 'Vanilla';
     return frameworkCache;
   } catch (e) {
     frameworkCache = 'error';

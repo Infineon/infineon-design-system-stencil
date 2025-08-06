@@ -40,10 +40,10 @@ export class Pagination {
       this.handleEventEmission();
     }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-pagination', framework)
+      trackComponent('ifx-pagination', await framework)
     }
     this.initPagination();
   }

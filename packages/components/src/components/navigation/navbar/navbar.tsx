@@ -281,9 +281,9 @@ export class Navbar {
     return mediaQueryList;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     const framework = detectFramework();
-    trackComponent('ifx-navbar', framework)
+    trackComponent('ifx-navbar', await framework)
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
  

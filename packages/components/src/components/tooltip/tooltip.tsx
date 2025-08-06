@@ -32,10 +32,10 @@ export class Tooltip {
     }
   }
   
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tooltip', framework)
+      trackComponent('ifx-tooltip', await framework)
     }
     const slotElement = this.el.shadowRoot.querySelector('.tooltip__container').firstChild;
     

@@ -11,10 +11,10 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class Badge {
   @Element() el: HTMLElement;
 
-   componentDidLoad() { 
+   async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-badge', framework)
+      trackComponent('ifx-badge', await framework)
     }
   }
 

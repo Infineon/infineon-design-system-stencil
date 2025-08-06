@@ -15,10 +15,10 @@ export class Status {
   @Prop() border: boolean = false;
   @Prop() color: string = 'orange-500';
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-status', framework)
+      trackComponent('ifx-status', await framework)
     }
   }
 

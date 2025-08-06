@@ -136,11 +136,11 @@ export class Table {
     }
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if (this.container && !this.gridInitialized) {
       if(!isNestedInIfxComponent(this.host)) { 
         const framework = detectFramework();
-        trackComponent('ifx-basic-table', framework)
+        trackComponent('ifx-basic-table', await framework)
       }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {

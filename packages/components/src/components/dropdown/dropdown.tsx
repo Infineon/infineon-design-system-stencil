@@ -69,10 +69,10 @@ export class Dropdown {
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-dropdown', framework)
+      trackComponent('ifx-dropdown', await framework)
     }
   }
 

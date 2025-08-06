@@ -42,10 +42,10 @@ export class IfxModal {
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if(!isNestedInIfxComponent(this.hostElement)) { 
       const framework = detectFramework();
-      trackComponent('ifx-modal', framework)
+      trackComponent('ifx-modal', await framework)
     }
     // Query all focusable elements and store them in `focusableElements`.
     // Needed for the "focus trap" functionality.

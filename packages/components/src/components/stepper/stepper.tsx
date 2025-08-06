@@ -145,10 +145,10 @@ export class Stepper {
         this.setStepsBeforeActiveToComplete();
     }
     
-    componentDidLoad() {
+    async componentDidLoad() {
         if(!isNestedInIfxComponent(this.el)) { 
             const framework = detectFramework();
-            trackComponent('ifx-stepper', framework)
+            trackComponent('ifx-stepper', await framework)
         }
         this.syncIfxSteps();
     }

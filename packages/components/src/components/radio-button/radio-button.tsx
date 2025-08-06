@@ -59,10 +59,10 @@ export class RadioButton {
     this.hasSlot = !!this.el.querySelector('[slot]') || this.el.innerHTML.trim() !== '';
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-radio-button', framework)
+      trackComponent('ifx-radio-button', await framework)
     }
   }
 

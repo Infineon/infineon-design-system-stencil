@@ -119,11 +119,11 @@ setIcon() {
     this.setIcon()
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       if(!this.isInsideAgGrid(this.el) && !this.isInsideChoices(this.el)) { 
         const framework = detectFramework();
-        trackComponent('ifx-icon', framework)
+        trackComponent('ifx-icon', await framework)
       }
     }
   }

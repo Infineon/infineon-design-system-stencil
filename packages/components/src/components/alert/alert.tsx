@@ -49,9 +49,9 @@ export class Alert {
     }
   }
 
-  componentDidLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) {
-      const framework = detectFramework();
+      const framework = await detectFramework();
       trackComponent('ifx-alert', framework);
     }
   }
