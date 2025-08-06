@@ -3,6 +3,7 @@ declare global {
     btntConfig?: any;
     btntQueue?: any[];
     btnt?: (data: object) => void;
+    INFINEON_TRACKED_COMPONENTS?: Set<string>; 
   }
 }
 
@@ -56,6 +57,16 @@ export function trackComponent(componentName: string, environment: string) {
   if (skipEnvironments.includes(environment)) {
     return;
   }
+
+  if (!window.INFINEON_TRACKED_COMPONENTS) {
+    window.INFINEON_TRACKED_COMPONENTS = new Set();
+  }
+
+  if (window.INFINEON_TRACKED_COMPONENTS.has(componentName)) {
+    return; 
+  }
+
+  window.INFINEON_TRACKED_COMPONENTS.add(componentName);
 
   if (!window.btnt) initializeTracking();
 
