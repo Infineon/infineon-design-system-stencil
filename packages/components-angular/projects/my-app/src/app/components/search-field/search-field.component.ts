@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-search-field',
   standalone: true,
   imports: [
-    ComponentLibraryModule
+    ComponentLibraryModule,
+    CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './search-field.component.html',
   styleUrl: './search-field.component.scss'
 })

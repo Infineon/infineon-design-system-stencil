@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 import { IfxAccordionItem } from '@infineon/infineon-design-system-angular';
 
@@ -7,7 +8,9 @@ import { IfxAccordionItem } from '@infineon/infineon-design-system-angular';
   standalone: true,
   imports: [
     ComponentLibraryModule,
+    CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './accordion.component.html',
   styleUrl: './accordion.component.scss'
 })

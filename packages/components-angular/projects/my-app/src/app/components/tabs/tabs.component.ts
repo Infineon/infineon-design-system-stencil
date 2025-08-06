@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 import { IfxTabs } from '@infineon/infineon-design-system-angular';
 
@@ -6,8 +7,10 @@ import { IfxTabs } from '@infineon/infineon-design-system-angular';
   selector: 'app-tabs',
   standalone: true,
   imports: [
-    ComponentLibraryModule
+    ComponentLibraryModule,
+    CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './tabs.component.html',
   styleUrl: './tabs.component.scss'
 })

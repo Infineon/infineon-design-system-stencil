@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
 @Component({
   selector: 'app-checkbox-group',
   standalone: true,
   imports: [
-    ComponentLibraryModule
+    ComponentLibraryModule,
+    CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './checkbox-group.component.html',
   styleUrl: './checkbox-group.component.scss'
 })
