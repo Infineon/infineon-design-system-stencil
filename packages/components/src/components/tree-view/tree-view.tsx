@@ -43,10 +43,10 @@ export class TreeView {
     }
   };
 
-  componentWillLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-tree-view', framework)
+      trackComponent('ifx-tree-view', await framework)
     }
   }
 

@@ -281,7 +281,9 @@ export class Navbar {
     return mediaQueryList;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
+    const framework = detectFramework();
+    trackComponent('ifx-navbar', await framework)
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
  
@@ -320,8 +322,6 @@ export class Navbar {
 
  
   componentWillLoad() {
-    const framework = detectFramework();
-    trackComponent('ifx-navbar', framework)
     this.RemoveSpaceOnStorybookSnippet()
     const dropdownMenu = this.el.querySelector('ifx-navbar-menu')
     const leftMenuItems = this.el.querySelectorAll('[slot="left-item"]')

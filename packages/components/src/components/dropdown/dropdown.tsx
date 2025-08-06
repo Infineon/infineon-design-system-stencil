@@ -67,13 +67,14 @@ export class Dropdown {
     //maybe not needed
     this.updateSlotContent();
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-dropdown', framework)
-    }
   }
 
-
+  async componentDidLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-dropdown', await framework)
+    }
+  }
 
   @Watch('defaultOpen')
   watchHandlerIsOpen(newValue: boolean, oldValue: boolean) {
