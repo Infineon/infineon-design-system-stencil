@@ -52,7 +52,7 @@ function initializeTracking() {
 }
 
 export function trackComponent(componentName: string, environment: string) {
-  const skipEnvironments = ['jest', 'error'];
+  const skipEnvironments = ['jest', 'localhost', 'error'];
   if (skipEnvironments.includes(environment)) {
     return;
   }
