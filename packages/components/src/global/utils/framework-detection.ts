@@ -32,11 +32,11 @@ export const detectFramework = async (): Promise<string> => {
     return frameworkCache;
   }
 
-  const isLocalhost = ['localhost', '127.0.0.1'].includes(win.location.hostname);
-  if (isLocalhost) {
-    frameworkCache = 'localhost';
-    return frameworkCache;
-  }
+  // const isLocalhost = ['localhost', '127.0.0.1'].includes(win.location.hostname);
+  // if (isLocalhost) {
+  //   frameworkCache = 'localhost';
+  //   return frameworkCache;
+  // }
 
   try {
     // 1. First check sync-safe framework indicators
