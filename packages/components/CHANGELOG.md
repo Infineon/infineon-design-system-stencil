@@ -1,3 +1,15 @@
+# v37.4.0 (Wed Aug 06 2025)
+
+#### 🚀 Enhancement
+
+- Adds two new icons [#1968](https://github.com/Infineon/infineon-design-system-stencil/pull/1968) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.3.0 (Mon Jul 28 2025)
 
 #### 🚀 Enhancement
