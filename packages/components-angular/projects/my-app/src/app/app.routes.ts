@@ -12,6 +12,7 @@ import { ChipComponent }            from './components/chip/chip.component';
 import { ContentSwitcherComponent } from './components/content-switcher/content-switcher.component';
 import { DatePickerComponent }      from './components/date-picker/date-picker.component';
 import { DropdownComponent }        from './components/dropdown/dropdown.component';
+import { FileUpload }               from './components/file-upload/file-upload';
 import { IconComponent }            from './components/icon/icon.component';
 import { IconButtonComponent }      from './components/icon-button/icon-button.component';
 import { LinkComponent }            from './components/link/link.component';
@@ -40,6 +41,7 @@ import { TagComponent }             from './components/tag/tag.component';
 import { TextFieldComponent }       from './components/text-field/text-field.component';
 import { TextareaComponent }        from './components/textarea/textarea.component';
 import { TooltipComponent }         from './components/tooltip/tooltip.component';
+import { TreeView }                 from './components/tree-view/tree-view';
 
 export const routes: Route[] = [
   { path: 'accordion',       component: AccordionComponent },
@@ -54,6 +56,7 @@ export const routes: Route[] = [
   { path: 'contentswitcher',component: ContentSwitcherComponent },
   { path: 'datepicker',     component: DatePickerComponent },
   { path: 'dropdown',        component: DropdownComponent },
+  { path: 'fileupload',       component: FileUpload},
   { path: 'icon',            component: IconComponent },
   { path: 'iconbutton',     component: IconButtonComponent },
   { path: 'link',            component: LinkComponent },
@@ -82,6 +85,7 @@ export const routes: Route[] = [
   { path: 'textfield',      component: TextFieldComponent },
   { path: 'textarea',        component: TextareaComponent },
   { path: 'tooltip',         component: TooltipComponent },
+  { path: 'treeview',     component: TreeView },
 
   { path: '',   redirectTo: 'accordion', pathMatch: 'full' },
   { path: '**', redirectTo: 'accordion' }
