@@ -439,8 +439,11 @@ export class SearchField {
     ];
   }
 
-  async componentWillLoad() {
+  componentWillLoad() {
     this.loadSearchHistory();
+  }
+
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework()
       trackComponent('ifx-search-field', await framework)
