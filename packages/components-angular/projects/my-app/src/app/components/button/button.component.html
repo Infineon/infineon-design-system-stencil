@@ -1,0 +1,28 @@
+<h2>Button</h2>
+
+<ifx-button 
+  type="button" 
+  aria-label="Button" 
+  [disabled]="buttonDisabled" 
+  [variant]="buttonVariant" 
+  [size]="buttonSize" 
+  target="_blank" 
+  [theme]="buttonTheme"  
+  [fullWidth]="buttonFullWidth">
+  Button 
+</ifx-button>
+<br>
+<br>
+
+<ifx-button variant="secondary" (click)="toggleButtonVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleButtonTheme()">Toggle Theme</ifx-button>
+<ifx-button variant="secondary" (click)="toggleButtonSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleButtonFullWidth()">Toggle Full Width</ifx-button>
+<ifx-button variant="secondary" (click)="toggleButtonDisabled()">Toggle Disabled</ifx-button>
+<br>
+<br>
+<span>Variant: {{ buttonVariant }} </span><br>
+<span>Theme: {{ buttonTheme }} </span><br>
+<span>Size: {{ buttonSize }}</span><br>
+<span>Full Width: {{ buttonFullWidth }}</span><br>
+<span>Disabled: {{ buttonDisabled }}</span><br>
