@@ -439,11 +439,11 @@ export class SearchField {
     ];
   }
 
-  componentWillLoad() {
+  async componentWillLoad() {
     this.loadSearchHistory();
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework()
-      trackComponent('ifx-search-field', framework)
+      trackComponent('ifx-search-field', await framework)
     }
   }
 
@@ -456,9 +456,6 @@ export class SearchField {
   render() {
     return (
       <div
-        aria-label={this.ariaLabel}
-        aria-labelledby={this.ariaLabelledBy}
-        aria-describedby={this.ariaDescribedBy}
         aria-disabled={this.disabled}
         aria-value={this.value}
         class='search-field'
