@@ -59,10 +59,6 @@ export class IfxTabs {
   }
 
   componentWillLoad() {
-    if(!isNestedInIfxComponent(this.el)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-tabs', framework)
-    }
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
     if (this.internalActiveTabIndex !== this.activeTabIndex) {
       this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
@@ -128,7 +124,11 @@ export class IfxTabs {
     } else this.internalOrientation = this.orientation;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-tabs', await framework)
+    }
     this.updateBorderAndFocus();
     // Add keyboard event listeners for each tab header
     this.tabHeaderRefs.forEach((tab, index) => {
