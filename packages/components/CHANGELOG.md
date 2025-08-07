@@ -1,3 +1,40 @@
+# v37.6.0 (Thu Aug 07 2025)
+
+#### 🚀 Enhancement
+
+- Search-field: implement search suggestions and history [#1954](https://github.com/Infineon/infineon-design-system-stencil/pull/1954) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.5.0 (Thu Aug 07 2025)
+
+#### 🚀 Enhancement
+
+- Updates framework detection code to skip non-browser environment, add safeguards to make sure doc is queried only when DOM is loaded, and prevents duplicate components from registering [#1962](https://github.com/Infineon/infineon-design-system-stencil/pull/1962) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.4.0 (Wed Aug 06 2025)
+
+#### 🚀 Enhancement
+
+- Adds two new icons [#1968](https://github.com/Infineon/infineon-design-system-stencil/pull/1968) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.3.0 (Mon Jul 28 2025)
 
 #### 🚀 Enhancement
