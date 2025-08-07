@@ -11,6 +11,25 @@ import * as SearchFieldStories from './search-field.stories';
 
 <Controls />
 
+## Search Suggestions & History
+
+The search-field component offers the possibility to custom add search suggestions and history. 
+The suggestions property is configured to accept an array of objects, each representing a search suggestion.
+
+Below is an example of usage in vanilla JavaScript:
+
+ ```js
+  window.addEventListener('load', () => { 
+    const myfield = document.getElementById('my-search-field');
+    myfield.suggestions = [{ id: 's1', text: 'Berlin is the capital of Germany', type: 'suggestion'}, { id: 's2', text: 'Paris is the capital of France', type: 'history'}]
+  })
+
+  <ifx-search-field id="my-search-field" show-delete-icon="false" show-suggestions="true" enable-history="true" max-suggestions="10" max-history-items="5" history-key="ifx-search-history" history-header-text="Recent Searches"></ifx-search-field>
+```
+
+Note: Because the suggestions prop is defined as type JS array, it cannot accept string or JSON as proper values.
+
+
 ## Events
 See the examples below for general usage of events in different JS frameworks.
 For more information, please refer to our example applications.
