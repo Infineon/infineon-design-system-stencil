@@ -14,5 +14,13 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
+  cardDirection = "vertical";
+  cardDirections = ["vertical", "horizontal"];
+  cardDirectionIndex = 0;
+
+  toggleCardDirection() {
+    this.cardDirectionIndex = (this.cardDirectionIndex + 1) % this.cardDirections.length;
+    this.cardDirection = this.cardDirections[this.cardDirectionIndex];
+  }
 
 }
