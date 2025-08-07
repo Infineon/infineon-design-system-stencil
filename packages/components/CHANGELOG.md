@@ -1,3 +1,15 @@
+# v37.5.0 (Thu Aug 07 2025)
+
+#### 🚀 Enhancement
+
+- Updates framework detection code to skip non-browser environment, add safeguards to make sure doc is queried only when DOM is loaded, and prevents duplicate components from registering [#1962](https://github.com/Infineon/infineon-design-system-stencil/pull/1962) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.4.0 (Wed Aug 06 2025)
 
 #### 🚀 Enhancement
