@@ -48,8 +48,8 @@ export class Table {
   ]); 
 
   @Listen('ifxItemsPerPageChange')
-  handleResultsPerPageChange(e) { 
-    this.paginationPageSize = e.detail;
+  handleResultsPerPageChange(e: CustomEvent<string>) { 
+    this.paginationPageSize = Number(e.detail);
   }
 
   @Listen('ifxChange')

@@ -41,17 +41,28 @@ export class Pagination {
       this.handleEventEmission();
     }
 
-  async componentDidLoad() {
-    const itemsPerPageSelect = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
-    itemsPerPageSelect.addEventListener('ifxSelect', (e) => {
+    emitItemsPerPage(e) { 
       this.ifxItemsPerPageChange.emit((e as any).detail.label)
-    })
-    
+    }
+
+  async componentDidLoad() {
+    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+    if(select) { 
+      select.addEventListener('ifxSelect', (e) => this.emitItemsPerPage(e))
+    }
+
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-pagination', await framework)
     }
     this.initPagination();
+  }
+
+  disconnectedCallback() {
+    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+    if (select) {
+      select.removeEventListener('ifxSelect', (e) => this.emitItemsPerPage(e));
+    }
   }
 
   updateVisiblePages() {
