@@ -11,6 +11,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class Pagination {
   @Element() el: HTMLElement;
   @Event() ifxPageChange: EventEmitter;
+  @Event() ifxItemsPerPageChange: EventEmitter;
   @Prop() currentPage: number = 1;
   @State() internalPage: number = 1;
   @State() internalItemsPerPage: number = 10;
@@ -19,7 +20,7 @@ export class Pagination {
   @Prop() itemsPerPage: any[] | string;
   @State() filteredItemsPerPage: any[] = [];
   @State() visiblePages: (number | string)[] = [];
-
+ 
   private CLASS_DISABLED = "disabled";
   private CLASS_ACTIVE = "active";
   private prevInternalPage: number;
@@ -41,6 +42,11 @@ export class Pagination {
     }
 
   async componentDidLoad() {
+    const itemsPerPageSelect = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+    itemsPerPageSelect.addEventListener('ifxSelect', (e) => {
+      this.ifxItemsPerPageChange.emit((e as any).detail.label)
+    })
+    
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-pagination', await framework)
@@ -163,6 +169,7 @@ export class Pagination {
           <div class="items__per-page-label">Results per Page</div>
           <div class="items__per-page-field">
             <ifx-select
+              id='itemsPerPageSelect'
               placeholder='false'
               show-search='false'
               value={undefined}

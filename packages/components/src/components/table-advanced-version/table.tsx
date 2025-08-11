@@ -30,7 +30,7 @@ export class Table {
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
-  @Prop() paginationPageSize: number = 10;
+  @State() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'sidebar'; // topbar / none
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
@@ -46,6 +46,11 @@ export class Table {
     { value: 20, label: '20', selected: false },
     { value: 30, label: '30', selected: false }
   ]); 
+
+  @Listen('ifxItemsPerPageChange')
+  handleResultsPerPageChange(e) { 
+    this.paginationPageSize = e.detail;
+  }
 
   @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
