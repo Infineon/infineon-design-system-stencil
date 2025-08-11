@@ -30,7 +30,7 @@ export class Table {
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
-  @Prop() paginationPageSize: number = 10;
+  @State() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'sidebar'; // topbar / none
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
@@ -40,6 +40,17 @@ export class Table {
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
+
+  private itemsPerPage = JSON.stringify([
+    { value: 10, label: '10', selected: true },
+    { value: 20, label: '20', selected: false },
+    { value: 30, label: '30', selected: false }
+  ]); 
+
+  @Listen('ifxItemsPerPageChange')
+  handleResultsPerPageChange(e) { 
+    this.paginationPageSize = e.detail;
+  }
 
   @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
@@ -534,7 +545,7 @@ export class Table {
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination> : null}
+              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page={this.itemsPerPage}></ifx-pagination> : null}
             </div>
           </div>
         </div>
