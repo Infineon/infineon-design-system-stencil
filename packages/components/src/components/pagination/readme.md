@@ -16,9 +16,10 @@
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `ifxPageChange` |             | `CustomEvent<any>` |
+| Event                   | Description | Type               |
+| ----------------------- | ----------- | ------------------ |
+| `ifxItemsPerPageChange` |             | `CustomEvent<any>` |
+| `ifxPageChange`         |             | `CustomEvent<any>` |
 
 
 ## Dependencies
