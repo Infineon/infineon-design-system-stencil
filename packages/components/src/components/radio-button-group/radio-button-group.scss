@@ -25,7 +25,9 @@
 }
 
 .group-label {
-    font: tokens.$ifxBodyBody05;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
+    font-weight: tokens.$ifxFontWeightRegular;
     margin-bottom: tokens.$ifxSpace100;
     text-align: left;
     text-underline-position: from-font;
