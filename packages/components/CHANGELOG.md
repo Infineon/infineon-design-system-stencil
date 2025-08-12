@@ -1,3 +1,15 @@
+# v37.7.0 (Tue Aug 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes overview handling on Edge browser [#1966](https://github.com/Infineon/infineon-design-system-stencil/pull/1966) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.6.0 (Thu Aug 07 2025)
 
 #### 🚀 Enhancement
