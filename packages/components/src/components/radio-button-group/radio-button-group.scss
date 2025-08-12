@@ -53,7 +53,10 @@
 }
 
 .caption-text {
-    font: tokens.$ifxBodyBody05;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
+    color: tokens.$ifxColorBaseBlack;
+    font-family: tokens.$ifxFontFamilyBody;
     flex: 1;
     text-align: left;
     text-underline-position: from-font;
