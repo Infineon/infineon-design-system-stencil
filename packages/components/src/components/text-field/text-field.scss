@@ -53,9 +53,10 @@
 
     & label {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
+      font-family: tokens.$ifxFontFamilyBody;
       display: flex;
       align-items: center;
       color: tokens.$ifxColorBaseBlack;
@@ -75,7 +76,7 @@
         margin-left: 4px;
         
         &.error {
-          color: #CD002F;
+          color: tokens.$ifxColorRed500;
         }
       }
     }
@@ -143,7 +144,7 @@
       }
 
       &.error {
-        border: 1px solid #CD002F;
+        border: 1px solid tokens.$ifxColorRed500;
 
         &:focus {
           outline: none;
@@ -151,7 +152,7 @@
       }
 
       &.success {
-        border: 1px solid #4CA460;
+        border: 1px solid tokens.$ifxColorGreen500;
 
         &:focus {
           outline: none;
@@ -170,10 +171,10 @@
 
       &::placeholder {
         font-style: normal;
-        font-weight: 400;
+        font-weight: tokens.$ifxFontWeightRegular;
         font-size: tokens.$ifxFontSizeM;
         line-height: tokens.$ifxLineHeightM;
-        color: #8D8786;
+        color: tokens.$ifxColorEngineering400;
         flex: none;
         order: 1;
         flex-grow: 1;
@@ -194,7 +195,7 @@
 
     & .textInput__bottom-wrapper-caption {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeXs;
       line-height: tokens.$ifxLineHeightXs;
       color: tokens.$ifxColorBaseBlack;
@@ -205,7 +206,7 @@
       flex-grow: 0;
 
       &.error {
-        color: #CD002F;
+        color: tokens.$ifxColorRed500;
 
       }
 

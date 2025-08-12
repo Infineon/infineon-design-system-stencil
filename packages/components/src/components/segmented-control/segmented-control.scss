@@ -12,6 +12,7 @@
     font-size: tokens.$ifxFontSizeM;
     line-height: tokens.$ifxLineHeightM;
     font-weight: tokens.$ifxFontWeightRegular;
+    font-family: tokens.$ifxFontFamilyBody;
 
     &:empty {
         display: none;
@@ -33,7 +34,7 @@
     align-items: center;
     gap: tokens.$ifxSpace100;
     font-style: normal;
-    font-weight: 400;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
     color: tokens.$ifxColorBaseBlack;
