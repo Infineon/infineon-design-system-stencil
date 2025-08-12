@@ -32,6 +32,9 @@
     display: flex;
     align-items: center;
     gap: tokens.$ifxSpace100;
-    
-    font: tokens.$ifxBodyBody05;
+    font-style: normal;
+    font-weight: 400;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
+    color: tokens.$ifxColorBaseBlack;
 }
