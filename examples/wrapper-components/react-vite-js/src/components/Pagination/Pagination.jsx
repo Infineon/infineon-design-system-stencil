@@ -6,6 +6,12 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(10)
 
+  const itemsPerPage = JSON.stringify([
+    { value: 10, label: '10', selected: true },
+    { value: 20, label: '20', selected: false },
+    { value: 30, label: '30', selected: false }
+  ]);
+
   const rows = data.map((item) => ({ firstName: item.first_name, lastName: item.last_name, email: item.email, phone: item.phone }));
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -43,7 +49,7 @@ export default function App() {
         currentPage={1}
         total={36}
         onIfxPageChange={handlePageChange}
-        items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'
+        items-per-page={itemsPerPage}
       />
     </div>
   );
