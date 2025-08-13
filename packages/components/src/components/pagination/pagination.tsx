@@ -124,7 +124,6 @@ export class Pagination {
   componentWillLoad() {
     this.filterOptionsArray();
   
-    // Find selected option
     const selectedOption = this.filteredItemsPerPage.find(option => option.selected);
     if (selectedOption) {
       this.internalItemsPerPage = Number(selectedOption.value);
@@ -135,11 +134,6 @@ export class Pagination {
     this.calculateNumberOfPages();
     this.internalPage = Math.max(1, Math.min(this.currentPage, this.numberOfPages.length));
     this.updateVisiblePages();
-
-
-    //this.calculateNumberOfPages();
-    //this.filterOptionsArray();
-    //this.updateVisiblePages();
   }
 
   componentWillUpdate() { 

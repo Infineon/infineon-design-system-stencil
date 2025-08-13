@@ -32,7 +32,7 @@ export class Table {
   @Prop() pagination: boolean = true;
   @Prop() paginationItemsPerPage: string;
   @State() paginationPageSize: number = 10;
-  @Prop() filterOrientation: string = 'sidebar'; // topbar / none
+  @Prop() filterOrientation: string = 'sidebar';
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
@@ -51,7 +51,7 @@ export class Table {
   @Listen('ifxItemsPerPageChange')
   handleResultsPerPageChange(e: CustomEvent<string>) { 
       this.paginationPageSize = Number(e.detail);
-      this.currentPage = 1; // Reset to first page
+      this.currentPage = 1;
       this.updateTableView();
   }
 
@@ -211,41 +211,33 @@ export class Table {
     });
   }
 
-
-
   updateTableView() {
-    // Calculate the slice of data to display based on pagination
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
-    // Update the row data in the table
     this.rowData = visibleRowData;
     this.gridApi.setGridOption('rowData', this.rowData);
 
-    // Update matching results count
     this.matchingResultsCount = this.allRowData.length;
   }
-
 
   clearAllFilters() {
     this.currentFilters = {};
     this.allRowData = [...this.originalRowData];
   }
 
-
   @Method()
   async onBtShowLoading() {
     this.gridApi.showLoadingOverlay();
   }
 
-  componentWillLoad() {
+  setPaginationItemsPerPage() { 
     const newItemsPerPage = this.paginationItemsPerPage;
     if (newItemsPerPage) {
       this.internalItemsPerPage = this.paginationItemsPerPage;
       const itemsPerPageArray = JSON.parse(this.internalItemsPerPage);
       
-      // Find selected option or default to first
       const selectedOption = itemsPerPageArray.find(option => option.selected);
       if (selectedOption) {
         this.paginationPageSize = Number(selectedOption.value);
@@ -253,6 +245,10 @@ export class Table {
         this.paginationPageSize = Number(itemsPerPageArray[0].value);
       }
     }
+  }
+
+  componentWillLoad() {
+    this.setPaginationItemsPerPage();
 
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.rowData = this.getRowData();
