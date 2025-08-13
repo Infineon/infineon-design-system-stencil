@@ -42,11 +42,14 @@ export class RadioButtonGroup {
       }
 
     componentWillLoad() {
+        this.initializeState();
+    }
+
+    async componentDidLoad() { 
         if(!isNestedInIfxComponent(this.el)) { 
             const framework = detectFramework();
-            trackComponent('ifx-radio-button-group', framework)
+            trackComponent('ifx-radio-button-group', await framework)
         }
-        this.initializeState();
     }
 
     handleSlotChange = () => {
