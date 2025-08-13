@@ -78,7 +78,6 @@ export default {
   args: {
     tableHeight: 'auto',
     pagination: false,
-    paginationPageSize: 10,
     rowHeight: 40,
     showLoading: false,
     variant: 'default'
@@ -107,17 +106,10 @@ export default {
         },
       },
     },
-    paginationPageSize: {
-      description: "Results per page: minimum 10 - maximum 30.",
-      control: { type: 'number', min: 10, max: 30, step: 10 },
+      paginationItemsPerPage: {
+      description: 'Sets the items per page of the table pagination',
       table: {
         category: 'ifx-table props',
-        defaultValue: {
-          summary: 10
-        },
-        type: {
-          summary: 'Number',
-        },
       },
     },
     showLoading: {
@@ -196,8 +188,8 @@ const DefaultTemplate = (args) => {
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}"
-    pagination-page-size="${args.paginationPageSize}"
+    pagination="${args.pagination}",
+    paginationItemsPerPage="${args.paginationItemsPerPage}"
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
 </ifx-table>`;
@@ -262,7 +254,6 @@ const DefaultTemplate = (args) => {
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
-    pagination-page-size="${args.paginationPageSize}"
     filter-orientation="${args.filterOrientation}">
     ${filterTypeGroupComponent}
 </ifx-table>`;
@@ -276,7 +267,7 @@ const DefaultTemplate = (args) => {
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
-  paginationPageSize: 10,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
@@ -292,7 +283,6 @@ const CustomCellTemplate = (args) => {
       rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
-      pagination-page-size="${args.paginationPageSize}"
       filter-orientation="${args.filterOrientation}">
     </ifx-table>`;
   return table;
@@ -307,7 +297,6 @@ IncludesButtons.args = {
   rowData: rowDataWithButtonCol,
   filterOrientation: 'none',
   pagination: false,
-  paginationPageSize: 10,
 };
 
 export const SidebarFilter = DefaultTemplate.bind({});
