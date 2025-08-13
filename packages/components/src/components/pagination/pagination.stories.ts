@@ -57,6 +57,18 @@ export default {
         },
       },
     },
+      ifxItemsPerPageChange: {
+      action: 'ifxItemsPerPageChange',
+      description: 'Custom event emitted when the items per page is changed.',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onifxItemsPerPageChange={handlePageChange}\nVue:@ifxItemsPerPageChange="handlePageChange"\nAngular:(ifxItemsPerPageChange)="handlePageChange()"\nVanillaJs:.addEventListener("ifxItemsPerPageChange", (event) => {//handle page change});',
+        },
+      },
+    },
   },
 };
 

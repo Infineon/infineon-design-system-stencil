@@ -1,4 +1,4 @@
-import { Component, h, Element, Event, EventEmitter, Prop, State, Listen } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Prop, State, Listen, Watch } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
@@ -11,6 +11,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
 export class Pagination {
   @Element() el: HTMLElement;
   @Event() ifxPageChange: EventEmitter;
+  @Event() ifxItemsPerPageChange: EventEmitter;
   @Prop() currentPage: number = 1;
   @State() internalPage: number = 1;
   @State() internalItemsPerPage: number = 10;
@@ -19,10 +20,23 @@ export class Pagination {
   @Prop() itemsPerPage: any[] | string;
   @State() filteredItemsPerPage: any[] = [];
   @State() visiblePages: (number | string)[] = [];
-
+ 
   private CLASS_DISABLED = "disabled";
   private CLASS_ACTIVE = "active";
   private prevInternalPage: number;
+
+  @Watch('total')
+  watchTotalHandler() {
+    this.calculateNumberOfPages();
+    this.updateVisiblePages();
+  }
+
+  @Watch('currentPage')
+  currentPageWatcher(newVal: number) {
+    this.internalPage = Math.max(1, Math.min(newVal, this.numberOfPages.length));
+    this.calculateNumberOfPages();
+    this.updateVisiblePages();
+  }
 
     @Listen('ifxSelect')
     setItemsPerPage(e: CustomEvent) {
@@ -40,12 +54,28 @@ export class Pagination {
       this.handleEventEmission();
     }
 
+    emitItemsPerPage(e) { 
+      this.ifxItemsPerPageChange.emit((e as any).detail.label)
+    }
+
   async componentDidLoad() {
+    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+    if(select) { 
+      select.addEventListener('ifxSelect', (e) => this.emitItemsPerPage(e))
+    }
+
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
       trackComponent('ifx-pagination', await framework)
     }
     this.initPagination();
+  }
+
+  disconnectedCallback() {
+    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+    if (select) {
+      select.removeEventListener('ifxSelect', (e) => this.emitItemsPerPage(e));
+    }
   }
 
   updateVisiblePages() {
@@ -92,8 +122,17 @@ export class Pagination {
   }
 
   componentWillLoad() {
-    this.calculateNumberOfPages();
     this.filterOptionsArray();
+  
+    const selectedOption = this.filteredItemsPerPage.find(option => option.selected);
+    if (selectedOption) {
+      this.internalItemsPerPage = Number(selectedOption.value);
+    } else if (this.filteredItemsPerPage.length > 0) {
+      this.internalItemsPerPage = Number(this.filteredItemsPerPage[0].value);
+    }
+
+    this.calculateNumberOfPages();
+    this.internalPage = Math.max(1, Math.min(this.currentPage, this.numberOfPages.length));
     this.updateVisiblePages();
   }
 
@@ -163,6 +202,7 @@ export class Pagination {
           <div class="items__per-page-label">Results per Page</div>
           <div class="items__per-page-field">
             <ifx-select
+              id='itemsPerPageSelect'
               placeholder='false'
               show-search='false'
               value={undefined}
