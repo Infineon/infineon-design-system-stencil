@@ -7,17 +7,18 @@
 
 ## Properties
 
-| Property                | Attribute            | Description | Type                                                       | Default     |
-| ----------------------- | -------------------- | ----------- | ---------------------------------------------------------- | ----------- |
-| `buttonRendererOptions` | --                   |             | `{ onButtonClick?: (params: any, event: Event) => void; }` | `undefined` |
-| `cols`                  | `cols`               |             | `any`                                                      | `undefined` |
-| `filterOrientation`     | `filter-orientation` |             | `string`                                                   | `'sidebar'` |
-| `pagination`            | `pagination`         |             | `boolean`                                                  | `true`      |
-| `rowHeight`             | `row-height`         |             | `string`                                                   | `'default'` |
-| `rows`                  | `rows`               |             | `any`                                                      | `undefined` |
-| `showLoading`           | `show-loading`       |             | `boolean`                                                  | `false`     |
-| `tableHeight`           | `table-height`       |             | `string`                                                   | `'auto'`    |
-| `variant`               | `variant`            |             | `string`                                                   | `'default'` |
+| Property                 | Attribute                   | Description | Type                                                       | Default     |
+| ------------------------ | --------------------------- | ----------- | ---------------------------------------------------------- | ----------- |
+| `buttonRendererOptions`  | --                          |             | `{ onButtonClick?: (params: any, event: Event) => void; }` | `undefined` |
+| `cols`                   | `cols`                      |             | `any`                                                      | `undefined` |
+| `filterOrientation`      | `filter-orientation`        |             | `string`                                                   | `'sidebar'` |
+| `pagination`             | `pagination`                |             | `boolean`                                                  | `true`      |
+| `paginationItemsPerPage` | `pagination-items-per-page` |             | `string`                                                   | `undefined` |
+| `rowHeight`              | `row-height`                |             | `string`                                                   | `'default'` |
+| `rows`                   | `rows`                      |             | `any`                                                      | `undefined` |
+| `showLoading`            | `show-loading`              |             | `boolean`                                                  | `false`     |
+| `tableHeight`            | `table-height`              |             | `string`                                                   | `'auto'`    |
+| `variant`                | `variant`                   |             | `string`                                                   | `'default'` |
 
 
 ## Methods
