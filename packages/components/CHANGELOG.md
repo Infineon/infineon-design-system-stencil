@@ -1,3 +1,15 @@
+# v37.8.0 (Wed Aug 13 2025)
+
+#### 🚀 Enhancement
+
+- Advanced Table: implements paginationItemsPerPage prop to the advanced table [#1972](https://github.com/Infineon/infineon-design-system-stencil/pull/1972) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.7.0 (Tue Aug 12 2025)
 
 #### 🚀 Enhancement
