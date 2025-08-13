@@ -106,6 +106,12 @@ export default {
         },
       },
     },
+      paginationItemsPerPage: {
+      description: 'Sets the items per page of the table pagination',
+      table: {
+        category: 'ifx-table props',
+      },
+    },
     showLoading: {
       description: 'Show loading spinner.',
       options: [true, false],
@@ -182,7 +188,8 @@ const DefaultTemplate = (args) => {
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}"
+    pagination="${args.pagination}",
+    paginationItemsPerPage="${args.paginationItemsPerPage}"
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
 </ifx-table>`;
@@ -260,6 +267,7 @@ const DefaultTemplate = (args) => {
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
