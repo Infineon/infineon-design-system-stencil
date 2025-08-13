@@ -189,7 +189,7 @@ const DefaultTemplate = (args) => {
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
     pagination="${args.pagination}",
-    paginationItemsPerPage="${args.paginationItemsPerPage}"
+    pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
 </ifx-table>`;
