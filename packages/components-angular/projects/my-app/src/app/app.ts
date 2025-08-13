@@ -1,13 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { IfxAccordionItem, IfxTabs } from '@infineon/infineon-design-system-angular';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppComponent {
-  title = 'my-app';
+export class App {
+
+   title = 'my-app';
 
   progressValue = 10;
   activeTabIndex = 0;
@@ -165,7 +169,4 @@ export class AppComponent {
   decreaseNumber() {
     this.numberIndicator = this.numberIndicator - 1;
   }
-
-
-
 }

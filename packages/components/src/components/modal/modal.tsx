@@ -1,8 +1,10 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
 import { animationTo, KEYFRAMES } from '../../global/utils/animation';
-
-
+ 
 type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 
 export interface BeforeCloseEventDetail {
@@ -43,8 +45,22 @@ export class IfxModal {
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
+  private resizeTimeout: ReturnType<typeof setTimeout>;
 
-  componentDidLoad() {
+  handleResize = () => {
+  clearTimeout(this.resizeTimeout);
+  this.resizeTimeout = setTimeout(() => {
+    if (this.showModal) {
+      this.handleComponentOverflow();
+    }
+  }, 100);
+};
+
+  async componentDidLoad() {
+    if(!isNestedInIfxComponent(this.hostElement)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-modal', await framework)
+    }
     // Query all focusable elements and store them in `focusableElements`.
     // Needed for the "focus trap" functionality.
     this.focusableElements = queryShadowRoot(
@@ -52,17 +68,22 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+    window.addEventListener('resize', this.handleResize);
   }
 
-  componentWillRender() {
-    if (this.showModal) {
+  disconnectedCallback() {
+  window.removeEventListener('resize', this.handleResize);
+}
+
+  componentWillRender() { 
+    if(this.showModal) { 
       this.handleComponentOverflow();
     }
   }
 
-  handleComponentOverflow() {
+  async handleComponentOverflow() { 
     const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
-    if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
+    if (this.showModal && await this.isModalContentContainerHeightReachedViewport()) {
       modalContentContainer.classList.add('no-overflow')
     } else if (modalContentContainer?.classList.contains('no-overflow')) {
       modalContentContainer?.classList.remove('no-overflow')
@@ -202,17 +223,18 @@ export class IfxModal {
     }
   }
 
-  isModalContentContainerHeightReachedViewport() {
-    //Adding timeout for proper height detection on Edge browser
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
-        const modalContentHeight = modalContent.offsetHeight;
-        const viewportHeight = window.innerHeight;
-        resolve(modalContentHeight >= viewportHeight * 0.9);
-      }, 100);
-    });
-  }
+ isModalContentContainerHeightReachedViewport() {
+  //Adding timeout for proper height detection on Edge browser
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
+      const modalContentHeight = modalContent.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      const extraMarginForEdgeBrowser = 3;
+      resolve(modalContentHeight + extraMarginForEdgeBrowser >= viewportHeight * 0.9);
+    }, 100);
+  });
+}
 
 
   render() {

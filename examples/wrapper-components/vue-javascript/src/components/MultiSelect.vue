@@ -1,9 +1,126 @@
 <template>
   <div>
     <h2>MultiSelect</h2>
-    <ifx-multiselect batchSize="10" :options="JSON.stringify(options)" @ifxSelect="handleMultiSelectChange"
-      size="medium (40px)" :error="error" :erroMessage="errorMessage" error-message="Some error" label=""
-      :disabled="disabled"></ifx-multiselect>
+      <ifx-multiselect
+      name='multiselect'
+      @ifxSelect="handleMultiSelectChange"
+      :disabled="disabled"
+      :error="error"
+      :errorMessage="errorMessage"
+      label='Generic Multi-Level Selection'
+      placeholder='Select options...'
+      show-search='true'
+      show-select-all='true'
+      show-expand-collapse='true'
+      show-clear-button='true'
+      no-results-message='No results found.'
+      show-no-results-message='true'
+      search-placeholder='Search'
+      select-all-label='Select all'
+      expand-label='Expand'
+      collapse-label='Collapse'
+      aria-multi-select-label='Multi-select dropdown'
+      aria-multi-select-labelled-by=''
+      aria-multi-select-described-by=''
+      aria-search-label='Search options'
+      aria-clear-label='Clear all selections'
+      aria-toggle-label='Toggle dropdown'
+      aria-select-all-label='Select all options'
+      aria-expand-all-label='Expand all categories'
+      aria-collapse-all-label='Collapse all categories'>
+
+  <ifx-multiselect-option value="category-a">
+    Category A - Main Section
+
+    <ifx-multiselect-option value="category-a-1" slot="children">
+      Category A.1 - First Subsection
+      <ifx-multiselect-option value="option-a-1-1" slot="children">Option A.1.1 - Basic Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-1-2" selected slot="children">Option A.1.2 - Preselected Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-1-3" slot="children">Option A.1.3 - Another Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="category-a-2" slot="children">
+      Category A.2 - Second Subsection
+      <ifx-multiselect-option value="option-a-2-1" slot="children">Option A.2.1 - Nested Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-2-2" slot="children">
+        Option A.2.2 - Deep Nested Parent
+        <ifx-multiselect-option value="option-a-2-2-1" slot="children">Option A.2.2.1 - Level 4 Item</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-a-2-2-2" slot="children">Option A.2.2.2 - Level 4 Item</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-a-2-2-3" slot="children">
+          Option A.2.2.3 - Even Deeper
+          <ifx-multiselect-option value="option-a-2-2-3-1" slot="children">Option A.2.2.3.1 - Level 5 Item</ifx-multiselect-option>
+          <ifx-multiselect-option value="option-a-2-2-3-2" slot="children">Option A.2.2.3.2 - Level 5 Item</ifx-multiselect-option>
+        </ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="option-a-2-3" slot="children">Option A.2.3 - Final Nested</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="option-a-3" slot="children">Option A.3 - Direct Child</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-a-4" slot="children">Option A.4 - Another Direct Child</ifx-multiselect-option>
+  </ifx-multiselect-option>
+
+  <ifx-multiselect-option value="category-b">
+    Category B - Secondary Section
+
+    <ifx-multiselect-option value="category-b-1" slot="children">
+      Category B.1 - Mixed Content
+      <ifx-multiselect-option value="option-b-1-1" slot="children">Option B.1.1 - Standard Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="category-b-1-2" slot="children">
+        Category B.1.2 - Sub-Category
+        <ifx-multiselect-option value="option-b-1-2-1" slot="children">Option B.1.2.1 - Nested Choice</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-b-1-2-2" slot="children">Option B.1.2.2 - Nested Choice</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-b-1-2-3" slot="children">Option B.1.2.3 - Nested Choice</ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="option-b-1-3" slot="children">Option B.1.3 - Standard Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="option-b-2" slot="children">Option B.2 - Standalone Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-b-3" slot="children">Option B.3 - Standalone Item</ifx-multiselect-option>
+  </ifx-multiselect-option>
+
+  <ifx-multiselect-option value="category-c">
+    Category C - Complex Structure
+
+    <ifx-multiselect-option value="category-c-1" slot="children">
+      Category C.1 - Multi-Level Group
+      <ifx-multiselect-option value="category-c-1-1" slot="children">
+        Category C.1.1 - Sub-Group Alpha
+        <ifx-multiselect-option value="option-c-1-1-1" slot="children">Option C.1.1.1 - Alpha Item 1</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-1-2" slot="children">Option C.1.1.2 - Alpha Item 2</ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="category-c-1-2" slot="children">
+        Category C.1.2 - Sub-Group Beta
+        <ifx-multiselect-option value="option-c-1-2-1" slot="children">Option C.1.2.1 - Beta Item 1</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-2-2" slot="children">Option C.1.2.2 - Beta Item 2</ifx-multiselect-option>
+        <ifx-multiselect-option value="option-c-1-2-3" slot="children">Option C.1.2.3 - Beta Item 3</ifx-multiselect-option>
+      </ifx-multiselect-option>
+      <ifx-multiselect-option value="option-c-1-3" slot="children">Option C.1.3 - Direct Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+
+    <ifx-multiselect-option value="category-c-2" slot="children">
+      Category C.2 - Another Group
+      <ifx-multiselect-option value="option-c-2-1" slot="children">Option C.2.1 - Group Item</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-c-2-2" slot="children">Option C.2.2 - Group Item</ifx-multiselect-option>
+    </ifx-multiselect-option>
+  </ifx-multiselect-option>
+
+  <ifx-multiselect-option value="option-d">Option D - Top-Level Standalone</ifx-multiselect-option>
+
+  <ifx-multiselect-option value="option-e">Option E - Top-Level Standalone</ifx-multiselect-option>
+
+  <ifx-multiselect-option value="category-f">
+    Category F - Final Section
+
+    <ifx-multiselect-option value="option-f-1" slot="children">Option F.1 - Simple Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="option-f-2" slot="children">Option F.2 - Simple Item</ifx-multiselect-option>
+    <ifx-multiselect-option value="category-f-3" slot="children">
+      Category F.3 - Last Group
+      <ifx-multiselect-option value="option-f-3-1" slot="children">Option F.3.1 - Final Nested</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-f-3-2" slot="children">Option F.3.2 - Final Nested</ifx-multiselect-option>
+      <ifx-multiselect-option value="option-f-3-3" slot="children">Option F.3.3 - Final Nested</ifx-multiselect-option>
+    </ifx-multiselect-option>
+  </ifx-multiselect-option>
+</ifx-multiselect>
     <div>
       <ifx-button variant="secondary" theme="default" @click="toggleDisabled">Toggle Disabled</ifx-button>
 
@@ -22,157 +139,6 @@ import { ref } from 'vue';
 let disabled = ref(false);
 let error = ref(false);
 let errorMessage = ref("Some error");
-
-let options = ref([{
-  value: "a",
-  label: "option a",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "c",
-  label: "option c",
-  selected: false
-},
-{
-  value: "d",
-  label: "option d",
-  selected: false
-},
-{
-  value: "b",
-  label: "option b",
-  selected: false
-},
-{
-  value: "e",
-  label: "option e",
-  selected: false
-},
-{
-  value: "f",
-  label: "option f",
-  selected: false
-},
-{
-  value: "g",
-  label: "option g",
-  selected: false
-},
-{
-  value: "h",
-  label: "option h",
-  selected: false
-},
-{
-  value: "i",
-  label: "option i",
-  selected: false
-},
-{
-  value: "j",
-  label: "option j",
-  selected: false
-},
-{
-  value: "k",
-  label: "option k",
-  selected: false
-},
-{
-  value: "l",
-  label: "option l",
-  selected: false
-},
-{
-  value: "m",
-  label: "option m",
-  selected: false
-},
-{
-  value: "n",
-  label: "option n",
-  selected: false
-},
-{
-  value: "o",
-  label: "option o",
-  selected: false
-},
-{
-  value: "p",
-  label: "option p",
-  selected: false
-},
-{
-  value: "q",
-  label: "option q",
-  selected: false
-},
-{
-  value: "r",
-  label: "option r",
-  selected: false
-},
-{
-  value: "s",
-  label: "option s",
-  selected: false
-},
-{
-  value: "t",
-  label: "option t",
-  selected: false
-},
-{
-  value: "u",
-  label: "option u",
-  selected: false
-},
-{
-  value: "v",
-  label: "option v",
-  selected: false
-},
-{
-  value: "w",
-  label: "option w",
-  selected: false
-},
-{
-  value: "x",
-  label: "option x",
-  selected: false
-},
-{
-  value: "y",
-  label: "option y",
-  selected: false
-},
-{
-  value: "z",
-  label: "option z",
-  selected: false,
-  children: [
-    {
-      value: "z1",
-      label: "option z1",
-      selected: false
-    },
-    {
-      value: "z2",
-      label: "option z2",
-      selected: false
-    }
-  ]
-}]);
-
-console.log("options", options)
-
 
 function handleMultiSelectChange(event) {
   console.log("emitting multiselect selected options: ", event.detail)

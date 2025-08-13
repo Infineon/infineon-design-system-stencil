@@ -1,4 +1,7 @@
 import { h, Component, Element, Event, EventEmitter, Listen, Prop } from "@stencil/core";
+import { trackComponent } from '../../global/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component ({
     tag: 'ifx-segmented-control',
@@ -70,7 +73,11 @@ export class SegmentedControl {
         });
     }
 
-    componentDidLoad() {
+    async componentDidLoad() {
+        if(!isNestedInIfxComponent(this.SegmentedControl)) { 
+            const framework = detectFramework();
+            trackComponent('ifx-segmented-control', await framework)
+        }
         this.setActiveSegment();
     }
 

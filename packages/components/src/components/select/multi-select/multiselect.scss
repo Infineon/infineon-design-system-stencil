@@ -9,18 +9,9 @@
 
 
 
-  &.small-select {
-    height: 36px;
-  }
-
-  &.medium-select {
-    height: 40px;
-  }
-
   &:hover {
     cursor: pointer;
   }
-
 
   .ifx-label-wrapper {
     font-size: tokens.$ifxFontSizeM;
@@ -44,7 +35,6 @@
   .ifx-multiselect-wrapper {
     background-color: tokens.$ifxColorBaseWhite;
     box-sizing: border-box;
-    position: relative;
     display: flex;
     align-items: center;
     border: 1px solid tokens.$ifxColorEngineering400;
@@ -52,21 +42,11 @@
     width: 100%;
     font-weight: 400;
     font-style: normal;
-
-
-    &.small-select {
-      height: 36px;
-      padding: 8px 12px;
-      font-size: tokens.$ifxFontSizeS;
-      line-height: tokens.$ifxLineHeightS;
-    }
-
-    &.medium-select {
-      height: 40px;
-      padding: 8px 16px;
-      font-size: tokens.$ifxFontSizeM;
-      line-height: tokens.$ifxLineHeightM;
-    }
+    height: 40px;
+    line-height: 24px;
+    padding: 8px 16px;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
 
     &:focus-visible {
       outline: none;
@@ -157,111 +137,116 @@
 
   .ifx-multiselect-icon-container {
     margin-left: auto;
-    align-items: center;
     display: flex;
+    align-items: center;
+    gap: tokens.$ifxSpace100;
+
+    .ifx-multiselect-icon-container {
+      display: flex;
+    }
+
+    .icon-wrapper {
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .icon-wrapper--open {
+      transform: rotate(180deg);
+    }
   }
 
   .ifx-clear-button {
     display: flex;
-    &.hide { 
+    align-items: center;
+
+    &.hide {
       display: none;
     }
   }
 
   .ifx-multiselect-dropdown-menu {
+    box-sizing: border-box;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    margin-top: 2px;
+    margin-top: tokens.$ifxSpace50;
+    border: 1px solid tokens.$ifxColorEngineering200;
     background-color: #fff;
     box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
     max-height: 300px;
-    /* Adjust based on your design */
-    overflow-y: auto;
-    z-index: 1000; 
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+  }
+}
 
-    .search-input {
-      position: sticky;
-      top: 0;
-      left: 0;
-      z-index: 1;
-      width: 100%;
-      padding: 8px 16px;
-      font-size: tokens.$ifxFontSizeM;
-      line-height: tokens.$ifxLineHeightM;
-      font-style: normal;
-      font-weight: 400;
-      box-sizing: border-box;
-      background-color: tokens.$ifxColorBaseWhite;
-      border: none;
-      border-bottom: 1px solid tokens.$ifxColorEngineering400;
+.ifx-multiselect-dropdown-functions {
+  padding: tokens.$ifxSpace150 tokens.$ifxSpace200;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  flex-shrink: 0;
+}
 
-      &:focus {
-        outline: none;
-        border: 1px solid tokens.$ifxColorOcean500;
-      }
+.ifx-multiselect-dropdown-search {
+  margin-bottom: tokens.$ifxSpace150;
+}
 
-      // Optional: Placeholder style
-      &::placeholder {
-        color: #999;
-      }
-    }
+.ifx-multiselect-dropdown-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: tokens.$ifxSpace100;
+
+  .select-all-wrapper {
+    display: flex;
   }
 
-  .option {
-    position: relative;
-    padding: 8px 16px;
-    gap: 8px;
-    align-items: center;
+  .expand-collapse-controls {
     display: flex;
-    font-style: normal;
-    font-weight: 400;
+    gap: tokens.$ifxSpace150;
+  }
 
-    &.small-select {
-      font-size: tokens.$ifxFontSizeS;
-      line-height: tokens.$ifxLineHeightS;
-    }
-
-    &.medium-select {
-      font-size: tokens.$ifxFontSizeM;
-      line-height: tokens.$ifxLineHeightM;
-    }
+  .control-item {
+    font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
 
     &:hover {
-      background-color: tokens.$ifxColorEngineering200;
+      color: tokens.$ifxColorOcean500;
     }
 
-    &:focus:not(.disabled) {
-      background-color: tokens.$ifxColorEngineering300;
+    &:active {
+      color: tokens.$ifxColorOcean600;
+    }
+
+    &:focus {
       outline: none;
     }
 
-    &.is-highlighted {
-      background-color: tokens.$ifxColorEngineering200;
-      ;
-    }
-
-    &.sub-option {
-      padding-left: 30px;
-      /* or however much indentation you want */
-    }
-
-    &.disabled {
-      &:hover {
-        cursor: default;
-      }
-    }
-
-    label {
-      cursor: inherit;
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
+      border-radius: tokens.$ifxBorderRadius12;
     }
   }
-
-
-
 }
 
-.select-all-wrapper {
-  padding-top: 8px;
+.ifx-multiselect-options {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: tokens.$ifxSpace150;
+  padding-bottom: tokens.$ifxSpace150;
+
+  &.show-no-results {
+    .ifx-multiselect-no-results {
+      display: block;
+    }
+  }
 }
+
+.ifx-multiselect-no-results {
+  padding-left: tokens.$ifxSpace200;
+  padding-right: tokens.$ifxSpace200;
+  display: none;
+}
+

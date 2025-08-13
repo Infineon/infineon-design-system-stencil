@@ -1,7 +1,7 @@
-//ifxTabs.tsx
 import { Component, h, Prop, State, Element, Listen, Event, EventEmitter, Watch } from '@stencil/core';
- 
-
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-tabs',
@@ -57,8 +57,6 @@ export class IfxTabs {
       this.setActiveAndFocusedTab(newValue);
     }
   }
-
-
 
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
@@ -126,7 +124,11 @@ export class IfxTabs {
     } else this.internalOrientation = this.orientation;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-tabs', await framework)
+    }
     this.updateBorderAndFocus();
     // Add keyboard event listeners for each tab header
     this.tabHeaderRefs.forEach((tab, index) => {

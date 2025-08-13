@@ -1,4 +1,6 @@
 import { Component, h, Element, State, Prop, Listen, Event, EventEmitter } from '@stencil/core';
+import { trackComponent } from '../../../global/utils/tracking';
+import { detectFramework } from '../../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-navbar',
@@ -279,7 +281,9 @@ export class Navbar {
     return mediaQueryList;
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
+    const framework = detectFramework();
+    trackComponent('ifx-navbar', await framework)
     this.setItemMenuPosition()
     this.addEventListenersToHandleCustomFocusState();
  

@@ -43,9 +43,6 @@
         <ifx-link variant="title" href="http://linkedin.com/infineon">
           <ifx-icon icon="linkedin"></ifx-icon>
         </ifx-link>
-        <ifx-link variant="title" href="http://x.com/infineon">
-          <ifx-icon icon="x"></ifx-icon>
-        </ifx-link>
         <ifx-link variant="title" href="http://xing.com/infineon">
           <ifx-icon icon="xing"></ifx-icon>
         </ifx-link>

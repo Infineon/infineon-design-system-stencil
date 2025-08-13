@@ -1,4 +1,7 @@
 import { Component, h, Element, Host, Prop, State } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -133,8 +136,12 @@ export class Table {
     }
   }
 
-  componentDidLoad() {
+  async componentDidLoad() {
     if (this.container && !this.gridInitialized) {
+      if(!isNestedInIfxComponent(this.host)) { 
+        const framework = detectFramework();
+        trackComponent('ifx-basic-table', await framework)
+      }
       this.gridApi = createGrid(this.container, this.gridOptions);
       if (this.gridApi) {
         this.gridApi.sizeColumnsToFit({

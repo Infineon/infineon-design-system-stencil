@@ -1,4 +1,7 @@
 import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-radio-button',
@@ -54,6 +57,13 @@ export class RadioButton {
     // Initial state
     this.internalChecked = this.checked || false;
     this.hasSlot = !!this.el.querySelector('[slot]') || this.el.innerHTML.trim() !== '';
+  }
+
+  async componentDidLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-radio-button', await framework)
+    }
   }
 
   @Watch('checked')

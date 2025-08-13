@@ -1,5 +1,8 @@
 //dropdown.tsx
 import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter, Event } from "@stencil/core";
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 import { createPopper } from '@popperjs/core';
  
 
@@ -66,7 +69,12 @@ export class Dropdown {
     this.watchHandlerIsOpen(this.defaultOpen, this.internalIsOpen);
   }
 
-
+  async componentDidLoad() { 
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-dropdown', await framework)
+    }
+  }
 
   @Watch('defaultOpen')
   watchHandlerIsOpen(newValue: boolean, oldValue: boolean) {

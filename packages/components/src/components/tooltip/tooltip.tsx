@@ -1,6 +1,8 @@
 import { Component, Prop, h, Element, State, Watch } from '@stencil/core';
 import { createPopper } from '@popperjs/core';
- 
+import { trackComponent } from '../../global/utils/tracking';
+import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
+import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
   tag: 'ifx-tooltip',
@@ -30,7 +32,11 @@ export class Tooltip {
     }
   }
   
-  componentDidLoad() {
+  async componentDidLoad() {
+    if(!isNestedInIfxComponent(this.el)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-tooltip', await framework)
+    }
     const slotElement = this.el.shadowRoot.querySelector('.tooltip__container').firstChild;
     
     if(this.variant.toLowerCase() === 'compact' || this.variant.toLowerCase() === 'extended') {

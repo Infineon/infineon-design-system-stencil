@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
@@ -54,6 +54,7 @@ import { IfxLink as IfxLinkElement, defineCustomElement as defineIfxLink } from 
 import { IfxListEntry as IfxListEntryElement, defineCustomElement as defineIfxListEntry } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list-entry.js";
 import { IfxList as IfxListElement, defineCustomElement as defineIfxList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-list.js";
 import { IfxModal as IfxModalElement, defineCustomElement as defineIfxModal } from "@infineon/infineon-design-system-stencil/dist/components/ifx-modal.js";
+import { IfxMultiselectOption as IfxMultiselectOptionElement, defineCustomElement as defineIfxMultiselectOption } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect-option.js";
 import { IfxMultiselect as IfxMultiselectElement, defineCustomElement as defineIfxMultiselect } from "@infineon/infineon-design-system-stencil/dist/components/ifx-multiselect.js";
 import { IfxNavbarItem as IfxNavbarItemElement, defineCustomElement as defineIfxNavbarItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-item.js";
 import { IfxNavbarProfile as IfxNavbarProfileElement, defineCustomElement as defineIfxNavbarProfile } from "@infineon/infineon-design-system-stencil/dist/components/ifx-navbar-profile.js";
@@ -679,6 +680,17 @@ export const IfxMultiselect: StencilReactComponent<IfxMultiselectElement, IfxMul
     defineCustomElement: defineIfxMultiselect
 });
 
+type IfxMultiselectOptionEvents = NonNullable<unknown>;
+
+export const IfxMultiselectOption: StencilReactComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents> = /*@__PURE__*/ createComponent<IfxMultiselectOptionElement, IfxMultiselectOptionEvents>({
+    tagName: 'ifx-multiselect-option',
+    elementClass: IfxMultiselectOptionElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxMultiselectOptionEvents,
+    defineCustomElement: defineIfxMultiselectOption
+});
+
 type IfxNavbarEvents = { onIfxNavbarMobileMenuIsOpen: EventName<CustomEvent<any>> };
 
 export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents> = /*@__PURE__*/ createComponent<IfxNavbarElement, IfxNavbarEvents>({
@@ -734,14 +746,20 @@ export const IfxOverviewTable: StencilReactComponent<IfxOverviewTableElement, If
     defineCustomElement: defineIfxOverviewTable
 });
 
-type IfxPaginationEvents = { onIfxPageChange: EventName<CustomEvent<any>> };
+type IfxPaginationEvents = {
+    onIfxPageChange: EventName<CustomEvent<any>>,
+    onIfxItemsPerPageChange: EventName<CustomEvent<any>>
+};
 
 export const IfxPagination: StencilReactComponent<IfxPaginationElement, IfxPaginationEvents> = /*@__PURE__*/ createComponent<IfxPaginationElement, IfxPaginationEvents>({
     tagName: 'ifx-pagination',
     elementClass: IfxPaginationElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxPageChange: 'ifxPageChange' } as IfxPaginationEvents,
+    events: {
+        onIfxPageChange: 'ifxPageChange',
+        onIfxItemsPerPageChange: 'ifxItemsPerPageChange'
+    } as IfxPaginationEvents,
     defineCustomElement: defineIfxPagination
 });
 
@@ -801,14 +819,26 @@ export const IfxSearchBar: StencilReactComponent<IfxSearchBarElement, IfxSearchB
     defineCustomElement: defineIfxSearchBar
 });
 
-type IfxSearchFieldEvents = { onIfxInput: EventName<IfxSearchFieldCustomEvent<String>> };
+type IfxSearchFieldEvents = {
+    onIfxInput: EventName<CustomEvent<string>>,
+    onIfxSuggestionRequested: EventName<CustomEvent<string>>,
+    onIfxSuggestionSelected: EventName<IfxSearchFieldCustomEvent<SuggestionItem>>,
+    onIfxFocus: EventName<CustomEvent<void>>,
+    onIfxBlur: EventName<CustomEvent<void>>
+};
 
 export const IfxSearchField: StencilReactComponent<IfxSearchFieldElement, IfxSearchFieldEvents> = /*@__PURE__*/ createComponent<IfxSearchFieldElement, IfxSearchFieldEvents>({
     tagName: 'ifx-search-field',
     elementClass: IfxSearchFieldElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxInput: 'ifxInput' } as IfxSearchFieldEvents,
+    events: {
+        onIfxInput: 'ifxInput',
+        onIfxSuggestionRequested: 'ifxSuggestionRequested',
+        onIfxSuggestionSelected: 'ifxSuggestionSelected',
+        onIfxFocus: 'ifxFocus',
+        onIfxBlur: 'ifxBlur'
+    } as IfxSearchFieldEvents,
     defineCustomElement: defineIfxSearchField
 });
 
