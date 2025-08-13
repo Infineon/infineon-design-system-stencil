@@ -17,9 +17,6 @@
   flex-grow: 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
-
-
   &.disabled {
     & .textInput__top-wrapper {
       & label {
@@ -45,7 +42,7 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -97,7 +94,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 1;
     align-self: stretch;
