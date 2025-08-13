@@ -465,9 +465,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     // with the option items and focus the first item in the list.
     if (event.code === 'Tab' && isSearchInput) {
       event.preventDefault();
-      const firstItem = document.querySelector<HTMLDivElement>('div.choices_item');
-      firstItem?.focus(); // Focus the first item in the list if it exists.
-      // Todo: find first option item in the container (via DOM) and focus it by calling focus() on it.
+      const firstItem = this.choice.choiceList.element.firstElementChild as HTMLDivElement;
+      
+      if (firstItem) {
+        this.choice.input.element.removeEventListener('blur', this.choice._onBlur);
+        firstItem.focus();
+        this.choice.input.element.addEventListener('blur', this.choice._onBlur);
+      }
     }
   }
 
