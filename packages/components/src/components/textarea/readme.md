@@ -19,6 +19,7 @@
 | `name`        | `name`        |             | `string`                                         | `undefined` |
 | `placeholder` | `placeholder` |             | `string`                                         | `undefined` |
 | `readOnly`    | `read-only`   |             | `boolean`                                        | `false`     |
+| `required`    | `required`    |             | `boolean`                                        | `false`     |
 | `resize`      | `resize`      |             | `"both" \| "horizontal" \| "none" \| "vertical"` | `'both'`    |
 | `rows`        | `rows`        |             | `number`                                         | `undefined` |
 | `value`       | `value`       |             | `string`                                         | `undefined` |
