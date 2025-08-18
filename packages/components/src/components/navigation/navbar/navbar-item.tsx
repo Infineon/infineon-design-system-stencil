@@ -22,7 +22,23 @@ export class NavbarItem {
   @Event() ifxNavItem: EventEmitter;
   @Prop() numberIndicator: number;
   @Prop() dotIndicator: boolean = false;
- 
+
+  @Listen('focusout')
+  handleFocusOut(event: FocusEvent) {
+    const parentTag = this.el.parentElement?.tagName?.toUpperCase();
+
+    if (parentTag === 'IFX-NAVBAR') {
+      const isStillInComponent = this.isFocusWithinComponent(event.relatedTarget);
+      if (!isStillInComponent) {
+        this.closeItemMenu();
+        this.ifxNavItem.emit({ component: this.el, action: 'hideFirstLayer' });
+      }
+      return;
+    }
+
+    this.handleNestedLayerMenu(event);
+  }
+
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -208,7 +224,7 @@ export class NavbarItem {
       this.handleClassList(rightArrowIcon, 'add', 'hide')
     }
   }
- 
+
   @Method()
   async setMenuItemPosition() { 
     if(this.isMenuItem && this.hasChildNavItems) { 
@@ -222,6 +238,7 @@ export class NavbarItem {
   }
 
   handleClassList(el, type, className) {
+    if (!el) return false;
     el.classList[type](className)
     if (type === 'contains') {
       return el.classList.contains(className)
@@ -280,7 +297,7 @@ export class NavbarItem {
     const menuItem = this.el;
     const itemMenu = this.getItemMenu()
     const slotValue = menuItem.getAttribute('slot')
- 
+
     if(slotValue.toLowerCase().trim() === "right-item") { 
       this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
     }
@@ -327,6 +344,10 @@ export class NavbarItem {
         const menuItem = this.getNavBarItem()
         this.handleClassList(itemMenu, 'toggle', 'open');
         this.handleClassList(menuItem, 'toggle', 'open');
+
+         if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
+          this.handleNestedLayerMenu({ type: 'mouseenter' } as any);
+        }
       } 
     }
   }
@@ -335,7 +356,9 @@ export class NavbarItem {
     if(this.isMenuItem && this.hasChildNavItems && !this.isSidebarMenuItem) { 
       const itemMenu = this.getItemMenu()
       const menuPosition = this.getItemMenuPosition()
-      if(e.type.toUpperCase() === 'MOUSEENTER') { 
+      const type = e.type.toUpperCase();
+    
+      if(type === 'MOUSEENTER') { 
         this.handleClassList(itemMenu, 'add', 'open')
         if(menuPosition === 'left') { 
           this.handleClassList(itemMenu, 'add', 'left')
@@ -344,7 +367,19 @@ export class NavbarItem {
         }
       }
 
-      if(e.type.toUpperCase() === 'MOUSELEAVE') { 
+      if(type === 'MOUSELEAVE') { 
+        this.handleClassList(itemMenu, 'remove', 'open')
+        if(menuPosition === 'left') { 
+          this.handleClassList(itemMenu, 'remove', 'left')
+        } else if (menuPosition === 'right') { 
+          this.handleClassList(itemMenu, 'remove', 'right')
+        }
+      }
+
+       if(type === 'FOCUSOUT') { 
+      const isStillInComponent = this.isFocusWithinComponent(e.relatedTarget)
+      
+      if (!isStillInComponent) {
         this.handleClassList(itemMenu, 'remove', 'open')
         if(menuPosition === 'left') { 
           this.handleClassList(itemMenu, 'remove', 'left')
@@ -353,7 +388,27 @@ export class NavbarItem {
         }
       }
     }
+    }
   }
+
+ private isFocusWithinComponent(relatedTarget: EventTarget | null): boolean {
+  if (!relatedTarget) return false;
+  
+  const target = relatedTarget as Node;
+  const isInLightDOM = this.el.contains(target);
+  const isInShadowDOM = this.el.shadowRoot?.contains(target);
+  
+  const rootNode = target.getRootNode();
+  
+  if (rootNode instanceof ShadowRoot) {
+    const shadowRoot = rootNode as ShadowRoot;
+    if (this.el.contains(shadowRoot.host)) {
+      return true;
+    }
+  }
+
+  return isInLightDOM || isInShadowDOM;
+}
 
   handleLabelWrapper() { 
     const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper');
@@ -385,6 +440,8 @@ export class NavbarItem {
 
   handleKeyDown(event: KeyboardEvent) {
   if (event.key === 'Enter') {
+      event.stopPropagation();
+      event.preventDefault();
       this.toggleItemMenu()
     }
 }
