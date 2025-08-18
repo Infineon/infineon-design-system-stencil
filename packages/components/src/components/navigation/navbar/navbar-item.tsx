@@ -378,7 +378,7 @@ export class NavbarItem {
 
        if(type === 'FOCUSOUT') { 
       const isStillInComponent = this.isFocusWithinComponent(e.relatedTarget)
-      
+      console.log('focus out now')
       if (!isStillInComponent) {
         this.handleClassList(itemMenu, 'remove', 'open')
         if(menuPosition === 'left') { 
@@ -455,7 +455,7 @@ export class NavbarItem {
             <span>Back</span>
           </div>
         </div>
-        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()}  class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
+        <a tabindex={-1} href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()}  class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
