@@ -1,3 +1,40 @@
+# v37.9.0 (Tue Aug 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-area: adds required prop [#1973](https://github.com/Infineon/infineon-design-system-stencil/pull/1973) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.8.0 (Wed Aug 13 2025)
+
+#### 🚀 Enhancement
+
+- Advanced Table: implements paginationItemsPerPage prop to the advanced table [#1972](https://github.com/Infineon/infineon-design-system-stencil/pull/1972) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.7.0 (Tue Aug 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes overview handling on Edge browser [#1966](https://github.com/Infineon/infineon-design-system-stencil/pull/1966) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.6.0 (Thu Aug 07 2025)
 
 #### 🚀 Enhancement

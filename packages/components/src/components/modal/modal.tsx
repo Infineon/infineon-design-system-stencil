@@ -41,6 +41,16 @@ export class IfxModal {
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
+  private resizeTimeout: ReturnType<typeof setTimeout>;
+
+  handleResize = () => {
+  clearTimeout(this.resizeTimeout);
+  this.resizeTimeout = setTimeout(() => {
+    if (this.showModal) {
+      this.handleComponentOverflow();
+    }
+  }, 100);
+};
 
   async componentDidLoad() {
     if(!isNestedInIfxComponent(this.hostElement)) { 
@@ -54,7 +64,12 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+    window.addEventListener('resize', this.handleResize);
   }
+
+  disconnectedCallback() {
+  window.removeEventListener('resize', this.handleResize);
+}
 
   componentWillRender() { 
     if(this.showModal) { 
@@ -62,9 +77,9 @@ export class IfxModal {
     }
   }
 
-  handleComponentOverflow() { 
+  async handleComponentOverflow() { 
     const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
-    if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
+    if (this.showModal && await this.isModalContentContainerHeightReachedViewport()) {
       modalContentContainer.classList.add('no-overflow')
     } else if(modalContentContainer?.classList.contains('no-overflow')) { 
       modalContentContainer?.classList.remove('no-overflow')
@@ -211,7 +226,8 @@ export class IfxModal {
       const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
       const modalContentHeight = modalContent.offsetHeight;
       const viewportHeight = window.innerHeight;
-      resolve(modalContentHeight >= viewportHeight * 0.9);
+      const extraMarginForEdgeBrowser = 3;
+      resolve(modalContentHeight + extraMarginForEdgeBrowser >= viewportHeight * 0.9);
     }, 100);
   });
 }

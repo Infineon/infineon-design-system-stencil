@@ -30,8 +30,9 @@ export class Table {
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
-  @Prop() paginationPageSize: number = 10;
-  @Prop() filterOrientation: string = 'sidebar'; // topbar / none
+  @Prop() paginationItemsPerPage: string;
+  @State() paginationPageSize: number = 10;
+  @Prop() filterOrientation: string = 'sidebar';
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
@@ -40,6 +41,19 @@ export class Table {
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
+
+  private internalItemsPerPage = JSON.stringify([
+    { value: 10, label: '10', selected: true },
+    { value: 20, label: '20', selected: false },
+    { value: 30, label: '30', selected: false }
+  ]); 
+
+  @Listen('ifxItemsPerPageChange')
+  handleResultsPerPageChange(e: CustomEvent<string>) { 
+      this.paginationPageSize = Number(e.detail);
+      this.currentPage = 1;
+      this.updateTableView();
+  }
 
   @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
@@ -197,35 +211,45 @@ export class Table {
     });
   }
 
-
-
   updateTableView() {
-    // Calculate the slice of data to display based on pagination
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
-    // Update the row data in the table
     this.rowData = visibleRowData;
     this.gridApi.setGridOption('rowData', this.rowData);
 
-    // Update matching results count
     this.matchingResultsCount = this.allRowData.length;
   }
-
 
   clearAllFilters() {
     this.currentFilters = {};
     this.allRowData = [...this.originalRowData];
   }
 
-
   @Method()
   async onBtShowLoading() {
     this.gridApi.showLoadingOverlay();
   }
 
+  setPaginationItemsPerPage() { 
+    const newItemsPerPage = this.paginationItemsPerPage;
+    if (newItemsPerPage) {
+      this.internalItemsPerPage = this.paginationItemsPerPage;
+      const itemsPerPageArray = JSON.parse(this.internalItemsPerPage);
+      
+      const selectedOption = itemsPerPageArray.find(option => option.selected);
+      if (selectedOption) {
+        this.paginationPageSize = Number(selectedOption.value);
+      } else if (itemsPerPageArray.length > 0) {
+        this.paginationPageSize = Number(itemsPerPageArray[0].value);
+      }
+    }
+  }
+
   componentWillLoad() {
+    this.setPaginationItemsPerPage();
+
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.rowData = this.getRowData();
     this.colData = this.getColData();
@@ -534,7 +558,7 @@ export class Table {
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination> : null}
+              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page={this.internalItemsPerPage}></ifx-pagination> : null}
             </div>
           </div>
         </div>
