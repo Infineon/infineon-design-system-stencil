@@ -142,7 +142,7 @@ export default {
       table: {
         category: 'ifx-modal props',
         defaultValue: {
-          summary: 'Modal title is agata',
+          summary: 'Modal title',
         },
         type: {
           summary: 'string',
