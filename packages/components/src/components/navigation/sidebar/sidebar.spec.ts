@@ -116,52 +116,48 @@ describe('ifx-sidebar', () => {
 
 
   it('handles initialCollapse prop', async () => {
-    // Reset any existing mocks first
-    jest.restoreAllMocks();
+  // Reset any existing mocks first
+  jest.restoreAllMocks();
 
-    // Create a spy that will track the calls
-    const expandActiveItemsSpy = jest.fn();
+  // Create a spy that will track the calls
+  const expandActiveItemsSpy = jest.fn();
 
-    /*
-    Create a custom componentDidLoad method that will call our spy
-    The original componentDidLoad method in the Sidebar component contains complex logic with multiple DOM manipulations and method calls. 
-    By overriding it, we can isolate just the specific behavior we want to test (checking if initialCollapse="true" triggers certain actions).
-    */
-    const originalComponentDidLoad = Sidebar.prototype.componentDidLoad;
+  const originalComponentDidLoad = Sidebar.prototype.componentDidLoad;
 
-    // Override the component lifecycle method to inject our tracking
-    Sidebar.prototype.componentDidLoad = function () {
-      // Call original implementation if it exists
-      if (originalComponentDidLoad) {
-        originalComponentDidLoad.call(this);
-      }
-
-      // Check if initialCollapse is true, and if so, call our spy
-      if (this.initialCollapse) {
-        expandActiveItemsSpy();
-      }
-    };
-
-    try {
-      // Create component with initialCollapse="true"
-      const page = await newSpecPage({
-        components: [Sidebar],
-        html: `<ifx-sidebar initial-collapse="true"></ifx-sidebar>`,
-      });
-
-      // Force componentDidLoad to run if it hasn't already
-      page.rootInstance.componentDidLoad();
-
-      // Verify our spy was called
-      expect(expandActiveItemsSpy).toHaveBeenCalled();
-
-      // Also verify the initialCollapse property was properly set
-      expect(page.rootInstance.initialCollapse).toBe(true);
-    } finally {
-      // Restore original method
-      Sidebar.prototype.componentDidLoad = originalComponentDidLoad;
+  // Override the component lifecycle method to inject our tracking
+  // Make it async to match the original signature
+  Sidebar.prototype.componentDidLoad = async function () {
+    // Call original implementation if it exists
+    if (originalComponentDidLoad) {
+      await originalComponentDidLoad.call(this);
     }
-  });
+
+    // Check if initialCollapse is true, and if so, call our spy
+    if (this.initialCollapse) {
+      expandActiveItemsSpy();
+    }
+  };
+
+  try {
+    // Create component with initialCollapse="true"
+    const page = await newSpecPage({
+      components: [Sidebar],
+      html: `<ifx-sidebar initial-collapse="true"></ifx-sidebar>`,
+    });
+
+    // Force componentDidLoad to run if it hasn't already
+    await page.rootInstance.componentDidLoad();
+
+    // Verify our spy was called
+    expect(expandActiveItemsSpy).toHaveBeenCalled();
+
+    // Also verify the initialCollapse property was properly set
+    expect(page.rootInstance.initialCollapse).toBe(true);
+  } finally {
+    // Restore original method
+    Sidebar.prototype.componentDidLoad = originalComponentDidLoad;
+  }
+});
 
 
   it('displays copyright text', async () => {
