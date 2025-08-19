@@ -17,7 +17,8 @@ export class Pagination {
   @State() internalItemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
   @Prop() total: number = 1;
-  @Prop() itemsPerPage: any[] | string = '[{"label":"10","value":10},{"label":"20","value":20}]'; @State() filteredItemsPerPage: any[] = [];
+  @Prop() itemsPerPage: any[] | string;
+  @State() filteredItemsPerPage: any[] = [];
   @State() visiblePages: (number | string)[] = [];
  
   private CLASS_DISABLED = "disabled";
@@ -42,8 +43,15 @@ export class Pagination {
       const selectedValue = e.detail?.value || e.detail?.label; 
       const newItemsPerPage = parseInt(selectedValue) || 10;
 
-    if (newItemsPerPage === this.internalItemsPerPage) {
-      return;
+      if (newItemsPerPage === this.internalItemsPerPage) {
+        return;
+      }
+
+      this.internalItemsPerPage = newItemsPerPage;
+      this.internalPage = 1; 
+      this.calculateNumberOfPages();
+      this.updateVisiblePages();
+      this.handleEventEmission();
     }
 
     emitItemsPerPage(e) { 
@@ -75,26 +83,26 @@ export class Pagination {
     const totalPages = this.numberOfPages.length;
     const current = this.internalPage;
     let pages: (number | string)[] = [];
-
+  
     if (totalPages <= 5) {
       pages = [...this.numberOfPages];
     } else {
       pages.push(1);
-
+  
       if (current > buffer + 1) pages.push('...');
-
+  
       let start = Math.max(2, current - buffer);
       let end = Math.min(totalPages - 1, current + buffer);
-
+  
       if (current <= buffer + 1) end = buffer * 2 + 1;
       if (current >= totalPages - buffer) start = totalPages - buffer * 2;
-
+  
       for (let i = start; i <= end; i++) pages.push(i);
-
+  
       if (current < totalPages - buffer) pages.push('...');
       pages.push(totalPages);
     }
-
+  
     this.visiblePages = [...new Set(pages)];
   }
 
@@ -104,23 +112,14 @@ export class Pagination {
     this.internalPage = Math.max(1, Math.min(this.currentPage, totalPages));
   }
 
-filterOptionsArray() { 
-  let items: any[] = [];
-  if (typeof this.itemsPerPage === 'string') {
-    try {
-      items = JSON.parse(this.itemsPerPage);
-    } catch {
-      items = [];
-    }
-  } else if (Array.isArray(this.itemsPerPage)) {
-    items = this.itemsPerPage;
+  filterOptionsArray() { 
+    const items = typeof this.itemsPerPage === 'string' ? 
+      JSON.parse(this.itemsPerPage) : this.itemsPerPage;
+    this.filteredItemsPerPage = items.map(item => ({
+      ...item,
+      label: item.label || item.value
+    }));
   }
-  if (!items || !Array.isArray(items)) items = [];
-  this.filteredItemsPerPage = items.map(item => ({
-    ...item,
-    label: item.label || item.value
-  }));
-}
 
   componentWillLoad() {
     this.filterOptionsArray();
@@ -137,8 +136,8 @@ filterOptionsArray() {
     this.updateVisiblePages();
   }
 
-  componentWillUpdate() {
-    if (this.prevInternalPage !== this.internalPage) {
+  componentWillUpdate() { 
+     if (this.prevInternalPage !== this.internalPage) {
       this.updateVisiblePages();
       this.prevInternalPage = this.internalPage;
     }
@@ -190,7 +189,7 @@ filterOptionsArray() {
   changePage(newPage: number) {
     newPage = Math.max(1, Math.min(newPage, this.numberOfPages.length));
     if (newPage === this.internalPage) return;
-
+    
     this.internalPage = newPage;
     this.handleEventEmission();
     this.initPagination();
@@ -215,7 +214,7 @@ filterOptionsArray() {
             ></ifx-select>
           </div>
         </div>
-
+        
         <div class="items__total-wrapper">
           <div class="pagination">
             <ifx-icon-button
@@ -223,23 +222,23 @@ filterOptionsArray() {
               icon="arrow-left-16"
               onClick={() => this.changePage(this.internalPage - 1)}
             ></ifx-icon-button>
-
+            
             <ol>
-              {this.visiblePages.map((page, i) => typeof page === 'number' ? (
-                <li
-                  key={`page-${page}`}
-                  class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
-                  data-page={page}
-                >
-                  <a href="javascript:void(0)">{page}</a>
-                </li>
-              ) : (
-                <li class="ellipsis" key={`ellipsis-${i}`}>
-                  <span>...</span>
-                </li>
-              ))}
+            {this.visiblePages.map((page, i) => typeof page === 'number' ? (
+              <li 
+                key={`page-${page}`}
+                class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
+                data-page={page}
+              >
+                <a href="javascript:void(0)">{page}</a>
+              </li>
+            ) : (
+              <li class="ellipsis" key={`ellipsis-${i}`}>
+                <span>...</span>
+              </li>
+            ))}
             </ol>
-
+            
             <ifx-icon-button
               class="next"
               icon="arrow-right-16"
