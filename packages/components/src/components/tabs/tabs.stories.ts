@@ -43,7 +43,7 @@ export default {
     icon: {
       name: 'icon',
       control: { type: 'select' },
-      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      options: Object.keys(icons),
       description: 'Set the icon of the tab. Choose "none" to display no icon.',
       table: {
         category: 'ifx-tab props',
