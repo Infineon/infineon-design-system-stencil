@@ -39,7 +39,7 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed in the notification. Choose "none" to display no icon.',
-      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      options: Object.keys(icons),
       control: { type: 'select' },
       table: {
         category: 'ifx-notification props',
