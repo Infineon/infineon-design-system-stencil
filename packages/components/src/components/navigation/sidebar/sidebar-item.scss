@@ -7,8 +7,11 @@
 
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
+  box-sizing: border-box;
   &:focus {
-    outline: none;
+     
+    outline: 2px solid tokens.$ifxColorOcean600; // Outline doesn't affect layout
+  border: none;
 
     & .sidebar__nav-item-icon-wrapper {
       color: tokens.$ifxColorOcean600;
@@ -27,6 +30,8 @@
       }
     }
   }
+
+
 
   &:hover {
     outline: none;
