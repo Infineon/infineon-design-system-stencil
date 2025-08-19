@@ -293,11 +293,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   protected componentWillLoad() {
-    if(!isNestedInIfxComponent(this.root)) { 
-      const framework = detectFramework();
-      trackComponent('ifx-select', framework)
-    }
-    this.handleCloseButton()
+   this.handleCloseButton()
   }
 
   protected componentWillUpdate() {
@@ -323,8 +319,12 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.resizeObserver.observe(componentWrapper);
   }
 
-  protected componentDidLoad() {
+   protected async componentDidLoad() {
     this.init();
+    if(!isNestedInIfxComponent(this.root)) { 
+      const framework = detectFramework();
+      trackComponent('ifx-select', await framework)
+    }
     this.addEventListenersToHandleCustomFocusAndActiveState();
     this.handleDeleteIcon();
     this.addResizeObserver()

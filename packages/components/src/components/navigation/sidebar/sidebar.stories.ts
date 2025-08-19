@@ -85,7 +85,7 @@ export default {
     },
     icon: {
       description: 'The icon to display for the sidebar items. Choose ***none*** to display no icon.',
-      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      options: Object.keys(icons),
       control: 'select',
       table: {
         category: 'ifx-sidebar-item props',

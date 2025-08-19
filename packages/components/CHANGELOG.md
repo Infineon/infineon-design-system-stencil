@@ -1,3 +1,90 @@
+# v37.9.1 (Tue Aug 19 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes bug where the icon preview list did not work on some components [#1981](https://github.com/Infineon/infineon-design-system-stencil/pull/1981) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.9.0 (Tue Aug 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-area: adds required prop [#1973](https://github.com/Infineon/infineon-design-system-stencil/pull/1973) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.8.0 (Wed Aug 13 2025)
+
+#### 🚀 Enhancement
+
+- Advanced Table: implements paginationItemsPerPage prop to the advanced table [#1972](https://github.com/Infineon/infineon-design-system-stencil/pull/1972) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.7.0 (Tue Aug 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes overview handling on Edge browser [#1966](https://github.com/Infineon/infineon-design-system-stencil/pull/1966) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.6.0 (Thu Aug 07 2025)
+
+#### 🚀 Enhancement
+
+- Search-field: implement search suggestions and history [#1954](https://github.com/Infineon/infineon-design-system-stencil/pull/1954) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.5.0 (Thu Aug 07 2025)
+
+#### 🚀 Enhancement
+
+- Updates framework detection code to skip non-browser environment, add safeguards to make sure doc is queried only when DOM is loaded, and prevents duplicate components from registering [#1962](https://github.com/Infineon/infineon-design-system-stencil/pull/1962) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.4.0 (Wed Aug 06 2025)
+
+#### 🚀 Enhancement
+
+- Adds two new icons [#1968](https://github.com/Infineon/infineon-design-system-stencil/pull/1968) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.3.0 (Mon Jul 28 2025)
 
 #### 🚀 Enhancement
