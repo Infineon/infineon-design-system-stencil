@@ -17,10 +17,10 @@ export class Notification {
   @Prop() linkHref: string;
   @Prop() linkTarget: string = '_blank';
 
-  componentWillLoad() { 
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-notification', framework)
+      trackComponent('ifx-notification', await framework)
     }
   }
 

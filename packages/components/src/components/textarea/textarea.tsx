@@ -71,11 +71,14 @@ export class TextArea {
 	}
 
 	componentWillLoad() {
+		this.internals.setFormValue(this.value);
+	}
+
+	async componentDidLoad() { 
 		if(!isNestedInIfxComponent(this.el)) { 
 			const framework = detectFramework();
-			trackComponent('ifx-textarea', framework)
+			trackComponent('ifx-textarea', await framework)
 		}
-		this.internals.setFormValue(this.value);
 	}
 
 	render() {

@@ -72,11 +72,14 @@ export class TextField {
   }
 
   componentWillLoad() { 
+    this.handleTypeProp()
+  }
+
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-text-field', framework)
+      trackComponent('ifx-text-field', await framework)
     }
-    this.handleTypeProp()
   }
 
   render() {

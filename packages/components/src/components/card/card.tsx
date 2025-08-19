@@ -49,9 +49,12 @@ export class Card {
 
   componentWillLoad() {
     this.handleComponentAdjustment()
+  }
+
+  async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
-      trackComponent('ifx-card', framework)
+      trackComponent('ifx-card', await framework)
     }
   }
 
