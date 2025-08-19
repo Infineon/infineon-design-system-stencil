@@ -1,3 +1,29 @@
+# v37.9.1 (Tue Aug 19 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes bug where the icon preview list did not work on some components [#1981](https://github.com/Infineon/infineon-design-system-stencil/pull/1981) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.9.0 (Tue Aug 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-area: adds required prop [#1973](https://github.com/Infineon/infineon-design-system-stencil/pull/1973) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.8.0 (Wed Aug 13 2025)
 
 #### 🚀 Enhancement
