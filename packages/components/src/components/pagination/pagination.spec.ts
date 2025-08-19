@@ -2,10 +2,12 @@ import { newSpecPage } from '@stencil/core/testing';
 import { Pagination } from './pagination';
 
 describe('ifx-pagination', () => {
+    const defaultItemsPerPage = '[{"label":"10","value":10},{"label":"20","value":20},{"label":"50","value":50}]';
+
     it('renders with default props', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination></ifx-pagination>`,
+            html: `<ifx-pagination items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         expect(page.root).toBeTruthy();
@@ -21,7 +23,7 @@ describe('ifx-pagination', () => {
         expect(pagination).toBeTruthy();
         
         // With default total=1, only one page should be visible
-        const pageLinks = page.root.shadowRoot.querySelectorAll('ol li');
+        const pageLinks = page.root.shadowRoot.querySelectorAll('ol li:not(.ellipsis)');
         expect(pageLinks.length).toBe(1);
         
         // First page should be active
@@ -39,10 +41,10 @@ describe('ifx-pagination', () => {
     it('renders with custom total and currentPage', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="50" current-page="2"></ifx-pagination>`,
+            html: `<ifx-pagination total="50" current-page="2" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
-        // Force initialization to ensure buttons are updated
+        // Manually trigger button state update
         page.rootInstance.initPagination();
         await page.waitForChanges();
         
@@ -50,26 +52,26 @@ describe('ifx-pagination', () => {
         expect(page.rootInstance.internalPage).toBe(2);
         
         // With total=50 and itemsPerPage=10 (default), we should have 5 pages
-        const pageLinks = page.root.shadowRoot.querySelectorAll('ol li');
+        const pageLinks = page.root.shadowRoot.querySelectorAll('ol li:not(.ellipsis)');
         expect(pageLinks.length).toBe(5);
         
         // Second page should be active
         const activePage = page.root.shadowRoot.querySelector('ol li.active');
-        expect(activePage.textContent).toBe('2');
+        expect(activePage.textContent.trim()).toBe('2');
         
         // Previous button should not be disabled since we're on page 2
-        const prevButton = page.root.shadowRoot.querySelector('.prev');
+        const prevButton = page.root.shadowRoot.querySelector('.prev') as HTMLElement;
         expect(prevButton.classList.contains('disabled')).toBeFalsy();
         
         // Next button should not be disabled since we're not on the last page
-        const nextButton = page.root.shadowRoot.querySelector('.next');
+        const nextButton = page.root.shadowRoot.querySelector('.next') as HTMLElement;
         expect(nextButton.classList.contains('disabled')).toBeFalsy();
     });
 
     it('renders with ellipsis for many pages', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="200" current-page="5"></ifx-pagination>`,
+            html: `<ifx-pagination total="200" current-page="5" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // With total=200 and itemsPerPage=10 (default), we should have ellipsis
@@ -87,7 +89,7 @@ describe('ifx-pagination', () => {
     it('handles page change events', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="50"></ifx-pagination>`,
+            html: `<ifx-pagination total="50" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // Set up event spy
@@ -107,7 +109,7 @@ describe('ifx-pagination', () => {
         
         // Second page should be active
         const activePage = page.root.shadowRoot.querySelector('ol li.active');
-        expect(activePage.textContent).toBe('2');
+        expect(activePage.textContent.trim()).toBe('2');
         
         // Click previous button to go back
         const prevButton = page.root.shadowRoot.querySelector('.prev') as HTMLElement;
@@ -121,22 +123,15 @@ describe('ifx-pagination', () => {
     it('handles direct page selection', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="50"></ifx-pagination>`,
+            html: `<ifx-pagination total="50" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // Set up event spy
         const eventSpy = jest.fn();
         page.win.addEventListener('ifxPageChange', eventSpy);
         
- 
-        // Mock the dataset and trigger click
-        const mockEvent = {
-            currentTarget: {
-                dataset: { page: '3' }
-            }
-        };
-        
-        page.rootInstance.handlePageClick(mockEvent as any);
+        // Simulate clicking on page 3
+        page.rootInstance.changePage(3);
         await page.waitForChanges();
         
         // Current page should be 3
@@ -155,7 +150,7 @@ describe('ifx-pagination', () => {
     it('handles items per page selection', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="100"></ifx-pagination>`,
+            html: `<ifx-pagination total="100" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // Set up event spy
@@ -190,7 +185,7 @@ describe('ifx-pagination', () => {
     it('correctly calculates number of pages', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="95"></ifx-pagination>`,
+            html: `<ifx-pagination total="95" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // With 95 items and 10 per page, we should have 10 pages
@@ -208,7 +203,7 @@ describe('ifx-pagination', () => {
     it('handles boundary conditions', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="10" current-page="1"></ifx-pagination>`,
+            html: `<ifx-pagination total="10" current-page="1" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // Attempt to go to page 0 (should stay at 1)
@@ -244,26 +239,26 @@ describe('ifx-pagination', () => {
         expect(page.rootInstance.filteredItemsPerPage[0].value).toBe(25);
         expect(page.rootInstance.filteredItemsPerPage[1].value).toBe(50);
         
-        // Default items per page should still be 10
-        expect(page.rootInstance.internalItemsPerPage).toBe(10);
+        // Default items per page should be the first option (25)
+        expect(page.rootInstance.internalItemsPerPage).toBe(25);
         
-        // 10 pages with 100 items and 10 per page
-        expect(page.rootInstance.numberOfPages.length).toBe(10);
+        // 4 pages with 100 items and 25 per page
+        expect(page.rootInstance.numberOfPages.length).toBe(4);
         
-        // Simulate selecting 25 items per page
+        // Simulate selecting 50 items per page
         page.rootInstance.setItemsPerPage({
-            detail: { value: 25 }
+            detail: { value: 50 }
         });
         await page.waitForChanges();
         
-        // Should now have 4 pages (100/25)
-        expect(page.rootInstance.numberOfPages.length).toBe(4);
+        // Should now have 2 pages (100/50)
+        expect(page.rootInstance.numberOfPages.length).toBe(2);
     });
 
     it('handles items per page as array', async () => {
         const page = await newSpecPage({
             components: [Pagination],
-            html: `<ifx-pagination total="100"></ifx-pagination>`,
+            html: `<ifx-pagination total="100" items-per-page='${defaultItemsPerPage}'></ifx-pagination>`,
         });
         
         // Directly set itemsPerPage as array

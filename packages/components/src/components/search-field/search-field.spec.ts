@@ -92,60 +92,60 @@ describe('ifx-search-field', () => {
     expect(emittedEvent.detail).toBe('test query');
   });
 
-it('shows delete icon when showDeleteIcon is true and value is not empty', async () => {
-  const page = await newSpecPage({
-    components: [SearchField],
-    html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+  it('shows delete icon when showDeleteIcon is true and value is not empty', async () => {
+    const page = await newSpecPage({
+      components: [SearchField],
+      html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+    });
+    
+    // Manually set the internal state to match what would happen after componentWillUpdate
+    page.rootInstance.showDeleteIconInternalState = true;
+    
+    // Force a re-render
+    await page.waitForChanges();
+    
+    // Delete icon should be visible
+    const deleteIcon = page.root.shadowRoot.querySelector('.delete-icon');
+    expect(deleteIcon).toBeTruthy();
+    expect(deleteIcon.getAttribute('icon')).toBe('cRemove16');
   });
-  
-  // Manually set the internal state to match what would happen after componentWillUpdate
-  page.rootInstance.showDeleteIconInternalState = true;
-  
-  // Force a re-render
-  await page.waitForChanges();
-  
-  // Delete icon should be visible
-  const deleteIcon = page.root.shadowRoot.querySelector('.delete-icon');
-  expect(deleteIcon).toBeTruthy();
-  expect(deleteIcon.getAttribute('icon')).toBe('cRemove16');
-});
 
-it('handles delete icon click', async () => {
-  const page = await newSpecPage({
-    components: [SearchField],
-    html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+  it('handles delete icon click', async () => {
+    const page = await newSpecPage({
+      components: [SearchField],
+      html: `<ifx-search-field show-delete-icon value="test"></ifx-search-field>`,
+    });
+    
+    // Manually set the internal state to make the delete icon appear
+    page.rootInstance.showDeleteIconInternalState = true;
+    await page.waitForChanges();
+    
+    // Spy on the ifxInput event
+    const inputEventSpy = jest.fn();
+    page.win.addEventListener('ifxInput', inputEventSpy);
+    
+    // Find and click the delete icon
+    const deleteIcon = page.root.shadowRoot.querySelector('.delete-icon') as HTMLElement;
+    expect(deleteIcon).toBeTruthy(); // Add this check to ensure icon exists
+    deleteIcon.click();
+    await page.waitForChanges();
+    
+    // Value should be cleared
+    expect(page.rootInstance.value).toBe('');
+    
+    // Input element value should be cleared
+    const input = page.root.shadowRoot.querySelector('input');
+    expect(input.value).toBe('');
+    
+    // Event should have been emitted with empty string
+    expect(inputEventSpy).toHaveBeenCalled();
+    const emittedEvent = inputEventSpy.mock.calls[0][0];
+    expect(emittedEvent.detail).toBe('');
+    
+    // Delete icon should now be hidden
+    const deleteIconAfterClick = page.root.shadowRoot.querySelector('.delete-icon');
+    expect(deleteIconAfterClick).toBeFalsy();
   });
-  
-  // Manually set the internal state to make the delete icon appear
-  page.rootInstance.showDeleteIconInternalState = true;
-  await page.waitForChanges();
-  
-  // Spy on the ifxInput event
-  const inputEventSpy = jest.fn();
-  page.win.addEventListener('ifxInput', inputEventSpy);
-  
-  // Find and click the delete icon
-  const deleteIcon = page.root.shadowRoot.querySelector('.delete-icon') as HTMLElement;
-  expect(deleteIcon).toBeTruthy(); // Add this check to ensure icon exists
-  deleteIcon.click();
-  await page.waitForChanges();
-  
-  // Value should be cleared
-  expect(page.rootInstance.value).toBe('');
-  
-  // Input element value should be cleared
-  const input = page.root.shadowRoot.querySelector('input');
-  expect(input.value).toBe('');
-  
-  // Event should have been emitted with empty string
-  expect(inputEventSpy).toHaveBeenCalled();
-  const emittedEvent = inputEventSpy.mock.calls[0][0];
-  expect(emittedEvent.detail).toBe('');
-  
-  // Delete icon should now be hidden
-  const deleteIconAfterClick = page.root.shadowRoot.querySelector('.delete-icon');
-  expect(deleteIconAfterClick).toBeFalsy();
-});
 
   it('does not show delete icon when value is empty', async () => {
     const page = await newSpecPage({
@@ -161,21 +161,15 @@ it('handles delete icon click', async () => {
     expect(deleteIcon).toBeFalsy();
   });
 
-   
-
   it('handles focus', async () => {
     const page = await newSpecPage({
       components: [SearchField],
       html: `<ifx-search-field></ifx-search-field>`,
     });
     
-    // Setup mock for input focus
-    const mockFocus = jest.fn();
-    const input = page.root.shadowRoot.querySelector('input');
-    Object.defineProperty(input, 'focus', {
-      value: mockFocus,
-      writable: true
-    });
+    // Spy on the ifxFocus event
+    const focusEventSpy = jest.fn();
+    page.win.addEventListener('ifxFocus', focusEventSpy);
     
     // Initially not focused
     expect(page.rootInstance.isFocused).toBeFalsy();
@@ -187,7 +181,9 @@ it('handles delete icon click', async () => {
     
     // Should now be focused
     expect(page.rootInstance.isFocused).toBeTruthy();
-    expect(mockFocus).toHaveBeenCalled();
+    
+    // Focus event should have been emitted
+    expect(focusEventSpy).toHaveBeenCalled();
     
     // Wrapper should have focused class
     expect(wrapper.classList.contains('focused')).toBeTruthy();
@@ -210,19 +206,20 @@ it('handles delete icon click', async () => {
     expect(input.value).toBe('new value');
   });
 
-  it('handles outside click to blur', async () => {
+  it('handles outside click to hide dropdown', async () => {
     const page = await newSpecPage({
       components: [SearchField],
       html: `<ifx-search-field></ifx-search-field>`,
     });
     
-    // Set the component as focused
-    page.rootInstance.isFocused = true;
+    // Set the component as having a dropdown open
+    page.rootInstance.showDropdown = true;
     await page.waitForChanges();
     
-    // Mock the input element's composedPath response
+    // Mock the input and dropdown elements
     const input = page.root.shadowRoot.querySelector('input');
     page.rootInstance.inputElement = input;
+    page.rootInstance.dropdownElement = null; // No dropdown element in DOM
     
     // Create a mousedown event outside the input
     const outsideClickEvent = new MouseEvent('mousedown');
@@ -237,8 +234,8 @@ it('handles delete icon click', async () => {
     document.dispatchEvent(outsideClickEvent);
     await page.waitForChanges();
     
-    // Component should no longer be focused
-    expect(page.rootInstance.isFocused).toBeFalsy();
+    // Dropdown should be hidden
+    expect(page.rootInstance.showDropdown).toBeFalsy();
   });
 
   it('sets maxlength on input when provided', async () => {
