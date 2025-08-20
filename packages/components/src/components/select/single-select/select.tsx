@@ -23,6 +23,7 @@ import {
   ValueCompareFunction,
   CustomAddItemText,
 } from './interfaces';
+
 import { filterObject, isDefined, isJSONParseable } from './utils';
 
 @Component({
@@ -388,7 +389,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           <div class='single__select-icon-container'>
             { this.optionIsSelected && (
                 <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
-                  <ifx-icon tabindex={0} icon="cRemove16" onKeyDown={e => this.clearSelectionWhenEnterPressed(e)} onClick={() => this.clearSelection()}></ifx-icon>
+                  <ifx-icon tabindex={0} icon="cRemove16" onKeyDown={e => this.handleKeyDown(e)} onClick={() => this.clearSelection()}></ifx-icon>
                 </div>
               )}
               <div class="ifx-choices__icon-wrapper-up">
@@ -411,8 +412,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   toggleDropdown() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
-      this.hideDropdown();
-      div.classList.remove('active');
+      this.closeDropdown();
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
@@ -422,8 +422,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   closeDropdown() {
-    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    ifxChoicesWrapper.classList.remove('active');
+    this.hideDropdown();
+    const wrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    wrapper.focus();
+    wrapper.classList.remove('active');
   }
 
   @Listen('mousedown', { target: 'document' })
@@ -436,41 +438,35 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
-  clearSelectionWhenEnterPressed(event: KeyboardEvent) {
-    if (event.code === 'Enter') {
-      this.clearSelection();
-    }
-  }
-
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) return;
-
-    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
-
-    // If the event originated from the search input and the key is 'Space', do nothing.
-    if (isSearchInput && event.code === 'Space') {
+    if (this.disabled) {
       return;
     }
 
-    if (event.code === 'Enter' || (event.code === 'Space' && !isSearchInput)) {
-      this.toggleDropdown();
-    }
+    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
+    const isClearButton = (event.target as HTMLElement).tagName === 'IFX-ICON';
 
-    // Only prevent default space behavior when it's not from the search input.
-    if (event.code === 'Space' && !isSearchInput) {
-      event.preventDefault(); // Prevent default page scrolling.
-    }
-
-    // This prevents tabbing at all when the search box is focused. What we want is that we find the container
-    // with the option items and focus the first item in the list.
-    if (event.code === 'Tab' && isSearchInput) {
-      event.preventDefault();
-      const firstItem = this.choice.choiceList.element.firstElementChild as HTMLDivElement;
-      
-      if (firstItem) {
-        this.choice.input.element.removeEventListener('blur', this.choice._onBlur);
-        firstItem.focus();
-        this.choice.input.element.addEventListener('blur', this.choice._onBlur);
+    switch (event.code) {
+      case 'Enter': {
+        if (isClearButton) {
+          this.clearSelection();
+        } else {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Space': {
+        if (!isSearchInput) {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Tab': {
+        if (isSearchInput) {
+          event.preventDefault();
+          this.closeDropdown();
+        }
+        break;
       }
     }
   }
@@ -586,8 +582,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
                     data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
                     data-value="${data.value}"
-                    data-select-text="${this.config.itemSelectText}"
-                    tabindex="0">
+                    data-select-text="${this.config.itemSelectText}">
                 <span>${data.label}</span>
                 ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? '<ifx-icon icon="check16"></ifx-icon>' : ''}
               </div>
