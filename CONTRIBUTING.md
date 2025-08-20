@@ -1,3 +1,5 @@
+# Contributing
+
 ## Working with Pull Requests
 
 ### Understanding Automated Dependency Updates
