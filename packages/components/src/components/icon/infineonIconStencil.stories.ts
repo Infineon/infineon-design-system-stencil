@@ -1,4 +1,4 @@
-import { icons } from '@infineon/infineon-icons';
+import * as icons from '@infineon/infineon-icons'; 
 import { action } from '@storybook/addon-actions';
 
 export default {
