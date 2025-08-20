@@ -11,5 +11,7 @@
     ],
     "@babel/preset-typescript"
   ],
-  "plugins": []
+  "plugins": [
+    "@babel/plugin-transform-modules-commonjs"
+  ]
 }
