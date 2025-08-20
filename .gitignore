@@ -125,3 +125,6 @@ packages/components-react/lib/components/
 packages/components-angular/projects/component-library/src/lib/stencil-generated/angular-component-lib/
 packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
 packages/components/public-storybook/fonts/*
+
+
+*.tar.gz
