@@ -1,4 +1,3 @@
-// dropdown-item.tsx
 import { Component, Prop, h, Listen, State, Event, EventEmitter, Element } from "@stencil/core";
 
 @Component({
@@ -26,13 +25,19 @@ export class DropdownItem {
   }
 
   render() {
-    let hrefAttr = this.href ? { href: this.href, target: this.target } : {};
+    const hasHref = this.href !== undefined && this.href !== null && this.href !== '';
+    const common = {
+      class: `dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""}`,
+      onClick: () => this.handleEventEmission(),
+      role: 'menuitem'
+    } as any;
+
+    if (!hasHref) common.tabIndex = 0;
+
     return (
-      <a {...hrefAttr} onClick={() => this.handleEventEmission()} class={`dropdown-item ${this.size === 's' ? 'small' : ""} ${this.hide ? 'hide' : ""}`}>
+      <a {...common} {...(hasHref ? { href: this.href, target: this.target } : {})}>
         {this.icon && <ifx-icon class="icon" icon={this.icon}></ifx-icon>}
-        <span>
-          <slot />
-        </span>
+        <span><slot /></span>
       </a>
     );
   }

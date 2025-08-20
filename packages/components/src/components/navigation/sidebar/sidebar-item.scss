@@ -8,10 +8,11 @@
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
   box-sizing: border-box;
+
   &:focus {
-     
+
     outline: 2px solid tokens.$ifxColorOcean600; // Outline doesn't affect layout
-  border: none;
+    border: none;
 
     & .sidebar__nav-item-icon-wrapper {
       color: tokens.$ifxColorOcean600;
@@ -120,7 +121,7 @@
     -webkit-box-orient: horizontal;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
     &.no-top-border {
       border-top: none;
     }
@@ -137,7 +138,7 @@
     }
 
     &.open {
-      
+
       padding: 16px 0px 8px 0px;
 
       & .sidebar__nav-item-indicator {
@@ -161,7 +162,7 @@
 
   &.submenu__item {
     padding: 4px 0px;
-    
+
     &.extra-padding__bottom {
       padding: 4px 0px 16px 0px;
     }
@@ -224,6 +225,6 @@
   }
 }
 
-.header__section + .expandable__submenu{
+.header__section+.expandable__submenu {
   padding-left: 0;
 }
