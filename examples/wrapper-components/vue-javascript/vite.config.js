@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/infineon-design-system-stencil/pr-preview-vue-example/pr-1908/',
+  base: "./",
   exclude: [
     '@ionic/core/loader' //fix weird Vite error "outdated optimize dep"
   ],

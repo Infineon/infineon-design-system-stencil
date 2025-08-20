@@ -25,9 +25,8 @@
   "include": [
     "src",
     "types/**/*"
-  ],
+, "test-setup.ts"  ],
   "exclude": [
-    "node_modules",
-    "test-setup.ts"
+    "node_modules"
   ]
 }
