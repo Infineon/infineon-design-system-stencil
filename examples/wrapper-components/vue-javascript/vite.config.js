@@ -5,10 +5,17 @@ import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
+  base: "./",
   exclude: [
     '@ionic/core/loader' //fix weird Vite error "outdated optimize dep"
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined // Disable code splitting for dynamic imports
+      }
+    }
+  },
   plugins: [
     vue({
       template: {
