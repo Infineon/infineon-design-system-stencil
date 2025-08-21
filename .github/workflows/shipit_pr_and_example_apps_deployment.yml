@@ -127,7 +127,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if [ "${{ steps.check_changes.outputs.code_changed }}" = "true" ] || [ "${{ github.event.action }}" = "opened" ] || grep -q "\.github/workflows/" changed_files.txt; then
-            npm run build:components -- --output-targets=dist,dist-custom-elements,www
+            npm run build:components
           else
             echo "No code changes detected, skipping Stencil build"
           fi
@@ -235,37 +235,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git commit -m "chore: add .nx directory to gitignore" || true
-
-      # Fix TypeScript conflicts before building Angular
-      - name: Fix TypeScript conflicts
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "Fixing potential TypeScript conflicts..."
-          
-          # Remove conflicting types in node_modules that would clash with locally generated ones
-          echo "Removing conflicting types from node_modules..."
-          find packages -type d -path "*/node_modules/@infineon/infineon-design-system-stencil/dist/types" -exec rm -rf {} \; 2>/dev/null || true
-          
-          # Create special tsconfig for Angular to prevent conflicts
-          echo "Creating specialized tsconfig for Angular..."
-          echo '{
-            "compilerOptions": {
-              "skipLibCheck": true
-            },
-            "exclude": [
-              "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts"
-            ]
-          }' > packages/components-angular/projects/component-library/tsconfig.fix.json
-          
-          # Merge with existing tsconfig if it exists
-          if [ -f "packages/components-angular/projects/component-library/tsconfig.json" ]; then
-            jq -s '.[0] * .[1]' packages/components-angular/projects/component-library/tsconfig.json packages/components-angular/projects/component-library/tsconfig.fix.json > packages/components-angular/projects/component-library/tsconfig.merged.json
-            mv packages/components-angular/projects/component-library/tsconfig.merged.json packages/components-angular/projects/component-library/tsconfig.json
-          else
-            mv packages/components-angular/projects/component-library/tsconfig.fix.json packages/components-angular/projects/component-library/tsconfig.json
-          fi
-          
-          echo "✅ TypeScript conflicts fixed"
       
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -273,13 +242,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          
-          # Use Nx for parallel builds with proper dependency handling
-          echo "Running builds in parallel using Nx..."
-          npx nx run-many --target=build --parallel=3 --projects=components-angular,components-react,components-vue
-          
-
-          # Publish packages
+          npm run build:components-angular
+          npm run build:components-react
+          npm run build:components-vue
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
           cd ../../../../components-react
