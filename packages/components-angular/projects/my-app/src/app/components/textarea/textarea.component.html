@@ -1,0 +1,11 @@
+<h2>Textarea</h2>
+  <form (ngSubmit)="handleSubmit()">
+    <ifx-textarea (ifxInput)="handleTextInput($event)" [error]="false" [disabled]="false" placeholder="Placeholder" />
+    <br />
+    <br />
+
+    <ifx-button type="submit">Submit</ifx-button>
+    <ifx-button variant="secondary" type="reset">Reset</ifx-button>
+
+  </form>
+  <span>Textarea value: {{ textareaValue }}</span>

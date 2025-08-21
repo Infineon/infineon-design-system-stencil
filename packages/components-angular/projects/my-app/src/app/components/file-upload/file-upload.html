@@ -1,0 +1,62 @@
+<h2>File Upload</h2>
+<h3>Default</h3>
+<ifx-file-upload
+  [maxFileSizeMB]="maxFileSizeMB"
+  [allowedFileTypes]="allowedFileTypes"
+  [additionalAllowedFileTypes]="additionalAllowedFileTypes"
+  label="Label"
+  labelRequiredError="You must upload at least one file."
+  labelBrowseFiles="Browse files"
+  labelDragAndDrop="Drag &amp; Drop or browse files to upload"
+  labelUploadedFilesHeading="Uploaded files"
+  labelFileTooLarge="Upload failed. Max file size: {{maxFileSizeMB}}MB."
+  labelUnsupportedFileType="Unsupported file type."
+  labelUploaded="Successfully uploaded"
+  label-supported-formats-template="Supported file formats: {{allowedFileTypes}}. Max file size: {{maxFileSizeMB}}MB." 
+  label-file-singular="file" 
+  label-file-plural="files" 
+  labelUploadFailed="Upload failed. Please try again."
+  aria-label-browse-files="Browse files"
+  aria-label-dropzone="Upload area. Click to browse or drag and drop files."
+  aria-label-file-input="Upload file"
+  aria-label-remove-file="Remove file"
+  aria-label-cancel-upload="Cancel upload"
+  aria-label-retry-upload="Retry upload"
+  aria-label-uploading-status="Upload in progress"
+  aria-label-uploaded-status="Upload completed"
+  aria-label-upload-failed-status="Upload failed">
+</ifx-file-upload>
+<br>
+<br>
+
+<h2>File Upload</h2>
+<h3>Drag and Drop</h3>
+<ifx-file-upload 
+  drag-and-drop="" 
+  [maxFileSizeMB]="maxFileSizeMB"
+  [allowedFileTypes]="allowedFileTypes"
+  [additionalAllowedFileTypes]="additionalAllowedFileTypes"
+  label="Label" 
+  label-required-error="You must upload at least one file." 
+  label-browse-files="Browse files" 
+  label-drag-and-drop="Drag &amp; Drop or browse files to upload" 
+  label-uploaded-files-heading="Uploaded files" 
+  label-file-too-large="Upload failed. Max file size: {{maxFileSizeMB}}MB." 
+  label-unsupported-file-type="Unsupported file type." 
+  label-uploaded="Successfully uploaded" 
+  label-supported-formats-template="Supported file formats: {{allowedFileTypes}}. Max file size: {{maxFileSizeMB}}MB." 
+  label-file-singular="file" 
+  label-file-plural="files" 
+  label-upload-failed="Upload failed. Please try again." 
+  aria-label-browse-files="Browse files" 
+  aria-label-dropzone="Upload area. Click to browse or drag and drop files." 
+  aria-label-file-input="Upload file" 
+  aria-label-remove-file="Remove file" 
+  aria-label-cancel-upload="Cancel upload" 
+  aria-label-retry-upload="Retry upload" 
+  aria-label-uploading-status="Upload in progress" 
+  aria-label-uploaded-status="Upload completed" 
+  aria-label-upload-failed-status="Upload failed">
+</ifx-file-upload>
+<br>
+<br>
