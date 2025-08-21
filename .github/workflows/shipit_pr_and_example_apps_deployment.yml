@@ -80,24 +80,6 @@ jobs:
           npm ci
           git checkout -- package-lock.json 
 
-      - name: Check for code changes
-        id: check_changes
-        run: |
-          if [ "${{ github.event.before }}" != "" ]; then
-            git diff --name-only ${{ github.event.before }} ${{ github.event.after }} > changed_files.txt
-            
-            if grep -q "packages/components/src" changed_files.txt; then
-              echo "STENCIL_CHANGED=true" >> $GITHUB_OUTPUT
-            else
-              echo "STENCIL_CHANGED=false" >> $GITHUB_OUTPUT
-            fi
-            
-            cat changed_files.txt
-          else
-            echo "First run or no previous commit, building everything"
-            echo "STENCIL_CHANGED=true" >> $GITHUB_OUTPUT
-          fi
-
       - name: Build Stencil core package
         id: build
         env:
