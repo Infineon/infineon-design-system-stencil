@@ -77,8 +77,8 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
-      # Cache build output
-      - name: Cache build output
+      # Cache build output including generated files
+      - name: Cache build output and generated files
         uses: actions/cache@v3
         with:
           path: |
@@ -86,6 +86,10 @@ jobs:
             packages/components-vue/dist
             packages/components-react/dist
             packages/components-angular/dist
+            .nx/
+            packages/components-angular/projects/component-library/src/lib/stencil-generated/
+            packages/components-react/lib/components/stencil-generated/
+            packages/components-vue/lib/vue-component-lib/
           key: ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-
@@ -288,8 +292,7 @@ jobs:
             build_cmd: npm run build
             source_dir: ./examples/wrapper-components/react-vite-js/dist
             umbrella_dir: pr-preview-react-example
-            update_cmd: "REACT_VERSION=$(jq -r '.dependencies[\"@infineon/infineon-design-system-react\"]' package.json); STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}'); echo \"Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION\""
-
+            update_cmd: "REACT_VERSION=$(jq -r '.dependencies[\"@infineon/infineon-design-system-react\"]' package.json); echo \"Installed version React: $REACT_VERSION\""
           - name: angular
             path: packages/components-angular
             install_cmd: npm install 
@@ -343,6 +346,8 @@ jobs:
           source-dir: ${{ matrix.app.source_dir }}
           umbrella_dir: ${{ matrix.app.umbrella_dir }}
           token: ${{ secrets.GH_TOKEN }}
+          clean: true
+          force: true
       
       - name: Save deployment URL
         run: |
