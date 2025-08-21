@@ -1,11 +1,11 @@
 {
-  "name": "components-angular",
+  "name": "components-react",
   "targets": {
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run build:library",
-        "cwd": "packages/components-angular"
+        "command": "npm run build",
+        "cwd": "packages/components-react"
       },
       "dependsOn": [{"projects": ["components"], "target": "build"}]
     }

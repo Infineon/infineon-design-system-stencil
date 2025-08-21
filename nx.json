@@ -11,5 +11,8 @@
     "build": {
       "dependsOn": ["^build"]
     }
+  },
+    "affected": {
+    "defaultBase": "HEAD~1"
   }
 }

@@ -225,11 +225,11 @@ jobs:
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
           
-          # Use your original working commands
-          npm run build:components-angular
-          npm run build:components-react
-          npm run build:components-vue
+          # Use Nx for parallel builds with proper dependency handling
+          echo "Running builds in parallel using Nx..."
+          npx nx run-many --target=build --parallel=3 --projects=components-angular,components-react,components-vue
           
+
           # Publish packages
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
