@@ -104,19 +104,35 @@ jobs:
       #     cd packages/components
       #     nx affected --target=test --parallel=3
 
+
+      - name: Verify Stencil output targets
+        if: steps.build.outputs.SKIP_REMAINING == 'false' && steps.check_changes.outputs.stencil_changed == 'true'
+        run: |
+          echo "Ensuring Stencil has all required output targets..."
+          cd packages/components
+          
+          # Check stencil.config.ts for output targets
+          if ! grep -q "outputTarget.*loader" stencil.config.ts; then
+            echo "⚠️ Warning: 'loader' output target might be missing in stencil.config.ts"
+          fi
+          
+          # Make sure the dist-custom-elements output target is present
+          if ! grep -q "dist-custom-elements" stencil.config.ts; then
+            echo "⚠️ Warning: 'dist-custom-elements' output target might be missing in stencil.config.ts"
+          fi
+
       - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           if [ "${{ steps.check_changes.outputs.code_changed }}" = "true" ] || [ "${{ github.event.action }}" = "opened" ]; then
-            # Full build for code changes or new PRs
-            npm run build:components
+            # Full build with explicit output targets
+            npm run build:components -- --output-targets=dist,dist-custom-elements,www
           else
-            # Skip build if no code changes
             echo "No code changes detected, skipping Stencil build"
           fi
-          
+                
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
