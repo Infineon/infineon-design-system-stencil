@@ -51,6 +51,12 @@ jobs:
         run: |
           npm install
           git checkout -- package-lock.json 
+
+      - name: Run tests
+        run: |
+          cd packages/components
+          npm test
+
         
       - name: Build and deploy Stencil core package
         id: build
@@ -202,10 +208,13 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install and Build
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          npm run build
+          # Override the base path just for deployment
+          npm run build -- --base=/infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}/
 
       - name: Deploy preview
         id: preview       
