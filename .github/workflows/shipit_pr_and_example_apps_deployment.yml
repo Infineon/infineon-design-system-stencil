@@ -182,21 +182,35 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          npm run build:components-angular
-          npm run build:components-react
-          npm run build:components-vue
+          
+          # Start all three builds in parallel using background processes
+          echo "Starting builds in parallel..."
+          npm run build:components-angular &
+          angular_pid=$!
+          npm run build:components-react &
+          react_pid=$!
+          npm run build:components-vue &
+          vue_pid=$!
+          
+          # Wait for all builds to complete
+          echo "Waiting for all builds to finish..."
+          wait $angular_pid $react_pid $vue_pid
+          
+          # Check if any build failed
+          if [ $? -ne 0 ]; then
+            echo "⚠️ One or more builds failed"
+            exit 1
+          fi
+          
+          echo "✅ All builds completed successfully"
+          
+          # Now publish packages sequentially (publishing in parallel could cause issues)
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
           cd ../../../../components-react
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
-
-      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
-        run: |
-          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
-          sleep 10s
-        shell: bash
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -300,10 +314,8 @@ jobs:
         run: |
           echo "Creating Stencil loader shim for ${{ matrix.app.id }} framework..."
           
-          # Create the loader directory
           mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader
           
-          # Create the loader JS file
           cat > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
           export function defineCustomElements() {
             return Promise.resolve();
@@ -314,13 +326,11 @@ jobs:
           }
           EOF
           
-          # Create the TypeScript declaration file
           cat > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
           export declare function defineCustomElements(win?: Window): Promise<void>;
           export declare function applyPolyfills(): Promise<void>;
           EOF
           
-          # For Vue specifically, also create the loader in the infineon-design-system-vue node_modules
           if [ "${{ matrix.app.id }}" = "vue" ]; then
             mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-vue/node_modules/@infineon/infineon-design-system-stencil/loader
             cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js \
@@ -329,7 +339,6 @@ jobs:
               ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-vue/node_modules/@infineon/infineon-design-system-stencil/loader/
           fi
           
-          # For React specifically, also create the loader in the infineon-design-system-react node_modules
           if [ "${{ matrix.app.id }}" = "react" ]; then
             mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-react/node_modules/@infineon/infineon-design-system-stencil/loader
             cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js \
@@ -339,17 +348,18 @@ jobs:
           fi
           
           echo "✅ Stencil loader shim created for ${{ matrix.app.id }}"
-          
+
       - name: Install and Build
         run: |
           cd ${{ matrix.app.path }}
-          # Only reinstall if necessary
-          if [ -f "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
-            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
+          # Check if deps are installed and at correct version
+          if [ -f "node_modules/.package-marker" ] && [ "$(cat node_modules/.package-marker)" = "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
+            echo "⚡ Dependencies already installed and up to date!"
+            npm run build # Just run build, skip install
           else
             echo "📦 Installing dependencies for ${{ matrix.app.id }}..."
             ${{ matrix.app.build_cmd }}
-            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "node_modules/.package-marker"
           fi
 
       - name: Deploy preview
@@ -359,6 +369,8 @@ jobs:
           source-dir: ${{ matrix.app.source_dir }}
           umbrella-dir: ${{ matrix.app.umbrella_dir }}
           token: ${{ secrets.GH_TOKEN }}
+          max-jobs: 4
+          upload-chunk-size: 100
 
       # Store the URL in GitHub output variables
       - name: Set deployment URLs for PR comment
