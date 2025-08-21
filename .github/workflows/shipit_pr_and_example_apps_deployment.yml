@@ -45,11 +45,11 @@ jobs:
 
       # Enhanced caching strategy for node modules
       - name: Cache node modules
-        id: cache-npm
+        id: cache-pnpm
         uses: actions/cache@v3
         with:
           path: |
-            ~/.npm
+            ~/.pnpm
             **/node_modules
             packages/components/node_modules
             packages/components-vue/node_modules
@@ -117,7 +117,7 @@ jobs:
           
           # Function to check package with quiet output
           check_package() {
-            npm view "$PACKAGE@$VERSION" version &>/dev/null
+            pnpm view "$PACKAGE@$VERSION" version &>/dev/null
           }
           
           echo "⏳ Waiting for $PACKAGE@$VERSION to be available..."

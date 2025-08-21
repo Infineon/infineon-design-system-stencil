@@ -99,7 +99,7 @@
   "license": "MIT",
   "auto": {
     "plugins": [
-      "npm",
+      ["npm", { "packageManager": "pnpm" }],
       "released"
     ]
   }
