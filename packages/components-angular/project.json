@@ -1,0 +1,12 @@
+{
+  "name": "components-angular",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:library",
+        "cwd": "packages/components-angular"
+      }
+   }
+  }
+}
