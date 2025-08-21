@@ -1,0 +1,11 @@
+<h2>Indicator</h2>
+<ifx-indicator [variant]="indicatorVariant" number="1" [inverted]="indicatorInverted" />
+<br>
+<br>
+
+<ifx-button variant="secondary" (click)="toggleIndicatorVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIndicatorInverted()">Toggle Inverted</ifx-button>
+<br>
+<br>
+<span>Variant: {{ indicatorVariant }} </span><br>
+<span>Inverted: {{ indicatorInverted }} </span><br>
