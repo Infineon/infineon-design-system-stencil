@@ -110,7 +110,7 @@ export default {
     },
     icon: {
       description: 'The icon to be displayed on the dropdown items.',
-      options: ['none', ...Object.values(icons).map(i => i['name'])],
+      options: Object.keys(icons),
       control: 'select',
       table: {
         category: 'ifx-dropdown-item props',
