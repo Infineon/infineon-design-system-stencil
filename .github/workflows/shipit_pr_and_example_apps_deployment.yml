@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-          cache: 'npm' # Enable built-in npm cache
+          cache: 'npm'
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
@@ -274,7 +274,7 @@ jobs:
         app:
           - name: vue
             path: examples/wrapper-components/vue-javascript
-            install_cmd: npm ci # Using npm ci instead of npm i
+            install_cmd: npm ci  
             build_cmd: npm run build -- --base=/infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}/
             source_dir: ./examples/wrapper-components/vue-javascript/dist
             umbrella_dir: pr-preview-vue-example
@@ -282,7 +282,7 @@ jobs:
 
           - name: react
             path: examples/wrapper-components/react-vite-js
-            install_cmd: npm ci # Using npm ci instead of npm install
+            install_cmd: npm ci  
             build_cmd: npm run build
             source_dir: ./examples/wrapper-components/react-vite-js/dist
             umbrella_dir: pr-preview-react-example
@@ -290,7 +290,7 @@ jobs:
 
           - name: angular
             path: packages/components-angular
-            install_cmd: npm ci # Using npm ci instead of npm install
+            install_cmd: npm ci 
             build_cmd: npm run build my-app
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
@@ -298,7 +298,7 @@ jobs:
 
           - name: vanilla
             path: examples/stencil-components/vanilla-cdn
-            install_cmd: npm ci # Using npm ci instead of npm install
+            install_cmd: npm ci  
             build_cmd: npm run update-link && npm run build
             source_dir: ./examples/stencil-components/vanilla-cdn/dist
             umbrella_dir: pr-preview-vanilla-example
