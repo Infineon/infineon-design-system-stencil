@@ -93,6 +93,13 @@ jobs:
       - name: Install dependencies for all packages
         run: npm ci # Using npm ci instead of npm install for faster, reliable installs
     
+      - name: Run tests
+        if: steps.check_changes.outputs.code_changed == 'true'
+        run: |
+          echo "Running tests for changed components..."
+          cd packages/components
+          nx affected --target=test --parallel=3
+
       - name: Build and deploy Stencil core package
         id: build
         env:
