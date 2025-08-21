@@ -295,16 +295,51 @@ jobs:
           cd projects/component-library
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
 
-      # Create the Stencil loader for Angular
-      - name: Create Stencil loader for Angular
-        if: matrix.app.id == 'angular'
+      # Create the Stencil loader for all frameworks
+      - name: Create Stencil loader shim
         run: |
+          echo "Creating Stencil loader shim for ${{ matrix.app.id }} framework..."
+          
+          # Create the loader directory
           mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader
-          echo "export function defineCustomElements() { return Promise.resolve(); }" > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js
-          echo "export function applyPolyfills() { return Promise.resolve(); }" >> ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js
-          echo "export declare function defineCustomElements(): Promise<void>;" > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts
-          echo "export declare function applyPolyfills(): Promise<void>;" >> ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts
-
+          
+          # Create the loader JS file
+          cat > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
+          export function defineCustomElements() {
+            return Promise.resolve();
+          }
+          
+          export function applyPolyfills() {
+            return Promise.resolve();
+          }
+          EOF
+          
+          # Create the TypeScript declaration file
+          cat > ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
+          export declare function defineCustomElements(win?: Window): Promise<void>;
+          export declare function applyPolyfills(): Promise<void>;
+          EOF
+          
+          # For Vue specifically, also create the loader in the infineon-design-system-vue node_modules
+          if [ "${{ matrix.app.id }}" = "vue" ]; then
+            mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-vue/node_modules/@infineon/infineon-design-system-stencil/loader
+            cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js \
+              ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-vue/node_modules/@infineon/infineon-design-system-stencil/loader/
+            cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts \
+              ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-vue/node_modules/@infineon/infineon-design-system-stencil/loader/
+          fi
+          
+          # For React specifically, also create the loader in the infineon-design-system-react node_modules
+          if [ "${{ matrix.app.id }}" = "react" ]; then
+            mkdir -p ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-react/node_modules/@infineon/infineon-design-system-stencil/loader
+            cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.js \
+              ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-react/node_modules/@infineon/infineon-design-system-stencil/loader/
+            cp ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts \
+              ${{ matrix.app.path }}/node_modules/@infineon/infineon-design-system-react/node_modules/@infineon/infineon-design-system-stencil/loader/
+          fi
+          
+          echo "✅ Stencil loader shim created for ${{ matrix.app.id }}"
+          
       - name: Install and Build
         run: |
           cd ${{ matrix.app.path }}
