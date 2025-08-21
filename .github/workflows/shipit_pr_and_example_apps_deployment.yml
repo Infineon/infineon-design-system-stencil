@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-          cache: 'npm' # Enable built-in npm cache
+          cache: 'pnpm' # Enable built-in pnpm cache
 
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
@@ -89,7 +89,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm run build:components
+          pnpm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -158,7 +158,7 @@ jobs:
           RETRIES=5
           for i in $(seq 1 $RETRIES); do
             echo "Attempt $i to install Stencil version: $CANARY_VERSION"
-            if npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact; then
+            if pnpm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact; then
               echo "✅ Installed successfully on attempt $i"
               break
             else
@@ -168,7 +168,7 @@ jobs:
           done
 
           cd ../../
-          npm install
+          pnpm install
 
           # Verify updates
           echo "Verifying updates in Angular package"
@@ -183,10 +183,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          lerna version $CANARY_VERSION --no-git-tag-version --y
-                
-          # Install nx locally
-          npm install --no-save nx
+          pnpm install --no-save nx
 
           echo "Building wrapper components without rebuilding Stencil..."
           npx nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
@@ -195,11 +192,11 @@ jobs:
           
           # Now publish packages sequentially (publishing in parallel could cause issues)
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
-          npm publish --tag canary
+          pnpm publish --tag canary
           cd ../../../../components-react
-          npm publish --tag canary
+          pnpm publish --tag canary
           cd ../components-vue
-          npm publish --tag canary
+          pnpm publish --tag canary
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -239,25 +236,25 @@ jobs:
         app:
           - id: vue
             path: examples/wrapper-components/vue-javascript
-            build_cmd: npm i && npm run build
+            build_cmd: pnpm install && pnpm run build
             source_dir: ./examples/wrapper-components/vue-javascript/dist
             umbrella_dir: pr-preview-vue-example
             
           - id: react
             path: examples/wrapper-components/react-vite-js
-            build_cmd: npm install && npm run build
+            build_cmd: pnpm install && pnpm run build
             source_dir: ./examples/wrapper-components/react-vite-js/dist
             umbrella_dir: pr-preview-react-example
             
           - id: angular
             path: packages/components-angular
-            build_cmd: npm install && npm run build my-app
+            build_cmd: pnpm install && pnpm run build my-app
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
             
           - id: vanilla
             path: examples/stencil-components/vanilla-cdn
-            build_cmd: npm install && npm run update-link && npm run build
+            build_cmd: pnpm install && pnpm run update-link && pnpm run build
             source_dir: ./examples/stencil-components/vanilla-cdn/dist
             umbrella_dir: pr-preview-vanilla-example
     
@@ -276,7 +273,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm' # Enable built-in npm cache
+          cache: 'pnpm' # Enable built-in pnpm cache
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -345,7 +342,7 @@ jobs:
           # Check if deps are installed and at correct version
           if [ -f "node_modules/.package-marker" ] && [ "$(cat node_modules/.package-marker)" = "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
             echo "⚡ Dependencies already installed and up to date!"
-            npm run build # Just run build, skip install
+            pnpm run build
           else
             echo "📦 Installing dependencies for ${{ matrix.app.id }}..."
             ${{ matrix.app.build_cmd }}
