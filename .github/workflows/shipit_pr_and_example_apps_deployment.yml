@@ -414,30 +414,6 @@ jobs:
           # Create or update .npmrc to avoid installing duplicate types
           echo "ignore-scripts=true" > ${{ matrix.app.path }}/.npmrc
 
-      # Build the framework bindings but not Stencil again (which causes conflicts)
-      - name: Generate framework bindings only
-        run: |
-          echo "Generating framework bindings for ${{ matrix.app.name }}..."
-          cd packages/components
-          npm ci
-          
-          # Skip rebuilding Stencil if not needed
-          if [ "${{ matrix.app.framework_type }}" = "angular" ]; then
-            echo "Generating Angular bindings without rebuilding Stencil..."
-            npm run build:components-angular
-          elif [ "${{ matrix.app.framework_type }}" = "react" ]; then
-            echo "Generating React bindings without rebuilding Stencil..."
-            npm run build:components-react
-          elif [ "${{ matrix.app.framework_type }}" = "vue" ]; then
-            echo "Generating Vue bindings without rebuilding Stencil..."  
-            npm run build:components-vue
-          else
-            echo "Generating core components for vanilla..."
-            npm run build:components
-          fi
-          
-          cd ../..
-
       - name: Install and Build
         run: |
           cd ${{ matrix.app.path }}
