@@ -48,6 +48,34 @@ export class Table {
     { value: 30, label: '30', selected: false }
   ]); 
 
+  @Watch('rows')
+  rowsChanged(_newVal: any) {
+    const parsed = this.parseArrayInput<any>(this.rows);
+
+    this.currentFilters = {};
+    this.currentPage = 1;
+    this.originalRowData = [...parsed];
+    this.allRowData = [...parsed];
+    this.matchingResultsCount = this.allRowData.length;
+
+    this.updateTableView();
+    this.updateFilterOptions(); 
+  }
+
+  @Watch('cols')
+  colsChanged(_newVal: any) {
+    this.colData = this.getColData();
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('columnDefs', this.colData);
+      this.gridApi.sizeColumnsToFit({
+        defaultMinWidth: 100,
+      });
+    }
+
+    this.updateFilterOptions();
+  }
+
   @Listen('ifxItemsPerPageChange')
   handleResultsPerPageChange(e: CustomEvent<string>) { 
       this.paginationPageSize = Number(e.detail);
@@ -89,6 +117,21 @@ export class Table {
     if (this.gridApi) {
       this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
     }
+  }
+
+  private parseArrayInput<T>(input: any): T[] {
+  if (typeof input === 'string') {
+    try {
+      const parsed = JSON.parse(input);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      console.error('Failed to parse input:', input);
+      return [];
+    }
+  }
+    if (Array.isArray(input)) return input;
+    if (typeof input === 'object' && input !== null) return [input as T];
+    return [];
   }
 
   toggleSidebarFilters() {
