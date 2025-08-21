@@ -82,8 +82,7 @@ jobs:
       - name: Install dependencies for all packages
         run: |
           pnpm install --no-frozen-lockfile
-          git checkout -- package-lock.json 
-
+ 
       - name: Build and deploy Stencil core package
         id: build
         env:
