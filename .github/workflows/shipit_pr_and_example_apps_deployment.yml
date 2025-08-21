@@ -269,7 +269,7 @@ jobs:
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
 
-  #deploy gh-pages previews for example applications:
+ #deploy gh-pages previews for example applications:
   deploy-example-apps:
     needs: stencil-library-release
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -285,6 +285,7 @@ jobs:
             source_dir: ./examples/wrapper-components/vue-javascript/dist
             umbrella_dir: pr-preview-vue-example
             update_cmd: ""
+            framework_type: vue
 
           - name: react
             path: examples/wrapper-components/react-vite-js
@@ -293,6 +294,8 @@ jobs:
             source_dir: ./examples/wrapper-components/react-vite-js/dist
             umbrella_dir: pr-preview-react-example
             update_cmd: "REACT_VERSION=$(jq -r '.dependencies[\"@infineon/infineon-design-system-react\"]' package.json); echo \"Installed version React: $REACT_VERSION\""
+            framework_type: react
+            
           - name: angular
             path: packages/components-angular
             install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
@@ -300,6 +303,8 @@ jobs:
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
             update_cmd: "cd packages/components-angular && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.dependencies[\"@infineon/infineon-design-system-angular\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd projects/component-library && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.peerDependencies[\"@infineon/infineon-design-system-stencil\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd ../../.."
+            framework_type: angular
+            
           - name: vanilla
             path: examples/stencil-components/vanilla-cdn
             install_cmd: npm install
@@ -307,6 +312,7 @@ jobs:
             source_dir: ./examples/stencil-components/vanilla-cdn/dist
             umbrella_dir: pr-preview-vanilla-example
             update_cmd: ""
+            framework_type: vanilla
             
     # Add concurrency for each matrix job to avoid conflicts
     concurrency:
@@ -326,30 +332,86 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           
+      # Cache for example app node_modules
+      - name: Cache node modules for example app
+        id: cache-npm-example
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ matrix.app.path }}/node_modules
+          key: ${{ runner.os }}-${{ matrix.app.name }}-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.app.name }}-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
+            ${{ runner.os }}-${{ matrix.app.name }}-
+          
       - name: Update configuration if needed
         if: matrix.app.update_cmd != ''
         run: ${{ matrix.app.update_cmd }}
         shell: bash
 
-      # Generate Stencil output files for all frameworks before building
+      # Generate Stencil output files for specific framework type
       - name: Generate Stencil output files
         run: |
-          echo "Generating Stencil output files for example apps..."
+          echo "Generating Stencil output files for ${{ matrix.app.name }} (${{ matrix.app.framework_type }})..."
           cd packages/components
           npm ci
-          # Generate files for all framework types
-          npm run build
-          npm run build:angular
-          npm run build:react
-          npm run build:vue
+          
+          # Only build what's needed for this framework
+          npm run build:components
+          
+          if [ "${{ matrix.app.framework_type }}" = "angular" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
+            echo "Generating Angular bindings..."
+            npm run build:components-angular
+          fi
+          
+          if [ "${{ matrix.app.framework_type }}" = "react" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
+            echo "Generating React bindings..."
+            npm run build:components-react
+          fi
+          
+          if [ "${{ matrix.app.framework_type }}" = "vue" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
+            echo "Generating Vue bindings..."
+            npm run build:components-vue
+          fi
+          
           cd ../..
 
       - name: Install and Build
         run: |
           cd ${{ matrix.app.path }}
-          rm -rf node_modules || true
-          ${{ matrix.app.install_cmd }}
+          
+          # Check if node_modules exists and has the right version marker
+          CACHE_MARKER="node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          if [ ! -d "node_modules" ] || [ ! -f "$CACHE_MARKER" ]; then
+            echo "📦 Cache miss or new version, installing dependencies..."
+            ${{ matrix.app.install_cmd }}
+            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "$CACHE_MARKER"
+          else
+            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
+          fi
+          
+          echo "Building ${{ matrix.app.name }}..."
           ${{ matrix.app.build_cmd }}
+
+      # Add debug step
+      - name: Debug dependencies
+        run: |
+          cd ${{ matrix.app.path }}
+          echo "Checking installed Stencil package:"
+          npm list @infineon/infineon-design-system-stencil || true
+          
+          if [ "${{ matrix.app.name }}" != "vanilla" ]; then
+            echo "Checking wrapper package:"
+            npm list @infineon/infineon-design-system-${{ matrix.app.framework_type }} || true
+            
+            echo "Checking for loader:"
+            if [ -d "node_modules/@infineon/infineon-design-system-stencil/loader" ]; then
+              echo "✅ Stencil loader found"
+              ls -la node_modules/@infineon/infineon-design-system-stencil/loader/
+            else
+              echo "❌ Stencil loader not found"
+            fi
+          fi
 
       - name: Deploy preview
         uses: JamesIves/github-pages-deploy-action@v4
