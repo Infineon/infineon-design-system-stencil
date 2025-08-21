@@ -328,7 +328,7 @@ jobs:
             
           - name: angular
             path: packages/components-angular
-            install_cmd: npm install
+            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact            
             build_cmd: npm run build my-app
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
@@ -404,15 +404,6 @@ jobs:
           else
             mv ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json ${{ matrix.app.path }}/projects/component-library/tsconfig.json
           fi
-
-      # Use published package instead of rebuilding for types that cause conflicts
-      - name: Prepare for build
-        if: matrix.app.framework_type == 'angular'
-        run: |
-          echo "👷 Preparing to build Angular with optimized approach..."
-          
-          # Create or update .npmrc to avoid installing duplicate types
-          echo "ignore-scripts=true" > ${{ matrix.app.path }}/.npmrc
 
 
       - name: Install and Build
