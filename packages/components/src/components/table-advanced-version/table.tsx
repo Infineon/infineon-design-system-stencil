@@ -50,30 +50,22 @@ export class Table {
 
   @Watch('rows')
   rowsChanged(_newVal: any) {
-    // Parse rows using your existing logic
     const parsed = this.parseArrayInput<any>(this.rows);
 
-    // Reset filters and pagination for a clean state (you can change this behavior)
     this.currentFilters = {};
     this.currentPage = 1;
-
-    // Update all data stores
     this.originalRowData = [...parsed];
     this.allRowData = [...parsed];
     this.matchingResultsCount = this.allRowData.length;
 
-    // Update grid slice and API
-    this.updateTableView();     // sets this.rowData slice and calls gridApi.setGridOption('rowData', this.rowData)
-    this.updateFilterOptions(); // refresh selectable filter options based on current colData/rowData
+    this.updateTableView();
+    this.updateFilterOptions(); 
   }
 
-  // Recompute and refresh the grid when COLS change
   @Watch('cols')
   colsChanged(_newVal: any) {
-    // Use your existing logic to get computed column definitions (includes button renderer)
     this.colData = this.getColData();
 
-    // Update grid columns
     if (this.gridApi) {
       this.gridApi.setGridOption('columnDefs', this.colData);
       this.gridApi.sizeColumnsToFit({
@@ -81,7 +73,6 @@ export class Table {
       });
     }
 
-    // Filter options depend on columns and rowData
     this.updateFilterOptions();
   }
 
