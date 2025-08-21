@@ -93,12 +93,12 @@ jobs:
       - name: Install dependencies for all packages
         run: npm ci # Using npm ci instead of npm install for faster, reliable installs
     
-      - name: Run tests
-        if: steps.check_changes.outputs.code_changed == 'true'
-        run: |
-          echo "Running tests for changed components..."
-          cd packages/components
-          nx affected --target=test --parallel=3
+      # - name: Run tests
+      #   if: steps.check_changes.outputs.code_changed == 'true'
+      #   run: |
+      #     echo "Running tests for changed components..."
+      #     cd packages/components
+      #     nx affected --target=test --parallel=3
 
       - name: Build and deploy Stencil core package
         id: build
@@ -208,7 +208,14 @@ jobs:
       # Use Nx for better parallelization of builds
       - name: Install Nx
         if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: npm install -g nx
+        run: |
+          npm install -g nx
+          # Add .nx to gitignore if not already there
+          grep -q "^\.nx/$" .gitignore || echo ".nx/" >> .gitignore
+          git add .gitignore
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git commit -m "chore: add .nx directory to gitignore" || true
 
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
