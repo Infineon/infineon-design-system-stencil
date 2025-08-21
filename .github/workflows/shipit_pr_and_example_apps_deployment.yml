@@ -100,6 +100,12 @@ jobs:
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
+
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add ../../pnpm-lock.yaml
+            git commit -m "Update pnpm-lock.yaml [skip ci]" || true
+      
             auto shipit
           fi
 
