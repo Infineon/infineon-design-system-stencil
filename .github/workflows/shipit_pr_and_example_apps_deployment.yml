@@ -348,7 +348,7 @@ jobs:
           echo "${{ steps.preview.outputs.deployment-url }}" > ./deployment-urls/${{ matrix.app.name }}.txt
       
       - name: Upload deployment URL
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: deployment-url-${{ matrix.app.name }}
           path: ./deployment-urls/${{ matrix.app.name }}.txt
@@ -359,7 +359,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download all deployment URLs
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           path: ./deployment-urls
       
