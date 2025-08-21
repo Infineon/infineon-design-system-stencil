@@ -3,7 +3,7 @@ import { CommonModule }                     from '@angular/common';
 import { ComponentLibraryModule }           from '@infineon/infineon-design-system-angular';
 
 @Component({
-  selector: 'app-file-upload-demo',
+  selector: 'app-file-upload',
   standalone: true,
   imports: [
     CommonModule,

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
 @Component({
-  selector: 'app-number-indicator',
+  selector: 'app-indicator',
   standalone: true,
   imports: [
     ComponentLibraryModule,
