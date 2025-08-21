@@ -208,13 +208,10 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
           npm i
-          # Override the base path just for deployment
-          npm run build -- --base=/infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}/
+          npm run build
 
       - name: Deploy preview
         id: preview       
