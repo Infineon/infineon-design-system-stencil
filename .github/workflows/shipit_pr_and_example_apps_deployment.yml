@@ -340,19 +340,19 @@ jobs:
           ${{ matrix.app.build_cmd }}
 
       - name: Deploy preview
-        uses: rossjrw/pr-preview-action@v1
-        id: preview
+        uses: JamesIves/github-pages-deploy-action@v4
+        id: deploy
         with:
-          source-dir: ${{ matrix.app.source_dir }}
-          umbrella_dir: ${{ matrix.app.umbrella_dir }}
+          folder: ${{ matrix.app.source_dir }}
+          target-folder: ${{ matrix.app.umbrella_dir }}/pr-${{ github.event.pull_request.number }}
           token: ${{ secrets.GH_TOKEN }}
-          clean: true
-          force: true
+          clean: true  # This removes old files in the target directory
+          force: true  # This forces the deployment even if there are conflicts
       
       - name: Save deployment URL
         run: |
           mkdir -p ./deployment-urls
-          echo "${{ steps.preview.outputs.deployment-url }}" > ./deployment-urls/${{ matrix.app.name }}.txt
+          echo "https://infineon.github.io/infineon-design-system-stencil/${{ matrix.app.umbrella_dir }}/pr-${{ github.event.pull_request.number }}/" > ./deployment-urls/${{ matrix.app.name }}.txt
       
       - name: Upload deployment URL
         uses: actions/upload-artifact@v4
