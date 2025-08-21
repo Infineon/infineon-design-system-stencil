@@ -280,7 +280,7 @@ jobs:
         app:
           - name: vue
             path: examples/wrapper-components/vue-javascript
-            install_cmd: npm install 
+            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
             build_cmd: npm run build -- --base=/infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}/
             source_dir: ./examples/wrapper-components/vue-javascript/dist
             umbrella_dir: pr-preview-vue-example
@@ -288,19 +288,18 @@ jobs:
 
           - name: react
             path: examples/wrapper-components/react-vite-js
-            install_cmd: npm install
+            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
             build_cmd: npm run build
             source_dir: ./examples/wrapper-components/react-vite-js/dist
             umbrella_dir: pr-preview-react-example
             update_cmd: "REACT_VERSION=$(jq -r '.dependencies[\"@infineon/infineon-design-system-react\"]' package.json); echo \"Installed version React: $REACT_VERSION\""
           - name: angular
             path: packages/components-angular
-            install_cmd: npm install 
+            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
             build_cmd: npm run build my-app
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
             update_cmd: "cd packages/components-angular && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.dependencies[\"@infineon/infineon-design-system-angular\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd projects/component-library && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.peerDependencies[\"@infineon/infineon-design-system-stencil\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd ../../.."
-
           - name: vanilla
             path: examples/stencil-components/vanilla-cdn
             install_cmd: npm install
@@ -331,6 +330,19 @@ jobs:
         if: matrix.app.update_cmd != ''
         run: ${{ matrix.app.update_cmd }}
         shell: bash
+
+      # Generate Stencil output files for all frameworks before building
+      - name: Generate Stencil output files
+        run: |
+          echo "Generating Stencil output files for example apps..."
+          cd packages/components
+          npm ci
+          # Generate files for all framework types
+          npm run build
+          npm run build:angular
+          npm run build:react
+          npm run build:vue
+          cd ../..
 
       - name: Install and Build
         run: |
