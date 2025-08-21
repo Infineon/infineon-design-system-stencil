@@ -221,6 +221,36 @@ jobs:
           git config user.email "github-actions@github.com"
           git commit -m "chore: add .nx directory to gitignore" || true
 
+      # Fix TypeScript conflicts before building Angular
+      - name: Fix TypeScript conflicts
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        run: |
+          echo "Fixing potential TypeScript conflicts..."
+          
+          # Remove conflicting types in node_modules that would clash with locally generated ones
+          echo "Removing conflicting types from node_modules..."
+          find packages -type d -path "*/node_modules/@infineon/infineon-design-system-stencil/dist/types" -exec rm -rf {} \; 2>/dev/null || true
+          
+          # Create special tsconfig for Angular to prevent conflicts
+          echo "Creating specialized tsconfig for Angular..."
+          echo '{
+            "compilerOptions": {
+              "skipLibCheck": true
+            },
+            "exclude": [
+              "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts"
+            ]
+          }' > packages/components-angular/projects/component-library/tsconfig.fix.json
+          
+          # Merge with existing tsconfig if it exists
+          if [ -f "packages/components-angular/projects/component-library/tsconfig.json" ]; then
+            jq -s '.[0] * .[1]' packages/components-angular/projects/component-library/tsconfig.json packages/components-angular/projects/component-library/tsconfig.fix.json > packages/components-angular/projects/component-library/tsconfig.merged.json
+            mv packages/components-angular/projects/component-library/tsconfig.merged.json packages/components-angular/projects/component-library/tsconfig.json
+          else
+            mv packages/components-angular/projects/component-library/tsconfig.fix.json packages/components-angular/projects/component-library/tsconfig.json
+          fi
+          
+          echo "✅ TypeScript conflicts fixed"
       
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -298,7 +328,7 @@ jobs:
             
           - name: angular
             path: packages/components-angular
-            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
+            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --ignore-scripts --save-exact
             build_cmd: npm run build my-app
             source_dir: ./packages/components-angular/dist/my-app
             umbrella_dir: pr-preview-angular-example
@@ -349,29 +379,61 @@ jobs:
         run: ${{ matrix.app.update_cmd }}
         shell: bash
 
-      # Generate Stencil output files for specific framework type
-      - name: Generate Stencil output files
+      # Fix TypeScript conflicts for Angular specifically
+      - name: Fix TypeScript conflicts for Angular
+        if: matrix.app.framework_type == 'angular'
         run: |
-          echo "Generating Stencil output files for ${{ matrix.app.name }} (${{ matrix.app.framework_type }})..."
+          echo "🔧 Fixing TypeScript conflicts for Angular..."
+          # Remove the installed types from node_modules
+          find ${{ matrix.app.path }} -type d -path "*/node_modules/@infineon/infineon-design-system-stencil/dist/types" -exec rm -rf {} \; 2>/dev/null || true
+          
+          # Create tsconfig to ignore duplicated types
+          echo '{
+            "compilerOptions": {
+              "skipLibCheck": true
+            },
+            "exclude": [
+              "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts"
+            ]
+          }' > ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json
+          
+          # Merge with existing tsconfig if it exists
+          if [ -f "${{ matrix.app.path }}/projects/component-library/tsconfig.json" ]; then
+            jq -s '.[0] * .[1]' ${{ matrix.app.path }}/projects/component-library/tsconfig.json ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json > ${{ matrix.app.path }}/projects/component-library/tsconfig.merged.json
+            mv ${{ matrix.app.path }}/projects/component-library/tsconfig.merged.json ${{ matrix.app.path }}/projects/component-library/tsconfig.json
+          else
+            mv ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json ${{ matrix.app.path }}/projects/component-library/tsconfig.json
+          fi
+
+      # Use published package instead of rebuilding for types that cause conflicts
+      - name: Prepare for build
+        if: matrix.app.framework_type == 'angular'
+        run: |
+          echo "👷 Preparing to build Angular with optimized approach..."
+          
+          # Create or update .npmrc to avoid installing duplicate types
+          echo "ignore-scripts=true" > ${{ matrix.app.path }}/.npmrc
+
+      # Build the framework bindings but not Stencil again (which causes conflicts)
+      - name: Generate framework bindings only
+        run: |
+          echo "Generating framework bindings for ${{ matrix.app.name }}..."
           cd packages/components
           npm ci
           
-          # Only build what's needed for this framework
-          npm run build:components
-          
-          if [ "${{ matrix.app.framework_type }}" = "angular" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
-            echo "Generating Angular bindings..."
+          # Skip rebuilding Stencil if not needed
+          if [ "${{ matrix.app.framework_type }}" = "angular" ]; then
+            echo "Generating Angular bindings without rebuilding Stencil..."
             npm run build:components-angular
-          fi
-          
-          if [ "${{ matrix.app.framework_type }}" = "react" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
-            echo "Generating React bindings..."
+          elif [ "${{ matrix.app.framework_type }}" = "react" ]; then
+            echo "Generating React bindings without rebuilding Stencil..."
             npm run build:components-react
-          fi
-          
-          if [ "${{ matrix.app.framework_type }}" = "vue" ] || [ "${{ matrix.app.framework_type }}" = "all" ]; then
-            echo "Generating Vue bindings..."
+          elif [ "${{ matrix.app.framework_type }}" = "vue" ]; then
+            echo "Generating Vue bindings without rebuilding Stencil..."  
             npm run build:components-vue
+          else
+            echo "Generating core components for vanilla..."
+            npm run build:components
           fi
           
           cd ../..
