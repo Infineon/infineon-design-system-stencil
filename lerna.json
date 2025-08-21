@@ -1,12 +1,16 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
-  "version": "37.12.0--canary.1985.83e58711002ed4fde0bf34e60fb2dc752ebfe879.0",
+  "version": "37.12.1--canary.1988.42a4a34b0a478afeea7ca5b47d1e4a4ed329327b.0",
   "command": {
     "publish": {
       "verifyAccess": false
     },
     "version": {
       "exact": true
+    },
+    "run": {
+      "stream": true
     }
-  }
+  },
+  "npmClient": "npm"
 }
