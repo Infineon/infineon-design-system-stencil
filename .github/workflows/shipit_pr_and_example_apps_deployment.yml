@@ -7,9 +7,11 @@ on:
       - reopened
       - synchronize # canary on new commit
 
+# Add workflow concurrency to prevent conflicts
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+
 jobs:
   stencil-library-release:
     outputs:
@@ -18,13 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
           fetch-depth: 0 # fetch all tags for ship-it
 
-      - name: Download + Setup auto
+      - name: download + setup auto
         uses: auto-it/setup-auto@v1
 
       - name: Use Node.js 20.x
@@ -32,32 +34,12 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-          cache: 'npm'
+          cache: 'npm' # Enable built-in npm cache
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      # Check changed files to determine if we need full builds
-      - name: Check changed files
-        id: check_changes
-        run: |
-          git diff --name-only ${{ github.event.before }} ${{ github.event.after }} > changed_files.txt
-          
-          # Check if code files were changed
-          if grep -q "\.tsx\|\.ts\|\.js\|\.jsx\|\.vue\|\.css\|\.scss" changed_files.txt; then
-            echo "code_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "code_changed=false" >> $GITHUB_OUTPUT
-          fi
-          
-          # Check specific package changes to optimize builds later
-          if grep -q "packages/components/" changed_files.txt; then
-            echo "stencil_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "stencil_changed=false" >> $GITHUB_OUTPUT
-          fi
-
-      # Improved caching strategy
+      # Enhanced caching strategy for node modules
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -77,8 +59,8 @@ jobs:
             ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
     
-      # Cache build output including generated files
-      - name: Cache build output and generated files
+      # Cache build output to speed up subsequent builds
+      - name: Cache build output
         uses: actions/cache@v3
         with:
           path: |
@@ -86,52 +68,24 @@ jobs:
             packages/components-vue/dist
             packages/components-react/dist
             packages/components-angular/dist
-            .nx/
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
           key: ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-
-      
-      - name: Install dependencies for all packages
-        run: npm ci # Using npm ci instead of npm install for faster, reliable installs
     
-      # - name: Run tests
-      #   if: steps.check_changes.outputs.code_changed == 'true'
-      #   run: |
-      #     echo "Running tests for changed components..."
-      #     cd packages/components
-      #     nx affected --target=test --parallel=3
-
-
-      - name: Verify Stencil output targets
-        if: steps.build.outputs.SKIP_REMAINING == 'false' && steps.check_changes.outputs.stencil_changed == 'true'
+      - name: Install dependencies for all packages
         run: |
-          echo "Ensuring Stencil has all required output targets..."
-          cd packages/components
-          
-          # Check stencil.config.ts for output targets
-          if ! grep -q "outputTarget.*loader" stencil.config.ts; then
-            echo "⚠️ Warning: 'loader' output target might be missing in stencil.config.ts"
-          fi
-          
-          # Make sure the dist-custom-elements output target is present
-          if ! grep -q "dist-custom-elements" stencil.config.ts; then
-            echo "⚠️ Warning: 'dist-custom-elements' output target might be missing in stencil.config.ts"
-          fi
+          npm install
+          git checkout -- package-lock.json 
 
       - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          if [ "${{ steps.check_changes.outputs.code_changed }}" = "true" ] || [ "${{ github.event.action }}" = "opened" ] || grep -q "\.github/workflows/" changed_files.txt; then
-            npm run build:components
-          else
-            echo "No code changes detected, skipping Stencil build"
-          fi
-                
+          npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -141,35 +95,16 @@ jobs:
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
             auto shipit
           fi
 
-      # Replace sleep with polling for package availability
-      - name: Check package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
-          PACKAGE_NAME="@infineon/infineon-design-system-stencil"
-          VERSION="${{ steps.build.outputs.CANARY_VERSION }}"
-          MAX_RETRIES=10
-          RETRY_WAIT=5
-          
-          for i in $(seq 1 $MAX_RETRIES); do
-            echo "Checking if $PACKAGE_NAME@$VERSION is available (attempt $i)..."
-            if npm view "$PACKAGE_NAME@$VERSION" version &>/dev/null; then
-              echo "✅ Package $PACKAGE_NAME@$VERSION is available!"
-              break
-            else
-              echo "⏳ Package not yet available, waiting ${RETRY_WAIT}s..."
-              sleep $RETRY_WAIT
-              # Increase wait time for subsequent attempts
-              RETRY_WAIT=$((RETRY_WAIT + 5))
-            fi
-            
-            if [ $i -eq $MAX_RETRIES ]; then
-              echo "⚠️ Package availability check timed out after $MAX_RETRIES attempts"
-            fi
-          done
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
+        shell: bash
       
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -178,6 +113,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
@@ -200,7 +136,7 @@ jobs:
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
 
-          # Install Stencil package with retries
+          # Retry install of published Stencil package (race condition safe)
           RETRIES=5
           for i in $(seq 1 $RETRIES); do
             echo "Attempt $i to install Stencil version: $CANARY_VERSION"
@@ -223,19 +159,8 @@ jobs:
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
+
             
-      # Use Nx for better parallelization of builds
-      - name: Install Nx
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          npm install -g nx
-          # Add .nx to gitignore if not already there
-          grep -q "^\.nx/$" .gitignore || echo ".nx/" >> .gitignore
-          git add .gitignore
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git commit -m "chore: add .nx directory to gitignore" || true
-      
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -251,6 +176,12 @@ jobs:
           npm publish --tag canary
           cd ../components-vue
           npm publish --tag canary
+
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
+        run: |
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
+        shell: bash
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -279,56 +210,13 @@ jobs:
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
 
- #deploy gh-pages previews for example applications:
-  deploy-example-apps:
-    needs: stencil-library-release
+  #deploy gh-pages previews for example applications:
+  deploy-preview-vue:
+    needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false  # Continue with other builds even if one fails
-      matrix:
-        app:
-          - name: vue
-            path: examples/wrapper-components/vue-javascript
-            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
-            build_cmd: npm run build
-            source_dir: ./examples/wrapper-components/vue-javascript/dist
-            umbrella_dir: pr-preview-vue-example
-            update_cmd: ""
-            framework_type: vue
-
-          - name: react
-            path: examples/wrapper-components/react-vite-js
-            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
-            build_cmd: npm run build
-            source_dir: ./examples/wrapper-components/react-vite-js/dist
-            umbrella_dir: pr-preview-react-example
-            update_cmd: "REACT_VERSION=$(jq -r '.dependencies[\"@infineon/infineon-design-system-react\"]' package.json); echo \"Installed version React: $REACT_VERSION\""
-            framework_type: react
-            
-          - name: angular
-            path: packages/components-angular
-            install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact            
-            build_cmd: npm run build my-app
-            source_dir: ./packages/components-angular/dist/my-app
-            umbrella_dir: pr-preview-angular-example
-            update_cmd: "cd packages/components-angular && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.dependencies[\"@infineon/infineon-design-system-angular\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd projects/component-library && jq --arg CANARY_VERSION \"${{ needs.stencil-library-release.outputs.CANARY_VERSION }}\" '.peerDependencies[\"@infineon/infineon-design-system-stencil\"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json && cd ../../.."
-            framework_type: angular
-            
-          - name: vanilla
-            path: examples/stencil-components/vanilla-cdn
-            install_cmd: npm install
-            build_cmd: npm run update-link && npm run build
-            source_dir: ./examples/stencil-components/vanilla-cdn/dist
-            umbrella_dir: pr-preview-vanilla-example
-            update_cmd: ""
-            framework_type: vanilla
-            
-    # Add concurrency for each matrix job to avoid conflicts
-    concurrency:
-      group: deploy-${{ matrix.app.name }}-${{ github.event.pull_request.number }}
-      cancel-in-progress: true
-      
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -341,137 +229,209 @@ jobs:
           cache: 'npm' # Enable built-in npm cache
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
-      # Cache for example app node_modules
-      - name: Cache node modules for example app
-        id: cache-npm-example
+
+      # Cache node_modules for the Vue example app
+      - name: Cache Vue app node modules
         uses: actions/cache@v3
         with:
-          path: |
-            ${{ matrix.app.path }}/node_modules
-          key: ${{ runner.os }}-${{ matrix.app.name }}-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('**/package-lock.json') }}
+          path: examples/wrapper-components/vue-javascript/node_modules
+          key: ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/vue-javascript/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.app.name }}-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-${{ matrix.app.name }}-
-          
-      - name: Update configuration if needed
-        if: matrix.app.update_cmd != ''
-        run: ${{ matrix.app.update_cmd }}
-        shell: bash
-
-      # Fix TypeScript conflicts for Angular specifically
-      - name: Fix TypeScript conflicts for Angular
-        if: matrix.app.framework_type == 'angular'
-        run: |
-          echo "🔧 Fixing TypeScript conflicts for Angular..."
-          # Remove the installed types from node_modules
-          find ${{ matrix.app.path }} -type d -path "*/node_modules/@infineon/infineon-design-system-stencil/dist/types" -exec rm -rf {} \; 2>/dev/null || true
-          
-          # Create tsconfig to ignore duplicated types
-          echo '{
-            "compilerOptions": {
-              "skipLibCheck": true
-            },
-            "exclude": [
-              "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts"
-            ]
-          }' > ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json
-          
-          # Merge with existing tsconfig if it exists
-          if [ -f "${{ matrix.app.path }}/projects/component-library/tsconfig.json" ]; then
-            jq -s '.[0] * .[1]' ${{ matrix.app.path }}/projects/component-library/tsconfig.json ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json > ${{ matrix.app.path }}/projects/component-library/tsconfig.merged.json
-            mv ${{ matrix.app.path }}/projects/component-library/tsconfig.merged.json ${{ matrix.app.path }}/projects/component-library/tsconfig.json
-          else
-            mv ${{ matrix.app.path }}/projects/component-library/tsconfig.fix.json ${{ matrix.app.path }}/projects/component-library/tsconfig.json
-          fi
-
+            ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
+            ${{ runner.os }}-vue-example-
 
       - name: Install and Build
         run: |
-          cd ${{ matrix.app.path }}
-          
-          # Check if node_modules exists and has the right version marker
-          CACHE_MARKER="node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
-          if [ ! -d "node_modules" ] || [ ! -f "$CACHE_MARKER" ]; then
-            echo "📦 Cache miss or new version, installing dependencies..."
-            ${{ matrix.app.install_cmd }}
-            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "$CACHE_MARKER"
-          else
-            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
-          fi
-          
-          echo "Building ${{ matrix.app.name }}..."
-          ${{ matrix.app.build_cmd }}
-
-      # Add debug step
-      - name: Debug dependencies
-        run: |
-          cd ${{ matrix.app.path }}
-          echo "Checking installed Stencil package:"
-          npm list @infineon/infineon-design-system-stencil || true
-          
-          if [ "${{ matrix.app.name }}" != "vanilla" ]; then
-            echo "Checking wrapper package:"
-            npm list @infineon/infineon-design-system-${{ matrix.app.framework_type }} || true
-            
-            echo "Checking for loader:"
-            if [ -d "node_modules/@infineon/infineon-design-system-stencil/loader" ]; then
-              echo "✅ Stencil loader found"
-              ls -la node_modules/@infineon/infineon-design-system-stencil/loader/
-            else
-              echo "❌ Stencil loader not found"
-            fi
-          fi
+          cd examples/wrapper-components/vue-javascript
+          npm i
+          npm run build
 
       - name: Deploy preview
-        uses: JamesIves/github-pages-deploy-action@v4
-        id: deploy
+        id: preview       
+        uses: rossjrw/pr-preview-action@v1
         with:
-          folder: ${{ matrix.app.source_dir }}
-          target-folder: ${{ matrix.app.umbrella_dir }}/pr-${{ github.event.pull_request.number }}
+          source-dir: ./examples/wrapper-components/vue-javascript/dist
+          umbrella-dir: pr-preview-vue-example
           token: ${{ secrets.GH_TOKEN }}
-          clean: true  # This removes old files in the target directory
-          force: true  # This forces the deployment even if there are conflicts
-      
-      - name: Save deployment URL
-        run: |
-          mkdir -p ./deployment-urls
-          echo "https://infineon.github.io/infineon-design-system-stencil/${{ matrix.app.umbrella_dir }}/pr-${{ github.event.pull_request.number }}/" > ./deployment-urls/${{ matrix.app.name }}.txt
-      
-      - name: Upload deployment URL
-        uses: actions/upload-artifact@v4
-        with:
-          name: deployment-url-${{ matrix.app.name }}
-          path: ./deployment-urls/${{ matrix.app.name }}.txt
-          retention-days: 1
 
-  collect-urls-and-update-pr:
-    needs: deploy-example-apps
+  deploy-preview-react:
+    needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: 'npm' # Enable built-in npm cache
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Cache node_modules for the React example app
+      - name: Cache React app node modules
+        uses: actions/cache@v3
+        with:
+          path: examples/wrapper-components/react-vite-js/node_modules
+          key: ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/react-vite-js/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
+            ${{ runner.os }}-react-example-
+
+      - name: Install and Build
+        run: |
+          cd examples/wrapper-components/react-vite-js
+          # Only remove node_modules if we need to update dependencies
+          if [ -f "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
+            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
+          else
+            echo "📦 Installing dependencies for new version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}..."
+            rm -rf node_modules
+            npm install
+            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          fi
+          
+          REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
+          STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
+          echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
+          npm run build
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/wrapper-components/react-vite-js/dist
+          umbrella-dir: pr-preview-react-example
+          token: ${{ secrets.GH_TOKEN }}
+
+  deploy-preview-angular:
+    needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Download all deployment URLs
-        uses: actions/download-artifact@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
         with:
-          path: ./deployment-urls
-      
-      - name: Read deployment URLs
-        id: get-urls
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: 'npm' # Enable built-in npm cache
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Cache node_modules for the Angular example app
+      - name: Cache Angular app node modules
+        uses: actions/cache@v3
+        with:
+          path: packages/components-angular/node_modules
+          key: ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('packages/components-angular/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
+            ${{ runner.os }}-angular-example-
+
+      - name: Update package.json with canary version
         run: |
-          echo "VUE_URL=$(cat ./deployment-urls/deployment-url-vue/vue.txt)" >> $GITHUB_OUTPUT
-          echo "REACT_URL=$(cat ./deployment-urls/deployment-url-react/react.txt)" >> $GITHUB_OUTPUT
-          echo "ANGULAR_URL=$(cat ./deployment-urls/deployment-url-angular/angular.txt)" >> $GITHUB_OUTPUT
-          echo "VANILLA_URL=$(cat ./deployment-urls/deployment-url-vanilla/vanilla.txt)" >> $GITHUB_OUTPUT
-      
+          cd packages/components-angular
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          cd projects/component-library
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+
+      - name: Install and Build
+        run: |
+          cd packages/components-angular
+          # Only reinstall if we need to update dependencies
+          if [ -f "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
+            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
+          else
+            echo "📦 Installing dependencies for new version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}..."
+            npm install
+            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          fi
+          npm run build my-app
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./packages/components-angular/dist/my-app
+          umbrella-dir: pr-preview-angular-example
+          token: ${{ secrets.GH_TOKEN }}
+
+  deploy-preview-vanilla:
+    needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
+    runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: 'npm' # Enable built-in npm cache
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Cache node_modules for the Vanilla example app
+      - name: Cache Vanilla app node modules
+        uses: actions/cache@v3
+        with:
+          path: examples/stencil-components/vanilla-cdn/node_modules
+          key: ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/stencil-components/vanilla-cdn/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
+            ${{ runner.os }}-vanilla-example-
+
+      - name: Update CDN Link in Vanilla example app & build
+        run: | 
+          cd examples/stencil-components/vanilla-cdn
+          # Only reinstall if necessary
+          if [ -f "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" ]; then
+            echo "⚡ Using cached node_modules for version ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}!"
+          else
+            echo "📦 Installing dependencies..."
+            npm install
+            echo "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" > "node_modules/.cache-marker-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}"
+          fi
+          npm run update-link
+          npm run build
+
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        id: preview
+        with:
+          source-dir: ./examples/stencil-components/vanilla-cdn/dist
+          umbrella-dir: pr-preview-vanilla-example
+          token: ${{ secrets.GH_TOKEN }}
+  
+  update-pr-comment: # add comment on github
+    needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Update comment in PR
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GH_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
-            const vueUrl = "${{ steps.get-urls.outputs.VUE_URL }}";
-            const reactUrl = "${{ steps.get-urls.outputs.REACT_URL }}";
-            const angularUrl = "${{ steps.get-urls.outputs.ANGULAR_URL }}";
-            const vanillaUrl = "${{ steps.get-urls.outputs.VANILLA_URL }}";
+            const vueUrl = "${{ needs.deploy-preview-vue.outputs.deployment-url }}";
+            const reactUrl = "${{ needs.deploy-preview-react.outputs.deployment-url }}";
+            const angularUrl = "${{ needs.deploy-preview-angular.outputs.deployment-url }}";
+            const vanillaUrl = "${{ needs.deploy-preview-vanilla.outputs.deployment-url }}";
             const EXAMPLE_APPS_IDENTIFIER = "--EXAMPLE-APPS-PREVIEW--";
             const newText = `--EXAMPLE-APPS-PREVIEW--\nPR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
   
@@ -497,3 +457,5 @@ jobs:
                 body: newText
               });
             }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
