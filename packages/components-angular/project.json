@@ -6,8 +6,7 @@
       "options": {
         "command": "npm run build:library",
         "cwd": "packages/components-angular"
-      },
-      "dependsOn": [{"projects": ["components"], "target": "build"}]
-    }
+      }
+   }
   }
 }

@@ -6,8 +6,7 @@
       "options": {
         "command": "npm run build",
         "cwd": "packages/components-vue"
-      },
-      "dependsOn": [{"projects": ["components"], "target": "build"}]
+      }
     }
   }
 }
