@@ -388,8 +388,8 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
           <div class='single__select-icon-container'>
             { this.optionIsSelected && (
-                <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
-                  <ifx-icon tabindex={0} icon="cRemove16" onKeyDown={e => this.handleKeyDown(e)} onClick={() => this.clearSelection()}></ifx-icon>
+                <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`} tabindex={0}>
+                  <ifx-icon icon="cRemove16" onKeyDown={e => this.handleKeyDown(e)} onClick={() => this.clearSelection()}></ifx-icon>
                 </div>
               )}
               <div class="ifx-choices__icon-wrapper-up">
@@ -444,7 +444,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
 
     const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
-    const isClearButton = (event.target as HTMLElement).tagName === 'IFX-ICON';
+    const isClearButton = (event.target as HTMLElement).classList.contains('ifx-choices__icon-wrapper-delete');
 
     switch (event.code) {
       case 'Enter': {
