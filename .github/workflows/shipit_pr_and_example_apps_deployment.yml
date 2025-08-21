@@ -126,8 +126,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          if [ "${{ steps.check_changes.outputs.code_changed }}" = "true" ] || [ "${{ github.event.action }}" = "opened" ]; then
-            # Full build with explicit output targets
+          if [ "${{ steps.check_changes.outputs.code_changed }}" = "true" ] || [ "${{ github.event.action }}" = "opened" ] || grep -q "\.github/workflows/" changed_files.txt; then
             npm run build:components -- --output-targets=dist,dist-custom-elements,www
           else
             echo "No code changes detected, skipping Stencil build"
@@ -327,7 +326,7 @@ jobs:
           - name: vue
             path: examples/wrapper-components/vue-javascript
             install_cmd: npm install && npm install @infineon/infineon-design-system-stencil@${{ needs.stencil-library-release.outputs.CANARY_VERSION }} --save-exact
-            build_cmd: npm run build -- --base=/infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}/
+            build_cmd: npm run build
             source_dir: ./examples/wrapper-components/vue-javascript/dist
             umbrella_dir: pr-preview-vue-example
             update_cmd: ""
