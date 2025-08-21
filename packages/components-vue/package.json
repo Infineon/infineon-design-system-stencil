@@ -10,9 +10,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run clean && npm run compile",
+    "build": "pnpm run clean && pnpm run compile",
     "clean": "rm -rf dist",
-    "compile": "npm run tsc",
+    "compile": "pnpm run tsc",
     "tsc": "tsc -p ."
   },
   "author": "",
@@ -34,7 +34,7 @@
   },
   "auto": {
     "plugins": [
-      "npm",
+      ["npm", { "packageManager": "pnpm" }],
       "released"
     ]
   }

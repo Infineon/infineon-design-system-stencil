@@ -18,10 +18,10 @@
     "nx:affected": "nx affected --target=build",
     "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
     "graph": "nx graph",
-    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
-    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
-    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && npm run test:local",
-    "angular:dev": "cd packages/components-angular && npm run test:local"
+    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && pnpm run dev:watch",
+    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && pnpm run test:local",
+    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && pnpm run test:local",
+    "angular:dev": "cd packages/components-angular && pnpm run test:local"
   },
   "workspaces": [
     "packages/*",

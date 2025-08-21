@@ -225,9 +225,6 @@ importers:
       lerna:
         specifier: 8.1.9
         version: 8.1.9(@types/node@20.19.11)(babel-plugin-macros@3.1.0)(encoding@0.1.13)
-      npm:
-        specifier: ^10.2.1
-        version: 10.9.3
       npm-run-all:
         specifier: ^4.1.5
         version: 4.1.5
@@ -14224,9 +14221,9 @@ snapshots:
       '@stencil/core': 4.27.2
       '@stencil/vue-output-target': 0.8.9(@stencil/core@4.27.2)
       '@storybook/cli': 8.6.14
-      '@storybook/test': 8.6.14(storybook@8.6.14(prettier@3.6.2))
+      '@storybook/test': 8.6.14(storybook@8.6.14(prettier@2.8.8))
       ag-grid-community: 31.3.4
-      babel-prettier-parser: 0.10.8(prettier@3.6.2)
+      babel-prettier-parser: 0.10.8(prettier@2.8.8)
       choices.js: 10.2.0
       classnames: 2.5.1
       glob: 11.0.3
