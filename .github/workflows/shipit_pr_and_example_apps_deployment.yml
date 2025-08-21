@@ -175,7 +175,9 @@ jobs:
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
-            
+      - name: Run NX using npx
+        run: npx nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache
+
       - name: Build and deploy Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -183,14 +185,9 @@ jobs:
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
           
-          # Start all three builds in parallel using background processes
-          echo "Starting builds in parallel..."
-          npm run build:components-angular &
-          angular_pid=$!
-          npm run build:components-react &
-          react_pid=$!
-          npm run build:components-vue &
-          vue_pid=$!
+          # Build all wrappers in parallel without rebuilding Stencil
+          echo "Building wrapper components without rebuilding Stencil..."
+          nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
           
           # Wait for all builds to complete
           echo "Waiting for all builds to finish..."
