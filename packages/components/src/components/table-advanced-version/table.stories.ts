@@ -213,7 +213,7 @@ const DefaultTemplate = (args) => {
 
     //topbar
     const filterComponents = args.columnDefs.map((column, index) => {
-      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))];
+      const uniqueColValues = [...new Set(args.rowData.map(row => row[column.field]))].filter(v => v !== undefined && v !== null && v !== '');
       const options = uniqueColValues.map(option => ({
         value: option,
         label: option,

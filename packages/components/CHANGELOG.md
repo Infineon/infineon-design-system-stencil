@@ -1,3 +1,15 @@
+# v37.12.0 (Thu Aug 21 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: implement dynamic cols and rows [#1985](https://github.com/Infineon/infineon-design-system-stencil/pull/1985) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.11.0 (Wed Aug 20 2025)
 
 #### 🚀 Enhancement
