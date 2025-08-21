@@ -181,8 +181,10 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          
-          # Build all wrappers in parallel without rebuilding Stencil
+                
+          # Install nx locally
+          npm install --no-save nx
+
           echo "Building wrapper components without rebuilding Stencil..."
           npx nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
           
