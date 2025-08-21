@@ -36,6 +36,10 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: 'npm' # Enable built-in npm cache
 
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
@@ -77,7 +81,7 @@ jobs:
     
       - name: Install dependencies for all packages
         run: |
-          npm install
+          pnpm install --frozen-lockfile
           git checkout -- package-lock.json 
 
       - name: Build and deploy Stencil core package
@@ -100,25 +104,24 @@ jobs:
             auto shipit
           fi
 
-      - name: Check package availability instead of sleeping
+      - name: Check package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         run: |
-          PACKAGE_NAME="@infineon/infineon-design-system-stencil"
+          PACKAGE="@infineon/infineon-design-system-stencil"
           VERSION="${{ steps.build.outputs.CANARY_VERSION }}"
-          MAX_RETRIES=6
-          RETRY_WAIT=3
           
-          for i in $(seq 1 $MAX_RETRIES); do
-            echo "Checking if $PACKAGE_NAME@$VERSION is available (attempt $i)..."
-            if npm view "$PACKAGE_NAME@$VERSION" version &>/dev/null; then
-              echo "✅ Package $PACKAGE_NAME@$VERSION is available!"
+          # Function to check package with quiet output
+          check_package() {
+            npm view "$PACKAGE@$VERSION" version &>/dev/null
+          }
+          
+          echo "⏳ Waiting for $PACKAGE@$VERSION to be available..."
+          for i in {1..10}; do
+            if check_package; then
+              echo "✅ Package available after $i attempt(s)!"
               break
-            else
-              echo "⏳ Package not yet available, waiting ${RETRY_WAIT}s..."
-              sleep $RETRY_WAIT
-              # Exponential backoff but max 10 seconds
-              RETRY_WAIT=$(( RETRY_WAIT < 10 ? RETRY_WAIT * 2 : 10 ))
             fi
+            sleep $((2**i < 20 ? 2**i : 20))
           done
       
       - name: Update Dependencies in Angular, Vue and React packages
@@ -187,17 +190,7 @@ jobs:
 
           echo "Building wrapper components without rebuilding Stencil..."
           npx nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
-          
-          # Wait for all builds to complete
-          echo "Waiting for all builds to finish..."
-          wait $angular_pid $react_pid $vue_pid
-          
-          # Check if any build failed
-          if [ $? -ne 0 ]; then
-            echo "⚠️ One or more builds failed"
-            exit 1
-          fi
-          
+                    
           echo "✅ All builds completed successfully"
           
           # Now publish packages sequentially (publishing in parallel could cause issues)
@@ -241,6 +234,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false  # Continue with other builds even if one fails
+      max-parallel: 3
       matrix:
         app:
           - id: vue
@@ -391,10 +385,8 @@ jobs:
     needs: deploy-previews
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Update comment in PR
-        uses: actions/github-script@v4
+        uses: actions/github-script@v7
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
