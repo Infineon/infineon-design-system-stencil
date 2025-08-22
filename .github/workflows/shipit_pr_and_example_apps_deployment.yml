@@ -296,8 +296,8 @@ jobs:
           jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
           cd ../components-react
           jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
-          cd ..
-          
+          cd ../..
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
           jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
