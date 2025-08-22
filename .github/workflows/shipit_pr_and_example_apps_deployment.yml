@@ -44,20 +44,7 @@ jobs:
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
-
-      # Only need this cache for .pnpm-store (the built-in cache above handles node_modules)
-      - name: Cache PNPM store
-        uses: actions/cache@v3
-        id: pnpm-store-cache
-        with:
-          path: |
-            ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
    
-      # Keep your build output cache - it's well structured
       - name: Cache build output
         uses: actions/cache@v3
         id: build-cache
@@ -65,14 +52,9 @@ jobs:
           path: |
             packages/components/dist
             packages/components/www/build
-            packages/components-vue/dist
-            packages/components-react/dist
-            packages/components-angular/dist
-            packages/components-angular/projects/component-library/src/lib/stencil-generated/
-            packages/components-react/lib/components/stencil-generated/
-            packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{js,ts,tsx,scss}') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}
           restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml') }}
             ${{ runner.os }}-build-
             
       - name: Install dependencies for all packages
@@ -86,7 +68,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Check if cache was restored and if there are changes in packages/**
           if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ] && \
             [ -z "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- packages/)" ]; then
             echo "No changes in packages/** and build cache is valid. Skipping build and publish."
