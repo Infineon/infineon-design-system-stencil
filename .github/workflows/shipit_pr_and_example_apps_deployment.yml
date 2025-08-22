@@ -82,25 +82,13 @@ jobs:
           pnpm install --frozen-lockfile --prefer-offline 
 
 
-      - name: Build Stencil components
-        run: |
-          pnpm run build:components
-
-      - name: Verify build success
-        run: |
-          if [ -d "packages/components/dist" ] && [ -d "packages/components/www/build/fonts" ]; then
-            echo "✅ Build and fonts verified successfully"
-          else
-            echo "❌ Build verification failed"
-            exit 1
-          fi
-
-      - name: Process canary release
+      - name: Build and deploy Stencil core components
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        continue-on-error: true  # This prevents the step from failing the entire workflow
         run: |
+          pnpm run build:components
+
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -115,6 +103,7 @@ jobs:
 
             auto shipit
           fi
+ 
 
       - name: Check package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'
