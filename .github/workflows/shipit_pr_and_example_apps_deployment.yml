@@ -110,7 +110,7 @@ jobs:
           # Install auto globally first
           npm install -g auto
           
-          # Now use without exec
+          # Use global auto consistently for both commands
           CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
@@ -118,7 +118,7 @@ jobs:
           echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
           echo "Publishing: $CANARY_VERSION"
 
-          npm exec -- auto shipit --tag canary --exact --force-publish
+          auto shipit --tag canary --exact --force-publish
           echo "✅ Successfully built and published Stencil components to NPM"
 
       - name: Skip remaining steps for dependabot
