@@ -65,11 +65,10 @@ jobs:
 
       - name: Install dependencies for all packages
         run: |
-          pnpm config set store-dir ~/.pnpm-store
           pnpm install --frozen-lockfile --prefer-offline 
 
 
-      - name: Build and deploy Stencil core components
+      - name: Build Stencil core components
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -91,45 +90,41 @@ jobs:
             CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
             DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
             
-            # Skip build if files exist and no changes
             if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
               echo "🎉 Required files exist and no changes detected. Skipping build."
-              echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+              echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
               exit 0
             fi
           fi
           
-          # Explain why we're rebuilding
-          if [ "$CACHE_VALID" = "true" ]; then
-            if [ -n "$CORE_CHANGED" ]; then
-              echo "⚠️ Cache hit but changes detected in core components - rebuilding"
-            elif [ -n "$DEPS_CHANGED" ]; then
-              echo "⚠️ Cache hit but changes detected in dependencies - rebuilding"
-            else
-              echo "⚠️ Cache hit but other changes detected - rebuilding"
-            fi
-          else
-            echo "⚠️ No valid cache found - full build required"
-          fi
-          
           # Run the build
           pnpm run build:components
-          
- 
-          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
-            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else 
-            CANARY_VERSION=$(auto shipit --dry-run --quiet)
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-            echo "Publishing: $CANARY_VERSION"
+          echo "NEED_BUILD=true" >> $GITHUB_OUTPUT
 
-            auto shipit
-            echo "✅ Successfully built and published Stencil components to NPM"
-          fi
+      - name: Release with Auto Shipit
+        id: release
+        if: github.actor != 'dependabot[bot]'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          # Use npm exec to ensure auto commands work
+          CANARY_VERSION=$(npm exec -- auto shipit --dry-run --quiet)
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+          echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+          echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
+          echo "Publishing: $CANARY_VERSION"
+
+          npm exec -- auto shipit --tag canary --exact --force-publish
+          echo "✅ Successfully built and published Stencil components to NPM"
+
+      - name: Skip remaining steps for dependabot
+        if: github.actor == 'dependabot[bot]'
+        id: skip_dependabot
+        run: |
+          echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+          echo "CANARY_VERSION=no-release" >> $GITHUB_OUTPUT
+          
 
       - name: Check package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'
