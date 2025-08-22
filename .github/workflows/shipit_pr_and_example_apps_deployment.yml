@@ -302,7 +302,7 @@ jobs:
             fi
             sleep $((2**i < 20 ? 2**i : 20))
           done
-      
+        
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.release.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -310,10 +310,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
-
         run: |
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
- 
+      
           cd packages/components-angular
           jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
           cd projects/component-library
@@ -335,7 +334,7 @@ jobs:
           CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
- 
+      
           # Update React package
           cd ../components-react
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
@@ -377,10 +376,22 @@ jobs:
           fi
           set -e  # Return to normal error handling
           
-          cd ../../
-          npm install
+          # MODIFIED: Return to root directory and skip problematic general npm install
+          cd ../..
+          echo "⚠️ Skipping general npm install to avoid dependency resolution issues"
+          
+          # Create symlinks between packages instead
+          echo "Creating package symlinks for correct dependency resolution..."
+          mkdir -p packages/components-angular/node_modules/@infineon/
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-angular/node_modules/@infineon/
+          
+          mkdir -p packages/components-vue/node_modules/@infineon/
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-vue/node_modules/@infineon/
+          
+          mkdir -p packages/components-react/node_modules/@infineon/
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-react/node_modules/@infineon/
 
-          # Verify updates
+          # Verify updates - continue with your existing verification
           echo "Verifying updates in Angular package"
           jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
           echo "Verifying updates in Vue package"
