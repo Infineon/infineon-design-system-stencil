@@ -115,34 +115,37 @@ jobs:
           pnpm run build:components
           echo "NEED_BUILD=true" >> $GITHUB_OUTPUT
 
-      - name: Generate Manual Canary Version
+      - name: Release with Auto
         id: release
         if: github.actor != 'dependabot[bot]'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          # Extract the base version from package.json and clean it
-          RAW_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
-          # Strip everything after first -- or -
-          BASE_VERSION=$(echo "$RAW_VERSION" | sed -E 's/(.*?)(-{1,2}.*)$/\1/')
+          # Make sure we're in a clean state
+          git reset --hard HEAD
           
-          PR_NUMBER="${{ github.event.pull_request.number }}"
-          SHORT_SHA=$(git rev-parse --short HEAD)
-          CANARY_VERSION="${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}"
+          # Get the base version
+          BASE_VERSION=$(node -e "console.log(require('./packages/components/package.json').version.replace(/[-+].*$/, ''))")
+          echo "Base version: $BASE_VERSION"
           
-          echo "Raw version from package.json: $RAW_VERSION"
-          echo "Cleaned base version: $BASE_VERSION" 
-          echo "Final canary version: $CANARY_VERSION"
+          # Use auto for canary release
+          CANARY_VERSION=$(auto version --quiet)
+          if [ -z "$CANARY_VERSION" ]; then
+            # Fallback to manual version if auto fails
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            SHORT_SHA=$(git rev-parse --short HEAD)
+            CANARY_VERSION="${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}"
+            echo "Using fallback version: $CANARY_VERSION"
+          fi
           
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-          echo "Publishing: $CANARY_VERSION"
           
-          # Publish directly
-          cd packages/components
-          npm version "$CANARY_VERSION" --no-git-tag-version
-          npm publish --tag canary
+          # Use auto canary command
+          auto shipit --dry-run
+          auto canary --force-publish
 
       - name: Skip remaining steps for dependabot
         if: github.actor == 'dependabot[bot]'
