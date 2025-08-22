@@ -33,7 +33,7 @@
   },
   "auto": {
     "plugins": [
-      ["npm", { "packageManager": "pnpm" }],
+      "npm",
       "released"
     ]
   }

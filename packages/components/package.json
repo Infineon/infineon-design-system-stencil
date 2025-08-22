@@ -27,9 +27,7 @@
     "build:storybook": "pnpm run build:stencil && pnpm run copy:storybook-fonts && storybook build",
     "build:stencil": "pnpm stencil build --docs && pnpm run postbuild",   
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
-    "copy:storybook-fonts": "node utils/copy-storybook-fonts.js",
-    "debug:paths": "node utils/debug-paths.js",
-    "preflight": "node utils/preflight-checks.js",
+    "copy:storybook-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* public-storybook/fonts/ || exit 0",
     "postbuild": "pnpm run copy-www-fonts",
     "copy-www-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* www/build/fonts/ || exit 0",
     "index": "stencil build --serve --watch --dev",
@@ -98,12 +96,7 @@
   "license": "MIT",
   "auto": {
     "plugins": [
-      [
-        "npm",
-        {
-          "packageManager": "pnpm"
-        }
-      ],
+      "npm",
       "released"
     ]
   }
