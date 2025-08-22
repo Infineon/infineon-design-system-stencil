@@ -313,7 +313,8 @@ jobs:
 
         run: |
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-          
+          npm cache clean --force
+
           lerna version $CANARY_VERSION --no-git-tag-version --y
 
           # Update Angular package
