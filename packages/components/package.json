@@ -31,7 +31,7 @@
     "debug:paths": "node utils/debug-paths.js",
     "preflight": "node utils/preflight-checks.js",
     "postbuild": "pnpm run copy-www-fonts",
-    "copy-www-fonts": "ncp \"./node_modules/@infineon/design-system-tokens/dist/fonts\" \"./www/build/fonts\"",
+"copy-www-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* www/build/fonts/ || exit 0",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook",
     "dev:storybook": "wait-on ./dist && storybook dev -p 6262",
