@@ -52,9 +52,8 @@ jobs:
           path: |
             packages/components/dist
             packages/components/www/build
-          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml') }}
             ${{ runner.os }}-build-
             
       - name: Install dependencies for all packages
