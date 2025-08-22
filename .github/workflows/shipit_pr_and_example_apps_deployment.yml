@@ -46,8 +46,6 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: 'pnpm' # Enable built-in pnpm cache
 
-      - name: download + setup auto
-        uses: auto-it/setup-auto@v1
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
@@ -142,9 +140,10 @@ jobs:
               echo "Comparing $BEFORE_REF to ${{ github.sha }}"
               
               # Check for changes in core files, dependencies, AND configuration files
+              # REMOVED WORKFLOW FILE FROM CONFIG_CHANGED CHECK
               CORE_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- packages/components/src/ || echo "error")
               DEPS_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json || echo "error")
-              CONFIG_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- packages/components/stencil.config.ts **/tsconfig.json .github/workflows/shipit_pr_and_example_apps_deployment.yml || echo "error")
+              CONFIG_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- packages/components/stencil.config.ts **/tsconfig.json || echo "error")
               
               set -e
               
