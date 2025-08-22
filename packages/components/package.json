@@ -25,7 +25,7 @@
   "scripts": {
     "test": "stencil test --e2e",
     "build:storybook": "pnpm run build:stencil && pnpm run copy:storybook-fonts && storybook build",
-    "build:stencil": "pnpm stencil build --docs && pnpm run postbuild",   
+    "build:stencil": "pnpm stencil build --docs && pnpm run postbuild",
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "copy:storybook-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* public-storybook/fonts/ || exit 0",
     "postbuild": "pnpm run copy-www-fonts",
@@ -96,7 +96,15 @@
   "license": "MIT",
   "auto": {
     "plugins": [
-      "npm",
+      [
+        "npm",
+        {
+          "exact": true,
+          "setRcToken": false,
+          "forcePublishForStatus": true,
+          "packageManager": "pnpm"
+        }
+      ],
       "released"
     ]
   }
