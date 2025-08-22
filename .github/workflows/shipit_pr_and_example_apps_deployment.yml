@@ -33,7 +33,9 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 8
-      - name: Use Node.js 20.x
+          run_install: false
+
+      - name: Setup Node with PNPM caching
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -43,46 +45,43 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      # Enhanced caching strategy for node modules
-      - name: Cache node modules
-        id: cache-pnpm
+      # Only need this cache for .pnpm-store (the built-in cache above handles node_modules)
+      - name: Cache PNPM store
         uses: actions/cache@v3
+        id: pnpm-store-cache
         with:
           path: |
-            ~/.pnpm
-            **/node_modules
-            packages/components/node_modules
-            packages/components-vue/node_modules
-            packages/components-react/node_modules
-            packages/components-angular/node_modules
-            examples/wrapper-components/vue-javascript/node_modules
-            examples/wrapper-components/react-vite-js/node_modules
-            examples/stencil-components/vanilla-cdn/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+            ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
-            ${{ runner.os }}-build-
-    
-      # Cache build output to speed up subsequent builds
+            ${{ runner.os }}-pnpm-store-
+
+   
+      # Keep your build output cache - it's well structured
       - name: Cache build output
         uses: actions/cache@v3
+        id: build-cache
         with:
           path: |
             packages/components/dist
+            packages/components/www/build
             packages/components-vue/dist
             packages/components-react/dist
             packages/components-angular/dist
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-${{ github.sha }}
+          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-build-output-${{ hashFiles('packages/components/src/**/*.ts', 'packages/components/src/**/*.tsx') }}-
-    
+            ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}-
+
+            
       - name: Install dependencies for all packages
         run: |
-          pnpm install --no-frozen-lockfile
- 
+          pnpm config set store-dir ~/.pnpm-store
+          pnpm install --frozen-lockfile --prefer-offline 
+
+
       - name: Build and deploy Stencil core package
         id: build
         env:
