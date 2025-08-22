@@ -82,13 +82,25 @@ jobs:
           pnpm install --frozen-lockfile --prefer-offline 
 
 
-      - name: Build and deploy Stencil core package
+      - name: Build Stencil components
+        run: |
+          pnpm run build:components
+
+      - name: Verify build success
+        run: |
+          if [ -d "packages/components/dist" ] && [ -d "packages/components/www/build/fonts" ]; then
+            echo "✅ Build and fonts verified successfully"
+          else
+            echo "❌ Build verification failed"
+            exit 1
+          fi
+
+      - name: Process canary release
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        continue-on-error: true  # This prevents the step from failing the entire workflow
         run: |
-          pnpm run build:components 
-          
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -100,7 +112,12 @@ jobs:
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
-      
+
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add ../../pnpm-lock.yaml
+            git commit -m "Update pnpm-lock.yaml [skip ci]" || true
+
             auto shipit
           fi
 
@@ -356,8 +373,6 @@ jobs:
           source-dir: ${{ matrix.app.source_dir }}
           umbrella-dir: ${{ matrix.app.umbrella_dir }}
           token: ${{ secrets.GH_TOKEN }}
-          max-jobs: 4
-          upload-chunk-size: 100
 
       # Store the URL in GitHub output variables
       - name: Set deployment URLs for PR comment
