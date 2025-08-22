@@ -57,10 +57,10 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v2-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v2-
-            ${{ runner.os }}-build-v2-
+            ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
+            ${{ runner.os }}-build-v3-
 
       - name: Install dependencies for all packages
         run: |
@@ -186,7 +186,7 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v2-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
       
       - name: Manual Canary Publish
         id: release
