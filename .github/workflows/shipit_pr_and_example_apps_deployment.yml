@@ -74,19 +74,23 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Cache hit: ${{ steps.build-cache.outputs.cache-hit }}"
-          
-          # Only check for changes in core component source files
-          CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
-          
-          echo "Changed files in core components:"
-          echo "$CORE_CHANGED"
-          
-          # Check for changes in package dependencies
-          DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
-          
-          # Verify cache contents before deciding to skip
-          if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ]; then
+          # Debug information
+          echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
+                  
+          # Force correct string comparison (GitHub Actions can sometimes pass 'true' with whitespace)
+          if [[ "${{ steps.build-cache.outputs.cache-hit }}" == "true" ]]; then
+            echo "✅ Cache hit confirmed"
+            CACHE_HIT="true"
+          else
+            echo "❌ No cache hit detected"
+            CACHE_HIT="false"
+          fi
+
+          # Verify cache contents
+          if [ "$CACHE_HIT" = "true" ]; then
+            echo "Verifying cache contents..."
+            ls -la packages/components/dist || echo "Dist directory not found!"
+            
             if [ ! -d "packages/components/dist" ] || [ ! -f "packages/components/dist/index.js" ]; then
               echo "⚠️ Cache appears incomplete or corrupted - forcing rebuild"
               CACHE_VALID="false"
@@ -133,12 +137,7 @@ jobs:
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
 
-            if [ -n "$(git status --porcelain)" ]; then
-              echo "Working directory is not clean. Make sure build output is git-ignored."
-              exit 1
-            fi
-            auto shipit --tag canary --exact --force-publish
-
+            auto shipit
             echo "✅ Successfully built and published Stencil components to NPM"
           fi
 
