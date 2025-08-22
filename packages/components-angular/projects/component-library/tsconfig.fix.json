@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "skipLibCheck": true
-  },
-  "exclude": [
-    "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts"
-  ]
+  }
+ 
 }

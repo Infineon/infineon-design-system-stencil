@@ -1,6 +1,8 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { frameworkTargets } from './framework-output-targets';
+const path = require('path');
+const rootDir = __dirname;
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
@@ -22,7 +24,11 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
       copy: [
-        { src: '../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './', warn: true },
+        { 
+          src: path.join(rootDir, 'node_modules/@infineon/design-system-tokens/dist/fonts'), 
+          dest: './', 
+          warn: true 
+        },
       ]
     },
     ...frameworkTargets,
@@ -33,7 +39,9 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
        copy: [
-        { src: '../node_modules/@infineon/design-system-tokens/dist/fonts', dest: './build/fonts', warn: true },
+        { 
+          src: path.join(rootDir, 'node_modules/@infineon/design-system-tokens/dist/fonts'), 
+          dest: './build/fonts', warn: true },
       ]
     }
   ],

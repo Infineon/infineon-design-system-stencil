@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.22.5",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20.2.5",
     "rollup": "^4.1.4",
     "rollup-plugin-node-resolve": "^5.2.0",
@@ -34,7 +35,12 @@
   },
   "auto": {
     "plugins": [
-      ["npm", { "packageManager": "pnpm" }],
+      [
+        "npm",
+        {
+          "packageManager": "pnpm"
+        }
+      ],
       "released"
     ]
   }

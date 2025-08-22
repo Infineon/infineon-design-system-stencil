@@ -25,9 +25,10 @@
   "scripts": {
     "test": "stencil test --e2e",
     "build:storybook": "pnpm run build:stencil && pnpm run copy:storybook-fonts && storybook build",
-    "build:stencil": "stencil build --docs && pnpm run postbuild",
-    "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
+    "build:stencil": "pnpm run debug:paths && pnpm run preflight && stencil build --docs && pnpm run postbuild",    "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "copy:storybook-fonts": "ncp \"./node_modules/@infineon/design-system-tokens/dist/fonts\" \"./public-storybook/fonts\"",
+    "debug:paths": "node -e \"const fs=require('fs'); const p=require('path'); const f=p.join(__dirname,'node_modules/@infineon/design-system-tokens/dist'); console.log('Checking design tokens at:', f); console.log('Directory exists:', fs.existsSync(f)); console.log('Contents:', fs.existsSync(f) ? fs.readdirSync(f) : 'N/A');\"",
+    "preflight": "node -e \"const fs=require('fs'); const p=require('path'); const f=p.join(__dirname,'node_modules/@infineon/design-system-tokens/dist/fonts'); if(!fs.existsSync(f)){console.error('Fonts missing! Check design tokens package.'); process.exit(1)}\"",
     "copy-www-fonts": "ncp \"./node_modules/@infineon/design-system-tokens/dist/fonts\" \"./www/build/fonts\"",
     "postbuild": "pnpm run copy-www-fonts",
     "dev:stencil": "stencil build --serve --watch",
@@ -42,7 +43,6 @@
     "@infineon/infineon-icons": "^4.4.1",
     "@popperjs/core": "^2.11.8",
     "@stencil/angular-output-target": "^0.9.0",
-    "@stencil/core": "4.27.2",
     "@stencil/vue-output-target": "^0.8.9",
     "@storybook/cli": "^8.3.0",
     "@storybook/test": "^8.3.0",
@@ -62,8 +62,9 @@
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
+    "@stencil/core": "4.27.2",
     "@stencil/react-output-target": "^0.7.1",
-    "@stencil/sass": "^3.0.4",
+    "@stencil/sass": "^3.2.2",
     "@storybook/addon-actions": "^8.3.0",
     "@storybook/addon-docs": "^8.3.0",
     "@storybook/addon-essentials": "^8.3.0",
@@ -98,7 +99,12 @@
   "license": "MIT",
   "auto": {
     "plugins": [
-      ["npm", { "packageManager": "pnpm" }],
+      [
+        "npm",
+        {
+          "packageManager": "pnpm"
+        }
+      ],
       "released"
     ]
   }

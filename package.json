@@ -31,6 +31,8 @@
     "@types/node": "^20.12.7",
     "lerna": "^8.1.9",
     "nx": "^16.10.0",
+    "prettier": "^2.8.8",
+    "storybook": "^8.6.14",
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
   },

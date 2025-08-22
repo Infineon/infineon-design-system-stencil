@@ -12,5 +12,5 @@
       "stream": true
     }
   },
-  "npmClient": "npm"
+  "npmClient": "pnpm"
 }
