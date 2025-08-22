@@ -101,8 +101,7 @@
         {
           "exact": true,
           "setRcToken": false,
-          "forcePublishForStatus": true,
-          "packageManager": "pnpm"
+          "forcePublishForStatus": true
         }
       ],
       "released"

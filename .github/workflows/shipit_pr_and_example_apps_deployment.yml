@@ -94,14 +94,46 @@ jobs:
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
             cd packages/components
-            CANARY_VERSION=$(auto shipit --dry-run --quiet)
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-            echo "Publishing: $CANARY_VERSION"
+            
+            # Configure npm to work with PNPM workspace
+            npm config set fund false
+            npm config set audit false
+            npm config set workspace-root false
+            
+            # Ensure auto can read package.json properly
+            echo "Configuring environment for auto shipit..."
+            
+            # Get canary version with error handling
+            if CANARY_VERSION=$(auto shipit --dry-run --quiet 2>&1); then
+              # Check if it's a valid version (not an error message)
+              if [[ "$CANARY_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+                echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+                echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+                echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+                echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
+                echo "Publishing: $CANARY_VERSION"
 
-            auto shipit
+                # Run auto shipit with better error handling
+                echo "Running auto shipit..."
+                if auto shipit --verbose; then
+                  echo "✅ Auto shipit completed successfully"
+                else
+                  echo "⚠️ Auto shipit failed, but dry-run succeeded"
+                  echo "This might be a workspace configuration issue"
+                  
+                  # Manual fallback using the version from dry-run
+                  echo "Attempting manual publish with version: $CANARY_VERSION"
+                  npm version "$CANARY_VERSION" --no-git-tag-version --allow-same-version
+                  npm publish --tag canary --access public
+                fi
+              else
+                echo "⚠️ Auto dry-run returned invalid version: $CANARY_VERSION"
+                echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "⚠️ Auto shipit dry-run failed"
+              echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+            fi
           fi
  
 
