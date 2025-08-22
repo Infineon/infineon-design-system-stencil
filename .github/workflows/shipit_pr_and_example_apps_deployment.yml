@@ -283,12 +283,12 @@ jobs:
           done
       
       - name: Update Dependencies in Angular, Vue and React packages
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
-          CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+          CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
 
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
@@ -337,7 +337,7 @@ jobs:
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
       - name: Build and deploy Angular, Vue and React packages
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
@@ -357,10 +357,10 @@ jobs:
           pnpm publish --tag canary
 
       - name: Update Dependencies in example applications
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+          CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
         run: |
           # Update Vue wrapper component
           cd examples/wrapper-components/vue-javascript
@@ -373,7 +373,7 @@ jobs:
           cd ../../..
 
       - name: Commit and push all changes
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         run: |
