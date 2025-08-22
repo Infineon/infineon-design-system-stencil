@@ -312,8 +312,8 @@ jobs:
           CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
 
         run: |
-          echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
+          
           lerna version $CANARY_VERSION --no-git-tag-version --y
 
           # Update Angular package
