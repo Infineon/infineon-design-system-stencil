@@ -93,43 +93,16 @@ jobs:
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
-            # Run auto from the root directory for proper workspace handling
-            echo "Running auto from root directory..."
-            
-            # Get canary version from root
-            if CANARY_VERSION=$(auto shipit --dry-run --quiet 2>/dev/null); then
-              if [[ "$CANARY_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
-                echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-                echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-                echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-                echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-                echo "Publishing: $CANARY_VERSION"
+            cd packages/components
+            CANARY_VERSION=$(auto shipit --dry-run --quiet)
+            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
+            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
+            echo "Publishing: $CANARY_VERSION"
 
-                # Change to components directory for publishing
-                cd packages/components
-                
-                # Set version and publish with PNPM (avoids workspace issues)
-                echo "Setting version with PNPM..."
-                pnpm version "$CANARY_VERSION" --no-git-tag-version
-                
-                echo "Publishing with PNPM..."
-                pnpm publish --tag canary --access public --no-git-checks
-                
-                # Return to root for auto release
-                cd ../../
-                auto release --use-version "$CANARY_VERSION"
-                
-                echo "✅ Published successfully"
-              else
-                echo "⚠️ Invalid version from auto: $CANARY_VERSION"
-                echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-              fi
-            else
-              echo "⚠️ Auto version generation failed"
-              echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-            fi
+            auto shipit
           fi
- 
 
       - name: Check package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'

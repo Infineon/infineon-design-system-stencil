@@ -36,24 +36,5 @@
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
   },
-  "version": "0.0.1",
-  "auto": {
-  "plugins": [
-    [
-      "npm",
-      {
-        "exact": true,
-        "setRcToken": false,
-        "forcePublishForStatus": true,
-        "subPackageChangelogs": {
-          "packages/components": {
-            "includeCommitWhenNoChangelog": true,
-            "changelogTitle": "# Changelog"
-          }
-        }
-      }
-    ],
-    "released"
-  ]
-}
+  "version": "0.0.1"
 }
