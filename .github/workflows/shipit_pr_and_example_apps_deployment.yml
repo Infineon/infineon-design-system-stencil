@@ -101,7 +101,14 @@ jobs:
           else
             CACHE_VALID="false"
           fi
-          
+
+          # Check for relevant changes
+          CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
+          DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
+
+          echo "Core changes detected: $CORE_CHANGED"
+          echo "Dependency changes detected: $DEPS_CHANGED"
+
           # Skip build if cache is valid and no core changes
           if [ "$CACHE_VALID" = "true" ] && [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
             echo "🎉 Cache hit! No changes to core components or dependencies. Skipping build."
