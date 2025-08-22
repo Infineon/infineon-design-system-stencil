@@ -22,8 +22,8 @@ concurrency:
 jobs:
   stencil-library-release:
     outputs:
-      CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
-      SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
+      CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
+      SKIP_REMAINING: ${{ steps.release.outputs.SKIP_REMAINING }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
@@ -269,10 +269,10 @@ jobs:
 
 
       - name: Check package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
         run: |
           PACKAGE="@infineon/infineon-design-system-stencil"
-          VERSION="${{ steps.build.outputs.CANARY_VERSION }}"
+          VERSION="${{ steps.release.outputs.CANARY_VERSION }}"
           
           # Function to check package with quiet output
           check_package() {
