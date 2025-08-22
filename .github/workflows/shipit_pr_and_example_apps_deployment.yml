@@ -26,9 +26,6 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0 # fetch all tags for ship-it
 
-      - name: download + setup auto
-        uses: auto-it/setup-auto@v1
-
       - name: Setup PNPM
         uses: pnpm/action-setup@v4
         with:
@@ -41,6 +38,9 @@ jobs:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
           cache: 'pnpm' # Enable built-in pnpm cache
+
+      - name: download + setup auto
+        uses: auto-it/setup-auto@v1
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
