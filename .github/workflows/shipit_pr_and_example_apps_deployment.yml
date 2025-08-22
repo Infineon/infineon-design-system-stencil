@@ -7,6 +7,13 @@ on:
       - reopened
       - synchronize # canary on new commit
 
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuild (ignore cache)'
+        type: boolean
+        default: false
+
 # Add workflow concurrency to prevent conflicts
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -45,6 +52,12 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
    
+      - name: Pre-build cache check
+        run: |
+          echo "PR Number: ${{ github.event.pull_request.number }}"
+          echo "Branch: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}"
+          echo "Checking cache status before attempting to restore..."
+
       - name: Cache build outputs
         uses: actions/cache@v3
         id: build-cache
@@ -58,9 +71,9 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}
+          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}
           restore-keys: |
-            ${{ runner.os }}-build-v1-${{ hashFiles('pnpm-lock.yaml') }}
+            ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-
             ${{ runner.os }}-build-v1-
 
       - name: Install dependencies for all packages
@@ -78,8 +91,12 @@ jobs:
             echo "🔄 Force rebuild requested - ignoring cache"
             CACHE_VALID="false"
           else
-            # Debug information
+           # Debug information
             echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
+            
+            # Check if files exist in disk
+            echo "Checking dist directory contents:"
+            ls -la packages/components/dist/ || echo "Dist directory not found"
                     
             # More thorough validation of cached build
             if [ -d "packages/components/dist" ] && 
@@ -89,6 +106,9 @@ jobs:
               BUILT_VERSION=$(grep -o '"version":[[:space:]]*"[^"]*"' packages/components/dist/collection/collection-manifest.json | cut -d'"' -f4)
               # Read expected version from package.json
               EXPECTED_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
+              
+              echo "Built version from manifest: $BUILT_VERSION"
+              echo "Expected version from package.json: $EXPECTED_VERSION"
               
               if [[ "$BUILT_VERSION" == *"$EXPECTED_VERSION"* ]]; then
                 echo "✅ Files exist and versions match: $BUILT_VERSION"
@@ -155,6 +175,7 @@ jobs:
                 if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
                   echo "🎉 Required files exist and no changes detected. Skipping build."
                   echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
+                  echo "BUILD_SKIPPED=true" >> $GITHUB_ENV
                   exit 0
                 else
                   echo "🔨 Changes detected - rebuild required"
@@ -164,14 +185,32 @@ jobs:
           fi
           
           # Run the build
+          echo "🏗️ Running component build..."
           pnpm run build:components
+          echo "✅ Build completed successfully"
           echo "NEED_BUILD=true" >> $GITHUB_OUTPUT
+
+      # Save the cache explicitly after build
+      - name: Save build cache
+        if: "!contains(env.BUILD_SKIPPED, 'true')"
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            packages/components/dist
+            packages/components/www/build
+            packages/components-vue/dist
+            packages/components-react/dist
+            packages/components-angular/dist
+            packages/components-angular/projects/component-library/src/lib/stencil-generated/
+            packages/components-react/lib/components/stencil-generated/
+            packages/components-vue/lib/vue-component-lib/
+          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}
 
       - name: Cache Build Output Debug
         run: |
           echo "Cache paths that should be saved:"
           ls -la packages/components/dist || echo "Dist directory doesn't exist"
-          echo "Cache key: ${{ runner.os }}-build-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}"
+          echo "Cache key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}"
 
       - name: Manual Canary Publish
         run: |
