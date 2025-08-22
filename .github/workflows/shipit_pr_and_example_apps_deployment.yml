@@ -88,7 +88,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm run build:components || true 
-          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+          # Ensure a successful build status regardless of script exit code
+          if [ -d "packages/components/dist" ] && [ -d "packages/components/www/build/fonts" ]; then
+            echo "✅ Build and fonts verified successfully"
+          else
+            echo "❌ Build verification failed"
+            exit 1
+          fi
+              if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
