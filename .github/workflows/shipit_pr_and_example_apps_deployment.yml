@@ -315,6 +315,16 @@ jobs:
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
           cd packages/components-angular
 
+          cd packages/components-angular
+          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+          cd projects/component-library
+          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+          cd ../../../components-vue
+          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+          cd ../components-react
+          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+          cd ../..
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
           jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
