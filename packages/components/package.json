@@ -25,7 +25,7 @@
   "scripts": {
     "test": "stencil test --e2e",
     "build:storybook": "pnpm run build:stencil && pnpm run copy:storybook-fonts && storybook build",
-    "build:stencil": "pnpm run debug:paths && pnpm run preflight && stencil build --docs && pnpm run postbuild",   
+    "build:stencil": "pnpm stencil build --docs && pnpm run postbuild",   
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
     "copy:storybook-fonts": "node utils/copy-storybook-fonts.js",
     "debug:paths": "node utils/debug-paths.js",
