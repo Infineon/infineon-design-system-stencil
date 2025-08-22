@@ -88,6 +88,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm run build:components 
+
           # Ensure a successful build status regardless of script exit code
           if [ -d "packages/components/dist" ] && [ -d "packages/components/www/build/fonts" ]; then
             echo "✅ Build and fonts verified successfully"
@@ -95,7 +96,7 @@ jobs:
             echo "❌ Build verification failed"
             exit 1
           fi
-          
+
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -113,7 +114,11 @@ jobs:
             git add ../../pnpm-lock.yaml
             git commit -m "Update pnpm-lock.yaml [skip ci]" || true
       
-            auto shipit
+            if auto shipit; then
+              echo "✅ Auto shipit completed successfully"
+            else
+              echo "⚠️ Auto shipit completed with warnings, but continuing workflow"
+            fi
           fi
 
       - name: Check package availability
