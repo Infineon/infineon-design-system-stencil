@@ -75,23 +75,56 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           echo "Cache hit: ${{ steps.build-cache.outputs.cache-hit }}"
-          echo "Checking for changes in packages/ directory..."
           
-          if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ] && \
-            [ -z "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- packages/)" ]; then
+          # Capture changed files for debugging
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/)
+          
+          echo "Changed files in packages/:"
+          echo "$CHANGED_FILES"
+          
+          # Verify cache contents before deciding to skip
+          if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ]; then
+            if [ ! -d "packages/components/dist" ] || [ ! -f "packages/components/dist/index.js" ]; then
+              echo "⚠️ Cache appears incomplete or corrupted - forcing rebuild"
+              CACHE_VALID="false"
+            else
+              echo "✅ Cache contents verified"
+              CACHE_VALID="true"
+            fi
+          else
+            CACHE_VALID="false"
+          fi
+          
+          # Skip build if cache is valid and no relevant files changed
+          if [ "$CACHE_VALID" = "true" ] && [ -z "$CHANGED_FILES" ]; then
             echo "🎉 Cache hit! No changes in packages/** detected. Skipping build and publish."
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
             exit 0
           fi
           
-          if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ]; then
+          # More granular rebuild logic
+          if [ "$CACHE_VALID" = "true" ]; then
             echo "⚠️ Cache hit but changes detected in packages/ - rebuilding"
+            
+            # Optional: Show types of changes for better debugging
+            echo "Types of changes:"
+            if [[ "$CHANGED_FILES" == *"package.json"* ]]; then
+              echo "- Dependencies changed"
+            fi
+            if [[ "$CHANGED_FILES" == *".ts"* || "$CHANGED_FILES" == *".tsx"* ]]; then
+              echo "- TypeScript files changed"
+            fi
+            if [[ "$CHANGED_FILES" == *".scss"* || "$CHANGED_FILES" == *".css"* ]]; then
+              echo "- Style files changed"
+            fi
           else
             echo "⚠️ No valid cache found - full build required"
           fi
 
+          # Run the build
           pnpm run build:components
 
+          # Rest of your code for canary version handling
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
