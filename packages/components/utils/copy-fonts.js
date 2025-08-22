@@ -16,6 +16,7 @@ ncp(src, dest, (err) => {
     process.exit(1);
   } else {
     console.log('Fonts copied successfully');
-    process.exit(0);
+    // Force immediate exit to match the old ncp behavior
+    setImmediate(() => process.exit(0));
   }
 });

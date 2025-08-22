@@ -88,7 +88,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm run build:components 
-
+          
           # Ensure a successful build status regardless of script exit code
           if [ -d "packages/components/dist" ] && [ -d "packages/components/www/build/fonts" ]; then
             echo "✅ Build and fonts verified successfully"
@@ -108,17 +108,8 @@ jobs:
             echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
             echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
             echo "Publishing: $CANARY_VERSION"
-
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git add ../../pnpm-lock.yaml
-            git commit -m "Update pnpm-lock.yaml [skip ci]" || true
       
-            if auto shipit; then
-              echo "✅ Auto shipit completed successfully"
-            else
-              echo "⚠️ Auto shipit completed with warnings, but continuing workflow"
-            fi
+            auto shipit
           fi
 
       - name: Check package availability
