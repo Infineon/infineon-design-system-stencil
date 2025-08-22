@@ -93,5 +93,19 @@
     "storybook": "^8.6.14",
     "wait-on": "^7.2.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false,
+          "exact": true,
+          "forcePublishForStatus": true,
+          "canary": true
+        }
+      ],
+      "released"
+    ]
+  }
 }
