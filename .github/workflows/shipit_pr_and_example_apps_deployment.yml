@@ -244,9 +244,8 @@ jobs:
           # Navigate to components directory
           cd packages/components
           
-          # Set version with fallbacks
-          npm version "$CANARY_VERSION" --no-git-tag-version --allow-same-version || \
-          npm --no-git-tag-version version "$CANARY_VERSION" || \
+          # Skip problematic npm version commands and use sed directly
+          echo "Setting version with sed (reliable method)..."
           sed -i "s/\"version\": \".*\"/\"version\": \"$CANARY_VERSION\"/" package.json
           
           echo "Modified package.json:"
@@ -254,6 +253,16 @@ jobs:
           
           # Publish with explicit registry option
           npm publish --tag canary --registry=https://registry.npmjs.org/
+          if [ $? -ne 0 ]; then
+            echo "⚠️ Warning: npm publish returned non-zero exit code but may have succeeded"
+            # Check if package was published despite error
+            if pnpm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &>/dev/null; then
+              echo "✅ Package was published successfully despite error"
+            else
+              echo "❌ Package publishing failed"
+              exit 1
+            fi
+          fi
           
           # Set outputs for later steps
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
