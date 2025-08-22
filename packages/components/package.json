@@ -24,16 +24,18 @@
   ],
   "scripts": {
     "test": "stencil test --e2e",
-    "build:storybook": "pnpm run build:stencil && pnpm run copy:storybook-fonts && storybook build",
-    "build:stencil": "pnpm stencil build --docs && pnpm run postbuild",   
+    "build:storybook": "npm run build:stencil && npm run copy:storybook-fonts && storybook build",
+    "build:stencil": "stencil build --docs && npm run postbuild",
     "process:design-tokens": "npx sass-export ../../node_modules/@infineon/design-system-tokens/dist/_tokens.scss -o ./.storybook/exported-sass-array.json -a",
-    "copy:storybook-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* public-storybook/fonts/ || exit 0",
-    "postbuild": "pnpm run copy-www-fonts",
-    "copy-www-fonts": "cp -r node_modules/@infineon/design-system-tokens/dist/fonts/* www/build/fonts/ || exit 0",
+    "copy:storybook-fonts": "ncp \"../../node_modules/@infineon/design-system-tokens/dist/fonts\" \"./public-storybook/fonts\"",
+    "copy-www-fonts": "ncp \"../../node_modules/@infineon/design-system-tokens/dist/fonts\" \"./www/build/fonts\"",
+    "postbuild": "npm run copy-www-fonts",
+    "dev:stencil": "stencil build --serve --watch",
+    "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
     "dev": "run-p dev:stencil dev:storybook",
     "dev:storybook": "wait-on ./dist && storybook dev -p 6262",
-    "storybook": "pnpm run process:design-tokens && pnpm run dev"
+    "storybook": "npm run process:design-tokens && npm run dev"
   },
   "dependencies": {
     "@infineon/design-system-tokens": "5.0.0",

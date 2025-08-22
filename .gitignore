@@ -127,5 +127,4 @@ packages/components-angular/projects/component-library/src/lib/stencil-generated
 packages/components-angular/projects/component-library/src/lib/stencil-generated/components.ts
 packages/components/public-storybook/fonts/*
 
-# Nx cache
-.nx/
+ 

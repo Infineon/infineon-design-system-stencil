@@ -7,10 +7,6 @@
     },
     "version": {
       "exact": true
-    },
-    "run": {
-      "stream": true
     }
-  },
-  "npmClient": "pnpm"
+  }
 }
