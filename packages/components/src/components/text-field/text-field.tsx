@@ -29,6 +29,7 @@ export class TextField {
   @Prop() autocomplete: string = 'on'
   @Prop() type: 'text' | 'password' = 'text';
   @Prop() internalId: string = "text-field"
+  @Prop() ariaLabel: string | null;
   @State() internalType: string;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
@@ -84,7 +85,7 @@ export class TextField {
 
   render() {
     return (
-      <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
+      <div aria-label={this.ariaLabel} aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
           <label htmlFor={this.internalId}>
             <slot></slot>

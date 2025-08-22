@@ -12,6 +12,7 @@ export class Tag {
   @Element() el: HTMLElement;
   @Prop() icon: string;
   @Prop() ariaLabel: string | null;
+  @Prop() role: string | null;
 
   async componentDidLoad() {
     if (!isNestedInIfxComponent(this.el)) {
@@ -22,13 +23,11 @@ export class Tag {
 
   render() {
     return (
-      <div role="button" tabindex="0" class="container">
+      <div role={this.role} aria-label={this.ariaLabel} tabindex="0" class="container">
         {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}
-        <a href="javascript:void(null);" tabindex="-1" class="label-wrapper">
-          <p class="label">
-            <slot />
-          </p>
-        </a>
+        <p class="label">
+          <slot />
+        </p>
       </div>
     );
   }

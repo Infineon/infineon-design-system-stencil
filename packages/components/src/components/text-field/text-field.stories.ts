@@ -22,7 +22,8 @@ export default {
     value: '',
     autocomplete: 'on',
     type: 'text',
-    internalId: 'text-field'
+    internalId: 'text-field',
+    ariaLabel: 'text field for user input'
   },
 
   argTypes: {
@@ -181,6 +182,19 @@ export default {
         }
       }
     },
+    ariaLabel: {
+      description: 'Aria label of the Tag.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input change.',
@@ -196,7 +210,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId, ariaLabel }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -213,6 +227,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('autocomplete', autocomplete);
   element.setAttribute('type', type);
   element.setAttribute('internal-id', internalId);
+  element.setAttribute('aria-label', ariaLabel);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));

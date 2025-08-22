@@ -11,6 +11,7 @@
 | ----------- | ------------ | ----------- | -------- | ----------- |
 | `ariaLabel` | `aria-label` |             | `string` | `undefined` |
 | `icon`      | `icon`       |             | `string` | `undefined` |
+| `role`      | `role`       |             | `string` | `undefined` |
 
 
 ## Dependencies
