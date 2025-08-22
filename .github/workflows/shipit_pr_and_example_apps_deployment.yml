@@ -71,7 +71,7 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{js,ts,tsx,scss}') }}
           restore-keys: |
             ${{ runner.os }}-build-
             
