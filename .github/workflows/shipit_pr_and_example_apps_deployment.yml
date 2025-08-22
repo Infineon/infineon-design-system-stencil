@@ -107,8 +107,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Use npm exec to ensure auto commands work
-          CANARY_VERSION=$(npm exec -- auto shipit --dry-run --quiet)
+          # Install auto globally first
+          npm install -g auto
+          
+          # Now use without exec
+          CANARY_VERSION=$(auto shipit --dry-run --quiet)
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
           echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
@@ -124,7 +127,7 @@ jobs:
         run: |
           echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           echo "CANARY_VERSION=no-release" >> $GITHUB_OUTPUT
-          
+
 
       - name: Check package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'
