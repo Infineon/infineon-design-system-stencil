@@ -111,10 +111,11 @@ jobs:
 
             # Only check for changes if we have valid files
             if [ "$CACHE_VALID" = "true" ]; then
-              # Get before ref safely without using bash || operator that causes syntax issues
-              if [ -n "${{ github.event.before }}" ]; then
-                BEFORE_REF="${{ github.event.before }}"
-              else
+              # Assign the GitHub variable once
+              BEFORE_REF="${{ github.event.before }}"
+              # Then check if it's empty - no need to reassign the same value
+              if [ -z "$BEFORE_REF" ]; then
+                echo "No before ref provided in GitHub event"
                 BEFORE_REF=""
               fi
               
