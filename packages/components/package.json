@@ -100,9 +100,7 @@
         "npm",
         {
           "setRcToken": false,
-          "exact": true,
-          "forcePublishForStatus": true,
-          "canary": true
+          "exact": true
         }
       ],
       "released"
