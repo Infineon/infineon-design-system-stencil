@@ -227,7 +227,7 @@ jobs:
           BASE_VERSION=$(node -e "console.log(require('./packages/components/package.json').version.match(/^(\d+\.\d+\.\d+)/)[0])")
           PR_NUMBER="${{ github.event.pull_request.number }}"
           SHORT_SHA=$(git rev-parse --short HEAD)
-          CANARY_VERSION="${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}"
+          CANARY_VERSION="${BASE_VERSION}--canary.${PR_NUMBER}.${SHORT_SHA}.0"
           
           echo "Base version: $BASE_VERSION"
           echo "Final canary version: $CANARY_VERSION"
