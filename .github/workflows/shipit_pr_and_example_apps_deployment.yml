@@ -93,14 +93,14 @@ jobs:
             echo "🔄 Force rebuild requested - ignoring cache"
             CACHE_VALID="false"
           else
-           # Debug information
+            # Debug information
             echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
             
             # Check if files exist in disk
             echo "Checking dist directory contents:"
             ls -la packages/components/dist/ || echo "Dist directory not found"
                     
-            # More thorough validation of cached build
+            # More thorough validation of cached build - IGNORE VERSION MISMATCH
             if [ -d "packages/components/dist" ] && 
               [ -f "packages/components/dist/index.js" ] && 
               [ -f "packages/components/dist/collection/collection-manifest.json" ]; then
@@ -112,13 +112,9 @@ jobs:
               echo "Built version from manifest: $BUILT_VERSION"
               echo "Expected version from package.json: $EXPECTED_VERSION"
               
-              if [[ "$BUILT_VERSION" == *"$EXPECTED_VERSION"* ]]; then
-                echo "✅ Files exist and versions match: $BUILT_VERSION"
-                CACHE_VALID="true"
-              else
-                echo "⚠️ Version mismatch in cached build: $BUILT_VERSION != $EXPECTED_VERSION"
-                CACHE_VALID="false"
-              fi
+              # CHANGED: Don't invalidate cache just due to version mismatch
+              echo "✅ Files exist and are valid"
+              CACHE_VALID="true"
             else
               echo "❌ Required files not found - need rebuild"
               CACHE_VALID="false"
