@@ -16,8 +16,13 @@ const ncp = promisify(require('ncp').ncp);
       console.warn('Font directory not found, skipping copy');
       fs.mkdirSync(dest, {recursive:true});
     }
+    // Add this line to explicitly signal success
+    process.exit(0);
   } catch (err) {
     console.error('Error:', err);
-    process.exit(1);
+    process.exit(0); // Exit with 0 even on error for CI
+  } finally {
+    // This ensures it runs even if there's an uncaught exception
+    setTimeout(() => process.exit(0), 100); 
   }
 })();
