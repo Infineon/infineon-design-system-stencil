@@ -29,6 +29,7 @@
     "copy:storybook-fonts": "node utils/copy-storybook-fonts.js",
     "debug:paths": "node utils/debug-paths.js",
     "preflight": "node utils/preflight-checks.js",
+    "postbuild": "npm run copy-www-fonts",
     "copy-www-fonts": "node utils/copy-fonts.js",
     "watch:stencil": "stencil build  --watch",
     "index": "stencil build --serve --watch --dev",
