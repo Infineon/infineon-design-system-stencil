@@ -121,11 +121,18 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Get base version
-          BASE_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
+          # Extract the base version from package.json and clean it
+          RAW_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
+          # Strip everything after first -- or -
+          BASE_VERSION=$(echo "$RAW_VERSION" | sed -E 's/(.*?)(-{1,2}.*)$/\1/')
+          
           PR_NUMBER="${{ github.event.pull_request.number }}"
           SHORT_SHA=$(git rev-parse --short HEAD)
           CANARY_VERSION="${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}"
+          
+          echo "Raw version from package.json: $RAW_VERSION"
+          echo "Cleaned base version: $BASE_VERSION" 
+          echo "Final canary version: $CANARY_VERSION"
           
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
           echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
