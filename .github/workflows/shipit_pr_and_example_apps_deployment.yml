@@ -347,10 +347,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          pnpm install --no-save nx
-
           echo "Building wrapper components without rebuilding Stencil..."
-          npx nx run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
+          npx nx@latest run-many --target=build --projects=components-angular,components-react,components-vue --parallel=3 --skip-nx-cache          
                     
           echo "✅ All builds completed successfully"
           
