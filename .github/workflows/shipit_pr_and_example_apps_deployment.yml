@@ -203,12 +203,6 @@ jobs:
             packages/components-vue/lib/vue-component-lib/
           key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v2-${{ hashFiles('pnpm-lock.yaml') }}
       
-      - name: Cache Build Output Debug
-        run: |
-          echo "Cache paths that should be saved:"
-          ls -la packages/components/dist || echo "Dist directory doesn't exist"
-          echo "Cache key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}"
-
       - name: Manual Canary Publish
         id: release
         env:
