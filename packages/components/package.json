@@ -93,18 +93,6 @@
     "storybook": "^8.6.14",
     "wait-on": "^7.2.0"
   },
-  "license": "MIT",
-  "auto": {
-    "plugins": [
-      [
-        "npm",
-        {
-          "exact": true,
-          "setRcToken": false,
-          "forcePublishForStatus": true
-        }
-      ],
-      "released"
-    ]
-  }
+  "license": "MIT"
+   
 }
