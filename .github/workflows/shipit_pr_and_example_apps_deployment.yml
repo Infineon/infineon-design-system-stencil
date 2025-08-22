@@ -41,8 +41,14 @@ jobs:
           cache: 'npm' # Enable built-in npm cache
 
 
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+      - name: Check for jq and install if needed
+        run: |
+          if command -v jq &> /dev/null; then
+            echo "✅ jq is already installed: $(jq --version)"
+          else
+            echo "📦 Installing jq..."
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
 
       - name: Cache build outputs
         uses: actions/cache@v3
