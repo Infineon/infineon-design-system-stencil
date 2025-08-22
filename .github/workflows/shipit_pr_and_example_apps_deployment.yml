@@ -213,18 +213,52 @@ jobs:
           echo "Cache key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v1-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}', '**/tsconfig.json', 'packages/components/stencil.config.ts') }}"
 
       - name: Manual Canary Publish
+        id: release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          BASE_VERSION="37.12.1"
+          # Check for dependabot first
+          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
+            echo "Dependabot detected, skipping publish"
+            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+            echo "CANARY_VERSION=no-release" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Extract the base version from package.json and clean it properly
+          BASE_VERSION=$(node -e "console.log(require('./packages/components/package.json').version.match(/^(\d+\.\d+\.\d+)/)[0])")
           PR_NUMBER="${{ github.event.pull_request.number }}"
           SHORT_SHA=$(git rev-parse --short HEAD)
-          CANARY_VERSION="${BASE_VERSION}--canary.${PR_NUMBER}.${SHORT_SHA}.0"
+          CANARY_VERSION="${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}"
           
+          echo "Base version: $BASE_VERSION"
+          echo "Final canary version: $CANARY_VERSION"
           echo "Publishing: $CANARY_VERSION"
           
+          # Debug the package.json file
+          echo "Package.json content:"
+          cat packages/components/package.json | grep -A 5 "\"name\""
+          
+          # Navigate to components directory
           cd packages/components
-          # Use npm directly but with EXACT format you had before
-          npm --no-git-tag-version version "$CANARY_VERSION" || npm --no-git-tag-version version "${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}.0"
-          npm publish --tag canary
+          
+          # Set version with fallbacks
+          npm version "$CANARY_VERSION" --no-git-tag-version --allow-same-version || \
+          npm --no-git-tag-version version "$CANARY_VERSION" || \
+          sed -i "s/\"version\": \".*\"/\"version\": \"$CANARY_VERSION\"/" package.json
+          
+          echo "Modified package.json:"
+          cat package.json | grep -A 5 "\"name\""
+          
+          # Publish with explicit registry option
+          npm publish --tag canary --registry=https://registry.npmjs.org/
+          
+          # Set outputs for later steps
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
+          echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
+          
+          # Also update environment for other steps
+          echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
 
       - name: Skip remaining steps for dependabot
         if: github.actor == 'dependabot[bot]'
