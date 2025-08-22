@@ -47,6 +47,10 @@
     cursor: pointer;
     transition: 0.2s;
 
+    &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: 4px;}
+
     &::-moz-range-thumb {
       width: tokens.$ifxSize250;
       height: tokens.$ifxSize250;
@@ -125,6 +129,10 @@
       position: absolute;
       pointer-events: none; 
       background: none;
+      
+      &:focus-visible {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 4px;}
 
       &::-webkit-slider-thumb { @include thumb; }
       &::-moz-range-thumb { @include thumb; }
