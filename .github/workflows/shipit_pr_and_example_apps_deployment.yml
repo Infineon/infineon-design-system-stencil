@@ -93,10 +93,6 @@ jobs:
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
-            cd packages/components
-            npm config set workspaces false
-            npm config set workspace-root false
-
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
