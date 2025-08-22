@@ -96,7 +96,18 @@
   "license": "MIT",
   "auto": {
     "plugins": [
-      "npm",
+      [
+        "npm",
+        {
+          "exact": true,
+          "setRcToken": false,
+          "forcePublishForStatus": true,
+          "npmrcProps": {
+            "workspaces": false,
+            "workspace-root": false
+          }
+        }
+      ],
       "released"
     ]
   }
