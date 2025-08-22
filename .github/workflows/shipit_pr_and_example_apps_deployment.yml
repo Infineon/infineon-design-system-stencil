@@ -77,43 +77,26 @@ jobs:
           # Debug information
           echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
                   
-          # Force correct string comparison (GitHub Actions can sometimes pass 'true' with whitespace)
-          if [[ "${{ steps.build-cache.outputs.cache-hit }}" == "true" ]]; then
-            echo "✅ Cache hit confirmed"
-            CACHE_HIT="true"
+          # Check if files exist despite cache-hit status
+          if [ -d "packages/components/dist" ] && [ -f "packages/components/dist/index.js" ]; then
+            echo "✅ Files exist in expected locations - using restored cache"
+            CACHE_VALID="true"
           else
-            echo "❌ No cache hit detected"
-            CACHE_HIT="false"
-          fi
-
-          # Verify cache contents
-          if [ "$CACHE_HIT" = "true" ]; then
-            echo "Verifying cache contents..."
-            ls -la packages/components/dist || echo "Dist directory not found!"
-            
-            if [ ! -d "packages/components/dist" ] || [ ! -f "packages/components/dist/index.js" ]; then
-              echo "⚠️ Cache appears incomplete or corrupted - forcing rebuild"
-              CACHE_VALID="false"
-            else
-              echo "✅ Cache contents verified"
-              CACHE_VALID="true"
-            fi
-          else
+            echo "❌ Required files not found - need rebuild"
             CACHE_VALID="false"
           fi
 
-          # Check for relevant changes
-          CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
-          DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
-
-          echo "Core changes detected: $CORE_CHANGED"
-          echo "Dependency changes detected: $DEPS_CHANGED"
-
-          # Skip build if cache is valid and no core changes
-          if [ "$CACHE_VALID" = "true" ] && [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
-            echo "🎉 Cache hit! No changes to core components or dependencies. Skipping build."
-            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-            exit 0
+          # Only check for changes if we have valid files
+          if [ "$CACHE_VALID" = "true" ]; then
+            CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
+            DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
+            
+            # Skip build if files exist and no changes
+            if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
+              echo "🎉 Required files exist and no changes detected. Skipping build."
+              echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
           fi
           
           # Explain why we're rebuilding
