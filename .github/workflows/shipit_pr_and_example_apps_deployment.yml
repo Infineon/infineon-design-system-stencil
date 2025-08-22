@@ -167,26 +167,19 @@ jobs:
           pnpm run build:components
           echo "NEED_BUILD=true" >> $GITHUB_OUTPUT
 
-      - name: Release with Auto
-        id: release
-        if: github.actor != 'dependabot[bot]'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Manual Canary With Double Dash
         run: |
-          if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
-            echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
-            echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else 
-            cd packages/components
-            CANARY_VERSION=$(auto shipit --dry-run --quiet)
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
-            echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_OUTPUT
-            echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
-            echo "WEBEX_MESSAGE=New package release - Version: $CANARY_VERSION" >> $GITHUB_ENV
-            echo "Publishing: $CANARY_VERSION"
-            auto shipit
-          fi
+          BASE_VERSION="37.12.1"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          CANARY_VERSION="${BASE_VERSION}--canary.${PR_NUMBER}.${SHORT_SHA}.0"
+          
+          echo "Publishing: $CANARY_VERSION"
+          
+          cd packages/components
+          # Use npm directly but with EXACT format you had before
+          npm --no-git-tag-version version "$CANARY_VERSION" || npm --no-git-tag-version version "${BASE_VERSION}-canary.${PR_NUMBER}.${SHORT_SHA}.0"
+          npm publish --tag canary
 
       - name: Skip remaining steps for dependabot
         if: github.actor == 'dependabot[bot]'
