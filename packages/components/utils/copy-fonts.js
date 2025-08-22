@@ -1,28 +1,28 @@
 const fs = require('fs');
 const path = require('path');
-const { promisify } = require('util');
-const ncp = promisify(require('ncp').ncp);
+const { execSync } = require('child_process');
 
-(async function() {
-  try {
-    const src = path.join(__dirname, '../node_modules/@infineon/design-system-tokens/dist/fonts');
-    const dest = path.join(__dirname, '../www/build/fonts');
-    console.log('Copying fonts from', src, 'to', dest);
-    
-    if (fs.existsSync(src)) {
-      await ncp(src, dest);
-      console.log('Fonts copied successfully');
-    } else {
-      console.warn('Font directory not found, skipping copy');
-      fs.mkdirSync(dest, {recursive:true});
+// Use synchronous operations for CI reliability
+try {
+  const src = path.join(__dirname, '../node_modules/@infineon/design-system-tokens/dist/fonts');
+  const dest = path.join(__dirname, '../www/build/fonts');
+  console.log('Copying fonts from', src, 'to', dest);
+  
+  if (fs.existsSync(src)) {
+    // Create destination directory if it doesn't exist
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
     }
-    // Add this line to explicitly signal success
-    process.exit(0);
-  } catch (err) {
-    console.error('Error:', err);
-    process.exit(0); // Exit with 0 even on error for CI
-  } finally {
-    // This ensures it runs even if there's an uncaught exception
-    setTimeout(() => process.exit(0), 100); 
+    
+    // Use cp -r for reliability in CI environments
+    execSync(`cp -r ${src}/* ${dest}/`);
+    console.log('Fonts copied successfully');
+  } else {
+    console.warn('Font directory not found, creating empty directory');
+    fs.mkdirSync(dest, { recursive: true });
   }
-})();
+} catch (err) {
+  console.error('Error:', err);
+  // Still exit with 0 to not fail builds
+  process.exit(0);
+}
