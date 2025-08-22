@@ -90,17 +90,31 @@ jobs:
             CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
             DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
             
+            echo "🔍 Checking for changes in core and dependencies..."
+            
+            if [ -n "$CORE_CHANGED" ]; then
+              echo "⚠️ Changes detected in core components:"
+              echo "$CORE_CHANGED"
+            fi
+            
+            if [ -n "$DEPS_CHANGED" ]; then
+              echo "⚠️ Changes detected in dependencies:"
+              echo "$DEPS_CHANGED" 
+            fi
+            
             if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
               echo "🎉 Required files exist and no changes detected. Skipping build."
               echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
               exit 0
+            else
+              echo "🔨 Changes detected - rebuild required"
             fi
           fi
           
           # Run the build
           pnpm run build:components
           echo "NEED_BUILD=true" >> $GITHUB_OUTPUT
-          
+
       - name: Release with Auto Shipit
         id: release
         if: github.actor != 'dependabot[bot]'
