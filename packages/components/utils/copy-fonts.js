@@ -15,7 +15,7 @@ try {
     }
     
     // Use cp -r for reliability in CI environments
-    execSync(`cp -r ${src}/* ${dest}/`);
+    execSync(`cp -r ${src}/* ${dest}/`, { stdio: 'inherit' });
     console.log('Fonts copied successfully');
   } else {
     console.warn('Font directory not found, creating empty directory');
