@@ -338,7 +338,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          lerna version $CANARY_VERSION --no-git-tag-version --y
           npm run build:all-wrappers
                 
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
