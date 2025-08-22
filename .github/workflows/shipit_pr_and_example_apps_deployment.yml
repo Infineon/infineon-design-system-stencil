@@ -102,9 +102,11 @@ jobs:
             echo "Publishing: $CANARY_VERSION"
 
             # WORKING: Auto + PNPM hybrid
-            auto shipit --dry-run --quiet
-            pnpm version $VERSION
-            pnpm publish --tag canary
+            echo "Setting version with PNPM..."
+            pnpm version "$CANARY_VERSION" --no-git-tag-version
+            
+            echo "Publishing with PNPM..."
+            pnpm publish --tag canary --no-git-checks --access public
 
             echo "✅ Successfully built and published Stencil components to NPM"
           fi
