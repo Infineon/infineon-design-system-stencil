@@ -111,8 +111,12 @@ jobs:
 
             # Only check for changes if we have valid files
             if [ "$CACHE_VALID" = "true" ]; then
-              # First try github.event.before
-              BEFORE_REF="${{ github.event.before || '' }}"
+              # Get before ref safely without using bash || operator that causes syntax issues
+              if [ -n "${{ github.event.before }}" ]; then
+                BEFORE_REF="${{ github.event.before }}"
+              else
+                BEFORE_REF=""
+              fi
               
               # If empty, try HEAD~1
               if [ -z "$BEFORE_REF" ] || ! git rev-parse --verify "$BEFORE_REF" &>/dev/null; then
@@ -136,52 +140,57 @@ jobs:
                   # Last resort - force rebuild
                   echo "⚠️ Cannot find a valid previous commit, forcing rebuild"
                   CACHE_VALID="false"
-                  # Skip further git operations
-                  continue
                 fi
               fi
               
-              # If we have a valid reference, proceed with diff
-              if [ "$CACHE_VALID" = "true" ]; then
+              # Only proceed with diff if we have a valid reference
+              if [ "$CACHE_VALID" = "true" ] && [ -n "$BEFORE_REF" ]; then
                 echo "Comparing $BEFORE_REF to ${{ github.sha }}"
                 
-                # Check for changes safely
-                CORE_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- packages/components/src/ 2>/dev/null || echo "error")
-                DEPS_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- package-lock.json package.json packages/components/package.json 2>/dev/null || echo "error")
-                CONFIG_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- packages/components/stencil.config.ts **/tsconfig.json 2>/dev/null || echo "error")
+                # Check for changes safely with proper error handling
+                set +e  # Don't exit on error
+                CORE_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- packages/components/src/ 2>/dev/null)
+                CORE_STATUS=$?
+                DEPS_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- package-lock.json package.json packages/components/package.json 2>/dev/null)
+                DEPS_STATUS=$?
+                CONFIG_CHANGED=$(git diff --name-only "$BEFORE_REF" "${{ github.sha }}" -- packages/components/stencil.config.ts **/tsconfig.json 2>/dev/null)
+                CONFIG_STATUS=$?
+                set -e  # Return to normal error handling
                 
-              set -e
-              
-              # Handle error cases
-              if [ "$CORE_CHANGED" = "error" ] || [ "$DEPS_CHANGED" = "error" ] || [ "$CONFIG_CHANGED" = "error" ]; then
-                echo "⚠️ Git diff failed, rebuilding to be safe"
-                CACHE_VALID="false"
-              else
-                echo "🔍 Checking for changes in core, dependencies, and config..."
-                
-                if [ -n "$CORE_CHANGED" ]; then
-                  echo "⚠️ Changes detected in core components:"
-                  echo "$CORE_CHANGED"
-                fi
-                
-                if [ -n "$DEPS_CHANGED" ]; then
-                  echo "⚠️ Changes detected in dependencies:"
-                  echo "$DEPS_CHANGED" 
-                fi
-                
-                if [ -n "$CONFIG_CHANGED" ]; then
-                  echo "⚠️ Changes detected in configuration files:"
-                  echo "$CONFIG_CHANGED" 
-                fi
-                
-                if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
-                  echo "🎉 Required files exist and no changes detected. Skipping build."
-                  echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
-                  echo "BUILD_SKIPPED=true" >> $GITHUB_ENV
-                  exit 0
+                # Handle error cases
+                if [ $CORE_STATUS -ne 0 ] || [ $DEPS_STATUS -ne 0 ] || [ $CONFIG_STATUS -ne 0 ]; then
+                  echo "⚠️ Git diff command failed, rebuilding to be safe"
+                  CACHE_VALID="false"
                 else
-                  echo "🔨 Changes detected - rebuild required"
+                  echo "🔍 Checking for changes in core, dependencies, and config..."
+                  
+                  if [ -n "$CORE_CHANGED" ]; then
+                    echo "⚠️ Changes detected in core components:"
+                    echo "$CORE_CHANGED"
+                  fi
+                  
+                  if [ -n "$DEPS_CHANGED" ]; then
+                    echo "⚠️ Changes detected in dependencies:"
+                    echo "$DEPS_CHANGED" 
+                  fi
+                  
+                  if [ -n "$CONFIG_CHANGED" ]; then
+                    echo "⚠️ Changes detected in configuration files:"
+                    echo "$CONFIG_CHANGED" 
+                  fi
+                  
+                  if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
+                    echo "🎉 Required files exist and no changes detected. Skipping build."
+                    echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
+                    echo "BUILD_SKIPPED=true" >> $GITHUB_ENV
+                    exit 0
+                  else
+                    echo "🔨 Changes detected - rebuild required"
+                  fi
                 fi
+              else
+                echo "⚠️ Could not determine a valid git reference for comparison, rebuilding"
+                CACHE_VALID="false"
               fi
             fi
           fi
