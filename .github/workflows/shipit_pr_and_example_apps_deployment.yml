@@ -313,8 +313,7 @@ jobs:
 
         run: |
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-          cd packages/components-angular
-
+ 
           cd packages/components-angular
           jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
           cd projects/component-library
