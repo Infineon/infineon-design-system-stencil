@@ -87,27 +87,55 @@ jobs:
 
           # Only check for changes if we have valid files
           if [ "$CACHE_VALID" = "true" ]; then
-            CORE_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- packages/components/src/)
-            DEPS_CHANGED=$(git diff --name-only ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json)
+            # Use safer git diff with error handling
+            set +e
+            BEFORE_REF="${{ github.event.before || 'HEAD~1' }}"
             
-            echo "🔍 Checking for changes in core and dependencies..."
-            
-            if [ -n "$CORE_CHANGED" ]; then
-              echo "⚠️ Changes detected in core components:"
-              echo "$CORE_CHANGED"
+            # Check if the before ref exists
+            git rev-parse --verify "$BEFORE_REF" >/dev/null 2>&1
+            if [ $? -ne 0 ]; then
+              echo "Warning: Before ref $BEFORE_REF doesn't exist, using HEAD^ instead"
+              BEFORE_REF="HEAD^"
+              # If still fails, use the root commit
+              git rev-parse --verify "$BEFORE_REF" >/dev/null 2>&1
+              if [ $? -ne 0 ]; then
+                echo "Warning: HEAD^ doesn't exist, using first commit"
+                BEFORE_REF=$(git rev-list --max-parents=0 HEAD)
+              fi
             fi
             
-            if [ -n "$DEPS_CHANGED" ]; then
-              echo "⚠️ Changes detected in dependencies:"
-              echo "$DEPS_CHANGED" 
-            fi
+            echo "Comparing $BEFORE_REF to ${{ github.sha }}"
             
-            if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
-              echo "🎉 Required files exist and no changes detected. Skipping build."
-              echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
-              exit 0
+            # Get changes with error handling
+            CORE_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- packages/components/src/ || echo "error")
+            DEPS_CHANGED=$(git diff --name-only $BEFORE_REF ${{ github.sha }} -- pnpm-lock.yaml package.json packages/components/package.json || echo "error")
+            
+            set -e
+            
+            # Handle error cases
+            if [ "$CORE_CHANGED" = "error" ] || [ "$DEPS_CHANGED" = "error" ]; then
+              echo "⚠️ Git diff failed, rebuilding to be safe"
+              CACHE_VALID="false"
             else
-              echo "🔨 Changes detected - rebuild required"
+              echo "🔍 Checking for changes in core and dependencies..."
+              
+              if [ -n "$CORE_CHANGED" ]; then
+                echo "⚠️ Changes detected in core components:"
+                echo "$CORE_CHANGED"
+              fi
+              
+              if [ -n "$DEPS_CHANGED" ]; then
+                echo "⚠️ Changes detected in dependencies:"
+                echo "$DEPS_CHANGED" 
+              fi
+              
+              if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ]; then
+                echo "🎉 Required files exist and no changes detected. Skipping build."
+                echo "NEED_BUILD=false" >> $GITHUB_OUTPUT
+                exit 0
+              else
+                echo "🔨 Changes detected - rebuild required"
+              fi
             fi
           fi
           
