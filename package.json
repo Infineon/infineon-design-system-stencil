@@ -36,5 +36,19 @@
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
   },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "auto": {
+    "plugins": [
+      [
+        "npm",
+        {
+          "setRcToken": false,
+          "exact": true,
+          "forcePublishForStatus": true,
+          "canary": true
+        }
+      ],
+      "released"
+    ]
+  }
 }
