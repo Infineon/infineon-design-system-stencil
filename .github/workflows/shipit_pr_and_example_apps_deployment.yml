@@ -45,18 +45,24 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
    
-      - name: Cache build output
+      - name: Cache build outputs
         uses: actions/cache@v3
         id: build-cache
         with:
           path: |
             packages/components/dist
             packages/components/www/build
-          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/components/src/**/*.{ts,tsx,scss}') }}
+            packages/components-vue/dist
+            packages/components-react/dist
+            packages/components-angular/dist
+            packages/components-angular/projects/component-library/src/lib/stencil-generated/
+            packages/components-react/lib/components/stencil-generated/
+            packages/components-vue/lib/vue-component-lib/
+          key: ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml', 'packages/**/src/**/*.{ts,tsx,scss,json}') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ hashFiles('pnpm-lock.yaml') }}
             ${{ runner.os }}-build-
-            
+
       - name: Install dependencies for all packages
         run: |
           pnpm config set store-dir ~/.pnpm-store
@@ -68,11 +74,20 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
+          echo "Cache hit: ${{ steps.build-cache.outputs.cache-hit }}"
+          echo "Checking for changes in packages/ directory..."
+          
           if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ] && \
             [ -z "$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- packages/)" ]; then
-            echo "No changes in packages/** and build cache is valid. Skipping build and publish."
+            echo "🎉 Cache hit! No changes in packages/** detected. Skipping build and publish."
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
             exit 0
+          fi
+          
+          if [ "${{ steps.build-cache.outputs.cache-hit }}" = "true" ]; then
+            echo "⚠️ Cache hit but changes detected in packages/ - rebuilding"
+          else
+            echo "⚠️ No valid cache found - full build required"
           fi
 
           pnpm run build:components
