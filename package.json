@@ -12,12 +12,12 @@
     "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
     "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
     "build:components-angular": "lerna run build:library --scope components-angular",
+    "build:all-wrappers": "npm-run-all --parallel build:components-react build:components-vue build:components-angular",
     "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
-    "graph": "nx graph",
-    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
-    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
-    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && npm run test:local",
-    "angular:dev": "cd packages/components-angular && npm run test:local"
+    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && pnpm run dev:watch",
+    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && pnpm run test:local",
+    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && pnpm run test:local",
+    "angular:dev": "bash ./scripts/setup-stencil-shims.sh && cd packages/components-angular && pnpm run test:local"
   },
   "workspaces": [
     "packages/*",
@@ -26,7 +26,9 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "lerna": "^8.1.9",
-    "nx": "^16.10.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "^2.8.8",
+    "storybook": "^8.6.14",
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
   },
