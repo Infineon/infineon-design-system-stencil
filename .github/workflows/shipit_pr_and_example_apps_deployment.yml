@@ -614,7 +614,7 @@ jobs:
             const EXAMPLE_APPS_IDENTIFIER = "--EXAMPLE-APPS-PREVIEW--";
             const newText = `--EXAMPLE-APPS-PREVIEW--\nPR Preview URLs:\n- Vue example: ${vueUrl}\n- React example: ${reactUrl}\n- Angular example: ${angularUrl}\n- Vanilla example: ${vanillaUrl}`;
 
-            const {data: comments} = await github.issues.listComments({
+            const {data: comments} = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber
@@ -622,19 +622,18 @@ jobs:
             const appsComment = comments.find(c => c.body.startsWith(EXAMPLE_APPS_IDENTIFIER));
 
             if (appsComment) {
-              await github.issues.updateComment({
+              await github.rest.issues.updateComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: appsComment.id,
                 body: newText
               });
             } else {
-              await github.issues.createComment({
+              await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
                 body: newText
               });
             }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          github-token: ${{ secrets.GH_TOKEN }}
