@@ -382,15 +382,23 @@ jobs:
           
           # Create symlinks between packages instead
           echo "Creating package symlinks for correct dependency resolution..."
-          mkdir -p packages/components-angular/node_modules/@infineon/
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-angular/node_modules/@infineon/
-          
-          mkdir -p packages/components-vue/node_modules/@infineon/
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-vue/node_modules/@infineon/
-          
-          mkdir -p packages/components-react/node_modules/@infineon/
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-react/node_modules/@infineon/
+          # Remove existing directories first
+          echo "Removing any existing package directories before creating symlinks..."
+          rm -rf packages/components-angular/node_modules/@infineon/infineon-design-system-stencil
+          rm -rf packages/components-vue/node_modules/@infineon/infineon-design-system-stencil
+          rm -rf packages/components-react/node_modules/@infineon/infineon-design-system-stencil
 
+          # Create parent directories
+          mkdir -p packages/components-angular/node_modules/@infineon/
+          mkdir -p packages/components-vue/node_modules/@infineon/
+          mkdir -p packages/components-react/node_modules/@infineon/
+
+          # Create symlinks with better error handling
+          echo "Creating symlinks..."
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-angular/node_modules/@infineon/ || echo "Warning: Angular symlink creation failed"
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-vue/node_modules/@infineon/ || echo "Warning: Vue symlink creation failed"
+          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-react/node_modules/@infineon/ || echo "Warning: React symlink creation failed"
+          
           # Verify updates - continue with your existing verification
           echo "Verifying updates in Angular package"
           jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
