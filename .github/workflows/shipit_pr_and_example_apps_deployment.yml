@@ -70,7 +70,7 @@ jobs:
 
       - name: Install dependencies for all packages
         run: |
-          npm ci 
+          npm ci || npm install
 
       - name: Build Stencil core components
         id: build
@@ -368,6 +368,13 @@ jobs:
             jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
             cd ../..
           fi
+
+      - name: Update package lock to match new versions
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
+        run: |
+          echo "Updating package-lock.json to match new versions..."
+          npm install --package-lock-only
+          # Commit the updated package-lock.json along with package.json changes
 
       - name: Create Stencil loader shim
         if: steps.release.outputs.SKIP_REMAINING == 'false'
