@@ -312,101 +312,61 @@ jobs:
           CANARY_VERSION: ${{ steps.release.outputs.CANARY_VERSION }}
         run: |
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-      
-          cd packages/components-angular
-          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
-          cd projects/component-library
-          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
-          cd ../../../components-vue
-          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
-          cd ../components-react
-          jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
-          cd ../..
-
-          # Update Angular package
-          cd packages/components-angular/projects/component-library
-          jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
-          cd ../../../../
-
-          # Update Vue package
-          cd packages/components-vue
-          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
-          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
-      
-          # Update React package
-          cd ../components-react
-          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
-
-          # First clean npm cache which can help resolve many npm issues
-          npm cache clean --force
-          echo "NPM cache cleaned"
-
-          # Try installing the published package with improved error handling
+          
+          # Try lerna approach first (much shorter!)
           set +e  # Don't exit on errors
-          INSTALL_SUCCESS=false
-          RETRIES=3
-
-          for i in $(seq 1 $RETRIES); do
-            echo "Attempt $i to install Stencil version: $CANARY_VERSION"
-            # Use different flags to help with installation issues
-            if npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact --no-package-lock --force; then
-              echo "✅ Installed successfully on attempt $i"
-              INSTALL_SUCCESS=true
-              break
-            else
-              echo "❌ Failed, retrying in $((i * 5)) seconds..."
-              # Clear caches again to be extra safe
-              npm cache clean --force 
-              sleep $((i * 5))
-            fi
-          done
-
-          # If normal install failed, use local files instead
-          if [ "$INSTALL_SUCCESS" = "false" ]; then
-            echo "⚠️ Package installation failed after $RETRIES attempts, using local files instead"
+          npm cache clean --force
+          
+          echo "Attempting to use lerna for versioning..."
+          if lerna version $CANARY_VERSION --no-git-tag-version --yes --no-push; then
+            echo "✅ Lerna version command succeeded!"
             
-            # Use the already built files as a fallback
-            mkdir -p node_modules/@infineon/
-            rm -rf node_modules/@infineon/infineon-design-system-stencil
-            cp -r packages/components node_modules/@infineon/infineon-design-system-stencil
-            echo "✅ Local files copied successfully"
-          fi
-          set -e  # Return to normal error handling
-          
-          # MODIFIED: Return to root directory and skip problematic general npm install
-          cd ../..
-          echo "⚠️ Skipping general npm install to avoid dependency resolution issues"
-          
-          # Create symlinks between packages instead
-          echo "Creating package symlinks for correct dependency resolution..."
-          # Remove existing directories first
-          echo "Removing any existing package directories before creating symlinks..."
-          rm -rf packages/components-angular/node_modules/@infineon/infineon-design-system-stencil
-          rm -rf packages/components-vue/node_modules/@infineon/infineon-design-system-stencil
-          rm -rf packages/components-react/node_modules/@infineon/infineon-design-system-stencil
-
-          # Create parent directories
-          mkdir -p packages/components-angular/node_modules/@infineon/
-          mkdir -p packages/components-vue/node_modules/@infineon/
-          mkdir -p packages/components-react/node_modules/@infineon/
-
-          # Create symlinks with better error handling
-          echo "Creating symlinks..."
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-angular/node_modules/@infineon/ || echo "Warning: Angular symlink creation failed"
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-vue/node_modules/@infineon/ || echo "Warning: Vue symlink creation failed"
-          ln -sf $(pwd)/node_modules/@infineon/infineon-design-system-stencil packages/components-react/node_modules/@infineon/ || echo "Warning: React symlink creation failed"
-          
-          # Verify updates - continue with your existing verification
-          echo "Verifying updates in Angular package"
-          jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
-          echo "Verifying updates in Vue package"
-          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
-          echo "Verifying updates in React package"
-          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
-
+            # Still need to update dependencies in each package
+            cd packages/components-angular/projects/component-library
+            jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../../../../
+            
+            cd packages/components-vue
+            jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../..
+            
+            cd packages/components-react
+            jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../..
+          else
+            echo "⚠️ Lerna version command failed, falling back to manual approach"
+            
+            # FALLBACK: Manual version updates
+            cd packages/components-angular
+            jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+            cd projects/component-library
+            jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+            cd ../../../components-vue
+            jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+            cd ../components-react
+            jq --arg v "$CANARY_VERSION" '.version = $v' package.json > tmp && mv tmp package.json
+            cd ../..
+            
+            # Update Angular package
+            cd packages/components-angular/projects/component-library
+            jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../../../../
+            
+            # Update Vue package
+            cd packages/components-vue
+            jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../..
+            
+            # Update React package
+            cd packages/components-react
+            jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json
+            
       - name: Build and deploy Angular, Vue and React packages
         if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
