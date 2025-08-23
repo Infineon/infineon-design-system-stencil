@@ -365,8 +365,46 @@ jobs:
             # Update React package
             cd packages/components-react
             jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json
-            
+            jq --arg v "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+            cd ../..
+          fi
+
+      - name: Create Stencil loader shim
+        if: steps.release.outputs.SKIP_REMAINING == 'false'
+        run: |
+          echo "Creating Stencil loader shim for wrapper builds..."
+          
+          # Create loader directory in root node_modules
+          mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
+          
+          # Create index.js with required functions
+          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
+          export function defineCustomElements() {
+            return Promise.resolve();
+          }
+          
+          export function applyPolyfills() {
+            return Promise.resolve();
+          }
+          EOF
+          
+          # Create TypeScript declarations
+          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
+          export declare function defineCustomElements(win?: Window): Promise<void>;
+          export declare function applyPolyfills(): Promise<void>;
+          EOF
+          
+          # Create for framework-specific node_modules
+          for dir in packages/components-{angular,react,vue}/node_modules/@infineon; do
+            mkdir -p $dir/infineon-design-system-stencil/loader
+            cp node_modules/@infineon/infineon-design-system-stencil/loader/index.js $dir/infineon-design-system-stencil/loader/
+            cp node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts $dir/infineon-design-system-stencil/loader/
+          done
+          
+          echo "✅ Stencil loader shim created successfully"
+
+
+
       - name: Build and deploy Angular, Vue and React packages
         if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
