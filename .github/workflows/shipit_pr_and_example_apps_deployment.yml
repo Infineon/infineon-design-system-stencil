@@ -411,6 +411,7 @@ jobs:
         if: steps.release.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NX_SQLITE_BUSY_TIMEOUT: 10000  
         run: |
           npm run build:all-wrappers
                 
