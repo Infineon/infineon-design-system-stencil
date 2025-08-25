@@ -240,7 +240,6 @@ jobs:
         run: |
           echo "Verifying wrapper packages availability..."
           
-          # Function to check package availability with retries
           check_package() {
             local package=$1
             local MAX_RETRIES=10
