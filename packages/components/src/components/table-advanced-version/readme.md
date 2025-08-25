@@ -9,7 +9,7 @@
 
 | Property                 | Attribute                   | Description | Type                                                       | Default     |
 | ------------------------ | --------------------------- | ----------- | ---------------------------------------------------------- | ----------- |
-| `buttonRendererOptions`  | --                          |             | `{ onButtonClick?: (params: any, event: Event) => void; }` | `undefined` |
+| `buttonRendererOptions`  | `button-renderer-options`   |             | `{ onButtonClick?: (params: any, event: Event) => void; }` | `undefined` |
 | `cols`                   | `cols`                      |             | `any`                                                      | `undefined` |
 | `filterOrientation`      | `filter-orientation`        |             | `string`                                                   | `'sidebar'` |
 | `pagination`             | `pagination`                |             | `boolean`                                                  | `true`      |
