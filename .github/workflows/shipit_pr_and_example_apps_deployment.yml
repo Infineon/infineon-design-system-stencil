@@ -330,7 +330,6 @@ jobs:
           BASE_PATH: /infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
-          # Force clean install
           rm -rf node_modules dist
           npm install
           
@@ -346,7 +345,6 @@ jobs:
           console.log('Cache busted at: $(date)');
           EOF
           
-          # Build with the PR number as base path
           npm run build
           
           # Add .nojekyll file to prevent GitHub Pages from ignoring underscore files
