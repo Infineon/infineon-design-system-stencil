@@ -70,6 +70,7 @@ jobs:
             ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
             ${{ runner.os }}-build-v3-
 
+
       - name: Install dependencies for all packages
         run: |
           npm ci || npm install
@@ -80,20 +81,70 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Check if we can use cache
-          if [ "${{ github.event.inputs.force_rebuild || 'false' }}" = "true" ] || [ "${{ steps.build-cache.outputs.cache-hit }}" != "true" ]; then
-            echo "🏗️ Building components from scratch..."
-            npm run build:components
+          # Handle manual cache busting
+          if [ "${{ github.event.inputs.force_rebuild || 'false' }}" = "true" ]; then
+            echo "🔄 Force rebuild requested - ignoring cache"
+            CACHE_VALID="false"
           else
-            echo "✅ Using cached build"
-          fi
+            # Debug information
+            echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
+            
+            # Check if files exist in disk
+            echo "Checking dist directory contents:"
+            ls -la packages/components/dist/ || echo "Dist directory not found"
+                    
+            # More thorough validation of cached build - IGNORE VERSION MISMATCH
+            if [ -d "packages/components/dist" ] && 
+              [ -f "packages/components/dist/index.js" ] && 
+              [ -f "packages/components/dist/collection/collection-manifest.json" ]; then
+              # Read package version from actual built files
+              BUILT_VERSION=$(grep -o '"version":[[:space:]]*"[^"]*"' packages/components/dist/collection/collection-manifest.json | cut -d'"' -f4)
+              # Read expected version from package.json
+              EXPECTED_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
+              
+              echo "Built version from manifest: $BUILT_VERSION"
+              echo "Expected version from package.json: $EXPECTED_VERSION"
+              
+              # CHANGED: Don't invalidate cache just due to version mismatch
+              echo "✅ Files exist and are valid"
+              CACHE_VALID="true"
+            else
+              echo "❌ Required files not found - need rebuild"
+              CACHE_VALID="false"
+            fi
 
-          # Save cache after build
-          if [ "${{ github.event.inputs.force_rebuild || 'false' }}" = "true" ] || [ "${{ steps.build-cache.outputs.cache-hit }}" != "true" ]; then
-            echo "Saving build to cache..."
+            # Only check for changes if we have valid files
+            if [ "$CACHE_VALID" = "true" ]; then
+              # Check for source code changes
+              CORE_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/src/ || echo "diff failed")
+              DEPS_CHANGED=$(git diff --name-only HEAD~1 HEAD -- package-lock.json package.json packages/components/package.json || echo "diff failed")
+              CONFIG_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/stencil.config.ts **/tsconfig.json || echo "diff failed")
+              
+              echo "Changes in core: $CORE_CHANGED"
+              echo "Changes in deps: $DEPS_CHANGED"
+              echo "Changes in config: $CONFIG_CHANGED"
+              
+              if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
+                echo "🎉 No changes detected and cache is valid. Skipping build."
+                SKIP_BUILD="true"
+              else
+                echo "🔨 Changes detected - rebuild required"
+                SKIP_BUILD="false"
+                CACHE_VALID="false"
+              fi
+            else
+              SKIP_BUILD="false"
+            fi
           fi
-
-          # Handle versioning and publish
+          
+          # Run the build if needed
+          if [ "$SKIP_BUILD" != "true" ]; then
+            echo "🏗️ Running component build..."
+            npm run build:components
+            echo "✅ Build completed successfully"
+          fi
+          
+          # Handle versioning and publish (always run this part regardless of build)
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -108,6 +159,21 @@ jobs:
             auto shipit
           fi
 
+      # Save the cache explicitly after build (only if we built)
+      - name: Save build cache
+        if: "${{ !contains(env.SKIP_BUILD, 'true') }}"
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            packages/components/dist
+            packages/components/www/build
+            packages/components-vue/dist
+            packages/components-react/dist
+            packages/components-angular/dist
+            packages/components-angular/projects/component-library/src/lib/stencil-generated/
+            packages/components-react/lib/components/stencil-generated/
+            packages/components-vue/lib/vue-component-lib/
+          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
 
       # Replace sleep with package availability check
       - name: Verify package availability

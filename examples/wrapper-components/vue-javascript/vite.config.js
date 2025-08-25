@@ -22,7 +22,9 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: undefined // Disable code splitting for dynamic imports
+        assetFileNames: 'assets/file-[hash][extname]', // Avoid underscores
+        chunkFileNames: 'js/chunk-[hash].js',
+        entryFileNames: 'js/entry-[hash].js'
       }
     }
   },
