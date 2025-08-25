@@ -508,7 +508,7 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm' # Enable built-in npm cache
+          cache: 'npm' 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
