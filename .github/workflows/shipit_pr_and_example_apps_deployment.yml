@@ -102,11 +102,60 @@ jobs:
             auto shipit
           fi
 
-      - name: Sleep for 10 seconds
+      - name: Build and deploy Angular, Vue and React packages
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        id: build-wrappers
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
-          sleep 10s
-        shell: bash
+          lerna version $CANARY_VERSION --no-git-tag-version --y
+          # Build sequentially to avoid race conditions
+          npm run build:components-angular
+          npm run build:components-react
+          npm run build:components-vue
+          
+          cd packages/components-angular/dist/@infineon/infineon-design-system-angular
+          npm publish --tag canary
+          cd ../../../../components-react
+          npm publish --tag canary
+          cd ../components-vue
+          npm publish --tag canary
+          
+          echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT
+
+      # Replace sleep with wrapper package availability check
+      - name: Verify wrapper packages availability
+        if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
+        run: |
+          echo "Verifying wrapper packages availability..."
+          
+          # Function to check package availability with retries
+          check_package() {
+            local package=$1
+            local MAX_RETRIES=10
+            local RETRY_COUNT=0
+            local DELAY=3
+            
+            echo "Checking $package@$CANARY_VERSION availability..."
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              if npm view "$package@$CANARY_VERSION" version &> /dev/null; then
+                echo "✅ $package@$CANARY_VERSION is available"
+                return 0
+              else
+                RETRY_COUNT=$((RETRY_COUNT + 1))
+                echo "⏳ $package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
+                sleep $DELAY
+                DELAY=$((DELAY + 2))
+              fi
+            done
+            
+            echo "❌ $package availability check timed out"
+            return 1
+          }
+          
+          check_package "@infineon/infineon-design-system-angular"
+          check_package "@infineon/infineon-design-system-react"
+          check_package "@infineon/infineon-design-system-vue"
       
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
