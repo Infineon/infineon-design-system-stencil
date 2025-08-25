@@ -3,9 +3,19 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
+// Get dynamic base URL from environment variables
+const getPrNumber = () => process.env.PR_NUMBER || '';
+const getBaseUrl = () => {
+  const prNumber = getPrNumber();
+  if (prNumber) {
+    return `/infineon-design-system-stencil/pr-preview-vue-example/pr-${prNumber}/`;
+  }
+  return './'; // Local development fallback
+};
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./",
+  base: getBaseUrl(),
   exclude: [
     '@ionic/core/loader' //fix weird Vite error "outdated optimize dep"
   ],
@@ -32,6 +42,4 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-
-
 });
