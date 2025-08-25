@@ -102,61 +102,61 @@ jobs:
             auto shipit
           fi
 
-      - name: Build and deploy Angular, Vue and React packages
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        id: build-wrappers
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          lerna version $CANARY_VERSION --no-git-tag-version --y
-          # Build sequentially to avoid race conditions
-          npm run build:components-angular
-          npm run build:components-react
-          npm run build:components-vue
-          
-          cd packages/components-angular/dist/@infineon/infineon-design-system-angular
-          npm publish --tag canary
-          cd ../../../../components-react
-          npm publish --tag canary
-          cd ../components-vue
-          npm publish --tag canary
-          
-          echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT
 
-      # Replace sleep with wrapper package availability check
-      - name: Verify wrapper packages availability
-        if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
+      # Replace sleep with package availability check
+      - name: Verify package availability
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        id: verify-package
         run: |
-          echo "Verifying wrapper packages availability..."
+          echo "Verifying package availability for $CANARY_VERSION"
+          MAX_RETRIES=10
+          RETRY_COUNT=0
+          DELAY=5
           
-          # Function to check package availability with retries
-          check_package() {
-            local package=$1
-            local MAX_RETRIES=10
-            local RETRY_COUNT=0
-            local DELAY=3
-            
-            echo "Checking $package@$CANARY_VERSION availability..."
-            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-              if npm view "$package@$CANARY_VERSION" version &> /dev/null; then
-                echo "✅ $package@$CANARY_VERSION is available"
-                return 0
-              else
-                RETRY_COUNT=$((RETRY_COUNT + 1))
-                echo "⏳ $package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-                sleep $DELAY
-                DELAY=$((DELAY + 2))
-              fi
-            done
-            
-            echo "❌ $package availability check timed out"
-            return 1
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            if npm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &> /dev/null; then
+              echo "✅ Package $CANARY_VERSION is available in registry"
+              echo "PACKAGE_AVAILABLE=true" >> $GITHUB_OUTPUT
+              break
+            else
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              echo "⏳ Package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
+              sleep $DELAY
+              DELAY=$((DELAY + 5))
+            fi
+          done
+          
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "❌ Package availability check timed out after $MAX_RETRIES attempts"
+            echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
+          fi
+
+      
+      # Create Stencil loader shim for components
+      - name: Create Stencil loader shim
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        run: |
+          echo "Creating Stencil loader shim for wrapper builds..."
+          
+          # Create loader directory in root node_modules
+          mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
+          
+          # Create index.js with required functions
+          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
+          export function defineCustomElements() {
+            return Promise.resolve();
           }
           
-          check_package "@infineon/infineon-design-system-angular"
-          check_package "@infineon/infineon-design-system-react"
-          check_package "@infineon/infineon-design-system-vue"
-      
+          export function applyPolyfills() {
+            return Promise.resolve();
+          }
+          EOF
+          
+          # Create TypeScript declarations
+          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
+          export declare function defineCustomElements(win?: Window): Promise<void>;
+          export declare function applyPolyfills(): Promise<void>;
+          EOF
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -210,33 +210,10 @@ jobs:
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
-      # Create Stencil loader shim for components
-      - name: Create Stencil loader shim
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "Creating Stencil loader shim for wrapper builds..."
-          
-          # Create loader directory in root node_modules
-          mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
-          
-          # Create index.js with required functions
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
-          export function defineCustomElements() {
-            return Promise.resolve();
-          }
-          
-          export function applyPolyfills() {
-            return Promise.resolve();
-          }
-          EOF
-          
-          # Create TypeScript declarations
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
-          export declare function defineCustomElements(win?: Window): Promise<void>;
-          export declare function applyPolyfills(): Promise<void>;
-          EOF
+    
             
       - name: Build and deploy Angular, Vue and React packages
+        id: build-wrappers  
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -254,35 +231,42 @@ jobs:
           cd ../components-vue
           npm publish --tag canary
 
+          echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT 
 
-      # Replace sleep with package availability check
-      - name: Verify package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        id: verify-package
+
+      # Replace sleep with wrapper package availability check
+      - name: Verify wrapper packages availability
+        if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
         run: |
-          echo "Verifying package availability for $CANARY_VERSION"
-          MAX_RETRIES=10
-          RETRY_COUNT=0
-          DELAY=5
+          echo "Verifying wrapper packages availability..."
           
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            if npm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &> /dev/null; then
-              echo "✅ Package $CANARY_VERSION is available in registry"
-              echo "PACKAGE_AVAILABLE=true" >> $GITHUB_OUTPUT
-              break
-            else
-              RETRY_COUNT=$((RETRY_COUNT + 1))
-              echo "⏳ Package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-              sleep $DELAY
-              DELAY=$((DELAY + 5))
-            fi
-          done
+          # Function to check package availability with retries
+          check_package() {
+            local package=$1
+            local MAX_RETRIES=10
+            local RETRY_COUNT=0
+            local DELAY=3
+            
+            echo "Checking $package@$CANARY_VERSION availability..."
+            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              if npm view "$package@$CANARY_VERSION" version &> /dev/null; then
+                echo "✅ $package@$CANARY_VERSION is available"
+                return 0
+              else
+                RETRY_COUNT=$((RETRY_COUNT + 1))
+                echo "⏳ $package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
+                sleep $DELAY
+                DELAY=$((DELAY + 2))
+              fi
+            done
+            
+            echo "❌ $package availability check timed out"
+            return 1
+          }
           
-          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-            echo "❌ Package availability check timed out after $MAX_RETRIES attempts"
-            echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
-          fi
-
+          check_package "@infineon/infineon-design-system-angular"
+          check_package "@infineon/infineon-design-system-react"
+          check_package "@infineon/infineon-design-system-vue"
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
