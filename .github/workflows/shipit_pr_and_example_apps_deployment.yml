@@ -309,6 +309,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          fetch-depth: 0
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
@@ -319,23 +322,38 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # Cache for Vue app node_modules
-      - name: Cache Vue app node modules
-        uses: actions/cache@v3
-        with:
-          path: examples/wrapper-components/vue-javascript/node_modules
-          key: ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/vue-javascript/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-vue-example-
-
-      - name: Install and Build
+      # Modified to use PR-specific build folder
+      - name: Install and Build with base path
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
+          CANARY_VERSION: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
+          BASE_PATH: /infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
-          npm i
+          # Force clean install
+          rm -rf node_modules dist
+          npm install
+          
+          # Add base path to vite.config.js if it exists
+          if [ -f "vite.config.js" ]; then
+            echo "Adding base path to vite.config.js"
+            sed -i "s/export default defineConfig({/export default defineConfig({\n  base: '\/infineon-design-system-stencil\/pr-preview-vue-example\/pr-$PR_NUMBER\/',/" vite.config.js
+          fi
+          
+          # Create or update index.html with cache busting meta tags
+          cat > public/cache-bust.js << EOF
+          // Cache buster - ${RANDOM}-${GITHUB_RUN_ID}
+          console.log('Cache busted at: $(date)');
+          EOF
+          
+          # Build with the PR number as base path
           npm run build
+          
+          # Add .nojekyll file to prevent GitHub Pages from ignoring underscore files
+          touch dist/.nojekyll
+          
+          # Add meta tags to prevent caching
+          sed -i 's/<head>/<head>\n  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n  <meta http-equiv="Pragma" content="no-cache">\n  <meta http-equiv="Expires" content="0">/' dist/index.html
 
       - name: Deploy preview
         id: preview       
