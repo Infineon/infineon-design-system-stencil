@@ -17,14 +17,19 @@
     "jsxFactory": "h",
     "baseUrl": "./",
     "paths": {
-      "*": ["src/types/*"]
-    }
+      "*": ["src/types/*"],
+      "@stencil/core": ["./node_modules/@stencil/core"],
+      "@stencil/sass": ["./node_modules/@stencil/sass"],
+    },
+    "types": ["jest", "jest-stencil-runner"],
+
   },
   "include": [
     "src",
     "types/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test-setup.ts"
   ]
 }

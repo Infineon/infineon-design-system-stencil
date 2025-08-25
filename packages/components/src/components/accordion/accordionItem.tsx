@@ -6,7 +6,7 @@ import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen, Element 
   styleUrl: 'accordionItem.scss',
   shadow: true,
 })
-export class IfxAccordionItem {
+export class AccordionItem {
   @Element() el;
   @Prop() caption: string;
   @Prop({

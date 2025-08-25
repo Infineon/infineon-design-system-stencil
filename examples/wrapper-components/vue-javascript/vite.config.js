@@ -9,6 +9,13 @@ export default defineConfig({
   exclude: [
     '@ionic/core/loader' //fix weird Vite error "outdated optimize dep"
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined // Disable code splitting for dynamic imports
+      }
+    }
+  },
   plugins: [
     vue({
       template: {
