@@ -25,6 +25,7 @@
 | `success`        | `success`          |             | `boolean`              | `false`         |
 | `type`           | `type`             |             | `"password" \| "text"` | `'text'`        |
 | `value`          | `value`            |             | `string`               | `''`            |
+| `readOnly`       | `read-only`        |             | `boolean`              | `false`         |
 
 
 ## Events
