@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, viewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular';
 
@@ -14,5 +14,19 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
+  alertVariant = "primary";
+  alertVariants = ["primary", "success", "danger", "warning"];
+  alertVariantIndex = 0;
 
+  alertClosable = true;
+
+  toggleAlertVariant() {
+    this.alertVariantIndex = (this.alertVariantIndex + 1) % this.alertVariants.length;
+    this.alertVariant = this.alertVariants[this.alertVariantIndex];
+  }
+
+  toggleAlertClosable() {
+    this.alertClosable = !this.alertClosable;
+  }
+  
 }
