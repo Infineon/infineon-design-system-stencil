@@ -78,6 +78,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() errorMessage: string = 'Error';
   @Prop() label: string = '';
   @Prop() disabled: boolean = false;
+  @Prop() required: boolean = false;
   @Prop() placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
@@ -372,6 +373,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
         {this.label ? (
           <div class="ifx-label-wrapper">
             <span>{this.label}</span>
+             {this.required && (
+                  <span class={`required ${this.error ? 'error' : ''}`}>*</span>
+                )}
           </div>
         ) : null}
         <div
