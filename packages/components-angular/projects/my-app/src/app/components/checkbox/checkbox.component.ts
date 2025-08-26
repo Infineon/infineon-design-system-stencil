@@ -17,6 +17,11 @@ export class CheckboxComponent {
   checkboxChecked = false;
   checkboxError = false;
   checkboxDisabled = false;
+  checkboxIndeterminate = false;
+
+  checkboxSize = "m";
+  checkboxSizes = ["m", "s"];
+  checkboxSizeIndex = 0;
 
   handleSubmit() {
     console.log('Form submitted. Checkbox value:', this.checkboxChecked);
@@ -26,6 +31,13 @@ export class CheckboxComponent {
   }
   toggleCheckboxError() {
     this.checkboxError = !this.checkboxError;
+  }
+  toggleCheckboxSize() {
+    this.checkboxSizeIndex = (this.checkboxSizeIndex + 1) % this.checkboxSizes.length;
+    this.checkboxSize = this.checkboxSizes[this.checkboxSizeIndex];
+  }
+  toggleIndeterminate() {
+    this.checkboxIndeterminate = !this.checkboxIndeterminate;
   }
   toggleCheckboxValue() {
     console.log("checkbox value change")
