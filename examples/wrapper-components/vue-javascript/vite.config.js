@@ -13,7 +13,6 @@ const getBaseUrl = () => {
   return './'; // Local development fallback
 };
 
-// https://vitejs.dev/config/
 export default defineConfig({
   base: getBaseUrl(),
   exclude: [
@@ -22,7 +21,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/file-[hash][extname]', // Avoid underscores
+        assetFileNames: 'assets/file-[hash][extname]', // Avoid underscores, cause Github Pages Jekyll processor does not serve them correctly
         chunkFileNames: 'js/chunk-[hash].js',
         entryFileNames: 'js/entry-[hash].js'
       }
