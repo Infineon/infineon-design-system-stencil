@@ -17,6 +17,9 @@ export class SegmentedControl {
     @Prop() caption: string = '';
     @Prop() label: string = '';
     @Prop() size: 'regular' | 'small' = 'regular';
+    @Prop() required: boolean = false;
+    @Prop() error: boolean = false;
+
 
     @Listen('segmentSelect')
     onSegmentSelect(event: CustomEvent) {
@@ -83,9 +86,10 @@ export class SegmentedControl {
 
     render() {
         return (
-            <div aria-value={this.selectedValue} aria-label='segmented control' class='group'>
+            <div aria-value={this.selectedValue} aria-label='segmented control' class={`group ${this.error ? 'error' : ''} ${this.required ? 'required' : ''}`}>
                 <div class='group__label'>
                     { this.label.trim() }
+                    { this.required && <span class="required"> * </span> }
                 </div>
                 
                 <div class='group__controls'>
@@ -94,7 +98,7 @@ export class SegmentedControl {
                 
                 {
                     this.caption.trim() &&
-                    <div class='group__caption'>
+                    <div class={`group__caption ${this.error ? 'error' : ''}`}>
                         <ifx-icon icon='c-info-16'></ifx-icon> { this.caption.trim() }
                     </div>
                 }

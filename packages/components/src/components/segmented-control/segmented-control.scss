@@ -16,6 +16,10 @@
     &:empty {
         display: none;
     }
+
+    & .required {
+        margin-left: 4px;
+    }
 }
 
 .group__controls {
@@ -39,4 +43,8 @@
     line-height: tokens.$ifxLineHeightXs;
     color: tokens.$ifxColorBaseBlack;
     font-family: tokens.$ifxFontFamilyBody;
+
+    &.error {
+            color: tokens.$ifxColorRed500;
+        }
 }
