@@ -14,7 +14,7 @@ export class Status {
   @Prop() label: string;
   @Prop() border: boolean = false;
   @Prop() color: string = 'orange-500';
-
+ 
   async componentDidLoad() { 
     if(!isNestedInIfxComponent(this.el)) { 
       const framework = detectFramework();
@@ -27,7 +27,7 @@ export class Status {
     const containerClass = this.border ? `container border-${effectiveColor}` : 'container no-border';
 
     return (
-      <div role="status" aria-live="polite" aria-label="a status indicator" aria-value={this.label} class={containerClass}>
+      <div role="status" class={containerClass}>
         <span class={`dot ${effectiveColor}`}></span>
         <p class="text">{this.label}</p>
       </div>

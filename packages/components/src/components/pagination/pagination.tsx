@@ -215,7 +215,7 @@ export class Pagination {
           </div>
         </div>
         
-        <div class="items__total-wrapper">
+        <nav class="items__total-wrapper" aria-label={`Pagination navigation, page ${this.internalPage} of ${this.numberOfPages.length}`}>
           <div class="pagination">
             <ifx-icon-button
               class="prev"
@@ -231,11 +231,21 @@ export class Pagination {
                 class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
                 data-page={page}
               >
-                <a href="javascript:void(0)">{page}</a>
+                <span 
+                  class='page__button'
+                  role="button"
+                  tabindex="0"
+                  aria-current={page === this.internalPage ? "page" : undefined}
+                  aria-label={`Page ${page}`}
+                  onClick={() => this.changePage(page)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && this.changePage(page)}
+                >
+                  {page}
+                </span>
               </li>
             ) : (
               <li class="ellipsis" key={`ellipsis-${i}`}>
-                <span>...</span>
+                <span aria-hidden="true">...</span>
               </li>
             ))}
             </ol>
@@ -247,7 +257,7 @@ export class Pagination {
               onClick={() => this.changePage(this.internalPage + 1)}
             ></ifx-icon-button>
           </div>
-        </div>
+        </nav>
       </div>
     );
   }

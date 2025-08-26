@@ -371,7 +371,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return (
       <div class={`ifx-select-container`}>
         {this.label ? (
-          <div class="ifx-label-wrapper">
+          <div class="ifx-label-wrapper" id="ifx-label-wrapper">
             <span>{this.label}</span>
           </div>
         ) : null}
@@ -382,13 +382,22 @@ export class Choices implements IChoicesProps, IChoicesMethods {
           onClick={this.disabled ? undefined : (e) => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class='single__select-input-field' disabled = {this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select 
+          aria-labelledby={this.label ? "ifx-label-wrapper" : undefined}
+          class='single__select-input-field' 
+          disabled = {this.disabled} {...attributes} 
+          data-trigger 
+          onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
           <div class='single__select-icon-container'>
             { this.optionIsSelected && (
-                <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`} tabindex={0}>
+                <div 
+                class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`} 
+                role="button"
+                aria-label="Clear selection"
+                tabindex={this.disabled ? -1 : 0}>
                   <ifx-icon icon="cRemove16" onKeyDown={e => this.handleKeyDown(e)} onClick={() => this.clearSelection()}></ifx-icon>
                 </div>
               )}
