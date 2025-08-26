@@ -10,13 +10,13 @@
 
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
-
   <title>Vanilla</title>
 </head>
 
 <body>
 
   <div>
+    <!-- Navigation - Navbar Component -->
     <ifx-navbar show-logo-and-appname="true" application-name="App name" fixed="false" logo-href="http://google.com"
       logo-href-target="_self">
       <ifx-navbar-item icon="calendar16" slot="left-item" target="" href="">
@@ -92,47 +92,41 @@
       </ifx-navbar-profile>
     </ifx-navbar>
 
-
     <h1>Using Stencil web components in an Vanilla JS</h1>
 
-
+    <!-- Accordion Component -->
     <h2>Accordion</h2>
-    <ifx-accordion><ifx-accordion-item caption="Label">
+    <ifx-accordion auto-collapse="false"><ifx-accordion-item caption="Label" open="true" aria-level="3" mutable="true">
+      Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item><ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+      Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item><ifx-accordion-item caption="Label" open="false" aria-level="3" mutable="true">
+      Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
+    </ifx-accordion-item></ifx-accordion>
 
-        Content for Item #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu
-        aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-
-      </ifx-accordion-item><ifx-accordion-item caption="Label">
-
-        Content for Item #2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu
-        aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-
-      </ifx-accordion-item><ifx-accordion-item caption="Label">
-
-        Content for Item #3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu
-        aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci
-        nisl cursus ipsum, nec egestas odio sapien eget neque.
-
-      </ifx-accordion-item></ifx-accordion>
-    <br />
-
-
+    <!-- Alert Component -->
     <h2>Alert</h2>
-    <ifx-alert color="primary" icon="c-info-16">Attention! This is an alert message — check it out!</ifx-alert>
-    <br />
+    <ifx-alert aria-live="assertive" variant="primary" icon="c-info-16" closable="true">Attention! This is an alert message — check it out!</ifx-alert>
 
+    <!-- Badge Component -->
+    <h2>Badge</h2>
+    <ifx-badge>
+      Badge label
+    </ifx-badge>
 
+    <h3>Badge with icon</h3>
+    <ifx-badge>
+      Badge label
+      <ifx-icon icon="image-16"></ifx-icon>
+    </ifx-badge>
+
+    <!-- Breadcrumb Component -->
     <h2>Breadcrumb</h2>
     <ifx-breadcrumb>
       <ifx-breadcrumb-item>
@@ -159,8 +153,8 @@
         <ifx-breadcrumb-item-label slot="label" url="http://google.com">Breadcrumb 3</ifx-breadcrumb-item-label>
       </ifx-breadcrumb-item>
     </ifx-breadcrumb>
-    <br />
 
+    <!-- Button Component -->
     <h2>Button</h2>
     <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="false">
       Click me
@@ -168,6 +162,8 @@
     <ifx-button variant="primary" href="" target="_blank" theme="default" size="m" disabled="true">
       Not clickable when disabled
     </ifx-button>
+    <br />
+    <br />
     <div style="background-color: grey">
       <ifx-button id="btn-in-div" theme='danger' onClick="toggleButtonWidth()"> I'm a button in a div. Click to toggle
         full width</ifx-button>
@@ -226,39 +222,55 @@
         <ifx-button theme="danger">Button</ifx-button>
       </ifx-card-links>
     </ifx-card>
-    <br />
-    <br />
 
+    <!-- Checkbox Component -->
+    <h2>Checkbox</h2>
+    <form id="form">
+      <ifx-checkbox id="checkbox" error="false" disabled="false" checked="false" size="m" name="name">Text</ifx-checkbox>
+      <br />
+      <ifx-button type="submit" variant="secondary">Submit</ifx-button>
+    </form>
+    <br />
+    <ifx-button id="toggleDisabled">Toggle Disabled</ifx-button>
+    <ifx-button id="toggleError">Toggle Error</ifx-button>
+    <ifx-button id="toggleValue">Toggle Value</ifx-button>
+
+    <span id="disabledSpan"></span>
+    <span id="errorSpan"></span>
+    <span id="valueSpan"></span>
+
+    <!-- Checkbox Group Component -->
+    <h2>Checkbox Group</h2>
+    <ifx-checkbox-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true">
+      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
+    </ifx-checkbox-group>
+
+    <!-- Chip Component -->
     <h2>Chip</h2>
-
-    <ifx-chip placeholder="Label" size="large" variant="multi" read-only="false">
-      <ifx-chip-item value="Item Value 0" selected="true">Item Label 0</ifx-chip-item>
+    <ifx-chip placeholder="Label" size="large" variant="single" read-only="false" arialabel="Chip">
       <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
-      <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
-      <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
+        <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
+        <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
+        <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
     </ifx-chip>
 
-    <br />
-
+    <!-- Content Switcher Component -->
     <h2>Content Switcher</h2>
-    <ifx-content-switcher>
-      <ifx-content-switcher-item selected>
-        <ifx-icon icon="applications-16"></ifx-icon>Item 1
-      </ifx-content-switcher-item>
-      <ifx-content-switcher-item>
-        <ifx-icon icon="applications-16"></ifx-icon>Item 2
-      </ifx-content-switcher-item>
-      <ifx-content-switcher-item>
-        <ifx-icon icon="applications-16"></ifx-icon>Item 3
-      </ifx-content-switcher-item>
-      <ifx-content-switcher-item>
-        <ifx-icon icon="applications-16"></ifx-icon>Item 4
-      </ifx-content-switcher-item>
-    </ifx-content-switcher>
+    <ifx-content-switcher><ifx-content-switcher-item value="item 1">
+      <ifx-icon icon="applications-16"></ifx-icon> Item 1
+    </ifx-content-switcher-item><ifx-content-switcher-item value="item 2">
+      <ifx-icon icon="applications-16"></ifx-icon> Item 2
+    </ifx-content-switcher-item><ifx-content-switcher-item value="item 3">
+      <ifx-icon icon="applications-16"></ifx-icon> Item 3
+    </ifx-content-switcher-item><ifx-content-switcher-item value="item 4">
+      <ifx-icon icon="applications-16"></ifx-icon> Item 4
+    </ifx-content-switcher-item></ifx-content-switcher>
 
-    <br>
+    <!-- Date Picker Component -->
+    <h2>Date Picker</h2>
+    <ifx-date-picker name="date-picker" error="false" disabled="false" size="s" success="false" value="" max="" min="" label="Label Text" caption="Caption text, description, error notification." arialabel="Date Picker" required="false"></ifx-date-picker>
 
-
+    <!-- Dropdown Component -->
     <h2>Dropdown</h2>
     <ifx-dropdown placement="bottom-start" no-close-on-menu-click="true">
       <ifx-dropdown-trigger-button icon="calendar16">
@@ -275,63 +287,32 @@
         <ifx-dropdown-item>Four</ifx-dropdown-item>
       </ifx-dropdown-menu>
     </ifx-dropdown>
-    <br />
-    <br />
 
-    <h2>FilterTypeGroup</h2>
-    <div><ifx-filter-type-group id="filter-type-group">
-        <div slot="filter-search">
-          <ifx-filter-search filter-name="Your filter name"></ifx-filter-search>
-        </div>
-        <div slot="filter-accordion">
-          <ifx-filter-accordion filter-group-name="Filter group 1">
-            <ifx-list slot="list" type="checkbox" name="Filter group 1" max-visible-items="10">
-              <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
-              <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
+    <!-- Icon Component -->
+    <h2>Icon</h2>
+    <ifx-icon icon="c-check-16"></ifx-icon>
 
-            </ifx-list>
-          </ifx-filter-accordion>
-          <ifx-filter-accordion filter-group-name="Filter group 2">
-            <ifx-list slot="list" type="radio-button" name="Filter group 2" max-visible-items="6">
-              <ifx-list-entry slot="slot0" label="Filter 1" value="true"></ifx-list-entry>
-
-              <ifx-list-entry slot="slot1" label="Filter 2" value="false"></ifx-list-entry>
-
-              <ifx-list-entry slot="slot2" label="Filter 3" value="true"></ifx-list-entry>
-
-              <ifx-list-entry slot="slot3" label="Filter 4" value="false"></ifx-list-entry>
-
-            </ifx-list>
-          </ifx-filter-accordion>
-        </div>
-      </ifx-filter-type-group>
-    </div>
-
-    <br />
-    <br />
-
+    <!-- Icon Button Component -->
     <h2>Icon Button</h2>
-    <ifx-icon-button shape="round" variant="primary" icon="calendar16" href="http://google.com" target="" size="s"
-      disabled="true"></ifx-icon-button>
+    <ifx-icon-button shape="round" variant="primary" icon="c-info-24" href="" target="_blank"  size="m" disabled="false">
+    </ifx-icon-button>
 
-
+    <!-- Link Component -->
     <h2>Link</h2>
-    <ifx-link href="" target="_blank" size="m" variant="underlined">
+    <ifx-link href="" target="_blank" size="m" variant="bold" disabled="false" >
       Link
     </ifx-link>
-    <br />
-    <br />
 
+    <!-- Modal Component -->
     <h2>Modal</h2>
-    <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false">
+      <div><ifx-modal id="modal" caption="Modal Title" variant="default" close-on-overlay-click="false" show-close-button="true" size="s">
         <div slot="content">
           <span>Modal content</span>
         </div>
-        <div slot="buttons"><ifx-button variant="secondary">Button</ifx-button><ifx-button>Button</ifx-button></div>
-      </ifx-modal><ifx-button id="open-modal-btn">Open Modal</ifx-button></div>
-    <br />
-    <br />
+      <div slot="buttons"><ifx-button variant="secondary">Cancel</ifx-button><ifx-button>OK</ifx-button></div>
+    </ifx-modal><ifx-button id="open-modal-btn">Open Modal</ifx-button></div>
 
+    <!-- Multi-Select Component -->
     <h2>Multi-Select</h2>
 <ifx-multiselect
   name='multiselect'
@@ -455,43 +436,62 @@
     <br />
     <br />
 
+    <!-- Notification Component -->
     <h2>Notification</h2>
-    <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success
-      notification</ifx-notification>
-    <br />
-    <ifx-notification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked
-      notification</ifx-notification>
-    <br />
-    <ifx-notification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error
-      notification</ifx-notification>
+    <ifx-notification
+      icon = "c-check-16"
+      variant="success"
+      link-text="Link"
+      link-href="https://www.example.com"
+      link-target="_blank">
+      Sample Notification
+    </ifx-notification>
+    <ifx-notification
+      icon = "c-check-16"
+      variant="locked"
+      link-text="Link"
+      link-href="https://www.example.com"
+      link-target="_blank">
+      Sample Notification
+    </ifx-notification>
+    <ifx-notification
+      icon = "c-check-16"
+      variant="error"
+      link-text="Link"
+      link-href="https://www.example.com"
+      link-target="_blank">
+      Sample Notification
+    </ifx-notification>
+    <ifx-notification
+      icon = "c-check-16"
+      variant="neutral"
+      link-text="Link"
+      link-href="https://www.example.com"
+      link-target="_blank">
+      Sample Notification
+    </ifx-notification>
 
-    <br />
-    <br />
-
+    <!-- Number Indicator Component -->
     <h2>Number Indicator</h2>
     <ifx-indicator id="number-indicator" inverted='false' variant="number" number="1"></ifx-indicator>
     <button onClick="increaseNumber()">+</button>
     <button onClick="decreaseNumber()">-</button>
-    <br />
-    <br />
 
+    <!-- Pagination Component -->
     <h2>Pagination</h2>
-    <ifx-pagination total="500" current-page="1" items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination>
-    <br />
+    <ifx-pagination total="100" current-page="1" items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'></ifx-pagination>
 
+    <!-- Progress Bar Component -->
     <h2>Progress bar</h2>
     <ifx-progress-bar id="progress-bar" value="50" size="m" show-label="true"></ifx-progress-bar>
     <ifx-button onclick="updateProgress()" variant="secondary" theme="default" size="s" disabled="false">
       Update Progress
     </ifx-button>
-    <br />
-    <br />
 
-
+    <!-- Radio Button Component -->
     <h2>Radio Button</h2>
     <form id="radio-form">
-      <ifx-radio-button id="radio-btn" error="false" disabled="false" size="s" name="fruit"
-        value="apple">Apple</ifx-radio-button>
+      <ifx-radio-button id="radio-btn" error="false" disabled="false" size="s" name="fruit" value="apple">Apple</ifx-radio-button>
       <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="pear">Pear</ifx-radio-button>
       <ifx-radio-button error="false" disabled="false" size="s" name="fruit" value="orange">Orange</ifx-radio-button>
       <ifx-button type="submit">Submit</ifx-button>
@@ -505,16 +505,26 @@
       <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
       <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
     </ifx-radio-button-group>
-    <br />
+    <!-- Search Bar Component -->
+    <h2>Search bar</h2>
+    <ifx-search-bar id="search-bar" is-open="true" disabled="false" value=""></ifx-search-bar>
 
-    <h2>Spinner</h2>
-    <ifx-spinner variant="default" size="m"></ifx-spinner>
-    <br />
+    <!-- Search Field Component -->
+    <h2>Search field</h2>
+    <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true" value="" placeholder="Search..."></ifx-search-field>
 
+    <!-- Segmented Control Component -->
+    <h2>Segmented Control</h2>
+    <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular">
+      <ifx-segment value="Value1" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value2" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value3" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value4" icon="star-16">Label</ifx-segment>
+      <ifx-segment value="Value5" icon="star-16">Label</ifx-segment>
+    </ifx-segmented-control>
 
-
+    <!-- Navigation - Sidebar Component -->
     <h2>Sidebar</h2>
-
     <ifx-sidebar application-name="Application Name" initial-collapse=false>
       <ifx-sidebar-title>Item Header</ifx-sidebar-title>
       <ifx-sidebar-item>
@@ -534,10 +544,8 @@
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Three</ifx-sidebar-item>
       <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Item Four</ifx-sidebar-item>
     </ifx-sidebar>
-    <br />
-    <br />
 
-
+    <!-- Single-Select Component -->
     <h2>Single-Select</h2>
     <ifx-select id="single-select" size='m' placeholder='true' show-search='true' search-placeholder-value='Search...'
       disabled='false' error='false' error-message='Some error' label='' placeholder-value='Placeholder' options=''>
@@ -545,15 +553,12 @@
     <br />
     <ifx-button id="single-select-disabled-btn">Toggle Disabled</ifx-button>
     <ifx-button id="single-select-error-btn">Toggle Error</ifx-button>
-    <br />
-    <br />
 
+    <!-- Slider Component -->
     <h2>Slider</h2>
     <ifx-slider id="single-slider" type="single" value="50" min="0" max="100" step="0.1"></ifx-slider>
     <br />
     <span id="single-slider-value">Value: 50</span>
-
-    <br />
 
     <h2>Slider (Double)</h2>
     <ifx-slider id="double-slider" type="double" min="0" max="100" step="1" min-value-handle="20"
@@ -563,47 +568,16 @@
     <br />
     <span id="double-slider-value-max">Max Value: 80</span>
 
-    <br />
-    <br />
+    <!-- Spinner Component -->
+    <h2>Spinner</h2>
+    <ifx-spinner variant="default" size="m"></ifx-spinner>
 
-
-    <h2>Search field</h2>
-    <ifx-search-field id="search-field" size="m" disabled="false" show-delete-icon="true"></ifx-search-field>
-    <br />
-    <br />
-
-    <h2>Search bar</h2>
-    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
-    <br />
-    <ifx-search-bar id="search-bar" size="m" disabled="false" show-close-button="true"></ifx-search-bar>
-    <br />
-    <br />
-
-    <br />
-    <br />
+    <!-- Status Component -->
     <h2>Status</h2>
     <ifx-status label="Status with border" color="ocean-500" border="true"></ifx-status>
     <ifx-status label="Status without border" color="orange-500" border="false"></ifx-status>
-    <br />
-    <br />
 
-
-    <h2>Switch</h2>
-    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
-    <br />
-    <br />
-
-
-    <h2>Tabs</h2>
-    <ifx-tabs active-tab-index="2" orientation="horizontal">
-      <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
-      <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
-      <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
-    </ifx-tabs>
-
-    <br />
-    <br />
-
+    <!-- Stepper Component -->
     <h2>Stepper</h2>
     <ifx-stepper id="stepper" showNumber=false activeStep=2 variant='default'>
       <ifx-step> Step 1 </ifx-step>
@@ -616,23 +590,19 @@
     <ifx-button variant="primary" onClick="toggleShowNumber()"> Toggle Show Number </ifx-button>
     <ifx-button variant="primary" onClick="toggleVariant()"> Toggle Variant </ifx-button>
     <ifx-button variant="secondary" onClick="nextStep()"> Next Step</ifx-button>
-    <br />
-    <br />
 
+    <!-- Switch Component -->
+    <h2>Switch</h2>
+    <ifx-switch id="switch" disabled="false" value="false"></ifx-switch>
 
-    <h2>Tag</h2>
-    <ifx-tag>tag</ifx-tag>
-    <br />
-    <br />
-
+    <!-- Table basic Component -->
     <h2>
       Table (Basic)
     </h2>
     <ifx-basic-table id="basic-table" row-height='default' cols="" rows="" table-height='auto'>
     </ifx-basic-table>
-    <br />
-    <br />
 
+    <!-- Table Advanced Component -->
     <h2>
       Table (Advanced)
     </h2>
@@ -696,11 +666,20 @@
         table-height="auto" pagination="false" pagination-page-size="10" filter-orientation="none">
       </ifx-table>
     </div>
-    <br />
-    <br />
 
+    <!-- Tabs Component -->
+    <h2>Tabs</h2>
+    <ifx-tabs active-tab-index="2" orientation="horizontal">
+      <ifx-tab header="tab header 1">tab 1 content</ifx-tab>
+      <ifx-tab header="tab header 2">tab 2 content</ifx-tab>
+      <ifx-tab header="tab header 3">tab 3 content</ifx-tab>
+    </ifx-tabs>
 
+    <!-- Tag Component -->
+    <h2>Tag</h2>
+    <ifx-tag>tag</ifx-tag>
 
+    <!-- Text Field Component -->
     <form id="another-form">
       <h2>Text Field</h2>
       <ifx-text-field id="text-field" error="false" disabled="false" size="m" icon="calendar-16" success="false"
@@ -717,9 +696,13 @@
       </ifx-button>
     </form>
     <span id="textInputSpan"></span>
-    <br />
-    <br />
 
+    <!-- Textarea Component -->
+    <h2>Textarea</h2>
+    <ifx-textarea caption="Caption text, description, error notification" cols="43" disabled="false" error="false" label="Label Text" maxlength="undefined" name="textarea" placeholder="Placeholder" read-only="false" resize="both" rows="5" value="" wrap="soft" full-width="false">
+    </ifx-textarea>
+
+    <!-- Tooltip Component -->
     <h2>Tooltip</h2>
     <ifx-tooltip text="Hi, I'm a compact tooltip" variant="compact" position="auto">I'm the compact tooltip reference
       element -
@@ -803,7 +786,7 @@
       </div>
     </ifx-footer>
   </div>
-
+  <script src="main.js"></script>
 </body>
 
 <script>
@@ -982,7 +965,7 @@
     basicTable.setAttribute('rows', tableRows);
     advancedTable.setAttribute('rows', tableRows);
     tableWithBtn.setAttribute('rows', tableRowsWithBtn);
-
+    
 
     //set advanced table row values using a json array
     const tableColumns = `[
