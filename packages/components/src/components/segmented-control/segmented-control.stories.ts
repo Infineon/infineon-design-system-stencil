@@ -137,7 +137,9 @@ const Template = (args) => {
 <ifx-segmented-control
 caption = '${args.caption}'
 label = '${args.label}'
-size = '${args.size}'>
+size = '${args.size}'
+error = '${args.error}'
+required = '${args.required}'>
     ${(() => {
             return Array.from({ length: args.amountOfSegments }, (_, segmentId) => {
                 const segment = document.createElement('ifx-segment');
