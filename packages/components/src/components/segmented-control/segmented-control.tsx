@@ -89,7 +89,7 @@ export class SegmentedControl {
             <div aria-value={this.selectedValue} aria-label='segmented control' class="group">
                 <div class='group__label'>
                     { this.label.trim() }
-                    { this.required && <span class={`required ${this.error ? 'error' : ''}`}> * </span> }
+                    { this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span> }
                 </div>
                 
                 <div class='group__controls'>

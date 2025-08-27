@@ -34,6 +34,14 @@
     text-decoration-skip-ink: none;
 }
 
+.group-label .required {
+    margin: 4px;
+}
+
+.group-label .required.error {
+    color: tokens.$ifxColorRed500;
+}
+
 .caption {
     margin-top: tokens.$ifxSpace100;
     align-self: flex-start;
