@@ -12,7 +12,9 @@ export default {
         size: 'regular',
         icon: 'star-16',
         selected: 'false',
-        value: 'Value'
+        value: 'Value',
+        error: false,
+        required: false,
     },
     argTypes: {
         amountOfSegments: {
@@ -92,6 +94,24 @@ See the 2nd *<ifx-segment>* for effects`,
             },
             type: {
                 required: true
+            }
+        },
+        error: {
+            description: 'Set the component to error state.',
+            table:  {
+                category: 'ifx-segmented-control props',
+                defaultValue: {
+                    summary: false,
+                }
+            }
+        },
+        required: {
+            description: 'Marks the component as required by displaying an asterisk next to the label.',
+            table: {
+                category: 'ifx-segmented-control props',
+                defaultValue: {
+                    summary: false,
+                }
             }
         },
         ifxChange: {
