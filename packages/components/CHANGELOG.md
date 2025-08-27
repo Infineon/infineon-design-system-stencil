@@ -1,3 +1,28 @@
+# v37.12.0 (Thu Aug 21 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: implement dynamic cols and rows [#1985](https://github.com/Infineon/infineon-design-system-stencil/pull/1985) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.11.0 (Wed Aug 20 2025)
+
+#### 🚀 Enhancement
+
+- Adds accessibility enhancement to search-field, search-bar, radio-button, sidebar, navbar, modal and dropdown [#1923](https://github.com/Infineon/infineon-design-system-stencil/pull/1923) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.9.1 (Tue Aug 19 2025)
 
 #### 🐛 Bug Fix
