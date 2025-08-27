@@ -86,7 +86,7 @@ export class SegmentedControl {
 
     render() {
         return (
-            <div aria-value={this.selectedValue} aria-label='segmented control' class={`group ${this.error ? 'error' : ''} ${this.required ? 'required' : ''}`}>
+            <div aria-value={this.selectedValue} aria-label='segmented control' class="group">
                 <div class='group__label'>
                     { this.label.trim() }
                     { this.required && <span class={`required ${this.error ? 'error' : ''}`}> * </span> }
