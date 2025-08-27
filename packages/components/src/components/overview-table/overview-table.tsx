@@ -510,6 +510,35 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development" size="s" variant="bold">Content Switcher</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a flexible and intuitive interface for dynamically switching between different content sections or views within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable mechanism for users to toggle and display diverse content panels, facilitating seamless navigation and interaction with varying information or functional contexts</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Date Picker</ifx-link>
                   </td>
                   <td >
@@ -1013,6 +1042,29 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development" size="s" variant="bold">Notification</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a flexible and visually distinct container for presenting informative, warning, or error messages to users, enhancing the overall user experience with timely and relevant feedback</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-pagination--development" size="s" variant="bold">Pagination</ifx-link>
                   </td>
                   <td >
@@ -1252,6 +1304,35 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a clear and interactive interface for users to make mutually exclusive selections among multiple options within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable set of segmented buttons or tabs, allowing users to toggle between different choices or views, typically used for filtering, categorization, or navigation purposes</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -1903,87 +1984,6 @@ export class OverviewTable {
                       <li>
                         <span>
                           <ifx-icon class="check__icon" icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development" size="s" variant="bold">Notification</ifx-link>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Offers a flexible and visually distinct container for presenting informative, warning, or error messages to users, enhancing the overall user experience with timely and relevant feedback</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development" size="s" variant="bold">Content Switcher</ifx-link>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Provides a flexible and intuitive interface for dynamically switching between different content sections or views within a web application</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Offers a customizable mechanism for users to toggle and display diverse content panels, facilitating seamless navigation and interaction with varying information or functional contexts</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Provides a clear and interactive interface for users to make mutually exclusive selections among multiple options within a web application</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Offers a customizable set of segmented buttons or tabs, allowing users to toggle between different choices or views, typically used for filtering, categorization, or navigation purposes</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
                         </span>
                         <span>Adheres to web standards</span>
                       </li>
