@@ -53,7 +53,6 @@
       font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
-      font-family: tokens.$ifxFontFamilyBody;
       display: flex;
       align-items: center;
       color: tokens.$ifxColorBaseBlack;
@@ -196,7 +195,6 @@
       font-size: tokens.$ifxFontSizeXs;
       line-height: tokens.$ifxLineHeightXs;
       color: tokens.$ifxColorBaseBlack;
-      font-family: tokens.$ifxFontFamilyBody;
       flex: none;
       order: 1;
       align-self: stretch;
