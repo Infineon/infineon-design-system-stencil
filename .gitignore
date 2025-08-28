@@ -128,5 +128,4 @@ packages/components/public-storybook/fonts/*
 
 
 *.tar.gz
-packages/components/src/**/__snapshots__/
  
