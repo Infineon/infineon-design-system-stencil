@@ -144,11 +144,6 @@ export class SearchField {
   }
 
   focusInput() {
-    // Don't call focus() if the input is already focused to prevent unnecessary operations
-    if (document.activeElement !== this.inputElement) {
-      this.inputElement.focus();
-    }
-
     // Only emit focus event if it hasn't been emitted already
     if (!this.focusEmitted) {
       this.focusEmitted = true;
