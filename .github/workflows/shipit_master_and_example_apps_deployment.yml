@@ -43,6 +43,16 @@ jobs:
             sudo apt-get update && sudo apt-get install -y jq
           fi
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm                 
+            **/node_modules 
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-npm-
 
       - name: Cache build outputs
         uses: actions/cache@v3
@@ -145,6 +155,50 @@ jobs:
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
           else 
             cd packages/components
+            
+            # Get the last proper release tag (non-canary)
+            LAST_RELEASE_TAG=$(git tag -l | grep -E "^v[0-9]+\.[0-9]+\.[0-9]+$" | sort -V | tail -1)
+            echo "Last release tag: $LAST_RELEASE_TAG"
+            
+            if [ -n "$LAST_RELEASE_TAG" ]; then
+              echo "🔄 Squashing commits since $LAST_RELEASE_TAG"
+              
+              # Store current HEAD
+              CURRENT_HEAD=$(git rev-parse HEAD)
+              
+              # Get meaningful commit messages for the squashed commit
+              MEANINGFUL_CHANGES=$(git log --oneline $LAST_RELEASE_TAG..HEAD \
+                --grep="feat:" --grep="fix:" --grep="BREAKING" \
+                --grep="Update Stencil library version" --invert-grep \
+                --grep="github-actions" --invert-grep \
+                --grep="canary" --invert-grep | head -20)
+              
+              echo "Meaningful changes found:"
+              echo "$MEANINGFUL_CHANGES"
+              
+              # Squash all commits since last release
+              git reset --soft $LAST_RELEASE_TAG
+              
+              # Create squashed commit with meaningful message
+              if [ -n "$MEANINGFUL_CHANGES" ]; then
+                COMMIT_MESSAGE="feat: accumulated changes since $LAST_RELEASE_TAG
+
+          Notable changes:
+          $MEANINGFUL_CHANGES
+
+          Squashed $(git rev-list --count $LAST_RELEASE_TAG..$CURRENT_HEAD) commits for clean release"
+              else
+                COMMIT_MESSAGE="chore: maintenance updates since $LAST_RELEASE_TAG"
+              fi
+              
+              git commit -m "$COMMIT_MESSAGE"
+              
+              echo "✅ Squashed commits into single commit"
+            else
+              echo "No previous release tag found, proceeding normally"
+            fi
+            
+            # Now auto will see clean history
             VERSION=$(auto shipit --dry-run --quiet)
             echo "VERSION=$VERSION" >> $GITHUB_ENV
             echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
@@ -152,6 +206,8 @@ jobs:
             echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
             echo "Publishing: $VERSION"
             auto shipit
+            
+            cd ../..
           fi
 
       - name: Verify package availability
