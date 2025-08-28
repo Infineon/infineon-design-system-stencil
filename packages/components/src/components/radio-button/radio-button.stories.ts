@@ -106,18 +106,21 @@ export default {
 
 const DefaultTemplate = args => {
   // Create the radio button element
-  const element = document.createElement('ifx-radio-button');
+  const element = document.createElement('ifx-radio-button') as any;
 
-  // Set the attributes
-  element.setAttribute('error', args.error);
-  element.setAttribute('disabled', args.disabled);
-  element.setAttribute('checked', args.checked);
+  // Set boolean properties directly
+  element.disabled = args.disabled;
+  element.error = args.error;
+  element.checked = args.checked;
+
+  // Set string attributes
   element.setAttribute('size', args.size);
   element.setAttribute('name', args.name);
   element.setAttribute('value', args.value);
 
   // Add the label as a text node
-  element.appendChild(document.createTextNode(args.label));
+  element.textContent = args.label;
+
 
   // Add the event listener
   element.addEventListener('ifxChange', action('ifxChange'));
