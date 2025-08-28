@@ -35,7 +35,8 @@
 }
 
 .group-label .required {
-    margin-left: 4px;
+    color: tokens.$ifxColorEngineering500;
+    margin-left: tokens.$ifxSpace50;
 }
 
 .group-label .required.error {

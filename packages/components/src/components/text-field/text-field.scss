@@ -61,15 +61,16 @@
       flex-grow: 0;
 
       & .optional-required {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .optional {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .required {
-        margin-left: 4px;
+        color: tokens.$ifxColorEngineering500;
+        margin-left: tokens.$ifxSpace50;
         
         &.error {
           color: tokens.$ifxColorRed500;
