@@ -13,17 +13,17 @@ describe('ifx-card', () => {
     expect(root).toEqualHtml(`
       <ifx-card>
         <template shadowrootmode="open">
-          <div class="card noBtns undefined vertical" role="region">
+          <div class="card noBtns undefined vertical" role="group">
             <div class="vertical">
               <a class="upper__body-wrapper" target="_self">
                 <div class="card-img noImage">
                   <slot name="img"></slot>
                 </div>
-                <div class="upper-body">
+                <div class="upper-body" id="upper-body-content">
                   <slot></slot>
                 </div>
               </a>
-              <div class="lower__body-wrapper">
+              <div class='lower__body-wrapper' role="group" aria-labelledby="upper-body-content">
                 <slot name="buttons"></slot>
               </div>
             </div>
