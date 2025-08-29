@@ -40,6 +40,19 @@ describe('ifx-segmented-control', () => {
     expect(groupCaption.textContent.trim()).toContain('Custom Caption');
   });
 
+  it('shows asterisk on the label when required is true', async () => {
+    const page = await newSpecPage({
+      components: [SegmentedControl],
+      html: `<ifx-segmented-control label="Custom Label" required="true"></ifx-segmented-control>`,
+    });
+      
+    const groupLabel = page.root.shadowRoot.querySelector('.group__label');
+    const required = page.root.shadowRoot.querySelector('.required');
+    expect(required).toBeTruthy();
+    expect(required.textContent).toBe('*');
+    expect(groupLabel.textContent.trim()).toBe('Custom Label*');
+  });
+
   it('renders segments with proper size classes', async () => {
     const page = await newSpecPage({
       components: [SegmentedControl, Segment],

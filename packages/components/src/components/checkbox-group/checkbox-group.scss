@@ -25,11 +25,22 @@
 }
 
 .group-label {
-    font: tokens.$ifxBodyBody05;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
+    font-weight: tokens.$ifxFontWeightRegular;
     margin-bottom: tokens.$ifxSpace100;
     text-align: left;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
+}
+
+.group-label .required {
+    color: tokens.$ifxColorEngineering500;
+    margin-left: tokens.$ifxSpace50;
+}
+
+.group-label .required.error {
+    color: tokens.$ifxColorRed500;
 }
 
 .caption {
@@ -51,7 +62,9 @@
 }
 
 .caption-text {
-    font: tokens.$ifxBodyBody05;
+    font-weight: tokens.$ifxFontWeightRegular;
+    font-size: tokens.$ifxFontSizeXs;
+    line-height: tokens.$ifxLineHeightXs;
     flex: 1;
     text-align: left;
     text-underline-position: from-font;
