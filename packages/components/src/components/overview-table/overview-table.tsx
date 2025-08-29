@@ -510,6 +510,35 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development" size="s" variant="bold">Content Switcher</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a flexible and intuitive interface for dynamically switching between different content sections or views within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable mechanism for users to toggle and display diverse content panels, facilitating seamless navigation and interaction with varying information or functional contexts</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-chip--development" size="s" variant="bold">Date Picker</ifx-link>
                   </td>
                   <td >
@@ -556,7 +585,16 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td></td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Datetime-local type incorporated</span>
+                      </li>
+                    </ul>
+                  </td>
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
@@ -624,6 +662,47 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-file-upload--development" size="s" variant="bold">File Upload</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a clear and interactive interface for users to transfer files from their devices to a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Supports manual file selection and drag-drop interactions</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers real-time feedback on upload progress and status, file type validation, and customizable upload buttons</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>React, Vue and Angular wrapper integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -963,6 +1042,29 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development" size="s" variant="bold">Notification</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a flexible and visually distinct container for presenting informative, warning, or error messages to users, enhancing the overall user experience with timely and relevant feedback</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-pagination--development" size="s" variant="bold">Pagination</ifx-link>
                   </td>
                   <td >
@@ -1202,6 +1304,35 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a clear and interactive interface for users to make mutually exclusive selections among multiple options within a web application</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers a customizable set of segmented buttons or tabs, allowing users to toggle between different choices or views, typically used for filtering, categorization, or navigation purposes</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -1828,77 +1959,31 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-notification--development" size="s" variant="bold">Notification</ifx-link>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Offers a flexible and visually distinct container for presenting informative, warning, or error messages to users, enhancing the overall user experience with timely and relevant feedback</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-content-switcher--development" size="s" variant="bold">Content Switcher</ifx-link>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Provides a flexible and intuitive interface for dynamically switching between different content sections or views within a web application</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Offers a customizable mechanism for users to toggle and display diverse content panels, facilitating seamless navigation and interaction with varying information or functional contexts</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-control--development" size="s" variant="bold">Segmented Control</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-tree-view--development" size="s" variant="bold">Tree View</ifx-link>
                   </td>
                   <td>
                     <ul>
                       <li>
                         <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                          <ifx-icon class="check__icon" icon="check16"></ifx-icon>
                         </span>
-                        <span>Provides a clear and interactive interface for users to make mutually exclusive selections among multiple options within a web application</span>
+                        <span>Provides a structured and expandable interface for presenting hierarchical data</span>
                       </li>
                       <li>
                         <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                          <ifx-icon class="check__icon" icon="check16"></ifx-icon>
                         </span>
-                        <span>Offers a customizable set of segmented buttons or tabs, allowing users to toggle between different choices or views, typically used for filtering, categorization, or navigation purposes</span>
+                        <span>Enables users to navigate complex information architectures by expanding or collapsing nodes</span>
                       </li>
                       <li>
                         <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                          <ifx-icon class="check__icon" icon="check16"></ifx-icon>
+                        </span>
+                        <span>React, Vue and Angular wrapper integration</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class="check__icon" icon="check16"></ifx-icon>
                         </span>
                         <span>Adheres to web standards</span>
                       </li>
@@ -1948,43 +2033,6 @@ export class OverviewTable {
                   <td></td>
                   <td></td>
                 </tr>
-            
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Upload</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm16"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td class="planned__component sticky-col second-col">
-                    <ifx-link href="" size="s" variant="bold">Tree View</ifx-link>
-                  </td>
-                  <td>
-                    <ul>
-                      <li class="planned__component-wrapper">
-                        <span>
-                          <ifx-icon class="planned__icon" icon="roboticarm16"></ifx-icon>
-                        </span>
-                        <span>In Progress</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                  <td></td>
-                </tr>
-            
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Popover</ifx-link>
