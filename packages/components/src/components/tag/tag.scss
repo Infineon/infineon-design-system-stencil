@@ -29,18 +29,14 @@
 
   &:focus:not(:active, .active) {
     outline: none;
-    border-color: tokens.$ifxColorBaseBlack;
+    border-color: tokens.$ifxColorOcean500;
   }
 
-  .label-wrapper {
-    text-decoration: none;
-
-    .label {
-      margin: 0;
-      font-weight: tokens.$ifxFontWeightRegular;
-      font-size: tokens.$ifxFontSizeM;
-      line-height: 20px;
-      color: tokens.$ifxColorBaseBlack;
-    }
+  .label {
+    margin: 0;
+    font-weight: tokens.$ifxFontWeightRegular;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: 20px;
+    color: tokens.$ifxColorBaseBlack;
   }
 }

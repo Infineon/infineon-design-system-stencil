@@ -29,6 +29,7 @@ export class TextField {
   @Prop() autocomplete: string = 'on'
   @Prop() type: 'text' | 'password' = 'text';
   @Prop() internalId: string = "text-field"
+  @Prop() ariaLabel: string | null;
   @State() internalType: string;
   @Event() ifxInput: EventEmitter<String>;
   // @Prop({ reflect: true })
@@ -84,7 +85,7 @@ export class TextField {
 
   render() {
     return (
-      <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
+      <div aria-label={this.ariaLabel} aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
           <label htmlFor={this.internalId}>
             <slot></slot>
@@ -104,6 +105,7 @@ export class TextField {
               <ifx-icon class='input-icon' icon={this.icon} />
             )}
             <input
+            tabindex={this.disabled ? '-1' : '0'}
               ref={(el) => (this.inputElement = el)}
               disabled={this.disabled}
               autocomplete={this.autocomplete}
@@ -120,7 +122,11 @@ export class TextField {
               ${this.success ? "success" : ""}`} />
 
               { (this.showDeleteIcon && this.value) && (
-                <ifx-icon class="delete-icon" icon="cRemove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
+                <ifx-icon tabindex={this.disabled ? '-1' : '0'} 
+                class="delete-icon" 
+                icon="cRemove16" 
+                onKeyDown={(event) => event.key === 'Enter' && this.handleDeleteContent()} 
+                onClick={() => this.handleDeleteContent()}></ifx-icon> 
               )}
           </div>
           {this.caption && !this.error &&
