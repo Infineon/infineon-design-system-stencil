@@ -13,6 +13,7 @@ export default {
         showCaption: false,
         captionText: 'Caption text, description, error notification',
         showCaptionIcon: false,
+        required: false,
     },
     argTypes: {
         amountOfItems: {
@@ -110,6 +111,14 @@ export default {
                 defaultValue: { summary: 'false' }
             }
         },
+        required: {
+            description: 'Marks the radio-button-group as required.',
+            control: { type: 'boolean' },
+            table: {
+                category: 'ifx-radio-button-group props',
+                defaultValue: { summary: 'false' }
+            }
+        },
         setGroupError: {
             action: 'setGroupError',
             description: 'Method to set the error state of all checkboxes in the group.',
@@ -135,7 +144,7 @@ const Template = args => {
         }
     }
     const template = `
-        <ifx-radio-button-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}">
+        <ifx-radio-button-group alignment="${args.alignment}" show-group-label="${args.showGroupLabel}" group-label-text="${args.groupLabelText}" show-caption="${args.showCaption}" caption-text="${args.captionText}" show-caption-icon="${args.showCaptionIcon}" required="${args.required}">
             ${radioButtons}
         </ifx-radio-button-group>`;
 
