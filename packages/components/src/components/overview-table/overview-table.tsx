@@ -836,6 +836,44 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-indicator--development" size="s" variant="bold">Indicator</ifx-link>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Provides a compact and configurable display for showcasing numeric data or dot indicator</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Adheres to web standards</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td >
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Inverted option</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>React, Vue and Angular wrapper integration</span>
+                      </li>
+                    </ul>
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="completed__component sticky-col second-col">
                     <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-link--development" size="s" variant="bold">Link</ifx-link>
                   </td>
                   <td >
@@ -991,44 +1029,6 @@ export class OverviewTable {
                           <ifx-icon class='check__icon' icon="check16"></ifx-icon>
                         </span>
                         <span>Extended customization</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>React, Vue and Angular wrapper integration</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-indicator--development" size="s" variant="bold">Indicator</ifx-link>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Provides a compact and configurable display for showcasing numeric data or dot indicator</span>
-                      </li>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Adheres to web standards</span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td >
-                    <ul>
-                      <li>
-                        <span>
-                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
-                        </span>
-                        <span>Inverted option</span>
                       </li>
                       <li>
                         <span>
@@ -1304,7 +1304,16 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td></td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers search suggestions and history</span>
+                      </li>
+                    </ul>
+                  </td>
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
@@ -1775,7 +1784,22 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td></td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Offers dynamic cols and rows</span>
+                      </li>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Allows users to customize the items per page of the table pagination</span>
+                      </li>
+                    </ul>
+                  </td>
                   <td></td>
                 </tr>
                 <tr>
@@ -2012,10 +2036,18 @@ export class OverviewTable {
                       </li>
                     </ul>
                   </td>
-                  <td></td>
+                  <td>
+                    <ul>
+                      <li>
+                        <span>
+                          <ifx-icon class='check__icon' icon="check16"></ifx-icon>
+                        </span>
+                        <span>Incorporated required feature</span>
+                      </li>
+                    </ul>
+                  </td>
                   <td></td>
                 </tr>
-            
                 <tr>
                   <td class="planned__component sticky-col second-col">
                     <ifx-link href="" size="s" variant="bold">Card Group</ifx-link>
