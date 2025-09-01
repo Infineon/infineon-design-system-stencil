@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch, Method } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-radio-button',
   styleUrl: 'radio-button.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 export class RadioButton {
   @Element() el: HTMLElement;
@@ -20,6 +20,11 @@ export class RadioButton {
   @State() internalChecked: boolean = false;
   @State() hasSlot: boolean = false;
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
+  
   private inputElement: HTMLInputElement;
   private internals: ElementInternals;
   private fallbackInput: HTMLInputElement;

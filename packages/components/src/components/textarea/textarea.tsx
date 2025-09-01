@@ -4,7 +4,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
-	formAssociated: true,
+	// formAssociated: true,
 	shadow: true,
 	styleUrl: 'textarea.scss',
 	tag: 'ifx-textarea'
