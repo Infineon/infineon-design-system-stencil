@@ -8,7 +8,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-date-picker',
   styleUrl: 'date-picker.scss',
   shadow: true,
-  formAssociated: true,
+  // formAssociated: true,
 })
 
 export class DatePicker {

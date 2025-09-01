@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-radio-button',
   styleUrl: 'radio-button.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 export class RadioButton {
   @Element() el: HTMLElement;

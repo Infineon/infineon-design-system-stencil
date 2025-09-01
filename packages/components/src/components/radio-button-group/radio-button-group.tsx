@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
     tag: 'ifx-radio-button-group',
     styleUrl: 'radio-button-group.scss',
     shadow: true,
-    formAssociated: true
+    // formAssociated: true
 })
 
 export class RadioButtonGroup {

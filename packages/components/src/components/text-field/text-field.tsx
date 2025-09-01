@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-text-field',
   styleUrl: 'text-field.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class TextField {
