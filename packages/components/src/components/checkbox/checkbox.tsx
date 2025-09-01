@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class Checkbox {
