@@ -69,12 +69,9 @@ Stencil web components are Custom Elements built on the browser’s API with enc
 
 ### Framework-specific components
 
-In addition to the standard web components, Stencil also provides a framework integration for React, Vue and Angular. A framework-integrated
+In addition to the standard web components, Stencil also provides framework integration for React, Vue and Angular. Framework-specific components, also known as wrapper components, enable the usage of native framework methods on a stencil component. 
 
-
-
-A Stencil Wrapper Component is a component that wraps around a Stencil Web Component and translates the properties, events, and methods to work seamlessly within the specific framework context.
-
+We recommend using our framework-specific packages when working on a React, Vue or an Angular application. 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
