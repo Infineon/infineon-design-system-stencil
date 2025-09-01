@@ -5,10 +5,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 }
 
 .group__label {
     font-size: tokens.$ifxFontSizeM;
+    color: tokens.$ifxColorBaseBlack;
     line-height: tokens.$ifxLineHeightM;
     font-weight: tokens.$ifxFontWeightRegular;
     
