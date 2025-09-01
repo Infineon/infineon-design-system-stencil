@@ -20,7 +20,7 @@ function debounce(func, wait) {
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class Multiselect {

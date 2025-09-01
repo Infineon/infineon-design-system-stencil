@@ -8,7 +8,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-switch',
   styleUrl: 'switch.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 export class Switch {
   @Prop() checked: boolean = false;
