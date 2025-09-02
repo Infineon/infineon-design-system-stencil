@@ -22,6 +22,7 @@ export class SidebarItem {
   @State() indicatorVariant: 'number' | 'dot' = 'number';
 
   @State() internalActiveState: boolean = false;
+  @State() titleText: string = '';
 
   @Event({ bubbles: true, composed: true }) ifxSidebarMenu: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
@@ -267,6 +268,21 @@ export class SidebarItem {
     this.updateIndicatorVariant();
     // Set up MutationObserver to watch for CSS custom property changes
     this.observeCollapsedState();
+    // Extract text content for title attribute
+    this.extractTitleText();
+  }
+
+  private extractTitleText() {
+    // Get the text content from the slot
+    const slotElement = this.el.shadowRoot.querySelector('slot');
+    if (slotElement) {
+      const assignedNodes = slotElement.assignedNodes();
+      this.titleText = assignedNodes
+        .filter(node => node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE)
+        .map(node => node.textContent?.trim() || '')
+        .join(' ')
+        .trim();
+    }
   }
 
   private updateIndicatorVariant() {
@@ -322,7 +338,15 @@ export class SidebarItem {
 
     return (
       <div style={{ display: shouldHide ? 'none' : 'block' }}>
-        <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}>
+        <a
+          tabIndex={1}
+          onKeyDown={(event) => this.handleKeyDown(event)}
+          href={this.internalHref}
+          onClick={() => this.toggleSubmenu()}
+          target={this.target}
+          class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}
+          title={this.titleText}
+        >
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.showIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
