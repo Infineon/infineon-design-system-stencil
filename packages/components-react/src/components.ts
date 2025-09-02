@@ -892,14 +892,14 @@ export const IfxSetFilter: StencilReactComponent<IfxSetFilterElement, IfxSetFilt
     defineCustomElement: defineIfxSetFilter
 });
 
-type IfxSidebarEvents = NonNullable<unknown>;
+type IfxSidebarEvents = { onIfxSidebarCollapseChange: EventName<CustomEvent<{ collapsed: boolean }>> };
 
 export const IfxSidebar: StencilReactComponent<IfxSidebarElement, IfxSidebarEvents> = /*@__PURE__*/ createComponent<IfxSidebarElement, IfxSidebarEvents>({
     tagName: 'ifx-sidebar',
     elementClass: IfxSidebarElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: {} as IfxSidebarEvents,
+    events: { onIfxSidebarCollapseChange: 'ifxSidebarCollapseChange' } as IfxSidebarEvents,
     defineCustomElement: defineIfxSidebar
 });
 

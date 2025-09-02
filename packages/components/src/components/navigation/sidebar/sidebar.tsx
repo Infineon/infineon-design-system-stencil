@@ -1,4 +1,4 @@
-import { Component, h, Element, Prop, State, Listen, Method, Watch } from '@stencil/core';
+import { Component, h, Element, Prop, State, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
 import { trackComponent } from '../../../global/utils/tracking';
 import { detectFramework } from '../../../global/utils/framework-detection';
 
@@ -32,7 +32,10 @@ export class Sidebar {
   @State() activeItem: HTMLElement | null = null;
   @Prop() collapsible: boolean = false;
   @Prop() collapsed: boolean = false; // New property for initial collapsed state
+  @Prop() hideMenuLabel: string = "Hide Menu"; // New property for hide menu label
   @State() isCollapsed: boolean = false;
+
+  @Event({ bubbles: true, composed: true }) ifxSidebarCollapseChange: EventEmitter<{ collapsed: boolean }>;
 
   expandActiveItems(){
     const expandRecursively = async (parent) => {
@@ -389,32 +392,51 @@ export class Sidebar {
       this.internalShowFooter = false;
     }
 
-    // Set initial collapsed state from prop
-    this.isCollapsed = this.collapsed;
+    // Set initial collapsed state from prop - handle string conversion
+    this.isCollapsed = Boolean(this.collapsed);
+  }
+
+  @Watch('collapsible')
+  handleCollapsibleChange(_newValue: boolean) {
+    // Force re-render when collapsible changes
+    this.forceUpdate();
+  }
+
+  private forceUpdate() {
+    // Trigger a re-render
+    this.el.forceUpdate?.() || this.el.setAttribute('data-force-update', Date.now().toString());
   }
 
   @Method()
   async toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
     this.updateCollapsedState();
+    // Emit event after state change
+    this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
   }
 
   @Method()
   async collapse() {
     this.isCollapsed = true;
     this.updateCollapsedState();
+    // Emit event after state change
+    this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
   }
 
   @Method()
   async expand() {
     this.isCollapsed = false;
     this.updateCollapsedState();
+    // Emit event after state change
+    this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
   }
 
   @Watch('collapsed')
   handleCollapsedPropChange(newValue: boolean) {
     this.isCollapsed = newValue;
     this.updateCollapsedState();
+    // Emit event when prop changes
+    this.ifxSidebarCollapseChange.emit({ collapsed: this.isCollapsed });
   }
 
   private updateCollapsedState() {
@@ -507,7 +529,7 @@ export class Sidebar {
               <div class="sidebar__hide-menu-icon">
                 <ifx-icon icon="menu-16"></ifx-icon>
               </div>
-              <div class="sidebar__hide-menu-text">Hide Menu</div>
+              <div class="sidebar__hide-menu-text">{this.hideMenuLabel}</div>
             </div>
           )}
           <div class="sidebar__nav-container">
