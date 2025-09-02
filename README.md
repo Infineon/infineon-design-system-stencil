@@ -41,23 +41,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-As part of the Infineon brand guidelines, the Infineon Digital Design System supports designers, developers and project managers to build user interfaces faster and better – with the ultimate goal to create a coherent and optimal user journey across all internal and external Infineon digital touchpoints.
-
-This repository contains an implementation of Infineons Digital Design System and it's Storybook sourcecode using Stencil web components.
-
-Use it to build & run storybook and distribute the Stencil web components.
+This repository hosts the source code of the Infineon Digital Design System (DDS), and the Storybook for component documentation, examples, and visual testing.
 
 ### Built With
 
-[Stencil web components][Stencil-url]
+[Stencil.js][Stencil-url]
 
 
 ### Example applications demonstrating the usage of IFX Web Components
 
 - [Angular][Angular-example]
-- [React + Javascript][React-example]
+- [React][React-example]
 - [Vanilla][Vanilla-example]
-- [Vue + Javascript][Vue-example]
+- [Vue][Vue-example]
 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
@@ -65,19 +61,17 @@ Use it to build & run storybook and distribute the Stencil web components.
 
 ## Project structure 
 
-### Overall structure
+This repository is built as a monorepo managed with Lerna. It includes the standard Stencil web components, the React, Angular and Vue framework integration, and example apps for testing and demonstration purposes.
 
-The repository has a monorepo architecture using Lerna. It contains not only our Stencil Web Components, but also framework integrations for Vue and React as well as example applications demonstrating component usage (not included in the Lerna workspaces)
+## Usage
 
-### Wrapper components
+Stencil web components are Custom Elements built on the browser’s API with encapsulated JavaScript and styles. They are framework-agnostic and work in any HTML context—including JSX‑based front-end frameworks—and server-side frameworks that render HTML for the browser.
 
-Stencil Web Components can be used with any JavaScript framework or with no framework at all, just like any other HTML elements. This is because they are built on Web APIs that are native to the browser. They are self-contained and encapsulate their functionality in a way that makes them portable and easy to drop into any project.
+### Framework-specific components
 
-To bridge the gap between Stencil components and specific frameworks, it can be useful to create wrapper components 
+In addition to the standard web components, Stencil also provides framework integration for React, Vue and Angular. Framework-specific components, also known as wrapper components, enable the usage of native framework methods on a stencil component. 
 
-A Stencil Wrapper Component is a component that wraps around a Stencil Web Component and translates the properties, events, and methods to work seamlessly within the specific framework context.
-
-Our Wrapper Components are built automatically every time ```npm run stencil:build``` is executed.
+We recommend using our framework-specific packages when working on a React, Vue or an Angular application. 
 
 <p align="right"><a href="#tableContent">back to top</a></p>
 
@@ -93,7 +87,7 @@ Our Wrapper Components are built automatically every time ```npm run stencil:bui
 - [Node](https://nodejs.org/en/) > v16 .
 - [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v8.
 
-### Installation of the component libraray
+### Installation of the component libraray (here) is this even needed? I should also incldue Figma too.
 
 ---
 #### Angular
