@@ -266,19 +266,21 @@ Event Detail: { collapsed: boolean }`
 };
 
 const DefaultTemplate = args => {
-  // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
   sidebarElement.addEventListener('ifxSidebarActionItem', action(`ifxSidebarActionItem`));
   sidebarElement.addEventListener('ifxSidebarMenu', action(`ifxSidebarMenu`));
 
-  // Always set collapsible attribute based on args
+  // Set collapsible attribute based on args
   sidebarElement.setAttribute('collapsible', args.collapsible ? 'true' : 'false');
 
+  // Set collapsed state independent of collapsible
+  sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
+
+  // Set hide menu label only when collapsible
   if (args.collapsible) {
     sidebarElement.addEventListener('ifxSidebarCollapseChange', action(`ifxSidebarCollapseChange`));
-    sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
     sidebarElement.setAttribute('hide-menu-label', args.hideMenuLabel);
   }
 
@@ -318,7 +320,6 @@ const DefaultTemplate = args => {
 export const Default = DefaultTemplate.bind({});
 
 const SubmenuTemplate = args => {
-  // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
@@ -326,12 +327,14 @@ const SubmenuTemplate = args => {
   sidebarElement.addEventListener('ifxSidebarMenu', action('ifxSidebarMenu'));
   sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
 
-  // Always set collapsible attribute based on args
+  // Set collapsible attribute based on args
   sidebarElement.setAttribute('collapsible', args.collapsible ? 'true' : 'false');
+
+  // Set collapsed state independent of collapsible
+  sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
 
   if (args.collapsible) {
     sidebarElement.addEventListener('ifxSidebarCollapseChange', action('ifxSidebarCollapseChange'));
-    sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
     sidebarElement.setAttribute('hide-menu-label', args.hideMenuLabel);
   }
 
@@ -373,107 +376,98 @@ const SubmenuTemplate = args => {
 
 export const WithSubmenu = SubmenuTemplate.bind({});
 
-const NumberIndicatorTemplate = () =>
-  `<ifx-sidebar application-name="Application name">
-  <ifx-sidebar-item icon="image-16" number-indicator="5">Menu Item</ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16" number-indicator="1">Menu Item</ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16" number-indicator="23">Menu Item</ifx-sidebar-item>
-  <ifx-sidebar-item active="false">
-    Header Section
-    <ifx-sidebar-item icon="image-16" active="false" >
-      Second layer
-      <ifx-sidebar-item target="_blank" active="false" icon="image-16">
-      3rd layer Menu Item
+const NumberIndicatorTemplate = args => {
+  const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
+  sidebarElement.setAttribute('application-name', args.applicationName || 'Application name');
+  sidebarElement.addEventListener('ifxSidebarNavigationItem', action('ifxSidebarNavigationItem'));
+  sidebarElement.addEventListener('ifxSidebarActionItem', action('ifxSidebarActionItem'));
+  sidebarElement.addEventListener('ifxSidebarMenu', action('ifxSidebarMenu'));
+
+  // Set collapsible attribute based on args
+  sidebarElement.setAttribute('collapsible', args.collapsible ? 'true' : 'false');
+
+  // Set collapsed state independent of collapsible
+  sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
+
+  if (args.collapsible) {
+    sidebarElement.addEventListener('ifxSidebarCollapseChange', action('ifxSidebarCollapseChange'));
+    sidebarElement.setAttribute('hide-menu-label', args.hideMenuLabel);
+  }
+
+  sidebarElement.setAttribute('show-header', args.showHeader);
+  sidebarElement.setAttribute('show-footer', args.showFooter);
+  sidebarElement.setAttribute('initial-collapse', args.initialCollapse);
+  sidebarElement.setAttribute('terms-of-use', args.termsOfUse);
+  sidebarElement.setAttribute('imprint', args.imprint);
+  sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
+  sidebarElement.setAttribute('copyright-text', args.copyrightText);
+
+  sidebarElement.innerHTML = `
+    <ifx-sidebar-item icon="image-16" number-indicator="5">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item icon="image-16" number-indicator="1">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item icon="image-16" number-indicator="23">Menu Item</ifx-sidebar-item>
+    <ifx-sidebar-item active="false">
+      Header Section
+      <ifx-sidebar-item icon="image-16" active="false">
+        Second layer
+        <ifx-sidebar-item target="_blank" active="false" icon="image-16">3rd layer Menu Item</ifx-sidebar-item>
+        <ifx-sidebar-item target="_blank" active="false" icon="image-16">This Page</ifx-sidebar-item>
+        <ifx-sidebar-item target="_blank" active="false" icon="image-16">3rd layer Menu Item</ifx-sidebar-item>
       </ifx-sidebar-item>
-
-      <ifx-sidebar-item target="_blank" active="false" icon="image-16">
-      This Page
+      <ifx-sidebar-item icon="image-16" active="false">
+        Second layer
+        <ifx-sidebar-item target="_blank" icon="image-16" active="false">Menu Item</ifx-sidebar-item>
       </ifx-sidebar-item>
-
-      <ifx-sidebar-item target="_blank" active="false" icon="image-16">
-      3rd layer Menu Item
-      </ifx-sidebar-item>
-    </ifx-sidebar-item>
-
-    <ifx-sidebar-item icon="image-16" active="false">
-      Second layer
-      <ifx-sidebar-item target="_blank" icon="image-16" active="false">
-      Menu Item
+      <ifx-sidebar-item icon="image-16" active="false">
+        Second layer
+        <ifx-sidebar-item target="_blank" icon="image-16" active="false">Menu Item</ifx-sidebar-item>
       </ifx-sidebar-item>
     </ifx-sidebar-item>
 
-    <ifx-sidebar-item icon="image-16" active="false">
-      Second layer
-      <ifx-sidebar-item target="_blank" icon="image-16" active="false">
-      Menu Item
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item active="false" is-action-item="false" target="_blank" icon="image-16">Sub Menu Item</ifx-sidebar-item>
+        <ifx-sidebar-item is-action-item="true" icon="image-16">This one too</ifx-sidebar-item>
+        <ifx-sidebar-item is-action-item="false" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
       </ifx-sidebar-item>
     </ifx-sidebar-item>
-  </ifx-sidebar-item>
 
+    <ifx-sidebar-item>
+      Header Section
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+      </ifx-sidebar-item>
+      <ifx-sidebar-item icon="image-16">
+        Menu Item
+        <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">Menu Item</ifx-sidebar-item>
+      </ifx-sidebar-item>
+    </ifx-sidebar-item>
+  `;
 
-  <ifx-sidebar-item>
-  Header Section
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item active="false" is-action-item="false" target="_blank" icon="image-16">
-    Sub Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item is-action-item="true" icon="image-16">
-    This one too
-    </ifx-sidebar-item>
-    <ifx-sidebar-item is-action-item="false" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  </ifx-sidebar-item>
-
-
-  <ifx-sidebar-item>
-  Header Section
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  <ifx-sidebar-item icon="image-16">
-    Menu Item
-    <ifx-sidebar-item href="http://google.com" target="_blank" icon="image-16">
-    Menu Item
-    </ifx-sidebar-item>
-  </ifx-sidebar-item>
-  </ifx-sidebar-item>
-</ifx-sidebar>`;
+  return sidebarElement;
+};
 
 export const WithNumberIndicator = NumberIndicatorTemplate.bind({});
 
 // New story: Collapsible with Hide Menu Button
 const CollapsibleTemplate = args => {
-  // Create the sidebar element and attach event listener
   const sidebarElement = document.createElement('ifx-sidebar') as HTMLIfxSidebarElement;
   sidebarElement.setAttribute('application-name', args.applicationName);
   sidebarElement.addEventListener('ifxSidebarNavigationItem', action(`ifxSidebarNavigationItem`));
@@ -489,11 +483,14 @@ const CollapsibleTemplate = args => {
   sidebarElement.setAttribute('privacy-policy', args.privacyPolicy);
   sidebarElement.setAttribute('copyright-text', args.copyrightText);
 
-  // Always set collapsible attribute based on args
+  // Set collapsible attribute based on args
   sidebarElement.setAttribute('collapsible', args.collapsible ? 'true' : 'false');
 
+  // Set collapsed state independent of collapsible
+  sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
+
+  // Set hide menu label only when collapsible
   if (args.collapsible) {
-    sidebarElement.setAttribute('collapsed', args.collapsed ? 'true' : 'false');
     sidebarElement.setAttribute('hide-menu-label', args.hideMenuLabel || 'Hide Menu');
   }
 
@@ -529,9 +526,9 @@ Collapsible.args = {
 };
 
 export const CollapsibleStartsCollapsed = CollapsibleTemplate.bind({});
-CollapsibleStartsCollapsed.storyName = 'With Hide Menu (collapsed)';
+CollapsibleStartsCollapsed.storyName = 'With Hide Menu (starts collapsed)';
 CollapsibleStartsCollapsed.args = {
   collapsible: true,
-  collapsed: true,
+  collapsed: true, // This property determines the initial state of the sidebar
   hideMenuLabel: 'Hide Menu'
 };

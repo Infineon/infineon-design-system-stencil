@@ -159,7 +159,6 @@ export class Sidebar {
     this.adjustItemsPadding();
     this.applyActiveSectionToParent(this.el);
 
-    // Apply initial collapsed state
     if (this.isCollapsed) {
       this.updateCollapsedState();
     }
@@ -392,7 +391,7 @@ export class Sidebar {
       this.internalShowFooter = false;
     }
 
-    // Set initial collapsed state from prop - handle string conversion
+    // Set initial collapsed state from prop - independent of collapsible
     this.isCollapsed = Boolean(this.collapsed);
   }
 
