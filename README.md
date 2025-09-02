@@ -87,7 +87,7 @@ We recommend using our framework-specific packages when working on a React, Vue 
 - [Node](https://nodejs.org/en/) > v16 .
 - [Yarn](https://classic.yarnpkg.com/en/) > v1.22.10, or [Npm](https://www.npmjs.com/) > v8.
 
-### Installation of the component libraray
+### Installation of the component libraray (here) is this even needed? I should also incldue Figma too.
 
 ---
 #### Angular
