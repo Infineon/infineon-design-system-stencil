@@ -129,3 +129,5 @@ packages/components/public-storybook/fonts/*
 
 *.tar.gz
  
+.nx 
+nx.json
