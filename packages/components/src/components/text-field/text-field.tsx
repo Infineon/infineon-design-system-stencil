@@ -124,7 +124,7 @@ export class TextField {
               )}
           </div>
           {this.caption && !this.error &&
-            <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>
+            <div class={`textInput__bottom-wrapper-caption ${this.disabled ? 'disabled' : ""}`}>
               {this.caption}
             </div>}
           {this.error &&
