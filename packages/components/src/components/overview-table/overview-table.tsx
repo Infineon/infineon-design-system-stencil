@@ -591,7 +591,7 @@ export class OverviewTable {
                         <span>
                           <ifx-icon class='check__icon' icon="check16"></ifx-icon>
                         </span>
-                        <span>Datetime-local type incorporated</span>
+                        <span>Incorporated datetime-local type</span>
                       </li>
                     </ul>
                   </td>
@@ -2018,7 +2018,7 @@ export class OverviewTable {
                 </tr>
                 <tr>
                   <td class="completed__component sticky-col second-col">
-                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-segmented-controls--development" size="s" variant="bold">Textarea</ifx-link>
+                    <ifx-link target='_blank' href="https://infineon.github.io/infineon-design-system-stencil/?path=/docs/components-textarea--development" size="s" variant="bold">Textarea</ifx-link>
                   </td>
                   <td>
                     <ul>
