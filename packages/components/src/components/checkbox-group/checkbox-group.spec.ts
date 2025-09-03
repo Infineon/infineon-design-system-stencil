@@ -67,6 +67,22 @@ describe('ifx-checkbox-group', () => {
     expect(groupLabel.textContent).toContain('Test Label');
   });
 
+  it('shows asterisk on the label when required and showGroupLabel is true', async () => {
+      const page = await newSpecPage({
+        components: [CheckboxGroup],
+        html: `<ifx-checkbox-group show-group-label="true" group-label-text="Test Label" required="true"></ifx-checkbox-group>`,
+      });
+      
+      const groupLabel = page.root.shadowRoot.querySelector('.group-label');
+      expect(groupLabel).toBeTruthy();
+  
+      const required = page.root.shadowRoot.querySelector('.required');
+      expect(required).toBeTruthy();
+      expect(required.textContent).toBe('*');
+  
+      expect(groupLabel.textContent).toBe('Test Label*');
+    });
+
 it('should not show group label by default', async () => {
   // Test with default state - not setting showGroupLabel at all
   const page = await newSpecPage({

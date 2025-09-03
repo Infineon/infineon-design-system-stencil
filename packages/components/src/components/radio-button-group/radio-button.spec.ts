@@ -53,7 +53,23 @@ describe('ifx-radio-button-group', () => {
     
     const groupLabel = page.root.shadowRoot.querySelector('.group-label');
     expect(groupLabel).toBeTruthy();
-    expect(groupLabel.textContent).toBe('Test Group *');
+    expect(groupLabel.textContent).toBe('Test Group');
+  });
+
+  it('shows asterisk on the label when required and showGroupLabel is true', async () => {
+    const page = await newSpecPage({
+      components: [RadioButtonGroup],
+      html: `<ifx-radio-button-group show-group-label="true" group-label-text="Test Group" required="true"></ifx-radio-button-group>`,
+    });
+    
+    const groupLabel = page.root.shadowRoot.querySelector('.group-label');
+    expect(groupLabel).toBeTruthy();
+
+    const required = page.root.shadowRoot.querySelector('.required');
+    expect(required).toBeTruthy();
+    expect(required.textContent).toBe('*');
+
+    expect(groupLabel.textContent).toBe('Test Group*');
   });
 
   it('shows caption when showCaption is true', async () => {
