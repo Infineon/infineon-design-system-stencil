@@ -1,1 +1,0 @@
-import{r as e,h as s}from"./entry-DxLmXAFF.js";const o=":host{display:inline-block;cursor:pointer}",t=class{constructor(r){e(this,r),this.isOpen=!1}render(){return s("slot",{key:"12d613ebdc15ce536e628c0c8e56330380e986b5"})}};t.style=o;export{t as ifx_dropdown_trigger};
