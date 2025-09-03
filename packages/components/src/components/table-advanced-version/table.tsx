@@ -36,6 +36,8 @@ export class Table {
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
+  @Prop() serverSidePagination: boolean = false;
+  @Prop() serverPageChangeHandler?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
 
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
@@ -47,7 +49,7 @@ export class Table {
     { value: 20, label: '20', selected: false },
     { value: 30, label: '30', selected: false }
   ]); 
-
+  
   @Watch('rows')
   rowsChanged(_newVal: any) {
     const parsed = this.parseArrayInput<any>(this.rows);
@@ -254,16 +256,38 @@ export class Table {
     });
   }
 
-  updateTableView() {
+async updateTableView() {
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
+      page: this.currentPage,
+      pageSize: this.paginationPageSize
+    });
+
+    this.rowData = rows;
+    this.matchingResultsCount = total;
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', rows);
+    }
+
+    // 👇 FIX: update pagination total
+    const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+    if (paginationElement) {
+      paginationElement.setAttribute('total', total.toString());
+    }
+  } else {
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
     this.rowData = visibleRowData;
-    this.gridApi.setGridOption('rowData', this.rowData);
-
     this.matchingResultsCount = this.allRowData.length;
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', this.rowData);
+    }
   }
+}
 
   clearAllFilters() {
     this.currentFilters = {};
@@ -365,6 +389,8 @@ export class Table {
         });
       }
     }
+
+     this.updateTableView();
   }
 
   componentWillUnmount() {
@@ -386,16 +412,35 @@ export class Table {
     });
   }
 
-  handlePageChange(event) {
-    this.currentPage = event.detail.currentPage;
+ async handlePageChange(event) {
+  this.currentPage = event.detail.currentPage;
+
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
+      page: this.currentPage,
+      pageSize: this.paginationPageSize
+    });
+
+    this.rowData = rows;
+    this.matchingResultsCount = total;
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', this.rowData);
+    }
+
+    const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+    if (paginationElement) {
+      paginationElement.setAttribute('total', total.toString());
+    }
+  } else {
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-    // Update the data in the grid
     if (this.gridApi) {
       this.gridApi.setGridOption('rowData', visibleRowData);
     }
   }
+}
 
   isJSONParseable(str) {
     try {
