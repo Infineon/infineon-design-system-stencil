@@ -20,16 +20,21 @@ function CheckboxGroup() {
 
   return (
     <div>
-      <IfxCheckboxGroup alignment="vertical" show-group-label={true} group-label-text="Group Label" show-caption={true} caption-text="Caption text, description, error notification" show-caption-icon={true} required={false}>
-          <IfxCheckbox value="0" disabled={false} checked={false} size="m" indeterminate={false} error={false}>Option 0</IfxCheckbox>
-          <IfxCheckbox value="1" disabled={false} checked={false} size="m" indeterminate={false} error={false}>Option 1</IfxCheckbox>
-          <IfxCheckbox value="2" disabled={false} checked={false} size="m" indeterminate={false} error={false}>Option 2</IfxCheckbox>
-          <IfxCheckbox value="3" disabled={false} checked={false} size="m" indeterminate={false} error={false}>Option 3</IfxCheckbox>
+      <IfxCheckboxGroup alignment="vertical" show-group-label={true} group-label-text="Group Label" show-caption={true} caption-text="Caption text, description, error notification" show-caption-icon={true} required={required}>
+          <IfxCheckbox value="0" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 0</IfxCheckbox>
+          <IfxCheckbox value="1" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 1</IfxCheckbox>
+          <IfxCheckbox value="2" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 2</IfxCheckbox>
+          <IfxCheckbox value="3" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 3</IfxCheckbox>
       </IfxCheckboxGroup>
 
       <IfxButton variant="primary" onClick={toggleRequired}>Toggle Required</IfxButton>
-      <IfxButton variant="primary" onClick={toggleDisabled}>Toggle Required</IfxButton>
-      <IfxButton variant="primary" onClick={toggleError}>Toggle Required</IfxButton>
+      <IfxButton variant="primary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="primary" onClick={toggleError}>Toggle Error</IfxButton>
+      <br />
+      <span>Required: {String(required)} </span><br />
+      <span>Disabled: {String(disabled)} </span><br />
+      <span>Error: {String(error)}</span><br />
+      <br />
     </div>
   );
 }
