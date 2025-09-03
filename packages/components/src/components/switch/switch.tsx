@@ -64,12 +64,12 @@ export class Switch {
 
     if (this.internalChecked) {
       if (this.value !== undefined) {
-        this.internals.setFormValue(this.value);
+        //this.internals.setFormValue(this.value);
       } else {
-        this.internals.setFormValue("on")
+        //this.internals.setFormValue("on")
       }
     } else {
-      this.internals.setFormValue(null)
+      //this.internals.setFormValue(null)
     }
 
     this.ifxChange.emit(this.internalChecked);
@@ -87,9 +87,9 @@ export class Switch {
    * Callback for form association.
    * Called whenever the form is reset.
    */
-  formResetCallback() {
-    this.internals.setFormValue(null);
-  }
+  // formResetCallback() {
+  //   this.internals.setFormValue(null);
+  // }
 
   render() {
     return (
