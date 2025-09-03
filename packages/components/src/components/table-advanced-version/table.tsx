@@ -37,7 +37,7 @@ export class Table {
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
   @Prop() serverSidePagination: boolean = false;
-@Prop() onServerPageChange?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
+  @Prop() serverPageChangeHandler?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
 
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
@@ -257,8 +257,8 @@ export class Table {
   }
 
 async updateTableView() {
-  if (this.serverSidePagination && this.onServerPageChange) {
-    const { rows, total } = await this.onServerPageChange({
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
       page: this.currentPage,
       pageSize: this.paginationPageSize
     });
@@ -415,8 +415,8 @@ async updateTableView() {
  async handlePageChange(event) {
   this.currentPage = event.detail.currentPage;
 
-  if (this.serverSidePagination && this.onServerPageChange) {
-    const { rows, total } = await this.onServerPageChange({
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
       page: this.currentPage,
       pageSize: this.paginationPageSize
     });
