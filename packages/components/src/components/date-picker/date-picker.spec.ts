@@ -15,8 +15,8 @@ const mockSetFormValue = jest.fn();
 class MockElementInternals {
   form = null;
   labels = null;
-  setFormValue = mockSetFormValue;
-  setValidity() {}
+  //setFormValue = mockSetFormValue;
+  //setValidity() {}
   checkValidity() { return true; }
   reportValidity() { return true; }
 }
