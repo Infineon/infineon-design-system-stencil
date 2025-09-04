@@ -646,7 +646,7 @@ async updateTableView() {
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page={this.internalItemsPerPage}></ifx-pagination> : null}
+              {this.pagination ? <ifx-pagination total={this.serverSidePagination ? this.matchingResultsCount : this.allRowData.length} current-page={this.currentPage} items-per-page={this.internalItemsPerPage}></ifx-pagination> : null}
             </div>
           </div>
         </div>
