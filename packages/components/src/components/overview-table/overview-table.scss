@@ -125,10 +125,11 @@ ul li {
   display: flex;
   gap: 5px;
   line-height: 13px;
+  align-items: first baseline;
 }
 
 li.planned__component-wrapper { 
-  align-items: center;
+  align-items: first baseline;
   line-height: 16px;
 }
 
@@ -139,11 +140,13 @@ li.planned__component-wrapper {
 
 ifx-icon { 
   color: rgb(10, 130, 118);
+  display: inline-block;
 }
 
 .check__icon { 
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
+  vertical-align: sub;
 }
 
 .planned__icon { 
