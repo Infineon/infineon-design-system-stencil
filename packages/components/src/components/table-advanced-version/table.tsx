@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -323,8 +323,54 @@ export class Table {
       },
       rowDragManaged: this.colData.some(col => col.dndSource === true) ? true : false,
       animateRows: this.colData.some(col => col.dndSource === true) ? true : false,
+      navigateToNextCell: (params) => {
+        return this.focusCellIfContainingButton(params.api, params.nextCellPosition);
+      },
+      tabToNextCell: (params) => {
+        // Returning null is deprecated so we return false if the result is null (browser handles tab behavior).
+        return this.focusCellIfContainingButton(params.api, params.nextCellPosition) ?? false;
+      }
     };
+  }
 
+  focusCellIfContainingButton<T>(api: GridApi<T>, cellPosition: CellPosition) : CellPosition | null {
+    if (!cellPosition) {
+      return null;
+    }
+
+    if (cellPosition.column.getColDef().field === 'button') {
+      const rowNode = api.getDisplayedRowAtIndex(cellPosition.rowIndex);
+
+      if (!rowNode) {
+        // Row not yet rendered due to virtualization.
+        return null;
+      }
+
+      const cellRenderers = api.getCellRendererInstances({
+        rowNodes: [rowNode],
+        columns: [cellPosition.column]
+      });
+
+      if (cellRenderers.length > 0) {
+        const renderedContent = (cellRenderers[0] as ButtonCellRenderer)?.getGui();
+
+        if (renderedContent) {
+          const button = renderedContent.querySelector('ifx-button');
+
+          if (button) {
+            setTimeout(() => {
+              // Just calling button.focus() will not work because the focus of <ifx-button> will not be 
+              // forwared to its child <a>-element (containing the tabindex attribute) due to shadow root. 
+              // We must therefore grab the <a>-element manually first and then call focus() on it.
+              const focusableChild = button.shadowRoot?.querySelector<HTMLElement>('a[tabindex]');
+              focusableChild?.focus();
+            }, 0);
+          }
+        }
+      }
+    }
+
+    return cellPosition;
   }
 
   componentDidRender() {

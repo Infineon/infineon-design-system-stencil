@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `icon`   | `icon`    |             | `string` | `undefined` |
+| Property    | Attribute    | Description | Type     | Default     |
+| ----------- | ------------ | ----------- | -------- | ----------- |
+| `ariaLabel` | `aria-label` |             | `string` | `undefined` |
+| `icon`      | `icon`       |             | `string` | `undefined` |
+| `role`      | `role`       |             | `string` | `undefined` |
 
 
 ## Dependencies
