@@ -22,6 +22,7 @@ export class IfxSlider {
   @Prop() leftText: string;
   @Prop() rightText: string;
   @Prop() type: 'single' | 'double' = 'single';
+  @Prop() ariaLabel: string | null;
   @State() internalValue: number = 0;
   @State() percentage: number = 0;
   @State() internalMinValue: number = 0;
@@ -202,7 +203,7 @@ export class IfxSlider {
               aria-disabled={this.disabled ? "true" : "false"}
               /> 
               :
-            <div class = 'range-slider__wrapper' aria-label='Range slider' aria-value={this.value} aria-disabled={this.disabled} >
+            <div class = 'range-slider__wrapper' aria-label={this.ariaLabel} role="group">
               <input 
                 id='min-slider'
                 type='range'
@@ -211,14 +212,13 @@ export class IfxSlider {
                 step={this.step}
                 value={this.internalMinValue}
                 disabled={this.disabled}
-                role="group"
                 ref={(el) => (this.minInputRef = el as HTMLInputElement)}
                 onInput={(event) => this.handleInputChangeOfRangeSlider(event)}
                 onMouseUp={(event) => this.handleOnMouseLeaveOfRangeSlider(event)}
                 aria-label="Minimum value slider"
                 aria-valuemin={this.min}
                 aria-valuemax={this.max}
-                aria-valuenow={this.internalMinValue}aria-disabled={this.disabled ? "true" : "false"}
+                aria-valuenow={this.internalMinValue} aria-disabled={this.disabled ? "true" : "false"}
               />
               <input 
                 id='max-slider'
