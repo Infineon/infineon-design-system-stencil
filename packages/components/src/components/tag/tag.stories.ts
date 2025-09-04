@@ -7,6 +7,8 @@ export default {
   args: {
     label: 'Tag label',
     icon: 'chevron-up-16',
+    role: "",
+    ariaLabel: ""
   },
   argTypes: {
     label: {
@@ -19,6 +21,32 @@ export default {
           summary: 'string'
         }
       }
+    },
+   role: {
+      description: 'Role for the Tag.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+   ariaLabel: {
+      description: 'Aria label of the Tag.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
     },
     icon: {
       options: Object.keys(icons),
@@ -34,6 +62,6 @@ export default {
   },
 };
 
-const DefaultTemplate = args => `<ifx-tag icon="${args.icon}">${args.label}</ifx-tag>`;
+const DefaultTemplate = args => `<ifx-tag icon="${args.icon}" aria-label="${args.ariaLabel}" role="${args.role}">${args.label}</ifx-tag>`;
 
 export const Default = DefaultTemplate.bind({});

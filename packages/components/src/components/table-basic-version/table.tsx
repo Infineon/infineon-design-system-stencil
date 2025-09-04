@@ -41,7 +41,7 @@ export class Table {
       defaultColDef: {
         resizable: true,
       },
-      suppressCellFocus: true,
+      suppressCellFocus: false,
       enableCellTextSelection: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,

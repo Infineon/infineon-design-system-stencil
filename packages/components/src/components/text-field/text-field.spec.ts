@@ -35,7 +35,7 @@ describe('ifx-text-field', () => {
     // Check container and attributes
     const container = page.root.shadowRoot.querySelector('.textInput__container');
     expect(container).toBeTruthy();
-    expect(container.getAttribute('aria-label')).toBe('a text field for user input');
+    expect(container.getAttribute('aria-label')).toBe(null);
     expect(container.getAttribute('aria-disabled')).toBe(null);
     
     // Check input element

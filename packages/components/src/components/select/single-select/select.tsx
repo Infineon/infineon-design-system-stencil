@@ -23,6 +23,7 @@ import {
   ValueCompareFunction,
   CustomAddItemText,
 } from './interfaces';
+
 import { filterObject, isDefined, isJSONParseable } from './utils';
 
 @Component({
@@ -370,7 +371,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return (
       <div class={`ifx-select-container`}>
         {this.label ? (
-          <div class="ifx-label-wrapper">
+          <div class="ifx-label-wrapper" id="ifx-label-wrapper">
             <span>{this.label}</span>
           </div>
         ) : null}
@@ -411,8 +412,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   toggleDropdown() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
-      this.hideDropdown();
-      div.classList.remove('active');
+      this.closeDropdown();
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
@@ -422,8 +422,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   closeDropdown() {
-    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    ifxChoicesWrapper.classList.remove('active');
+    this.hideDropdown();
+    const wrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    wrapper.focus();
+    wrapper.classList.remove('active');
   }
 
   @Listen('mousedown', { target: 'document' })
@@ -437,22 +439,35 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) return;
-
-    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
-
-    // If the event originated from the search input and the key is 'Space', do nothing.
-    if (isSearchInput && event.code === 'Space') {
+    if (this.disabled) {
       return;
     }
 
-    if (event.code === 'Enter' || (event.code === 'Space' && !isSearchInput)) {
-      this.toggleDropdown();
-    }
+    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
+    const isClearButton = (event.target as HTMLElement).classList.contains('ifx-choices__icon-wrapper-delete');
 
-    // Only prevent default space behavior when it's not from the search input.
-    if (event.code === 'Space' && !isSearchInput) {
-      event.preventDefault(); // Prevent default page scrolling.
+    switch (event.code) {
+      case 'Enter': {
+        if (isClearButton) {
+          this.clearSelection();
+        } else {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Space': {
+        if (!isSearchInput) {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Tab': {
+        if (isSearchInput) {
+          event.preventDefault();
+          this.closeDropdown();
+        }
+        break;
+      }
     }
   }
 
@@ -546,15 +561,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               },
               input: ({ classNames }) => {
                 return template(`
-              <input type="search"
-              class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
-              autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
-              role="textbox"
-              aria-autocomplete="list"
-              aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
-              `);
+                  <input 
+                    type="search"
+                    class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    role="textbox"
+                    aria-autocomplete="list"
+                    aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}">`);
               },
 
               //modifying the template of each item in the options list

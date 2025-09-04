@@ -9,6 +9,7 @@ export default {
     position: 'auto',
     variant: 'compact',
     icon: 'c-info-16',
+    ariaLabel: 'Tooltip with important information'
   },
   argTypes: {
     text: {
@@ -68,10 +69,23 @@ export default {
         }
       }
     },
+    ariaLabel: {
+      description: 'Defines the aria-label for the tooltip, providing a text alternative for screen readers.',
+      control: 'text',
+      table: {
+        category: 'ifx-tooltip props',
+        type: {
+          summary: 'string | null'
+        },
+        defaultValue: {
+          summary: 'null'
+        }
+      }
+    }
   },
 };
 
-const DefaultTemplate = ({ header, text, variant, position, icon }) => {
+const DefaultTemplate = ({ header, text, variant, position, icon, ariaLabel }) => {
   const element = document.createElement('ifx-tooltip');
   if (variant === 'dismissible' || variant === 'extended') {
     element.setAttribute('header', header);
@@ -80,6 +94,7 @@ const DefaultTemplate = ({ header, text, variant, position, icon }) => {
   element.setAttribute('variant', variant === 'extended' ? 'extended' : variant);
   element.setAttribute('position', position);
   element.setAttribute('icon', icon);
+  element.setAttribute('aria-label', ariaLabel);
 
   element.textContent = `I'm the tooltip reference element - Please ${variant==='dismissible' ? 'click' : 'hover'} me`; // Set content for the reference element
 
