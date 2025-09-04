@@ -1,3 +1,37 @@
+# v37.14.1 (Thu Sep 04 2025)
+
+#### 🐛 Bug Fix
+
+- Remove all references to form association [#2005](https://github.com/Infineon/infineon-design-system-stencil/pull/2005) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.14.0 (Mon Sep 01 2025)
+
+#### 🚀 Enhancement
+
+- Removes formAassociation from all form components [#2001](https://github.com/Infineon/infineon-design-system-stencil/pull/2001) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.13.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.13.0 (Thu Aug 28 2025)
 
 #### 🚀 Enhancement
