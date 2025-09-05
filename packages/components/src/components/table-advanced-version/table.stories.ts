@@ -78,6 +78,7 @@ export default {
   args: {
     tableHeight: 'auto',
     pagination: false,
+    serverSidePagination: false,
     rowHeight: 40,
     showLoading: false,
     variant: 'default'
@@ -95,6 +96,19 @@ export default {
     },
     pagination: {
       description: 'Show pagination control.',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: true
+        },
+        type: {
+          summary: 'Boolean',
+        },
+      },
+    },
+    serverSidePagination: {
+      description: 'Enables server-side pagination.',
       control: { type: 'boolean' },
       table: {
         category: 'ifx-table props',
@@ -188,7 +202,8 @@ const DefaultTemplate = (args) => {
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}",
+    pagination="${args.pagination}"
+    serverSidePagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
@@ -263,10 +278,31 @@ const DefaultTemplate = (args) => {
 };
 
 
+export const DefaultState = DefaultTemplate.bind({});
+DefaultState.args = {
+  pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  filterOrientation: 'none',
+};
+
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  filterOrientation: 'none',
+};
+
+export const ServerSidePagination = DefaultTemplate.bind({});
+ServerSidePagination.args = {
+  pagination: true,
+  serverSidePagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
   columnDefs: columnDefs,
