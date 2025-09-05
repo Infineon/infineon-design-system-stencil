@@ -12,7 +12,16 @@ export interface ButtonInterface {
   text: string
 }
 
+export interface StatusInterface {
+  color?: string,
+  label?: string,
+  border?: boolean
+}
+
 export const ButtonKeys: Array<keyof ButtonInterface> = 
 ['disabled', 'variant', 'size', 'target', 'href', 'theme', 'type', 'fullWidth', 'text'];
+
+export const StatusKeys: Array<keyof StatusInterface> = 
+['color', 'label', 'border'];
 
 
