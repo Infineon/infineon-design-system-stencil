@@ -36,8 +36,8 @@ if (!('ElementInternals' in window)) {
     };
     
     // Required methods with full implementation
-    setFormValue = jest.fn();
-    setValidity = jest.fn();
+    //setFormValue = jest.fn();
+    //setValidity = jest.fn();
     checkValidity = jest.fn().mockReturnValue(true);
     reportValidity = jest.fn().mockReturnValue(true);
     

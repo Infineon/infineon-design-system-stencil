@@ -11,8 +11,8 @@ jest.mock('@stencil/core', () => {
       descriptor: {
         get() {
           return {
-            setFormValue: jest.fn(),
-            setValidity: jest.fn(),
+            //setFormValue: jest.fn(),
+            //setValidity: jest.fn(),
             // Add other methods if needed
           };
         }
