@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class Checkbox {
@@ -35,12 +35,12 @@ export class Checkbox {
       } 
       if (this.internalChecked && !this.internalIndeterminate) {
         if (this.value !== undefined) {
-          this.internals.setFormValue(this.value);
+          //this.internals.setFormValue(this.value);
         } else {
-          this.internals.setFormValue("on")
+          //this.internals.setFormValue("on")
         }
       } else {
-        this.internals.setFormValue(null)
+        //this.internals.setFormValue(null)
       }
       this.ifxChange.emit(this.internalChecked);
     }
@@ -107,9 +107,9 @@ export class Checkbox {
    * Callback for form association.
    * Called whenever the form is reset.
    */
-  formResetCallback() {
-    this.internals.setFormValue(null);
-  }
+  // formResetCallback() {
+  //   this.internals.setFormValue(null);
+  // }
 
   getCheckedClassName() {
     if (this.error) {
