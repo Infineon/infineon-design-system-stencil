@@ -1,13 +1,18 @@
+// statusCellRenderer.ts
 import { ICellRendererComp, ICellRendererParams } from 'ag-grid-community';
-import { StatusInterface } from './interfaces';
+
+type StatusConfig = {
+  label: string;
+  color?: string;
+  border?: boolean;
+};
 
 export class StatusCellRenderer implements ICellRendererComp {
-  eGui!: HTMLDivElement;
-  eStatus!: HTMLElement;
-  eventListener!: (event: Event) => void;
+  private eGui!: HTMLDivElement;
 
   init(params: ICellRendererParams) {
-    this.createStatus(params);
+    this.eGui = document.createElement('div');
+    this.render(params);
   }
 
   getGui() {
@@ -15,40 +20,24 @@ export class StatusCellRenderer implements ICellRendererComp {
   }
 
   refresh(params: ICellRendererParams) {
-    this.updateStatus(params);
+    this.render(params);
     return true;
   }
 
-  private createStatus(params: ICellRendererParams) {
-    const config = params.data.status;
+  private render(params: ICellRendererParams) {
+    const cfg = (params.value ??
+      (params.data && (params.data as any).status)) as StatusConfig | string | undefined;
 
-    this.eGui = document.createElement('div');
-    this.eStatus = document.createElement('ifx-status') as HTMLElement;
-    
-    if (this.hasRequiredKeys(config)) {
-      this.setStatusAttributes(config);
-      this.eGui.appendChild(this.eStatus);
-    } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
+    this.eGui.textContent = '';
+
+    if (cfg && typeof cfg === 'object' && 'label' in cfg) {
+      const el = document.createElement('ifx-status') as any;
+      el.label = cfg.label; 
+      if (cfg.color != null) el.color = cfg.color;
+      el.border = !!(cfg as StatusConfig).border; 
+      this.eGui.appendChild(el);
+    } else if (cfg != null) {
+      this.eGui.textContent = String(cfg); 
     }
-  }
-
-  private updateStatus(params: ICellRendererParams) {
-    const config = params.data.status;
-    if (this.hasRequiredKeys(config)) {
-      this.setStatusAttributes(config);
-    } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
-    }
-  }
-
-  private setStatusAttributes(config: StatusInterface) {
-    this.eStatus.setAttribute('border', config.border.toString());
-    this.eStatus.setAttribute('color', config.color);
-    this.eStatus.setAttribute('label', config.label);
-  }
-
-  private hasRequiredKeys(config: StatusInterface): boolean {
-    return config && config.label !== '';
   }
 }
