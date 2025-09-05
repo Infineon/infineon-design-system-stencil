@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
 
@@ -458,6 +459,11 @@ export class Table {
           };
         }
       }
+    }
+
+    const statusColumn = cols.find(column => column.field === 'status');
+    if (statusColumn) {
+      statusColumn.cellRenderer = StatusCellRenderer;
     }
   
     return cols;
