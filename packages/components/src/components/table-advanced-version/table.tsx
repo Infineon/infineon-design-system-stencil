@@ -450,7 +450,8 @@ export class Table {
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
       buttonColumn.valueFormatter = params => params.value.text;
-      
+      buttonColumn.cellDataType = false;
+
       // No JSON.parse needed now
       if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
         if (this.buttonRendererOptions.onButtonClick) {
@@ -464,6 +465,8 @@ export class Table {
     const statusColumn = cols.find(column => column.field === 'status');
     if (statusColumn) {
       statusColumn.cellRenderer = StatusCellRenderer;
+      statusColumn.cellDataType = false;
+
     }
   
     return cols;
