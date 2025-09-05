@@ -20,9 +20,6 @@ import * as TableStories from './table.stories';
 It is possible to fill table cells with custom Ifx web components.
 Currently, following components can be included:
 * Button
-* Icon Button
-* Link
-* Badge
 * Status
 
 For this, column definitions need to include the corresponding field name and be passed in the following format:
@@ -181,6 +178,9 @@ export default {
 };
 </script>
 ```
+
+#### Example: Including a status column
+<Canvas of={TableStories.IncludesStatus} sourceState="shown" />
 
 ### Sidebar filter
 
