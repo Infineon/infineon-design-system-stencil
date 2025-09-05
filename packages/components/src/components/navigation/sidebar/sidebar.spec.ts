@@ -3,6 +3,14 @@ import { Sidebar } from './sidebar';
 import { SidebarItem } from './sidebar-item';
 import { SidebarTitle } from './sidebar-title';
 
+// Mock MutationObserver
+global.MutationObserver = class MutationObserver {
+  constructor(callback: MutationCallback) {}
+  observe() {}
+  disconnect() {}
+  takeRecords() { return []; }
+};
+
 describe('ifx-sidebar', () => {
   // Mock complex methods to prevent DOM-related errors
   beforeAll(() => {
@@ -96,8 +104,8 @@ describe('ifx-sidebar', () => {
   it('shows footer with custom links', async () => {
     const page = await newSpecPage({
       components: [Sidebar],
-      html: `<ifx-sidebar 
-        terms-of-use="https://example.com/terms" 
+      html: `<ifx-sidebar
+        terms-of-use="https://example.com/terms"
         imprint="https://example.com/imprint"
         privacy-policy="https://example.com/privacy"
       ></ifx-sidebar>`,
@@ -221,6 +229,11 @@ describe('ifx-sidebar', () => {
 });
 
 describe('ifx-sidebar-item', () => {
+  beforeEach(() => {
+    // Mock the observeCollapsedState method for all SidebarItem tests
+    SidebarItem.prototype['observeCollapsedState'] = jest.fn();
+  });
+
   it('renders with default props', async () => {
     const page = await newSpecPage({
       components: [SidebarItem],
@@ -269,7 +282,7 @@ describe('ifx-sidebar-item', () => {
     // Mock setActiveClasses to avoid DOM manipulation
     page.rootInstance.setActiveClasses = jest.fn();
 
-    // Call componentDidLoad manually 
+    // Call componentDidLoad manually
     page.rootInstance.componentDidLoad();
 
     // Verify active state is set correctly
