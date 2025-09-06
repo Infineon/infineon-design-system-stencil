@@ -1,3 +1,20 @@
+# v37.15.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Status component nestable [#2011](https://github.com/Infineon/infineon-design-system-stencil/pull/2011) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.14.1 (Thu Sep 04 2025)
 
 #### 🐛 Bug Fix

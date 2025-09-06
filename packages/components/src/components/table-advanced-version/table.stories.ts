@@ -30,6 +30,17 @@ const columnDefsWithButtonCol = [
   }
 ];
 
+const columnDefsWithStatusCol = [
+  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
+  { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
+  { headerName: 'Price', field: 'price' },
+  { headerName: 'Age', field: 'age' },
+  {
+    headerName: 'Status',
+    field: 'status',
+  }
+];
+
 
 const rowDataWithButtonCol = [
   {
@@ -69,6 +80,29 @@ const rowDataWithButtonCol = [
       type: "button",
       fullWidth: true,
       text: "Porsche Button"
+    }
+  }
+];
+const rowDataWithStatusCol = [
+  {
+    make: 'Toyota', model: 'Celica', price: 35000, age: 10, status: {
+      label: "Available",
+      color: "green-500",
+      border: true
+    }
+  },
+  {
+    make: 'Ford', model: 'Mondeo', price: 32000, age: 12, status: {
+      label: "Out of Stock",
+      color: "red-500",
+      border: true
+    }
+  },
+  {
+    make: 'Porsche', model: 'Boxster', price: 72000, status: {
+      label: "Coming Soon",
+      color: "orange-500",
+      border: true
     }
   }
 ];
@@ -324,6 +358,19 @@ const CustomCellTemplate = (args) => {
   return table;
 };
 
+const CustomStatusCellTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
+  return table;
+};
+
 
 
 export const IncludesButtons = CustomCellTemplate.bind({});
@@ -331,6 +378,15 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
+  filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesStatus = CustomStatusCellTemplate.bind({});
+IncludesStatus.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithStatusCol,
+  rowData: rowDataWithStatusCol,
   filterOrientation: 'none',
   pagination: false,
 };

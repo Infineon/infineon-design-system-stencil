@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
 
@@ -494,7 +495,8 @@ async updateTableView() {
     if (buttonColumn) {
       buttonColumn.cellRenderer = ButtonCellRenderer;
       buttonColumn.valueFormatter = params => params.value.text;
-      
+      buttonColumn.cellDataType = false;
+
       // No JSON.parse needed now
       if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
         if (this.buttonRendererOptions.onButtonClick) {
@@ -503,6 +505,13 @@ async updateTableView() {
           };
         }
       }
+    }
+
+    const statusColumn = cols.find(column => column.field === 'status');
+    if (statusColumn) {
+      statusColumn.cellRenderer = StatusCellRenderer;
+      statusColumn.cellDataType = false;
+
     }
   
     return cols;
