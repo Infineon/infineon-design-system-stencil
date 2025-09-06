@@ -1,3 +1,20 @@
+# v37.16.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Implements server-side pagination [#2009](https://github.com/Infineon/infineon-design-system-stencil/pull/2009) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.15.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.15.0 (Sat Sep 06 2025)
 
 #### 🚀 Enhancement
