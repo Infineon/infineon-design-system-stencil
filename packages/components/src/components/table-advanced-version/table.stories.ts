@@ -237,7 +237,7 @@ const DefaultTemplate = (args) => {
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
-    serverSidePagination="${args.serverSidePagination}"
+    server-side-pagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
