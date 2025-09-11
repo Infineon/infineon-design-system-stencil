@@ -68,6 +68,7 @@
 
     &:disabled {
       color: tokens.$ifxColorBaseWhite;
+      pointer-events: none;
     }
   }
 
@@ -82,6 +83,7 @@
   &:disabled {
     border-color: tokens.$ifxColorEngineering300;
     background-color: tokens.$ifxColorEngineering300;
+    pointer-events: none;
   }
 
   &.error {
