@@ -1,3 +1,21 @@
+# v37.16.2 (Tue Sep 16 2025)
+
+#### 🐛 Bug Fix
+
+- Adds developer documentation [#1983](https://github.com/Infineon/infineon-design-system-stencil/pull/1983) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.16.1 (Tue Sep 16 2025)
 
 #### 🐛 Bug Fix
