@@ -33,8 +33,12 @@ export class FileUpload {
   @Prop() disabled: boolean = false;
   @Prop() maxFileSizeMB: number = 7;
   /** Default set of allowed file extensions (used internally). Can be extended using `additionalAllowedFileTypes`. */
-  @Prop() allowedFileTypes: string | string[] = ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
+  @Prop() allowedFileTypes?: string | string[] = undefined;
   @Prop() additionalAllowedFileTypes?: string | string[] = [];
+  /** When set to true, allows any file type to be uploaded (no file type restrictions). */
+  @Prop() allowAnyFileType: boolean = false;
+  /** Custom file extensions to allow (e.g., 'xml', 'asc', 'cfg'). Recommended format: without dots. Also accepts format with dots like '.xml'. Do not use wildcards like '*.xml'. */
+  @Prop() allowedFileExtensions?: string | string[] = [];
   @Prop() uploadHandler?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
 
   private _maxFiles?: number;
@@ -176,10 +180,24 @@ export class FileUpload {
   }
 
   private pluralize(count: number): string {
+    // If allowAnyFileType is true, use generic terms
+    if (this.allowAnyFileType) {
+      return count === 1 ? 'file' : 'files';
+    }
     return count === 1 ? this.labelFileSingular : this.labelFilePlural;
   }
 
   private getNormalizedFileTypes(): string[] {
+    // If allowedFileTypes is not set and allowedFileExtensions is set, return empty array
+    if (!this.allowedFileTypes && this.allowedFileExtensions && this.getNormalizedFileExtensions().length > 0) {
+      return [];
+    }
+
+    // If allowedFileTypes is not set and no allowedFileExtensions, use defaults
+    if (!this.allowedFileTypes) {
+      return ['jpg', 'jpeg', 'png', 'pdf', 'mov', 'mp3', 'mp4'];
+    }
+
     if (Array.isArray(this.allowedFileTypes)) {
       return this.allowedFileTypes;
     }
@@ -188,6 +206,74 @@ export class FileUpload {
     } catch {
       return this.allowedFileTypes.split(',').map(t => t.trim());
     }
+  }
+
+  private getNormalizedFileExtensions(): string[] {
+    if (!this.allowedFileExtensions) return [];
+    if (Array.isArray(this.allowedFileExtensions)) {
+      return this.allowedFileExtensions;
+    }
+    try {
+      return JSON.parse(this.allowedFileExtensions);
+    } catch {
+      return this.allowedFileExtensions.split(',').map(t => t.trim());
+    }
+  }
+
+  /**
+   * Enhanced file type validation that supports:
+   * - allowAnyFileType flag for unrestricted uploads (overrides all restrictions)
+   * - allowedFileTypes (predefined extensions mapped to MIME types) - if not set and allowedFileExtensions is set, ignored
+   * - additionalAllowedFileTypes (MIME types)
+   * - allowedFileExtensions (custom extensions) - if only this is set, only these extensions are allowed
+   */
+  private isFileTypeAllowed(file: File): boolean {
+    // If allowAnyFileType is true, accept all files (overrides all restrictions)
+    if (this.allowAnyFileType) {
+      return true;
+    }
+
+    const fileExtension = this.getFileExtension(file.name);
+
+    // Check against allowedFileTypes (predefined extensions)
+    const normalizedTypes = this.getNormalizedFileTypes();
+    const allowedMimes = normalizedTypes
+      .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
+      .filter(Boolean);
+
+    if (allowedMimes.includes(file.type)) {
+      return true;
+    }
+
+    // Check against additionalAllowedFileTypes (MIME types)
+    const additionalMimeTypes = this.getAdditionalMimeTypes();
+    if (additionalMimeTypes.includes(file.type)) {
+      return true;
+    }
+
+    // Check against allowedFileExtensions (custom extensions)
+    const customExtensions = this.getNormalizedFileExtensions();
+    if (customExtensions.length > 0 && fileExtension) {
+      for (const ext of customExtensions) {
+        const normalizedExt = ext.startsWith('.') ? ext.substring(1).toLowerCase() : ext.toLowerCase();
+        if (fileExtension === normalizedExt) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Extracts file extension from filename (without dot)
+   */
+  private getFileExtension(filename: string): string | null {
+    const lastDotIndex = filename.lastIndexOf('.');
+    if (lastDotIndex === -1 || lastDotIndex === filename.length - 1) {
+      return null;
+    }
+    return filename.substring(lastDotIndex + 1).toLowerCase();
   }
 
   private getLabelFromMimeType(mime: string): string {
@@ -212,18 +298,12 @@ export class FileUpload {
     this.isDragOver = false;
     if (event.dataTransfer?.files) {
       const droppedFiles = Array.from(event.dataTransfer.files);
-      const allowedMimes = [
-        ...this.getNormalizedFileTypes()
-          .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-          .filter(Boolean),
-        ...this.getAdditionalMimeTypes()
-      ];
 
       const acceptedFiles: File[] = [];
       const rejectedFiles: File[] = [];
 
       droppedFiles.forEach(file => {
-        const isValidType = allowedMimes.includes(file.type);
+        const isValidType = this.isFileTypeAllowed(file);
         const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
         if (isValidType && isValidSize) acceptedFiles.push(file);
         else rejectedFiles.push(file);
@@ -253,19 +333,13 @@ export class FileUpload {
 
   processFiles(fileList: FileList) {
     const selectedFiles = Array.from(fileList);
-    const allowedMimes = [
-      ...this.getNormalizedFileTypes()
-        .map(ext => this.extensionToMimeMap[ext.toLowerCase()])
-        .filter(Boolean),
-      ...this.getAdditionalMimeTypes()
-    ];
 
     const validFiles: File[] = [];
     const rejectedSize: string[] = [];
     const rejectedType: string[] = [];
 
     selectedFiles.forEach(file => {
-      const isValidType = allowedMimes.includes(file.type);
+      const isValidType = this.isFileTypeAllowed(file);
       const isValidSize = file.size <= this.maxFileSizeMB * 1024 * 1024;
       const isDuplicate = this.files.some(existing =>
         existing.name === file.name && existing.size === file.size
@@ -528,10 +602,29 @@ export class FileUpload {
   }
 
   getAcceptAttribute(): string {
-    const extensionTypes = this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase());
-    const mimeTypes = this.getAdditionalMimeTypes();
+    // If allowAnyFileType is true, don't restrict the input
+    if (this.allowAnyFileType) {
+      return '';
+    }
 
-    return [...extensionTypes, ...mimeTypes].join(',');
+    const acceptValues: string[] = [];
+
+    // Add extensions from allowedFileTypes
+    const extensionTypes = this.getNormalizedFileTypes().map(ext => '.' + ext.toLowerCase());
+    acceptValues.push(...extensionTypes);
+
+    // Add MIME types from additionalAllowedFileTypes
+    const mimeTypes = this.getAdditionalMimeTypes();
+    acceptValues.push(...mimeTypes);
+
+    // Add custom file extensions
+    const customExtensions = this.getNormalizedFileExtensions();
+    customExtensions.forEach(ext => {
+      const normalizedExt = ext.startsWith('.') ? ext : '.' + ext;
+      acceptValues.push(normalizedExt);
+    });
+
+    return acceptValues.join(',');
   }
 
   private getFormattedProgressText(task: UploadTask): string {
@@ -548,9 +641,35 @@ export class FileUpload {
   }
 
   private getSupportedFileText(): string {
+    if (this.allowAnyFileType) {
+      let text = `All file types allowed. Max file size: ${this.maxFileSizeMB}MB.`;
+      if (this.labelMaxFilesInfo && this.maxFiles) {
+        const fileWord = this.pluralize(this.maxFiles);
+        const maxFilesText = this.labelMaxFilesInfo
+          .replace('{{count}}', this.maxFiles.toString())
+          .replace('{{files}}', fileWord);
+        text += ` ${maxFilesText}`;
+      }
+      return text;
+    }
+
+    const allTypes: string[] = [];
+
+    // Add extensions from allowedFileTypes
     const extensions = this.getNormalizedFileTypes().map(ext => ext.toUpperCase());
+    allTypes.push(...extensions);
+
+    // Add MIME types from additionalAllowedFileTypes
     const mimeTypes = this.getAdditionalMimeTypes().map(mime => this.getLabelFromMimeType(mime));
-    const allTypes = [...extensions, ...mimeTypes];
+    allTypes.push(...mimeTypes);
+
+    // Add custom file extensions
+    const customExtensions = this.getNormalizedFileExtensions().map(ext => {
+      const cleanExt = ext.startsWith('.') ? ext.substring(1) : ext;
+      return cleanExt.toUpperCase();
+    });
+    allTypes.push(...customExtensions);
+
     const typesLabel = allTypes.join(', ');
 
     let text = this.labelSupportedFormatsTemplate
@@ -590,7 +709,7 @@ export class FileUpload {
   }
 
   async componentDidLoad() {
-    if(!isNestedInIfxComponent(this.hostElement)) { 
+    if(!isNestedInIfxComponent(this.hostElement)) {
       const framework = detectFramework();
       trackComponent('ifx-file-upload', await framework)
     }
