@@ -8,7 +8,6 @@
       ]
     },
     "outDir": "./dist/@infineon/infineon-design-system-angular",
-    "declarationDir": "./dist/@infineon/infineon-design-system-angular",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
