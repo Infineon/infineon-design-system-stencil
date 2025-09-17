@@ -1,4 +1,4 @@
-import { Component, h, Element } from '@stencil/core';
+import { Component, h, Element, Prop } from '@stencil/core';
 
 @Component({
     tag: 'ifx-sidebar-title',
@@ -8,6 +8,12 @@ import { Component, h, Element } from '@stencil/core';
 
 export class SidebarTitle {
     @Element() el;
+    @Prop() showInCollapsed: boolean = false;
+
+    componentWillLoad() {
+        // Set data attribute for CSS targeting
+        this.el.setAttribute('data-show-in-collapsed', this.showInCollapsed.toString());
+    }
 
     render() {
         return(
