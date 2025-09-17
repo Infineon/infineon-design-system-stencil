@@ -3,14 +3,6 @@ import { Sidebar } from './sidebar';
 import { SidebarItem } from './sidebar-item';
 import { SidebarTitle } from './sidebar-title';
 
-// Mock MutationObserver
-global.MutationObserver = class MutationObserver {
-  constructor(callback: MutationCallback) {}
-  observe() {}
-  disconnect() {}
-  takeRecords() { return []; }
-};
-
 describe('ifx-sidebar', () => {
   // Mock complex methods to prevent DOM-related errors
   beforeAll(() => {

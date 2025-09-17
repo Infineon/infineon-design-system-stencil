@@ -22,14 +22,14 @@ export class SidebarItem {
   @State() indicatorVariant: 'number' | 'dot' = 'number';
 
   @State() internalActiveState: boolean = false;
-  @State() titleText: string = '';
-
+ 
   @Event({ bubbles: true, composed: true }) ifxSidebarMenu: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
 
   @Prop() handleItemClick: (item: HTMLElement) => void;
 
+  private titleText: string = '';
 
   @Watch('active')
   handleActiveChange(newValue: boolean, oldValue: boolean) {
@@ -288,7 +288,10 @@ export class SidebarItem {
   private updateIndicatorVariant() {
     // Check the data attribute on this element
     const isCollapsed = this.el.hasAttribute('data-sidebar-collapsed');
-    this.indicatorVariant = isCollapsed ? 'dot' : 'number';
+    //this.indicatorVariant = isCollapsed ? 'dot' : 'number';
+    if (this.numberIndicator > 0) {
+        this.indicatorVariant = isCollapsed ? 'dot' : 'number';
+    }
   }
 
   private observeCollapsedState() {
@@ -365,7 +368,7 @@ export class SidebarItem {
                 </span>
               }
 
-              {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
+              {this.numberIndicator > 0 && !this.isExpandable && !this.isNested &&
                 <span class="item__number-indicator">
                   <ifx-indicator
                     variant={this.indicatorVariant}
