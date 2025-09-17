@@ -19,15 +19,17 @@ export class SidebarItem {
   @Prop() numberIndicator: number;
   @Prop() active: boolean = false; // set to true manually or by clicking on a navigation item
   @Prop() isActionItem: boolean = false; // if an item is an action item, it can not become active
+  @State() indicatorVariant: 'number' | 'dot' = 'number';
 
   @State() internalActiveState: boolean = false;
-
+ 
   @Event({ bubbles: true, composed: true }) ifxSidebarMenu: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarNavigationItem: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxSidebarActionItem: EventEmitter;
 
   @Prop() handleItemClick: (item: HTMLElement) => void;
 
+  private titleText: string = '';
 
   @Watch('active')
   handleActiveChange(newValue: boolean, oldValue: boolean) {
@@ -238,7 +240,7 @@ export class SidebarItem {
         this.handleClassList(menuItem, 'remove', 'active-section')
       }
   }
-  
+
   @Method()
   async isItemExpandable(){
     return this.isExpandable;
@@ -262,13 +264,57 @@ export class SidebarItem {
       const sidebarItems = this.getSidebarMenuItems();
       this.handleExpandableMenu(sidebarItems)
     }
+    // Listen for collapsed state changes
+    this.updateIndicatorVariant();
+    // Set up MutationObserver to watch for CSS custom property changes
+    this.observeCollapsedState();
+    // Extract text content for title attribute
+    this.extractTitleText();
   }
-  
+
+  private extractTitleText() {
+    // Get the text content from the slot
+    const slotElement = this.el.shadowRoot.querySelector('slot');
+    if (slotElement) {
+      const assignedNodes = slotElement.assignedNodes();
+      this.titleText = assignedNodes
+        .filter(node => node.nodeType === Node.TEXT_NODE || node.nodeType === Node.ELEMENT_NODE)
+        .map(node => node.textContent?.trim() || '')
+        .join(' ')
+        .trim();
+    }
+  }
+
+  private updateIndicatorVariant() {
+    // Check the data attribute on this element
+    const isCollapsed = this.el.hasAttribute('data-sidebar-collapsed');
+    //this.indicatorVariant = isCollapsed ? 'dot' : 'number';
+    if (this.numberIndicator > 0) {
+        this.indicatorVariant = isCollapsed ? 'dot' : 'number';
+    }
+  }
+
+  private observeCollapsedState() {
+    // Create a MutationObserver to watch for data-sidebar-collapsed attribute changes
+    const observer = new MutationObserver(() => {
+      this.updateIndicatorVariant();
+    });
+
+    observer.observe(this.el, {
+      attributes: true,
+      attributeFilter: ['data-sidebar-collapsed']
+    });
+  }
+
   componentWillLoad() {
     this.internalActiveState = this.active;
     this.checkIfMenuItemIsNested();
     this.checkIfMenuItemIsSubMenu();
     this.setHref()
+
+    // Set attribute to track if item has icon
+    this.el.setAttribute('data-has-icon', this.icon ? 'true' : 'false');
+
     const sidebarItems = this.getSidebarMenuItems();
     if (sidebarItems.length !== 0) {
       this.isExpandable = true;
@@ -290,9 +336,20 @@ export class SidebarItem {
 
 
   render() {
+    const isCollapsed = this.el.hasAttribute('data-sidebar-collapsed');
+    const shouldHide = this.el.hasAttribute('data-hide-in-collapsed');
+
     return (
-      <div>
-        <a tabIndex={1} onKeyDown={(event) => this.handleKeyDown(event)} href={this.internalHref} onClick={() => this.toggleSubmenu()} target={this.target} class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}>
+      <div style={{ display: shouldHide ? 'none' : 'block' }}>
+        <a
+          tabIndex={1}
+          onKeyDown={(event) => this.handleKeyDown(event)}
+          href={this.internalHref}
+          onClick={() => this.toggleSubmenu()}
+          target={this.target}
+          class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}
+          title={this.titleText}
+        >
           {this.icon &&
             <div class={`sidebar__nav-item-icon-wrapper ${!this.showIcon ? 'noIcon' : ""}`}>
               <ifx-icon icon={this.icon}></ifx-icon>
@@ -302,16 +359,21 @@ export class SidebarItem {
           </div>
           {
           (this.isExpandable || !isNaN(this.numberIndicator)) &&
-            <div class="sidebar__nav-item-indicator">
+            <div class="sidebar__nav-item-indicator" style={{
+              display: (!isCollapsed || this.icon) ? 'flex' : 'none'
+            }}>
               {this.isExpandable &&
                 <span class='item__arrow-wrapper'>
                   <ifx-icon icon="chevron-down-16" />
                 </span>
               }
 
-              {!isNaN(this.numberIndicator) && !this.isExpandable && !this.isNested &&
-                <span class='item__number-indicator'>
-                  <ifx-indicator variant='number' number={this.numberIndicator}></ifx-indicator>
+              {this.numberIndicator > 0 && !this.isExpandable && !this.isNested &&
+                <span class="item__number-indicator">
+                  <ifx-indicator
+                    variant={this.indicatorVariant}
+                    number={this.numberIndicator}>
+                  </ifx-indicator>
                 </span>}
 
             </div>
