@@ -4,7 +4,8 @@ import type { Meta, StoryFn } from '@storybook/html';
 const hideAllControlsExcept = (allowedKeys: string[]) => {
   const allProps = [
     'dragAndDrop', 'label', 'required', 'labelRequiredError', 'disabled', 'maxFiles', 'maxFileSizeMB',
-    'allowedFileTypes', 'additionalAllowedFileTypes', 'labelBrowseFiles', 'labelDragAndDrop',
+    'allowedFileTypes', 'additionalAllowedFileTypes', 'allowAnyFileType', 'allowedFileExtensions',
+    'labelBrowseFiles', 'labelDragAndDrop',
     'labelUploadedFilesHeading', 'labelFileTooLarge', 'labelUnsupportedFileType', 'labelUploaded',
     'labelSupportedFormatsTemplate', 'labelFileSingular', 'labelFilePlural', 'labelMaxFilesInfo',
     'labelMaxFilesExceeded', 'labelUploadFailed', 'ariaLabelBrowseFiles', 'ariaLabelDropzone',
@@ -74,11 +75,21 @@ const meta: Meta = {
     allowedFileTypes: {
       control: { type: 'check' },
       options: ['jpg', 'png', 'pdf', 'mov', 'mp3', 'mp4'],
-      description: 'Select one or more allowed file extensions. Internally mapped to MIME types.',
+      description: 'Select one or more allowed file extensions. Internally mapped to MIME types. If not set and no other file restrictions are defined, the default values (jpg, jpeg, png, pdf, mov, mp3, mp4) are used for validation.',
       table: { category: 'Function' },
     },
     additionalAllowedFileTypes: {
       description: 'Custom MIME types (comma-separated).',
+      control: 'text',
+      table: { category: 'Function' },
+    },
+    allowAnyFileType: {
+      description: 'When true, allows any file type to be uploaded (overrides all other file type restrictions).',
+      control: 'boolean',
+      table: { category: 'Function', defaultValue: { summary: 'false' } },
+    },
+    allowedFileExtensions: {
+      description: 'Custom file extensions to allow. Recommended format: "xml,asc,cfg" (without dots). Also accepts ".xml,.asc,.cfg" (with dots). Do not use wildcards like "*.xml".',
       control: 'text',
       table: { category: 'Function' },
     },
@@ -265,6 +276,7 @@ const BaseTemplate: StoryFn = (args) => {
   const el = document.createElement('ifx-file-upload');
 
   if (args.dragAndDrop) el.setAttribute('drag-and-drop', '');
+  if (args.allowAnyFileType) el.setAttribute('allow-any-file-type', '');
   el.setAttribute('max-file-size-m-b', args.maxFileSizeMB);
 
   const rawTypes = Array.isArray(args.allowedFileTypes)
@@ -280,6 +292,13 @@ const BaseTemplate: StoryFn = (args) => {
       ? args.additionalAllowedFileTypes.join(',')
       : args.additionalAllowedFileTypes;
     el.setAttribute('additional-allowed-file-types', value);
+  }
+
+  if (args.allowedFileExtensions) {
+    const value = Array.isArray(args.allowedFileExtensions)
+      ? args.allowedFileExtensions.join(',')
+      : args.allowedFileExtensions;
+    el.setAttribute('allowed-file-extensions', value);
   }
 
   if (args.maxFiles !== undefined && args.maxFiles !== null) {
@@ -341,6 +360,8 @@ Default.args = {
   maxFileSizeMB: 7,
   allowedFileTypes: ['jpg', 'png', 'pdf'],
   additionalAllowedFileTypes: 'application/zip,text/csv',
+  allowAnyFileType: false,
+  allowedFileExtensions: '',
   labelBrowseFiles: 'Browse files',
   labelDragAndDrop: 'Drag & Drop or browse files to upload',
   labelUploadedFilesHeading: 'Uploaded files',
