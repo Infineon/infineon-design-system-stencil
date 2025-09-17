@@ -3,6 +3,13 @@ import { Sidebar } from './sidebar';
 import { SidebarItem } from './sidebar-item';
 import { SidebarTitle } from './sidebar-title';
 
+global.MutationObserver = class MutationObserver {
+  constructor() {}
+  observe() {}
+  disconnect() {}
+  takeRecords() { return []; }
+};
+
 describe('ifx-sidebar', () => {
   // Mock complex methods to prevent DOM-related errors
   beforeAll(() => {
@@ -264,7 +271,8 @@ describe('ifx-sidebar', () => {
     expect(sidebar.collapsed).toBeFalsy();
 
     // Programmatically toggle collapse state
-    sidebar.collapsed = !sidebar.collapsed;
+    page.root.setAttribute('collapsed', 'true');
+    await page.waitForChanges();
 
     expect(sidebar.collapsed).toBe(true);
   });
@@ -305,7 +313,8 @@ describe('ifx-sidebar', () => {
       sidebar.adjustItemsPadding = jest.fn();
 
       // Simulate toggling collapse
-      sidebar.collapsed = !sidebar.collapsed;
+      page.root.setAttribute('collapsed', 'true');
+      await page.waitForChanges();
 
       // Manually emit the event to test the functionality
       sidebar.ifxSidebarCollapsed.emit({ collapsed: sidebar.collapsed });
@@ -315,7 +324,8 @@ describe('ifx-sidebar', () => {
     } else {
       // If no collapse event emitter, test that collapsed state changes
       expect(sidebar.collapsed).toBeDefined();
-      sidebar.collapsed = true;
+      page.root.setAttribute('collapsed', 'true');
+      await page.waitForChanges();
       expect(sidebar.collapsed).toBe(true);
     }
   });
@@ -339,7 +349,8 @@ describe('ifx-sidebar', () => {
       expect(expandedIcon).toBeTruthy();
 
       // Simulate collapsed state
-      page.rootInstance.collapsed = true;
+      page.root.setAttribute('collapsed', 'true');
+      await page.waitForChanges();
       await page.waitForChanges();
 
       // Check if icon changed for collapsed state
@@ -356,7 +367,8 @@ describe('ifx-sidebar', () => {
     } else {
       // If no collapse icon found, test that collapsed state works
       expect(page.rootInstance.collapsed).toBeDefined();
-      page.rootInstance.collapsed = true;
+      page.root.setAttribute('collapsed', 'true');
+      await page.waitForChanges();
       expect(page.rootInstance.collapsed).toBe(true);
     }
   });
@@ -411,12 +423,12 @@ describe('ifx-sidebar', () => {
     expect(sidebar.collapsed).toBeFalsy();
 
     // Test programmatic collapse
-    sidebar.collapsed = true;
+    page.root.setAttribute('collapsed', 'true');
     await page.waitForChanges();
     expect(sidebar.collapsed).toBe(true);
 
     // Test programmatic expand
-    sidebar.collapsed = false;
+    page.root.setAttribute('collapsed', 'false');
     await page.waitForChanges();
     expect(sidebar.collapsed).toBe(false);
   });
