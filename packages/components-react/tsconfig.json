@@ -2,9 +2,11 @@
   // "extends": "../../tsconfig.react.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "declarationDir": "./dist/types",
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "declaration": true,
 
     "module": "ESNext",
     "skipLibCheck": true,
