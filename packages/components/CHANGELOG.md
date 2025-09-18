@@ -1,3 +1,21 @@
+# v37.18.0 (Thu Sep 18 2025)
+
+#### 🚀 Enhancement
+
+- Sidebar: implements collapsible/expandable feature [#2012](https://github.com/Infineon/infineon-design-system-stencil/pull/2012) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.17.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.17.0 (Tue Sep 16 2025)
 
 #### 🚀 Enhancement
