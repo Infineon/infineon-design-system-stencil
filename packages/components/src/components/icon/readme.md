@@ -53,6 +53,7 @@
  - [ifx-segment](../segmented-control/segment)
  - [ifx-segmented-control](../segmented-control)
  - [ifx-select](../select/single-select)
+ - [ifx-sidebar](../navigation/sidebar)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
  - [ifx-step](../stepper/step)
@@ -95,6 +96,7 @@ graph TD;
   ifx-segment --> ifx-icon
   ifx-segmented-control --> ifx-icon
   ifx-select --> ifx-icon
+  ifx-sidebar --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-step --> ifx-icon
