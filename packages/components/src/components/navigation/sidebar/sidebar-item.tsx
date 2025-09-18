@@ -50,7 +50,10 @@ export class SidebarItem {
     }
   }
 
-
+  @Watch('numberIndicator')  
+  handleNumberIndicatorChange() {
+    this.updateIndicatorVariant();
+  }
 
   @Listen('consoleError')
   handleConsoleError(event: CustomEvent<boolean>) {
