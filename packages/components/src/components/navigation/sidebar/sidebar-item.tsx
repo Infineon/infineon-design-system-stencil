@@ -335,53 +335,53 @@ export class SidebarItem {
   }
 
 
-  render() {
-    const isCollapsed = this.el.hasAttribute('data-sidebar-collapsed');
-    const shouldHide = this.el.hasAttribute('data-hide-in-collapsed');
+render() {
+  const isCollapsed = this.el.hasAttribute('data-sidebar-collapsed');
+  const shouldHide = this.el.hasAttribute('data-hide-in-collapsed');
 
-    return (
-      <div style={{ display: shouldHide ? 'none' : 'block' }}>
-        <a
-          tabIndex={1}
-          onKeyDown={(event) => this.handleKeyDown(event)}
-          href={this.internalHref}
-          onClick={() => this.toggleSubmenu()}
-          target={this.target}
-          class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}
-          title={this.titleText}
-        >
-          {this.icon &&
-            <div class={`sidebar__nav-item-icon-wrapper ${!this.showIcon ? 'noIcon' : ""}`}>
-              <ifx-icon icon={this.icon}></ifx-icon>
-            </div>}
-          <div class="sidebar__nav-item-label">
-            <slot />
+  return (
+    <div style={{ display: shouldHide ? 'none' : 'block' }}>
+      <a
+        tabIndex={1}
+        onKeyDown={(event) => this.handleKeyDown(event)}
+        href={this.internalHref}
+        onClick={() => this.toggleSubmenu()}
+        target={this.target}
+        class={`sidebar__nav-item ${!this.isNested && this.isExpandable ? 'header__section' : ""} ${this.isSubMenuItem ? 'submenu__item' : ""}`}
+        title={this.titleText}
+      >
+        {this.icon &&
+          <div class={`sidebar__nav-item-icon-wrapper ${!this.showIcon && !isCollapsed ? 'noIcon' : ""}`}>
+            <ifx-icon icon={this.icon}></ifx-icon>
+          </div>}
+        <div class="sidebar__nav-item-label">
+          <slot />
+        </div>
+        {
+        (this.isExpandable || !isNaN(this.numberIndicator)) &&
+          <div class="sidebar__nav-item-indicator" style={{
+            display: (!isCollapsed || this.icon) ? 'flex' : 'none'
+          }}>
+            {this.isExpandable &&
+              <span class='item__arrow-wrapper'>
+                <ifx-icon icon="chevron-down-16" />
+              </span>
+            }
+
+            {this.numberIndicator > 0 && !this.isExpandable && !this.isNested &&
+              <span class="item__number-indicator">
+                <ifx-indicator
+                  variant={this.indicatorVariant}
+                  number={this.numberIndicator}>
+                </ifx-indicator>
+              </span>}
+
           </div>
-          {
-          (this.isExpandable || !isNaN(this.numberIndicator)) &&
-            <div class="sidebar__nav-item-indicator" style={{
-              display: (!isCollapsed || this.icon) ? 'flex' : 'none'
-            }}>
-              {this.isExpandable &&
-                <span class='item__arrow-wrapper'>
-                  <ifx-icon icon="chevron-down-16" />
-                </span>
-              }
+        }
+      </a>
+      {this.isExpandable && <ul class='expandable__submenu'></ul>}
 
-              {this.numberIndicator > 0 && !this.isExpandable && !this.isNested &&
-                <span class="item__number-indicator">
-                  <ifx-indicator
-                    variant={this.indicatorVariant}
-                    number={this.numberIndicator}>
-                  </ifx-indicator>
-                </span>}
-
-            </div>
-          }
-        </a>
-        {this.isExpandable && <ul class='expandable__submenu'></ul>}
-
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }

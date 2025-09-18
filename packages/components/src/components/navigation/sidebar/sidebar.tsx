@@ -465,21 +465,20 @@ export class Sidebar {
     }
   }
 
-  private setSidebarItemAttributes(collapsed: boolean) {
-    const allSidebarItems = this.el.querySelectorAll('ifx-sidebar-item');
-    allSidebarItems.forEach(item => {
-      if (collapsed) {
-        item.setAttribute('data-sidebar-collapsed', 'true');
-        // Items without icons should be hidden completely
-        if (!item.getAttribute('icon')) {
-          item.setAttribute('data-hide-in-collapsed', 'true');
-        }
-      } else {
-        item.removeAttribute('data-sidebar-collapsed');
-        item.removeAttribute('data-hide-in-collapsed');
+private setSidebarItemAttributes(collapsed: boolean) {
+  const allSidebarItems = this.el.querySelectorAll('ifx-sidebar-item');
+  allSidebarItems.forEach(item => {
+    if (collapsed) {
+      item.setAttribute('data-sidebar-collapsed', 'true');
+      if (!item.icon) { 
+        item.setAttribute('data-hide-in-collapsed', 'true');
       }
-    });
-  }
+    } else {
+      item.removeAttribute('data-sidebar-collapsed');
+      item.removeAttribute('data-hide-in-collapsed');
+    }
+  });
+}
 
   private handleHideMenuClick = () => {
     this.toggleCollapse();
