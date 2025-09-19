@@ -329,6 +329,7 @@ async updateTableView() {
       headerHeight: 40,
       defaultColDef: {
         resizable: true,
+        autoHeight: true,
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
