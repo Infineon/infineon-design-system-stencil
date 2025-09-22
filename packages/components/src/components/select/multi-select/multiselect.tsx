@@ -20,7 +20,7 @@ function debounce(func, wait) {
   tag: 'ifx-multiselect',
   styleUrl: 'multiselect.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class Multiselect {
@@ -356,7 +356,7 @@ export class Multiselect {
   onSelectionChange(newValue: Option[], _: Option[]) {
     const formData = new FormData();
     newValue.forEach(option => formData.append(this.name, option.value));
-    this.internals.setFormValue(formData);
+    //this.internals.setFormValue(formData);
   }
   collapseAll() {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');

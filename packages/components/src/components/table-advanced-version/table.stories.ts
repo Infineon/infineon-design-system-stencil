@@ -30,6 +30,17 @@ const columnDefsWithButtonCol = [
   }
 ];
 
+const columnDefsWithStatusCol = [
+  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
+  { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
+  { headerName: 'Price', field: 'price' },
+  { headerName: 'Age', field: 'age' },
+  {
+    headerName: 'Status',
+    field: 'status',
+  }
+];
+
 
 const rowDataWithButtonCol = [
   {
@@ -72,12 +83,36 @@ const rowDataWithButtonCol = [
     }
   }
 ];
+const rowDataWithStatusCol = [
+  {
+    make: 'Toyota', model: 'Celica', price: 35000, age: 10, status: {
+      label: "Available",
+      color: "green-500",
+      border: true
+    }
+  },
+  {
+    make: 'Ford', model: 'Mondeo', price: 32000, age: 12, status: {
+      label: "Out of Stock",
+      color: "red-500",
+      border: true
+    }
+  },
+  {
+    make: 'Porsche', model: 'Boxster', price: 72000, status: {
+      label: "Coming Soon",
+      color: "orange-500",
+      border: true
+    }
+  }
+];
 
 export default {
   title: 'Components/Table (advanced)',
   args: {
     tableHeight: 'auto',
     pagination: false,
+    serverSidePagination: false,
     rowHeight: 40,
     showLoading: false,
     variant: 'default'
@@ -95,6 +130,19 @@ export default {
     },
     pagination: {
       description: 'Show pagination control.',
+      control: { type: 'boolean' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: true
+        },
+        type: {
+          summary: 'Boolean',
+        },
+      },
+    },
+    serverSidePagination: {
+      description: 'Enables server-side pagination.',
       control: { type: 'boolean' },
       table: {
         category: 'ifx-table props',
@@ -188,7 +236,8 @@ const DefaultTemplate = (args) => {
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
     table-height="${args.tableHeight}"
-    pagination="${args.pagination}",
+    pagination="${args.pagination}"
+    server-side-pagination="${args.serverSidePagination}"
     pagination-items-per-page='${args.paginationItemsPerPage}'
     filter-orientation="${args.filterOrientation}"
     variant='${args.variant}'>
@@ -263,10 +312,31 @@ const DefaultTemplate = (args) => {
 };
 
 
+export const DefaultState = DefaultTemplate.bind({});
+DefaultState.args = {
+  pagination: false,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  filterOrientation: 'none',
+};
+
 
 export const Pagination = DefaultTemplate.bind({});
 Pagination.args = {
   pagination: true,
+  paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
+  rowHeight: 'default',
+  columnDefs: columnDefs,
+  rowData: rowData,
+  filterOrientation: 'none',
+};
+
+export const ServerSidePagination = DefaultTemplate.bind({});
+ServerSidePagination.args = {
+  pagination: true,
+  serverSidePagination: true,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
   columnDefs: columnDefs,
@@ -288,6 +358,19 @@ const CustomCellTemplate = (args) => {
   return table;
 };
 
+const CustomStatusCellTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
+  return table;
+};
+
 
 
 export const IncludesButtons = CustomCellTemplate.bind({});
@@ -295,6 +378,15 @@ IncludesButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithButtonCol,
   rowData: rowDataWithButtonCol,
+  filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesStatus = CustomStatusCellTemplate.bind({});
+IncludesStatus.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithStatusCol,
+  rowData: rowDataWithStatusCol,
   filterOrientation: 'none',
   pagination: false,
 };
