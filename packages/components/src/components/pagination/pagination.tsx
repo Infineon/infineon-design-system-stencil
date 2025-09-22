@@ -272,7 +272,7 @@ export class Pagination {
     return (
       <div class="container">
         <div class="items__per-page-wrapper">
-          <div class="items__per-page-label">Results per Page</div>
+          <div class="items__per-page-label">Results per page</div>
           <div class="items__per-page-field">
             <ifx-select
               id='itemsPerPageSelect'
@@ -294,6 +294,7 @@ export class Pagination {
               class="prev"
               icon="arrow-left-16"
               onClick={() => this.changePage(this.internalPage - 1)}
+              variant="secondary"
             ></ifx-icon-button>
 
             <ol>
@@ -316,6 +317,7 @@ export class Pagination {
               class="next"
               icon="arrow-right-16"
               onClick={() => this.changePage(this.internalPage + 1)}
+              variant="secondary"
             ></ifx-icon-button>
           </div>
         </div>
