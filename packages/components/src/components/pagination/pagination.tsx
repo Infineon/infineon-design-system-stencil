@@ -13,6 +13,7 @@ export class Pagination {
   @Event() ifxPageChange: EventEmitter;
   @Event() ifxItemsPerPageChange: EventEmitter;
   @Prop() currentPage: number = 1;
+  @Prop() showItemsPerPage: boolean = true;
   @State() internalPage: number = 1;
   @State() internalItemsPerPage: number = 10;
   @State() numberOfPages: number[] = [];
@@ -59,9 +60,11 @@ export class Pagination {
     }
 
   async componentDidLoad() {
-    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
-    if(select) {
-      select.addEventListener('ifxSelect', (e) => this.emitItemsPerPage(e))
+    if (this.showItemsPerPage) {
+      const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+      if(select) {
+        select.addEventListener('ifxSelect', (e) => this.emitItemsPerPage(e))
+      }
     }
 
     // Add resize listener to update pagination on screen size changes
@@ -75,9 +78,11 @@ export class Pagination {
   }
 
   disconnectedCallback() {
-    const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
-    if (select) {
-      select.removeEventListener('ifxSelect', (e) => this.emitItemsPerPage(e));
+    if (this.showItemsPerPage) {
+      const select = this.el.shadowRoot.querySelector('#itemsPerPageSelect');
+      if (select) {
+        select.removeEventListener('ifxSelect', (e) => this.emitItemsPerPage(e));
+      }
     }
 
     // Remove resize listener
@@ -271,22 +276,24 @@ export class Pagination {
   render() {
     return (
       <div class="container">
-        <div class="items__per-page-wrapper">
-          <div class="items__per-page-label">Results per page</div>
-          <div class="items__per-page-field">
-            <ifx-select
-              id='itemsPerPageSelect'
-              placeholder='false'
-              show-search='false'
-              value={undefined}
-              disabled={false}
-              error={false}
-              size="s"
-              options={this.filteredItemsPerPage}
-              placeholder-value="Select"
-            ></ifx-select>
+        {this.showItemsPerPage && (
+          <div class="items__per-page-wrapper">
+            <div class="items__per-page-label">Results per page</div>
+            <div class="items__per-page-field">
+              <ifx-select
+                id='itemsPerPageSelect'
+                placeholder='false'
+                show-search='false'
+                value={undefined}
+                disabled={false}
+                error={false}
+                size="s"
+                options={this.filteredItemsPerPage}
+                placeholder-value="Select"
+              ></ifx-select>
+            </div>
           </div>
-        </div>
+        )}
 
         <div class="items__total-wrapper">
           <div class="pagination">
