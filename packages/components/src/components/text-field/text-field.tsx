@@ -118,6 +118,7 @@ export class TextField {
               class={
                 `${this.icon ? 'icon' : ""}
                 ${this.error ? 'error' : ""} 
+                ${this.readOnly ? 'readonly' : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`} />
 
