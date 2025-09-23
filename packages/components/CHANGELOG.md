@@ -1,3 +1,20 @@
+# v37.18.1 (Tue Sep 23 2025)
+
+#### 🐛 Bug Fix
+
+- Table: enables line-break in table cells [#2032](https://github.com/Infineon/infineon-design-system-stencil/pull/2032) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.18.0 (Thu Sep 18 2025)
 
 #### 🚀 Enhancement
