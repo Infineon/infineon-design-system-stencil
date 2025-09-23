@@ -213,8 +213,9 @@
   display: flex;
   padding-left: 16px;
   padding-right: 16px;
-  align-items: center;
-
+  white-space: pre-line;
+  min-height: 40px; 
+  height: auto;
 }
 
 .ag-ltr .ag-sort-indicator-icon {
