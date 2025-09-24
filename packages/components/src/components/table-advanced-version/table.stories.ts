@@ -406,7 +406,9 @@ const InnerButtonsTemplate = (args) => {
       rows='${JSON.stringify(args.rowData)}'
       table-height="${args.tableHeight}"
       pagination="${args.pagination}"
-      filter-orientation="${args.filterOrientation}">
+      filter-orientation="none">
+      <ifx-button slot="inner-button">Button</ifx-button>
+      <ifx-button slot="inner-button">Button</ifx-button>
     </ifx-table>`;
   return table;
 };
@@ -443,7 +445,7 @@ IncludesInnerButtons.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithStatusCol,
   rowData: rowData,
-  filterOrientation: 'none',
+  filterOrientation: 'topbar',
   pagination: false,
 };
 
