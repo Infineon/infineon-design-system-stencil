@@ -398,7 +398,20 @@ const BreakingLineTemplate = (args) => {
   return table;
 };
 
-
+const InnerButtonsTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="none">
+      <ifx-button slot="inner-button">Button</ifx-button>
+      <ifx-button slot="inner-button">Button</ifx-button>
+    </ifx-table>`;
+  return table;
+};
 
 export const IncludesButtons = CustomCellTemplate.bind({});
 IncludesButtons.args = {
@@ -424,6 +437,15 @@ IncludesBreakingline.args = {
   columnDefs: columnDefsWithStatusCol,
   rowData: rowDataWithBreakingLine,
   filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesInnerButtons = InnerButtonsTemplate.bind({});
+IncludesInnerButtons.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithStatusCol,
+  rowData: rowData,
+  filterOrientation: 'topbar',
   pagination: false,
 };
 
