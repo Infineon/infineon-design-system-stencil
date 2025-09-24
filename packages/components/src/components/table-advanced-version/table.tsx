@@ -563,7 +563,13 @@ async updateTableView() {
         'height': this.tableHeight
       };
     }
-    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+    //const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' 
+                  : this.filterOrientation === 'none' ? '' 
+                  : 'sidebar-layout';
+    console.log('filter class', filterClass)
+    console.log('this.filterOrientation', this.filterOrientation)
+    
     return (
       <Host>
         <div class="table-container">
@@ -606,11 +612,11 @@ async updateTableView() {
               </div>
             )}
 
-            <div class="inner-buttons-wrapper">
-              <slot name='inner-buttons' />
-            </div>
-
             <div class="table-pagination-wrapper">
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+
               <div class="filter-chips">
                 {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
                   Object.keys(this.currentFilters).map(name => {
