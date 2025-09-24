@@ -563,7 +563,11 @@ async updateTableView() {
         'height': this.tableHeight
       };
     }
-    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+ 
+    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' 
+                  : this.filterOrientation === 'none' ? '' 
+                  : 'sidebar-layout';
+    
     return (
       <Host>
         <div class="table-container">
@@ -607,9 +611,13 @@ async updateTableView() {
             )}
 
             <div class="table-pagination-wrapper">
-              <div class="filter-chips">
-                {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
-                  Object.keys(this.currentFilters).map(name => {
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+
+              {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
+                <div class="filter-chips">
+                  {Object.keys(this.currentFilters).map(name => {
                     const filter = this.currentFilters[name];
                     const filterValues = filter.filterValues;
                     const isMultiSelect = filter.type !== 'text';
@@ -620,7 +628,7 @@ async updateTableView() {
                         size="large"
                         variant={isMultiSelect ? "multi" : "single"}
                         readOnly={true}
-                        value={filterValues} // Ensure value prop is set
+                        value={filterValues}
                         key={name}
                       >
                         {filterValues.map(filterValue => (
@@ -630,16 +638,9 @@ async updateTableView() {
                         ))}
                       </ifx-chip>
                     ) : null;
-                  })
-                )}
-
-                {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
-                  <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
-                  >
-                    <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all
-                  </ifx-button>
-                )}
-              </div>
+                  })}
+                </div>
+              )}
 
               {this.filterOrientation !== 'none' && (
                 <div class="matching-results-container">
