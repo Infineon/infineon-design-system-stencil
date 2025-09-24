@@ -563,12 +563,10 @@ async updateTableView() {
         'height': this.tableHeight
       };
     }
-    //const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+ 
     const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' 
                   : this.filterOrientation === 'none' ? '' 
                   : 'sidebar-layout';
-    console.log('filter class', filterClass)
-    console.log('this.filterOrientation', this.filterOrientation)
     
     return (
       <Host>
