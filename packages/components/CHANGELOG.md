@@ -1,3 +1,20 @@
+# v37.19.0 (Wed Sep 24 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows buttons to be nested above table [#2042](https://github.com/Infineon/infineon-design-system-stencil/pull/2042) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.18.1 (Tue Sep 23 2025)
 
 #### 🐛 Bug Fix
