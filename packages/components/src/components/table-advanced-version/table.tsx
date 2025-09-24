@@ -606,6 +606,10 @@ async updateTableView() {
               </div>
             )}
 
+            <div class="inner-buttons-wrapper">
+              <slot name='inner-buttons' />
+            </div>
+
             <div class="table-pagination-wrapper">
               <div class="filter-chips">
                 {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
