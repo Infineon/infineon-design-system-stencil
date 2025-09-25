@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons';
+import { ReadOnly } from '../chip/chip.stories';
 
 export default {
   title: 'Components/Text Field',
@@ -13,6 +14,7 @@ export default {
     icon: '',
     success: false,
     placeholder: 'Placeholder',
+    readOnly: false,
     caption: 'Caption',
     required: true,
     optional: false,
@@ -88,6 +90,17 @@ export default {
         category: 'ifx-text-field props',
       }
     },
+    readOnly: {
+			name: 'read-only',
+			description: `Text cannot be edited when set to true.\n 
+*Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
+			table: {
+				category: 'ifx-text-field props',
+				defaultValue: {
+					summary: 'false',
+				},
+			},
+		},
     caption: {
       description: 'Text displayed below the text field to provide additional information.',
       table: {
@@ -196,7 +209,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -204,6 +217,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('icon', icon);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
+  element.setAttribute('readonly', readOnly);
   element.setAttribute('caption', caption);
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
