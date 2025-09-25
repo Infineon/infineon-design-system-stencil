@@ -19,13 +19,13 @@
 | `maxlength`      | `maxlength`        |             | `number`               | `undefined`     |
 | `optional`       | `optional`         |             | `boolean`              | `false`         |
 | `placeholder`    | `placeholder`      |             | `string`               | `"Placeholder"` |
+| `readOnly`       | `read-only`        |             | `boolean`              | `false`         |
 | `required`       | `required`         |             | `boolean`              | `false`         |
 | `showDeleteIcon` | `show-delete-icon` |             | `boolean`              | `false`         |
 | `size`           | `size`             |             | `string`               | `'m'`           |
 | `success`        | `success`          |             | `boolean`              | `false`         |
 | `type`           | `type`             |             | `"password" \| "text"` | `'text'`        |
 | `value`          | `value`            |             | `string`               | `''`            |
-| `readOnly`       | `read-only`        |             | `boolean`              | `false`         |
 
 
 ## Events
