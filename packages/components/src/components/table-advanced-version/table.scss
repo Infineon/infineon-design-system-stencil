@@ -92,6 +92,14 @@
   gap: 24px;
  }
 
+ .inner-buttons-wrapper { 
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+ }
+
 
 .ifx-ag-grid {
   display: grid;
