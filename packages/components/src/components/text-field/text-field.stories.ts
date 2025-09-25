@@ -216,7 +216,7 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly
   element.setAttribute('icon', icon);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
-  element.setAttribute('readonly', readOnly);
+  element.setAttribute('read-only', readOnly);
   element.setAttribute('caption', caption);
   element.setAttribute('required', required);
   element.setAttribute('optional', optional);
