@@ -45,6 +45,12 @@
   flex-direction: column;
   align-items: stretch; // stretches items to fill the container horizontally
   width: 100%; // ensures the wrapper takes up the full width of its parent
+
+  & .pagination-wrapper { 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 
 #table-wrapper {
@@ -90,6 +96,14 @@
   padding-top: 32px;
   padding-bottom: 32px;
   gap: 24px;
+ }
+
+ .inner-buttons-wrapper { 
+  margin-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
  }
 
 
@@ -214,8 +228,9 @@
   display: flex;
   padding-left: 16px;
   padding-right: 16px;
-  align-items: center;
-
+  white-space: pre-line;
+  min-height: 40px; 
+  height: auto;
 }
 
 .ag-ltr .ag-sort-indicator-icon {
