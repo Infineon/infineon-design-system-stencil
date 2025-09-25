@@ -1,6 +1,5 @@
 import { action } from '@storybook/addon-actions';
 import { icons } from '@infineon/infineon-icons';
-import { ReadOnly } from '../chip/chip.stories';
 
 export default {
   title: 'Components/Text Field',
