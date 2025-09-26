@@ -11,6 +11,7 @@ export default {
   args: {
     name: 'multiselect',
     disabled: false,
+    required: true,
     showSearch: true,
     showSelectAll: true,
     showExpandCollapse: true,
@@ -51,6 +52,15 @@ export default {
         },
       },
     },
+    required: {
+			description: 'Marks the Generic Multi-Level Selection as required with an asterik for form submission.',
+			table: {
+				category: 'Function',
+				defaultValue: {
+					summary: true
+				}
+			}
+		},
     name: {
       description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
       control: 'text',
@@ -405,6 +415,7 @@ const SlotBasedTemplate = args => {
   const template = `<ifx-multiselect
   name='${args.name}'
   disabled='${args.disabled}'
+  required='${args.required}'
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'
