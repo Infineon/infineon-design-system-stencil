@@ -1,3 +1,21 @@
+# v37.19.1 (Fri Sep 26 2025)
+
+#### 🐛 Bug Fix
+
+- Tree view: Updats documentation [#2036](https://github.com/Infineon/infineon-design-system-stencil/pull/2036) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.19.0 (Wed Sep 24 2025)
 
 #### 🚀 Enhancement
