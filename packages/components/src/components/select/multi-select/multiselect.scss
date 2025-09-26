@@ -20,6 +20,14 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
+
+    & .required {
+        margin-left: 4px;
+        
+        &.error {
+          color: #CD002F;
+        }
+      }
   }
 
   .ifx-error-message-wrapper {
@@ -82,6 +90,14 @@
     &.error {
       border-color: #CD002F;
     }
+
+    & .required {
+        margin-left: 4px;
+        
+        &.error {
+          color: #CD002F;
+        }
+      }
 
     &:hover:not(.focus, :focus) {
       border-color: tokens.$ifxColorEngineering500;

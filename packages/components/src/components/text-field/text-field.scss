@@ -150,6 +150,13 @@
         }
       }
 
+      &.readonly {
+       border: none;
+       border-radius: var(--borderRadius-12, 1px);
+       border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+       background: var(--color-base-white, #FFF);
+      }
+
       &.success {
         border: 1px solid #4CA460;
 

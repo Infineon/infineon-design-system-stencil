@@ -24,6 +24,7 @@ export class TextField {
   @Prop() optional: boolean = false;
   @Prop() success: boolean = false;
   @Prop() disabled: boolean = false;
+  @Prop() readOnly: boolean = false;
   @Prop() maxlength?: number;
   @Prop() showDeleteIcon: boolean = false;
   @Prop() autocomplete: string = 'on'
@@ -112,10 +113,12 @@ export class TextField {
               value={this.value}
               onInput={() => this.handleInput()}
               placeholder={this.placeholder}
+              readonly={this.readOnly}
               maxlength={this.maxlength}
               class={
                 `${this.icon ? 'icon' : ""}
                 ${this.error ? 'error' : ""} 
+                ${this.readOnly ? 'readonly' : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`} />
 
