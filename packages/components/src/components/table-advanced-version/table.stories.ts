@@ -55,6 +55,17 @@ const columnDefsWithStatusCol = [
   }
 ];
 
+const columnDefsWithLinkCol = [
+  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
+  { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
+  { headerName: 'Price', field: 'price' },
+  { headerName: 'Age', field: 'age' },
+  {
+    headerName: 'Link',
+    field: 'link',
+  }
+];
+
 
 const rowDataWithButtonCol = [
   {
@@ -117,6 +128,39 @@ const rowDataWithStatusCol = [
       label: "Coming Soon",
       color: "orange-500",
       border: true
+    }
+  }
+];
+
+const rowDataWithLinkCol = [
+  {
+    make: 'Toyota', model: 'Celica', price: 35000, age: 10, link: {
+      disabled: false,
+      variant: "bold",
+      size: "s",
+      target: "_blank",
+      href: "https://www.google.com/",
+      text: "Link"
+    }
+  },
+  {
+    make: 'Ford', model: 'Mondeo', price: 32000, age: 12, link: {
+      disabled: false,
+      variant: "underlined",
+      size: "s",
+      target: "_blank",
+      href: "https://www.yahoo.com/",
+      text: "Link"
+    }
+  },
+  {
+    make: 'Porsche', model: 'Boxster', price: 72000, link: {
+      disabled: false,
+      variant: "title",
+      size: "s",
+      target: "_blank",
+      href: "https://www.bing.com/",
+      text: "Link"
     }
   }
 ];
@@ -385,6 +429,19 @@ const CustomStatusCellTemplate = (args) => {
   return table;
 };
 
+const CustomLinkCellTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
+  return table;
+};
+
 const BreakingLineTemplate = (args) => {
   const table = `
     <ifx-table
@@ -427,6 +484,15 @@ IncludesStatus.args = {
   rowHeight: 'default',
   columnDefs: columnDefsWithStatusCol,
   rowData: rowDataWithStatusCol,
+  filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesLink = CustomLinkCellTemplate.bind({});
+IncludesLink.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithLinkCol,
+  rowData: rowDataWithLinkCol,
   filterOrientation: 'none',
   pagination: false,
 };

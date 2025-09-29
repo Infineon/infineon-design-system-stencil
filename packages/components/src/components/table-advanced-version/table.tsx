@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -512,6 +513,13 @@ async updateTableView() {
     if (statusColumn) {
       statusColumn.cellRenderer = StatusCellRenderer;
       statusColumn.cellDataType = false;
+
+    }
+
+    const linkColumn = cols.find(column => column.field === 'link');
+    if (linkColumn) {
+      linkColumn.cellRenderer = LinkCellRenderer;
+      linkColumn.cellDataType = false;
 
     }
   
