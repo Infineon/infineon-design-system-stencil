@@ -14,9 +14,10 @@ export class Chip {
 
   @Event() ifxChange: EventEmitter<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>;
   @Prop() placeholder: string = '';
-  @Prop() size: 'small' | 'large' = 'large';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
   @Prop({ mutable: true }) value: Array<string> | string = undefined;
   @Prop() variant: 'single' | 'multi' = 'single';
+  @Prop() theme: 'outlined' | 'filled-light' | 'filled-dark' = 'outlined';
   @Prop() readOnly: boolean = false;
   @Prop() ariaLabel: string | null;
 
@@ -256,7 +257,7 @@ export class Chip {
     chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
       chipItem.chipState = {
         emitIfxChipItemSelect: true,
-        size: (this.size === 'small' ? 'small' : 'large'),
+        size: this.size,
         variant: (this.variant === 'multi' ? 'multi' : 'single'),
         key: key++
       };
@@ -307,7 +308,7 @@ export class Chip {
   render() {
     return (
       <div class='chip'>
-        <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'}
+        <div class={`chip__wrapper chip__wrapper--${this.size}
                   chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
                   ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
                   ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}

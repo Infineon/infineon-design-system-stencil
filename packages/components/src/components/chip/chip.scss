@@ -37,11 +37,18 @@
     }
     
     &.chip__wrapper--small {
-        padding: tokens.$ifxSpace50 tokens.$ifxSpace150;
+        padding: tokens.$ifxSpace50 tokens.$ifxSpace100;
+        height: tokens.$ifxSize300;
+    }
+
+    &.chip__wrapper--medium {
+        padding: tokens.$ifxSpace50 tokens.$ifxSpace100;
+        height: tokens.$ifxSize350;
     }
     
     &.chip__wrapper--large {
-        padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+        padding: tokens.$ifxSpace100 tokens.$ifxSpace150;
+        height: tokens.$ifxSize450;
     }
     
     &.chip__wrapper--opened {
