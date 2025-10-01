@@ -1,0 +1,342 @@
+import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
+import classNames from 'classnames';
+
+export interface ActionListItemClickEvent {
+  value?: string;
+  href?: string;
+  target?: string;
+  component?: ActionListItem;
+}
+
+@Component({
+  tag: 'ifx-action-list-item',
+  styleUrl: 'action-list-item.scss',
+  shadow: true,
+})
+export class ActionListItem {
+  @Element() host: HTMLElement;
+
+  private interactiveElementSuppressed = false;
+
+  /**
+   * The title text displayed in the item
+   */
+  @Prop() itemTitle: string;
+
+  /**
+   * The description text displayed below the title
+   */
+  @Prop() description?: string;
+
+  /**
+   * Value associated with this item
+   */
+  @Prop() value?: string;
+
+  /**
+   * URL to navigate to when item is clicked
+   */
+  @Prop() href?: string;
+
+  /**
+   * Target for the link navigation
+   * @default '_self'
+   */
+  @Prop() target: string = '_self';
+
+  /**
+   * Controls whether the item is disabled
+   * @default false
+   */
+  @Prop() disabled: boolean = false;
+
+  /**
+   * Aria label for accessibility support
+   */
+  @Prop() itemAriaLabel?: string;
+
+  /**
+   * Event emitted when the main item area is clicked
+   */
+  @Event() ifxActionListItemClick: EventEmitter<ActionListItemClickEvent>;
+
+  private handleMainClick = (event: MouseEvent) => {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    // Check if clicked element is inside leading or trailing areas
+    const leadingElement = this.host.shadowRoot?.querySelector('.action-list-item__leading');
+    const trailingElement = this.host.shadowRoot?.querySelector('.action-list-item__trailing');
+
+    if (leadingElement?.contains(event.target as Node) || trailingElement?.contains(event.target as Node)) {
+      return; // Don't trigger main click if clicking on leading/trailing areas
+    }
+
+    // Don't trigger main click if interactive elements had their own events
+    if (this.interactiveElementSuppressed) {
+      this.interactiveElementSuppressed = false;
+      return;
+    }
+
+    // Always emit main event when clicking on content area (text), regardless of interactive elements
+    this.ifxActionListItemClick.emit({
+      value: this.value,
+      href: this.href,
+      target: this.target,
+      component: this,
+    });
+
+    // If href is provided, automatically navigate (Link mode)
+    // If no href is provided, only the event is emitted (Event mode)
+    if (this.href) {
+      if (this.target === '_blank') {
+        window.open(this.href, this.target);
+      } else {
+        window.location.href = this.href;
+      }
+    }
+  };
+
+  private handleLeadingClick = (event: MouseEvent) => {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    const target = event.target as HTMLElement;
+
+    // Check if the clicked element or any of its parents is an interactive component
+    let currentElement = target;
+    while (currentElement && currentElement !== this.host) {
+      if (this.isInteractiveElement(currentElement)) {
+        // Interactive element clicked - block main event and stop propagation
+        event.stopPropagation();
+        this.interactiveElementSuppressed = true;
+        return;
+      }
+      currentElement = currentElement.parentElement;
+    }
+
+    // Non-interactive element clicked - trigger main action
+    event.stopPropagation();
+    this.ifxActionListItemClick.emit({
+      value: this.value,
+      href: this.href,
+      target: this.target,
+      component: this,
+    });
+
+    // If href is provided, automatically navigate
+    if (this.href) {
+      if (this.target === '_blank') {
+        window.open(this.href, this.target);
+      } else {
+        window.location.href = this.href;
+      }
+    }
+  };
+
+  private handleTrailingClick = (event: MouseEvent) => {
+    if (this.disabled) {
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+
+    const target = event.target as HTMLElement;
+
+    // Check if the clicked element or any of its parents is an interactive component
+    let currentElement = target;
+    while (currentElement && currentElement !== this.host) {
+      if (this.isInteractiveElement(currentElement)) {
+        // Interactive element clicked - block main event and stop propagation
+        event.stopPropagation();
+        this.interactiveElementSuppressed = true;
+        return;
+      }
+      currentElement = currentElement.parentElement;
+    }
+
+    // Non-interactive element clicked - trigger main action
+    event.stopPropagation();
+    this.ifxActionListItemClick.emit({
+      value: this.value,
+      href: this.href,
+      target: this.target,
+      component: this,
+    });
+
+    // If href is provided, automatically navigate
+    if (this.href) {
+      if (this.target === '_blank') {
+        window.open(this.href, this.target);
+      } else {
+        window.location.href = this.href;
+      }
+    }
+  };
+
+  private isInteractiveElement = (element: HTMLElement): boolean => {
+    // Get the tag name, handling both custom elements and standard HTML
+    const tagName = element.tagName.toUpperCase();
+
+    // List of Infineon components that should block main event
+    const interactiveInfineonComponents = [
+      'IFX-BUTTON',
+      'IFX-CHECKBOX',
+      'IFX-RADIO',
+      'IFX-SWITCH',
+      'IFX-INPUT',
+      'IFX-SELECT',
+      'IFX-DROPDOWN',
+      'IFX-TEXTAREA'
+    ];
+
+    // List of standard HTML interactive elements
+    const interactiveHTMLElements = [
+      'BUTTON',
+      'INPUT',
+      'SELECT',
+      'TEXTAREA',
+      'A'
+    ];
+
+    // Check if it's an interactive Infineon component or HTML element
+    if (interactiveInfineonComponents.includes(tagName) || interactiveHTMLElements.includes(tagName)) {
+      return true;
+    }
+
+    // Check for role-based interactivity
+    const interactiveRoles = ['button', 'link', 'checkbox', 'radio', 'menuitem', 'tab', 'switch'];
+    const role = element.getAttribute('role');
+    const hasInteractiveRole = role && interactiveRoles.includes(role);
+
+    // Check if element is focusable
+    const isFocusable = element.tabIndex >= 0 ||
+                       element.hasAttribute('tabindex') ||
+                       element.hasAttribute('contenteditable');
+
+    return hasInteractiveRole || isFocusable;
+  };
+
+  private handleMainKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      // Always trigger main action via keyboard, regardless of interactive elements
+      this.handleMainClick(event as any);
+    }
+  };
+
+  private handleLeadingKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      const leadingSlot = this.host.shadowRoot?.querySelector('slot[name="leading"]') as HTMLSlotElement;
+      const assignedElements = leadingSlot?.assignedElements() || [];
+
+      // Find first interactive element and activate it
+      const firstInteractive = assignedElements.find(el =>
+        this.isInteractiveElement(el as HTMLElement)
+      ) as HTMLElement;
+
+      if (firstInteractive) {
+        firstInteractive.focus();
+        firstInteractive.click();
+        this.interactiveElementSuppressed = true;
+      }
+    }
+  };
+
+  private handleTrailingKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) return;
+
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+
+      const trailingSlot = this.host.shadowRoot?.querySelector('slot[name="trailing"]') as HTMLSlotElement;
+      const assignedElements = trailingSlot?.assignedElements() || [];
+
+      // Find first interactive element and activate it
+      const firstInteractive = assignedElements.find(el =>
+        this.isInteractiveElement(el as HTMLElement)
+      ) as HTMLElement;
+
+      if (firstInteractive) {
+        firstInteractive.focus();
+        firstInteractive.click();
+        this.interactiveElementSuppressed = true;
+      }
+    }
+  };
+
+  private hasSlotContent(slotName: string): boolean {
+    const slot = this.host.querySelector(`[slot="${slotName}"]`);
+    return !!slot;
+  }
+
+  render() {
+    const isClickable = !this.disabled && (this.href || this.value);
+    const ariaLabel = this.itemAriaLabel || `${this.itemTitle}${this.description ? ` - ${this.description}` : ''}`;
+    const hasLeadingContent = this.hasSlotContent('leading');
+    const hasTrailingContent = this.hasSlotContent('trailing');
+
+    return (
+      <div
+        class={classNames(
+          'action-list-item',
+          this.disabled && 'action-list-item--disabled',
+          isClickable && 'action-list-item--clickable'
+        )}
+        role="listitem"
+        tabIndex={isClickable ? 0 : -1}
+        aria-label={ariaLabel}
+        aria-disabled={this.disabled ? 'true' : undefined}
+        onClick={this.handleMainClick}
+        onKeyDown={this.handleMainKeyDown}
+      >
+        {/* Leading Item Container - only render if content exists */}
+        {hasLeadingContent && (
+          <div
+            class="action-list-item__leading"
+            onClick={this.handleLeadingClick}
+            onKeyDown={this.handleLeadingKeyDown}
+          >
+            <slot name="leading"></slot>
+          </div>
+        )}
+
+        {/* Text Container */}
+        <div class="action-list-item__content">
+          <div class="action-list-item__title">
+            {this.itemTitle}
+          </div>
+          {this.description && (
+            <div class="action-list-item__description">
+              {this.description}
+            </div>
+          )}
+        </div>
+
+        {/* Trailing Item Container - only render if content exists */}
+        {hasTrailingContent && (
+          <div
+            class="action-list-item__trailing"
+            onClick={this.handleTrailingClick}
+            onKeyDown={this.handleTrailingKeyDown}
+          >
+            <slot name="trailing"></slot>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
