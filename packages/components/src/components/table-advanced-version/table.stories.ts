@@ -173,7 +173,8 @@ export default {
     serverSidePagination: false,
     rowHeight: 40,
     showLoading: false,
-    variant: 'default'
+    variant: 'default',
+    headline: "Matching results"
   },
   argTypes: {
     tableHeight: {
@@ -282,6 +283,14 @@ export default {
       options: ['default', 'zebra'],
       control: { type: 'radio' },
     },
+
+    headline: {
+      description: 'Sets the headline of the table.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'matching results' },
+      }
+    },
   }
 };
 
@@ -356,6 +365,7 @@ const DefaultTemplate = (args) => {
    </ifx-filter-bar>`;
 
     const table = `<ifx-table
+    headline="${args.headline}"
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
@@ -525,6 +535,7 @@ SidebarFilter.args = {
 
 export const TopbarFilter = DefaultTemplate.bind({});
 TopbarFilter.args = {
+  headline: "Matching results",
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
