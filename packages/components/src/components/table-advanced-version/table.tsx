@@ -650,11 +650,11 @@ async updateTableView() {
               <div class="headline-wrapper">
               {this.filterOrientation !== 'none' && (
                 <div class="matching-results-container">
-                  <span class="matching-results-text">
-                    {this.headline}
-                  </span>
                   <span class="matching-results-count">
                     ({this.matchingResultsCount})
+                  </span>
+                  <span class="matching-results-text">
+                    {this.headline}
                   </span>
                 </div>
               )}
