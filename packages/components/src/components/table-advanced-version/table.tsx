@@ -35,6 +35,7 @@ export class Table {
   @Prop() paginationItemsPerPage: string;
   @State() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'sidebar';
+  @Prop() headline: string = "";
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
@@ -619,10 +620,6 @@ async updateTableView() {
             )}
 
             <div class="table-pagination-wrapper">
-                <div class="inner-buttons-wrapper">
-                  <slot name='inner-button' />
-                </div>
-
               {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
                 <div class="filter-chips">
                   {Object.keys(this.currentFilters).map(name => {
@@ -650,16 +647,23 @@ async updateTableView() {
                 </div>
               )}
 
-              {this.filterOrientation !== 'none' && (
+              <div class="headline-wrapper">
+              {this.filterOrientation !== 'none' && this.headline && (
                 <div class="matching-results-container">
                   <span class="matching-results-count">
-                    {this.matchingResultsCount}
+                    ({this.matchingResultsCount})
                   </span>
                   <span class="matching-results-text">
-                    matching results
+                    {this.headline}
                   </span>
+
                 </div>
               )}
+
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+              </div>
 
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>

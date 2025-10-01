@@ -67,6 +67,7 @@
 
 .filter-chips { 
   display:flex;
+  flex-wrap: wrap;
   gap:tokens.$ifxSpace100;
   margin-bottom: 12px;
 }
@@ -92,8 +93,15 @@
   gap: 24px;
  }
 
+ .headline-wrapper { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0px;
+ }
+
  .inner-buttons-wrapper { 
-  margin-top: 5px;
+  flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -251,15 +259,17 @@
 
 
 .matching-results-container {
+  flex: 1;
+  font-family: 'Source Sans 3';
   display: flex;
   gap: 4px;
-  font-size: 14px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -1px;
+  padding-right: 56px;
 }
 
 .matching-results-count {
   font-weight: 600;
-}
-
-.matching-results-text {
-  font-weight: 400;
 }
