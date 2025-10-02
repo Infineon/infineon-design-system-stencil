@@ -20,6 +20,7 @@ export class Chip {
   @Prop() theme: 'outlined' | 'filled-light' | 'filled-dark' = 'outlined';
   @Prop() readOnly: boolean = false;
   @Prop() ariaLabel: string | null;
+  @Prop() disabled: boolean = false;
 
   @State() opened: boolean = false;
   @State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -257,7 +258,7 @@ export class Chip {
     chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
       chipItem.chipState = {
         emitIfxChipItemSelect: true,
-        size: this.size,
+        size: this.size ? this.size : 'medium',
         variant: (this.variant === 'multi' ? 'multi' : 'single'),
         key: key++
       };
@@ -308,12 +309,14 @@ export class Chip {
   render() {
     return (
       <div class='chip'>
-        <div class={`chip__wrapper chip__wrapper--${this.size}
+        <div class={`chip__wrapper chip__wrapper--${this.size ? this.size : 'medium'}
                   chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
                   ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
-                  ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
+                  ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}
+                  ${this.theme ? this.theme : 'outlined'}
+                  ${this.disabled ? 'disabled' : ""}`}
           tabIndex={0}
-          onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
+          onClick={!this.readOnly && !this.disabled ? () => { this.handleWrapperClick() } : undefined}
           role='combobox'
           aria-label={this.ariaLabel}
           aria-value={this.getSelectedOptions()}

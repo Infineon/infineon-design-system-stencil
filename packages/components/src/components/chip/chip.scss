@@ -27,13 +27,158 @@
 
     font: tokens.$ifxBodyBody04;
     
-    &:hover, &:focus-visible {
+    &.outlined { 
+        outline: 2px solid transparent;
+
+        &:hover {
+            border-color: tokens.$ifxColorEngineering500;
+            background-color: tokens.$ifxColorEngineering100;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$ifxColorOcean500;
+            border: 1px solid tokens.$ifxColorEngineering300;
+            outline-offset: 2px;
+        }
+
+        &:active { 
+            border-color: tokens.$ifxColorEngineering500;
+            background-color: tokens.$ifxColorEngineering300;
+        }
+
+        &.chip__wrapper--opened {
+            border: 1px solid tokens.$ifxColorOcean500;
+        
+         .wrapper__open-button {
+            transform: rotate(-180deg);
+         }
+        }
+
+        &.chip__wrapper--selected {
+        outline: 3px solid tokens.$ifxColorOcean500;
+        border: none;
+        background-color: white;
+
+        &:focus-visible {
+            outline-offset: 0px;
+        }
+         &:hover { 
+            outline-color: tokens.$ifxColorOcean600;
+         }
+        
+        .wrapper__label {
+            .label__selected-options {
+                font: tokens.$ifxBodyBody04;
+            }
+        }
+      }
+
+      &.disabled { 
         outline: none;
-        border: 1px solid tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
+        border: 1px solid tokens.$ifxColorEngineering300;
+        &:hover { 
+            outline: none;
+            border-color: tokens.$ifxColorEngineering300;
+            background-color: white;
+        }
+      }
     }
 
-    &:focus {
-        border: 1px solid tokens.$ifxColorOcean500;
+    &.filled-dark { 
+        background-color: tokens.$ifxColorEngineering600;
+        border: 2px solid transparent;
+        outline: 2px solid transparent;
+        color: white;
+
+        &:hover { 
+        background-color: tokens.$ifxColorEngineering400;
+        color: black;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$ifxColorOcean600;
+            border: 2px solid white;
+        }
+
+        &:active { 
+            background-color: tokens.$ifxColorEngineering300;
+        }
+
+        &.chip__wrapper--opened {
+         .wrapper__open-button {
+            transform: rotate(-180deg);
+         }
+        }
+
+        &.chip__wrapper--selected {
+        background-color: tokens.$ifxColorOcean500;
+        color: white;
+         &:hover { 
+            background-color: tokens.$ifxColorOcean600;
+         }
+        
+        .wrapper__label {
+            .label__selected-options {
+                font: tokens.$ifxBodyBody04;
+            }
+        }
+      }
+
+      &.disabled { 
+        background-color: tokens.$ifxColorEngineering600;
+        color: tokens.$ifxColorEngineering300;
+        &:hover { 
+        background-color: tokens.$ifxColorEngineering600;
+        }
+      }
+    }
+
+    &.filled-light { 
+        background-color: tokens.$ifxColorEngineering200;
+        border: 2px solid transparent;
+        outline: 2px solid transparent;
+
+        &:hover { 
+        background-color: tokens.$ifxColorEngineering300;
+        }
+
+        &:focus-visible {
+            outline: 2px solid tokens.$ifxColorOcean600;
+            border: 2px solid white;
+        }
+
+        &:active { 
+            background-color: tokens.$ifxColorEngineering400;
+        }
+
+        &.chip__wrapper--opened {
+         .wrapper__open-button {
+            transform: rotate(-180deg);
+         }
+        }
+
+        &.chip__wrapper--selected {
+        background-color: tokens.$ifxColorOcean500;
+        color: white;
+         &:hover { 
+            background-color: tokens.$ifxColorOcean600;
+         }
+        
+        .wrapper__label {
+            .label__selected-options {
+                font: tokens.$ifxBodyBody04;
+            }
+        }
+      }
+
+      &.disabled { 
+        background-color: tokens.$ifxColorEngineering200;
+        color: tokens.$ifxColorEngineering300;
+        &:hover { 
+        background-color: tokens.$ifxColorEngineering200;
+        }
+      }
     }
     
     &.chip__wrapper--small {
@@ -42,34 +187,13 @@
     }
 
     &.chip__wrapper--medium {
-        padding: tokens.$ifxSpace50 tokens.$ifxSpace100;
+        padding: tokens.$ifxSpace50 tokens.$ifxSpace150;
         height: tokens.$ifxSize350;
     }
     
     &.chip__wrapper--large {
         padding: tokens.$ifxSpace100 tokens.$ifxSpace150;
         height: tokens.$ifxSize450;
-    }
-    
-    &.chip__wrapper--opened {
-        border: 1px solid tokens.$ifxColorOcean500;
-        
-        .wrapper__open-button {
-            transform: rotate(-180deg);
-        }
-    }
-    
-    &.chip__wrapper--selected {
-        outline: 3px solid tokens.$ifxColorOcean500;
-        outline-offset: -3px;
-        
-        color: tokens.$ifxColorOcean500;
-        
-        &:hover, &:focus-visible {
-            outline: 3px solid tokens.$ifxColorOcean600;
-            
-            color: tokens.$ifxColorOcean600;
-        }
     }
 }
 
@@ -88,8 +212,6 @@
 .wrapper__open-button {
     display:flex;
     align-items: center;
-    
-    transition: all 300ms ease;
 }
 
 .wrapper__unselect-button {
