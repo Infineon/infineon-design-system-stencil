@@ -20,21 +20,52 @@
     cursor: pointer;  
     transition: border 100ms ease;
     font: tokens.$ifxBodyBody04;
+
+    &.outlined, &.filled-dark, &.filled-light { 
+        outline: 2px solid transparent;
+        &:focus-visible {
+            outline: 2px solid tokens.$ifxColorOcean500;
+            outline-offset: 2px;
+        }
+        
+        &.chip__wrapper--opened {
+         .wrapper__open-button {
+            transform: rotate(-180deg);
+         }
+        }
+
+        &.chip__wrapper--selected {
+        .wrapper__label {
+            .label__selected-options {
+                font: tokens.$ifxBodyBody04;
+            }
+        }
+      }
+    }
+
+    &.filled-dark, &.filled-light { 
+        &.chip__wrapper--selected {
+        background-color: tokens.$ifxColorOcean500;
+        color: white;
+         &:hover { 
+            background-color: tokens.$ifxColorOcean600;
+         }
+      }
+    }
     
     &.outlined { 
         border: 1px solid tokens.$ifxColorEngineering300;
-        outline: 2px solid transparent;
+        //outline: 2px solid transparent;
 
         &:hover {
             border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
         }
 
-        &:focus-visible {
-            outline: 2px solid tokens.$ifxColorOcean500;
-            border: 1px solid tokens.$ifxColorEngineering300;
-            outline-offset: 2px;
-        }
+        // &:focus-visible {
+        //     outline: 2px solid tokens.$ifxColorOcean500;
+        //     outline-offset: 2px;
+        // }
 
         &:active { 
             border-color: tokens.$ifxColorEngineering500;
@@ -44,9 +75,9 @@
         &.chip__wrapper--opened {
             border: 1px solid tokens.$ifxColorOcean500;
         
-         .wrapper__open-button {
-            transform: rotate(-180deg);
-         }
+        //  .wrapper__open-button {
+        //     transform: rotate(-180deg);
+        //  }
         }
 
         &.chip__wrapper--selected {
@@ -61,11 +92,11 @@
             outline-color: tokens.$ifxColorOcean600;
          }
         
-        .wrapper__label {
-            .label__selected-options {
-                font: tokens.$ifxBodyBody04;
-            }
-        }
+        // .wrapper__label {
+        //     .label__selected-options {
+        //         font: tokens.$ifxBodyBody04;
+        //     }
+        // }
       }
 
       &.disabled { 
@@ -82,7 +113,7 @@
 
     &.filled-dark { 
         background-color: tokens.$ifxColorEngineering600;
-        outline: 2px solid transparent;
+        //outline: 2px solid transparent;
         color: white;
 
         &:hover { 
@@ -90,39 +121,39 @@
         color: black;
         }
 
-        &:focus-visible {
-            outline: 2px solid tokens.$ifxColorOcean600;
-            outline-offset: 2px;
-        }
+        // &:focus-visible {
+        //     outline: 2px solid tokens.$ifxColorOcean500;
+        //     outline-offset: 2px;
+        // }
 
         &:active { 
             background-color: tokens.$ifxColorEngineering300;
         }
 
-        &.chip__wrapper--opened {
-         .wrapper__open-button {
-            transform: rotate(-180deg);
-         }
-        }
+        // &.chip__wrapper--opened {
+        //  .wrapper__open-button {
+        //     transform: rotate(-180deg);
+        //  }
+        // }
 
-        &.chip__wrapper--selected {
-        background-color: tokens.$ifxColorOcean500;
-        color: white;
-         &:hover { 
-            background-color: tokens.$ifxColorOcean600;
-         }
+    //     &.chip__wrapper--selected {
+    //     background-color: tokens.$ifxColorOcean500;
+    //     color: white;
+    //      &:hover { 
+    //         background-color: tokens.$ifxColorOcean600;
+    //      }
         
-        .wrapper__label {
-            .label__selected-options {
-                font: tokens.$ifxBodyBody04;
-            }
-        }
-      }
+    //     .wrapper__label {
+    //         .label__selected-options {
+    //             font: tokens.$ifxBodyBody04;
+    //         }
+    //     }
+    //   }
 
       &.disabled { 
-        background-color: tokens.$ifxColorEngineering600;
+        //background-color: tokens.$ifxColorEngineering600;
         color: tokens.$ifxColorEngineering300;
-        &:hover { 
+        &:hover:not(.chip__wrapper--selected) { 
         background-color: tokens.$ifxColorEngineering600;
         }
       }
@@ -130,45 +161,46 @@
 
     &.filled-light { 
         background-color: tokens.$ifxColorEngineering200;
-        outline: 2px solid transparent;
+        //outline: 2px solid transparent;
 
         &:hover { 
         background-color: tokens.$ifxColorEngineering300;
         }
 
-        &:focus-visible {
-            outline: 2px solid tokens.$ifxColorOcean600;
-            outline-offset: 2px;
-        }
+        // &:focus-visible {
+        //     outline: 2px solid tokens.$ifxColorOcean500;
+        //     outline-offset: 2px;
+        // }
 
         &:active { 
             background-color: tokens.$ifxColorEngineering400;
         }
 
-        &.chip__wrapper--opened {
-         .wrapper__open-button {
-            transform: rotate(-180deg);
-         }
-        }
+        // &.chip__wrapper--opened {
+        //  .wrapper__open-button {
+        //     transform: rotate(-180deg);
+        //  }
+        // }
 
-        &.chip__wrapper--selected {
-        background-color: tokens.$ifxColorOcean500;
-        color: white;
-         &:hover { 
-            background-color: tokens.$ifxColorOcean600;
-         }
+    //     &.chip__wrapper--selected {
+    //     background-color: tokens.$ifxColorOcean500;
+    //     color: white;
+    //      &:hover { 
+    //         background-color: tokens.$ifxColorOcean600;
+    //      }
         
-        .wrapper__label {
-            .label__selected-options {
-                font: tokens.$ifxBodyBody04;
-            }
-        }
-      }
+    //     .wrapper__label {
+    //         .label__selected-options {
+    //             font: tokens.$ifxBodyBody04;
+    //         }
+    //     }
+    //   }
 
       &.disabled { 
-        background-color: tokens.$ifxColorEngineering200;
+        outline: none;
+        //background-color: tokens.$ifxColorEngineering200;
         color: tokens.$ifxColorEngineering300;
-        &:hover { 
+        &:hover:not(.chip__wrapper--selected) { 
         background-color: tokens.$ifxColorEngineering200;
         }
       }
