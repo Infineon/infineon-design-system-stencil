@@ -16,7 +16,7 @@
     gap: tokens.$ifxSpace100;
 
     box-sizing: border-box;
-    border: 1px solid tokens.$ifxColorEngineering300;
+    //border: 1px solid tokens.$ifxColorEngineering300;
     border-radius: tokens.$ifxBorderRadiusRound;
     
     background: tokens.$ifxColorBaseWhite;
@@ -28,6 +28,7 @@
     font: tokens.$ifxBodyBody04;
     
     &.outlined { 
+        border: 1px solid tokens.$ifxColorEngineering300;
         outline: 2px solid transparent;
 
         &:hover {
@@ -87,7 +88,7 @@
 
     &.filled-dark { 
         background-color: tokens.$ifxColorEngineering600;
-        border: 2px solid transparent;
+        //border: 2px solid transparent;
         outline: 2px solid transparent;
         color: white;
 
@@ -98,7 +99,10 @@
 
         &:focus-visible {
             outline: 2px solid tokens.$ifxColorOcean600;
-            border: 2px solid white;
+            //border: 2px solid white;
+
+
+            outline-offset: 2px;
         }
 
         &:active { 
@@ -136,7 +140,7 @@
 
     &.filled-light { 
         background-color: tokens.$ifxColorEngineering200;
-        border: 2px solid transparent;
+        //border: 2px solid transparent;
         outline: 2px solid transparent;
 
         &:hover { 
@@ -145,7 +149,8 @@
 
         &:focus-visible {
             outline: 2px solid tokens.$ifxColorOcean600;
-            border: 2px solid white;
+            outline-offset: 2px;
+            //border: 2px solid white;
         }
 
         &:active { 
