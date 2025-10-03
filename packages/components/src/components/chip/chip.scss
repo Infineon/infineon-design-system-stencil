@@ -56,7 +56,7 @@
 
         &.chip__wrapper--selected {
         outline: 3px solid tokens.$ifxColorOcean500;
-        border: none;
+        border: 1px solid transparent;
         background-color: white;
 
         &:focus-visible {
