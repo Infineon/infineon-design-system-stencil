@@ -20,6 +20,11 @@
     mychip.disabled = !mychip.disabled;
   }
 
+  const makeReadonly = () => { 
+    const mychip = document.getElementById('mychip');
+    mychip.readOnly = !mychip.readOnly;
+  }
+
 </script>
 
 
@@ -27,21 +32,7 @@
 
 <body>
 
-  <ifx-chip id="mychip"  placeholder="Label" size="medium" variant="single" theme="outlined" read-only="false" aria-label="Chip" disabled="false">
-    <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
-    <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
-    <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
-    <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
-  </ifx-chip>
-
-  <ifx-chip   placeholder="Label" size="medium" variant="single" theme="filled-light" read-only="false" aria-label="Chip" disabled="false">
-    <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
-    <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
-    <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
-    <ifx-chip-item value="Item Value 4">Item Label 4</ifx-chip-item>
-  </ifx-chip>
-
-  <ifx-chip   placeholder="Label" size="medium" variant="single" theme="filled-dark" read-only="false" aria-label="Chip" disabled="false">
+  <ifx-chip id="mychip"  placeholder="Label" size="medium" variant="multi" theme="filled-dark" read-only="false" aria-label="Chip" disabled="false">
     <ifx-chip-item value="Item Value 1">Item Label 1</ifx-chip-item>
     <ifx-chip-item value="Item Value 2">Item Label 2</ifx-chip-item>
     <ifx-chip-item value="Item Value 3">Item Label 3</ifx-chip-item>
@@ -49,6 +40,7 @@
   </ifx-chip>
 
   <ifx-button onclick="makeDisable()">disable</ifx-button>
+  <ifx-button onclick="makeReadonly()">readonly</ifx-button>
 
 </body>
 

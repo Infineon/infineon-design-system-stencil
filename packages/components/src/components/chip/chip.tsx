@@ -360,14 +360,14 @@ export class Chip {
 
           { 
             (this.variant !== 'multi' && this.readOnly !== false && this.selectedOptions.length > 0) &&
-            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
+            <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
           }
 
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
-            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
+            <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
           }

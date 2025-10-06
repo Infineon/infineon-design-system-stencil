@@ -50,6 +50,10 @@
          &:hover { 
             background-color: tokens.$ifxColorOcean600;
          }
+
+         &:hover.disabled { 
+            background-color: tokens.$ifxColorOcean500;
+         }
       }
     }
     
@@ -116,7 +120,7 @@
         //outline: 2px solid transparent;
         color: white;
 
-        &:hover { 
+        &:hover:not(.chip__wrapper--selected, .disabled) { 
         background-color: tokens.$ifxColorEngineering400;
         color: black;
         }
@@ -126,7 +130,7 @@
         //     outline-offset: 2px;
         // }
 
-        &:active { 
+        &:active:not(.chip__wrapper--selected, .disabled) { 
             background-color: tokens.$ifxColorEngineering300;
         }
 
@@ -151,6 +155,7 @@
     //   }
 
       &.disabled { 
+        outline: none;
         //background-color: tokens.$ifxColorEngineering600;
         color: tokens.$ifxColorEngineering300;
         &:hover:not(.chip__wrapper--selected) { 
@@ -227,7 +232,7 @@
     align-items: center;
     gap: tokens.$ifxSpace50;
 
-    font: tokens.$ifxBodyBody04;
+    //font: tokens.$ifxBodyBody04;
     
     .label__selected-options {
         font: tokens.$ifxBodyBodySemibold04;
