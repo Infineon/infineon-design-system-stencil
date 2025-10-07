@@ -66,16 +66,6 @@ const meta: Meta = {
       table: { category: 'Custom Events' },
       description: 'Event emitted when the main item area is clicked',
     },
-    ifxCheckboxChange: {
-      action: 'ifxCheckboxChange',
-      table: { category: 'Custom Events' },
-      description: 'Event emitted when a checkbox in leading/trailing slot is changed',
-    },
-    ifxSwitchChange: {
-      action: 'ifxSwitchChange',
-      table: { category: 'Custom Events' },
-      description: 'Event emitted when a switch in leading/trailing slot is changed',
-    },
   },
 };
 
@@ -92,10 +82,9 @@ const BaseTemplate: StoryFn = (args) => {
       description="${args.description || 'View your main dashboard'}"
       value="dashboard"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}
-      ${args.href ? `href="${args.href}"` : 'value="dashboard"'}
+      ${args.href ? `href="${args.href}"` : ''}
       ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
-      ${args.leadingContent || ''}
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
 
@@ -103,7 +92,6 @@ const BaseTemplate: StoryFn = (args) => {
       item-title="Settings"
       value="settings"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
-      ${args.leadingContent || ''}
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
 
@@ -113,7 +101,6 @@ const BaseTemplate: StoryFn = (args) => {
       value="profile"
       disabled="true"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
-      ${args.leadingContent || ''}
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
 
@@ -122,7 +109,6 @@ const BaseTemplate: StoryFn = (args) => {
       description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics."
       value="analytics"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
-      ${args.leadingContent || ''}
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
     </ifx-action-list-item>
   `;
@@ -137,26 +123,6 @@ const BaseTemplate: StoryFn = (args) => {
     });
   });
 
-  // Listen for checkbox events from interactive elements
-  listEl.addEventListener('ifxCheckboxChange', (event) => {
-    const customEvent = event as CustomEvent;
-    action('ifxCheckboxChange')({
-      checked: customEvent.detail.checked,
-      value: customEvent.detail.value,
-      component: customEvent.detail.component?.tagName
-    });
-  });
-
-  // Listen for switch events from interactive elements
-  listEl.addEventListener('ifxSwitchChange', (event) => {
-    const customEvent = event as CustomEvent;
-    action('ifxSwitchChange')({
-      checked: customEvent.detail.checked,
-      value: customEvent.detail.value,
-      component: customEvent.detail.component?.tagName
-    });
-  });
-
   return listEl;
 };
 
@@ -167,46 +133,150 @@ Default.args = {
   description: 'View your main dashboard',
   disabled: false,
   itemAriaLabel: 'Navigation item',
-  leadingContent: '', // No leading content for default story
 };
 
-Default.storyName = 'Default';
+export const InteractiveCheckbox: StoryFn = (args) => {
+  const listEl = document.createElement('ifx-action-list');
+  if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
-export const Interactive = BaseTemplate.bind({});
-Interactive.args = {
+  // Create items based on the story requirements
+  listEl.innerHTML = `
+    <ifx-action-list-item
+      item-title="${args.itemTitle || 'Enable notifications'}"
+      description="${args.description || 'Receive notifications for important updates'}"
+      value="notifications"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}
+      ${args.href ? `href="${args.href}"` : ''}
+      ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
+      ${args.disabled ? 'disabled="true"' : ''}>
+      <ifx-checkbox slot="leading" checked="true"></ifx-checkbox>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Auto-save documents"
+      description="Automatically save your work"
+      value="autosave"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Enable backups"
+      description="Create automatic backups"
+      value="backups"
+      disabled="true"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Show advanced options"
+      value="advanced"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-checkbox slot="leading" checked="true"></ifx-checkbox>
+    </ifx-action-list-item>
+  `;
+
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxActionListItemClick')({
+      value: customEvent.detail.value,
+      href: customEvent.detail.href,
+      target: customEvent.detail.target,
+      disabled: customEvent.detail.disabled
+    });
+  });
+
+  return listEl;
+};
+
+InteractiveCheckbox.args = {
   listAriaLabel: 'Interactive list with checkboxes',
   itemTitle: 'Enable notifications',
   description: 'Receive notifications for important updates',
   disabled: false,
   itemAriaLabel: 'Interactive item',
-  leadingContent: '<ifx-checkbox slot="leading" checked="true"></ifx-checkbox>',
 };
 
-Interactive.storyName = 'Interactive (checkbox)';
+InteractiveCheckbox.storyName = 'Interactive (with checkbox)';
 
-export const InteractiveSwitch = BaseTemplate.bind({});
+export const InteractiveSwitch: StoryFn = (args) => {
+  const listEl = document.createElement('ifx-action-list');
+  if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
+
+  // Create items based on the story requirements
+  listEl.innerHTML = `
+    <ifx-action-list-item
+      item-title="${args.itemTitle || 'Enable dark mode'}"
+      description="${args.description || 'Toggle dark mode for the interface'}"
+      value="darkmode"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}
+      ${args.href ? `href="${args.href}"` : ''}
+      ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
+      ${args.disabled ? 'disabled="true"' : ''}>
+      <ifx-switch slot="leading" checked="false"></ifx-switch>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Auto-sync data"
+      description="Automatically synchronize your data"
+      value="autosync"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-switch slot="leading" checked="true"></ifx-switch>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Enable analytics"
+      description="Collect usage analytics"
+      value="analytics"
+      disabled="true"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-switch slot="leading" checked="false"></ifx-switch>
+    </ifx-action-list-item>
+
+    <ifx-action-list-item
+      item-title="Performance mode"
+      value="performance"
+      ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
+      <ifx-switch slot="leading" checked="true"></ifx-switch>
+    </ifx-action-list-item>
+  `;
+
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxActionListItemClick')({
+      value: customEvent.detail.value,
+      href: customEvent.detail.href,
+      target: customEvent.detail.target,
+      disabled: customEvent.detail.disabled
+    });
+  });
+
+  return listEl;
+};
+
 InteractiveSwitch.args = {
   listAriaLabel: 'Interactive list with switches',
   itemTitle: 'Enable dark mode',
   description: 'Toggle dark mode for the interface',
   disabled: false,
   itemAriaLabel: 'Interactive item',
-  leadingContent: '<ifx-switch slot="leading" checked="false"></ifx-switch>',
 };
 
-InteractiveSwitch.storyName = 'Interactive (switch)';
+InteractiveSwitch.storyName = 'Interactive (with switch)';
 
-// Additional stories for demonstration
 export const WithIcons: StoryFn = (args) => {
   const listEl = document.createElement('ifx-action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   listEl.innerHTML = `
     <ifx-action-list-item
-      item-title="Dashboard"
-      description="View your main dashboard"
+      item-title="${args.itemTitle || 'Dashboard'}"
+      description="${args.description || 'View your main dashboard'}"
       value="dashboard"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}
+      ${args.href ? `href="${args.href}"` : ''}
+      ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
       <ifx-icon slot="leading" icon="home-16"></ifx-icon>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
@@ -240,14 +310,23 @@ export const WithIcons: StoryFn = (args) => {
     </ifx-action-list-item>
   `;
 
-  listEl.addEventListener('ifxActionListItemClick', action('ifxActionListItemClick'));
-  listEl.addEventListener('ifxCheckboxChange', action('ifxCheckboxChange'));
-  listEl.addEventListener('ifxSwitchChange', action('ifxSwitchChange'));
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxActionListItemClick')({
+      value: customEvent.detail.value,
+      href: customEvent.detail.href,
+      target: customEvent.detail.target,
+      disabled: customEvent.detail.disabled
+    });
+  });
+
   return listEl;
 };
 
 WithIcons.args = {
   listAriaLabel: 'Navigation with icons',
+  itemTitle: 'Dashboard',
+  description: 'View your main dashboard',
   itemAriaLabel: 'Navigation item',
   disabled: false,
 };
@@ -260,10 +339,12 @@ export const WithImages: StoryFn = (args) => {
 
   listEl.innerHTML = `
     <ifx-action-list-item
-      item-title="John Doe"
-      description="Senior Developer"
+      item-title="${args.itemTitle || 'John Doe'}"
+      description="${args.description || 'Senior Developer'}"
       value="john"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}
+      ${args.href ? `href="${args.href}"` : ''}
+      ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
       <img slot="leading" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALFSURBVHgB7dy/SxthHMfxr6W9LJel6VAdagoaQXMQSaE4COnYQTr4p7bQVSi0FAxKUwTFwS5Jh8YlWXKLfb5PfDS9pP76nM9zgc97OSLxwBfPr1zAhfN+/0LYg3siDIqAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoIREIyAYAQEeyoBOmi35ehnR9LRSPIoKpVkpbYmb7e2xHfeAb9/+ypHnY75g2sSl8uSR8PBwNzzh0RRJJvNpvjMO+Dp8YnF2269k7xTRN+A3tfANB3lNvIm03umaSq+C7IGzqrX7crvXleeVyqyXH0t81IhAL/s7cnpyfHVa90QtlstmYeCA/46O7N4m8030jDr12F73+7Sq2adfLm0JEUv+DnwvP/HXhuXi3/DQGo9M53noeCAi4vjUaajbnzdt9dK5cXUe/M6N+ZZ8Cms01TXPJ26h5d4q+b1q2r1n/fpWe/zp4/2vb6PKjdViE1EN4xlA9Y301lHZHbtc3jpKL1CLgpiYY4xOuKyo05zeHIh8mF31244BwVCLAzgrCbx3u/s2MOy22SKghgcUJH0KLORJFM/z+K5ioQYFNAh6VU/hjmIm/BcWcRQBQOcRNLRd70D127Fc00iPsbn67sUBHA4GE4h6aMohdDnhNGz6FY81zViW0IU5CBtP/dmRphC6BS+D55Lf1cfkYUoyAiM4/JMJIVYryf2CfO97xloCgcZgStr/38a/RC8kPFLJTDvgFFUsptI3uk9dSPynfc1cD2pmyPLeMeMy7HkkeLpxrRRT8R33gH1wakemvXLJf1+JI90VOsO7o40Plvg/0zA4iYCRkAwAoIREIyAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoL9BS7b7t2PtL1XAAAAAElFTkSuQmCC" alt="User avatar" style="width: 100%; max-width: 40px; height: auto;">
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
@@ -289,14 +370,23 @@ export const WithImages: StoryFn = (args) => {
     </ifx-action-list-item>
   `;
 
-  listEl.addEventListener('ifxActionListItemClick', action('ifxActionListItemClick'));
-  listEl.addEventListener('ifxCheckboxChange', action('ifxCheckboxChange'));
-  listEl.addEventListener('ifxSwitchChange', action('ifxSwitchChange'));
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
+    const customEvent = event as CustomEvent;
+    action('ifxActionListItemClick')({
+      value: customEvent.detail.value,
+      href: customEvent.detail.href,
+      target: customEvent.detail.target,
+      disabled: customEvent.detail.disabled
+    });
+  });
+
   return listEl;
 };
 
 WithImages.args = {
   listAriaLabel: 'Team members',
+  itemTitle: 'John Doe',
+  description: 'Senior Developer',
   itemAriaLabel: 'Team member',
   disabled: false,
 };
