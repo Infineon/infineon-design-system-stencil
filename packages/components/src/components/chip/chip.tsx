@@ -333,7 +333,7 @@ export class Chip {
             }
 
             {
-              (this.selectedOptions.length !== 0 && (this.variant === 'multi' || this.readOnly) && this.placeholder !== '') &&
+              (this.selectedOptions.length !== 0 && (this.variant === 'multi') && this.placeholder !== '') &&
               `${this.placeholder}:`
             }
 
@@ -346,7 +346,7 @@ export class Chip {
 
             {
               (this.selectedOptions.length > 2 && this.variant === 'multi') &&
-              <ifx-indicator variant='number' number={this.selectedOptions.length - 2}></ifx-indicator>
+              <ifx-indicator variant='number' inverted={this.theme === 'outlined' ? false : true} number={this.selectedOptions.length - 2}></ifx-indicator>
             }
           </div>
 
@@ -358,12 +358,12 @@ export class Chip {
           }
 
 
-          { 
+          {/* { 
             (this.variant !== 'multi' && this.readOnly !== false && this.selectedOptions.length > 0) &&
             <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
-          }
+          } */}
 
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
