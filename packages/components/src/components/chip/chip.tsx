@@ -14,11 +14,13 @@ export class Chip {
 
   @Event() ifxChange: EventEmitter<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>;
   @Prop() placeholder: string = '';
-  @Prop() size: 'small' | 'large' = 'large';
+  @Prop() size: 'small' | 'medium' | 'large' = 'medium';
   @Prop({ mutable: true }) value: Array<string> | string = undefined;
   @Prop() variant: 'single' | 'multi' = 'single';
+  @Prop() theme: 'outlined' | 'filled-light' | 'filled-dark' = 'outlined';
   @Prop() readOnly: boolean = false;
   @Prop() ariaLabel: string | null;
+  @Prop() disabled: boolean = false;
 
   @State() opened: boolean = false;
   @State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -256,7 +258,7 @@ export class Chip {
     chipItems.forEach((chipItem: HTMLIfxChipItemElement) => {
       chipItem.chipState = {
         emitIfxChipItemSelect: true,
-        size: (this.size === 'small' ? 'small' : 'large'),
+        size: this.size ? this.size : 'medium',
         variant: (this.variant === 'multi' ? 'multi' : 'single'),
         key: key++
       };
@@ -307,12 +309,14 @@ export class Chip {
   render() {
     return (
       <div class='chip'>
-        <div class={`chip__wrapper chip__wrapper--${this.size === 'small' ? 'small' : 'large'}
+        <div class={`chip__wrapper chip__wrapper--${this.size ? this.size : 'medium'}
                   chip__wrapper--${this.variant === 'multi' ? 'multi' : 'single'}
                   ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
-                  ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}`}
+                  ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}
+                  ${this.theme ? this.theme : 'outlined'}
+                  ${this.disabled ? 'disabled' : ""}`}
           tabIndex={0}
-          onClick={!this.readOnly ? () => { this.handleWrapperClick() } : undefined}
+          onClick={!this.readOnly && !this.disabled ? () => { this.handleWrapperClick() } : undefined}
           role='combobox'
           aria-label={this.ariaLabel}
           aria-value={this.getSelectedOptions()}
@@ -329,7 +333,7 @@ export class Chip {
             }
 
             {
-              (this.selectedOptions.length !== 0 && (this.variant === 'multi' || this.readOnly) && this.placeholder !== '') &&
+              (this.selectedOptions.length !== 0 && (this.variant === 'multi') && this.placeholder !== '') &&
               `${this.placeholder}:`
             }
 
@@ -342,7 +346,7 @@ export class Chip {
 
             {
               (this.selectedOptions.length > 2 && this.variant === 'multi') &&
-              <ifx-indicator variant='number' number={this.selectedOptions.length - 2}></ifx-indicator>
+              <ifx-indicator variant='number' inverted={this.theme === 'outlined' ? false : true} number={this.selectedOptions.length - 2}></ifx-indicator>
             }
           </div>
 
@@ -354,16 +358,16 @@ export class Chip {
           }
 
 
-          { 
+          {/* { 
             (this.variant !== 'multi' && this.readOnly !== false && this.selectedOptions.length > 0) &&
-            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
+            <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
-          }
+          } */}
 
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
-            <div class='wrapper__unselect-button' onClick={(e) => { this.handleUnselectButtonClick(e) }}>
+            <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
               <ifx-icon key={2} icon={`cross16`} />
             </div>
           }
