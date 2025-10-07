@@ -278,7 +278,7 @@ export class Pagination {
       <div class="container">
         {this.showItemsPerPage && (
           <div class="items__per-page-wrapper">
-            <div class="items__per-page-label">Results per page</div>
+            <div class="items__per-page-label">Results per Page</div>
             <div class="items__per-page-field">
               <ifx-select
                 id='itemsPerPageSelect'
