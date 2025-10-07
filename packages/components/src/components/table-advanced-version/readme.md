@@ -12,6 +12,7 @@
 | `buttonRendererOptions`   | `button-renderer-options`    |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
 | `cols`                    | `cols`                       |             | `any`                                                                                       | `undefined` |
 | `filterOrientation`       | `filter-orientation`         |             | `string`                                                                                    | `'sidebar'` |
+| `headline`                | `headline`                   |             | `string`                                                                                    | `""`        |
 | `pagination`              | `pagination`                 |             | `boolean`                                                                                   | `true`      |
 | `paginationItemsPerPage`  | `pagination-items-per-page`  |             | `string`                                                                                    | `undefined` |
 | `rowHeight`               | `row-height`                 |             | `string`                                                                                    | `'default'` |

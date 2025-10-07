@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -34,6 +35,7 @@ export class Table {
   @Prop() paginationItemsPerPage: string;
   @State() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'sidebar';
+  @Prop() headline: string = "";
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
@@ -514,6 +516,13 @@ async updateTableView() {
       statusColumn.cellDataType = false;
 
     }
+
+    const linkColumn = cols.find(column => column.field === 'link');
+    if (linkColumn) {
+      linkColumn.cellRenderer = LinkCellRenderer;
+      linkColumn.cellDataType = false;
+
+    }
   
     return cols;
   }
@@ -611,10 +620,6 @@ async updateTableView() {
             )}
 
             <div class="table-pagination-wrapper">
-                <div class="inner-buttons-wrapper">
-                  <slot name='inner-button' />
-                </div>
-
               {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
                 <div class="filter-chips">
                   {Object.keys(this.currentFilters).map(name => {
@@ -642,16 +647,23 @@ async updateTableView() {
                 </div>
               )}
 
-              {this.filterOrientation !== 'none' && (
+              <div class="headline-wrapper">
+              {this.filterOrientation !== 'none' && this.headline && (
                 <div class="matching-results-container">
                   <span class="matching-results-count">
-                    {this.matchingResultsCount}
+                    ({this.matchingResultsCount})
                   </span>
                   <span class="matching-results-text">
-                    matching results
+                    {this.headline}
                   </span>
+
                 </div>
               )}
+
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+              </div>
 
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
