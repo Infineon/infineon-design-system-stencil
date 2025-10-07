@@ -178,39 +178,11 @@ export class ActionListItem {
     const interactiveInfineonComponents = [
       'IFX-BUTTON',
       'IFX-CHECKBOX',
-      'IFX-RADIO',
-      'IFX-SWITCH',
-      'IFX-INPUT',
-      'IFX-SELECT',
-      'IFX-DROPDOWN',
-      'IFX-TEXTAREA'
+      'IFX-SWITCH'
     ];
 
-    // List of standard HTML interactive elements
-    const interactiveHTMLElements = [
-      'BUTTON',
-      'INPUT',
-      'SELECT',
-      'TEXTAREA',
-      'A'
-    ];
-
-    // Check if it's an interactive Infineon component or HTML element
-    if (interactiveInfineonComponents.includes(tagName) || interactiveHTMLElements.includes(tagName)) {
-      return true;
-    }
-
-    // Check for role-based interactivity
-    const interactiveRoles = ['button', 'link', 'checkbox', 'radio', 'menuitem', 'tab', 'switch'];
-    const role = element.getAttribute('role');
-    const hasInteractiveRole = role && interactiveRoles.includes(role);
-
-    // Check if element is focusable
-    const isFocusable = element.tabIndex >= 0 ||
-                       element.hasAttribute('tabindex') ||
-                       element.hasAttribute('contenteditable');
-
-    return hasInteractiveRole || isFocusable;
+    // Check if it's an interactive Infineon component
+    return interactiveInfineonComponents.includes(tagName);
   };
 
   private handleMainKeyDown = (event: KeyboardEvent) => {
