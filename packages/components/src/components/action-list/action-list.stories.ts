@@ -184,6 +184,18 @@ Interactive.args = {
 
 Interactive.storyName = 'Interactive (checkbox)';
 
+export const InteractiveSwitch = BaseTemplate.bind({});
+InteractiveSwitch.args = {
+  listAriaLabel: 'Interactive list with switches',
+  itemTitle: 'Enable dark mode',
+  description: 'Toggle dark mode for the interface',
+  disabled: false,
+  itemAriaLabel: 'Interactive item',
+  leadingContent: '<ifx-switch slot="leading" checked="false"></ifx-switch>',
+};
+
+InteractiveSwitch.storyName = 'Interactive (switch)';
+
 // Additional stories for demonstration
 export const WithIcons: StoryFn = (args) => {
   const listEl = document.createElement('ifx-action-list');
