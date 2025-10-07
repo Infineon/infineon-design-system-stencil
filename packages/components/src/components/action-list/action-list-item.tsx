@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Prop, Element, Event, EventEmitter, Watch } from '@stencil/core';
 import classNames from 'classnames';
 
 export interface ActionListItemClickEvent {
@@ -57,6 +57,12 @@ export class ActionListItem {
    * Event emitted when the main item area is clicked
    */
   @Event() ifxActionListItemClick: EventEmitter<ActionListItemClickEvent>;
+
+  @Watch('disabled')
+  onDisabledChange() {
+    // Update interactive elements when disabled state changes
+    this.updateSlotElementsDisabledState();
+  }
 
   private handleMainClick = (event: MouseEvent) => {
     if (this.disabled) {
@@ -243,7 +249,46 @@ export class ActionListItem {
     return !!slot;
   }
 
-  render() {
+  componentDidLoad() {
+    // Apply disabled state to interactive elements in slots
+    this.updateSlotElementsDisabledState();
+  }
+
+  componentDidUpdate() {
+    // Apply disabled state to interactive elements in slots when disabled prop changes
+    this.updateSlotElementsDisabledState();
+  }
+
+  private updateSlotElementsDisabledState = () => {
+    // Only handle interactive components that should be disabled
+    const interactiveComponents = ['ifx-checkbox', 'ifx-switch', 'ifx-button'];
+
+    // Get all slotted elements
+    const slots = this.host.querySelectorAll('[slot]');
+
+    slots.forEach(slottedElement => {
+      // Check if the slotted element itself is an interactive component
+      if (interactiveComponents.includes(slottedElement.tagName.toLowerCase())) {
+        this.setElementDisabledState(slottedElement as HTMLElement);
+      }
+
+      // Also check for nested interactive components within the slotted element
+      interactiveComponents.forEach(componentTag => {
+        const nestedElements = slottedElement.querySelectorAll(componentTag);
+        nestedElements.forEach(nestedElement => {
+          this.setElementDisabledState(nestedElement as HTMLElement);
+        });
+      });
+    });
+  };
+
+  private setElementDisabledState = (element: HTMLElement) => {
+    if (this.disabled) {
+      element.setAttribute('disabled', 'true');
+    } else {
+      element.removeAttribute('disabled');
+    }
+  };  render() {
     const isClickable = !this.disabled && (this.href || this.value);
     const ariaLabel = this.itemAriaLabel || `${this.itemTitle}${this.description ? ` - ${this.description}` : ''}`;
     const hasLeadingContent = this.hasSlotContent('leading');

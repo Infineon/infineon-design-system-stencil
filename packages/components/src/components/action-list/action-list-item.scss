@@ -28,8 +28,19 @@
   }
 
   &--disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+
+    // Apply disabled color to all slotted icons
+    ::slotted(ifx-icon) {
+      color: tokens.$ifxColorEngineering300;
+    }
+
+    // Also apply to nested icons within slotted elements
+    ::slotted(*) {
+      ifx-icon {
+        color: tokens.$ifxColorEngineering300;
+      }
+    }
   }
 
   &__leading {
@@ -55,6 +66,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    // Disabled state
+    .action-list-item--disabled & {
+      color: tokens.$ifxColorEngineering300;
+    }
   }
 
   &__description {
@@ -62,6 +78,11 @@
     line-height: tokens.$ifxLineHeightS;
     color: tokens.$ifxColorEngineering500;
     margin-top: tokens.$ifxSpace25;
+
+    // Disabled state
+    .action-list-item--disabled & {
+      color: tokens.$ifxColorEngineering300;
+    }
   }
 
   &__trailing {
