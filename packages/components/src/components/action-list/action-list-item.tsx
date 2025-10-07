@@ -16,8 +16,6 @@ export interface ActionListItemClickEvent {
 export class ActionListItem {
   @Element() host: HTMLElement;
 
-  private interactiveElementSuppressed = false;
-
   /**
    * The title text displayed in the item
    */
@@ -75,12 +73,6 @@ export class ActionListItem {
       return; // Don't trigger main click if clicking on leading/trailing areas
     }
 
-    // Don't trigger main click if interactive elements had their own events
-    if (this.interactiveElementSuppressed) {
-      this.interactiveElementSuppressed = false;
-      return;
-    }
-
     // Always emit main event when clicking on content area (text), regardless of interactive elements
     this.ifxActionListItemClick.emit({
       value: this.value,
@@ -113,9 +105,8 @@ export class ActionListItem {
     let currentElement = target;
     while (currentElement && currentElement !== this.host) {
       if (this.isInteractiveElement(currentElement)) {
-        // Interactive element clicked - block main event and stop propagation
+        // Interactive element clicked - stop propagation to prevent main event
         event.stopPropagation();
-        this.interactiveElementSuppressed = true;
         return;
       }
       currentElement = currentElement.parentElement;
@@ -153,9 +144,8 @@ export class ActionListItem {
     let currentElement = target;
     while (currentElement && currentElement !== this.host) {
       if (this.isInteractiveElement(currentElement)) {
-        // Interactive element clicked - block main event and stop propagation
+        // Interactive element clicked - stop propagation to prevent main event
         event.stopPropagation();
-        this.interactiveElementSuppressed = true;
         return;
       }
       currentElement = currentElement.parentElement;
@@ -251,7 +241,6 @@ export class ActionListItem {
       if (firstInteractive) {
         firstInteractive.focus();
         firstInteractive.click();
-        this.interactiveElementSuppressed = true;
       }
     }
   };
@@ -273,7 +262,6 @@ export class ActionListItem {
       if (firstInteractive) {
         firstInteractive.focus();
         firstInteractive.click();
-        this.interactiveElementSuppressed = true;
       }
     }
   };
