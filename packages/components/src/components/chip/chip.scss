@@ -21,6 +21,10 @@
     transition: border 100ms ease;
     font: tokens.$ifxBodyBody04;
 
+    & .icon__wrapper { 
+        display: flex;
+    }
+
     &.outlined, &.filled-dark, &.filled-light { 
         outline: 2px solid transparent;
         &:focus-visible {

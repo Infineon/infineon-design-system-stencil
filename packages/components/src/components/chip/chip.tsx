@@ -21,6 +21,7 @@ export class Chip {
   @Prop() readOnly: boolean = false;
   @Prop() ariaLabel: string | null;
   @Prop() disabled: boolean = false;
+  @Prop() icon: string = "";
 
   @State() opened: boolean = false;
   @State() selectedOptions: Array<ChipItemSelectEvent> = [];
@@ -327,6 +328,11 @@ export class Chip {
           aria-readonly={this.readOnly ? 'true' : undefined}
           aria-multiselectable={this.variant === 'multi' ? 'true' : undefined}
           >
+          
+          {this.icon && 
+          <div class="icon__wrapper">
+            <ifx-icon icon={this.icon}></ifx-icon>
+          </div>}
 
           <div class='wrapper__label'>
             {

@@ -1,4 +1,5 @@
 import { action } from '@storybook/addon-actions';
+import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Chip',
@@ -21,7 +22,8 @@ export default {
     value: 'Item Value',
     ariaLabel: 'Chip',
     disabled: false,
-    theme: 'outlined'
+    theme: 'outlined',
+    icon: ""
   },
   argTypes: {
     amountOfChipItems: {
@@ -103,6 +105,18 @@ export default {
       }
     },
 
+    icon: {
+      options: Object.keys(icons),
+      control: { type: 'select' },
+      description: 'Set the icon of the Chip.',
+      table: {
+        category: 'ifx-chip props',
+        type: {
+          summary: 'string'
+        }
+      }
+    },
+
     disabled: {
       name: 'disabled',
       description: 'No dropdown menu. The chip component is disabled.',
@@ -162,6 +176,7 @@ placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
 theme="${args.theme}"
+icon="${args.icon}"
 read-only="${args.readOnly}"
 aria-label="${args.ariaLabel}"
 disabled="${args.disabled}"
