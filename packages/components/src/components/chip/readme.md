@@ -7,14 +7,17 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type                  | Default     |
-| ------------- | ------------- | ----------- | --------------------- | ----------- |
-| `ariaLabel`   | `aria-label`  |             | `string`              | `undefined` |
-| `placeholder` | `placeholder` |             | `string`              | `''`        |
-| `readOnly`    | `read-only`   |             | `boolean`             | `false`     |
-| `size`        | `size`        |             | `"large" \| "small"`  | `'large'`   |
-| `value`       | `value`       |             | `string \| string[]`  | `undefined` |
-| `variant`     | `variant`     |             | `"multi" \| "single"` | `'single'`  |
+| Property      | Attribute     | Description | Type                                            | Default      |
+| ------------- | ------------- | ----------- | ----------------------------------------------- | ------------ |
+| `ariaLabel`   | `aria-label`  |             | `string`                                        | `undefined`  |
+| `disabled`    | `disabled`    |             | `boolean`                                       | `false`      |
+| `icon`        | `icon`        |             | `string`                                        | `""`         |
+| `placeholder` | `placeholder` |             | `string`                                        | `''`         |
+| `readOnly`    | `read-only`   |             | `boolean`                                       | `false`      |
+| `size`        | `size`        |             | `"large" \| "medium" \| "small"`                | `'medium'`   |
+| `theme`       | `theme`       |             | `"filled-dark" \| "filled-light" \| "outlined"` | `'outlined'` |
+| `value`       | `value`       |             | `string \| string[]`                            | `undefined`  |
+| `variant`     | `variant`     |             | `"multi" \| "single"`                           | `'single'`   |
 
 
 ## Events
@@ -32,14 +35,14 @@
 
 ### Depends on
 
-- [ifx-indicator](../indicator)
 - [ifx-icon](../icon)
+- [ifx-indicator](../indicator)
 
 ### Graph
 ```mermaid
 graph TD;
-  ifx-chip --> ifx-indicator
   ifx-chip --> ifx-icon
+  ifx-chip --> ifx-indicator
   ifx-table --> ifx-chip
   style ifx-chip fill:#f9f,stroke:#333,stroke-width:4px
 ```
