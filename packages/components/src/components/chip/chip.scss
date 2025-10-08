@@ -44,7 +44,7 @@
     }
 
     &.filled-dark, &.filled-light { 
-        &.chip__wrapper--selected {
+        &.chip__wrapper--selected:not(.read-only) {
         background-color: tokens.$ifxColorOcean500;
         color: white;
          &:hover { 
@@ -59,12 +59,12 @@
     
     &.outlined { 
         border: 1px solid tokens.$ifxColorEngineering300;
-        &:hover {
+        &:hover:not(.read-only) {
             border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
         }
 
-        &:active { 
+        &:active:not(.read-only) { 
             border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering300;
         }
@@ -81,8 +81,13 @@
         &:focus-visible {
             outline-offset: 0px;
         }
-         &:hover { 
+         &:hover:not(.read-only) { 
             outline-color: tokens.$ifxColorOcean600;
+         }
+
+         &.read-only { 
+            outline: none;
+            border: 1px solid black;
          }
       }
 
@@ -96,18 +101,26 @@
             background-color: white;
         }
       }
+
+      &.read-only { 
+        border: 1px solid black;
+        &:focus-visible { 
+            outline: 2px solid tokens.$ifxColorOcean500;
+            outline-offset: 2px;
+        }
+      }
     }
 
     &.filled-dark { 
         background-color: tokens.$ifxColorEngineering600;
         color: white;
 
-        &:hover:not(.chip__wrapper--selected, .disabled) { 
+        &:hover:not(.chip__wrapper--selected, .disabled, .read-only) { 
         background-color: tokens.$ifxColorEngineering400;
         color: black;
         }
 
-        &:active:not(.chip__wrapper--selected, .disabled) { 
+        &:active:not(.chip__wrapper--selected, .disabled, .read-only) { 
             background-color: tokens.$ifxColorEngineering300;
         }
 
@@ -118,15 +131,26 @@
         background-color: tokens.$ifxColorEngineering600;
         }
       }
+
+      &.chip__wrapper--selected { 
+        &.read-only { 
+            border: 1px solid tokens.$ifxColorEngineering400;
+         }
+      }
+
+      &.read-only { 
+        border: 1px solid tokens.$ifxColorEngineering400;
+      }
     }
 
     &.filled-light { 
         background-color: tokens.$ifxColorEngineering200;
-        &:hover { 
+
+        &:hover:not(.read-only) { 
         background-color: tokens.$ifxColorEngineering300;
         }
 
-        &:active { 
+        &:active:not(.read-only) { 
             background-color: tokens.$ifxColorEngineering400;
         }
 
@@ -136,6 +160,16 @@
         &:hover:not(.chip__wrapper--selected) { 
         background-color: tokens.$ifxColorEngineering200;
         }
+      }
+
+      &.chip__wrapper--selected { 
+        &.read-only { 
+            border: 1px solid black;
+         }
+      }
+
+      &.read-only { 
+        border: 1px solid black;
       }
     }
     

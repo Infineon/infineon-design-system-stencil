@@ -314,7 +314,8 @@ export class Chip {
                   ${this.opened && !this.readOnly ? 'chip__wrapper--opened' : ''}
                   ${this.selectedOptions.length ? 'chip__wrapper--selected' : ''}
                   ${this.theme ? this.theme : 'outlined'}
-                  ${this.disabled ? 'disabled' : ""}`}
+                  ${this.disabled ? 'disabled' : ""}
+                  ${this.readOnly ? 'read-only' : ""}`}
           tabIndex={0}
           onClick={!this.readOnly && !this.disabled ? () => { this.handleWrapperClick() } : undefined}
           role='combobox'
@@ -356,14 +357,6 @@ export class Chip {
               <ifx-icon key={1} icon={`chevron-down-16`} />
             </div>
           }
-
-
-          {/* { 
-            (this.variant !== 'multi' && this.readOnly !== false && this.selectedOptions.length > 0) &&
-            <div class='wrapper__unselect-button' onClick={!this.readOnly && !this.disabled ? (e) => { this.handleUnselectButtonClick(e) } : undefined}>
-              <ifx-icon key={2} icon={`cross16`} />
-            </div>
-          } */}
 
           {
             ((this.selectedOptions.length >= 1) && this.variant === 'multi') &&
