@@ -19,6 +19,20 @@ const rowData = [
   { make: 'Landrover', model: 'x', price: 72000 },
 ];
 
+const rowDataWithBreakingLine = [
+  { make: 'Toyota\n and Mazda', model: 'Celica', price: 35000, age: 10 },
+  { make: 'Ford', model: 'Mondeo', price: 32000, age: 12 },
+  { make: 'Porsche', model: 'Boxster', price: 72000 },
+  { make: 'Bmw', model: 'x', price: 72000 },
+  { make: 'Mercedes', model: 'y', price: 72000 },
+  { make: 'Ferrari', model: 'z', price: 72000 },
+  { make: 'Chrysler', model: 'a', price: 72000 },
+  { make: 'Range rover', model: 'b', price: 72000 },
+  { make: 'Tesla', model: 'x', price: 72000 },
+  { make: 'Audi', model: '3', price: 72000 },
+  { make: 'Landrover', model: 'x', price: 72000 },
+];
+
 const columnDefsWithButtonCol = [
   { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
   { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
@@ -38,6 +52,17 @@ const columnDefsWithStatusCol = [
   {
     headerName: 'Status',
     field: 'status',
+  }
+];
+
+const columnDefsWithLinkCol = [
+  { headerName: 'Make', field: 'make', sortable: true, sort: 'desc', unSortIcon: true },
+  { headerName: 'Model', field: 'model', sortable: true, unSortIcon: true },
+  { headerName: 'Price', field: 'price' },
+  { headerName: 'Age', field: 'age' },
+  {
+    headerName: 'Link',
+    field: 'link',
   }
 ];
 
@@ -107,6 +132,39 @@ const rowDataWithStatusCol = [
   }
 ];
 
+const rowDataWithLinkCol = [
+  {
+    make: 'Toyota', model: 'Celica', price: 35000, age: 10, link: {
+      disabled: false,
+      variant: "bold",
+      size: "s",
+      target: "_blank",
+      href: "https://www.google.com/",
+      text: "Link"
+    }
+  },
+  {
+    make: 'Ford', model: 'Mondeo', price: 32000, age: 12, link: {
+      disabled: false,
+      variant: "underlined",
+      size: "s",
+      target: "_blank",
+      href: "https://www.yahoo.com/",
+      text: "Link"
+    }
+  },
+  {
+    make: 'Porsche', model: 'Boxster', price: 72000, link: {
+      disabled: false,
+      variant: "title",
+      size: "s",
+      target: "_blank",
+      href: "https://www.bing.com/",
+      text: "Link"
+    }
+  }
+];
+
 export default {
   title: 'Components/Table (advanced)',
   args: {
@@ -115,7 +173,8 @@ export default {
     serverSidePagination: false,
     rowHeight: 40,
     showLoading: false,
-    variant: 'default'
+    variant: 'default',
+    headline: "Matching results"
   },
   argTypes: {
     tableHeight: {
@@ -224,6 +283,14 @@ export default {
       options: ['default', 'zebra'],
       control: { type: 'radio' },
     },
+
+    headline: {
+      description: 'Sets the headline of the table.',
+      table: {
+        category: 'ifx-table props',
+        defaultValue: { summary: 'matching results' },
+      }
+    },
   }
 };
 
@@ -298,6 +365,7 @@ const DefaultTemplate = (args) => {
    </ifx-filter-bar>`;
 
     const table = `<ifx-table
+    headline="${args.headline}"
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
@@ -371,7 +439,46 @@ const CustomStatusCellTemplate = (args) => {
   return table;
 };
 
+const CustomLinkCellTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
+  return table;
+};
 
+const BreakingLineTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="${args.filterOrientation}">
+    </ifx-table>`;
+  return table;
+};
+
+const InnerButtonsTemplate = (args) => {
+  const table = `
+    <ifx-table
+      row-height="${args.rowHeight}"
+      cols='${JSON.stringify(args.columnDefs)}'
+      rows='${JSON.stringify(args.rowData)}'
+      table-height="${args.tableHeight}"
+      pagination="${args.pagination}"
+      filter-orientation="none">
+      <ifx-button slot="inner-button">Button</ifx-button>
+      <ifx-button slot="inner-button">Button</ifx-button>
+    </ifx-table>`;
+  return table;
+};
 
 export const IncludesButtons = CustomCellTemplate.bind({});
 IncludesButtons.args = {
@@ -391,6 +498,33 @@ IncludesStatus.args = {
   pagination: false,
 };
 
+export const IncludesLink = CustomLinkCellTemplate.bind({});
+IncludesLink.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithLinkCol,
+  rowData: rowDataWithLinkCol,
+  filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesBreakingline = BreakingLineTemplate.bind({});
+IncludesBreakingline.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithStatusCol,
+  rowData: rowDataWithBreakingLine,
+  filterOrientation: 'none',
+  pagination: false,
+};
+
+export const IncludesInnerButtons = InnerButtonsTemplate.bind({});
+IncludesInnerButtons.args = {
+  rowHeight: 'default',
+  columnDefs: columnDefsWithStatusCol,
+  rowData: rowData,
+  filterOrientation: 'topbar',
+  pagination: false,
+};
+
 export const SidebarFilter = DefaultTemplate.bind({});
 SidebarFilter.args = {
   rowHeight: 'default',
@@ -401,6 +535,7 @@ SidebarFilter.args = {
 
 export const TopbarFilter = DefaultTemplate.bind({});
 TopbarFilter.args = {
+  headline: "Matching results",
   rowHeight: 'default',
   columnDefs: columnDefs,
   rowData: rowData,
