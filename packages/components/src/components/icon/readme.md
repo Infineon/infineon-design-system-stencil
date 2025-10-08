@@ -59,7 +59,6 @@
  - [ifx-step](../stepper/step)
  - [ifx-table](../table-advanced-version)
  - [ifx-tabs](../tabs)
- - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
  - [ifx-tree-view-item](../tree-view)
@@ -102,7 +101,6 @@ graph TD;
   ifx-step --> ifx-icon
   ifx-table --> ifx-icon
   ifx-tabs --> ifx-icon
-  ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
   ifx-tree-view-item --> ifx-icon
