@@ -14,12 +14,14 @@ export default {
     amountOfChipItems: 4,
     chipItemLabel: 'Item Label',
     placeholder: 'Label',
-    size: 'large',
+    size: 'medium',
     variant: 'single',
     readOnly: false,
     selected: false,
     value: 'Item Value',
-    ariaLabel: 'Chip'
+    ariaLabel: 'Chip',
+    disabled: false,
+    theme: 'outlined'
   },
   argTypes: {
     amountOfChipItems: {
@@ -49,14 +51,14 @@ export default {
     size: {
       description: 'Switch the size of Chip.',
       control: 'radio',
-      options: ['large', 'small'],
+      options: ['small', 'medium', 'large'],
       table: {
         category: 'ifx-chip props',
         defaultValue: {
-          summary: 'large'
+          summary: 'medium'
         },
         type: {
-          summary: 'large | small'
+          summary: 'small | medium | large'
         }
       }
     },
@@ -74,9 +76,36 @@ export default {
         }
       }
     },
+
+    theme: {
+      description: 'Specifies the theme style of the Chip.',
+      control: 'radio',
+      options: ['outlined', 'filled-light', 'filled-dark'],
+      table: {
+        category: 'ifx-chip props',
+        defaultValue: {
+          summary: 'outlined'
+        },
+        type: {
+          summary: 'outlined | filled-light | filled-dark'
+        }
+      }
+    },
     readOnly: {
       name: 'read-only',
       description: 'No dropdown menu. The chip component is read-only.',
+      control: 'boolean',
+      table: {
+        category: 'ifx-chip props',
+        defaultValue: {
+          summary: false,
+        }
+      }
+    },
+
+    disabled: {
+      name: 'disabled',
+      description: 'No dropdown menu. The chip component is disabled.',
       control: 'boolean',
       table: {
         category: 'ifx-chip props',
@@ -132,8 +161,10 @@ const Template = (args) => {
 placeholder="${args.placeholder}"
 size="${args.size}"
 variant="${args.variant}"
+theme="${args.theme}"
 read-only="${args.readOnly}"
 aria-label="${args.ariaLabel}"
+disabled="${args.disabled}"
 >
   ${(() => {
       return Array.from({ length: args.amountOfChipItems }, (_, chipItemId) => {
