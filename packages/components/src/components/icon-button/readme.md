@@ -39,6 +39,7 @@ Type: `Promise<void>`
  - [ifx-file-upload](../file-upload)
  - [ifx-modal](../modal)
  - [ifx-pagination](../pagination)
+ - [ifx-tabs](../tabs)
  - [ifx-templates-ui](../templates/templates-ui)
 
 ### Depends on
@@ -52,6 +53,7 @@ graph TD;
   ifx-file-upload --> ifx-icon-button
   ifx-modal --> ifx-icon-button
   ifx-pagination --> ifx-icon-button
+  ifx-tabs --> ifx-icon-button
   ifx-templates-ui --> ifx-icon-button
   style ifx-icon-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

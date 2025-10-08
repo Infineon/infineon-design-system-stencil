@@ -25,12 +25,15 @@
 
 ### Depends on
 
+- [ifx-icon-button](../icon-button)
 - [ifx-icon](../icon)
 
 ### Graph
 ```mermaid
 graph TD;
+  ifx-tabs --> ifx-icon-button
   ifx-tabs --> ifx-icon
+  ifx-icon-button --> ifx-icon
   style ifx-tabs fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
