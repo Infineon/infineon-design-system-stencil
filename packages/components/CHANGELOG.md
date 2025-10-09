@@ -1,3 +1,55 @@
+# v37.21.0 (Wed Oct 01 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes headline text customizable [#2051](https://github.com/Infineon/infineon-design-system-stencil/pull/2051) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.20.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.20.0 (Tue Sep 30 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Link component nestable [#2048](https://github.com/Infineon/infineon-design-system-stencil/pull/2048) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.19.1 (Fri Sep 26 2025)
+
+#### 🐛 Bug Fix
+
+- Tree view: Updats documentation [#2036](https://github.com/Infineon/infineon-design-system-stencil/pull/2036) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.19.0 (Wed Sep 24 2025)
 
 #### 🚀 Enhancement
