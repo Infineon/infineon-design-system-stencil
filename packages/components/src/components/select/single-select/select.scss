@@ -33,6 +33,15 @@
     overflow-wrap: anywhere;
     max-width: 100%;
     overflow: hidden;
+
+    & .required {
+      margin-left: 4px;
+      color: #CD002F;
+
+      &.error {
+        color: #CD002F;
+      }
+    }
   }
 
   .ifx-error-message-wrapper {
@@ -58,12 +67,12 @@
     font-style: normal;
     width: 100%;
 
-    & .choices { 
+    & .choices {
       flex-grow: 1;
       overflow: hidden;
     }
 
-    & .single__select-icon-container { 
+    & .single__select-icon-container {
       display: flex;
       align-items: center;
       margin-left: auto;
@@ -178,7 +187,7 @@
       align-items: center;
       justify-content: center;
 
-      &.hide { 
+      &.hide {
         display: none;
       }
     }
@@ -354,9 +363,9 @@ END Select options: item alignment
   .choices__inner {
     overflow: hidden;
 
-    & .choices__list { 
-      & .choices__item { 
-        & span { 
+    & .choices__list {
+      & .choices__item {
+        & span {
           flex-grow: 1;
           white-space: nowrap;
           overflow: hidden;
@@ -508,7 +517,7 @@ END Select options: item alignment
 
 
   @media (min-width: 640px) {
-   
+
     .choices__list--dropdown .choices__item--selectable:after {
       // content: attr(data-select-text); #press to select text next to select option
       font-size: tokens.$ifxFontSizeXs;
