@@ -86,15 +86,16 @@
     }
 
     &.disabled {
-      background: #EEEDED;
-      color: #575352;
-      border-color: #575352;
+      background: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorBaseWhite;
+      border-color: tokens.$ifxColorEngineering300;
       cursor: default;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
 
       .ifx-choices__icon-wrapper-down {
+        color: tokens.$ifxColorBaseWhite;
         &:hover {
           cursor: default;
         }
@@ -102,7 +103,7 @@
     }
 
     &.error {
-      border-color: #CD002F;
+      border-color: tokens.$ifxColorRed500;
     }
 
     &:hover:not(.focus, :focus) {
@@ -249,7 +250,7 @@ END Select options: item alignment
     width: 100%;
     padding: 8px 16px;
     border-bottom: 1px solid tokens.$ifxColorEngineering400;
-    background-color: #ffffff;
+    background-color: tokens.$ifxColorBaseWhite;
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -394,7 +395,7 @@ END Select options: item alignment
   }
 
   .disabled>.choices__list--single .choices__item[data-value=''] {
-    color: #8D8786;
+    color: tokens.$ifxColorBaseWhite;
     /* Placeholder font color */
 
   }
@@ -437,7 +438,7 @@ END Select options: item alignment
     box-sizing: border-box;
     position: absolute;
     width: 100%;
-    background-color: #fff;
+    background-color: tokens.$ifxColorBaseWhite;
     top: 100%;
     margin-top: -1px;
 
@@ -497,7 +498,7 @@ END Select options: item alignment
     }
 
     &.selected {
-      color: #0A8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
@@ -534,18 +535,18 @@ END Select options: item alignment
 
 
   .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    background-color: #EEEDED;
+    background-color: tokens.$ifxColorEngineering200;
 
     &.selected {
-      color: #0A8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
   .choices__list--dropdown .choices__item--selectable:hover {
-    background-color: #EEEDED;
+    background-color: tokens.$ifxColorEngineering200;
 
     &.selected {
-      color: #0A8276;
+      color: tokens.$ifxColorOcean500;
     }
   }
 
@@ -574,7 +575,7 @@ END Select options: item alignment
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
     padding: 10px;
-    border-bottom: 1px solid #f7f7f7;
+    border-bottom: 1px solid tokens.$ifxColorEngineering100;
     color: tokens.$ifxColorBaseBlack
   }
 

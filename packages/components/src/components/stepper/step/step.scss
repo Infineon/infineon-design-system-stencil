@@ -99,11 +99,11 @@
         .step-connector-l, 
         .step-connector-r, 
         .step-icon {
-            background-color: tokens.$ifxColorEngineering400;
+            background-color: tokens.$ifxColorEngineering300;
         }
         .step-label, 
         .step-label :hover{
-            color: tokens.$ifxColorEngineering400;
+            color: tokens.$ifxColorEngineering300;
         }
     }
     
@@ -123,6 +123,22 @@
         }
         &.complete .step-label { 
             cursor: auto;
+        }
+
+        &.disabled{
+            .step-connector-l, 
+            .step-connector-r, 
+            .step-icon {
+                background-color: tokens.$ifxColorEngineering300;
+            }
+            .step-label, 
+            .step-label :hover{
+                color: tokens.$ifxColorEngineering300;
+            }
+
+            .active-indic{
+                display: none;
+            }
         }
     } 
 
