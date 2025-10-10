@@ -70,6 +70,7 @@ jobs:
             ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
             ${{ runner.os }}-build-v3-
 
+
       - name: Install dependencies for all packages
         run: |
           npm ci || npm install
@@ -206,31 +207,6 @@ jobs:
             echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Verify Stencil types are generated
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "🔍 Checking if Stencil types include ActionListItem types..."
-          
-          # Check if the required types exist in Stencil output
-          if ! grep -q "ActionListItemClickEvent" packages/components/dist/types/components.d.ts; then
-            echo "❌ ActionListItemClickEvent not found in Stencil types"
-            echo "📋 Regenerating Stencil build..."
-            cd packages/components
-            npm run build
-            cd ../..
-          else
-            echo "✅ ActionListItemClickEvent found in Stencil types"
-          fi
-          
-          if ! grep -q "IfxActionListItemCustomEvent" packages/components/dist/types/components.d.ts; then
-            echo "❌ IfxActionListItemCustomEvent not found in Stencil types"
-            echo "📋 Regenerating Stencil build..."
-            cd packages/components
-            npm run build
-            cd ../..
-          else
-            echo "✅ IfxActionListItemCustomEvent found in Stencil types"
-          fi
       
       # Create Stencil loader shim for components (to prevent race conditions)
       - name: Create Stencil loader shim
@@ -282,50 +258,26 @@ jobs:
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
  
-          # Update React package - COMPLETE CLEAN INSTALL
+          # Update React package
           cd ../components-react
-          echo "🧹 COMPLETELY Cleaning React wrapper..."
-          rm -rf node_modules dist package-lock.json
-          
-          # Update package.json with exact version
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
 
-          # Force clear npm cache for this package
-          echo "🗑️ Clearing npm cache for Stencil package..."
-          npm cache clean --force
-
-          # Install all dependencies fresh WITHOUT cache
-          echo "📦 Installing fresh dependencies for React wrapper (no cache)..."
-          npm install --no-cache --prefer-offline=false
-
-          # Double-check the installed version
-          echo "🔍 Verifying installed Stencil version..."
-          INSTALLED_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=0 | grep @infineon/infineon-design-system-stencil | awk -F@ '{print $3}')
-          echo "Installed Stencil version: $INSTALLED_VERSION"
-          echo "Expected Stencil version: $CANARY_VERSION"
-          
-          if [ "$INSTALLED_VERSION" != "$CANARY_VERSION" ]; then
-            echo "❌ VERSION MISMATCH: Expected $CANARY_VERSION but got $INSTALLED_VERSION"
-            echo "🔄 Forcing reinstall of correct version..."
-            npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact --no-cache
-          fi
-
-          # Verify Stencil types are available
-          echo "🔍 Verifying Stencil types in React wrapper..."
-          if [ -f "node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts" ]; then
-            if grep -q "ActionListItemClickEvent" node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts; then
-              echo "✅ ActionListItemClickEvent type is available"
+          # Retry install of published Stencil package (race condition safe)
+          RETRIES=5
+          for i in $(seq 1 $RETRIES); do
+            echo "Attempt $i to install Stencil version: $CANARY_VERSION"
+            if npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact; then
+              echo "✅ Installed successfully on attempt $i"
+              break
             else
-              echo "❌ ActionListItemClickEvent type missing - this will cause build failures"
-              echo "📋 Available types in Stencil package:"
-              grep "export.*Event" node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts | head -10
+              echo "❌ Failed, retrying in $((i * 5)) seconds..."
+              sleep $((i * 5))
             fi
-          else
-            echo "❌ Stencil types file not found at expected path"
-            find node_modules/@infineon/infineon-design-system-stencil -name "*.d.ts" | head -10
-          fi
+          done
 
           cd ../../
+          npm install
 
           # Verify updates
           echo "Verifying updates in Angular package"
@@ -335,44 +287,7 @@ jobs:
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
-      - name: Pre-build type check for React
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "🔍 Running pre-build type check..."
-          cd packages/components-react
-          
-          # First, verify the Stencil version again
-          echo "📋 Final Stencil version check:"
-          npm list @infineon/infineon-design-system-stencil --depth=0
-          
-          # Check if TypeScript can compile without the full build
-          if npx tsc --noEmit; then
-            echo "✅ TypeScript compilation successful"
-          else
-            echo "❌ TypeScript compilation failed"
-            echo "🚨 EMERGENCY FIX: Attempting to regenerate React wrapper from source"
-            
-            # Try to regenerate the React wrapper components
-            if [ -f "lib/components/stencil-generated/index.ts" ]; then
-              echo "📋 Regenerating React wrapper from Stencil types..."
-              # This assumes you have a script to regenerate the wrapper
-              # If not, we'll need to manually trigger the Stencil output target
-              cd ../../components
-              npm run generate:react
-              cd ../components-react
-              
-              # Try compilation again
-              if npx tsc --noEmit; then
-                echo "✅ TypeScript compilation successful after regeneration"
-              else
-                echo "❌ TypeScript compilation still failing after regeneration"
-                exit 1
-              fi
-            else
-              echo "❌ Cannot regenerate React wrapper - missing generation script"
-              exit 1
-            fi
-          fi
+    
             
       - name: Build and deploy Angular, Vue and React packages
         id: build-wrappers  
@@ -381,24 +296,11 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
+          # Build sequentially to avoid race conditions
+          npm run build:components-angular
+          npm run build:components-react
+          npm run build:components-vue
           
-          # Build React wrapper first (most sensitive to type issues)
-          echo "🔧 Building React wrapper..."
-          cd packages/components-react
-          npm run build
-          
-          # Build other wrappers
-          echo "🔧 Building Angular wrapper..."
-          cd ../components-angular
-          npm run build:library
-          
-          echo "🔧 Building Vue wrapper..."
-          cd ../components-vue  
-          npm run build
-          
-          cd ../..
-          
-          # Publish wrapper packages
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
           cd ../../../../components-react
@@ -407,6 +309,7 @@ jobs:
           npm publish --tag canary
 
           echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT 
+
 
       # Wrapper package availability check
       - name: Verify wrapper packages availability
