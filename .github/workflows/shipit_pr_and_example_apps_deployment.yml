@@ -282,17 +282,33 @@ jobs:
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
  
-          # Update React package - CLEAN INSTALL APPROACH
+          # Update React package - COMPLETE CLEAN INSTALL
           cd ../components-react
-          echo "🧹 Cleaning React wrapper..."
-          rm -rf node_modules dist
-
+          echo "🧹 COMPLETELY Cleaning React wrapper..."
+          rm -rf node_modules dist package-lock.json
+          
           # Update package.json with exact version
           jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
 
-          # Install all dependencies fresh
-          echo "📦 Installing fresh dependencies for React wrapper..."
-          npm ci
+          # Force clear npm cache for this package
+          echo "🗑️ Clearing npm cache for Stencil package..."
+          npm cache clean --force
+
+          # Install all dependencies fresh WITHOUT cache
+          echo "📦 Installing fresh dependencies for React wrapper (no cache)..."
+          npm install --no-cache --prefer-offline=false
+
+          # Double-check the installed version
+          echo "🔍 Verifying installed Stencil version..."
+          INSTALLED_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=0 | grep @infineon/infineon-design-system-stencil | awk -F@ '{print $3}')
+          echo "Installed Stencil version: $INSTALLED_VERSION"
+          echo "Expected Stencil version: $CANARY_VERSION"
+          
+          if [ "$INSTALLED_VERSION" != "$CANARY_VERSION" ]; then
+            echo "❌ VERSION MISMATCH: Expected $CANARY_VERSION but got $INSTALLED_VERSION"
+            echo "🔄 Forcing reinstall of correct version..."
+            npm install "@infineon/infineon-design-system-stencil@$CANARY_VERSION" --save-exact --no-cache
+          fi
 
           # Verify Stencil types are available
           echo "🔍 Verifying Stencil types in React wrapper..."
@@ -301,7 +317,12 @@ jobs:
               echo "✅ ActionListItemClickEvent type is available"
             else
               echo "❌ ActionListItemClickEvent type missing - this will cause build failures"
+              echo "📋 Available types in Stencil package:"
+              grep "export.*Event" node_modules/@infineon/infineon-design-system-stencil/dist/types/components.d.ts | head -10
             fi
+          else
+            echo "❌ Stencil types file not found at expected path"
+            find node_modules/@infineon/infineon-design-system-stencil -name "*.d.ts" | head -10
           fi
 
           cd ../../
@@ -320,16 +341,37 @@ jobs:
           echo "🔍 Running pre-build type check..."
           cd packages/components-react
           
+          # First, verify the Stencil version again
+          echo "📋 Final Stencil version check:"
+          npm list @infineon/infineon-design-system-stencil --depth=0
+          
           # Check if TypeScript can compile without the full build
           if npx tsc --noEmit; then
             echo "✅ TypeScript compilation successful"
           else
             echo "❌ TypeScript compilation failed"
-            echo "📋 Current Stencil version in node_modules:"
-            npm list @infineon/infineon-design-system-stencil
-            echo "📋 Contents of Stencil types:"
-            find node_modules/@infineon/infineon-design-system-stencil -name "*.d.ts" | head -10
-            exit 1
+            echo "🚨 EMERGENCY FIX: Attempting to regenerate React wrapper from source"
+            
+            # Try to regenerate the React wrapper components
+            if [ -f "lib/components/stencil-generated/index.ts" ]; then
+              echo "📋 Regenerating React wrapper from Stencil types..."
+              # This assumes you have a script to regenerate the wrapper
+              # If not, we'll need to manually trigger the Stencil output target
+              cd ../../components
+              npm run generate:react
+              cd ../components-react
+              
+              # Try compilation again
+              if npx tsc --noEmit; then
+                echo "✅ TypeScript compilation successful after regeneration"
+              else
+                echo "❌ TypeScript compilation still failing after regeneration"
+                exit 1
+              fi
+            else
+              echo "❌ Cannot regenerate React wrapper - missing generation script"
+              exit 1
+            fi
           fi
             
       - name: Build and deploy Angular, Vue and React packages
@@ -340,8 +382,8 @@ jobs:
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
           
-          # Clean and rebuild React wrapper to ensure fresh types
-          echo "🔧 Cleaning and rebuilding React wrapper..."
+          # Build React wrapper first (most sensitive to type issues)
+          echo "🔧 Building React wrapper..."
           cd packages/components-react
           npm run build
           
