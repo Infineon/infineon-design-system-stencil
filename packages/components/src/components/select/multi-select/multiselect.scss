@@ -83,6 +83,15 @@
       border-color: #CD002F;
     }
 
+    & .required {
+        margin-left: 4px;
+        color:#CD002F;
+        
+        &.error {
+          color: #CD002F;
+        }
+      }
+
     &:hover:not(.focus, :focus) {
       border-color: tokens.$ifxColorEngineering500;
     }
