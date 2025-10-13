@@ -36,7 +36,7 @@
   }
 
   .ifx-error-message-wrapper {
-    color: #CD002F;
+    color: tokens.$ifxColorRed500;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
     white-space: pre-wrap;
@@ -106,7 +106,7 @@
       border-color: tokens.$ifxColorRed500;
     }
 
-    &:hover:not(.focus, :focus) {
+    &:not(.disabled):hover:not(.focus, :focus) {
       border-color: tokens.$ifxColorEngineering500;
     }
 
@@ -137,7 +137,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid #0A8276;
+        border: 2px solid tokens.$ifxColorOcean500;
         border-radius: 2px;
       }
     }
@@ -234,7 +234,7 @@ END Select options: item alignment
 
   .choices.is-disabled .choices__item {
     cursor: default;
-    color: #575352;
+    color: tokens.$ifxColorEngineering300;
   }
 
   .choices [hidden] {
@@ -663,7 +663,7 @@ END Select options: item alignment
     padding-left: 0;
   }
 
-  .choices__placeholder {
+  .ifx-choices__wrapper:not(.disabled) .choices__placeholder {
     opacity: 0.5;
   }
 
