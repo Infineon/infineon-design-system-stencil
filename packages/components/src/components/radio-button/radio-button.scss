@@ -77,6 +77,7 @@
         &.disabled {
             background-color: tokens.$ifxColorEngineering300;
             border-color: tokens.$ifxColorEngineering300;
+            cursor: default;
 
             &.error {
 
@@ -164,6 +165,10 @@
 
         &.disabled {
             color: tokens.$ifxColorEngineering300;
+
+            &:hover {
+                cursor: default;
+        }
         }
 
 
