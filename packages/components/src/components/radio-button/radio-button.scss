@@ -55,14 +55,14 @@
         display: block;
         border-radius: 50%;
         background-color: tokens.$ifxColorBaseWhite;
-        border: 1px solid #575352;
+        border: 1px solid tokens.$ifxColorEngineering500;
 
         .radioButton__wrapper-mark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #0A8276;
+            background-color: tokens.$ifxColorOcean500;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -75,20 +75,21 @@
         }
 
         &.disabled {
-            background-color: #BFBBBB;
-            border-color: #BFBBBB;
+            background-color: tokens.$ifxColorEngineering300;
+            border-color: tokens.$ifxColorEngineering300;
+            cursor: default;
 
             &.error {
 
                 &:hover,
                 &:focus-visible {
-                    border-color: #CD002F;
+                    border-color: tokens.$ifxColorRed500;
                 }
             }
         }
 
         &.checked {
-            border-color: #0A8276;
+            border-color: tokens.$ifxColorOcean500;
 
             &::after {
                 content: "";
@@ -98,12 +99,12 @@
                 transform: translate(-50%, -50%);
                 width: 10px;
                 height: 10px;
-                background-color: #0A8276;
+                background-color: tokens.$ifxColorOcean500;
                 border-radius: 50%;
             }
 
             &.disabled::after {
-                background-color: #BFBBBB;
+                background-color: tokens.$ifxColorEngineering300;
             }
 
 
@@ -117,28 +118,28 @@
 
             &.disabled {
                 background-color: tokens.$ifxColorBaseWhite;
-                border-color: #BFBBBB;
+                border-color: tokens.$ifxColorEngineering300;
 
                 &.disabled::after {
-                    background-color: #BFBBBB;
+                    background-color: tokens.$ifxColorEngineering300;
                 }
 
                 & .radioButton__wrapper-mark {
-                    background-color: #BFBBBB;
+                    background-color: tokens.$ifxColorEngineering300;
                 }
             }
             &.error::after {
-                border-color: #CD002F;
-                background-color: #CD002F;
+                border-color: tokens.$ifxColorRed500;
+                background-color: tokens.$ifxColorRed500;
             }
         }
 
         &.error:not(.disabled) {
-            border-color: #CD002F;
+            border-color: tokens.$ifxColorRed500;
 
             &:hover,
             &:focus-visible {
-                border-color: #CD002F;
+                border-color: tokens.$ifxColorRed500;
             }
         }
     }
@@ -163,9 +164,12 @@
         }
 
         &.disabled {
-            color: #BFBBBB;
-        }
+            color: tokens.$ifxColorEngineering300;
 
+            &:hover {
+                cursor: default;
+        }
+        }
 
 
         &:hover {
