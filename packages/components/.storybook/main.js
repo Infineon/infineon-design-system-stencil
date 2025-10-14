@@ -1,8 +1,14 @@
 import { dirname, join } from "path";
 import { glob } from 'glob'; 
 import path from 'path'
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
+
+export default {
   stories: async () => {
     // Use the custom function to get the list of stories
     const stories = findAndExcludeFiles();
