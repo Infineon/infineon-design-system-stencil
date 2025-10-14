@@ -6,7 +6,6 @@ on:
       - opened
       - reopened
       - synchronize # canary on new commit
-
   workflow_dispatch:
     inputs:
       force_rebuild:
@@ -14,7 +13,6 @@ on:
         type: boolean
         default: false
 
-# Add workflow concurrency to prevent conflicts
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -31,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
-          fetch-depth: 0 # fetch all tags for ship-it
+          fetch-depth: 0
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
@@ -52,6 +50,7 @@ jobs:
             sudo apt-get update && sudo apt-get install -y jq
           fi
 
+      # ----------  UNIQUE CACHE KEY PER COMMIT  ----------
       - name: Cache build outputs
         uses: actions/cache@v3
         id: build-cache
@@ -65,14 +64,15 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ github.sha }}          # << CHANGED
           restore-keys: |
-            ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
-            ${{ runner.os }}-build-v3-
+            ${{ runner.os }}-build-
+
+      # ----------  HARD RESET – ALWAYS WIPE STALE ARTEFACTS  ----------
       - name: 🧹 HARD cache reset – delete stale artefacts
         run: |
           rm -rf packages/components/dist
-          rm -rf packages/components-react/src/components.ts
+          rm -f  packages/components-react/src/components.ts
           echo "Old dist and React types removed – will rebuild from scratch"
 
       - name: 🔍 Debug – what is in the cache?
@@ -87,11 +87,10 @@ jobs:
           [ -f packages/components-react/src/components.ts ] && \
             grep -E "(ActionListItemClickEvent|IfxActionListItemCustomEvent)" packages/components-react/src/components.ts || echo "old events not found"
 
-
       - name: Install dependencies for all packages
         run: |
           npm ci || npm install
-          git checkout -- package-lock.json 
+          git checkout -- package-lock.json
 
       - name: Test
         id: test
@@ -102,74 +101,14 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Handle manual cache busting
-          if [ "${{ github.event.inputs.force_rebuild || 'false' }}" = "true" ]; then
-            echo "🔄 Force rebuild requested - ignoring cache"
-            CACHE_VALID="false"
-          else
-            # Debug information
-            echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
-            
-            # Check if files exist in disk
-            echo "Checking dist directory contents:"
-            ls -la packages/components/dist/ || echo "Dist directory not found"
-                    
-            # More thorough validation of cached build - IGNORE VERSION MISMATCH
-            if [ -d "packages/components/dist" ] && 
-              [ -f "packages/components/dist/index.js" ] && 
-              [ -f "packages/components/dist/collection/collection-manifest.json" ]; then
-              # Read package version from actual built files
-              BUILT_VERSION=$(grep -o '"version":[[:space:]]*"[^"]*"' packages/components/dist/collection/collection-manifest.json | cut -d'"' -f4)
-              # Read expected version from package.json
-              EXPECTED_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
-              
-              echo "Built version from manifest: $BUILT_VERSION"
-              echo "Expected version from package.json: $EXPECTED_VERSION"
-              
-              # CHANGED: Don't invalidate cache just due to version mismatch
-              echo "✅ Files exist and are valid"
-              CACHE_VALID="true"
-            else
-              echo "❌ Required files not found - need rebuild"
-              CACHE_VALID="false"
-            fi
+          echo "🏗️ Running component build..."
+          npm run build:components
+          echo "✅ Build completed successfully"
 
-            # Only check for changes if we have valid files
-            if [ "$CACHE_VALID" = "true" ]; then
-              # Check for source code changes
-              CORE_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/src/ || echo "diff failed")
-              DEPS_CHANGED=$(git diff --name-only HEAD~1 HEAD -- package-lock.json package.json packages/components/package.json || echo "diff failed")
-              CONFIG_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/stencil.config.ts **/tsconfig.json || echo "diff failed")
-              
-              echo "Changes in core: $CORE_CHANGED"
-              echo "Changes in deps: $DEPS_CHANGED"
-              echo "Changes in config: $CONFIG_CHANGED"
-              
-              if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
-                echo "🎉 No changes detected and cache is valid. Skipping build."
-                SKIP_BUILD="true"
-              else
-                echo "🔨 Changes detected - rebuild required"
-                SKIP_BUILD="false"
-                CACHE_VALID="false"
-              fi
-            else
-              SKIP_BUILD="false"
-            fi
-          fi
-          
-          # Run the build if needed
-          if [ "$SKIP_BUILD" != "true" ]; then
-            echo "🏗️ Running component build..."
-            npm run build:components
-            echo "✅ Build completed successfully"
-          fi
-          
-          # Handle versioning and publish (always run this part regardless of build)
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else 
+          else
             cd packages/components
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
@@ -180,7 +119,7 @@ jobs:
             auto shipit
           fi
 
-      # Save the cache explicitly after build (only if we built)
+      # ----------  SAME UNIQUE KEY WHEN SAVING CACHE  ----------
       - name: Save build cache
         if: "${{ !contains(env.SKIP_BUILD, 'true') }}"
         uses: actions/cache/save@v3
@@ -194,18 +133,14 @@ jobs:
             packages/components-angular/projects/component-library/src/lib/stencil-generated/
             packages/components-react/lib/components/stencil-generated/
             packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ github.sha }}          # << SAME KEY
 
-      # Replace sleep with package availability check
       - name: Verify package availability
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: verify-package
         run: |
           echo "Verifying package availability for $CANARY_VERSION"
-          MAX_RETRIES=10
-          RETRY_COUNT=0
-          DELAY=5
-          
+          MAX_RETRIES=10; RETRY_COUNT=0; DELAY=5
           while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
             if npm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &> /dev/null; then
               echo "✅ Package $CANARY_VERSION is available in registry"
@@ -218,34 +153,24 @@ jobs:
               DELAY=$((DELAY + 5))
             fi
           done
-          
           if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
             echo "❌ Package availability check timed out after $MAX_RETRIES attempts"
             echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
           fi
 
-      
-      # Create Stencil loader shim for components (to prevent race conditions)
       - name: Create Stencil loader shim
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         run: |
           echo "Creating Stencil loader shim for wrapper builds..."
-          
-          # Create loader directory in root node_modules
           mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
-          
-          # Create index.js with required functions
           cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
           export function defineCustomElements() {
             return Promise.resolve();
           }
-          
           export function applyPolyfills() {
             return Promise.resolve();
           }
           EOF
-          
-          # Create TypeScript declarations
           cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
           export declare function defineCustomElements(win?: Window): Promise<void>;
           export declare function applyPolyfills(): Promise<void>;
@@ -271,10 +196,10 @@ jobs:
 
           # Update Vue package
           cd packages/components-vue
-          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
+          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//')
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
- 
+
           # Update React package
           cd ../components-react
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
@@ -304,8 +229,6 @@ jobs:
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
-    
-            
       - name: Build and deploy Angular, Vue and React packages
         id: build-wrappers  
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -320,7 +243,6 @@ jobs:
           cat packages/components-react/src/components.ts
           # fail the job if tsc really errored
           if [ $? -ne 0 ]; then exit 1; fi
-          npm run build:components-react
           npm run build:components-vue
           
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
@@ -337,7 +259,6 @@ jobs:
           echo "===== Fresh React components.ts ====="
           cat packages/components-react/src/components.ts
 
-      # Wrapper package availability check
       - name: Verify wrapper packages availability
         if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
         run: |
@@ -414,7 +335,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org
+          registry-url: https://registry.npmjs.org 
           cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -471,7 +392,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org
+          registry-url: https://registry.npmjs.org 
           cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -519,7 +440,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org
+          registry-url: https://registry.npmjs.org 
           cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -570,7 +491,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org
+          registry-url: https://registry.npmjs.org 
           cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -592,7 +513,7 @@ jobs:
           npm install
           npm run update-link
           npm run build
-
+            
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
