@@ -327,6 +327,10 @@ jobs:
 
           echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT 
 
+      - name: 🔍 Debug – React types regenerated?
+        run: |
+          echo "===== Fresh React components.ts ====="
+          cat packages/components-react/src/components.ts
 
       # Wrapper package availability check
       - name: Verify wrapper packages availability
