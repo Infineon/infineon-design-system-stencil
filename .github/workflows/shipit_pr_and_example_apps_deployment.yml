@@ -315,6 +315,11 @@ jobs:
           lerna version $CANARY_VERSION --no-git-tag-version --y
           # Build sequentially to avoid race conditions
           npm run build:components-angular
+          npm run build:components-react || echo "React build failed – show generated types anyway"
+          echo "===== Fresh React components.ts ====="
+          cat packages/components-react/src/components.ts
+          # fail the job if tsc really errored
+          if [ $? -ne 0 ]; then exit 1; fi
           npm run build:components-react
           npm run build:components-vue
           
