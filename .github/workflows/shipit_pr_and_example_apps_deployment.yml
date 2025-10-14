@@ -70,7 +70,19 @@ jobs:
             ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
             ${{ runner.os }}-build-v3-
 
+      - name: 🔍 Debug – what is in the cache?
+        run: |
+          echo "===== Stencil dist ====="
+          ls -la packages/components/dist || echo "dist missing"
+          [ -f packages/components/dist/collection/collection-manifest.json ] && \
+            jq '.components[] | .tag' packages/components/dist/collection/collection-manifest.json | sort || echo "no manifest"
 
+          echo "===== React wrapper src ====="
+          ls -la packages/components-react/src || echo "src missing"
+          [ -f packages/components-react/src/components.ts ] && \
+            grep -E "(ActionListItemClickEvent|IfxActionListItemCustomEvent)" packages/components-react/src/components.ts || echo "old events not found"
+
+    
       - name: Install dependencies for all packages
         run: |
           npm ci || npm install
