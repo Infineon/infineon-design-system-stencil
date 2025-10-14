@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "37.21.0",
+  "version": "37.21.1--canary.2053.f87c5b0b2c52cc28a8aa9263b7b01d26a99d5531.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,15 +18,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@angular/build": "^20.0.1",
     "@angular-devkit/build-angular": "^20.0.1",
+    "@angular/build": "^20.0.1",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@infineon/infineon-design-system-angular": "37.21.0",
+    "@infineon/infineon-design-system-angular": "37.21.1--canary.2053.f87c5b0b2c52cc28a8aa9263b7b01d26a99d5531.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
