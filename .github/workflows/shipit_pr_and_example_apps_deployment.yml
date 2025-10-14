@@ -69,6 +69,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
             ${{ runner.os }}-build-v3-
+      - name: 🧹 HARD cache reset – delete stale artefacts
+        run: |
+          rm -rf packages/components/dist
+          rm -rf packages/components-react/src/components.ts
+          echo "Old dist and React types removed – will rebuild from scratch"
 
       - name: 🔍 Debug – what is in the cache?
         run: |
@@ -82,7 +87,7 @@ jobs:
           [ -f packages/components-react/src/components.ts ] && \
             grep -E "(ActionListItemClickEvent|IfxActionListItemCustomEvent)" packages/components-react/src/components.ts || echo "old events not found"
 
-    
+
       - name: Install dependencies for all packages
         run: |
           npm ci || npm install
