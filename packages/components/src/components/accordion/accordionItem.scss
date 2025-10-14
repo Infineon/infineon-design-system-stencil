@@ -43,7 +43,6 @@
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
-  margin: 4px;
 }
 
 .accordion-caption {
@@ -52,6 +51,10 @@
 }
 
 .accordion-content {
+  border-right: 1px solid tokens.$ifxColorEngineering200;
+  border-left: 1px solid tokens.$ifxColorEngineering200;
+  border-bottom: 1px solid tokens.$ifxColorEngineering200;
+  background-color: tokens.$ifxColorBaseWhite;
   gap: tokens.$ifxSpace100;
   //transition: max-height 0.3s ease-in-out;
   line-height: 24px;
