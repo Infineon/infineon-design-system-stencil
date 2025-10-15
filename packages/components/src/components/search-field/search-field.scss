@@ -82,12 +82,24 @@
       }
 
       &:disabled {
-        background-color: #EEEDED;
+        background: tokens.$ifxColorEngineering300;
+        color: tokens.$ifxColorBaseWhite;
+
+        &::placeholder {
+          color: tokens.$ifxColorBaseWhite;
+        }
       }
     }
 
     &:has(input[disabled]) {
-      background-color: #EEEDED;
+      background: tokens.$ifxColorEngineering300;
+      border: none;
+      color: tokens.$ifxColorBaseWhite;
+    }
+
+    &:has(input:disabled):hover, :focus, .focused, .dropdown-open {
+      border: none;
+      outline: none;
     }
   }
 
