@@ -9,13 +9,7 @@
     "experimentalDecorators": true,
     "target": "es6",
     "sourceMap": true,
-    "lib": [
-      "es6"
-    ]
+    "lib": ["es6"]
   },
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "**/__tests__/**"
-  ]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/__tests__/**"]
 }
