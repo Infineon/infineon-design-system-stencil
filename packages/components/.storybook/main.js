@@ -1,17 +1,8 @@
-import { dirname, join } from "path";
-import { glob } from 'glob'; 
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { createRequire } from 'module';
+const { dirname, join } = require("path");
+const { glob } = require('glob'); 
+const path = require('path');
 
-// ESM equivalent of __dirname
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-// Create require function for ESM
-const require = createRequire(import.meta.url);
-
-export default {
+module.exports = {
   stories: async () => {
     // Use the custom function to get the list of stories
     const stories = findAndExcludeFiles();
