@@ -33,7 +33,7 @@
     &.focused {
       border: 2px solid tokens.$ifxColorOcean500;
 
-      & ifx-icon {
+      & .search-field:not(.disabled) ifx-icon {
         color: tokens.$ifxColorEngineering500;
       }
     }
