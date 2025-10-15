@@ -62,8 +62,6 @@
             flex: none;
             order: 0;
             flex-grow: 0;
-            pointer-events: none;
-        }
 
         &.checked:not(.indeterminate) {
             background-color: tokens.$ifxColorOcean500;
@@ -135,7 +133,6 @@
 
         &.disabled {
             color: tokens.$ifxColorEngineering300;
-            pointer-events: none;
         }
     }
 
@@ -144,5 +141,6 @@
         &:hover {
             cursor: pointer;
         }
+    }
     }
 }
