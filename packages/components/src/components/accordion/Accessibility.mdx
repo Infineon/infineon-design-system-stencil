@@ -8,6 +8,12 @@ export const componentName = "Accordion";
 export const compliancePercentage =  getCompliancePercentageOfComponent(data);
 export const componentRating = getMaxRating(compliancePercentage);
 
+export const statusIcons = {
+  'Passing': '✅',
+  'Failing': '❌',
+  'Not Applicable': '⚪'
+};
+
 <Meta of={AccordionStories}/>
 
 # Accessibility of {componentName}
@@ -41,7 +47,7 @@ The table below shows the percentage of accessibility rules that are fulfilled f
         <td>{rule.guideline}</td>
         <td>{rule.level}</td>
         <td>{rule.summary}</td>
-        <td>{rule.status}</td>
+        <td>{statusIcons[rule.status] || rule.status}</td>
         <td>{rule.comment}</td>
       </tr>
     ))}
