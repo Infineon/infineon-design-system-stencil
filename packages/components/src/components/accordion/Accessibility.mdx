@@ -22,6 +22,32 @@ The table below shows the percentage of accessibility rules that are fulfilled f
 | AA    | {(compliancePercentage.AA*100).toFixed(0)}% |
 | AAA   | {(compliancePercentage.AAA*100).toFixed(0)}% |
 
+## WCAG rules
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Guideline</th>
+      <th>Level</th>
+      <th>Summary</th>
+      <th>Status</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data.map((rule, index) => (
+      <tr key={index}>
+        <td>{rule.guidelineNumber}</td>
+        <td>{rule.guideline}</td>
+        <td>{rule.level}</td>
+        <td>{rule.summary}</td>
+        <td>{rule.status}</td>
+        <td>{rule.comment}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
 ## Notes on Usage
 ### Set AriaLevel
 Set the `AriaLevel` attribute to the correct level to ensure that the screen reader reads the content in the correct order.  
