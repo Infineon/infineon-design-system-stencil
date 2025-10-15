@@ -344,38 +344,6 @@ export const data = [
     "comment": ""
   },
   {
-    "guidelineNumber": "2.4.10",
-    "guideline": "Section Headings",
-    "level": "AAA",
-    "summary": "Break up content with headings",
-    "status": "Passing",
-    "comment": ""
-  },
-  {
-    "guidelineNumber": "2.4.11",
-    "guideline": "Focus Not Obscured (Minimum) (WCAG 2.2)",
-    "level": "AA",
-    "summary": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
-    "status": "Passing",
-    "comment": ""
-  },
-  {
-    "guidelineNumber": "2.4.12",
-    "guideline": "Focus Not Obscured (Enhanced) (WCAG 2.2)",
-    "level": "AAA",
-    "summary": "When a user interface component receives keyboard focus, no part of the component is hidden by author-created content.",
-    "status": "Passing",
-    "comment": ""
-  },
-  {
-    "guidelineNumber": "2.4.13",
-    "guideline": "Focus Appearance (WCAG 2.2)",
-    "level": "AAA",
-    "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
-    "status": "Passing",
-    "comment": ""
-  },
-  {
     "guidelineNumber": "2.4.2",
     "guideline": "Page Titled",
     "level": "A",
@@ -437,6 +405,38 @@ export const data = [
     "level": "AAA",
     "summary": "Every link’s purpose is clear from its text",
     "status": "Not Applicable",
+    "comment": ""
+  },
+    {
+    "guidelineNumber": "2.4.10",
+    "guideline": "Section Headings",
+    "level": "AAA",
+    "summary": "Break up content with headings",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.11",
+    "guideline": "Focus Not Obscured (Minimum) (WCAG 2.2)",
+    "level": "AA",
+    "summary": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.12",
+    "guideline": "Focus Not Obscured (Enhanced) (WCAG 2.2)",
+    "level": "AAA",
+    "summary": "When a user interface component receives keyboard focus, no part of the component is hidden by author-created content.",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.13",
+    "guideline": "Focus Appearance (WCAG 2.2)",
+    "level": "AAA",
+    "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
+    "status": "Passing",
     "comment": ""
   },
   {
