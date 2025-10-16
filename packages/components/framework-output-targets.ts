@@ -48,7 +48,7 @@ export const frameworkTargets = [
 
   }),
   reactOutputTarget({
-    outDir: '../components-react/src',
+    outDir: '../components-react/lib/components/stencil-generated/',
      // excludeComponents,
   }),
 
