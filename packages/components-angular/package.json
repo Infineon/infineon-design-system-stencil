@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "37.22.0",
+  "version": "37.22.1--canary.2053.3bbe4e19532d01ec1e0f509d515180ed57bd4caf.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,13 +19,18 @@
   },
   "dependencies": {
     "@angular-devkit/build-angular": "^20.0.1",
+    "@angular/build": "^20.0.1",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@infineon/infineon-design-system-angular": "37.22.0",
+    "@babel/helper-split-export-declaration": "^7.24.7",
+    "@infineon/infineon-design-system-angular": "37.22.1--canary.2053.3bbe4e19532d01ec1e0f509d515180ed57bd4caf.1",
+    "beasties": "^0.3.5",
+    "css-select": "~5.1.0",
+    "mrmime": "^2.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
