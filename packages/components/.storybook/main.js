@@ -1,6 +1,6 @@
-import { dirname, join } from "path";
-import { glob } from 'glob'; 
-import path from 'path'
+const { dirname, join } = require("path");
+const { glob } = require('glob'); 
+const path = require('path');
 
 module.exports = {
   stories: async () => {
