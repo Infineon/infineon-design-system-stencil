@@ -23,18 +23,18 @@
   &.disabled {
     & .textInput__top-wrapper {
       & label {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
       }
     }
 
     & .textInput__bottom-wrapper {
       input {
-        border: 1px solid tokens.$ifxColorEngineering500;
-        background-color: tokens.$ifxColorEngineering200;
+        border: 1px solid tokens.$ifxColorEngineering300;
+        background-color: tokens.$ifxColorEngineering300;
 
         &::placeholder {
-          font-size: tokens.$ifxFontSizeS;
-          color: tokens.$ifxColorEngineering500;
+          font-size: tokens.$ifxFontSizeM;
+          color: tokens.$ifxColorBaseWhite;
         }
       }
     }
@@ -210,7 +210,7 @@
       }
 
       &.disabled {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
       }
     }
 
