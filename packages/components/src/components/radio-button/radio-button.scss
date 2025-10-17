@@ -29,7 +29,7 @@
     font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
     outline: none;
 
-    &:focus .radioButton__wrapper {
+    &:focus:not(.disabled) .radioButton__wrapper {
         &::before {
             content: '';
             position: absolute;
