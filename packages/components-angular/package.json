@@ -1,22 +1,20 @@
 {
   "name": "components-angular",
-  "version": "37.22.1--canary.2069.7b51ddba87ae4e67c7059e5c664360705332260c.0",
+  "version": "37.22.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "build:library": "ng build @infineon/infineon-design-system-angular",
     "watch": "ng build --watch --configuration development",
-    "build:wrapper": "npm i && cd ../components && npm i && npm run build:stencil && npm link && cd ../components-angular/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
+    "build:wrapper": "pnpm i && cd ../components && pnpm i && pnpm run build:stencil && npm link && cd ../components-angular/projects/component-library && npm link @infineon/infineon-design-system-stencil && cd ../.. && npm run build:library",
     "link": "cd ../components-angular/dist/@infineon/infineon-design-system-angular && npm link && cd ../../../projects/my-app && npm link @infineon/infineon-design-system-angular",
     "preview:link": "run-s link start",
     "test:local": "run-s build:wrapper preview:link"
   },
   "author": "",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "^20.0.1",
     "@angular/build": "^20.0.1",
@@ -26,11 +24,11 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@infineon/infineon-design-system-angular": "37.22.1--canary.2069.7b51ddba87ae4e67c7059e5c664360705332260c.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "@infineon/infineon-design-system-stencil": "workspace:*"
   },
   "devDependencies": {
     "@angular/cli": "^20.0.0",

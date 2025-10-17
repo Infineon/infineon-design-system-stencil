@@ -22,7 +22,6 @@
     "jsx": "react",
     "target": "esnext",
     "types": [
-      "jest"
     ]
   },
   "include": [

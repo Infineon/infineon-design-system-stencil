@@ -24,8 +24,8 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "@infineon/design-system-tokens": "3.3.2--canary.35.37fb280e88ed6cac90c421f89ba851375e93e62d.0",
-    "@infineon/infineon-design-system-stencil": "25.15.1--canary.1561.1c1eb8e300b13c71569ad58d2397e7bc06c66329.0",
+    "@infineon/design-system-tokens": "5.0.0",
+    "@infineon/infineon-design-system-stencil": "workspace:*",
     "sass": "^1.56.1",
     "typescript": "^4.5.4"
   }
