@@ -1,9 +1,5 @@
 import { Component, h, Prop, Element, Event, EventEmitter } from '@stencil/core';
 
-export interface SpoonItem {
-  text: string;
-}
-
 @Component({
   tag: 'ifx-spoon',
   styleUrl: 'spoon.scss',
@@ -13,7 +9,7 @@ export interface SpoonItem {
 export class Spoon {
   @Element() el;
   @Prop() color: string = 'orange';
-  @Event() ifxSpoonItem: EventEmitter<SpoonItem>;
+  @Event() ifxSpoonItem: EventEmitter;
 
   emitSpoonText() {
     this.ifxSpoonItem.emit({text: 'mySpoon'})
