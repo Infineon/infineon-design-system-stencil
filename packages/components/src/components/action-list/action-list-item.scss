@@ -17,8 +17,9 @@
     }
 
     &:focus:not(.action-list-item--disabled) {
-      outline: 2px solid tokens.$ifxColorOcean500;
-      outline-offset: -2px;
+      outline: none;
+      //outline: 2px solid tokens.$ifxColorOcean500;
+      //outline-offset: -2px;
       background: tokens.$ifxColorEngineering100;
     }
 
@@ -28,8 +29,6 @@
   }
 
   &--disabled {
-    cursor: not-allowed;
-
     // Apply disabled color to all slotted icons
     ::slotted(ifx-icon) {
       color: tokens.$ifxColorEngineering300;
@@ -91,5 +90,6 @@
     justify-content: center;
     margin-left: tokens.$ifxSpace200;
     flex-shrink: 0;
+    gap: 16px;
   }
 }
