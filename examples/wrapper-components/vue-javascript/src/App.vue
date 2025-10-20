@@ -3,6 +3,7 @@
   <h1>Stencil Framework integration - VueJs </h1>
   <Sidebar />
   <Alert />
+  <ActionList />
   <Accordion />
   <Badge />
   <Breadcrumbs />
@@ -51,6 +52,7 @@
 import SearchField from './components/SearchField.vue'
 import Alert from './components/Alert.vue'
 import Accordion from './components/Accordion.vue'
+import ActionList from './components/ActionList.vue'
 import Button from './components/Button.vue'
 import Checkbox from './components/Checkbox.vue'
 import CheckboxGroup from './components/CheckboxGroup.vue'

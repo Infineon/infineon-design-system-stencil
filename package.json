@@ -11,7 +11,7 @@
     "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
     "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
     "build:components-angular": "lerna run build:library --scope components-angular",
-    "build:all-wrappers": "npm run build:components-react && npm run build:components-vue && npm run build:components-angular",    
+    "build:all-wrappers": "npm run build:components-react && npm run build:components-vue && npm run build:components-angular",
     "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
     "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
     "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "lerna": "^8.1.9",
+    "npm-run-all": "^4.1.5",
     "nx": "^16.10.0",
     "typescript": "^5.4.5",
     "wait-on": "^7.2.0"
