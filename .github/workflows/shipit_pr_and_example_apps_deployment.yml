@@ -6,16 +6,6 @@ on:
       - opened
       - reopened
       - synchronize # canary on new commit
-  workflow_dispatch:
-    inputs:
-      force_rebuild:
-        description: 'Force rebuild (ignore cache)'
-        type: boolean
-        default: false
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 
 jobs:
   stencil-library-release:
@@ -23,13 +13,13 @@ jobs:
       CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
       SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
       - name: checkout
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
-          fetch-depth: 0
+          fetch-depth: 0 # fetch all tags for ship-it
 
       - name: download + setup auto
         uses: auto-it/setup-auto@v1
@@ -39,76 +29,38 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-          cache: 'npm'
 
-      - name: Check for jq and install if needed
-        run: |
-          if command -v jq &> /dev/null; then
-            echo "✅ jq is already installed: $(jq --version)"
-          else
-            echo "📦 Installing jq..."
-            sudo apt-get update && sudo apt-get install -y jq
-          fi
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
-      # ----------  UNIQUE CACHE KEY PER COMMIT  ----------
-      - name: Cache build outputs
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3
-        id: build-cache
         with:
           path: |
-            packages/components/dist
-            packages/components/www/build
-            packages/components-vue/dist
-            packages/components-react/dist
-            packages/components-angular/dist
-            packages/components-angular/projects/component-library/src/lib/stencil-generated/
-            packages/components-react/lib/components/stencil-generated/
-            packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.sha }}          # << CHANGED
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
           restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
             ${{ runner.os }}-build-
-
-      # ----------  HARD RESET – ALWAYS WIPE STALE ARTEFACTS  ----------
-      - name: 🧹 HARD cache reset – delete stale artefacts
-        run: |
-          rm -rf packages/components/dist
-          rm -f  packages/components-react/src/components.ts
-          echo "Old dist and React types removed – will rebuild from scratch"
-
-      - name: 🔍 Debug – what is in the cache?
-        run: |
-          echo "===== Stencil dist ====="
-          ls -la packages/components/dist || echo "dist missing"
-          [ -f packages/components/dist/collection/collection-manifest.json ] && \
-            jq '.components[] | .tag' packages/components/dist/collection/collection-manifest.json | sort || echo "no manifest"
-
-          echo "===== React wrapper src ====="
-          ls -la packages/components-react/src || echo "src missing"
-          [ -f packages/components-react/src/components.ts ] && \
-            grep -E "(ActionListItemClickEvent|IfxActionListItemCustomEvent)" packages/components-react/src/components.ts || echo "old events not found"
-
+    
       - name: Install dependencies for all packages
         run: |
-          npm ci || npm install
-          git checkout -- package-lock.json
-
-      - name: Test
-        id: test
-        run: npm test
+          npm install
+          git checkout -- package-lock.json 
 
       - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "🏗️ Running component build..."
           npm run build:components
-          echo "✅ Build completed successfully"
-
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
-          else
+          else 
             cd packages/components
             CANARY_VERSION=$(auto shipit --dry-run --quiet)
             echo "CANARY_VERSION=$CANARY_VERSION" >> $GITHUB_ENV
@@ -119,63 +71,12 @@ jobs:
             auto shipit
           fi
 
-      # ----------  SAME UNIQUE KEY WHEN SAVING CACHE  ----------
-      - name: Save build cache
-        if: "${{ !contains(env.SKIP_BUILD, 'true') }}"
-        uses: actions/cache/save@v3
-        with:
-          path: |
-            packages/components/dist
-            packages/components/www/build
-            packages/components-vue/dist
-            packages/components-react/dist
-            packages/components-angular/dist
-            packages/components-angular/projects/component-library/src/lib/stencil-generated/
-            packages/components-react/lib/components/stencil-generated/
-            packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.sha }}          # << SAME KEY
-
-      - name: Verify package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        id: verify-package
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
-          echo "Verifying package availability for $CANARY_VERSION"
-          MAX_RETRIES=10; RETRY_COUNT=0; DELAY=5
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            if npm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &> /dev/null; then
-              echo "✅ Package $CANARY_VERSION is available in registry"
-              echo "PACKAGE_AVAILABLE=true" >> $GITHUB_OUTPUT
-              break
-            else
-              RETRY_COUNT=$((RETRY_COUNT + 1))
-              echo "⏳ Package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-              sleep $DELAY
-              DELAY=$((DELAY + 5))
-            fi
-          done
-          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-            echo "❌ Package availability check timed out after $MAX_RETRIES attempts"
-            echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create Stencil loader shim
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "Creating Stencil loader shim for wrapper builds..."
-          mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
-          export function defineCustomElements() {
-            return Promise.resolve();
-          }
-          export function applyPolyfills() {
-            return Promise.resolve();
-          }
-          EOF
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
-          export declare function defineCustomElements(win?: Window): Promise<void>;
-          export declare function applyPolyfills(): Promise<void>;
-          EOF
-
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
+        shell: bash
+      
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -183,6 +84,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
@@ -196,10 +98,10 @@ jobs:
 
           # Update Vue package
           cd packages/components-vue
-          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//')
+          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
           jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
-
+ 
           # Update React package
           cd ../components-react
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
@@ -229,22 +131,16 @@ jobs:
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
+            
       - name: Build and deploy Angular, Vue and React packages
-        id: build-wrappers  
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          # Build sequentially to avoid race conditions
           npm run build:components-angular
-          npm run build:components-react || echo "React build failed – show generated types anyway"
-          echo "===== Fresh React components.ts ====="
-          cat packages/components-react/src/components.ts
-          # fail the job if tsc really errored
-          if [ $? -ne 0 ]; then exit 1; fi
+          npm run build:components-react
           npm run build:components-vue
-          
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
           cd ../../../../components-react
@@ -252,44 +148,11 @@ jobs:
           cd ../components-vue
           npm publish --tag canary
 
-          echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT 
-
-      - name: 🔍 Debug – React types regenerated?
+      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
-          echo "===== Fresh React components.ts ====="
-          cat packages/components-react/src/components.ts
-
-      - name: Verify wrapper packages availability
-        if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
-        run: |
-          echo "Verifying wrapper packages availability..."
-          
-          check_package() {
-            local package=$1
-            local MAX_RETRIES=10
-            local RETRY_COUNT=0
-            local DELAY=3
-            
-            echo "Checking $package@$CANARY_VERSION availability..."
-            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-              if npm view "$package@$CANARY_VERSION" version &> /dev/null; then
-                echo "✅ $package@$CANARY_VERSION is available"
-                return 0
-              else
-                RETRY_COUNT=$((RETRY_COUNT + 1))
-                echo "⏳ $package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-                sleep $DELAY
-                DELAY=$((DELAY + 2))
-              fi
-            done
-            
-            echo "❌ $package availability check timed out"
-            return 1
-          }
-          
-          check_package "@infineon/infineon-design-system-angular"
-          check_package "@infineon/infineon-design-system-react"
-          check_package "@infineon/infineon-design-system-vue"
+          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
+          sleep 10s
+        shell: bash
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -318,6 +181,7 @@ jobs:
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
 
+  #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -327,48 +191,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org 
-          cache: 'npm'
+          registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache Vue app node modules
-        uses: actions/cache@v3
-        with:
-          path: examples/wrapper-components/vue-javascript/node_modules
-          key: ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/vue-javascript/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-vue-example-
-
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          CANARY_VERSION: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
-          BASE_PATH: /infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
-          rm -rf dist
-          npm install
-          
-          # Add base path to vite.config.js if it exists
-          if [ -f "vite.config.js" ]; then
-            echo "Adding base path to vite.config.js"
-            sed -i "s/export default defineConfig({/export default defineConfig({\n  base: '\/infineon-design-system-stencil\/pr-preview-vue-example\/pr-$PR_NUMBER\/',/" vite.config.js
-          fi
-
+          npm i
           npm run build
-          
-          # Add .nojekyll file to ensure GitHub Pages serves files as they exist in build directory
-          touch dist/.nojekyll
 
       - name: Deploy preview
         id: preview       
@@ -392,29 +228,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org 
-          cache: 'npm'
+          registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache React app node modules
-        uses: actions/cache@v3
-        with:
-          path: examples/wrapper-components/react-vite-js/node_modules
-          key: ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/react-vite-js/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-react-example-
-
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/react-vite-js
-          rm -rf node_modules package-lock.json
-          # install the wrapper we just built locally
-          npm install ../../../packages/components-react
+          rm -rf node_modules
           npm install
+          REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
+          STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
+          echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
           npm run build
 
       - name: Deploy preview
@@ -439,33 +264,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org 
-          cache: 'npm'
+          registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Cache Angular app node modules
-        uses: actions/cache@v3
-        with:
-          path: packages/components-angular/node_modules
-          key: ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('packages/components-angular/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-angular-example-
 
       - name: Update package.json with canary version
         run: |
           cd packages/components-angular
-          # add missing Angular 20 dep
-          npm install --save-dev @angular-devkit/build-webpack
-          # install the wrapper we just built locally
-          npm install ./dist/@infineon/infineon-design-system-angular
-          npm install
-          npm run build my-app
-          
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          cd projects/component-library
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd packages/components-angular
           npm install
@@ -493,29 +302,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: https://registry.npmjs.org 
-          cache: 'npm'
+          registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache Vanilla app node modules
-        uses: actions/cache@v3
-        with:
-          path: examples/stencil-components/vanilla-cdn/node_modules
-          key: ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/stencil-components/vanilla-cdn/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-vanilla-example-
-
       - name: Update CDN Link in Vanilla example app & build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: | 
           cd examples/stencil-components/vanilla-cdn
           npm install
           npm run update-link
           npm run build
-            
+
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
         id: preview
@@ -524,10 +321,12 @@ jobs:
           umbrella-dir: pr-preview-vanilla-example
           token: ${{ secrets.GH_TOKEN }}
   
-  update-pr-comment:
+  update-pr-comment: # add comment on github
     needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Update comment in PR
         uses: actions/github-script@v4
         with:
@@ -564,3 +363,4 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          
