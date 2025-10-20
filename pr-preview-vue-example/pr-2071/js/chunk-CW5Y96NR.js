@@ -1,0 +1,1 @@
+import{r as s,h as e,g as t}from"./entry-CE5hmZkR.js";const r="",a=class{constructor(o){s(this,o),this.color="orange"}render(){return e("div",{key:"27fa5a5108f30afa4a08dd8c2d09af498f7c4868"},e("p",{key:"704c7cca8c3a4d310cb74ffea80f2251f95b169e"},"Spoon"))}get el(){return t(this)}};a.style=r;export{a as ifx_spoon};
