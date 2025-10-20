@@ -76,6 +76,7 @@ import { IfxSidebarTitle as IfxSidebarTitleElement, defineCustomElement as defin
 import { IfxSidebar as IfxSidebarElement, defineCustomElement as defineIfxSidebar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-sidebar.js";
 import { IfxSlider as IfxSliderElement, defineCustomElement as defineIfxSlider } from "@infineon/infineon-design-system-stencil/dist/components/ifx-slider.js";
 import { IfxSpinner as IfxSpinnerElement, defineCustomElement as defineIfxSpinner } from "@infineon/infineon-design-system-stencil/dist/components/ifx-spinner.js";
+import { IfxSpoon as IfxSpoonElement, defineCustomElement as defineIfxSpoon } from "@infineon/infineon-design-system-stencil/dist/components/ifx-spoon.js";
 import { IfxStatus as IfxStatusElement, defineCustomElement as defineIfxStatus } from "@infineon/infineon-design-system-stencil/dist/components/ifx-status.js";
 import { IfxStep as IfxStepElement, defineCustomElement as defineIfxStep } from "@infineon/infineon-design-system-stencil/dist/components/ifx-step.js";
 import { IfxStepper as IfxStepperElement, defineCustomElement as defineIfxStepper } from "@infineon/infineon-design-system-stencil/dist/components/ifx-stepper.js";
@@ -953,6 +954,17 @@ export const IfxSpinner: StencilReactComponent<IfxSpinnerElement, IfxSpinnerEven
     react: React,
     events: {} as IfxSpinnerEvents,
     defineCustomElement: defineIfxSpinner
+});
+
+type IfxSpoonEvents = NonNullable<unknown>;
+
+export const IfxSpoon: StencilReactComponent<IfxSpoonElement, IfxSpoonEvents> = /*@__PURE__*/ createComponent<IfxSpoonElement, IfxSpoonEvents>({
+    tagName: 'ifx-spoon',
+    elementClass: IfxSpoonElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxSpoonEvents,
+    defineCustomElement: defineIfxSpoon
 });
 
 type IfxStatusEvents = NonNullable<unknown>;
