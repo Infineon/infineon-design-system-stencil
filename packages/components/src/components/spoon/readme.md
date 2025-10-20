@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event          | Description | Type                     |
-| -------------- | ----------- | ------------------------ |
-| `ifxSpoonItem` |             | `CustomEvent<SpoonItem>` |
+| Event          | Description | Type               |
+| -------------- | ----------- | ------------------ |
+| `ifxSpoonItem` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------
