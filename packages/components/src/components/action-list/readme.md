@@ -20,9 +20,9 @@
 
 ## Events
 
-| Event                    | Description                                      | Type                                    |
-| ------------------------ | ------------------------------------------------ | --------------------------------------- |
-| `ifxActionListItemClick` | Event emitted when the main item area is clicked | `CustomEvent<ActionListItemClickEvent>` |
+| Event                    | Description                                      | Type               |
+| ------------------------ | ------------------------------------------------ | ------------------ |
+| `ifxActionListItemClick` | Event emitted when the main item area is clicked | `CustomEvent<any>` |
 
 
 ----------------------------------------------
