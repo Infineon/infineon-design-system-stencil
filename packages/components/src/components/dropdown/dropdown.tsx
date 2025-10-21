@@ -2,8 +2,8 @@ import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-//import { createPopper } from '@popperjs/core';
-import { createPopper } from '@popperjs/core/lib/createPopper';
+import { createPopper } from '@popperjs/core';
+//import { createPopper } from '@popperjs/core/lib/createPopper';
 import { IOpenable } from './IOpenable';
 
 export type Placement =
