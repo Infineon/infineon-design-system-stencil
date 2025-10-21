@@ -1,0 +1,1 @@
+import{r as o,h as e,H as t}from"./index-WVDA-G8V.js";const n=":host{display:block}",a=class{constructor(s){o(this,s)}render(){return e(t,{key:"a1388b92da32dc85754aa7cd25c4369447f6b695"},e("slot",{key:"ee0e63338cf5dddf965c80521d4e271a42c886e6"}))}};a.style=n;export{a as minimal_component};
