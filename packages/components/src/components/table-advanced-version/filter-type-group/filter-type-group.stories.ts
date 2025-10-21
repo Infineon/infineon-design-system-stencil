@@ -54,7 +54,7 @@ export const Default = () => {
     </div>
   </ifx-filter-type-group>
 `;
-  const element = wrapper.querySelector('ifx-filter-type-group') as HTMLElement;
+  const element = wrapper.querySelector('ifx-filter-type-group') as unknown as HTMLElement;
 
   element.addEventListener('ifxSidebarFilterChange', action('ifxSidebarFilterChange'));
 

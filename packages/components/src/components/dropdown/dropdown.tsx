@@ -2,9 +2,8 @@ import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-import { createPopper } from '@popperjs/core';
- 
-
+//import { createPopper } from '@popperjs/core';
+import { createPopper } from '@popperjs/core/lib/createPopper';
 import { IOpenable } from './IOpenable';
 
 export type Placement =
@@ -88,7 +87,7 @@ export class Dropdown {
 
 private getItemFocusables(): HTMLElement[] {
   if (!this.menu) return [];
-  const hosts = Array.from(this.menu.querySelectorAll('ifx-dropdown-item')) as HTMLElement[];
+  const hosts = Array.from(this.menu.querySelectorAll('ifx-dropdown-item')) as unknown as HTMLElement[];
   return hosts
     .filter(h => !(h.getAttribute('hide') === 'true' || h.classList.contains('hide')))
     .map(h => h.shadowRoot?.querySelector('a') as HTMLElement | null)

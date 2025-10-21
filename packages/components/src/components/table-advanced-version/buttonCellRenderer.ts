@@ -24,7 +24,7 @@ export class ButtonCellRenderer implements ICellRendererComp {
     const options = params.colDef.cellRendererParams || {};
     
     this.eGui = document.createElement('div');
-    this.eButton = document.createElement('ifx-button') as HTMLElement;
+    this.eButton = document.createElement('ifx-button') as unknown as HTMLElement;
     
     if (this.hasRequiredKeys(config)) {
       this.setButtonAttributes(config);
