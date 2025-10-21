@@ -34,6 +34,7 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-webpack": "^0.2003.3",
     "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
     "@babel/helper-split-export-declaration": "^7.24.7",
