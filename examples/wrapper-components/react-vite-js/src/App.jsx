@@ -42,7 +42,7 @@ import Textarea from './components/Textarea/Textarea';
 import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
-import { MinimalComponent } from '@infineon/infineon-design-system-react/dist';
+
 function App() {
 
   return (
@@ -51,13 +51,10 @@ function App() {
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
 
-      <h2>Minimal Component</h2>
-      <MinimalComponent />
-
       <h2>Accordion</h2>
       <Accordion />
       <br />
-
+      
       <h2>Alert</h2>
       <Alert />
       <br />
