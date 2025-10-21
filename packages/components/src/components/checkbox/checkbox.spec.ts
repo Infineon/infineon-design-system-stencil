@@ -109,7 +109,7 @@ it('should emit ifxChange event when clicked', async () => {
     html: `<ifx-checkbox></ifx-checkbox>`,
   });
 
-  const checkbox = page.root as HTMLIfxCheckboxElement;
+  const checkbox = page.root as unknown as HTMLIfxCheckboxElement;
   const ifxChangeSpy = jest.fn();
   checkbox.addEventListener('ifxChange', ifxChangeSpy); // Attach listener manually
 
