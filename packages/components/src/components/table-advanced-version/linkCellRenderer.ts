@@ -23,7 +23,7 @@ export class LinkCellRenderer implements ICellRendererComp {
     const config = params.data.link;
     
     this.eGui = document.createElement('div');
-    this.eLink = document.createElement('ifx-link') as HTMLElement;
+    this.eLink = document.createElement('ifx-link') as unknown as HTMLElement;
     
     if (this.hasRequiredKeys(config)) {
       this.setLinkAttributes(config);
