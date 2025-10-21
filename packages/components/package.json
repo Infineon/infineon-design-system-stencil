@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "37.22.0",
+  "version": "37.22.1--canary.2074.49ce2067d9c3f428585d0958f1d15b43c70028d4.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
@@ -63,7 +63,7 @@
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "@stencil/core": "4.36.3",
+    "@stencil/core": "4.38.2",
     "@stencil/react-output-target": "^0.7.1",
     "@stencil/sass": "^3.2.2",
     "@storybook/addon-actions": "^8.3.0",

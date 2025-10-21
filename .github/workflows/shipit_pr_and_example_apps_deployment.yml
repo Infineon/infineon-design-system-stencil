@@ -459,17 +459,26 @@ jobs:
             ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
             ${{ runner.os }}-react-example-
 
-      - name: Install and Build
+      - name: Clean and prepare environment
+        run: |
+          rm -rf node_modules
+          npm ci
+
+      - name: Build Stencil library first
+        run: npm run build --workspace=@infineon/infineon-design-system-stencil
+
+      - name: Install and Build React example
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/react-vite-js
           rm -rf node_modules
-          npm install
+          npm ci
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
           npm run build
+
 
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
