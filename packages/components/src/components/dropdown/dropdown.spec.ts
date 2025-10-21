@@ -11,6 +11,11 @@ jest.mock('@popperjs/core', () => ({
   createPopper: mockCreatePopper
 }));
 
+// jest.mock('@popperjs/core/lib/createPopper', () => ({
+//   createPopper: jest.fn(() => ({ destroy: jest.fn() })),
+// }), { virtual: true });
+
+
 describe('ifx-dropdown', () => {
   beforeEach(() => {
     jest.clearAllMocks();
