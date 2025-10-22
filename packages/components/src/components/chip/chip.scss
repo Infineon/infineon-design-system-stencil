@@ -121,11 +121,11 @@
 
         &:hover:not(.chip__wrapper--selected, .disabled, .read-only) { 
         background-color: tokens.$ifxColorEngineering500;
-        color: black;
         }
 
         &:active:not(.chip__wrapper--selected, .disabled, .read-only) { 
             background-color: tokens.$ifxColorEngineering400;
+            color: black;
         }
 
       &.disabled { 
