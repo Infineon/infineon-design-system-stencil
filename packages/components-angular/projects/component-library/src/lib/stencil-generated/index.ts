@@ -70,6 +70,7 @@ export const DIRECTIVES = [
   d.IfxSidebarTitle,
   d.IfxSlider,
   d.IfxSpinner,
+  d.IfxSpoon,
   d.IfxStatus,
   d.IfxStep,
   d.IfxStepper,

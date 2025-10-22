@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "37.22.0",
+  "version": "37.22.1--canary.2074.9e36e26110d21e4320e09cfc57937c244c049d0c.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,20 +25,26 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
-    "@infineon/infineon-design-system-angular": "37.22.0",
+    "@infineon/infineon-design-system-angular": "37.22.1--canary.2074.9e36e26110d21e4320e09cfc57937c244c049d0c.0",
+    "beasties": "^0.3.5",
+    "mrmime": "^2.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "typescript": "~5.8.2",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-webpack": "^0.2003.3",
     "@angular/cli": "^20.0.0",
     "@angular/compiler-cli": "^20.0.0",
+    "@babel/helper-split-export-declaration": "^7.24.7",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^20.0.0"
+    "ng-packagr": "^20.0.0",
+    "parse5-html-rewriting-stream": "^8.0.0",
+    "webpack-dev-server": "^5.2.2"
   }
 }

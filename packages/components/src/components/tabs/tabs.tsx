@@ -18,7 +18,7 @@ export class IfxTabs {
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
   @State() internalFocusedTabIndex: number = 0;
-  @State() tabRefs: HTMLElement[] = [];
+  @State() tabRefs: Element[] = [];
   @State() tabHeaderRefs: HTMLElement[] = [];
   @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
