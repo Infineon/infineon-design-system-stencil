@@ -16,7 +16,6 @@ import Navbar from './components/Navbar/Navbar';
 import SearchField from './components/SearchField/SearchField';
 import IconButton from './components/IconButton/IconButton';
 import Tabs from './components/Tabs/Tabs';
-import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
@@ -28,7 +27,6 @@ import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Modal from './components/Modal/Modal';
-import Badge from './components/Badge/Badge'
 import Footer from './components/Footer/Footer'
 import Icon from './components/Icon/Icon';
 import Slider from './components/Slider/Slider'
@@ -65,10 +63,6 @@ function App() {
 
       <h2>Alert</h2>
       <Alert />
-      <br />
-
-      <h2>Badge</h2>
-      <Badge />
       <br />
 
       <h2>Breadcrumbs</h2>
@@ -198,10 +192,6 @@ function App() {
 
       <h2>Tabs</h2>
       <Tabs />
-      <br />
-
-      <h2>Tag</h2>
-      <Tag />
       <br />
 
       <h2>Textarea</h2>
