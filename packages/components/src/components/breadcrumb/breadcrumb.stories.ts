@@ -124,7 +124,7 @@ const DefaultTemplate = args => {
   </ifx-breadcrumb-item>
 </ifx-breadcrumb>`;
 
-  const breadcrumb = wrapper.querySelector('ifx-breadcrumb') as HTMLElement;
+  const breadcrumb = wrapper.querySelector('ifx-breadcrumb') as unknown as HTMLElement;
   // Loop through each breadcrumb item and attach event listeners to its dropdown menu
   const breadcrumbItems = breadcrumb.querySelectorAll('ifx-breadcrumb-item');
   breadcrumbItems.forEach(breadcrumbItem => {

@@ -221,7 +221,7 @@ const DefaultTemplate = args => {
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as unknown as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
@@ -258,7 +258,7 @@ const LabelTriggerTemplate = args => {
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as unknown as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
@@ -304,7 +304,7 @@ const HeaderTemplate = args => {
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as unknown as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
@@ -349,7 +349,7 @@ const SearchTemplate = args => {
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as unknown as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));
@@ -382,7 +382,7 @@ const SeparatorTemplate = args => {
   </ifx-dropdown-menu>
 </ifx-dropdown>`;
 
-  const dropdown = wrapper.querySelector('ifx-dropdown') as HTMLElement;
+  const dropdown = wrapper.querySelector('ifx-dropdown') as unknown as HTMLElement;
   const dropdownMenu = dropdown.querySelector('ifx-dropdown-menu');
 
   dropdown.addEventListener('ifxOpen', action('ifxOpen'));

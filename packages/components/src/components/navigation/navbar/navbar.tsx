@@ -48,7 +48,7 @@ export class Navbar {
       for (let i = 0; i < assignedNodes.length; i++) {
         const node = assignedNodes[i] as HTMLElement;
         if (node.nodeName === 'IFX-NAVBAR-ITEM') {
-          const navbarItem = node as HTMLIfxNavbarItemElement;
+          const navbarItem = node as unknown as HTMLIfxNavbarItemElement;
 
           // Get all navigation items
           const aElements = navbarItem?.shadowRoot.querySelectorAll('a');

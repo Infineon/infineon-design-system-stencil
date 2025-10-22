@@ -286,7 +286,7 @@ export class TreeViewItem {
   }
 
   private updateParentState() {
-    const parent = this.host.parentElement?.closest('ifx-tree-view-item') as HTMLIfxTreeViewItemElement;
+    const parent = this.host.parentElement?.closest('ifx-tree-view-item') as unknown as HTMLIfxTreeViewItemElement;
     if (!parent) return;
     setTimeout(() => {
       const parentInstance = (parent as any)['__stencil_instance'] as TreeViewItem;
@@ -332,7 +332,7 @@ export class TreeViewItem {
       }
       return true;
     });
-    const currentIndex = visibleItems.findIndex(el => el === this.host);
+    const currentIndex = visibleItems.findIndex(el => el === this.host as unknown);
     const focusLabelIcon = (el: Element | null) =>
       (el as HTMLElement | null)?.focus();
 
@@ -366,7 +366,7 @@ export class TreeViewItem {
         } else if (this.isExpanded && this.hasChildren) {
           const firstChild = this.host.querySelector('ifx-tree-view-item');
           if (firstChild && !(firstChild as any).disabled) {
-            focusLabelIcon((firstChild as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            focusLabelIcon((firstChild as unknown as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
         break;
@@ -378,7 +378,7 @@ export class TreeViewItem {
         } else {
           const parent = this.host.parentElement?.closest('ifx-tree-view-item');
           if (parent && !(parent as any).disabled) {
-            focusLabelIcon((parent as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            focusLabelIcon((parent as unknown as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
         break;

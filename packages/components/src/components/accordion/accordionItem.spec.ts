@@ -59,7 +59,7 @@ describe('ifx-accordion-item', () => {
     });
 
     const titleElement = root.shadowRoot.querySelector('.accordion-title') as HTMLElement; // Cast to HTMLElement
-    const accordionItem = root as HTMLIfxAccordionItemElement;
+    const accordionItem = root as unknown as HTMLIfxAccordionItemElement;
 
     expect(accordionItem.open).toBeFalsy();
 
