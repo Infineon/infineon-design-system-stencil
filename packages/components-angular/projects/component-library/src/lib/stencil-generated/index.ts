@@ -83,5 +83,6 @@ export const DIRECTIVES = [
   d.IfxTooltip,
   d.IfxTreeView,
   d.IfxTreeViewItem,
-  d.MinimalComponent
+  d.MinimalComponent,
+  d.MinimalComponentWrapper
 ];
