@@ -1,3 +1,20 @@
+# v37.22.0 (Wed Oct 15 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: makes selected prop dynamic [#2067](https://github.com/Infineon/infineon-design-system-stencil/pull/2067) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.21.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.21.0 (Wed Oct 01 2025)
 
 #### 🚀 Enhancement
