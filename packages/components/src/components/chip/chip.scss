@@ -120,12 +120,12 @@
         color: white;
 
         &:hover:not(.chip__wrapper--selected, .disabled, .read-only) { 
-        background-color: tokens.$ifxColorEngineering400;
+        background-color: tokens.$ifxColorEngineering500;
         color: black;
         }
 
         &:active:not(.chip__wrapper--selected, .disabled, .read-only) { 
-            background-color: tokens.$ifxColorEngineering300;
+            background-color: tokens.$ifxColorEngineering400;
         }
 
       &.disabled { 
@@ -151,7 +151,7 @@
         background-color: tokens.$ifxColorEngineering200;
 
         &:hover:not(.read-only) { 
-        background-color: tokens.$ifxColorEngineering300;
+        background-color: tokens.$ifxColorEngineering500;
         }
 
         &:active:not(.read-only) { 
