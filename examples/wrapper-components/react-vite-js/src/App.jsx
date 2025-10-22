@@ -42,6 +42,7 @@ import Textarea from './components/Textarea/Textarea';
 import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
+import ActionList from './components/ActionList/ActionList';
 import { MinimalComponent } from '@infineon/infineon-design-system-react/dist';
 function App() {
 
@@ -56,6 +57,10 @@ function App() {
 
       <h2>Accordion</h2>
       <Accordion />
+      <br />
+
+      <h2>Action List</h2>
+      <ActionList />
       <br />
 
       <h2>Alert</h2>
