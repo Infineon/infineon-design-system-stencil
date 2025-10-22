@@ -702,14 +702,20 @@ export const IfxNavbar: StencilReactComponent<IfxNavbarElement, IfxNavbarEvents>
     defineCustomElement: defineIfxNavbar
 });
 
-type IfxNavbarItemEvents = { onIfxNavItem: EventName<CustomEvent<any>> };
+type IfxNavbarItemEvents = {
+    onIfxNavItem: EventName<CustomEvent<any>>,
+    onIfxRequestCloseNavItem: EventName<CustomEvent<any>>
+};
 
 export const IfxNavbarItem: StencilReactComponent<IfxNavbarItemElement, IfxNavbarItemEvents> = /*@__PURE__*/ createComponent<IfxNavbarItemElement, IfxNavbarItemEvents>({
     tagName: 'ifx-navbar-item',
     elementClass: IfxNavbarItemElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxNavItem: 'ifxNavItem' } as IfxNavbarItemEvents,
+    events: {
+        onIfxNavItem: 'ifxNavItem',
+        onIfxRequestCloseNavItem: 'ifxRequestCloseNavItem'
+    } as IfxNavbarItemEvents,
     defineCustomElement: defineIfxNavbarItem
 });
 
