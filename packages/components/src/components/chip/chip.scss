@@ -62,7 +62,7 @@
     }
     
     &.outlined { 
-        border: 1px solid tokens.$ifxColorEngineering300;
+        border: 1px solid tokens.$ifxColorEngineering400;
         &:hover:not(.read-only) {
             border-color: tokens.$ifxColorEngineering500;
             background-color: tokens.$ifxColorEngineering100;
@@ -151,7 +151,7 @@
         background-color: tokens.$ifxColorEngineering200;
 
         &:hover:not(.read-only) { 
-        background-color: tokens.$ifxColorEngineering500;
+        background-color: tokens.$ifxColorEngineering300;
         }
 
         &:active:not(.read-only) { 
