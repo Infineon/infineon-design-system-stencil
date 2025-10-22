@@ -7,7 +7,6 @@ import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter
 })
 
 export class NavbarItem {
-
   @Element() el;
   @Prop() showLabel: boolean = true;
   @Prop() icon: string = ""
@@ -20,6 +19,9 @@ export class NavbarItem {
   @State() isSidebarMenuItem: boolean = false;
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
+  // Represents an event that internally signalizes that there is a request to close the navbar item. Closing is handled in a recursive way, 
+  // i.e. also closing all parent navbar items of the current one.
+  @Event({ bubbles: true, composed: true }) ifxRequestCloseNavItem: EventEmitter;
   @Prop() numberIndicator: number;
   @Prop() dotIndicator: boolean = false;
 
@@ -37,6 +39,16 @@ export class NavbarItem {
     }
 
     this.handleNestedLayerMenu(event);
+  }
+
+  @Listen('ifxRequestCloseNavItem')
+  handleRequestCloseNavItem(event: CustomEvent) {
+    if (event.target === this.el) {
+      return;
+    }
+
+    event.stopPropagation();
+    this.closeCurrentNavItem();
   }
 
   @Listen('mousedown', { target: 'document' })
@@ -310,12 +322,20 @@ export class NavbarItem {
     return menu;
   }
 
-  closeItemMenu() { 
-    const itemMenu = this.getItemMenu()
-    const menuItem = this.getNavBarItem()
-    if(itemMenu) { 
-      this.handleClassList(itemMenu, 'remove', 'open')
-      this.handleClassList(menuItem, 'remove', 'open')
+  closeItemMenu() {
+    const itemMenu = this.getItemMenu();
+    const menuItem = this.getNavBarItem();
+
+    if (itemMenu) {
+      this.handleClassList(itemMenu, 'remove', 'open');
+      this.handleClassList(menuItem, 'remove', 'open');
+      const menuPosition = this.getItemMenuPosition();
+
+      if (menuPosition === 'left') {
+        this.handleClassList(itemMenu, 'remove', 'left');
+      } else if (menuPosition === 'right') {
+        this.handleClassList(itemMenu, 'remove', 'right');
+      }
     }
   }
 
@@ -329,26 +349,38 @@ export class NavbarItem {
     }
     return 'right'
   }
-  
-  toggleItemMenu() {
-    const slotName = this.el.getAttribute('slot')
 
-    if(slotName.toLowerCase() === 'mobile-menu-top' || slotName.toLowerCase() === 'second__layer') { 
-      this.openSubLayerMenu()
+  closeCurrentNavItem() {
+    const parentTag = this.el.parentElement?.tagName?.toUpperCase();
+
+    if (parentTag === 'IFX-NAVBAR') {
+      this.closeItemMenu();
+      this.ifxNavItem.emit({ component: this.el, action: 'hideFirstLayer' });
+    } else if (parentTag === 'IFX-NAVBAR-ITEM') {
+      this.closeItemMenu();
+      // Only emit the ifxRequestCloseNavItem event if the parent is a navbar item.
+      this.ifxRequestCloseNavItem.emit({ component: this.el });
     }
+  }
+  
+ toggleItemMenu() {
+    const slotName = this.el.getAttribute('slot').toLowerCase();
 
-    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' && slotName.toLowerCase() !== 'second__layer' ) {   
-      const itemMenu = this.getItemMenu()
-    
-      if(this.hasChildNavItems) { 
+    if (slotName === 'mobile-menu-top' || slotName === 'second__layer') {
+      this.openSubLayerMenu();
+    } else if (!this.internalHref) {
+      if (this.hasChildNavItems) {
+        const itemMenu = this.getItemMenu()
         const menuItem = this.getNavBarItem()
         this.handleClassList(itemMenu, 'toggle', 'open');
         this.handleClassList(menuItem, 'toggle', 'open');
 
-         if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
+        if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
           this.handleNestedLayerMenu({ type: 'mouseenter' } as any);
         }
-      } 
+      } else {
+        this.closeCurrentNavItem();
+      }
     }
   }
 
