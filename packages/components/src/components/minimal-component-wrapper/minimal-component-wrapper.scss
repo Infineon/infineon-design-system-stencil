@@ -1,3 +1,11 @@
-:host {
-  display: block;
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.minimal-component-wrapper {
+  background: tokens.$ifxColorBaseWhite;
+  border-radius: tokens.$ifxBorderRadiusNone;
+  border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
