@@ -156,6 +156,7 @@ jobs:
           npm publish --tag canary
 
       - name: Verify built files
+        run: |
           echo "Verifying built files in React package"
           ls -la packages/components-react/dist
           cat packages/components-react/dist/components.js
