@@ -1,0 +1,95 @@
+@use "~@infineon/design-system-tokens/dist/tokens";
+@use "../../global/font.scss";
+
+.minimal-component {
+  display: flex;
+  align-items: center;
+  padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
+  background: tokens.$ifxColorBaseWhite;
+  transition: background-color 0.2s ease;
+  cursor: default;
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover:not(.minimal-component--disabled) {
+      background: tokens.$ifxColorEngineering100;
+    }
+
+    &:focus:not(.minimal-component--disabled) {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: -2px;
+      background: tokens.$ifxColorEngineering100;
+    }
+
+    &:active:not(.minimal-component--disabled) {
+      background: tokens.$ifxColorEngineering200;
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    // Apply disabled color to all slotted icons
+    ::slotted(ifx-icon) {
+      color: tokens.$ifxColorEngineering300;
+    }
+
+    // Also apply to nested icons within slotted elements
+    ::slotted(*) {
+      ifx-icon {
+        color: tokens.$ifxColorEngineering300;
+      }
+    }
+  }
+
+  &__leading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: tokens.$ifxSpace200;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0; // Allows text to truncate
+  }
+
+  &__title {
+    font-weight: tokens.$ifxFontWeightSemibold;
+    font-size: tokens.$ifxFontSizeM;
+    line-height: tokens.$ifxLineHeightM;
+    color: tokens.$ifxColorBaseBlack;
+
+    // Truncate long titles
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    // Disabled state
+    .minimal-component--disabled & {
+      color: tokens.$ifxColorEngineering300;
+    }
+  }
+
+  &__description {
+    font-size: tokens.$ifxFontSizeS;
+    line-height: tokens.$ifxLineHeightS;
+    color: tokens.$ifxColorEngineering500;
+    margin-top: tokens.$ifxSpace25;
+
+    // Disabled state
+    .minimal-component--disabled & {
+      color: tokens.$ifxColorEngineering300;
+    }
+  }
+
+  &__trailing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: tokens.$ifxSpace200;
+    flex-shrink: 0;
+  }
+}
