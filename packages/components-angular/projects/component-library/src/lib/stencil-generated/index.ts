@@ -2,6 +2,8 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
+  d.ActionList,
+  d.ActionListItem,
   d.IfxAccordion,
   d.IfxAccordionItem,
   d.IfxAlert,
