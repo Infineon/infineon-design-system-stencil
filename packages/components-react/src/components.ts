@@ -89,6 +89,8 @@ import { IfxTextarea as IfxTextareaElement, defineCustomElement as defineIfxText
 import { IfxTooltip as IfxTooltipElement, defineCustomElement as defineIfxTooltip } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tooltip.js";
 import { IfxTreeViewItem as IfxTreeViewItemElement, defineCustomElement as defineIfxTreeViewItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view-item.js";
 import { IfxTreeView as IfxTreeViewElement, defineCustomElement as defineIfxTreeView } from "@infineon/infineon-design-system-stencil/dist/components/ifx-tree-view.js";
+import { MinimalComponentWrapper as MinimalComponentWrapperElement, defineCustomElement as defineMinimalComponentWrapper } from "@infineon/infineon-design-system-stencil/dist/components/minimal-component-wrapper.js";
+import { MinimalComponent as MinimalComponentElement, defineCustomElement as defineMinimalComponent } from "@infineon/infineon-design-system-stencil/dist/components/minimal-component.js";
 import type { EventName, StencilReactComponent } from '@stencil/react-output-target/runtime';
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
@@ -1114,4 +1116,26 @@ export const IfxTreeViewItem: StencilReactComponent<IfxTreeViewItemElement, IfxT
         onIfxTreeViewItemDisableChange: 'ifxTreeViewItemDisableChange'
     } as IfxTreeViewItemEvents,
     defineCustomElement: defineIfxTreeViewItem
+});
+
+type MinimalComponentEvents = { onIfxTestEvent: EventName<CustomEvent<any>> };
+
+export const MinimalComponent: StencilReactComponent<MinimalComponentElement, MinimalComponentEvents> = /*@__PURE__*/ createComponent<MinimalComponentElement, MinimalComponentEvents>({
+    tagName: 'minimal-component',
+    elementClass: MinimalComponentElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onIfxTestEvent: 'ifxTestEvent' } as MinimalComponentEvents,
+    defineCustomElement: defineMinimalComponent
+});
+
+type MinimalComponentWrapperEvents = NonNullable<unknown>;
+
+export const MinimalComponentWrapper: StencilReactComponent<MinimalComponentWrapperElement, MinimalComponentWrapperEvents> = /*@__PURE__*/ createComponent<MinimalComponentWrapperElement, MinimalComponentWrapperEvents>({
+    tagName: 'minimal-component-wrapper',
+    elementClass: MinimalComponentWrapperElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as MinimalComponentWrapperEvents,
+    defineCustomElement: defineMinimalComponentWrapper
 });
