@@ -364,9 +364,9 @@ export class TreeViewItem {
         if (!this.isExpanded && this.hasChildren) {
           this.expanded = true;
         } else if (this.isExpanded && this.hasChildren) {
-          const firstChild = this.host.querySelector('ifx-tree-view-item');
+          const firstChild = this.host.querySelector<HTMLElement>('ifx-tree-view-item');
           if (firstChild && !(firstChild as any).disabled) {
-            focusLabelIcon((firstChild as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            focusLabelIcon(firstChild.shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
         break;

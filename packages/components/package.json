@@ -1,0 +1,61 @@
+{
+  "name": "@infineon/infineon-design-system-stencil",
+  "version": "0.0.1",
+  "description": "Stencil Component Starter",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/components/components.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/components/components.esm.js",
+      "require": "./dist/components/components.cjs.js"
+    },
+    "./my-component": {
+      "import": "./dist/components/my-component.js",
+      "types": "./dist/components/my-component.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs",
+      "types": "./loader/index.d.ts"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stenciljs/component-starter.git"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.27.1",
+    "@stencil/sass": "^3.2.2",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.5",
+    "jest": "^30.2.0",
+    "jest-cli": "^30.2.0",
+    "jest-stencil-runner": "^0.0.9",
+    "puppeteer": "^24.3.0",
+    "typescript": "^5.9.3"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@infineon/design-system-tokens": "^5.0.0",
+    "@infineon/infineon-icons": "^4.6.0",
+    "@popperjs/core": "^2.11.8",
+    "ag-grid-community": "^34.3.1",
+    "choices.js": "^11.1.0",
+    "classnames": "^2.5.1",
+    "core^4.38.2": "link:@stencil/core^4.38.2"
+  }
+}

@@ -8,7 +8,7 @@ import { h,
          State, 
          Watch } from "@stencil/core";
 import { StepperState } from "./interfaces";
-import { trackComponent } from '../../global/utils/tracking';
+import { trackComponent } from '../../shared/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 

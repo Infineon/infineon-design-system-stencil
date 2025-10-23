@@ -1,7 +1,7 @@
 import { h, Component, Element, Method, Prop, Event, EventEmitter, State } from '@stencil/core';
-import { trackComponent } from '../../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../../global/utils/dom-utils';
-import { detectFramework } from '../../../global/utils/framework-detection';
+import { trackComponent } from '../../../shared/utils/tracking';
+import { isNestedInIfxComponent } from '../../../shared/utils/dom-utils';
+import { detectFramework } from '../../../shared/utils/framework-detection';
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
 import ChoicesJs from 'choices.js';
 

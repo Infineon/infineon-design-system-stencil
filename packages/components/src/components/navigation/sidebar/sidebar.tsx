@@ -1,6 +1,6 @@
 import { Component, h, Element, Prop, State, Listen, Method, Watch, Event, EventEmitter } from '@stencil/core';
-import { trackComponent } from '../../../global/utils/tracking';
-import { detectFramework } from '../../../global/utils/framework-detection';
+import { trackComponent } from '../../../shared/utils/tracking';
+import { detectFramework } from '../../../shared/utils/framework-detection';
 
 const ACTIVE = 'active';
 const ACTIVE_SECTION = 'active-section';

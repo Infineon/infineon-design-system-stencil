@@ -1,0 +1,24 @@
+{
+  "name": "html-example-app",
+  "version": "1.0.0",
+  "description": "Example App for the Infineon Design System Stencil Components using plain HTML",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "dev:watch": "vite --watch",
+    "build": "vite build",
+    "build:stencil": "pnpm run -F @infineon/infineon-design-system-stencil build",
+    "preview": "vite preview"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
+    "@infineon/infineon-design-system-stencil": "workspace:*"
+  }
+}

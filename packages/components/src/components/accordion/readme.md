@@ -24,10 +24,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ifx-faq](../../stories/setup-and-installation/faq)
-
 ### Depends on
 
 - [ifx-icon](../icon)
@@ -36,7 +32,6 @@
 ```mermaid
 graph TD;
   ifx-accordion-item --> ifx-icon
-  ifx-faq --> ifx-accordion-item
   style ifx-accordion-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

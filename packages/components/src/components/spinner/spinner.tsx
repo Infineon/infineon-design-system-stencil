@@ -1,5 +1,5 @@
 import { Component, h, Prop, Element } from '@stencil/core';
-import { trackComponent } from '../../global/utils/tracking';
+import { trackComponent } from '../../shared/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import classNames from 'classnames';

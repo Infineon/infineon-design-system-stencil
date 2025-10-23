@@ -1,6 +1,6 @@
 import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponent } from '../../global/utils/tracking'; 
+import { trackComponent } from '../../shared/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';

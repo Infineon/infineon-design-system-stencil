@@ -1,6 +1,6 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Watch, State, Element } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
-import { trackComponent } from '../../global/utils/tracking'; 
+import { trackComponent } from '../../shared/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 
