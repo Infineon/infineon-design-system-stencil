@@ -1,0 +1,5 @@
+{
+  "lib": {
+    "entryFile": "src/lib/stencil-generated/index.ts"
+  }
+}
