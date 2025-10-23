@@ -4,7 +4,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
-  tag: 'action-list',
+  tag: 'ifx-action-list',
   styleUrl: 'action-list.scss',
   shadow: true,
 })

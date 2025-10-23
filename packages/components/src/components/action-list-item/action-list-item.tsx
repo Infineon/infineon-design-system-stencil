@@ -2,7 +2,7 @@ import { Component, Event, EventEmitter, Element, h, Prop, Watch } from '@stenci
 import classNames from 'classnames';
 
 @Component({
-  tag: 'action-list-item',
+  tag: 'ifx-action-list-item',
   styleUrl: 'action-list-item.scss',
   shadow: true,
 })

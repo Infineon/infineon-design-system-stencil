@@ -2,10 +2,10 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
-  d.ActionList,
-  d.ActionListItem,
   d.IfxAccordion,
   d.IfxAccordionItem,
+  d.IfxActionList,
+  d.IfxActionListItem,
   d.IfxAlert,
   d.IfxBasicTable,
   d.IfxBreadcrumb,

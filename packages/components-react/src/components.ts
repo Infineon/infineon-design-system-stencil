@@ -8,10 +8,10 @@
 /* eslint-disable */
 
 import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
-import { ActionListItem as ActionListItemElement, defineCustomElement as defineActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/action-list-item.js";
-import { ActionList as ActionListElement, defineCustomElement as defineActionList } from "@infineon/infineon-design-system-stencil/dist/components/action-list.js";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
+import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
+import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
 import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-basic-table.js";
 import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb-item-label.js";
@@ -95,28 +95,6 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-type ActionListEvents = NonNullable<unknown>;
-
-export const ActionList: StencilReactComponent<ActionListElement, ActionListEvents> = /*@__PURE__*/ createComponent<ActionListElement, ActionListEvents>({
-    tagName: 'action-list',
-    elementClass: ActionListElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: {} as ActionListEvents,
-    defineCustomElement: defineActionList
-});
-
-type ActionListItemEvents = { onIfxTestEvent: EventName<CustomEvent<any>> };
-
-export const ActionListItem: StencilReactComponent<ActionListItemElement, ActionListItemEvents> = /*@__PURE__*/ createComponent<ActionListItemElement, ActionListItemEvents>({
-    tagName: 'action-list-item',
-    elementClass: ActionListItemElement,
-    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
-    react: React,
-    events: { onIfxTestEvent: 'ifxTestEvent' } as ActionListItemEvents,
-    defineCustomElement: defineActionListItem
-});
-
 type IfxAccordionEvents = NonNullable<unknown>;
 
 export const IfxAccordion: StencilReactComponent<IfxAccordionElement, IfxAccordionEvents> = /*@__PURE__*/ createComponent<IfxAccordionElement, IfxAccordionEvents>({
@@ -143,6 +121,28 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
         onIfxClose: 'ifxClose'
     } as IfxAccordionItemEvents,
     defineCustomElement: defineIfxAccordionItem
+});
+
+type IfxActionListEvents = NonNullable<unknown>;
+
+export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActionListEvents> = /*@__PURE__*/ createComponent<IfxActionListElement, IfxActionListEvents>({
+    tagName: 'ifx-action-list',
+    elementClass: IfxActionListElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: {} as IfxActionListEvents,
+    defineCustomElement: defineIfxActionList
+});
+
+type IfxActionListItemEvents = { onIfxTestEvent: EventName<CustomEvent<any>> };
+
+export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents>({
+    tagName: 'ifx-action-list-item',
+    elementClass: IfxActionListItemElement,
+    // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
+    react: React,
+    events: { onIfxTestEvent: 'ifxTestEvent' } as IfxActionListItemEvents,
+    defineCustomElement: defineIfxActionListItem
 });
 
 type IfxAlertEvents = { onIfxClose: EventName<CustomEvent<any>> };
