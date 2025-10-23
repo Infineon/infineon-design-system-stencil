@@ -1,6 +1,6 @@
 import { MinimalComponent, MinimalComponentWrapper, IfxIcon } from '@infineon/infineon-design-system-react';
 
-function MinimalComponent() {
+function MinimalComponentExample() {
   
   return (
     <div>
@@ -15,4 +15,4 @@ function MinimalComponent() {
   );
 }
 
-export default MinimalComponent;
+export default MinimalComponentExample;
