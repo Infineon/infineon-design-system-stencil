@@ -1,34 +1,9 @@
 {
-  "name": "root",
+  "name": "my-turborepo",
+  "description": "A barebones Turborepo example for working with Task Graphs.",
   "private": true,
-  "scripts": {
-    "list:packages": "lerna list --all",
-    "storybook": "lerna run storybook --scope @infineon/infineon-design-system-stencil",
-    "index": "lerna run index --scope @infineon/infineon-design-system-stencil",
-    "prebuild": "node build-utils/scripts/prebuild.js",
-    "build:components": "lerna run build:stencil --scope @infineon/infineon-design-system-stencil",
-    "build:storybook": "lerna run build:storybook --scope @infineon/infineon-design-system-stencil",
-    "build:components-react": "lerna run build --scope @infineon/infineon-design-system-react",
-    "build:components-vue": "lerna run build --scope @infineon/infineon-design-system-vue",
-    "build:components-angular": "lerna run build:library --scope components-angular",
-    "build:all-wrappers": "npm run build:components-react && npm run build:components-vue && npm run build:components-angular",
-    "test": "lerna run test --scope @infineon/infineon-design-system-stencil",
-    "vanilla:dev": "cd examples/stencil-components/vanilla-cdn && npm run dev:watch",
-    "react-vite-js:dev": "cd examples/wrapper-components/react-vite-js && npm run test:local",
-    "vue-javascript:dev": "cd examples/wrapper-components/vue-javascript && npm run test:local",
-    "angular:dev": "cd packages/components-angular && npm run test:local"
-  },
-  "workspaces": [
-    "packages/*",
-    "packages/components-angular/projects/*"
-  ],
+  "packageManager": "pnpm@8.15.6",
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "lerna": "^8.1.9",
-    "nx": "^16.10.0",
-    "typescript": "^5.4.5",
-    "wait-on": "^7.2.0"
-  },
-  "version": "0.0.1",
-  "packageManager": "npm@11.3.0"
+    "turbo": "^2.5.8"
+  }
 }
