@@ -1,1 +1,0 @@
-import{r as s,h as e}from"./index-DP4xSA-_.js";const o=":host{display:inline-block;cursor:pointer}",t=class{constructor(r){s(this,r),this.isOpen=!1}render(){return e("slot",{key:"89bd5e8f427fea2329e032469132190fd71acd54"})}};t.style=o;export{t as ifx_dropdown_trigger};
