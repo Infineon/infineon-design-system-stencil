@@ -155,6 +155,11 @@ jobs:
           cd ../components-vue
           npm publish --tag canary
 
+      - name: Verify built files
+          echo "Verifying built files in React package"
+          ls -la packages/components-react/dist
+          cat packages/components-react/dist/components.js
+
       - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
         run: |
           echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
