@@ -2,6 +2,8 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
+  d.ActionList,
+  d.ActionListItem,
   d.IfxAccordion,
   d.IfxAccordionItem,
   d.IfxAlert,
@@ -82,7 +84,5 @@ export const DIRECTIVES = [
   d.IfxTextarea,
   d.IfxTooltip,
   d.IfxTreeView,
-  d.IfxTreeViewItem,
-  d.MinimalComponent,
-  d.MinimalComponentWrapper
+  d.IfxTreeViewItem
 ];

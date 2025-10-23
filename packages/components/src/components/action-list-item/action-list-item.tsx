@@ -2,11 +2,11 @@ import { Component, Event, EventEmitter, Element, h, Prop, Watch } from '@stenci
 import classNames from 'classnames';
 
 @Component({
-  tag: 'minimal-component',
-  styleUrl: 'minimal-component.scss',
+  tag: 'action-list-item',
+  styleUrl: 'action-list-item.scss',
   shadow: true,
 })
-export class MinimalComponent {
+export class ActionListItem {
 
   @Element() host: HTMLElement;
 
@@ -66,8 +66,8 @@ export class MinimalComponent {
     }
 
     // Check if clicked element is inside leading or trailing areas
-    const leadingElement = this.host.shadowRoot?.querySelector('.minimal-component__leading');
-    const trailingElement = this.host.shadowRoot?.querySelector('.minimal-component__trailing');
+    const leadingElement = this.host.shadowRoot?.querySelector('.action-list-item__leading');
+    const trailingElement = this.host.shadowRoot?.querySelector('.action-list-item__trailing');
 
     if (leadingElement?.contains(event.target as Node) || trailingElement?.contains(event.target as Node)) {
       return; // Don't trigger main click if clicking on leading/trailing areas
@@ -291,9 +291,9 @@ export class MinimalComponent {
     return (
       <div
         class={classNames(
-          'minimal-component',
-          this.disabled && 'minimal-component--disabled',
-          isClickable && 'minimal-component--clickable'
+          'action-list-item',
+          this.disabled && 'action-list-item--disabled',
+          isClickable && 'action-list-item--clickable'
         )}
         role="listitem"
         tabIndex={isClickable ? 0 : -1}
@@ -305,7 +305,7 @@ export class MinimalComponent {
         {/* Leading Item Container - only render if content exists */}
         {hasLeadingContent && (
           <div
-            class="minimal-component__leading"
+            class="action-list-item__leading"
             onClick={this.handleLeadingClick}
             onKeyDown={this.handleLeadingKeyDown}
           >
@@ -314,12 +314,12 @@ export class MinimalComponent {
         )}
 
         {/* Text Container */}
-        <div class="minimal-component__content">
-          <div class="minimal-component__title">
+        <div class="action-list-item__content">
+          <div class="action-list-item__title">
             {this.itemTitle}
           </div>
           {this.description && (
-            <div class="minimal-component__description">
+            <div class="action-list-item__description">
               {this.description}
             </div>
           )}
@@ -328,7 +328,7 @@ export class MinimalComponent {
         {/* Trailing Item Container - only render if content exists */}
         {hasTrailingContent && (
           <div
-            class="minimal-component__trailing"
+            class="action-list-item__trailing"
             onClick={this.handleTrailingClick}
             onKeyDown={this.handleTrailingKeyDown}
           >

@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-.minimal-component-wrapper {
+.action-list {
   background: tokens.$ifxColorBaseWhite;
   border-radius: tokens.$ifxBorderRadiusNone;
   border: tokens.$ifxBorderWidth12 solid tokens.$ifxColorEngineering200;

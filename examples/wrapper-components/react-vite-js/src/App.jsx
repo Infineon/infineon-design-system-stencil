@@ -40,7 +40,7 @@ import Textarea from './components/Textarea/Textarea';
 import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
-import MinimalComponentExample from './components/MinimalComponentExample/MinimalComponentExample';
+import ActionList from './components/ActionList/ActionList';
 function App() {
 
   return (
@@ -49,8 +49,8 @@ function App() {
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
 
-      <h2>Minimal Component</h2>
-      <MinimalComponentExample />
+      <h2>Action List</h2>
+      <ActionList />
 
       <h2>Accordion</h2>
       <Accordion />

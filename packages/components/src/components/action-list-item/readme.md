@@ -1,4 +1,4 @@
-# minimal-component
+# action-list-item
 
 
 

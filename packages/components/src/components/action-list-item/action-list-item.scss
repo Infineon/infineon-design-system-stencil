@@ -1,7 +1,7 @@
 @use "~@infineon/design-system-tokens/dist/tokens";
 @use "../../global/font.scss";
 
-.minimal-component {
+.action-list-item {
   display: flex;
   align-items: center;
   padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
@@ -12,17 +12,17 @@
   &--clickable {
     cursor: pointer;
 
-    &:hover:not(.minimal-component--disabled) {
+    &:hover:not(.action-list-item--disabled) {
       background: tokens.$ifxColorEngineering100;
     }
 
-    &:focus:not(.minimal-component--disabled) {
+    &:focus:not(.action-list-item--disabled) {
       outline: 2px solid tokens.$ifxColorOcean500;
       outline-offset: -2px;
       background: tokens.$ifxColorEngineering100;
     }
 
-    &:active:not(.minimal-component--disabled) {
+    &:active:not(.action-list-item--disabled) {
       background: tokens.$ifxColorEngineering200;
     }
   }
@@ -68,7 +68,7 @@
     text-overflow: ellipsis;
 
     // Disabled state
-    .minimal-component--disabled & {
+    .action-list-item--disabled & {
       color: tokens.$ifxColorEngineering300;
     }
   }
@@ -80,7 +80,7 @@
     margin-top: tokens.$ifxSpace25;
 
     // Disabled state
-    .minimal-component--disabled & {
+    .action-list-item--disabled & {
       color: tokens.$ifxColorEngineering300;
     }
   }

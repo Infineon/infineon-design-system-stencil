@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import type { Meta, StoryFn } from '@storybook/html';
 
 const meta: Meta = {
-  title: 'Components/Minimal Component Wrapper',
+  title: 'Components/Action List',
   tags: ['autodocs'],
   parameters: {
     controls: { expanded: true },
@@ -72,12 +72,12 @@ const meta: Meta = {
 export default meta;
 
 const BaseTemplate: StoryFn = (args) => {
-  const listEl = document.createElement('minimal-component-wrapper');
+  const listEl = document.createElement('action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   // Create items based on the story requirements
   listEl.innerHTML = `
-    <minimal-component
+    <action-list-item
       item-title="${args.itemTitle || 'Dashboard'}"
       description="${args.description || 'View your main dashboard'}"
       value="dashboard"
@@ -86,31 +86,31 @@ const BaseTemplate: StoryFn = (args) => {
       ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Settings"
       value="settings"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Profile"
       description="Manage your profile information"
       value="profile"
       disabled="true"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Advanced Analytics and Reporting Dashboard with Extended Functionality"
       description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics."
       value="analytics"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
   `;
 
   listEl.addEventListener('ifxTestEvent', (event) => {
@@ -136,12 +136,12 @@ Default.args = {
 };
 
 export const InteractiveCheckbox: StoryFn = (args) => {
-  const listEl = document.createElement('minimal-component-wrapper');
+  const listEl = document.createElement('action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   // Create items based on the story requirements
   listEl.innerHTML = `
-    <minimal-component
+    <action-list-item
       item-title="${args.itemTitle || 'Enable notifications'}"
       description="${args.description || 'Receive notifications for important updates'}"
       value="notifications"
@@ -150,31 +150,31 @@ export const InteractiveCheckbox: StoryFn = (args) => {
       ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
       <ifx-checkbox slot="leading" checked="true"></ifx-checkbox>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Auto-save documents"
       description="Automatically save your work"
       value="autosave"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Enable backups"
       description="Create automatic backups"
       value="backups"
       disabled="true"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-checkbox slot="leading" checked="false"></ifx-checkbox>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Show advanced options"
       value="advanced"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-checkbox slot="leading" checked="true"></ifx-checkbox>
-    </minimal-component>
+    </action-list-item>
   `;
 
   listEl.addEventListener('ifxTestEvent', (event) => {
@@ -201,12 +201,12 @@ InteractiveCheckbox.args = {
 InteractiveCheckbox.storyName = 'Interactive (with checkbox)';
 
 export const InteractiveSwitch: StoryFn = (args) => {
-  const listEl = document.createElement('minimal-component-wrapper');
+  const listEl = document.createElement('action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   // Create items based on the story requirements
   listEl.innerHTML = `
-    <minimal-component
+    <action-list-item
       item-title="${args.itemTitle || 'Enable dark mode'}"
       description="${args.description || 'Toggle dark mode for the interface'}"
       value="darkmode"
@@ -215,31 +215,31 @@ export const InteractiveSwitch: StoryFn = (args) => {
       ${args.target && args.target !== '_self' ? `target="${args.target}"` : ''}
       ${args.disabled ? 'disabled="true"' : ''}>
       <ifx-switch slot="leading" checked="false"></ifx-switch>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Auto-sync data"
       description="Automatically synchronize your data"
       value="autosync"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-switch slot="leading" checked="true"></ifx-switch>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Enable analytics"
       description="Collect usage analytics"
       value="analytics"
       disabled="true"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-switch slot="leading" checked="false"></ifx-switch>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Performance mode"
       value="performance"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-switch slot="leading" checked="true"></ifx-switch>
-    </minimal-component>
+    </action-list-item>
   `;
 
   listEl.addEventListener('ifxTestEvent', (event) => {
@@ -266,11 +266,11 @@ InteractiveSwitch.args = {
 InteractiveSwitch.storyName = 'Interactive (with switch)';
 
 export const WithIcons: StoryFn = (args) => {
-  const listEl = document.createElement('minimal-component-wrapper');
+  const listEl = document.createElement('action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   listEl.innerHTML = `
-    <minimal-component
+    <action-list-item
       item-title="${args.itemTitle || 'Dashboard'}"
       description="${args.description || 'View your main dashboard'}"
       value="dashboard"
@@ -280,17 +280,17 @@ export const WithIcons: StoryFn = (args) => {
       ${args.disabled ? 'disabled="true"' : ''}>
       <ifx-icon slot="leading" icon="home-16"></ifx-icon>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Settings"
       value="settings"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="leading" icon="server-16"></ifx-icon>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Profile"
       description="Manage your profile information"
       value="profile"
@@ -298,16 +298,16 @@ export const WithIcons: StoryFn = (args) => {
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="leading" icon="user-16"></ifx-icon>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Enterprise Resource Planning and Business Intelligence System"
       description="Comprehensive enterprise solution that integrates all aspects of business operations including financial management and human resources."
       value="erp"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <ifx-icon slot="leading" icon="chart-16"></ifx-icon>
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
   `;
 
   listEl.addEventListener('ifxTestEvent', (event) => {
@@ -334,11 +334,11 @@ WithIcons.args = {
 WithIcons.storyName = 'With Icons';
 
 export const WithImages: StoryFn = (args) => {
-  const listEl = document.createElement('minimal-component-wrapper');
+  const listEl = document.createElement('action-list');
   if (args.listAriaLabel) listEl.setAttribute('list-aria-label', args.listAriaLabel);
 
   listEl.innerHTML = `
-    <minimal-component
+    <action-list-item
       item-title="${args.itemTitle || 'John Doe'}"
       description="${args.description || 'Senior Developer'}"
       value="john"
@@ -348,18 +348,18 @@ export const WithImages: StoryFn = (args) => {
       ${args.disabled ? 'disabled="true"' : ''}>
       <img slot="leading" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALFSURBVHgB7dy/SxthHMfxr6W9LJel6VAdagoaQXMQSaE4COnYQTr4p7bQVSi0FAxKUwTFwS5Jh8YlWXKLfb5PfDS9pP76nM9zgc97OSLxwBfPr1zAhfN+/0LYg3siDIqAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoIREIyAYAQEeyoBOmi35ehnR9LRSPIoKpVkpbYmb7e2xHfeAb9/+ypHnY75g2sSl8uSR8PBwNzzh0RRJJvNpvjMO+Dp8YnF2269k7xTRN+A3tfANB3lNvIm03umaSq+C7IGzqrX7crvXleeVyqyXH0t81IhAL/s7cnpyfHVa90QtlstmYeCA/46O7N4m8030jDr12F73+7Sq2adfLm0JEUv+DnwvP/HXhuXi3/DQGo9M53noeCAi4vjUaajbnzdt9dK5cXUe/M6N+ZZ8Cms01TXPJ26h5d4q+b1q2r1n/fpWe/zp4/2vb6PKjdViE1EN4xlA9Y301lHZHbtc3jpKL1CLgpiYY4xOuKyo05zeHIh8mF31244BwVCLAzgrCbx3u/s2MOy22SKghgcUJH0KLORJFM/z+K5ioQYFNAh6VU/hjmIm/BcWcRQBQOcRNLRd70D127Fc00iPsbn67sUBHA4GE4h6aMohdDnhNGz6FY81zViW0IU5CBtP/dmRphC6BS+D55Lf1cfkYUoyAiM4/JMJIVYryf2CfO97xloCgcZgStr/38a/RC8kPFLJTDvgFFUsptI3uk9dSPynfc1cD2pmyPLeMeMy7HkkeLpxrRRT8R33gH1wakemvXLJf1+JI90VOsO7o40Plvg/0zA4iYCRkAwAoIREIyAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoL9BS7b7t2PtL1XAAAAAElFTkSuQmCC" alt="User avatar" style="width: 100%; max-width: 40px; height: auto;">
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Jane Smith"
       description="UI/UX Designer"
       value="jane"
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <img slot="leading" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALFSURBVHgB7dy/SxthHMfxr6W9LJel6VAdagoaQXMQSaE4COnYQTr4p7bQVSi0FAxKUwTFwS5Jh8YlWXKLfb5PfDS9pP76nM9zgc97OSLxwBfPr1zAhfN+/0LYg3siDIqAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoIREIyAYAQEeyoBOmi35ehnR9LRSPIoKpVkpbYmb7e2xHfeAb9/+ypHnY75g2sSl8uSR8PBwNzzh0RRJJvNpvjMO+Dp8YnF2269k7xTRN+A3tfANB3lNvIm03umaSq+C7IGzqrX7crvXleeVyqyXH0t81IhAL/s7cnpyfHVa90QtlstmYeCA/46O7N4m8030jDr12F73+7Sq2adfLm0JEUv+DnwvP/HXhuXi3/DQGo9M53noeCAi4vjUaajbnzdt9dK5cXUe/M6N+ZZ8Cms01TXPJ26h5d4q+b1q2r1n/fpWe/zp4/2vb6PKjdViE1EN4xlA9Y301lHZHbtc3jpKL1CLgpiYY4xOuKyo05zeHIh8mF31244BwVCLAzgrCbx3u/s2MOy22SKghgcUJH0KLORJFM/z+K5ioQYFNAh6VU/hjmIm/BcWcRQBQOcRNLRd70D127Fc00iPsbn67sUBHA4GE4h6aMohdDnhNGz6FY81zViW0IU5CBtP/dmRphC6BS+D55Lf1cfkYUoyAiM4/JMJIVYryf2CfO97xloCgcZgStr/38a/RC8kPFLJTDvgFFUsptI3uk9dSPynfc1cD2pmyPLeMeMy7HkkeLpxrRRT8R33gH1wakemvXLJf1+JI90VOsO7o40Plvg/0zA4iYCRkAwAoIREIyAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoL9BS7b7t2PtL1XAAAAAElFTkSuQmCC" alt="User avatar" style="width: 100%; max-width: 40px; height: auto;">
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
 
-    <minimal-component
+    <action-list-item
       item-title="Mike Johnson"
       description="Product Manager"
       value="mike"
@@ -367,7 +367,7 @@ export const WithImages: StoryFn = (args) => {
       ${args.itemAriaLabel ? `item-aria-label="${args.itemAriaLabel}"` : ''}>
       <img slot="leading" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAALFSURBVHgB7dy/SxthHMfxr6W9LJel6VAdagoaQXMQSaE4COnYQTr4p7bQVSi0FAxKUwTFwS5Jh8YlWXKLfb5PfDS9pP76nM9zgc97OSLxwBfPr1zAhfN+/0LYg3siDIqAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoIREIyAYAQEeyoBOmi35ehnR9LRSPIoKpVkpbYmb7e2xHfeAb9/+ypHnY75g2sSl8uSR8PBwNzzh0RRJJvNpvjMO+Dp8YnF2269k7xTRN+A3tfANB3lNvIm03umaSq+C7IGzqrX7crvXleeVyqyXH0t81IhAL/s7cnpyfHVa90QtlstmYeCA/46O7N4m8030jDr12F73+7Sq2adfLm0JEUv+DnwvP/HXhuXi3/DQGo9M53noeCAi4vjUaajbnzdt9dK5cXUe/M6N+ZZ8Cms01TXPJ26h5d4q+b1q2r1n/fpWe/zp4/2vb6PKjdViE1EN4xlA9Y301lHZHbtc3jpKL1CLgpiYY4xOuKyo05zeHIh8mF31244BwVCLAzgrCbx3u/s2MOy22SKghgcUJH0KLORJFM/z+K5ioQYFNAh6VU/hjmIm/BcWcRQBQOcRNLRd70D127Fc00iPsbn67sUBHA4GE4h6aMohdDnhNGz6FY81zViW0IU5CBtP/dmRphC6BS+D55Lf1cfkYUoyAiM4/JMJIVYryf2CfO97xloCgcZgStr/38a/RC8kPFLJTDvgFFUsptI3uk9dSPynfc1cD2pmyPLeMeMy7HkkeLpxrRRT8R33gH1wakemvXLJf1+JI90VOsO7o40Plvg/0zA4iYCRkAwAoIREIyAYAQEIyAYAcEICEZAMAKCERCMgGAEBCMgGAHBCAhGQDACghEQjIBgBAQjIBgBwQgIRkAwAoL9BS7b7t2PtL1XAAAAAElFTkSuQmCC" alt="User avatar" style="width: 100%; max-width: 40px; height: auto;">
       <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
-    </minimal-component>
+    </action-list-item>
   `;
 
   listEl.addEventListener('ifxTestEvent', (event) => {

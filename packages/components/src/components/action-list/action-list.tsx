@@ -4,11 +4,11 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 
 @Component({
-  tag: 'minimal-component-wrapper',
-  styleUrl: 'minimal-component-wrapper.scss',
+  tag: 'action-list',
+  styleUrl: 'action-list.scss',
   shadow: true,
 })
-export class MinimalComponentWrapper {
+export class ActionList {
   @Element() el: HTMLElement;
 
   /**
@@ -19,14 +19,14 @@ export class MinimalComponentWrapper {
   async componentDidLoad() {
     if (!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework();
-      trackComponent('minimal-component-wrapper', await framework);
+      trackComponent('action-list', await framework);
     }
   }
 
   render() {
     return (
       <div
-        class="minimal-component-wrapper"
+        class="action-list"
         role="list"
         aria-label={this.listAriaLabel}
       >
