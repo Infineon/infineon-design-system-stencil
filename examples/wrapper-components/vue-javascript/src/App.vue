@@ -4,6 +4,7 @@
   <Sidebar />
   <Alert />
   <Accordion />
+  <ActionList />
   <Breadcrumbs />
   <Button />
   <Card />
@@ -87,5 +88,5 @@ import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
 import FileUpload from './components/FileUpload.vue'
-
+import ActionList from './components/ActionList.vue'
 </script>

@@ -76,6 +76,10 @@ export class App {
     }
   }
 
+  actionListItemClickHandler(event: any) {
+    console.log('Action list item clicked', event);
+  }
+
   updateProgressOnClick() {
     this.progressValue < 100 ? this.progressValue += 10 : this.progressValue = 10;
   }
