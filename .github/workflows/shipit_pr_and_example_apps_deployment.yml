@@ -7,14 +7,6 @@ on:
       - reopened
       - synchronize # canary on new commit
 
-  workflow_dispatch:
-    inputs:
-      force_rebuild:
-        description: 'Force rebuild (ignore cache)'
-        type: boolean
-        default: false
-
-# Add workflow concurrency to prevent conflicts
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
@@ -25,7 +17,7 @@ jobs:
       CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
       SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -41,9 +33,9 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-          cache: 'npm'
+          cache: 'npm' 
 
-      - name: Check for jq and install if needed
+      - name: Install jq
         run: |
           if command -v jq &> /dev/null; then
             echo "✅ jq is already installed: $(jq --version)"
@@ -52,103 +44,37 @@ jobs:
             sudo apt-get update && sudo apt-get install -y jq
           fi
 
-      - name: Cache build outputs
+      - name: Cache node modules
+        id: cache-npm
         uses: actions/cache@v3
-        id: build-cache
         with:
           path: |
-            packages/components/dist
-            packages/components/www/build
-            packages/components-vue/dist
-            packages/components-react/dist
-            packages/components-angular/dist
-            packages/components-angular/projects/component-library/src/lib/stencil-generated/
-            packages/components-react/lib/components/stencil-generated/
-            packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-
-            ${{ runner.os }}-build-v3-
+            ~/.npm
+            **/node_modules
 
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
+    
 
       - name: Install dependencies for all packages
         run: |
-          npm ci || npm install
-          git checkout -- package-lock.json 
+          npm ci
 
-      - name: Test
-        id: test
-        run: npm test
 
+      - name: Run tests
+        run: |
+          cd packages/components
+          npm test
+
+        
       - name: Build and deploy Stencil core package
         id: build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          # Handle manual cache busting
-          if [ "${{ github.event.inputs.force_rebuild || 'false' }}" = "true" ]; then
-            echo "🔄 Force rebuild requested - ignoring cache"
-            CACHE_VALID="false"
-          else
-            # Debug information
-            echo "Cache hit raw value: '${{ steps.build-cache.outputs.cache-hit }}'"
-            
-            # Check if files exist in disk
-            echo "Checking dist directory contents:"
-            ls -la packages/components/dist/ || echo "Dist directory not found"
-                    
-            # More thorough validation of cached build - IGNORE VERSION MISMATCH
-            if [ -d "packages/components/dist" ] && 
-              [ -f "packages/components/dist/index.js" ] && 
-              [ -f "packages/components/dist/collection/collection-manifest.json" ]; then
-              # Read package version from actual built files
-              BUILT_VERSION=$(grep -o '"version":[[:space:]]*"[^"]*"' packages/components/dist/collection/collection-manifest.json | cut -d'"' -f4)
-              # Read expected version from package.json
-              EXPECTED_VERSION=$(node -e "console.log(require('./packages/components/package.json').version)")
-              
-              echo "Built version from manifest: $BUILT_VERSION"
-              echo "Expected version from package.json: $EXPECTED_VERSION"
-              
-              # CHANGED: Don't invalidate cache just due to version mismatch
-              echo "✅ Files exist and are valid"
-              CACHE_VALID="true"
-            else
-              echo "❌ Required files not found - need rebuild"
-              CACHE_VALID="false"
-            fi
-
-            # Only check for changes if we have valid files
-            if [ "$CACHE_VALID" = "true" ]; then
-              # Check for source code changes
-              CORE_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/src/ || echo "diff failed")
-              DEPS_CHANGED=$(git diff --name-only HEAD~1 HEAD -- package-lock.json package.json packages/components/package.json || echo "diff failed")
-              CONFIG_CHANGED=$(git diff --name-only HEAD~1 HEAD -- packages/components/stencil.config.ts **/tsconfig.json || echo "diff failed")
-              
-              echo "Changes in core: $CORE_CHANGED"
-              echo "Changes in deps: $DEPS_CHANGED"
-              echo "Changes in config: $CONFIG_CHANGED"
-              
-              if [ -z "$CORE_CHANGED" ] && [ -z "$DEPS_CHANGED" ] && [ -z "$CONFIG_CHANGED" ]; then
-                echo "🎉 No changes detected and cache is valid. Skipping build."
-                SKIP_BUILD="true"
-              else
-                echo "🔨 Changes detected - rebuild required"
-                SKIP_BUILD="false"
-                CACHE_VALID="false"
-              fi
-            else
-              SKIP_BUILD="false"
-            fi
-          fi
-          
-          # Run the build if needed
-          if [ "$SKIP_BUILD" != "true" ]; then
-            echo "🏗️ Running component build..."
-            npm run build:components
-            echo "✅ Build completed successfully"
-          fi
-          
-          # Handle versioning and publish (always run this part regardless of build)
+          npm run build:components
           if [ "${{ github.actor }}" = "dependabot[bot]" ]; then
             echo "Skipping creation of a canary release due to workflow trigger being a Dependabot PR"
             echo "SKIP_REMAINING=true" >> $GITHUB_OUTPUT
@@ -163,77 +89,15 @@ jobs:
             auto shipit
           fi
 
-      # Save the cache explicitly after build (only if we built)
-      - name: Save build cache
-        if: "${{ !contains(env.SKIP_BUILD, 'true') }}"
-        uses: actions/cache/save@v3
+      - name: Check package availability
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        uses: ./.github/actions/check-package-availability
         with:
-          path: |
-            packages/components/dist
-            packages/components/www/build
-            packages/components-vue/dist
-            packages/components-react/dist
-            packages/components-angular/dist
-            packages/components-angular/projects/component-library/src/lib/stencil-generated/
-            packages/components-react/lib/components/stencil-generated/
-            packages/components-vue/lib/vue-component-lib/
-          key: ${{ runner.os }}-build-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref_name }}-v3-${{ hashFiles('package-lock.json') }}
-
-      # Replace sleep with package availability check
-      - name: Verify package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        id: verify-package
-        run: |
-          echo "Verifying package availability for $CANARY_VERSION"
-          MAX_RETRIES=10
-          RETRY_COUNT=0
-          DELAY=5
-          
-          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-            if npm view "@infineon/infineon-design-system-stencil@$CANARY_VERSION" version &> /dev/null; then
-              echo "✅ Package $CANARY_VERSION is available in registry"
-              echo "PACKAGE_AVAILABLE=true" >> $GITHUB_OUTPUT
-              break
-            else
-              RETRY_COUNT=$((RETRY_COUNT + 1))
-              echo "⏳ Package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-              sleep $DELAY
-              DELAY=$((DELAY + 5))
-            fi
-          done
-          
-          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-            echo "❌ Package availability check timed out after $MAX_RETRIES attempts"
-            echo "PACKAGE_AVAILABLE=false" >> $GITHUB_OUTPUT
-          fi
-
+          package: "@infineon/infineon-design-system-stencil"
+          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          max-attempts: 10
+          max-delay: 20
       
-      # Create Stencil loader shim for components (to prevent race conditions)
-      - name: Create Stencil loader shim
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
-        run: |
-          echo "Creating Stencil loader shim for wrapper builds..."
-          
-          # Create loader directory in root node_modules
-          mkdir -p node_modules/@infineon/infineon-design-system-stencil/loader
-          
-          # Create index.js with required functions
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.js << 'EOF'
-          export function defineCustomElements() {
-            return Promise.resolve();
-          }
-          
-          export function applyPolyfills() {
-            return Promise.resolve();
-          }
-          EOF
-          
-          # Create TypeScript declarations
-          cat > node_modules/@infineon/infineon-design-system-stencil/loader/index.d.ts << 'EOF'
-          export declare function defineCustomElements(win?: Window): Promise<void>;
-          export declare function applyPolyfills(): Promise<void>;
-          EOF
-
       - name: Update Dependencies in Angular, Vue and React packages
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         id: update-wrapper-dependencies
@@ -241,6 +105,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
           CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+
         run: |
           echo "CANARY_VERSION: $CANARY_VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
@@ -248,8 +113,8 @@ jobs:
 
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq 'del(.peerDependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
           cd ../../../../
 
           # Update Vue package
@@ -281,26 +146,22 @@ jobs:
 
           # Verify updates
           echo "Verifying updates in Angular package"
-          jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
+          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
           echo "Verifying updates in Vue package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
-    
             
       - name: Build and deploy Angular, Vue and React packages
-        id: build-wrappers  
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           lerna version $CANARY_VERSION --no-git-tag-version --y
-          # Build sequentially to avoid race conditions
           npm run build:components-angular
           npm run build:components-react
           npm run build:components-vue
-          
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
           npm publish --tag canary
           cd ../../../../components-react
@@ -308,41 +169,11 @@ jobs:
           cd ../components-vue
           npm publish --tag canary
 
-          echo "WRAPPERS_PUBLISHED=true" >> $GITHUB_OUTPUT 
-
-
-      # Wrapper package availability check
-      - name: Verify wrapper packages availability
-        if: steps.build-wrappers.outputs.WRAPPERS_PUBLISHED == 'true'
+      - name: Verify built files
         run: |
-          echo "Verifying wrapper packages availability..."
-          
-          check_package() {
-            local package=$1
-            local MAX_RETRIES=10
-            local RETRY_COUNT=0
-            local DELAY=3
-            
-            echo "Checking $package@$CANARY_VERSION availability..."
-            while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
-              if npm view "$package@$CANARY_VERSION" version &> /dev/null; then
-                echo "✅ $package@$CANARY_VERSION is available"
-                return 0
-              else
-                RETRY_COUNT=$((RETRY_COUNT + 1))
-                echo "⏳ $package not available yet. Retry $RETRY_COUNT of $MAX_RETRIES..."
-                sleep $DELAY
-                DELAY=$((DELAY + 2))
-              fi
-            done
-            
-            echo "❌ $package availability check timed out"
-            return 1
-          }
-          
-          check_package "@infineon/infineon-design-system-angular"
-          check_package "@infineon/infineon-design-system-react"
-          check_package "@infineon/infineon-design-system-vue"
+          echo "Verifying built files in React package"
+          ls -la packages/components-react/dist
+          cat packages/components-react/dist/components.js
 
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
@@ -371,6 +202,7 @@ jobs:
           git commit -m "Update Stencil library version to $CANARY_VERSION"
           git push origin HEAD:$BRANCH_NAME
 
+  #deploy gh-pages previews for example applications:
   deploy-preview-vue:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
@@ -380,48 +212,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          fetch-depth: 0
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache Vue app node modules
-        uses: actions/cache@v3
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
         with:
-          path: examples/wrapper-components/vue-javascript/node_modules
-          key: ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/vue-javascript/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vue-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-vue-example-
+          package: "@infineon/infineon-design-system-vue"
+          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          max-attempts: 10
+          max-delay: 20
 
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          CANARY_VERSION: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
-          BASE_PATH: /infineon-design-system-stencil/pr-preview-vue-example/pr-${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/vue-javascript
-          rm -rf dist
-          npm install
-          
-          # Add base path to vite.config.js if it exists
-          if [ -f "vite.config.js" ]; then
-            echo "Adding base path to vite.config.js"
-            sed -i "s/export default defineConfig({/export default defineConfig({\n  base: '\/infineon-design-system-stencil\/pr-preview-vue-example\/pr-$PR_NUMBER\/',/" vite.config.js
-          fi
-
+          npm i
           npm run build
-          
-          # Add .nojekyll file to ensure GitHub Pages serves files as they exist in build directory
-          touch dist/.nojekyll
 
       - name: Deploy preview
         id: preview       
@@ -446,22 +258,18 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache React app node modules
-        uses: actions/cache@v3
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
         with:
-          path: examples/wrapper-components/react-vite-js/node_modules
-          key: ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/wrapper-components/react-vite-js/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-react-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-react-example-
+          package: "@infineon/infineon-design-system-react"
+          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          max-attempts: 10
+          max-delay: 20
 
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd examples/wrapper-components/react-vite-js
           rm -rf node_modules
@@ -494,29 +302,24 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache Angular app node modules
-        uses: actions/cache@v3
+      - name: Check package availability
+        uses: ./.github/actions/check-package-availability
         with:
-          path: packages/components-angular/node_modules
-          key: ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('packages/components-angular/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-angular-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-angular-example-
+          package: "@infineon/infineon-design-system-angular"
+          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          max-attempts: 10
+          max-delay: 20
 
       - name: Update package.json with canary version
         run: |
           cd packages/components-angular
           jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
           cd projects/component-library
-          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          
+          jq --arg CANARY_VERSION "${{ needs.stencil-library-release.outputs.CANARY_VERSION }}" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
       - name: Install and Build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           cd packages/components-angular
           npm install
@@ -545,22 +348,10 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
-          cache: 'npm'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Cache Vanilla app node modules
-        uses: actions/cache@v3
-        with:
-          path: examples/stencil-components/vanilla-cdn/node_modules
-          key: ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-${{ hashFiles('examples/stencil-components/vanilla-cdn/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-vanilla-example-${{ needs.stencil-library-release.outputs.CANARY_VERSION }}-
-            ${{ runner.os }}-vanilla-example-
-
       - name: Update CDN Link in Vanilla example app & build
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: | 
           cd examples/stencil-components/vanilla-cdn
           npm install
@@ -575,10 +366,12 @@ jobs:
           umbrella-dir: pr-preview-vanilla-example
           token: ${{ secrets.GH_TOKEN }}
   
-  update-pr-comment:
+  update-pr-comment: # add comment on github
     needs: [deploy-preview-vue, deploy-preview-react, deploy-preview-angular, deploy-preview-vanilla]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Update comment in PR
         uses: actions/github-script@v4
         with:
@@ -615,3 +408,4 @@ jobs:
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          
