@@ -56,24 +56,24 @@ export class TextArea {
 
 	formResetCallback(): void {
 		this.resetTextarea();
-		this.internals.setFormValue("");
+		//this.internals.setFormValue("");
 	}
 
 	handleOnInput(e: InputEvent): void {
 		this.value = (e.target as HTMLTextAreaElement).value;
-		this.internals.setFormValue(this.value);
+		//this.internals.setFormValue(this.value);
 		this.ifxInput.emit(this.value);
 	}
 
 	resetTextarea() {
 		this.value = '';
-		this.internals.setValidity({});
-		this.internals.setFormValue('');
+		//this.internals.setValidity({});
+		//this.internals.setFormValue('');
 	}
 
-	componentWillLoad() {
-		this.internals.setFormValue(this.value);
-	}
+	// componentWillLoad() {
+	// 	this.internals.setFormValue(this.value);
+	// }
 
 		async componentDidLoad() { 
 		if(!isNestedInIfxComponent(this.el)) { 
