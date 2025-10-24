@@ -116,7 +116,7 @@ export const data = [
     "guideline": "Identify Input Purpose (WCAG 2.1)",
     "level": "AA",
     "summary": "Each input field must be able to be determined programmatically, a user should be able for example to autofill inputs",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -129,7 +129,7 @@ export const data = [
   },
   {
     "guidelineNumber": "1.4.1",
-    "guideline": "Use of Colour",
+    "guideline": "ar",
     "level": "A",
     "summary": "Don’t use presentation that relies solely on colour",
     "status": "Passing",
@@ -173,7 +173,7 @@ export const data = [
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
     "status": "Failing",
-    "comment": ""
+    "comment": "primary: 4.7:1; danger: 5.77: 1"
   },
   {
     "guidelineNumber": "1.4.7",
@@ -228,7 +228,7 @@ export const data = [
     "guideline": "Content on Hover or Focus  (WCAG 2.1)",
     "level": "AA",
     "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -260,7 +260,7 @@ export const data = [
     "guideline": "Character Key Shortcuts (WCAG 2.1)",
     "level": "A",
     "summary": "If using single letter keyboard shortcut, the shortcut should be able to be turn off, or remap, or active only on focus",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -284,7 +284,7 @@ export const data = [
     "guideline": "No Timing",
     "level": "AAA",
     "summary": "No time limits",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -292,7 +292,7 @@ export const data = [
     "guideline": "Interruptions",
     "level": "AAA",
     "summary": "Don’t interrupt users",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -348,7 +348,7 @@ export const data = [
     "guideline": "Section Headings",
     "level": "AAA",
     "summary": "Break up content with headings",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -396,7 +396,7 @@ export const data = [
     "guideline": "Link Purpose (In Context)",
     "level": "A",
     "summary": "Every link’s purpose is clear from its context",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -412,7 +412,7 @@ export const data = [
     "guideline": "Headings and Labels",
     "level": "AA",
     "summary": "Use clear headings and labels",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -436,7 +436,7 @@ export const data = [
     "guideline": "Link Purpose (Link Only)",
     "level": "AAA",
     "summary": "Every link’s purpose is clear from its text",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -452,7 +452,7 @@ export const data = [
     "guideline": "Pointer Cancellation  (WCAG 2.1)",
     "level": "A",
     "summary": "When using single pointer events, one of the following should be true, No Down-Event, Abort or Undo, Up Reversal, Essential",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -476,8 +476,8 @@ export const data = [
     "guideline": "Target Size (WCAG 2.1)",
     "level": "AAA",
     "summary": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels",
-    "status": "Passing",
-    "comment": ""
+    "status": "Failing",
+    "comment": "S: 36px; L: 40px"
   },
   {
     "guidelineNumber": "2.5.6",
@@ -572,7 +572,7 @@ export const data = [
     "guideline": "Consistent Navigation",
     "level": "AA",
     "summary": "Use menus consistently",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -612,7 +612,7 @@ export const data = [
     "guideline": "Labels or Instructions",
     "level": "A",
     "summary": "Label elements and give instructions",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {

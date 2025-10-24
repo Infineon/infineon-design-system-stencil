@@ -172,7 +172,7 @@ export const data = [
     "guideline": "Contrast (Enhanced)",
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
-    "status": "Failing",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -236,7 +236,7 @@ export const data = [
     "guideline": "Keyboard",
     "level": "A",
     "summary": "Accessible by keyboard only",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -252,7 +252,7 @@ export const data = [
     "guideline": "Keyboard (No Exception)",
     "level": "AAA",
     "summary": "Accessible by keyboard only, without exception",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -284,7 +284,7 @@ export const data = [
     "guideline": "No Timing",
     "level": "AAA",
     "summary": "No time limits",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -292,7 +292,7 @@ export const data = [
     "guideline": "Interruptions",
     "level": "AAA",
     "summary": "Don’t interrupt users",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -348,7 +348,7 @@ export const data = [
     "guideline": "Section Headings",
     "level": "AAA",
     "summary": "Break up content with headings",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -356,7 +356,7 @@ export const data = [
     "guideline": "Focus Not Obscured (Minimum) (WCAG 2.2)",
     "level": "AA",
     "summary": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -364,7 +364,7 @@ export const data = [
     "guideline": "Focus Not Obscured (Enhanced) (WCAG 2.2)",
     "level": "AAA",
     "summary": "When a user interface component receives keyboard focus, no part of the component is hidden by author-created content.",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -372,7 +372,7 @@ export const data = [
     "guideline": "Focus Appearance (WCAG 2.2)",
     "level": "AAA",
     "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -388,7 +388,7 @@ export const data = [
     "guideline": "Focus Order",
     "level": "A",
     "summary": "Logical order",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -412,7 +412,7 @@ export const data = [
     "guideline": "Headings and Labels",
     "level": "AA",
     "summary": "Use clear headings and labels",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -420,7 +420,7 @@ export const data = [
     "guideline": "Focus Visible",
     "level": "AA",
     "summary": "Ensure keyboard focus is visible and clear",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -476,7 +476,7 @@ export const data = [
     "guideline": "Target Size (WCAG 2.1)",
     "level": "AAA",
     "summary": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -484,7 +484,7 @@ export const data = [
     "guideline": "Concurrent Input Mechanisms (WCAG 2.1)",
     "level": "AAA",
     "summary": "Inputs must to available to use with a different mechanism (Mouse, keyboard, stylus, touch, voice)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -500,7 +500,7 @@ export const data = [
     "guideline": "Target Size (Minimum)  (WCAG 2.2)",
     "level": "AA",
     "summary": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where: spacing, equivalent, inline, user agent control, essential",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -564,7 +564,7 @@ export const data = [
     "guideline": "On Input",
     "level": "A",
     "summary": "Elements do not change when they receive input",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -580,7 +580,7 @@ export const data = [
     "guideline": "Consistent Identification",
     "level": "AA",
     "summary": "Use icons and buttons consistently",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -588,7 +588,7 @@ export const data = [
     "guideline": "Change on Request",
     "level": "AAA",
     "summary": "Don’t change elements on your website until users ask",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {

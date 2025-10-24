@@ -12,7 +12,7 @@ export const data = [
     "guideline": "Audio-only and Video-only (Pre-recorded)",
     "level": "A",
     "summary": "Provide an alternative to video-only and audio-only content",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -20,7 +20,7 @@ export const data = [
     "guideline": "Captions (Pre-recorded)",
     "level": "A",
     "summary": "Provide captions for videos with audio",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -28,7 +28,7 @@ export const data = [
     "guideline": "Audio Description or Media Alternative (Pre-recorded)",
     "level": "A",
     "summary": "Video with audio has a second alternative",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -36,7 +36,7 @@ export const data = [
     "guideline": "Captions (Live)",
     "level": "AA",
     "summary": "Live videos have captions",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -44,7 +44,7 @@ export const data = [
     "guideline": "Audio Description (Pre-recorded)",
     "level": "AA",
     "summary": "Users have access to audio description for video content",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -52,7 +52,7 @@ export const data = [
     "guideline": "Sign Language (Pre-recorded)",
     "level": "AAA",
     "summary": "Provide sign language translations for videos",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -60,7 +60,7 @@ export const data = [
     "guideline": "Extended Audio description (Pre-recorded)",
     "level": "AAA",
     "summary": "Provide extended audio description for videos",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -68,7 +68,7 @@ export const data = [
     "guideline": "Media Alternative (Pre-recorded)",
     "level": "AAA",
     "summary": "Provide a text alternative to videos",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -76,7 +76,7 @@ export const data = [
     "guideline": "Audio Only (Live)",
     "level": "AAA",
     "summary": "Provide alternatives for live audio",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -84,7 +84,7 @@ export const data = [
     "guideline": "Info and Relationships",
     "level": "A",
     "summary": "Logical structure",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -92,7 +92,7 @@ export const data = [
     "guideline": "Meaningful Sequence",
     "level": "A",
     "summary": "Present content in a meaningful order",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -100,7 +100,7 @@ export const data = [
     "guideline": "Sensory Characteristics",
     "level": "A",
     "summary": "Use more than one sense for instructions",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -108,7 +108,7 @@ export const data = [
     "guideline": "Orientation (WCAG 2.1)",
     "level": "AA",
     "summary": "Content can be display in portrait and landscape orientation",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -116,7 +116,7 @@ export const data = [
     "guideline": "Identify Input Purpose (WCAG 2.1)",
     "level": "AA",
     "summary": "Each input field must be able to be determined programmatically, a user should be able for example to autofill inputs",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -124,7 +124,7 @@ export const data = [
     "guideline": "Identify Purpose (WCAG 2.1)",
     "level": "AAA",
     "summary": "Interface components, icons and landmarks (sections, article, main, etc.) must be able to be identified programmatically to help navigation for assistive technologies",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -132,7 +132,7 @@ export const data = [
     "guideline": "Use of Colour",
     "level": "A",
     "summary": "Don’t use presentation that relies solely on colour",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -140,7 +140,7 @@ export const data = [
     "guideline": "Audio Control",
     "level": "A",
     "summary": "Don’t play audio automatically",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -148,7 +148,7 @@ export const data = [
     "guideline": "Contrast (Minimum)",
     "level": "AA",
     "summary": "Contrast ratio between text and background is at least 4.5:1",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -156,7 +156,7 @@ export const data = [
     "guideline": "Resize Text",
     "level": "AA",
     "summary": "Text can be resized to 200% without loss of content or function",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -164,7 +164,7 @@ export const data = [
     "guideline": "Images of Text",
     "level": "AA",
     "summary": "Don’t use images of text",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -172,7 +172,7 @@ export const data = [
     "guideline": "Contrast (Enhanced)",
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
-    "status": "Failing",
+    "status": "",
     "comment": ""
   },
   {
@@ -180,7 +180,7 @@ export const data = [
     "guideline": "Low or No Background Audio",
     "level": "AAA",
     "summary": "Audio is clear for listeners to hear",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -188,7 +188,7 @@ export const data = [
     "guideline": "Visual Presentation",
     "level": "AAA",
     "summary": "Offer users a range of presentation options",
-    "status": "Failing",
+    "status": "",
     "comment": ""
   },
   {
@@ -196,7 +196,7 @@ export const data = [
     "guideline": "Images of Text (No Exception)",
     "level": "AAA",
     "summary": "Don’t use images of text",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -204,7 +204,7 @@ export const data = [
     "guideline": "Reflow (WCAG 2.1)",
     "level": "AA",
     "summary": "User must be able to browse a website using a 320 pixel wide screen without having to scroll horizontally (There are some exceptions)",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -212,7 +212,7 @@ export const data = [
     "guideline": "Non-Text Contrast  (WCAG 2.1)",
     "level": "AA",
     "summary": "Extend color contrast of at least 3:1 to non-text content such as infographics, diagrams, states, etc.",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -220,7 +220,7 @@ export const data = [
     "guideline": "Text Spacing  (WCAG 2.1)",
     "level": "AA",
     "summary": "Changing text style properties shouldn't break the page (line height, spacing after paragraph, letter spacing, word spacing)",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -228,7 +228,7 @@ export const data = [
     "guideline": "Content on Hover or Focus  (WCAG 2.1)",
     "level": "AA",
     "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -236,7 +236,7 @@ export const data = [
     "guideline": "Keyboard",
     "level": "A",
     "summary": "Accessible by keyboard only",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -244,7 +244,7 @@ export const data = [
     "guideline": "No Keyboard Trap",
     "level": "A",
     "summary": "Don’t trap keyboard users",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -252,7 +252,7 @@ export const data = [
     "guideline": "Keyboard (No Exception)",
     "level": "AAA",
     "summary": "Accessible by keyboard only, without exception",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -260,7 +260,7 @@ export const data = [
     "guideline": "Character Key Shortcuts (WCAG 2.1)",
     "level": "A",
     "summary": "If using single letter keyboard shortcut, the shortcut should be able to be turn off, or remap, or active only on focus",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -268,7 +268,7 @@ export const data = [
     "guideline": "Timing Adjustable",
     "level": "A",
     "summary": "Time limits have user controls",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -276,7 +276,7 @@ export const data = [
     "guideline": "Pause, Stop, Hide",
     "level": "A",
     "summary": "Provide user controls for moving content",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -284,7 +284,7 @@ export const data = [
     "guideline": "No Timing",
     "level": "AAA",
     "summary": "No time limits",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -292,7 +292,7 @@ export const data = [
     "guideline": "Interruptions",
     "level": "AAA",
     "summary": "Don’t interrupt users",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -300,7 +300,7 @@ export const data = [
     "guideline": "Re-authenticating",
     "level": "AAA",
     "summary": "Save user data when re-authenticating",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -308,7 +308,7 @@ export const data = [
     "guideline": "Timeouts  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Users should be warned if user inactivity could cause data loss, unless data is preserved for more than 20h",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -316,7 +316,7 @@ export const data = [
     "guideline": "Three Flashes or Below",
     "level": "A",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -324,7 +324,7 @@ export const data = [
     "guideline": "Three Flashes",
     "level": "AAA",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -348,7 +348,7 @@ export const data = [
     "guideline": "Section Headings",
     "level": "AAA",
     "summary": "Break up content with headings",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -356,7 +356,7 @@ export const data = [
     "guideline": "Focus Not Obscured (Minimum) (WCAG 2.2)",
     "level": "AA",
     "summary": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -364,7 +364,7 @@ export const data = [
     "guideline": "Focus Not Obscured (Enhanced) (WCAG 2.2)",
     "level": "AAA",
     "summary": "When a user interface component receives keyboard focus, no part of the component is hidden by author-created content.",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -372,7 +372,7 @@ export const data = [
     "guideline": "Focus Appearance (WCAG 2.2)",
     "level": "AAA",
     "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -380,7 +380,7 @@ export const data = [
     "guideline": "Page Titled",
     "level": "A",
     "summary": "Use helpful and clear page titles",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -388,7 +388,7 @@ export const data = [
     "guideline": "Focus Order",
     "level": "A",
     "summary": "Logical order",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -396,7 +396,7 @@ export const data = [
     "guideline": "Link Purpose (In Context)",
     "level": "A",
     "summary": "Every link’s purpose is clear from its context",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -404,7 +404,7 @@ export const data = [
     "guideline": "Multiple Ways",
     "level": "AA",
     "summary": "Offer several ways to find pages",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -412,7 +412,7 @@ export const data = [
     "guideline": "Headings and Labels",
     "level": "AA",
     "summary": "Use clear headings and labels",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -420,7 +420,7 @@ export const data = [
     "guideline": "Focus Visible",
     "level": "AA",
     "summary": "Ensure keyboard focus is visible and clear",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -428,7 +428,7 @@ export const data = [
     "guideline": "Location",
     "level": "AAA",
     "summary": "Let users know where they are within a set of web pages",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -436,7 +436,7 @@ export const data = [
     "guideline": "Link Purpose (Link Only)",
     "level": "AAA",
     "summary": "Every link’s purpose is clear from its text",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -452,7 +452,7 @@ export const data = [
     "guideline": "Pointer Cancellation  (WCAG 2.1)",
     "level": "A",
     "summary": "When using single pointer events, one of the following should be true, No Down-Event, Abort or Undo, Up Reversal, Essential",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -460,7 +460,7 @@ export const data = [
     "guideline": "Label in Name (WCAG 2.1)",
     "level": "A",
     "summary": "Text in buttons or label should be readable by assistant technologies and can be used with Text-to-speech",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -468,7 +468,7 @@ export const data = [
     "guideline": "Motion Actuation  (WCAG 2.1)",
     "level": "A",
     "summary": "Functionalities trigger by moving the device should have a fallback without (Eg some apps use shake to undo)",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -476,7 +476,7 @@ export const data = [
     "guideline": "Target Size (WCAG 2.1)",
     "level": "AAA",
     "summary": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -484,7 +484,7 @@ export const data = [
     "guideline": "Concurrent Input Mechanisms (WCAG 2.1)",
     "level": "AAA",
     "summary": "Inputs must to available to use with a different mechanism (Mouse, keyboard, stylus, touch, voice)",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -492,7 +492,7 @@ export const data = [
     "guideline": "Dragging Movements  (WCAG 2.2)",
     "level": "AA",
     "summary": "All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging unless essential or functionality determined by user agent",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -500,7 +500,7 @@ export const data = [
     "guideline": "Target Size (Minimum)  (WCAG 2.2)",
     "level": "AA",
     "summary": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where: spacing, equivalent, inline, user agent control, essential",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -508,7 +508,7 @@ export const data = [
     "guideline": "Language of Page",
     "level": "A",
     "summary": "Page has a language assigned",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -516,7 +516,7 @@ export const data = [
     "guideline": "Language of Parts",
     "level": "AA",
     "summary": "Tell users when the language on a page changes",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -524,7 +524,7 @@ export const data = [
     "guideline": "Unusual words",
     "level": "AAA",
     "summary": "Explain any strange words",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -532,7 +532,7 @@ export const data = [
     "guideline": "Abbreviations",
     "level": "AAA",
     "summary": "Explain any abbreviations",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -540,7 +540,7 @@ export const data = [
     "guideline": "Reading Level",
     "level": "AAA",
     "summary": "Users with nine years of school can read your content",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -548,7 +548,7 @@ export const data = [
     "guideline": "Pronunciation",
     "level": "AAA",
     "summary": "Explain any words that are hard to pronounce",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -556,7 +556,7 @@ export const data = [
     "guideline": "On Focus",
     "level": "A",
     "summary": "Elements do not change when they receive focus",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -564,7 +564,7 @@ export const data = [
     "guideline": "On Input",
     "level": "A",
     "summary": "Elements do not change when they receive input",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -572,7 +572,7 @@ export const data = [
     "guideline": "Consistent Navigation",
     "level": "AA",
     "summary": "Use menus consistently",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -580,7 +580,7 @@ export const data = [
     "guideline": "Consistent Identification",
     "level": "AA",
     "summary": "Use icons and buttons consistently",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -588,7 +588,7 @@ export const data = [
     "guideline": "Change on Request",
     "level": "AAA",
     "summary": "Don’t change elements on your website until users ask",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -596,7 +596,7 @@ export const data = [
     "guideline": "Consistent Help (WCAG 2.2)",
     "level": "A",
     "summary": "Help mechanisms are available on every page in the same manner",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -604,7 +604,7 @@ export const data = [
     "guideline": "Error Identification",
     "level": "A",
     "summary": "Clearly identify input errors",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -612,7 +612,7 @@ export const data = [
     "guideline": "Labels or Instructions",
     "level": "A",
     "summary": "Label elements and give instructions",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -620,7 +620,7 @@ export const data = [
     "guideline": "Error Suggestion",
     "level": "AA",
     "summary": "Suggest fixes when users make errors",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -628,7 +628,7 @@ export const data = [
     "guideline": "Error Prevention (Legal, Financial, Data)",
     "level": "AA",
     "summary": "Reduce the risk of input errors for sensitive data",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -636,7 +636,7 @@ export const data = [
     "guideline": "Help",
     "level": "AAA",
     "summary": "Provide detailed help and instructions",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -644,7 +644,7 @@ export const data = [
     "guideline": "Error Prevention (All)",
     "level": "AAA",
     "summary": "Reduce the risk of all input errors",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -652,7 +652,7 @@ export const data = [
     "guideline": "Redundant Entry (WCAG 2.2)",
     "level": "A",
     "summary": "Information previously entered by or provided to the user that is required to be entered again in the same process is either auto-populated or available to select (Exceptions)",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -660,7 +660,7 @@ export const data = [
     "guideline": "Accessible Authentication (Minimum) (WCAG 2.2)",
     "level": "AA",
     "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism, object recognition, personal content",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -668,7 +668,7 @@ export const data = [
     "guideline": "Accessible Authentication (Enhanced) (WCAG 2.2)",
     "level": "AAA",
     "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   },
   {
@@ -676,7 +676,7 @@ export const data = [
     "guideline": "Parsing (removed in WCAG 2.2)",
     "level": "A",
     "summary": "No major code errors",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -684,7 +684,7 @@ export const data = [
     "guideline": "Name, Role, Value",
     "level": "A",
     "summary": "Build all components for accessibility",
-    "status": "Passing",
+    "status": "",
     "comment": ""
   },
   {
@@ -692,7 +692,7 @@ export const data = [
     "guideline": "Status Messages (WCAG 2.1)",
     "level": "AA",
     "summary": "Content that is updated dynamically must be notified to users of assistive technologies without getting visual focus",
-    "status": "Not Applicable",
+    "status": "",
     "comment": ""
   }
 ]

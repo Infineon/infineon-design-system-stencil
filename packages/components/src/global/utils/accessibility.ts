@@ -47,7 +47,7 @@ export function getMaxRating(percentage: CompliancePercentage): 'A' | 'AA' | 'AA
   }
 
   if (percentage.A === 1) {
-    return 'AA';
+    return 'A';
   }
 
   return 'F';
