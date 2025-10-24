@@ -61,8 +61,8 @@ const meta: Meta = {
     },
 
     // --- CUSTOM EVENTS ---
-    ifxTestEvent: {
-      action: 'ifxTestEvent',
+    ifxActionListItemClick: {
+      action: 'ifxActionListItemClick',
       table: { category: 'Custom Events' },
       description: 'Event emitted when the main item area is clicked',
     },
@@ -113,9 +113,9 @@ const BaseTemplate: StoryFn = (args) => {
     </action-list-item>
   `;
 
-  listEl.addEventListener('ifxTestEvent', (event) => {
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
     const customEvent = event as CustomEvent;
-    action('ifxTestEvent')({
+    action('ifxActionListItemClick')({
       value: customEvent.detail.value,
       href: customEvent.detail.href,
       target: customEvent.detail.target,
@@ -177,9 +177,9 @@ export const InteractiveCheckbox: StoryFn = (args) => {
     </action-list-item>
   `;
 
-  listEl.addEventListener('ifxTestEvent', (event) => {
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
     const customEvent = event as CustomEvent;
-    action('ifxTestEvent')({
+    action('ifxActionListItemClick')({
       value: customEvent.detail.value,
       href: customEvent.detail.href,
       target: customEvent.detail.target,
@@ -242,9 +242,9 @@ export const InteractiveSwitch: StoryFn = (args) => {
     </action-list-item>
   `;
 
-  listEl.addEventListener('ifxTestEvent', (event) => {
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
     const customEvent = event as CustomEvent;
-    action('ifxTestEvent')({
+    action('ifxActionListItemClick')({
       value: customEvent.detail.value,
       href: customEvent.detail.href,
       target: customEvent.detail.target,
@@ -310,9 +310,9 @@ export const WithIcons: StoryFn = (args) => {
     </action-list-item>
   `;
 
-  listEl.addEventListener('ifxTestEvent', (event) => {
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
     const customEvent = event as CustomEvent;
-    action('ifxTestEvent')({
+    action('ifxActionListItemClick')({
       value: customEvent.detail.value,
       href: customEvent.detail.href,
       target: customEvent.detail.target,
@@ -370,9 +370,9 @@ export const WithImages: StoryFn = (args) => {
     </action-list-item>
   `;
 
-  listEl.addEventListener('ifxTestEvent', (event) => {
+  listEl.addEventListener('ifxActionListItemClick', (event) => {
     const customEvent = event as CustomEvent;
-    action('ifxTestEvent')({
+    action('ifxActionListItemClick')({
       value: customEvent.detail.value,
       href: customEvent.detail.href,
       target: customEvent.detail.target,

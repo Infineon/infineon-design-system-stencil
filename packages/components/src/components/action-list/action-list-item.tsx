@@ -50,7 +50,7 @@ export class ActionListItem {
   /**
    * Event emitted when the main item area is clicked
    */
-  @Event() ifxTestEvent: EventEmitter;
+  @Event() ifxActionListItemClick: EventEmitter;
 
   @Watch('disabled')
   onDisabledChange() {
@@ -74,7 +74,7 @@ export class ActionListItem {
     }
 
     // Always emit main event when clicking on content area (text), regardless of interactive elements
-    this.ifxTestEvent.emit({
+    this.ifxActionListItemClick.emit({
       value: this.value,
       href: this.href,
       target: this.target,
@@ -114,7 +114,7 @@ export class ActionListItem {
 
     // Non-interactive element clicked - trigger main action
     event.stopPropagation();
-    this.ifxTestEvent.emit({
+    this.ifxActionListItemClick.emit({
       value: this.value,
       href: this.href,
       target: this.target,
@@ -153,7 +153,7 @@ export class ActionListItem {
 
     // Non-interactive element clicked - trigger main action
     event.stopPropagation();
-    this.ifxTestEvent.emit({
+    this.ifxActionListItemClick.emit({
       value: this.value,
       href: this.href,
       target: this.target,

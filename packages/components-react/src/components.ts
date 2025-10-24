@@ -134,14 +134,14 @@ export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActio
     defineCustomElement: defineIfxActionList
 });
 
-type IfxActionListItemEvents = { onIfxTestEvent: EventName<CustomEvent<any>> };
+type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<CustomEvent<any>> };
 
 export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents>({
     tagName: 'ifx-action-list-item',
     elementClass: IfxActionListItemElement,
     // @ts-ignore - React type of Stencil Output Target may differ from the React version used in the Nuxt.js project, this can be ignored.
     react: React,
-    events: { onIfxTestEvent: 'ifxTestEvent' } as IfxActionListItemEvents,
+    events: { onIfxActionListItemClick: 'ifxActionListItemClick' } as IfxActionListItemEvents,
     defineCustomElement: defineIfxActionListItem
 });
 
