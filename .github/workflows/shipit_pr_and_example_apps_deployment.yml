@@ -175,12 +175,6 @@ jobs:
           ls -la packages/components-react/dist
           cat packages/components-react/dist/components.js
 
-      - name: Sleep for 10 seconds #needed because we had runtime issues where the wrappers are not getting the newest version
-        run: |
-          echo "Skip Remaining: ${{ steps.build.outputs.SKIP_REMAINING }}"  
-          sleep 10s
-        shell: bash
-
       - name: Update Dependencies in example applications
         if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
@@ -228,7 +222,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Check package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-vue"
@@ -269,7 +262,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Check package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-react"
@@ -314,7 +306,6 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Check package availability
-        if: steps.build.outputs.SKIP_REMAINING == 'false'
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-angular"
