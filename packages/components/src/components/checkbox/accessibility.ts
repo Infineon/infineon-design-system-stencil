@@ -116,7 +116,7 @@ export const data = [
     "guideline": "Identify Input Purpose (WCAG 2.1)",
     "level": "AA",
     "summary": "Each input field must be able to be determined programmatically, a user should be able for example to autofill inputs",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -140,7 +140,7 @@ export const data = [
     "guideline": "Audio Control",
     "level": "A",
     "summary": "Don’t play audio automatically",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -172,7 +172,7 @@ export const data = [
     "guideline": "Contrast (Enhanced)",
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
-    "status": "Failing",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -228,7 +228,7 @@ export const data = [
     "guideline": "Content on Hover or Focus  (WCAG 2.1)",
     "level": "AA",
     "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -316,7 +316,7 @@ export const data = [
     "guideline": "Three Flashes or Below",
     "level": "A",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -324,7 +324,7 @@ export const data = [
     "guideline": "Three Flashes",
     "level": "AAA",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -348,7 +348,7 @@ export const data = [
     "guideline": "Section Headings",
     "level": "AAA",
     "summary": "Break up content with headings",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -452,7 +452,7 @@ export const data = [
     "guideline": "Pointer Cancellation  (WCAG 2.1)",
     "level": "A",
     "summary": "When using single pointer events, one of the following should be true, No Down-Event, Abort or Undo, Up Reversal, Essential",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -476,15 +476,15 @@ export const data = [
     "guideline": "Target Size (WCAG 2.1)",
     "level": "AAA",
     "summary": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels",
-    "status": "Passing",
-    "comment": ""
+    "status": "Failing",
+    "comment": "S: 20px; M: 24px"
   },
   {
     "guidelineNumber": "2.5.6",
     "guideline": "Concurrent Input Mechanisms (WCAG 2.1)",
     "level": "AAA",
     "summary": "Inputs must to available to use with a different mechanism (Mouse, keyboard, stylus, touch, voice)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -500,8 +500,8 @@ export const data = [
     "guideline": "Target Size (Minimum)  (WCAG 2.2)",
     "level": "AA",
     "summary": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where: spacing, equivalent, inline, user agent control, essential",
-    "status": "Passing",
-    "comment": ""
+    "status": "Failing",
+    "comment": "S: 20px; M: 24px"
   },
   {
     "guidelineNumber": "3.1.1",
@@ -564,7 +564,7 @@ export const data = [
     "guideline": "On Input",
     "level": "A",
     "summary": "Elements do not change when they receive input",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -588,7 +588,7 @@ export const data = [
     "guideline": "Change on Request",
     "level": "AAA",
     "summary": "Don’t change elements on your website until users ask",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -604,15 +604,15 @@ export const data = [
     "guideline": "Error Identification",
     "level": "A",
     "summary": "Clearly identify input errors",
-    "status": "Not Applicable",
-    "comment": ""
+    "status": "Passing",
+    "comment": "error property available"
   },
   {
     "guidelineNumber": "3.3.2",
     "guideline": "Labels or Instructions",
     "level": "A",
     "summary": "Label elements and give instructions",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -620,7 +620,7 @@ export const data = [
     "guideline": "Error Suggestion",
     "level": "AA",
     "summary": "Suggest fixes when users make errors",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -628,7 +628,7 @@ export const data = [
     "guideline": "Error Prevention (Legal, Financial, Data)",
     "level": "AA",
     "summary": "Reduce the risk of input errors for sensitive data",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -636,7 +636,7 @@ export const data = [
     "guideline": "Help",
     "level": "AAA",
     "summary": "Provide detailed help and instructions",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -644,7 +644,7 @@ export const data = [
     "guideline": "Error Prevention (All)",
     "level": "AAA",
     "summary": "Reduce the risk of all input errors",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {

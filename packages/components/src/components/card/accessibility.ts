@@ -132,7 +132,7 @@ export const data = [
     "guideline": "Use of Colour",
     "level": "A",
     "summary": "Don’t use presentation that relies solely on colour",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -140,7 +140,7 @@ export const data = [
     "guideline": "Audio Control",
     "level": "A",
     "summary": "Don’t play audio automatically",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -172,7 +172,7 @@ export const data = [
     "guideline": "Contrast (Enhanced)",
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
-    "status": "Failing",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -188,7 +188,7 @@ export const data = [
     "guideline": "Visual Presentation",
     "level": "AAA",
     "summary": "Offer users a range of presentation options",
-    "status": "Failing",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -205,7 +205,7 @@ export const data = [
     "level": "AA",
     "summary": "User must be able to browse a website using a 320 pixel wide screen without having to scroll horizontally (There are some exceptions)",
     "status": "Passing",
-    "comment": ""
+    "comment": "Current width: 350px"
   },
   {
     "guidelineNumber": "1.4.11",
@@ -228,7 +228,7 @@ export const data = [
     "guideline": "Content on Hover or Focus  (WCAG 2.1)",
     "level": "AA",
     "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -284,7 +284,7 @@ export const data = [
     "guideline": "No Timing",
     "level": "AAA",
     "summary": "No time limits",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -292,7 +292,7 @@ export const data = [
     "guideline": "Interruptions",
     "level": "AAA",
     "summary": "Don’t interrupt users",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -316,7 +316,7 @@ export const data = [
     "guideline": "Three Flashes or Below",
     "level": "A",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -324,7 +324,7 @@ export const data = [
     "guideline": "Three Flashes",
     "level": "AAA",
     "summary": "No content flashes more than three times per second",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -349,7 +349,7 @@ export const data = [
     "level": "AAA",
     "summary": "Break up content with headings",
     "status": "Passing",
-    "comment": ""
+    "comment": "user can pass proper h as slot"
   },
   {
     "guidelineNumber": "2.4.11",
@@ -373,7 +373,7 @@ export const data = [
     "level": "AAA",
     "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
     "status": "Passing",
-    "comment": ""
+    "comment": "border is just 1px"
   },
   {
     "guidelineNumber": "2.4.2",
@@ -396,7 +396,7 @@ export const data = [
     "guideline": "Link Purpose (In Context)",
     "level": "A",
     "summary": "Every link’s purpose is clear from its context",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -412,7 +412,7 @@ export const data = [
     "guideline": "Headings and Labels",
     "level": "AA",
     "summary": "Use clear headings and labels",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -436,7 +436,7 @@ export const data = [
     "guideline": "Link Purpose (Link Only)",
     "level": "AAA",
     "summary": "Every link’s purpose is clear from its text",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -452,7 +452,7 @@ export const data = [
     "guideline": "Pointer Cancellation  (WCAG 2.1)",
     "level": "A",
     "summary": "When using single pointer events, one of the following should be true, No Down-Event, Abort or Undo, Up Reversal, Essential",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -660,7 +660,7 @@ export const data = [
     "guideline": "Accessible Authentication (Minimum) (WCAG 2.2)",
     "level": "AA",
     "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism, object recognition, personal content",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -668,7 +668,7 @@ export const data = [
     "guideline": "Accessible Authentication (Enhanced) (WCAG 2.2)",
     "level": "AAA",
     "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {

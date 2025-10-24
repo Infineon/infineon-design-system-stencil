@@ -108,7 +108,7 @@ export const data = [
     "guideline": "Orientation (WCAG 2.1)",
     "level": "AA",
     "summary": "Content can be display in portrait and landscape orientation",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -140,7 +140,7 @@ export const data = [
     "guideline": "Audio Control",
     "level": "A",
     "summary": "Don’t play audio automatically",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -172,7 +172,7 @@ export const data = [
     "guideline": "Contrast (Enhanced)",
     "level": "AAA",
     "summary": "Contrast ratio between text and background is at least 7:1",
-    "status": "Failing",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -188,7 +188,7 @@ export const data = [
     "guideline": "Visual Presentation",
     "level": "AAA",
     "summary": "Offer users a range of presentation options",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -228,7 +228,7 @@ export const data = [
     "guideline": "Content on Hover or Focus  (WCAG 2.1)",
     "level": "AA",
     "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -284,7 +284,7 @@ export const data = [
     "guideline": "No Timing",
     "level": "AAA",
     "summary": "No time limits",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -292,7 +292,7 @@ export const data = [
     "guideline": "Interruptions",
     "level": "AAA",
     "summary": "Don’t interrupt users",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -332,7 +332,7 @@ export const data = [
     "guideline": "Animation from Interactions  (WCAG 2.1)",
     "level": "AAA",
     "summary": "Motion animation triggered by interaction can be disabled",
-    "status": "Failing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -340,7 +340,7 @@ export const data = [
     "guideline": "Bypass Blocks",
     "level": "A",
     "summary": "Provide a ‘Skip to Content’ link",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -380,7 +380,7 @@ export const data = [
     "guideline": "Page Titled",
     "level": "A",
     "summary": "Use helpful and clear page titles",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -396,7 +396,7 @@ export const data = [
     "guideline": "Link Purpose (In Context)",
     "level": "A",
     "summary": "Every link’s purpose is clear from its context",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -436,7 +436,7 @@ export const data = [
     "guideline": "Link Purpose (Link Only)",
     "level": "AAA",
     "summary": "Every link’s purpose is clear from its text",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -444,7 +444,7 @@ export const data = [
     "guideline": "Pointer Gestures (WCAG 2.1)",
     "level": "A",
     "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -500,7 +500,7 @@ export const data = [
     "guideline": "Target Size (Minimum)  (WCAG 2.2)",
     "level": "AA",
     "summary": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where: spacing, equivalent, inline, user agent control, essential",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
@@ -540,7 +540,7 @@ export const data = [
     "guideline": "Reading Level",
     "level": "AAA",
     "summary": "Users with nine years of school can read your content",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -564,7 +564,7 @@ export const data = [
     "guideline": "On Input",
     "level": "A",
     "summary": "Elements do not change when they receive input",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -572,7 +572,7 @@ export const data = [
     "guideline": "Consistent Navigation",
     "level": "AA",
     "summary": "Use menus consistently",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -612,7 +612,7 @@ export const data = [
     "guideline": "Labels or Instructions",
     "level": "A",
     "summary": "Label elements and give instructions",
-    "status": "Not Applicable",
+    "status": "Passing",
     "comment": ""
   },
   {
@@ -684,7 +684,7 @@ export const data = [
     "guideline": "Name, Role, Value",
     "level": "A",
     "summary": "Build all components for accessibility",
-    "status": "Passing",
+    "status": "Not Applicable",
     "comment": ""
   },
   {
