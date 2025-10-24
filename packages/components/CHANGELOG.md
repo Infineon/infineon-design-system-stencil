@@ -1,3 +1,37 @@
+# v38.0.1 (Fri Oct 24 2025)
+
+#### 🐛 Bug Fix
+
+- Updates overview components table in Storybook [#2082](https://github.com/Infineon/infineon-design-system-stencil/pull/2082) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.0 (Wed Oct 22 2025)
+
+#### 💥 Breaking Change
+
+- Extends customization on Chip, and removes Badge and Tag components [#2054](https://github.com/Infineon/infineon-design-system-stencil/pull/2054) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.22.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.22.0 (Wed Oct 15 2025)
 
 #### 🚀 Enhancement
