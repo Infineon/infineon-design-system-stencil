@@ -225,7 +225,7 @@ jobs:
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-vue"
-          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           max-attempts: 10
           max-delay: 20
 
@@ -265,7 +265,7 @@ jobs:
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-react"
-          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           max-attempts: 10
           max-delay: 20
 
@@ -309,7 +309,7 @@ jobs:
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-angular"
-          version: ${{ steps.build.outputs.CANARY_VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.CANARY_VERSION }}
           max-attempts: 10
           max-delay: 20
 
