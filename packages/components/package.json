@@ -106,5 +106,6 @@
       "npm",
       "released"
     ]
-  }
+  },
+  "packageManager": "npm@11.3.0"
 }
