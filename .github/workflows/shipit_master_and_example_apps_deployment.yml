@@ -1,4 +1,4 @@
-name: Deploy canary releases and update example apps on Github pages
+name: Deploy Stencil Web components Library to NPM
 
 on:
   push:
