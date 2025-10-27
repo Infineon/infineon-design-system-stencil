@@ -11,6 +11,22 @@ import * as ActionList from './action-list.stories';
 
 <Controls />
 
-## Events
-See the examples below for general usage of events in different JS frameworks.
-For more information, please refer to our example applications.
+## Events and interactive elements
+By default, interactive elements, such as checkbox and switch are not connected with the action-item in order to maintain a high degree of flexibility. The connection between an interactive element and the action-item is therefore up to the user to establish. Below is an example of using events to connect the click of an action-item with the toggle of an interactive checkbox. 
+
+```js
+
+  window.addEventListener('load', () => { 
+    const myList = document.getElementById('myactionlist');
+    myList.addEventListener('ifxActionListItemClick', (e) => { 
+      const myListItem = document.getElementById('dashboardCheckbox');
+      myListItem.checked = !myListItem.checked;
+    })
+  })
+
+  <ifx-action-list id="myactionlist" list-aria-label="Navigation menu">
+    <ifx-action-list-item item-title="Dashboard" description="View your main dashboard" value="dashboard" item-aria-label="Navigation item">
+      <ifx-checkbox id="dashboardCheckbox" slot="leading" checked="false"></ifx-checkbox>
+    </ifx-action-list-item>
+  </ifx-action-list>
+```
