@@ -1,3 +1,21 @@
+# v38.1.0 (Mon Oct 27 2025)
+
+#### 🚀 Enhancement
+
+- Adds action-list component [#2075](https://github.com/Infineon/infineon-design-system-stencil/pull/2075) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.0.1 (Fri Oct 24 2025)
 
 #### 🐛 Bug Fix
