@@ -21,6 +21,7 @@ export class RadioButtonGroup {
     @Prop() showCaption: boolean;
     @Prop() captionText: string;
     @Prop() showCaptionIcon: boolean;
+    @Prop() required: boolean = false;
     @State() hasErrors: boolean = false;
     
     @Listen('ifxError')
@@ -74,7 +75,12 @@ export class RadioButtonGroup {
     render() {
         return (
             <div class='radio-button-group-container'>
-                {this.showGroupLabel ? <div class='group-label'>{this.groupLabelText} *</div> : ''}
+                {this.showGroupLabel && (
+                    <div class="group-label">
+                        {this.groupLabelText}
+                        {this.required && <span class={`required ${this.hasErrors ? 'error' : ''}`}>*</span>}
+                    </div>
+                )}
                 <div class={`radio-button-group ${this.alignment} ${this.size}`}>
                     <slot onSlotchange={this.handleSlotChange} ></slot>
                 </div>
