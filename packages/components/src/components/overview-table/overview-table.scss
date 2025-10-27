@@ -125,12 +125,19 @@ ul li {
   display: flex;
   gap: 5px;
   line-height: 13px;
+
+  & span:first-child { 
+    display: flex;
+  }
+  & span:last-child { 
+    line-height: 16px;
+  }
 }
 
-li.planned__component-wrapper { 
-  align-items: center;
-  line-height: 16px;
-}
+// li.planned__component-wrapper { 
+//   align-items: center;
+//   line-height: 16px;
+// }
 
 .version__wrapper { 
   display: flex;

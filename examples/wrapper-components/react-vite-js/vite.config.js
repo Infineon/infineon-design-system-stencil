@@ -6,4 +6,8 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  rollupOptions: {
+    external: ['@infineon/infineon-design-system-stencil'],
+  },
+
 });
