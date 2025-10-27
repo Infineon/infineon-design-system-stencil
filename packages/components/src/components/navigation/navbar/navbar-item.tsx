@@ -19,9 +19,6 @@ export class NavbarItem {
   @State() isSidebarMenuItem: boolean = false;
   @State() itemPosition: string;
   @Event() ifxNavItem: EventEmitter;
-  // Represents an event that internally signalizes that there is a request to close the navbar item. Closing is handled in a recursive way, 
-  // i.e. also closing all parent navbar items of the current one.
-  @Event({ bubbles: true, composed: true }) ifxRequestCloseNavItem: EventEmitter;
   @Prop() numberIndicator: number;
   @Prop() dotIndicator: boolean = false;
 
@@ -39,16 +36,6 @@ export class NavbarItem {
     }
 
     this.handleNestedLayerMenu(event);
-  }
-
-  @Listen('ifxRequestCloseNavItem')
-  handleRequestCloseNavItem(event: CustomEvent) {
-    if (event.target === this.el) {
-      return;
-    }
-
-    event.stopPropagation();
-    this.closeCurrentNavItem();
   }
 
   @Listen('mousedown', { target: 'document' })
@@ -317,9 +304,13 @@ export class NavbarItem {
     return true;
   }
 
-  getItemMenu() { 
+  getItemMenu() {
     const menu = this.el.shadowRoot.querySelector('.navbar-menu');
     return menu;
+  }
+
+  getParentItemMenu() {
+    return this.el.parentElement?.shadowRoot.querySelector('.navbar-menu');
   }
 
   closeItemMenu() {
@@ -349,21 +340,8 @@ export class NavbarItem {
     }
     return 'right'
   }
-
-  closeCurrentNavItem() {
-    const parentTag = this.el.parentElement?.tagName?.toUpperCase();
-
-    if (parentTag === 'IFX-NAVBAR') {
-      this.closeItemMenu();
-      this.ifxNavItem.emit({ component: this.el, action: 'hideFirstLayer' });
-    } else if (parentTag === 'IFX-NAVBAR-ITEM') {
-      this.closeItemMenu();
-      // Only emit the ifxRequestCloseNavItem event if the parent is a navbar item.
-      this.ifxRequestCloseNavItem.emit({ component: this.el });
-    }
-  }
   
- toggleItemMenu() {
+  toggleItemMenu() {
     const slotName = this.el.getAttribute('slot').toLowerCase();
 
     if (slotName === 'mobile-menu-top' || slotName === 'second__layer') {
@@ -379,7 +357,10 @@ export class NavbarItem {
           this.handleNestedLayerMenu({ type: 'mouseenter' } as any);
         }
       } else {
-        this.closeCurrentNavItem();
+        // The menu item is a leaf and has therefore no children. We close the parent menu item 
+        // if it exists by toggling it.
+        const parentItemMenu = this.getParentItemMenu();
+        this.handleClassList(parentItemMenu, 'toggle', 'open');
       }
     }
   }
@@ -410,7 +391,6 @@ export class NavbarItem {
 
        if(type === 'FOCUSOUT') { 
       const isStillInComponent = this.isFocusWithinComponent(e.relatedTarget)
-      console.log('focus out now')
       if (!isStillInComponent) {
         this.handleClassList(itemMenu, 'remove', 'open')
         if(menuPosition === 'left') { 
