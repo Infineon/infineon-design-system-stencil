@@ -19,7 +19,7 @@ export class ActionList {
   async componentDidLoad() {
     if (!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework();
-      trackComponent('action-list', await framework);
+      trackComponent('ifx-action-list', await framework);
     }
   }
 

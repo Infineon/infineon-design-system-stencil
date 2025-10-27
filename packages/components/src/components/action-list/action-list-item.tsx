@@ -1,5 +1,12 @@
-import { Component, Event, EventEmitter, Element, h, Prop, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, Event, EventEmitter, Watch } from '@stencil/core';
 import classNames from 'classnames';
+
+export interface ActionListItemClickEvent {
+  value?: string;
+  href?: string;
+  target?: string;
+  component?: ActionListItem;
+}
 
 @Component({
   tag: 'ifx-action-list-item',
@@ -7,7 +14,6 @@ import classNames from 'classnames';
   shadow: true,
 })
 export class ActionListItem {
-
   @Element() host: HTMLElement;
 
   /**
@@ -50,7 +56,7 @@ export class ActionListItem {
   /**
    * Event emitted when the main item area is clicked
    */
-  @Event() ifxActionListItemClick: EventEmitter;
+  @Event() ifxActionListItemClick: EventEmitter<ActionListItemClickEvent>;
 
   @Watch('disabled')
   onDisabledChange() {
