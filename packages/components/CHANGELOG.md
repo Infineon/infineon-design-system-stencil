@@ -1,3 +1,15 @@
+# v38.1.1 (Mon Oct 27 2025)
+
+#### ⚠️ Pushed to `master`
+
+- fix: remove caching and replace sleep ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v38.1.0 (Mon Oct 27 2025)
 
 #### 🚀 Enhancement
