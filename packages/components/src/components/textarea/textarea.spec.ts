@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { TextArea } from './textarea';
 
 // Skip the real componentWillLoad that uses internals
-TextArea.prototype.componentWillLoad = jest.fn();
+//TextArea.prototype.componentWillLoad = jest.fn();
 
 describe('ifx-textarea', () => {
   it('renders with basic structure', async () => {
