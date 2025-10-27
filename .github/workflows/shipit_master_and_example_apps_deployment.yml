@@ -5,16 +5,23 @@ on:
     branches:
      - master
  
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   stencil-library-release:
     outputs:
       VERSION: ${{ steps.build.outputs.VERSION }}
+      SKIP_REMAINING: ${{ steps.build.outputs.SKIP_REMAINING }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')" # job will not run, if triggered via ship-it
     steps:
       - name: checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
           fetch-depth: 0 # fetch all tags for ship-it
 
       - name: download + setup auto
@@ -25,20 +32,42 @@ jobs:
         with:
           node-version: 20
           registry-url: "https://registry.npmjs.org"
-
+          cache: 'npm' 
 
       - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
+        run: |
+          if command -v jq &> /dev/null; then
+            echo "✅ jq is already installed: $(jq --version)"
+          else
+            echo "📦 Installing jq..."
+            sudo apt-get update && sudo apt-get install -y jq
+          fi
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/lerna.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-build-
     
+
       - name: Install dependencies for all packages
         run: |
           npm ci
+
 
       - name: Run tests
         run: |
           cd packages/components
           npm test
 
+        
       - name: Build and deploy Stencil core package
         id: build
         env:
@@ -47,79 +76,95 @@ jobs:
           npm run build:components
           cd packages/components
           VERSION=$(auto shipit --dry-run --quiet)
-          echo "Publishing: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "Set version as Github Env and Github Output: $VERSION"
+          echo "SKIP_REMAINING=false" >> $GITHUB_OUTPUT
           echo "WEBEX_MESSAGE=New package release - Version: $VERSION" >> $GITHUB_ENV
+          echo "Publishing: $VERSION"
           auto shipit
 
       - name: Check package availability
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-stencil"
           version: ${{ steps.build.outputs.VERSION }}
           max-attempts: 10
           max-delay: 20
-
+      
       - name: Update Dependencies in Angular, Vue and React packages
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
+        id: update-wrapper-dependencies
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: | 
+          BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          VERSION: ${{ steps.build.outputs.VERSION }}
+
+        run: |
           echo "VERSION: $VERSION"
           echo "Installing Stencil library for Angular, Vue and React: $VERSION"
           lerna version $VERSION --no-git-tag-version --y
-          
+
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg VERSION "$VERSION" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > tmp && mv tmp package.json
           cd ../../../../
 
           # Update Vue package
           cd packages/components-vue
-          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json          
-
+          VERSION_CLEAN=$(echo "$VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg v "$VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+ 
           # Update React package
           cd ../components-react
-          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION | sub("^"; "")' package.json > package.json.tmp && mv package.json.tmp package.json
-        
-          # Check if package-lock.json exists and update it
-          if [ -f package-lock.json ]; then
-            jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package-lock.json > package-lock.json.tmp && mv package-lock.json.tmp package-lock.json
-          else
-            npm install
-          fi
+          jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
+          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > tmp && mv tmp package.json
+
+          # Retry install of published Stencil package (race condition safe)
+          RETRIES=5
+          for i in $(seq 1 $RETRIES); do
+            echo "Attempt $i to install Stencil version: $VERSION"
+            if npm install "@infineon/infineon-design-system-stencil@$VERSION" --save-exact; then
+              echo "✅ Installed successfully on attempt $i"
+              break
+            else
+              echo "❌ Failed, retrying in $((i * 5)) seconds..."
+              sleep $((i * 5))
+            fi
+          done
 
           cd ../../
-
-          npm ci
+          npm install
 
           # Verify updates
           echo "Verifying updates in Angular package"
-          jq '.peerDependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
+          jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-angular/projects/component-library/package.json
           echo "Verifying updates in Vue package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-vue/package.json
           echo "Verifying updates in React package"
           jq '.dependencies["@infineon/infineon-design-system-stencil"]' packages/components-react/package.json
 
+            
       - name: Build and deploy Angular, Vue and React packages
-        id: build-and-deploy-wrappers
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: | 
+        run: |
           lerna version $VERSION --no-git-tag-version --y
           npm run build:components-angular
           npm run build:components-react
-          npm run build:components-vue          
+          npm run build:components-vue
           cd packages/components-angular/dist/@infineon/infineon-design-system-angular
-          npm publish --verbose
+          npm publish
           cd ../../../../components-react
           npm publish
           cd ../components-vue
-          npm publish   
-
+          npm publish
 
       - name: Update Dependencies in example applications
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           VERSION: ${{ steps.build.outputs.VERSION }}
@@ -135,6 +180,7 @@ jobs:
           cd ../../..
 
       - name: Commit and push all changes
+        if: steps.build.outputs.SKIP_REMAINING == 'false'
         env:
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
         run: |
@@ -142,29 +188,32 @@ jobs:
           git config user.email "github-actions@github.com"
           git add .
           git commit -m "Update Stencil library version to $VERSION"
-          git push origin HEAD:master   
+          git push origin HEAD:$BRANCH_NAME
 
-#deploy gh-pages for example applications based on the master branch:
-  deploy-master-vue:
+  #deploy gh-pages previews for example applications:
+  deploy-preview-vue:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-  
-      - name: Use Node.js 20
+
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-       
+
       - name: Check package availability
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-vue"
-          version: ${{ steps.build.outputs.VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.VERSION }}
           max-attempts: 10
           max-delay: 20
 
@@ -189,14 +238,17 @@ jobs:
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-  
-  deploy-master-react:
+
+  deploy-preview-react:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-  
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -209,16 +261,17 @@ jobs:
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-react"
-          version: ${{ steps.build.outputs.VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.VERSION }}
           max-attempts: 10
           max-delay: 20
 
       - name: Install and Build
         run: |
           cd examples/wrapper-components/react-vite-js
+          rm -rf node_modules
+          npm install
           REACT_VERSION=$(jq -r '.dependencies["@infineon/infineon-design-system-react"]' package.json)
           STENCIL_VERSION=$(npm list @infineon/infineon-design-system-stencil --depth=1 | grep @infineon/infineon-design-system-stencil@ | awk -F@ '{print $3}')
-          npm install
           echo "Installed version Stencil: $STENCIL_VERSION - Installed version React: $REACT_VERSION"
           npm run build
 
@@ -237,14 +290,17 @@ jobs:
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-   
-  deploy-master-angular:
+
+  deploy-preview-angular:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-          
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -253,27 +309,26 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Update package.json with version
-        run: |
-          cd packages/components-angular
-          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
-          cd projects/component-library
-          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
-
-      - name: Install and Build
-        run: |
-          cd packages/components-angular
-          npm i
-          npm run build my-app
-
       - name: Check package availability
         uses: ./.github/actions/check-package-availability
         with:
           package: "@infineon/infineon-design-system-angular"
-          version: ${{ steps.build.outputs.VERSION }}
+          version: ${{ needs.stencil-library-release.outputs.VERSION }}
           max-attempts: 10
           max-delay: 20
-           
+
+      - name: Update package.json with canary version
+        run: |
+          cd packages/components-angular
+          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
+          cd projects/component-library
+          jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json      
+      - name: Install and Build
+        run: |
+          cd packages/components-angular
+          npm install
+          npm run build my-app
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -289,14 +344,17 @@ jobs:
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-  
-  deploy-master-vanilla:
+
+  deploy-preview-vanilla:
     needs: stencil-library-release  
+    if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
+    outputs:
+      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
- 
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -311,7 +369,7 @@ jobs:
           npm install
           npm run update-link
           npm run build
-            
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -327,7 +385,7 @@ jobs:
             pr-preview-angular-example/
             pr-preview-vanilla-example/
           force: false
-
+  
   send-webex-notification:
     needs: [stencil-library-release, deploy-master-vue, deploy-master-react, deploy-master-angular, deploy-master-vanilla]
     runs-on: ubuntu-latest
