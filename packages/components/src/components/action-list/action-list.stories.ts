@@ -3,7 +3,7 @@ import type { Meta, StoryFn } from '@storybook/html';
 
 const meta: Meta = {
   title: 'Components/Action List',
-  tags: ['autodocs'],
+  //tags: ['autodocs'],
   parameters: {
     controls: { expanded: true },
     docs: {
