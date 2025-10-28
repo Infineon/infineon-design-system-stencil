@@ -191,12 +191,10 @@ jobs:
           git push origin HEAD:$BRANCH_NAME
 
   #deploy gh-pages previews for example applications:
-  deploy-preview-vue:
+  deploy-master-vue:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
-    outputs:
-      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -239,12 +237,10 @@ jobs:
             pr-preview-vanilla-example/
           force: false
 
-  deploy-preview-react:
+  deploy-master-react:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
-    outputs:
-      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -291,11 +287,9 @@ jobs:
             pr-preview-vanilla-example/
           force: false
 
-  deploy-preview-angular:
+  deploy-master-angular:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
-    outputs:
-      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -317,7 +311,7 @@ jobs:
           max-attempts: 10
           max-delay: 20
 
-      - name: Update package.json with canary version
+      - name: Update package.json with new version
         run: |
           cd packages/components-angular
           jq --arg VERSION "${{ needs.stencil-library-release.outputs.VERSION }}" '.dependencies["@infineon/infineon-design-system-angular"] = $VERSION' package.json > package.json.tmp && mv package.json.tmp package.json
@@ -345,12 +339,10 @@ jobs:
             pr-preview-vanilla-example/
           force: false
 
-  deploy-preview-vanilla:
+  deploy-master-vanilla:
     needs: stencil-library-release  
     if: needs.stencil-library-release.outputs.SKIP_REMAINING == 'false'
     runs-on: ubuntu-latest
-    outputs:
-      deployment-url: ${{ steps.preview.outputs.deployment-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
