@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-react",
-  "version": "38.2.0",
+  "version": "38.3.0--canary.2079.419fa6076d7bc2e6f80675efeaa60ca2158d709c.0",
   "description": "Infineon design system Stencil web components for React",
   "main": "./dist/index.js",
   "types": "./dist/types/index.d.ts",
