@@ -7,7 +7,6 @@ import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter
 })
 
 export class NavbarItem {
-
   @Element() el;
   @Prop() showLabel: boolean = true;
   @Prop() icon: string = ""
@@ -305,17 +304,29 @@ export class NavbarItem {
     return true;
   }
 
-  getItemMenu() { 
+  getItemMenu() {
     const menu = this.el.shadowRoot.querySelector('.navbar-menu');
     return menu;
   }
 
-  closeItemMenu() { 
-    const itemMenu = this.getItemMenu()
-    const menuItem = this.getNavBarItem()
-    if(itemMenu) { 
-      this.handleClassList(itemMenu, 'remove', 'open')
-      this.handleClassList(menuItem, 'remove', 'open')
+  getParentItemMenu() {
+    return this.el.parentElement?.shadowRoot.querySelector('.navbar-menu');
+  }
+
+  closeItemMenu() {
+    const itemMenu = this.getItemMenu();
+    const menuItem = this.getNavBarItem();
+
+    if (itemMenu) {
+      this.handleClassList(itemMenu, 'remove', 'open');
+      this.handleClassList(menuItem, 'remove', 'open');
+      const menuPosition = this.getItemMenuPosition();
+
+      if (menuPosition === 'left') {
+        this.handleClassList(itemMenu, 'remove', 'left');
+      } else if (menuPosition === 'right') {
+        this.handleClassList(itemMenu, 'remove', 'right');
+      }
     }
   }
 
@@ -331,24 +342,26 @@ export class NavbarItem {
   }
   
   toggleItemMenu() {
-    const slotName = this.el.getAttribute('slot')
+    const slotName = this.el.getAttribute('slot').toLowerCase();
 
-    if(slotName.toLowerCase() === 'mobile-menu-top' || slotName.toLowerCase() === 'second__layer') { 
-      this.openSubLayerMenu()
-    }
-
-    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' && slotName.toLowerCase() !== 'second__layer' ) {   
-      const itemMenu = this.getItemMenu()
-    
-      if(this.hasChildNavItems) { 
+    if (slotName === 'mobile-menu-top' || slotName === 'second__layer') {
+      this.openSubLayerMenu();
+    } else if (!this.internalHref) {
+      if (this.hasChildNavItems) {
+        const itemMenu = this.getItemMenu()
         const menuItem = this.getNavBarItem()
         this.handleClassList(itemMenu, 'toggle', 'open');
         this.handleClassList(menuItem, 'toggle', 'open');
 
-         if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
+        if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
           this.handleNestedLayerMenu({ type: 'mouseenter' } as any);
         }
-      } 
+      } else {
+        // The menu item is a leaf and has therefore no children. We close the parent menu item 
+        // if it exists by toggling it.
+        const parentItemMenu = this.getParentItemMenu();
+        this.handleClassList(parentItemMenu, 'toggle', 'open');
+      }
     }
   }
 
@@ -378,7 +391,6 @@ export class NavbarItem {
 
        if(type === 'FOCUSOUT') { 
       const isStillInComponent = this.isFocusWithinComponent(e.relatedTarget)
-      console.log('focus out now')
       if (!isStillInComponent) {
         this.handleClassList(itemMenu, 'remove', 'open')
         if(menuPosition === 'left') { 
