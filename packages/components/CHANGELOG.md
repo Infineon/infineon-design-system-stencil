@@ -1,3 +1,23 @@
+# v38.1.2 (Tue Oct 28 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar: removes border on selected sidebar-item [#2059](https://github.com/Infineon/infineon-design-system-stencil/pull/2059) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: mirro master and pr workflows [#2083](https://github.com/Infineon/infineon-design-system-stencil/pull/2083) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@agata-kim](https://github.com/agata-kim)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.1.1 (Mon Oct 27 2025)
 
 #### ⚠️ Pushed to `master`
