@@ -1,6 +1,6 @@
 export interface ChipState {
     emitIfxChipItemSelect: boolean;
-    size: 'small' | 'large';
+    size: 'small' | 'medium' | 'large';
     variant: 'single' | 'multi';
     key?: number;
 }
