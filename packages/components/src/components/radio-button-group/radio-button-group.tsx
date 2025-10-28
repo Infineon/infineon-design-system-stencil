@@ -27,7 +27,7 @@ export class RadioButtonGroup {
     @Listen('ifxError')
     handleRadioButtonError(event: CustomEvent) {
         const radioButton = event.target as HTMLElement;
-        if (radioButton.tagName === 'ifx-radio-button') {
+        if (radioButton.tagName.toLowerCase() === 'ifx-radio-button') {
             this.errorStates.set(radioButton, event.detail);
             this.updateHasErrors();
         }
@@ -69,6 +69,7 @@ export class RadioButtonGroup {
     }
 
     private updateHasErrors() {
+        console.log('here')
         this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
     }
 

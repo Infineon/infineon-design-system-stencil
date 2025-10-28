@@ -27,7 +27,7 @@ export class CheckboxGroup {
   @Listen('ifxError')
   handleCheckboxError(event: CustomEvent) {
     const checkbox = event.target as HTMLElement;
-    if (checkbox.tagName === 'ifx-checkbox') {
+    if (checkbox.tagName.toLowerCase() === 'ifx-checkbox') {
       this.errorStates.set(checkbox, event.detail);
       this.updateHasErrors();
     }
