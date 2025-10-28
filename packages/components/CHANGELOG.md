@@ -1,3 +1,21 @@
+# v38.2.0 (Tue Oct 28 2025)
+
+#### 🚀 Enhancement
+
+- Segmented-control, Checkbox-group, and Radio-button-group: fixes the font-size of the label, and adds required prop [#1964](https://github.com/Infineon/infineon-design-system-stencil/pull/1964) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.1.2 (Tue Oct 28 2025)
 
 #### 🐛 Bug Fix
