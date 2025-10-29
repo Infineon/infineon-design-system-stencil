@@ -4,6 +4,7 @@ import { sass } from '@stencil/sass';
 export const config: Config = {
   namespace: 'components',
   globalStyle: 'src/styles/global.scss',
+  sourceMap: true,
   outputTargets: [
     {
       type: 'dist',

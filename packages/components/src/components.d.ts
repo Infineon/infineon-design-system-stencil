@@ -21,6 +21,13 @@ export namespace Components {
          */
         "variant": 'primary' | 'success' | 'danger' | 'warning' | 'info';
     }
+    interface IfxIcon {
+        /**
+          * @default ""
+         */
+        "icon": string;
+        "ifxIcon": any;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -40,6 +47,10 @@ export interface IfxAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAlertElement;
 }
+export interface IfxIconCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxIconElement;
+}
 declare global {
     interface HTMLIfxAlertElementEventMap {
         "ifxClose": any;
@@ -58,6 +69,23 @@ declare global {
         prototype: HTMLIfxAlertElement;
         new (): HTMLIfxAlertElement;
     };
+    interface HTMLIfxIconElementEventMap {
+        "consoleError": boolean;
+    }
+    interface HTMLIfxIconElement extends Components.IfxIcon, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxIconElementEventMap>(type: K, listener: (this: HTMLIfxIconElement, ev: IfxIconCustomEvent<HTMLIfxIconElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxIconElementEventMap>(type: K, listener: (this: HTMLIfxIconElement, ev: IfxIconCustomEvent<HTMLIfxIconElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxIconElement: {
+        prototype: HTMLIfxIconElement;
+        new (): HTMLIfxIconElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -66,6 +94,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
+        "ifx-icon": HTMLIfxIconElement;
         "my-component": HTMLMyComponentElement;
     }
 }
@@ -86,6 +115,14 @@ declare namespace LocalJSX {
          */
         "variant"?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
     }
+    interface IfxIcon {
+        /**
+          * @default ""
+         */
+        "icon"?: string;
+        "ifxIcon"?: any;
+        "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -102,6 +139,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
+        "ifx-icon": IfxIcon;
         "my-component": MyComponent;
     }
 }
@@ -110,6 +148,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
+            "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
