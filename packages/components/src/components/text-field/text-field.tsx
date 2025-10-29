@@ -84,8 +84,11 @@ export class TextField {
   }
 
   render() {
+    const effectiveDisabled = this.readOnly ? false : this.disabled;
+    const effectiveError = this.readOnly ? false : this.error;
+    
     return (
-      <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={this.disabled} class={`textInput__container ${this.disabled ? 'disabled' : ""}`}>
+      <div aria-label="a text field for user input" aria-value={this.value} aria-disabled={effectiveDisabled} class={`textInput__container ${effectiveDisabled ? 'disabled' : ""}`}>
         <div class="textInput__top-wrapper">
           <label htmlFor={this.internalId}>
             <slot></slot>
@@ -94,7 +97,7 @@ export class TextField {
             ) : this.optional ? (
               <span class="optional">(optional)</span>
             ) : this.required ? (
-              <span class={`required ${this.error ? 'error' : ""}`}>*</span>
+              <span class={`required ${effectiveError ? 'error' : ""}`}>*</span>
             ) : null}
           </label>
         </div>
@@ -106,7 +109,7 @@ export class TextField {
             )}
             <input
               ref={(el) => (this.inputElement = el)}
-              disabled={this.disabled}
+              disabled={effectiveDisabled}
               autocomplete={this.autocomplete}
               type={this.internalType}
               id={this.internalId}
@@ -117,7 +120,7 @@ export class TextField {
               maxlength={this.maxlength}
               class={
                 `${this.icon ? 'icon' : ""}
-                ${this.error ? 'error' : ""} 
+                ${effectiveError ? 'error' : ""} 
                 ${this.readOnly ? 'readonly' : ""} 
               ${this.size === "s" ? "input-s" : ""}
               ${this.success ? "success" : ""}`} />
@@ -126,11 +129,11 @@ export class TextField {
                 <ifx-icon class="delete-icon" icon="cRemove16" onClick={() => this.handleDeleteContent()}></ifx-icon> 
               )}
           </div>
-          {this.caption && !this.error &&
-            <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>
+          {this.caption && !effectiveError &&
+            <div class={`textInput__bottom-wrapper-caption ${effectiveDisabled ? 'disabled' : ""}`}>
               {this.caption}
             </div>}
-          {this.error &&
+          {effectiveError &&
             <div class="textInput__bottom-wrapper-caption error">
               {this.caption}
             </div>}
