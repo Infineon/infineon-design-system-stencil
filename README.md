@@ -23,4 +23,4 @@ The following table summarizes the example apps along with their development and
 | HTML CDN Example                 | 3001        | 4001            |
 | HTML NPM Example                 | 3002        | 4002            |
 | Angular Standalone Example App   | 3003        | 4003            |
-| Angular Module Example App       | 3005        | 4005            |
+| Angular Module Example App       | 3004        | 4004            |

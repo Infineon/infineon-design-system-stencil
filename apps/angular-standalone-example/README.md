@@ -11,6 +11,9 @@ Then you need to import the required components into your Angular component.
 For example, to use the `ifx-alert` component, you would do the following:
 [app.component.ts](./src/app/app.component.ts):
 ```typescript
+import { IfxAlert } from '@infineon/infineon-design-system-angular/standalone';
+// ...
+
 @Component({
   imports: [ IfxAlert ],
   // ...
