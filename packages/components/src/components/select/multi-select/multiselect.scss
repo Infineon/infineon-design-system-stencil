@@ -20,6 +20,14 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
+
+    & .required {
+      margin-left: 4px;
+
+      &.error {
+        color: #CD002F;
+      }
+    }
   }
 
   .ifx-error-message-wrapper {
@@ -249,4 +257,3 @@
   padding-right: tokens.$ifxSpace200;
   display: none;
 }
-
