@@ -5,10 +5,6 @@ node_modules
 .pnp
 .pnp.js
 
-# Turbo
-.turbo
-
-
 # Build Outputs
 output-file.txt
 a-different-file.txt
