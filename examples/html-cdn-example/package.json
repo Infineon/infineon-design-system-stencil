@@ -4,11 +4,9 @@
   "description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "dev:watch": "vite --watch",
+    "dev": "vite --port 3001",
     "build": "vite build",
-    "build:stencil": "pnpm run -F @infineon/infineon-design-system-stencil build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 4001"
   },
   "keywords": [],
   "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",

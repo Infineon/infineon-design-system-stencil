@@ -1,7 +1,7 @@
 {
-  "name": "wrapper-react",
+  "name": "@infineon/infineon-design-system-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "Infineon Design System for React",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
