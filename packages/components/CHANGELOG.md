@@ -1,3 +1,122 @@
+# v38.2.0 (Tue Oct 28 2025)
+
+#### 🚀 Enhancement
+
+- Segmented-control, Checkbox-group, and Radio-button-group: fixes the font-size of the label, and adds required prop [#1964](https://github.com/Infineon/infineon-design-system-stencil/pull/1964) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.2 (Tue Oct 28 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar: removes border on selected sidebar-item [#2059](https://github.com/Infineon/infineon-design-system-stencil/pull/2059) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: mirro master and pr workflows [#2083](https://github.com/Infineon/infineon-design-system-stencil/pull/2083) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@agata-kim](https://github.com/agata-kim)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.1 (Mon Oct 27 2025)
+
+#### ⚠️ Pushed to `master`
+
+- fix: remove caching and replace sleep ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v38.1.0 (Mon Oct 27 2025)
+
+#### 🚀 Enhancement
+
+- Adds action-list component [#2075](https://github.com/Infineon/infineon-design-system-stencil/pull/2075) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.1 (Fri Oct 24 2025)
+
+#### 🐛 Bug Fix
+
+- Updates overview components table in Storybook [#2082](https://github.com/Infineon/infineon-design-system-stencil/pull/2082) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.0 (Wed Oct 22 2025)
+
+#### 💥 Breaking Change
+
+- Extends customization on Chip, and removes Badge and Tag components [#2054](https://github.com/Infineon/infineon-design-system-stencil/pull/2054) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.22.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.22.0 (Wed Oct 15 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: makes selected prop dynamic [#2067](https://github.com/Infineon/infineon-design-system-stencil/pull/2067) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.21.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.21.0 (Wed Oct 01 2025)
 
 #### 🚀 Enhancement

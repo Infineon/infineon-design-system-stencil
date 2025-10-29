@@ -17,8 +17,6 @@
   flex-grow: 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
-
   &.disabled {
     & .textInput__top-wrapper {
       & label {
@@ -44,7 +42,7 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -52,7 +50,7 @@
 
     & label {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       display: flex;
@@ -63,18 +61,19 @@
       flex-grow: 0;
 
       & .optional-required {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .optional {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .required {
-        margin-left: 4px;
+        color: tokens.$ifxColorEngineering500;
+        margin-left: tokens.$ifxSpace50;
         
         &.error {
-          color: #CD002F;
+          color: tokens.$ifxColorRed500;
         }
       }
     }
@@ -95,7 +94,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 1;
     align-self: stretch;
@@ -142,7 +141,7 @@
       }
 
       &.error {
-        border: 1px solid #CD002F;
+        border: 1px solid tokens.$ifxColorRed500;
 
         &:focus {
           outline: none;
@@ -157,7 +156,7 @@
       }
 
       &.success {
-        border: 1px solid #4CA460;
+        border: 1px solid tokens.$ifxColorGreen500;
 
         &:focus {
           outline: none;
@@ -176,10 +175,10 @@
 
       &::placeholder {
         font-style: normal;
-        font-weight: 400;
+        font-weight: tokens.$ifxFontWeightRegular;
         font-size: tokens.$ifxFontSizeM;
         line-height: tokens.$ifxLineHeightM;
-        color: #8D8786;
+        color: tokens.$ifxColorEngineering400;
         flex: none;
         order: 1;
         flex-grow: 1;
@@ -200,10 +199,9 @@
 
     & .textInput__bottom-wrapper-caption {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeXs;
       line-height: tokens.$ifxLineHeightXs;
-      letter-spacing: 0.2px;
       color: tokens.$ifxColorBaseBlack;
       flex: none;
       order: 1;
@@ -211,7 +209,7 @@
       flex-grow: 0;
 
       &.error {
-        color: #CD002F;
+        color: tokens.$ifxColorRed500;
 
       }
 

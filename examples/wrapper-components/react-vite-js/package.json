@@ -19,9 +19,13 @@
   },
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@infineon/infineon-design-system-react": "37.20.0--canary.2037.493c01b90ad2a011562920f73af23e08ed9b5170.0",
 =======
     "@infineon/infineon-design-system-react": "37.21.0",
+>>>>>>> master
+=======
+    "@infineon/infineon-design-system-react": "38.2.0",
 >>>>>>> master
     "path": "^0.12.7",
     "react": "^18.3.1",
