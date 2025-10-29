@@ -3,22 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve",
+    "dev": "ng serve --port 3005",
     "build": "ng build",
-    "preview": "pnpx serve dist/angular-module-example-app/browser -p 4173",
-    "watch": "ng build --watch --configuration development"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
+    "preview": "pnpx serve dist/angular-module-example-app/browser -p 4005"
   },
   "private": true,
   "dependencies": {

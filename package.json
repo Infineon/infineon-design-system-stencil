@@ -5,5 +5,8 @@
   "packageManager": "pnpm@8.15.6",
   "devDependencies": {
     "turbo": "^2.5.8"
+  },
+  "scripts": {
+    "build:components": "pnpm run -F @infineon/infineon-design-system-stencil build"
   }
 }
