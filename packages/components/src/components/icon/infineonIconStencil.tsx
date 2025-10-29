@@ -26,7 +26,7 @@ export class InfineonIconStencil {
     const div = document.createElement('div')
     div.innerHTML = htmlString
     return div.firstChild
-  }
+  }F
 
   convertHtmlToObject(htmlElement) { 
     let pathToObject = Array

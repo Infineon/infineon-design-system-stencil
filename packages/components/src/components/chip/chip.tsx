@@ -10,7 +10,7 @@ import { detectFramework } from '../..//shared/utils/framework-detection';
   shadow: true
 })
 export class Chip {
-  @Element() chip: HTMLIfxChipElement;
+  @Element() chip: HTMLElement;
 
   @Event() ifxChange: EventEmitter<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>;
   @Prop() placeholder: string = '';

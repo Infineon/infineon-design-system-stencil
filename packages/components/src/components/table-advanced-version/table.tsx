@@ -130,7 +130,7 @@ export class Table {
   onIconButtonRendererOptionsChanged() {
      this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption('columnDefs', this.colData);  // Update column definitions in the grid API
     }
   }
 

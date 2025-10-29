@@ -60,7 +60,7 @@ export class CheckboxGroup {
 
   private initializeState() {
     this.errorStates.clear();
-    const checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
+    const checkboxes = Array.from(this.el.querySelectorAll<HTMLElement>('ifx-checkbox'));
     checkboxes.forEach((checkbox) => {
       if (!this.errorStates.has(checkbox)) {
         this.errorStates.set(checkbox, (checkbox as any).error || false);

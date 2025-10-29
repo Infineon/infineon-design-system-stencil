@@ -12,7 +12,17 @@ importers:
         specifier: ^2.5.8
         version: 2.6.1
 
-  apps/html-npm-example-app:
+  apps/html-cdn-example:
+    dependencies:
+      '@infineon/infineon-design-system-stencil':
+        specifier: workspace:*
+        version: link:../../packages/components
+    devDependencies:
+      vite:
+        specifier: ^7.1.12
+        version: 7.2.4(@types/node@22.18.12)
+
+  apps/html-npm-example:
     dependencies:
       '@infineon/infineon-design-system-stencil':
         specifier: workspace:*
@@ -42,19 +52,25 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      core^4.38.0:
+        specifier: link:@stencil/core^4.38.0
+        version: link:@stencil/core^4.38.0
       core^4.38.2:
         specifier: link:@stencil/core^4.38.2
         version: link:@stencil/core^4.38.2
+      core^4.38.3:
+        specifier: link:@stencil/core^4.38.3
+        version: link:@stencil/core^4.38.3
     devDependencies:
       '@stencil/core':
-        specifier: ^4.27.1
-        version: 4.38.2
+        specifier: ^4.38.0
+        version: 4.38.0
       '@stencil/sass':
         specifier: ^3.2.2
-        version: 3.2.2(@stencil/core@4.38.2)
+        version: 3.2.2(@stencil/core@4.38.0)
       '@stencil/vue-output-target':
         specifier: ^0.11.8
-        version: 0.11.8(@stencil/core@4.38.2)(vue@3.5.24)
+        version: 0.11.8(@stencil/core@4.38.0)(vue@3.5.24)
       '@storybook/addon-a11y':
         specifier: ^10.0.6
         version: 10.0.8(storybook@10.0.8)
@@ -78,16 +94,13 @@ importers:
         version: 30.2.0(@types/node@22.18.12)
       jest-stencil-runner:
         specifier: ^0.0.9
-        version: 0.0.9(@stencil/core@4.38.2)(jest@30.2.0)
+        version: 0.0.9(@stencil/core@4.38.0)(jest@30.2.0)
       lit:
         specifier: ^3.3.1
         version: 3.3.1
       storybook:
         specifier: ^10.0.6
         version: 10.0.8(@testing-library/dom@10.4.1)(react-dom@19.2.0)(react@19.2.0)(vite@7.2.4)
-      typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
       vite-plugin-live-reload:
         specifier: ^3.0.5
         version: 3.0.5(vite@7.2.4)
@@ -1753,8 +1766,8 @@ packages:
       '@sinonjs/commons': 3.0.1
     dev: true
 
-  /@stencil/core@4.38.2:
-    resolution: {integrity: sha512-opyjA+DYAtaKmaSnuC8Bb/PH7nuO+1GhVn6amsN8XT+TlT9biptlcpz4YWETwYZ+XxtX+nLdxWbW0TVafrqsvQ==}
+  /@stencil/core@4.38.0:
+    resolution: {integrity: sha512-oC3QFKO0X1yXVvETgc8OLY525MNKhn9vISBrbtKnGoPlokJ6rI8Vk1RK22TevnNrHLI4SExNLbcDnqilKR35JQ==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
     optionalDependencies:
@@ -1768,17 +1781,17 @@ packages:
       '@rollup/rollup-win32-x64-msvc': 4.34.9
     dev: true
 
-  /@stencil/sass@3.2.2(@stencil/core@4.38.2):
+  /@stencil/sass@3.2.2(@stencil/core@4.38.0):
     resolution: {integrity: sha512-ER9cURP3qdarZway7rm2MwWjvwDlHRJT5wxT4EeGBixyd2dyRinE8O25rgEmjEiTVlDZHHx+IqI8gX99TcsFxA==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.38.2
+      '@stencil/core': 4.38.0
       sass-embedded: 1.93.2
     dev: true
 
-  /@stencil/vue-output-target@0.11.8(@stencil/core@4.38.2)(vue@3.5.24):
+  /@stencil/vue-output-target@0.11.8(@stencil/core@4.38.0)(vue@3.5.24):
     resolution: {integrity: sha512-R/kQoN15irgL7NJxWaUNSmwDLfoDBZjlYaXNnW3LHlF30TYfyez6pRgD7ZglSSTVktMtCXz6ZPhg0uq59VkhOw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
@@ -1790,8 +1803,8 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@stencil/core': 4.38.2
-      vue: 3.5.24(typescript@5.9.3)
+      '@stencil/core': 4.38.0
+      vue: 3.5.24
     dev: true
 
   /@storybook/addon-a11y@10.0.8(storybook@10.0.8):
@@ -2372,7 +2385,7 @@ packages:
     dependencies:
       '@vue/compiler-ssr': 3.5.24
       '@vue/shared': 3.5.24
-      vue: 3.5.24(typescript@5.9.3)
+      vue: 3.5.24
     dev: true
 
   /@vue/shared@3.5.24:
@@ -3974,7 +3987,7 @@ packages:
       - supports-color
     dev: true
 
-  /jest-stencil-runner@0.0.9(@stencil/core@4.38.2)(jest@30.2.0):
+  /jest-stencil-runner@0.0.9(@stencil/core@4.38.0)(jest@30.2.0):
     resolution: {integrity: sha512-Wk9HtFl2ViHTQKrE7LdGlkmPx8YCKrDG8fyFMJvq5zAxD7NjR8Lx99paTBP5IaZNyo8kujezUYiIOeSkTnTtBQ==}
     peerDependencies:
       '@stencil/core': ^4.35.1
@@ -3983,7 +3996,7 @@ packages:
       '@jest/globals': 30.2.0
       '@jest/transform': 30.2.0
       '@jest/types': 30.2.0
-      '@stencil/core': 4.38.2
+      '@stencil/core': 4.38.0
       jest: 30.2.0(@types/node@22.18.12)
       jest-runner: 30.2.0
     transitivePeerDependencies:
@@ -5514,12 +5527,6 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-    dev: true
-
   /undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
@@ -5686,7 +5693,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vue@3.5.24(typescript@5.9.3):
+  /vue@3.5.24:
     resolution: {integrity: sha512-uTHDOpVQTMjcGgrqFPSb8iO2m1DUvo+WbGqoXQz8Y1CeBYQ0FXf2z1gLRaBtHjlRz7zZUBHxjVB5VTLzYkvftg==}
     peerDependencies:
       typescript: '*'
@@ -5699,7 +5706,6 @@ packages:
       '@vue/runtime-dom': 3.5.24
       '@vue/server-renderer': 3.5.24(vue@3.5.24)
       '@vue/shared': 3.5.24
-      typescript: 5.9.3
     dev: true
 
   /walker@1.0.8:

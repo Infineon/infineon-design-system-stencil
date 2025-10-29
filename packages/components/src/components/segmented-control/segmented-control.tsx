@@ -10,7 +10,7 @@ import { detectFramework } from '../..//shared/utils/framework-detection';
 })
 
 export class SegmentedControl {
-    @Element() SegmentedControl: HTMLIfxSegmentedControlElement;
+    @Element() el: HTMLElement;
 
     @Event() ifxChange: EventEmitter<{ previousValue: string, selectedValue: string }>;
 
@@ -50,7 +50,7 @@ export class SegmentedControl {
     }
 
     getSegments(): NodeList {
-        return this.SegmentedControl.querySelectorAll('ifx-segment');
+        return this.el.querySelectorAll('ifx-segment');
     }
 
     setActiveSegment(): void {
@@ -77,7 +77,7 @@ export class SegmentedControl {
     }
 
     async componentDidLoad() {
-        if(!isNestedInIfxComponent(this.SegmentedControl)) { 
+        if(!isNestedInIfxComponent(this.el)) { 
             const framework = detectFramework();
             trackComponent('ifx-segmented-control', await framework)
         }

@@ -59,7 +59,7 @@ export class RadioButtonGroup {
 
     private initializeState() {
         this.errorStates.clear();
-        const radioButtons = Array.from(this.el.querySelectorAll('ifx-radio-button'));
+        const radioButtons = Array.from(this.el.querySelectorAll<HTMLElement>('ifx-radio-button'));
         radioButtons.forEach((radioButton) => {
             if (!this.errorStates.has(radioButton)) {
                 this.errorStates.set(radioButton, (radioButton as any).error || false);

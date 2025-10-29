@@ -19,7 +19,7 @@ export class Switch {
 
   @AttachInternals() internals: ElementInternals;
 
-  @Element() el: HTMLIfxSwitchElement;
+  @Element() el: HTMLElement;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter<boolean>;
 
