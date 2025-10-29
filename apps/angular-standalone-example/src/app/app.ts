@@ -7,5 +7,5 @@ import { IfxAlert } from '@infineon/infineon-design-system-angular/standalone';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('angular-standalone-example-app');
+  protected readonly title = signal('angular-standalone-example');
 }

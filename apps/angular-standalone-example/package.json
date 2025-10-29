@@ -1,14 +1,16 @@
 {
-  "name": "angular-module-example-app",
+  "name": "angular-standalone-example",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve --port 3005",
+    "dev": "ng serve --port 3003",
     "build": "ng build",
-    "preview": "pnpx serve dist/angular-module-example-app/browser -p 4005"
+    "preview": "pnpx serve dist/angular-standalone-example/browser -p 4003"
   },
   "private": true,
   "dependencies": {
+    "@infineon/infineon-design-system-angular": "workspace:*",
+
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
@@ -17,7 +19,6 @@
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.7",
-    "@infineon/infineon-design-system-angular": "workspace:*",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -28,7 +29,14 @@
     "@angular/cli": "^20.3.7",
     "@angular/compiler-cli": "^20.3.0",
     "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "jasmine-core": "~5.9.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.2"
   }
 }

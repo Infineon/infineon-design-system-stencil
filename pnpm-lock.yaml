@@ -12,7 +12,7 @@ importers:
         specifier: ^2.5.8
         version: 2.5.8
 
-  apps/angular-module-example-app:
+  apps/angular-module-example:
     dependencies:
       '@angular/common':
         specifier: ^20.3.0
@@ -73,7 +73,7 @@ importers:
         specifier: ~5.9.2
         version: 5.9.3
 
-  apps/angular-standalone-example-app:
+  apps/angular-standalone-example:
     dependencies:
       '@angular/common':
         specifier: ^20.3.0

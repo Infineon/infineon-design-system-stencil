@@ -7,5 +7,5 @@ import { Component, signal } from '@angular/core';
   styles: []
 })
 export class App {
-  protected readonly title = signal('angular-module-example-app');
+  protected readonly title = signal('angular-module-example');
 }
