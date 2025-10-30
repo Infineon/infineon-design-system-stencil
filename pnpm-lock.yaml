@@ -12,7 +12,7 @@ importers:
         specifier: ^2.5.8
         version: 2.5.8
 
-  apps/angular-module-example:
+  examples/angular-module-example:
     dependencies:
       '@angular/common':
         specifier: ^20.3.0
@@ -73,7 +73,7 @@ importers:
         specifier: ~5.9.2
         version: 5.9.3
 
-  apps/angular-standalone-example:
+  examples/angular-standalone-example:
     dependencies:
       '@angular/common':
         specifier: ^20.3.0
@@ -155,7 +155,7 @@ importers:
         specifier: ~5.9.2
         version: 5.9.3
 
-  apps/html-cdn-example:
+  examples/html-cdn-example:
     dependencies:
       '@infineon/infineon-design-system-stencil':
         specifier: workspace:*
@@ -165,7 +165,7 @@ importers:
         specifier: ^7.1.12
         version: 7.1.12(@types/node@22.18.12)
 
-  apps/html-npm-example:
+  examples/html-npm-example:
     dependencies:
       '@infineon/infineon-design-system-stencil':
         specifier: workspace:*
@@ -175,7 +175,7 @@ importers:
         specifier: ^7.1.12
         version: 7.1.12(@types/node@22.18.12)
 
-  apps/react-example:
+  examples/react-example:
     dependencies:
       '@infineon/infineon-design-system-react':
         specifier: workspace:*
@@ -224,7 +224,7 @@ importers:
         specifier: ^7.1.7
         version: 7.1.12(@types/node@24.9.2)
 
-  apps/vue-example:
+  examples/vue-example:
     dependencies:
       '@infineon/infineon-design-system-vue':
         specifier: workspace:*

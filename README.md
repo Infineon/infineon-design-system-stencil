@@ -1,5 +1,12 @@
 # Infineon Design System
 
+## Repository Structure
+This monorepo is organized into the following main directories:
+
+- `packages/`: Contains the core Stencil component library and various wrappers for different frameworks (React, Angular, Vue).
+- `packages/components/`: The core Infineon Design System Stencil component library.
+- `examples/`: Contains example applications demonstrating the usage of the Infineon Design System Stencil components in different environments (HTML, Angular, React, Vue).
+
 ## Example Apps
 This monorepo contains several example applications demonstrating the usage of the Infineon Design System Stencil components in different environments:
 - **HTML CDN Example**: An example app using plain HTML and loading the components via CDN.
