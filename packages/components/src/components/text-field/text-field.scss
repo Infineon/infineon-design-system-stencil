@@ -20,7 +20,7 @@
   &.disabled {
     & .textInput__top-wrapper {
       & label {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorBaseBlack;
       }
     }
 
@@ -30,7 +30,7 @@
         background-color: tokens.$ifxColorEngineering200;
 
         &::placeholder {
-          font-size: tokens.$ifxFontSizeS;
+          font-size: tokens.$ifxFontSizeM;
           color: tokens.$ifxColorEngineering500;
         }
       }
@@ -71,7 +71,7 @@
       & .required {
         color: tokens.$ifxColorEngineering500;
         margin-left: tokens.$ifxSpace50;
-        
+
         &.error {
           color: tokens.$ifxColorRed500;
         }
@@ -130,7 +130,7 @@
         line-height: tokens.$ifxLineHeightS;
 
         &::placeholder {
-          font-size: tokens.$ifxFontSizeS;
+          font-size: tokens.$ifxFontSizeM;
           line-height: tokens.$ifxLineHeightS;
         }
 
@@ -149,10 +149,15 @@
       }
 
       &.readonly {
-       border: none;
-       border-radius: var(--borderRadius-12, 1px);
-       border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
-       background: var(--color-base-white, #FFF);
+        border: none;
+        border-radius: var(--borderRadius-12, 1px);
+        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+        background: var(--color-base-white, #FFF);
+        padding-left: 0;
+
+        &::placeholder {
+          color: tokens.$ifxColorBaseBlack;
+        }
       }
 
       &.success {
@@ -163,25 +168,21 @@
         }
       }
 
-
-      &:focus:not(.error, .success) {
+      &:focus:not(.error, .success):not(.readonly) {
         outline: none;
         border: 1px solid tokens.$ifxColorOcean500;
       }
 
-      &:hover:not(:disabled, :focus, .error, .success) {
-        border: 1px solid tokens.$ifxColorEngineering500;
+      &.readonly:focus,
+      &[readonly]:focus {
+        outline: none;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
       }
 
-      &::placeholder {
-        font-style: normal;
-        font-weight: tokens.$ifxFontWeightRegular;
-        font-size: tokens.$ifxFontSizeM;
-        line-height: tokens.$ifxLineHeightM;
-        color: tokens.$ifxColorEngineering400;
-        flex: none;
-        order: 1;
-        flex-grow: 1;
+      &:hover:not(:disabled, :focus, .error, .success):not(.readonly) {
+        border: 1px solid tokens.$ifxColorEngineering500;
       }
     }
 
@@ -218,8 +219,9 @@
       }
     }
 
-    
+
   }
+
   .delete-icon {
     position: absolute;
     right: tokens.$ifxSpace200;
