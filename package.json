@@ -3,6 +3,11 @@
   "description": "A barebones Turborepo example for working with Task Graphs.",
   "private": true,
   "packageManager": "pnpm@8.15.6",
+    "engines": {
+    "npm": "please-use-pnpm",
+    "pnpm": ">=8.0.0",
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "turbo": "^2.5.8"
   },
