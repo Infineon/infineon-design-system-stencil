@@ -1,0 +1,28 @@
+{
+  "name": "@infineon/infineon-design-system-vue",
+  "version": "1.0.0",
+  "description": "Infineon Design System for Vue",
+  "keywords": [],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p .",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Fabian Pfaff <fabian.pfaff@infineon.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@infineon/infineon-design-system-stencil": "workspace:*",
+    "@stencil/vue-output-target": "^0.11.8"
+  },
+  "devDependencies": {
+    "typescript": "5",
+    "vue": "3"
+  }
+}

@@ -1,0 +1,10 @@
+import { Plugin } from 'vue';
+import { defineCustomElements } from '@infineon/infineon-design-system-stencil/loader';
+
+import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
+
+export const InfineonDesignSystem: Plugin = {
+  async install() {
+      defineCustomElements();
+  },
+};
