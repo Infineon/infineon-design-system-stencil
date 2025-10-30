@@ -24,3 +24,4 @@ The following table summarizes the example apps along with their development and
 | HTML NPM Example                 | 3002        | 4002            |
 | Angular Standalone Example App   | 3003        | 4003            |
 | Angular Module Example App       | 3004        | 4004            |
+| React Example App                | 3005        | 4005            |
