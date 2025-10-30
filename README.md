@@ -25,3 +25,4 @@ The following table summarizes the example apps along with their development and
 | Angular Standalone Example App   | 3003        | 4003            |
 | Angular Module Example App       | 3004        | 4004            |
 | React Example App                | 3005        | 4005            |
+| Vue Example App                  | 3006        | 4006            |

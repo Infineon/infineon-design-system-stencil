@@ -1,0 +1,8 @@
+<script setup lang="ts"></script>
+
+<template>
+  <h1>Infineon Design System - Vue Example</h1>
+  <ifx-alert aria-live="assertive" variant="primary" icon="c-info-16" closable="true">Attention! This is an alert message — check it out!</ifx-alert>
+</template>
+
+<style scoped></style>
