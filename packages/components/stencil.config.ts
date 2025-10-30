@@ -36,6 +36,8 @@ export const config: Config = {
      * This may be prefered for projects that already handle bundling, lazy-loading and defining the custom elements themselves.
      * However, usage requires further configuration in the consuming project.
      * See https://stenciljs.com/docs/custom-elements and https://stenciljs.com/docs/publishing#standalone
+     * 
+     * This is also required by the Angular-standalone and React output targets.
      */
     {
       type: 'dist-custom-elements',
