@@ -1,0 +1,32 @@
+{
+  "name": "wrapper-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "test": "node ./__tests__/react-library.test.js",
+    "build": "tsc -p .",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@infineon/infineon-design-system-stencil": "workspace:*"
+  },
+  "devDependencies": {
+    "@stencil/react-output-target": "^1.2.0",
+    "@types/react": "^19.2.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  }
+}

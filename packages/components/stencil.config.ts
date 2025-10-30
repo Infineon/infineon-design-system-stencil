@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { angularOutputTarget } from '@stencil/angular-output-target';
+import { reactOutputTarget } from '@stencil/react-output-target';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
@@ -29,6 +30,8 @@ export const config: Config = {
      * This may be prefered for projects that already handle bundling, lazy-loading and defining the custom elements themselves.
      * However, usage requires further configuration in the consuming project.
      * See https://stenciljs.com/docs/custom-elements and https://stenciljs.com/docs/publishing#standalone
+     * 
+     * This is also required by the Angular-standalone and React output targets.
      */
     {
       type: 'dist-custom-elements',
@@ -52,6 +55,10 @@ export const config: Config = {
       outputType: 'standalone',
       directivesProxyFile: '../wrapper-angular/standalone/src/lib/stencil-generated/components.ts',
       directivesArrayFile: '../wrapper-angular/standalone/src/lib/stencil-generated/index.ts',
+    }),
+    reactOutputTarget({
+      // Relative path to where the React components will be generated
+      outDir: '../wrapper-react/lib/components/stencil-generated/',
     }),
   ],
   testing: {
