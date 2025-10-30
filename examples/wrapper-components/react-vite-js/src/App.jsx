@@ -193,7 +193,11 @@ function App() {
       <Textarea />
       <br />
 
+<<<<<<< HEAD
+      <h2>TextField</h2>
+=======
       <h2>Text Field</h2>
+>>>>>>> master
       <TextField />
       <br />
 

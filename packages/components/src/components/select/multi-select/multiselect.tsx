@@ -26,6 +26,7 @@ function debounce(func, wait) {
 export class Multiselect {
   @Prop() name: string;
   @Prop() disabled: boolean = false;
+  @Prop() required: boolean = false;
   @Prop() error: boolean = false;
   @Prop() errorMessage: string = "Error";
   @Prop() label: string = "";
@@ -593,10 +594,14 @@ export class Multiselect {
     return (
       <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
-          this.label ?
             <div class="ifx-label-wrapper">
-              <span>{this.label}</span>
-            </div> : null
+              <span class="wrapper-label">
+                {this.label?.trim()}
+                {this.required && (
+                  <span class={`required ${this.error ? 'error' : ''}`}>*</span>
+                )}
+              </span>
+            </div>
         }
         <div class={`ifx-multiselect-wrapper
         ${this.dropdownOpen ? 'active' : ''}
