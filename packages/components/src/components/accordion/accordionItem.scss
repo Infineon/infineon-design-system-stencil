@@ -4,7 +4,9 @@
 
 
 .accordion-item {
-  border-radius: 3px;
+  border: 1px solid tokens.$ifxColorEngineering200;
+  border-radius: var(--borderRadius);
+  overflow: hidden;
   transition: all 0.3s;
   font-family: var(--ifx-font-family) // tokens.$ifxFontFamilyBody;
 
@@ -41,7 +43,7 @@
   gap: tokens.$ifxSpace150;
   color: tokens.$ifxColorOcean500;
   background-color: tokens.$ifxColorBaseWhite;
-  border: 1px solid tokens.$ifxColorEngineering200;
+  border: none;
   cursor: pointer;
   margin: 4px;
 }
@@ -57,6 +59,10 @@
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
+}
+
+.accordion-item.open .accordion-content {
+  border-top: 1px solid tokens.$ifxColorEngineering200;
 }
 
 .inner-content {
