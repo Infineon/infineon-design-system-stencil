@@ -24,20 +24,20 @@ export class StatusCellRenderer implements ICellRendererComp {
     return true;
   }
 
-  private render(params: ICellRendererParams) {
-    const cfg = (params.value ??
-      (params.data && (params.data as any).status)) as StatusConfig | string | undefined;
+private render(params: ICellRendererParams) {
+  const field = params.colDef?.field as string | undefined;
+  const cfg = (params.value ?? params.data?.[field]) as StatusConfig | string | undefined;
 
-    this.eGui.textContent = '';
+  this.eGui.textContent = '';
 
-    if (cfg && typeof cfg === 'object' && 'label' in cfg) {
-      const el = document.createElement('ifx-status') as any;
-      el.label = cfg.label; 
-      if (cfg.color != null) el.color = cfg.color;
-      el.border = !!(cfg as StatusConfig).border; 
-      this.eGui.appendChild(el);
-    } else if (cfg != null) {
-      this.eGui.textContent = String(cfg); 
-    }
+  if (cfg && typeof cfg === 'object' && 'label' in cfg) {
+    const el = document.createElement('ifx-status') as any;
+    el.label = cfg.label;
+    if (cfg.color != null) el.color = cfg.color;
+    el.border = !!(cfg as StatusConfig).border;
+    this.eGui.appendChild(el);
+  } else if (cfg != null) {
+    this.eGui.textContent = String(cfg);
   }
+}
 }

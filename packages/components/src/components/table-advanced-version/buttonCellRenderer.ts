@@ -20,7 +20,7 @@ export class ButtonCellRenderer implements ICellRendererComp {
   }
 
   private createButton(params: ICellRendererParams) {
-    const config = params.data.button;
+    const config = params.data[params.colDef.field];
     const options = params.colDef.cellRendererParams || {};
     
     this.eGui = document.createElement('div');
@@ -31,12 +31,12 @@ export class ButtonCellRenderer implements ICellRendererComp {
       this.eGui.appendChild(this.eButton);
       this.attachEventListener(options, params);
     } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
+      this.eGui.textContent = config ? String(config) : '';
     }
   }
 
   private updateButton(params: ICellRendererParams) {
-    const config = params.data.button;
+    const config = params.data[params.colDef.field];
     const options = params.colDef.cellRendererParams || {};
     
     if (this.hasRequiredKeys(config)) {
@@ -44,7 +44,7 @@ export class ButtonCellRenderer implements ICellRendererComp {
       this.detachEventListener();
       this.attachEventListener(options, params);
     } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
+      this.eGui.textContent = config ? String(config) : '';
     }
   }
 
