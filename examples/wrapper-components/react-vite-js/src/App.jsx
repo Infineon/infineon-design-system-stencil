@@ -40,7 +40,7 @@ import Textarea from './components/Textarea/Textarea';
 import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
-
+import ActionList from './components/ActionList/ActionList';
 function App() {
 
   return (
@@ -48,6 +48,9 @@ function App() {
       <h1>Vite + React</h1>
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
+
+      <h2>Action List</h2>
+      <ActionList />
 
       <h2>Accordion</h2>
       <Accordion />
@@ -188,6 +191,10 @@ function App() {
 
       <h2>Textarea</h2>
       <Textarea />
+      <br />
+
+      <h2>Text Field</h2>
+      <TextField />
       <br />
 
       <h2>Tree View</h2>
