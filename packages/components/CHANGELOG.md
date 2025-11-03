@@ -1,3 +1,20 @@
+# v38.3.0 (Mon Nov 03 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows the nesting of multiple identical components [#2092](https://github.com/Infineon/infineon-design-system-stencil/pull/2092) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.2.0 (Tue Oct 28 2025)
 
 #### 🚀 Enhancement
