@@ -480,52 +480,51 @@ async updateTableView() {
   }
 
 
-  getColData() {
-    let cols: any[] = [];
-    if (this.cols === undefined || this.cols === null) {
-      return cols;
-    }
-  
-    if (this.isJSONParseable(this.cols)) {
-      cols = [...JSON.parse(this.cols)];
-    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
-      cols = [...this.cols];
-    } else {
-      console.error('Unexpected value for cols: ', this.cols);
-    }
-  
-    const buttonColumn = cols.find(column => column.field === 'button');
-    if (buttonColumn) {
-      buttonColumn.cellRenderer = ButtonCellRenderer;
-      buttonColumn.valueFormatter = params => params.value.text;
-      buttonColumn.cellDataType = false;
+getColData() {
+  let cols: any[] = [];
+  if (this.cols === undefined || this.cols === null) return cols;
 
-      // No JSON.parse needed now
-      if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
-        if (this.buttonRendererOptions.onButtonClick) {
-          buttonColumn.cellRendererParams = {
-            onButtonClick: this.buttonRendererOptions.onButtonClick
-          };
-        }
+  if (this.isJSONParseable(this.cols)) {
+    cols = [...JSON.parse(this.cols)];
+  } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+    cols = [...this.cols];
+  } else {
+    console.error('Unexpected value for cols: ', this.cols);
+  }
+
+  cols.forEach(column => {
+    const field = column.field?.toLowerCase() || '';
+
+    // --- Button columns ---
+    if (field.startsWith('button')) {
+      column.cellRenderer = ButtonCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+
+      if (this.buttonRendererOptions?.onButtonClick) {
+        column.cellRendererParams = {
+          onButtonClick: this.buttonRendererOptions.onButtonClick
+        };
       }
     }
 
-    const statusColumn = cols.find(column => column.field === 'status');
-    if (statusColumn) {
-      statusColumn.cellRenderer = StatusCellRenderer;
-      statusColumn.cellDataType = false;
-
+    // --- Status columns ---
+    else if (field.startsWith('status')) {
+      column.cellRenderer = StatusCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
     }
 
-    const linkColumn = cols.find(column => column.field === 'link');
-    if (linkColumn) {
-      linkColumn.cellRenderer = LinkCellRenderer;
-      linkColumn.cellDataType = false;
-
+    // --- Link columns ---
+    else if (field.startsWith('link')) {
+      column.cellRenderer = LinkCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
     }
-  
-    return cols;
-  }
+  });
+
+  return cols;
+}
   
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
