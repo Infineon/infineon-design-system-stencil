@@ -207,12 +207,12 @@ li {
 @media (max-width: tokens.$ifxBreakpointM) {
   .container {
     gap: tokens.$ifxSpace200;
-    justify-content: center;
+    justify-content: left;
 
     .items__total-wrapper {
       .pagination {
         ol {
-          gap: tokens.$ifxSpace100;
+          gap: tokens.$ifxSpace150;
         }
       }
     }
