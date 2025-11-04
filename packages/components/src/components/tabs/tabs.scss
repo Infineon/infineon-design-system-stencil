@@ -162,9 +162,9 @@
 
   &:focus,
   &.focus {
-    outline: none;
-    border-radius: 1px;
-    box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
+    outline: 2px solid tokens.$ifxColorOcean500;
+    outline-offset: -2px;
+    border-radius: 2px;
 
     // Assuming .active-border is a sibling of .tab-item
     +.active-border {
