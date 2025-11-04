@@ -17,14 +17,15 @@ export class IfxTabs {
 
   @State() internalOrientation: string;
   @State() internalActiveTabIndex: number = 0;
-  @State() internalFocusedTabIndex: number = 0;
-  @State() tabRefs: HTMLElement[] = [];
-  @State() tabHeaderRefs: HTMLElement[] = [];
-  @State() disabledTabs: string[] = [];
   @State() tabObjects: any[] = [];
   @State() canScrollLeft: boolean = false;
   @State() canScrollRight: boolean = false;
-  @State() tabsListElement: HTMLElement;
+
+  private internalFocusedTabIndex: number = 0;
+  private tabRefs: HTMLElement[] = [];
+  private tabHeaderRefs: HTMLElement[] = [];
+  private tabsListElement: HTMLElement;
+  private tabFocusHandlers: Map<HTMLElement, () => void> = new Map();
 
   @Event() ifxChange: EventEmitter;
 
@@ -66,9 +67,6 @@ export class IfxTabs {
 
   componentWillLoad() {
     this.internalOrientation = this.orientation.toLowerCase() === 'vertical' ? 'vertical' : 'horizontal';
-    if (this.internalActiveTabIndex !== this.activeTabIndex) {
-      this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: this.activeTabIndex });
-    };
     this.onSlotChange();
     this.setActiveAndFocusedTab(this.activeTabIndex);
     this.updateTabStyles();
@@ -120,8 +118,11 @@ export class IfxTabs {
       tab.setAttribute('slot', `tab-${index}`);
     });
 
-    // Update scroll buttons after slot changes
-    setTimeout(() => this.updateScrollButtons(), 0);
+    // Re-setup focus listeners when tabs change
+    setTimeout(() => {
+      this.setupTabFocusListeners();
+      this.updateScrollButtons();
+    }, 0);
   }
 
   setDefaultOrientation() {
@@ -141,23 +142,30 @@ export class IfxTabs {
     this.updateBorderAndFocus();
     this.updateScrollButtons();
     // Add keyboard event listeners for each tab header
-    this.tabHeaderRefs.forEach((tab, index) => {
-      tab.addEventListener('focus', this.onTabFocus(index));
-    });
-
+    this.setupTabFocusListeners();
   }
 
-  onTabFocus(index) {
-    return () => {
-      this.internalFocusedTabIndex = index;
-    };
+  private setupTabFocusListeners() {
+    // Clear any existing handlers
+    this.tabFocusHandlers.clear();
+
+    this.tabHeaderRefs.forEach((tab, index) => {
+      const handler = () => {
+        this.internalFocusedTabIndex = index;
+      };
+
+      // Store the handler so we can remove it later
+      this.tabFocusHandlers.set(tab, handler);
+      tab.addEventListener('focus', handler);
+    });
   }
 
   disconnectedCallback() {
     // Remove keyboard event listeners when component is unmounted
-    this.tabHeaderRefs.forEach((tab, index) => {
-      tab.removeEventListener('focus', this.onTabFocus(index));
+    this.tabFocusHandlers.forEach((handler, tab) => {
+      tab.removeEventListener('focus', handler);
     });
+    this.tabFocusHandlers.clear();
   }
   componentDidUpdate() {
     this.updateBorderAndFocus();
@@ -207,9 +215,10 @@ export class IfxTabs {
   }
 
   private handleClick(tab, index) {
-    this.ifxChange.emit({ previousTab: this.internalActiveTabIndex, currentTab: index })
     if (!tab.disabled) {
+      const previousTabIndex = this.internalActiveTabIndex;
       this.internalActiveTabIndex = index;
+      this.ifxChange.emit({ previousTab: previousTabIndex, currentTab: index });
       // Center the clicked tab
       setTimeout(() => this.scrollTabIntoView(index), 0);
     }
@@ -248,9 +257,9 @@ export class IfxTabs {
       }
 
       if (this.internalFocusedTabIndex !== -1 && !this.tabObjects[this.internalFocusedTabIndex].disabled) {
-        const previouslyActiveTabIndex = this.internalActiveTabIndex;
+        const previousTabIndex = this.internalActiveTabIndex;
         this.internalActiveTabIndex = this.internalFocusedTabIndex;
-        this.ifxChange.emit({ previousTab: previouslyActiveTabIndex, currentTab: this.internalFocusedTabIndex })
+        this.ifxChange.emit({ previousTab: previousTabIndex, currentTab: this.internalFocusedTabIndex });
         // Center the activated tab
         setTimeout(() => this.scrollTabIntoView(this.internalFocusedTabIndex), 0);
       }
