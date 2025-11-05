@@ -1,0 +1,40 @@
+<h2>File Upload</h2>
+<ifx-file-upload
+  drag-and-drop="false" 
+  [maxFileSizeMB]="maxFileSizeMB"
+  [allowedFileTypes]="allowedFileTypes"
+  [additionalAllowedFileTypes]="additionalAllowedFileTypes"
+  label="Label"
+  required="true"
+  disabled="false"
+  label-required-error="You must upload at least one file." 
+  label-browse-files="Browse files" 
+  label-drag-and-drop="Drag &amp; Drop or browse files to upload" 
+  label-uploaded-files-heading="Uploaded files" 
+  label-file-too-large="Upload failed. Max file size: {{maxFileSizeMB}}MB." 
+  label-unsupported-file-type="Unsupported file type." 
+  label-uploaded="Successfully uploaded" 
+  label-supported-formats-template="Supported file formats: {{allowedFileTypes}}. Max file size: {{maxFileSizeMB}}MB." 
+  label-file-singular="file" 
+  label-file-plural="files" 
+  label-upload-failed="Upload failed. Please try again." 
+  aria-label-browse-files="Browse files"
+  aria-label-dropzone="Upload area. Click to browse or drag and drop files."
+  aria-label-file-input="Upload file"
+  aria-label-remove-file="Remove file"
+  aria-label-cancel-upload="Cancel upload"
+  aria-label-retry-upload="Retry upload"
+  aria-label-uploading-status="Upload in progress"
+  aria-label-uploaded-status="Upload completed"
+  aria-label-upload-failed-status="Upload failed">
+</ifx-file-upload>
+<br>
+<!-- <h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleDragAndDrop()">Toggle Drag&Drop</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDropdownSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDropdownVariant()">Toggle Variant</ifx-button>
+<br>
+<br>
+<span><b>Disabled:</b> {{ dropdownDisabled }} </span><br>
+<span><b>Variant:</b> {{ dropdownVariant }} </span><br>
+<span><b>Size:</b> {{ dropdownSize }} </span><br> -->
