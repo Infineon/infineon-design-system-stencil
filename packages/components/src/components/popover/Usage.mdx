@@ -1,0 +1,127 @@
+import { Meta } from '@storybook/blocks';
+
+import * as PopoverStories from './popover.stories';
+
+import PopoverAnatomy from '../../../public-storybook/images/popover/popover-anatomy.png';
+import PopoverMouseInteraction from '../../../public-storybook/images/popover/popover-mouse-interaction.png';
+import PopoverCompact from '../../../public-storybook/images/popover/popover-compact.png';
+import PopoverDismissible from '../../../public-storybook/images/popover/popover-dismissible.png';
+import PopoverInteractiveElements from '../../../public-storybook/images/popover/popover-interactive-elements.png';
+import PopoverDirections from '../../../public-storybook/images/popover/popover-directions.png';
+import PopoverFeatureComparison from '../../../public-storybook/images/popover/popover-feature-comparison.png';
+
+
+
+<Meta of={PopoverStories} />
+
+#  Popover
+
+Popover reveals brief helper content anchored to a specific element. It is activated by a user click and stays attached to that element without disabling the main window. It provides short, contextual guidance and can be closed again by the user if desired.
+
+| Resources |
+
+|------------------------------------------------------------------------------------------------------------------------|
+
+| [Figma popover component →](https://www.figma.com/design/zPvPwPgb4EsYFXKC2nhzSG/Infineon-DDS-%7C-Main?node-id=88820-67) |
+
+  
+
+##  Usage
+
+<img src={PopoverFeatureComparison} alt="Popover Feature Comparison" width="50%" />
+
+###  When to use
+
+- When you need to present brief, contextual information tied to a specific element, shown on user click.
+
+- When you want to provide lightweight actions (buttons or links) closely related to the trigger.
+
+- When the content should appear adjacent to its anchor and be easily dismissible without blocking the main interface.
+
+- When you want to reduce visual clutter by deferring secondary details until the user requests them.
+
+  
+
+###  When not to use
+
+- For critical alerts or actions that require focused attention or confirmation.
+
+- For complex or multi-step interactions, long or scrollable content, or forms with multiple fields.
+
+- When the information isn't tied to a specific anchor element or needs to remain persistent on the screen.
+
+- For navigation menus, option lists or purely passive hints that appear on hover.
+  
+
+##  Anatomy
+
+<img src={PopoverAnatomy} alt="Popover Anatomy" width="50%" />
+
+**Title (1)**\
+
+A short, descriptive heading that names the popover's purpose. Keep it brief to support quick scanning.  
+  
+
+
+**Support text (2)**\
+
+Support text provides brief, contextual guidance or explanation related to the trigger. Use one or two sentences; avoid long paragraphs, lists, or complex layouts.
+  
+  
+
+**Container (3)**\
+
+The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. 
+
+  
+
+**Close (Dismiss) Icon (4)**\
+
+A dismiss icon in the top-right corner closes the popover. It is recommended when the popover contains interactive elements or when it should persist until explicitly dismissed.
+
+  
+
+**Indicator (5)**\
+
+A directional arrow that visually connects the popover to its trigger.  
+  
+
+
+**Additional interactive elements (6)**\
+
+Optional action area placed at the bottom of the popover. Add either buttons or links that relate directly to the popover content.
+
+
+
+## Mouse Interaction
+
+Users dismiss the popover by clicking the close icon in the top-right corner. When present, buttons or links can be clicked to perform actions or navigate.
+
+<img src={PopoverMouseInteraction} alt="Popover Mouse Interaction" />
+
+##  Variants
+
+  
+###  Compact
+
+This is the default for brief, contextual help, which shows only the required title and support text.
+<img src={PopoverCompact} alt="Popover Compact" width="50%" />
+
+  
+
+###  Dismissible
+
+This variant contains a close icon and stays open until the user dismisses it. It is useful when user interaction is required for a longer duration and/or automatic disappearance is not suitable.
+<img src={PopoverDismissible} alt="Popover Dismissible"  />
+
+  
+
+####  With Interactive Elements
+
+This variant adds a bottom action area with either buttons or links. 
+<img src={PopoverInteractiveElements} alt="Popover Interactive Elements"  />
+
+  
+## Directions 
+
+<img src={PopoverDirections} alt="Popover Directions" />
