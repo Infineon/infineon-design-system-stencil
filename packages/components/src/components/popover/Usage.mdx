@@ -5,7 +5,6 @@ import * as PopoverStories from './popover.stories';
 import PopoverAnatomy from '../../../public-storybook/images/popover/popover-anatomy.png';
 import PopoverMouseInteraction from '../../../public-storybook/images/popover/popover-mouse-interaction.png';
 import PopoverCompact from '../../../public-storybook/images/popover/popover-compact.png';
-import PopoverDismissible from '../../../public-storybook/images/popover/popover-dismissible.png';
 import PopoverInteractiveElements from '../../../public-storybook/images/popover/popover-interactive-elements.png';
 import PopoverDirections from '../../../public-storybook/images/popover/popover-directions.png';
 import PopoverFeatureComparison from '../../../public-storybook/images/popover/popover-feature-comparison.png';
@@ -16,7 +15,7 @@ import PopoverFeatureComparison from '../../../public-storybook/images/popover/p
 
 #  Popover
 
-Popover reveals brief helper content anchored to a specific element. It is activated by a user click and stays attached to that element without disabling the main window. It provides short, contextual guidance and can be closed again by the user if desired.
+Popover reveals brief helper content anchored to a specific element. It is activated by a user click and stays attached to that element without disabling the main window. It provides short, contextual guidance and can be closed again by the user.
 
 | Resources |
 
@@ -77,8 +76,7 @@ The container is the anchored surface that holds all popover content and control
 
 **Close (Dismiss) Icon (4)**\
 
-A dismiss icon in the top-right corner closes the popover. It is recommended when the popover contains interactive elements or when it should persist until explicitly dismissed.
-
+The close icon is always shown on the top right corner of the popover. Users dismiss the popover by clicking it, otherwise it will not go away.
   
 
 **Indicator (5)**\
@@ -96,8 +94,7 @@ Optional action area placed at the bottom of the popover. Add either buttons or 
 ## Mouse Interaction
 
 Users dismiss the popover by clicking the close icon in the top-right corner. When present, buttons or links can be clicked to perform actions or navigate.
-
-<img src={PopoverMouseInteraction} alt="Popover Mouse Interaction" />
+<img src={PopoverMouseInteraction} alt="Popover Mouse Interaction" width="50%" />
 
 ##  Variants
 
@@ -106,14 +103,6 @@ Users dismiss the popover by clicking the close icon in the top-right corner. Wh
 
 This is the default for brief, contextual help, which shows only the required title and support text.
 <img src={PopoverCompact} alt="Popover Compact" width="50%" />
-
-  
-
-###  Dismissible
-
-This variant contains a close icon and stays open until the user dismisses it. It is useful when user interaction is required for a longer duration and/or automatic disappearance is not suitable.
-<img src={PopoverDismissible} alt="Popover Dismissible"  />
-
   
 
 ####  With Interactive Elements
