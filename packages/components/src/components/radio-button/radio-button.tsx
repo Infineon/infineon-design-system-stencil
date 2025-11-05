@@ -1,4 +1,4 @@
-import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch } from '@stencil/core';
+import { Component, h, Prop, Element, State, Event, EventEmitter, Listen, Watch, Method } from '@stencil/core';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-radio-button',
   styleUrl: 'radio-button.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 export class RadioButton {
   @Element() el: HTMLElement;
@@ -20,8 +20,13 @@ export class RadioButton {
   @State() internalChecked: boolean = false;
   @State() hasSlot: boolean = false;
 
+  @Method()
+  async isChecked(): Promise<boolean> {
+    return this.internalChecked;
+  }
+  
   private inputElement: HTMLInputElement;
-  private internals: ElementInternals;
+  //private internals: ElementInternals;
   private fallbackInput: HTMLInputElement;
 
   @Event({ eventName: 'ifxChange' }) ifxChange: EventEmitter;
@@ -48,7 +53,7 @@ export class RadioButton {
     // Initialize ElementInternals if supported
     if ('attachInternals' in HTMLElement.prototype) {
       try {
-        this.internals = this.el.attachInternals();
+        //this.internals = this.el.attachInternals();
       } catch (e) {
         console.warn('ElementInternals not supported');
       }
@@ -74,9 +79,9 @@ export class RadioButton {
   @Watch('internalChecked')
   updateFormValue() {
     // Update both ElementInternals and fallback input
-    if (this.internals?.setFormValue) {
-      this.internals.setFormValue(this.internalChecked ? this.value : null);
-    }
+    // if (this.internals?.setFormValue) {
+    //   this.internals.setFormValue(this.internalChecked ? this.value : null);
+    // }
     this.fallbackInput.checked = this.internalChecked;
     this.fallbackInput.name = this.name;
     this.fallbackInput.value = this.value;

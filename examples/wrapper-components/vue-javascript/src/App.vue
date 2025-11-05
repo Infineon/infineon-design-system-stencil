@@ -1,10 +1,10 @@
 <template>
   <Navbar />
-  <h1>Stencil Framework integration - Vue + JS </h1>
+  <h1>Stencil Framework integration - VueJs </h1>
   <Sidebar />
   <Alert />
   <Accordion />
-  <Badge />
+  <ActionList />
   <Breadcrumbs />
   <Button />
   <Card />
@@ -37,7 +37,6 @@
   <TableBasic />
   <TableAdvanced />
   <Tabs />
-  <Tag />
   <Textarea />
   <TextField />
   <TreeView />
@@ -59,7 +58,6 @@ import ProgressBar from './components/ProgressBar.vue'
 import RadioButton from './components/RadioButton.vue'
 import RadioButtonGroup from './components/RadioButtonGroup.vue'
 import TextField from './components/TextField.vue'
-import Tag from './components/Tag.vue'
 import Spinner from './components/Spinner.vue'
 import Indicator from './components/Indicator.vue'
 import Link from './components/Link.vue'
@@ -81,7 +79,6 @@ import TableBasic from './components/BasicTable.vue'
 import TableAdvanced from './components/AdvancedTable.vue'
 import Breadcrumbs from './components/Breadcrumbs.vue'
 import SearchBar from './components/SearchBar.vue'
-import Badge from './components/Badge.vue'
 import Icon from './components/Icon.vue'
 import Slider from './components/Slider.vue'
 import Status from './components/Status.vue'
@@ -91,5 +88,5 @@ import Notification from './components/Notification.vue'
 import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
 import FileUpload from './components/FileUpload.vue'
-
+import ActionList from './components/ActionList.vue'
 </script>

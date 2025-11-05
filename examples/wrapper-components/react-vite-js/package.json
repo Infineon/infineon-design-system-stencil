@@ -11,14 +11,14 @@
     "preview": "vite preview",
     "watch:library": "cd ../../../packages/components && npm run watch:stencil",
     "build:wrapper": "cd ../../../packages/components && npm i && npm run build:stencil && cd ../components-react && npm run build",
-    "link-clean": "node ../../../utils/os-type.js",
+    "link-clean": "node ../../../scripts/os-type.js",
     "link-clean-win": "cd ../../../packages/components-react && echo Step 1: Current Directory: %cd% && dir && if exist node_modules (echo Step 2: Removing node_modules && rmdir /s /q node_modules) else (echo Step 2: node_modules directory does not exist) && echo Step 3: Running build && npm run build && echo Step 4: Linking package && npm link && cd ../../examples/wrapper-components/react-vite-js && echo Step 5: Current Directory: %cd% && dir && echo Step 6: Linking @infineon/infineon-design-system-react && npm link @infineon/infineon-design-system-react",
     "link-clean-unix": "cd ../../../packages/components-react && echo Step 1: Current Directory: $(pwd) && ls && if [ -d node_modules ]; then echo Step 2: Removing node_modules && rm -rf node_modules; else echo Step 2: node_modules directory does not exist; fi && echo Step 3: Running build && npm run build && echo Step 4: Linking package && npm link && cd ../../examples/wrapper-components/react-vite-js && echo Step 5: Current Directory: $(pwd) && ls && echo Step 6: Linking @infineon/infineon-design-system-react && npm link @infineon/infineon-design-system-react",
     "preview:link": "run-s link-clean dev",
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-react": "37.12.1--canary.1723.be44e857f2b42e0327aa3d19580a6f098c7b4b26.0",
+    "@infineon/infineon-design-system-react": "38.3.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

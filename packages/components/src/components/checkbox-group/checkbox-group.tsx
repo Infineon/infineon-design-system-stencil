@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-checkbox-group',
   styleUrl: 'checkbox-group.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class CheckboxGroup {
@@ -21,12 +21,13 @@ export class CheckboxGroup {
   @Prop() showCaption: boolean;
   @Prop() captionText: string;
   @Prop() showCaptionIcon: boolean;
+  @Prop() required: boolean = false;
   @State() hasErrors: boolean = false;
 
   @Listen('ifxError')
   handleCheckboxError(event: CustomEvent) {
     const checkbox = event.target as HTMLElement;
-    if (checkbox.tagName === 'ifx-checkbox') {
+    if (checkbox.tagName.toLowerCase() === 'ifx-checkbox') {
       this.errorStates.set(checkbox, event.detail);
       this.updateHasErrors();
     }
@@ -75,7 +76,12 @@ export class CheckboxGroup {
   render() {
     return (
       <div class='checkbox-group-container'>
-        {this.showGroupLabel ? <div class='group-label'>{this.groupLabelText} *</div> : ''}
+        {this.showGroupLabel && (
+          <div class="group-label">
+            {this.groupLabelText}
+            {this.required && <span class={`required ${this.hasErrors ? 'error' : ''}`}>*</span>}
+          </div>
+        )}
         <div class={`checkbox-group ${this.alignment} ${this.size}`}>
           <slot onSlotchange={this.handleSlotChange}></slot>
         </div>

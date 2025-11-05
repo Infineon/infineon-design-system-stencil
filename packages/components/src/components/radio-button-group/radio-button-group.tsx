@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
     tag: 'ifx-radio-button-group',
     styleUrl: 'radio-button-group.scss',
     shadow: true,
-    formAssociated: true
+    // formAssociated: true
 })
 
 export class RadioButtonGroup {
@@ -21,12 +21,13 @@ export class RadioButtonGroup {
     @Prop() showCaption: boolean;
     @Prop() captionText: string;
     @Prop() showCaptionIcon: boolean;
+    @Prop() required: boolean = false;
     @State() hasErrors: boolean = false;
     
     @Listen('ifxError')
     handleRadioButtonError(event: CustomEvent) {
         const radioButton = event.target as HTMLElement;
-        if (radioButton.tagName === 'ifx-radio-button') {
+        if (radioButton.tagName.toLowerCase() === 'ifx-radio-button') {
             this.errorStates.set(radioButton, event.detail);
             this.updateHasErrors();
         }
@@ -68,13 +69,19 @@ export class RadioButtonGroup {
     }
 
     private updateHasErrors() {
+        console.log('here')
         this.hasErrors = Array.from(this.errorStates.values()).some((error) => error);
     }
 
     render() {
         return (
             <div class='radio-button-group-container'>
-                {this.showGroupLabel ? <div class='group-label'>{this.groupLabelText} *</div> : ''}
+                {this.showGroupLabel && (
+                    <div class="group-label">
+                        {this.groupLabelText}
+                        {this.required && <span class={`required ${this.hasErrors ? 'error' : ''}`}>*</span>}
+                    </div>
+                )}
                 <div class={`radio-button-group ${this.alignment} ${this.size}`}>
                     <slot onSlotchange={this.handleSlotChange} ></slot>
                 </div>
