@@ -192,12 +192,8 @@ function App() {
       <h2>Textarea</h2>
       <Textarea />
       <br />
-
-<<<<<<< HEAD
-      <h2>TextField</h2>
-=======
+      
       <h2>Text Field</h2>
->>>>>>> master
       <TextField />
       <br />
 
