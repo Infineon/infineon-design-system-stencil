@@ -33,6 +33,7 @@ export default {
     error: false,
     errorMessage: 'Some error',
     disabled: false,
+    required: true,
     showClearButton: true
     // type: 'single', //for later implementation
   },
@@ -98,6 +99,15 @@ export default {
         category: 'ifx-select props',
         defaultValue: {
           summary: false
+        }
+      }
+    },
+    required: {
+      description: 'Marks the Single Selection as required with an asterik for form submission.',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: true
         }
       }
     },
@@ -174,6 +184,7 @@ const DefaultTemplate = args => {
   show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   disabled='${args.disabled}'
+  required='${args.required}'
   error='${args.error}'
   error-message='${args.errorMessage}'
   label='${args.label}'
