@@ -16,7 +16,7 @@ export default {
     readOnly: false,
     caption: 'Caption',
     required: true,
-    optional: false,
+
     name: 'text-field',
     showDeleteIcon: false,
     maxlength: '',
@@ -31,7 +31,7 @@ export default {
       name: 'Label of Text Field',
       description: 'The text label displayed above the *<ifx-text-field>*.',
       table: {
-        category: 'story controls',
+        category: 'ifx-text-field props',
       }
     },
     error: {
@@ -112,15 +112,6 @@ export default {
         category: 'ifx-text-field props',
         defaultValue: {
           summary: true
-        }
-      }
-    },
-    optional: {
-      description: 'Indicates that the field is optional.',
-      table: {
-        category: 'ifx-text-field props',
-        defaultValue: {
-          summary: false
         }
       }
     },
@@ -208,7 +199,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -218,8 +209,8 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly
   element.setAttribute('placeholder', placeholder);
   element.setAttribute('read-only', readOnly);
   element.setAttribute('caption', caption);
+  element.setAttribute('label', label);
   element.setAttribute('required', required);
-  element.setAttribute('optional', optional);
   element.setAttribute('name', name);
   element.setAttribute('show-delete-icon', showDeleteIcon);
   element.setAttribute('value', value);
@@ -229,10 +220,6 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
-
-
-  const slotContent = document.createTextNode(label);
-  element.appendChild(slotContent);
 
   return element;
 };

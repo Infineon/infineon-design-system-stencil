@@ -1,17 +1,14 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../../global/font.scss';
 
 /*===============================
 =            Choices            =
 ===============================*/
 
-
 .ifx-select-container {
   box-sizing: border-box;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
 
   &.small-select {
     height: 36px;
@@ -38,20 +35,29 @@
       margin-left: 4px;
 
       &.error {
-        color: #CD002F;
+        color: #cd002f;
       }
     }
   }
 
-  .ifx-error-message-wrapper {
-    color: #CD002F;
+  .single__select-caption {
+    font-style: normal;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-    max-width: 100%;
-    overflow: hidden;
+    color: tokens.$ifxColorBaseBlack;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+
+    &.disabled {
+      color: tokens.$ifxColorEngineering500;
+    }
   }
 
   .ifx-choices__wrapper {
@@ -94,7 +100,7 @@
     }
 
     &.disabled {
-      background: #EEEDED;
+      background: #eeeded;
       color: #575352;
       border-color: #575352;
       cursor: default;
@@ -110,7 +116,7 @@
     }
 
     &.error {
-      border-color: #CD002F;
+      border-color: #cd002f;
     }
 
     &:hover:not(.focus, :focus) {
@@ -125,11 +131,10 @@
         align-items: center;
         justify-content: center;
         padding-left: tokens.$ifxSpace100;
-
       }
 
       & .ifx-choices__icon-wrapper-down {
-        display: none
+        display: none;
       }
     }
 
@@ -144,7 +149,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid #0A8276;
+        border: 2px solid #0a8276;
         border-radius: 2px;
       }
     }
@@ -160,7 +165,6 @@
         transform: translate(-50%, -50%);
       }
     }
-
 
     & .ifx-choices__icon-wrapper-up {
       display: none;
@@ -190,9 +194,7 @@
         display: none;
       }
     }
-
   }
-
 
   /*
 START Select options: item alignment
@@ -271,7 +273,6 @@ END Select options: item alignment
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
     }
-
   }
 
   .choices[data-type*='select-one'] .choices__single-button {
@@ -372,14 +373,12 @@ END Select options: item alignment
         }
       }
     }
-
   }
 
   .is-focused .choices__inner,
   .is-open .choices__inner {
     border-color: #b7b7b7;
   }
-
 
   .is-open .choices__inner {
     border-radius: 2.5px 2.5px 0 0;
@@ -401,10 +400,9 @@ END Select options: item alignment
     justify-content: space-between;
   }
 
-  .disabled>.choices__list--single .choices__item[data-value=''] {
-    color: #8D8786;
+  .disabled > .choices__list--single .choices__item[data-value=''] {
+    color: #8d8786;
     /* Placeholder font color */
-
   }
 
   .choices__list--multiple .choices__item {
@@ -427,7 +425,6 @@ END Select options: item alignment
   .choices__list--multiple .choices__item[data-deletable] {
     padding-right: 5px;
   }
-
 
   [dir='rtl'] .choices__list--multiple .choices__item {
     margin-right: 0;
@@ -505,18 +502,15 @@ END Select options: item alignment
     }
 
     &.selected {
-      color: #0A8276;
+      color: #0a8276;
     }
   }
-
 
   [dir='rtl'] .choices__list--dropdown .choices__item {
     text-align: right;
   }
 
-
   @media (min-width: 640px) {
-
     .choices__list--dropdown .choices__item--selectable:after {
       // content: attr(data-select-text); #press to select text next to select option
       font-size: tokens.$ifxFontSizeXs;
@@ -540,20 +534,19 @@ END Select options: item alignment
     }
   }
 
-
   .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    background-color: #EEEDED;
+    background-color: #eeeded;
 
     &.selected {
-      color: #0A8276;
+      color: #0a8276;
     }
   }
 
   .choices__list--dropdown .choices__item--selectable:hover {
-    background-color: #EEEDED;
+    background-color: #eeeded;
 
     &.selected {
-      color: #0A8276;
+      color: #0a8276;
     }
   }
 
@@ -583,7 +576,7 @@ END Select options: item alignment
     line-height: tokens.$ifxLineHeightXs;
     padding: 10px;
     border-bottom: 1px solid #f7f7f7;
-    color: tokens.$ifxColorBaseBlack
+    color: tokens.$ifxColorBaseBlack;
   }
 
   .choices__button {
@@ -597,8 +590,7 @@ END Select options: item alignment
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    // visibility: hidden; //hide remove button on select menu 
-
+    // visibility: hidden; //hide remove button on select menu
   }
 
   .choices__button:focus {
@@ -615,7 +607,7 @@ END Select options: item alignment
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    visibility: hidden; //hide remove button on select menu 
+    visibility: hidden; //hide remove button on select menu
   }
 
   .choices__single-button:focus {
@@ -633,7 +625,6 @@ END Select options: item alignment
     border-radius: 0;
     max-width: 100%;
   }
-
 
   .choices__input--cloned {
     background-color: transparent;
@@ -660,7 +651,6 @@ END Select options: item alignment
     display: none;
   }
 
-
   .choices__input:focus {
     outline: 0;
   }
@@ -675,6 +665,4 @@ END Select options: item alignment
   }
 
   /*=====  End of Choices  ======*/
-
-
 }
