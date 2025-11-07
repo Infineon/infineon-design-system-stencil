@@ -25,15 +25,16 @@ export default {
   // tags: ['autodocs'],
   args: {
     label: '',
+    caption: '',
     size: 'm',
     showSearch: true,
     searchPlaceholderValue: 'Search...',
     placeholder: true,
     placeholderValue: 'Placeholder',
     error: false,
-    errorMessage: 'Some error',
     disabled: false,
-    showClearButton: true
+    required: true,
+    showClearButton: true,
     // type: 'single', //for later implementation
   },
 
@@ -49,9 +50,9 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: 'm'
-        }
-      }
+          summary: 'm',
+        },
+      },
     },
     placeholder: {
       description: 'Determines whether a placeholder is displayed or not.',
@@ -59,15 +60,15 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: true
-        }
-      }
+          summary: true,
+        },
+      },
     },
     placeholderValue: {
       description: 'Sets the text displayed as the placeholder when placeholder is set to true.',
       table: {
-        category: 'ifx-select props'
-      }
+        category: 'ifx-select props',
+      },
     },
     error: {
       description: 'Displays an error state.',
@@ -75,21 +76,15 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: false
-        }
-      }
-    },
-    errorMessage: {
-      description: 'Message displayed when error is set to true.',
-      table: {
-        category: 'ifx-select props'
-      }
+          summary: false,
+        },
+      },
     },
     label: {
       description: 'Sets the label.',
       table: {
-        category: 'ifx-select props'
-      }
+        category: 'ifx-select props',
+      },
     },
     disabled: {
       description: 'Disables the dropdown.',
@@ -97,9 +92,24 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: false
-        }
-      }
+          summary: false,
+        },
+      },
+    },
+    caption: {
+      description: 'Text displayed below the select component to provide additional information.',
+      table: {
+        category: 'ifx-select props',
+      },
+    },
+    required: {
+      description: 'Marks the Single Selection as required with an asterik for form submission.',
+      table: {
+        category: 'ifx-select props',
+        defaultValue: {
+          summary: true,
+        },
+      },
     },
     showSearch: {
       description: 'Enables a search bar inside the dropdown to filter options.',
@@ -107,9 +117,9 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: true
-        }
-      }
+          summary: true,
+        },
+      },
     },
     showClearButton: {
       description: 'Shows the clear icon button.',
@@ -117,21 +127,21 @@ export default {
       table: {
         category: 'ifx-select props',
         defaultValue: {
-          summary: true
-        }
-      }
+          summary: true,
+        },
+      },
     },
     searchPlaceholderValue: {
       description: 'Placeholder text for the search input field.',
       table: {
-        category: 'ifx-select props'
-      }
+        category: 'ifx-select props',
+      },
     },
     options: {
       description: 'Takes an array of objects in the following format.',
       table: {
-        category: 'ifx-select props'
-      }
+        category: 'ifx-select props',
+      },
     },
     ifxSelect: {
       action: 'ifxSelect',
@@ -161,8 +171,8 @@ export default {
       description: 'Public method for clearing the selected options',
       table: {
         category: 'ifx-select public methods',
-      }
-    }
+      },
+    },
   },
 };
 
@@ -174,9 +184,10 @@ const DefaultTemplate = args => {
   show-search='${args.showSearch}'
   search-placeholder-value='${args.searchPlaceholderValue}'
   disabled='${args.disabled}'
+  required='${args.required}'
   error='${args.error}'
-  error-message='${args.errorMessage}'
   label='${args.label}'
+  caption='${args.caption}'
   placeholder-value='${args.placeholderValue}'
   options='${JSON.stringify(args.options)}' >
  </ifx-select>`;
