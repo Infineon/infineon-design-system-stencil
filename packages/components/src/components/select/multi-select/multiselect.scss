@@ -20,16 +20,34 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
+
+    & .required {
+      margin-left: 4px;
+
+      &.error {
+        color: #CD002F;
+      }
+    }
   }
 
-  .ifx-error-message-wrapper {
-    color: #CD002F;
+  .multi__select-caption {
+    font-style: normal;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-    max-width: 100%;
+    color: tokens.$ifxColorBaseBlack;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+
+    &.disabled {
+      color: tokens.$ifxColorEngineering500;
+    }
   }
 
   .ifx-multiselect-wrapper {
@@ -249,4 +267,3 @@
   padding-right: tokens.$ifxSpace200;
   display: none;
 }
-
