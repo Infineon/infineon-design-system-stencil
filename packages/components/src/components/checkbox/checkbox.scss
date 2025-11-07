@@ -62,6 +62,7 @@
             flex: none;
             order: 0;
             flex-grow: 0;
+        }
 
         &.checked:not(.indeterminate) {
             background-color: tokens.$ifxColorOcean500;
@@ -130,10 +131,10 @@
             font-size: tokens.$ifxFontSizeM;
             line-height: tokens.$ifxLineHeightM;
         }
+    }
 
-        &.disabled {
-            color: tokens.$ifxColorEngineering300;
-        }
+    .label.disabled {
+        color: tokens.$ifxColorEngineering300 !important;
     }
 
     & .checkbox__wrapper,
@@ -143,4 +144,3 @@
         }
     }
     }
-}
