@@ -131,10 +131,10 @@
             font-size: tokens.$ifxFontSizeM;
             line-height: tokens.$ifxLineHeightM;
         }
-    }
 
-    .label.disabled {
-        color: tokens.$ifxColorEngineering300 !important;
+        &.disabled {
+            color: tokens.$ifxColorEngineering300;
+        }
     }
 
     & .checkbox__wrapper,
@@ -143,4 +143,4 @@
             cursor: pointer;
         }
     }
-    }
+}
