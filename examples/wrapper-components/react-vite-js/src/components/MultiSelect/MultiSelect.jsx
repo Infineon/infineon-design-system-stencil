@@ -17,7 +17,7 @@ function App() {
         name='multiselect'
         disabled={disabled}
         error={error}
-        error-message='Some error'
+        caption='caption'
         label='Generic Multi-Level Selection'
         placeholder='Select options...'
         show-search='true'
