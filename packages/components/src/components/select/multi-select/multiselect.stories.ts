@@ -43,7 +43,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'false',
         },
@@ -55,7 +55,7 @@ export default {
     required: {
 			description: 'Marks the Generic Multi-Level Selection as required with an asterik for form submission.',
 			table: {
-				category: 'Function',
+				category: 'ifx-multiselect props',
 				defaultValue: {
 					summary: true
 				}
@@ -65,7 +65,7 @@ export default {
       description: `For a <*form*> element, the name attribute is  used as a reference when the data is submitted.`,
       control: 'text',
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'undefined',
         },
@@ -79,7 +79,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'true',
         },
@@ -93,7 +93,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'true',
         },
@@ -107,7 +107,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'true',
         },
@@ -120,7 +120,7 @@ export default {
       description: 'Shows the clear icon button.',
       control: 'boolean',
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'true',
         },
@@ -134,7 +134,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'true',
         },
@@ -148,7 +148,7 @@ export default {
       options: [true, false],
       control: { type: 'boolean' },
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'false',
         },
@@ -161,7 +161,7 @@ export default {
       description: 'Label over the input field.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: '""',
         },
@@ -174,7 +174,7 @@ export default {
       description: 'Label inside the input field.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: '""',
         },
@@ -186,7 +186,7 @@ export default {
     caption: {
       description: 'Text displayed below the select component to provide additional information.',
       table: {
-        category: 'Function',
+        category: 'ifx-multiselect props',
         type: {
           summary: 'string',
         },
@@ -196,7 +196,7 @@ export default {
       description: 'Custom message to display when search has no results.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'No results found.',
         },
@@ -209,7 +209,7 @@ export default {
       description: 'Placeholder text for the search input field.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'Search',
         },
@@ -222,7 +222,7 @@ export default {
       description: 'Label text for the select all checkbox.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'Select all',
         },
@@ -235,7 +235,7 @@ export default {
       description: 'Label text for the expand all control.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'Expand',
         },
@@ -248,7 +248,7 @@ export default {
       description: 'Label text for the collapse all control.',
       control: 'text',
       table: {
-        category: 'Label',
+        category: 'ifx-multiselect props',
         defaultValue: {
           summary: 'Collapse',
         },
