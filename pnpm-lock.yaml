@@ -165,7 +165,7 @@ importers:
         specifier: ^7.1.12
         version: 7.1.12(@types/node@22.18.12)
 
-  examples/html-npm-example:
+  examples/html-vite-example:
     dependencies:
       '@infineon/infineon-design-system-stencil':
         specifier: workspace:*
