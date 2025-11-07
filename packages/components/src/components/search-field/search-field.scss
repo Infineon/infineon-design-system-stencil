@@ -91,15 +91,15 @@
       }
     }
 
-    &:has(input[disabled]) {
+    &.disabled {
       background: tokens.$ifxColorEngineering300;
       border: none;
       color: tokens.$ifxColorBaseWhite;
-    }
 
-    &:has(input:disabled):hover, :focus, .focused, .dropdown-open {
+      &:hover {
       border: none;
       outline: none;
+    }
     }
   }
 

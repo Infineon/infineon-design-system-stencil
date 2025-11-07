@@ -587,7 +587,8 @@ export class SearchField {
       `search-field__wrapper`,
       `search-field__wrapper ${this.getSizeClass()}`,
       `${this.isFocused ? 'focused' : ""}`,
-      `${this.showDropdown ? 'dropdown-open' : ""}`
+      `${this.showDropdown ? 'dropdown-open' : ""}`,
+      `${this.disabled ? 'disabled' : ""}`
     );
   }
 
