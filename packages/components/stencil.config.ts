@@ -8,8 +8,9 @@ const componentCorePackage = '@infineon/infineon-design-system-stencil';
 
 export const config: Config = {
   namespace: 'infineon-design-system-stencil',
-  globalStyle: 'src/styles/global.scss',
   sourceMap: true,
+  globalStyle: 'src/global/styles/index.scss',
+  globalScript: 'src/global/setup.ts',
   outputTargets: [
     /**
      * This output target creates a small entry point that registers all components and lazy loads them on demand.
@@ -74,7 +75,10 @@ export const config: Config = {
     browserHeadless: "shell",
   },
   plugins: [
-    sass()
+    sass({
+      includePaths: ['src/global/styles', 'src/shared/styles', 'node_modules/'],
+      injectGlobalPaths: ['src/shared/styles/index.scss'],
+    })
   ],
   extras: {
     cloneNodeFix: true,
