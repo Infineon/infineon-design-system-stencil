@@ -2,10 +2,11 @@
 This example app demonstrates the usage of the Infineon Design System Stencil components using plain HTML and loading the components via CDN.
 
 ## Installation and Setup
-To use the components via CDN, you don't need to install any packages. You can simply include the following script tag in your HTML file:
+To use the components via CDN, you don't need to install any packages. You can simply include the following script and link tags in your HTML file:
 
 ```html
 <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
 ```
 
 > Note that this example app does not load the components via CDN for demonstration purposes. Instead, it uses a local build of the components for faster development and testing.
