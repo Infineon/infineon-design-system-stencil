@@ -20,6 +20,11 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
+
+    &.disabled {
+      color: tokens.$ifxColorEngineering300;
+      cursor: default;
+    }
   }
 
   .ifx-error-message-wrapper {
