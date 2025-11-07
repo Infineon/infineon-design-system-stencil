@@ -16,7 +16,7 @@ export default {
     showSelectAll: true,
     showExpandCollapse: true,
     error: false,
-    errorMessage: 'Some error',
+    caption: '',
     label: '',
     placeholder: 'Placeholder',
     showClearButton: true,
@@ -157,8 +157,6 @@ export default {
         },
       },
     },
-
-    // Label
     label: {
       description: 'Label over the input field.',
       control: 'text',
@@ -185,14 +183,10 @@ export default {
         },
       },
     },
-    errorMessage: {
-      control: 'text',
-      description: 'Error message to display.',
+    caption: {
+      description: 'Text displayed below the select component to provide additional information.',
       table: {
-        category: 'Label',
-        defaultValue: {
-          summary: 'Error',
-        },
+        category: 'Function',
         type: {
           summary: 'string',
         },
@@ -417,7 +411,7 @@ const SlotBasedTemplate = args => {
   disabled='${args.disabled}'
   required='${args.required}'
   error='${args.error}'
-  error-message='${args.errorMessage}'
+  caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
   show-search='${args.showSearch}'
@@ -559,7 +553,7 @@ const FlatTemplate = args => {
   name='${args.name}'
   disabled='${args.disabled}'
   error='${args.error}'
-  error-message='${args.errorMessage}'
+  caption='${args.caption}'
   label='${args.label}'
   placeholder='${args.placeholder}'
   show-search='${args.showSearch}'

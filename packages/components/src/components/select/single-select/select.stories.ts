@@ -32,7 +32,6 @@ export default {
     placeholder: true,
     placeholderValue: 'Placeholder',
     error: false,
-    errorMessage: 'Some error',
     disabled: false,
     required: true,
     showClearButton: true,
@@ -79,12 +78,6 @@ export default {
         defaultValue: {
           summary: false,
         },
-      },
-    },
-    errorMessage: {
-      description: 'Message displayed when error is set to true.',
-      table: {
-        category: 'ifx-select props',
       },
     },
     label: {
@@ -193,7 +186,6 @@ const DefaultTemplate = args => {
   disabled='${args.disabled}'
   required='${args.required}'
   error='${args.error}'
-  error-message='${args.errorMessage}'
   label='${args.label}'
   caption='${args.caption}'
   placeholder-value='${args.placeholderValue}'
