@@ -91,7 +91,7 @@ export class TextField {
         <div class="textInput__top-wrapper">
           {this.label && (
             <label htmlFor={this.internalId}>
-              <slot></slot>
+              <span>{this.label}</span>
               {this.required && <span class={`required ${this.error && !this.readOnly ? 'error' : ''}`}>*</span>}
             </label>
           )}
