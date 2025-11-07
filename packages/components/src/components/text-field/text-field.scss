@@ -21,6 +21,10 @@
     & .textInput__top-wrapper {
       & label {
         color: tokens.$ifxColorEngineering300;
+
+        .required {
+          color: tokens.$ifxColorEngineering300;
+        }
       }
     }
 
