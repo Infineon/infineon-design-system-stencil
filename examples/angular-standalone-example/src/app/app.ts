@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import '@infineon/infineon-design-system-angular/standalone'
 import { IfxAlert } from '@infineon/infineon-design-system-angular/standalone';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',

@@ -1,3 +1,4 @@
+import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { APP_INITIALIZER, type ModuleWithProviders, NgModule, NgZone } from '@angular/core';
 import { DIRECTIVES } from './stencil-generated';
