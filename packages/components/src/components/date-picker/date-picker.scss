@@ -58,6 +58,7 @@
 
   &.firefox__classes {
     padding: 8px 16px;
+    box-sizing: border-box;
     color: tokens.$ifxColorEngineering400;
     font-size: 16px;
     text-transform: uppercase;
@@ -172,5 +173,11 @@
 
   & ifx-icon {
     vertical-align: middle;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  .date__picker-container .icon__wrapper {
+    display: none;
   }
 }
