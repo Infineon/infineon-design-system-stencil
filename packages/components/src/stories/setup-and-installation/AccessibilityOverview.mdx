@@ -1,0 +1,129 @@
+import { Meta, Description } from '@storybook/blocks';
+import IllustrationDiversityDays from '../../../public-storybook/images/accessibility/illustration-diversity-days-horizontal.png';
+import Senses from '../../../public-storybook/images/accessibility/senses.png';
+import ColorContrastEngineering100 from '../../../public-storybook/images/accessibility/color-and-contrast-engineering100.png';
+import ColorContrastWhite from '../../../public-storybook/images/accessibility/color-and-contrast-white.png';
+import UseOfColor from '../../../public-storybook/images/accessibility/color-and-contrast-use-of-color.png';
+
+<Meta title="Accessibility" name="Accessibility" />
+
+# Accessibility guidelines
+We want to enable as many people as possible to use our interfaces. 
+The Infineon DDS is designed according to WCAG 2.0 Level AA. Please optimize all user interfaces for at least this level of accessibility.
+
+<img src={IllustrationDiversityDays}
+  style={{
+    'aspect-ratio': '1098 / 373',
+    'object-fit': 'cover',  // This will crop the image to fit
+    'width': '100%'         // Optional: make it responsive
+  }}
+></img>
+
+## Introduction
+<div style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '24px', alignItems: 'start', margin: '24px 0' }}>
+    <div>
+    All DDS components are designed and developed following the global <strong style={{ color: '#0A8276' }}>Web Content Accessibility Guidelines (WCAG) 2.2, Level AA</strong>. 
+    The DDS is providing and experience which is <strong style={{ color: '#0A8276' }}>Perceivable, Operable, Understandable and Robust</strong>.  
+    Anticipating a wide range of human experiences and disabilities prevents costly redesigns, reduces tech and design debt, and conserves resources upfront.
+    </div>
+    <div>
+        <img src={Senses}></img>
+    </div>
+</div>
+
+### Color and contrast
+Text and user interface components on a page must meet a specific minimum contrast ratio to pass WCAG 2.2 AA standards. 
+Why? People with low vision may have trouble reading or understanding important information. Depending on the contrast ratio, users may not see the item at all. 
+Besides being perceived as disabled items, this makes users struggle with actions like making sure they select the correct option.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'start', margin: '24px 0' }}>
+    <div>
+        <img src={ColorContrastEngineering100}></img>
+        <ul style={{ marginTop: '12px' }}>
+            <li>Normal text (14pt): 4.5:1 minimum contrast</li>
+            <li>Large text (14pt bold+, 18pt+): 3:1 minimum contrast</li>
+            <li>Graphical objects & UI components: 3:1 minimum contrast</li>
+        </ul>
+        <p style={{ color: '#4B5563', fontSize: '14px' }}>
+        Note: Disabled controls do not need to hit any specific contrast levels.
+        </p>
+    </div>
+    <div>
+        <img src={ColorContrastWhite}></img>
+        <ul style={{ marginTop: '12px' }}>
+            <li>Normal text (14pt): 4.5:1 minimum contrast</li>
+            <li>Large text (14pt bold+, 18pt+): 3:1 minimum contrast</li>
+            <li>Graphical objects & UI components: 3:1 minimum contrast</li>
+        </ul>
+        <p style={{ color: '#4B5563', fontSize: '14px' }}>
+        Note: Disabled controls do not need to hit any specific contrast levels.
+        </p>
+    </div>
+</div>
+
+
+<img src={UseOfColor}></img>
+The main point in the guideline 1.4.1 Use of Color is to make sure that color isn't the sole identifier. 
+If you have an important transition that is only a change in color, make sure that color change has a 3:1 contrast ratio.
+
+A great way to test for this is to navigate that experience in greyscale mode.
+
+## Typography and Readability
+Purpose: Ensure all text is legible and readable.
+
+Content:
+* Minimum sizes: 16px for body, 14px for dense UI.
+* Line height and spacing: Minimum 1.5 line-height, sufficient letter spacing.
+* Avoid light weights: Maintain sufficient stroke contrast.
+* Text hierarchy: Use heading styles (H1–H3) consistently.
+* Avoid text inside images.
+
+Relevant WCAG References:
+* 1.4.3 Contrast (Minimum) – Contrast between text and background.
+* 1.4.4 Resize Text – Text must be readable when scaled to 200%.
+* 1.4.8 Visual Presentation (AAA) – Line height, spacing, and text width recommendations.
+* 1.3.1 Info and Relationships – Use headings and structure to express hierarchy
+
+## States, Focus and Interactions
+Purpose: Make interactive components perceivable, operable, and consistent.
+
+Content:
+* Interactive states: Default / Hover / Active / Focus / Disabled — each visually distinct.
+* Focus visibility: Always provide a clear focus indicator.
+* Touch targets: Minimum 44 × 44 px for all actionable elements.
+* Reduced motion: Respect prefers-reduced-motion for users sensitive to animation.
+
+Relevant WCAG References:
+* 2.4.7 Focus Visible – Focus indicators must be visible.
+* 2.5.5 Target Size (Enhanced) – Interactive areas must be at least 44 × 44 px.
+* 2.3.3 Animation from Interactions – Allow users to disable motion.
+* 2.4.3 Focus Order – Logical tab and focus sequence.
+
+## Icons and Visual indicators
+Purpose: Support meaning through icons and visuals — not rely solely on them.
+
+Content:
+* Icons with text labels: Always include descriptive text where appropriate.
+* No color-only cues: Combine with shape, label, or icon variation.
+* Consistent meaning: Use icons consistently across the system.
+* Tooltips: Provide context when an icon alone may not be clear.
+
+Relevant WCAG References:
+* 1.4.1 Use of Color – Color cannot be the only method of communication.
+* 1.3.3 Sensory Characteristics – Instructions should not rely solely on shape, size, or visual position.
+* 3.3.2 Labels or Instructions – Provide clear labeling for user understanding.
+
+## Content and Structure
+Purpose: Make content clear, logical, and semantically structured.
+
+Content:
+* Plain language: Use simple, clear, and concise text.
+* Descriptive labels: Buttons, links, and inputs must describe their purpose.
+* Logical hierarchy: Use heading levels and consistent layout structure.
+* Alternative text: Provide text alternatives for images, icons, and infographics.
+
+Relevant WCAG References:
+* 1.1.1 Non-Text Content – All non-text content must have a text alternative.
+* 1.3.1 Info and Relationships – Use structure and hierarchy meaningfully.
+* 2.4.6 Headings and Labels – Descriptive headings and labels.
+* 3.1.5 Reading Level (AAA) – Use language that is easy to understand.

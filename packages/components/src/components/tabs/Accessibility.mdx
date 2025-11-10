@@ -1,0 +1,711 @@
+import { Meta } from '@storybook/blocks';
+import * as Stories from './tabs.stories';
+import { AccessibilityPage } from '../../global/storybook/AccessibilityPage';
+
+export const data = [
+  {
+    "guidelineNumber": "1.1.1",
+    "guideline": "Non-text Content",
+    "level": "A",
+    "summary": "Provide text alternatives for non-text content",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.1",
+    "guideline": "Audio-only and Video-only (Pre-recorded)",
+    "level": "A",
+    "summary": "Provide an alternative to video-only and audio-only content",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.2",
+    "guideline": "Captions (Pre-recorded)",
+    "level": "A",
+    "summary": "Provide captions for videos with audio",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.3",
+    "guideline": "Audio Description or Media Alternative (Pre-recorded)",
+    "level": "A",
+    "summary": "Video with audio has a second alternative",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.4",
+    "guideline": "Captions (Live)",
+    "level": "AA",
+    "summary": "Live videos have captions",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.5",
+    "guideline": "Audio Description (Pre-recorded)",
+    "level": "AA",
+    "summary": "Users have access to audio description for video content",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.6",
+    "guideline": "Sign Language (Pre-recorded)",
+    "level": "AAA",
+    "summary": "Provide sign language translations for videos",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.7",
+    "guideline": "Extended Audio description (Pre-recorded)",
+    "level": "AAA",
+    "summary": "Provide extended audio description for videos",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.8",
+    "guideline": "Media Alternative (Pre-recorded)",
+    "level": "AAA",
+    "summary": "Provide a text alternative to videos",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.2.9",
+    "guideline": "Audio Only (Live)",
+    "level": "AAA",
+    "summary": "Provide alternatives for live audio",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.1",
+    "guideline": "Info and Relationships",
+    "level": "A",
+    "summary": "Logical structure",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.2",
+    "guideline": "Meaningful Sequence",
+    "level": "A",
+    "summary": "Present content in a meaningful order",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.3",
+    "guideline": "Sensory Characteristics",
+    "level": "A",
+    "summary": "Use more than one sense for instructions",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.4",
+    "guideline": "Orientation (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Content can be display in portrait and landscape orientation",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.5",
+    "guideline": "Identify Input Purpose (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Each input field must be able to be determined programmatically, a user should be able for example to autofill inputs",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.3.6",
+    "guideline": "Identify Purpose (WCAG 2.1)",
+    "level": "AAA",
+    "summary": "Interface components, icons and landmarks (sections, article, main, etc.) must be able to be identified programmatically to help navigation for assistive technologies",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.1",
+    "guideline": "Use of Colour",
+    "level": "A",
+    "summary": "Don’t use presentation that relies solely on colour",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.2",
+    "guideline": "Audio Control",
+    "level": "A",
+    "summary": "Don’t play audio automatically",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.3",
+    "guideline": "Contrast (Minimum)",
+    "level": "AA",
+    "summary": "Contrast ratio between text and background is at least 4.5:1",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.4",
+    "guideline": "Resize Text",
+    "level": "AA",
+    "summary": "Text can be resized to 200% without loss of content or function",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.5",
+    "guideline": "Images of Text",
+    "level": "AA",
+    "summary": "Don’t use images of text",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.6",
+    "guideline": "Contrast (Enhanced)",
+    "level": "AAA",
+    "summary": "Contrast ratio between text and background is at least 7:1",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.7",
+    "guideline": "Low or No Background Audio",
+    "level": "AAA",
+    "summary": "Audio is clear for listeners to hear",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.8",
+    "guideline": "Visual Presentation",
+    "level": "AAA",
+    "summary": "Offer users a range of presentation options",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.9",
+    "guideline": "Images of Text (No Exception)",
+    "level": "AAA",
+    "summary": "Don’t use images of text",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.10",
+    "guideline": "Reflow (WCAG 2.1)",
+    "level": "AA",
+    "summary": "User must be able to browse a website using a 320 pixel wide screen without having to scroll horizontally (There are some exceptions)",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.11",
+    "guideline": "Non-Text Contrast  (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Extend color contrast of at least 3:1 to non-text content such as infographics, diagrams, states, etc.",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.12",
+    "guideline": "Text Spacing  (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Changing text style properties shouldn't break the page (line height, spacing after paragraph, letter spacing, word spacing)",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "1.4.13",
+    "guideline": "Content on Hover or Focus  (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Elements that are being shown on focus or hover (skip navigation, tooltip) should be dismissible(Esc), hoverable, persistent",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.1.1",
+    "guideline": "Keyboard",
+    "level": "A",
+    "summary": "Accessible by keyboard only",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.1.2",
+    "guideline": "No Keyboard Trap",
+    "level": "A",
+    "summary": "Don’t trap keyboard users",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.1.3",
+    "guideline": "Keyboard (No Exception)",
+    "level": "AAA",
+    "summary": "Accessible by keyboard only, without exception",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.1.4",
+    "guideline": "Character Key Shortcuts (WCAG 2.1)",
+    "level": "A",
+    "summary": "If using single letter keyboard shortcut, the shortcut should be able to be turn off, or remap, or active only on focus",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.1",
+    "guideline": "Timing Adjustable",
+    "level": "A",
+    "summary": "Time limits have user controls",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.2",
+    "guideline": "Pause, Stop, Hide",
+    "level": "A",
+    "summary": "Provide user controls for moving content",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.3",
+    "guideline": "No Timing",
+    "level": "AAA",
+    "summary": "No time limits",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.4",
+    "guideline": "Interruptions",
+    "level": "AAA",
+    "summary": "Don’t interrupt users",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.5",
+    "guideline": "Re-authenticating",
+    "level": "AAA",
+    "summary": "Save user data when re-authenticating",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.2.6",
+    "guideline": "Timeouts  (WCAG 2.1)",
+    "level": "AAA",
+    "summary": "Users should be warned if user inactivity could cause data loss, unless data is preserved for more than 20h",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.3.1",
+    "guideline": "Three Flashes or Below",
+    "level": "A",
+    "summary": "No content flashes more than three times per second",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.3.2",
+    "guideline": "Three Flashes",
+    "level": "AAA",
+    "summary": "No content flashes more than three times per second",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.3.3",
+    "guideline": "Animation from Interactions  (WCAG 2.1)",
+    "level": "AAA",
+    "summary": "Motion animation triggered by interaction can be disabled",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.1",
+    "guideline": "Bypass Blocks",
+    "level": "A",
+    "summary": "Provide a ‘Skip to Content’ link",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.10",
+    "guideline": "Section Headings",
+    "level": "AAA",
+    "summary": "Break up content with headings",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.11",
+    "guideline": "Focus Not Obscured (Minimum) (WCAG 2.2)",
+    "level": "AA",
+    "summary": "When a user interface component receives keyboard focus, the component is not entirely hidden due to author-created content.",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.12",
+    "guideline": "Focus Not Obscured (Enhanced) (WCAG 2.2)",
+    "level": "AAA",
+    "summary": "When a user interface component receives keyboard focus, no part of the component is hidden by author-created content.",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.13",
+    "guideline": "Focus Appearance (WCAG 2.2)",
+    "level": "AAA",
+    "summary": "The keyboard focus indicator is at least 2 pixel thick and has a contrast ratio of at least 3:1 to the unfocused state",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.2",
+    "guideline": "Page Titled",
+    "level": "A",
+    "summary": "Use helpful and clear page titles",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.3",
+    "guideline": "Focus Order",
+    "level": "A",
+    "summary": "Logical order",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.4",
+    "guideline": "Link Purpose (In Context)",
+    "level": "A",
+    "summary": "Every link’s purpose is clear from its context",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.5",
+    "guideline": "Multiple Ways",
+    "level": "AA",
+    "summary": "Offer several ways to find pages",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.6",
+    "guideline": "Headings and Labels",
+    "level": "AA",
+    "summary": "Use clear headings and labels",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.7",
+    "guideline": "Focus Visible",
+    "level": "AA",
+    "summary": "Ensure keyboard focus is visible and clear",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.8",
+    "guideline": "Location",
+    "level": "AAA",
+    "summary": "Let users know where they are within a set of web pages",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.4.9",
+    "guideline": "Link Purpose (Link Only)",
+    "level": "AAA",
+    "summary": "Every link’s purpose is clear from its text",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.1",
+    "guideline": "Pointer Gestures (WCAG 2.1)",
+    "level": "A",
+    "summary": "Complex gesture (Pinch, zooming, swiping) should have a simpler gesture alternative (Tap, double taps, long press)",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.2",
+    "guideline": "Pointer Cancellation  (WCAG 2.1)",
+    "level": "A",
+    "summary": "When using single pointer events, one of the following should be true, No Down-Event, Abort or Undo, Up Reversal, Essential",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.3",
+    "guideline": "Label in Name (WCAG 2.1)",
+    "level": "A",
+    "summary": "Text in buttons or label should be readable by assistant technologies and can be used with Text-to-speech",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.4",
+    "guideline": "Motion Actuation  (WCAG 2.1)",
+    "level": "A",
+    "summary": "Functionalities trigger by moving the device should have a fallback without (Eg some apps use shake to undo)",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.5",
+    "guideline": "Target Size (WCAG 2.1)",
+    "level": "AAA",
+    "summary": "The size of the target for pointer inputs is at least 44 by 44 CSS pixels",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.6",
+    "guideline": "Concurrent Input Mechanisms (WCAG 2.1)",
+    "level": "AAA",
+    "summary": "Inputs must to available to use with a different mechanism (Mouse, keyboard, stylus, touch, voice)",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.7",
+    "guideline": "Dragging Movements  (WCAG 2.2)",
+    "level": "AA",
+    "summary": "All functionality that uses a dragging movement for operation can be achieved by a single pointer without dragging unless essential or functionality determined by user agent",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "2.5.8",
+    "guideline": "Target Size (Minimum)  (WCAG 2.2)",
+    "level": "AA",
+    "summary": "The size of the target for pointer inputs is at least 24 by 24 CSS pixels, except where: spacing, equivalent, inline, user agent control, essential",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.1",
+    "guideline": "Language of Page",
+    "level": "A",
+    "summary": "Page has a language assigned",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.2",
+    "guideline": "Language of Parts",
+    "level": "AA",
+    "summary": "Tell users when the language on a page changes",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.3",
+    "guideline": "Unusual words",
+    "level": "AAA",
+    "summary": "Explain any strange words",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.4",
+    "guideline": "Abbreviations",
+    "level": "AAA",
+    "summary": "Explain any abbreviations",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.5",
+    "guideline": "Reading Level",
+    "level": "AAA",
+    "summary": "Users with nine years of school can read your content",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.1.6",
+    "guideline": "Pronunciation",
+    "level": "AAA",
+    "summary": "Explain any words that are hard to pronounce",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.1",
+    "guideline": "On Focus",
+    "level": "A",
+    "summary": "Elements do not change when they receive focus",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.2",
+    "guideline": "On Input",
+    "level": "A",
+    "summary": "Elements do not change when they receive input",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.3",
+    "guideline": "Consistent Navigation",
+    "level": "AA",
+    "summary": "Use menus consistently",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.4",
+    "guideline": "Consistent Identification",
+    "level": "AA",
+    "summary": "Use icons and buttons consistently",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.5",
+    "guideline": "Change on Request",
+    "level": "AAA",
+    "summary": "Don’t change elements on your website until users ask",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.2.6",
+    "guideline": "Consistent Help (WCAG 2.2)",
+    "level": "A",
+    "summary": "Help mechanisms are available on every page in the same manner",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.1",
+    "guideline": "Error Identification",
+    "level": "A",
+    "summary": "Clearly identify input errors",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.2",
+    "guideline": "Labels or Instructions",
+    "level": "A",
+    "summary": "Label elements and give instructions",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.3",
+    "guideline": "Error Suggestion",
+    "level": "AA",
+    "summary": "Suggest fixes when users make errors",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.4",
+    "guideline": "Error Prevention (Legal, Financial, Data)",
+    "level": "AA",
+    "summary": "Reduce the risk of input errors for sensitive data",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.5",
+    "guideline": "Help",
+    "level": "AAA",
+    "summary": "Provide detailed help and instructions",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.6",
+    "guideline": "Error Prevention (All)",
+    "level": "AAA",
+    "summary": "Reduce the risk of all input errors",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.7",
+    "guideline": "Redundant Entry (WCAG 2.2)",
+    "level": "A",
+    "summary": "Information previously entered by or provided to the user that is required to be entered again in the same process is either auto-populated or available to select (Exceptions)",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.8",
+    "guideline": "Accessible Authentication (Minimum) (WCAG 2.2)",
+    "level": "AA",
+    "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism, object recognition, personal content",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "3.3.9",
+    "guideline": "Accessible Authentication (Enhanced) (WCAG 2.2)",
+    "level": "AAA",
+    "summary": "A cognitive function test is not required in authentication unless at least one of the following is met: alternative, mechanism",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "4.1.1",
+    "guideline": "Parsing (removed in WCAG 2.2)",
+    "level": "A",
+    "summary": "No major code errors",
+    "status": "Passing",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "4.1.2",
+    "guideline": "Name, Role, Value",
+    "level": "A",
+    "summary": "Build all components for accessibility",
+    "status": "Not Applicable",
+    "comment": ""
+  },
+  {
+    "guidelineNumber": "4.1.3",
+    "guideline": "Status Messages (WCAG 2.1)",
+    "level": "AA",
+    "summary": "Content that is updated dynamically must be notified to users of assistive technologies without getting visual focus",
+    "status": "Passing",
+    "comment": ""
+  }
+]
+
+<Meta of={Stories} name="Accessibility" />
+
+<AccessibilityPage
+  stories={Stories}
+  componentName={Stories.default.title.replace('Components/','')}
+  data={data}
+  customNotes=""
+/>
