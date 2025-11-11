@@ -28,20 +28,6 @@ export namespace Components {
         "icon": string;
         "ifxIcon": any;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
 }
 export interface IfxAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -86,16 +72,9 @@ declare global {
         prototype: HTMLIfxIconElement;
         new (): HTMLIfxIconElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-icon": HTMLIfxIconElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -123,24 +102,9 @@ declare namespace LocalJSX {
         "ifxIcon"?: any;
         "onConsoleError"?: (event: IfxIconCustomEvent<boolean>) => void;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface IntrinsicElements {
         "ifx-alert": IfxAlert;
         "ifx-icon": IfxIcon;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -149,7 +113,6 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-icon": LocalJSX.IfxIcon & JSXBase.HTMLAttributes<HTMLIfxIconElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }
