@@ -125,15 +125,6 @@ export class IfxTabs {
     }, 0);
   }
 
-  setDefaultOrientation() {
-    const validOrientations = ['horizontal', 'vertical'];
-    const lowercaseOrientation = this.orientation.toLowerCase();
-
-    if (!validOrientations.includes(lowercaseOrientation)) {
-      this.internalOrientation = 'horizontal';
-    } else this.internalOrientation = this.orientation;
-  }
-
   async componentDidLoad() {
     if(!isNestedInIfxComponent(this.el)) {
       const framework = detectFramework();
