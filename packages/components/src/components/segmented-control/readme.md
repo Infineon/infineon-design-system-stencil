@@ -7,11 +7,13 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                   | Default     |
-| --------- | --------- | ----------- | ---------------------- | ----------- |
-| `caption` | `caption` |             | `string`               | `''`        |
-| `label`   | `label`   |             | `string`               | `''`        |
-| `size`    | `size`    |             | `"regular" \| "small"` | `'regular'` |
+| Property   | Attribute  | Description | Type                   | Default     |
+| ---------- | ---------- | ----------- | ---------------------- | ----------- |
+| `caption`  | `caption`  |             | `string`               | `''`        |
+| `error`    | `error`    |             | `boolean`              | `false`     |
+| `label`    | `label`    |             | `string`               | `''`        |
+| `required` | `required` |             | `boolean`              | `false`     |
+| `size`     | `size`     |             | `"regular" \| "small"` | `'regular'` |
 
 
 ## Events
