@@ -1,3 +1,21 @@
+# v38.4.0 (Mon Nov 10 2025)
+
+#### 🚀 Enhancement
+
+- Navbar: collapses dropdown menu on item click [#2079](https://github.com/Infineon/infineon-design-system-stencil/pull/2079) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.3.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.3.0 (Mon Nov 03 2025)
 
 #### 🚀 Enhancement
