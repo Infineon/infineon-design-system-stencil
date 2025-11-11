@@ -8,6 +8,7 @@ import PopoverCompact from '../../../public-storybook/images/popover/popover-com
 import PopoverInteractiveElements from '../../../public-storybook/images/popover/popover-interactive-elements.png';
 import PopoverDirections from '../../../public-storybook/images/popover/popover-directions.png';
 import PopoverFeatureComparison from '../../../public-storybook/images/popover/popover-feature-comparison.png';
+import PopoverDismissible from '../../../public-storybook/images/popover/popover-dismissible.png';
 
 
 
@@ -52,6 +53,7 @@ Popover reveals brief helper content anchored to a specific element. It is activ
 - For navigation menus, option lists or purely passive hints that appear on hover.
   
 
+
 ##  Anatomy
 
 <img src={PopoverAnatomy} alt="Popover Anatomy" width="50%" />
@@ -70,7 +72,7 @@ Support text provides brief, contextual guidance or explanation related to the t
 
 **Container (3)**\
 
-The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. 
+The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. The width of the container can be set iindividually.
 
   
 
@@ -90,6 +92,14 @@ A directional arrow that visually connects the popover to its trigger.
 Optional action area placed at the bottom of the popover. Add either buttons or links that relate directly to the popover content.
 
 
+## Positioning 
+
+The popover responsively repositions to stay within the viewport as screen size changes, and its directional indicator (arrow) updates to match the current placement. You can choose between Top, Left, Right, Bottom and Auto. 
+
+## Directions 
+
+<img src={PopoverDirections} alt="Popover Directions" />
+
 
 ## Mouse Interaction
 
@@ -99,18 +109,19 @@ Users dismiss the popover by clicking the close icon in the top-right corner. Wh
 ##  Variants
 
   
-###  Compact
+###  Default
 
 This is the default for brief, contextual help, which shows only the required title and support text.
 <img src={PopoverCompact} alt="Popover Compact" width="50%" />
-  
+
+### Dismissible
+
+Adds a close (dismiss) icon in the top-right corner of the popover. Use it when you do not want to use a button from the action area as a close button. The popover will stay open until the user uses it.
+<img src={PopoverDismissible} alt="Popover Dismissible" />
 
 ####  With Interactive Elements
 
-This variant adds a bottom action area with either buttons or links. 
+This variant adds a bottom action area with either buttons or links. There is no limit on the number of actions, but we recommend using no more than three or four, as the popover is not intended for complex interactions. To keep the popover lightweight, only the tertiary button can be used.
 <img src={PopoverInteractiveElements} alt="Popover Interactive Elements"  />
 
   
-## Directions 
-
-<img src={PopoverDirections} alt="Popover Directions" />
