@@ -1591,20 +1591,6 @@ export namespace Components {
         "initiallySelected": boolean;
         "value": string;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-    }
 }
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2781,12 +2767,6 @@ declare global {
         prototype: HTMLIfxTreeViewItemElement;
         new (): HTMLIfxTreeViewItemElement;
     };
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
-    }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
@@ -2868,7 +2848,6 @@ declare global {
         "ifx-tooltip": HTMLIfxTooltipElement;
         "ifx-tree-view": HTMLIfxTreeViewElement;
         "ifx-tree-view-item": HTMLIfxTreeViewItemElement;
-        "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -4460,20 +4439,6 @@ declare namespace LocalJSX {
         "onIfxTreeViewItemExpandChange"?: (event: IfxTreeViewItemCustomEvent<TreeViewExpandChangeEvent>) => void;
         "value"?: string;
     }
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-    }
     interface IntrinsicElements {
         "ifx-accordion": IfxAccordion;
         "ifx-accordion-item": IfxAccordionItem;
@@ -4555,7 +4520,6 @@ declare namespace LocalJSX {
         "ifx-tooltip": IfxTooltip;
         "ifx-tree-view": IfxTreeView;
         "ifx-tree-view-item": IfxTreeViewItem;
-        "my-component": MyComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -4642,7 +4606,6 @@ declare module "@stencil/core" {
             "ifx-tooltip": LocalJSX.IfxTooltip & JSXBase.HTMLAttributes<HTMLIfxTooltipElement>;
             "ifx-tree-view": LocalJSX.IfxTreeView & JSXBase.HTMLAttributes<HTMLIfxTreeViewElement>;
             "ifx-tree-view-item": LocalJSX.IfxTreeViewItem & JSXBase.HTMLAttributes<HTMLIfxTreeViewItemElement>;
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
 }

@@ -1,7 +1,7 @@
 import { Component, h, Element, Host, Prop, State } from '@stencil/core';
 import { trackComponent } from '../../shared/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { isNestedInIfxComponent } from '../..//shared/utils/dom-utils';
+import { detectFramework } from '../..//shared/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';

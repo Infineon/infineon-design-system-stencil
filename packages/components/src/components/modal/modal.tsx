@@ -1,9 +1,9 @@
 import { Component, Prop, Element, State, Event, Host, EventEmitter, h, Watch } from '@stencil/core';
 import { trackComponent } from '../../shared/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
-import { queryShadowRoot, isHidden, isFocusable } from '../../global/utils/focus-trap';
-import { animationTo, KEYFRAMES } from '../../global/utils/animation';
+import { isNestedInIfxComponent } from '../..//shared/utils/dom-utils';
+import { detectFramework } from '../..//shared/utils/framework-detection';
+import { queryShadowRoot, isHidden, isFocusable } from '../..//shared/utils/focus-trap';
+import { animationTo, KEYFRAMES } from '../..//shared/utils/animation';
  
 type CloseEventTrigger = 'CLOSE_BUTTON' | 'ESCAPE_KEY' | 'BACKDROP';
 

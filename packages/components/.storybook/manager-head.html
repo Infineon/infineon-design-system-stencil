@@ -1,0 +1,19 @@
+<!-- Allows to customize the Storybook manager UI. Note that dynamic content can also be added via the managerHead property in main.ts -->
+<style>
+    * {
+        --tree-node-background-hover: #DFF4F3 !important;
+    }
+
+    .sidebar-item div button:hover {
+        background-color: #DFF4F3 !important;
+    }
+
+    .sidebar-item[data-selected="true"] {
+        /*  dont change */
+        --tree-node-background-hover: #0A8276 !important;
+    }
+
+    .sidebar-item[data-selected="true"] div button {
+        background-color: #0A8276 !important;
+    }
+</style>

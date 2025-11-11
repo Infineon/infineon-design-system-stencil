@@ -17,6 +17,13 @@ export const config: Config = {
       customElementsExportBehavior: 'auto-define-custom-elements',
       externalRuntime: false,
     },
+    /**
+     * This output target creates a www-build that can be used for demoing the components or for documentation sites.
+     * It is also required for Storybook integration.
+     */
+    {
+      type: 'www'
+    },  
     {
       type: 'docs-readme',
     },

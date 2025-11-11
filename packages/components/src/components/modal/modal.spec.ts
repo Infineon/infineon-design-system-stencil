@@ -2,7 +2,7 @@ import { newSpecPage } from '@stencil/core/testing';
 import { IfxModal } from './modal';
 
 // Mock the animation utility
-jest.mock('../../global/utils/animation', () => ({
+jest.mock('../..//shared/utils/animation', () => ({
   animationTo: jest.fn(() => ({
     addEventListener: (event, callback) => {
       if (event === 'finish') setTimeout(callback, 0);

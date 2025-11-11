@@ -1,7 +1,7 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { FileUpload } from './file-upload';
 
-jest.mock('../../global/utils/tracking', () => ({
+jest.mock('../..//shared/utils/tracking', () => ({
   trackComponent: jest.fn(),
   isNestedInIfxComponent: jest.fn().mockReturnValue(false),
   initializeTracking: jest.fn()

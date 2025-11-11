@@ -35,17 +35,26 @@
     "build": "stencil build",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "storybook": "storybook dev -p 6262",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@stencil/core": "^4.27.1",
     "@stencil/sass": "^3.2.2",
+    "@stencil/vue-output-target": "^0.11.8",
+    "@storybook/addon-a11y": "^10.0.6",
+    "@storybook/addon-docs": "^10.0.6",
+    "@storybook/web-components-vite": "^10.0.6",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.5",
     "jest": "^30.2.0",
     "jest-cli": "^30.2.0",
     "jest-stencil-runner": "^0.0.9",
-    "puppeteer": "^24.3.0",
+    "lit": "^3.3.1",
+    "storybook": "^10.0.6",
+    "vite-plugin-live-reload": "^3.0.5",
+    "workbox-build": "4.3.1",
     "typescript": "^5.9.3"
   },
   "license": "MIT",

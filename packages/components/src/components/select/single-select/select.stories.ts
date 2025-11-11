@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 //use string instead of json format here to avoid ugly formatting in the storybook code snippet
 // let options = "[{'value': 'a','label': 'option a','selected': 'false'},{'value': 'b','label': 'option b','selected': 'false'},{'value': 'c','label': 'option c','selected': 'false'}]"
