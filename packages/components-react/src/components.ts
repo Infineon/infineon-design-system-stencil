@@ -477,7 +477,7 @@ type IfxFileUploadEvents = {
     onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
     onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>,
     onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
     onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
