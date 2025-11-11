@@ -466,8 +466,16 @@ export class FileUpload {
         this.ifxFileUploadComplete.emit({ file });
         this.ifxFileUploadChange.emit({ files: this.files });
 
-        if (this.uploadTasks.every(t => t.completed)) {
-          this.ifxFileUploadAllComplete.emit({ files: this.files });
+        // Check if all tasks are finished AND at least one was successful
+        if (this.uploadTasks.every(t => t.completed || t.error)) {
+          const hasSuccessfulUploads = this.uploadTasks.some(t => t.completed && !t.error);
+          if (hasSuccessfulUploads) {
+            // Only include successfully uploaded files in the event
+            const successfulFiles = this.uploadTasks
+              .filter(t => t.completed && !t.error)
+              .map(t => t.file);
+            this.ifxFileUploadAllComplete.emit({ files: successfulFiles });
+          }
         }
       }).catch(() => {
         task.error = true;
@@ -478,6 +486,18 @@ export class FileUpload {
           message: 'Upload handler rejected file',
           reason: 'custom'
         });
+
+        // Check if all tasks are finished AND at least one was successful
+        if (this.uploadTasks.every(t => t.completed || t.error)) {
+          const hasSuccessfulUploads = this.uploadTasks.some(t => t.completed && !t.error);
+          if (hasSuccessfulUploads) {
+            // Only include successfully uploaded files in the event
+            const successfulFiles = this.uploadTasks
+              .filter(t => t.completed && !t.error)
+              .map(t => t.file);
+            this.ifxFileUploadAllComplete.emit({ files: successfulFiles });
+          }
+        }
       });
     } else {
       const totalSize = file.size;
@@ -498,14 +518,20 @@ export class FileUpload {
           this.ifxFileUploadComplete.emit({ file });
           this.ifxFileUploadChange.emit({ files: this.files });
 
-          if (this.uploadTasks.every(t => t.completed)) {
-            this.ifxFileUploadAllComplete.emit({ files: this.files });
+          // Check if all tasks are finished AND at least one was successful
+          if (this.uploadTasks.every(t => t.completed || t.error)) {
+            const hasSuccessfulUploads = this.uploadTasks.some(t => t.completed && !t.error);
+            if (hasSuccessfulUploads) {
+              // Only include successfully uploaded files in the event
+              const successfulFiles = this.uploadTasks
+                .filter(t => t.completed && !t.error)
+                .map(t => t.file);
+              this.ifxFileUploadAllComplete.emit({ files: successfulFiles });
+            }
           }
         }
       }, 200);
     }
-
-    this.uploadTasks = [...this.uploadTasks, task];
   }
 
   cancelUpload(file: File) {
