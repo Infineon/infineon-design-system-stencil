@@ -1,3 +1,39 @@
+# v38.6.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- Mobile optimization for table, tabs and pagination [#2046](https://github.com/Infineon/infineon-design-system-stencil/pull/2046) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.5.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- File-upload: fixes event emission bug. ifxFileUploadAllComplete now fires even when some tasks fail, and it only includes successful files [#2094](https://github.com/Infineon/infineon-design-system-stencil/pull/2094) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.4.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.4.0 (Mon Nov 10 2025)
 
 #### 🚀 Enhancement
