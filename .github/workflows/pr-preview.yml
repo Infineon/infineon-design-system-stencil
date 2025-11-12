@@ -35,13 +35,11 @@ jobs:
             pretty-name: "React Example"
           - name: vue-example
             pretty-name: "Vue Example"
-    steps:
-      - id: build-and-deploy-examples
-        uses: .github/workflows/shared-build-deploy-examples.yml
-        with:
-          name: ${{ matrix.app.name }}
-          package-version: ${{ needs.library-build-publish.outputs.published-version }}
-          deployment: pr
+    uses: .github/workflows/shared-build-deploy-examples.yml
+    with:
+      name: ${{ matrix.app.name }}
+      package-version: ${{ needs.library-build-publish.outputs.published-version }}
+      deployment: pr
 
   comment-pr:
     needs: [build-and-deploy-examples, library-build-publish]
