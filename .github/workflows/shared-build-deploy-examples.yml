@@ -27,15 +27,15 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
+
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'pnpm'
-      
-      - name: Enable corepack and install pnpm
-        run: |
-          corepack enable
       
       - name: Update ${{ inputs.name }} to use published version
         run: |
@@ -100,4 +100,3 @@ jobs:
           outputs: |
             name: ${{ matrix.app['pretty-name'] }}
             url: ${{ steps.deploy.outputs.deployment-url }}
-            
