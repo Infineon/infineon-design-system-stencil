@@ -13,8 +13,8 @@ jobs:
   library-build-publish:
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     with:
+      snapshot: true
       snapshot-tag: pr
-      snapshot-suffix: ${{ github.event.number }}
     secrets: inherit
 
   build-and-deploy-examples:
