@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 3001",
     "build": "vite build",
-    "preview": "vite preview --port 4001"
+    "preview": "vite preview --port 4001",
+    "cicd-update-version": "node scripts/update-cdn-version.js '$PACKAGE_VERSION'"
   },
   "keywords": [],
   "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",

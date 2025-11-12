@@ -39,11 +39,10 @@ jobs:
       
       - name: Update ${{ inputs.name }} to use published version
         run: |
-          find examples/${{ inputs.name }} -name "package.json" -exec \
-            sed -i "s/\"workspace:\*\"/\"${{ inputs.package-version }}\"/" {} \;
+          pnpm run --filter='${{ inputs.name }}' cicd-update-version
       
       - name: Install dependencies
-        run: pnpm install --filter='${{ inputs.name }}' 
+        run: pnpm install --filter='${{ inputs.name }}' --no-frozen-lockfile
       
       - name: Build ${{ inputs.name }} example
         run: |
@@ -87,13 +86,13 @@ jobs:
     outputs:
       url: ${{ steps.deploy-pr.outputs.deployment-url || '' }}
 
-  write:
+  collect-outputs:
     runs-on: ubuntu-latest
     needs: [ deploy ]
     steps:        
       ## Write urls matrix outputs workaround 
       - uses: cloudposse/github-action-matrix-outputs-write@v1
-        id: write-matrix-outputs
+        id: collect-matrix-outputs
         with:
           matrix-step-name: build-and-deploy-examples
           matrix-key: ${{ matrix.app.name }}

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --port 3006",
     "build": "vite build",
-    "preview": "vite preview --port 4006"
+    "preview": "vite preview --port 4006",
+    "cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
   },
   "dependencies": {
     "@infineon/infineon-design-system-vue": "workspace:*",
