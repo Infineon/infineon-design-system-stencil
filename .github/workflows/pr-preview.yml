@@ -1,6 +1,7 @@
 name: PR Preview
 
 on:
+  push:
   pull_request:
     types: [opened, synchronize, reopened]
 
