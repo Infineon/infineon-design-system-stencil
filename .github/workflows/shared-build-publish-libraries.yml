@@ -41,7 +41,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build stencil library
-        run: pnpm -F @infineon/infineon-design-system-stencil-components build
+        run: pnpm -F @infineon/infineon-design-system-stencil build
 
       - name: Build Vue wrapper library
         run: pnpm -F @infineon/infineon-design-system-vue build
@@ -83,7 +83,7 @@ jobs:
       #     fi
           
       #     # Get published version
-      #     VERSION=$(jq -r '.version' packages/stencil-components/package.json)
+      #     VERSION=TODO
       #     echo "version=$VERSION" >> $GITHUB_OUTPUT
       #     echo "published=true" >> $GITHUB_OUTPUT
       #     echo "Published version: $VERSION"
