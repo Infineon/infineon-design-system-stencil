@@ -59,7 +59,6 @@ jobs:
 
   deploy:
     needs: [ build ]
-    if: ${{ inputs.deployment == 'pr' }}
     runs-on: ubuntu-latest
     steps:     
       - name: Download artifacts
