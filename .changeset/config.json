@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [ [ "@infineon/infineon-design-system-stencil", "@infineon/infineon-design-system-vue", "@infineon/infineon-design-system-react", "@infineon/infineon-design-system-angular" ] ],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "master",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

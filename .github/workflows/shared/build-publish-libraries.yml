@@ -1,0 +1,87 @@
+name: Build and Publish Libraries
+
+on:
+  workflow_call:
+    inputs:
+      snapshot:
+        required: true
+        type: boolean
+      snapshot-tag:
+        required: false
+        type: string
+        default: 'pr'
+    outputs:
+      published-version:
+        description: "Published version"
+        value: ${{ jobs.publish.outputs.version }}
+      packages-published:
+        description: "Whether packages were published"
+        value: ${{ jobs.publish.outputs.published }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      published: ${{ steps.publish.outputs.published }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build stencil library
+        run: pnpm -F @infineon/infineon-design-system-stencil-components build
+
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      # Dummy output version
+      - name: Set version output
+        id: version
+        run: |
+          VERSION=38.6.0
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Set published version to $VERSION"
+          echo "published=true" >> $GITHUB_OUTPUT
+
+      # - name: Create snapshot version
+      #   if: ${{ inputs.snapshot }}
+      #   run: |
+      #     if [ -n "${{ inputs.snapshot-suffix }}" ]; then
+      #       SNAPSHOT="${{ inputs.snapshot-tag }}-${{ inputs.snapshot-suffix }}-$(git rev-parse --short HEAD)"
+      #     else
+      #       SNAPSHOT="${{ inputs.snapshot-tag }}-$(git rev-parse --short HEAD)"
+      #     fi
+      #     echo "Creating snapshot version: $SNAPSHOT"
+      #     pnpm changeset version --snapshot $SNAPSHOT
+      
+      # # Publish
+      # - name: Publish packages
+      #   id: publish
+      #   run: |
+      #     if [ "${{ inputs.snapshot }}" = "true" ]; then
+      #       pnpm changeset publish --tag ${{ inputs.snapshot-tag }}
+      #     else
+      #       pnpm changeset publish
+      #     fi
+          
+      #     # Get published version
+      #     VERSION=$(jq -r '.version' packages/stencil-components/package.json)
+      #     echo "version=$VERSION" >> $GITHUB_OUTPUT
+      #     echo "published=true" >> $GITHUB_OUTPUT
+      #     echo "Published version: $VERSION"
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

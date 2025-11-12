@@ -1,0 +1,93 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: pr-preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  library-build-publish:
+    uses: ./.github/workflows/shared/build-publish.yml
+    with:
+      snapshot-tag: pr
+      snapshot-suffix: ${{ github.event.number }}
+    secrets: inherit
+
+  build-and-deploy-examples:
+    needs: library-build-publish
+    strategy:
+      matrix:
+        app:
+          - name: html-cdn-example
+            pretty-name: "HTML CDN Example"
+          - name: html-vite-example
+            pretty-name: "HTML Vite Example"
+          - name: angular-module-example
+            pretty-name: "Angular Example (Module)"
+          - name: angular-standalone-example
+            pretty-name: "Angular Example (Standalone components)"
+          - name: react-example
+            pretty-name: "React Example"
+          - name: vue-example
+            pretty-name: "Vue Example"
+    steps:
+      - uses: ./.github/workflows/shared/build-deploy-examples.yml
+        with:
+          name: ${{ matrix.app.name }}
+          package-version: ${{ needs.library-build-publish.outputs.published-version }}
+          deployment: pr
+        secrets: inherit
+      
+      # Write matrix outputs
+      - uses: cloudposse/github-action-matrix-outputs-write@v1
+        id: write-matrix-outputs
+        with:
+          matrix-step-name: build-and-deploy-examples
+          matrix-key: ${{ matrix.app.name }}
+          outputs: |
+            name: ${{ matrix.app['pretty-name'] }}
+            url: ${{ steps.deploy-pr.outputs.preview-url }}
+
+  comment-pr:
+    needs: [build-and-deploy-examples, library-build-publish]
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: cloudposse/github-action-matrix-outputs-read@v1
+        id: read
+        with:
+          matrix-step-name: build-and-deploy-examples
+
+      - name: Build PR comment body
+        id: build-comment
+        uses: actions/github-script@v7
+        env:
+          RESULT_JSON: ${{ steps.read.outputs.result }}
+          VERSION: ${{ needs.library-build-publish.outputs.published-version }}
+        with:
+          script: |
+            const result = JSON.parse(process.env.RESULT_JSON || "{}");
+            const lines = Object.entries(result)
+              .map(([key, v]) => {
+                const name = v.outputs?.name || key;
+                const url  = v.outputs?.url  || "";
+                return url ? `- [${name}](${url})` : `- ${name} (no preview URL)`;
+              })
+              .join("\n");
+            const msg = ```### Preview Links for Deployed Examples
+            ${lines}
+            
+            Version: ${process.env.VERSION}```;
+            core.setOutput("message", msg);
+
+      - name: Comment PR with preview links
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: "PR Preview Links"
+          message: ${{ steps.build-comment.outputs.message }}
+          
