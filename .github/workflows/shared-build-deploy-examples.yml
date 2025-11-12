@@ -57,7 +57,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    needs: build
+    needs: [ build ]
     if: ${{ inputs.deployment == 'pr' }}
     runs-on: ubuntu-latest
     steps:     
@@ -87,3 +87,17 @@ jobs:
     outputs:
       url: ${{ steps.deploy-pr.outputs.deployment-url || '' }}
 
+  write:
+    runs-on: ubuntu-latest
+    needs: [ deploy ]
+    steps:        
+      ## Write urls matrix outputs workaround 
+      - uses: cloudposse/github-action-matrix-outputs-write@v1
+        id: write-matrix-outputs
+        with:
+          matrix-step-name: build-and-deploy-examples
+          matrix-key: ${{ matrix.app.name }}
+          outputs: |
+            name: ${{ matrix.app['pretty-name'] }}
+            url: ${{ steps.deploy.outputs.deployment-url }}
+            

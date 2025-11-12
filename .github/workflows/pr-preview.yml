@@ -41,16 +41,6 @@ jobs:
           name: ${{ matrix.app.name }}
           package-version: ${{ needs.library-build-publish.outputs.published-version }}
           deployment: pr
-      
-      # Write matrix outputs
-      - uses: cloudposse/github-action-matrix-outputs-write@v1
-        id: write-matrix-outputs
-        with:
-          matrix-step-name: build-and-deploy-examples
-          matrix-key: ${{ matrix.app.name }}
-          outputs: |
-            name: ${{ matrix.app['pretty-name'] }}
-            url: ${{ steps.build-and-deploy-examples.outputs.preview-url }}
 
   comment-pr:
     needs: [build-and-deploy-examples, library-build-publish]
@@ -79,10 +69,10 @@ jobs:
                 return url ? `- [${name}](${url})` : `- ${name} (no preview URL)`;
               })
               .join("\n");
-            const msg = ```### Preview Links for Deployed Examples
+            const msg = `### Preview Links for Deployed Examples
             ${lines}
             
-            Version: ${process.env.VERSION}```;
+            Version: ${process.env.VERSION}`;
             core.setOutput("message", msg);
 
       - name: Comment PR with preview links
