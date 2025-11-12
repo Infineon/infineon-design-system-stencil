@@ -1,0 +1,137 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: pr-preview-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-publish-library:
+    uses: ./.github/workflows/shared-build-publish-libraries.yml
+    secrets: inherit
+    permissions:
+      contents: write
+      pages: write
+      actions: write
+      issues: write
+      pull-requests: write  
+
+  build-deploy-storybook:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-storybook.yml
+    with:
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-html-cdn-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: html-cdn-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-html-vite-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: html-vite-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-angular-module-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: angular-module-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-angular-standalone-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: angular-standalone-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-react-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: react-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
+    permissions:
+      contents: read
+      pages: write
+
+  build-deploy-vue-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: vue-example
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
+    permissions:
+      contents: read
+      pages: write
+
+  comment-pr:
+    needs: 
+      - build-publish-library
+      - build-deploy-html-cdn-example
+      - build-deploy-html-vite-example
+      - build-deploy-angular-module-example
+      - build-deploy-angular-standalone-example
+      - build-deploy-react-example
+      - build-deploy-vue-example
+      - build-deploy-storybook
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment PR with preview links
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: "PR Preview Links"
+          message: |
+            ### Storybook Preview
+            - [Storybook](${{ needs.build-deploy-storybook.outputs.url }})
+
+            ### Preview Links for Deployed Examples
+            - [HTML CDN Example](${{ needs.build-deploy-html-cdn-example.outputs.url }})
+            - [HTML Vite Example](${{ needs.build-deploy-html-vite-example.outputs.url }})
+            - [Angular Example (Module)](${{ needs.build-deploy-angular-module-example.outputs.url }})
+            - [Angular Example (Standalone)](${{ needs.build-deploy-angular-standalone-example.outputs.url }})
+            - [React Example](${{ needs.build-deploy-react-example.outputs.url }})
+            - [Vue Example](${{ needs.build-deploy-vue-example.outputs.url }})
+
+            Version: ${{ needs.build-publish-library.outputs.published-version }}
+          number: 2100

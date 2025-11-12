@@ -1,0 +1,68 @@
+name: Build and Publish Libraries
+
+on:
+  workflow_call:
+    outputs:
+      published-version:
+        description: "Published version"
+        value: ${{ jobs.build-and-publish.outputs.version }}
+      packages-published:
+        description: "Whether packages were published"
+        value: ${{ jobs.build-and-publish.outputs.published }}
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    outputs:
+      version: ${{ steps.publish.outputs.version }}
+      published: ${{ steps.publish.outputs.published }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build stencil library
+        run: pnpm -F @infineon/infineon-design-system-stencil build
+
+      - name: Build Vue wrapper library
+        run: pnpm -F @infineon/infineon-design-system-vue build
+
+      - name: Build React wrapper library
+        run: pnpm -F @infineon/infineon-design-system-react build
+
+      - name: Build Angular wrapper library
+        run: pnpm -F @infineon/infineon-design-system-angular build
+
+      - name: Publish packages
+        id: publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION=$(pnpm exec auto shipit --dry-run --quiet)
+          pnpm exec auto shipit
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Published version: $VERSION"

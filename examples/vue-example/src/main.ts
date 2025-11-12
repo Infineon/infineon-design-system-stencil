@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { InfineonDesignSystem } from '@infineon/infineon-design-system-vue';
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
 
-createApp(App).use(InfineonDesignSystem).mount('#app')
+createApp(App).use(ComponentLibrary).mount('#app')

@@ -20,10 +20,10 @@
   "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
   "license": "MIT",
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "workspace:*"
+    "@infineon/infineon-design-system-stencil": "workspace:*",
+    "@stencil/react-output-target": "^1.2.0"
   },
   "devDependencies": {
-    "@stencil/react-output-target": "^1.2.0",
     "@types/react": "^19.2.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

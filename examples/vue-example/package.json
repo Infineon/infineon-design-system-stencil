@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "vite --port 3006",
     "build": "vite build",
-    "preview": "vite preview --port 4006"
+    "preview": "vite preview --port 4006",
+    "cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
   },
+  "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+  "license": "MIT",
   "dependencies": {
     "@infineon/infineon-design-system-vue": "workspace:*",
     "vue": "^3.5.22"

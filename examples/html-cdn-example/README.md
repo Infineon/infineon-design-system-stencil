@@ -11,7 +11,7 @@ To use the components via CDN, you don't need to install any packages. You can s
 
 > Note that this example app does not load the components via CDN for demonstration purposes. Instead, it uses a local build of the components for faster development and testing.
 
-Then you can use the components in your HTML as shown in the [index.html](./src/index.html) file:
+Then you can use the components in your HTML as shown in the [index.html](./index.html) file:
 
 ```html
 <ifx-alert variant="primary" icon="c-info-16">Attention! This is an alert message!</ifx-alert>
@@ -22,15 +22,15 @@ To run the example app in development mode, use the following command:
 ```bash
 pnpm run -F html-cdn-example dev
 ```
-This will start a development server and you can access the app at `http://localhost:3001`.
+This will start a development server using local node_modules and you can access the app at http://localhost:3001.
 
-To build the example app for production, use:
+To prepare the example for deployment, use:
 ```bash
 pnpm run -F html-cdn-example build
 ```
 
-To preview the built example app, use:
+This copies the HTML file to the dist/ folder for consistency with other examples. Note that there isn't a real "build" step for this CDN example as it's just a simple file copy.
+Additionally, the `preview` command is also available, but does the same as `dev` in this case:
 ```bash
 pnpm run -F html-cdn-example preview
 ```
-This will start a static file server and you can access the built app at `http://localhost:4001`.
