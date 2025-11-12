@@ -25,13 +25,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
         with:
-          node-version: '18'
+          node-version: '24'
+          cache: 'pnpm'
       
-      - uses: pnpm/action-setup@v2
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
       
       - name: Update ${{ inputs.name }} to use published version
         run: |
@@ -43,50 +47,43 @@ jobs:
       
       - name: Build ${{ inputs.name }} example
         run: |
-          BASE_PATH="${{ inputs.base-path }}" pnpm --filter='${{ inputs.name }}' build
+          pnpm --filter='${{ inputs.name }}' build
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.name }}-build
           path: examples/${{ inputs.name }}/dist/
           retention-days: 1
 
-  deploy-pr:
+  deploy:
     needs: build
     if: ${{ inputs.deployment == 'pr' }}
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
+    steps:     
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.name }}-build
           path: deploy-files/
       
       - name: Deploy PR Preview
+        if: ${{ inputs.deployment == 'pr' }}
+        id: deploy-pr
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: deploy-files/
           preview-branch: gh-pages-preview
           umbrella-dir: pr-preview-${{ inputs.name }}
 
-  deploy-production:
-    needs: build
-    if: ${{ inputs.deployment == 'production' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: ${{ inputs.name }}-build
-          path: deploy-files/
-      
       - name: Deploy to Production
-        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ inputs.deployment == 'production' }}
+        id: deploy-prod
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: deploy-files/
           destination_dir: ${{ inputs.name }}
+    outputs:
+      url: ${{ steps.deploy-pr.outputs.deployment-url || '' }}
+

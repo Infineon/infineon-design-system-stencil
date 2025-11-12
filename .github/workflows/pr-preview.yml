@@ -18,6 +18,7 @@ jobs:
 
   build-and-deploy-examples:
     needs: library-build-publish
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         app:
@@ -34,12 +35,12 @@ jobs:
           - name: vue-example
             pretty-name: "Vue Example"
     steps:
-      - uses: ./.github/workflows/shared/build-deploy-examples.yml
+      - id: build-and-deploy-examples
+        uses: ./.github/workflows/shared/build-deploy-examples.yml
         with:
           name: ${{ matrix.app.name }}
           package-version: ${{ needs.library-build-publish.outputs.published-version }}
           deployment: pr
-        secrets: inherit
       
       # Write matrix outputs
       - uses: cloudposse/github-action-matrix-outputs-write@v1
@@ -49,7 +50,7 @@ jobs:
           matrix-key: ${{ matrix.app.name }}
           outputs: |
             name: ${{ matrix.app['pretty-name'] }}
-            url: ${{ steps.deploy-pr.outputs.preview-url }}
+            url: ${{ steps.build-and-deploy-examples.outputs.preview-url }}
 
   comment-pr:
     needs: [build-and-deploy-examples, library-build-publish]

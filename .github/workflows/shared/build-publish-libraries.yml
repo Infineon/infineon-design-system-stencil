@@ -23,15 +23,19 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
-      published: ${{ steps.publish.outputs.published }}
+      # published: ${{ steps.publish.outputs.published }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: '18'
+          node-version: '24'
           cache: 'pnpm'
+
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
