@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   library-build-publish:
-    uses: ./.github/workflows/shared-build-publish.yml
+    uses: ./.github/workflows/shared-build-publish-libraries.yml
     with:
       snapshot-tag: pr
       snapshot-suffix: ${{ github.event.number }}
