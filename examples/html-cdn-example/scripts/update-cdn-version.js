@@ -9,7 +9,7 @@ if (!version) {
 
 console.log(`Updating CDN links to version: ${version}`);
 
-const htmlFile = 'src/index.html';
+const htmlFile = 'index.html';
 
 if (!fs.existsSync(htmlFile)) {
   console.error(`${htmlFile} not found`);
