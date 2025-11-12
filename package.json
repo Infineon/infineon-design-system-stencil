@@ -3,7 +3,7 @@
   "description": "Infineon Design System - Web Components built with Stencil",
   "private": true,
   "packageManager": "pnpm@8.15.6",
-    "engines": {
+  "engines": {
     "npm": "please-use-pnpm",
     "pnpm": ">=8.0.0",
     "node": ">=18.0.0"

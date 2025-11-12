@@ -3,7 +3,7 @@ import { defineCustomElements } from '@infineon/infineon-design-system-stencil/l
 
 import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
 
-export const InfineonDesignSystem: Plugin = {
+export const ComponentLibrary: Plugin = {
   async install() {
       defineCustomElements();
   },

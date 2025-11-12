@@ -4,9 +4,10 @@
   "description": "Example App for the Infineon Design System Stencil Components using plain HTML and a CDN",
   "private": true,
   "scripts": {
-    "dev": "vite --port 3001",
-    "build": "vite build",
-    "preview": "vite preview --port 4001"
+    "dev": "npx serve . -p 3001",
+    "build": "mkdir -p dist && cp index.html dist/",
+    "preview": "npx serve . -p 4001",
+    "cicd-update-version": "node scripts/update-cdn-version.js"
   },
   "keywords": [],
   "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
@@ -16,6 +17,6 @@
     "@infineon/infineon-design-system-stencil": "workspace:*"
   },
   "devDependencies": {
-    "vite": "^7.1.12"
+    "serve": "^14.2.5"
   }
 }

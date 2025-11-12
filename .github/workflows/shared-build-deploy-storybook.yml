@@ -1,0 +1,123 @@
+name: Build and Deploy Storybook
+
+on:
+  workflow_call:
+    inputs:
+      package-version:
+        required: true
+        type: string
+        description: 'Package version to use'
+      deployment:
+        required: false
+        type: string
+        description: 'Deployment target (pr, production, none)'
+        default: 'pr'
+      required-packages:
+        required: false
+        type: string
+        description: 'Comma-separated list of packages that must be available before building'
+        default: '@infineon/infineon-design-system-stencil'
+    outputs:
+      url:
+        description: "Deployed URL"
+        value: ${{ jobs.build-deploy.outputs.url }}
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+    env:
+      PACKAGE_VERSION: ${{ inputs.package-version }}
+      PACKAGES: ${{ inputs.required-packages }}
+    steps:
+    # wait for required packages to be available
+      - name: Wait for packages to be available on NPM
+        run: |
+          echo "Waiting for packages to be available: ${PACKAGES}"
+          
+          # Convert comma-separated string to array and iterate
+          IFS=',' read -ra PACKAGE_ARRAY <<< "$PACKAGES"
+          for package in "${PACKAGE_ARRAY[@]}"; do
+            package=$(echo "$package" | xargs) # trim whitespace
+            echo "Checking package: $package@$PACKAGE_VERSION"
+            
+            max_attempts=30
+            attempt=1
+            while [ $attempt -le $max_attempts ]; do
+              echo "Attempt $attempt/$max_attempts: Checking if $package@$PACKAGE_VERSION is available..."
+              echo "Testing command: npm view \"$package@$PACKAGE_VERSION\" version"
+              if npm view "$package@$PACKAGE_VERSION" version >/dev/null 2>&1; then
+                echo "$package@$PACKAGE_VERSION is available on NPM"
+                break
+              else
+                echo "$package@$PACKAGE_VERSION not yet available, waiting 10 seconds..."
+                sleep 10
+                attempt=$((attempt + 1))
+              fi
+            done
+            
+            if [ $attempt -gt $max_attempts ]; then
+              echo "Timeout waiting for $package@$PACKAGE_VERSION to be available on NPM"
+              exit 1
+            fi
+          done
+          
+          echo "All required packages are available!"
+
+    #  Build the example
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            packages/components
+            pnpm-workspace.yaml
+            pnpm-lock.yaml
+          sparse-checkout-cone-mode: false
+
+      - name: Enable corepack and install pnpm
+        run: |
+          corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+      
+      - name: Install dependencies
+        run: pnpm install --filter='@infineon/infineon-design-system-stencil' --no-frozen-lockfile
+
+      - name: Update ${{ inputs.name }} to use published version
+        working-directory: packages/components
+        run: |
+          pnpm version ${{ inputs.package-version }} --no-git-tag-version
+      
+      - name: Build Storybook
+        run: |
+          pnpm --filter='@infineon/infineon-design-system-stencil' build-storybook
+      
+      - name: Deploy PR Preview
+        if: ${{ inputs.deployment == 'pr' }}
+        id: deploy-pr
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: packages/components/storybook-static/
+          preview-branch: gh-pages-preview
+          umbrella-dir: pr-preview-storybook
+
+      - name: Deploy to Production
+        if: ${{ inputs.deployment == 'production' }}
+        id: deploy-prod
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: packages/components/storybook-static/
+          destination_dir: storybook
+    outputs:
+      url: ${{ steps.deploy-pr.outputs.deployment-url || '' }}

@@ -1,9 +1,10 @@
 {
   "name": "@infineon/infineon-design-system-angular",
-  "version": "1.0.0",
+  "version": "38.7.3--canary.2100.debug",
   "description": "Infineon Design System for Angular",
   "scripts": {
-    "build": "ng-packagr -c tsconfig.json"
+    "build": "ng-packagr -c tsconfig.json",
+    "prepack": "node ./scripts/prepack.js"
   },
   "license": "MIT",
   "types": "dist/index.d.ts",

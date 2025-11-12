@@ -5,9 +5,12 @@
     "ng": "ng",
     "dev": "ng serve --port 3003",
     "build": "ng build",
-    "preview": "pnpx serve dist/angular-standalone-example/browser -p 4003"
+    "preview": "pnpx serve dist/angular-standalone-example/browser -p 4003",
+    "cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
   },
   "private": true,
+  "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+  "license": "MIT",
   "dependencies": {
     "@infineon/infineon-design-system-angular": "workspace:*",
 

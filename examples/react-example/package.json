@@ -7,8 +7,11 @@
     "dev": "vite --port 3005",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 4005"
+    "preview": "vite preview --port 4005",
+    "cicd-update-version": "sed -i 's/\"workspace:\\*\"/\"'$PACKAGE_VERSION'\"/' package.json"
   },
+  "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
+  "license": "MIT",
   "dependencies": {
     "@infineon/infineon-design-system-react": "workspace:*",
 
