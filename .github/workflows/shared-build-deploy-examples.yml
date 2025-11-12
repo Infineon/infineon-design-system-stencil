@@ -24,6 +24,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PACKAGE_VERSION: ${{ inputs.package-version }}
     steps:
       - uses: actions/checkout@v5
 
