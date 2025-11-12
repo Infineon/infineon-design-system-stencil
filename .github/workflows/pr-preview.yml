@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   library-build-publish:
-    uses: ./.github/workflows/shared/build-publish.yml
+    uses: ./.github/workflows/shared-build-publish.yml
     with:
       snapshot-tag: pr
       snapshot-suffix: ${{ github.event.number }}
@@ -36,7 +36,7 @@ jobs:
             pretty-name: "Vue Example"
     steps:
       - id: build-and-deploy-examples
-        uses: ./.github/workflows/shared/build-deploy-examples.yml
+        uses: ./.github/workflows/shared-build-deploy-examples.yml
         with:
           name: ${{ matrix.app.name }}
           package-version: ${{ needs.library-build-publish.outputs.published-version }}
