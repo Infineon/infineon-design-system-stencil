@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   library-build-publish:
-    uses: .github/workflows/shared-build-publish.yml
+    uses: ./.github/workflows/shared-build-publish.yml
     with:
       snapshot-tag: pr
       snapshot-suffix: ${{ github.event.number }}
@@ -19,7 +19,6 @@ jobs:
 
   build-and-deploy-examples:
     needs: library-build-publish
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         app:
@@ -35,7 +34,7 @@ jobs:
             pretty-name: "React Example"
           - name: vue-example
             pretty-name: "Vue Example"
-    uses: .github/workflows/shared-build-deploy-examples.yml
+    uses: ./.github/workflows/shared-build-deploy-examples.yml
     with:
       name: ${{ matrix.app.name }}
       package-version: ${{ needs.library-build-publish.outputs.published-version }}
