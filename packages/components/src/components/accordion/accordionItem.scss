@@ -4,12 +4,9 @@
 
 
 .accordion-item {
-  border: 1px solid tokens.$ifxColorEngineering200;
-  border-radius: var(--borderRadius);
-  overflow: hidden;
-  transition: all 0.3s;
-  font-family: var(--ifx-font-family) // tokens.$ifxFontFamilyBody;
-
+ border-radius: 3px;
+ transition: all 0.3s;
+ font-family: var(--ifx-font-family);
 }
 
 .accordion-title:focus {
@@ -43,9 +40,9 @@
   gap: tokens.$ifxSpace150;
   color: tokens.$ifxColorOcean500;
   background-color: tokens.$ifxColorBaseWhite;
-  border: none;
+  border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
-  margin: 4px;
+  margin: 4px 4px 0;
 }
 
 .accordion-caption {
@@ -93,4 +90,10 @@
 
 .accordion-item.open .accordion-icon {
   transform: rotate(-180deg);
+}
+
+.accordion-item.open .inner-content {
+  border: 1px solid tokens.$ifxColorEngineering200;
+  border-top: none;
+  margin: 0 4px 4px;
 }
