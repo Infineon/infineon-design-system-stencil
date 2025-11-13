@@ -12,6 +12,7 @@
 | `buttonRendererOptions`   | `button-renderer-options`    |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
 | `cols`                    | `cols`                       |             | `any`                                                                                       | `undefined` |
 | `filterOrientation`       | `filter-orientation`         |             | `string`                                                                                    | `'sidebar'` |
+| `headline`                | `headline`                   |             | `string`                                                                                    | `""`        |
 | `pagination`              | `pagination`                 |             | `boolean`                                                                                   | `true`      |
 | `paginationItemsPerPage`  | `pagination-items-per-page`  |             | `string`                                                                                    | `undefined` |
 | `rowHeight`               | `row-height`                 |             | `string`                                                                                    | `'default'` |
@@ -54,8 +55,8 @@ graph TD;
   ifx-table --> ifx-chip
   ifx-table --> ifx-chip-item
   ifx-table --> ifx-pagination
-  ifx-chip --> ifx-indicator
   ifx-chip --> ifx-icon
+  ifx-chip --> ifx-indicator
   ifx-chip-item --> ifx-checkbox
   ifx-chip-item --> ifx-icon
   ifx-checkbox --> ifx-icon

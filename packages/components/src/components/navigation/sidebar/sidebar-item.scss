@@ -3,11 +3,16 @@
 
 :host {
   position: relative;
+  display: block;
+}
+
+:host([data-has-icon="false"]) {
+  display: var(--ifx-sidebar-item-without-icon-display, block);
 }
 
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
-  &:focus {
+  &:focus-visible {
       outline: none;
       box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
 
@@ -53,7 +58,7 @@
 
 .sidebar__nav-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: var(--ifx-sidebar-item-flex-direction, row);
   align-items: center;
   width: 100%;
   padding: 8px 0px;
@@ -116,7 +121,7 @@
     -webkit-box-orient: horizontal;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
     &.no-top-border {
       border-top: none;
     }
@@ -133,7 +138,7 @@
     }
 
     &.open {
-      
+
       padding: 16px 0px 8px 0px;
 
       & .sidebar__nav-item-indicator {
@@ -157,7 +162,7 @@
 
   &.submenu__item {
     padding: 4px 0px;
-    
+
     &.extra-padding__bottom {
       padding: 4px 0px 16px 0px;
     }
@@ -193,10 +198,11 @@
     order: 1;
     flex-grow: 1;
     cursor: pointer;
+    display: var(--ifx-sidebar-item-text-display, flex);
   }
 
   & .sidebar__nav-item-indicator {
-    display: flex;
+    display: var(--ifx-sidebar-item-text-display, flex);
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -204,6 +210,16 @@
     flex: none;
     order: 2;
     flex-grow: 0;
+    position: relative;
+
+    // Collapsed state styling - position indicator over icon
+    :host([data-sidebar-collapsed]) & {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      padding: 0;
+    }
   }
 }
 

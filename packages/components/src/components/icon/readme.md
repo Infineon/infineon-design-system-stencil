@@ -53,12 +53,12 @@
  - [ifx-segment](../segmented-control/segment)
  - [ifx-segmented-control](../segmented-control)
  - [ifx-select](../select/single-select)
+ - [ifx-sidebar](../navigation/sidebar)
  - [ifx-sidebar-item](../navigation/sidebar)
  - [ifx-slider](../slider)
  - [ifx-step](../stepper/step)
  - [ifx-table](../table-advanced-version)
  - [ifx-tabs](../tabs)
- - [ifx-tag](../tag)
  - [ifx-text-field](../text-field)
  - [ifx-tooltip](../tooltip)
  - [ifx-tree-view-item](../tree-view)
@@ -95,12 +95,12 @@ graph TD;
   ifx-segment --> ifx-icon
   ifx-segmented-control --> ifx-icon
   ifx-select --> ifx-icon
+  ifx-sidebar --> ifx-icon
   ifx-sidebar-item --> ifx-icon
   ifx-slider --> ifx-icon
   ifx-step --> ifx-icon
   ifx-table --> ifx-icon
   ifx-tabs --> ifx-icon
-  ifx-tag --> ifx-icon
   ifx-text-field --> ifx-icon
   ifx-tooltip --> ifx-icon
   ifx-tree-view-item --> ifx-icon

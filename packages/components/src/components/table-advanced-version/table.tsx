@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
@@ -34,6 +35,7 @@ export class Table {
   @Prop() paginationItemsPerPage: string;
   @State() paginationPageSize: number = 10;
   @Prop() filterOrientation: string = 'sidebar';
+  @Prop() headline: string = "";
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
@@ -329,6 +331,7 @@ async updateTableView() {
       headerHeight: 40,
       defaultColDef: {
         resizable: true,
+        autoHeight: true,
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
@@ -477,45 +480,51 @@ async updateTableView() {
   }
 
 
-  getColData() {
-    let cols: any[] = [];
-    if (this.cols === undefined || this.cols === null) {
-      return cols;
-    }
-  
-    if (this.isJSONParseable(this.cols)) {
-      cols = [...JSON.parse(this.cols)];
-    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
-      cols = [...this.cols];
-    } else {
-      console.error('Unexpected value for cols: ', this.cols);
-    }
-  
-    const buttonColumn = cols.find(column => column.field === 'button');
-    if (buttonColumn) {
-      buttonColumn.cellRenderer = ButtonCellRenderer;
-      buttonColumn.valueFormatter = params => params.value.text;
-      buttonColumn.cellDataType = false;
+getColData() {
+  let cols: any[] = [];
+  if (this.cols === undefined || this.cols === null) return cols;
 
-      // No JSON.parse needed now
-      if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
-        if (this.buttonRendererOptions.onButtonClick) {
-          buttonColumn.cellRendererParams = {
-            onButtonClick: this.buttonRendererOptions.onButtonClick
-          };
-        }
+  if (this.isJSONParseable(this.cols)) {
+    cols = [...JSON.parse(this.cols)];
+  } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+    cols = [...this.cols];
+  } else {
+    console.error('Unexpected value for cols: ', this.cols);
+  }
+
+  cols.forEach(column => {
+    const field = column.field?.toLowerCase() || '';
+
+    // --- Button columns ---
+    if (field.startsWith('button')) {
+      column.cellRenderer = ButtonCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+
+      if (this.buttonRendererOptions?.onButtonClick) {
+        column.cellRendererParams = {
+          onButtonClick: this.buttonRendererOptions.onButtonClick
+        };
       }
     }
 
-    const statusColumn = cols.find(column => column.field === 'status');
-    if (statusColumn) {
-      statusColumn.cellRenderer = StatusCellRenderer;
-      statusColumn.cellDataType = false;
-
+    // --- Status columns ---
+    else if (field.startsWith('status')) {
+      column.cellRenderer = StatusCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
     }
-  
-    return cols;
-  }
+
+    // --- Link columns ---
+    else if (field.startsWith('link')) {
+      column.cellRenderer = LinkCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+    }
+  });
+
+  return cols;
+}
   
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
@@ -562,7 +571,11 @@ async updateTableView() {
         'height': this.tableHeight
       };
     }
-    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+ 
+    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' 
+                  : this.filterOrientation === 'none' ? '' 
+                  : 'sidebar-layout';
+    
     return (
       <Host>
         <div class="table-container">
@@ -606,9 +619,9 @@ async updateTableView() {
             )}
 
             <div class="table-pagination-wrapper">
-              <div class="filter-chips">
-                {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
-                  Object.keys(this.currentFilters).map(name => {
+              {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
+                <div class="filter-chips">
+                  {Object.keys(this.currentFilters).map(name => {
                     const filter = this.currentFilters[name];
                     const filterValues = filter.filterValues;
                     const isMultiSelect = filter.type !== 'text';
@@ -619,7 +632,7 @@ async updateTableView() {
                         size="large"
                         variant={isMultiSelect ? "multi" : "single"}
                         readOnly={true}
-                        value={filterValues} // Ensure value prop is set
+                        value={filterValues}
                         key={name}
                       >
                         {filterValues.map(filterValue => (
@@ -629,27 +642,27 @@ async updateTableView() {
                         ))}
                       </ifx-chip>
                     ) : null;
-                  })
-                )}
-
-                {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
-                  <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
-                  >
-                    <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all
-                  </ifx-button>
-                )}
-              </div>
-
-              {this.filterOrientation !== 'none' && (
-                <div class="matching-results-container">
-                  <span class="matching-results-count">
-                    {this.matchingResultsCount}
-                  </span>
-                  <span class="matching-results-text">
-                    matching results
-                  </span>
+                  })}
                 </div>
               )}
+
+              <div class="headline-wrapper">
+              {this.filterOrientation !== 'none' && this.headline && (
+                <div class="matching-results-container">
+                  <span class="matching-results-count">
+                    ({this.matchingResultsCount})
+                  </span>
+                  <span class="matching-results-text">
+                    {this.headline}
+                  </span>
+
+                </div>
+              )}
+
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+              </div>
 
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
