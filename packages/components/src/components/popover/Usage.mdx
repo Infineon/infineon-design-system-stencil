@@ -72,7 +72,7 @@ Support text provides brief, contextual guidance or explanation related to the t
 
 **Container (3)**\
 
-The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. The width of the container can be set iindividually.
+The container is the anchored surface that holds all popover content and controls. It appears adjacent to the trigger element, aligns to the chosen placement, remains non-blocking and can be closed by clicking the close icon. The width of the container can be set individually.
 
   
 
@@ -93,7 +93,7 @@ Optional action area placed at the bottom of the popover. Add either buttons or 
 
 ## Positioning 
 
-The popover responsively repositions to stay within the viewport as screen size changes, and its directional indicator (arrow) updates to match the current placement. You can choose between Top, Left, Right, Bottom and Auto. 
+The popover responsively repositions to stay within the viewport as screen size changes, and its directional indicator (arrow) updates to match the current placement. You can choose between Top, Left, Right, Bottom and Auto. If a fixed placement (Top, Left, Right, Bottom) would place the popover outside the visible area due to the scroll view, the default behaviour applies and the popover is automatically shown in a visible area.
 
 ## Directions 
 
@@ -115,12 +115,12 @@ This is the default for brief, contextual help, which shows only the required ti
 
 ### Dismissible
 
-Adds a close (dismiss) icon in the top-right corner of the popover. Use it when you do not want to use a button from the action area as a close button. The popover will stay open until the user uses it.
+Use this option when you don’t want a button in the action area to serve as the close control. The popover remains open until the user dismisses it.
 <img src={PopoverDismissible} alt="Popover Dismissible" />
 
 ####  With Interactive Elements
 
-This variant adds a bottom action area with either buttons or links. There is no limit on the number of actions, but we recommend using no more than three or four, as the popover is not intended for complex interactions. To keep the popover lightweight, only the tertiary button can be used.
+This variant adds a bottom action area with buttons and links. There is no limit on the number of actions, but we recommend using no more than four, as the popover is not intended for complex interactions. To keep the popover lightweight, only the tertiary button can be used.
 <img src={PopoverInteractiveElements} alt="Popover Interactive Elements"  />
 
   
