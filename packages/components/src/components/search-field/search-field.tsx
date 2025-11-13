@@ -127,10 +127,12 @@ export class SearchField {
   };
 
   handleDelete = () => {
-    this.inputElement.value = '';
-    this.value = "";
-    this.ifxInput.emit(this.value);
-    this.hideDropdown();
+    if(!this.disabled) { 
+      this.inputElement.value = '';
+      this.value = "";
+      this.ifxInput.emit(this.value);
+      this.hideDropdown();
+    }
   }
 
   handleSearch = () => {

@@ -94,6 +94,16 @@
       -ms-user-select: none;
       user-select: none;
 
+      & .choices { 
+        & .choices__inner { 
+          & .choices__list { 
+            & .choices__item { 
+              color: white;
+            }
+          }
+        }
+      }
+
       .ifx-choices__icon-wrapper-down {
         color: tokens.$ifxColorBaseWhite;
         &:hover {
