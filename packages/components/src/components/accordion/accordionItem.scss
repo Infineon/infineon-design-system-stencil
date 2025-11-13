@@ -61,7 +61,7 @@
 
 .inner-content {
   background-color: tokens.$ifxColorBaseWhite;
-  padding: tokens.$ifxSpace300;
+  padding: tokens.$ifxSpace200;
   // white-space: pre-wrap;
   /* wraps text at spaces and within words */
   word-wrap: break-word;
@@ -91,4 +91,11 @@
   border: 1px solid tokens.$ifxColorEngineering200;
   border-top: none;
   margin: 0 4px 4px;
+}
+
+.inner-content {
+  &.no-content { 
+    border: none;
+    padding: 0;
+  }
 }
