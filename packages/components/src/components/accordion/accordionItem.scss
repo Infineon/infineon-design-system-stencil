@@ -43,7 +43,7 @@
   background-color: tokens.$ifxColorBaseWhite;
   border: 1px solid tokens.$ifxColorEngineering200;
   cursor: pointer;
-  margin: 4px;
+  margin: 4px 4px 0px;
 }
 
 .accordion-caption {
@@ -61,7 +61,7 @@
 
 .inner-content {
   background-color: tokens.$ifxColorBaseWhite;
-  padding: tokens.$ifxSpace300;
+  padding: tokens.$ifxSpace200;
   // white-space: pre-wrap;
   /* wraps text at spaces and within words */
   word-wrap: break-word;
@@ -83,8 +83,19 @@
   }
 }
 
-
-
 .accordion-item.open .accordion-icon {
   transform: rotate(-180deg);
+}
+
+.accordion-item.open .inner-content {
+  border: 1px solid tokens.$ifxColorEngineering200;
+  border-top: none;
+  margin: 0 4px 4px;
+}
+
+.inner-content {
+  &.no-content { 
+    border: none;
+    padding: 0;
+  }
 }
