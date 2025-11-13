@@ -1,3 +1,21 @@
+# v38.6.1 (Thu Nov 13 2025)
+
+#### 🐛 Bug Fix
+
+- Aligns disabled states across components [#2013](https://github.com/Infineon/infineon-design-system-stencil/pull/2013) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.6.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.6.0 (Tue Nov 11 2025)
 
 #### 🚀 Enhancement
