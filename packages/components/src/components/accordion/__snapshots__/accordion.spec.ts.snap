@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`ifx-accordion renders with correct structure 1`] = `
+<ifx-accordion>
+  <template shadowrootmode="open" shadowrootdelegatesfocus>
+    <div class="accordion-wrapper">
+      <slot>
+      </slot>
+    </div>
+  </template>
+</ifx-accordion>
+`;

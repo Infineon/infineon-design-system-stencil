@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-text-field',
   styleUrl: 'text-field.scss',
   shadow: true,
-  formAssociated: true
+  // formAssociated: true
 })
 
 export class TextField {
@@ -58,7 +58,7 @@ export class TextField {
   handleInput() {
     const query = this.inputElement.value;
     this.value = query; // update the value property when input changes
-    this.internals.setFormValue(query) // update form value
+    //this.internals.setFormValue(query) // update form value
     this.ifxInput.emit(this.value);
   }
 
@@ -66,10 +66,10 @@ export class TextField {
    this.internalType = this.type === 'text' || this.type === 'password' ? this.type : 'text'
   }
 
-  formResetCallback() {
-    this.internals.setValidity({});
-    this.internals.setFormValue("");
-  }
+  // formResetCallback() {
+  //   this.internals.setValidity({});
+  //   this.internals.setFormValue("");
+  // }
 
   componentWillLoad() { 
     this.handleTypeProp()
@@ -124,7 +124,7 @@ export class TextField {
               )}
           </div>
           {this.caption && !this.error &&
-            <div class={`textInput__bottom-wrapper-caption ${this.disabled} ? disabled : ""`}>
+            <div class={`textInput__bottom-wrapper-caption ${this.disabled ? 'disabled' : ""}`}>
               {this.caption}
             </div>}
           {this.error &&

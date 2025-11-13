@@ -30,7 +30,7 @@ connectedCallback ensures that the event listeners are properly set up again */
   }
 
   
-  componentDidLoad() {
+  componentWillLoad() {
     this.updateVisibleSlots();
   }
 

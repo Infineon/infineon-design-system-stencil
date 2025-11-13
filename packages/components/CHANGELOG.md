@@ -1,3 +1,645 @@
+# v38.6.1 (Thu Nov 13 2025)
+
+#### 🐛 Bug Fix
+
+- Aligns disabled states across components [#2013](https://github.com/Infineon/infineon-design-system-stencil/pull/2013) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.6.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.6.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- Mobile optimization for table, tabs and pagination [#2046](https://github.com/Infineon/infineon-design-system-stencil/pull/2046) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.5.0 (Tue Nov 11 2025)
+
+#### 🚀 Enhancement
+
+- File-upload: fixes event emission bug. ifxFileUploadAllComplete now fires even when some tasks fail, and it only includes successful files [#2094](https://github.com/Infineon/infineon-design-system-stencil/pull/2094) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.4.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.4.0 (Mon Nov 10 2025)
+
+#### 🚀 Enhancement
+
+- Navbar: collapses dropdown menu on item click [#2079](https://github.com/Infineon/infineon-design-system-stencil/pull/2079) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.3.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.3.0 (Mon Nov 03 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows the nesting of multiple identical components [#2092](https://github.com/Infineon/infineon-design-system-stencil/pull/2092) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.2.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.2.0 (Tue Oct 28 2025)
+
+#### 🚀 Enhancement
+
+- Segmented-control, Checkbox-group, and Radio-button-group: fixes the font-size of the label, and adds required prop [#1964](https://github.com/Infineon/infineon-design-system-stencil/pull/1964) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.2 (Tue Oct 28 2025)
+
+#### 🐛 Bug Fix
+
+- Sidebar: removes border on selected sidebar-item [#2059](https://github.com/Infineon/infineon-design-system-stencil/pull/2059) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- ci: mirro master and pr workflows [#2083](https://github.com/Infineon/infineon-design-system-stencil/pull/2083) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.1.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@agata-kim](https://github.com/agata-kim)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.1.1 (Mon Oct 27 2025)
+
+#### ⚠️ Pushed to `master`
+
+- fix: remove caching and replace sleep ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v38.1.0 (Mon Oct 27 2025)
+
+#### 🚀 Enhancement
+
+- Adds action-list component [#2075](https://github.com/Infineon/infineon-design-system-stencil/pull/2075) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.1 (Fri Oct 24 2025)
+
+#### 🐛 Bug Fix
+
+- Updates overview components table in Storybook [#2082](https://github.com/Infineon/infineon-design-system-stencil/pull/2082) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.0.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v38.0.0 (Wed Oct 22 2025)
+
+#### 💥 Breaking Change
+
+- Extends customization on Chip, and removes Badge and Tag components [#2054](https://github.com/Infineon/infineon-design-system-stencil/pull/2054) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.22.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.22.0 (Wed Oct 15 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: makes selected prop dynamic [#2067](https://github.com/Infineon/infineon-design-system-stencil/pull/2067) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.21.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.21.0 (Wed Oct 01 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes headline text customizable [#2051](https://github.com/Infineon/infineon-design-system-stencil/pull/2051) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.20.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.20.0 (Tue Sep 30 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Link component nestable [#2048](https://github.com/Infineon/infineon-design-system-stencil/pull/2048) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.19.1 (Fri Sep 26 2025)
+
+#### 🐛 Bug Fix
+
+- Tree view: Updats documentation [#2036](https://github.com/Infineon/infineon-design-system-stencil/pull/2036) ([@SergejLust](https://github.com/SergejLust) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.19.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@SergejLust](https://github.com/SergejLust)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.19.0 (Wed Sep 24 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: allows buttons to be nested above table [#2042](https://github.com/Infineon/infineon-design-system-stencil/pull/2042) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.18.1 (Tue Sep 23 2025)
+
+#### 🐛 Bug Fix
+
+- Table: enables line-break in table cells [#2032](https://github.com/Infineon/infineon-design-system-stencil/pull/2032) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.18.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.18.0 (Thu Sep 18 2025)
+
+#### 🚀 Enhancement
+
+- Sidebar: implements collapsible/expandable feature [#2012](https://github.com/Infineon/infineon-design-system-stencil/pull/2012) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.17.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.17.0 (Tue Sep 16 2025)
+
+#### 🚀 Enhancement
+
+- File-upload: Adds allowedFileExtensions and allowAnyFileType properties for flexible file type validation [#2019](https://github.com/Infineon/infineon-design-system-stencil/pull/2019) ([@g-rdknt](https://github.com/g-rdknt) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Max ([@g-rdknt](https://github.com/g-rdknt))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.2 (Tue Sep 16 2025)
+
+#### 🐛 Bug Fix
+
+- Adds developer documentation [#1983](https://github.com/Infineon/infineon-design-system-stencil/pull/1983) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.1 (Tue Sep 16 2025)
+
+#### 🐛 Bug Fix
+
+- Advanced table: aligns pagination on the right side [#2018](https://github.com/Infineon/infineon-design-system-stencil/pull/2018) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.16.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.16.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Implements server-side pagination [#2009](https://github.com/Infineon/infineon-design-system-stencil/pull/2009) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.15.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.15.0 (Sat Sep 06 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: makes Status component nestable [#2011](https://github.com/Infineon/infineon-design-system-stencil/pull/2011) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.14.1 (Thu Sep 04 2025)
+
+#### 🐛 Bug Fix
+
+- Remove all references to form association [#2005](https://github.com/Infineon/infineon-design-system-stencil/pull/2005) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.14.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.14.0 (Mon Sep 01 2025)
+
+#### 🚀 Enhancement
+
+- Removes formAassociation from all form components [#2001](https://github.com/Infineon/infineon-design-system-stencil/pull/2001) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 37.13.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.13.0 (Thu Aug 28 2025)
+
+#### 🚀 Enhancement
+
+- Adds jest-test-runner to DDS workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.8e858a66a18b6ae3bebd8b23571952979dac5acc.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge ca423947bd3abc762a80c58824848b4e6d945432 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: disabling code splitting in vite.config [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.12.0--canary.1908.a6039aaa5d5411f0e02765af3a597c5ebde2fe1c.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge bdd9dcc14b0be9b0a569f8401bba0d52720c89a2 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rm test workflow as separate workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.12.0--canary.1908.28f42dde69a8be541fe31e76d1c33504b6a625b1.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 8f2fc0f4bad0e5b8d3d206d908d458f73e6f357b into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1982: set basepath to PR path during github action [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.12.0--canary.1908.2c1cebef3171a4b003972f1f52f3bab36ae41896.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge da04f0a3bef9bf94eb620b29cb5a6752c71f3d53 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Merge branch '1684-readd-stencil-tests-to-gh-workflow' of https://github.com/Infineon/infineon-design-system-stencil into 1684-readd-stencil-tests-to-gh-workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- removes tests inside workflow, and adds a separate workflow for the test [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.d206d1877d92bc3cb59193138792ad1f52d354e5.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 55a7ca21a36fc3b062e2643e8da6e9f6fa2c2a20 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- adds defineCustomElements in vue entry file for testing purposes [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.3249e3e1afb9d496b29d2540cae30dd9824a8017.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 2daab9e9dadc99ddb353757e99f566dfa4b412ea into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- reverts back changes to main.js in vue [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.963724dbf1b99397d25b0fd917e7549f424ad252.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 65b524d0d18de216469aae24d569d0cc324d87b3 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.12.0--canary.1908.1d67abec6b8673773694776c60b9c597c49cbc8a.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge bf3fdf1c21e96196f28712a4c5be2b77fc1247f4 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- clean install on react and vue [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.1c737af62b6d2e8e7f68a2cc797f4a0ced250ada.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge f3ae83252b3ae92f0868eb7e92d9f1d2fe4d8172 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- npm install [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- clean install [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.f545d297214e664a18db8be0d0dd165f69baaa51.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge fa0b8440b5fce86059b80c703edf6716c2914838 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updates tsconfig and vite config [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.5998513fbea31d425a8f230a877dd0f61ec42486.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 62f7cb464ad62bc052faf4a7014eba1962bca184 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updates vue config file to use absolute path for deployment [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.0cf680a01cd0607992d49894389dd4282f8fef22.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 267fe6cab9882dfbe527f11e9a63c24f46f71341 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.12.0--canary.1908.febde0276f346235f80f70747ab278a9d9b4e1a9.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 4f11fdc5ea28534a8b4d4fe29c14ef6ab736a6a2 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- clean install in react and angular [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.12.0--canary.1908.9c0fec05d382e3c8df4bbe16ac486c933ffca8b1.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 0710ae3f2926fe4644bce8d0ecc465ed31d87810 into 9a42c5f5681da19b3cf98502f9eb8bba881319c0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- update search bar tests to adjust to latest changes [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Merge branch 'master' into 1684-readd-stencil-tests-to-gh-workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.11.0--canary.1908.445f1cde0ec69e7f98441c6bbb0fadb9f5d941b5.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 0c72df5c83a81fd056a0f3416b4f653c6df540e2 into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- revert back tsconfig and vue config changes [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.11.0--canary.1908.557058e00895034d6f22374217d6703d7ab6e840.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge c76a3731fb9eafaa3d55ff03bfb24e0720b50c2c into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.11.0--canary.1908.f60309cd669b3091c077dc773a548704e1420a31.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 36975c779ee67112b9755b558b914846b277bf4a into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- change base url of vue, and update tsconfig [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.11.0--canary.1908.9a29ecab6ec62ec2d3f9348beab2b1a34c79231c.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 2851ef29f3dd4b071227c0a8d9952b7130c4af41 into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- clean install on example apps [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.11.0--canary.1908.4f8043d5f6df91462f8c3af6080bd5a2c863785a.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 82946518a87fd10d58ff092f45f4be9448846735 into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updates sidebar.spec.ts to fix prototype error when running index.html [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.11.0--canary.1908.24bb1965355290d14b7f4c86bbec96d1e3db2dbb.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 36e5bbf138a7ce8b3e49fb381f74af2c41cebf9d into af01ac8e0a0098706357e5be58f94a6d425b2d31 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updates tests on pagination, and removes re-focusing the search-field to fix max stack exceeded error [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- merged master and clean install + used pagination from master [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.4.0--canary.1908.010f4aea12b1accfa34fef4e6e5d623e1d198de5.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 75f045c407be6a5b2c0f9f6ad5957f22b5c82017 into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Testing deployment to github pages [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.4.0--canary.1908.e63f8b5f4c5e1a7d430732ff455487d48820fa72.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 1dd53d913d82b0fc8c12d139d022b8dd498d14b6 into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- pointing to wrong package for local testing of the vue example app [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.4.0--canary.1908.914461d7431640fafaa1a4303e19a25ef34530e1.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge d1c65327adb76bdd1ad80529758ca40d0a6e9f16 into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- clean install on react and vue + removes console log [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@tishoyanchev](https://github.com/tishoyanchev))
+- Update Stencil library version to 37.4.0--canary.1908.919b534ab131dbe65ed25e413a8b19cb1a08d3ab.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 3e1dc9bb623f08d3e3afacd68ab3b87e52fdd796 into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updated comment for documentation purposes; clean install in react example app [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.4.0--canary.1908.02133636428700817dc0a98dda7c7b58d4603d97.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 835dbdc24dd90592c51dbaa62588b40b59e690ad into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- updated local test script; removed console.logs [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.4.0--canary.1908.3a9992a47fdef1b072009a7cf0e4b8d928a2dda0.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 0fd029d4862852b968d40cac8f06a26ec5e19541 into 817fbfcd931196d9d07c23046d7d1a91c007e4a7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Merge branch 'master' into 1684-readd-stencil-tests-to-gh-workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.3.0--canary.1908.3b16e49078e4756cebe99153835d38c1a6298cf1.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge b7e68b3596bcaaa8b95ed5989ce35ae9dace1e97 into e54742e532a9ba65e6bb8adccdeda2464a0d8722 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rm duplicate test command [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.1.0--canary.1908.f6e6a008fd33ff561155541f7b90b8122283979e.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge e579adf4dd52738e8715535c7ba3d1053782894b into adb647db3a8357813466b95080f3a67bf045902c [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: added test step to master deployment workflow [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 37.1.0--canary.1908.eaf4a7f7d42c91cee811d663a692b8d4e0825136.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge e518c626a19ed6c4e320432e79c4723877992350 into adb647db3a8357813466b95080f3a67bf045902c [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: updated path to work on github runner [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rm tracking mock [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rm console.log and updated file path to work on github runner [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Merge branch 'master' into 1684-readd-stencil-tests-to-gh-workflow; [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: additional information on some test suites [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rm comment [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: tests from table to tree-view [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: tests from slider to stepper [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: tests from modal to select [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: tests from icon-button to link added [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: file-upload and footer tests added [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: checkbox until dropdown tests added [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: replaced stencil test runner with jest; added test cases up to incl checkbox [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 36.0.1--canary.1908.cf3e1b7f585cf71f1fed0fcfa052b595e47b0b87.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 420b8489c6f1b7dd7f6ff20be90f4ace689eee40 into 8b4b6b2eec0638a77a166d42fe23a4fa414981c7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: migrated tests up to incl button component [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- Update Stencil library version to 36.0.1--canary.1908.e3c942b5c279a59bb3e5438726fa057c76c21c04.0 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) (github-actions@github.com)
+- Merge 0fa6c11cefedfb3195fe67c67c2a0546ab17f3de into 8b4b6b2eec0638a77a166d42fe23a4fa414981c7 [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: rebuilt package to be up to date during deployment action [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: switched to jest-test-runner and updated tests up to incl badge component [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- added timeouts to tests [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: added beforeEach for test setup [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: added page.waitforchanges() to failing tests [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: github action updated to checkout package-lock.json file [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: downgraded jest to 29 to be compatible; added await page.waitForChanges() to failing tests [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- clean install of dependencies [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- rm puppeteer [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: updated puppeteer installation dependencies [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: updated puppeteer and added testing settings to stencil config [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: Added page.waitForChanges() to test if this fixes the sudden error "App did not load within 30000ms. Please ensure the content loads a stencil application." after a stencil upgrade [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: added commented out function to normalize icons when export includes camelCase icons [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1684: added shell scripts to test single test file and revert back to all; updated failing tests and dependencies [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+- 1683: added test command to gh workflow, fixed tree-view test [#1908](https://github.com/Infineon/infineon-design-system-stencil/pull/1908) ([@verena-ifx](https://github.com/verena-ifx))
+
+#### Authors: 3
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.12.0 (Thu Aug 21 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: implement dynamic cols and rows [#1985](https://github.com/Infineon/infineon-design-system-stencil/pull/1985) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.11.0 (Wed Aug 20 2025)
+
+#### 🚀 Enhancement
+
+- Adds accessibility enhancement to search-field, search-bar, radio-button, sidebar, navbar, modal and dropdown [#1923](https://github.com/Infineon/infineon-design-system-stencil/pull/1923) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- [@agata-kim](https://github.com/agata-kim)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.9.1 (Tue Aug 19 2025)
+
+#### 🐛 Bug Fix
+
+- Storybook: fixes bug where the icon preview list did not work on some components [#1981](https://github.com/Infineon/infineon-design-system-stencil/pull/1981) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.9.0 (Tue Aug 19 2025)
+
+#### 🚀 Enhancement
+
+- Text-area: adds required prop [#1973](https://github.com/Infineon/infineon-design-system-stencil/pull/1973) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 2
+
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.8.0 (Wed Aug 13 2025)
+
+#### 🚀 Enhancement
+
+- Advanced Table: implements paginationItemsPerPage prop to the advanced table [#1972](https://github.com/Infineon/infineon-design-system-stencil/pull/1972) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v37.7.0 (Tue Aug 12 2025)
+
+#### 🚀 Enhancement
+
+- Modal: fixes overview handling on Edge browser [#1966](https://github.com/Infineon/infineon-design-system-stencil/pull/1966) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### Authors: 1
+
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v37.6.0 (Thu Aug 07 2025)
 
 #### 🚀 Enhancement

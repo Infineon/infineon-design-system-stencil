@@ -5,6 +5,8 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { LinkCellRenderer } from './linkCellRenderer';
+import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
 
@@ -30,16 +32,61 @@ export class Table {
   @Prop() rowHeight: string = 'default';
   @Prop() tableHeight: string = 'auto';
   @Prop() pagination: boolean = true;
-  @Prop() paginationPageSize: number = 10;
-  @Prop() filterOrientation: string = 'sidebar'; // topbar / none
+  @Prop() paginationItemsPerPage: string;
+  @State() paginationPageSize: number = 10;
+  @Prop() filterOrientation: string = 'sidebar';
+  @Prop() headline: string = "";
   @State() showSidebarFilters: boolean = true;
   @State() matchingResultsCount: number = 0;
   @Prop() variant: string = 'default'
+  @Prop() serverSidePagination: boolean = false;
+  @Prop() serverPageChangeHandler?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
 
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
   originalRowData: any[] = [];
+
+  private internalItemsPerPage = JSON.stringify([
+    { value: 10, label: '10', selected: true },
+    { value: 20, label: '20', selected: false },
+    { value: 30, label: '30', selected: false }
+  ]); 
+  
+  @Watch('rows')
+  rowsChanged(_newVal: any) {
+    const parsed = this.parseArrayInput<any>(this.rows);
+
+    this.currentFilters = {};
+    this.currentPage = 1;
+    this.originalRowData = [...parsed];
+    this.allRowData = [...parsed];
+    this.matchingResultsCount = this.allRowData.length;
+
+    this.updateTableView();
+    this.updateFilterOptions(); 
+  }
+
+  @Watch('cols')
+  colsChanged(_newVal: any) {
+    this.colData = this.getColData();
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('columnDefs', this.colData);
+      this.gridApi.sizeColumnsToFit({
+        defaultMinWidth: 100,
+      });
+    }
+
+    this.updateFilterOptions();
+  }
+
+  @Listen('ifxItemsPerPageChange')
+  handleResultsPerPageChange(e: CustomEvent<string>) { 
+      this.paginationPageSize = Number(e.detail);
+      this.currentPage = 1;
+      this.updateTableView();
+  }
 
   @Listen('ifxChange')
   handleChipChange(event: CustomEvent<{ previousSelection: Array<any>, currentSelection: Array<any>, name: string }>) {
@@ -75,6 +122,21 @@ export class Table {
     if (this.gridApi) {
       this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
     }
+  }
+
+  private parseArrayInput<T>(input: any): T[] {
+  if (typeof input === 'string') {
+    try {
+      const parsed = JSON.parse(input);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      console.error('Failed to parse input:', input);
+      return [];
+    }
+  }
+    if (Array.isArray(input)) return input;
+    if (typeof input === 'object' && input !== null) return [input as T];
+    return [];
   }
 
   toggleSidebarFilters() {
@@ -197,35 +259,67 @@ export class Table {
     });
   }
 
+async updateTableView() {
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
+      page: this.currentPage,
+      pageSize: this.paginationPageSize
+    });
 
+    this.rowData = rows;
+    this.matchingResultsCount = total;
 
-  updateTableView() {
-    // Calculate the slice of data to display based on pagination
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', rows);
+    }
+
+    // 👇 FIX: update pagination total
+    const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+    if (paginationElement) {
+      paginationElement.setAttribute('total', total.toString());
+    }
+  } else {
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
-    // Update the row data in the table
     this.rowData = visibleRowData;
-    this.gridApi.setGridOption('rowData', this.rowData);
-
-    // Update matching results count
     this.matchingResultsCount = this.allRowData.length;
-  }
 
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', this.rowData);
+    }
+  }
+}
 
   clearAllFilters() {
     this.currentFilters = {};
     this.allRowData = [...this.originalRowData];
   }
 
-
   @Method()
   async onBtShowLoading() {
     this.gridApi.showLoadingOverlay();
   }
 
+  setPaginationItemsPerPage() { 
+    const newItemsPerPage = this.paginationItemsPerPage;
+    if (newItemsPerPage) {
+      this.internalItemsPerPage = this.paginationItemsPerPage;
+      const itemsPerPageArray = JSON.parse(this.internalItemsPerPage);
+      
+      const selectedOption = itemsPerPageArray.find(option => option.selected);
+      if (selectedOption) {
+        this.paginationPageSize = Number(selectedOption.value);
+      } else if (itemsPerPageArray.length > 0) {
+        this.paginationPageSize = Number(itemsPerPageArray[0].value);
+      }
+    }
+  }
+
   componentWillLoad() {
+    this.setPaginationItemsPerPage();
+
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.rowData = this.getRowData();
     this.colData = this.getColData();
@@ -237,6 +331,7 @@ export class Table {
       headerHeight: 40,
       defaultColDef: {
         resizable: true,
+        autoHeight: true,
       },
       suppressDragLeaveHidesColumns: true,
       enableCellTextSelection: true,
@@ -298,6 +393,8 @@ export class Table {
         });
       }
     }
+
+     this.updateTableView();
   }
 
   componentWillUnmount() {
@@ -319,16 +416,35 @@ export class Table {
     });
   }
 
-  handlePageChange(event) {
-    this.currentPage = event.detail.currentPage;
+ async handlePageChange(event) {
+  this.currentPage = event.detail.currentPage;
+
+  if (this.serverSidePagination && this.serverPageChangeHandler) {
+    const { rows, total } = await this.serverPageChangeHandler({
+      page: this.currentPage,
+      pageSize: this.paginationPageSize
+    });
+
+    this.rowData = rows;
+    this.matchingResultsCount = total;
+
+    if (this.gridApi) {
+      this.gridApi.setGridOption('rowData', this.rowData);
+    }
+
+    const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+    if (paginationElement) {
+      paginationElement.setAttribute('total', total.toString());
+    }
+  } else {
     const startIndex = (this.currentPage - 1) * this.paginationPageSize;
     const endIndex = startIndex + this.paginationPageSize;
     const visibleRowData = this.allRowData.slice(startIndex, endIndex);
-    // Update the data in the grid
     if (this.gridApi) {
       this.gridApi.setGridOption('rowData', visibleRowData);
     }
   }
+}
 
   isJSONParseable(str) {
     try {
@@ -364,37 +480,51 @@ export class Table {
   }
 
 
-  getColData() {
-    let cols: any[] = [];
-    if (this.cols === undefined || this.cols === null) {
-      return cols;
-    }
-  
-    if (this.isJSONParseable(this.cols)) {
-      cols = [...JSON.parse(this.cols)];
-    } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
-      cols = [...this.cols];
-    } else {
-      console.error('Unexpected value for cols: ', this.cols);
-    }
-  
-    const buttonColumn = cols.find(column => column.field === 'button');
-    if (buttonColumn) {
-      buttonColumn.cellRenderer = ButtonCellRenderer;
-      buttonColumn.valueFormatter = params => params.value.text;
-      
-      // No JSON.parse needed now
-      if (this.buttonRendererOptions && typeof this.buttonRendererOptions === 'object') {
-        if (this.buttonRendererOptions.onButtonClick) {
-          buttonColumn.cellRendererParams = {
-            onButtonClick: this.buttonRendererOptions.onButtonClick
-          };
-        }
+getColData() {
+  let cols: any[] = [];
+  if (this.cols === undefined || this.cols === null) return cols;
+
+  if (this.isJSONParseable(this.cols)) {
+    cols = [...JSON.parse(this.cols)];
+  } else if (Array.isArray(this.cols) || typeof this.cols === 'object') {
+    cols = [...this.cols];
+  } else {
+    console.error('Unexpected value for cols: ', this.cols);
+  }
+
+  cols.forEach(column => {
+    const field = column.field?.toLowerCase() || '';
+
+    // --- Button columns ---
+    if (field.startsWith('button')) {
+      column.cellRenderer = ButtonCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+
+      if (this.buttonRendererOptions?.onButtonClick) {
+        column.cellRendererParams = {
+          onButtonClick: this.buttonRendererOptions.onButtonClick
+        };
       }
     }
-  
-    return cols;
-  }
+
+    // --- Status columns ---
+    else if (field.startsWith('status')) {
+      column.cellRenderer = StatusCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+    }
+
+    // --- Link columns ---
+    else if (field.startsWith('link')) {
+      column.cellRenderer = LinkCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+    }
+  });
+
+  return cols;
+}
   
 
   onFirstDataRendered(params: FirstDataRenderedEvent) {
@@ -441,7 +571,11 @@ export class Table {
         'height': this.tableHeight
       };
     }
-    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' : 'sidebar-layout';
+ 
+    const filterClass = this.filterOrientation === 'topbar' ? 'topbar-layout' 
+                  : this.filterOrientation === 'none' ? '' 
+                  : 'sidebar-layout';
+    
     return (
       <Host>
         <div class="table-container">
@@ -485,9 +619,9 @@ export class Table {
             )}
 
             <div class="table-pagination-wrapper">
-              <div class="filter-chips">
-                {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
-                  Object.keys(this.currentFilters).map(name => {
+              {this.filterOrientation !== 'none' && this.filterOrientation !== 'topbar' && this.showSidebarFilters && (
+                <div class="filter-chips">
+                  {Object.keys(this.currentFilters).map(name => {
                     const filter = this.currentFilters[name];
                     const filterValues = filter.filterValues;
                     const isMultiSelect = filter.type !== 'text';
@@ -498,7 +632,7 @@ export class Table {
                         size="large"
                         variant={isMultiSelect ? "multi" : "single"}
                         readOnly={true}
-                        value={filterValues} // Ensure value prop is set
+                        value={filterValues}
                         key={name}
                       >
                         {filterValues.map(filterValue => (
@@ -508,33 +642,35 @@ export class Table {
                         ))}
                       </ifx-chip>
                     ) : null;
-                  })
-                )}
-
-                {this.filterOrientation !== 'none' && this.filterOrientation === 'sidebar' && this.showSidebarFilters && Object.keys(this.currentFilters).length > 0 && (
-                  <ifx-button type="button" disabled={false} variant="tertiary" size="m" target="_blank" theme="default" full-width="false" onClick={() => this.handleResetButtonClick()}
-                  >
-                    <ifx-icon icon="curved-arrow-left-16"></ifx-icon>Reset all
-                  </ifx-button>
-                )}
-              </div>
-
-              {this.filterOrientation !== 'none' && (
-                <div class="matching-results-container">
-                  <span class="matching-results-count">
-                    {this.matchingResultsCount}
-                  </span>
-                  <span class="matching-results-text">
-                    matching results
-                  </span>
+                  })}
                 </div>
               )}
+
+              <div class="headline-wrapper">
+              {this.filterOrientation !== 'none' && this.headline && (
+                <div class="matching-results-container">
+                  <span class="matching-results-count">
+                    ({this.matchingResultsCount})
+                  </span>
+                  <span class="matching-results-text">
+                    {this.headline}
+                  </span>
+
+                </div>
+              )}
+
+                <div class="inner-buttons-wrapper">
+                  <slot name='inner-button' />
+                </div>
+              </div>
 
               <div id="table-wrapper" class={this.getTableClassNames()}>
                 <div id={`ifxTable-${this.uniqueKey}`} class={`ifx-ag-grid ${this.variant === 'zebra' ? 'zebra' : ""}`} style={style} ref={(el) => this.container = el}>
                 </div>
               </div>
-              {this.pagination ? <ifx-pagination total={this.allRowData.length} current-page={this.currentPage} items-per-page='[{"value":"ten","label":"10","selected":true}, {"value":"Twenty","label":"20","selected":false}, {"value":"Thirty","label":"30","selected":false}]'></ifx-pagination> : null}
+              <div class="pagination-wrapper">
+              {this.pagination ? <ifx-pagination total={this.serverSidePagination ? this.matchingResultsCount : this.allRowData.length} current-page={this.currentPage} items-per-page={this.internalItemsPerPage}></ifx-pagination> : null}
+              </div>
             </div>
           </div>
         </div>

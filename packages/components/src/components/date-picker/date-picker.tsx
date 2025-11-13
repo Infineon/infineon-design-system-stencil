@@ -8,7 +8,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-date-picker',
   styleUrl: 'date-picker.scss',
   shadow: true,
-  formAssociated: true,
+  // formAssociated: true,
 })
 
 export class DatePicker {
@@ -43,7 +43,7 @@ export class DatePicker {
  
       
     if (!inputValue) {
-      this.internals.setFormValue(null);
+      //this.internals.setFormValue(null);
 
       if(this.type === 'datetime-local') { 
         const hours = selectedDate.getHours();
@@ -58,7 +58,7 @@ export class DatePicker {
     const input = this.el.shadowRoot.querySelector('.date__picker-input') as HTMLInputElement;
     input.classList.add('has-value');
 
-    this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
+    //this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
     if(this.type === 'datetime-local') { 
       const hours = selectedDate.getHours();
       const minutes = selectedDate.getMinutes();
@@ -114,9 +114,9 @@ export class DatePicker {
     }
   }
 
-  formResetCallback() {
-    this.internals.setFormValue(null);
-  }
+  // formResetCallback() {
+  //   this.internals.setFormValue(null);
+  // }
 
   render() {
     return (

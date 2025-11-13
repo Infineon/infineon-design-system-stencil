@@ -20,18 +20,22 @@ export class IfxModal {
   @State() showModal: boolean = this.opened || false;
 
   @Prop() caption: string = 'Modal Title';
+  @Prop() captionAriaLabel: string | null;
+
   @Prop() closeOnOverlayClick: boolean = true;
 
   @Event() ifxOpen: EventEmitter;
   @Event() ifxClose: EventEmitter;
 
   @Prop() variant: 'default' | 'alert-brand' | 'alert-danger' = 'default';
-  
+
   @Prop() size: 's' | 'm' | 'l' = 's';
 
   @Prop() alertIcon: string = '';
   @Prop() okButtonLabel: string = 'OK';
   @Prop() cancelButtonLabel: string = 'Cancel';
+  @Prop() closeButtonAriaLabel: string | null;
+
   @Element() hostElement: HTMLElement;
 
   @State() slotButtonsPresent: boolean = false;
@@ -41,6 +45,16 @@ export class IfxModal {
   private modalContainer: HTMLElement;
   private focusableElements: HTMLElement[] = [];
   private closeButton: HTMLButtonElement | HTMLIfxIconButtonElement;
+  private resizeTimeout: ReturnType<typeof setTimeout>;
+
+  handleResize = () => {
+  clearTimeout(this.resizeTimeout);
+  this.resizeTimeout = setTimeout(() => {
+    if (this.showModal) {
+      this.handleComponentOverflow();
+    }
+  }, 100);
+};
 
   async componentDidLoad() {
     if(!isNestedInIfxComponent(this.hostElement)) { 
@@ -54,7 +68,12 @@ export class IfxModal {
       (el) => isHidden(el) || el.matches('[data-focus-trap-edge]'),
       isFocusable
     );
+    window.addEventListener('resize', this.handleResize);
   }
+
+  disconnectedCallback() {
+  window.removeEventListener('resize', this.handleResize);
+}
 
   componentWillRender() { 
     if(this.showModal) { 
@@ -62,11 +81,11 @@ export class IfxModal {
     }
   }
 
-  handleComponentOverflow() { 
+  async handleComponentOverflow() { 
     const modalContentContainer = this.hostElement.shadowRoot.querySelector('.modal-content-container');
-    if (this.showModal && this.isModalContentContainerHeightReachedViewport()) {
+    if (this.showModal && await this.isModalContentContainerHeightReachedViewport()) {
       modalContentContainer.classList.add('no-overflow')
-    } else if(modalContentContainer?.classList.contains('no-overflow')) { 
+    } else if (modalContentContainer?.classList.contains('no-overflow')) {
       modalContentContainer?.classList.remove('no-overflow')
     }
   }
@@ -173,33 +192,33 @@ export class IfxModal {
   }
 
   handleContentUpdate(e) {
-  const slotElement = e.target;
-  const nodes = slotElement.assignedNodes();
-  if(nodes.length > 0) {
-    nodes.forEach(node => {
-      if (node.observer) {
-        node.observer.disconnect();
-        delete node.observer;
-      }
-      const observer = new MutationObserver((mutationsList, _) => {
-        for(let mutation of mutationsList) {
-          if (mutation.type === 'childList') {
-            if(this.showModal) { 
-              this.handleComponentOverflow();
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    if (nodes.length > 0) {
+      nodes.forEach(node => {
+        if (node.observer) {
+          node.observer.disconnect();
+          delete node.observer;
+        }
+        const observer = new MutationObserver((mutationsList, _) => {
+          for (let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              if (this.showModal) {
+                this.handleComponentOverflow();
+              }
             }
           }
-        }
         });
         observer.observe(node, { attributes: true, childList: true, subtree: true });
         node.observer = observer;
       });
-    } 
+    }
   }
 
   handleButtonsSlotChange(e) {
-    if(e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
+    if (e.currentTarget.assignedElements()[0]?.childElementCount > 0) {
       this.slotButtonsPresent = true;
-    }else{
+    } else {
       this.slotButtonsPresent = false;
     }
   }
@@ -211,7 +230,8 @@ export class IfxModal {
       const modalContent = this.hostElement.shadowRoot.querySelector('.modal-content') as HTMLElement;
       const modalContentHeight = modalContent.offsetHeight;
       const viewportHeight = window.innerHeight;
-      resolve(modalContentHeight >= viewportHeight * 0.9);
+      const extraMarginForEdgeBrowser = 3;
+      resolve(modalContentHeight + extraMarginForEdgeBrowser >= viewportHeight * 0.9);
     }, 100);
   });
 }
@@ -238,7 +258,7 @@ export class IfxModal {
             class={`modal-content-container ${this.size}`}
             role="dialog"
             aria-modal="true"
-            aria-label={this.caption}>
+            aria-label={this.captionAriaLabel}>
             {isAlertVariant ? (
               <div class={`modal-icon-container ${this.variant === 'alert-brand' ? '' : 'danger'}`}>
                 {this.alertIcon ? <ifx-icon icon={this.alertIcon} /> : null}
@@ -247,9 +267,9 @@ export class IfxModal {
             <div class="modal-content">
               <div class="modal-header">
                 <h2 class="modal-caption">{this.caption}</h2>
-                { 
-                  this.showCloseButton && 
-                  <ifx-icon-button class = 'modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-16" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON') }>
+                {
+                  this.showCloseButton &&
+                  <ifx-icon-button class='modal-close-button' ref={(el) => (this.closeButton = el)} icon="cross-16" variant="tertiary" onClick={() => this.doBeforeClose('CLOSE_BUTTON')}>
                   </ifx-icon-button>
                 }
               </div>
@@ -257,7 +277,7 @@ export class IfxModal {
                 <slot name="content" onSlotchange={(e) => this.handleContentUpdate(e)} />
               </div>
               <div class={`modal-footer ${this.slotButtonsPresent ? 'buttons-present' : ''}`}>
-                <slot name="buttons" onSlotchange={(e)=>this.handleButtonsSlotChange(e)}>
+                <slot name="buttons" onSlotchange={(e) => this.handleButtonsSlotChange(e)}>
                 </slot>
               </div>
             </div>

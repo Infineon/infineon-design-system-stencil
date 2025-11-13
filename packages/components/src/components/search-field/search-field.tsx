@@ -127,10 +127,12 @@ export class SearchField {
   };
 
   handleDelete = () => {
-    this.inputElement.value = '';
-    this.value = "";
-    this.ifxInput.emit(this.value);
-    this.hideDropdown();
+    if(!this.disabled) { 
+      this.inputElement.value = '';
+      this.value = "";
+      this.ifxInput.emit(this.value);
+      this.hideDropdown();
+    }
   }
 
   handleSearch = () => {
@@ -144,11 +146,6 @@ export class SearchField {
   }
 
   focusInput() {
-    // Don't call focus() if the input is already focused to prevent unnecessary operations
-    if (document.activeElement !== this.inputElement) {
-      this.inputElement.focus();
-    }
-
     // Only emit focus event if it hasn't been emitted already
     if (!this.focusEmitted) {
       this.focusEmitted = true;
@@ -592,7 +589,8 @@ export class SearchField {
       `search-field__wrapper`,
       `search-field__wrapper ${this.getSizeClass()}`,
       `${this.isFocused ? 'focused' : ""}`,
-      `${this.showDropdown ? 'dropdown-open' : ""}`
+      `${this.showDropdown ? 'dropdown-open' : ""}`,
+      `${this.disabled ? 'disabled' : ""}`
     );
   }
 

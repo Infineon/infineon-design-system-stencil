@@ -7,7 +7,6 @@ import { Component, h, Element, Prop, State, Listen, Method, Event, EventEmitter
 })
 
 export class NavbarItem {
-
   @Element() el;
   @Prop() showLabel: boolean = true;
   @Prop() icon: string = ""
@@ -22,7 +21,23 @@ export class NavbarItem {
   @Event() ifxNavItem: EventEmitter;
   @Prop() numberIndicator: number;
   @Prop() dotIndicator: boolean = false;
- 
+
+  @Listen('focusout')
+  handleFocusOut(event: FocusEvent) {
+    const parentTag = this.el.parentElement?.tagName?.toUpperCase();
+
+    if (parentTag === 'IFX-NAVBAR') {
+      const isStillInComponent = this.isFocusWithinComponent(event.relatedTarget);
+      if (!isStillInComponent) {
+        this.closeItemMenu();
+        this.ifxNavItem.emit({ component: this.el, action: 'hideFirstLayer' });
+      }
+      return;
+    }
+
+    this.handleNestedLayerMenu(event);
+  }
+
   @Listen('mousedown', { target: 'document' })
   handleOutsideClick(event: MouseEvent) {
     const path = event.composedPath();
@@ -208,7 +223,7 @@ export class NavbarItem {
       this.handleClassList(rightArrowIcon, 'add', 'hide')
     }
   }
- 
+
   @Method()
   async setMenuItemPosition() { 
     if(this.isMenuItem && this.hasChildNavItems) { 
@@ -222,6 +237,7 @@ export class NavbarItem {
   }
 
   handleClassList(el, type, className) {
+    if (!el) return false;
     el.classList[type](className)
     if (type === 'contains') {
       return el.classList.contains(className)
@@ -280,7 +296,7 @@ export class NavbarItem {
     const menuItem = this.el;
     const itemMenu = this.getItemMenu()
     const slotValue = menuItem.getAttribute('slot')
- 
+
     if(slotValue.toLowerCase().trim() === "right-item") { 
       this.handleClassList(itemMenu, 'add', 'rightSideItemMenu')
     }
@@ -288,17 +304,22 @@ export class NavbarItem {
     return true;
   }
 
-  getItemMenu() { 
+  getItemMenu() {
     const menu = this.el.shadowRoot.querySelector('.navbar-menu');
     return menu;
   }
 
-  closeItemMenu() { 
-    const itemMenu = this.getItemMenu()
-    const menuItem = this.getNavBarItem()
-    if(itemMenu) { 
-      this.handleClassList(itemMenu, 'remove', 'open')
-      this.handleClassList(menuItem, 'remove', 'open')
+  getParentItemMenu() {
+    return this.el.parentElement?.shadowRoot.querySelector('.navbar-menu');
+  }
+
+  closeItemMenu() {
+    const itemMenu = this.getItemMenu();
+    const menuItem = this.getNavBarItem();
+
+    if (itemMenu) {
+      this.handleClassList(itemMenu, 'remove', 'open');
+      this.handleClassList(menuItem, 'remove', 'open');
     }
   }
 
@@ -313,29 +334,35 @@ export class NavbarItem {
     return 'right'
   }
   
-  toggleItemMenu() {
-    const slotName = this.el.getAttribute('slot')
-
-    if(slotName.toLowerCase() === 'mobile-menu-top' || slotName.toLowerCase() === 'second__layer') { 
-      this.openSubLayerMenu()
-    }
-
-    if(!this.internalHref && slotName.toLowerCase() !== 'mobile-menu-top' && slotName.toLowerCase() !== 'second__layer' ) {   
+ toggleItemMenu() {
+  const slotName = this.el.getAttribute('slot').toLowerCase();
+  if (slotName === 'mobile-menu-top' || slotName === 'second__layer') {
+    this.openSubLayerMenu();
+  } else if (!this.internalHref) {
+    if (this.hasChildNavItems) {
       const itemMenu = this.getItemMenu()
-    
-      if(this.hasChildNavItems) { 
-        const menuItem = this.getNavBarItem()
-        this.handleClassList(itemMenu, 'toggle', 'open');
-        this.handleClassList(menuItem, 'toggle', 'open');
-      } 
+      const menuItem = this.getNavBarItem()
+      this.handleClassList(itemMenu, 'toggle', 'open');
+      this.handleClassList(menuItem, 'toggle', 'open');
+      if (this.isMenuItem && !this.isSidebarMenuItem && itemMenu.classList.contains('open')) {
+        this.handleNestedLayerMenu({ type: 'mouseenter' } as any);
+      }
+    } else {
+      const parentItemMenu = this.getParentItemMenu();
+      if (parentItemMenu) {
+        this.handleClassList(parentItemMenu, 'toggle', 'open');
+      }
     }
   }
+}
 
   handleNestedLayerMenu(e) { 
     if(this.isMenuItem && this.hasChildNavItems && !this.isSidebarMenuItem) { 
       const itemMenu = this.getItemMenu()
       const menuPosition = this.getItemMenuPosition()
-      if(e.type.toUpperCase() === 'MOUSEENTER') { 
+      const type = e.type.toUpperCase();
+    
+      if(type === 'MOUSEENTER') { 
         this.handleClassList(itemMenu, 'add', 'open')
         if(menuPosition === 'left') { 
           this.handleClassList(itemMenu, 'add', 'left')
@@ -344,7 +371,18 @@ export class NavbarItem {
         }
       }
 
-      if(e.type.toUpperCase() === 'MOUSELEAVE') { 
+      if(type === 'MOUSELEAVE') { 
+        this.handleClassList(itemMenu, 'remove', 'open')
+        if(menuPosition === 'left') { 
+          this.handleClassList(itemMenu, 'remove', 'left')
+        } else if (menuPosition === 'right') { 
+          this.handleClassList(itemMenu, 'remove', 'right')
+        }
+      }
+
+       if(type === 'FOCUSOUT') { 
+      const isStillInComponent = this.isFocusWithinComponent(e.relatedTarget)
+      if (!isStillInComponent) {
         this.handleClassList(itemMenu, 'remove', 'open')
         if(menuPosition === 'left') { 
           this.handleClassList(itemMenu, 'remove', 'left')
@@ -353,7 +391,27 @@ export class NavbarItem {
         }
       }
     }
+    }
   }
+
+ private isFocusWithinComponent(relatedTarget: EventTarget | null): boolean {
+  if (!relatedTarget) return false;
+  
+  const target = relatedTarget as Node;
+  const isInLightDOM = this.el.contains(target);
+  const isInShadowDOM = this.el.shadowRoot?.contains(target);
+  
+  const rootNode = target.getRootNode();
+  
+  if (rootNode instanceof ShadowRoot) {
+    const shadowRoot = rootNode as ShadowRoot;
+    if (this.el.contains(shadowRoot.host)) {
+      return true;
+    }
+  }
+
+  return isInLightDOM || isInShadowDOM;
+}
 
   handleLabelWrapper() { 
     const labelWrapper = this.el.shadowRoot.querySelector('.label__wrapper');
@@ -383,16 +441,24 @@ export class NavbarItem {
     }
   }
 
+  handleKeyDown(event: KeyboardEvent) {
+  if (event.key === 'Enter') {
+      event.stopPropagation();
+      event.preventDefault();
+      this.toggleItemMenu()
+    }
+}
+
   render() {
     return (
-      <div class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)}  onMouseEnter={e => this.handleNestedLayerMenu(e)}>
+      <div tabIndex={1} class="container" onMouseLeave={e => this.handleNestedLayerMenu(e)} onKeyDown={(e) => this.handleKeyDown(e)} onMouseEnter={e => this.handleNestedLayerMenu(e)}>
         <div class="sub__layer-back-button">
           <div class="back__button-wrapper" onClick={() => this.returnToFirstLayer()}>
             <ifx-icon icon="arrow-left-16" />
             <span>Back</span>
           </div>
         </div>
-        <a href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()} class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
+        <a tabindex={-1} href={this.internalHref} target={this.target} onClick={() => this.toggleItemMenu()}  class=   {`navbar__item ${this.isSidebarMenuItem ? 'sidebarMenuItem' : ""} ${!this.showLabel ? 'removeLabel' : ""} ${this.isMenuItem ? 'menuItem' : ""} ${this.hasChildNavItems ? 'isParent' : ""}`}>
           <div class="inner__content-wrapper">
             <div class={`navbar__container-right-content-navigation-item-icon-wrapper ${!this.icon ? "removeWrapper" : ""}`}>
               {this.icon && <ifx-icon icon={this.icon}></ifx-icon>}

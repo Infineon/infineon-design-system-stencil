@@ -1,4 +1,3 @@
-// dropdown-menu.tsx
 import { Component, h, Prop, Element, State, Event, EventEmitter, Listen } from "@stencil/core";
 
 @Component({

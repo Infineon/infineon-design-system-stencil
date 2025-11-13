@@ -1,5 +1,5 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/font.scss';
 
 :host {
   display: flex;
@@ -17,7 +17,7 @@
     height: tokens.$ifxSize500;
     display: flex;
     align-items: center;
-    border: 1px solid #8D8786;
+    border: 1px solid #8d8786;
     border-radius: tokens.$ifxBorderRadius12;
     padding: tokens.$ifxSpace100 tokens.$ifxSpace200;
     gap: tokens.$ifxSpace150;
@@ -28,34 +28,28 @@
     position: relative;
     width: 100%;
     outline: none;
-    color: tokens.$ifxColorEngineering400;
 
-    &.focused {
-      border: 1px solid tokens.$ifxColorOcean500;
-
-      & ifx-icon {
-        color: tokens.$ifxColorEngineering500;
-      }
+    &:focus-visible:not(.disabled) {
+      outline: 2px solid tokens.$ifxColorOcean500;
+      outline-offset: 2px;
     }
 
     &.search-field__wrapper-s {
       height: 36px;
     }
 
-
     &:hover:not(.focused, :focus) {
-      border: 1px solid #3C3A39;
+      border: 1px solid #3c3a39;
     }
 
-    &:focus {
-      outline: none;
-      border: 1px solid #0A8276;
-    }
-
-
-    .delete-icon {
+    & .delete-icon {
+      outline: 1px solid transparent;
       right: 12px;
       cursor: pointer;
+      &:focus-visible {
+        outline: 2px solid tokens.$ifxColorOcean500;
+        outline-offset: 1px;
+      }
     }
 
     input[type='text'] {
@@ -63,7 +57,7 @@
       font-weight: 400;
       font-size: 16px;
       //line-height: 24px;
-      color: #8D8786;
+      color: #8d8786;
       border: none;
       width: 100%;
       outline: none;
@@ -76,12 +70,31 @@
       }
 
       &:disabled {
-        background-color: #EEEDED;
+        background: tokens.$ifxColorEngineering300;
+        color: tokens.$ifxColorBaseWhite;
+
+        &::placeholder {
+          color: tokens.$ifxColorBaseWhite;
+        }
       }
     }
 
-    &:has(input[disabled]) {
-      background-color: #EEEDED;
+    &.disabled {
+      background: tokens.$ifxColorEngineering300;
+      border: none;
+      color: tokens.$ifxColorBaseWhite;
+
+      &:hover {
+        border: none;
+        outline: none;
+      }
+
+      & .delete-icon { 
+        cursor: default;
+        &:focus-visible { 
+          outline: 1px solid transparent;
+        }
+      }
     }
   }
 
@@ -94,7 +107,7 @@
     background: tokens.$ifxColorBaseWhite;
     margin-top: tokens.$ifxSpace50;
     border: 1px solid tokens.$ifxColorEngineering200;
-    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
+    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.1);
     z-index: 1000;
     max-height: 300px;
     overflow-y: auto;

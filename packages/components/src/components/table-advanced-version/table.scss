@@ -3,17 +3,17 @@
 
 @import "~ag-grid-community/styles/ag-grid.css";
 
-.zebra { 
-  & .ag-row-odd { 
+.zebra {
+  & .ag-row-odd {
     background-color: tokens.$ifxColorEngineering100!important;
   }
 
-  & .ag-row { 
+  & .ag-row {
     border-bottom: none!important;
   }
 }
 
-.ag-header-viewport { 
+.ag-header-viewport {
   background-color: tokens.$ifxColorEngineering200!important;
 }
 
@@ -45,13 +45,25 @@
   flex-direction: column;
   align-items: stretch; // stretches items to fill the container horizontally
   width: 100%; // ensures the wrapper takes up the full width of its parent
+
+  & .pagination-wrapper { 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 
 #table-wrapper {
   flex: 1; // allows the table to take up the remaining space
   padding-bottom: tokens.$ifxSpace100;
+  overflow-x: auto;
+  width: 100%;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
 
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
@@ -59,8 +71,9 @@
   min-width: 100px;
 }
 
-.filter-chips { 
+.filter-chips {
   display:flex;
+  flex-wrap: wrap;
   gap:tokens.$ifxSpace100;
   margin-bottom: 12px;
 }
@@ -86,12 +99,28 @@
   gap: 24px;
  }
 
+ .headline-wrapper { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0px;
+ }
+
+ .inner-buttons-wrapper { 
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+ }
+
 
 .ifx-ag-grid {
   display: grid;
   height: 100%;
   width: 100%;
   min-width: 100px;
+  overflow-x: auto;
   //padding-bottom: tokens.$ifxSpace100;
 }
 
@@ -116,9 +145,9 @@
   position: absolute;
   right: 0;
   top: calc(50% - 12px);
-  height: 24px; 
+  height: 24px;
   width: 1px;
-  background-color: tokens.$ifxColorEngineering300; 
+  background-color: tokens.$ifxColorEngineering300;
 }
 
 
@@ -207,8 +236,9 @@
   display: flex;
   padding-left: 16px;
   padding-right: 16px;
-  align-items: center;
-
+  white-space: pre-line;
+  min-height: 40px; 
+  height: auto;
 }
 
 .ag-ltr .ag-sort-indicator-icon {
@@ -217,7 +247,7 @@
   line-height: 12px;
 }
 
-.ag-sort-indicator-container .ag-sort-order { 
+.ag-sort-indicator-container .ag-sort-order {
   display: none;
 }
 
@@ -236,9 +266,15 @@
 
 
 .matching-results-container {
+  flex: 1;
+  font-family: 'Source Sans 3';
   display: flex;
   gap: 4px;
-  font-size: 14px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -1px;
+  padding-right: 56px;
 }
 
 .matching-results-count {
@@ -247,4 +283,45 @@
 
 .matching-results-text {
   font-weight: 400;
+}
+
+// Mobile optimization for horizontal scrolling
+@media (max-width: tokens.$ifxBreakpointM) {
+  .table-wrapper,
+  #table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ifx-ag-grid {
+    min-width: 600px;
+  }
+
+  .ag-root-wrapper {
+    min-width: 100%;
+  }
+
+  .ag-header-cell,
+  .ag-cell {
+    min-width: 100px;
+    white-space: nowrap;
+  }
+
+  .sidebar-layout {
+    flex-direction: column;
+  }
+
+  .sidebar-container {
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+
+  .set-filter-wrapper-topbar {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .table-pagination-wrapper {
+    gap: tokens.$ifxSpace200;
+  }
 }
