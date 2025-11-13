@@ -127,10 +127,12 @@ export class SearchField {
   };
 
   handleDelete = () => {
-    this.inputElement.value = '';
-    this.value = "";
-    this.ifxInput.emit(this.value);
-    this.hideDropdown();
+    if(!this.disabled) { 
+      this.inputElement.value = '';
+      this.value = "";
+      this.ifxInput.emit(this.value);
+      this.hideDropdown();
+    }
   }
 
   handleSearch = () => {
@@ -587,7 +589,8 @@ export class SearchField {
       `search-field__wrapper`,
       `search-field__wrapper ${this.getSizeClass()}`,
       `${this.isFocused ? 'focused' : ""}`,
-      `${this.showDropdown ? 'dropdown-open' : ""}`
+      `${this.showDropdown ? 'dropdown-open' : ""}`,
+      `${this.disabled ? 'disabled' : ""}`
     );
   }
 

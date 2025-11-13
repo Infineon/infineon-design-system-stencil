@@ -105,11 +105,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async clearSelection() {
-    this.clearInput()
-    this.clearSelectField()
-    this.setPreSelected(null);
-    this.closeDropdown();
-    this.optionIsSelected = false;
+    if(!this.disabled) { 
+      this.clearInput()
+      this.clearSelectField()
+      this.setPreSelected(null);
+      this.closeDropdown();
+      this.optionIsSelected = false;
+    }
   }
 
   clearSelectField() {

@@ -591,10 +591,10 @@ export class Multiselect {
     }
 
     return (
-      <div class={`ifx-multiselect-container`} ref={el => this.dropdownElement = el as HTMLElement}>
+      <div class={`ifx-multiselect-container ${this.disabled ? 'disabled' : ''}`} ref={el => this.dropdownElement = el as HTMLElement}>
         {
           this.label ?
-            <div class="ifx-label-wrapper">
+            <div class={`ifx-label-wrapper`}>
               <span>{this.label}</span>
             </div> : null
         }
@@ -602,7 +602,7 @@ export class Multiselect {
         ${this.dropdownOpen ? 'active' : ''}
         ${this.dropdownFlipped ? 'is-flipped' : ''}
         ${this.internalError ? 'error' : ""}
-        ${this.disabled ? 'disabled' : ""}`}
+        `}
           role="combobox"
           aria-label={this.ariaMultiSelectLabel}
           aria-labelledby={this.ariaMultiSelectLabelledBy || undefined}
