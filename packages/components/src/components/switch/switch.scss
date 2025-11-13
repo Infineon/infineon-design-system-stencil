@@ -66,6 +66,12 @@
 
   &.disabled {
     color: tokens.$ifxColorEngineering300;
+    
+    & label { 
+      &:hover { 
+        cursor: default;
+      }
+  }
   }
 }
 
