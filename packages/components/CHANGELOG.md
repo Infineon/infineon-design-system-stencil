@@ -1,3 +1,21 @@
+# v38.6.2 (Thu Nov 13 2025)
+
+#### 🐛 Bug Fix
+
+- Accordion: adds border on item contents [#2062](https://github.com/Infineon/infineon-design-system-stencil/pull/2062) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.6.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.6.1 (Thu Nov 13 2025)
 
 #### 🐛 Bug Fix
