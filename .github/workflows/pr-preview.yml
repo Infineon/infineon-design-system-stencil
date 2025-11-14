@@ -12,9 +12,6 @@ concurrency:
 jobs:
   library-build-publish:
     uses: ./.github/workflows/shared-build-publish-libraries.yml
-    with:
-      snapshot: true
-      snapshot-tag: pr
     secrets: inherit
 
   build-deploy-html-cdn-example:
