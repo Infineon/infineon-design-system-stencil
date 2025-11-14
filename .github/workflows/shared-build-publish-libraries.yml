@@ -47,6 +47,6 @@ jobs:
       - name: Publish packages
         id: publish
         run: |
-          VERSION=$(auto shipit --dry-run --quiet)
+          VERSION=$(pnpx auto shipit --dry-run --quiet)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Published version: $VERSION"
