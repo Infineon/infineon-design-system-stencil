@@ -55,6 +55,7 @@ export class Link {
   render() {
     return (
       <a
+      tabindex="0"
         role="link"
         aria-label={this.ariaLabel}
         aria-disabled={this.disabled || !this.internalHref}

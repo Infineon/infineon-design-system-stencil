@@ -39,6 +39,11 @@
         }
       }
     }
+
+    &.focus {
+      outline: none;
+      border: 2px solid tokens.$ifxColorOcean500;
+    }
   }
 
   & .textInput__top-wrapper {
@@ -163,7 +168,7 @@
 
       &:focus:not(.error, .success) {
         outline: none;
-        border: 1px solid tokens.$ifxColorOcean500;
+        border: 2px solid tokens.$ifxColorOcean500;
       }
 
       &:hover:not(:disabled, :focus, .error, .success) {
@@ -214,14 +219,19 @@
         color: tokens.$ifxColorEngineering300;
       }
     }
-
-    
   }
   .delete-icon {
     position: absolute;
     right: tokens.$ifxSpace200;
 
-    :hover {
+    &:focus {
+      outline: none;
+      border: 2px solid tokens.$ifxColorOcean500;
+      border-radius: 50%;
+  
+    }
+    
+    &:hover {
       cursor: pointer;
     }
   }
