@@ -1,3 +1,22 @@
+# v38.7.2 (Fri Nov 14 2025)
+
+#### 🐛 Bug Fix
+
+- Adds type declarations for React, Vue and Angular [#2029](https://github.com/Infineon/infineon-design-system-stencil/pull/2029) ([@verena-ifx](https://github.com/verena-ifx) [@tishoyanchev](https://github.com/tishoyanchev) [@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.1 (github-actions@github.com)
+
+#### Authors: 4
+
+- [@verena-ifx](https://github.com/verena-ifx)
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.7.1 (Fri Nov 14 2025)
 
 #### 🐛 Bug Fix
