@@ -1,3 +1,21 @@
+# v38.7.1 (Fri Nov 14 2025)
+
+#### 🐛 Bug Fix
+
+- Tree-view: Updates documentation [#2089](https://github.com/Infineon/infineon-design-system-stencil/pull/2089) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.6.2 (Thu Nov 13 2025)
 
 #### 🐛 Bug Fix
