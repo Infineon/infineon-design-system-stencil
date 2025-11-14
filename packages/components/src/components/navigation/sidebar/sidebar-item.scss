@@ -34,6 +34,8 @@
     }
   }
 
+
+
   &:hover {
     outline: none;
 
@@ -236,6 +238,6 @@
   }
 }
 
-.header__section + .expandable__submenu{
+.header__section+.expandable__submenu {
   padding-left: 0;
 }

@@ -42,7 +42,7 @@ export class Table {
         resizable: true,
         autoHeight: true,
       },
-      suppressCellFocus: true,
+      suppressCellFocus: false,
       enableCellTextSelection: true,
       suppressDragLeaveHidesColumns: true,
       suppressRowHoverHighlight: true,

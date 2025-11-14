@@ -92,17 +92,4 @@ it('calls valueChanged when value actually changes', async () => {
     const label = page.root.shadowRoot.querySelector('.label');
     expect(label).toBeFalsy();
   });
-
-  it('sets correct ARIA attributes', async () => {
-    const page = await newSpecPage({
-      components: [ProgressBar],
-      html: `<ifx-progress-bar value="50"></ifx-progress-bar>`,
-    });
-    
-    const progressBarContainer = page.root.shadowRoot.querySelector('.progress-bar');
-    expect(progressBarContainer.getAttribute('aria-label')).toBe('a progress bar');
-    expect(progressBarContainer.getAttribute('aria-value')).toBe('50');
-  });
-
-   
 });

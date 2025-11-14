@@ -192,6 +192,13 @@
       &.hide { 
         display: none;
       }
+
+      &:focus{
+        outline: none;
+        border: 2px solid tokens.$ifxColorOcean600;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
     }
 
   }

@@ -50,8 +50,8 @@
     }
     
     &:focus-within {
-        outline: none;
-        border: 1px solid tokens.$ifxColorOcean500;
+     outline: 2px solid tokens.$ifxColorOcean500;
+     outline-offset: 0; 
     }
 }
 

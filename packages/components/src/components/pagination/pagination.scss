@@ -121,7 +121,7 @@
   }
 }
 
-a {
+.page__button {
   padding: 8px;
   border-radius: 100px;
 }
@@ -143,13 +143,13 @@ li {
   border-radius: 100px;
 
   &:hover:not(.active) {
-    & a {
+    & page__button {
       background-color: #EEEDED;
     }
   }
 
   &:active:not(.active) {
-    & a {
+    & .page__button {
       background-color: #575352;
       color: #fff;
     }
@@ -158,7 +158,7 @@ li {
   &.active {
     background-color: #0A8276;
 
-    & a {
+    & .page__button {
       color: #fff;
     }
   }
@@ -167,7 +167,7 @@ li {
     cursor: pointer;
   }
 
-  & a {
+  & .page__button {
     text-decoration: none;
     display: flex;
     width: 16px;

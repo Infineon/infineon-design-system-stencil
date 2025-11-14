@@ -27,6 +27,9 @@ export class Stepper {
     @Prop() indicatorPosition?: 'left' | 'right' = 'left';
     @Prop() showStepNumber?: boolean = false;
     @Prop() variant?: 'default' | 'compact' | 'vertical' = 'default';
+    @Prop() ariaLabel: string | null;
+    @Prop() ariaCurrent: string | null;
+
 
 
     @State() stepsCount: number;
@@ -159,7 +162,8 @@ export class Stepper {
 
     render() {
         return (
-            <div aria-label = 'a stepper' 
+            <div aria-label = {this.ariaLabel}
+                aria-current={this.ariaCurrent}
                 role = 'navigation' 
                 class = {`stepper ${(this.variant !== 'compact' && this.variant !== 'vertical') ? 'default' : this.variant} ${this.variant === 'compact' ? 'compact-'+this.indicatorPosition: ''}`}>
                 {

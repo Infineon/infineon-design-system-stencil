@@ -11,6 +11,8 @@ export default {
         variant: 'default',
         error: false,
         completeStep: false,
+        ariaLabel: "",
+        ariaCurrent: ""
     },
     argTypes: {
         activeStep: {
@@ -99,6 +101,32 @@ export default {
                 },
             }
         },
+        ariaLabel: {
+        description: 'Aria label of the Stepper.',
+        control: 'text',
+        table: {
+            category: 'ARIA Labels',
+            defaultValue: {
+            summary: '',
+            },
+            type: {
+            summary: 'string',
+            },
+        },
+        },
+           ariaCurrent: {
+        description: 'Aria current of the Stepper.',
+        control: 'text',
+        table: {
+            category: 'ARIA Labels',
+            defaultValue: {
+            summary: '',
+            },
+            type: {
+            summary: 'string',
+            },
+        },
+        },
         ifxChange: {
             action: 'ifxChange',
             description: 'A custom event emitted when active step changes.',
@@ -122,6 +150,8 @@ const Template = (args) => {
     wrapper.innerHTML = `
 <ifx-stepper 
 active-step=${args.activeStep} 
+aria-label="${args.ariaLabel}"
+aria-current="${args.ariaCurrent}"
 ${args.variant === 'compact' ? `indicator-position=${args.indicatorPosition}` : ''} 
 ${args.variant === 'default' ? `show-step-number=${args.showStepNumber}` : ''} 
 variant=${args.variant}>
