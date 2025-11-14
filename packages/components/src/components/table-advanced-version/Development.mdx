@@ -5,24 +5,41 @@ import * as TableStories from './table.stories';
 
 # Table
 
-<Canvas of={TableStories.Pagination} sourceState="shown" />
+<Canvas of={TableStories.DefaultState} sourceState="shown" />
 
 <Controls />
 
 
 ## Stories
 
-### Including pagination
+### Including client-side pagination
 <Canvas of={TableStories.Pagination} sourceState="shown" />
+
+### Including server-side pagination
+<Canvas of={TableStories.ServerSidePagination} sourceState="shown" />
+
+Server-side pagination is implemented by exposing the serverPageChangeHandler property. The property takes a function. The function doesn't contain the data - it FETCHES the data when called.
+Your function is called fresh each time - it doesn't store data, it fetches it. The component handles when to call it, you handle what data to return.
+
+Example of a function you would pass to the serverPageChangeHandler prop:
+
+```javascript
+table.serverPageChangeHandler = async ({ page, pageSize }) => {
+  const response = await fetch(`/api/cars?page=${page}&size=${pageSize}`);
+  const data = await response.json();
+  
+  return {
+    rows: data.cars,
+    total: data.totalCount
+  };
+};
+```
 
 ### Including custom components
 
 It is possible to fill table cells with custom Ifx web components.
 Currently, following components can be included:
 * Button
-* Icon Button
-* Link
-* Badge
 * Status
 
 For this, column definitions need to include the corresponding field name and be passed in the following format:
@@ -181,6 +198,18 @@ export default {
 };
 </script>
 ```
+
+#### Example: Including a status column
+<Canvas of={TableStories.IncludesStatus} sourceState="shown" />
+
+#### Example: Including a link column
+<Canvas of={TableStories.IncludesLink} sourceState="shown" />
+
+#### Example: Including a breaking line
+<Canvas of={TableStories.IncludesBreakingline} sourceState="shown" />
+
+#### Example: Including inner buttons
+<Canvas of={TableStories.IncludesInnerButtons} sourceState="shown" />
 
 ### Sidebar filter
 

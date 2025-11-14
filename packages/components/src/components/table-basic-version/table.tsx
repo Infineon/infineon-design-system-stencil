@@ -40,6 +40,7 @@ export class Table {
       headerHeight: 40,
       defaultColDef: {
         resizable: true,
+        autoHeight: true,
       },
       suppressCellFocus: false,
       enableCellTextSelection: true,
