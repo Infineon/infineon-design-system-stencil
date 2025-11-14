@@ -339,7 +339,7 @@ export class Pagination {
               variant="secondary"
             ></ifx-icon-button>
           </div>
-        </nav>
+        </div>
       </div>
     );
   }
