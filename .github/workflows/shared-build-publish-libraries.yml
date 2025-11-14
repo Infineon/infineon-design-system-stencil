@@ -5,17 +5,17 @@ on:
     outputs:
       published-version:
         description: "Published version"
-        value: ${{ jobs.publish.outputs.version }}
+        value: ${{ jobs.build-and-publish.outputs.version }}
       packages-published:
         description: "Whether packages were published"
-        value: ${{ jobs.publish.outputs.published }}
+        value: ${{ jobs.build-and-publish.outputs.published }}
 
 jobs:
-  build-library:
+  build-and-publish:
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.version.outputs.version }}
-      # published: ${{ steps.publish.outputs.published }}
+      version: ${{ steps.publish.outputs.version }}
+      published: ${{ steps.publish.outputs.published }}
     steps:
       - uses: actions/checkout@v5
 
@@ -47,6 +47,6 @@ jobs:
       - name: Publish packages
         id: publish
         run: |
-          VERSION=$(pnpx auto shipit --dry-run --quiet)
+          VERSION=$(pnpm exec auto shipit --dry-run --quiet)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Published version: $VERSION"
