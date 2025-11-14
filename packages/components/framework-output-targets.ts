@@ -26,8 +26,6 @@ const angularValueAccessorBindings: ValueAccessorConfig[] = [
   },
 ];
 
-const excludeComponents = [
-];
 
 export const frameworkTargets = [
   angularOutputTarget({
@@ -44,12 +42,10 @@ export const frameworkTargets = [
     componentModels: vueComponentModels,
     includePolyfills: true,
     // includeDefineCustomElements: true, // This is what tells the target to use the custom elements output
-    excludeComponents,
 
   }),
   reactOutputTarget({
     outDir: '../components-react/src',
-     // excludeComponents,
   }),
 
 ];
