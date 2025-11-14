@@ -11,7 +11,8 @@ export class AccordionItem {
   @Prop() caption: string;
   @Prop({
     mutable: true,
-  }) open: boolean = false;
+  })
+  open: boolean = false;
   @Prop() AriaLevel = 3;
   @State() internalOpen: boolean = false;
   @Event() ifxOpen: EventEmitter;
@@ -25,16 +26,17 @@ export class AccordionItem {
   }
 
   componentDidLoad() {
-    this.openAccordionItem()
-
-     this.contentEl = this.el.shadowRoot.querySelector('#accordion-content');
-      if (this.contentEl) {
-        this.attachResizeObserver();
-      }
+    this.checkSlotContent()
+    this.openAccordionItem();
+    this.contentEl = this.el.shadowRoot.querySelector('#accordion-content');
+    if (this.contentEl) {
+      this.attachResizeObserver();
+    }
   }
 
   componentDidUpdate() {
-    this.openAccordionItem()
+    this.checkSlotContent()
+    this.openAccordionItem();
   }
 
   @Watch('open')
@@ -56,9 +58,9 @@ export class AccordionItem {
   openAccordionItem() {
     if (this.contentEl) {
       if (this.internalOpen) {
-      this.contentEl.style.height = 'auto'; 
-      const updatedHeight = this.contentEl.scrollHeight; 
-      this.contentEl.style.height = `${updatedHeight}px`; 
+        this.contentEl.style.height = 'auto';
+        const updatedHeight = this.contentEl.scrollHeight;
+        this.contentEl.style.height = `${updatedHeight}px`;
         this.contentEl.style.overflow = 'visible';
       } else {
         this.contentEl.style.height = '0';
@@ -67,8 +69,13 @@ export class AccordionItem {
     }
   }
 
-  attachResizeObserver() { 
+  getInnerContentWrapper() {
     const innerContentEl = this.el.shadowRoot.querySelector('.inner-content');
+    return innerContentEl;
+  }
+
+  attachResizeObserver() {
+    const innerContentEl = this.getInnerContentWrapper();
 
     if (innerContentEl) {
       this.resizeObserver = new ResizeObserver(() => {
@@ -77,7 +84,7 @@ export class AccordionItem {
         }
       });
 
-      this.resizeObserver.observe(innerContentEl); 
+      this.resizeObserver.observe(innerContentEl);
     }
   }
 
@@ -85,7 +92,7 @@ export class AccordionItem {
   handleKeydown(ev: KeyboardEvent) {
     const path = ev.composedPath();
 
-    if(!path.includes(this.titleEl)) { 
+    if (!path.includes(this.titleEl)) {
       return;
     }
 
@@ -98,17 +105,37 @@ export class AccordionItem {
     }
   }
 
+  checkSlotContent() {
+    const slot = this.el.shadowRoot.querySelector('slot') as HTMLSlotElement;
+    const hasContent = slot.assignedNodes().length > 0;
+    const innerContent = this.getInnerContentWrapper();
+    if (!hasContent) {
+      innerContent.classList.add('no-content');
+    } else if (innerContent.classList.contains('no-content')) {
+      innerContent.classList.remove('no-content');
+    }
+  }
 
   render() {
     return (
       <div class={`accordion-item ${this.internalOpen ? 'open' : ''}`}>
-        <div role="button" aria-expanded={this.internalOpen} aria-controls="accordion-content" class="accordion-title" onClick={() => this.toggleOpen()} tabindex='0' ref={(el) => (this.titleEl = el as HTMLElement)}>
+        <div
+          role="button"
+          aria-expanded={this.internalOpen}
+          aria-controls="accordion-content"
+          class="accordion-title"
+          onClick={() => this.toggleOpen()}
+          tabindex="0"
+          ref={el => (this.titleEl = el as HTMLElement)}
+        >
           <span aria-hidden="true" role="heading" aria-level={String(this.AriaLevel) as string} class="accordion-icon">
-            <ifx-icon icon="chevron-down-16"/>
+            <ifx-icon icon="chevron-down-16" />
           </span>
-          <span id="accordion-caption" class="accordion-caption">{this.caption}</span>
+          <span id="accordion-caption" class="accordion-caption">
+            {this.caption}
+          </span>
         </div>
-        <div id="accordion-content" class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)} role="region" aria-labelledby="accordion-caption">
+        <div id="accordion-content" class="accordion-content" ref={el => (this.contentEl = el as HTMLElement)} role="region" aria-labelledby="accordion-caption">
           <div class="inner-content">
             <slot />
           </div>
