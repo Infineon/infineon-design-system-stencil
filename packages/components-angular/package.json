@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "38.3.1--canary.1723.679d3d3e4f4101b52a50d66ed5f5096796b75775.0",
+  "version": "38.7.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@angular-devkit/build-angular": "^20.0.1",
+    "@angular/build": "^20.0.1",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",

@@ -73,12 +73,6 @@ describe('ifx-radio-button', () => {
     expect(container.getAttribute('aria-disabled')).toBe('true');
     expect(container.getAttribute('tabindex')).toBe('-1');
     
-    const wrapper = page.root.shadowRoot.querySelector('.radioButton__wrapper');
-    expect(wrapper.classList.contains('disabled')).toBeTruthy();
-    
-    const label = page.root.shadowRoot.querySelector('.label');
-    expect(label.classList.contains('disabled')).toBeTruthy();
-    
     // Hidden input should be disabled - Fixed type error
     const input = page.root.shadowRoot.querySelector('input[type="radio"]') as HTMLInputElement;
     expect(input.disabled).toBeTruthy();

@@ -51,7 +51,7 @@
     min-width: tokens.$ifxSize700;
     height: tokens.$ifxSize700;
     border-radius: tokens.$ifxBorderRadiusRound;
-    background: conic-gradient(tokens.$ifxColorOcean500 var(--pb, 0%), tokens.$ifxColorEngineering400 0);
+    background: conic-gradient(tokens.$ifxColorOcean500 var(--pb, 0%), tokens.$ifxColorEngineering300 0);
     
     .progress-detail {
         display: flex;
