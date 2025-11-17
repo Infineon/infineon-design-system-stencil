@@ -58,7 +58,7 @@ export default {
       }
     },
     size: {
-      description: 'Sets the size of the icon button. Options: s (24px), m (40px) and l (48px).',
+      description: 'Sets the size of the icon button. Options: s (32px), m (36px) and l (40px).',
       control: 'radio',
       options: ['s', 'm', 'l'],
       table: {
