@@ -1,3 +1,21 @@
+# v39.0.0 (Wed Nov 19 2025)
+
+#### 💥 Breaking Change
+
+- Adds a read-only prop to text-field. Replaces label slot with a label prop. Removes errorMessage, and adds caption to single and multi-select components [#2037](https://github.com/Infineon/infineon-design-system-stencil/pull/2037) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.7.2 (Fri Nov 14 2025)
 
 #### 🐛 Bug Fix
