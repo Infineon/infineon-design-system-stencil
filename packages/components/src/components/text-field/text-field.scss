@@ -59,11 +59,6 @@
         }
       }
     }
-
-    &.focus {
-      outline: none;
-      border: 2px solid tokens.$ifxColorOcean500;
-    }
   }
 
   & .textInput__top-wrapper {
@@ -196,7 +191,7 @@
 
       &:focus:not(.error, .success):not(.readonly) {
         outline: none;
-        border: 2px solid tokens.$ifxColorOcean500;
+        border: 1px solid tokens.$ifxColorOcean500;
       }
 
       &.readonly:focus,
