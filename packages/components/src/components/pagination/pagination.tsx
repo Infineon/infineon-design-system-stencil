@@ -300,6 +300,7 @@ export class Pagination {
             <ifx-icon-button
               class="prev"
               icon="arrow-left-16"
+              aria-label='Previous Page'
               onClick={() => this.changePage(this.internalPage - 1)}
               variant="secondary"
             ></ifx-icon-button>
@@ -311,11 +312,21 @@ export class Pagination {
                 class={{ [this.CLASS_ACTIVE]: page === this.internalPage }}
                 data-page={page}
               >
-                <a href="javascript:void(0)">{page}</a>
+                <span 
+                  class='page__button'
+                  role="button"
+                  tabindex="0"
+                  aria-current={page === this.internalPage ? "page" : undefined}
+                  aria-label={`Page ${page}`}
+                  onClick={() => this.changePage(page)}
+                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && this.changePage(page)}
+                >
+                  {page}
+                </span>
               </li>
             ) : (
               <li class="ellipsis" key={`ellipsis-${i}`}>
-                <span>...</span>
+                <span aria-hidden="true">...</span>
               </li>
             ))}
             </ol>
@@ -323,6 +334,7 @@ export class Pagination {
             <ifx-icon-button
               class="next"
               icon="arrow-right-16"
+              aria-label='Next Page'
               onClick={() => this.changePage(this.internalPage + 1)}
               variant="secondary"
             ></ifx-icon-button>
