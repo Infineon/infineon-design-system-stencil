@@ -213,7 +213,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId, ariaLabel }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
