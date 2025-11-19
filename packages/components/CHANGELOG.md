@@ -1,3 +1,21 @@
+# v39.1.0 (Wed Nov 19 2025)
+
+#### 🚀 Enhancement
+
+- Adds accessibility enhancement to AA level for several components [#1987](https://github.com/Infineon/infineon-design-system-stencil/pull/1987) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.0.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.0.0 (Wed Nov 19 2025)
 
 #### 💥 Breaking Change
