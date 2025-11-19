@@ -478,6 +478,7 @@ export class SearchField {
             maxlength={this.maxlength}
             value={this.value}
             role="combobox"
+            aria-controls={this.showDropdown ? 'suggestions-dropdown' : undefined}
             aria-expanded={this.showDropdown}
             aria-autocomplete="list"
             aria-haspopup="listbox"

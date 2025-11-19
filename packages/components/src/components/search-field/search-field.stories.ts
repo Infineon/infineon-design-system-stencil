@@ -251,6 +251,23 @@ export default {
         category: 'Accessibility'
       }
     },
+
+    ariaControls: {
+      description: 'Identifies the ID of the dropdown element that this input controls.',
+      control: 'text',
+      table: {
+        category: 'Accessibility'
+      }
+    },
+
+    ariaExpanded: {
+      description: 'Indicates whether the dropdown is currently open (true) or closed (false).',
+      control: 'text',
+      table: {
+        category: 'Accessibility'
+      }
+    },
+
     deleteIconAriaLabel: {
       description: 'ARIA label for the delete/clear icon.',
       control: 'text',
@@ -365,6 +382,8 @@ const DefaultTemplate = ({
   ariaLabel,
   ariaLabelledBy,
   ariaDescribedBy,
+  ariaExpanded,
+  ariaControls,
   deleteIconAriaLabel,
   historyDeleteAriaLabel,
   dropdownAriaLabel,
@@ -388,6 +407,8 @@ const DefaultTemplate = ({
   if (ariaLabel != undefined) element.setAttribute('aria-label', ariaLabel);
   if (ariaLabelledBy != undefined) element.setAttribute('aria-labelledby', ariaLabelledBy);
   if (ariaDescribedBy != undefined) element.setAttribute('aria-describedby', ariaDescribedBy);
+  if (ariaExpanded != undefined) element.setAttribute('aria-expanded', ariaExpanded);
+  if (ariaControls != undefined) element.setAttribute('aria-controls', ariaControls);
   if (deleteIconAriaLabel != undefined) element.setAttribute('delete-icon-aria-label', deleteIconAriaLabel);
   if (historyDeleteAriaLabel != undefined) element.setAttribute('history-delete-aria-label', historyDeleteAriaLabel);
   if (dropdownAriaLabel != undefined) element.setAttribute('dropdown-aria-label', dropdownAriaLabel);
@@ -449,6 +470,8 @@ const DropdownTemplate = ({
   ariaLabel,
   ariaLabelledBy,
   ariaDescribedBy,
+  ariaExpanded,
+  ariaControls,
   deleteIconAriaLabel,
   historyDeleteAriaLabel,
   dropdownAriaLabel,
@@ -472,6 +495,8 @@ const DropdownTemplate = ({
   if (ariaLabel != undefined) element.setAttribute('aria-label', ariaLabel);
   if (ariaLabelledBy != undefined) element.setAttribute('aria-labelledby', ariaLabelledBy);
   if (ariaDescribedBy != undefined) element.setAttribute('aria-describedby', ariaDescribedBy);
+  if (ariaControls != undefined) element.setAttribute('aria-controls', ariaControls);
+  if (ariaExpanded != undefined) element.setAttribute('aria-expanded', ariaExpanded);
   if (deleteIconAriaLabel != undefined) element.setAttribute('delete-icon-aria-label', deleteIconAriaLabel);
   if (historyDeleteAriaLabel != undefined) element.setAttribute('history-delete-aria-label', historyDeleteAriaLabel);
   if (dropdownAriaLabel != undefined) element.setAttribute('dropdown-aria-label', dropdownAriaLabel);

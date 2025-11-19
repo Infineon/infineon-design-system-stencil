@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `inverted` | `inverted` |             | `boolean` | `false`     |
-| `size`     | `size`     |             | `string`  | `undefined` |
-| `variant`  | `variant`  |             | `string`  | `undefined` |
+| Property    | Attribute    | Description | Type      | Default     |
+| ----------- | ------------ | ----------- | --------- | ----------- |
+| `ariaLabel` | `aria-label` |             | `string`  | `undefined` |
+| `inverted`  | `inverted`   |             | `boolean` | `false`     |
+| `size`      | `size`       |             | `string`  | `undefined` |
+| `variant`   | `variant`    |             | `string`  | `undefined` |
 
 
 ## Dependencies
