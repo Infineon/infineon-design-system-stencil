@@ -22,27 +22,40 @@
     right: tokens.$ifxSpace200;
   }
 
-  &:not(.readonly, .disabled) .delete-icon { 
-    &:hover { 
+  &:not(.readonly, .disabled) .delete-icon {
+    &:hover {
       cursor: pointer;
     }
   }
 
-  &.disabled {
+  &.disabled:not(.readonly) {
+
+    & #text-field { 
+      color: tokens.$ifxColorBaseWhite;
+    }
+
+    & .delete-icon { 
+      color: tokens.$ifxColorBaseWhite;
+    }
+    
     & .textInput__top-wrapper {
       & label {
-        color: tokens.$ifxColorBaseBlack;
+        color: tokens.$ifxColorEngineering300;
+      }
+
+      & .required {
+        color: tokens.$ifxColorEngineering300;
       }
     }
 
     & .textInput__bottom-wrapper {
       input {
-        border: 1px solid tokens.$ifxColorEngineering500;
-        background-color: tokens.$ifxColorEngineering200;
+        border: 1px solid tokens.$ifxColorEngineering300;
+        background-color: tokens.$ifxColorEngineering300;
 
         &::placeholder {
           font-size: tokens.$ifxFontSizeM;
-          color: tokens.$ifxColorEngineering500;
+          color: tokens.$ifxColorBaseWhite;
         }
       }
     }
@@ -222,7 +235,7 @@
       }
 
       &.disabled {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
       }
     }
   }
