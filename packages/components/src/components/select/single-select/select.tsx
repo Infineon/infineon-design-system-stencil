@@ -106,11 +106,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async clearSelection() {
-    this.clearInput();
-    this.clearSelectField();
-    this.setPreSelected(null);
-    this.closeDropdown();
-    this.optionIsSelected = false;
+    if(!this.disabled) { 
+      this.clearInput();
+      this.clearSelectField();
+      this.setPreSelected(null);
+      this.closeDropdown();
+      this.optionIsSelected = false;
+    }
   }
 
   clearSelectField() {
@@ -369,7 +371,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return (
       <div class={`ifx-select-container`}>
         {this.label ? (
-          <div class="ifx-label-wrapper">
+          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
             {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
           </div>

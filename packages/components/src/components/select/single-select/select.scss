@@ -31,6 +31,10 @@
     max-width: 100%;
     overflow: hidden;
 
+    &.disabled { 
+      color: tokens.$ifxColorEngineering300;
+    }
+
     & .required {
       margin-left: 4px;
 
@@ -56,7 +60,7 @@
     }
 
     &.disabled {
-      color: tokens.$ifxColorEngineering500;
+      color: tokens.$ifxColorEngineering300;
     }
   }
 
@@ -100,9 +104,9 @@
     }
 
     &.disabled {
-      background: #eeeded;
-      color: #575352;
-      border-color: #575352;
+      background: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorBaseWhite;
+      border-color: tokens.$ifxColorEngineering300;
       cursor: default;
       -webkit-user-select: none;
       -ms-user-select: none;

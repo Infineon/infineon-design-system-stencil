@@ -578,7 +578,7 @@ export class Multiselect {
     }
 
     return (
-      <div class={`ifx-multiselect-container`} ref={el => (this.dropdownElement = el as HTMLElement)}>
+      <div class={`ifx-multiselect-container ${this.disabled && !this.error ? 'disabled' : ''}`} ref={el => (this.dropdownElement = el as HTMLElement)}>
         {
           <div class="ifx-label-wrapper">
             {this.label && (

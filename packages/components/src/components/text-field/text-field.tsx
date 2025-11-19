@@ -49,8 +49,10 @@ export class TextField {
   }
 
   handleDeleteContent() {
-    this.reset();
-    this.ifxInput.emit(this.value);
+    if (!this.disabled && !this.readOnly) {
+      this.reset();
+      this.ifxInput.emit(this.value);
+    }
   }
 
   handleInput() {
@@ -86,7 +88,7 @@ export class TextField {
         aria-label="a text field for user input"
         aria-value={this.value}
         aria-disabled={this.disabled}
-        class={`textInput__container ${this.disabled && !this.error ? 'disabled' : ''}`}
+        class={`textInput__container ${this.readOnly ? 'readonly' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}
       >
         <div class="textInput__top-wrapper">
           {this.label && (

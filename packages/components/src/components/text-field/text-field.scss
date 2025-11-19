@@ -1,5 +1,5 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/font.scss';
 
 :host {
   display: flex;
@@ -16,6 +16,17 @@
   align-self: stretch;
   flex-grow: 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+
+  & .delete-icon {
+    position: absolute;
+    right: tokens.$ifxSpace200;
+  }
+
+  &:not(.readonly, .disabled) .delete-icon { 
+    &:hover { 
+      cursor: pointer;
+    }
+  }
 
   &.disabled {
     & .textInput__top-wrapper {
@@ -86,7 +97,6 @@
     width: 100%;
   }
 
-
   & .textInput__bottom-wrapper {
     flex-grow: 1;
     position: relative;
@@ -113,7 +123,6 @@
       color: tokens.$ifxColorBaseBlack;
       font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       border: 1px solid tokens.$ifxColorEngineering400;
@@ -133,7 +142,6 @@
           font-size: tokens.$ifxFontSizeM;
           line-height: tokens.$ifxLineHeightS;
         }
-
       }
 
       &.icon {
@@ -151,8 +159,8 @@
       &.readonly {
         border: none;
         border-radius: var(--borderRadius-12, 1px);
-        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
-        background: var(--color-base-white, #FFF);
+        border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
+        background: var(--color-base-white, #fff);
         padding-left: 0;
 
         &::placeholder {
@@ -178,7 +186,7 @@
         outline: none;
         box-shadow: none;
         border: none;
-        border-bottom: 1px solid var(--color-engineering-300, #BFBBBB);
+        border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
       }
 
       &:hover:not(:disabled, :focus, .error, .success):not(.readonly) {
@@ -194,7 +202,7 @@
       transform: translateY(-50%);
       left: tokens.$ifxSpace200;
       /* Adjust this value to control the icon's left offset */
-      transition: .3s;
+      transition: 0.3s;
       color: tokens.$ifxColorEngineering400;
     }
 
@@ -211,23 +219,11 @@
 
       &.error {
         color: tokens.$ifxColorRed500;
-
       }
 
       &.disabled {
         color: tokens.$ifxColorEngineering500;
       }
-    }
-
-
-  }
-
-  .delete-icon {
-    position: absolute;
-    right: tokens.$ifxSpace200;
-
-    :hover {
-      cursor: pointer;
     }
   }
 }
