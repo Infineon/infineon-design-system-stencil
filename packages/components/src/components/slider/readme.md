@@ -9,6 +9,7 @@
 
 | Property         | Attribute          | Description | Type                   | Default     |
 | ---------------- | ------------------ | ----------- | ---------------------- | ----------- |
+| `ariaLabel`      | `aria-label`       |             | `string`               | `undefined` |
 | `disabled`       | `disabled`         |             | `boolean`              | `false`     |
 | `leftIcon`       | `left-icon`        |             | `string`               | `undefined` |
 | `leftText`       | `left-text`        |             | `string`               | `undefined` |
