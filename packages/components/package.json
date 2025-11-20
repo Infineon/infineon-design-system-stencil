@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
-  "version": "39.2.0--canary.2109.a44d5d250fcef8eccd8ed29717480cbdcaed5fa3.0",
+  "version": "39.2.0",
   "private": false,
   "description": "Infineon design system Stencil web components",
   "homepage": "https://infineon.github.io/infineon-design-system-stencil",
