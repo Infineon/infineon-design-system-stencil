@@ -1,3 +1,20 @@
+# v39.2.0 (Thu Nov 20 2025)
+
+#### 🚀 Enhancement
+
+- Makes icon-button nestable inside Table [#2109](https://github.com/Infineon/infineon-design-system-stencil/pull/2109) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.1.0 (Wed Nov 19 2025)
 
 #### 🚀 Enhancement
