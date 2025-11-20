@@ -5,6 +5,7 @@ import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
 import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { IconButtonCellRenderer } from './iconButtonCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -23,6 +24,7 @@ export class Table {
   @Prop() cols: any;
   @Prop() rows: any;
   @Prop() buttonRendererOptions?: { onButtonClick?: (params: any, event: Event) => void;}; 
+  @Prop() iconButtonRendererOptions?: { onIconButtonClick?: (params: any, event: Event) => void;}; 
   @State() rowData: any[] = [];
   @State() colData: any[] = [];
   @State() filterOptions: { [key: string]: string[] } = {};
@@ -118,9 +120,17 @@ export class Table {
 
   @Watch('buttonRendererOptions')
   onButtonRendererOptionsChanged() {
-     this.colData = this.getColData();  // Re-fetch column data to apply new renderer options
+     this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
+      this.gridApi.setColumnDefs(this.colData);  
+    }
+  }
+
+  @Watch('iconButtonRendererOptions')
+  onIconButtonRendererOptionsChanged() {
+     this.colData = this.getColData();  
+    if (this.gridApi) {
+      this.gridApi.setColumnDefs(this.colData);
     }
   }
 
@@ -550,6 +560,19 @@ getColData() {
       if (this.buttonRendererOptions?.onButtonClick) {
         column.cellRendererParams = {
           onButtonClick: this.buttonRendererOptions.onButtonClick
+        };
+      }
+    }
+
+    // --- Icon Button columns ---
+    if (field.startsWith('iconbutton') || field === 'iconButton') {
+      column.cellRenderer = IconButtonCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+
+      if (this.iconButtonRendererOptions?.onIconButtonClick) {
+        column.cellRendererParams = {
+          onIconButtonClick: this.iconButtonRendererOptions.onIconButtonClick
         };
       }
     }
