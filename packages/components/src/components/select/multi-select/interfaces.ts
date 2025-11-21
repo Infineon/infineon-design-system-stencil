@@ -4,5 +4,6 @@ export interface Option {
   disabled?: boolean;
   indeterminate?: boolean;
   children?: Option[];
-  checkboxRef?: HTMLIfxCheckboxElement;
+  checkboxRef?: HTMLIfxCheckboxElement,
+  label?: string
 }
