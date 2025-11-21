@@ -48,15 +48,4 @@ describe('ifx-status', () => {
     const dot = page.root.shadowRoot.querySelector('.dot');
     expect(dot.classList.contains('orange-500')).toBeTruthy();
   });
-
-  it('has correct accessibility attributes', async () => {
-    const page = await newSpecPage({
-      components: [Status],
-      html: `<ifx-status label="Warning"></ifx-status>`,
-    });
-    
-    const container = page.root.shadowRoot.querySelector('div');
-    expect(container.getAttribute('aria-label')).toBe('a status indicator');
-    expect(container.getAttribute('aria-value')).toBe('Warning');
-  });
 });

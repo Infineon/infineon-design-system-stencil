@@ -1,17 +1,14 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../../global/font.scss';
 
 /*===============================
 =            Choices            =
 ===============================*/
 
-
 .ifx-select-container {
   box-sizing: border-box;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
 
   &.small-select {
     height: 36px;
@@ -33,17 +30,38 @@
     overflow-wrap: anywhere;
     max-width: 100%;
     overflow: hidden;
+
+    &.disabled { 
+      color: tokens.$ifxColorEngineering300;
+    }
+
+    & .required {
+      margin-left: 4px;
+
+      &.error {
+        color: #cd002f;
+      }
+    }
   }
 
-  .ifx-error-message-wrapper {
-    color: tokens.$ifxColorRed500;
+  .single__select-caption {
+    font-style: normal;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-    max-width: 100%;
-    overflow: hidden;
+    color: tokens.$ifxColorBaseBlack;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+
+    &.disabled {
+      color: tokens.$ifxColorEngineering300;
+    }
   }
 
   .ifx-choices__wrapper {
@@ -58,12 +76,12 @@
     font-style: normal;
     width: 100%;
 
-    & .choices { 
+    & .choices {
       flex-grow: 1;
       overflow: hidden;
     }
 
-    & .single__select-icon-container { 
+    & .single__select-icon-container {
       display: flex;
       align-items: center;
       margin-left: auto;
@@ -113,7 +131,7 @@
     }
 
     &.error {
-      border-color: tokens.$ifxColorRed500;
+      border-color: #cd002f;
     }
 
     &:not(.disabled):hover:not(.focus, :focus) {
@@ -128,11 +146,10 @@
         align-items: center;
         justify-content: center;
         padding-left: tokens.$ifxSpace100;
-
       }
 
       & .ifx-choices__icon-wrapper-down {
-        display: none
+        display: none;
       }
     }
 
@@ -147,7 +164,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border: 2px solid tokens.$ifxColorOcean500;
+        border: 2px solid #0a8276;
         border-radius: 2px;
       }
     }
@@ -163,7 +180,6 @@
         transform: translate(-50%, -50%);
       }
     }
-
 
     & .ifx-choices__icon-wrapper-up {
       display: none;
@@ -189,13 +205,18 @@
       align-items: center;
       justify-content: center;
 
-      &.hide { 
+      &.hide {
         display: none;
       }
+
+      &:focus{
+        outline: none;
+        border: 2px solid tokens.$ifxColorOcean600;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
     }
-
   }
-
 
   /*
 START Select options: item alignment
@@ -274,7 +295,6 @@ END Select options: item alignment
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
     }
-
   }
 
   .choices[data-type*='select-one'] .choices__single-button {
@@ -365,9 +385,9 @@ END Select options: item alignment
   .choices__inner {
     overflow: hidden;
 
-    & .choices__list { 
-      & .choices__item { 
-        & span { 
+    & .choices__list {
+      & .choices__item {
+        & span {
           flex-grow: 1;
           white-space: nowrap;
           overflow: hidden;
@@ -375,14 +395,12 @@ END Select options: item alignment
         }
       }
     }
-
   }
 
   .is-focused .choices__inner,
   .is-open .choices__inner {
     border-color: #b7b7b7;
   }
-
 
   .is-open .choices__inner {
     border-radius: 2.5px 2.5px 0 0;
@@ -404,10 +422,9 @@ END Select options: item alignment
     justify-content: space-between;
   }
 
-  .disabled>.choices__list--single .choices__item[data-value=''] {
-    color: tokens.$ifxColorBaseWhite;
+  .disabled > .choices__list--single .choices__item[data-value=''] {
+    color: #8d8786;
     /* Placeholder font color */
-
   }
 
   .choices__list--multiple .choices__item {
@@ -430,7 +447,6 @@ END Select options: item alignment
   .choices__list--multiple .choices__item[data-deletable] {
     padding-right: 5px;
   }
-
 
   [dir='rtl'] .choices__list--multiple .choices__item {
     margin-right: 0;
@@ -508,18 +524,15 @@ END Select options: item alignment
     }
 
     &.selected {
-      color: tokens.$ifxColorOcean500;
+      color: #0a8276;
     }
   }
-
 
   [dir='rtl'] .choices__list--dropdown .choices__item {
     text-align: right;
   }
 
-
   @media (min-width: 640px) {
-   
     .choices__list--dropdown .choices__item--selectable:after {
       // content: attr(data-select-text); #press to select text next to select option
       font-size: tokens.$ifxFontSizeXs;
@@ -543,20 +556,19 @@ END Select options: item alignment
     }
   }
 
-
   .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    background-color: tokens.$ifxColorEngineering200;
+    background-color: #eeeded;
 
     &.selected {
-      color: tokens.$ifxColorOcean500;
+      color: #0a8276;
     }
   }
 
   .choices__list--dropdown .choices__item--selectable:hover {
-    background-color: tokens.$ifxColorEngineering200;
+    background-color: #eeeded;
 
     &.selected {
-      color: tokens.$ifxColorOcean500;
+      color: #0a8276;
     }
   }
 
@@ -585,8 +597,8 @@ END Select options: item alignment
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
     padding: 10px;
-    border-bottom: 1px solid tokens.$ifxColorEngineering100;
-    color: tokens.$ifxColorBaseBlack
+    border-bottom: 1px solid #f7f7f7;
+    color: tokens.$ifxColorBaseBlack;
   }
 
   .choices__button {
@@ -600,8 +612,7 @@ END Select options: item alignment
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    // visibility: hidden; //hide remove button on select menu 
-
+    // visibility: hidden; //hide remove button on select menu
   }
 
   .choices__button:focus {
@@ -618,7 +629,7 @@ END Select options: item alignment
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    visibility: hidden; //hide remove button on select menu 
+    visibility: hidden; //hide remove button on select menu
   }
 
   .choices__single-button:focus {
@@ -636,7 +647,6 @@ END Select options: item alignment
     border-radius: 0;
     max-width: 100%;
   }
-
 
   .choices__input--cloned {
     background-color: transparent;
@@ -663,7 +673,6 @@ END Select options: item alignment
     display: none;
   }
 
-
   .choices__input:focus {
     outline: 0;
   }
@@ -678,6 +687,4 @@ END Select options: item alignment
   }
 
   /*=====  End of Choices  ======*/
-
-
 }

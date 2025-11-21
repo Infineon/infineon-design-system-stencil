@@ -1,3 +1,74 @@
+# v39.2.1 (Fri Nov 21 2025)
+
+#### 🐛 Bug Fix
+
+- Updates the documentation of select, text-field, tabs, stepper, slider, search-field and date-picker [#2104](https://github.com/Infineon/infineon-design-system-stencil/pull/2104) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.2.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.2.0 (Thu Nov 20 2025)
+
+#### 🚀 Enhancement
+
+- Makes icon-button nestable inside Table [#2109](https://github.com/Infineon/infineon-design-system-stencil/pull/2109) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.1.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.1.0 (Wed Nov 19 2025)
+
+#### 🚀 Enhancement
+
+- Adds accessibility enhancement to AA level for several components [#1987](https://github.com/Infineon/infineon-design-system-stencil/pull/1987) ([@agata-kim](https://github.com/agata-kim) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.0.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@agata-kim](https://github.com/agata-kim)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.0.0 (Wed Nov 19 2025)
+
+#### 💥 Breaking Change
+
+- Adds a read-only prop to text-field. Replaces label slot with a label prop. Removes errorMessage, and adds caption to single and multi-select components [#2037](https://github.com/Infineon/infineon-design-system-stencil/pull/2037) ([@limingz20](https://github.com/limingz20) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 38.7.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- github-actions (github-actions@github.com)
+- Mingzhen Li ([@limingz20](https://github.com/limingz20))
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v38.7.2 (Fri Nov 14 2025)
 
 #### 🐛 Bug Fix
