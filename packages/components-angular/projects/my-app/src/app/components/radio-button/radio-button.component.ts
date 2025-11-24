@@ -14,25 +14,27 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './radio-button.component.scss'
 })
 export class RadioButtonComponent {
-  radioError = false;
-  radioDisabled = false;
-  radioChecked = false;
-  radioButtonValue = false;
+  radioBtnError = false;
+  radioBtnDisabled = false;
+  radioBtnChecked = false;
 
-  handleRadioButtonChange(event: any) {
-    console.log('Radio button value: ', event.detail);
-    this.radioButtonValue = event.detail;
-  }
+  radioBtnSize = "s";
+  radioBtnSizes = ["s", "m"];
+  radioBtnSizeIndex = 0;
 
   toggleRadioBtnDisabled() {
-    this.radioDisabled = !this.radioDisabled;
+    this.radioBtnDisabled = !this.radioBtnDisabled;
   }
   toggleRadioBtnError() {
-    this.radioError = !this.radioError;
+    this.radioBtnError = !this.radioBtnError;
   }
-  toggleRadioBtnValue() {
-    console.log("checkbox value change")
-    this.radioChecked = !this.radioChecked;
+  toggleRadioBtnChecked() {
+    this.radioBtnChecked = !this.radioBtnChecked;
+  }
+
+  toggleRadioBtnSize() {
+    this.radioBtnSizeIndex = (this.radioBtnSizeIndex + 1) % this.radioBtnSizes.length;
+    this.radioBtnSize = this.radioBtnSizes[this.radioBtnSizeIndex];
   }
 
 }
