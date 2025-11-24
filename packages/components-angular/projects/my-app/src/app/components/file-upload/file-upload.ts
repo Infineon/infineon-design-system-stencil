@@ -17,4 +17,18 @@ export class FileUpload {
   maxFileSizeMB = 7;
   allowedFileTypes = 'jpg,jpeg,png,pdf';
   additionalAllowedFileTypes = 'application/zip,text/csv';
+
+  uploadDragAndDrop = false;
+  uploadRequired = false;
+  uploadDisabled = false;
+
+  toggleUploadDragAndDrop() {
+    this.uploadDragAndDrop = !this.uploadDragAndDrop;
+  }
+  toggleUploadRequired() {
+    this.uploadRequired = !this.uploadRequired;
+  }
+  toggleUploadDisabled() {
+    this.uploadDisabled = !this.uploadDisabled;
+  }
 }
