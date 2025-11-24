@@ -29,7 +29,8 @@
     },
     "./components/*": {
       "default": "./dist/components/*"
-    }
+    },
+    "./styles.css": "./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"
   },
   "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
   "//": "TODO: es2015, es2017",

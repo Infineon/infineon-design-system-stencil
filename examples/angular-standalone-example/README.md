@@ -7,11 +7,15 @@ First, install the Infineon Design System Stencil components in your Angular app
 npm install @infineon/infineon-design-system-angular
 ```
 
-Then you need to import the library and the required components into your Angular component.
+Then, you need to load the global styles for the Infineon Design System in your `styles.css` or `styles.scss` file:
+```css
+@import '@infineon/infineon-design-system-angular/styles/infineon-design-system.css';
+```
+
+Now you need to import the required components into your Angular component.
 For example, to use the `ifx-alert` component, you would do the following:
 [app.ts](./src/app/app.ts):
 ```typescript
-import '@infineon/infineon-design-system-angular/standalone';
 import { IfxAlert } from '@infineon/infineon-design-system-angular/standalone';
 // ...
 
