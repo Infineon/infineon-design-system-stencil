@@ -25,6 +25,25 @@ export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__
 ]);
 
 
+export const IfxActionList: StencilVueComponent<JSX.IfxActionList> = /*@__PURE__*/ defineContainer<JSX.IfxActionList>('ifx-action-list', undefined, [
+  'listAriaLabel'
+]);
+
+
+export const IfxActionListItem: StencilVueComponent<JSX.IfxActionListItem> = /*@__PURE__*/ defineContainer<JSX.IfxActionListItem>('ifx-action-list-item', undefined, [
+  'itemTitle',
+  'description',
+  'value',
+  'href',
+  'target',
+  'disabled',
+  'itemAriaLabel',
+  'ifxActionListItemClick'
+], [
+  'ifxActionListItemClick'
+]);
+
+
 export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
   'variant',
   'icon',
@@ -126,7 +145,8 @@ export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__
   'groupLabelText',
   'showCaption',
   'captionText',
-  'showCaptionIcon'
+  'showCaptionIcon',
+  'required'
 ]);
 
 
@@ -453,8 +473,9 @@ export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineC
 export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', undefined, [
   'name',
   'disabled',
+  'required',
   'error',
-  'errorMessage',
+  'caption',
   'label',
   'placeholder',
   'showSearch',
@@ -542,6 +563,7 @@ export const IfxOverviewTable: StencilVueComponent<JSX.IfxOverviewTable> = /*@__
 
 export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__*/ defineContainer<JSX.IfxPagination>('ifx-pagination', undefined, [
   'currentPage',
+  'showItemsPerPage',
   'total',
   'itemsPerPage',
   'ifxPageChange',
@@ -581,7 +603,8 @@ export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> =
   'groupLabelText',
   'showCaption',
   'captionText',
-  'showCaptionIcon'
+  'showCaptionIcon',
+  'required'
 ]);
 
 
@@ -651,6 +674,8 @@ export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> =
   'caption',
   'label',
   'size',
+  'required',
+  'error',
   'ifxChange'
 ], [
   'ifxChange'
@@ -701,9 +726,10 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
   'callbackOnCreateTemplates',
   'valueComparer',
   'error',
-  'errorMessage',
   'label',
+  'caption',
   'disabled',
+  'required',
   'placeholderValue',
   'options',
   'size',
@@ -784,6 +810,7 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
   'leftText',
   'rightText',
   'type',
+  'ariaLabel',
   'ifxChange'
 ], [
   'ifxChange'
@@ -793,7 +820,8 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
 export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
   'size',
   'variant',
-  'inverted'
+  'inverted',
+  'ariaLabel'
 ]);
 
 
@@ -819,6 +847,8 @@ export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ def
   'indicatorPosition',
   'showStepNumber',
   'variant',
+  'ariaLabel',
+  'ariaCurrent',
   'ifxChange'
 ], [
   'ifxChange'
@@ -897,9 +927,9 @@ export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/
   'caption',
   'size',
   'required',
-  'optional',
   'success',
   'disabled',
+  'readOnly',
   'maxlength',
   'showDeleteIcon',
   'autocomplete',
@@ -937,6 +967,7 @@ export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ def
   'header',
   'text',
   'position',
+  'ariaLabel',
   'variant',
   'icon'
 ]);

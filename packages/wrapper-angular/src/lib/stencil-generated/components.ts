@@ -62,6 +62,61 @@ export declare interface IfxAccordionItem extends Components.IfxAccordionItem {
 
 
 @ProxyCmp({
+  inputs: ['listAriaLabel']
+})
+@Component({
+  selector: 'ifx-action-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['listAriaLabel'],
+  standalone: false
+})
+export class IfxActionList {
+  protected el: HTMLIfxActionListElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface IfxActionList extends Components.IfxActionList {}
+
+
+@ProxyCmp({
+  inputs: ['description', 'disabled', 'href', 'itemAriaLabel', 'itemTitle', 'target', 'value']
+})
+@Component({
+  selector: 'ifx-action-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['description', 'disabled', 'href', 'itemAriaLabel', 'itemTitle', 'target', 'value'],
+  outputs: ['ifxActionListItemClick'],
+  standalone: false
+})
+export class IfxActionListItem {
+  protected el: HTMLIfxActionListItemElement;
+  @Output() ifxActionListItemClick = new EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { ActionListItemClickEvent as IIfxActionListItemActionListItemClickEvent } from '@infineon/infineon-design-system-stencil';
+
+export declare interface IfxActionListItem extends Components.IfxActionListItem {
+  /**
+   * Event emitted when the main item area is clicked
+   */
+  ifxActionListItemClick: EventEmitter<CustomEvent<IIfxActionListItemActionListItemClickEvent>>;
+}
+
+
+@ProxyCmp({
   inputs: ['AriaLive', 'closable', 'icon', 'variant']
 })
 @Component({
@@ -380,7 +435,7 @@ export declare interface IfxCheckbox extends Components.IfxCheckbox {
 
 
 @ProxyCmp({
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   methods: ['setGroupError']
 })
 @Component({
@@ -388,7 +443,7 @@ export declare interface IfxCheckbox extends Components.IfxCheckbox {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   standalone: false
 })
 export class IfxCheckboxGroup {
@@ -768,7 +823,7 @@ export class IfxFileUpload {
   @Output() ifxFileUploadAdd = new EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[] }>>();
   @Output() ifxFileUploadRemove = new EventEmitter<CustomEvent<{ removedFile: File; files: File[] }>>();
   @Output() ifxFileUploadChange = new EventEmitter<CustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>();
+  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>();
   @Output() ifxFileUploadInvalid = new EventEmitter<CustomEvent<{ file: File; reason: string }>>();
   @Output() ifxFileUploadStart = new EventEmitter<CustomEvent<{ file: File }>>();
   @Output() ifxFileUploadComplete = new EventEmitter<CustomEvent<{ file: File }>>();
@@ -794,7 +849,7 @@ export declare interface IfxFileUpload extends Components.IfxFileUpload {
 
   ifxFileUploadChange: EventEmitter<CustomEvent<{ files: File[] }>>;
 
-  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
+  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>;
 
   ifxFileUploadInvalid: EventEmitter<CustomEvent<{ file: File; reason: string }>>;
 
@@ -1182,7 +1237,7 @@ export declare interface IfxModal extends Components.IfxModal {
 
 
 @ProxyCmp({
-  inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'collapseLabel', 'disabled', 'error', 'errorMessage', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
+  inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
   methods: ['clearSelection']
 })
 @Component({
@@ -1190,7 +1245,7 @@ export declare interface IfxModal extends Components.IfxModal {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'collapseLabel', 'disabled', 'error', 'errorMessage', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
+  inputs: ['ariaClearLabel', 'ariaCollapseAllLabel', 'ariaExpandAllLabel', 'ariaMultiSelectDescribedBy', 'ariaMultiSelectLabel', 'ariaMultiSelectLabelledBy', 'ariaSearchLabel', 'ariaSelectAllLabel', 'ariaToggleLabel', 'caption', 'collapseLabel', 'disabled', 'error', 'expandLabel', 'label', 'name', 'noResultsMessage', 'placeholder', 'required', 'searchPlaceholder', 'selectAllLabel', 'showClearButton', 'showExpandCollapse', 'showNoResultsMessage', 'showSearch', 'showSelectAll'],
   outputs: ['ifxSelect', 'ifxOpen'],
   standalone: false
 })
@@ -1363,14 +1418,14 @@ export declare interface IfxOverviewTable extends Components.IfxOverviewTable {}
 
 
 @ProxyCmp({
-  inputs: ['currentPage', 'itemsPerPage', 'total']
+  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total']
 })
 @Component({
   selector: 'ifx-pagination',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['currentPage', 'itemsPerPage', 'total'],
+  inputs: ['currentPage', 'itemsPerPage', 'showItemsPerPage', 'total'],
   outputs: ['ifxPageChange', 'ifxItemsPerPageChange'],
   standalone: false
 })
@@ -1449,7 +1504,7 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
 
 
 @ProxyCmp({
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   methods: ['setGroupError']
 })
 @Component({
@@ -1457,7 +1512,7 @@ export declare interface IfxRadioButton extends Components.IfxRadioButton {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['alignment', 'captionText', 'groupLabelText', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
+  inputs: ['alignment', 'captionText', 'groupLabelText', 'required', 'showCaption', 'showCaptionIcon', 'showGroupLabel', 'size'],
   standalone: false
 })
 export class IfxRadioButtonGroup {
@@ -1575,14 +1630,14 @@ export declare interface IfxSegment extends Components.IfxSegment {
 
 
 @ProxyCmp({
-  inputs: ['caption', 'label', 'size']
+  inputs: ['caption', 'error', 'label', 'required', 'size']
 })
 @Component({
   selector: 'ifx-segmented-control',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['caption', 'label', 'size'],
+  inputs: ['caption', 'error', 'label', 'required', 'size'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -1603,7 +1658,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
 
 
 @ProxyCmp({
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'errorMessage', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
+  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
   methods: ['clearSelection', 'handleChange', 'highlightItem', 'unhighlightItem', 'highlightAll', 'unhighlightAll', 'removeActiveItemsByValue', 'removeActiveItems', 'removeHighlightedItems', 'showDropdown', 'hideDropdown', 'getValue', 'setValue', 'setChoiceByValue', 'setChoices', 'clearChoices', 'clearStore', 'clearInput', 'ajax', 'handleDeleteIcon']
 })
 @Component({
@@ -1611,7 +1666,7 @@ export declare interface IfxSegmentedControl extends Components.IfxSegmentedCont
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'errorMessage', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
+  inputs: ['addItemFilter', 'addItemText', 'addItems', 'appendValue', 'callbackOnCreateTemplates', 'callbackOnInit', 'caption', 'choices', 'classNames', 'customAddItemText', 'delimiter', 'disabled', 'duplicateItemsAllowed', 'editItems', 'error', 'fuseOptions', 'itemSelectText', 'items', 'label', 'loadingText', 'maxItemCount', 'maxItemText', 'name', 'noChoicesText', 'noResultsText', 'options', 'paste', 'placeholder', 'placeholderValue', 'position', 'prependValue', 'removeItemButton', 'removeItems', 'renderChoiceLimit', 'renderSelectedChoices', 'required', 'resetScrollPosition', 'searchChoices', 'searchFields', 'searchFloor', 'searchPlaceholderValue', 'searchResultLimit', 'shouldSort', 'shouldSortItems', 'showClearButton', 'showSearch', 'size', 'sorter', 'uniqueItemText', 'value', 'valueComparer'],
   outputs: ['ifxSelect', 'ifxInput'],
   standalone: false
 })
@@ -1750,14 +1805,14 @@ export declare interface IfxSidebarTitle extends Components.IfxSidebarTitle {}
 
 
 @ProxyCmp({
-  inputs: ['disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
+  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value']
 })
 @Component({
   selector: 'ifx-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
+  inputs: ['ariaLabel', 'disabled', 'leftIcon', 'leftText', 'max', 'maxValueHandle', 'min', 'minValueHandle', 'rightIcon', 'rightText', 'showPercentage', 'step', 'type', 'value'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -1778,14 +1833,14 @@ export declare interface IfxSlider extends Components.IfxSlider {
 
 
 @ProxyCmp({
-  inputs: ['inverted', 'size', 'variant']
+  inputs: ['ariaLabel', 'inverted', 'size', 'variant']
 })
 @Component({
   selector: 'ifx-spinner',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['inverted', 'size', 'variant'],
+  inputs: ['ariaLabel', 'inverted', 'size', 'variant'],
   standalone: false
 })
 export class IfxSpinner {
@@ -1847,14 +1902,14 @@ export declare interface IfxStep extends Components.IfxStep {}
 
 
 @ProxyCmp({
-  inputs: ['activeStep', 'indicatorPosition', 'showStepNumber', 'variant']
+  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant']
 })
 @Component({
   selector: 'ifx-stepper',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['activeStep', 'indicatorPosition', 'showStepNumber', 'variant'],
+  inputs: ['activeStep', 'ariaCurrent', 'ariaLabel', 'indicatorPosition', 'showStepNumber', 'variant'],
   outputs: ['ifxChange'],
   standalone: false
 })
@@ -2038,7 +2093,7 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
 
 
 @ProxyCmp({
-  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'optional', 'placeholder', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
+  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
   methods: ['reset']
 })
 @Component({
@@ -2046,7 +2101,7 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'optional', 'placeholder', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
+  inputs: ['autocomplete', 'caption', 'disabled', 'error', 'icon', 'internalId', 'label', 'maxlength', 'placeholder', 'readOnly', 'required', 'showDeleteIcon', 'size', 'success', 'type', 'value'],
   outputs: ['ifxInput'],
   standalone: false
 })
@@ -2096,14 +2151,14 @@ export declare interface IfxTextarea extends Components.IfxTextarea {
 
 
 @ProxyCmp({
-  inputs: ['header', 'icon', 'position', 'text', 'variant']
+  inputs: ['ariaLabel', 'header', 'icon', 'position', 'text', 'variant']
 })
 @Component({
   selector: 'ifx-tooltip',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['header', 'icon', 'position', 'text', 'variant'],
+  inputs: ['ariaLabel', 'header', 'icon', 'position', 'text', 'variant'],
   standalone: false
 })
 export class IfxTooltip {

@@ -7,9 +7,11 @@
 
 /* eslint-disable */
 
-import { type ChangeEvent, type ChipItemSelectEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
+import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
+import { IfxActionList as IfxActionListElement, defineCustomElement as defineIfxActionList } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list.js";
 import { IfxAlert as IfxAlertElement, defineCustomElement as defineIfxAlert } from "@infineon/infineon-design-system-stencil/dist/components/ifx-alert.js";
 import { IfxBasicTable as IfxBasicTableElement, defineCustomElement as defineIfxBasicTable } from "@infineon/infineon-design-system-stencil/dist/components/ifx-basic-table.js";
 import { IfxBreadcrumbItemLabel as IfxBreadcrumbItemLabelElement, defineCustomElement as defineIfxBreadcrumbItemLabel } from "@infineon/infineon-design-system-stencil/dist/components/ifx-breadcrumb-item-label.js";
@@ -118,6 +120,28 @@ export const IfxAccordionItem: StencilReactComponent<IfxAccordionItemElement, If
         onIfxClose: 'ifxClose'
     } as IfxAccordionItemEvents,
     defineCustomElement: defineIfxAccordionItem
+});
+
+export type IfxActionListEvents = NonNullable<unknown>;
+
+export const IfxActionList: StencilReactComponent<IfxActionListElement, IfxActionListEvents> = /*@__PURE__*/ createComponent<IfxActionListElement, IfxActionListEvents>({
+    tagName: 'ifx-action-list',
+    elementClass: IfxActionListElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxActionListEvents,
+    defineCustomElement: defineIfxActionList
+});
+
+export type IfxActionListItemEvents = { onIfxActionListItemClick: EventName<IfxActionListItemCustomEvent<ActionListItemClickEvent>> };
+
+export const IfxActionListItem: StencilReactComponent<IfxActionListItemElement, IfxActionListItemEvents> = /*@__PURE__*/ createComponent<IfxActionListItemElement, IfxActionListItemEvents>({
+    tagName: 'ifx-action-list-item',
+    elementClass: IfxActionListItemElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: { onIfxActionListItemClick: 'ifxActionListItemClick' } as IfxActionListItemEvents,
+    defineCustomElement: defineIfxActionListItem
 });
 
 export type IfxAlertEvents = { onIfxClose: EventName<CustomEvent<any>> };
@@ -441,7 +465,7 @@ export type IfxFileUploadEvents = {
     onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
     onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>,
     onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
     onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
