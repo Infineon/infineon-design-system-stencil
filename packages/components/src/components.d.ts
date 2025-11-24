@@ -1459,6 +1459,7 @@ export namespace Components {
           * @default ""
          */
         "headline": string;
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void;};
         "onBtShowLoading": () => Promise<void>;
         /**
           * @default true
@@ -4405,6 +4406,7 @@ declare namespace LocalJSX {
           * @default ""
          */
         "headline"?: string;
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void;};
         /**
           * @default true
          */

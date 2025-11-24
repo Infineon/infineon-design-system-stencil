@@ -881,6 +881,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'cols',
   'rows',
   'buttonRendererOptions',
+  'iconButtonRendererOptions',
   'rowHeight',
   'tableHeight',
   'pagination',
