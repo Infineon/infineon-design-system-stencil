@@ -1,6 +1,5 @@
 import { Route } from '@angular/router';
 
-import { All }                      from './components/all/all';
 import { AccordionComponent }       from './components/accordion/accordion.component';
 import { AlertComponent }           from './components/alert/alert.component';
 import { BadgeComponent }           from './components/badge/badge.component';
@@ -46,7 +45,6 @@ import { TooltipComponent }         from './components/tooltip/tooltip.component
 import { TreeView }                 from './components/tree-view/tree-view';
 
 export const routes: Route[] = [
-  { path: 'all',              component: All},
   { path: 'accordion',        component: AccordionComponent },
   { path: 'alert',            component: AlertComponent },
   { path: 'badge',            component: BadgeComponent },
