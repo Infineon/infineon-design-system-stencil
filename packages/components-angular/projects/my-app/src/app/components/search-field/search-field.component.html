@@ -1,3 +1,32 @@
 <h2>Search Field</h2>
-  <ifx-search-field size="m" disabled="false" show-delete-icon="true"
-    (ifxInput)="handleSearchField($event)"></ifx-search-field>
+<ifx-search-field 
+[size]="searchFieldSize" 
+[disabled]="searchFieldDisabled" 
+[showDeleteIcon]="searchFieldDeleteIcon" 
+show-suggestions="false" 
+enable-history="true" 
+max-suggestions="10" 
+max-history-items="5" 
+history-key="ifx-search-history" 
+history-header-text="Recent Searches" 
+value="" 
+autocomplete="on" 
+placeholder="Search..." 
+aria-label="Search field" 
+delete-icon-aria-label="Clear search" 
+history-delete-aria-label="Remove from history" 
+dropdown-aria-label="Search suggestions and history" 
+suggestion-aria-label="Search suggestion" 
+history-item-aria-label="Search history item">
+</ifx-search-field>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleSerchFieldDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSearchFieldDeleteIcon()">Toggle Delete Icon</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSearchFieldSize()">Toggle Size</ifx-button>
+<br>
+<br>
+<span><b>Disabled:</b> {{ searchFieldDisabled }} </span><br>
+<span><b>Delete Icon:</b> {{ searchFieldDeleteIcon }} </span><br>
+<span><b>Size:</b> {{ searchFieldSize }} </span><br>
