@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
 import { detectFramework } from '../../global/utils/framework-detection';
-import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
+import { IconButtonCellRenderer } from './iconButtonCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
 import { StatusCellRenderer } from './statusCellRenderer';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
@@ -23,6 +24,7 @@ export class Table {
   @Prop() cols: any;
   @Prop() rows: any;
   @Prop() buttonRendererOptions?: { onButtonClick?: (params: any, event: Event) => void;}; 
+  @Prop() iconButtonRendererOptions?: { onIconButtonClick?: (params: any, event: Event) => void;}; 
   @State() rowData: any[] = [];
   @State() colData: any[] = [];
   @State() filterOptions: { [key: string]: string[] } = {};
@@ -118,9 +120,17 @@ export class Table {
 
   @Watch('buttonRendererOptions')
   onButtonRendererOptionsChanged() {
-     this.colData = this.getColData();  // Re-fetch column data to apply new renderer options
+     this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);  // Update column definitions in the grid API
+      this.gridApi.setColumnDefs(this.colData);  
+    }
+  }
+
+  @Watch('iconButtonRendererOptions')
+  onIconButtonRendererOptionsChanged() {
+     this.colData = this.getColData();  
+    if (this.gridApi) {
+      this.gridApi.setColumnDefs(this.colData);
     }
   }
 
@@ -351,8 +361,54 @@ async updateTableView() {
       },
       rowDragManaged: this.colData.some(col => col.dndSource === true) ? true : false,
       animateRows: this.colData.some(col => col.dndSource === true) ? true : false,
+      navigateToNextCell: (params) => {
+        return this.focusCellIfContainingButton(params.api, params.nextCellPosition);
+      },
+      tabToNextCell: (params) => {
+        // Returning null is deprecated so we return false if the result is null (browser handles tab behavior).
+        return this.focusCellIfContainingButton(params.api, params.nextCellPosition) ?? false;
+      }
     };
+  }
 
+  focusCellIfContainingButton<T>(api: GridApi<T>, cellPosition: CellPosition) : CellPosition | null {
+    if (!cellPosition) {
+      return null;
+    }
+
+    if (cellPosition.column.getColDef().field === 'button') {
+      const rowNode = api.getDisplayedRowAtIndex(cellPosition.rowIndex);
+
+      if (!rowNode) {
+        // Row not yet rendered due to virtualization.
+        return null;
+      }
+
+      const cellRenderers = api.getCellRendererInstances({
+        rowNodes: [rowNode],
+        columns: [cellPosition.column]
+      });
+
+      if (cellRenderers.length > 0) {
+        const renderedContent = (cellRenderers[0] as ButtonCellRenderer)?.getGui();
+
+        if (renderedContent) {
+          const button = renderedContent.querySelector('ifx-button');
+
+          if (button) {
+            setTimeout(() => {
+              // Just calling button.focus() will not work because the focus of <ifx-button> will not be 
+              // forwared to its child <a>-element (containing the tabindex attribute) due to shadow root. 
+              // We must therefore grab the <a>-element manually first and then call focus() on it.
+              const focusableChild = button.shadowRoot?.querySelector<HTMLElement>('a[tabindex]');
+              focusableChild?.focus();
+            }, 0);
+          }
+        }
+      }
+    }
+
+    return cellPosition;
   }
 
   componentDidRender() {
@@ -504,6 +560,19 @@ getColData() {
       if (this.buttonRendererOptions?.onButtonClick) {
         column.cellRendererParams = {
           onButtonClick: this.buttonRendererOptions.onButtonClick
+        };
+      }
+    }
+
+    // --- Icon Button columns ---
+    if (field.startsWith('iconbutton') || field === 'iconButton') {
+      column.cellRenderer = IconButtonCellRenderer;
+      column.valueFormatter = undefined;
+      column.cellDataType = false;
+
+      if (this.iconButtonRendererOptions?.onIconButtonClick) {
+        column.cellRendererParams = {
+          onIconButtonClick: this.iconButtonRendererOptions.onIconButtonClick
         };
       }
     }
