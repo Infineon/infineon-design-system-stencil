@@ -64,7 +64,6 @@ export const config: Config = {
       componentCorePackage: componentCorePackage,
       outputType: 'standalone',
       directivesProxyFile: '../wrapper-angular/standalone/src/lib/stencil-generated/components.ts',
-      directivesArrayFile: '../wrapper-angular/standalone/src/lib/stencil-generated/index.ts',
     }),
     reactOutputTarget({
       // Relative path to where the React components will be generated
@@ -74,6 +73,10 @@ export const config: Config = {
       componentCorePackage: componentCorePackage,
       proxiesFile: '../wrapper-vue/lib/stencil-generated/components.ts',
     }),
+    {
+      type: 'dist-hydrate-script',
+      dir: './dist/hydrate',
+    },
   ],
   testing: {
     browserHeadless: "shell",

@@ -38,5 +38,8 @@
   },
   "publishConfig": {
     "directory": "dist"
+  },
+  "exports": {
+    "./styles.css": "./src/styles.css"
   }
 }
