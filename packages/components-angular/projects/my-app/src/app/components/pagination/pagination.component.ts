@@ -14,5 +14,9 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './pagination.component.scss'
 })
 export class PaginationComponent {
+  paginationShowItemsPerPage = true;
 
+  togglePaginationShowItemsPerPage() {
+    this.paginationShowItemsPerPage = !this.paginationShowItemsPerPage;
+  }
 }
