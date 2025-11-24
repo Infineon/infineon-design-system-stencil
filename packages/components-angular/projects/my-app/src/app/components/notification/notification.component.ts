@@ -15,4 +15,12 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class NotificationComponent {
 
+  notificationVariant = "neutral";
+  notificationVariants = ["success", "locked", "error", "neutral"];
+  notificationVariantIndex = 3;
+
+  toggleNotificationVariant() {
+    this.notificationVariantIndex = (this.notificationVariantIndex + 1) % this.notificationVariants.length;
+    this.notificationVariant = this.notificationVariants[this.notificationVariantIndex];
+  }
 }

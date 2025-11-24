@@ -1,9 +1,17 @@
 <h2>Notification</h2>
-  <ifx-notification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success
-    notification</ifx-notification>
-  <br />
-  <ifx-notification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked
-    notification</ifx-notification>
-  <br />
-  <ifx-notification icon="c-check-16" variant="error" link-text="Link" link-href="https://www.example.com">Error
-    notification</ifx-notification>
+
+<ifx-notification 
+  icon = "c-check-16"
+  [variant]="notificationVariant" 
+  link-text="Link" 
+  link-href="https://www.example.com"
+  link-target="_blank">
+  Sample Notification
+</ifx-notification>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleNotificationVariant()">Toggle Variant</ifx-button>
+<br>
+<br>
+<span><b>Variant:</b> {{ notificationVariant }} </span><br>
