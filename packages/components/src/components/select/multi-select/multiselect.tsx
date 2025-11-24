@@ -251,7 +251,6 @@ export class Multiselect {
           value: instance.value,
           selected: true,
           disabled: instance.disabled,
-          // Store the text content directly
           label: instance.getTextContent() || instance.value,
         });
       }
@@ -327,7 +326,6 @@ export class Multiselect {
   }
 
   componentWillLoad() {
-    console.log('here changed');
     this.loadInitialOptions();
   }
 
