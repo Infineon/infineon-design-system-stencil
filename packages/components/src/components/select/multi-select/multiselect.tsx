@@ -239,7 +239,7 @@ export class Multiselect {
     }
   }
 
-  private pendingSelectionUpdate = false;
+  //private pendingSelectionUpdate = false;
   public updateSlotBasedSelections(emitEvent: boolean = false) {
     const allOptionElements = this.el.querySelectorAll('ifx-multiselect-option');
     const selectedLeafOptions: Option[] = [];
@@ -251,6 +251,7 @@ export class Multiselect {
           value: instance.value,
           selected: true,
           disabled: instance.disabled,
+          label: instance.getTextContent() || instance.value,
         });
       }
     });
@@ -311,15 +312,10 @@ export class Multiselect {
       this.positionDropdown();
     }, 500);
 
-    this.el.addEventListener('ifx-option-changed', () => {
-      if (!this.pendingSelectionUpdate) {
-        this.pendingSelectionUpdate = true;
-        requestAnimationFrame(() => {
-          this.updateSlotBasedSelections(true);
-          setTimeout(() => {
-            this.pendingSelectionUpdate = false;
-          }, 0);
-        });
+    this.el.addEventListener('ifx-option-changed', (event: CustomEvent) => {
+      const optionInstance = (event.target as any)?.__stencil_instance;
+      if (optionInstance && !optionInstance.hasChildren) {
+        this.updateSlotBasedSelections(true);
       }
     });
 
@@ -562,12 +558,7 @@ export class Multiselect {
   }
 
   render() {
-    const selectedOptionsLabels = this.persistentSelectedOptions
-      .map(option => {
-        const optionElement = this.el.querySelector(`ifx-multiselect-option[value="${option.value}"]`);
-        return optionElement?.textContent?.trim() || option.value;
-      })
-      .join(', ');
+    const selectedOptionsLabels = this.persistentSelectedOptions.map(option => (option as any).label || option.value).join(', ');
 
     const hasSelections = this.persistentSelectedOptions.length > 0;
 

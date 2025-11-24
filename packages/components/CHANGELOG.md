@@ -1,3 +1,20 @@
+# v39.3.0 (Mon Nov 24 2025)
+
+#### 🚀 Enhancement
+
+- Multi-select: fixes label not shown bug [#2115](https://github.com/Infineon/infineon-design-system-stencil/pull/2115) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.2.1 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.2.1 (Fri Nov 21 2025)
 
 #### 🐛 Bug Fix
