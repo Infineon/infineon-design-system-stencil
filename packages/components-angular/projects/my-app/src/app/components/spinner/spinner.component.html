@@ -1,2 +1,13 @@
 <h2>Spinner</h2>
-<ifx-spinner variant="semiconductor" size="m"></ifx-spinner>
+<ifx-spinner aria-label="" [variant]="spinnerVariant" [size]="spinnerSize" [inverted]="spinnerInverted"></ifx-spinner>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleSpinnerVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSpinnerInverted()">Toggle Inverted</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSpinnerSize()">Toggle Size</ifx-button>
+<br>
+<br>
+<span><b>Variant:</b> {{ spinnerVariant }} </span><br>
+<span><b>Inverted:</b> {{ spinnerInverted }} </span><br>
+<span><b>Size:</b> {{ spinnerSize }} </span><br>
