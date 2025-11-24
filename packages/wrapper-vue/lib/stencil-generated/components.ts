@@ -274,6 +274,9 @@ export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTrigge
 ]);
 
 
+export const IfxFaq: StencilVueComponent<JSX.IfxFaq> = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
+
+
 export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__*/ defineContainer<JSX.IfxFileUpload>('ifx-file-upload', undefined, [
   'dragAndDrop',
   'required',

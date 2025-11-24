@@ -411,6 +411,8 @@ export namespace Components {
         "theme": 'default' | 'danger' | 'inverse';
         "variant": 'primary';
     }
+    interface IfxFaq {
+    }
     interface IfxFileUpload {
         /**
           * @default []
@@ -2181,6 +2183,12 @@ declare global {
         prototype: HTMLIfxDropdownTriggerButtonElement;
         new (): HTMLIfxDropdownTriggerButtonElement;
     };
+    interface HTMLIfxFaqElement extends Components.IfxFaq, HTMLStencilElement {
+    }
+    var HTMLIfxFaqElement: {
+        prototype: HTMLIfxFaqElement;
+        new (): HTMLIfxFaqElement;
+    };
     interface HTMLIfxFileUploadElementEventMap {
         "ifxFileUploadAdd": { addedFiles: File[]; files: File[] };
         "ifxFileUploadRemove": { removedFile: File; files: File[] };
@@ -2900,6 +2908,7 @@ declare global {
         "ifx-dropdown-separator": HTMLIfxDropdownSeparatorElement;
         "ifx-dropdown-trigger": HTMLIfxDropdownTriggerElement;
         "ifx-dropdown-trigger-button": HTMLIfxDropdownTriggerButtonElement;
+        "ifx-faq": HTMLIfxFaqElement;
         "ifx-file-upload": HTMLIfxFileUploadElement;
         "ifx-filter-accordion": HTMLIfxFilterAccordionElement;
         "ifx-filter-bar": HTMLIfxFilterBarElement;
@@ -3352,6 +3361,8 @@ declare namespace LocalJSX {
          */
         "theme"?: 'default' | 'danger' | 'inverse';
         "variant"?: 'primary';
+    }
+    interface IfxFaq {
     }
     interface IfxFileUpload {
         /**
@@ -4650,6 +4661,7 @@ declare namespace LocalJSX {
         "ifx-dropdown-separator": IfxDropdownSeparator;
         "ifx-dropdown-trigger": IfxDropdownTrigger;
         "ifx-dropdown-trigger-button": IfxDropdownTriggerButton;
+        "ifx-faq": IfxFaq;
         "ifx-file-upload": IfxFileUpload;
         "ifx-filter-accordion": IfxFilterAccordion;
         "ifx-filter-bar": IfxFilterBar;
@@ -4738,6 +4750,7 @@ declare module "@stencil/core" {
             "ifx-dropdown-separator": LocalJSX.IfxDropdownSeparator & JSXBase.HTMLAttributes<HTMLIfxDropdownSeparatorElement>;
             "ifx-dropdown-trigger": LocalJSX.IfxDropdownTrigger & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerElement>;
             "ifx-dropdown-trigger-button": LocalJSX.IfxDropdownTriggerButton & JSXBase.HTMLAttributes<HTMLIfxDropdownTriggerButtonElement>;
+            "ifx-faq": LocalJSX.IfxFaq & JSXBase.HTMLAttributes<HTMLIfxFaqElement>;
             "ifx-file-upload": LocalJSX.IfxFileUpload & JSXBase.HTMLAttributes<HTMLIfxFileUploadElement>;
             "ifx-filter-accordion": LocalJSX.IfxFilterAccordion & JSXBase.HTMLAttributes<HTMLIfxFilterAccordionElement>;
             "ifx-filter-bar": LocalJSX.IfxFilterBar & JSXBase.HTMLAttributes<HTMLIfxFilterBarElement>;

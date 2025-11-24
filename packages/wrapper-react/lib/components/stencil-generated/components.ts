@@ -39,6 +39,7 @@ import { IfxDropdownSeparator as IfxDropdownSeparatorElement, defineCustomElemen
 import { IfxDropdownTriggerButton as IfxDropdownTriggerButtonElement, defineCustomElement as defineIfxDropdownTriggerButton } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger-button.js";
 import { IfxDropdownTrigger as IfxDropdownTriggerElement, defineCustomElement as defineIfxDropdownTrigger } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown-trigger.js";
 import { IfxDropdown as IfxDropdownElement, defineCustomElement as defineIfxDropdown } from "@infineon/infineon-design-system-stencil/dist/components/ifx-dropdown.js";
+import { IfxFaq as IfxFaqElement, defineCustomElement as defineIfxFaq } from "@infineon/infineon-design-system-stencil/dist/components/ifx-faq.js";
 import { IfxFileUpload as IfxFileUploadElement, defineCustomElement as defineIfxFileUpload } from "@infineon/infineon-design-system-stencil/dist/components/ifx-file-upload.js";
 import { IfxFilterAccordion as IfxFilterAccordionElement, defineCustomElement as defineIfxFilterAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-accordion.js";
 import { IfxFilterBar as IfxFilterBarElement, defineCustomElement as defineIfxFilterBar } from "@infineon/infineon-design-system-stencil/dist/components/ifx-filter-bar.js";
@@ -459,6 +460,17 @@ export const IfxDropdownTriggerButton: StencilReactComponent<IfxDropdownTriggerB
     react: React,
     events: {} as IfxDropdownTriggerButtonEvents,
     defineCustomElement: defineIfxDropdownTriggerButton
+});
+
+export type IfxFaqEvents = NonNullable<unknown>;
+
+export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__PURE__*/ createComponent<IfxFaqElement, IfxFaqEvents>({
+    tagName: 'ifx-faq',
+    elementClass: IfxFaqElement,
+    // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
+    react: React,
+    events: {} as IfxFaqEvents,
+    defineCustomElement: defineIfxFaq
 });
 
 export type IfxFileUploadEvents = {
