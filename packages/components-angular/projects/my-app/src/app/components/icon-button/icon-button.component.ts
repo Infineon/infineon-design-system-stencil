@@ -15,4 +15,34 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 })
 export class IconButtonComponent {
 
+  iconButtonVariant = "primary";
+  iconButtonVariants = ["primary", "secondary", "tertiary"];
+  iconButtonVariantIndex = 0;
+
+  iconButtonSize = "m";
+  iconButtonSizes = ["s", "m", "l"];
+  iconButtonSizeIndex = 1;
+
+  iconButtonDisabled = false;
+
+  iconButtonShape = "round";
+  iconButtonShapes = ["round", "square"];
+  iconButtonShapeIndex = 0;
+
+  toggleIconButtonVariant() {
+    this.iconButtonVariantIndex = (this.iconButtonVariantIndex + 1) % this.iconButtonVariants.length;
+    this.iconButtonVariant = this.iconButtonVariants[this.iconButtonVariantIndex];
+  }
+  toggleIconButtonSize() {
+    this.iconButtonSizeIndex = (this.iconButtonSizeIndex + 1) % this.iconButtonSizes.length;
+    this.iconButtonSize = this.iconButtonSizes[this.iconButtonSizeIndex];
+  }
+  toggleIconButtonDisabled() {
+    this.iconButtonDisabled = !this.iconButtonDisabled;
+  }
+  toggleIconButtonShape() {
+    this.iconButtonShapeIndex = (this.iconButtonShapeIndex + 1) % this.iconButtonShapes.length;
+    this.iconButtonShape = this.iconButtonShapes[this.iconButtonShapeIndex];
+  }
+
 }
