@@ -76,9 +76,6 @@
     "@popperjs/core": "^2.11.8",
     "ag-grid-community": "^34.3.1",
     "choices.js": "^11.1.0",
-    "classnames": "^2.5.1",
-    "core^4.38.0": "link:@stencil/core^4.38.0",
-    "core^4.38.2": "link:@stencil/core^4.38.2",
-    "core^4.38.3": "link:@stencil/core^4.38.3"
+    "classnames": "^2.5.1"
   }
 }

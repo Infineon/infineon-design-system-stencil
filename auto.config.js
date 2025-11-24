@@ -6,7 +6,13 @@ module.exports = function rc() {
     return {
         plugins: [
             [ "npm", npmOptions ],
-            "released"
+            "released",
+            [  
+                "auto-plugin-webex", 
+                {
+                    "threshold": "patch"
+                }
+            ] 
         ],
         author: {
             name: "github-actions[bot]",

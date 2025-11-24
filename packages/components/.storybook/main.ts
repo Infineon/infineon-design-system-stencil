@@ -21,9 +21,8 @@ const config: StorybookConfig = {
   },
   "previewHead": (head) => `
     ${head}
-    <script type="module" src="/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-    <script nomodule src="/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-    <link rel="stylesheet" href="/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+    <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}"></script>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
   `,
   "managerHead": (head) => `
     ${head}
@@ -44,6 +43,7 @@ const config: StorybookConfig = {
     const {liveReload} = await import('vite-plugin-live-reload');
 
     return mergeConfig(config, {
+      base: './',
       plugins: [
         liveReload(['dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js', 'dist/infineon-design-system-stencil/infineon-design-system-stencil.js']),
       ]

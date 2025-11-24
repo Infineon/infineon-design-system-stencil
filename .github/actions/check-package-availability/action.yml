@@ -1,8 +1,8 @@
 name: 'Check Package Availability'
-description: 'Wait for an npm package to become available with exponential backoff'
+description: 'Wait for npm packages to become available with exponential backoff'
 inputs:
-  package:
-    description: 'NPM package name (e.g., @infineon/infineon-design-system-stencil)'
+  packages:
+    description: 'Comma-separated list of NPM package names (e.g., @infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react)'
     required: true
   version:
     description: 'Package version to check for'
@@ -33,41 +33,72 @@ runs:
       id: check
       shell: bash
       run: |
-        PACKAGE="${{ inputs.package }}"
+        PACKAGES="${{ inputs.packages }}"
         VERSION="${{ inputs.version }}"
         MAX_ATTEMPTS="${{ inputs.max-attempts }}"
         MAX_DELAY="${{ inputs.max-delay }}"
         REGISTRY="${{ inputs.registry }}"
         
-        # Function to check package with quiet output
+        # Convert comma-separated string to array
+        IFS=',' read -ra PACKAGE_ARRAY <<< "$PACKAGES"
+        
+        # Function to check a single package
         check_package() {
-          npm view "$PACKAGE@$VERSION" version --registry="$REGISTRY" &>/dev/null
+          local package=$1
+          npm view "$package@$VERSION" version --registry="$REGISTRY" &>/dev/null
         }
         
-        echo "⏳ Waiting for $PACKAGE@$VERSION to be available..."
+        echo "⏳ Waiting for packages to be available..."
+        echo "Packages: $PACKAGES"
+        echo "Version: $VERSION"
         echo "Registry: $REGISTRY"
         echo "Max attempts: $MAX_ATTEMPTS"
         echo "Max delay: $MAX_DELAY seconds"
+        echo ""
         
-        AVAILABLE="false"
+        ALL_AVAILABLE="false"
         for i in $(seq 1 $MAX_ATTEMPTS); do
           echo "Attempt $i/$MAX_ATTEMPTS..."
-          if check_package; then
-            echo "✅ Package available after $i attempt(s)!"
-            AVAILABLE="true"
+          
+          MISSING_PACKAGES=()
+          ALL_FOUND=true
+          
+          for package in "${PACKAGE_ARRAY[@]}"; do
+            package=$(echo "$package" | xargs) # trim whitespace
+            if check_package "$package"; then
+              echo "  ✅ $package@$VERSION - available"
+            else
+              echo "  ❌ $package@$VERSION - not available"
+              MISSING_PACKAGES+=("$package")
+              ALL_FOUND=false
+            fi
+          done
+          
+          if [ "$ALL_FOUND" = true ]; then
+            echo ""
+            echo "✅ All packages available after $i attempt(s)!"
+            ALL_AVAILABLE="true"
             break
           fi
           
           if [ $i -lt $MAX_ATTEMPTS ]; then
             DELAY=$((2**i < MAX_DELAY ? 2**i : MAX_DELAY))
-            echo "❌ Not available, waiting ${DELAY} seconds before next attempt..."
+            echo ""
+            echo "⏳ Missing ${#MISSING_PACKAGES[@]} package(s), waiting ${DELAY} seconds before next attempt..."
+            echo ""
             sleep $DELAY
           fi
         done
         
-        if [ "$AVAILABLE" = "false" ]; then
-          echo "❌ Package $PACKAGE@$VERSION not available after $MAX_ATTEMPTS attempts"
+        if [ "$ALL_AVAILABLE" = "false" ]; then
+          echo ""
+          echo "❌ Not all packages available after $MAX_ATTEMPTS attempts"
+          echo "Missing packages:"
+          for package in "${MISSING_PACKAGES[@]}"; do
+            echo "  - $package@$VERSION"
+          done
+          exit 1
         fi
         
-        echo "available=$AVAILABLE" >> $GITHUB_OUTPUT
+        echo "available=$ALL_AVAILABLE" >> $GITHUB_OUTPUT
         echo "attempts=$i" >> $GITHUB_OUTPUT
