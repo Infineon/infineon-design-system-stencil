@@ -7,21 +7,22 @@
 
 ## Properties
 
-| Property                  | Attribute                   | Description | Type                                                                                        | Default     |
-| ------------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
-| `buttonRendererOptions`   | --                          |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
-| `cols`                    | `cols`                      |             | `any`                                                                                       | `undefined` |
-| `filterOrientation`       | `filter-orientation`        |             | `string`                                                                                    | `'sidebar'` |
-| `headline`                | `headline`                  |             | `string`                                                                                    | `""`        |
-| `pagination`              | `pagination`                |             | `boolean`                                                                                   | `true`      |
-| `paginationItemsPerPage`  | `pagination-items-per-page` |             | `string`                                                                                    | `undefined` |
-| `rowHeight`               | `row-height`                |             | `string`                                                                                    | `'default'` |
-| `rows`                    | `rows`                      |             | `any`                                                                                       | `undefined` |
-| `serverPageChangeHandler` | --                          |             | `(params: { page: number; pageSize: number; }) => Promise<{ rows: any[]; total: number; }>` | `undefined` |
-| `serverSidePagination`    | `server-side-pagination`    |             | `boolean`                                                                                   | `false`     |
-| `showLoading`             | `show-loading`              |             | `boolean`                                                                                   | `false`     |
-| `tableHeight`             | `table-height`              |             | `string`                                                                                    | `'auto'`    |
-| `variant`                 | `variant`                   |             | `string`                                                                                    | `'default'` |
+| Property                    | Attribute                   | Description | Type                                                                                        | Default     |
+| --------------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
+| `buttonRendererOptions`     | --                          |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
+| `cols`                      | `cols`                      |             | `any`                                                                                       | `undefined` |
+| `filterOrientation`         | `filter-orientation`        |             | `string`                                                                                    | `'sidebar'` |
+| `headline`                  | `headline`                  |             | `string`                                                                                    | `""`        |
+| `iconButtonRendererOptions` | --                          |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
+| `pagination`                | `pagination`                |             | `boolean`                                                                                   | `true`      |
+| `paginationItemsPerPage`    | `pagination-items-per-page` |             | `string`                                                                                    | `undefined` |
+| `rowHeight`                 | `row-height`                |             | `string`                                                                                    | `'default'` |
+| `rows`                      | `rows`                      |             | `any`                                                                                       | `undefined` |
+| `serverPageChangeHandler`   | --                          |             | `(params: { page: number; pageSize: number; }) => Promise<{ rows: any[]; total: number; }>` | `undefined` |
+| `serverSidePagination`      | `server-side-pagination`    |             | `boolean`                                                                                   | `false`     |
+| `showLoading`               | `show-loading`              |             | `boolean`                                                                                   | `false`     |
+| `tableHeight`               | `table-height`              |             | `string`                                                                                    | `'auto'`    |
+| `variant`                   | `variant`                   |             | `string`                                                                                    | `'default'` |
 
 
 ## Methods

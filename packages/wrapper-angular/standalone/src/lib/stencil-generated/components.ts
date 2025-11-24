@@ -2069,7 +2069,7 @@ export declare interface IfxTab extends Components.IfxTab {
 
 @ProxyCmp({
   defineCustomElementFn: defineIfxTable,
-  inputs: ['buttonRendererOptions', 'cols', 'filterOrientation', 'headline', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'cols', 'filterOrientation', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
   methods: ['onBtShowLoading']
 })
 @Component({
@@ -2077,7 +2077,7 @@ export declare interface IfxTab extends Components.IfxTab {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['buttonRendererOptions', 'cols', 'filterOrientation', 'headline', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  inputs: ['buttonRendererOptions', 'cols', 'filterOrientation', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
 })
 export class IfxTable {
   protected el: HTMLIfxTableElement;
