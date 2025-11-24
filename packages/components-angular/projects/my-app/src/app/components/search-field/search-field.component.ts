@@ -21,7 +21,7 @@ export class SearchFieldComponent {
   searchFieldSizes = ["s", "m"];
   searchFieldSizeIndex = 1;
 
-  toggleSerchFieldDisabled() {
+  toggleSearchFieldDisabled() {
     this.searchFieldDisabled = !this.searchFieldDisabled;
   }
 

@@ -14,5 +14,23 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './segmented-control.component.scss'
 })
 export class SegmentedControlComponent {
+  segmentedControlError = false;
+  segmentedControlRequired = true;
 
+  segmentedControlSize = "regular";
+  segmentedControlSizes = ["regular", "small"];
+  segmentedControlSizeIndex = 0;
+
+  toggleSerchFieldError() {
+    this.segmentedControlError = !this.segmentedControlError;
+  }
+
+  toggleSegmentedControlRequired() {
+    this.segmentedControlRequired = !this.segmentedControlRequired;
+  }
+
+  toggleSegmentedControlSize() {
+    this.segmentedControlSizeIndex = (this.segmentedControlSizeIndex + 1) % this.segmentedControlSizes.length;
+    this.segmentedControlSize = this.segmentedControlSizes[this.segmentedControlSizeIndex];
+  }
 }
