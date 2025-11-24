@@ -122,7 +122,7 @@ export class Table {
   onButtonRendererOptionsChanged() {
      this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);  
+      this.gridApi.setGridOption("columnDefs", this.colData);  
     }
   }
 
