@@ -3,7 +3,10 @@ import { trackComponent } from '../../../shared/utils/tracking';
 import { isNestedInIfxComponent } from '../../../shared/utils/dom-utils';
 import { detectFramework } from '../../../shared/utils/framework-detection';
 import { HTMLStencilElement, Listen, Watch } from '@stencil/core/internal';
-import ChoicesJs from 'choices.js';
+
+let ChoicesJs: any;
+import type ChoicesType from 'choices.js';
+
 
 import {
   AjaxFn,
@@ -276,6 +279,17 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     }
   }
 
+  private async ensureChoicesLoaded(): Promise<boolean> {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+      return false;
+    }
+    if (!ChoicesJs) {
+      const mod = await import('choices.js');
+      ChoicesJs = (mod as any).default ?? (mod as any);
+    }
+    return true;
+  }
+
   handleCloseButton() {
     if (typeof this.options === 'string') {
       const optionsToArray = JSON.parse(this.options);
@@ -473,7 +487,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return `${this.size}` === 's' ? 'small-select' : 'medium-select';
   }
 
-  private init() {
+  private async init() {
+    const ok = await this.ensureChoicesLoaded();
+    if (!ok) return;
+
     const props = {
       allowHTML: true,
       items: this.items,
@@ -621,7 +638,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     });
   }
 
-  private addSearchEventListener(self, choiceElement: ChoicesJs) {
+  private addSearchEventListener(self, choiceElement: ChoicesType) {
     choiceElement.passedElement.element.addEventListener(
       'search',
       function (event: CustomEvent) {
