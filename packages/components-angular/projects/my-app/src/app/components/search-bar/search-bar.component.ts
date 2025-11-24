@@ -14,10 +14,14 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
-  searchBarValue = '';
+  searchBarDisabled = false;
+  searchBarOpen = true;
 
-  handleSearchBar(event: any) {
-    console.log("searchBar value change: ", event.detail)
-    this.searchBarValue = event.detail;
+  toggleSerchBarDisabled() {
+    this.searchBarDisabled = !this.searchBarDisabled;
+  }
+
+  toggleSearchBarOpen() {
+    this.searchBarOpen = !this.searchBarOpen;
   }
 }

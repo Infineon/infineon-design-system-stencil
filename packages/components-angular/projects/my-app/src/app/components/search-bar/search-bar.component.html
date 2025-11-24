@@ -1,3 +1,11 @@
 <h2>Search Bar</h2>
-  <ifx-search-bar size="m" disabled="false" show-close-button="true"
-    (ifxInput)="handleSearchBar($event)"></ifx-search-bar>
+<ifx-search-bar [isOpen]="searchBarOpen" [disabled]="searchBarDisabled" value="" autocomplete="on"></ifx-search-bar>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleSerchBarDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleSearchBarOpen()">Toggle Open</ifx-button>
+<br>
+<br>
+<span><b>Disabled:</b> {{ searchBarDisabled }} </span><br>
+<span><b>Open:</b> {{ searchBarOpen }} </span><br>
