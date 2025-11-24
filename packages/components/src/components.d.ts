@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ActionListItemClickEvent } from "./components/action-list/action-list-item";
 import { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 import { ChangeEvent } from "./components/content-switcher/content-switcher";
 import { Placement } from "./components/dropdown/dropdown";
@@ -14,6 +15,7 @@ import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
 import { StepperState } from "./components/stepper/interfaces";
 import { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
+export { ActionListItemClickEvent } from "./components/action-list/action-list-item";
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
 export { ChangeEvent } from "./components/content-switcher/content-switcher";
 export { Placement } from "./components/dropdown/dropdown";
@@ -40,6 +42,44 @@ export namespace Components {
           * @default false
          */
         "open": boolean;
+    }
+    interface IfxActionList {
+        /**
+          * Aria label for accessibility support
+         */
+        "listAriaLabel"?: string;
+    }
+    interface IfxActionListItem {
+        /**
+          * The description text displayed below the title
+         */
+        "description"?: string;
+        /**
+          * Controls whether the item is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * URL to navigate to when item is clicked
+         */
+        "href"?: string;
+        /**
+          * Aria label for accessibility support
+         */
+        "itemAriaLabel"?: string;
+        /**
+          * The title text displayed in the item
+         */
+        "itemTitle": string;
+        /**
+          * Target for the link navigation
+          * @default '_self'
+         */
+        "target": string;
+        /**
+          * Value associated with this item
+         */
+        "value"?: string;
     }
     interface IfxAlert {
         /**
@@ -180,6 +220,10 @@ export namespace Components {
           * @default 'Group Label Text'
          */
         "groupLabelText": string;
+        /**
+          * @default false
+         */
+        "required": boolean;
         "setGroupError": (error: boolean) => Promise<void>;
         "showCaption": boolean;
         "showCaptionIcon": boolean;
@@ -665,44 +709,48 @@ export namespace Components {
     }
     interface IfxMultiselect {
         /**
-          * @default "Clear all selections"
+          * @default 'Clear all selections'
          */
         "ariaClearLabel": string;
         /**
-          * @default "Collapse all categories"
+          * @default 'Collapse all categories'
          */
         "ariaCollapseAllLabel": string;
         /**
-          * @default "Expand all categories"
+          * @default 'Expand all categories'
          */
         "ariaExpandAllLabel": string;
         /**
-          * @default ""
+          * @default ''
          */
         "ariaMultiSelectDescribedBy": string;
         /**
-          * @default "Multi-select dropdown"
+          * @default 'Multi-select dropdown'
          */
         "ariaMultiSelectLabel": string;
         /**
-          * @default ""
+          * @default ''
          */
         "ariaMultiSelectLabelledBy": string;
         /**
-          * @default "Search options"
+          * @default 'Search options'
          */
         "ariaSearchLabel": string;
         /**
-          * @default "Select all options"
+          * @default 'Select all options'
          */
         "ariaSelectAllLabel": string;
         /**
-          * @default "Toggle dropdown"
+          * @default 'Toggle dropdown'
          */
         "ariaToggleLabel": string;
+        /**
+          * @default ''
+         */
+        "caption": string;
         "clearSelection": () => Promise<void>;
         /**
-          * @default "Collapse"
+          * @default 'Collapse'
          */
         "collapseLabel": string;
         /**
@@ -714,32 +762,32 @@ export namespace Components {
          */
         "error": boolean;
         /**
-          * @default "Error"
-         */
-        "errorMessage": string;
-        /**
-          * @default "Expand"
+          * @default 'Expand'
          */
         "expandLabel": string;
         /**
-          * @default ""
+          * @default ''
          */
         "label": string;
         "name": string;
         /**
-          * @default "No results found."
+          * @default 'No results found.'
          */
         "noResultsMessage": string;
         /**
-          * @default ""
+          * @default ''
          */
         "placeholder": string;
         /**
-          * @default "Search"
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * @default 'Search'
          */
         "searchPlaceholder": string;
         /**
-          * @default "Select all"
+          * @default 'Select all'
          */
         "selectAllLabel": string;
         /**
@@ -887,6 +935,10 @@ export namespace Components {
         "currentPage": number;
         "itemsPerPage": any[] | string;
         /**
+          * @default true
+         */
+        "showItemsPerPage": boolean;
+        /**
           * @default 1
          */
         "total": number;
@@ -930,6 +982,10 @@ export namespace Components {
           * @default 'Group Label Text'
          */
         "groupLabelText": string;
+        /**
+          * @default false
+         */
+        "required": boolean;
         "setGroupError": (error: boolean) => Promise<void>;
         "showCaption": boolean;
         "showCaptionIcon": boolean;
@@ -1052,9 +1108,17 @@ export namespace Components {
          */
         "caption": string;
         /**
+          * @default false
+         */
+        "error": boolean;
+        /**
           * @default ''
          */
         "label": string;
+        /**
+          * @default false
+         */
+        "required": boolean;
         /**
           * @default 'regular'
          */
@@ -1068,6 +1132,10 @@ export namespace Components {
         "appendValue": string;
         "callbackOnCreateTemplates": OnCreateTemplates;
         "callbackOnInit": OnInit;
+        /**
+          * @default ''
+         */
+        "caption": string;
         /**
           * @default undefined
          */
@@ -1089,10 +1157,6 @@ export namespace Components {
           * @default false
          */
         "error": boolean;
-        /**
-          * @default 'Error'
-         */
-        "errorMessage": string;
         "fuseOptions": FuseOptions;
         "getValue": (valueOnly?: boolean) => Promise<string | Array<string>>;
         "handleChange": () => Promise<void>;
@@ -1128,6 +1192,10 @@ export namespace Components {
         "removeItems": boolean;
         "renderChoiceLimit": number;
         "renderSelectedChoices": 'always' | 'auto';
+        /**
+          * @default false
+         */
+        "required": boolean;
         "resetScrollPosition": boolean;
         "searchChoices": boolean;
         "searchFields": Array<string> | string;
@@ -1253,6 +1321,7 @@ export namespace Components {
         "showInCollapsed": boolean;
     }
     interface IfxSlider {
+        "ariaLabel": string | null;
         /**
           * @default false
          */
@@ -1286,6 +1355,7 @@ export namespace Components {
         "value": number;
     }
     interface IfxSpinner {
+        "ariaLabel": string | null;
         /**
           * @default false
          */
@@ -1335,6 +1405,8 @@ export namespace Components {
           * @default 1
          */
         "activeStep": number;
+        "ariaCurrent": string | null;
+        "ariaLabel": string | null;
         /**
           * @default 'left'
          */
@@ -1443,7 +1515,7 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
-          * @default ""
+          * @default ''
          */
         "caption": string;
         /**
@@ -1455,26 +1527,26 @@ export namespace Components {
          */
         "error": boolean;
         /**
-          * @default ""
+          * @default ''
          */
         "icon": string;
         /**
-          * @default "text-field"
+          * @default 'text-field'
          */
         "internalId": string;
         /**
-          * @default ""
+          * @default ''
          */
         "label": string;
         "maxlength"?: number;
         /**
-          * @default false
-         */
-        "optional": boolean;
-        /**
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholder": string;
+        /**
+          * @default false
+         */
+        "readOnly": boolean;
         /**
           * @default false
          */
@@ -1541,6 +1613,7 @@ export namespace Components {
         "wrap": 'hard' | 'soft' | 'off';
     }
     interface IfxTooltip {
+        "ariaLabel": string | null;
         /**
           * @default ''
          */
@@ -1595,6 +1668,10 @@ export namespace Components {
 export interface IfxAccordionItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxAccordionItemElement;
+}
+export interface IfxActionListItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxActionListItemElement;
 }
 export interface IfxAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1792,6 +1869,29 @@ declare global {
     var HTMLIfxAccordionItemElement: {
         prototype: HTMLIfxAccordionItemElement;
         new (): HTMLIfxAccordionItemElement;
+    };
+    interface HTMLIfxActionListElement extends Components.IfxActionList, HTMLStencilElement {
+    }
+    var HTMLIfxActionListElement: {
+        prototype: HTMLIfxActionListElement;
+        new (): HTMLIfxActionListElement;
+    };
+    interface HTMLIfxActionListItemElementEventMap {
+        "ifxActionListItemClick": ActionListItemClickEvent;
+    }
+    interface HTMLIfxActionListItemElement extends Components.IfxActionListItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxActionListItemElementEventMap>(type: K, listener: (this: HTMLIfxActionListItemElement, ev: IfxActionListItemCustomEvent<HTMLIfxActionListItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxActionListItemElementEventMap>(type: K, listener: (this: HTMLIfxActionListItemElement, ev: IfxActionListItemCustomEvent<HTMLIfxActionListItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLIfxActionListItemElement: {
+        prototype: HTMLIfxActionListItemElement;
+        new (): HTMLIfxActionListItemElement;
     };
     interface HTMLIfxAlertElementEventMap {
         "ifxClose": any;
@@ -2084,7 +2184,7 @@ declare global {
         "ifxFileUploadAdd": { addedFiles: File[]; files: File[] };
         "ifxFileUploadRemove": { removedFile: File; files: File[] };
         "ifxFileUploadChange": { files: File[] };
-        "ifxFileUploadError": { errorType: string; file: File; message: string; reason?: string; };
+        "ifxFileUploadError": { errorType: string; file: File; message: string; reason?: string };
         "ifxFileUploadInvalid": { file: File; reason: string };
         "ifxFileUploadStart": { file: File };
         "ifxFileUploadComplete": { file: File };
@@ -2770,6 +2870,8 @@ declare global {
     interface HTMLElementTagNameMap {
         "ifx-accordion": HTMLIfxAccordionElement;
         "ifx-accordion-item": HTMLIfxAccordionItemElement;
+        "ifx-action-list": HTMLIfxActionListElement;
+        "ifx-action-list-item": HTMLIfxActionListItemElement;
         "ifx-alert": HTMLIfxAlertElement;
         "ifx-basic-table": HTMLIfxBasicTableElement;
         "ifx-breadcrumb": HTMLIfxBreadcrumbElement;
@@ -2869,6 +2971,48 @@ declare namespace LocalJSX {
           * @default false
          */
         "open"?: boolean;
+    }
+    interface IfxActionList {
+        /**
+          * Aria label for accessibility support
+         */
+        "listAriaLabel"?: string;
+    }
+    interface IfxActionListItem {
+        /**
+          * The description text displayed below the title
+         */
+        "description"?: string;
+        /**
+          * Controls whether the item is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * URL to navigate to when item is clicked
+         */
+        "href"?: string;
+        /**
+          * Aria label for accessibility support
+         */
+        "itemAriaLabel"?: string;
+        /**
+          * The title text displayed in the item
+         */
+        "itemTitle"?: string;
+        /**
+          * Event emitted when the main item area is clicked
+         */
+        "onIfxActionListItemClick"?: (event: IfxActionListItemCustomEvent<ActionListItemClickEvent>) => void;
+        /**
+          * Target for the link navigation
+          * @default '_self'
+         */
+        "target"?: string;
+        /**
+          * Value associated with this item
+         */
+        "value"?: string;
     }
     interface IfxAlert {
         /**
@@ -3011,6 +3155,10 @@ declare namespace LocalJSX {
           * @default 'Group Label Text'
          */
         "groupLabelText"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         "showCaption"?: boolean;
         "showCaptionIcon"?: boolean;
         "showGroupLabel"?: boolean;
@@ -3336,7 +3484,7 @@ declare namespace LocalJSX {
         "onIfxFileUploadClick"?: (event: IfxFileUploadCustomEvent<void>) => void;
         "onIfxFileUploadComplete"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
         "onIfxFileUploadDrop"?: (event: IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>) => void;
-        "onIfxFileUploadError"?: (event: IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>) => void;
+        "onIfxFileUploadError"?: (event: IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string }>) => void;
         "onIfxFileUploadInvalid"?: (event: IfxFileUploadCustomEvent<{ file: File; reason: string }>) => void;
         "onIfxFileUploadMaxFilesExceeded"?: (event: IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number }>) => void;
         "onIfxFileUploadRemove"?: (event: IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>) => void;
@@ -3522,43 +3670,47 @@ declare namespace LocalJSX {
     }
     interface IfxMultiselect {
         /**
-          * @default "Clear all selections"
+          * @default 'Clear all selections'
          */
         "ariaClearLabel"?: string;
         /**
-          * @default "Collapse all categories"
+          * @default 'Collapse all categories'
          */
         "ariaCollapseAllLabel"?: string;
         /**
-          * @default "Expand all categories"
+          * @default 'Expand all categories'
          */
         "ariaExpandAllLabel"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "ariaMultiSelectDescribedBy"?: string;
         /**
-          * @default "Multi-select dropdown"
+          * @default 'Multi-select dropdown'
          */
         "ariaMultiSelectLabel"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "ariaMultiSelectLabelledBy"?: string;
         /**
-          * @default "Search options"
+          * @default 'Search options'
          */
         "ariaSearchLabel"?: string;
         /**
-          * @default "Select all options"
+          * @default 'Select all options'
          */
         "ariaSelectAllLabel"?: string;
         /**
-          * @default "Toggle dropdown"
+          * @default 'Toggle dropdown'
          */
         "ariaToggleLabel"?: string;
         /**
-          * @default "Collapse"
+          * @default ''
+         */
+        "caption"?: string;
+        /**
+          * @default 'Collapse'
          */
         "collapseLabel"?: string;
         /**
@@ -3570,34 +3722,34 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
-          * @default "Error"
-         */
-        "errorMessage"?: string;
-        /**
-          * @default "Expand"
+          * @default 'Expand'
          */
         "expandLabel"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "label"?: string;
         "name"?: string;
         /**
-          * @default "No results found."
+          * @default 'No results found.'
          */
         "noResultsMessage"?: string;
         "onIfxOpen"?: (event: IfxMultiselectCustomEvent<any>) => void;
         "onIfxSelect"?: (event: IfxMultiselectCustomEvent<any>) => void;
         /**
-          * @default ""
+          * @default ''
          */
         "placeholder"?: string;
         /**
-          * @default "Search"
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * @default 'Search'
          */
         "searchPlaceholder"?: string;
         /**
-          * @default "Select all"
+          * @default 'Select all'
          */
         "selectAllLabel"?: string;
         /**
@@ -3737,6 +3889,10 @@ declare namespace LocalJSX {
         "onIfxItemsPerPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         "onIfxPageChange"?: (event: IfxPaginationCustomEvent<any>) => void;
         /**
+          * @default true
+         */
+        "showItemsPerPage"?: boolean;
+        /**
           * @default 1
          */
         "total"?: number;
@@ -3781,6 +3937,10 @@ declare namespace LocalJSX {
           * @default 'Group Label Text'
          */
         "groupLabelText"?: string;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         "showCaption"?: boolean;
         "showCaptionIcon"?: boolean;
         "showGroupLabel"?: boolean;
@@ -3909,10 +4069,18 @@ declare namespace LocalJSX {
          */
         "caption"?: string;
         /**
+          * @default false
+         */
+        "error"?: boolean;
+        /**
           * @default ''
          */
         "label"?: string;
         "onIfxChange"?: (event: IfxSegmentedControlCustomEvent<{ previousValue: string, selectedValue: string }>) => void;
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         /**
           * @default 'regular'
          */
@@ -3925,6 +4093,10 @@ declare namespace LocalJSX {
         "appendValue"?: string;
         "callbackOnCreateTemplates"?: OnCreateTemplates;
         "callbackOnInit"?: OnInit;
+        /**
+          * @default ''
+         */
+        "caption"?: string;
         /**
           * @default undefined
          */
@@ -3942,10 +4114,6 @@ declare namespace LocalJSX {
           * @default false
          */
         "error"?: boolean;
-        /**
-          * @default 'Error'
-         */
-        "errorMessage"?: string;
         "fuseOptions"?: FuseOptions;
         "itemSelectText"?: '';
         "items"?: Array<any>;
@@ -3974,6 +4142,10 @@ declare namespace LocalJSX {
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
         "renderSelectedChoices"?: 'always' | 'auto';
+        /**
+          * @default false
+         */
+        "required"?: boolean;
         "resetScrollPosition"?: boolean;
         "searchChoices"?: boolean;
         "searchFields"?: Array<string> | string;
@@ -4092,6 +4264,7 @@ declare namespace LocalJSX {
         "showInCollapsed"?: boolean;
     }
     interface IfxSlider {
+        "ariaLabel"?: string | null;
         /**
           * @default false
          */
@@ -4126,6 +4299,7 @@ declare namespace LocalJSX {
         "value"?: number;
     }
     interface IfxSpinner {
+        "ariaLabel"?: string | null;
         /**
           * @default false
          */
@@ -4175,6 +4349,8 @@ declare namespace LocalJSX {
           * @default 1
          */
         "activeStep"?: number;
+        "ariaCurrent"?: string | null;
+        "ariaLabel"?: string | null;
         /**
           * @default 'left'
          */
@@ -4286,7 +4462,7 @@ declare namespace LocalJSX {
          */
         "autocomplete"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "caption"?: string;
         /**
@@ -4298,27 +4474,27 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
-          * @default ""
+          * @default ''
          */
         "icon"?: string;
         /**
-          * @default "text-field"
+          * @default 'text-field'
          */
         "internalId"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "label"?: string;
         "maxlength"?: number;
         "onIfxInput"?: (event: IfxTextFieldCustomEvent<String>) => void;
         /**
-          * @default false
-         */
-        "optional"?: boolean;
-        /**
-          * @default "Placeholder"
+          * @default 'Placeholder'
          */
         "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "readOnly"?: boolean;
         /**
           * @default false
          */
@@ -4384,6 +4560,7 @@ declare namespace LocalJSX {
         "wrap"?: 'hard' | 'soft' | 'off';
     }
     interface IfxTooltip {
+        "ariaLabel"?: string | null;
         /**
           * @default ''
          */
@@ -4442,6 +4619,8 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ifx-accordion": IfxAccordion;
         "ifx-accordion-item": IfxAccordionItem;
+        "ifx-action-list": IfxActionList;
+        "ifx-action-list-item": IfxActionListItem;
         "ifx-alert": IfxAlert;
         "ifx-basic-table": IfxBasicTable;
         "ifx-breadcrumb": IfxBreadcrumb;
@@ -4528,6 +4707,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ifx-accordion": LocalJSX.IfxAccordion & JSXBase.HTMLAttributes<HTMLIfxAccordionElement>;
             "ifx-accordion-item": LocalJSX.IfxAccordionItem & JSXBase.HTMLAttributes<HTMLIfxAccordionItemElement>;
+            "ifx-action-list": LocalJSX.IfxActionList & JSXBase.HTMLAttributes<HTMLIfxActionListElement>;
+            "ifx-action-list-item": LocalJSX.IfxActionListItem & JSXBase.HTMLAttributes<HTMLIfxActionListItemElement>;
             "ifx-alert": LocalJSX.IfxAlert & JSXBase.HTMLAttributes<HTMLIfxAlertElement>;
             "ifx-basic-table": LocalJSX.IfxBasicTable & JSXBase.HTMLAttributes<HTMLIfxBasicTableElement>;
             "ifx-breadcrumb": LocalJSX.IfxBreadcrumb & JSXBase.HTMLAttributes<HTMLIfxBreadcrumbElement>;
