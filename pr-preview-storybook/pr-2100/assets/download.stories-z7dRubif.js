@@ -1,0 +1,1 @@
+const t={title:"Components/Download",tags:["autodocs"],excludeStories:["Default"]},o=()=>"<ifx-download></ifx-download>",e=o.bind({}),a=["Default"];export{e as Default,a as __namedExportsOrder,t as default};
