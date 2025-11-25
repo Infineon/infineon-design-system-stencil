@@ -1,3 +1,0 @@
-import{r as s,h as t,H as i,g as l}from"./index-P0nuvARl.js";const a=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",f=a,n=class{constructor(e){s(this,e),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"d7e39f7baea375ad3f0cbf02e891c9c217b902c2"},t("div",{key:"8c8d58fc3cdd8619e9253d4791d45e45d8ef980a",class:`list-group-container 
-        ${this.flush?"flush":""} 
-        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"848217df03fa026173abbf4966809399d657fa45",name:"list-item"}),t("slot",{key:"6cca8ea3fdffdf306a494415098b295a5fbffcee",name:"list-notification"})))}get el(){return l(this)}};n.style=f;export{n as ifx_list_group};

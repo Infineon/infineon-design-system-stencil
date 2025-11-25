@@ -1,1 +1,0 @@
-import{r as o,h as a}from"./index-BotIAL1K.js";const t=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",e=t,s=class{constructor(r){o(this,r)}render(){return a("div",{key:"3b82d22223ea2cb38b13c15e85bd7f31cf793c89",class:"dropdown-separator"})}};s.style=e;export{s as ifx_dropdown_separator};

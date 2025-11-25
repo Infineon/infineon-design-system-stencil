@@ -1,1 +1,0 @@
-import{r as e,h as s,g as i}from"./index-Fv_oIEmW.js";import"@stencil/react-output-target/runtime";const n=":host{display:block}",o=n,r=class{constructor(t){e(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"6aed4b012d14b574d4404e2ffada4564b4576054"})}get el(){return i(this)}};r.style=o;export{r as ifx_tab};

@@ -1,1 +1,0 @@
-import{r as o,h as a}from"./index-Fv_oIEmW.js";import"@stencil/react-output-target/runtime";const t=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",s=t,e=class{constructor(r){o(this,r)}render(){return a("div",{key:"baa8b2270eb106da2a272f3a6251778c2b7390f0",class:"dropdown-separator"})}};e.style=s;export{e as ifx_dropdown_separator};

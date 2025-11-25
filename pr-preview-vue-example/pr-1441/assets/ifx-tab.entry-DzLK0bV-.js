@@ -1,1 +1,0 @@
-import{r as e,h as s,g as i}from"./index-P0nuvARl.js";const n=":host{display:block}",a=n,c=class{constructor(t){e(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"59cda16a7cd575b83bdbbcec4aeb2e700d3bc700"})}get el(){return i(this)}};c.style=a;export{c as ifx_tab};

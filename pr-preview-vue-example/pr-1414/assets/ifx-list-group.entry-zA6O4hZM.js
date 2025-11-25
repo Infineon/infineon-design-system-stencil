@@ -1,3 +1,0 @@
-import{r as s,h as t,H as i,g as l}from"./index-CsRmM-qr.js";const n=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",o=n,f=class{constructor(e){s(this,e),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"d1d547c9b85580d29bd9d896702ffb4e44bbd908"},t("div",{key:"57e525e3945f07254ad2829247258f44db21a2b1",class:`list-group-container 
-        ${this.flush?"flush":""} 
-        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"ebbf55492250ca4be267e41f1ce557e9f0c0a382",name:"list-item"}),t("slot",{key:"e5821a37ff4dccf747ef8f85df91e090386759a5",name:"list-notification"})))}get el(){return l(this)}};f.style=o;export{f as ifx_list_group};

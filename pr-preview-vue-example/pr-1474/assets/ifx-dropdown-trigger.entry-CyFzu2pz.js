@@ -1,1 +1,0 @@
-import{r as e,h as o}from"./index-BotIAL1K.js";const s=":host{display:inline-block;cursor:pointer}",t=s,n=class{constructor(r){e(this,r),this.isOpen=!1}render(){return o("slot",{key:"f6fc6391aaf312a70d0dbde5e404eb9b25cd0001"})}};n.style=t;export{n as ifx_dropdown_trigger};

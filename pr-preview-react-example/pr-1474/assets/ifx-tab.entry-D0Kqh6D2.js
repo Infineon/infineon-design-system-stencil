@@ -1,1 +1,0 @@
-import{r as e,h as s,g as i}from"./index-ohjoH_II.js";const n=":host{display:block}",a=n,o=class{constructor(t){e(this,t),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"c5d37c86740a9848ed1a79fae247675edb2339fa"})}get el(){return i(this)}};o.style=a;export{o as ifx_tab};

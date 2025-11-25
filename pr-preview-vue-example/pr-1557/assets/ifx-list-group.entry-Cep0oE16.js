@@ -1,3 +1,0 @@
-import{r as e,h as t,H as i,g as l}from"./index-CcPIQBvs.js";const a=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",n=a,o=class{constructor(s){e(this,s),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"6885cecdf0487a4bcfe898dd4d41a44ddb47afa6"},t("div",{key:"80a40f2d21063364be94556fc7b3d07cf7dce700",class:`list-group-container 
-        ${this.flush?"flush":""} 
-        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"399136b5afdd7b9f1091c0cc33034d18671bfc03",name:"list-item"}),t("slot",{key:"b353b7ba8333b8b7fa27582582caf220b9e644ab",name:"list-notification"})))}get el(){return l(this)}};o.style=n;export{o as ifx_list_group};

@@ -1,3 +1,0 @@
-import{r as e,h as t,H as i,g as l}from"./index-BotIAL1K.js";const f=":host{display:inline-flex}.list-group-container{display:inline-flex;flex-direction:column;gap:3px}",n=f,o=class{constructor(s){e(this,s),this.flush=!1,this.bulletpoint=!1,this.notification=!1}render(){return t(i,{key:"3fd9b93188a1ce511d74be80b2b15910bb7d5ff3"},t("div",{key:"5b99abf34876c0fd49f72f9287828a8ed17b04d0",class:`list-group-container 
-        ${this.flush?"flush":""} 
-        ${this.bulletpoint?"bulletpoint":""}`},t("slot",{key:"fc66d296528f0a52545f82bcfd9a56dd0ee64cfb",name:"list-item"}),t("slot",{key:"4e509fa6edf691cb1087ff9a25b594d9920842b0",name:"list-notification"})))}get el(){return l(this)}};o.style=n;export{o as ifx_list_group};

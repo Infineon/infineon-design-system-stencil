@@ -1,1 +1,0 @@
-import{r as t,h as s,g as i}from"./index-CaOMWl4z.js";const n=":host{display:block}",a=n,o=class{constructor(e){t(this,e),this.header=void 0,this.disabled=void 0,this.icon="",this.iconPosition="left"}render(){return s("slot",{key:"58ea0a29eec7165f8d5d4627f00f2163916ed69a"})}get el(){return i(this)}};o.style=a;export{o as ifx_tab};

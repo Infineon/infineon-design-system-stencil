@@ -1,1 +1,0 @@
-import{r as o,h as a}from"./index-DAlM1_is.js";const s=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",e=class{constructor(r){o(this,r)}render(){return a("div",{key:"aa603dd5a3554b4f966619ad55a5fe10698e820d",class:"dropdown-separator"})}};e.style=s;export{e as ifx_dropdown_separator};
