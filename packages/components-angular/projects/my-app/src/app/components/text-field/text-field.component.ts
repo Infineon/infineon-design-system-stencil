@@ -14,17 +14,52 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
   styleUrl: './text-field.component.scss'
 })
 export class TextFieldComponent {
-  textFieldValue = '';
-  textareaValue = '';
-  checkboxChecked = false;
+  textFieldError = false;
+  textFieldDisabled = false;
+  textFieldSuccess = false;
+  textFieldReadOnly = false;
+  textFieldRequired = false;
+  textFieldDeleteIcon = false;
 
-  handleTextInput(event: any) {
-    console.log("textInput value change")
-    this.textFieldValue = event.detail;
-    this.textareaValue = event.detail
+  textFieldSize = "m";
+  textFieldSizes = ["s", "m"];
+  textFieldSizeIndex = 1;
+
+  textFieldIcon = "";
+  textFieldIcons = ["", "arrowDown16"];
+  textFieldIconIndex = 0;
+
+  toggleTextFieldError() {
+    this.textFieldError = !this.textFieldError;
   }
 
-  handleSubmit() {
-    console.log('Form submitted. Checkbox value:', this.checkboxChecked);
+  toggleTextFieldDisabled() {
+    this.textFieldDisabled = !this.textFieldDisabled;
+  }
+
+  toggleTextFieldSuccess() {
+    this.textFieldSuccess = !this.textFieldSuccess;
+  }
+
+  toggleTextFieldReadOnly() {
+    this.textFieldReadOnly = !this.textFieldReadOnly;
+  }
+
+  toggleTextFieldRequired() {
+    this.textFieldRequired = !this.textFieldRequired;
+  }
+
+  toggleTextFieldDeleteIcon() {
+    this.textFieldDeleteIcon = !this.textFieldDeleteIcon;
+  }
+
+  toggleTextFieldSize() {
+    this.textFieldSizeIndex = (this.textFieldSizeIndex + 1) % this.textFieldSizes.length;
+    this.textFieldSize = this.textFieldSizes[this.textFieldSizeIndex];
+  }
+
+  toggleTextFieldIcon() {
+    this.textFieldIconIndex = (this.textFieldIconIndex + 1) % this.textFieldIcons.length;
+    this.textFieldIcon = this.textFieldIcons[this.textFieldIconIndex];
   }
 }
