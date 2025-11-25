@@ -1,0 +1,13 @@
+const{action:n}=__STORYBOOK_MODULE_ACTIONS__,r={title:"Components/Pagination",args:{total:50,currentPage:1,showItemsPerPage:!0,itemsPerPage:'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'},argTypes:{currentPage:{description:"Current page number.",table:{category:"Ifx-pagination props",defaultValue:{summary:"0"},type:{summary:"number"}}},total:{description:"Total number of items.",table:{category:"Ifx-pagination props",defaultValue:{summary:"1"},type:{summary:"number"}}},itemsPerPage:{description:"Stringified array of objects setting up the items per page. *Value* and *selected* are required.",table:{category:"Ifx-pagination props",type:{summary:"string"}}},showItemsPerPage:{description:"Controls whether the items per page selector is displayed.",control:{type:"boolean"},table:{category:"Ifx-pagination props",defaultValue:{summary:"true"},type:{summary:"boolean"}}},ifxPageChange:{action:"ifxPageChange",description:"Custom event emitted when page is changed.",table:{category:"custom events",type:{summary:"Framework integration",detail:`React: onIfxPageChange={handlePageChange}
+Vue:@ifxPageChange="handlePageChange"
+Angular:(ifxPageChange)="handlePageChange()"
+VanillaJs:.addEventListener("ifxPageChange", (event) => {//handle page change});`}}},ifxItemsPerPageChange:{action:"ifxItemsPerPageChange",description:"Custom event emitted when the items per page is changed.",table:{category:"custom events",type:{summary:"Framework integration",detail:`React: onifxItemsPerPageChange={handlePageChange}
+Vue:@ifxItemsPerPageChange="handlePageChange"
+Angular:(ifxItemsPerPageChange)="handlePageChange()"
+VanillaJs:.addEventListener("ifxItemsPerPageChange", (event) => {//handle page change});`}}}}},i=a=>{const t=`<ifx-pagination total="${a.total}" current-page="${a.currentPage}" show-items-per-page="${a.showItemsPerPage}" items-per-page='${a.itemsPerPage}'></ifx-pagination>`;return setTimeout(()=>{document.querySelector("ifx-pagination")?.addEventListener("ifxPageChange",n("ifxPageChange"))},0),t},e=i.bind({});e.argTypes={};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`args => {
+  const element = \`<ifx-pagination total="\${args.total}" current-page="\${args.currentPage}" show-items-per-page="\${args.showItemsPerPage}" items-per-page='\${args.itemsPerPage}'></ifx-pagination>\`;
+  setTimeout(() => {
+    document.querySelector('ifx-pagination')?.addEventListener('ifxPageChange', action('ifxPageChange'));
+  }, 0);
+  return element;
+}`,...e.parameters?.docs?.source}}};const g=["Default"],s=Object.freeze(Object.defineProperty({__proto__:null,Default:e,__namedExportsOrder:g,default:r},Symbol.toStringTag,{value:"Module"}));export{e as D,s as P};
