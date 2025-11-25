@@ -38,7 +38,6 @@ import { SwitchComponent }          from './components/switch/switch.component';
 import { TabsComponent }            from './components/tabs/tabs.component';
 import { AdvancedTableComponent }   from './components/table-advanced/table-advanced.component';
 import { BasicTableComponent }      from './components/table-basic/table-basic.component';
-import { TagComponent }             from './components/tag/tag.component';
 import { TextFieldComponent }       from './components/text-field/text-field.component';
 import { TextareaComponent }        from './components/textarea/textarea.component';
 import { TooltipComponent }         from './components/tooltip/tooltip.component';
@@ -83,7 +82,6 @@ export const routes: Route[] = [
   { path: 'tabs',             component: TabsComponent },
   { path: 'advancedtable',    component: AdvancedTableComponent },
   { path: 'basictable',       component: BasicTableComponent },
-  { path: 'tag',              component: TagComponent },
   { path: 'textfield',        component: TextFieldComponent },
   { path: 'textarea',         component: TextareaComponent },
   { path: 'tooltip',          component: TooltipComponent },
