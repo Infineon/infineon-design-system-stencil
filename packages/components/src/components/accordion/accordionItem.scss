@@ -5,6 +5,7 @@
 
 .accordion-item {
   border-radius: 3px;
+  overflow: hidden;
   transition: all 0.3s;
   font-family: var(--ifx-font-family) // tokens.$ifxFontFamilyBody;
 
@@ -53,9 +54,9 @@
 
 .accordion-content {
   gap: tokens.$ifxSpace100;
-  transition: max-height 0.3s ease-in-out;
   overflow: hidden;
   max-height: 0;
+  transition: max-height 0.3s ease-in-out;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
@@ -83,11 +84,6 @@
     color: tokens.$ifxColorOcean600;
 
   }
-}
-
-
-.accordion-item.open .accordion-content {
-  max-height: 1000px; // Arbitrary large value to allow content to expand
 }
 
 .accordion-item.open .accordion-icon {
