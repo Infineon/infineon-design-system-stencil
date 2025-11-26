@@ -54,8 +54,8 @@
 
 .accordion-content {
   gap: tokens.$ifxSpace100;
-  overflow: hidden;
   max-height: 0;
+  overflow: hidden;
   transition: max-height 0.3s ease-in-out;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
@@ -85,6 +85,8 @@
 
   }
 }
+
+
 
 .accordion-item.open .accordion-icon {
   transform: rotate(-180deg);

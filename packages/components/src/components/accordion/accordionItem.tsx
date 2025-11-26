@@ -6,7 +6,7 @@ import { Component, Prop, h, State, Event, EventEmitter, Watch, Listen, Element 
   styleUrl: 'accordionItem.scss',
   shadow: true,
 })
-export class AccordionItem {
+export class IfxAccordionItem {
   @Element() el;
   @Prop() caption: string;
   @Prop({
@@ -18,7 +18,7 @@ export class AccordionItem {
   @Event() ifxClose: EventEmitter;
   private contentEl!: HTMLElement;
   private titleEl!: HTMLElement;
-  private resizeObserver!: ResizeObserver;
+
 
   componentWillLoad() {
     this.internalOpen = this.open;
@@ -26,16 +26,13 @@ export class AccordionItem {
 
   componentDidLoad() {
     this.openAccordionItem()
-
-     this.contentEl = this.el.shadowRoot.querySelector('#accordion-content');
-      if (this.contentEl) {
-        this.attachResizeObserver();
-      }
   }
 
   componentDidUpdate() {
     this.openAccordionItem()
   }
+
+
 
   @Watch('open')
   openChanged(newValue: boolean) {
@@ -54,32 +51,38 @@ export class AccordionItem {
   }
 
   openAccordionItem() {
-    if (this.contentEl) {
-      if (this.internalOpen) {
-      this.contentEl.style.height = 'auto'; 
-      const updatedHeight = this.contentEl.scrollHeight; 
-      this.contentEl.style.height = `${updatedHeight}px`; 
-        this.contentEl.style.overflow = 'visible';
-      } else {
-        this.contentEl.style.height = '0';
-        this.contentEl.style.overflow = 'hidden';
-      }
+    if (this.internalOpen) {
+      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+    } else {
+      this.contentEl.style.maxHeight = '0';
     }
   }
 
-  attachResizeObserver() { 
-    const innerContentEl = this.el.shadowRoot.querySelector('.inner-content');
-
-    if (innerContentEl) {
-      this.resizeObserver = new ResizeObserver(() => {
-        if (this.internalOpen) {
-          this.openAccordionItem();
-        }
+  handleSlotChange(e) {
+    const slotElement = e.target;
+    const nodes = slotElement.assignedNodes();
+    
+    if(nodes.length > 0) {
+      nodes.forEach(node => {
+        const observer = new MutationObserver((mutationsList, _) => {
+          for(let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+              if (this.internalOpen) {
+                this.openAccordionItem();
+              }
+            }
+          }
+        });
+        observer.observe(node, { attributes: true, childList: true, subtree: true });
       });
+    }
 
-      this.resizeObserver.observe(innerContentEl); 
+    if (this.internalOpen) {
+      this.openAccordionItem();
     }
   }
+
+  
 
   @Listen('keydown')
   handleKeydown(ev: KeyboardEvent) {
@@ -110,7 +113,7 @@ export class AccordionItem {
         </div>
         <div id="accordion-content" class="accordion-content" ref={(el) => (this.contentEl = el as HTMLElement)} role="region" aria-labelledby="accordion-caption">
           <div class="inner-content">
-            <slot />
+            <slot onSlotchange={(e) => this.handleSlotChange(e)} />
           </div>
         </div>
       </div>
