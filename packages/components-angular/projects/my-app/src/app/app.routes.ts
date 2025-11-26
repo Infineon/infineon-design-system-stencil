@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { AccordionComponent }       from './components/accordion/accordion.component';
+import { ActionList }               from './components/action-list/action-list';
 import { AlertComponent }           from './components/alert/alert.component';
 import { BadgeComponent }           from './components/badge/badge.component';
 import { BreadcrumbComponent }      from './components/breadcrumb/breadcrumb.component';
@@ -13,7 +14,7 @@ import { ContentSwitcherComponent } from './components/content-switcher/content-
 import { DatePickerComponent }      from './components/date-picker/date-picker.component';
 import { DropdownComponent }        from './components/dropdown/dropdown.component';
 import { FileUpload }               from './components/file-upload/file-upload';
-import { FooterComponent }                   from './components/footer/footer.component';
+import { FooterComponent }          from './components/footer/footer.component';
 import { IconComponent }            from './components/icon/icon.component';
 import { IconButtonComponent }      from './components/icon-button/icon-button.component';
 import { LinkComponent }            from './components/link/link.component';
@@ -46,6 +47,7 @@ import { TreeView }                 from './components/tree-view/tree-view';
 export const routes: Route[] = [
   { path: 'accordion',        component: AccordionComponent },
   { path: 'alert',            component: AlertComponent },
+  { path: 'actionlist',       component: ActionList},
   { path: 'badge',            component: BadgeComponent },
   { path: 'breadcrumb',       component: BreadcrumbComponent },
   { path: 'button',           component: ButtonComponent },
