@@ -26,6 +26,10 @@ export class ButtonComponent {
   buttonSizes = ["xs", "s", "m", "l"];
   buttonSizeIndex = 0;
 
+  buttonIcon = "";
+  buttonIcons = ["", "fileMpg16"];
+  buttonIconIndex = 0;
+
   buttonFullWidth = false;
   buttonDisabled = false;
 
@@ -42,6 +46,11 @@ export class ButtonComponent {
   toggleButtonSize() {
     this.buttonSizeIndex = (this.buttonSizeIndex + 1) % this.buttonSizes.length;
     this.buttonSize = this.buttonSizes[this.buttonSizeIndex];
+  }
+
+  toggleButtonIcon() {
+    this.buttonIconIndex = (this.buttonIconIndex + 1) % this.buttonIcons.length;
+    this.buttonIcon = this.buttonIcons[this.buttonIconIndex];
   }
 
   toggleButtonFullWidth() {
