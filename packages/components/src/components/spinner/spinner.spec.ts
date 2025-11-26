@@ -10,7 +10,7 @@ describe('ifx-spinner', () => {
     
     const spinner = page.root.shadowRoot.querySelector('.spinner');
     expect(spinner).toBeTruthy();
-    expect(spinner.getAttribute('aria-label')).toBe('spinner indicating a loading process');
+    expect(spinner.getAttribute('aria-label')).toBe('Loading');
     
     // Default is not inverted
     const border = page.root.shadowRoot.querySelector('.border');

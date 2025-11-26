@@ -19,7 +19,7 @@
       }
 }
 :host(.wrapper--disabled) .wrapper__label {
-    color: tokens.$ifxColorEngineering500;
+    color: tokens.$ifxColorEngineering300;
 }
 
 .wrapper__textarea {
@@ -50,8 +50,8 @@
     }
     
     &:focus-within {
-        outline: none;
-        border: 1px solid tokens.$ifxColorOcean500;
+     outline: 2px solid tokens.$ifxColorOcean500;
+     outline-offset: 0; 
     }
 }
 
@@ -59,9 +59,12 @@
     border: 1px solid tokens.$ifxColorRed500;
 }
 :host(.wrapper--disabled) .wrapper__textarea textarea {
-    border: 1px solid tokens.$ifxColorEngineering500;
+    border: 1px solid tokens.$ifxColorEngineering300;
+    background-color: tokens.$ifxColorEngineering300;
 
-    background-color: tokens.$ifxColorEngineering200;
+    &::placeholder {
+        color: tokens.$ifxColorBaseWhite;
+    }
 }
 
 .wrapper__caption {
@@ -72,5 +75,5 @@
     color: tokens.$ifxColorRed500;
 }
 :host(.wrapper--disabled) .wrapper__caption {
-    color: tokens.$ifxColorEngineering500;
+    color: tokens.$ifxColorEngineering300;
 }

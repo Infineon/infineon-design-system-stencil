@@ -23,6 +23,7 @@ import {
   ValueCompareFunction,
   CustomAddItemText,
 } from './interfaces';
+
 import { filterObject, isDefined, isJSONParseable } from './utils';
 
 @Component({
@@ -75,9 +76,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   @Prop() public valueComparer: ValueCompareFunction;
   //custom ifx props
   @Prop() error: boolean = false;
-  @Prop() errorMessage: string = 'Error';
   @Prop() label: string = '';
+  @Prop() caption: string = '';
   @Prop() disabled: boolean = false;
+  @Prop() required: boolean = false;
   @Prop() placeholderValue: string = 'Placeholder';
   @Event() ifxSelect: EventEmitter<CustomEvent>;
   @Event() ifxInput: EventEmitter<CustomEvent>;
@@ -96,7 +98,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Watch('disabled')
   watchDisabled(newValue: boolean) {
-    if (newValue) {
+    if (newValue && !this.error) {
       this.choice.disable();
     } else {
       this.choice.enable();
@@ -105,11 +107,13 @@ export class Choices implements IChoicesProps, IChoicesMethods {
 
   @Method()
   async clearSelection() {
-    this.clearInput()
-    this.clearSelectField()
-    this.setPreSelected(null);
-    this.closeDropdown();
-    this.optionIsSelected = false;
+    if(!this.disabled) { 
+      this.clearInput();
+      this.clearSelectField();
+      this.setPreSelected(null);
+      this.closeDropdown();
+      this.optionIsSelected = false;
+    }
   }
 
   clearSelectField() {
@@ -265,25 +269,24 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     const deleteIconWrapper = this.root.querySelector('.ifx-choices__icon-wrapper-delete');
     if (deleteIconWrapper) {
       if (width <= 180) {
-        deleteIconWrapper.classList.add('hide')
+        deleteIconWrapper.classList.add('hide');
       } else if (this.showClearButton) {
-        deleteIconWrapper.classList.remove('hide')
+        deleteIconWrapper.classList.remove('hide');
       }
     }
   }
 
-
   handleCloseButton() {
     if (typeof this.options === 'string') {
       const optionsToArray = JSON.parse(this.options);
-      const optionIsSelected = optionsToArray.find(option => option.selected === true)
+      const optionIsSelected = optionsToArray.find(option => option.selected === true);
       if (optionIsSelected) {
         this.optionIsSelected = true;
       } else {
         this.optionIsSelected = false;
       }
     } else if (this.options && Array.isArray(this.options)) {
-      const optionIsSelected = this.options.find(option => option.selected === true)
+      const optionIsSelected = this.options.find(option => option.selected === true);
       if (optionIsSelected) {
         this.optionIsSelected = true;
       } else {
@@ -293,11 +296,11 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   protected componentWillLoad() {
-   this.handleCloseButton()
+    this.handleCloseButton();
   }
 
   protected componentWillUpdate() {
-    this.handleCloseButton()
+    this.handleCloseButton();
     this.previousOptions = [...this.options];
     const optionsAreEqual = this.isEqual(this.options, this.previousOptions);
     if (this.options && !optionsAreEqual) {
@@ -309,7 +312,6 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return JSON.stringify(a) === JSON.stringify(b);
   }
 
-
   addResizeObserver() {
     this.resizeObserver = new ResizeObserver(() => {
       this.handleDeleteIcon();
@@ -319,20 +321,20 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.resizeObserver.observe(componentWrapper);
   }
 
-   protected async componentDidLoad() {
+  protected async componentDidLoad() {
     this.init();
-    if(!isNestedInIfxComponent(this.root)) { 
+    if (!isNestedInIfxComponent(this.root)) {
       const framework = detectFramework();
-      trackComponent('ifx-select', await framework)
+      trackComponent('ifx-select', await framework);
     }
     this.addEventListenersToHandleCustomFocusAndActiveState();
     this.handleDeleteIcon();
-    this.addResizeObserver()
+    this.addResizeObserver();
   }
 
   protected componentDidUpdate() {
     this.init();
-    this.handleDeleteIcon()
+    this.handleDeleteIcon();
   }
 
   protected disconnectedCallback() {
@@ -370,22 +372,23 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     return (
       <div class={`ifx-select-container`}>
         {this.label ? (
-          <div class="ifx-label-wrapper">
+          <div class={`ifx-label-wrapper ${this.disabled && !this.error ? 'disabled' : ""}`}>
             <span>{this.label}</span>
+            {this.required && <span class={`required ${this.error ? 'error' : ''}`}>*</span>}
           </div>
         ) : null}
         <div
           class={`${choicesWrapperClass} 
-            ${this.disabled ? 'disabled' : ''} 
+            ${this.disabled && !this.error ? 'disabled' : ''} 
             ${this.error ? 'error' : ''}`}
-          onClick={this.disabled ? undefined : (e) => this.handleWrapperClick(e)}
+          onClick={this.disabled && !this.error ? undefined : e => this.handleWrapperClick(e)}
           onKeyDown={event => this.handleKeyDown(event)}
         >
-          <select class='single__select-input-field' disabled={this.disabled} {...attributes} data-trigger onChange={() => this.handleChange()}>
+          <select class="single__select-input-field" disabled={this.disabled && !this.error} {...attributes} data-trigger onChange={() => this.handleChange()}>
             {this.createSelectOptions(this.options)}
           </select>
 
-          <div class='single__select-icon-container'>
+          <div class="single__select-icon-container">
             {this.optionIsSelected && (
               <div class={`ifx-choices__icon-wrapper-delete ${!this.showClearButton ? 'hide' : ''}`}>
                 <ifx-icon icon="cRemove16" onClick={() => this.clearSelection()}></ifx-icon>
@@ -399,11 +402,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
             </div>
           </div>
         </div>
-        {this.error ? (
-          <div class="ifx-error-message-wrapper">
-            <span>{this.errorMessage}</span>
-          </div>
-        ) : null}
+        {this.caption && <div class={`single__select-caption ${this.error ? 'error' : ''} ${this.disabled && !this.error ? 'disabled' : ''}`}>{this.caption}</div>}
       </div>
     );
   }
@@ -411,8 +410,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   toggleDropdown() {
     const div = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
     if (div.classList.contains('active') || this.choice.dropdown.isActive) {
-      this.hideDropdown();
-      div.classList.remove('active');
+      this.closeDropdown();
     } else {
       this.choice.showDropdown();
       div.classList.add('active');
@@ -422,8 +420,10 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   closeDropdown() {
-    const ifxChoicesWrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
-    ifxChoicesWrapper.classList.remove('active');
+    this.hideDropdown();
+    const wrapper = this.root.querySelector('.ifx-choices__wrapper') as HTMLDivElement;
+    wrapper.focus();
+    wrapper.classList.remove('active');
   }
 
   @Listen('mousedown', { target: 'document' })
@@ -437,22 +437,35 @@ export class Choices implements IChoicesProps, IChoicesMethods {
   }
 
   handleKeyDown(event: KeyboardEvent) {
-    if (this.disabled) return;
-
-    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
-
-    // If the event originated from the search input and the key is 'Space', do nothing.
-    if (isSearchInput && event.code === 'Space') {
+    if (this.disabled) {
       return;
     }
 
-    if (event.code === 'Enter' || (event.code === 'Space' && !isSearchInput)) {
-      this.toggleDropdown();
-    }
+    const isSearchInput = (event.target as HTMLElement).classList.contains('choices__input');
+    const isClearButton = (event.target as HTMLElement).classList.contains('ifx-choices__icon-wrapper-delete');
 
-    // Only prevent default space behavior when it's not from the search input.
-    if (event.code === 'Space' && !isSearchInput) {
-      event.preventDefault(); // Prevent default page scrolling.
+    switch (event.code) {
+      case 'Enter': {
+        if (isClearButton) {
+          this.clearSelection();
+        } else {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Space': {
+        if (!isSearchInput) {
+          this.toggleDropdown();
+        }
+        break;
+      }
+      case 'Tab': {
+        if (isSearchInput) {
+          event.preventDefault();
+          this.closeDropdown();
+        }
+        break;
+      }
     }
   }
 
@@ -525,7 +538,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                 if (data.placeholder && !self.selectedOption?.value) {
                   // For placeholders, use data-id="placeholder"
                   return template(`
-                  <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled ? 'aria-disabled="true"' : ''}>
+                  <div class="choices__placeholder" data-item data-id="${data.id}" data-value="${data.value}" ${data.disabled && !this.error ? 'aria-disabled="true"' : ''}>
                     ${data.label === undefined ? this.placeholderValue : data.label}
                     ${removeButtonHTML}
                   </div>
@@ -537,7 +550,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
                       data-item 
                       data-id="${self.selectedOption?.id !== undefined ? self.selectedOption?.id : self.choice.getValue().id}" 
                       data-value="${self.selectedOption?.value !== undefined ? self.selectedOption?.value : self.choice.getValue().value}" 
-                      ${data.disabled ? 'aria-disabled="true"' : ''}>
+                      ${data.disabled && !this.error ? 'aria-disabled="true"' : ''}>
                   <span>${self.selectedOption?.label !== undefined ? self.selectedOption?.label : self.choice.getValue().label}</span>
                   <!-- Add your remove button here if needed -->
                 </div>
@@ -546,15 +559,15 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               },
               input: ({ classNames }) => {
                 return template(`
-              <input type="search"
-              class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
-              autocomplete="off"
-              autocapitalize="off"
-              spellcheck="false"
-              role="textbox"
-              aria-autocomplete="list"
-              aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}"   >     
-              `);
+                  <input 
+                    type="search"
+                    class="${classNames.input} ${classNames.inputCloned} ${self.getSizeClass()}"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    role="textbox"
+                    aria-autocomplete="list"
+                    aria-label="${this.showSearch ? this.searchPlaceholderValue : ''}">`);
               },
 
               //modifying the template of each item in the options list
@@ -563,9 +576,9 @@ export class Choices implements IChoicesProps, IChoicesMethods {
               <div class="${classNames.item} ${classNames.itemChoice} ${self.getSizeClass()} 
               ${data.selected || self.selectedOption?.value === data.value || self.getPreSelected(self)?.value === data.value ? 'selected' : ''} 
               ${data.placeholder ? classNames.placeholder : ''} 
-              ${data.disabled ? classNames.itemDisabled : classNames.itemSelectable} 
+              ${data.disabled && !this.error ? classNames.itemDisabled : classNames.itemSelectable} 
                     role="${data.groupId && data.groupId > 0 ? 'treeitem' : 'option'}"
-                    data-choice ${data.disabled ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
+                    data-choice ${data.disabled && !this.error ? 'data-choice-disabled aria-disabled="true"' : 'data-choice-selectable'}                     data-id="${data.id}"
                     data-value="${data.value}"
                     data-select-text="${this.config.itemSelectText}">
                 <span>${data.label}</span>
@@ -643,7 +656,7 @@ export class Choices implements IChoicesProps, IChoicesMethods {
     this.options = optionsArray.map(obj => {
       return {
         ...obj,
-        selected: obj.value === newValue
+        selected: obj.value === newValue,
       };
     });
   }

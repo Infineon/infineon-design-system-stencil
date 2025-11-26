@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property       | Attribute        | Description | Type              | Default     |
-| -------------- | ---------------- | ----------- | ----------------- | ----------- |
-| `currentPage`  | `current-page`   |             | `number`          | `1`         |
-| `itemsPerPage` | `items-per-page` |             | `any[] \| string` | `undefined` |
-| `total`        | `total`          |             | `number`          | `1`         |
+| Property           | Attribute             | Description | Type              | Default     |
+| ------------------ | --------------------- | ----------- | ----------------- | ----------- |
+| `currentPage`      | `current-page`        |             | `number`          | `1`         |
+| `itemsPerPage`     | `items-per-page`      |             | `any[] \| string` | `undefined` |
+| `showItemsPerPage` | `show-items-per-page` |             | `boolean`         | `true`      |
+| `total`            | `total`               |             | `number`          | `1`         |
 
 
 ## Events

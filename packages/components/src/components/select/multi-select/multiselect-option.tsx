@@ -40,6 +40,10 @@ export class MultiselectOption {
     this.el.addEventListener('ifx-search-filter', this.handleSearchFilter);
   }
 
+  componentWillUpdate() { 
+    this.notifyMultiselect();
+  }
+
   disconnectedCallback() {
     this.el.removeEventListener('ifx-search-filter', this.handleSearchFilter);
   }
