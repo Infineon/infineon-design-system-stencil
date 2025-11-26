@@ -72,28 +72,8 @@
     }
 
     & ~ .icon__wrapper {
-      position: absolute;
-      top: 50%;
-      right: 17px;
-      padding: 2px;
-      transform: translateY(-50%);
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      pointer-events: none;
-      line-height: 16px;
-    }
 
-    & ~ .icon__wrapper::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      background-color: tokens.$ifxColorBaseWhite;
-      border-radius: 2px;
-      z-index: 0;
-    }
-
-    &:focus ~ .icon__wrapper::after {
+      &:focus-visible::after {
       content: '';
       position: absolute;
       top: -4px;
@@ -102,6 +82,16 @@
       bottom: -4px;
       border: 2px solid tokens.$ifxColorOcean500;
       border-radius: 15%;
+      z-index: 0;
+      }
+    }
+
+    & ~ .icon__wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      background-color: tokens.$ifxColorBaseWhite;
+      border-radius: 2px;
       z-index: 0;
     }
   }
