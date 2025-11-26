@@ -16,6 +16,9 @@ import { ComponentLibraryModule } from '@infineon/infineon-design-system-angular
 export class CheckboxGroupComponent {
   checkboxGroupError = false;
   checkboxGroupDisabled = false;
+  checkboxGroupLabel = true;
+  checkboxGroupCaption = true;
+  checkboxGroupCaptionIcon = true;
 
   checkboxGroupAlignment = "vertical";
   checkboxGroupAlignments = ["vertical", "horizontal"];
@@ -33,9 +36,23 @@ export class CheckboxGroupComponent {
   toggleCheckboxGroupDisabled() {
     this.checkboxGroupDisabled = !this.checkboxGroupDisabled;
   }
+
   toggleCheckboxGroupError() {
     this.checkboxGroupError = !this.checkboxGroupError;
   }
+
+  toggleCheckboxGroupLabel() {
+    this.checkboxGroupLabel = !this.checkboxGroupLabel;
+  }
+
+  toggleCheckboxGroupCaption() {
+    this.checkboxGroupCaption = !this.checkboxGroupCaption;
+  }
+
+  toggleCheckboxGroupCaptionIcon() {
+    this.checkboxGroupCaptionIcon = !this.checkboxGroupCaptionIcon;
+  }
+
   toggleCheckboxGroupSize() {
     this.checkboxGroupSizeIndex = (this.checkboxGroupSizeIndex + 1) % this.checkboxGroupSizes.length;
     this.checkboxGroupSize = this.checkboxGroupSizes[this.checkboxGroupSizeIndex];

@@ -1,11 +1,11 @@
 <h2>Checkbox Group</h2>
 <ifx-checkbox-group 
   [alignment]="checkboxGroupAlignment"
-  show-group-label="true" 
+  [showGroupLabel]="checkboxGroupLabel" 
   group-label-text="Group Label" 
-  show-caption="true" 
+  [showCaption]="checkboxGroupCaption" 
   caption-text="Caption text, description, error notification" 
-  show-caption-icon="true">
+  [showCaptionIcon]="checkboxGroupCaptionIcon">
     <ifx-checkbox value="0" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 0</ifx-checkbox>
     <ifx-checkbox value="1" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 1</ifx-checkbox>
     <ifx-checkbox value="2" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 2</ifx-checkbox>
@@ -17,9 +17,15 @@
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupDisabled()">Toggle Disabled</ifx-button>
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupError()">Toggle Error</ifx-button>
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleCheckboxGroupLabel()">Toggle Label</ifx-button>
+<ifx-button variant="secondary" (click)="toggleCheckboxGroupCaption()">Toggle Caption</ifx-button>
+<ifx-button variant="secondary" (click)="toggleCheckboxGroupCaptionIcon()">Toggle Caption Icon</ifx-button>
 <br>
 <br>
 <span><b>Alignment:</b> {{ checkboxGroupAlignment }} </span><br>
 <span><b>Disabled:</b> {{ checkboxGroupDisabled }} </span><br>
 <span><b>Error:</b> {{ checkboxGroupError }} </span><br>
 <span><b>Size:</b> {{ checkboxGroupSize }} </span><br>
+<span><b>Label:</b> {{ checkboxGroupLabel }} </span><br>
+<span><b>Caption:</b> {{ checkboxGroupCaption }} </span><br>
+<span><b>Caption Icon:</b> {{ checkboxGroupCaptionIcon }} </span><br>
