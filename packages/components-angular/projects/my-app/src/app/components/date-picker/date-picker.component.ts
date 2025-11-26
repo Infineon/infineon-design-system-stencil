@@ -17,6 +17,7 @@ export class DatePickerComponent {
   datePickerError = false;
   datePickerSuccess = false;
   datePickerDisabled = false;
+  datePickerRequired = false;
 
   datePickerSize = "s";
   datePickerSizes = ["s", "l"];
@@ -46,5 +47,9 @@ export class DatePickerComponent {
 
   toggleDatePickerError() {
     this.datePickerError = !this.datePickerError;
+  }
+
+  toggleDatePickerRequired() {
+    this.datePickerRequired = !this.datePickerRequired;
   }
 }
