@@ -1,0 +1,33 @@
+<h2>Date Picker</h2>
+<ifx-date-picker
+  name="date-picker" 
+  [error]="datePickerError" 
+  [disabled]="datePickerDisabled" 
+  [size]="datePickerSize" 
+  [success]="datePickerSuccess" 
+  value="" 
+  max="" 
+  min="" 
+  label="Label Text" 
+  caption="Caption text, description, error notification." 
+  arialabel="Date Picker" 
+  [required]="datePickerRequired"
+  autocomplete="on"
+  [type]="datePickerType">
+</ifx-date-picker>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleDatePickerSuccess()">Toggle Success</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDatePickerDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDatePickerError()">Toggle Error</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDatePickerSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDatePickerType()">Toggle Type</ifx-button>
+<ifx-button variant="secondary" (click)="toggleDatePickerRequired()">Toggle Required</ifx-button>
+<br>
+<br>
+<span><b>Type:</b> {{ datePickerType }} </span><br>
+<span><b>Disabled:</b> {{ datePickerDisabled }} </span><br>
+<span><b>Error:</b> {{ datePickerError }} </span><br>
+<span><b>Success:</b> {{ datePickerSuccess }} </span><br>
+<span><b>Size:</b> {{ datePickerSize }} </span><br>
+<span><b>Required:</b> {{ datePickerRequired}} </span><br>
