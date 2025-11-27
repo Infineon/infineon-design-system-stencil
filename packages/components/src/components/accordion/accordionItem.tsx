@@ -57,9 +57,11 @@ export class AccordionItem {
 
   openAccordionItem() {
     if (this.internalOpen) {
-      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+      this.contentEl.style.height = `${this.contentEl.scrollHeight}px`;
+      this.contentEl.style.overflow = 'hidden';
     } else {
-      this.contentEl.style.maxHeight = '0';
+      this.contentEl.style.height = '0';
+      this.contentEl.style.overflow = 'hidden';
     }
   }
 
