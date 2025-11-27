@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { trackComponent } from '../../shared/utils/tracking'; 
 import { isNestedInIfxComponent } from '../../shared/utils/dom-utils';
 import { detectFramework } from '../../shared/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions, ModuleRegistry, AllCommunityModule, provideGlobalGridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { IconButtonCellRenderer } from './iconButtonCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
@@ -328,6 +328,9 @@ async updateTableView() {
   }
 
   componentWillLoad() {
+    ModuleRegistry.registerModules([AllCommunityModule]);
+    provideGlobalGridOptions({ theme: 'legacy'});
+    
     this.setPaginationItemsPerPage();
 
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;

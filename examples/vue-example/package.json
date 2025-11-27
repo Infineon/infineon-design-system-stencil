@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "@infineon/infineon-design-system-vue": "workspace:*",
+    "prismjs": "^1.30.0",
     "vue": "^3.5.22"
   },
   "devDependencies": {

@@ -199,8 +199,8 @@ const DefaultTemplate = args => {
   return template;
 };
 
-export const Single = DefaultTemplate.bind({});
-Single.args = {
+export const Default = DefaultTemplate.bind({});
+Default.args = {
   // type: 'single',
   options: options,
 };

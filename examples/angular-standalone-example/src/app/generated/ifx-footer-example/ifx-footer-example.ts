@@ -1,0 +1,89 @@
+import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-angular/standalone';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@Component({
+  selector: 'app-ifx-footer-example',
+  imports: [ IfxFooter, IfxIcon, IfxLink ],
+  templateUrl: './ifx-footer-example.html',
+  styleUrl: './ifx-footer-example.scss',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class IfxFooterExample {
+  protected readonly tsCode = `import { IfxFooter, IfxIcon, IfxLink } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+
+@Component({
+  selector: &#039;app-ifx-footer-example&#039;,
+  imports: [ IfxFooter, IfxIcon, IfxLink ],
+  templateUrl: &#039;./ifx-footer-example.html&#039;,
+  styleUrl: &#039;./ifx-footer-example.scss&#039;,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class IfxFooterExample {}`;
+  protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2024 Infineon Technologies AG&quot;&gt;
+    &lt;div slot=&quot;socials&quot;&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://infineon.com&quot;
+        aria-label=&quot;Go to Homepage&quot;&gt;
+        &lt;ifx-icon icon=&quot;home-16&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://facebook.com/infineon&quot;
+        aria-label=&quot;Follow us on Facebook&quot;&gt;
+        &lt;ifx-icon icon=&quot;facebook&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://youtube.com/infineon&quot;
+        aria-label=&quot;Follow us on Youtube&quot;&gt;
+        &lt;ifx-icon icon=&quot;youtube&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://instagram.com/infineon&quot;
+        aria-label=&quot;Follow us on Instagram&quot;&gt;
+        &lt;ifx-icon icon=&quot;instagram&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://linkedin.com/infineon&quot;
+        aria-label=&quot;Follow us on LinkedIn&quot;&gt;
+        &lt;ifx-icon icon=&quot;linkedin&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;title&quot;
+        href=&quot;http://xing.com/infineon&quot;
+        aria-label=&quot;Follow us on Xing&quot;&gt;
+        &lt;ifx-icon icon=&quot;xing&quot;&gt;&lt;/ifx-icon&gt;
+      &lt;/ifx-link&gt;
+    &lt;/div&gt;
+    &lt;div slot=&quot;info&quot;&gt;
+      &lt;ifx-link
+        variant=&quot;menu&quot;
+        href=&quot;https://yourwebsite.com/terms&quot;
+        target=&quot;_blank&quot;&gt;
+        Terms
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;menu&quot;
+        href=&quot;https://yourwebsite.com/imprint&quot;
+        target=&quot;_blank&quot;&gt;
+        Imprint
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;menu&quot;
+        href=&quot;https://yourwebsite.com/privacy-policy&quot;
+        target=&quot;_blank&quot;&gt;
+        Privacy policy
+      &lt;/ifx-link&gt;
+      &lt;ifx-link
+        variant=&quot;menu&quot;
+        href=&quot;https://yourwebsite.com/glossary&quot;
+        target=&quot;_blank&quot;&gt;
+        Glossary
+      &lt;/ifx-link&gt;
+    &lt;/div&gt;
+  &lt;/ifx-footer&gt;`;
+}
