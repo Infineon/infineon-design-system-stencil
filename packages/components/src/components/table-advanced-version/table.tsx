@@ -91,7 +91,7 @@ export class Table {
     this.originalRowData = [...parsed];
     this.allRowData = [...parsed];
     this.matchingResultsCount = this.allRowData.length;
-
+    
     this.updateTableView();
     this.updateFilterOptions();
   }
@@ -138,7 +138,6 @@ export class Table {
 
       // Update the component's filters
       this.currentFilters = updatedFilters;
-
       // Ensure table data is updated
       this.allRowData = this.applyAllFilters(this.originalRowData, this.currentFilters);
       this.updateTableView();
@@ -198,7 +197,6 @@ export class Table {
 
   private updateHeaderCheckboxState() {
     if (this.gridApi && this.checkbox) {
-      // Use a timeout to ensure the grid is fully rendered
       setTimeout(() => {
         const headerCheckbox = this.container?.querySelector('.ag-header-cell[col-id="__checkbox"] ifx-checkbox') as any;
         if (headerCheckbox) {
@@ -490,7 +488,8 @@ export class Table {
 
   componentDidRender() {
     if (this.gridApi) {
-      this.gridApi.setGridOption('columnDefs', this.colData);
+      console.log('here')
+      //this.gridApi.setGridOption('columnDefs', this.colData);
     }
   }
 
@@ -526,7 +525,6 @@ export class Table {
         });
       }
     }
-
     this.updateTableView();
   }
 
@@ -637,7 +635,7 @@ export class Table {
 
   handleRowCheckboxClick = (params: any) => {
     const clickedRowData = params.data;
-    const actualIndex = this.allRowData.findIndex(row => row.make === clickedRowData.make && row.model === clickedRowData.model && row.price === clickedRowData.price); 
+    const actualIndex = this.allRowData.findIndex(row => row.make === clickedRowData.make && row.model === clickedRowData.model && row.price === clickedRowData.price);
 
     const newSelectedRows = new Set(this.selectedRows);
     if (newSelectedRows.has(actualIndex)) {
@@ -661,9 +659,11 @@ export class Table {
       }
     });
 
-    // Refresh the grid to show updated checkbox states
     if (this.gridApi) {
-      this.gridApi.setGridOption('rowData', this.rowData);
+      this.gridApi.refreshCells({
+        columns: ['__checkbox'],
+        force: true,
+      });
     }
   }
 

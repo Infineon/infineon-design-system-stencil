@@ -1,22 +1,21 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/font.scss';
 
-@import "~ag-grid-community/styles/ag-grid.css";
+@import '~ag-grid-community/styles/ag-grid.css';
 
 .zebra {
   & .ag-row-odd {
-    background-color: tokens.$ifxColorEngineering100!important;
+    background-color: tokens.$ifxColorEngineering100 !important;
   }
 
   & .ag-row {
-    border-bottom: none!important;
+    border-bottom: none !important;
   }
 }
 
 .ag-header-viewport {
-  background-color: tokens.$ifxColorEngineering200!important;
+  background-color: tokens.$ifxColorEngineering200 !important;
 }
-
 
 .table-container {
   display: block;
@@ -43,10 +42,10 @@
 .table-pagination-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch; 
-  width: 100%; 
+  align-items: stretch;
+  width: 100%;
 
-  & .pagination-wrapper { 
+  & .pagination-wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -54,7 +53,7 @@
 }
 
 #table-wrapper {
-  flex: 1; 
+  flex: 1;
   padding-bottom: tokens.$ifxSpace100;
   overflow-x: auto;
   width: 100%;
@@ -72,13 +71,13 @@
 }
 
 .filter-chips {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
-  gap:tokens.$ifxSpace100;
+  gap: tokens.$ifxSpace100;
   margin-bottom: 12px;
 }
 
-.filter-chips > ifx-button { 
+.filter-chips > ifx-button {
   margin-left: -8px;
 }
 
@@ -97,23 +96,22 @@
   padding-top: 32px;
   padding-bottom: 32px;
   gap: 24px;
- }
+}
 
- .headline-wrapper { 
+.headline-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0px;
- }
+}
 
- .inner-buttons-wrapper { 
+.inner-buttons-wrapper {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
- }
-
+}
 
 .ifx-ag-grid {
   display: grid;
@@ -122,7 +120,6 @@
   min-width: 100px;
   overflow-x: auto;
 }
-
 
 .ifx-ag-grid .ag-header-cell::after {
   outline: none !important;
@@ -138,7 +135,6 @@
   outline: none;
 }
 
-
 .ifx-ag-grid .ag-header-cell:not(:last-child)::before {
   content: '';
   position: absolute;
@@ -149,6 +145,31 @@
   background-color: tokens.$ifxColorEngineering300;
 }
 
+.ag-pinned-left-header {
+  background-color: tokens.$ifxColorEngineering200;
+  min-width: 50px!important;
+  max-width: 50px!important;
+  width: 50px!important;
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: calc(50% - 12px);
+    height: 24px;
+    width: 1px;
+    background-color: tokens.$ifxColorEngineering300;
+  }
+}
+
+.ag-header-row { 
+  width: 50px!important;
+}
+
+.ag-pinned-left-cols-container {
+  width: 50px!important;
+  max-width: 50px!important;
+  min-width: 50px!important;
+}
 
 .ag-overlay-loading-center {
   border: none;
@@ -167,7 +188,7 @@
 
   &.ag-header-active {
     outline: none !important;
-    border-color: #0A8276 !important;
+    border-color: #0a8276 !important;
   }
 }
 
@@ -176,7 +197,6 @@
   padding-right: 16px;
   gap: 4px;
 }
-
 
 .ag-header-cell-focus {
   border: none !important;
@@ -189,10 +209,7 @@
   font-weight: 600;
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
-  font-family: var(--ifx-font-family); 
-
-
-
+  font-family: var(--ifx-font-family);
 }
 
 .ag-row-focus {
@@ -200,17 +217,14 @@
 }
 
 .ag-row-hover {
-  background-color: tokens.$ifxColorBaseWhite !important; 
+  background-color: tokens.$ifxColorBaseWhite !important;
 }
-
 
 .ag-cell-focus {
   border: none !important;
   outline: none !important;
   background-color: inherit !important;
 }
-
-
 
 .ag-row {
   background-color: tokens.$ifxColorBaseWhite;
@@ -231,7 +245,7 @@
   padding-left: 16px;
   padding-right: 16px;
   white-space: pre-line;
-  min-height: 40px; 
+  min-height: 40px;
   height: auto;
 }
 
@@ -254,7 +268,6 @@
   font-weight: 600;
 }
 
-
 .matching-results-container {
   flex: 1;
   font-family: 'Source Sans 3';
@@ -274,7 +287,6 @@
 .matching-results-text {
   font-weight: 400;
 }
-
 
 @media (max-width: tokens.$ifxBreakpointM) {
   .table-wrapper,
