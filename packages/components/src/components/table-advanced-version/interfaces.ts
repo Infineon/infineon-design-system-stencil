@@ -22,6 +22,14 @@ export interface IconButtonInterface {
   icon?: string,
 }
 
+export interface CheckboxInterface {
+  disabled?: boolean;
+  error?: boolean,
+  size?: string,
+  checked?: boolean,
+  indeterminate?: boolean
+}
+
 export interface LinkInterface {
   disabled?: boolean;
   variant?: string,
@@ -46,5 +54,8 @@ export const IconButtonKeys: Array<keyof IconButtonInterface> =
 
 export const StatusKeys: Array<keyof StatusInterface> = 
 ['color', 'label', 'border'];
+
+export const CheckboxKeys: Array<keyof CheckboxInterface> = 
+['disabled', 'error', 'size', 'checked', 'indeterminate'];
 
 

@@ -174,7 +174,8 @@ export default {
     rowHeight: 40,
     showLoading: false,
     variant: 'default',
-    headline: "Matching results"
+    headline: "Matching results",
+    enableSelection: false
   },
   argTypes: {
     tableHeight: {
@@ -233,6 +234,17 @@ export default {
     rowHeight: {
       description: 'Set the height of the rows.',
       options: ['compact', 'default'],
+      control: { type: 'radio' },
+      table: {
+        category: 'ifx-table props',
+        defaultValue: {
+          summary: 'default'
+        },
+      },
+    },
+    enableSelection: {
+      description: 'Enables the selection of rows via a checkbox',
+      options: [true, false],
       control: { type: 'radio' },
       table: {
         category: 'ifx-table props',
@@ -302,6 +314,7 @@ const DefaultTemplate = (args) => {
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
+    enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     server-side-pagination="${args.serverSidePagination}"
@@ -385,6 +398,7 @@ DefaultState.args = {
   pagination: false,
   paginationItemsPerPage: '[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
   rowHeight: 'default',
+  enableSelection: false,
   columnDefs: columnDefs,
   rowData: rowData,
   filterOrientation: 'none',

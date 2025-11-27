@@ -1,22 +1,21 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/font.scss';
 
-@import "~ag-grid-community/styles/ag-grid.css";
+@import '~ag-grid-community/styles/ag-grid.css';
 
 .zebra {
   & .ag-row-odd {
-    background-color: tokens.$ifxColorEngineering100!important;
+    background-color: tokens.$ifxColorEngineering100 !important;
   }
 
   & .ag-row {
-    border-bottom: none!important;
+    border-bottom: none !important;
   }
 }
 
 .ag-header-viewport {
-  background-color: tokens.$ifxColorEngineering200!important;
+  background-color: tokens.$ifxColorEngineering200 !important;
 }
-
 
 .table-container {
   display: block;
@@ -43,10 +42,10 @@
 .table-pagination-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch; // stretches items to fill the container horizontally
-  width: 100%; // ensures the wrapper takes up the full width of its parent
+  align-items: stretch;
+  width: 100%;
 
-  & .pagination-wrapper { 
+  & .pagination-wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -54,7 +53,7 @@
 }
 
 #table-wrapper {
-  flex: 1; // allows the table to take up the remaining space
+  flex: 1;
   padding-bottom: tokens.$ifxSpace100;
   overflow-x: auto;
   width: 100%;
@@ -65,6 +64,10 @@
   width: 100%;
 }
 
+.ag-horizontal-left-spacer {
+  display: none;
+}
+
 .table-wrapper .ag-root-wrapper-body {
   height: auto !important;
   min-height: 100px !important;
@@ -72,13 +75,13 @@
 }
 
 .filter-chips {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
-  gap:tokens.$ifxSpace100;
+  gap: tokens.$ifxSpace100;
   margin-bottom: 12px;
 }
 
-.filter-chips > ifx-button { // ifx-button with icon and text has a paddingof 16 px. This is to remove the padding to align with the filter-chips container definition
+.filter-chips > ifx-button {
   margin-left: -8px;
 }
 
@@ -97,23 +100,22 @@
   padding-top: 32px;
   padding-bottom: 32px;
   gap: 24px;
- }
+}
 
- .headline-wrapper { 
+.headline-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 0px;
- }
+}
 
- .inner-buttons-wrapper { 
+.inner-buttons-wrapper {
   flex: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
- }
-
+}
 
 .ifx-ag-grid {
   display: grid;
@@ -121,9 +123,7 @@
   width: 100%;
   min-width: 100px;
   overflow-x: auto;
-  //padding-bottom: tokens.$ifxSpace100;
 }
-
 
 .ifx-ag-grid .ag-header-cell::after {
   outline: none !important;
@@ -139,7 +139,6 @@
   outline: none;
 }
 
-
 .ifx-ag-grid .ag-header-cell:not(:last-child)::before {
   content: '';
   position: absolute;
@@ -150,6 +149,31 @@
   background-color: tokens.$ifxColorEngineering300;
 }
 
+.ag-pinned-left-header {
+  background-color: tokens.$ifxColorEngineering200;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  width: 50px !important;
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: calc(50% - 12px);
+    height: 24px;
+    width: 1px;
+    background-color: tokens.$ifxColorEngineering300;
+  }
+}
+
+.ag-header-row {
+  width: 50px !important;
+}
+
+.ag-pinned-left-cols-container {
+  width: 50px !important;
+  max-width: 50px !important;
+  min-width: 50px !important;
+}
 
 .ag-overlay-loading-center {
   border: none;
@@ -158,12 +182,9 @@
   box-shadow: none;
 }
 
-
 .ag-root-wrapper {
   border: 1px solid tokens.$ifxColorEngineering200;
 }
-
-
 
 .ag-header {
   background-color: tokens.$ifxColorEngineering100;
@@ -171,7 +192,7 @@
 
   &.ag-header-active {
     outline: none !important;
-    border-color: #0A8276 !important;
+    border-color: #0a8276 !important;
   }
 }
 
@@ -180,7 +201,6 @@
   padding-right: 16px;
   gap: 4px;
 }
-
 
 .ag-header-cell-focus {
   border: none !important;
@@ -193,30 +213,22 @@
   font-weight: 600;
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
-
+  font-family: var(--ifx-font-family);
 }
 
 .ag-row-focus {
   background-color: inherit !important;
-  /* Reset the hover color to the row's original color */
 }
 
 .ag-row-hover {
-  background-color: tokens.$ifxColorBaseWhite !important; //inherit !important;
-  /* Reset the hover color to the row's original color */
+  background-color: tokens.$ifxColorBaseWhite !important;
 }
-
 
 .ag-cell-focus {
   border: none !important;
   outline: none !important;
   background-color: inherit !important;
 }
-
-
 
 .ag-row {
   background-color: tokens.$ifxColorBaseWhite;
@@ -225,7 +237,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  z-index: 1; //ensure the stacking order when used inside js frameworks
+  z-index: 1;
 }
 
 .ag-row-odd {
@@ -237,7 +249,7 @@
   padding-left: 16px;
   padding-right: 16px;
   white-space: pre-line;
-  min-height: 40px; 
+  min-height: 40px;
   height: auto;
 }
 
@@ -255,15 +267,10 @@
   color: tokens.$ifxColorEngineering400;
 }
 
-
-// Table with set filters in sidebar orientation
-
-
 .filters-title {
   font-size: 24px;
   font-weight: 600;
 }
-
 
 .matching-results-container {
   flex: 1;
@@ -285,7 +292,10 @@
   font-weight: 400;
 }
 
-// Mobile optimization for horizontal scrolling
+.ag-body-horizontal-scroll {
+  display: none;
+}
+
 @media (max-width: tokens.$ifxBreakpointM) {
   .table-wrapper,
   #table-wrapper {
@@ -293,12 +303,12 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  .ifx-ag-grid {
-    min-width: 600px;
-  }
-
   .ag-root-wrapper {
     min-width: 100%;
+  }
+
+  .ag-body-horizontal-scroll {
+    display: block;
   }
 
   .ag-header-cell,
