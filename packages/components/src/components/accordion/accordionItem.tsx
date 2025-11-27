@@ -56,16 +56,10 @@ export class AccordionItem {
   }
 
   openAccordionItem() {
-    if (this.contentEl) {
-      if (this.internalOpen) {
-        this.contentEl.style.height = 'auto';
-        const updatedHeight = this.contentEl.scrollHeight;
-        this.contentEl.style.height = `${updatedHeight}px`;
-        this.contentEl.style.overflow = 'visible';
-      } else {
-        this.contentEl.style.height = '0';
-        this.contentEl.style.overflow = 'hidden';
-      }
+    if (this.internalOpen) {
+      this.contentEl.style.maxHeight = `${this.contentEl.scrollHeight}px`;
+    } else {
+      this.contentEl.style.maxHeight = '0';
     }
   }
 

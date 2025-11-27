@@ -53,7 +53,9 @@
 
 .accordion-content {
   gap: tokens.$ifxSpace100;
-  //transition: max-height 0.3s ease-in-out;
+  max-height:0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
@@ -70,6 +72,8 @@
   align-self: stretch;
 
   /* breaks text at arbitrary points when needed */
+  margin: 0 4px 4px;
+  border: 1px solid transparent
 }
 
 .accordion-icon {
@@ -88,14 +92,14 @@
 }
 
 .accordion-item.open .inner-content {
-  border: 1px solid tokens.$ifxColorEngineering200;
+  border-color: tokens.$ifxColorEngineering200;
   border-top: none;
-  margin: 0 4px 4px;
 }
 
 .inner-content {
   &.no-content { 
     border: none;
     padding: 0;
+    margin: 0;
   }
 }
