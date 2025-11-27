@@ -45,19 +45,9 @@ export class Table {
   @Prop() variant: string = 'default';
   @Prop() serverSidePagination: boolean = false;
   @Prop() serverPageChangeHandler?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
-
-  @Prop() checkbox: boolean = false;
-  @Prop() checkboxOptions?: {
-    size?: string;
-    disabled?: boolean;
-    checked?: boolean;
-    indeterminate?: boolean;
-    error?: boolean;
-    onSelectionChange?: (selectedRows: any[]) => void;
-  };
+  @Prop() enableSelection: boolean = false;
   @State() selectedRows: Set<number> = new Set();
   @State() selectAll: boolean = false;
-
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
@@ -73,13 +63,12 @@ export class Table {
   rowsChanged(_newVal: any) {
     const parsed = this.parseArrayInput<any>(this.rows);
 
-    // Add checkbox data to each row if checkbox prop is true
-    if (this.checkbox) {
+    if (this.enableSelection) {
       parsed.forEach((row, index) => {
         row.__checkbox = {
-          disabled: this.checkboxOptions?.disabled || false,
+          disabled: false,
           checked: this.selectedRows?.has(index) || false,
-          size: this.checkboxOptions?.size || 's',
+          size: 's',
           indeterminate: false,
           error: false,
         };
@@ -91,7 +80,7 @@ export class Table {
     this.originalRowData = [...parsed];
     this.allRowData = [...parsed];
     this.matchingResultsCount = this.allRowData.length;
-    
+
     this.updateTableView();
     this.updateFilterOptions();
   }
@@ -196,7 +185,7 @@ export class Table {
   }
 
   private updateHeaderCheckboxState() {
-    if (this.gridApi && this.checkbox) {
+    if (this.gridApi && this.enableSelection) {
       setTimeout(() => {
         const headerCheckbox = this.container?.querySelector('.ag-header-cell[col-id="__checkbox"] ifx-checkbox') as any;
         if (headerCheckbox) {
@@ -321,14 +310,13 @@ export class Table {
         pageSize: this.paginationPageSize,
       });
 
-      // Add checkbox data to server-side rows if needed
-      if (this.checkbox) {
+      if (this.enableSelection) {
         rows.forEach((row, index) => {
           const globalIndex = (this.currentPage - 1) * this.paginationPageSize + index;
           row.__checkbox = {
-            disabled: this.checkboxOptions?.disabled || false,
+            disabled: false,
             checked: this.selectedRows?.has(globalIndex) || false,
-            size: this.checkboxOptions?.size || 's',
+            size: 's',
             indeterminate: false,
             error: false,
           };
@@ -340,21 +328,23 @@ export class Table {
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', rows);
       }
-      // ... rest of the method
+      const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
+      if (paginationElement) {
+        paginationElement.setAttribute('total', total.toString());
+      }
     } else {
       const startIndex = (this.currentPage - 1) * this.paginationPageSize;
       const endIndex = startIndex + this.paginationPageSize;
       const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
-      // Ensure checkbox data is present in visible rows
-      if (this.checkbox) {
+      if (this.enableSelection) {
         visibleRowData.forEach((row, index) => {
           const globalIndex = startIndex + index;
           if (!row.__checkbox) {
             row.__checkbox = {
-              disabled: this.checkboxOptions?.disabled || false,
+              disabled: false,
               checked: this.selectedRows?.has(globalIndex) || false,
-              size: this.checkboxOptions?.size || 's',
+              size: 's',
               indeterminate: false,
               error: false,
             };
@@ -486,13 +476,6 @@ export class Table {
     return cellPosition;
   }
 
-  componentDidRender() {
-    if (this.gridApi) {
-      console.log('here')
-      //this.gridApi.setGridOption('columnDefs', this.colData);
-    }
-  }
-
   async componentDidLoad() {
     if (this.container) {
       if (!isNestedInIfxComponent(this.host)) {
@@ -587,13 +570,10 @@ export class Table {
   }
 
   handleSelectAll = (checked: boolean) => {
-    console.log('in handleselect all here:', checked);
     this.selectAll = checked;
     if (checked) {
-      // Select all rows
       this.selectedRows = new Set(Array.from({ length: this.allRowData.length }, (_, i) => i));
     } else {
-      // Deselect all rows
       this.selectedRows = new Set();
     }
     this.updateCheckboxStates();
@@ -614,13 +594,12 @@ export class Table {
       console.error('Unexpected value for rows: ', this.rows);
     }
 
-    // Add checkbox data to each row if checkbox prop is true
-    if (this.checkbox) {
+    if (this.enableSelection) {
       rows.forEach((row, index) => {
         row.__checkbox = {
-          disabled: this.checkboxOptions?.disabled || false,
+          disabled: false,
           checked: this.selectedRows?.has(index) || false,
-          size: this.checkboxOptions?.size || 's',
+          size: 's',
           indeterminate: false,
           error: false,
         };
@@ -673,12 +652,6 @@ export class Table {
       return rowData;
     });
 
-    // Emit through prop callback if provided
-    if (this.checkboxOptions?.onSelectionChange) {
-      this.checkboxOptions.onSelectionChange(selectedRowsData);
-    }
-
-    // Emit custom event
     this.host.dispatchEvent(
       new CustomEvent('ifxSelectionChange', {
         detail: {
@@ -702,8 +675,7 @@ export class Table {
       console.error('Unexpected value for cols: ', this.cols);
     }
 
-    // Add checkbox column if checkbox prop is true
-    if (this.checkbox) {
+    if (this.enableSelection) {
       const checkboxColumn = {
         headerName: '',
         field: '__checkbox',
@@ -783,10 +755,10 @@ export class Table {
 
   handleResetButtonClick() {
     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });
-    window.dispatchEvent(resetEvent); // Dispatch from the window object
+    window.dispatchEvent(resetEvent); 
 
     this.clearAllFilters();
-    this.updateTableView(); // Update table view with the original data
+    this.updateTableView(); 
   }
 
   disconnectedCallback() {
