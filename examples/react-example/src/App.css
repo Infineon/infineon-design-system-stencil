@@ -1,0 +1,39 @@
+:root {
+  font-family: "Source Sans 3", sans-serif;
+}
+
+body {
+  background-color: #F7F7F7;
+  margin: 0;
+}
+
+.version-info {
+  background-color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  font-family: monospace;
+}
+
+.components {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.components > section {
+  background-color: #FFFFFF;
+  padding: 12px 20px;
+}
+
+h2 {
+  margin: 4px 0px 12px 0px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+}

@@ -1,0 +1,31 @@
+  <ifx-modal
+    #modal
+    caption="Modal Title"
+    caption-aria-label="Additional information for caption"
+    close-button-aria-label="Close modal"
+    variant="default"
+    [close-on-overlay-click]="false"
+    [show-close-button]="true"
+    size="s"
+    (ifxOpen)="handleOpen($event)"
+    (ifxClose)="handleClose($event)">
+    <div slot="content">
+      <span>Modal content</span>
+    </div>
+    <div slot="buttons">
+      <ifx-button variant="secondary">Cancel</ifx-button>
+      <ifx-button>OK</ifx-button>
+    </div>
+  </ifx-modal>
+  <ifx-button (click)="openModal()">Open Modal</ifx-button>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>modal-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>modal-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

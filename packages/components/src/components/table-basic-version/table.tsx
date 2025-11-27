@@ -2,7 +2,7 @@ import { Component, h, Element, Host, Prop, State } from '@stencil/core';
 import { trackComponent } from '../../shared/utils/tracking';
 import { isNestedInIfxComponent } from '../..//shared/utils/dom-utils';
 import { detectFramework } from '../..//shared/utils/framework-detection';
-import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { createGrid, FirstDataRenderedEvent, GridApi, GridOptions, ModuleRegistry, AllCommunityModule, provideGlobalGridOptions } from 'ag-grid-community';
 import { CustomNoRowsOverlay } from './customNoRowsOverlay';
 import { CustomLoadingOverlay } from './customLoadingOverlay';
 import classNames from 'classnames';
@@ -29,6 +29,9 @@ export class Table {
   private gridInitialized = false;
 
   componentWillLoad() {
+    ModuleRegistry.registerModules([AllCommunityModule]);
+    provideGlobalGridOptions({ theme: 'legacy'});
+
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;
     this.setColsAndRows(); //needed?
     this.setGridOptions();

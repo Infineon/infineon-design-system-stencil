@@ -1,0 +1,94 @@
+<script setup lang="ts">
+import { onMounted, nextTick } from 'vue';
+import Prism from 'prismjs';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-markup-templating';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+
+const handleSetGroupError = (event: CustomEvent) => {
+  console.log('setGroupError:', event.detail);
+  // Add your handler logic here
+};
+
+const codeString = `<script setup lang="ts">
+const handleSetGroupError = (event: CustomEvent) => {
+  console.log('setGroupError:', event.detail);
+  // Add your handler logic here
+};
+</script>
+
+<template>
+  <div>
+    <ifx-radio-button-group
+      alignment="vertical"
+      show-group-label="false"
+      group-label-text="Group Label"
+      show-caption="false"
+      caption-text="Caption text, description, error notification"
+      show-caption-icon="false"
+      required="false">
+      <ifx-radio-button
+        value="0"
+        disabled="false"
+        checked="false"
+        error="false"
+        size="m">
+        Option 0
+      </ifx-radio-button>
+      <ifx-radio-button
+        value="1"
+        size="m">
+        Option 1
+      </ifx-radio-button>
+      <ifx-radio-button
+        value="2"
+        size="m">
+        Option 2
+      </ifx-radio-button>
+    </ifx-radio-button-group>
+  </div>
+</template>`;
+
+onMounted(() => {
+  nextTick(() => {
+    Prism.highlightAll();
+  });
+});
+</script>
+
+<template>
+  <div>
+    <ifx-radio-button-group
+      alignment="vertical"
+      show-group-label="false"
+      group-label-text="Group Label"
+      show-caption="false"
+      caption-text="Caption text, description, error notification"
+      show-caption-icon="false"
+      required="false">
+      <ifx-radio-button
+        value="0"
+        disabled="false"
+        checked="false"
+        error="false"
+        size="m">
+        Option 0
+      </ifx-radio-button>
+      <ifx-radio-button
+        value="1"
+        size="m">
+        Option 1
+      </ifx-radio-button>
+      <ifx-radio-button
+        value="2"
+        size="m">
+        Option 2
+      </ifx-radio-button>
+    </ifx-radio-button-group>
+    <details class="code-details">
+      <summary>View Code</summary>
+      <pre><code class="language-markup">{{ codeString }}</code></pre>
+    </details>
+  </div>
+</template>
