@@ -29,8 +29,8 @@
 <body>
 
   <ifx-table id="mytable" checkbox="true" row-height="default"
-    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
-    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10}, {"make":"Mazda","model":"Celica","price":15000,"age":20}, {"make":"Lexus","model":"Celica","price":5000,"age":30}, {"make":"BMW","model":"Deutchland","price":1000,"age":50}, {"make":"Hyundai","model":"Korea","price":500,"age":70}]'
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}, {"headerName":"","field":"status"}]'
+    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10}, {"make":"Mazda","model":"Celica","price":15000,"age":20}, {"make":"Lexus","model":"Celica","price":5000,"age":30}, {"make":"BMW","model":"Deutchland","price":1000,"age":50}, {"make":"Hyundai","model":"Korea","price":500,"age":70, "status":{"label":"my status","color":"red-500", "border": true}}]'
     table-height="auto" pagination="false" server-side-pagination="false"
     pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
     filter-orientation="none" variant='default'>

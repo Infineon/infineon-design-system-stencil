@@ -20,9 +20,12 @@ export class CheckboxCellRenderer implements ICellRendererComp {
   }
 
   private createCheckbox(params: ICellRendererParams) {
-    const config = params.data[params.colDef.field]; 
+    const config = params.data[params.colDef.field];
     const options = params.colDef.cellRendererParams || {};
     this.eGui = document.createElement('div');
+    this.eGui.style.display = 'flex';
+    this.eGui.style.alignItems = 'center';
+    this.eGui.style.justifyContent = 'center';
     this.eCheckbox = document.createElement('ifx-checkbox') as HTMLElement;
 
     if (this.hasRequiredKeys(config)) {

@@ -408,6 +408,7 @@ export class Table {
     this.updateFilterOptions();
 
     this.gridOptions = {
+      suppressCellFocus: true,
       rowHeight: this.rowHeight === 'default' ? 40 : 32,
       headerHeight: 40,
       components: {
@@ -635,11 +636,8 @@ export class Table {
   }
 
   handleRowCheckboxClick = (params: any) => {
-    // Use the actual data to find the correct index in allRowData
     const clickedRowData = params.data;
-    const actualIndex = this.allRowData.findIndex(row => row.make === clickedRowData.make && row.model === clickedRowData.model && row.price === clickedRowData.price);
-
-    console.log('Clicked row:', clickedRowData.make, 'Found at index:', actualIndex);
+    const actualIndex = this.allRowData.findIndex(row => row.make === clickedRowData.make && row.model === clickedRowData.model && row.price === clickedRowData.price); 
 
     const newSelectedRows = new Set(this.selectedRows);
     if (newSelectedRows.has(actualIndex)) {
@@ -659,7 +657,6 @@ export class Table {
   private updateCheckboxStates() {
     this.allRowData.forEach((row, index) => {
       if (row.__checkbox) {
-        //console.log('row, index', row, index)
         row.__checkbox.checked = this.selectedRows.has(index);
       }
     });

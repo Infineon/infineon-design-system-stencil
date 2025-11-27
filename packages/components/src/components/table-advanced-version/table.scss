@@ -43,8 +43,8 @@
 .table-pagination-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch; // stretches items to fill the container horizontally
-  width: 100%; // ensures the wrapper takes up the full width of its parent
+  align-items: stretch; 
+  width: 100%; 
 
   & .pagination-wrapper { 
     display: flex;
@@ -54,7 +54,7 @@
 }
 
 #table-wrapper {
-  flex: 1; // allows the table to take up the remaining space
+  flex: 1; 
   padding-bottom: tokens.$ifxSpace100;
   overflow-x: auto;
   width: 100%;
@@ -78,7 +78,7 @@
   margin-bottom: 12px;
 }
 
-.filter-chips > ifx-button { // ifx-button with icon and text has a paddingof 16 px. This is to remove the padding to align with the filter-chips container definition
+.filter-chips > ifx-button { 
   margin-left: -8px;
 }
 
@@ -121,7 +121,6 @@
   width: 100%;
   min-width: 100px;
   overflow-x: auto;
-  //padding-bottom: tokens.$ifxSpace100;
 }
 
 
@@ -158,12 +157,9 @@
   box-shadow: none;
 }
 
-
 .ag-root-wrapper {
   border: 1px solid tokens.$ifxColorEngineering200;
 }
-
-
 
 .ag-header {
   background-color: tokens.$ifxColorEngineering100;
@@ -193,7 +189,7 @@
   font-weight: 600;
   line-height: 20px;
   color: tokens.$ifxColorBaseBlack;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family); 
 
 
 
@@ -201,12 +197,10 @@
 
 .ag-row-focus {
   background-color: inherit !important;
-  /* Reset the hover color to the row's original color */
 }
 
 .ag-row-hover {
-  background-color: tokens.$ifxColorBaseWhite !important; //inherit !important;
-  /* Reset the hover color to the row's original color */
+  background-color: tokens.$ifxColorBaseWhite !important; 
 }
 
 
@@ -225,7 +219,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  z-index: 1; //ensure the stacking order when used inside js frameworks
+  z-index: 1;
 }
 
 .ag-row-odd {
@@ -255,10 +249,6 @@
   color: tokens.$ifxColorEngineering400;
 }
 
-
-// Table with set filters in sidebar orientation
-
-
 .filters-title {
   font-size: 24px;
   font-weight: 600;
@@ -285,7 +275,7 @@
   font-weight: 400;
 }
 
-// Mobile optimization for horizontal scrolling
+
 @media (max-width: tokens.$ifxBreakpointM) {
   .table-wrapper,
   #table-wrapper {

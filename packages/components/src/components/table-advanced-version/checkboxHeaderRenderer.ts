@@ -29,10 +29,7 @@ export class CheckboxHeaderRenderer implements IHeaderComp {
     this.eCheckbox.setAttribute('size', 's');
     this.eCheckbox.setAttribute('checked', 'false');
 
-    // Listen for the appropriate event from your ifx-checkbox component
     this.eCheckbox.addEventListener('ifxChange', (event: any) => {
-      console.log('event.detail', event.detail)
-      console.log('event.target', event.target)
       const checked = event.detail;
       if (this.params.onSelectAll) {
         this.params.onSelectAll(checked);
