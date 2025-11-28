@@ -84,14 +84,13 @@ export class AngularCodeFormatter implements ICodeFormatter {
     const htmlCode = this.escapeHtml(html);
 
     return `${imports}
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-${componentSelector}',
   imports: [ ${componentImports} ],
   templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './${componentSelector}.scss'
 })
 export class ${componentClassName} {
   protected readonly tsCode = \`${this.escapeBackticks(tsCode)}\`;
@@ -149,14 +148,13 @@ ${eventHandlers ? '\n' + eventHandlers + '\n' : ''}}
     const componentSelector = `${component.component}-example${selectorSuffix}`;
     
     let tsCode = `${imports}
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-${componentSelector}',
   imports: [ ${componentImports} ],
   templateUrl: './${componentSelector}.html',
-  styleUrl: './${componentSelector}.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './${componentSelector}.scss'
 })
 export class ${componentClassName} {`;
     

@@ -1,23 +1,21 @@
 import { IfxPagination } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-pagination-example',
   imports: [ IfxPagination ],
   templateUrl: './ifx-pagination-example.html',
-  styleUrl: './ifx-pagination-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-pagination-example.scss'
 })
 export class IfxPaginationExample {
   protected readonly tsCode = `import { IfxPagination } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-pagination-example&#039;,
   imports: [ IfxPagination ],
   templateUrl: &#039;./ifx-pagination-example.html&#039;,
-  styleUrl: &#039;./ifx-pagination-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-pagination-example.scss&#039;
 })
 export class IfxPaginationExample {
   protected handlePageChange(event: any) {

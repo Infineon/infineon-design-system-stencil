@@ -1,23 +1,21 @@
 import { IfxSelect } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-select-example',
   imports: [ IfxSelect ],
   templateUrl: './ifx-select-example.html',
-  styleUrl: './ifx-select-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-select-example.scss'
 })
 export class IfxSelectExample {
   protected readonly tsCode = `import { IfxSelect } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-select-example&#039;,
   imports: [ IfxSelect ],
   templateUrl: &#039;./ifx-select-example.html&#039;,
-  styleUrl: &#039;./ifx-select-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-select-example.scss&#039;
 })
 export class IfxSelectExample {
   protected handleSelect(event: any) {

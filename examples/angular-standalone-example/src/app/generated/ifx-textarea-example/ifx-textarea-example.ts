@@ -1,23 +1,21 @@
 import { IfxTextarea } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-textarea-example',
   imports: [ IfxTextarea ],
   templateUrl: './ifx-textarea-example.html',
-  styleUrl: './ifx-textarea-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-textarea-example.scss'
 })
 export class IfxTextareaExample {
   protected readonly tsCode = `import { IfxTextarea } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-textarea-example&#039;,
   imports: [ IfxTextarea ],
   templateUrl: &#039;./ifx-textarea-example.html&#039;,
-  styleUrl: &#039;./ifx-textarea-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-textarea-example.scss&#039;
 })
 export class IfxTextareaExample {}`;
   protected readonly htmlCode = `  &lt;ifx-textarea

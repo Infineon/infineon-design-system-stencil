@@ -1,23 +1,21 @@
 import { IfxStep, IfxStepper } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-stepper-example-compact',
   imports: [ IfxStep, IfxStepper ],
   templateUrl: './ifx-stepper-example-compact.html',
-  styleUrl: './ifx-stepper-example-compact.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-stepper-example-compact.scss'
 })
 export class IfxStepperCompactExample {
   protected readonly tsCode = `import { IfxStep, IfxStepper } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-stepper-example-compact&#039;,
   imports: [ IfxStep, IfxStepper ],
   templateUrl: &#039;./ifx-stepper-example-compact.html&#039;,
-  styleUrl: &#039;./ifx-stepper-example-compact.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-stepper-example-compact.scss&#039;
 })
 export class IfxStepperCompactExample {
   protected handleChange(event: any) {

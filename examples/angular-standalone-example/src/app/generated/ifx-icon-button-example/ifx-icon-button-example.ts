@@ -1,23 +1,21 @@
 import { IfxIconButton } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-icon-button-example',
   imports: [ IfxIconButton ],
   templateUrl: './ifx-icon-button-example.html',
-  styleUrl: './ifx-icon-button-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-icon-button-example.scss'
 })
 export class IfxIconButtonExample {
   protected readonly tsCode = `import { IfxIconButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-icon-button-example&#039;,
   imports: [ IfxIconButton ],
   templateUrl: &#039;./ifx-icon-button-example.html&#039;,
-  styleUrl: &#039;./ifx-icon-button-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-icon-button-example.scss&#039;
 })
 export class IfxIconButtonExample {}`;
   protected readonly htmlCode = `  &lt;ifx-icon-button
