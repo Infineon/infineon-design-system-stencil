@@ -1,11 +1,26 @@
 {
   "name": "@infineon/infineon-design-system-stencil",
   "version": "39.3.0",
-  "description": "Stencil Component Starter",
+  "description": "Infineon Design System - Web Components built with Stencil",
+  "keywords": [
+    "infineon",
+    "design-system",
+    "web-components",
+    "stencil",
+    "ui-components",
+    "component-library"
+  ],
+  "homepage": "https://infineon.github.io/infineon-design-system-stencil/",
+  "bugs": {
+    "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stenciljs/component-starter.git"
+    "url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+    "directory": "packages/components"
   },
+  "author": "Infineon Technologies AG",
+  "license": "MIT",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "exports": {
@@ -70,7 +85,6 @@
     "vite-plugin-live-reload": "^3.0.5",
     "workbox-build": "4.3.1"
   },
-  "license": "MIT",
   "dependencies": {
     "@infineon/design-system-tokens": "^5.0.0",
     "@infineon/infineon-icons": "^4.6.0",
