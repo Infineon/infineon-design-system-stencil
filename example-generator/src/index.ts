@@ -58,6 +58,10 @@ const examples = [
     config: { outputDir: '../examples/html-cdn-example' }
   },
   {
+    generator: new HTMLExampleGenerator(),
+    config: { outputDir: '../examples/html-vite-example' }
+  },
+  {
     generator: new ReactExampleGenerator(),
     config: { outputDir: '../examples/react-example' }
   },

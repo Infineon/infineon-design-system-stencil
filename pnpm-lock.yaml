@@ -200,7 +200,13 @@ importers:
       '@infineon/infineon-design-system-stencil':
         specifier: workspace:*
         version: link:../../packages/components
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
     devDependencies:
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       vite:
         specifier: ^7.1.12
         version: 7.2.4(@types/node@24.10.1)(less@4.4.2)(sass-embedded@1.93.3)(sass@1.94.2)(tsx@4.20.6)(yaml@2.8.1)
@@ -317,9 +323,6 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
-      puppeteer:
-        specifier: ^24.31.0
-        version: 24.31.0(typescript@5.9.3)
     devDependencies:
       '@stencil/angular-output-target':
         specifier: ^1.1.1
@@ -363,6 +366,9 @@ importers:
       lit:
         specifier: ^3.3.1
         version: 3.3.1
+      puppeteer:
+        specifier: ^24.31.0
+        version: 24.31.0(typescript@5.9.3)
       storybook:
         specifier: ^10.0.6
         version: 10.1.0(@testing-library/dom@10.4.1)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)

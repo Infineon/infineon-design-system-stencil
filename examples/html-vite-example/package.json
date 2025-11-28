@@ -13,9 +13,11 @@
   "author": "Pfaff Fabian <fabian.pfaff@infineon.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/prismjs": "^1.26.5",
     "vite": "^7.1.12"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "workspace:*"
+    "@infineon/infineon-design-system-stencil": "workspace:*",
+    "prismjs": "^1.30.0"
   }
 }
