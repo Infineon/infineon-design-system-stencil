@@ -1,23 +1,21 @@
 import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-radio-button-group-example',
   imports: [ IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: './ifx-radio-button-group-example.html',
-  styleUrl: './ifx-radio-button-group-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-radio-button-group-example.scss'
 })
 export class IfxRadioButtonGroupExample {
   protected readonly tsCode = `import { IfxRadioButton, IfxRadioButtonGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-radio-button-group-example&#039;,
   imports: [ IfxRadioButton, IfxRadioButtonGroup ],
   templateUrl: &#039;./ifx-radio-button-group-example.html&#039;,
-  styleUrl: &#039;./ifx-radio-button-group-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-radio-button-group-example.scss&#039;
 })
 export class IfxRadioButtonGroupExample {
   protected handleSetGroupError(event: any) {

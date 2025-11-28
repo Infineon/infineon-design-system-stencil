@@ -1,23 +1,21 @@
 import { IfxTooltip } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-tooltip-example',
   imports: [ IfxTooltip ],
   templateUrl: './ifx-tooltip-example.html',
-  styleUrl: './ifx-tooltip-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-tooltip-example.scss'
 })
 export class IfxTooltipExample {
   protected readonly tsCode = `import { IfxTooltip } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-tooltip-example&#039;,
   imports: [ IfxTooltip ],
   templateUrl: &#039;./ifx-tooltip-example.html&#039;,
-  styleUrl: &#039;./ifx-tooltip-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-tooltip-example.scss&#039;
 })
 export class IfxTooltipExample {}`;
   protected readonly htmlCode = `  &lt;ifx-tooltip

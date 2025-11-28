@@ -1,23 +1,21 @@
 import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-footer-example-medium',
   imports: [ IfxFooter, IfxIcon, IfxLink ],
   templateUrl: './ifx-footer-example-medium.html',
-  styleUrl: './ifx-footer-example-medium.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-footer-example-medium.scss'
 })
 export class IfxFooterMediumExample {
   protected readonly tsCode = `import { IfxFooter, IfxIcon, IfxLink } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-footer-example-medium&#039;,
   imports: [ IfxFooter, IfxIcon, IfxLink ],
   templateUrl: &#039;./ifx-footer-example-medium.html&#039;,
-  styleUrl: &#039;./ifx-footer-example-medium.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-footer-example-medium.scss&#039;
 })
 export class IfxFooterMediumExample {}`;
   protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2024 Infineon Technologies AG&quot;&gt;

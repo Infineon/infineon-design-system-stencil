@@ -1,23 +1,21 @@
 import { IfxCheckbox, IfxCheckboxGroup } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-checkbox-group-example',
   imports: [ IfxCheckbox, IfxCheckboxGroup ],
   templateUrl: './ifx-checkbox-group-example.html',
-  styleUrl: './ifx-checkbox-group-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-checkbox-group-example.scss'
 })
 export class IfxCheckboxGroupExample {
   protected readonly tsCode = `import { IfxCheckbox, IfxCheckboxGroup } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-checkbox-group-example&#039;,
   imports: [ IfxCheckbox, IfxCheckboxGroup ],
   templateUrl: &#039;./ifx-checkbox-group-example.html&#039;,
-  styleUrl: &#039;./ifx-checkbox-group-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-checkbox-group-example.scss&#039;
 })
 export class IfxCheckboxGroupExample {
   protected handleSetGroupError(event: any) {

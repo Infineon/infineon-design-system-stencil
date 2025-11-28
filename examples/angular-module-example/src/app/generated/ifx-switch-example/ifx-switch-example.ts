@@ -1,0 +1,37 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-ifx-switch-example',
+  templateUrl: './ifx-switch-example.html',
+  styleUrl: './ifx-switch-example.scss',
+  standalone: false
+})
+export class IfxSwitchExample {
+  protected readonly tsCode = `import { Component } from &#039;@angular/core&#039;;
+
+@Component({
+  selector: &#039;app-ifx-switch-example&#039;,
+  templateUrl: &#039;./ifx-switch-example.html&#039;,
+  styleUrl: &#039;./ifx-switch-example.scss&#039;,
+  standalone: false
+})
+export class IfxSwitchExample {
+  protected handleChange(event: any) {
+    console.log(&#039;ifxChange:&#039;, event.detail);
+    // Add your handler logic here
+  }
+}`;
+  protected readonly htmlCode = `  &lt;ifx-switch
+    checked=&quot;false&quot;
+    name=&quot;switch&quot;
+    value=&quot;switch&quot;
+    disabled=&quot;false&quot;
+    (ifxChange)=&quot;handleChange(\$event)&quot;&gt;
+    Switch
+  &lt;/ifx-switch&gt;`;
+
+  protected handleChange(event: any) {
+    console.log('ifxChange:', event.detail);
+    // Add your handler logic here
+  }
+}

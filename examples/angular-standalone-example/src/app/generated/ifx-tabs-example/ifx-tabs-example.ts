@@ -1,23 +1,21 @@
 import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-tabs-example',
   imports: [ IfxTab, IfxTabs ],
   templateUrl: './ifx-tabs-example.html',
-  styleUrl: './ifx-tabs-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-tabs-example.scss'
 })
 export class IfxTabsExample {
   protected readonly tsCode = `import { IfxTab, IfxTabs } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-tabs-example&#039;,
   imports: [ IfxTab, IfxTabs ],
   templateUrl: &#039;./ifx-tabs-example.html&#039;,
-  styleUrl: &#039;./ifx-tabs-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-tabs-example.scss&#039;
 })
 export class IfxTabsExample {
   protected handleChange(event: any) {

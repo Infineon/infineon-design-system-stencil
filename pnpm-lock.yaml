@@ -68,6 +68,9 @@ importers:
       express:
         specifier: ^5.1.0
         version: 5.1.0
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -93,6 +96,9 @@ importers:
       '@types/node':
         specifier: ^20.17.19
         version: 20.19.25
+      '@types/prismjs':
+        specifier: ^1.26.5
+        version: 1.26.5
       typescript:
         specifier: ~5.9.2
         version: 5.9.3

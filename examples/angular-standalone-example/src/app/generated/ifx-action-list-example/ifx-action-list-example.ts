@@ -1,23 +1,21 @@
 import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-action-list-example',
   imports: [ IfxActionList, IfxActionListItem, IfxIcon ],
   templateUrl: './ifx-action-list-example.html',
-  styleUrl: './ifx-action-list-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-action-list-example.scss'
 })
 export class IfxActionListExample {
   protected readonly tsCode = `import { IfxActionList, IfxActionListItem, IfxIcon } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-action-list-example&#039;,
   imports: [ IfxActionList, IfxActionListItem, IfxIcon ],
   templateUrl: &#039;./ifx-action-list-example.html&#039;,
-  styleUrl: &#039;./ifx-action-list-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-action-list-example.scss&#039;
 })
 export class IfxActionListExample {
   protected handleActionListItemClick(event: any) {

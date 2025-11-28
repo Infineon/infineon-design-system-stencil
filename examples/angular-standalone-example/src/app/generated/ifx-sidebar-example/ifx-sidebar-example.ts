@@ -1,23 +1,21 @@
 import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-sidebar-example',
   imports: [ IfxSidebar, IfxSidebarItem, IfxSidebarTitle ],
   templateUrl: './ifx-sidebar-example.html',
-  styleUrl: './ifx-sidebar-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-sidebar-example.scss'
 })
 export class IfxSidebarExample {
   protected readonly tsCode = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-sidebar-example&#039;,
   imports: [ IfxSidebar, IfxSidebarItem, IfxSidebarTitle ],
   templateUrl: &#039;./ifx-sidebar-example.html&#039;,
-  styleUrl: &#039;./ifx-sidebar-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-sidebar-example.scss&#039;
 })
 export class IfxSidebarExample {
   protected handleSidebarNavigationItem(event: any) {

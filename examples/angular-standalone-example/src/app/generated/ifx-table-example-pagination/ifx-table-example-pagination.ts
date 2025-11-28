@@ -1,23 +1,21 @@
 import { IfxTable } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-table-example-pagination',
   imports: [ IfxTable ],
   templateUrl: './ifx-table-example-pagination.html',
-  styleUrl: './ifx-table-example-pagination.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-table-example-pagination.scss'
 })
 export class IfxTablePaginationExample {
   protected readonly tsCode = `import { IfxTable } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-table-example-pagination&#039;,
   imports: [ IfxTable ],
   templateUrl: &#039;./ifx-table-example-pagination.html&#039;,
-  styleUrl: &#039;./ifx-table-example-pagination.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-table-example-pagination.scss&#039;
 })
 export class IfxTablePaginationExample {}`;
   protected readonly htmlCode = `  &lt;ifx-table

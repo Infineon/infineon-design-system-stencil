@@ -1,23 +1,21 @@
 import { IfxDatePicker } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-date-picker-example',
   imports: [ IfxDatePicker ],
   templateUrl: './ifx-date-picker-example.html',
-  styleUrl: './ifx-date-picker-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-date-picker-example.scss'
 })
 export class IfxDatePickerExample {
   protected readonly tsCode = `import { IfxDatePicker } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-date-picker-example&#039;,
   imports: [ IfxDatePicker ],
   templateUrl: &#039;./ifx-date-picker-example.html&#039;,
-  styleUrl: &#039;./ifx-date-picker-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-date-picker-example.scss&#039;
 })
 export class IfxDatePickerExample {
   protected handleDate(event: any) {

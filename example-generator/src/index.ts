@@ -3,6 +3,7 @@ import { HTMLExampleGenerator } from './generators/html-generator.js';
 import { ReactExampleGenerator } from './generators/react-generator.js';
 import { VueExampleGenerator } from './generators/vue-generator.js';
 import { AngularExampleGenerator } from './generators/angular-generator.js';
+import { AngularModuleExampleGenerator } from './generators/angular-module-generator.js';
 
 console.log('🚀 Example Generator');
 console.log('═'.repeat(50));
@@ -72,6 +73,10 @@ const examples = [
   {
     generator: new AngularExampleGenerator(),
     config: { outputDir: '../examples/angular-standalone-example' }
+  },
+  {
+    generator: new AngularModuleExampleGenerator(),
+    config: { outputDir: '../examples/angular-module-example' }
   },
 ];
 

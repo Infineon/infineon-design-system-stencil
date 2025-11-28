@@ -1,23 +1,21 @@
 import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from '@infineon/infineon-design-system-angular/standalone';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ifx-dropdown-example',
   imports: [ IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton ],
   templateUrl: './ifx-dropdown-example.html',
-  styleUrl: './ifx-dropdown-example.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: './ifx-dropdown-example.scss'
 })
 export class IfxDropdownExample {
   protected readonly tsCode = `import { IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton } from &#039;@infineon/infineon-design-system-angular/standalone&#039;;
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from &#039;@angular/core&#039;;
+import { Component } from &#039;@angular/core&#039;;
 
 @Component({
   selector: &#039;app-ifx-dropdown-example&#039;,
   imports: [ IfxDropdown, IfxDropdownItem, IfxDropdownMenu, IfxDropdownTriggerButton ],
   templateUrl: &#039;./ifx-dropdown-example.html&#039;,
-  styleUrl: &#039;./ifx-dropdown-example.scss&#039;,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  styleUrl: &#039;./ifx-dropdown-example.scss&#039;
 })
 export class IfxDropdownExample {
   protected handleOpen(event: any) {
