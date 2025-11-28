@@ -1,18 +1,25 @@
 {
   "name": "example-generator",
-  "private": "true",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
-  "description": "",
+  "description": "Automated example code generator for Infineon Design System components",
+  "keywords": [
+    "code-generation",
+    "storybook",
+    "examples"
+  ],
+  "author": "Infineon Technologies AG",
+  "contributors": [
+    "Fabian Pfaff <fabian.pfaff@infineon.com>"
+  ],
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "packageManager": "pnpm@10.23.0",
   "devDependencies": {
     "@types/jsdom": "^27.0.0",

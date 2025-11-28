@@ -1,6 +1,7 @@
 {
   "name": "infineon-design-system-stencil",
   "description": "Infineon Design System - Web Components built with Stencil",
+  "author": "Infineon Technologies AG",
   "private": true,
   "packageManager": "pnpm@10.23.0",
   "engines": {
