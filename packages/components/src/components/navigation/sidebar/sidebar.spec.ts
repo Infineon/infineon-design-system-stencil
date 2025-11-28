@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { Sidebar } from './sidebar';
 import { SidebarItem } from './sidebar-item';
 import { SidebarTitle } from './sidebar-title';

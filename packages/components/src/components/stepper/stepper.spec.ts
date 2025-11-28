@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { Stepper } from './stepper';
 
 describe('ifx-stepper', () => {

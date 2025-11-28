@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { Dropdown } from './dropdown';
 
 // Mock the @popperjs/core createPopper function

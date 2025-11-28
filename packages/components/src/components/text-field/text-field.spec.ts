@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { TextField } from './text-field';
 
 // Mock the AttachInternals decorator rather than ElementInternals class

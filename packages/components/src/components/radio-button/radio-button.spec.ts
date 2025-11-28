@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { RadioButton } from './radio-button';
 
 describe('ifx-radio-button', () => {

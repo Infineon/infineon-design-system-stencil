@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { ContentSwitcher } from './content-switcher';
 import { ContentSwitcherItem } from './content-switcher-item';
 

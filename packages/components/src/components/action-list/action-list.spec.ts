@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { ActionList } from './action-list';
 import { ActionListItem } from './action-list-item';
 

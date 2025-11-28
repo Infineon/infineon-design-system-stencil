@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { SegmentedControl } from './segmented-control';
 import { Segment } from './segment/segment';
 

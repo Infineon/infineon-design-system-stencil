@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { FileUpload } from './file-upload';
 
 jest.mock('../..//shared/utils/tracking', () => ({
