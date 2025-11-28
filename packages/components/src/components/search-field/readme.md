@@ -29,7 +29,7 @@
 | `showSuggestions`        | `show-suggestions`          |             | `boolean`          | `false`                            |
 | `size`                   | `size`                      |             | `string`           | `'l'`                              |
 | `suggestionAriaLabel`    | `suggestion-aria-label`     |             | `string`           | `'Search suggestion'`              |
-| `suggestions`            | `suggestions`               |             | `SuggestionItem[]` | `[]`                               |
+| `suggestions`            | --                          |             | `SuggestionItem[]` | `[]`                               |
 | `value`                  | `value`                     |             | `string`           | `''`                               |
 
 

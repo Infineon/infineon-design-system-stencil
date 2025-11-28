@@ -1,7 +1,7 @@
 import { Component, Prop, h, Element, Listen, Method, Watch, State, EventEmitter, Event } from "@stencil/core";
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { trackComponent } from '../../shared/utils/tracking';
+import { isNestedInIfxComponent } from '../../shared/utils/dom-utils';
+import { detectFramework } from '../../shared/utils/framework-detection';
 import { createPopper } from '@popperjs/core';
  
 
@@ -88,7 +88,7 @@ export class Dropdown {
 
 private getItemFocusables(): HTMLElement[] {
   if (!this.menu) return [];
-  const hosts = Array.from(this.menu.querySelectorAll('ifx-dropdown-item')) as HTMLElement[];
+  const hosts = Array.from(this.menu.querySelectorAll<HTMLElement>('ifx-dropdown-item'));
   return hosts
     .filter(h => !(h.getAttribute('hide') === 'true' || h.classList.contains('hide')))
     .map(h => h.shadowRoot?.querySelector('a') as HTMLElement | null)

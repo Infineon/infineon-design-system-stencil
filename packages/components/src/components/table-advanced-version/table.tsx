@@ -1,9 +1,9 @@
 import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
 import classNames from 'classnames';
-import { trackComponent } from '../../global/utils/tracking'; 
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
+import { trackComponent } from '../../shared/utils/tracking'; 
+import { isNestedInIfxComponent } from '../../shared/utils/dom-utils';
+import { detectFramework } from '../../shared/utils/framework-detection';
+import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions, ModuleRegistry, AllCommunityModule, provideGlobalGridOptions } from 'ag-grid-community';
 import { ButtonCellRenderer } from './buttonCellRenderer';
 import { IconButtonCellRenderer } from './iconButtonCellRenderer';
 import { LinkCellRenderer } from './linkCellRenderer';
@@ -122,7 +122,7 @@ export class Table {
   onButtonRendererOptionsChanged() {
      this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);  
+      this.gridApi.setGridOption("columnDefs", this.colData);  
     }
   }
 
@@ -130,7 +130,7 @@ export class Table {
   onIconButtonRendererOptionsChanged() {
      this.colData = this.getColData();  
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption('columnDefs', this.colData);  // Update column definitions in the grid API
     }
   }
 
@@ -328,6 +328,9 @@ async updateTableView() {
   }
 
   componentWillLoad() {
+    ModuleRegistry.registerModules([AllCommunityModule]);
+    provideGlobalGridOptions({ theme: 'legacy'});
+    
     this.setPaginationItemsPerPage();
 
     this.uniqueKey = `unique-${Math.floor(Math.random() * 1000000)}`;

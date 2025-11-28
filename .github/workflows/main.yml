@@ -1,0 +1,151 @@
+name: Main Workflow
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+concurrency:
+  group: main-${{ github.event.number }}
+  cancel-in-progress: true
+
+jobs:
+  build-publish-library:
+    if: ${{ github.event.action != 'closed' }}
+    uses: ./.github/workflows/shared-build-publish-libraries.yml
+    secrets: inherit
+    permissions:
+      contents: write
+      pages: write
+      actions: write
+      issues: write
+      pull-requests: write  
+
+  storybook:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-storybook.yml
+    with:
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: write
+      pages: write
+
+  html-cdn-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: html-cdn-example
+      base-path: examples/html-cdn-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+
+    permissions:
+      contents: write
+      pages: write
+
+  html-vite-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: html-vite-example
+      base-path: examples/html-vite-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil'
+    permissions:
+      contents: write
+      pages: write
+
+  angular-module-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: angular-module-example
+      base-path: examples/angular-module-example
+      deploy-path: dist/browser
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: write
+      pages: write
+
+  angular-standalone-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: angular-standalone-example
+      base-path: examples/angular-standalone-example
+      deploy-path: dist/browser
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
+    permissions:
+      contents: write
+      pages: write
+
+  react-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: react-example
+      base-path: examples/react-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
+    permissions:
+      contents: write
+      pages: write
+
+  vue-example:
+    needs: build-publish-library
+    uses: ./.github/workflows/shared-build-deploy-example.yml
+    with:
+      name: vue-example
+      base-path: examples/vue-example
+      deploy-path: dist
+      package-version: ${{ needs.build-publish-library.outputs.published-version }}
+      deployment: pr
+      required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
+    permissions:
+      contents: write
+      pages: write
+
+  comment-pr:
+    if: ${{ github.event.action != 'closed' && always() }}
+    needs: 
+      - build-publish-library
+      - html-cdn-example
+      - html-vite-example
+      - angular-module-example
+      - angular-standalone-example
+      - react-example
+      - vue-example
+      - storybook
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Comment PR with preview links
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: "PR Preview Links"
+          message: |
+            ### Storybook Preview
+            ${{ needs.storybook.result == 'success' && format('- [Storybook]({0})', needs.storybook.outputs.url) || '- ❌ Storybook build failed' }}
+
+            ### Preview Links for Deployed Examples
+            ${{ needs.html-cdn-example.result == 'success' && format('- [HTML CDN Example]({0})', needs.html-cdn-example.outputs.url) || '- ❌ HTML CDN Example build failed' }}
+            ${{ needs.html-vite-example.result == 'success' && format('- [HTML Vite Example]({0})', needs.html-vite-example.outputs.url) || '- ❌ HTML Vite Example build failed' }}
+            ${{ needs.angular-module-example.result == 'success' && format('- [Angular Example (Module)]({0})', needs.angular-module-example.outputs.url) || '- ❌ Angular Example (Module) build failed' }}
+            ${{ needs.angular-standalone-example.result == 'success' && format('- [Angular Example (Standalone)]({0})', needs.angular-standalone-example.outputs.url) || '- ❌ Angular Example (Standalone) build failed' }}
+            ${{ needs.react-example.result == 'success' && format('- [React Example]({0})', needs.react-example.outputs.url) || '- ❌ React Example build failed' }}
+            ${{ needs.vue-example.result == 'success' && format('- [Vue Example]({0})', needs.vue-example.outputs.url) || '- ❌ Vue Example build failed' }}
+
+            Version: ${{ needs.build-publish-library.outputs.published-version }}

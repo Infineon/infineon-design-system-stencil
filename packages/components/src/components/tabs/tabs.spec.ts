@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { IfxTabs } from './tabs';
 
 // Improved mock for ifx-tab component

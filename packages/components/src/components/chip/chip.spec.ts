@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { Chip } from './chip';
 import { ChipItem } from './chip-item/chip-item';
 

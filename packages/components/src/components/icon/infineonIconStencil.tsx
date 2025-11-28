@@ -1,8 +1,8 @@
 import { Component, Prop, h, Host, Event, EventEmitter, Watch, State, Element } from '@stencil/core';
 import { getIcon } from '@infineon/infineon-icons'
-import { trackComponent } from '../../global/utils/tracking'; 
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
+import { trackComponent } from '../../shared/utils/tracking'; 
+import { isNestedInIfxComponent } from '../..//shared/utils/dom-utils';
+import { detectFramework } from '../..//shared/utils/framework-detection';
 
 @Component({
   tag: 'ifx-icon',
@@ -26,7 +26,7 @@ export class InfineonIconStencil {
     const div = document.createElement('div')
     div.innerHTML = htmlString
     return div.firstChild
-  }
+  }F
 
   convertHtmlToObject(htmlElement) { 
     let pathToObject = Array

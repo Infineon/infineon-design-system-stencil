@@ -1,5 +1,5 @@
-import { action } from '@storybook/addon-actions';
-import type { Meta, StoryFn } from '@storybook/html';
+import { action } from 'storybook/actions';
+import type { Meta, StoryFn } from '@storybook/web-components-vite';
 
 const hideAllControlsExcept = (allowedKeys: string[]) => {
   const allProps = [

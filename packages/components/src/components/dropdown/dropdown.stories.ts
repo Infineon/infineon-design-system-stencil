@@ -1,8 +1,9 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 import { icons } from '@infineon/infineon-icons';
 
 export default {
   title: 'Components/Dropdown',
+  component: 'ifx-dropdown',
   tags: ['autodocs'],
   args: {
     label: 'Dropdown',

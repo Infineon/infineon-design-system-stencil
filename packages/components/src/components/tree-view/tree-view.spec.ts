@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { TreeView } from './tree-view';
 import { TreeViewItem } from './tree-view-item';
 
@@ -171,7 +171,7 @@ describe('ifx-tree-view', () => {
         for (const item of Array.from(allItems)) {
             const hasChildItems = item.querySelector('ifx-tree-view-item') !== null;
             if (hasChildItems) {
-                (item as TreeViewItemElement).expanded = true;
+                item.expanded = true;
             }
         }
         await page.waitForChanges();
@@ -181,7 +181,7 @@ describe('ifx-tree-view', () => {
             const hasChildItems = item.querySelector('ifx-tree-view-item') !== null;
             if (hasChildItems) {
                 // Check expanded attribute first, as that's what we're directly setting
-                expect((item as TreeViewItemElement).expanded).toBeTruthy();
+                expect(item.expanded).toBeTruthy();
 
                 // Then check if the styling is applied correctly
                 const treeItemEl = item.shadowRoot.querySelector('.tree-item');

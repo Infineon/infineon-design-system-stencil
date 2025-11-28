@@ -1,4 +1,4 @@
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 // Generic Lorem Ipsum mock suggestions for all stories
 const genericMockSuggestions = [

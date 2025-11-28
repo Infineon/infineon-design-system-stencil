@@ -1,5 +1,5 @@
 import * as icons from '@infineon/infineon-icons'; 
-import { action } from '@storybook/addon-actions';
+import { action } from 'storybook/actions';
 
 export default {
   title: 'Components/Icon',

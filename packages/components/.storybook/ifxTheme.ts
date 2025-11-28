@@ -1,5 +1,6 @@
-import logo from './public/logo.png';
-import { create } from '@storybook/theming/create';
+import { ThemeVars } from 'storybook/theming';
+import logo from '../src/stories/assets/ifx-logo.png';
+import { create } from 'storybook/theming/create';
 
 const ifxColors = {
   baseBlack: '#1D1D1D',
@@ -10,7 +11,7 @@ const ifxColors = {
   engineering400: '#8D8786',
   engineering500: '#575352',
   engineering600: '#3C3A39',
-  ocean100: '#0A8276',
+  ocean100: '#DFF4F3',
   ocean200: '#B8DEDA',
   ocean300: '#6CB4AD',
   ocean400: '#3B9B91',
@@ -33,7 +34,7 @@ const ifxColors = {
   sand500: '#FCD442',
 }
 
-export default create({
+const themeVars: ThemeVars = {
   base: 'light',
   // Typography
   fontBase: '"Source Sans 3", sans-serif',
@@ -44,9 +45,11 @@ export default create({
   brandImage: logo,
   brandTarget: '_self',
 
-  //
+  // Main Colors
+
   colorPrimary: ifxColors.ocean500,
-  colorSecondary: ifxColors.ocean100,
+  colorSecondary: ifxColors.ocean500,
+  // colorSecondary is selected color for sidebar. Hover color is derived from it.
 
   // UI
   appBg: ifxColors.baseWhite,
@@ -63,7 +66,7 @@ export default create({
   // Toolbar default and active colors
   barTextColor: ifxColors.ocean500,
   barSelectedColor: ifxColors.ocean700,
-  barHoverColor: ifxColors.ocean100,
+  barHoverColor: ifxColors.ocean600,
   barBg: ifxColors.baseWhite,
 
   // Form colors
@@ -78,5 +81,8 @@ export default create({
   
   // Buttons ("Set string")
   buttonBg: ifxColors.engineering100,
-  buttonBorder: ifxColors.engineering200
-});
+  buttonBorder: ifxColors.engineering200,
+};
+
+export default create(themeVars);
+

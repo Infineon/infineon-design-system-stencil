@@ -25,8 +25,6 @@ interface TreeState {
   partialChecked: boolean;
 }
 
-type HTMLIfxTreeViewItemElement = HTMLElement & { componentOnReady: () => Promise<unknown> };
-
 @Component({
   tag: 'ifx-tree-view-item',
   styleUrl: 'tree-view-item.scss',
@@ -278,7 +276,7 @@ export class TreeViewItem {
     }
   }
 
-  private findSiblingNodes(parent: HTMLElement): HTMLIfxTreeViewItemElement[] {
+  private findSiblingNodes(parent: HTMLIfxTreeViewItemElement): HTMLIfxTreeViewItemElement[] {
     return Array.from(parent.children)
       .filter((child): child is HTMLIfxTreeViewItemElement =>
         child instanceof HTMLElement && child.tagName === 'IFX-TREE-VIEW-ITEM'
@@ -286,7 +284,7 @@ export class TreeViewItem {
   }
 
   private updateParentState() {
-    const parent = this.host.parentElement?.closest('ifx-tree-view-item') as HTMLIfxTreeViewItemElement;
+    const parent = this.host.parentElement?.closest('ifx-tree-view-item');
     if (!parent) return;
     setTimeout(() => {
       const parentInstance = (parent as any)['__stencil_instance'] as TreeViewItem;
@@ -321,7 +319,7 @@ export class TreeViewItem {
 
   private handleKeyDown = (event: KeyboardEvent) => {
     const allItems = Array.from(
-      this.host.closest('ifx-tree-view')?.querySelectorAll('ifx-tree-view-item') || []
+      this.host.closest('ifx-tree-view')?.querySelectorAll<HTMLElement>('ifx-tree-view-item') || []
     );
     const visibleItems = allItems.filter(item => {
       let parent = item.parentElement?.closest('ifx-tree-view-item');
@@ -364,9 +362,9 @@ export class TreeViewItem {
         if (!this.isExpanded && this.hasChildren) {
           this.expanded = true;
         } else if (this.isExpanded && this.hasChildren) {
-          const firstChild = this.host.querySelector('ifx-tree-view-item');
+          const firstChild = this.host.querySelector<HTMLElement>('ifx-tree-view-item');
           if (firstChild && !(firstChild as any).disabled) {
-            focusLabelIcon((firstChild as HTMLElement).shadowRoot?.querySelector('.tree-item__label-icon-container'));
+            focusLabelIcon(firstChild.shadowRoot?.querySelector('.tree-item__label-icon-container'));
           }
         }
         break;

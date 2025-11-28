@@ -1,0 +1,12 @@
+@use "~@infineon/design-system-tokens/dist/tokens" as tokens;
+
+@use "~@infineon/design-system-tokens/dist/fonts/ifx-fonts.css";
+
+
+:root {
+  --ifx-font-family: "#{tokens.$ifxFontFamilyBody}", 'Arial, sans-serif';
+}
+
+ifx-icon:empty {
+  display: none;
+}
