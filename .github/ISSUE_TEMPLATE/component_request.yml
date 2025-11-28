@@ -5,6 +5,12 @@ labels:
   - enhancement
   - request
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your component request! 🎨
+        
+        **💡 Want to contribute?** Building new components is a great way to contribute! Our [Contributing Guidelines](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md) will guide you through the component development process.
   - type: textarea
     attributes:
       label: Detailed description of the component, its design and behavior
