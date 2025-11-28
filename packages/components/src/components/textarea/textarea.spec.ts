@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { TextArea } from './textarea';
 
 // Skip the real componentWillLoad that uses internals

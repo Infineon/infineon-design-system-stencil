@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { IconButton } from './icon-button';
 
 describe('ifx-icon-button', () => {

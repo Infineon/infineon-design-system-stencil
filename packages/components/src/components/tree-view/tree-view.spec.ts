@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { TreeView } from './tree-view';
 import { TreeViewItem } from './tree-view-item';
 

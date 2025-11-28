@@ -1,4 +1,4 @@
-import { newSpecPage } from '@stencil/core/testing';
+import { newSpecPage } from 'jest-stencil-runner';
 import { Navbar } from './navbar';
 import { NavbarItem } from './navbar-item';
 import { NavbarProfile } from './navbar-profile';
