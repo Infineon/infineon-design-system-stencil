@@ -47,6 +47,22 @@ jobs:
       - name: Build stencil library
         run: pnpm -F @infineon/infineon-design-system-stencil build
 
+      - name: Generate examples
+        run: pnpm run generate:examples
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            echo "❌ Error: Generated files have uncommitted changes!"
+            echo "Please run 'pnpm run generate:examples' locally and commit the changes."
+            echo ""
+            echo "Changed files:"
+            git diff --name-only
+            git diff --cached --name-only
+            exit 1
+          fi
+          echo "✅ All generated files are up to date"
+
       - name: Build Vue wrapper library
         run: pnpm -F @infineon/infineon-design-system-vue build
 
