@@ -26,7 +26,7 @@ const handleError = (event: CustomEvent) => {
   console.log('ifxError:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -42,7 +42,7 @@ const handleError = (event: CustomEvent) => {
       Text
     </ifx-checkbox>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

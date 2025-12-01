@@ -111,9 +111,9 @@ ${template}
 			displayCode += `\n${eventHandlers}`;
 		}
 
-		displayCode += `\n</script>\n\n<template>\n  <div>\n${template}\n  </div>\n</template>`;
+		displayCode += `\n</' + 'script>\n\n<template>\n  <div>\n${template}\n  </div>\n</' + 'template>`;
 
-		// Escape template tags in the string to prevent Vue parsing issues
+		// Break up closing tags to prevent Vue SFC parser from interpreting them
 		return displayCode;
 	}
 

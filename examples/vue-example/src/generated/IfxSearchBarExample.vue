@@ -26,7 +26,7 @@ const handleOpen = (event: CustomEvent) => {
   console.log('ifxOpen:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -38,7 +38,7 @@ const handleOpen = (event: CustomEvent) => {
       @ifxInput="handleInput"
       @ifxOpen="handleOpen" />
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

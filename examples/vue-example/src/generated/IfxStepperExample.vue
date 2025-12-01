@@ -16,7 +16,7 @@ const handleChange = (event: CustomEvent) => {
   console.log('ifxChange:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -43,7 +43,7 @@ const handleChange = (event: CustomEvent) => {
       </ifx-step>
     </ifx-stepper>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

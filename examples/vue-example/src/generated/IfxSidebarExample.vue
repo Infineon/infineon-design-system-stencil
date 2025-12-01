@@ -46,7 +46,7 @@ const handleSidebarCollapseChange = (event: CustomEvent) => {
   console.log('ifxSidebarCollapseChange:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -145,7 +145,7 @@ const handleSidebarCollapseChange = (event: CustomEvent) => {
       </ifx-sidebar-item>
     </ifx-sidebar>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

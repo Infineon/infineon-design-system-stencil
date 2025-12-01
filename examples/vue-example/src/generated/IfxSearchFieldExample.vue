@@ -56,7 +56,7 @@ const handleBlur = (event: CustomEvent) => {
   console.log('ifxBlur:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -85,7 +85,7 @@ const handleBlur = (event: CustomEvent) => {
       @ifxFocus="handleFocus"
       @ifxBlur="handleBlur" />
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

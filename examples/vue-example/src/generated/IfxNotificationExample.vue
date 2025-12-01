@@ -7,7 +7,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const codeString = `<script setup lang="ts">
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -20,7 +20,7 @@ const codeString = `<script setup lang="ts">
       Sample Notification
     </ifx-notification>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

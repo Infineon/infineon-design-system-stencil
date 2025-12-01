@@ -7,7 +7,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const codeString = `<script setup lang="ts">
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -20,7 +20,7 @@ const codeString = `<script setup lang="ts">
       I'm the tooltip reference element - Please hover me
     </ifx-tooltip>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

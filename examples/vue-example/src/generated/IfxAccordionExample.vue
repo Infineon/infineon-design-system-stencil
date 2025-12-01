@@ -26,7 +26,7 @@ const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -62,7 +62,7 @@ const handleClose = (event: CustomEvent) => {
       </ifx-accordion-item>
     </ifx-accordion>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

@@ -26,7 +26,7 @@ const handleItemsPerPageChange = (event: CustomEvent) => {
   console.log('ifxItemsPerPageChange:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -38,7 +38,7 @@ const handleItemsPerPageChange = (event: CustomEvent) => {
       @ifxPageChange="handlePageChange"
       @ifxItemsPerPageChange="handleItemsPerPageChange" />
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

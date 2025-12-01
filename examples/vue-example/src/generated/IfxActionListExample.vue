@@ -16,7 +16,7 @@ const handleActionListItemClick = (event: CustomEvent) => {
   console.log('ifxActionListItemClick:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -60,7 +60,7 @@ const handleActionListItemClick = (event: CustomEvent) => {
       </ifx-action-list-item>
     </ifx-action-list>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {

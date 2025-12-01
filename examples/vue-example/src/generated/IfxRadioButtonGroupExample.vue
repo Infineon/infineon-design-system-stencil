@@ -16,7 +16,7 @@ const handleSetGroupError = (event: CustomEvent) => {
   console.log('setGroupError:', event.detail);
   // Add your handler logic here
 };
-</script>
+</' + 'script>
 
 <template>
   <div>
@@ -48,7 +48,7 @@ const handleSetGroupError = (event: CustomEvent) => {
       </ifx-radio-button>
     </ifx-radio-button-group>
   </div>
-</template>`;
+</' + 'template>`;
 
 onMounted(() => {
   nextTick(() => {
