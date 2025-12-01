@@ -7,7 +7,8 @@
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
-		"useIgnoreFile": true
+		"useIgnoreFile": true,
+		"defaultBranch": "master"
 	},
 	"formatter": {
 		"enabled": true,
