@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v5
         if: ${{ github.event.action != 'closed' }}
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Enable corepack and install pnpm
         if: ${{ github.event.action != 'closed' }}

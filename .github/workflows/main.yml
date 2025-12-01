@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Enable corepack and install pnpm
         run: |
@@ -37,7 +37,7 @@ jobs:
         run: pnpm -r test
     permissions:
       contents: read
-      
+
   build-publish-library:
     if: ${{ github.event.action != 'closed' }}
     needs: test
