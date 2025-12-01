@@ -5,7 +5,6 @@ export function animationTo(
 ) {
 	const animated = element.animate(keyframes, { ...options, fill: "both" });
 	animated.addEventListener("finish", () => {
-		// @ts-expect-error
 		animated.commitStyles();
 		animated.cancel();
 	});
