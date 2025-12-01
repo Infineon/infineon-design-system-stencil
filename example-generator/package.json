@@ -21,7 +21,6 @@
 	},
 	"packageManager": "pnpm@10.23.0",
 	"devDependencies": {
-		"@storybook/types": "^8.6.14",
 		"@types/jsdom": "^27.0.0",
 		"jsdom": "^25.0.1",
 		"tsx": "^4.20.6",
