@@ -1,5 +1,5 @@
-import { Routes } from '@angular/router';
+import type { Routes } from "@angular/router";
 
 export const routes: Routes = [
-  // Add your custom routes here
+	// Add your custom routes here
 ];

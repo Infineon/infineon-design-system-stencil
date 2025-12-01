@@ -18,7 +18,7 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-content-switcher-example.scss&#039;
 })
 export class IfxContentSwitcherExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -26,7 +26,7 @@ export class IfxContentSwitcherExample {
   protected readonly htmlCode = `  &lt;ifx-content-switcher&gt;
     &lt;ifx-content-switcher-item
       value=&quot;item 1&quot;
-      (ifxChange)=&quot;handleChange(\$event)&quot;&gt;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
       &lt;ifx-icon icon=&quot;applications-16&quot;&gt;&lt;/ifx-icon&gt;
     &lt;/ifx-content-switcher-item&gt;
     &lt;ifx-content-switcher-item value=&quot;item 2&quot;&gt;
@@ -40,7 +40,7 @@ export class IfxContentSwitcherExample {
     &lt;/ifx-content-switcher-item&gt;
   &lt;/ifx-content-switcher&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }

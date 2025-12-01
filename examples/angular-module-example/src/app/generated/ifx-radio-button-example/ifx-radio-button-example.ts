@@ -16,12 +16,12 @@ export class IfxRadioButtonExample {
   standalone: false
 })
 export class IfxRadioButtonExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleError(event: any) {
+  protected handleError(event: CustomEvent) {
     console.log(&#039;ifxError:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -30,17 +30,17 @@ export class IfxRadioButtonExample {
     size=&quot;s&quot;
     name=&quot;radio-button&quot;
     value=&quot;radio&quot;
-    (ifxChange)=&quot;handleChange(\$event)&quot;
-    (ifxError)=&quot;handleError(\$event)&quot;&gt;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;
+    (ifxError)=&quot;handleError(\$any(\$event))&quot;&gt;
     Text
   &lt;/ifx-radio-button&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleError(event: any) {
+  protected handleError(event: CustomEvent) {
     console.log('ifxError:', event.detail);
     // Add your handler logic here
   }

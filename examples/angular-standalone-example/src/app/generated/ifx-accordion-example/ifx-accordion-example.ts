@@ -18,12 +18,12 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-accordion-example.scss&#039;
 })
 export class IfxAccordionExample {
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log(&#039;ifxOpen:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log(&#039;ifxClose:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -34,8 +34,8 @@ export class IfxAccordionExample {
       open=&quot;true&quot;
       aria-level=&quot;3&quot;
       mutable=&quot;true&quot;
-      (ifxOpen)=&quot;handleOpen(\$event)&quot;
-      (ifxClose)=&quot;handleClose(\$event)&quot;&gt;
+      (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+      (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;
       Content for Initial Item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent volutpat, ligula eu aliquam bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
@@ -60,12 +60,12 @@ export class IfxAccordionExample {
     &lt;/ifx-accordion-item&gt;
   &lt;/ifx-accordion&gt;`;
 
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log('ifxOpen:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log('ifxClose:', event.detail);
     // Add your handler logic here
   }

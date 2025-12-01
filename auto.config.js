@@ -1,22 +1,22 @@
 const npmOptions = {
-  exact: true,
+	exact: true,
 };
 
 module.exports = function rc() {
-    return {
-        plugins: [
-            [ "npm", npmOptions ],
-            "released",
-            [  
-                "auto-plugin-webex", 
-                {
-                    "threshold": "patch"
-                }
-            ] 
-        ],
-        author: {
-            name: "github-actions[bot]",
-            email: "github-actions[bot]@users.noreply.github.com"
-        }
-    };
+	return {
+		plugins: [
+			["npm", npmOptions],
+			"released",
+			[
+				"auto-plugin-webex",
+				{
+					threshold: "patch",
+				},
+			],
+		],
+		author: {
+			name: "github-actions[bot]",
+			email: "github-actions[bot]@users.noreply.github.com",
+		},
+	};
 };

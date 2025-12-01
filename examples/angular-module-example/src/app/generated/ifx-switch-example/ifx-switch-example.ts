@@ -16,7 +16,7 @@ export class IfxSwitchExample {
   standalone: false
 })
 export class IfxSwitchExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -26,11 +26,11 @@ export class IfxSwitchExample {
     name=&quot;switch&quot;
     value=&quot;switch&quot;
     disabled=&quot;false&quot;
-    (ifxChange)=&quot;handleChange(\$event)&quot;&gt;
+    (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
     Switch
   &lt;/ifx-switch&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }

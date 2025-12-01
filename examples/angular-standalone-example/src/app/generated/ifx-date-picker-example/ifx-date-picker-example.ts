@@ -18,7 +18,7 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-date-picker-example.scss&#039;
 })
 export class IfxDatePickerExample {
-  protected handleDate(event: any) {
+  protected handleDate(event: CustomEvent) {
     console.log(&#039;ifxDate:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -38,9 +38,9 @@ export class IfxDatePickerExample {
     required=&quot;false&quot;
     autocomplete=&quot;on&quot;
     type=&quot;date&quot;
-    (ifxDate)=&quot;handleDate(\$event)&quot;&gt;&lt;/ifx-date-picker&gt;`;
+    (ifxDate)=&quot;handleDate(\$any(\$event))&quot;&gt;&lt;/ifx-date-picker&gt;`;
 
-  protected handleDate(event: any) {
+  protected handleDate(event: CustomEvent) {
     console.log('ifxDate:', event.detail);
     // Add your handler logic here
   }

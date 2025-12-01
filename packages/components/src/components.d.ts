@@ -83,7 +83,7 @@ export namespace Components {
     }
     interface IfxAlert {
         /**
-          * @default 'assertive'
+          * @default "assertive"
          */
         "AriaLive": string;
         /**
@@ -92,23 +92,23 @@ export namespace Components {
         "closable": boolean;
         "icon": string;
         /**
-          * @default 'primary'
+          * @default "primary"
          */
-        "variant": 'primary' | 'success' | 'danger' | 'warning' | 'info';
+        "variant": "primary" | "success" | "danger" | "warning" | "info";
     }
     interface IfxBasicTable {
         "cols": any[] | string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight": string;
         "rows": any[] | string;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant": string;
     }
@@ -137,32 +137,32 @@ export namespace Components {
         "href": string;
         "setFocus": () => Promise<void>;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size": string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "theme": 'default' | 'danger' | 'inverse';
+        "theme": "default" | "danger" | "inverse";
         /**
           * @default "button"
          */
         "type": "button" | "submit" | "reset";
         /**
-          * @default 'primary'
+          * @default "primary"
          */
-        "variant": 'primary' | 'secondary' | 'tertiary';
+        "variant": "primary" | "secondary" | "tertiary";
     }
     interface IfxCard {
         "ariaLabel": string | null;
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "direction": 'horizontal' | 'vertical';
+        "direction": "horizontal" | "vertical";
         /**
           * @default ""
          */
@@ -204,7 +204,7 @@ export namespace Components {
         "indeterminate": boolean;
         "isChecked": () => Promise<boolean>;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size": string;
         "toggleCheckedState": (newVal: boolean) => Promise<void>;
@@ -212,12 +212,12 @@ export namespace Components {
     }
     interface IfxCheckboxGroup {
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "alignment": 'horizontal' | 'vertical';
+        "alignment": "horizontal" | "vertical";
         "captionText": string;
         /**
-          * @default 'Group Label Text'
+          * @default "Group Label Text"
          */
         "groupLabelText": string;
         /**
@@ -241,7 +241,7 @@ export namespace Components {
          */
         "icon": string;
         /**
-          * @default ''
+          * @default ""
          */
         "placeholder": string;
         /**
@@ -249,25 +249,25 @@ export namespace Components {
          */
         "readOnly": boolean;
         /**
-          * @default 'medium'
+          * @default "medium"
          */
-        "size": 'small' | 'medium' | 'large';
+        "size": "small" | "medium" | "large";
         /**
-          * @default 'outlined'
+          * @default "outlined"
          */
-        "theme": 'outlined' | 'filled-light' | 'filled-dark';
+        "theme": "outlined" | "filled-light" | "filled-dark";
         /**
           * @default undefined
          */
         "value": Array<string> | string;
         /**
-          * @default 'single'
+          * @default "single"
          */
-        "variant": 'single' | 'multi';
+        "variant": "single" | "multi";
     }
     interface IfxChipItem {
         /**
-          * @default { emitIfxChipItemSelect: true, variant: 'multi', size: 'large' }
+          * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState": ChipState;
         /**
@@ -291,7 +291,7 @@ export namespace Components {
     interface IfxDatePicker {
         "ariaLabel": string | null;
         /**
-          * @default 'on'
+          * @default "on"
          */
         "autocomplete": string;
         "caption": string;
@@ -311,7 +311,7 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * @default 's'
+          * @default "s"
          */
         "size": string;
         /**
@@ -319,16 +319,16 @@ export namespace Components {
          */
         "success": boolean;
         /**
-          * @default 'date'
+          * @default "date"
          */
         "type": string;
         "value": string;
     }
     interface IfxDownload {
         /**
-          * @default 'css'
+          * @default "css"
          */
-        "tokens": 'css' | 'scss';
+        "tokens": "css" | "scss";
     }
     interface IfxDropdown {
         "closeDropdown": () => Promise<void>;
@@ -352,7 +352,7 @@ export namespace Components {
         "noCloseOnOutsideClick": boolean;
         "openDropdown": () => Promise<void>;
         /**
-          * @default 'bottom-start'
+          * @default "bottom-start"
          */
         "placement": Placement;
     }
@@ -379,7 +379,7 @@ export namespace Components {
          */
         "isOpen": boolean;
         /**
-          * @default 'l'
+          * @default "l"
          */
         "size": string;
     }
@@ -402,14 +402,14 @@ export namespace Components {
          */
         "isOpen": boolean;
         /**
-          * @default 'm'
+          * @default "m"
          */
-        "size": 's' | 'm';
+        "size": "s" | "m";
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "theme": 'default' | 'danger' | 'inverse';
-        "variant": 'primary';
+        "theme": "default" | "danger" | "inverse";
+        "variant": "primary";
     }
     interface IfxFaq {
     }
@@ -434,39 +434,39 @@ export namespace Components {
          */
         "allowedFileTypes"?: string | string[];
         /**
-          * @default 'Browse files'
+          * @default "Browse files"
          */
         "ariaLabelBrowseFiles": string;
         /**
-          * @default 'Cancel upload'
+          * @default "Cancel upload"
          */
         "ariaLabelCancelUpload": string;
         /**
-          * @default 'Upload area. Click to browse or drag and drop files.'
+          * @default "Upload area. Click to browse or drag and drop files."
          */
         "ariaLabelDropzone": string;
         /**
-          * @default 'Upload file'
+          * @default "Upload file"
          */
         "ariaLabelFileInput": string;
         /**
-          * @default 'Remove file'
+          * @default "Remove file"
          */
         "ariaLabelRemoveFile": string;
         /**
-          * @default 'Retry upload'
+          * @default "Retry upload"
          */
         "ariaLabelRetryUpload": string;
         /**
-          * @default 'Upload failed'
+          * @default "Upload failed"
          */
         "ariaLabelUploadFailedStatus": string;
         /**
-          * @default 'Upload completed'
+          * @default "Upload completed"
          */
         "ariaLabelUploadedStatus": string;
         /**
-          * @default 'Upload in progress'
+          * @default "Upload in progress"
          */
         "ariaLabelUploadingStatus": string;
         /**
@@ -479,59 +479,59 @@ export namespace Components {
         "dragAndDrop": boolean;
         "injectDemoState": () => Promise<void>;
         /**
-          * @default 'Label'
+          * @default "Label"
          */
         "label": string;
         /**
-          * @default 'Browse files'
+          * @default "Browse files"
          */
         "labelBrowseFiles": string;
         /**
-          * @default 'Drag & Drop or browse files to upload'
+          * @default "Drag & Drop or browse files to upload"
          */
         "labelDragAndDrop": string;
         /**
-          * @default 'files'
+          * @default "files"
          */
         "labelFilePlural": string;
         /**
-          * @default 'file'
+          * @default "file"
          */
         "labelFileSingular": string;
         /**
-          * @default 'Upload failed. Max file size: {{size}}MB.'
+          * @default "Upload failed. Max file size: {{size}}MB."
          */
         "labelFileTooLarge": string;
         /**
-          * @default 'Upload limit exceeded. Only {{count}} {{files}} allowed.'
+          * @default "Upload limit exceeded. Only {{count}} {{files}} allowed."
          */
         "labelMaxFilesExceeded": string;
         /**
-          * @default 'Up to {{count}} {{files}}.'
+          * @default "Up to {{count}} {{files}}."
          */
         "labelMaxFilesInfo"?: string;
         /**
-          * @default 'At least one file must be uploaded'
+          * @default "At least one file must be uploaded"
          */
         "labelRequiredError": string;
         /**
-          * @default 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
+          * @default "Supported file formats: {{types}}. Max file size: {{size}}MB."
          */
         "labelSupportedFormatsTemplate": string;
         /**
-          * @default 'Unsupported file type.'
+          * @default "Unsupported file type."
          */
         "labelUnsupportedFileType": string;
         /**
-          * @default 'Upload failed. Please try again.'
+          * @default "Upload failed. Please try again."
          */
         "labelUploadFailed": string;
         /**
-          * @default 'Successfully uploaded'
+          * @default "Successfully uploaded"
          */
         "labelUploaded": string;
         /**
-          * @default 'Uploaded files'
+          * @default "Uploaded files"
          */
         "labelUploadedFilesHeading": string;
         /**
@@ -544,7 +544,10 @@ export namespace Components {
          */
         "required": boolean;
         "triggerDemoValidation": () => Promise<void>;
-        "uploadHandler"?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
+        "uploadHandler"?: (
+		file: File,
+		onProgress?: (progress: number) => void,
+	) => Promise<void>;
     }
     interface IfxFilterAccordion {
         /**
@@ -571,7 +574,7 @@ export namespace Components {
         "filterKey": string;
         "filterName": string;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation": string;
         "filterValue": string;
@@ -581,7 +584,7 @@ export namespace Components {
     }
     interface IfxFooter {
         /**
-          * @default '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
+          * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText": string;
     }
@@ -601,15 +604,15 @@ export namespace Components {
         "icon": string;
         "setFocus": () => Promise<void>;
         /**
-          * @default 'round'
+          * @default "round"
          */
         "shape": string;
         "size": string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target": string;
-        "variant": 'primary' | 'secondary' | 'tertiary';
+        "variant": "primary" | "secondary" | "tertiary";
     }
     interface IfxIconsPreview {
     }
@@ -624,7 +627,7 @@ export namespace Components {
          */
         "number": number;
         /**
-          * @default 'number'
+          * @default "number"
          */
         "variant": string;
     }
@@ -641,11 +644,11 @@ export namespace Components {
         "href": string;
         "size": string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target": string;
         /**
-          * @default 'bold'
+          * @default "bold"
          */
         "variant": string;
     }
@@ -671,15 +674,15 @@ export namespace Components {
     }
     interface IfxModal {
         /**
-          * @default ''
+          * @default ""
          */
         "alertIcon": string;
         /**
-          * @default 'Cancel'
+          * @default "Cancel"
          */
         "cancelButtonLabel": string;
         /**
-          * @default 'Modal Title'
+          * @default "Modal Title"
          */
         "caption": string;
         "captionAriaLabel": string | null;
@@ -689,7 +692,7 @@ export namespace Components {
          */
         "closeOnOverlayClick": boolean;
         /**
-          * @default 'OK'
+          * @default "OK"
          */
         "okButtonLabel": string;
         /**
@@ -701,58 +704,58 @@ export namespace Components {
          */
         "showCloseButton": boolean;
         /**
-          * @default 's'
+          * @default "s"
          */
-        "size": 's' | 'm' | 'l';
+        "size": "s" | "m" | "l";
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "variant": 'default' | 'alert-brand' | 'alert-danger';
+        "variant": "default" | "alert-brand" | "alert-danger";
     }
     interface IfxMultiselect {
         /**
-          * @default 'Clear all selections'
+          * @default "Clear all selections"
          */
         "ariaClearLabel": string;
         /**
-          * @default 'Collapse all categories'
+          * @default "Collapse all categories"
          */
         "ariaCollapseAllLabel": string;
         /**
-          * @default 'Expand all categories'
+          * @default "Expand all categories"
          */
         "ariaExpandAllLabel": string;
         /**
-          * @default ''
+          * @default ""
          */
         "ariaMultiSelectDescribedBy": string;
         /**
-          * @default 'Multi-select dropdown'
+          * @default "Multi-select dropdown"
          */
         "ariaMultiSelectLabel": string;
         /**
-          * @default ''
+          * @default ""
          */
         "ariaMultiSelectLabelledBy": string;
         /**
-          * @default 'Search options'
+          * @default "Search options"
          */
         "ariaSearchLabel": string;
         /**
-          * @default 'Select all options'
+          * @default "Select all options"
          */
         "ariaSelectAllLabel": string;
         /**
-          * @default 'Toggle dropdown'
+          * @default "Toggle dropdown"
          */
         "ariaToggleLabel": string;
         /**
-          * @default ''
+          * @default ""
          */
         "caption": string;
         "clearSelection": () => Promise<void>;
         /**
-          * @default 'Collapse'
+          * @default "Collapse"
          */
         "collapseLabel": string;
         /**
@@ -764,20 +767,20 @@ export namespace Components {
          */
         "error": boolean;
         /**
-          * @default 'Expand'
+          * @default "Expand"
          */
         "expandLabel": string;
         /**
-          * @default ''
+          * @default ""
          */
         "label": string;
         "name": string;
         /**
-          * @default 'No results found.'
+          * @default "No results found."
          */
         "noResultsMessage": string;
         /**
-          * @default ''
+          * @default ""
          */
         "placeholder": string;
         /**
@@ -785,11 +788,11 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * @default 'Search'
+          * @default "Search"
          */
         "searchPlaceholder": string;
         /**
-          * @default 'Select all'
+          * @default "Select all"
          */
         "selectAllLabel": string;
         /**
@@ -842,7 +845,7 @@ export namespace Components {
          */
         "logoHref": string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "logoHrefTarget": string;
         /**
@@ -919,12 +922,12 @@ export namespace Components {
         "icon": string;
         "linkHref": string;
         /**
-          * @default '_blank'
+          * @default "_blank"
          */
         "linkTarget": string;
         "linkText": string;
         /**
-          * @default 'success'
+          * @default "success"
          */
         "variant": NotificationVariant;
     }
@@ -976,12 +979,12 @@ export namespace Components {
     }
     interface IfxRadioButtonGroup {
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "alignment": 'horizontal' | 'vertical';
+        "alignment": "horizontal" | "vertical";
         "captionText": string;
         /**
-          * @default 'Group Label Text'
+          * @default "Group Label Text"
          */
         "groupLabelText": string;
         /**
@@ -1023,7 +1026,7 @@ export namespace Components {
          */
         "autocomplete": string;
         /**
-          * @default 'Clear search'
+          * @default "Clear search"
          */
         "deleteIconAriaLabel": string;
         /**
@@ -1031,7 +1034,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * @default 'Search suggestions and history'
+          * @default "Search suggestions and history"
          */
         "dropdownAriaLabel": string;
         /**
@@ -1039,19 +1042,19 @@ export namespace Components {
          */
         "enableHistory": boolean;
         /**
-          * @default 'Remove from history'
+          * @default "Remove from history"
          */
         "historyDeleteAriaLabel": string;
         /**
-          * @default 'Recent Searches'
+          * @default "Recent Searches"
          */
         "historyHeaderText": string;
         /**
-          * @default 'Search history item'
+          * @default "Search history item"
          */
         "historyItemAriaLabel": string;
         /**
-          * @default 'ifx-search-history'
+          * @default "ifx-search-history"
          */
         "historyKey": string;
         /**
@@ -1079,11 +1082,11 @@ export namespace Components {
          */
         "showSuggestions": boolean;
         /**
-          * @default 'l'
+          * @default "l"
          */
         "size": string;
         /**
-          * @default 'Search suggestion'
+          * @default "Search suggestion"
          */
         "suggestionAriaLabel": string;
         /**
@@ -1091,7 +1094,7 @@ export namespace Components {
          */
         "suggestions": SuggestionItem[];
         /**
-          * @default ''
+          * @default ""
          */
         "value": string;
     }
@@ -1106,7 +1109,7 @@ export namespace Components {
     }
     interface IfxSegmentedControl {
         /**
-          * @default ''
+          * @default ""
          */
         "caption": string;
         /**
@@ -1114,7 +1117,7 @@ export namespace Components {
          */
         "error": boolean;
         /**
-          * @default ''
+          * @default ""
          */
         "label": string;
         /**
@@ -1122,9 +1125,9 @@ export namespace Components {
          */
         "required": boolean;
         /**
-          * @default 'regular'
+          * @default "regular"
          */
-        "size": 'regular' | 'small';
+        "size": "regular" | "small";
     }
     interface IfxSelect {
         "addItemFilter": string | RegExp | ItemFilterFn;
@@ -1135,7 +1138,7 @@ export namespace Components {
         "callbackOnCreateTemplates": OnCreateTemplates;
         "callbackOnInit": OnInit;
         /**
-          * @default ''
+          * @default ""
          */
         "caption": string;
         /**
@@ -1166,10 +1169,10 @@ export namespace Components {
         "hideDropdown": (blurInput?: boolean) => Promise<this>;
         "highlightAll": () => Promise<this>;
         "highlightItem": (item: HTMLElement, runEvent?: boolean) => Promise<this>;
-        "itemSelectText": '';
+        "itemSelectText": "";
         "items": Array<any>;
         /**
-          * @default ''
+          * @default ""
          */
         "label": string;
         "loadingText": string;
@@ -1182,10 +1185,10 @@ export namespace Components {
         "paste": boolean;
         "placeholder": boolean | string;
         /**
-          * @default 'Placeholder'
+          * @default "Placeholder"
          */
         "placeholderValue": string;
-        "position": 'auto' | 'top' | 'bottom';
+        "position": "auto" | "top" | "bottom";
         "prependValue": string;
         "removeActiveItems": (excludedId?: number) => Promise<this>;
         "removeActiveItemsByValue": (value: string) => Promise<this>;
@@ -1193,7 +1196,7 @@ export namespace Components {
         "removeItemButton": boolean;
         "removeItems": boolean;
         "renderChoiceLimit": number;
-        "renderSelectedChoices": 'always' | 'auto';
+        "renderSelectedChoices": "always" | "auto";
         /**
           * @default false
          */
@@ -1216,7 +1219,7 @@ export namespace Components {
         "showDropdown": (focusInput?: boolean) => Promise<this>;
         "showSearch": boolean;
         /**
-          * @default 'medium (40px)'
+          * @default "medium (40px)"
          */
         "size": string;
         "sorter": SortFn;
@@ -1232,13 +1235,13 @@ export namespace Components {
         "options": any[] | string;
         "placeholder": string;
         /**
-          * @default 'text'
+          * @default "text"
          */
-        "type": 'text' | 'single-select' | 'multi-select';
+        "type": "text" | "single-select" | "multi-select";
     }
     interface IfxSidebar {
         /**
-          * @default ''
+          * @default ""
          */
         "applicationName": string;
         "collapse": () => Promise<void>;
@@ -1251,7 +1254,7 @@ export namespace Components {
          */
         "collapsible": boolean;
         /**
-          * @default '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
+          * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText": string;
         "expand": () => Promise<void>;
@@ -1351,9 +1354,9 @@ export namespace Components {
          */
         "step": number;
         /**
-          * @default 'single'
+          * @default "single"
          */
-        "type": 'single' | 'double';
+        "type": "single" | "double";
         "value": number;
     }
     interface IfxSpinner {
@@ -1371,7 +1374,7 @@ export namespace Components {
          */
         "border": boolean;
         /**
-          * @default 'orange-500'
+          * @default "orange-500"
          */
         "color": string;
         "label": string;
@@ -1398,7 +1401,7 @@ export namespace Components {
          */
         "stepId": number;
         /**
-          * @default { activeStep: 1,                                                               showStepNumber: false,                                                               variant: 'default',                                                               indicatorPosition: 'left' }
+          * @default { 		activeStep: 1, 		showStepNumber: false, 		variant: "default", 		indicatorPosition: "left", 	}
          */
         "stepperState": StepperState;
     }
@@ -1410,17 +1413,17 @@ export namespace Components {
         "ariaCurrent": string | null;
         "ariaLabel": string | null;
         /**
-          * @default 'left'
+          * @default "left"
          */
-        "indicatorPosition"?: 'left' | 'right';
+        "indicatorPosition"?: "left" | "right";
         /**
           * @default false
          */
         "showStepNumber"?: boolean;
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "variant"?: 'default' | 'compact' | 'vertical';
+        "variant"?: "default" | "compact" | "vertical";
     }
     interface IfxSwitch {
         /**
@@ -1433,7 +1436,7 @@ export namespace Components {
         "disabled": boolean;
         "isChecked": () => Promise<boolean>;
         /**
-          * @default ''
+          * @default ""
          */
         "name": string;
         "value": string;
@@ -1442,26 +1445,30 @@ export namespace Components {
         "disabled": boolean;
         "header": string;
         /**
-          * @default ''
+          * @default ""
          */
         "icon": string;
         /**
-          * @default 'left'
+          * @default "left"
          */
-        "iconPosition": 'left' | 'right';
+        "iconPosition": "left" | "right";
     }
     interface IfxTable {
-        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void;};
+        "buttonRendererOptions"?: {
+		onButtonClick?: (params: any, event: Event) => void;
+	};
         "cols": any;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation": string;
         /**
           * @default ""
          */
         "headline": string;
-        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void;};
+        "iconButtonRendererOptions"?: {
+		onIconButtonClick?: (params: any, event: Event) => void;
+	};
         "onBtShowLoading": () => Promise<void>;
         /**
           * @default true
@@ -1469,11 +1476,14 @@ export namespace Components {
         "pagination": boolean;
         "paginationItemsPerPage": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight": string;
         "rows": any;
-        "serverPageChangeHandler"?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
+        "serverPageChangeHandler"?: (params: {
+		page: number;
+		pageSize: number;
+	}) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -1483,11 +1493,11 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight": string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant": string;
     }
@@ -1514,11 +1524,11 @@ export namespace Components {
     }
     interface IfxTextField {
         /**
-          * @default 'on'
+          * @default "on"
          */
         "autocomplete": string;
         /**
-          * @default ''
+          * @default ""
          */
         "caption": string;
         /**
@@ -1530,20 +1540,20 @@ export namespace Components {
          */
         "error": boolean;
         /**
-          * @default ''
+          * @default ""
          */
         "icon": string;
         /**
-          * @default 'text-field'
+          * @default "text-field"
          */
         "internalId": string;
         /**
-          * @default ''
+          * @default ""
          */
         "label": string;
         "maxlength"?: number;
         /**
-          * @default 'Placeholder'
+          * @default "Placeholder"
          */
         "placeholder": string;
         /**
@@ -1560,7 +1570,7 @@ export namespace Components {
          */
         "showDeleteIcon": boolean;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size": string;
         /**
@@ -1568,11 +1578,11 @@ export namespace Components {
          */
         "success": boolean;
         /**
-          * @default 'text'
+          * @default "text"
          */
-        "type": 'text' | 'password';
+        "type": "text" | "password";
         /**
-          * @default ''
+          * @default ""
          */
         "value": string;
     }
@@ -1605,35 +1615,43 @@ export namespace Components {
         "required": boolean;
         "reset": () => Promise<void>;
         /**
-          * @default 'both'
+          * @default "both"
          */
-        "resize": 'both' | 'horizontal' | 'vertical' | 'none';
+        "resize": "both" | "horizontal" | "vertical" | "none";
         "rows": number;
         "value": string;
         /**
-          * @default 'soft'
+          * @default "soft"
          */
-        "wrap": 'hard' | 'soft' | 'off';
+        "wrap": "hard" | "soft" | "off";
     }
     interface IfxTooltip {
         "ariaLabel": string | null;
         /**
-          * @default ''
+          * @default ""
          */
         "header": string;
         "icon": string;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
-        "position": 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "position": | "bottom-start"
+		| "top-start"
+		| "left"
+		| "bottom-end"
+		| "top-end"
+		| "right"
+		| "bottom"
+		| "top"
+		| "auto";
         /**
-          * @default ''
+          * @default ""
          */
         "text": string;
         /**
-          * @default 'compact'
+          * @default "compact"
          */
-        "variant": 'compact' | 'dismissible' | 'extended';
+        "variant": "compact" | "dismissible" | "extended";
     }
     interface IfxTreeView {
         "ariaLabel": string | null;
@@ -2026,7 +2044,11 @@ declare global {
         new (): HTMLIfxCheckboxGroupElement;
     };
     interface HTMLIfxChipElementEventMap {
-        "ifxChange": { previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string };
+        "ifxChange": {
+		previousSelection: Array<ChipItemSelectEvent>;
+		currentSelection: Array<ChipItemSelectEvent>;
+		name: string;
+	};
     }
     interface HTMLIfxChipElement extends Components.IfxChip, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxChipElementEventMap>(type: K, listener: (this: HTMLIfxChipElement, ev: IfxChipCustomEvent<HTMLIfxChipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2190,18 +2212,36 @@ declare global {
         new (): HTMLIfxFaqElement;
     };
     interface HTMLIfxFileUploadElementEventMap {
-        "ifxFileUploadAdd": { addedFiles: File[]; files: File[] };
-        "ifxFileUploadRemove": { removedFile: File; files: File[] };
+        "ifxFileUploadAdd": {
+		addedFiles: File[];
+		files: File[];
+	};
+        "ifxFileUploadRemove": {
+		removedFile: File;
+		files: File[];
+	};
         "ifxFileUploadChange": { files: File[] };
-        "ifxFileUploadError": { errorType: string; file: File; message: string; reason?: string };
+        "ifxFileUploadError": {
+		errorType: string;
+		file: File;
+		message: string;
+		reason?: string;
+	};
         "ifxFileUploadInvalid": { file: File; reason: string };
         "ifxFileUploadStart": { file: File };
         "ifxFileUploadComplete": { file: File };
         "ifxFileUploadAllComplete": { files: File[] };
         "ifxFileUploadAbort": { file: File };
-        "ifxFileUploadDrop": { droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] };
+        "ifxFileUploadDrop": {
+		droppedFiles: File[];
+		acceptedFiles: File[];
+		rejectedFiles: File[];
+	};
         "ifxFileUploadClick": void;
-        "ifxFileUploadMaxFilesExceeded": { maxFiles: number; attempted: number };
+        "ifxFileUploadMaxFilesExceeded": {
+		maxFiles: number;
+		attempted: number;
+	};
         "ifxFileUploadValidation": { valid: boolean };
         "ifxFileUploadRetry": { file: File };
     }
@@ -2573,7 +2613,10 @@ declare global {
         new (): HTMLIfxSegmentElement;
     };
     interface HTMLIfxSegmentedControlElementEventMap {
-        "ifxChange": { previousValue: string, selectedValue: string };
+        "ifxChange": {
+		previousValue: string;
+		selectedValue: string;
+	};
     }
     interface HTMLIfxSegmentedControlElement extends Components.IfxSegmentedControl, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxSegmentedControlElementEventMap>(type: K, listener: (this: HTMLIfxSegmentedControlElement, ev: IfxSegmentedControlCustomEvent<HTMLIfxSegmentedControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2800,7 +2843,7 @@ declare global {
         new (): HTMLIfxTemplatesUiElement;
     };
     interface HTMLIfxTextFieldElementEventMap {
-        "ifxInput": String;
+        "ifxInput": string;
     }
     interface HTMLIfxTextFieldElement extends Components.IfxTextField, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxTextFieldElementEventMap>(type: K, listener: (this: HTMLIfxTextFieldElement, ev: IfxTextFieldCustomEvent<HTMLIfxTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2817,7 +2860,7 @@ declare global {
         new (): HTMLIfxTextFieldElement;
     };
     interface HTMLIfxTextareaElementEventMap {
-        "ifxInput": String;
+        "ifxInput": string;
     }
     interface HTMLIfxTextareaElement extends Components.IfxTextarea, HTMLStencilElement {
         addEventListener<K extends keyof HTMLIfxTextareaElementEventMap>(type: K, listener: (this: HTMLIfxTextareaElement, ev: IfxTextareaCustomEvent<HTMLIfxTextareaElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3026,7 +3069,7 @@ declare namespace LocalJSX {
     }
     interface IfxAlert {
         /**
-          * @default 'assertive'
+          * @default "assertive"
          */
         "AriaLive"?: string;
         /**
@@ -3036,23 +3079,23 @@ declare namespace LocalJSX {
         "icon"?: string;
         "onIfxClose"?: (event: IfxAlertCustomEvent<any>) => void;
         /**
-          * @default 'primary'
+          * @default "primary"
          */
-        "variant"?: 'primary' | 'success' | 'danger' | 'warning' | 'info';
+        "variant"?: "primary" | "success" | "danger" | "warning" | "info";
     }
     interface IfxBasicTable {
         "cols"?: any[] | string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight"?: string;
         "rows"?: any[] | string;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant"?: string;
     }
@@ -3081,32 +3124,32 @@ declare namespace LocalJSX {
         "fullWidth"?: boolean;
         "href"?: string;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size"?: string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "theme"?: 'default' | 'danger' | 'inverse';
+        "theme"?: "default" | "danger" | "inverse";
         /**
           * @default "button"
          */
         "type"?: "button" | "submit" | "reset";
         /**
-          * @default 'primary'
+          * @default "primary"
          */
-        "variant"?: 'primary' | 'secondary' | 'tertiary';
+        "variant"?: "primary" | "secondary" | "tertiary";
     }
     interface IfxCard {
         "ariaLabel"?: string | null;
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "direction"?: 'horizontal' | 'vertical';
+        "direction"?: "horizontal" | "vertical";
         /**
           * @default ""
          */
@@ -3150,19 +3193,19 @@ declare namespace LocalJSX {
         "onIfxChange"?: (event: IfxCheckboxCustomEvent<any>) => void;
         "onIfxError"?: (event: IfxCheckboxCustomEvent<any>) => void;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size"?: string;
         "value"?: string;
     }
     interface IfxCheckboxGroup {
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "alignment"?: 'horizontal' | 'vertical';
+        "alignment"?: "horizontal" | "vertical";
         "captionText"?: string;
         /**
-          * @default 'Group Label Text'
+          * @default "Group Label Text"
          */
         "groupLabelText"?: string;
         /**
@@ -3184,9 +3227,13 @@ declare namespace LocalJSX {
           * @default ""
          */
         "icon"?: string;
-        "onIfxChange"?: (event: IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>) => void;
+        "onIfxChange"?: (event: IfxChipCustomEvent<{
+		previousSelection: Array<ChipItemSelectEvent>;
+		currentSelection: Array<ChipItemSelectEvent>;
+		name: string;
+	}>) => void;
         /**
-          * @default ''
+          * @default ""
          */
         "placeholder"?: string;
         /**
@@ -3194,25 +3241,25 @@ declare namespace LocalJSX {
          */
         "readOnly"?: boolean;
         /**
-          * @default 'medium'
+          * @default "medium"
          */
-        "size"?: 'small' | 'medium' | 'large';
+        "size"?: "small" | "medium" | "large";
         /**
-          * @default 'outlined'
+          * @default "outlined"
          */
-        "theme"?: 'outlined' | 'filled-light' | 'filled-dark';
+        "theme"?: "outlined" | "filled-light" | "filled-dark";
         /**
           * @default undefined
          */
         "value"?: Array<string> | string;
         /**
-          * @default 'single'
+          * @default "single"
          */
-        "variant"?: 'single' | 'multi';
+        "variant"?: "single" | "multi";
     }
     interface IfxChipItem {
         /**
-          * @default { emitIfxChipItemSelect: true, variant: 'multi', size: 'large' }
+          * @default { 		emitIfxChipItemSelect: true, 		variant: "multi", 		size: "large", 	}
          */
         "chipState"?: ChipState;
         "onIfxChipItemSelect"?: (event: IfxChipItemCustomEvent<ChipItemSelectEvent>) => void;
@@ -3238,7 +3285,7 @@ declare namespace LocalJSX {
     interface IfxDatePicker {
         "ariaLabel"?: string | null;
         /**
-          * @default 'on'
+          * @default "on"
          */
         "autocomplete"?: string;
         "caption"?: string;
@@ -3259,7 +3306,7 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * @default 's'
+          * @default "s"
          */
         "size"?: string;
         /**
@@ -3267,16 +3314,16 @@ declare namespace LocalJSX {
          */
         "success"?: boolean;
         /**
-          * @default 'date'
+          * @default "date"
          */
         "type"?: string;
         "value"?: string;
     }
     interface IfxDownload {
         /**
-          * @default 'css'
+          * @default "css"
          */
-        "tokens"?: 'css' | 'scss';
+        "tokens"?: "css" | "scss";
     }
     interface IfxDropdown {
         /**
@@ -3300,7 +3347,7 @@ declare namespace LocalJSX {
         "onIfxDropdown"?: (event: IfxDropdownCustomEvent<any>) => void;
         "onIfxOpen"?: (event: IfxDropdownCustomEvent<any>) => void;
         /**
-          * @default 'bottom-start'
+          * @default "bottom-start"
          */
         "placement"?: Placement;
     }
@@ -3330,7 +3377,7 @@ declare namespace LocalJSX {
         "onIfxDropdownMenuItem"?: (event: IfxDropdownMenuCustomEvent<CustomEvent>) => void;
         "onMenuSize"?: (event: IfxDropdownMenuCustomEvent<any>) => void;
         /**
-          * @default 'l'
+          * @default "l"
          */
         "size"?: string;
     }
@@ -3353,14 +3400,14 @@ declare namespace LocalJSX {
          */
         "isOpen"?: boolean;
         /**
-          * @default 'm'
+          * @default "m"
          */
-        "size"?: 's' | 'm';
+        "size"?: "s" | "m";
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "theme"?: 'default' | 'danger' | 'inverse';
-        "variant"?: 'primary';
+        "theme"?: "default" | "danger" | "inverse";
+        "variant"?: "primary";
     }
     interface IfxFaq {
     }
@@ -3385,39 +3432,39 @@ declare namespace LocalJSX {
          */
         "allowedFileTypes"?: string | string[];
         /**
-          * @default 'Browse files'
+          * @default "Browse files"
          */
         "ariaLabelBrowseFiles"?: string;
         /**
-          * @default 'Cancel upload'
+          * @default "Cancel upload"
          */
         "ariaLabelCancelUpload"?: string;
         /**
-          * @default 'Upload area. Click to browse or drag and drop files.'
+          * @default "Upload area. Click to browse or drag and drop files."
          */
         "ariaLabelDropzone"?: string;
         /**
-          * @default 'Upload file'
+          * @default "Upload file"
          */
         "ariaLabelFileInput"?: string;
         /**
-          * @default 'Remove file'
+          * @default "Remove file"
          */
         "ariaLabelRemoveFile"?: string;
         /**
-          * @default 'Retry upload'
+          * @default "Retry upload"
          */
         "ariaLabelRetryUpload"?: string;
         /**
-          * @default 'Upload failed'
+          * @default "Upload failed"
          */
         "ariaLabelUploadFailedStatus"?: string;
         /**
-          * @default 'Upload completed'
+          * @default "Upload completed"
          */
         "ariaLabelUploadedStatus"?: string;
         /**
-          * @default 'Upload in progress'
+          * @default "Upload in progress"
          */
         "ariaLabelUploadingStatus"?: string;
         /**
@@ -3429,59 +3476,59 @@ declare namespace LocalJSX {
          */
         "dragAndDrop"?: boolean;
         /**
-          * @default 'Label'
+          * @default "Label"
          */
         "label"?: string;
         /**
-          * @default 'Browse files'
+          * @default "Browse files"
          */
         "labelBrowseFiles"?: string;
         /**
-          * @default 'Drag & Drop or browse files to upload'
+          * @default "Drag & Drop or browse files to upload"
          */
         "labelDragAndDrop"?: string;
         /**
-          * @default 'files'
+          * @default "files"
          */
         "labelFilePlural"?: string;
         /**
-          * @default 'file'
+          * @default "file"
          */
         "labelFileSingular"?: string;
         /**
-          * @default 'Upload failed. Max file size: {{size}}MB.'
+          * @default "Upload failed. Max file size: {{size}}MB."
          */
         "labelFileTooLarge"?: string;
         /**
-          * @default 'Upload limit exceeded. Only {{count}} {{files}} allowed.'
+          * @default "Upload limit exceeded. Only {{count}} {{files}} allowed."
          */
         "labelMaxFilesExceeded"?: string;
         /**
-          * @default 'Up to {{count}} {{files}}.'
+          * @default "Up to {{count}} {{files}}."
          */
         "labelMaxFilesInfo"?: string;
         /**
-          * @default 'At least one file must be uploaded'
+          * @default "At least one file must be uploaded"
          */
         "labelRequiredError"?: string;
         /**
-          * @default 'Supported file formats: {{types}}. Max file size: {{size}}MB.'
+          * @default "Supported file formats: {{types}}. Max file size: {{size}}MB."
          */
         "labelSupportedFormatsTemplate"?: string;
         /**
-          * @default 'Unsupported file type.'
+          * @default "Unsupported file type."
          */
         "labelUnsupportedFileType"?: string;
         /**
-          * @default 'Upload failed. Please try again.'
+          * @default "Upload failed. Please try again."
          */
         "labelUploadFailed"?: string;
         /**
-          * @default 'Successfully uploaded'
+          * @default "Successfully uploaded"
          */
         "labelUploaded"?: string;
         /**
-          * @default 'Uploaded files'
+          * @default "Uploaded files"
          */
         "labelUploadedFilesHeading"?: string;
         /**
@@ -3490,16 +3537,34 @@ declare namespace LocalJSX {
         "maxFileSizeMB"?: number;
         "maxFiles"?: number | undefined;
         "onIfxFileUploadAbort"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
-        "onIfxFileUploadAdd"?: (event: IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>) => void;
+        "onIfxFileUploadAdd"?: (event: IfxFileUploadCustomEvent<{
+		addedFiles: File[];
+		files: File[];
+	}>) => void;
         "onIfxFileUploadAllComplete"?: (event: IfxFileUploadCustomEvent<{ files: File[] }>) => void;
         "onIfxFileUploadChange"?: (event: IfxFileUploadCustomEvent<{ files: File[] }>) => void;
         "onIfxFileUploadClick"?: (event: IfxFileUploadCustomEvent<void>) => void;
         "onIfxFileUploadComplete"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
-        "onIfxFileUploadDrop"?: (event: IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>) => void;
-        "onIfxFileUploadError"?: (event: IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string }>) => void;
+        "onIfxFileUploadDrop"?: (event: IfxFileUploadCustomEvent<{
+		droppedFiles: File[];
+		acceptedFiles: File[];
+		rejectedFiles: File[];
+	}>) => void;
+        "onIfxFileUploadError"?: (event: IfxFileUploadCustomEvent<{
+		errorType: string;
+		file: File;
+		message: string;
+		reason?: string;
+	}>) => void;
         "onIfxFileUploadInvalid"?: (event: IfxFileUploadCustomEvent<{ file: File; reason: string }>) => void;
-        "onIfxFileUploadMaxFilesExceeded"?: (event: IfxFileUploadCustomEvent<{ maxFiles: number; attempted: number }>) => void;
-        "onIfxFileUploadRemove"?: (event: IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>) => void;
+        "onIfxFileUploadMaxFilesExceeded"?: (event: IfxFileUploadCustomEvent<{
+		maxFiles: number;
+		attempted: number;
+	}>) => void;
+        "onIfxFileUploadRemove"?: (event: IfxFileUploadCustomEvent<{
+		removedFile: File;
+		files: File[];
+	}>) => void;
         "onIfxFileUploadRetry"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
         "onIfxFileUploadStart"?: (event: IfxFileUploadCustomEvent<{ file: File }>) => void;
         "onIfxFileUploadValidation"?: (event: IfxFileUploadCustomEvent<{ valid: boolean }>) => void;
@@ -3507,7 +3572,10 @@ declare namespace LocalJSX {
           * @default false
          */
         "required"?: boolean;
-        "uploadHandler"?: (file: File, onProgress?: (progress: number) => void) => Promise<void>;
+        "uploadHandler"?: (
+		file: File,
+		onProgress?: (progress: number) => void,
+	) => Promise<void>;
     }
     interface IfxFilterAccordion {
         /**
@@ -3536,7 +3604,7 @@ declare namespace LocalJSX {
         "filterKey"?: string;
         "filterName"?: string;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation"?: string;
         "filterValue"?: string;
@@ -3548,7 +3616,7 @@ declare namespace LocalJSX {
     }
     interface IfxFooter {
         /**
-          * @default '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
+          * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
     }
@@ -3568,15 +3636,15 @@ declare namespace LocalJSX {
         "href"?: string;
         "icon"?: string;
         /**
-          * @default 'round'
+          * @default "round"
          */
         "shape"?: string;
         "size"?: string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target"?: string;
-        "variant"?: 'primary' | 'secondary' | 'tertiary';
+        "variant"?: "primary" | "secondary" | "tertiary";
     }
     interface IfxIconsPreview {
     }
@@ -3591,7 +3659,7 @@ declare namespace LocalJSX {
          */
         "number"?: number;
         /**
-          * @default 'number'
+          * @default "number"
          */
         "variant"?: string;
     }
@@ -3608,11 +3676,11 @@ declare namespace LocalJSX {
         "href"?: string;
         "size"?: string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "target"?: string;
         /**
-          * @default 'bold'
+          * @default "bold"
          */
         "variant"?: string;
     }
@@ -3640,15 +3708,15 @@ declare namespace LocalJSX {
     }
     interface IfxModal {
         /**
-          * @default ''
+          * @default ""
          */
         "alertIcon"?: string;
         /**
-          * @default 'Cancel'
+          * @default "Cancel"
          */
         "cancelButtonLabel"?: string;
         /**
-          * @default 'Modal Title'
+          * @default "Modal Title"
          */
         "caption"?: string;
         "captionAriaLabel"?: string | null;
@@ -3658,7 +3726,7 @@ declare namespace LocalJSX {
          */
         "closeOnOverlayClick"?: boolean;
         /**
-          * @default 'OK'
+          * @default "OK"
          */
         "okButtonLabel"?: string;
         "onIfxClose"?: (event: IfxModalCustomEvent<any>) => void;
@@ -3672,57 +3740,57 @@ declare namespace LocalJSX {
          */
         "showCloseButton"?: boolean;
         /**
-          * @default 's'
+          * @default "s"
          */
-        "size"?: 's' | 'm' | 'l';
+        "size"?: "s" | "m" | "l";
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "variant"?: 'default' | 'alert-brand' | 'alert-danger';
+        "variant"?: "default" | "alert-brand" | "alert-danger";
     }
     interface IfxMultiselect {
         /**
-          * @default 'Clear all selections'
+          * @default "Clear all selections"
          */
         "ariaClearLabel"?: string;
         /**
-          * @default 'Collapse all categories'
+          * @default "Collapse all categories"
          */
         "ariaCollapseAllLabel"?: string;
         /**
-          * @default 'Expand all categories'
+          * @default "Expand all categories"
          */
         "ariaExpandAllLabel"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "ariaMultiSelectDescribedBy"?: string;
         /**
-          * @default 'Multi-select dropdown'
+          * @default "Multi-select dropdown"
          */
         "ariaMultiSelectLabel"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "ariaMultiSelectLabelledBy"?: string;
         /**
-          * @default 'Search options'
+          * @default "Search options"
          */
         "ariaSearchLabel"?: string;
         /**
-          * @default 'Select all options'
+          * @default "Select all options"
          */
         "ariaSelectAllLabel"?: string;
         /**
-          * @default 'Toggle dropdown'
+          * @default "Toggle dropdown"
          */
         "ariaToggleLabel"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "caption"?: string;
         /**
-          * @default 'Collapse'
+          * @default "Collapse"
          */
         "collapseLabel"?: string;
         /**
@@ -3734,22 +3802,22 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
-          * @default 'Expand'
+          * @default "Expand"
          */
         "expandLabel"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "label"?: string;
         "name"?: string;
         /**
-          * @default 'No results found.'
+          * @default "No results found."
          */
         "noResultsMessage"?: string;
         "onIfxOpen"?: (event: IfxMultiselectCustomEvent<any>) => void;
         "onIfxSelect"?: (event: IfxMultiselectCustomEvent<any>) => void;
         /**
-          * @default ''
+          * @default ""
          */
         "placeholder"?: string;
         /**
@@ -3757,11 +3825,11 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * @default 'Search'
+          * @default "Search"
          */
         "searchPlaceholder"?: string;
         /**
-          * @default 'Select all'
+          * @default "Select all"
          */
         "selectAllLabel"?: string;
         /**
@@ -3814,7 +3882,7 @@ declare namespace LocalJSX {
          */
         "logoHref"?: string;
         /**
-          * @default '_self'
+          * @default "_self"
          */
         "logoHrefTarget"?: string;
         "onIfxNavbarMobileMenuIsOpen"?: (event: IfxNavbarCustomEvent<any>) => void;
@@ -3881,12 +3949,12 @@ declare namespace LocalJSX {
         "icon"?: string;
         "linkHref"?: string;
         /**
-          * @default '_blank'
+          * @default "_blank"
          */
         "linkTarget"?: string;
         "linkText"?: string;
         /**
-          * @default 'success'
+          * @default "success"
          */
         "variant"?: NotificationVariant;
     }
@@ -3941,12 +4009,12 @@ declare namespace LocalJSX {
     }
     interface IfxRadioButtonGroup {
         /**
-          * @default 'vertical'
+          * @default "vertical"
          */
-        "alignment"?: 'horizontal' | 'vertical';
+        "alignment"?: "horizontal" | "vertical";
         "captionText"?: string;
         /**
-          * @default 'Group Label Text'
+          * @default "Group Label Text"
          */
         "groupLabelText"?: string;
         /**
@@ -3988,7 +4056,7 @@ declare namespace LocalJSX {
          */
         "autocomplete"?: string;
         /**
-          * @default 'Clear search'
+          * @default "Clear search"
          */
         "deleteIconAriaLabel"?: string;
         /**
@@ -3996,7 +4064,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * @default 'Search suggestions and history'
+          * @default "Search suggestions and history"
          */
         "dropdownAriaLabel"?: string;
         /**
@@ -4004,19 +4072,19 @@ declare namespace LocalJSX {
          */
         "enableHistory"?: boolean;
         /**
-          * @default 'Remove from history'
+          * @default "Remove from history"
          */
         "historyDeleteAriaLabel"?: string;
         /**
-          * @default 'Recent Searches'
+          * @default "Recent Searches"
          */
         "historyHeaderText"?: string;
         /**
-          * @default 'Search history item'
+          * @default "Search history item"
          */
         "historyItemAriaLabel"?: string;
         /**
-          * @default 'ifx-search-history'
+          * @default "ifx-search-history"
          */
         "historyKey"?: string;
         /**
@@ -4049,11 +4117,11 @@ declare namespace LocalJSX {
          */
         "showSuggestions"?: boolean;
         /**
-          * @default 'l'
+          * @default "l"
          */
         "size"?: string;
         /**
-          * @default 'Search suggestion'
+          * @default "Search suggestion"
          */
         "suggestionAriaLabel"?: string;
         /**
@@ -4061,7 +4129,7 @@ declare namespace LocalJSX {
          */
         "suggestions"?: SuggestionItem[];
         /**
-          * @default ''
+          * @default ""
          */
         "value"?: string;
     }
@@ -4077,7 +4145,7 @@ declare namespace LocalJSX {
     }
     interface IfxSegmentedControl {
         /**
-          * @default ''
+          * @default ""
          */
         "caption"?: string;
         /**
@@ -4085,18 +4153,21 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
-          * @default ''
+          * @default ""
          */
         "label"?: string;
-        "onIfxChange"?: (event: IfxSegmentedControlCustomEvent<{ previousValue: string, selectedValue: string }>) => void;
+        "onIfxChange"?: (event: IfxSegmentedControlCustomEvent<{
+		previousValue: string;
+		selectedValue: string;
+	}>) => void;
         /**
           * @default false
          */
         "required"?: boolean;
         /**
-          * @default 'regular'
+          * @default "regular"
          */
-        "size"?: 'regular' | 'small';
+        "size"?: "regular" | "small";
     }
     interface IfxSelect {
         "addItemFilter"?: string | RegExp | ItemFilterFn;
@@ -4106,7 +4177,7 @@ declare namespace LocalJSX {
         "callbackOnCreateTemplates"?: OnCreateTemplates;
         "callbackOnInit"?: OnInit;
         /**
-          * @default ''
+          * @default ""
          */
         "caption"?: string;
         /**
@@ -4127,10 +4198,10 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         "fuseOptions"?: FuseOptions;
-        "itemSelectText"?: '';
+        "itemSelectText"?: "";
         "items"?: Array<any>;
         /**
-          * @default ''
+          * @default ""
          */
         "label"?: string;
         "loadingText"?: string;
@@ -4145,15 +4216,15 @@ declare namespace LocalJSX {
         "paste"?: boolean;
         "placeholder"?: boolean | string;
         /**
-          * @default 'Placeholder'
+          * @default "Placeholder"
          */
         "placeholderValue"?: string;
-        "position"?: 'auto' | 'top' | 'bottom';
+        "position"?: "auto" | "top" | "bottom";
         "prependValue"?: string;
         "removeItemButton"?: boolean;
         "removeItems"?: boolean;
         "renderChoiceLimit"?: number;
-        "renderSelectedChoices"?: 'always' | 'auto';
+        "renderSelectedChoices"?: "always" | "auto";
         /**
           * @default false
          */
@@ -4172,7 +4243,7 @@ declare namespace LocalJSX {
         "showClearButton"?: boolean;
         "showSearch"?: boolean;
         /**
-          * @default 'medium (40px)'
+          * @default "medium (40px)"
          */
         "size"?: string;
         "sorter"?: SortFn;
@@ -4187,13 +4258,13 @@ declare namespace LocalJSX {
         "options"?: any[] | string;
         "placeholder"?: string;
         /**
-          * @default 'text'
+          * @default "text"
          */
-        "type"?: 'text' | 'single-select' | 'multi-select';
+        "type"?: "text" | "single-select" | "multi-select";
     }
     interface IfxSidebar {
         /**
-          * @default ''
+          * @default ""
          */
         "applicationName"?: string;
         /**
@@ -4205,7 +4276,7 @@ declare namespace LocalJSX {
          */
         "collapsible"?: boolean;
         /**
-          * @default '© 1999 - ' + this.currentYear + ' Infineon Technologies AG'
+          * @default "© 1999 - " + this.currentYear + " Infineon Technologies AG"
          */
         "copyrightText"?: string;
         /**
@@ -4305,9 +4376,9 @@ declare namespace LocalJSX {
          */
         "step"?: number;
         /**
-          * @default 'single'
+          * @default "single"
          */
-        "type"?: 'single' | 'double';
+        "type"?: "single" | "double";
         "value"?: number;
     }
     interface IfxSpinner {
@@ -4325,7 +4396,7 @@ declare namespace LocalJSX {
          */
         "border"?: boolean;
         /**
-          * @default 'orange-500'
+          * @default "orange-500"
          */
         "color"?: string;
         "label"?: string;
@@ -4352,7 +4423,7 @@ declare namespace LocalJSX {
          */
         "stepId"?: number;
         /**
-          * @default { activeStep: 1,                                                               showStepNumber: false,                                                               variant: 'default',                                                               indicatorPosition: 'left' }
+          * @default { 		activeStep: 1, 		showStepNumber: false, 		variant: "default", 		indicatorPosition: "left", 	}
          */
         "stepperState"?: StepperState;
     }
@@ -4364,18 +4435,18 @@ declare namespace LocalJSX {
         "ariaCurrent"?: string | null;
         "ariaLabel"?: string | null;
         /**
-          * @default 'left'
+          * @default "left"
          */
-        "indicatorPosition"?: 'left' | 'right';
+        "indicatorPosition"?: "left" | "right";
         "onIfxChange"?: (event: IfxStepperCustomEvent<any>) => void;
         /**
           * @default false
          */
         "showStepNumber"?: boolean;
         /**
-          * @default 'default'
+          * @default "default"
          */
-        "variant"?: 'default' | 'compact' | 'vertical';
+        "variant"?: "default" | "compact" | "vertical";
     }
     interface IfxSwitch {
         /**
@@ -4387,7 +4458,7 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * @default ''
+          * @default ""
          */
         "name"?: string;
         "onIfxChange"?: (event: IfxSwitchCustomEvent<boolean>) => void;
@@ -4397,38 +4468,45 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "header"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "icon"?: string;
         /**
-          * @default 'left'
+          * @default "left"
          */
-        "iconPosition"?: 'left' | 'right';
+        "iconPosition"?: "left" | "right";
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
     }
     interface IfxTable {
-        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void;};
+        "buttonRendererOptions"?: {
+		onButtonClick?: (params: any, event: Event) => void;
+	};
         "cols"?: any;
         /**
-          * @default 'sidebar'
+          * @default "sidebar"
          */
         "filterOrientation"?: string;
         /**
           * @default ""
          */
         "headline"?: string;
-        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void;};
+        "iconButtonRendererOptions"?: {
+		onIconButtonClick?: (params: any, event: Event) => void;
+	};
         /**
           * @default true
          */
         "pagination"?: boolean;
         "paginationItemsPerPage"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "rowHeight"?: string;
         "rows"?: any;
-        "serverPageChangeHandler"?: (params: { page: number, pageSize: number }) => Promise<{ rows: any[], total: number }>;
+        "serverPageChangeHandler"?: (params: {
+		page: number;
+		pageSize: number;
+	}) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -4438,11 +4516,11 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
         "tableHeight"?: string;
         /**
-          * @default 'default'
+          * @default "default"
          */
         "variant"?: string;
     }
@@ -4471,11 +4549,11 @@ declare namespace LocalJSX {
     }
     interface IfxTextField {
         /**
-          * @default 'on'
+          * @default "on"
          */
         "autocomplete"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "caption"?: string;
         /**
@@ -4487,21 +4565,21 @@ declare namespace LocalJSX {
          */
         "error"?: boolean;
         /**
-          * @default ''
+          * @default ""
          */
         "icon"?: string;
         /**
-          * @default 'text-field'
+          * @default "text-field"
          */
         "internalId"?: string;
         /**
-          * @default ''
+          * @default ""
          */
         "label"?: string;
         "maxlength"?: number;
-        "onIfxInput"?: (event: IfxTextFieldCustomEvent<String>) => void;
+        "onIfxInput"?: (event: IfxTextFieldCustomEvent<string>) => void;
         /**
-          * @default 'Placeholder'
+          * @default "Placeholder"
          */
         "placeholder"?: string;
         /**
@@ -4517,7 +4595,7 @@ declare namespace LocalJSX {
          */
         "showDeleteIcon"?: boolean;
         /**
-          * @default 'm'
+          * @default "m"
          */
         "size"?: string;
         /**
@@ -4525,11 +4603,11 @@ declare namespace LocalJSX {
          */
         "success"?: boolean;
         /**
-          * @default 'text'
+          * @default "text"
          */
-        "type"?: 'text' | 'password';
+        "type"?: "text" | "password";
         /**
-          * @default ''
+          * @default ""
          */
         "value"?: string;
     }
@@ -4551,7 +4629,7 @@ declare namespace LocalJSX {
         "label"?: string;
         "maxlength"?: number;
         "name"?: string;
-        "onIfxInput"?: (event: IfxTextareaCustomEvent<String>) => void;
+        "onIfxInput"?: (event: IfxTextareaCustomEvent<string>) => void;
         "placeholder"?: string;
         /**
           * @default false
@@ -4562,35 +4640,43 @@ declare namespace LocalJSX {
          */
         "required"?: boolean;
         /**
-          * @default 'both'
+          * @default "both"
          */
-        "resize"?: 'both' | 'horizontal' | 'vertical' | 'none';
+        "resize"?: "both" | "horizontal" | "vertical" | "none";
         "rows"?: number;
         "value"?: string;
         /**
-          * @default 'soft'
+          * @default "soft"
          */
-        "wrap"?: 'hard' | 'soft' | 'off';
+        "wrap"?: "hard" | "soft" | "off";
     }
     interface IfxTooltip {
         "ariaLabel"?: string | null;
         /**
-          * @default ''
+          * @default ""
          */
         "header"?: string;
         "icon"?: string;
         /**
-          * @default 'auto'
+          * @default "auto"
          */
-        "position"?: 'bottom-start' | 'top-start' | 'left' | 'bottom-end' | 'top-end' | 'right' | 'bottom' | 'top' | 'auto';
+        "position"?: | "bottom-start"
+		| "top-start"
+		| "left"
+		| "bottom-end"
+		| "top-end"
+		| "right"
+		| "bottom"
+		| "top"
+		| "auto";
         /**
-          * @default ''
+          * @default ""
          */
         "text"?: string;
         /**
-          * @default 'compact'
+          * @default "compact"
          */
-        "variant"?: 'compact' | 'dismissible' | 'extended';
+        "variant"?: "compact" | "dismissible" | "extended";
     }
     interface IfxTreeView {
         "ariaLabel"?: string | null;

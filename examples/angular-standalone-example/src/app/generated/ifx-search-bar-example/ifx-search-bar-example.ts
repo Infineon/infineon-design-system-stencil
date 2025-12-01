@@ -18,12 +18,12 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-search-bar-example.scss&#039;
 })
 export class IfxSearchBarExample {
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log(&#039;ifxOpen:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -33,15 +33,15 @@ export class IfxSearchBarExample {
     disabled=&quot;false&quot;
     value=&quot;true&quot;
     autocomplete=&quot;on&quot;
-    (ifxInput)=&quot;handleInput(\$event)&quot;
-    (ifxOpen)=&quot;handleOpen(\$event)&quot;&gt;&lt;/ifx-search-bar&gt;`;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;`;
 
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log('ifxOpen:', event.detail);
     // Add your handler logic here
   }

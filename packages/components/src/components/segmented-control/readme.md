@@ -9,11 +9,11 @@
 
 | Property   | Attribute  | Description | Type                   | Default     |
 | ---------- | ---------- | ----------- | ---------------------- | ----------- |
-| `caption`  | `caption`  |             | `string`               | `''`        |
+| `caption`  | `caption`  |             | `string`               | `""`        |
 | `error`    | `error`    |             | `boolean`              | `false`     |
-| `label`    | `label`    |             | `string`               | `''`        |
+| `label`    | `label`    |             | `string`               | `""`        |
 | `required` | `required` |             | `boolean`              | `false`     |
-| `size`     | `size`     |             | `"regular" \| "small"` | `'regular'` |
+| `size`     | `size`     |             | `"regular" \| "small"` | `"regular"` |
 
 
 ## Events

@@ -11,8 +11,8 @@
     caption="true"
     placeholder-value="Placeholder"
     options='[{"value":"a","label":"option a","selected":false},{"value":"b","label":"option b","selected":false},{"value":"c","label":"option c","selected":false}]'
-    (ifxSelect)="handleSelect($event)"
-    (ifxInput)="handleInput($event)"></ifx-select>
+    (ifxSelect)="handleSelect($any($event))"
+    (ifxInput)="handleInput($any($event))"></ifx-select>
 
 <details class="code-details">
   <summary>View Code</summary>

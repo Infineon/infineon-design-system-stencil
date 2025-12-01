@@ -472,7 +472,7 @@ export declare interface IfxCheckboxGroup extends Components.IfxCheckboxGroup {}
 })
 export class IfxChip {
   protected el: HTMLIfxChipElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>, currentSelection: Array<IIfxChipChipItemSelectEvent>, name: string }>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -484,7 +484,7 @@ import type { ChipItemSelectEvent as IIfxChipChipItemSelectEvent } from '@infine
 
 export declare interface IfxChip extends Components.IfxChip {
 
-  ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>, currentSelection: Array<IIfxChipChipItemSelectEvent>, name: string }>>;
+  ifxChange: EventEmitter<CustomEvent<{ previousSelection: Array<IIfxChipChipItemSelectEvent>; currentSelection: Array<IIfxChipChipItemSelectEvent>; name: string; }>>;
 }
 
 
@@ -842,18 +842,18 @@ export declare interface IfxFaq extends Components.IfxFaq {}
 })
 export class IfxFileUpload {
   protected el: HTMLIfxFileUploadElement;
-  @Output() ifxFileUploadAdd = new EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[] }>>();
-  @Output() ifxFileUploadRemove = new EventEmitter<CustomEvent<{ removedFile: File; files: File[] }>>();
+  @Output() ifxFileUploadAdd = new EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>();
+  @Output() ifxFileUploadRemove = new EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>();
   @Output() ifxFileUploadChange = new EventEmitter<CustomEvent<{ files: File[] }>>();
-  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>();
+  @Output() ifxFileUploadError = new EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>();
   @Output() ifxFileUploadInvalid = new EventEmitter<CustomEvent<{ file: File; reason: string }>>();
   @Output() ifxFileUploadStart = new EventEmitter<CustomEvent<{ file: File }>>();
   @Output() ifxFileUploadComplete = new EventEmitter<CustomEvent<{ file: File }>>();
   @Output() ifxFileUploadAllComplete = new EventEmitter<CustomEvent<{ files: File[] }>>();
   @Output() ifxFileUploadAbort = new EventEmitter<CustomEvent<{ file: File }>>();
-  @Output() ifxFileUploadDrop = new EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>();
+  @Output() ifxFileUploadDrop = new EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>();
   @Output() ifxFileUploadClick = new EventEmitter<CustomEvent<void>>();
-  @Output() ifxFileUploadMaxFilesExceeded = new EventEmitter<CustomEvent<{ maxFiles: number; attempted: number }>>();
+  @Output() ifxFileUploadMaxFilesExceeded = new EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>();
   @Output() ifxFileUploadValidation = new EventEmitter<CustomEvent<{ valid: boolean }>>();
   @Output() ifxFileUploadRetry = new EventEmitter<CustomEvent<{ file: File }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
@@ -865,13 +865,13 @@ export class IfxFileUpload {
 
 export declare interface IfxFileUpload extends Components.IfxFileUpload {
 
-  ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[] }>>;
+  ifxFileUploadAdd: EventEmitter<CustomEvent<{ addedFiles: File[]; files: File[]; }>>;
 
-  ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[] }>>;
+  ifxFileUploadRemove: EventEmitter<CustomEvent<{ removedFile: File; files: File[]; }>>;
 
   ifxFileUploadChange: EventEmitter<CustomEvent<{ files: File[] }>>;
 
-  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>;
+  ifxFileUploadError: EventEmitter<CustomEvent<{ errorType: string; file: File; message: string; reason?: string; }>>;
 
   ifxFileUploadInvalid: EventEmitter<CustomEvent<{ file: File; reason: string }>>;
 
@@ -883,11 +883,11 @@ export declare interface IfxFileUpload extends Components.IfxFileUpload {
 
   ifxFileUploadAbort: EventEmitter<CustomEvent<{ file: File }>>;
 
-  ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>;
+  ifxFileUploadDrop: EventEmitter<CustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[]; }>>;
 
   ifxFileUploadClick: EventEmitter<CustomEvent<void>>;
 
-  ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number }>>;
+  ifxFileUploadMaxFilesExceeded: EventEmitter<CustomEvent<{ maxFiles: number; attempted: number; }>>;
 
   ifxFileUploadValidation: EventEmitter<CustomEvent<{ valid: boolean }>>;
 
@@ -1665,7 +1665,7 @@ export declare interface IfxSegment extends Components.IfxSegment {
 })
 export class IfxSegmentedControl {
   protected el: HTMLIfxSegmentedControlElement;
-  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousValue: string, selectedValue: string }>>();
+  @Output() ifxChange = new EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -1675,7 +1675,7 @@ export class IfxSegmentedControl {
 
 export declare interface IfxSegmentedControl extends Components.IfxSegmentedControl {
 
-  ifxChange: EventEmitter<CustomEvent<{ previousValue: string, selectedValue: string }>>;
+  ifxChange: EventEmitter<CustomEvent<{ previousValue: string; selectedValue: string; }>>;
 }
 
 
@@ -2129,7 +2129,7 @@ export declare interface IfxTemplatesUi extends Components.IfxTemplatesUi {}
 })
 export class IfxTextField {
   protected el: HTMLIfxTextFieldElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<String>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2139,7 +2139,7 @@ export class IfxTextField {
 
 export declare interface IfxTextField extends Components.IfxTextField {
 
-  ifxInput: EventEmitter<CustomEvent<String>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
 
@@ -2158,7 +2158,7 @@ export declare interface IfxTextField extends Components.IfxTextField {
 })
 export class IfxTextarea {
   protected el: HTMLIfxTextareaElement;
-  @Output() ifxInput = new EventEmitter<CustomEvent<String>>();
+  @Output() ifxInput = new EventEmitter<CustomEvent<string>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2168,7 +2168,7 @@ export class IfxTextarea {
 
 export declare interface IfxTextarea extends Components.IfxTextarea {
 
-  ifxInput: EventEmitter<CustomEvent<String>>;
+  ifxInput: EventEmitter<CustomEvent<string>>;
 }
 
 

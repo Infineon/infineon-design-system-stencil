@@ -3,8 +3,8 @@
     current-page="1"
     show-items-per-page="true"
     items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
-    (ifxPageChange)="handlePageChange($event)"
-    (ifxItemsPerPageChange)="handleItemsPerPageChange($event)"></ifx-pagination>
+    (ifxPageChange)="handlePageChange($any($event))"
+    (ifxItemsPerPageChange)="handleItemsPerPageChange($any($event))"></ifx-pagination>
 
 <details class="code-details">
   <summary>View Code</summary>

@@ -7,7 +7,7 @@
 
 /* eslint-disable */
 
-import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTextFieldCustomEvent, type IfxTextareaCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
+import { type ActionListItemClickEvent, type ChangeEvent, type ChipItemSelectEvent, type IfxActionListItemCustomEvent, type IfxBreadcrumbItemLabelCustomEvent, type IfxChipCustomEvent, type IfxChipItemCustomEvent, type IfxContentSwitcherCustomEvent, type IfxDropdownMenuCustomEvent, type IfxFileUploadCustomEvent, type IfxSearchFieldCustomEvent, type IfxSelectCustomEvent, type IfxTreeViewItemCustomEvent, type SuggestionItem, type TreeViewCheckChangeEvent, type TreeViewDisableChangeEvent, type TreeViewExpandChangeEvent } from "@infineon/infineon-design-system-stencil";
 import { IfxAccordionItem as IfxAccordionItemElement, defineCustomElement as defineIfxAccordionItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion-item.js";
 import { IfxAccordion as IfxAccordionElement, defineCustomElement as defineIfxAccordion } from "@infineon/infineon-design-system-stencil/dist/components/ifx-accordion.js";
 import { IfxActionListItem as IfxActionListItemElement, defineCustomElement as defineIfxActionListItem } from "@infineon/infineon-design-system-stencil/dist/components/ifx-action-list-item.js";
@@ -305,7 +305,13 @@ export const IfxCheckboxGroup: StencilReactComponent<IfxCheckboxGroupElement, If
     defineCustomElement: defineIfxCheckboxGroup
 });
 
-export type IfxChipEvents = { onIfxChange: EventName<IfxChipCustomEvent<{ previousSelection: Array<ChipItemSelectEvent>, currentSelection: Array<ChipItemSelectEvent>, name: string }>> };
+export type IfxChipEvents = {
+    onIfxChange: EventName<IfxChipCustomEvent<{
+        previousSelection: Array<ChipItemSelectEvent>;
+        currentSelection: Array<ChipItemSelectEvent>;
+        name: string;
+    }>>
+};
 
 export const IfxChip: StencilReactComponent<IfxChipElement, IfxChipEvents> = /*@__PURE__*/ createComponent<IfxChipElement, IfxChipEvents>({
     tagName: 'ifx-chip',
@@ -474,18 +480,36 @@ export const IfxFaq: StencilReactComponent<IfxFaqElement, IfxFaqEvents> = /*@__P
 });
 
 export type IfxFileUploadEvents = {
-    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{ addedFiles: File[]; files: File[] }>>,
-    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{ removedFile: File; files: File[] }>>,
+    onIfxFileUploadAdd: EventName<IfxFileUploadCustomEvent<{
+        addedFiles: File[];
+        files: File[];
+    }>>,
+    onIfxFileUploadRemove: EventName<IfxFileUploadCustomEvent<{
+        removedFile: File;
+        files: File[];
+    }>>,
     onIfxFileUploadChange: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
-    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{ errorType: string; file: File; message: string; reason?: string }>>,
+    onIfxFileUploadError: EventName<IfxFileUploadCustomEvent<{
+        errorType: string;
+        file: File;
+        message: string;
+        reason?: string;
+    }>>,
     onIfxFileUploadInvalid: EventName<IfxFileUploadCustomEvent<{ file: File; reason: string }>>,
     onIfxFileUploadStart: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadComplete: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
     onIfxFileUploadAllComplete: EventName<IfxFileUploadCustomEvent<{ files: File[] }>>,
     onIfxFileUploadAbort: EventName<IfxFileUploadCustomEvent<{ file: File }>>,
-    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{ droppedFiles: File[]; acceptedFiles: File[]; rejectedFiles: File[] }>>,
+    onIfxFileUploadDrop: EventName<IfxFileUploadCustomEvent<{
+        droppedFiles: File[];
+        acceptedFiles: File[];
+        rejectedFiles: File[];
+    }>>,
     onIfxFileUploadClick: EventName<CustomEvent<void>>,
-    onIfxFileUploadMaxFilesExceeded: EventName<CustomEvent<{ maxFiles: number; attempted: number }>>,
+    onIfxFileUploadMaxFilesExceeded: EventName<CustomEvent<{
+        maxFiles: number;
+        attempted: number;
+    }>>,
     onIfxFileUploadValidation: EventName<CustomEvent<{ valid: boolean }>>,
     onIfxFileUploadRetry: EventName<IfxFileUploadCustomEvent<{ file: File }>>
 };
@@ -864,7 +888,12 @@ export const IfxSegment: StencilReactComponent<IfxSegmentElement, IfxSegmentEven
     defineCustomElement: defineIfxSegment
 });
 
-export type IfxSegmentedControlEvents = { onIfxChange: EventName<CustomEvent<{ previousValue: string, selectedValue: string }>> };
+export type IfxSegmentedControlEvents = {
+    onIfxChange: EventName<CustomEvent<{
+        previousValue: string;
+        selectedValue: string;
+    }>>
+};
 
 export const IfxSegmentedControl: StencilReactComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents> = /*@__PURE__*/ createComponent<IfxSegmentedControlElement, IfxSegmentedControlEvents>({
     tagName: 'ifx-segmented-control',
@@ -1071,7 +1100,7 @@ export const IfxTemplatesUi: StencilReactComponent<IfxTemplatesUiElement, IfxTem
     defineCustomElement: defineIfxTemplatesUi
 });
 
-export type IfxTextFieldEvents = { onIfxInput: EventName<IfxTextFieldCustomEvent<String>> };
+export type IfxTextFieldEvents = { onIfxInput: EventName<CustomEvent<string>> };
 
 export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFieldEvents> = /*@__PURE__*/ createComponent<IfxTextFieldElement, IfxTextFieldEvents>({
     tagName: 'ifx-text-field',
@@ -1082,7 +1111,7 @@ export const IfxTextField: StencilReactComponent<IfxTextFieldElement, IfxTextFie
     defineCustomElement: defineIfxTextField
 });
 
-export type IfxTextareaEvents = { onIfxInput: EventName<IfxTextareaCustomEvent<String>> };
+export type IfxTextareaEvents = { onIfxInput: EventName<CustomEvent<string>> };
 
 export const IfxTextarea: StencilReactComponent<IfxTextareaElement, IfxTextareaEvents> = /*@__PURE__*/ createComponent<IfxTextareaElement, IfxTextareaEvents>({
     tagName: 'ifx-textarea',

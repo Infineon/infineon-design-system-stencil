@@ -18,22 +18,22 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-sidebar-example.scss&#039;
 })
 export class IfxSidebarExample {
-  protected handleSidebarNavigationItem(event: any) {
+  protected handleSidebarNavigationItem(event: CustomEvent) {
     console.log(&#039;ifxSidebarNavigationItem:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarActionItem(event: any) {
+  protected handleSidebarActionItem(event: CustomEvent) {
     console.log(&#039;ifxSidebarActionItem:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarMenu(event: any) {
+  protected handleSidebarMenu(event: CustomEvent) {
     console.log(&#039;ifxSidebarMenu:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarCollapseChange(event: any) {
+  protected handleSidebarCollapseChange(event: CustomEvent) {
     console.log(&#039;ifxSidebarCollapseChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -50,20 +50,20 @@ export class IfxSidebarExample {
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
     copyright-text=&quot;© 1999 - 2025 Infineon Technologies AG&quot;&gt;
     &lt;ifx-sidebar-title
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$event)&quot;
-      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$event)&quot;
-      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$event)&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$event)&quot;&gt;
+      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
+      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
+      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;
       Menu Items
     &lt;/ifx-sidebar-title&gt;
     &lt;ifx-sidebar-item
       href=&quot;https://google.com&quot;
       target=&quot;_blank&quot;
       icon=&quot;image-16&quot;
-      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$event)&quot;
-      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$event)&quot;
-      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$event)&quot;
-      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$event)&quot;&gt;
+      (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
+      (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;
+      (ifxSidebarMenu)=&quot;handleSidebarMenu(\$any(\$event))&quot;
+      (ifxSidebarCollapseChange)=&quot;handleSidebarCollapseChange(\$any(\$event))&quot;&gt;
       Menu Item
     &lt;/ifx-sidebar-item&gt;
     &lt;ifx-sidebar-item
@@ -133,22 +133,22 @@ export class IfxSidebarExample {
     &lt;/ifx-sidebar-item&gt;
   &lt;/ifx-sidebar&gt;`;
 
-  protected handleSidebarNavigationItem(event: any) {
+  protected handleSidebarNavigationItem(event: CustomEvent) {
     console.log('ifxSidebarNavigationItem:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarActionItem(event: any) {
+  protected handleSidebarActionItem(event: CustomEvent) {
     console.log('ifxSidebarActionItem:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarMenu(event: any) {
+  protected handleSidebarMenu(event: CustomEvent) {
     console.log('ifxSidebarMenu:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleSidebarCollapseChange(event: any) {
+  protected handleSidebarCollapseChange(event: CustomEvent) {
     console.log('ifxSidebarCollapseChange:', event.detail);
     // Add your handler logic here
   }

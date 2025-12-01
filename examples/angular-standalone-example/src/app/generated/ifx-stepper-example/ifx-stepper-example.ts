@@ -18,7 +18,7 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-stepper-example.scss&#039;
 })
 export class IfxStepperExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -46,7 +46,7 @@ export class IfxStepperExample {
     &lt;/ifx-step&gt;
   &lt;/ifx-stepper&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }

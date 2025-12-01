@@ -1,0 +1,15 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"extends": "//",
+	"files": {
+		"includes": ["**/*", "!src/generated", "!**/*.vue"]
+	},
+	"linter": {
+		"rules": {
+			"correctness": {
+				"noUnusedVariables": "off",
+				"noUnusedImports": "off"
+			}
+		}
+	}
+}

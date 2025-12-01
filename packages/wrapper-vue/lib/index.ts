@@ -1,2 +1,2 @@
-export * from './stencil-generated/components';
-export * from './plugin';
+export * from "./plugin";
+export * from "./stencil-generated/components";

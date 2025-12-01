@@ -16,12 +16,12 @@ export class IfxSelectExample {
   standalone: false
 })
 export class IfxSelectExample {
-  protected handleSelect(event: any) {
+  protected handleSelect(event: CustomEvent) {
     console.log(&#039;ifxSelect:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -39,15 +39,15 @@ export class IfxSelectExample {
     caption=&quot;true&quot;
     placeholder-value=&quot;Placeholder&quot;
     options=&#039;[{&quot;value&quot;:&quot;a&quot;,&quot;label&quot;:&quot;option a&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;b&quot;,&quot;label&quot;:&quot;option b&quot;,&quot;selected&quot;:false},{&quot;value&quot;:&quot;c&quot;,&quot;label&quot;:&quot;option c&quot;,&quot;selected&quot;:false}]&#039;
-    (ifxSelect)=&quot;handleSelect(\$event)&quot;
-    (ifxInput)=&quot;handleInput(\$event)&quot;&gt;&lt;/ifx-select&gt;`;
+    (ifxSelect)=&quot;handleSelect(\$any(\$event))&quot;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
 
-  protected handleSelect(event: any) {
+  protected handleSelect(event: CustomEvent) {
     console.log('ifxSelect:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event.detail);
     // Add your handler logic here
   }

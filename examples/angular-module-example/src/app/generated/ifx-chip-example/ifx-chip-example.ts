@@ -16,7 +16,7 @@ export class IfxChipExample {
   standalone: false
 })
 export class IfxChipExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -32,7 +32,7 @@ export class IfxChipExample {
     disabled=&quot;false&quot;&gt;
     &lt;ifx-chip-item
       value=&quot;Item Value 1&quot;
-      (ifxChange)=&quot;handleChange(\$event)&quot;&gt;
+      (ifxChange)=&quot;handleChange(\$any(\$event))&quot;&gt;
       Item Label 1
     &lt;/ifx-chip-item&gt;
     &lt;ifx-chip-item value=&quot;Item Value 2&quot;&gt;
@@ -46,7 +46,7 @@ export class IfxChipExample {
     &lt;/ifx-chip-item&gt;
   &lt;/ifx-chip&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }

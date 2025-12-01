@@ -10,7 +10,7 @@
 | Property    | Attribute    | Description | Type                         | Default      |
 | ----------- | ------------ | ----------- | ---------------------------- | ------------ |
 | `ariaLabel` | `aria-label` |             | `string`                     | `undefined`  |
-| `direction` | `direction`  |             | `"horizontal" \| "vertical"` | `'vertical'` |
+| `direction` | `direction`  |             | `"horizontal" \| "vertical"` | `"vertical"` |
 | `href`      | `href`       |             | `string`                     | `""`         |
 | `target`    | `target`     |             | `string`                     | `"_self"`    |
 

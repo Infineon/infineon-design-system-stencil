@@ -17,7 +17,10 @@
   /production-only -->
 
   <!-- Prism.js for syntax highlighting -->
-  <script type="module"> import prismjs from 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/+esm' </script>
+  <script type="module"> 
+  //  biome-ignore lint/correctness/noUnusedImports: needed for loading prismjs as an ES module
+  import prismjs from 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/+esm' 
+  </script>
 
   <style>
     :root {
@@ -76,12 +79,12 @@
         document.getElementById('version-display').textContent = 
           `@infineon/infineon-design-system-stencil@${displayVersion}`;
       })
-      .catch(err => {
+      .catch(_err => {
         // Fallback: try to extract version from unpkg script tag
         const scriptTag = document.querySelector('script[src*="unpkg.com/@infineon/infineon-design-system-stencil"]');
         if (scriptTag) {
           const src = scriptTag.getAttribute('src');
-          const versionMatch = src.match(/@infineon\/infineon-design-system-stencil@([^\/]+)/);
+          const versionMatch = src.match(/@infineon\/infineon-design-system-stencil@([^/]+)/);
           const version = versionMatch ? versionMatch[1] : 'unknown';
           document.getElementById('version-display').textContent = 
             `@infineon/infineon-design-system-stencil@${version}`;

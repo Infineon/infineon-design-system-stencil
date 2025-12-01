@@ -3,8 +3,8 @@
     disabled="false"
     value="true"
     autocomplete="on"
-    (ifxInput)="handleInput($event)"
-    (ifxOpen)="handleOpen($event)"></ifx-search-bar>
+    (ifxInput)="handleInput($any($event))"
+    (ifxOpen)="handleOpen($any($event))"></ifx-search-bar>
 
 <details class="code-details">
   <summary>View Code</summary>

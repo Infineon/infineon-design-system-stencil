@@ -21,7 +21,7 @@
 | `rightText`      | `right-text`       |             | `string`               | `undefined` |
 | `showPercentage` | `show-percentage`  |             | `boolean`              | `false`     |
 | `step`           | `step`             |             | `number`               | `1`         |
-| `type`           | `type`             |             | `"double" \| "single"` | `'single'`  |
+| `type`           | `type`             |             | `"double" \| "single"` | `"single"`  |
 | `value`          | `value`            |             | `number`               | `undefined` |
 
 

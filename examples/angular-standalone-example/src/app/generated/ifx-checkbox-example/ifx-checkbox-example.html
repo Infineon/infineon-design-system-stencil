@@ -5,8 +5,8 @@
     size="s"
     indeterminate="false"
     name="checkbox"
-    (ifxChange)="handleChange($event)"
-    (ifxError)="handleError($event)">
+    (ifxChange)="handleChange($any($event))"
+    (ifxError)="handleError($any($event))">
     Text
   </ifx-checkbox>
 

@@ -7,10 +7,10 @@
  * Example: ifx-switch -> IfxSwitch
  */
 export function toPascalCase(str: string): string {
-  return str
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join('');
+	return str
+		.split("-")
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join("");
 }
 
 /**
@@ -18,7 +18,7 @@ export function toPascalCase(str: string): string {
  * Example: aria-level -> ariaLevel
  */
 export function toCamelCase(str: string): string {
-  return str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+	return str.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 }
 
 /**
@@ -26,7 +26,7 @@ export function toCamelCase(str: string): string {
  * Example: ifxChange -> onIfxChange
  */
 export function toReactEventName(eventName: string): string {
-  return 'on' + eventName.charAt(0).toUpperCase() + eventName.slice(1);
+	return `on${eventName.charAt(0).toUpperCase()}${eventName.slice(1)}`;
 }
 
 /**
@@ -34,8 +34,8 @@ export function toReactEventName(eventName: string): string {
  * Example: ifxChange -> handleChange
  */
 export function toHandlerFunctionName(eventName: string): string {
-  const withoutPrefix = eventName.replace(/^ifx/, '');
-  return 'handle' + withoutPrefix.charAt(0).toUpperCase() + withoutPrefix.slice(1);
+	const withoutPrefix = eventName.replace(/^ifx/, "");
+	return `handle${withoutPrefix.charAt(0).toUpperCase()}${withoutPrefix.slice(1)}`;
 }
 
 /**
@@ -43,41 +43,45 @@ export function toHandlerFunctionName(eventName: string): string {
  * Example: ifxChange -> ifxChange (Angular uses kebab-case in template)
  */
 export function toAngularEventName(eventName: string): string {
-  // Angular event binding uses the event name as-is in camelCase
-  return eventName;
+	// Angular event binding uses the event name as-is in camelCase
+	return eventName;
 }
 
 /**
  * Escape HTML for display in code blocks
  */
 export function escapeHTML(html: string): string {
-  return html
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+	return html
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#39;");
 }
 
 /**
  * Add indentation to each line of text
  */
-export function indent(text: string, indentStr: string, skipFirstLine = false): string {
-  const lines = text.split('\n');
-  return lines
-    .map((line, index) => {
-      if (index === 0 && skipFirstLine) return line;
-      if (line.trim() === '') return '';
-      return indentStr + line;
-    })
-    .join('\n');
+export function indent(
+	text: string,
+	indentStr: string,
+	skipFirstLine = false,
+): string {
+	const lines = text.split("\n");
+	return lines
+		.map((line, index) => {
+			if (index === 0 && skipFirstLine) return line;
+			if (line.trim() === "") return "";
+			return indentStr + line;
+		})
+		.join("\n");
 }
 
 /**
  * Escape regex special characters
  */
 export function escapeRegex(str: string): string {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+	return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
@@ -85,15 +89,19 @@ export function escapeRegex(str: string): string {
  * Example: ("Button", "Primary") -> "Button - Primary"
  * Example: ("Button", "Default") -> "Button"
  */
-export function formatTitle(title: string | undefined, component: string, storyName?: string): string {
-  const baseTitle = title || component;
-  
-  // Don't add story name if it's "Default" or undefined
-  if (!storyName || storyName === 'Default') {
-    return baseTitle;
-  }
-  
-  return `${baseTitle} - ${storyName}`;
+export function formatTitle(
+	title: string | undefined,
+	component: string,
+	storyName?: string,
+): string {
+	const baseTitle = title || component;
+
+	// Don't add story name if it's "Default" or undefined
+	if (!storyName || storyName === "Default") {
+		return baseTitle;
+	}
+
+	return `${baseTitle} - ${storyName}`;
 }
 
 /**
@@ -101,10 +109,7 @@ export function formatTitle(title: string | undefined, component: string, storyN
  * Escapes backslashes first, then backticks and dollar signs.
  */
 export function escapeForTemplateLiteral(str: string): string {
-  return str
-    .replace(/\\/g, '\\\\')
-    .replace(/`/g, '\\`')
-    .replace(/\$/g, '\\$');
+	return str.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$/g, "\\$");
 }
 
 /**
@@ -112,5 +117,5 @@ export function escapeForTemplateLiteral(str: string): string {
  * Escapes backslashes first, then single quotes.
  */
 export function escapeForSingleQuotedAttr(str: string): string {
-  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+	return str.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
 }

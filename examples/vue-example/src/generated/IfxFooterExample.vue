@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
 import Prism from 'prismjs';
+import { nextTick, onMounted } from 'vue';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const codeString = `<script setup lang="ts">
-<\/script>
+</script>
 
 <template>
   <div>
@@ -78,7 +78,7 @@ const codeString = `<script setup lang="ts">
       </div>
     </ifx-footer>
   </div>
-<\/template>`;
+</template>`;
 
 onMounted(() => {
   nextTick(() => {

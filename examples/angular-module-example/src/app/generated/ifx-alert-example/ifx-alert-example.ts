@@ -16,7 +16,7 @@ export class IfxAlertExample {
   standalone: false
 })
 export class IfxAlertExample {
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log(&#039;ifxClose:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -26,11 +26,11 @@ export class IfxAlertExample {
     variant=&quot;primary&quot;
     icon=&quot;c-info-16&quot;
     closable=&quot;true&quot;
-    (ifxClose)=&quot;handleClose(\$event)&quot;&gt;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;&gt;
     Attention! This is an alert message — check it out!
   &lt;/ifx-alert&gt;`;
 
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log('ifxClose:', event.detail);
     // Add your handler logic here
   }

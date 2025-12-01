@@ -16,7 +16,7 @@ export class IfxTabsExample {
   standalone: false
 })
 export class IfxTabsExample {
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log(&#039;ifxChange:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -52,7 +52,7 @@ export class IfxTabsExample {
     &lt;/ifx-tab&gt;
   &lt;/ifx-tabs&gt;`;
 
-  protected handleChange(event: any) {
+  protected handleChange(event: CustomEvent) {
     console.log('ifxChange:', event.detail);
     // Add your handler logic here
   }

@@ -10,20 +10,20 @@
     privacy-policy="https://yourwebsite.com/privacy-policy"
     copyright-text="© 1999 - 2025 Infineon Technologies AG">
     <ifx-sidebar-title
-      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($event)"
-      (ifxSidebarActionItem)="handleSidebarActionItem($event)"
-      (ifxSidebarMenu)="handleSidebarMenu($event)"
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($event)">
+      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
+      (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
+      (ifxSidebarMenu)="handleSidebarMenu($any($event))"
+      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))">
       Menu Items
     </ifx-sidebar-title>
     <ifx-sidebar-item
       href="https://google.com"
       target="_blank"
       icon="image-16"
-      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($event)"
-      (ifxSidebarActionItem)="handleSidebarActionItem($event)"
-      (ifxSidebarMenu)="handleSidebarMenu($event)"
-      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($event)">
+      (ifxSidebarNavigationItem)="handleSidebarNavigationItem($any($event))"
+      (ifxSidebarActionItem)="handleSidebarActionItem($any($event))"
+      (ifxSidebarMenu)="handleSidebarMenu($any($event))"
+      (ifxSidebarCollapseChange)="handleSidebarCollapseChange($any($event))">
       Menu Item
     </ifx-sidebar-item>
     <ifx-sidebar-item

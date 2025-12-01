@@ -1,34 +1,38 @@
 {
-  "name": "infineon-design-system-stencil",
-  "description": "Infineon Design System - Web Components built with Stencil",
-  "author": "Infineon Technologies AG",
-  "private": true,
-  "packageManager": "pnpm@10.23.0",
-  "engines": {
-    "npm": "please-use-pnpm",
-    "pnpm": ">=8.0.0",
-    "node": ">=18.0.0"
-  },
-  "devDependencies": {
-    "@auto-it/first-time-contributor": "^11.3.6",
-    "@auto-it/npm": "^11.3.0",
-    "auto": "^11.3.0",
-    "auto-plugin-webex": "^1.1.0",
-    "lerna": "^9.0.1"
-  },
-  "scripts": {
-    "build": "pnpm run build:components && pnpm run build:wrappers",
-    "build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
-    "build:wrappers": "pnpm run -F @infineon/infineon-design-system-angular build && pnpm run -F @infineon/infineon-design-system-react build && pnpm run -F @infineon/infineon-design-system-vue build",
-    "storybook": "pnpm run -F @infineon/infineon-design-system-stencil storybook",
-    "build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
-    "test": "pnpm run -F @infineon/infineon-design-system-stencil test",
-    "example:angular-standalone": "pnpm run -F angular-standalone-example dev",
-    "example:angular-module": "pnpm run -F angular-module-example dev",
-    "example:react": "pnpm run -F react-example dev",
-    "example:vue": "pnpm run -F vue-example dev",
-    "example:html-cdn": "pnpm run -F html-cdn-example dev",
-    "example:html-vite": "pnpm run -F html-vite-example dev"
-  },
-  "repository": "https://github.com/Infineon/infineon-design-system-stencil"
+	"name": "infineon-design-system-stencil",
+	"description": "Infineon Design System - Web Components built with Stencil",
+	"author": "Infineon Technologies AG",
+	"private": true,
+	"packageManager": "pnpm@10.23.0",
+	"engines": {
+		"npm": "please-use-pnpm",
+		"pnpm": ">=8.0.0",
+		"node": ">=18.0.0"
+	},
+	"devDependencies": {
+		"@auto-it/first-time-contributor": "^11.3.6",
+		"@auto-it/npm": "^11.3.0",
+		"@biomejs/biome": "2.3.8",
+		"auto": "^11.3.0",
+		"auto-plugin-webex": "^1.1.0",
+		"lerna": "^9.0.1"
+	},
+	"scripts": {
+		"build": "pnpm run build:components && pnpm run build:wrappers",
+		"build:components": "pnpm run -F @infineon/infineon-design-system-stencil build",
+		"build:wrappers": "pnpm run -F @infineon/infineon-design-system-angular build && pnpm run -F @infineon/infineon-design-system-react build && pnpm run -F @infineon/infineon-design-system-vue build",
+		"storybook": "pnpm run -F @infineon/infineon-design-system-stencil storybook",
+		"build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
+		"test": "pnpm run -F @infineon/infineon-design-system-stencil test",
+    "generate:examples": "pnpm run -F example-generator start",
+		"example:angular-standalone": "pnpm run -F angular-standalone-example dev",
+		"example:angular-module": "pnpm run -F angular-module-example dev",
+		"example:react": "pnpm run -F react-example dev",
+		"example:vue": "pnpm run -F vue-example dev",
+		"example:html-cdn": "pnpm run -F html-cdn-example dev",
+		"example:html-vite": "pnpm run -F html-vite-example dev",
+		"format": "biome format --write .",
+		"lint": "biome check --write ."
+	},
+	"repository": "https://github.com/Infineon/infineon-design-system-stencil"
 }

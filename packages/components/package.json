@@ -1,96 +1,96 @@
 {
-  "name": "@infineon/infineon-design-system-stencil",
-  "version": "39.3.0",
-  "description": "Infineon Design System - Web Components built with Stencil",
-  "keywords": [
-    "infineon",
-    "design-system",
-    "web-components",
-    "stencil",
-    "ui-components",
-    "component-library"
-  ],
-  "homepage": "https://infineon.github.io/infineon-design-system-stencil/",
-  "bugs": {
-    "url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Infineon/infineon-design-system-stencil.git",
-    "directory": "packages/components"
-  },
-  "author": "Infineon Technologies AG",
-  "license": "MIT",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "exports": {
-    ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/infineon-design-system-stencil.js",
-      "require": "./dist/cjs/infineon-design-system-stencil.js"
-    },
-    "./dist/*": {
-      "import": "./dist/*",
-      "types": "./dist/*"
-    },
-    "./loader": {
-      "types": "./dist/loader/index.d.ts",
-      "import": "./dist/loader/index.js",
-      "require": "./dist/loader/index.cjs.js"
-    },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "default": "./dist/components/index.js"
-    },
-    "./components/*": {
-      "default": "./dist/components/*"
-    },
-    "./styles.css": "./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"
-  },
-  "unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "files": [
-    "dist/"
-  ],
-  "scripts": {
-    "build": "stencil build",
-    "test": "jest",
-    "test.watch": "jest --watch",
-    "test:update": "jest -u",
-    "generate": "stencil generate",
-    "storybook": "storybook dev -p 6262",
-    "build-storybook": "storybook build"
-  },
-  "devDependencies": {
-    "@stencil/angular-output-target": "^1.1.1",
-    "@stencil/core": "^4.38.0",
-    "@stencil/react-output-target": "^1.2.0",
-    "@stencil/sass": "^3.2.2",
-    "@stencil/vue-output-target": "^0.11.8",
-    "@storybook/addon-a11y": "^10.0.6",
-    "@storybook/addon-docs": "^10.0.6",
-    "@storybook/web-components-vite": "^10.0.6",
-    "@types/jest": "^29.5.14",
-    "@types/node": "^22.13.5",
-    "jest": "^30.2.0",
-    "jest-cli": "^30.2.0",
-    "jest-stencil-runner": "^0.0.9",
-    "puppeteer": "^24.31.0",
-    "lit": "^3.3.1",
-    "storybook": "^10.0.6",
-    "typescript": "^5.9.3",
-    "vite": "^7.2.4",
-    "vite-plugin-live-reload": "^3.0.5",
-    "workbox-build": "4.3.1"
-  },
-  "dependencies": {
-    "@infineon/design-system-tokens": "^5.0.0",
-    "@infineon/infineon-icons": "^4.6.0",
-    "@popperjs/core": "^2.11.8",
-    "ag-grid-community": "^34.3.1",
-    "choices.js": "^11.1.0",
-    "classnames": "^2.5.1"
-  }
+	"name": "@infineon/infineon-design-system-stencil",
+	"version": "39.3.0",
+	"description": "Infineon Design System - Web Components built with Stencil",
+	"keywords": [
+		"infineon",
+		"design-system",
+		"web-components",
+		"stencil",
+		"ui-components",
+		"component-library"
+	],
+	"homepage": "https://infineon.github.io/infineon-design-system-stencil/",
+	"bugs": {
+		"url": "https://github.com/Infineon/infineon-design-system-stencil/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Infineon/infineon-design-system-stencil.git",
+		"directory": "packages/components"
+	},
+	"author": "Infineon Technologies AG",
+	"license": "MIT",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.js",
+	"exports": {
+		".": {
+			"types": "./dist/types/index.d.ts",
+			"import": "./dist/esm/infineon-design-system-stencil.js",
+			"require": "./dist/cjs/infineon-design-system-stencil.js"
+		},
+		"./dist/*": {
+			"import": "./dist/*",
+			"types": "./dist/*"
+		},
+		"./loader": {
+			"types": "./dist/loader/index.d.ts",
+			"import": "./dist/loader/index.js",
+			"require": "./dist/loader/index.cjs.js"
+		},
+		"./components": {
+			"types": "./dist/components/index.d.ts",
+			"default": "./dist/components/index.js"
+		},
+		"./components/*": {
+			"default": "./dist/components/*"
+		},
+		"./styles.css": "./dist/infineon-design-system-stencil/infineon-design-system-stencil.css"
+	},
+	"unpkg": "dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js",
+	"types": "dist/types/index.d.ts",
+	"collection": "dist/collection/collection-manifest.json",
+	"collection:main": "dist/collection/index.js",
+	"files": [
+		"dist/"
+	],
+	"scripts": {
+		"build": "stencil build",
+		"test": "jest",
+		"test.watch": "jest --watch",
+		"test:update": "jest -u",
+		"generate": "stencil generate",
+		"storybook": "storybook dev -p 6262",
+		"build-storybook": "storybook build"
+	},
+	"devDependencies": {
+		"@stencil/angular-output-target": "^1.1.1",
+		"@stencil/core": "^4.38.0",
+		"@stencil/react-output-target": "^1.2.0",
+		"@stencil/sass": "^3.2.2",
+		"@stencil/vue-output-target": "^0.11.8",
+		"@storybook/addon-a11y": "^10.0.6",
+		"@storybook/addon-docs": "^10.0.6",
+		"@storybook/web-components-vite": "^10.0.6",
+		"@types/jest": "^29.5.14",
+		"@types/node": "^22.13.5",
+		"jest": "^30.2.0",
+		"jest-cli": "^30.2.0",
+		"jest-stencil-runner": "^0.0.9",
+		"puppeteer": "^24.31.0",
+		"lit": "^3.3.1",
+		"storybook": "^10.0.6",
+		"typescript": "^5.9.3",
+		"vite": "^7.2.4",
+		"vite-plugin-live-reload": "^3.0.5",
+		"workbox-build": "4.3.1"
+	},
+	"dependencies": {
+		"@infineon/design-system-tokens": "^5.0.0",
+		"@infineon/infineon-icons": "^4.6.0",
+		"@popperjs/core": "^2.11.8",
+		"ag-grid-community": "^34.3.1",
+		"choices.js": "^11.1.0",
+		"classnames": "^2.5.1"
+	}
 }

@@ -16,7 +16,7 @@ export class IfxCheckboxGroupExample {
   standalone: false
 })
 export class IfxCheckboxGroupExample {
-  protected handleSetGroupError(event: any) {
+  protected handleSetGroupError(event: CustomEvent) {
     console.log(&#039;setGroupError:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -50,7 +50,7 @@ export class IfxCheckboxGroupExample {
     &lt;/ifx-checkbox&gt;
   &lt;/ifx-checkbox-group&gt;`;
 
-  protected handleSetGroupError(event: any) {
+  protected handleSetGroupError(event: CustomEvent) {
     console.log('setGroupError:', event.detail);
     // Add your handler logic here
   }

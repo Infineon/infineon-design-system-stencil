@@ -7,16 +7,16 @@
  * LICENSE file in the root directory of this source tree.
  */
 {
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "./out-tsc/spec",
-    "module": "CommonJs",
-    "types": ["jest"]
-  },
-  "include": [
-    "src/**/*.spec.ts",
-    "src/**/*.d.ts",
-    "common/src/**/*.spec.ts",
-    "common/src/**/*.d.ts"
-  ]
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./out-tsc/spec",
+		"module": "CommonJs",
+		"types": ["jest"]
+	},
+	"include": [
+		"src/**/*.spec.ts",
+		"src/**/*.d.ts",
+		"common/src/**/*.spec.ts",
+		"common/src/**/*.d.ts"
+	]
 }

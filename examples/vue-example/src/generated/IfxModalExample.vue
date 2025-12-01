@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, nextTick } from 'vue';
 import Prism from 'prismjs';
+import { nextTick, onMounted } from 'vue';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-javascript';
@@ -26,7 +26,7 @@ const handleClose = (event: CustomEvent) => {
   console.log('ifxClose:', event.detail);
   // Add your handler logic here
 };
-<\/script>
+</script>
 
 <template>
   <div>
@@ -60,7 +60,7 @@ const handleClose = (event: CustomEvent) => {
       </ifx-button>
     </div>
   </div>
-<\/template>`;
+</template>`;
 
 onMounted(() => {
   nextTick(() => {

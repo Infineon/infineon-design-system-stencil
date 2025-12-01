@@ -18,7 +18,7 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-text-field-example.scss&#039;
 })
 export class IfxTextFieldExample {
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -41,9 +41,9 @@ export class IfxTextFieldExample {
     type=&quot;text&quot;
     internal-id=&quot;text-field&quot;
     aria-label=&quot;text field for user input&quot;
-    (ifxInput)=&quot;handleInput(\$event)&quot;&gt;&lt;/ifx-text-field&gt;`;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
 
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event.detail);
     // Add your handler logic here
   }

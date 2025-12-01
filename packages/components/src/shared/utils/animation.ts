@@ -1,45 +1,45 @@
 export function animationTo(
-  element: HTMLElement,
-  keyframes: Keyframe | Keyframe[],
-  options?: KeyframeAnimationOptions
+	element: HTMLElement,
+	keyframes: Keyframe | Keyframe[],
+	options?: KeyframeAnimationOptions,
 ) {
-  const animated = element.animate(keyframes, { ...options, fill: 'both' });
-  animated.addEventListener('finish', () => {
-    // @ts-ignore
-    animated.commitStyles();
-    animated.cancel();
-  });
+	const animated = element.animate(keyframes, { ...options, fill: "both" });
+	animated.addEventListener("finish", () => {
+		// @ts-expect-error
+		animated.commitStyles();
+		animated.cancel();
+	});
 
-  return animated;
+	return animated;
 }
 
 const keyframeDefaults = {
-  easing: 'cubic-bezier(0.390, 0.575, 0.565, 1.000)',
+	easing: "cubic-bezier(0.390, 0.575, 0.565, 1.000)",
 };
 
 export const KEYFRAMES = {
-  fadeIn: [
-    {
-      offset: 0,
-      ...keyframeDefaults,
-      opacity: 0,
-    },
-    {
-      offset: 1,
-      ...keyframeDefaults,
-      opacity: 1,
-    },
-  ],
-  fadeOut: [
-    {
-      offset: 0,
-      ...keyframeDefaults,
-      opacity: 1,
-    },
-    {
-      offset: 1,
-      ...keyframeDefaults,
-      opacity: 0,
-    },
-  ],
+	fadeIn: [
+		{
+			offset: 0,
+			...keyframeDefaults,
+			opacity: 0,
+		},
+		{
+			offset: 1,
+			...keyframeDefaults,
+			opacity: 1,
+		},
+	],
+	fadeOut: [
+		{
+			offset: 0,
+			...keyframeDefaults,
+			opacity: 1,
+		},
+		{
+			offset: 1,
+			...keyframeDefaults,
+			opacity: 0,
+		},
+	],
 };

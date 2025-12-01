@@ -17,11 +17,11 @@
     dropdown-aria-label="Search suggestions and history"
     suggestion-aria-label="Search suggestion"
     history-item-aria-label="Search history item"
-    (ifxInput)="handleInput($event)"
-    (ifxSuggestionRequested)="handleSuggestionRequested($event)"
-    (ifxSuggestionSelected)="handleSuggestionSelected($event)"
-    (ifxFocus)="handleFocus($event)"
-    (ifxBlur)="handleBlur($event)"></ifx-search-field>
+    (ifxInput)="handleInput($any($event))"
+    (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
+    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
+    (ifxFocus)="handleFocus($any($event))"
+    (ifxBlur)="handleBlur($any($event))"></ifx-search-field>
 
 <details class="code-details">
   <summary>View Code</summary>

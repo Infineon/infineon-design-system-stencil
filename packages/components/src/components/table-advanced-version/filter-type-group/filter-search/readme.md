@@ -12,7 +12,7 @@
 | `disabled`          | `disabled`           |             | `boolean` | `false`     |
 | `filterKey`         | `filter-key`         |             | `string`  | `undefined` |
 | `filterName`        | `filter-name`        |             | `string`  | `undefined` |
-| `filterOrientation` | `filter-orientation` |             | `string`  | `'sidebar'` |
+| `filterOrientation` | `filter-orientation` |             | `string`  | `"sidebar"` |
 | `filterValue`       | `filter-value`       |             | `string`  | `undefined` |
 | `placeholder`       | `placeholder`        |             | `string`  | `undefined` |
 

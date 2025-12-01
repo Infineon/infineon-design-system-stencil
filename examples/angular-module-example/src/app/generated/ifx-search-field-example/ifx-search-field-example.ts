@@ -16,27 +16,27 @@ export class IfxSearchFieldExample {
   standalone: false
 })
 export class IfxSearchFieldExample {
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log(&#039;ifxInput:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleSuggestionRequested(event: any) {
+  protected handleSuggestionRequested(event: CustomEvent) {
     console.log(&#039;ifxSuggestionRequested:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleSuggestionSelected(event: any) {
+  protected handleSuggestionSelected(event: CustomEvent) {
     console.log(&#039;ifxSuggestionSelected:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleFocus(event: any) {
+  protected handleFocus(event: CustomEvent) {
     console.log(&#039;ifxFocus:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleBlur(event: any) {
+  protected handleBlur(event: CustomEvent) {
     console.log(&#039;ifxBlur:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -60,33 +60,33 @@ export class IfxSearchFieldExample {
     dropdown-aria-label=&quot;Search suggestions and history&quot;
     suggestion-aria-label=&quot;Search suggestion&quot;
     history-item-aria-label=&quot;Search history item&quot;
-    (ifxInput)=&quot;handleInput(\$event)&quot;
-    (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$event)&quot;
-    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$event)&quot;
-    (ifxFocus)=&quot;handleFocus(\$event)&quot;
-    (ifxBlur)=&quot;handleBlur(\$event)&quot;&gt;&lt;/ifx-search-field&gt;`;
+    (ifxInput)=&quot;handleInput(\$any(\$event))&quot;
+    (ifxSuggestionRequested)=&quot;handleSuggestionRequested(\$any(\$event))&quot;
+    (ifxSuggestionSelected)=&quot;handleSuggestionSelected(\$any(\$event))&quot;
+    (ifxFocus)=&quot;handleFocus(\$any(\$event))&quot;
+    (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
 
-  protected handleInput(event: any) {
+  protected handleInput(event: CustomEvent) {
     console.log('ifxInput:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleSuggestionRequested(event: any) {
+  protected handleSuggestionRequested(event: CustomEvent) {
     console.log('ifxSuggestionRequested:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleSuggestionSelected(event: any) {
+  protected handleSuggestionSelected(event: CustomEvent) {
     console.log('ifxSuggestionSelected:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleFocus(event: any) {
+  protected handleFocus(event: CustomEvent) {
     console.log('ifxFocus:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleBlur(event: any) {
+  protected handleBlur(event: CustomEvent) {
     console.log('ifxBlur:', event.detail);
     // Add your handler logic here
   }

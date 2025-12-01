@@ -18,7 +18,7 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-action-list-example.scss&#039;
 })
 export class IfxActionListExample {
-  protected handleActionListItemClick(event: any) {
+  protected handleActionListItemClick(event: CustomEvent) {
     console.log(&#039;ifxActionListItemClick:&#039;, event.detail);
     // Add your handler logic here
   }
@@ -29,7 +29,7 @@ export class IfxActionListExample {
       description=&quot;View your main dashboard&quot;
       value=&quot;dashboard&quot;
       item-aria-label=&quot;Navigation item&quot;
-      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$event)&quot;&gt;
+      (ifxActionListItemClick)=&quot;handleActionListItemClick(\$any(\$event))&quot;&gt;
       &lt;ifx-icon
         slot=&quot;trailing&quot;
         icon=&quot;chevron-right-16&quot;&gt;&lt;/ifx-icon&gt;
@@ -63,7 +63,7 @@ export class IfxActionListExample {
     &lt;/ifx-action-list-item&gt;
   &lt;/ifx-action-list&gt;`;
 
-  protected handleActionListItemClick(event: any) {
+  protected handleActionListItemClick(event: CustomEvent) {
     console.log('ifxActionListItemClick:', event.detail);
     // Add your handler logic here
   }

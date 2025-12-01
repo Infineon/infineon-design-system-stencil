@@ -29,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import Prism from 'prismjs';
+import { ref } from 'vue';
 
 const modalRef = ref<HTMLElement | null>(null);
 

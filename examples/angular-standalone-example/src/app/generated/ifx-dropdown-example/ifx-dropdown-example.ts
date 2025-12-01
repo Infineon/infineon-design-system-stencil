@@ -18,25 +18,25 @@ import { Component } from &#039;@angular/core&#039;;
   styleUrl: &#039;./ifx-dropdown-example.scss&#039;
 })
 export class IfxDropdownExample {
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log(&#039;ifxOpen:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log(&#039;ifxClose:&#039;, event.detail);
     // Add your handler logic here
   }
 
-  protected handleDropdownMenuItem(event: any) {
+  protected handleDropdownMenuItem(event: CustomEvent) {
     console.log(&#039;ifxDropdownMenuItem:&#039;, event.detail);
     // Add your handler logic here
   }
 }`;
   protected readonly htmlCode = `  &lt;div
-    (ifxOpen)=&quot;handleOpen(\$event)&quot;
-    (ifxClose)=&quot;handleClose(\$event)&quot;
-    (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$event)&quot;&gt;
+    (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+    (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+    (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
     &lt;ifx-dropdown
       placement=&quot;bottom-start&quot;
       disabled=&quot;false&quot;
@@ -46,23 +46,23 @@ export class IfxDropdownExample {
       no-append-to-body=&quot;false&quot;&gt;
       &lt;ifx-dropdown-trigger-button
         variant=&quot;primary&quot;
-        (ifxOpen)=&quot;handleOpen(\$event)&quot;
-        (ifxClose)=&quot;handleClose(\$event)&quot;
-        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$event)&quot;&gt;
+        (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+        (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
         Dropdown
       &lt;/ifx-dropdown-trigger-button&gt;
       &lt;ifx-dropdown-menu
         size=&quot;m&quot;
-        (ifxOpen)=&quot;handleOpen(\$event)&quot;
-        (ifxClose)=&quot;handleClose(\$event)&quot;
-        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$event)&quot;&gt;
+        (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+        (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+        (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
         &lt;ifx-dropdown-item
           icon=&quot;c-info-16&quot;
           target=&quot;_self&quot;
           href=&quot;true&quot;
-          (ifxOpen)=&quot;handleOpen(\$event)&quot;
-          (ifxClose)=&quot;handleClose(\$event)&quot;
-          (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$event)&quot;&gt;
+          (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;
+          (ifxClose)=&quot;handleClose(\$any(\$event))&quot;
+          (ifxDropdownMenuItem)=&quot;handleDropdownMenuItem(\$any(\$event))&quot;&gt;
           Menu Item
         &lt;/ifx-dropdown-item&gt;
         &lt;ifx-dropdown-item
@@ -93,17 +93,17 @@ export class IfxDropdownExample {
     &lt;/ifx-dropdown&gt;
   &lt;/div&gt;`;
 
-  protected handleOpen(event: any) {
+  protected handleOpen(event: CustomEvent) {
     console.log('ifxOpen:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleClose(event: any) {
+  protected handleClose(event: CustomEvent) {
     console.log('ifxClose:', event.detail);
     // Add your handler logic here
   }
 
-  protected handleDropdownMenuItem(event: any) {
+  protected handleDropdownMenuItem(event: CustomEvent) {
     console.log('ifxDropdownMenuItem:', event.detail);
     // Add your handler logic here
   }

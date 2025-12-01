@@ -12,12 +12,12 @@
 | `ariaLabel`   | `aria-label`  |             | `string`                                        | `undefined`  |
 | `disabled`    | `disabled`    |             | `boolean`                                       | `false`      |
 | `icon`        | `icon`        |             | `string`                                        | `""`         |
-| `placeholder` | `placeholder` |             | `string`                                        | `''`         |
+| `placeholder` | `placeholder` |             | `string`                                        | `""`         |
 | `readOnly`    | `read-only`   |             | `boolean`                                       | `false`      |
-| `size`        | `size`        |             | `"large" \| "medium" \| "small"`                | `'medium'`   |
-| `theme`       | `theme`       |             | `"filled-dark" \| "filled-light" \| "outlined"` | `'outlined'` |
+| `size`        | `size`        |             | `"large" \| "medium" \| "small"`                | `"medium"`   |
+| `theme`       | `theme`       |             | `"filled-dark" \| "filled-light" \| "outlined"` | `"outlined"` |
 | `value`       | `value`       |             | `string \| string[]`                            | `undefined`  |
-| `variant`     | `variant`     |             | `"multi" \| "single"`                           | `'single'`   |
+| `variant`     | `variant`     |             | `"multi" \| "single"`                           | `"single"`   |
 
 
 ## Events
