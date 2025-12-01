@@ -10,6 +10,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
+    "@auto-it/first-time-contributor": "^11.3.6",
     "@auto-it/npm": "^11.3.0",
     "auto": "^11.3.0",
     "auto-plugin-webex": "^1.1.0",

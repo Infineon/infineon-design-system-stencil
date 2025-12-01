@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-react",
-  "version": "39.3.0",
+  "version": "1.0.0",
   "description": "React wrapper for Infineon Design System Web Components",
   "keywords": [
     "infineon",
@@ -24,7 +24,6 @@
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "test": "node ./__tests__/react-library.test.js",
     "build": "tsc -p .",
     "tsc": "tsc -p . --outDir ./dist"
   },
