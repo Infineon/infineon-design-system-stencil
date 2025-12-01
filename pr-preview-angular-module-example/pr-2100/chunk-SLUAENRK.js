@@ -1,1 +1,0 @@
-import{b as o,d as a}from"./chunk-KEQW727C.js";import"./chunk-2R6CW7ES.js";var t=".dropdown-separator{height:1px;background-color:#EEEDED;margin:8px 16px}",p=(()=>{let r=class{constructor(e){o(this,e)}render(){return a("div",{key:"0ebcf8cceb02628c769564467114989a9014d639",class:"dropdown-separator"})}};return r.style=t,r})();export{p as ifx_dropdown_separator};
