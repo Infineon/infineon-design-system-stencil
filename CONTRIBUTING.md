@@ -238,6 +238,54 @@ This will:
 
 See [example-generator/ARCHITECTURE.md](./example-generator/ARCHITECTURE.md) for detailed information.
 
+### 5. Code Quality Checks
+
+This project uses **[Biome](https://biomejs.dev/)** for linting and formatting.
+
+**Main commands:**
+```bash
+# Format all files (formatting only)
+pnpm format
+
+# Lint all files (linting only)
+pnpm lint
+
+# Check all files (lint + format together)
+pnpm check
+```
+
+**Single file commands:**
+```bash
+# Format a single file
+pnpm exec biome format --write path/to/file.ts
+
+# Lint a single file
+pnpm exec biome lint --write path/to/file.ts
+
+# Check (lint + format) a single file
+pnpm exec biome check --write path/to/file.ts
+```
+
+**Biome commands explained:**
+- `biome format` - Formatting only (indentation, quotes, line breaks)
+- `biome lint` - Linting only (code quality, best practices)
+- `biome check` - Both linting AND formatting together
+
+**Editor Integration**: Install the [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) to automatically format files on save. This is the recommended workflow for day-to-day development.
+For other editors, refer to the [Biome editor integration guide](https://biomejs.dev/guides/editors/first-party-extensions/).
+
+**Pre-commit Hooks**: The project uses [Husky](https://typicode.github.io/husky/) to automatically run quality checks before each commit. The pre-commit hook (`.husky/pre-commit`) will:
+1. Run `biome check` on staged files (lint + format)
+2. Run the test suite
+
+If checks fail, the commit will be blocked. Fix the issues and try again.
+
+**Bypassing hooks** (not recommended):
+```bash
+git commit --no-verify -m "your message"
+```
+⚠️ Only use `--no-verify` when absolutely necessary, as the hooks ensure code quality.
+
 ## 🧪 Building and Testing
 
 ### Building Packages
@@ -283,6 +331,25 @@ pnpm -F react-example build
 pnpm -F react-example preview
 # Open http://localhost:4005
 ```
+
+### Linting and Formatting
+
+See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome for linting and formatting.
+
+**Quick reference:**
+```bash
+pnpm format    # Format all files
+pnpm lint      # Lint all files
+pnpm check     # Lint + format together
+```
+
+**Biome configuration** (`biome.json`):
+- **Formatter**: Tabs for indentation, double quotes
+- **Linter**: Recommended rules enabled
+- **Auto-organize imports**: Enabled
+- **Ignored paths**: Examples and auto-generated files
+
+**Tip**: Use the Biome editor extension for automatic formatting on save instead of running commands manually.
 
 ## 📝 Code Standards
 
@@ -397,6 +464,9 @@ fix(switch): correct toggle animation timing
 docs(readme): update installation instructions
 refactor(accordion): simplify state management
 ```
+
+### Linting and Formatting
+See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome for linting and formatting.
 
 ## 🔧 Working with Components
 

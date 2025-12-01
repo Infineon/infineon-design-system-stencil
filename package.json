@@ -33,8 +33,9 @@
 		"example:html-cdn": "pnpm run -F html-cdn-example dev",
 		"example:html-vite": "pnpm run -F html-vite-example dev",
 		"format": "biome format --write .",
-		"lint": "biome check --write .",
-		"lint:staged": "biome check --write --staged --no-errors-on-unmatched",
+		"lint": "biome lint --write .",
+		"check": "biome check --write .",
+		"check:staged": "biome check --write --staged --no-errors-on-unmatched",
 		"prepare": "husky"
 	},
 	"repository": "https://github.com/Infineon/infineon-design-system-stencil"
