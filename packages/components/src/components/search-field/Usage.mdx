@@ -4,7 +4,7 @@ import * as SearchFieldStories from './search-field.stories';
 import SearchFieldAnatomy from '../../../public-storybook/images/search-input/search-field-anatomy.png';
 import SearchFieldStates from '../../../public-storybook/images/search-input/search-field-states.png';
 import SearchFieldSizes from '../../../public-storybook/images/search-input/search-field-sizes.png';
-import SearchFieldSuggest from '../../../public-storybook/images/search-input/search-suggest-search.png';
+import SearchFieldSuggestTruncating from '../../../public-storybook/images/search-input/search-suggest-truncating.png';
 import SearchFieldRecentSuggest from '../../../public-storybook/images/search-input/search-recent-suggest.png';
 
 
@@ -52,9 +52,10 @@ There are two search field sizes: 36px and 40px. This will give you more flexibi
 <img src={SearchFieldSizes} alt="Search Field Sizes" />
 
 ## Search Extension
-
+The DDS shows recent searches and search suggestions. When users click in the search field, it can display their recent queries and/or trending keywords. As they start typing, suggestions appear. Recent searches use a history icon, while suggestions and results use a search icon, making them easy to tell apart. Users can remove recent searches and suggestions with a close icon. You can also show the search scope and the number of entries.
 ### Recent- and Search Suggestions
 <img src={SearchFieldRecentSuggest} alt="Search Field Recent Suggest" />
-The DDS provides a recent- and search suggest feature. If the user clicks on the search field, recently displayed search keywords and/or trend keywords can be displayed. Does the user start typing if possible, only the suggested searches should be visible.
 
-<img src={SearchFieldSuggest} alt="Search Field Suggest" />
+### Truncating
+If the text exceeds the available space, it is truncated and an elipsis is shown.
+<img src={SearchFieldSuggestTruncating} alt="Search Field Suggest Truncating" />
