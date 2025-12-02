@@ -55,8 +55,8 @@
   gap: tokens.$ifxSpace100;
   //transition: max-height 0.3s ease-in-out;
   overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s ease;
+  height: 0;
+  transition: height 0.3s ease;
   line-height: 24px;
   font-size: tokens.$ifxFontSizeM;
   font-weight: 400;
