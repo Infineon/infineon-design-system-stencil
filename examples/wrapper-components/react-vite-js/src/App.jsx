@@ -16,7 +16,6 @@ import Navbar from './components/Navbar/Navbar';
 import SearchField from './components/SearchField/SearchField';
 import IconButton from './components/IconButton/IconButton';
 import Tabs from './components/Tabs/Tabs';
-import Tag from './components/Tag/Tag';
 import Switch from './components/Switch/Switch';
 import Card from './components/Card/Card';
 import Dropdown from './components/Dropdown/Dropdown';
@@ -28,7 +27,6 @@ import Pagination from './components/Pagination/Pagination';
 import BasicTable from './components/BasicTable/BasicTable';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Modal from './components/Modal/Modal';
-import Badge from './components/Badge/Badge'
 import Footer from './components/Footer/Footer'
 import Icon from './components/Icon/Icon';
 import Slider from './components/Slider/Slider'
@@ -42,7 +40,7 @@ import Textarea from './components/Textarea/Textarea';
 import TreeView from './components/TreeView/TreeView';
 import CheckboxGroup from './components/CheckboxGroup/CheckboxGroup';
 import FileUpload from './components/FileUpload/FileUpload';
-
+import ActionList from './components/ActionList/ActionList';
 function App() {
 
   return (
@@ -51,16 +49,15 @@ function App() {
       <Navbar />
       <h1>Stencil Framework integration - React + JS</h1>
 
+      <h2>Action List</h2>
+      <ActionList />
+
       <h2>Accordion</h2>
       <Accordion />
       <br />
 
       <h2>Alert</h2>
       <Alert />
-      <br />
-
-      <h2>Badge</h2>
-      <Badge />
       <br />
 
       <h2>Breadcrumbs</h2>
@@ -192,12 +189,12 @@ function App() {
       <Tabs />
       <br />
 
-      <h2>Tag</h2>
-      <Tag />
-      <br />
-
       <h2>Textarea</h2>
       <Textarea />
+      <br />
+      
+      <h2>Text Field</h2>
+      <TextField />
       <br />
 
       <h2>Tree View</h2>

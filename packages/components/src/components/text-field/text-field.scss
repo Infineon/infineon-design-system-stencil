@@ -1,5 +1,5 @@
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../global/font.scss';
 
 :host {
   display: flex;
@@ -17,24 +17,45 @@
   flex-grow: 0;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
+  & .delete-icon {
+    position: absolute;
+    right: tokens.$ifxSpace200;
+  }
 
+  &:not(.readonly, .disabled) .delete-icon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
+  &.disabled:not(.readonly) {
 
-  &.disabled {
+    & #text-field { 
+      color: tokens.$ifxColorBaseWhite;
+    }
+
+    & .delete-icon { 
+      color: tokens.$ifxColorBaseWhite;
+    }
+    
     & .textInput__top-wrapper {
       & label {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
+      }
+
+      & .required {
+        color: tokens.$ifxColorEngineering300;
       }
     }
 
     & .textInput__bottom-wrapper {
       input {
-        border: 1px solid tokens.$ifxColorEngineering500;
-        background-color: tokens.$ifxColorEngineering200;
+        border: 1px solid tokens.$ifxColorEngineering300;
+        background-color: tokens.$ifxColorEngineering300;
 
         &::placeholder {
-          font-size: tokens.$ifxFontSizeS;
-          color: tokens.$ifxColorEngineering500;
+          font-size: tokens.$ifxFontSizeM;
+          color: tokens.$ifxColorBaseWhite;
         }
       }
     }
@@ -45,7 +66,7 @@
     flex-direction: row;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 0;
     align-self: stretch;
@@ -53,7 +74,7 @@
 
     & label {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       display: flex;
@@ -64,18 +85,19 @@
       flex-grow: 0;
 
       & .optional-required {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .optional {
-        margin-left: 4px;
+        margin-left: tokens.$ifxSpace50;
       }
 
       & .required {
-        margin-left: 4px;
-        
+        color: tokens.$ifxColorEngineering500;
+        margin-left: tokens.$ifxSpace50;
+
         &.error {
-          color: #CD002F;
+          color: tokens.$ifxColorRed500;
         }
       }
     }
@@ -88,7 +110,6 @@
     width: 100%;
   }
 
-
   & .textInput__bottom-wrapper {
     flex-grow: 1;
     position: relative;
@@ -96,7 +117,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    gap: 4px;
+    gap: tokens.$ifxSpace50;
     flex: none;
     order: 1;
     align-self: stretch;
@@ -115,7 +136,6 @@
       color: tokens.$ifxColorBaseBlack;
       font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
       border: 1px solid tokens.$ifxColorEngineering400;
@@ -132,10 +152,9 @@
         line-height: tokens.$ifxLineHeightS;
 
         &::placeholder {
-          font-size: tokens.$ifxFontSizeS;
+          font-size: tokens.$ifxFontSizeM;
           line-height: tokens.$ifxLineHeightS;
         }
-
       }
 
       &.icon {
@@ -143,40 +162,48 @@
       }
 
       &.error {
-        border: 1px solid #CD002F;
+        border: 1px solid tokens.$ifxColorRed500;
 
         &:focus {
           outline: none;
+        }
+      }
+
+      &.readonly {
+        border: none;
+        border-radius: var(--borderRadius-12, 1px);
+        border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
+        background: var(--color-base-white, #fff);
+        padding-left: 0;
+
+        &::placeholder {
+          color: tokens.$ifxColorBaseBlack;
         }
       }
 
       &.success {
-        border: 1px solid #4CA460;
+        border: 1px solid tokens.$ifxColorGreen500;
 
         &:focus {
           outline: none;
         }
       }
 
-
-      &:focus:not(.error, .success) {
+      &:focus:not(.error, .success):not(.readonly) {
         outline: none;
         border: 1px solid tokens.$ifxColorOcean500;
       }
 
-      &:hover:not(:disabled, :focus, .error, .success) {
-        border: 1px solid tokens.$ifxColorEngineering500;
+      &.readonly:focus,
+      &[readonly]:focus {
+        outline: none;
+        box-shadow: none;
+        border: none;
+        border-bottom: 1px solid var(--color-engineering-300, #bfbbbb);
       }
 
-      &::placeholder {
-        font-style: normal;
-        font-weight: 400;
-        font-size: tokens.$ifxFontSizeM;
-        line-height: tokens.$ifxLineHeightM;
-        color: #8D8786;
-        flex: none;
-        order: 1;
-        flex-grow: 1;
+      &:hover:not(:disabled, :focus, .error, .success):not(.readonly) {
+        border: 1px solid tokens.$ifxColorEngineering500;
       }
     }
 
@@ -188,16 +215,15 @@
       transform: translateY(-50%);
       left: tokens.$ifxSpace200;
       /* Adjust this value to control the icon's left offset */
-      transition: .3s;
+      transition: 0.3s;
       color: tokens.$ifxColorEngineering400;
     }
 
     & .textInput__bottom-wrapper-caption {
       font-style: normal;
-      font-weight: 400;
+      font-weight: tokens.$ifxFontWeightRegular;
       font-size: tokens.$ifxFontSizeXs;
       line-height: tokens.$ifxLineHeightXs;
-      letter-spacing: 0.2px;
       color: tokens.$ifxColorBaseBlack;
       flex: none;
       order: 1;
@@ -205,23 +231,12 @@
       flex-grow: 0;
 
       &.error {
-        color: #CD002F;
-
+        color: tokens.$ifxColorRed500;
       }
 
       &.disabled {
-        color: tokens.$ifxColorEngineering500;
+        color: tokens.$ifxColorEngineering300;
       }
-    }
-
-    
-  }
-  .delete-icon {
-    position: absolute;
-    right: tokens.$ifxSpace200;
-
-    :hover {
-      cursor: pointer;
     }
   }
 }

@@ -1,13 +1,28 @@
 // @import '~choices.js/public/assets/styles/choices.css';
-@use "~@infineon/design-system-tokens/dist/tokens";
-@use "../../../global/font.scss";
+@use '~@infineon/design-system-tokens/dist/tokens';
+@use '../../../global/font.scss';
 
 .ifx-multiselect-container {
   position: relative;
   box-sizing: border-box;
-  font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
+  font-family: var(--ifx-font-family);
+  
 
+  &.disabled {
+    & .ifx-label-wrapper {
+      color: tokens.$ifxColorEngineering300;
+    }
 
+    & .ifx-multiselect-wrapper {
+      background: tokens.$ifxColorEngineering300;
+      color: tokens.$ifxColorBaseWhite;
+      border-color: tokens.$ifxColorEngineering300;
+      cursor: default;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  }
 
   &:hover {
     cursor: pointer;
@@ -20,16 +35,34 @@
     word-wrap: break-word;
     overflow-wrap: anywhere;
     max-width: 100%;
+
+    & .required {
+      margin-left: 4px;
+
+      &.error {
+        color: #CD002F;
+      }
+    }
   }
 
-  .ifx-error-message-wrapper {
-    color: #CD002F;
+  .multi__select-caption {
+    font-style: normal;
+    font-weight: tokens.$ifxFontWeightRegular;
     font-size: tokens.$ifxFontSizeXs;
     line-height: tokens.$ifxLineHeightXs;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;
-    max-width: 100%;
+    color: tokens.$ifxColorBaseBlack;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+
+    &.error {
+      color: tokens.$ifxColorRed500;
+    }
+
+    &.disabled {
+      color: tokens.$ifxColorEngineering300;
+    }
   }
 
   .ifx-multiselect-wrapper {
@@ -65,26 +98,11 @@
         transform: translate(-50%, -50%);
         border: 2px solid tokens.$ifxColorOcean500;
         border-radius: 2px;
-
       }
     }
 
-    &.disabled {
-      background: tokens.$ifxColorEngineering200;
-      color: #575352;
-      border-color: #575352;
-      cursor: default;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
     &.error {
-      border-color: #CD002F;
-    }
-
-    &:hover:not(.focus, :focus) {
-      border-color: tokens.$ifxColorEngineering500;
+      border-color: tokens.$ifxColorRed500;
     }
 
     &.active {
@@ -98,10 +116,9 @@
       }
 
       & .icon-wrapper-down {
-        display: none
+        display: none;
       }
     }
-
 
     & .icon-wrapper-up {
       display: none;
@@ -131,9 +148,7 @@
     &.placeholder {
       opacity: 0.5;
     }
-
   }
-
 
   .ifx-multiselect-icon-container {
     margin-left: auto;
@@ -173,12 +188,16 @@
     width: 100%;
     margin-top: tokens.$ifxSpace50;
     border: 1px solid tokens.$ifxColorEngineering200;
-    background-color: #fff;
-    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.10);
+    background-color: tokens.$ifxColorBaseWhite;
+    box-shadow: 0px 6px 9px 0px rgba(29, 29, 29, 0.1);
     max-height: 300px;
     z-index: 1000;
     display: flex;
     flex-direction: column;
+  }
+
+   &:not(.disabled) .ifx-multiselect-wrapper:hover:not(.focus, :focus) {
+    border-color: tokens.$ifxColorEngineering500;
   }
 }
 
@@ -249,4 +268,3 @@
   padding-right: tokens.$ifxSpace200;
   display: none;
 }
-

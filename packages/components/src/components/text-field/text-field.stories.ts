@@ -13,16 +13,18 @@ export default {
     icon: '',
     success: false,
     placeholder: 'Placeholder',
+    readOnly: false,
     caption: 'Caption',
     required: true,
-    optional: false,
+
     name: 'text-field',
     showDeleteIcon: false,
     maxlength: '',
     value: '',
     autocomplete: 'on',
     type: 'text',
-    internalId: 'text-field'
+    internalId: 'text-field',
+    ariaLabel: 'text field for user input'
   },
 
   argTypes: {
@@ -30,7 +32,7 @@ export default {
       name: 'Label of Text Field',
       description: 'The text label displayed above the *<ifx-text-field>*.',
       table: {
-        category: 'story controls',
+        category: 'ifx-text-field props',
       }
     },
     error: {
@@ -88,6 +90,17 @@ export default {
         category: 'ifx-text-field props',
       }
     },
+    readOnly: {
+			name: 'read-only',
+			description: `Text cannot be edited when set to true.\n 
+*Note: It is different from disabled prop, control is focusable in readOnly mode unlike disabled.*`,
+			table: {
+				category: 'ifx-text-field props',
+				defaultValue: {
+					summary: 'false',
+				},
+			},
+		},
     caption: {
       description: 'Text displayed below the text field to provide additional information.',
       table: {
@@ -100,15 +113,6 @@ export default {
         category: 'ifx-text-field props',
         defaultValue: {
           summary: true
-        }
-      }
-    },
-    optional: {
-      description: 'Indicates that the field is optional.',
-      table: {
-        category: 'ifx-text-field props',
-        defaultValue: {
-          summary: false
         }
       }
     },
@@ -181,6 +185,19 @@ export default {
         }
       }
     },
+    ariaLabel: {
+      description: 'Aria label of the Tag.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     ifxInput: {
       action: 'ifxInput',
       description: 'Custom event emitted on input change.',
@@ -196,7 +213,7 @@ export default {
   },
 };
 
-const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, caption, icon, required, optional, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId }) => {
+const DefaultTemplate = ({ error, disabled, success, size, placeholder, readOnly, label, caption, icon, required, name, maxlength, showDeleteIcon, value, autocomplete, type, internalId, ariaLabel }) => {
   const element = document.createElement('ifx-text-field');
   element.setAttribute('error', error);
   element.setAttribute('disabled', disabled);
@@ -204,22 +221,20 @@ const DefaultTemplate = ({ error, disabled, success, size, placeholder, label, c
   element.setAttribute('icon', icon);
   element.setAttribute('success', success);
   element.setAttribute('placeholder', placeholder);
+  element.setAttribute('read-only', readOnly);
   element.setAttribute('caption', caption);
+  element.setAttribute('label', label);
   element.setAttribute('required', required);
-  element.setAttribute('optional', optional);
   element.setAttribute('name', name);
   element.setAttribute('show-delete-icon', showDeleteIcon);
   element.setAttribute('value', value);
   element.setAttribute('autocomplete', autocomplete);
   element.setAttribute('type', type);
   element.setAttribute('internal-id', internalId);
+  element.setAttribute('aria-label', ariaLabel);
   if (maxlength) element.setAttribute('maxlength', maxlength);
 
   element.addEventListener('ifxInput', action('ifxInput'));
-
-
-  const slotContent = document.createTextNode(label);
-  element.appendChild(slotContent);
 
   return element;
 };

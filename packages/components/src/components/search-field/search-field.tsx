@@ -127,10 +127,12 @@ export class SearchField {
   };
 
   handleDelete = () => {
-    this.inputElement.value = '';
-    this.value = "";
-    this.ifxInput.emit(this.value);
-    this.hideDropdown();
+    if(!this.disabled) { 
+      this.inputElement.value = '';
+      this.value = "";
+      this.ifxInput.emit(this.value);
+      this.hideDropdown();
+    }
   }
 
   handleSearch = () => {
@@ -476,6 +478,7 @@ export class SearchField {
             maxlength={this.maxlength}
             value={this.value}
             role="combobox"
+            aria-controls={this.showDropdown ? 'suggestions-dropdown' : undefined}
             aria-expanded={this.showDropdown}
             aria-autocomplete="list"
             aria-haspopup="listbox"
@@ -587,7 +590,8 @@ export class SearchField {
       `search-field__wrapper`,
       `search-field__wrapper ${this.getSizeClass()}`,
       `${this.isFocused ? 'focused' : ""}`,
-      `${this.showDropdown ? 'dropdown-open' : ""}`
+      `${this.showDropdown ? 'dropdown-open' : ""}`,
+      `${this.disabled ? 'disabled' : ""}`
     );
   }
 
