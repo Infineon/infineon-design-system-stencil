@@ -46,7 +46,7 @@ export class Table {
   @Prop() serverSidePagination: boolean = false;
   @Prop() serverPageChangeHandler?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
   @Prop() enableSelection: boolean = false;
-  @State() selectedRows: Set<number> = new Set();
+  @State() selectedRows: Set<string> = new Set();
   @State() selectAll: boolean = false;
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
@@ -63,24 +63,28 @@ export class Table {
   rowsChanged(_newVal: any) {
     const parsed = this.parseArrayInput<any>(this.rows);
 
+    parsed.forEach((row, index) => {
+      if (!row.__rowId) {
+        row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
+      }
+    });
+
     if (this.enableSelection) {
-      parsed.forEach((row, index) => {
+      parsed.forEach(row => {
         row.__checkbox = {
           disabled: false,
-          checked: this.selectedRows?.has(index) || false,
+          checked: this.selectedRows?.has(row.__rowId) || false,
           size: 's',
           indeterminate: false,
           error: false,
         };
       });
     }
-
     this.currentFilters = {};
     this.currentPage = 1;
     this.originalRowData = [...parsed];
     this.allRowData = [...parsed];
     this.matchingResultsCount = this.allRowData.length;
-
     this.updateTableView();
     this.updateFilterOptions();
   }
@@ -312,10 +316,12 @@ export class Table {
 
       if (this.enableSelection) {
         rows.forEach((row, index) => {
-          const globalIndex = (this.currentPage - 1) * this.paginationPageSize + index;
+          if (!row.__rowId) {
+            row.__rowId = `row_${(this.currentPage - 1) * this.paginationPageSize + index}_${Date.now()}`;
+          }
           row.__checkbox = {
             disabled: false,
-            checked: this.selectedRows?.has(globalIndex) || false,
+            checked: this.selectedRows?.has(row.__rowId) || false,
             size: 's',
             indeterminate: false,
             error: false,
@@ -338,18 +344,17 @@ export class Table {
       const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
       if (this.enableSelection) {
-        visibleRowData.forEach((row, index) => {
-          const globalIndex = startIndex + index;
+        visibleRowData.forEach(row => {
           if (!row.__checkbox) {
             row.__checkbox = {
               disabled: false,
-              checked: this.selectedRows?.has(globalIndex) || false,
+              checked: this.selectedRows?.has(row.__rowId) || false,
               size: 's',
               indeterminate: false,
               error: false,
             };
           } else {
-            row.__checkbox.checked = this.selectedRows?.has(globalIndex) || false;
+            row.__checkbox.checked = this.selectedRows?.has(row.__rowId) || false;
           }
         });
       }
@@ -572,7 +577,7 @@ export class Table {
   handleSelectAll = (checked: boolean) => {
     this.selectAll = checked;
     if (checked) {
-      this.selectedRows = new Set(Array.from({ length: this.allRowData.length }, (_, i) => i));
+      this.selectedRows = new Set(this.allRowData.map(row => row.__rowId));
     } else {
       this.selectedRows = new Set();
     }
@@ -594,18 +599,23 @@ export class Table {
       console.error('Unexpected value for rows: ', this.rows);
     }
 
+    rows.forEach((row, index) => {
+      if (!row.__rowId) {
+        row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
+      }
+    });
+
     if (this.enableSelection) {
-      rows.forEach((row, index) => {
+      rows.forEach(row => {
         row.__checkbox = {
           disabled: false,
-          checked: this.selectedRows?.has(index) || false,
+          checked: this.selectedRows?.has(row.__rowId) || false,
           size: 's',
           indeterminate: false,
           error: false,
         };
       });
     }
-
     this.allRowData = rows;
     this.originalRowData = [...rows];
     this.matchingResultsCount = this.allRowData.length;
@@ -614,30 +624,27 @@ export class Table {
 
   handleRowCheckboxClick = (params: any) => {
     const clickedRowData = params.data;
-    const actualIndex = this.allRowData.findIndex(row => row.make === clickedRowData.make && row.model === clickedRowData.model && row.price === clickedRowData.price);
+    const rowId = clickedRowData.__rowId;
 
     const newSelectedRows = new Set(this.selectedRows);
-    if (newSelectedRows.has(actualIndex)) {
-      newSelectedRows.delete(actualIndex);
+    if (newSelectedRows.has(rowId)) {
+      newSelectedRows.delete(rowId);
     } else {
-      newSelectedRows.add(actualIndex);
+      newSelectedRows.add(rowId);
     }
-
     this.selectedRows = newSelectedRows;
     this.selectAll = newSelectedRows.size === this.allRowData.length;
-
     this.updateCheckboxStates();
     this.updateHeaderCheckboxState();
     this.emitSelectionChange();
   };
 
   private updateCheckboxStates() {
-    this.allRowData.forEach((row, index) => {
+    this.allRowData.forEach(row => {
       if (row.__checkbox) {
-        row.__checkbox.checked = this.selectedRows.has(index);
+        row.__checkbox.checked = this.selectedRows.has(row.__rowId);
       }
     });
-
     if (this.gridApi) {
       this.gridApi.refreshCells({
         columns: ['__checkbox'],
@@ -647,10 +654,14 @@ export class Table {
   }
 
   private emitSelectionChange() {
-    const selectedRowsData = Array.from(this.selectedRows).map(index => {
-      const { __checkbox, ...rowData } = this.allRowData[index];
-      return rowData;
-    });
+    const selectedRowsData = Array.from(this.selectedRows)
+      .map(rowId => {
+        const row = this.allRowData.find(r => r.__rowId === rowId);
+        if (!row) return null;
+        const { __checkbox, __rowId, ...rowData } = row;
+        return rowData;
+      })
+      .filter(row => row !== null);
 
     this.host.dispatchEvent(
       new CustomEvent('ifxSelectionChange', {
@@ -755,10 +766,10 @@ export class Table {
 
   handleResetButtonClick() {
     const resetEvent = new CustomEvent('ifxResetFiltersEvent', { bubbles: true, composed: true });
-    window.dispatchEvent(resetEvent); 
+    window.dispatchEvent(resetEvent);
 
     this.clearAllFilters();
-    this.updateTableView(); 
+    this.updateTableView();
   }
 
   disconnectedCallback() {
