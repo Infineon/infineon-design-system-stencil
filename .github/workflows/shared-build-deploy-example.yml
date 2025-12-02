@@ -35,6 +35,10 @@ on:
         description: "Deployed URL"
         value: ${{ jobs.build-deploy.outputs.url }}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.name }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pages: write
