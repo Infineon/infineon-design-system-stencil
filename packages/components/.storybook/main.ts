@@ -21,13 +21,17 @@ const config: StorybookConfig = {
 	managerHead: (head) => `
     ${head}
     <style>
+      .sidebar-header > div > a {
+          	display: flex;
+          	flex-direction: column;
+			align-items: start;
+      }
       .sidebar-header > div > a::after {
-          display: block;
-          content: 'Version ${getLibraryVersion()}';
-          margin: 20px 0 0 0;
-          color: #0A8276;
-          font-size: 18px;
-          font-weight: bold;
+          	content: 'Version ${getLibraryVersion()}';
+          	margin: 20px 0 0 0;
+          	color: #0A8276;
+          	font-size: 18px;
+          	font-weight: bold;
       }
     </style>
   `,
