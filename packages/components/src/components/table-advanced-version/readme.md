@@ -10,9 +10,11 @@
 | Property                    | Attribute                      | Description | Type                                                                                        | Default     |
 | --------------------------- | ------------------------------ | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
 | `buttonRendererOptions`     | `button-renderer-options`      |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
+| `checkboxRendererOptions`   | `checkbox-renderer-options`    |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                         |             | `any`                                                                                       | `undefined` |
+| `enableSelection`           | `enable-selection`             |             | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`           |             | `string`                                                                                    | `'sidebar'` |
-| `headline`                  | `headline`                     |             | `string`                                                                                    | `""`        |
+| `headline`                  | `headline`                     |             | `string`                                                                                    | `''`        |
 | `iconButtonRendererOptions` | `icon-button-renderer-options` |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |
 | `pagination`                | `pagination`                   |             | `boolean`                                                                                   | `true`      |
 | `paginationItemsPerPage`    | `pagination-items-per-page`    |             | `string`                                                                                    | `undefined` |
