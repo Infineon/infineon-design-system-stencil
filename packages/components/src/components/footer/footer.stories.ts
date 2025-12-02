@@ -3,7 +3,7 @@ export default {
   title: 'Components/Footer',
   tags: ['autodocs'],
   args: {
-    copyrightText: '© 1999 - 2024 Infineon Technologies AG',
+    copyrightText: '© 1999 - 2026 Infineon Technologies AG',
     href: 'http://infineon.com',
     icon: 'home-16',
     ariaLabelOfLink: 'Go to Homepage',
@@ -54,9 +54,6 @@ const DefaultTemplate = args => {
   return `
     <ifx-footer copyright-text="${args.copyrightText}">
     <div slot="socials">
-    <ifx-link variant="title" href="${args.href}" aria-label="${args.ariaLabelOfLink}">
-        <ifx-icon icon=${args.icon}></ifx-icon>
-      </ifx-link>
       <ifx-link variant="title" href="http://facebook.com/infineon" aria-label="Follow us on Facebook">
         <ifx-icon icon="facebook"></ifx-icon>
       </ifx-link>
