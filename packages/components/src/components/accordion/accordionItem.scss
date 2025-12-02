@@ -65,16 +65,12 @@
 .inner-content {
   background-color: tokens.$ifxColorBaseWhite;
   padding: tokens.$ifxSpace200;
-  // white-space: pre-wrap;
-  /* wraps text at spaces and within words */
   word-wrap: break-word;
-  /* breaks text within a word if necessary */
   overflow-wrap: anywhere;
   align-self: stretch;
-
-  /* breaks text at arbitrary points when needed */
   margin: 0 4px 4px;
-  border: 1px solid transparent
+  border: 1px solid transparent;
+  border-top: 1px solid transparent; // Always keep border-top defined
 }
 
 .accordion-icon {
@@ -99,7 +95,12 @@
 
 .accordion-item.open .inner-content {
   border-color: tokens.$ifxColorEngineering200;
-  border-top: none;
+  border-top-color: transparent;
+  transition: border-color 0s; 
+}
+
+.accordion-item:not(.open) .inner-content {
+  transition: border-color 0s 0.3s; 
 }
 
 .inner-content {
