@@ -72,15 +72,12 @@ export class DatePicker {
     const input = this.el.shadowRoot.querySelector('.date__picker-input') as HTMLInputElement;
     if (!input || this.disabled) return;
 
-    // focus the input
     input.focus();
 
-    // if the browser supports the native API, open the picker
     const anyInput = input as any;
     if (typeof anyInput.showPicker === 'function') {
       anyInput.showPicker();
     } else {
-    // fallback – in some browsers click will also open the picker
       input.click();
     }
   }
@@ -150,7 +147,7 @@ export class DatePicker {
           value={this.value}
           required={this.required}
           onChange={(e) => this.getDate(e)} />
-          <div class="icon__wrapper" role="button" tabIndex={0} onClick={() => this.handleInputFocusOnIconClick()}>
+          <div class="icon__wrapper" role="button" tabIndex={ this.getBrowser() === 'Firefox' ? 0 : undefined } onClick={() => this.handleInputFocusOnIconClick()}>
             <ifx-icon icon='calendar16' aria-hidden="true"></ifx-icon>
           </div>
         </div>
