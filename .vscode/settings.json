@@ -17,5 +17,9 @@
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "biomejs.biome"
-	}
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"biome.lsp.bin": "./node_modules/.bin/biome"
 }

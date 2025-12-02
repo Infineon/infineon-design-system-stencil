@@ -10,7 +10,9 @@
 | Property                    | Attribute                   | Description | Type                                                                                        | Default     |
 | --------------------------- | --------------------------- | ----------- | ------------------------------------------------------------------------------------------- | ----------- |
 | `buttonRendererOptions`     | --                          |             | `{ onButtonClick?: (params: any, event: Event) => void; }`                                  | `undefined` |
+| `checkboxRendererOptions`   | --                          |             | `{ onCheckboxClick?: (params: any, event: Event) => void; }`                                | `undefined` |
 | `cols`                      | `cols`                      |             | `any`                                                                                       | `undefined` |
+| `enableSelection`           | `enable-selection`          |             | `boolean`                                                                                   | `false`     |
 | `filterOrientation`         | `filter-orientation`        |             | `string`                                                                                    | `"sidebar"` |
 | `headline`                  | `headline`                  |             | `string`                                                                                    | `""`        |
 | `iconButtonRendererOptions` | --                          |             | `{ onIconButtonClick?: (params: any, event: Event) => void; }`                              | `undefined` |

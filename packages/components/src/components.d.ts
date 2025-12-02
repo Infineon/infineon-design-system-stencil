@@ -1457,7 +1457,14 @@ export namespace Components {
         "buttonRendererOptions"?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+        "checkboxRendererOptions"?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
         "cols": any;
+        /**
+          * @default false
+         */
+        "enableSelection": boolean;
         /**
           * @default "sidebar"
          */
@@ -4481,7 +4488,14 @@ declare namespace LocalJSX {
         "buttonRendererOptions"?: {
 		onButtonClick?: (params: any, event: Event) => void;
 	};
+        "checkboxRendererOptions"?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
         "cols"?: any;
+        /**
+          * @default false
+         */
+        "enableSelection"?: boolean;
         /**
           * @default "sidebar"
          */

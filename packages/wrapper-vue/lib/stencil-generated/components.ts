@@ -885,6 +885,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'rows',
   'buttonRendererOptions',
   'iconButtonRendererOptions',
+  'checkboxRendererOptions',
   'rowHeight',
   'tableHeight',
   'pagination',
@@ -894,6 +895,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'variant',
   'serverSidePagination',
   'serverPageChangeHandler',
+  'enableSelection',
   'showLoading'
 ]);
 

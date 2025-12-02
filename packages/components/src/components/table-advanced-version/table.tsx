@@ -24,6 +24,8 @@ import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
 import { detectFramework } from "../../shared/utils/framework-detection";
 import { trackComponent } from "../../shared/utils/tracking";
 import { ButtonCellRenderer } from "./buttonCellRenderer";
+import { CheckboxCellRenderer } from "./checkboxCellRenderer";
+import { CheckboxHeaderRenderer } from "./checkboxHeaderRenderer";
 import { CustomLoadingOverlay } from "./customLoadingOverlay";
 import { CustomNoRowsOverlay } from "./customNoRowsOverlay";
 import { IconButtonCellRenderer } from "./iconButtonCellRenderer";
@@ -47,6 +49,9 @@ export class Table {
 	@Prop() iconButtonRendererOptions?: {
 		onIconButtonClick?: (params: any, event: Event) => void;
 	};
+	@Prop() checkboxRendererOptions?: {
+		onCheckboxClick?: (params: any, event: Event) => void;
+	};
 	@State() rowData: any[] = [];
 	@State() colData: any[] = [];
 	@State() filterOptions: { [key: string]: string[] } = {};
@@ -68,7 +73,9 @@ export class Table {
 		page: number;
 		pageSize: number;
 	}) => Promise<{ rows: any[]; total: number }>;
-
+	@Prop() enableSelection: boolean = false;
+	@State() selectedRows: Set<string> = new Set();
+	@State() selectAll: boolean = false;
 	@Prop() showLoading: boolean = false;
 	private container: HTMLDivElement;
 	@Element() host: HTMLElement;
@@ -84,12 +91,28 @@ export class Table {
 	rowsChanged(_newVal: any) {
 		const parsed = this.parseArrayInput<any>(this.rows);
 
+		parsed.forEach((row, index) => {
+			if (!row.__rowId) {
+				row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
+			}
+		});
+
+		if (this.enableSelection) {
+			parsed.forEach((row) => {
+				row.__checkbox = {
+					disabled: false,
+					checked: this.selectedRows?.has(row.__rowId) || false,
+					size: "s",
+					indeterminate: false,
+					error: false,
+				};
+			});
+		}
 		this.currentFilters = {};
 		this.currentPage = 1;
 		this.originalRowData = [...parsed];
 		this.allRowData = [...parsed];
 		this.matchingResultsCount = this.allRowData.length;
-
 		this.updateTableView();
 		this.updateFilterOptions();
 	}
@@ -148,7 +171,6 @@ export class Table {
 
 			// Update the component's filters
 			this.currentFilters = updatedFilters;
-
 			// Ensure table data is updated
 			this.allRowData = this.applyAllFilters(
 				this.originalRowData,
@@ -166,6 +188,13 @@ export class Table {
 		}
 	}
 
+	@Watch("checkboxRendererOptions")
+	onCheckboxRendererOptionsChanged() {
+		this.colData = this.getColData();
+		if (this.gridApi) {
+			this.gridApi.setGridOption("columnDefs", this.colData); // Update column definitions in the grid API
+		}
+	}
 	@Watch("iconButtonRendererOptions")
 	onIconButtonRendererOptionsChanged() {
 		this.colData = this.getColData();
@@ -201,6 +230,26 @@ export class Table {
 			];
 		}
 		this.filterOptions = options;
+	}
+
+	private updateHeaderCheckboxState() {
+		if (this.gridApi && this.enableSelection) {
+			setTimeout(() => {
+				const headerCheckbox = this.container?.querySelector(
+					'.ag-header-cell[col-id="__checkbox"] ifx-checkbox',
+				) as any;
+				if (headerCheckbox) {
+					const allSelected =
+						this.selectedRows.size === this.allRowData.length &&
+						this.allRowData.length > 0;
+					const someSelected =
+						this.selectedRows.size > 0 &&
+						this.selectedRows.size < this.allRowData.length;
+					headerCheckbox.checked = allSelected;
+					headerCheckbox.indeterminate = someSelected;
+				}
+			}, 0);
+		}
 	}
 
 	handleSidebarFilterChange(event: CustomEvent) {
@@ -348,14 +397,26 @@ export class Table {
 				pageSize: this.paginationPageSize,
 			});
 
+			if (this.enableSelection) {
+				rows.forEach((row, index) => {
+					if (!row.__rowId) {
+						row.__rowId = `row_${(this.currentPage - 1) * this.paginationPageSize + index}_${Date.now()}`;
+					}
+					row.__checkbox = {
+						disabled: false,
+						checked: this.selectedRows?.has(row.__rowId) || false,
+						size: "s",
+						indeterminate: false,
+						error: false,
+					};
+				});
+			}
+
 			this.rowData = rows;
 			this.matchingResultsCount = total;
-
 			if (this.gridApi) {
 				this.gridApi.setGridOption("rowData", rows);
 			}
-
-			// 👇 FIX: update pagination total
 			const paginationElement =
 				this.host.shadowRoot.querySelector("ifx-pagination");
 			if (paginationElement) {
@@ -366,9 +427,25 @@ export class Table {
 			const endIndex = startIndex + this.paginationPageSize;
 			const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
+			if (this.enableSelection) {
+				visibleRowData.forEach((row) => {
+					if (!row.__checkbox) {
+						row.__checkbox = {
+							disabled: false,
+							checked: this.selectedRows?.has(row.__rowId) || false,
+							size: "s",
+							indeterminate: false,
+							error: false,
+						};
+					} else {
+						row.__checkbox.checked =
+							this.selectedRows?.has(row.__rowId) || false;
+					}
+				});
+			}
+
 			this.rowData = visibleRowData;
 			this.matchingResultsCount = this.allRowData.length;
-
 			if (this.gridApi) {
 				this.gridApi.setGridOption("rowData", this.rowData);
 			}
@@ -414,8 +491,15 @@ export class Table {
 		this.updateFilterOptions();
 
 		this.gridOptions = {
+			suppressCellFocus: true,
 			rowHeight: this.rowHeight === "default" ? 40 : 32,
 			headerHeight: 40,
+			components: {
+				checkboxCellRenderer: CheckboxCellRenderer,
+				checkboxHeaderRenderer: CheckboxHeaderRenderer,
+				customLoadingOverlay: CustomLoadingOverlay,
+				customNoRowsOverlay: CustomNoRowsOverlay,
+			},
 			defaultColDef: {
 				resizable: true,
 				autoHeight: true,
@@ -557,7 +641,6 @@ export class Table {
 				});
 			}
 		}
-
 		this.updateTableView();
 	}
 
@@ -634,12 +717,23 @@ export class Table {
 		}
 	}
 
+	handleSelectAll = (checked: boolean) => {
+		this.selectAll = checked;
+		if (checked) {
+			this.selectedRows = new Set(this.allRowData.map((row) => row.__rowId));
+		} else {
+			this.selectedRows = new Set();
+		}
+		this.updateCheckboxStates();
+		this.updateHeaderCheckboxState();
+		this.emitSelectionChange();
+	};
+
 	getRowData() {
 		let rows: any[] = [];
 		if (this.rows === undefined || this.rows === null) {
 			return rows;
 		}
-
 		if (this.isJSONParseable(this.rows)) {
 			rows = [...JSON.parse(this.rows)];
 		} else if (Array.isArray(this.rows) || typeof this.rows === "object") {
@@ -648,17 +742,87 @@ export class Table {
 			console.error("Unexpected value for rows: ", this.rows);
 		}
 
-		this.allRowData = rows;
-		this.originalRowData = [...rows]; // Deep copy the original data
-		this.matchingResultsCount = this.allRowData.length;
+		rows.forEach((row, index) => {
+			if (!row.__rowId) {
+				row.__rowId = `row_${index}_${Date.now()}_${Math.random()}`;
+			}
+		});
 
+		if (this.enableSelection) {
+			rows.forEach((row) => {
+				row.__checkbox = {
+					disabled: false,
+					checked: this.selectedRows?.has(row.__rowId) || false,
+					size: "s",
+					indeterminate: false,
+					error: false,
+				};
+			});
+		}
+		this.allRowData = rows;
+		this.originalRowData = [...rows];
+		this.matchingResultsCount = this.allRowData.length;
 		return rows.slice(0, this.paginationPageSize);
+	}
+
+	handleRowCheckboxClick = (params: any) => {
+		const clickedRowData = params.data;
+		const rowId = clickedRowData.__rowId;
+
+		const newSelectedRows = new Set(this.selectedRows);
+		if (newSelectedRows.has(rowId)) {
+			newSelectedRows.delete(rowId);
+		} else {
+			newSelectedRows.add(rowId);
+		}
+		this.selectedRows = newSelectedRows;
+		this.selectAll = newSelectedRows.size === this.allRowData.length;
+		this.updateCheckboxStates();
+		this.updateHeaderCheckboxState();
+		this.emitSelectionChange();
+	};
+
+	private updateCheckboxStates() {
+		this.allRowData.forEach((row) => {
+			if (row.__checkbox) {
+				row.__checkbox.checked = this.selectedRows.has(row.__rowId);
+			}
+		});
+		if (this.gridApi) {
+			this.gridApi.refreshCells({
+				columns: ["__checkbox"],
+				force: true,
+			});
+		}
+	}
+
+	private emitSelectionChange() {
+		const selectedRowsData = Array.from(this.selectedRows)
+			.map((rowId) => {
+				const row = this.allRowData.find((r) => r.__rowId === rowId);
+				if (!row) return null;
+				const { __checkbox, __rowId, ...rowData } = row;
+				return rowData;
+			})
+			.filter((row) => row !== null);
+
+		this.host.dispatchEvent(
+			new CustomEvent("ifxSelectionChange", {
+				detail: {
+					selectedRows: selectedRowsData,
+					selectedCount: selectedRowsData.length,
+					isSelectAll:
+						this.selectedRows.size === this.allRowData.length &&
+						this.allRowData.length > 0,
+				},
+				bubbles: true,
+			}),
+		);
 	}
 
 	getColData() {
 		let cols: any[] = [];
 		if (this.cols === undefined || this.cols === null) return cols;
-
 		if (this.isJSONParseable(this.cols)) {
 			cols = [...JSON.parse(this.cols)];
 		} else if (Array.isArray(this.cols) || typeof this.cols === "object") {
@@ -667,42 +831,70 @@ export class Table {
 			console.error("Unexpected value for cols: ", this.cols);
 		}
 
+		if (this.enableSelection) {
+			const checkboxColumn = {
+				headerName: "",
+				field: "__checkbox",
+				width: 50,
+				pinned: "left",
+				cellRenderer: "checkboxCellRenderer",
+				cellRendererParams: {
+					onCheckboxClick: this.handleRowCheckboxClick?.bind(this),
+				},
+				headerComponent: "checkboxHeaderRenderer",
+				headerComponentParams: {
+					onSelectAll: this.handleSelectAll?.bind(this),
+				},
+				sortable: false,
+				filter: false,
+				resizable: false,
+				valueFormatter: undefined,
+				cellDataType: false,
+			};
+			cols.unshift(checkboxColumn);
+		}
+
 		cols.forEach((column) => {
 			const field = column.field?.toLowerCase() || "";
-
 			// --- Button columns ---
 			if (field.startsWith("button")) {
 				column.cellRenderer = ButtonCellRenderer;
 				column.valueFormatter = undefined;
 				column.cellDataType = false;
-
 				if (this.buttonRendererOptions?.onButtonClick) {
 					column.cellRendererParams = {
 						onButtonClick: this.buttonRendererOptions.onButtonClick,
 					};
 				}
 			}
-
+			// --- Checkbox columns ---
+			else if (field.startsWith("checkbox")) {
+				column.cellRenderer = CheckboxCellRenderer;
+				column.valueFormatter = undefined;
+				column.cellDataType = false;
+				if (this.checkboxRendererOptions?.onCheckboxClick) {
+					column.cellRendererParams = {
+						onCheckboxClick: this.checkboxRendererOptions.onCheckboxClick,
+					};
+				}
+			}
 			// --- Icon Button columns ---
-			if (field.startsWith("iconbutton") || field === "iconButton") {
+			else if (field.startsWith("iconbutton") || field === "iconButton") {
 				column.cellRenderer = IconButtonCellRenderer;
 				column.valueFormatter = undefined;
 				column.cellDataType = false;
-
 				if (this.iconButtonRendererOptions?.onIconButtonClick) {
 					column.cellRendererParams = {
 						onIconButtonClick: this.iconButtonRendererOptions.onIconButtonClick,
 					};
 				}
 			}
-
 			// --- Status columns ---
 			else if (field.startsWith("status")) {
 				column.cellRenderer = StatusCellRenderer;
 				column.valueFormatter = undefined;
 				column.cellDataType = false;
 			}
-
 			// --- Link columns ---
 			else if (field.startsWith("link")) {
 				column.cellRenderer = LinkCellRenderer;
@@ -710,7 +902,6 @@ export class Table {
 				column.cellDataType = false;
 			}
 		});
-
 		return cols;
 	}
 
@@ -723,10 +914,10 @@ export class Table {
 			bubbles: true,
 			composed: true,
 		});
-		window.dispatchEvent(resetEvent); // Dispatch from the window object
+		window.dispatchEvent(resetEvent);
 
 		this.clearAllFilters();
-		this.updateTableView(); // Update table view with the original data
+		this.updateTableView();
 	}
 
 	disconnectedCallback() {

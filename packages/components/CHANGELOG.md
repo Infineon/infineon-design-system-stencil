@@ -1,3 +1,20 @@
+# v39.4.0 (Tue Dec 02 2025)
+
+#### 🚀 Enhancement
+
+- Incorporate checkboxes into table [#2118](https://github.com/Infineon/infineon-design-system-stencil/pull/2118) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.3.0 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.3.0 (Mon Nov 24 2025)
 
 #### 🚀 Enhancement

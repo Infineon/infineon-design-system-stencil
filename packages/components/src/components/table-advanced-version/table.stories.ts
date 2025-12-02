@@ -231,6 +231,7 @@ export default {
 		showLoading: false,
 		variant: "default",
 		headline: "Matching results",
+		enableSelection: false,
 	},
 	argTypes: {
 		tableHeight: {
@@ -297,6 +298,17 @@ export default {
 				},
 			},
 		},
+		enableSelection: {
+			description: "Enables the selection of rows via a checkbox",
+			options: [true, false],
+			control: { type: "radio" },
+			table: {
+				category: "ifx-table props",
+				defaultValue: {
+					summary: "default",
+				},
+			},
+		},
 		filterOrientation: {
 			description: "Set the filter orientation.",
 			options: ["sidebar", "topbar", "none"],
@@ -349,6 +361,19 @@ export default {
 				defaultValue: { summary: "matching results" },
 			},
 		},
+
+		ifxSelectionChange: {
+			action: "ifxSelectionChange",
+			description: "A custom event triggered on checkbox selection",
+			table: {
+				category: "custom events",
+				type: {
+					summary: "Framework integration",
+					detail:
+						'React: onIfxSelectionChange={handleInput}\nVue:@ifxSelectionChange="handleInput"\nAngular:(ifxSelectionChange)="handleInput()"\nVanillaJs:.addEventListener("ifxSelectionChange", (event) => {//handle input});',
+				},
+			},
+		},
 	},
 };
 
@@ -358,6 +383,7 @@ const DefaultTemplate = (args) => {
     row-height="${args.rowHeight}"
     cols='${JSON.stringify(args.columnDefs)}'
     rows='${JSON.stringify(args.rowData)}'
+    enable-selection="${args.enableSelection}"
     table-height="${args.tableHeight}"
     pagination="${args.pagination}"
     server-side-pagination="${args.serverSidePagination}"
@@ -449,6 +475,7 @@ DefaultState.args = {
 	paginationItemsPerPage:
 		'[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]',
 	rowHeight: "default",
+	enableSelection: false,
 	columnDefs: columnDefs,
 	rowData: rowData,
 	filterOrientation: "none",

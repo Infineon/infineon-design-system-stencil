@@ -1,8 +1,13 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.8/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**/*", "!examples", "!packages/components/**/readme.md"]
+		"includes": [
+			"**/*",
+			"!examples",
+			"!packages/components/**/readme.md",
+			"!packages/components/src/components.d.ts"
+		]
 	},
 	"vcs": {
 		"enabled": true,
