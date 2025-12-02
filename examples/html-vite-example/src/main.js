@@ -1,5 +1,5 @@
 import "@infineon/infineon-design-system-stencil";
-import "@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
+import "@infineon/infineon-design-system-stencil/styles.css";
 
 // Below is specific for this example project. It is not required when using the design system in your own project.
 

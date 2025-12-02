@@ -6,7 +6,7 @@ To use the components via CDN, you don't need to install any packages. You can s
 
 ```html
 <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
-<link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil/styles.css" media="all">
 ```
 
 > Note that this example app does not load the components via CDN for demonstration purposes. Instead, it uses a local build of the components for faster development and testing.

@@ -12,7 +12,7 @@ Then, you can import the components and the styles in a javascript/typescript fi
 [index.js](./src/index.ts):
 ```javascript
 import '@infineon/infineon-design-system-stencil';
-import '@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css';
+import '@infineon/infineon-design-system-stencil/styles.css';
 ```
 
 > Note, that you also need to include the corresponding script in you HTML file (see [index.html](./src/index.html)):

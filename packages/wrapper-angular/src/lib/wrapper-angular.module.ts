@@ -1,4 +1,4 @@
-import "@infineon/infineon-design-system-stencil/dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
+import "@infineon/infineon-design-system-stencil/styles.css";
 import { CommonModule, DOCUMENT } from "@angular/common";
 import {
 	APP_INITIALIZER,
