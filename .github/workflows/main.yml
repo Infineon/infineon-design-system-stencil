@@ -55,7 +55,7 @@ jobs:
     uses: ./.github/workflows/shared-build-deploy-storybook.yml
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
@@ -69,7 +69,7 @@ jobs:
       base-path: examples/html-cdn-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil'
 
     permissions:
@@ -84,7 +84,7 @@ jobs:
       base-path: examples/html-vite-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil'
     permissions:
       contents: write
@@ -98,7 +98,7 @@ jobs:
       base-path: examples/angular-module-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
@@ -112,7 +112,7 @@ jobs:
       base-path: examples/angular-standalone-example
       deploy-path: dist/browser
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-angular'
     permissions:
       contents: write
@@ -126,7 +126,7 @@ jobs:
       base-path: examples/react-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-react'
     permissions:
       contents: write
@@ -140,7 +140,7 @@ jobs:
       base-path: examples/vue-example
       deploy-path: dist
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
-      deployment: pr
+      deployment: ${{ github.event_name == 'pull_request' && 'pr' || 'production' }}
       required-packages: '@infineon/infineon-design-system-stencil,@infineon/infineon-design-system-vue'
     permissions:
       contents: write
