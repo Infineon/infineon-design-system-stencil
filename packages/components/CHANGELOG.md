@@ -1,3 +1,21 @@
+# v39.4.2 (Tue Dec 02 2025)
+
+#### 🐛 Bug Fix
+
+- Search Field: Updates documentation [#2116](https://github.com/Infineon/infineon-design-system-stencil/pull/2116) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.4.1 (Tue Dec 02 2025)
 
 #### 🐛 Bug Fix
