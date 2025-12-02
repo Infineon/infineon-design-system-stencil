@@ -13,6 +13,7 @@ module.exports = function rc() {
 					threshold: "patch",
 				},
 			],
+			"first-time-contributor",
 		],
 		author: {
 			name: "github-actions[bot]",
