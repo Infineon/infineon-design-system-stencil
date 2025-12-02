@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../../components/PackageManagerTabs.mdx';
+
+<Meta title="Setup & installation/Framework Integration/Vue" />
+
+# Vue
+
+Use the Infineon Design System web components in Vue 3 applications. The Vue wrapper provides a Vue-specific interface for Stencil web components, enabling native Vue syntax like event handling, property binding, and v-model support.
+
+## Installation
+
+**1. Install the package**
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-vue" />
+
+**2. Register the component library plugin in your Vue application**
+
+```typescript
+// main.ts
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+import { createApp } from 'vue';
+import App from './App.vue';
+
+createApp(App).use(ComponentLibrary).mount('#app');
+```
+
+**3. Configure Vite to recognize custom elements**
+
+Add this configuration to your `vite.config.ts`:
+
+```typescript
+// vite.config.ts
+import vue from '@vitejs/plugin-vue';
+
+export default {
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          // Treat all tags with 'ifx-' prefix as custom elements
+          isCustomElement: (tag) => tag.includes('ifx-'),
+        },
+      },
+    }),
+  ],
+};
+```
+
+## Usage
+
+Once configured, you can use the components directly in your Vue templates:
+
+```vue
+<template>
+  <div>
+    <h1>Infineon Design System - Vue Example</h1>
+    
+    <ifx-alert variant="primary" icon="c-info-16">
+      Welcome to Infineon Design System!
+    </ifx-alert>
+
+    <ifx-button variant="primary" @click="handleClick">
+      Click Me
+    </ifx-button>
+
+    <ifx-search-bar 
+      v-model="searchValue"
+      placeholder="Search..." 
+      show-close-button="true"
+      @ifxChange="handleSearch">
+    </ifx-search-bar>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const searchValue = ref('');
+
+const handleClick = () => {
+  console.log('Button clicked!');
+};
+
+const handleSearch = (event: CustomEvent) => {
+  console.log('Search value:', event.detail);
+};
+</script>
+```

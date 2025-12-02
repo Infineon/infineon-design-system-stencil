@@ -1,6 +1,6 @@
 import type { ThemeVars } from "storybook/theming";
 import { create } from "storybook/theming/create";
-import logo from "../src/stories/assets/ifx-logo.png";
+import logo from "../src/storybook/assets/ifx-logo.png";
 
 const ifxColors = {
 	baseBlack: "#1D1D1D",

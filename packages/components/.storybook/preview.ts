@@ -23,8 +23,10 @@ const preview: Preview = {
 					[
 						"About",
 						"Getting started",
-						"Framework integration",
-						["Wrapper Components", "React + Stencil", "Vue + Stencil"],
+						"Framework Integration",
+						["HTML", "Angular", "React", "Vue"],
+						"Icons Only Usage",
+						"Tailwind CSS",
 						"FAQ",
 					],
 					"Foundations",

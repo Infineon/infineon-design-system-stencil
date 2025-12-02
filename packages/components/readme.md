@@ -1,111 +1,229 @@
-[![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI%2BCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI%2BCgkuc3Qwe2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywzNzMuOWMwLDM3LjYtNTUuMSw2OC42LTkyLjcsNjguNkgxODAuNGMtMzcuOSwwLTkyLjctMzAuNy05Mi43LTY4LjZ2LTMuNmgzMzYuOVYzNzMuOXoiLz4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDI5Mi4xSDE4MC40Yy0zNy42LDAtOTIuNy0zMS05Mi43LTY4LjZ2LTMuNkgzMzJjMzcuNiwwLDkyLjcsMzEsOTIuNyw2OC42VjI5Mi4xeiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMTQxLjdIODcuN3YtMy42YzAtMzcuNiw1NC44LTY4LjYsOTIuNy02OC42SDMzMmMzNy45LDAsOTIuNywzMC43LDkyLjcsNjguNlYxNDEuN3oiLz4KPC9zdmc%2BCg%3D%3D&colorA=16161d&style=flat-square)](https://stenciljs.com)
+[![Built With Stencil](https://img.shields.io/badge/-Built%20With%20Stencil-16161d.svg?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsdXN0cmF0b3IgMTkuMi4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0%2BCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiCgkgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTQyNC43LDM3My45YzAsMzcuNi01NS4xLDY4LjYtOTIuNyw2OC42SDE4MC40Yy0zNy45LDAtOTIuNy0zMC43LTkyLjctNjguNnYtMy42aDMzNi45VjM3My45eiIvPgo8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDI0LjcsMjkyLjFIMTgwLjRjLTM3LjYsMC05Mi43LTMxLTkyLjctNjguNnYtMy42SDMzMmMzNy42LDAsOTIuNywzMSw5Mi43LDY4LjZWMjkyLjF6Ii8%2BCjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjQuNywxNDEuN0g4Ny43di0zLjZjMC0zNy42LDU0LjgtNjguNiw5Mi43LTY4LjZIMzMyYzM3LjksMCw5Mi43LDMwLjcsOTIuNyw2OC42VjE0MS43eiIvPgo8L3N2Zz4K&colorA=16161d&style=flat-square)](https://stenciljs.com)
+[![npm version](https://img.shields.io/npm/v/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
+[![npm downloads](https://img.shields.io/npm/dm/@infineon/infineon-design-system-stencil?style=flat-square)](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://github.com/Infineon/infineon-design-system-stencil/blob/master/LICENSE)
 
-# Stencil Component Starter
+# Infineon Design System
 
-> This is a starter project for building a standalone Web Components using Stencil.
+> 45+ production-ready web components built with Stencil. Framework-agnostic components that work everywhere: Vanilla JS, React, Angular, Vue, and more.
 
-Stencil is a compiler for building fast web apps using Web Components.
+**[📚 View Live Storybook](https://infineon.github.io/infineon-design-system-stencil/)** | **[🎯 Example Apps](https://github.com/Infineon/infineon-design-system-stencil/tree/master/examples)** | **[📖 Full Documentation](https://github.com/Infineon/infineon-design-system-stencil)**
 
-Stencil combines the best concepts of the most popular frontend frameworks into a compile-time rather than runtime tool. Stencil takes TypeScript, JSX, a tiny virtual DOM layer, efficient one-way data binding, an asynchronous rendering pipeline (similar to React Fiber), and lazy-loading out of the box, and generates 100% standards-based Web Components that run in any browser supporting the Custom Elements specification.
+## ✨ Features
 
-Stencil components are just Web Components, so they work in any major framework or with no framework at all.
+- ✅ **45+ Production-Ready Components** - Buttons, forms, tables, modals, navigation, and more
+- ✅ **Framework Agnostic** - Works with React, Angular, Vue, or vanilla JavaScript
+- ✅ **TypeScript Support** - Full type definitions included
+- ✅ **Accessible** - WCAG 2.1 compliant components
+- ✅ **Themeable** - Customizable with CSS custom properties
+- ✅ **Tree-Shakeable** - Import only what you need
+- ✅ **CDN Ready** - Use directly from unpkg with zero build setup
 
-## Getting Started
+<details>
+<summary><strong>📦 View All Components</strong></summary>
 
-To start building a new web component using Stencil, clone this repo to a new directory:
+### Layout & Navigation
+Accordion • Breadcrumb • Footer • Navigation • Tabs • Tree View
+
+### Forms & Input
+Button • Icon Button • Checkbox • Radio Button • Text Field • Textarea • Select • Dropdown • Switch • Slider • Search Bar • Search Field • Date Picker • File Upload
+
+### Data Display
+Table • Advanced Table • Overview Table • Card • Status • Indicator • Progress Bar • Chip • Tooltip
+
+### Feedback & Messaging
+Alert • Modal • Notification • Spinner
+
+### Actions & Controls
+Action List • Content Switcher • Segmented Control • Stepper • Pagination
+
+</details>
+
+## 🚀 Installation
 
 ```bash
-git clone https://github.com/stenciljs/component-starter.git my-component
-cd my-component
-git remote rm origin
+npm install @infineon/infineon-design-system-stencil
 ```
 
-and run:
+## 📖 Usage
 
-```bash
-npm install
-npm start
-```
+### Vanilla JavaScript / HTML
 
-To build the component for production, run:
-
-```bash
-npm run build
-```
-
-To run the unit tests for the components, run:
-
-```bash
-npm test
-```
-
-Need help? Check out our docs [here](https://stenciljs.com/docs/my-first-component).
-
-## Naming Components
-
-When creating new component tags, we recommend _not_ using `stencil` in the component name (ex: `<stencil-datepicker>`). This is because the generated component has little to nothing to do with Stencil; it's just a web component!
-
-Instead, use a prefix that fits your company or any name for a group of related components. For example, all of the [Ionic-generated](https://ionicframework.com/) web components use the prefix `ion`.
-
-## Using this component
-
-There are two strategies we recommend for using web components built with Stencil.
-
-The first step for all two of these strategies is to [publish to NPM](https://docs.npmjs.com/getting-started/publishing-npm-packages).
-
-You can read more about these different approaches in the [Stencil docs](https://stenciljs.com/docs/publishing).
-
-### Lazy Loading
-
-If your Stencil project is built with the [`dist`](https://stenciljs.com/docs/distribution) output target, you can import a small bootstrap script that registers all components and allows you to load individual component scripts lazily.
-
-For example, given your Stencil project namespace is called `my-design-system`, to use `my-component` on any website, inject this into your HTML:
+**Option 1: CDN (Easiest)**
 
 ```html
-<script type="module" src="https://unpkg.com/my-design-system"></script>
-<!--
-To avoid unpkg.com redirects to the actual file, you can also directly import:
-https://unpkg.com/foobar-design-system@0.0.1/dist/foobar-design-system/foobar-design-system.esm.js
--->
-<my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@infineon/infineon-design-system-stencil/styles.css">
+</head>
+<body>
+  <ifx-button variant="primary">Click Me</ifx-button>
+  <ifx-switch checked></ifx-switch>
+  <ifx-text-field label="Email" type="email"></ifx-text-field>
+</body>
+</html>
 ```
 
-This will only load the necessary scripts needed to render `<my-component />`. Once more components of this package are used, they will automatically be loaded lazily.
+**Option 2: NPM with Bundler (Tree-Shakeable)**
 
-You can also import the script as part of your `node_modules` in your applications entry file:
-
-```tsx
-import 'foobar-design-system/dist/foobar-design-system/foobar-design-system.esm.js';
+```javascript
+// Import only the components you need
+import '@infineon/infineon-design-system-stencil/dist/components/ifx-button';
+import '@infineon/infineon-design-system-stencil/dist/components/ifx-switch';
 ```
 
-Check out this [Live Demo](https://stackblitz.com/edit/vitejs-vite-y6v26a?file=src%2Fmain.tsx).
+### React
 
-### Standalone
+```bash
+npm install @infineon/infineon-design-system-react
+```
 
-If you are using a Stencil component library with `dist-custom-elements`, we recommend importing Stencil components individually in those files where they are needed.
-
-To export Stencil components as standalone components make sure you have the [`dist-custom-elements`](https://stenciljs.com/docs/custom-elements) output target defined in your `stencil.config.ts`.
-
-For example, given you'd like to use `<my-component />` as part of a React component, you can import the component directly via:
-
-```tsx
-import 'foobar-design-system/my-component';
+```jsx
+import { IfxButton, IfxSwitch } from '@infineon/infineon-design-system-react';
 
 function App() {
   return (
     <>
-      <div>
-        <my-component
-          first="Stencil"
-          middle="'Don't call me a framework'"
-          last="JS"
-        ></my-component>
-      </div>
+      <IfxButton variant="primary" onIfxClick={() => console.log('clicked')}>
+        Click Me
+      </IfxButton>
+      <IfxSwitch checked />
     </>
   );
 }
-
-export default App;
 ```
 
-Check out this [Live Demo](https://stackblitz.com/edit/vitejs-vite-b6zuds?file=src%2FApp.tsx).
+### Angular
+
+```bash
+npm install @infineon/infineon-design-system-angular
+```
+
+```typescript
+// app.module.ts
+import { IfxComponentsModule } from '@infineon/infineon-design-system-angular';
+
+@NgModule({
+  imports: [IfxComponentsModule]
+})
+export class AppModule {}
+```
+
+```html
+<!-- app.component.html -->
+<ifx-button variant="primary" (ifxClick)="handleClick()">Click Me</ifx-button>
+<ifx-switch [checked]="true"></ifx-switch>
+```
+
+### Vue
+
+```bash
+npm install @infineon/infineon-design-system-vue
+```
+
+```javascript
+// main.js
+import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
+
+app.use(ComponentLibrary);
+```
+
+```vue
+<template>
+  <ifx-button variant="primary" @ifxClick="handleClick">Click Me</ifx-button>
+  <ifx-switch :checked="true" />
+</template>
+```
+
+## 🎨 Theming
+
+Customize components using CSS custom properties:
+
+```css
+ifx-button {
+  --ifx-button-primary-background: #006699;
+  --ifx-button-primary-color: #ffffff;
+}
+```
+
+All design tokens are provided by `@infineon/design-system-tokens`.
+
+## 📖 TypeScript Support
+
+Full TypeScript definitions are included:
+
+```typescript
+import type { Components } from '@infineon/infineon-design-system-stencil';
+
+// Get component interface
+type ButtonProps = Components.IfxButton;
+
+const buttonConfig: Partial<ButtonProps> = {
+  variant: 'primary',
+  disabled: false,
+  size: 'medium'
+};
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see the main [Contributing Guide](../../CONTRIBUTING.md) for:
+
+- Development setup
+- Code standards
+- Component creation guidelines
+- Pull request process
+
+## 📄 License
+
+MIT License - see [LICENSE](../../LICENSE) file for details.
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Infineon/infineon-design-system-stencil)
+- [npm Package](https://www.npmjs.com/package/@infineon/infineon-design-system-stencil)
+- [Storybook Documentation](https://infineon.github.io/infineon-design-system-stencil/)
+- [Issue Tracker](https://github.com/Infineon/infineon-design-system-stencil/issues)
+- [Stencil Documentation](https://stenciljs.com/)
+
+## 📞 Support
+
+- **Email**: dds@infineon.com
+- **Issues**: [GitHub Issues](https://github.com/Infineon/infineon-design-system-stencil/issues)## 📖 TypeScript
+
+Full TypeScript definitions included:
+
+```typescript
+import type { Components } from '@infineon/infineon-design-system-stencil';
+
+type ButtonProps = Components.IfxButton;
+```
+
+## 📚 Resources
+
+- **[Live Storybook →](https://infineon.github.io/infineon-design-system-stencil/)** - Interactive component playground
+- **[GitHub Repository →](https://github.com/Infineon/infineon-design-system-stencil)** - Source code & documentation
+- **[Example Apps →](https://github.com/Infineon/infineon-design-system-stencil/tree/master/examples)** - React, Angular, Vue examples
+- **[Contributing Guide →](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md)** - How to contribute
+
+## 🌐 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## 🤝 Contributing
+
+Contributions welcome! See our [Contributing Guide](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md).
+
+## 📄 License
+
+MIT - see [LICENSE](https://github.com/Infineon/infineon-design-system-stencil/blob/master/LICENSE)
+
+## 📞 Support
+
+- **Email**: dds@infineon.com
+- **Issues**: [GitHub Issues](https://github.com/Infineon/infineon-design-system-stencil/issues)

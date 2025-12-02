@@ -1,0 +1,133 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Setup & installation/Icons Only Usage" />
+
+# Using Only the Icons
+
+If you only want to use the Infineon Design System icons without loading all components, you can import just the `ifx-icon` component. This reduces bundle size and improves performance when you don't need the full component library.
+
+## Benefits
+
+- **Smaller bundle size** - Only load what you need
+- **Faster loading** - Reduce initial page load time
+- **Selective imports** - Keep your application lean
+
+## Installation
+
+First, install the package following the instructions for your framework:
+
+- [Angular Installation](./?path=/docs/setup-installation-installation-angular--docs)
+- [React Installation](./?path=/docs/setup-installation-installation-react--docs)
+- [Vue Installation](./?path=/docs/setup-installation-installation-vue--docs)
+- [HTML Installation](./?path=/docs/setup-installation-installation-html--docs)
+
+## Setup
+
+Import only the `ifx-icon` component in your entry point file:
+
+### Angular
+
+```typescript
+// main.ts
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+
+defineCustomElementIfxIcon(window);
+```
+
+### React
+
+```javascript
+// index.js or index.ts
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+
+defineCustomElementIfxIcon(window);
+```
+
+### Vue
+
+```javascript
+// main.js or main.ts
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+
+defineCustomElementIfxIcon(window);
+```
+
+### HTML / Vanilla JavaScript
+
+```javascript
+// main.js
+import { defineCustomElement as defineCustomElementIfxIcon } from '@infineon/infineon-design-system-stencil/dist/components/ifx-icon';
+
+defineCustomElementIfxIcon(window);
+```
+
+## Usage
+
+Once imported, use the icon component in your templates:
+
+### Angular
+
+```html
+<!-- app.component.html -->
+<ifx-icon icon="c-check-16"></ifx-icon>
+<ifx-icon icon="c-info-24"></ifx-icon>
+```
+
+### React
+
+```jsx
+// App.jsx
+function App() {
+  return (
+    <div>
+      <ifx-icon icon="c-check-16"></ifx-icon>
+      <ifx-icon icon="c-info-24"></ifx-icon>
+    </div>
+  );
+}
+```
+
+### Vue
+
+```vue
+<!-- App.vue -->
+<template>
+  <div>
+    <ifx-icon icon="c-check-16"></ifx-icon>
+    <ifx-icon icon="c-info-24"></ifx-icon>
+  </div>
+</template>
+```
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Icons Only</title>
+</head>
+<body>
+  <ifx-icon icon="c-check-16"></ifx-icon>
+  <ifx-icon icon="c-info-24"></ifx-icon>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
+```
+
+## Available Icons
+
+Browse all available icons in the [Icon documentation](./?path=/docs/icon-library--docs).
+
+## Adding More Components Later
+
+If you later decide you need additional components, you can either:
+
+1. **Add individual components** using the same selective import pattern
+2. **Switch to full library** by following the complete installation guide for your framework
+
+## Note
+
+When using selective imports, make sure to only import the components you actually use to maintain the benefits of reduced bundle size.

@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
+import remarkGfm from "remark-gfm";
 
 import packageJson from "../package.json" with { type: "json" };
 
@@ -7,17 +8,39 @@ function getLibraryVersion(): string {
 }
 
 const config: StorybookConfig = {
-	stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-	addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
+	stories: [
+		"../src/components/**/*.mdx",
+		"../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+		"../src/storybook/stories/**/*.mdx",
+	],
+	addons: [
+		{
+			name: "@storybook/addon-docs",
+			options: {
+				mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } },
+			},
+		},
+		"@storybook/addon-a11y",
+	],
 	framework: {
 		name: "@storybook/web-components-vite",
 		options: {},
 	},
-	previewHead: (head) => `
+	previewHead: (head) => {
+		const isCI = process.env.CI === "true";
+		const scriptSrc = isCI
+			? `https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}`
+			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js";
+		const cssSrc = isCI
+			? `https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/styles.css`
+			: "../dist/infineon-design-system-stencil/infineon-design-system-stencil.css";
+
+		return `
     ${head}
-    <script type="module" src="https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}"></script>
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@infineon/infineon-design-system-stencil@${getLibraryVersion()}/dist/infineon-design-system-stencil/infineon-design-system-stencil.css" media="all">
-  `,
+    <script type="module" src="${scriptSrc}"></script>
+    <link rel="stylesheet" type="text/css" href="${cssSrc}" media="all">
+  `;
+	},
 	managerHead: (head) => `
     ${head}
     <style>

@@ -1,0 +1,154 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import PackageManagerTabs from '../../../components/PackageManagerTabs.mdx';
+
+<Meta title="Setup & installation/Framework Integration/Angular" />
+
+# Angular
+
+Use the Infineon Design System web components in Angular applications. The Angular wrapper provides an Angular-specific interface to Stencil web components, making them feel like native Angular components with proper handling of properties, events, two-way data binding with `ngModel`, and seamless integration with Angular's dependency injection and change detection.
+
+The Infineon Design System offers two integration approaches:
+- **Standalone Components** (recommended for Angular 14+)
+- **NgModule-based** (for traditional Angular applications)
+
+## Standalone Components (Recommended)
+
+Standalone components are the modern Angular approach, introduced in Angular 14 and promoted as the default in Angular 15+.
+
+### Installation
+
+**1. Install the package**
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-angular" />
+
+**2. Import global styles**
+
+Add the following import to your `styles.css` or `styles.scss` file:
+
+```css
+@import '@infineon/infineon-design-system-angular/styles.css';
+```
+
+**3. Import components in your standalone component**
+
+Import individual components directly where you need them:
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+import { IfxAlert, IfxButton, IfxSearchBar } from '@infineon/infineon-design-system-angular/standalone';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [IfxAlert, IfxButton, IfxSearchBar],
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
+  handleClick() {
+    console.log('Button clicked!');
+  }
+
+  handleSearch(event: CustomEvent) {
+    console.log('Search value:', event.detail);
+  }
+}
+```
+
+### Usage
+
+Use the components in your Angular template:
+
+```html
+<!-- app.component.html -->
+<h1>Infineon Design System - Angular Standalone Example</h1>
+
+<ifx-alert variant="primary" icon="c-info-16">
+  Welcome to Infineon Design System!
+</ifx-alert>
+
+<ifx-button variant="primary" (ifxClick)="handleClick()">
+  Click Me
+</ifx-button>
+
+<ifx-search-bar 
+  placeholder="Search..." 
+  [show-close-button]="true"
+  (ifxChange)="handleSearch($event)">
+</ifx-search-bar>
+```
+
+## NgModule-based (Traditional)
+
+For applications using the traditional NgModule architecture.
+
+### Installation
+
+**1. Install the package**
+
+<PackageManagerTabs packageName="@infineon/infineon-design-system-angular" />
+
+**2. Import global styles**
+
+Add the following import to your `styles.css` or `styles.scss` file:
+
+```css
+@import '@infineon/infineon-design-system-angular/styles/infineon-design-system.css';
+```
+
+**3. Import the module**
+
+Add `InfineonDesignSystemModule` to your app module:
+
+```typescript
+// app.module.ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { InfineonDesignSystemModule } from '@infineon/infineon-design-system-angular';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    InfineonDesignSystemModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+### Usage
+
+Once imported, all components are available throughout your application:
+
+```html
+<!-- app.component.html -->
+<h1>Infineon Design System - Angular Module Example</h1>
+
+<ifx-alert variant="primary" icon="c-info-16">
+  Welcome to Infineon Design System!
+</ifx-alert>
+
+<ifx-button variant="primary" (ifxClick)="handleClick()">
+  Click Me
+</ifx-button>
+```
+
+```typescript
+// app.component.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+export class AppComponent {
+  handleClick() {
+    console.log('Button clicked!');
+  }
+}
+```
+
+
