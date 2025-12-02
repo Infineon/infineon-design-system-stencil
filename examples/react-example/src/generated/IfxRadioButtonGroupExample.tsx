@@ -2,7 +2,7 @@ import { IfxRadioButton, IfxRadioButtonGroup } from '@infineon/infineon-design-s
 
 export function IfxRadioButtonGroupExample() {
   const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event.detail);
+    console.log('setGroupError:', event);
     // Add your handler logic here
   };
 
@@ -47,7 +47,7 @@ const codeString = `import { IfxRadioButton, IfxRadioButtonGroup } from '@infine
 
 export function IfxRadioButtonGroupExample() {
   const handleSetGroupError = (event: CustomEvent) => {
-    console.log('setGroupError:', event.detail);
+    console.log('setGroupError:', event);
     // Add your handler logic here
   };
 

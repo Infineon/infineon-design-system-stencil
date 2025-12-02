@@ -17,7 +17,7 @@ export class IfxActionListExample {
 })
 export class IfxActionListExample {
   protected handleActionListItemClick(event: CustomEvent) {
-    console.log(&#039;ifxActionListItemClick:&#039;, event.detail);
+    console.log(&#039;ifxActionListItemClick:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -62,7 +62,7 @@ export class IfxActionListExample {
   &lt;/ifx-action-list&gt;`;
 
   protected handleActionListItemClick(event: CustomEvent) {
-    console.log('ifxActionListItemClick:', event.detail);
+    console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
   }
 }

@@ -7,13 +7,13 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const handleActionListItemClick = (event: CustomEvent) => {
-  console.log('ifxActionListItemClick:', event.detail);
+  console.log('ifxActionListItemClick:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
 const handleActionListItemClick = (event: CustomEvent) => {
-  console.log('ifxActionListItemClick:', event.detail);
+  console.log('ifxActionListItemClick:', event);
   // Add your handler logic here
 };
 </' + 'script>

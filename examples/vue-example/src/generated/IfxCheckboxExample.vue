@@ -7,23 +7,23 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event.detail);
+  console.log('ifxChange:', event);
   // Add your handler logic here
 };
 
 const handleError = (event: CustomEvent) => {
-  console.log('ifxError:', event.detail);
+  console.log('ifxError:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
 const handleChange = (event: CustomEvent) => {
-  console.log('ifxChange:', event.detail);
+  console.log('ifxChange:', event);
   // Add your handler logic here
 };
 
 const handleError = (event: CustomEvent) => {
-  console.log('ifxError:', event.detail);
+  console.log('ifxError:', event);
   // Add your handler logic here
 };
 </' + 'script>

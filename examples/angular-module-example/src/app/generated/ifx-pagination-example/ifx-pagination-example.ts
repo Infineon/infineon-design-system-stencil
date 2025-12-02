@@ -17,12 +17,12 @@ export class IfxPaginationExample {
 })
 export class IfxPaginationExample {
   protected handlePageChange(event: CustomEvent) {
-    console.log(&#039;ifxPageChange:&#039;, event.detail);
+    console.log(&#039;ifxPageChange:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log(&#039;ifxItemsPerPageChange:&#039;, event.detail);
+    console.log(&#039;ifxItemsPerPageChange:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -35,12 +35,12 @@ export class IfxPaginationExample {
     (ifxItemsPerPageChange)=&quot;handleItemsPerPageChange(\$any(\$event))&quot;&gt;&lt;/ifx-pagination&gt;`;
 
   protected handlePageChange(event: CustomEvent) {
-    console.log('ifxPageChange:', event.detail);
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   }
 
   protected handleItemsPerPageChange(event: CustomEvent) {
-    console.log('ifxItemsPerPageChange:', event.detail);
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   }
 }

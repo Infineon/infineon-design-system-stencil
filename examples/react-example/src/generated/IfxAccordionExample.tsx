@@ -2,12 +2,12 @@ import { IfxAccordion, IfxAccordionItem } from '@infineon/infineon-design-system
 
 export function IfxAccordionExample() {
   const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 
   const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   };
 
@@ -56,12 +56,12 @@ const codeString = `import { IfxAccordion, IfxAccordionItem } from '@infineon/in
 
 export function IfxAccordionExample() {
   const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 
   const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   };
 

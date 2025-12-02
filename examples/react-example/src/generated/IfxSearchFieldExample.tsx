@@ -2,27 +2,27 @@ import { IfxSearchField } from '@infineon/infineon-design-system-react';
 
 export function IfxSearchFieldExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
   const handleSuggestionRequested = (event: CustomEvent) => {
-    console.log('ifxSuggestionRequested:', event.detail);
+    console.log('ifxSuggestionRequested:', event);
     // Add your handler logic here
   };
 
   const handleSuggestionSelected = (event: CustomEvent) => {
-    console.log('ifxSuggestionSelected:', event.detail);
+    console.log('ifxSuggestionSelected:', event);
     // Add your handler logic here
   };
 
   const handleFocus = (event: CustomEvent) => {
-    console.log('ifxFocus:', event.detail);
+    console.log('ifxFocus:', event);
     // Add your handler logic here
   };
 
   const handleBlur = (event: CustomEvent) => {
-    console.log('ifxBlur:', event.detail);
+    console.log('ifxBlur:', event);
     // Add your handler logic here
   };
 
@@ -64,27 +64,27 @@ const codeString = `import { IfxSearchField } from '@infineon/infineon-design-sy
 
 export function IfxSearchFieldExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
   const handleSuggestionRequested = (event: CustomEvent) => {
-    console.log('ifxSuggestionRequested:', event.detail);
+    console.log('ifxSuggestionRequested:', event);
     // Add your handler logic here
   };
 
   const handleSuggestionSelected = (event: CustomEvent) => {
-    console.log('ifxSuggestionSelected:', event.detail);
+    console.log('ifxSuggestionSelected:', event);
     // Add your handler logic here
   };
 
   const handleFocus = (event: CustomEvent) => {
-    console.log('ifxFocus:', event.detail);
+    console.log('ifxFocus:', event);
     // Add your handler logic here
   };
 
   const handleBlur = (event: CustomEvent) => {
-    console.log('ifxBlur:', event.detail);
+    console.log('ifxBlur:', event);
     // Add your handler logic here
   };
 

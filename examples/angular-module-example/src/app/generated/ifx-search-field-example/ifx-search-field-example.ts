@@ -17,27 +17,27 @@ export class IfxSearchFieldExample {
 })
 export class IfxSearchFieldExample {
   protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event.detail);
+    console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleSuggestionRequested(event: CustomEvent) {
-    console.log(&#039;ifxSuggestionRequested:&#039;, event.detail);
+    console.log(&#039;ifxSuggestionRequested:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleSuggestionSelected(event: CustomEvent) {
-    console.log(&#039;ifxSuggestionSelected:&#039;, event.detail);
+    console.log(&#039;ifxSuggestionSelected:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleFocus(event: CustomEvent) {
-    console.log(&#039;ifxFocus:&#039;, event.detail);
+    console.log(&#039;ifxFocus:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleBlur(event: CustomEvent) {
-    console.log(&#039;ifxBlur:&#039;, event.detail);
+    console.log(&#039;ifxBlur:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -67,27 +67,27 @@ export class IfxSearchFieldExample {
     (ifxBlur)=&quot;handleBlur(\$any(\$event))&quot;&gt;&lt;/ifx-search-field&gt;`;
 
   protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   }
 
   protected handleSuggestionRequested(event: CustomEvent) {
-    console.log('ifxSuggestionRequested:', event.detail);
+    console.log('ifxSuggestionRequested:', event);
     // Add your handler logic here
   }
 
   protected handleSuggestionSelected(event: CustomEvent) {
-    console.log('ifxSuggestionSelected:', event.detail);
+    console.log('ifxSuggestionSelected:', event);
     // Add your handler logic here
   }
 
   protected handleFocus(event: CustomEvent) {
-    console.log('ifxFocus:', event.detail);
+    console.log('ifxFocus:', event);
     // Add your handler logic here
   }
 
   protected handleBlur(event: CustomEvent) {
-    console.log('ifxBlur:', event.detail);
+    console.log('ifxBlur:', event);
     // Add your handler logic here
   }
 }

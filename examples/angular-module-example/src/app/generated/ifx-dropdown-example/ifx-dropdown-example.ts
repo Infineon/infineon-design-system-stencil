@@ -17,17 +17,17 @@ export class IfxDropdownExample {
 })
 export class IfxDropdownExample {
   protected handleOpen(event: CustomEvent) {
-    console.log(&#039;ifxOpen:&#039;, event.detail);
+    console.log(&#039;ifxOpen:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleClose(event: CustomEvent) {
-    console.log(&#039;ifxClose:&#039;, event.detail);
+    console.log(&#039;ifxClose:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleDropdownMenuItem(event: CustomEvent) {
-    console.log(&#039;ifxDropdownMenuItem:&#039;, event.detail);
+    console.log(&#039;ifxDropdownMenuItem:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -92,17 +92,17 @@ export class IfxDropdownExample {
   &lt;/div&gt;`;
 
   protected handleOpen(event: CustomEvent) {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   }
 
   protected handleClose(event: CustomEvent) {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   }
 
   protected handleDropdownMenuItem(event: CustomEvent) {
-    console.log('ifxDropdownMenuItem:', event.detail);
+    console.log('ifxDropdownMenuItem:', event);
     // Add your handler logic here
   }
 }

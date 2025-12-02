@@ -17,12 +17,12 @@ export class IfxCheckboxExample {
 })
 export class IfxCheckboxExample {
   protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event.detail);
+    console.log(&#039;ifxChange:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleError(event: CustomEvent) {
-    console.log(&#039;ifxError:&#039;, event.detail);
+    console.log(&#039;ifxError:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -39,12 +39,12 @@ export class IfxCheckboxExample {
   &lt;/ifx-checkbox&gt;`;
 
   protected handleChange(event: CustomEvent) {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   }
 
   protected handleError(event: CustomEvent) {
-    console.log('ifxError:', event.detail);
+    console.log('ifxError:', event);
     // Add your handler logic here
   }
 }

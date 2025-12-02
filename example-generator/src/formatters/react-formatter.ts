@@ -40,7 +40,7 @@ export class ReactCodeFormatter implements ICodeFormatter {
 			.map((event) => {
 				const handlerName = toHandlerFunctionName(event.name);
 				return `  const ${handlerName} = (event: CustomEvent) => {
-    console.log('${event.name}:', event.detail);
+    console.log('${event.name}:', event);
     // Add your handler logic here
   };`;
 			})

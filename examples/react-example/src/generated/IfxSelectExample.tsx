@@ -2,12 +2,12 @@ import { IfxSelect } from '@infineon/infineon-design-system-react';
 
 export function IfxSelectExample() {
   const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event.detail);
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   };
 
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
@@ -40,12 +40,12 @@ const codeString = `import { IfxSelect } from '@infineon/infineon-design-system-
 
 export function IfxSelectExample() {
   const handleSelect = (event: CustomEvent) => {
-    console.log('ifxSelect:', event.detail);
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   };
 
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 

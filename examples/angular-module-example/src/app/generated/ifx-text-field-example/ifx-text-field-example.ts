@@ -17,7 +17,7 @@ export class IfxTextFieldExample {
 })
 export class IfxTextFieldExample {
   protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event.detail);
+    console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -42,7 +42,7 @@ export class IfxTextFieldExample {
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-text-field&gt;`;
 
   protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   }
 }

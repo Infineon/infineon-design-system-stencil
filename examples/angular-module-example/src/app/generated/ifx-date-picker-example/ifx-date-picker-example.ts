@@ -17,7 +17,7 @@ export class IfxDatePickerExample {
 })
 export class IfxDatePickerExample {
   protected handleDate(event: CustomEvent) {
-    console.log(&#039;ifxDate:&#039;, event.detail);
+    console.log(&#039;ifxDate:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -39,7 +39,7 @@ export class IfxDatePickerExample {
     (ifxDate)=&quot;handleDate(\$any(\$event))&quot;&gt;&lt;/ifx-date-picker&gt;`;
 
   protected handleDate(event: CustomEvent) {
-    console.log('ifxDate:', event.detail);
+    console.log('ifxDate:', event);
     // Add your handler logic here
   }
 }

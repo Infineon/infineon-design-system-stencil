@@ -2,7 +2,7 @@ import { IfxActionList, IfxActionListItem, IfxIcon } from '@infineon/infineon-de
 
 export function IfxActionListExample() {
   const handleActionListItemClick = (event: CustomEvent) => {
-    console.log('ifxActionListItemClick:', event.detail);
+    console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
   };
 
@@ -59,7 +59,7 @@ const codeString = `import { IfxActionList, IfxActionListItem, IfxIcon } from '@
 
 export function IfxActionListExample() {
   const handleActionListItemClick = (event: CustomEvent) => {
-    console.log('ifxActionListItemClick:', event.detail);
+    console.log('ifxActionListItemClick:', event);
     // Add your handler logic here
   };
 

@@ -19,7 +19,7 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxContentSwitcherExample {
   protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event.detail);
+    console.log(&#039;ifxChange:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -41,7 +41,7 @@ export class IfxContentSwitcherExample {
   &lt;/ifx-content-switcher&gt;`;
 
   protected handleChange(event: CustomEvent) {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   }
 }

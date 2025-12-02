@@ -2,7 +2,7 @@ import { IfxTextField } from '@infineon/infineon-design-system-react';
 
 export function IfxTextFieldExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
@@ -39,7 +39,7 @@ const codeString = `import { IfxTextField } from '@infineon/infineon-design-syst
 
 export function IfxTextFieldExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 

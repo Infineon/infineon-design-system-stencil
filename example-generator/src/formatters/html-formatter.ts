@@ -42,7 +42,7 @@ ${this.structureToHTML(component.structure, indent)}
 
 				return `  // ${event.description}
   ${elementSelector}?.addEventListener('${event.name}', (event) => {
-    console.log('${event.name}:', event.detail);
+    console.log('${event.name}:', event);
     // Add your custom handler logic here
   });`;
 			})

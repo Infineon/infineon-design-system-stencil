@@ -2,12 +2,12 @@ import { IfxRadioButton } from '@infineon/infineon-design-system-react';
 
 export function IfxRadioButtonExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 
   const handleError = (event: CustomEvent) => {
-    console.log('ifxError:', event.detail);
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 
@@ -33,12 +33,12 @@ const codeString = `import { IfxRadioButton } from '@infineon/infineon-design-sy
 
 export function IfxRadioButtonExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 
   const handleError = (event: CustomEvent) => {
-    console.log('ifxError:', event.detail);
+    console.log('ifxError:', event);
     // Add your handler logic here
   };
 

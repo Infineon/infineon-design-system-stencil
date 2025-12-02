@@ -2,12 +2,12 @@ import { IfxPagination } from '@infineon/infineon-design-system-react';
 
 export function IfxPaginationExample() {
   const handlePageChange = (event: CustomEvent) => {
-    console.log('ifxPageChange:', event.detail);
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   };
 
   const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event.detail);
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   };
 
@@ -32,12 +32,12 @@ const codeString = `import { IfxPagination } from '@infineon/infineon-design-sys
 
 export function IfxPaginationExample() {
   const handlePageChange = (event: CustomEvent) => {
-    console.log('ifxPageChange:', event.detail);
+    console.log('ifxPageChange:', event);
     // Add your handler logic here
   };
 
   const handleItemsPerPageChange = (event: CustomEvent) => {
-    console.log('ifxItemsPerPageChange:', event.detail);
+    console.log('ifxItemsPerPageChange:', event);
     // Add your handler logic here
   };
 

@@ -2,12 +2,12 @@ import { IfxSearchBar } from '@infineon/infineon-design-system-react';
 
 export function IfxSearchBarExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
   const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 
@@ -32,12 +32,12 @@ const codeString = `import { IfxSearchBar } from '@infineon/infineon-design-syst
 
 export function IfxSearchBarExample() {
   const handleInput = (event: CustomEvent) => {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   };
 
   const handleOpen = (event: CustomEvent) => {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   };
 

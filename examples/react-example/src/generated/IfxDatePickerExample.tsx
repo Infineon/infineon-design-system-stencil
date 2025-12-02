@@ -2,7 +2,7 @@ import { IfxDatePicker } from '@infineon/infineon-design-system-react';
 
 export function IfxDatePickerExample() {
   const handleDate = (event: CustomEvent) => {
-    console.log('ifxDate:', event.detail);
+    console.log('ifxDate:', event);
     // Add your handler logic here
   };
 
@@ -36,7 +36,7 @@ const codeString = `import { IfxDatePicker } from '@infineon/infineon-design-sys
 
 export function IfxDatePickerExample() {
   const handleDate = (event: CustomEvent) => {
-    console.log('ifxDate:', event.detail);
+    console.log('ifxDate:', event);
     // Add your handler logic here
   };
 

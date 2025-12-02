@@ -2,7 +2,7 @@ import { IfxAlert } from '@infineon/infineon-design-system-react';
 
 export function IfxAlertExample() {
   const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   };
 
@@ -28,7 +28,7 @@ const codeString = `import { IfxAlert } from '@infineon/infineon-design-system-r
 
 export function IfxAlertExample() {
   const handleClose = (event: CustomEvent) => {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   };
 

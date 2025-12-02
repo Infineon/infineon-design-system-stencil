@@ -7,43 +7,43 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event.detail);
+  console.log('ifxSidebarNavigationItem:', event);
   // Add your handler logic here
 };
 
 const handleSidebarActionItem = (event: CustomEvent) => {
-  console.log('ifxSidebarActionItem:', event.detail);
+  console.log('ifxSidebarActionItem:', event);
   // Add your handler logic here
 };
 
 const handleSidebarMenu = (event: CustomEvent) => {
-  console.log('ifxSidebarMenu:', event.detail);
+  console.log('ifxSidebarMenu:', event);
   // Add your handler logic here
 };
 
 const handleSidebarCollapseChange = (event: CustomEvent) => {
-  console.log('ifxSidebarCollapseChange:', event.detail);
+  console.log('ifxSidebarCollapseChange:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
 const handleSidebarNavigationItem = (event: CustomEvent) => {
-  console.log('ifxSidebarNavigationItem:', event.detail);
+  console.log('ifxSidebarNavigationItem:', event);
   // Add your handler logic here
 };
 
 const handleSidebarActionItem = (event: CustomEvent) => {
-  console.log('ifxSidebarActionItem:', event.detail);
+  console.log('ifxSidebarActionItem:', event);
   // Add your handler logic here
 };
 
 const handleSidebarMenu = (event: CustomEvent) => {
-  console.log('ifxSidebarMenu:', event.detail);
+  console.log('ifxSidebarMenu:', event);
   // Add your handler logic here
 };
 
 const handleSidebarCollapseChange = (event: CustomEvent) => {
-  console.log('ifxSidebarCollapseChange:', event.detail);
+  console.log('ifxSidebarCollapseChange:', event);
   // Add your handler logic here
 };
 </' + 'script>

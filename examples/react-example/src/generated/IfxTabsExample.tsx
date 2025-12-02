@@ -2,7 +2,7 @@ import { IfxTab, IfxTabs } from '@infineon/infineon-design-system-react';
 
 export function IfxTabsExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 
@@ -50,7 +50,7 @@ const codeString = `import { IfxTab, IfxTabs } from '@infineon/infineon-design-s
 
 export function IfxTabsExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 

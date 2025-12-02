@@ -17,12 +17,12 @@ export class IfxSearchBarExample {
 })
 export class IfxSearchBarExample {
   protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event.detail);
+    console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleOpen(event: CustomEvent) {
-    console.log(&#039;ifxOpen:&#039;, event.detail);
+    console.log(&#039;ifxOpen:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -35,12 +35,12 @@ export class IfxSearchBarExample {
     (ifxOpen)=&quot;handleOpen(\$any(\$event))&quot;&gt;&lt;/ifx-search-bar&gt;`;
 
   protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   }
 
   protected handleOpen(event: CustomEvent) {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   }
 }

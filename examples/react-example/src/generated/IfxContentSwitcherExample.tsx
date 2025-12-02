@@ -2,7 +2,7 @@ import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon } from '@infineon/i
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 
@@ -36,7 +36,7 @@ const codeString = `import { IfxContentSwitcher, IfxContentSwitcherItem, IfxIcon
 
 export function IfxContentSwitcherExample() {
   const handleChange = (event: CustomEvent) => {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   };
 

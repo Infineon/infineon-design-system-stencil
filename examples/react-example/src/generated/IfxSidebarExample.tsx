@@ -2,22 +2,22 @@ import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from '@infineon/infineon-
 
 export function IfxSidebarExample() {
   const handleSidebarNavigationItem = (event: CustomEvent) => {
-    console.log('ifxSidebarNavigationItem:', event.detail);
+    console.log('ifxSidebarNavigationItem:', event);
     // Add your handler logic here
   };
 
   const handleSidebarActionItem = (event: CustomEvent) => {
-    console.log('ifxSidebarActionItem:', event.detail);
+    console.log('ifxSidebarActionItem:', event);
     // Add your handler logic here
   };
 
   const handleSidebarMenu = (event: CustomEvent) => {
-    console.log('ifxSidebarMenu:', event.detail);
+    console.log('ifxSidebarMenu:', event);
     // Add your handler logic here
   };
 
   const handleSidebarCollapseChange = (event: CustomEvent) => {
-    console.log('ifxSidebarCollapseChange:', event.detail);
+    console.log('ifxSidebarCollapseChange:', event);
     // Add your handler logic here
   };
 
@@ -129,22 +129,22 @@ const codeString = `import { IfxSidebar, IfxSidebarItem, IfxSidebarTitle } from 
 
 export function IfxSidebarExample() {
   const handleSidebarNavigationItem = (event: CustomEvent) => {
-    console.log('ifxSidebarNavigationItem:', event.detail);
+    console.log('ifxSidebarNavigationItem:', event);
     // Add your handler logic here
   };
 
   const handleSidebarActionItem = (event: CustomEvent) => {
-    console.log('ifxSidebarActionItem:', event.detail);
+    console.log('ifxSidebarActionItem:', event);
     // Add your handler logic here
   };
 
   const handleSidebarMenu = (event: CustomEvent) => {
-    console.log('ifxSidebarMenu:', event.detail);
+    console.log('ifxSidebarMenu:', event);
     // Add your handler logic here
   };
 
   const handleSidebarCollapseChange = (event: CustomEvent) => {
-    console.log('ifxSidebarCollapseChange:', event.detail);
+    console.log('ifxSidebarCollapseChange:', event);
     // Add your handler logic here
   };
 

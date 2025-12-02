@@ -19,7 +19,7 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxCheckboxGroupExample {
   protected handleSetGroupError(event: CustomEvent) {
-    console.log(&#039;setGroupError:&#039;, event.detail);
+    console.log(&#039;setGroupError:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -53,7 +53,7 @@ export class IfxCheckboxGroupExample {
   &lt;/ifx-checkbox-group&gt;`;
 
   protected handleSetGroupError(event: CustomEvent) {
-    console.log('setGroupError:', event.detail);
+    console.log('setGroupError:', event);
     // Add your handler logic here
   }
 }

@@ -19,7 +19,7 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxAlertExample {
   protected handleClose(event: CustomEvent) {
-    console.log(&#039;ifxClose:&#039;, event.detail);
+    console.log(&#039;ifxClose:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -33,7 +33,7 @@ export class IfxAlertExample {
   &lt;/ifx-alert&gt;`;
 
   protected handleClose(event: CustomEvent) {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   }
 }

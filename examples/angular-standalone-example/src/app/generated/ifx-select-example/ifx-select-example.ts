@@ -19,12 +19,12 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxSelectExample {
   protected handleSelect(event: CustomEvent) {
-    console.log(&#039;ifxSelect:&#039;, event.detail);
+    console.log(&#039;ifxSelect:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleInput(event: CustomEvent) {
-    console.log(&#039;ifxInput:&#039;, event.detail);
+    console.log(&#039;ifxInput:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -45,12 +45,12 @@ export class IfxSelectExample {
     (ifxInput)=&quot;handleInput(\$any(\$event))&quot;&gt;&lt;/ifx-select&gt;`;
 
   protected handleSelect(event: CustomEvent) {
-    console.log('ifxSelect:', event.detail);
+    console.log('ifxSelect:', event);
     // Add your handler logic here
   }
 
   protected handleInput(event: CustomEvent) {
-    console.log('ifxInput:', event.detail);
+    console.log('ifxInput:', event);
     // Add your handler logic here
   }
 }

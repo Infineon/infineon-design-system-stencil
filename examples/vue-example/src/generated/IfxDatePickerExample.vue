@@ -7,13 +7,13 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 
 const handleDate = (event: CustomEvent) => {
-  console.log('ifxDate:', event.detail);
+  console.log('ifxDate:', event);
   // Add your handler logic here
 };
 
 const codeString = `<script setup lang="ts">
 const handleDate = (event: CustomEvent) => {
-  console.log('ifxDate:', event.detail);
+  console.log('ifxDate:', event);
   // Add your handler logic here
 };
 </' + 'script>

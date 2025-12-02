@@ -19,7 +19,7 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxRadioButtonGroupExample {
   protected handleSetGroupError(event: CustomEvent) {
-    console.log(&#039;setGroupError:&#039;, event.detail);
+    console.log(&#039;setGroupError:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -52,7 +52,7 @@ export class IfxRadioButtonGroupExample {
   &lt;/ifx-radio-button-group&gt;`;
 
   protected handleSetGroupError(event: CustomEvent) {
-    console.log('setGroupError:', event.detail);
+    console.log('setGroupError:', event);
     // Add your handler logic here
   }
 }

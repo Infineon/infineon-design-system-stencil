@@ -17,7 +17,7 @@ export class IfxChipExample {
 })
 export class IfxChipExample {
   protected handleChange(event: CustomEvent) {
-    console.log(&#039;ifxChange:&#039;, event.detail);
+    console.log(&#039;ifxChange:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -47,7 +47,7 @@ export class IfxChipExample {
   &lt;/ifx-chip&gt;`;
 
   protected handleChange(event: CustomEvent) {
-    console.log('ifxChange:', event.detail);
+    console.log('ifxChange:', event);
     // Add your handler logic here
   }
 }

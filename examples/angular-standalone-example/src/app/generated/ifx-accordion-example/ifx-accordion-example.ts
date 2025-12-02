@@ -19,12 +19,12 @@ import { Component } from &#039;@angular/core&#039;;
 })
 export class IfxAccordionExample {
   protected handleOpen(event: CustomEvent) {
-    console.log(&#039;ifxOpen:&#039;, event.detail);
+    console.log(&#039;ifxOpen:&#039;, event);
     // Add your handler logic here
   }
 
   protected handleClose(event: CustomEvent) {
-    console.log(&#039;ifxClose:&#039;, event.detail);
+    console.log(&#039;ifxClose:&#039;, event);
     // Add your handler logic here
   }
 }`;
@@ -61,12 +61,12 @@ export class IfxAccordionExample {
   &lt;/ifx-accordion&gt;`;
 
   protected handleOpen(event: CustomEvent) {
-    console.log('ifxOpen:', event.detail);
+    console.log('ifxOpen:', event);
     // Add your handler logic here
   }
 
   protected handleClose(event: CustomEvent) {
-    console.log('ifxClose:', event.detail);
+    console.log('ifxClose:', event);
     // Add your handler logic here
   }
 }
