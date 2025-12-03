@@ -3,7 +3,6 @@ import { Route } from '@angular/router';
 import { AccordionComponent }       from './components/accordion/accordion.component';
 import { ActionList }               from './components/action-list/action-list';
 import { AlertComponent }           from './components/alert/alert.component';
-import { BadgeComponent }           from './components/badge/badge.component';
 import { BreadcrumbComponent }      from './components/breadcrumb/breadcrumb.component';
 import { ButtonComponent }          from './components/button/button.component';
 import { CardComponent }            from './components/card/card.component';
@@ -48,7 +47,6 @@ export const routes: Route[] = [
   { path: 'accordion',        component: AccordionComponent },
   { path: 'alert',            component: AlertComponent },
   { path: 'actionlist',       component: ActionList},
-  { path: 'badge',            component: BadgeComponent },
   { path: 'breadcrumb',       component: BreadcrumbComponent },
   { path: 'button',           component: ButtonComponent },
   { path: 'card',             component: CardComponent },

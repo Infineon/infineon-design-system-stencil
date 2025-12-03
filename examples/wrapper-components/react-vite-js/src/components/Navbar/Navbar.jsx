@@ -8,7 +8,6 @@ function Navbar({onSelect}) {
       <IfxNavbarItem onClick={() => onSelect("accordion")}>Accordion</IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("actionlist")}>Action List</IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("alert")}>Alert</IfxNavbarItem>
-      <IfxNavbarItem onClick={() => onSelect("badge")}>Badge</IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("breadcrumb")}>Breadcrumb</IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("button")}>Button</IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("card")}>Card</IfxNavbarItem>
