@@ -32,6 +32,7 @@ function App() {
 
   return (
     <div>
+      <h2>Checkbox</h2>
 
       <form onSubmit={handleSubmit}>
         <IfxCheckbox disabled={disabled} value={value} error={error} name="name"

@@ -4,6 +4,7 @@ function ActionList() {
   
   return (
     <div>
+      <h2>Action List</h2>
       <IfxActionList list-aria-label="Navigation menu">
           <IfxActionListItem item-title="Dashboard" description="View your main dashboard" value="dashboard" item-aria-label="Navigation item" onIfxActionListItemClick={(e) => console.log("Dashboard action list item clicked", e)}>
             <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>

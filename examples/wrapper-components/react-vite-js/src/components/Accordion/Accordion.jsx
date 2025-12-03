@@ -26,6 +26,7 @@ function Accordion() {
 
   return (
     <div>
+      <h2>Accordion</h2>
       <IfxAccordion auto-collapse={true} onIfxOpen={handleItems}>
         <IfxAccordionItem initial-collapse={false} open={false} key={content} caption="Label" ref={accordionItemRef}>
           <div>{content}</div>
