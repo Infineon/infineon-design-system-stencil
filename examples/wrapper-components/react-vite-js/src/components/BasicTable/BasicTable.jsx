@@ -19,6 +19,7 @@ function BasicTable() {
 
   return (
     <div>
+      <h2>Basic Table</h2>
       <IfxBasicTable id='myTable' row-height='default'
         cols={JSON.stringify(cols)}
         rows={JSON.stringify(rows)}
