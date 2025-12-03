@@ -7,7 +7,7 @@ import { detectFramework } from '../../global/utils/framework-detection';
   tag: 'ifx-checkbox',
   styleUrl: 'checkbox.scss',
   shadow: true,
-  // formAssociated: true
+  formAssociated: true
 })
 
 export class Checkbox {
@@ -88,6 +88,9 @@ export class Checkbox {
   }
 
   componentWillLoad() {
+    console.log(this.disabled)
+    console.log(this.error)
+    console.log(this.checked)
     this.internalChecked = this.checked;
     this.internalIndeterminate = this.indeterminate;
   }
