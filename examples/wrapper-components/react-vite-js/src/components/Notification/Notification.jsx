@@ -3,6 +3,7 @@ import { IfxNotification } from '@infineon/infineon-design-system-react';
 function Notification() {
   return (
     <div>
+      <h2>Notification</h2>
       <IfxNotification icon="c-check-16" variant="success" link-text="Link" link-href="https://www.example.com">Success notification</IfxNotification>
       <br />
       <IfxNotification icon="lock-16" variant="locked" link-text="Link" link-href="https://www.example.com">Locked notification</IfxNotification>

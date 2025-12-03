@@ -3,6 +3,7 @@ import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel, IfxDropdownMe
 function Breadcrumb() {
   return (
     <div>
+      <h2>Breadcrumb</h2>
       <IfxBreadcrumb>
         <IfxBreadcrumbItem>
           <IfxBreadcrumbItemLabel slot="label">Breadcrumb 1</IfxBreadcrumbItemLabel>
