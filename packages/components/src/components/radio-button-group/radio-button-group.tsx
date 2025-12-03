@@ -61,8 +61,8 @@ export class RadioButtonGroup {
         this.errorStates.clear();
         const radioButtons = Array.from(this.el.querySelectorAll('ifx-radio-button'));
         radioButtons.forEach((radioButton) => {
-            if (!this.errorStates.has(radioButton)) {
-                this.errorStates.set(radioButton, (radioButton as any).error || false);
+            if (!this.errorStates.has(radioButton as unknown as HTMLElement)) {
+                this.errorStates.set(radioButton as unknown as HTMLElement, (radioButton as any).error || false);
             }
         });
         this.updateHasErrors();

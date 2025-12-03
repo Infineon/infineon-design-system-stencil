@@ -77,7 +77,7 @@ export class SegmentedControl {
     }
 
     async componentDidLoad() {
-        if(!isNestedInIfxComponent(this.SegmentedControl)) { 
+        if(!isNestedInIfxComponent(this.SegmentedControl as unknown as HTMLElement)) { 
             const framework = detectFramework();
             trackComponent('ifx-segmented-control', await framework)
         }

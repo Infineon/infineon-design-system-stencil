@@ -62,8 +62,8 @@ export class CheckboxGroup {
     this.errorStates.clear();
     const checkboxes = Array.from(this.el.querySelectorAll('ifx-checkbox'));
     checkboxes.forEach((checkbox) => {
-      if (!this.errorStates.has(checkbox)) {
-        this.errorStates.set(checkbox, (checkbox as any).error || false);
+      if (!this.errorStates.has(checkbox as unknown as HTMLElement)) {
+        this.errorStates.set(checkbox as unknown as HTMLElement, (checkbox as any).error || false);
       }
     });
     this.updateHasErrors();
