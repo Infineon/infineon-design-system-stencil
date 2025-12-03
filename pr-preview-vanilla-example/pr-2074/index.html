@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@37.22.1--canary.2074.9e36e26110d21e4320e09cfc57937c244c049d0c.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@37.22.1--canary.2074.9e36e26110d21e4320e09cfc57937c244c049d0c.0/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.4.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.esm.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@infineon/infineon-design-system-stencil@39.4.3/dist/infineon-design-system-stencil/infineon-design-system-stencil.css">
 
   <!-- <link rel="stylesheet" href="./node_modules/@infineon/design-system-tokens/dist/fonts/ifx-fonts.css"> -->
 
@@ -128,6 +128,22 @@
       </ifx-accordion-item></ifx-accordion>
     <br />
 
+    <h2>Action List</h2>
+    <ifx-action-list id="ifxActionList" list-aria-label="Navigation menu">
+      <ifx-action-list-item item-title="Dashboard" description="View your main dashboard" value="dashboard" item-aria-label="Navigation item">
+        <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
+      </ifx-action-list-item>
+      <ifx-action-list-item item-title="Settings" value="settings" item-aria-label="Navigation item">
+        <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
+      </ifx-action-list-item>
+      <ifx-action-list-item item-title="Profile" description="Manage your profile information" value="profile" disabled="true" item-aria-label="Navigation item">
+        <IfxIcon slot="trailing" icon="chevron-right-16"></IfxIcon>
+      </ifx-action-list-item>
+      <ifx-action-list-item item-title="Advanced Analytics and Reporting Dashboard with Extended Functionality" description="This comprehensive analytics dashboard provides detailed insights into user behavior and system performance metrics." value="analytics" item-aria-label="Navigation item">
+        <ifx-icon slot="trailing" icon="chevron-right-16"></ifx-icon>
+      </ifx-action-list-item>
+    </ifx-action-list>
+
 
     <h2>Alert</h2>
     <ifx-alert color="primary" icon="c-info-16">Attention! This is an alert message — check it out!</ifx-alert>
@@ -196,8 +212,12 @@
     <br />
 
     <h2>Checkbox Group</h2>
-    <ifx-checkbox-group alignment="vertical" show-group-label="false" group-label-text="Group Label" show-caption="false" caption-text="Caption text, description, error notification" show-caption-icon="false">
-      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="false">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
+    <ifx-checkbox-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true" required="false">
+      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="true">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
+  </ifx-checkbox-group>
+
+  <ifx-checkbox-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true" required="true">
+      <ifx-checkbox value="0" disabled="false" checked="false" size="m" indeterminate="false" error="true">Option 0</ifx-checkbox><ifx-checkbox value="1" size="m">Option 1</ifx-checkbox><ifx-checkbox value="2" size="m">Option 2</ifx-checkbox>
   </ifx-checkbox-group>
 
   <br />
@@ -500,8 +520,15 @@
     <br />
 
     <h2>Radio Button Group</h2>
-    <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true">
+    <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true" required="true">
       <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="false">Option 0</ifx-radio-button>
+      <ifx-radio-button value="1" disabled="false" checked="false" size="m" error="false">Option 1</ifx-radio-button>
+      <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
+      <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
+    </ifx-radio-button-group>
+
+    <ifx-radio-button-group alignment="vertical" show-group-label="true" group-label-text="Group Label" show-caption="true" caption-text="Caption text, description, error notification" show-caption-icon="true" required="true">
+      <ifx-radio-button value="0" disabled="false" checked="false" size="m" error="true">Option 0</ifx-radio-button>
       <ifx-radio-button value="1" disabled="false" checked="false" size="m" error="false">Option 1</ifx-radio-button>
       <ifx-radio-button value="2" disabled="false" checked="false" size="m" error="false">Option 2</ifx-radio-button>
       <ifx-radio-button value="3" disabled="false" checked="false" size="m" error="false">Option 3</ifx-radio-button>
@@ -580,6 +607,23 @@
     <br />
     <br />
 
+    <h2>Segmented Control</h2>
+    <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular" required="true">
+    <ifx-segment value="Value1" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value2" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value3" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value4" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value5" icon="star-16">Label</ifx-segment>
+    </ifx-segmented-control>
+
+    <ifx-segmented-control caption="Caption text to describe the controls" label="Group Label" size="regular" required="true" error="true">
+    <ifx-segment value="Value1" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value2" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value3" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value4" icon="star-16">Label</ifx-segment>
+    <ifx-segment value="Value5" icon="star-16">Label</ifx-segment>
+    </ifx-segmented-control>
+
     <br />
     <br />
     <h2>Status</h2>
@@ -617,12 +661,6 @@
     <ifx-button variant="primary" onClick="toggleShowNumber()"> Toggle Show Number </ifx-button>
     <ifx-button variant="primary" onClick="toggleVariant()"> Toggle Variant </ifx-button>
     <ifx-button variant="secondary" onClick="nextStep()"> Next Step</ifx-button>
-    <br />
-    <br />
-
-
-    <h2>Tag</h2>
-    <ifx-tag>tag</ifx-tag>
     <br />
     <br />
 
@@ -818,6 +856,7 @@
   const form = document.querySelector("#form");
   const anotherForm = document.querySelector("#another-form");
 
+  const actionList = document.querySelector("#ifxActionList");
   const checkbox = document.querySelector("#checkbox");
   const progressBar = document.querySelector('#progress-bar');
   const textInput = document.querySelector('#text-field');
@@ -889,6 +928,9 @@
       console.log('Form reset. Text field value: ', textInputValue);
     });
 
+    actionList.addEventListener('ifxActionListItemClick', (event) => {
+      console.log("Action list item clicked", event);
+    });
 
     checkbox.addEventListener('ifxChange', (event) => {
       console.log("checked value change", event.detail);
