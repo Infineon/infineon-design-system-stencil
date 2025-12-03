@@ -1,3 +1,7 @@
+:root {
+	font-family: "Source Sans 3", sans-serif;
+}
+
 body {
 	background-color: #f7f7f7;
 	margin: 0;
@@ -22,10 +26,6 @@ body {
 .components > section {
 	background-color: #ffffff;
 	padding: 12px 20px;
-}
-
-.component-example {
-	margin-bottom: 16px;
 }
 
 h2 {

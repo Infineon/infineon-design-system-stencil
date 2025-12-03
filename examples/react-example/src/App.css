@@ -8,9 +8,9 @@ body {
 }
 
 .version-info {
-	background-color: #ffffff;
+	background-color: white;
 	padding: 8px 16px;
-	border-radius: 4px;
+	margin: 0;
 	font-size: 14px;
 	color: #666;
 	font-family: monospace;
@@ -36,4 +36,23 @@ summary {
 	cursor: pointer;
 	font-weight: bold;
 	margin-top: 20px;
+}
+
+.code-details {
+	margin-top: 16px;
+}
+
+.code-details .code-blocks h3 {
+	margin: 16px 0 8px 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+}
+
+.code-details .code-blocks h3:first-child {
+	margin-top: 0;
+}
+
+.code-blocks {
+	margin-top: 12px;
 }

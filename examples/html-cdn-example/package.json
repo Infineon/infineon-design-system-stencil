@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "npx serve . -p 3001",
-		"build": "mkdir -p dist && cp index.html dist/",
+		"build": "mkdir -p dist && cp index.html favicon.svg dist/",
 		"preview": "npx serve . -p 4001",
 		"cicd-update-version": "node scripts/update-cdn-version.js"
 	},

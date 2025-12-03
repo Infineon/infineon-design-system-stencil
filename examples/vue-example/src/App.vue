@@ -372,10 +372,6 @@ body {
 	padding: 12px 20px;
 }
 
-.component-example {
-	margin-bottom: 16px;
-}
-
 h2 {
 	margin: 4px 0px 12px 0px;
 }
