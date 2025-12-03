@@ -26,7 +26,7 @@
 
 ### Used by
 
- - [ifx-faq](../../stories/setup-and-installation/faq)
+ - [ifx-faq](../../storybook/stories/setup-and-installation/faq)
 
 ### Depends on
 

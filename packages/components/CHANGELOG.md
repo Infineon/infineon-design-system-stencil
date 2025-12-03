@@ -1,3 +1,21 @@
+# v39.4.3 (Wed Dec 03 2025)
+
+#### 🐛 Bug Fix
+
+- Typography: Updates documentation [#2122](https://github.com/Infineon/infineon-design-system-stencil/pull/2122) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.4.2 (Tue Dec 02 2025)
 
 #### 🐛 Bug Fix
