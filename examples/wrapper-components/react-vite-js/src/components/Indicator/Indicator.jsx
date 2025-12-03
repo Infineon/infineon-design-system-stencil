@@ -16,6 +16,7 @@ function Indicator() {
 
   return (
     <div>
+      <h2>Indicator</h2>
       <IfxIndicator inverted='false' variant={variant} number={number} />
       <button onClick={() => handleNumber('+')}>+</button>
       <button onClick={() => handleNumber('-')}>-</button>

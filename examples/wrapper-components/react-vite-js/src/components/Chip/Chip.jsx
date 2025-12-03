@@ -17,6 +17,7 @@ function Chip() {
 
   return (
     <div>
+      <h2>Chip</h2>
       <IfxChip ref={multiChip} size='small' variant='multi' placeholder='Label' onIfxChange={logSelectionMulti}>
           <IfxChipItem value='O1'> Option 1 </IfxChipItem>
           <IfxChipItem value='O2'> Option 2 </IfxChipItem>
