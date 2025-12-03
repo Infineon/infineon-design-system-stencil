@@ -18,30 +18,30 @@ const MockInfineonIndicator = () => {
 
 describe('ifx-chip', () => {
     // Basic rendering tests
-    it('should render with default props', async () => {
-        const { root } = await newSpecPage({
-            components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
-            html: `<ifx-chip placeholder="Select an option"></ifx-chip>`,
-        });
+it('should render with default props', async () => {
+    const { root } = await newSpecPage({
+        components: [Chip, ChipItem, MockInfineonIconStencil, MockInfineonIndicator],
+        html: `<ifx-chip placeholder="Select an option"></ifx-chip>`,
+    });
 
-        expect(root).toEqualHtml(`
-  <ifx-chip placeholder="Select an option">
-    <template shadowrootmode="open">
-      <div class="chip">
-        <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--large chip__wrapper--single" role="combobox" tabindex="0">
-          <div class="wrapper__label">
-            Select an option
-          </div>
-          <div class="wrapper__open-button">
-            <ifx-icon icon="chevron-down-16">
-            </ifx-icon>
-          </div>
+    expect(root).toEqualHtml(`
+<ifx-chip placeholder="Select an option">
+  <template shadowrootmode="open">
+    <div class="chip">
+      <div aria-controls="dropdown" aria-expanded="false" aria-haspopup="listbox" aria-value="" class="chip__wrapper chip__wrapper--medium chip__wrapper--single outlined" role="combobox" tabindex="0">
+        <div class="wrapper__label">
+          Select an option
+        </div>
+        <div class="wrapper__open-button">
+          <ifx-icon icon="chevron-down-16">
+          </ifx-icon>
         </div>
       </div>
-    </template>
-  </ifx-chip>
+    </div>
+  </template>
+</ifx-chip>
 `);
-    });
+});
 
     it('should render with small size', async () => {
         const { root } = await newSpecPage({

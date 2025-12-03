@@ -32,7 +32,7 @@ describe('ifx-accordion-item', () => {
               </span>
             </div>
             <div aria-labelledby="accordion-caption" class="accordion-content" id="accordion-content" role="region" style="height: 0; overflow: hidden;">
-              <div class="inner-content">
+              <div class="inner-content no-content">
                 <slot></slot>
               </div>
             </div>

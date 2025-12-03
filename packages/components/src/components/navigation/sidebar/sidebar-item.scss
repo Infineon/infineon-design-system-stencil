@@ -12,7 +12,7 @@
 
 .sidebar__nav-item,
 .sidebar__nav-item.header__section {
-  &:focus {
+  &:focus-visible {
       outline: none;
       box-shadow: 0 0 0 2px tokens.$ifxColorBaseWhite, 0 0 0 4px tokens.$ifxColorOcean500;
 
@@ -33,6 +33,8 @@
       }
     }
   }
+
+
 
   &:hover {
     outline: none;
@@ -236,6 +238,6 @@
   }
 }
 
-.header__section + .expandable__submenu{
+.header__section+.expandable__submenu {
   padding-left: 0;
 }

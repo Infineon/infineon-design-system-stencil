@@ -11,9 +11,7 @@
   align-items: center;
   gap: 32px;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
-
-
-
+  flex-wrap: wrap;
 
   & .items__per-page-wrapper {
     display: flex;
@@ -123,7 +121,7 @@
   }
 }
 
-a {
+.page__button {
   padding: 8px;
   border-radius: 100px;
 }
@@ -145,13 +143,13 @@ li {
   border-radius: 100px;
 
   &:hover:not(.active) {
-    & a {
+    & page__button {
       background-color: #EEEDED;
     }
   }
 
   &:active:not(.active) {
-    & a {
+    & .page__button {
       background-color: #575352;
       color: #fff;
     }
@@ -160,7 +158,7 @@ li {
   &.active {
     background-color: #0A8276;
 
-    & a {
+    & .page__button {
       color: #fff;
     }
   }
@@ -169,7 +167,7 @@ li {
     cursor: pointer;
   }
 
-  & a {
+  & .page__button {
     text-decoration: none;
     display: flex;
     width: 16px;
@@ -206,213 +204,29 @@ li {
   margin-left: 2.5px;
 }
 
+@media (max-width: tokens.$ifxBreakpointM) {
+  .container {
+    gap: tokens.$ifxSpace200;
+    justify-content: left;
 
-@mixin ellipsis($before: true) {
-  content: "\2026";
-  font-size: 13px;
-  display: inline-block;
-
-  @if($before) {
-    margin-right: 6px;
-  }
-
-  @else {
-    margin-left: 6px;
+    .items__total-wrapper {
+      .pagination {
+        ol {
+          gap: tokens.$ifxSpace150;
+        }
+      }
+    }
   }
 }
 
-
-// @media(max-width:460px) {
-//   li {
-
-//     &:first-child,
-//     &.active,
-//     &.active-sibling:nth-last-child(2), // Show second to last child if the last one is active
-//     &:last-child {
-//       //display: inline-block !important;
-//       display: inline-flex !important;
-//       flex-direction: row;
-//     }
-
-//     $how-many-on-ends: 3; // 1,2,3,...,10 || 1,...,8,9,10
-//     // There are >= 5 pages
-//     &:first-child:nth-last-child(n+6) {
-
-//       &~li {
-//         // Start out with all siblings hidden
-//         display: none;
-
-//         // Show the last children in the list by default
-//         &:nth-last-child(-n+#{$how-many-on-ends}) {
-//           //display: inline-block;
-//           display: inline-flex;
-//           flex-direction: row;
-
-//         }
-
-//         // The child at the beginning of the last group shows ellipsis for the group
-//         &:nth-last-child(#{$how-many-on-ends}) {
-//           &:before {
-//             @include ellipsis(true);
-//           }
-//         }
-
-//         // The very beginning elements do not need to show ellipsis
-//         // The very end elements do not need to show ellipsis
-//       }
-
-
-//       &.active,
-//        &~li.active {
-
-//          // Show ellipsis before and after the active element
-//          &:before {
-//            @include ellipsis(true);
-//          }
-//          &:after {
-//            @include ellipsis(false);
-//          }
-
-
-//          // If the active element is in the first or last group, don't show ellipsis (siblings will take care of it)
-//          &:nth-child(-n+#{$how-many-on-ends - 1}),
-//          &:nth-last-child(-n+#{$how-many-on-ends - 1}) {
-//            &:before, &:after {
-//              display: none;
-//            }
-//          }
-
-//          // Hide the last group if "active" comes before them
-//          &~li:nth-last-child(-n+#{$how-many-on-ends}) {
-//            display: none;
-//          }
-
-//          // Show the first group together if "active" comes before them
-//          &~li:nth-child(-n+#{$how-many-on-ends}) {
-//            //display: inline-block;
-//            display: inline-flex;
-//            flex-direction: row;
-//          }
-
-//          // If "active" is before the last member in the group, don't show ellipsis
-//          &~li:nth-child(-n+#{$how-many-on-ends - 1}) {
-//             &:after {
-//               display: none;
-//             }
-//          }
-
-
-//         // The child at the end of the first group shows ellipsis for the group
-//         &~li:nth-child(#{$how-many-on-ends}) {
-//           &:after {
-//             @include ellipsis(false);
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
-@media (min-width: 400px) {
-  li {
-
-    &:first-child,
-    &.active-sibling,
-    &.active,
-    &.active+li,
-    &:last-child {
-      //display: inline-block!important;
-      display: inline-flex !important;
-      flex-direction: row;
+@media (max-width: 374px) {
+  .pagination {
+    .ellipsis + .active {
+      margin-left: tokens.$ifxSpace100;
     }
 
-    // There are >= 7 pages
-    &:first-child:nth-last-child(n+8) {
-      $how-many-on-ends: 5; // 1,2,3,4,5,...,10 || 1,...6,7,8,9,10
-
-      &~li {
-        // Start out with all siblings hidden
-        display: none;
-
-        // Show ellipsis before the previous one
-        &.active-sibling:before {
-          @include ellipsis(true);
-        }
-
-        // Show ellipsis after the next one
-        &.active+li:after {
-          @include ellipsis(false);
-        }
-
-        // Show the last children in the list by default
-        &:nth-last-child(-n+#{$how-many-on-ends}) {
-          //display: inline-block;
-          display: inline-flex;
-          flex-direction: row;
-        }
-
-        // The child at the beginning of the last group shows ellipsis for the group
-        &:nth-last-child(#{$how-many-on-ends}) {
-          &:before {
-            @include ellipsis(true);
-          }
-        }
-
-        // The very beginning elements do not need to show ellipsis
-        &:nth-child(-n+#{$how-many-on-ends - 3}),
-        // The very end elements do not need to show ellipsis
-        &:nth-last-child(-n+#{$how-many-on-ends - 3}),
-        // Even if it's a sibling to "active"
-        &.active-sibling:nth-last-child(-n+#{$how-many-on-ends - 1}) {
-
-          &:before,
-          &:after {
-            display: none !important;
-          }
-        }
-      }
-
-      &.active,
-      &~li.active {
-
-        // Hide the last group if "active" comes before them
-        &~li:nth-last-child(-n+#{$how-many-on-ends}) {
-          display: none;
-
-          // If there is overlap, the element will show, but hide it's ellipsis
-          &:before {
-            display: none;
-          }
-        }
-
-        // Show the first group together if "active" comes before them
-        &~li:nth-child(-n+#{$how-many-on-ends}) {
-          //display: inline-block;
-          display: inline-flex !important;
-          flex-direction: row;
-        }
-
-        // If "active" is before the last member in the group, don't show ellipsis
-        &~li:nth-child(-n+#{$how-many-on-ends - 1}) {
-          &:after {
-            display: none;
-          }
-        }
-
-
-        // The child at the end of the first group shows ellipsis for the group
-        &~li:nth-child(#{$how-many-on-ends}) {
-          &:after {
-            @include ellipsis(false);
-          }
-        }
-
-        // "active" should never show ellipsis
-        &:before,
-        &:after {
-          display: none;
-        }
-      }
+    .active + .ellipsis {
+      margin-left: tokens.$ifxSpace100;
     }
   }
 }

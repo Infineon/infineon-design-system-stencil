@@ -3,8 +3,7 @@ import { LinkInterface } from './interfaces';
 
 export class LinkCellRenderer implements ICellRendererComp {
   eGui!: HTMLDivElement;
-  eLink!: HTMLElement; 
-  eventListener!: (event: Event) => void;
+  eLink!: HTMLElement;
 
   init(params: ICellRendererParams) {
     this.createLink(params);
@@ -20,40 +19,47 @@ export class LinkCellRenderer implements ICellRendererComp {
   }
 
   private createLink(params: ICellRendererParams) {
-    const config = params.data.link;
-    
+    const field = params.colDef?.field as string | undefined;
+    const config = (params.value ?? params.data?.[field]) as any;
+
     this.eGui = document.createElement('div');
-    this.eLink = document.createElement('ifx-link') as unknown as HTMLElement;
-    
+    this.eLink = document.createElement('ifx-link') as HTMLElement;
+
     if (this.hasRequiredKeys(config)) {
       this.setLinkAttributes(config);
       this.eGui.appendChild(this.eLink);
     } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
+      this.eGui.textContent = config ? String(config) : '';
     }
   }
 
   private updateLink(params: ICellRendererParams) {
-    const config = params.data.link;
+    const field = params.colDef?.field as string | undefined;
+    const config = (params.value ?? params.data?.[field]) as any;
 
     if (this.hasRequiredKeys(config)) {
       this.setLinkAttributes(config);
     } else {
-      this.eGui.innerHTML = `<span>${config}</span>`;
+      this.eGui.textContent = config ? String(config) : '';
     }
   }
 
   private setLinkAttributes(config: LinkInterface) {
-    this.eLink.setAttribute('disabled', config.disabled.toString());
+    this.eLink.setAttribute('disabled', config.disabled?.toString());
     this.eLink.setAttribute('variant', config.variant);
     this.eLink.setAttribute('size', config.size);
     this.eLink.setAttribute('target', config.target);
     this.eLink.setAttribute('href', config.href);
-    this.eLink.setAttribute('download', config.download);
-    this.eLink.textContent = config.text;
+    if (config.download) this.eLink.setAttribute('download', config.download);
+    this.eLink.textContent = config.text || '';
   }
 
   private hasRequiredKeys(config: LinkInterface): boolean {
-    return config && config.text !== '' && config.variant !== '' && config.size !== '';
+    return !!(
+      config &&
+      config.text &&
+      config.variant &&
+      config.size
+    );
   }
 }

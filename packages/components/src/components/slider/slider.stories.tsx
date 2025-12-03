@@ -109,6 +109,19 @@ export default {
         type: { summary: 'string' }
       }
     },
+      ariaLabel: {
+      description: 'Aria label of the Slider.',
+      control: 'text',
+      table: {
+        category: 'ARIA Labels',
+        defaultValue: {
+          summary: "",
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     ifxChange: {
       action: 'ifxChange',
       description: 'Custom event emitted on input change.',
@@ -133,6 +146,7 @@ const Template = args => {
   sliderElement.setAttribute('min-value-handle', args.minValueHandle);
   sliderElement.setAttribute('max-value-handle', args.maxValueHandle);
   sliderElement.setAttribute('type', args.type);
+  sliderElement.setAttribute('aria-label', args.ariaLabel);
   if (args.showPercentage) {
     sliderElement.setAttribute('show-percentage', 'true');
   }

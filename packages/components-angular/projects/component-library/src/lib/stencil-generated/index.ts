@@ -4,8 +4,9 @@ import * as d from './components';
 export const DIRECTIVES = [
   d.IfxAccordion,
   d.IfxAccordionItem,
+  d.IfxActionList,
+  d.IfxActionListItem,
   d.IfxAlert,
-  d.IfxBadge,
   d.IfxBasicTable,
   d.IfxBreadcrumb,
   d.IfxBreadcrumbItem,
@@ -78,7 +79,6 @@ export const DIRECTIVES = [
   d.IfxTab,
   d.IfxTable,
   d.IfxTabs,
-  d.IfxTag,
   d.IfxTemplate,
   d.IfxTemplatesUi,
   d.IfxTextField,

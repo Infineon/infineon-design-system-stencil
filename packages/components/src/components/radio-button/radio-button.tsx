@@ -144,15 +144,14 @@ export class RadioButton {
       >
         <div
           class={`radioButton__wrapper 
-            ${this.internalChecked ? 'checked' : ''} 
-            ${this.disabled ? 'disabled' : ''} 
+            ${this.internalChecked ? 'checked' : ''}  
             ${this.error ? 'error' : ''}`}
         >
           {this.internalChecked && <div class="radioButton__wrapper-mark"></div>}
         </div>
 
         {this.hasSlot && (
-          <div class={`label ${this.size === "m" ? "label-m" : ""} ${this.disabled ? 'disabled' : ''}`}>
+          <div class={`label ${this.size === "m" ? "label-m" : ""}`}>
             <slot />
           </div>
         )}
