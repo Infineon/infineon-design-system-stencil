@@ -7,6 +7,7 @@ function Button() {
 
   return (
     <div >
+      <h2>Button</h2>
       <IfxButton theme='default'>Click me</IfxButton>
       <IfxButton theme='default' disabled='true'>Not clickable when disabled</IfxButton>
       <div style={{ backgroundColor: 'grey' }}>

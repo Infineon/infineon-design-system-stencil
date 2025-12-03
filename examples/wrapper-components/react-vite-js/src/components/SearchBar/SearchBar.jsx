@@ -6,6 +6,7 @@ function SearchBar() {
   };
   return (
     <div  >
+      <h2>Search Bar</h2>
       <IfxSearchBar onIfxInput={handleSearch} style={{ width: '100%' }} show-close-button="true"></IfxSearchBar>
 
     </div>

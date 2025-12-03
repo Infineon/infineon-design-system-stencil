@@ -20,6 +20,7 @@ function CheckboxGroup() {
 
   return (
     <div>
+      <h2>Checkbox Group</h2>
       <IfxCheckboxGroup alignment="vertical" show-group-label={true} group-label-text="Group Label" show-caption={true} caption-text="Caption text, description, error notification" show-caption-icon={true} required={required}>
           <IfxCheckbox value="0" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 0</IfxCheckbox>
           <IfxCheckbox value="1" disabled={disabled} checked={false} size="m" indeterminate={false} error={error}>Option 1</IfxCheckbox>
