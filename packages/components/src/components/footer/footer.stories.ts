@@ -96,31 +96,31 @@ const LargeTemplate = args => {
   <ifx-footer copyright-text="${args.copyrightText}">
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
   </ifx-footer-column>
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
   </ifx-footer-column>
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link href="#" variant="underlined" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link href="#" variant="menu" slot="link">Footer Link</ifx-link>
   </ifx-footer-column>
   <ifx-footer-column slot="col">
     <h5 slot="title">Title</h5>
-    <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
-    <ifx-link variant="underlined" slot="link">Footer Link</ifx-link>
+    <ifx-link variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link variant="menu" slot="link">Footer Link</ifx-link>
+    <ifx-link variant="menu" slot="link">Footer Link</ifx-link>
   </ifx-footer-column>
   <div slot="socials">
     <ifx-link variant="title" href="http://facebook.com/infineon">
