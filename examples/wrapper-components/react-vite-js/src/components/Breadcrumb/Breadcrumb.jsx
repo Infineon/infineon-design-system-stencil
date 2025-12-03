@@ -1,6 +1,6 @@
 import { IfxBreadcrumb, IfxBreadcrumbItem, IfxBreadcrumbItemLabel, IfxDropdownMenu, IfxDropdownItem } from '@infineon/infineon-design-system-react';
 
-function Breadcrumbs() {
+function Breadcrumb() {
   return (
     <div>
       <IfxBreadcrumb>
@@ -32,4 +32,4 @@ function Breadcrumbs() {
   );
 }
 
-export default Breadcrumbs;
+export default Breadcrumb;

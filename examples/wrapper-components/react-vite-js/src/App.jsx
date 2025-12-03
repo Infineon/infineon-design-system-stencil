@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Alert from "./components/Alert/Alert";
 import Accordion from "./components/Accordion/Accordion";
 import ActionList from "./components/ActionList/ActionList";
-import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
 import Button from "./components/Button/button";
 import Card from "./components/Card/Card";
 import Checkbox from "./components/Checkbox/Checkbox";
@@ -14,6 +14,7 @@ import ContentSwitcher from "./components/ContentSwitcher/ContentSwitcher";
 import DatePicker from "./components/DatePicker/DatePicker";
 import Dropdown from "./components/Dropdown/Dropdown";
 import FileUpload from "./components/FileUpload/FileUpload";
+import Footer from "./components/Footer/Footer";
 import Icon from "./components/Icon/Icon";
 import IconButton from "./components/IconButton/IconButton";
 import Indicator from "./components/Indicator/Indicator";
@@ -50,7 +51,7 @@ function App() {
     alert: <Alert />,
     accordion: <Accordion />,
     actionlist: <ActionList />,
-    breadcrumbs: <Breadcrumbs />,
+    breadcrumb: <Breadcrumb />,
     button: <Button />,
     card: <Card />,
     checkbox: <Checkbox />,
@@ -60,6 +61,7 @@ function App() {
     datepicker: <DatePicker />,
     dropdown: <Dropdown />,
     fileupload: <FileUpload />,
+    footer: <Footer />,    
     icon: <Icon />,
     iconbutton: <IconButton />,
     indicator: <Indicator />,

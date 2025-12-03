@@ -62,7 +62,7 @@ function Navbar({onSelect}) {
       <IfxNavbarItem>
         Table
         <IfxNavbarItem onClick={() => onSelect("basictable")}>Basic Table</IfxNavbarItem>
-        <IfxNavbarItem onClick={() => onSelect("advancedtable")}>Advanced Table</IfxNavbarItem>
+        <IfxNavbarItem onClick={() => onSelect("table")}>Advanced Table</IfxNavbarItem>
       </IfxNavbarItem>
       <IfxNavbarItem onClick={() => onSelect("tabs")}>Tabs</IfxNavbarItem>
       <IfxNavbarItem>
