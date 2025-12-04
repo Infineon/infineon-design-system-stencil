@@ -12,8 +12,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check-skip:
+  # Job to check if the commit message contains 'ci skip' or 'skip ci'
+  # Only works on push events not on pull_request events
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.check.outputs.skip }}
+    steps:
+      - id: check
+        run: |
+          if [[ "${{ contains(github.event.head_commit.message, 'ci skip') || contains(github.event.head_commit.message, 'skip ci') }}" == "true" ]]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Skipping CI"
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+            echo "Running CI"
+          fi
+    permissions:
+      contents: read
+
   test:
-    if: ${{ github.event.action != 'closed' }}
+    needs: check-skip
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -39,8 +59,8 @@ jobs:
       contents: read
 
   build-publish-library:
-    if: ${{ github.event.action != 'closed' }}
-    needs: test
+    needs: [check-skip, test]
+    if: ${{ needs.check-skip.outputs.skip == 'false' && github.event.action != 'closed' }}
     uses: ./.github/workflows/shared-build-publish-libraries.yml
     secrets: inherit
     permissions:
@@ -51,7 +71,8 @@ jobs:
       pull-requests: write  
 
   storybook:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-storybook.yml
     with:
       package-version: ${{ needs.build-publish-library.outputs.published-version }}
@@ -62,7 +83,8 @@ jobs:
       pages: write
 
   html-cdn-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: html-cdn-example
@@ -77,7 +99,8 @@ jobs:
       pages: write
 
   html-vite-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: html-vite-example
@@ -91,7 +114,8 @@ jobs:
       pages: write
 
   angular-module-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: angular-module-example
@@ -105,7 +129,8 @@ jobs:
       pages: write
 
   angular-standalone-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: angular-standalone-example
@@ -119,7 +144,8 @@ jobs:
       pages: write
 
   react-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: react-example
@@ -133,7 +159,8 @@ jobs:
       pages: write
 
   vue-example:
-    needs: build-publish-library
+    needs: [check-skip, build-publish-library]
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && (needs.build-publish-library.result == 'success' || needs.build-publish-library.result == 'skipped') }}
     uses: ./.github/workflows/shared-build-deploy-example.yml
     with:
       name: vue-example
@@ -147,8 +174,8 @@ jobs:
       pages: write
 
   comment-pr:
-    if: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' && always() }}
-    needs: 
+    needs:
+      - check-skip
       - build-publish-library
       - html-cdn-example
       - html-vite-example
@@ -157,6 +184,7 @@ jobs:
       - react-example
       - vue-example
       - storybook
+    if: ${{ always() && needs.check-skip.outputs.skip == 'false' && github.event_name == 'pull_request' && github.event.action != 'closed' }}
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
