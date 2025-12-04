@@ -12,7 +12,7 @@
 | `ariaLabel` | `aria-label` |             | `string`  | `undefined` |
 | `inverted`  | `inverted`   |             | `boolean` | `false`     |
 | `number`    | `number`     |             | `number`  | `0`         |
-| `variant`   | `variant`    |             | `string`  | `'number'`  |
+| `variant`   | `variant`    |             | `string`  | `"number"`  |
 
 
 ## Dependencies

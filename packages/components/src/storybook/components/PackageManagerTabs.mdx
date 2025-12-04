@@ -1,0 +1,68 @@
+import { Source } from '@storybook/addon-docs/blocks';
+import { useEffect, useState } from 'react';
+
+export const PackageManagerTabs = ({ packageName = '@infineon/infineon-design-system-angular' }) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    // Load saved preference
+    const savedTab = localStorage.getItem('preferredPackageManager');
+    if (savedTab !== null) {
+      setActiveTab(parseInt(savedTab, 10));
+    }
+
+    // Listen for changes from other instances
+    const handleSyncChange = (event) => {
+      if (event.detail !== undefined) {
+        setActiveTab(event.detail);
+      }
+    };
+
+    return () => document.removeEventListener('ifxTabChange', handleSyncChange);
+  }, []);
+
+  const handleTabChange = (event) => {
+    const tabIndex = event.detail.currentTab;
+    setActiveTab(tabIndex);
+    localStorage.setItem('preferredPackageManager', tabIndex.toString());
+    // Dispatch custom event for other instances
+    document.dispatchEvent(new CustomEvent('ifxTabChange', { detail: tabIndex }));
+  };
+
+  return (
+    <>
+      <style>
+        {`
+          ifx-tab pre {
+            margin: 0 !important;
+            padding: 12px !important;
+          }
+          ifx-tab .docblock-source {
+            margin: 0 !important;
+          }
+        `}
+      </style>
+      <ifx-tabs 
+        orientation="horizontal" 
+        active-tab-index={activeTab} 
+        full-width="false"
+        ref={(el) => {
+          if (el) {
+            el.addEventListener('ifxChange', handleTabChange);
+          }
+        }}>
+        <ifx-tab header="npm">
+          <Source language="sh" code={`npm install ${packageName}`} />
+        </ifx-tab>
+        <ifx-tab header="yarn">
+          <Source language="sh" code={`yarn add ${packageName}`} />
+        </ifx-tab>
+        <ifx-tab header="pnpm">
+          <Source language="sh" code={`pnpm add ${packageName}`} />
+        </ifx-tab>
+      </ifx-tabs>
+    </>
+  );
+};
+
+export default PackageManagerTabs;

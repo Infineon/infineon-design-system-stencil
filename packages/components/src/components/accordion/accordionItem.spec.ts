@@ -1,25 +1,23 @@
 // src/components/accordion/accordionItem.spec.ts
-import { newSpecPage } from 'jest-stencil-runner';
-import { AccordionItem } from './accordionItem';
-
- 
+import { newSpecPage } from "jest-stencil-runner";
+import { AccordionItem } from "./accordionItem";
 
 // Mock ResizeObserver Observes its content container
 // E.g: When the accordion opens, measures the content's natural height
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
+	observe: jest.fn(),
+	unobserve: jest.fn(),
+	disconnect: jest.fn(),
 }));
 
-describe('ifx-accordion-item', () => {
-  it('renders', async () => {
-    const { root } = await newSpecPage({
-      components: [AccordionItem],
-      html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
-    });
+describe("ifx-accordion-item", () => {
+	it("renders", async () => {
+		const { root } = await newSpecPage({
+			components: [AccordionItem],
+			html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
+		});
 
-    expect(root).toEqualHtml(`
+		expect(root).toEqualHtml(`
       <ifx-accordion-item caption="Test">
         <template shadowrootmode="open">
           <div class="accordion-item">
@@ -40,39 +38,43 @@ describe('ifx-accordion-item', () => {
         </template>
       </ifx-accordion-item>
     `);
-  });
+	});
 
-  it('displays the caption', async () => {
-    const { root } = await newSpecPage({
-      components: [AccordionItem],
-      html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
-    });
+	it("displays the caption", async () => {
+		const { root } = await newSpecPage({
+			components: [AccordionItem],
+			html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
+		});
 
-    const captionElement = root.shadowRoot.querySelector('.accordion-caption') as HTMLElement;
-    expect(captionElement.innerText).toEqual('Test');
-  });
+		const captionElement = root.shadowRoot.querySelector(
+			".accordion-caption",
+		) as HTMLElement;
+		expect(captionElement.innerText).toEqual("Test");
+	});
 
-  it('expands and collapses on click', async () => {
-    const { root } = await newSpecPage({
-      components: [AccordionItem],
-      html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
-    });
+	it("expands and collapses on click", async () => {
+		const { root } = await newSpecPage({
+			components: [AccordionItem],
+			html: `<ifx-accordion-item caption="Test"></ifx-accordion-item>`,
+		});
 
-    const titleElement = root.shadowRoot.querySelector('.accordion-title') as HTMLElement; // Cast to HTMLElement
-    const accordionItem = root as HTMLIfxAccordionItemElement;
+		const titleElement = root.shadowRoot.querySelector(
+			".accordion-title",
+		) as HTMLElement; // Cast to HTMLElement
+		const accordionItem = root as any as HTMLIfxAccordionItemElement;
 
-    expect(accordionItem.open).toBeFalsy();
+		expect(accordionItem.open).toBeFalsy();
 
-    titleElement.click();
-    await new Promise(resolve => setTimeout(resolve, 50)); // Wait for state to update
+		titleElement.click();
+		await new Promise((resolve) => setTimeout(resolve, 50)); // Wait for state to update
 
-    // Open after first click
-    expect(accordionItem.open).toBeTruthy();
+		// Open after first click
+		expect(accordionItem.open).toBeTruthy();
 
-    titleElement.click();
-    await new Promise(resolve => setTimeout(resolve, 50)); // Wait for state to update
+		titleElement.click();
+		await new Promise((resolve) => setTimeout(resolve, 50)); // Wait for state to update
 
-    // Closed after second click
-    expect(accordionItem.open).toBeFalsy();
-  });
+		// Closed after second click
+		expect(accordionItem.open).toBeFalsy();
+	});
 });

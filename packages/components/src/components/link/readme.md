@@ -14,8 +14,8 @@
 | `download`  | `download`   |             | `string`  | `undefined` |
 | `href`      | `href`       |             | `string`  | `undefined` |
 | `size`      | `size`       |             | `string`  | `undefined` |
-| `target`    | `target`     |             | `string`  | `'_self'`   |
-| `variant`   | `variant`    |             | `string`  | `'bold'`    |
+| `target`    | `target`     |             | `string`  | `"_self"`   |
+| `variant`   | `variant`    |             | `string`  | `"bold"`    |
 
 
 ## Dependencies

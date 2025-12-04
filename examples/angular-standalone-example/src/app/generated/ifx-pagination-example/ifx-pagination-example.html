@@ -1,0 +1,18 @@
+  <ifx-pagination
+    total="50"
+    current-page="1"
+    show-items-per-page="true"
+    items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
+    (ifxPageChange)="handlePageChange($any($event))"
+    (ifxItemsPerPageChange)="handleItemsPerPageChange($any($event))"></ifx-pagination>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-pagination-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-pagination-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

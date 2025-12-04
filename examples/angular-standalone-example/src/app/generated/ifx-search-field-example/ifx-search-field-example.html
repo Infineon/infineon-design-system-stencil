@@ -1,0 +1,35 @@
+  <ifx-search-field
+    size="m"
+    disabled="false"
+    show-delete-icon="true"
+    show-suggestions="false"
+    enable-history="true"
+    max-suggestions="10"
+    max-history-items="5"
+    history-key="ifx-search-history"
+    history-header-text="Recent Searches"
+    value="true"
+    autocomplete="on"
+    placeholder="Search..."
+    aria-label="Search field"
+    delete-icon-aria-label="Clear search"
+    history-delete-aria-label="Remove from history"
+    dropdown-aria-label="Search suggestions and history"
+    suggestion-aria-label="Search suggestion"
+    history-item-aria-label="Search history item"
+    (ifxInput)="handleInput($any($event))"
+    (ifxSuggestionRequested)="handleSuggestionRequested($any($event))"
+    (ifxSuggestionSelected)="handleSuggestionSelected($any($event))"
+    (ifxFocus)="handleFocus($any($event))"
+    (ifxBlur)="handleBlur($any($event))"></ifx-search-field>
+
+<details class="code-details">
+  <summary>View Code</summary>
+  <div class="code-blocks">
+    <h3>ifx-search-field-example.ts</h3>
+    <pre><code class="language-typescript" [innerHTML]="tsCode"></code></pre>
+    
+    <h3>ifx-search-field-example.html</h3>
+    <pre><code class="language-markup" [innerHTML]="htmlCode"></code></pre>
+  </div>
+</details>

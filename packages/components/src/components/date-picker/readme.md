@@ -10,7 +10,7 @@
 | Property       | Attribute      | Description | Type      | Default     |
 | -------------- | -------------- | ----------- | --------- | ----------- |
 | `ariaLabel`    | `aria-label`   |             | `string`  | `undefined` |
-| `autocomplete` | `autocomplete` |             | `string`  | `'on'`      |
+| `autocomplete` | `autocomplete` |             | `string`  | `"on"`      |
 | `caption`      | `caption`      |             | `string`  | `undefined` |
 | `disabled`     | `disabled`     |             | `boolean` | `false`     |
 | `error`        | `error`        |             | `boolean` | `false`     |
@@ -18,9 +18,9 @@
 | `max`          | `max`          |             | `string`  | `undefined` |
 | `min`          | `min`          |             | `string`  | `undefined` |
 | `required`     | `required`     |             | `boolean` | `false`     |
-| `size`         | `size`         |             | `string`  | `'s'`       |
+| `size`         | `size`         |             | `string`  | `"s"`       |
 | `success`      | `success`      |             | `boolean` | `false`     |
-| `type`         | `type`         |             | `string`  | `'date'`    |
+| `type`         | `type`         |             | `string`  | `"date"`    |
 | `value`        | `value`        |             | `string`  | `undefined` |
 
 
