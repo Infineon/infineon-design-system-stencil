@@ -13,10 +13,14 @@
 		"@auto-it/first-time-contributor": "^11.3.6",
 		"@auto-it/npm": "^11.3.0",
 		"@biomejs/biome": "2.3.7",
+		"@stencil-community/eslint-plugin": "^0.10.0",
 		"auto": "^11.3.0",
 		"auto-plugin-webex": "^1.1.0",
+		"eslint": "^9.39.1",
 		"husky": "^9.1.7",
-		"lerna": "^9.0.1"
+		"lerna": "^9.0.1",
+		"lint-staged": "^16.2.7",
+		"typescript-eslint": "^8.48.1"
 	},
 	"scripts": {
 		"build": "pnpm run build:components && pnpm run build:wrappers",
@@ -33,10 +37,16 @@
 		"example:html-cdn": "pnpm run -F html-cdn-example dev",
 		"example:html-vite": "pnpm run -F html-vite-example dev",
 		"format": "biome format --write .",
-		"lint": "biome lint --write .",
+		"lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint",
+		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:fix",
 		"check": "biome check --write .",
-		"check:staged": "biome check --write --staged --no-errors-on-unmatched",
+		"check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint",
+		"check:staged": "lint-staged",
 		"prepare": "husky"
 	},
-	"repository": "https://github.com/Infineon/infineon-design-system-stencil"
+	"repository": "https://github.com/Infineon/infineon-design-system-stencil",
+	"lint-staged": {
+		"*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true",
+		"packages/components/src/**/*.{ts,tsx}": "eslint"
+	}
 }

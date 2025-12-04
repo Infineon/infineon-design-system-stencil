@@ -14,21 +14,19 @@ function runCommand(command, errorMessage) {
 
 console.log("🔍 Running pre-commit checks...\n");
 
-// Run biome checking on staged files
-console.log("📝 Checking staged files with Biome...");
-const biomeSuccess = runCommand(
+// Run lint-staged (Biome + ESLint on staged files)
+console.log("📝 Linting staged files (Biome + ESLint)...");
+const lintSuccess = runCommand(
 	"pnpm check:staged",
-	"Biome linting failed. Please fix the issues and try again.",
+	"Linting failed. Please fix the issues and try again.",
 );
 
-if (!biomeSuccess) {
-	console.error(
-		"\n❌ Biome linting failed. Please fix the issues and try again.",
-	);
+if (!lintSuccess) {
+	console.error("\n❌ Linting failed. Please fix the issues and try again.");
 	process.exit(1);
 }
 
-console.log("✅ Biome checking passed!\n");
+console.log("✅ Linting passed!\n");
 
 // Run tests
 console.log("🧪 Running tests...");

@@ -60,6 +60,8 @@
 		"test:watch": "jest --watch",
 		"test:update": "jest -u",
 		"generate": "stencil generate",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
 		"storybook": "storybook dev -p 6262",
 		"build-storybook": "storybook build"
 	},

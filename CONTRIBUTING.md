@@ -26,7 +26,12 @@ Before you begin, ensure you have the following installed:
 - **pnpm**: >= 8.0.0 (required for workspace management)
 
 ```bash
-# Install pnpm globally if you haven't already
+# Option 1: Use Corepack (recommended, comes with Node.js >= 16.10)
+# Run this within the repository directory after cloning
+# Corepack will automatically use the version specified in package.json
+corepack enable
+
+# Option 2: Install pnpm globally
 npm install -g pnpm
 ```
 
@@ -39,7 +44,13 @@ git clone https://github.com/Infineon/infineon-design-system-stencil.git
 cd infineon-design-system-stencil
 ```
 
-2. **Install dependencies**
+2. **Enable Corepack** (if using Option 1 above)
+
+```bash
+corepack enable
+```
+
+3. **Install dependencies**
 
 ```bash
 pnpm install
@@ -47,7 +58,7 @@ pnpm install
 
 This will install dependencies for all packages and examples in the monorepo.
 
-3. **Build the core components**
+4. **Build the core components**
 
 ```bash
 pnpm build:components
@@ -165,28 +176,28 @@ The Stencil CLI can scaffold a new component with all necessary files:
 
 ```bash
 cd packages/components
-pnpm exec stencil generate ifx-my-component
+pnpm exec stencil generate my-component
 # or shorthand:
-pnpm exec stencil g ifx-my-component
+pnpm exec stencil g my-component
 ```
 
 This will:
-- Create the component directory in `src/components/ifx-my-component/`
-- Generate `ifx-my-component.tsx` with boilerplate code
-- Generate `ifx-my-component.scss` for styles (choose SCSS when prompted)
-- Generate `ifx-my-component.spec.ts` for tests
+- Create the component directory in `src/components/my-component/`
+- Generate `my-component.tsx` with boilerplate code
+- Generate `my-component.scss` for styles (choose SCSS when prompted)
+- Generate `my-component.spec.ts` for tests
 - Prompt you for component options (tag name, stylesheet type, etc.)
 
 **Important:** When prompted for stylesheet type, select **SCSS** to maintain consistency with the project.
 
 #### 3. Create a Storybook Story
 
-Create a story file in the same component directory (`src/components/ifx-my-component/`):
+Create a story file in the same component directory (`src/components/my-component/`):
 
 ```typescript
-// ifx-my-component.stories.ts
+// my-component.stories.ts
 export default {
-  title: 'Components/IfxMyComponent',
+  title: 'Components/MyComponent',
   tags: ['autodocs'],
 };
 
@@ -240,18 +251,39 @@ See [example-generator/ARCHITECTURE.md](./example-generator/ARCHITECTURE.md) for
 
 ### 5. Code Quality Checks
 
-This project uses **[Biome](https://biomejs.dev/)** for linting and formatting.
+This project uses two complementary tools for code quality:
+
+- **[Biome](https://biomejs.dev/)** - Fast, all-in-one linter and formatter for the entire workspace
+- **[ESLint](https://eslint.org/)** with **[@stencil-community/eslint-plugin](https://github.com/stencil-community/stencil-eslint)** - Stencil-specific linting rules for web components
+
+**Why both tools?**
+- **Biome** handles general code quality, formatting, and best practices across all files (fast, modern replacement for ESLint + Prettier)
+- **ESLint + Stencil plugin** enforces Stencil-specific rules that Biome doesn't know about (e.g., component decorators, lifecycle methods, shadow DOM patterns)
 
 **Main commands:**
 ```bash
-# Format all files (formatting only)
+# Format all files (Biome formatting only)
 pnpm format
 
-# Lint all files (linting only)
+# Lint entire workspace (Biome + ESLint for components)
 pnpm lint
 
-# Check all files (lint + format together)
+# Fix linting issues in entire workspace
+pnpm lint:fix
+
+# Check all files (Biome lint + format together)
 pnpm check
+```
+
+**Working on components only:**
+```bash
+cd packages/components
+
+# Lint only components with ESLint
+pnpm lint
+
+# Fix ESLint issues in components
+pnpm lint:fix
 ```
 
 **Single file commands:**
@@ -266,16 +298,17 @@ pnpm exec biome lint --write path/to/file.ts
 pnpm exec biome check --write path/to/file.ts
 ```
 
-**Biome commands explained:**
+**Tool breakdown:**
 - `biome format` - Formatting only (indentation, quotes, line breaks)
-- `biome lint` - Linting only (code quality, best practices)
+- `biome lint` - General linting (code quality, best practices)
 - `biome check` - Both linting AND formatting together
+- `eslint` - Stencil-specific linting (component decorators, lifecycle methods, etc.)
 
-**Editor Integration**: Install the [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) to automatically format files on save. This is the recommended workflow for day-to-day development.
-For other editors, refer to the [Biome editor integration guide](https://biomejs.dev/guides/editors/first-party-extensions/).
+**Editor Integration**: Install the [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) and [ESLint VS Code extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) to automatically check files on save. This is the recommended workflow for day-to-day development.
+For other editors, refer to the [Biome editor integration guide](https://biomejs.dev/guides/editors/first-party-extensions/) and [ESLint editor integration guide](https://eslint.org/docs/latest/use/integrations).
 
 **Pre-commit Hooks**: The project uses [Husky](https://typicode.github.io/husky/) to automatically run quality checks before each commit. The pre-commit hook (`.husky/pre-commit`) will:
-1. Run `biome check` on staged files (lint + format)
+1. Run linting on staged files (Biome for all files + ESLint for component files)
 2. Run the test suite
 
 If checks fail, the commit will be blocked. Fix the issues and try again.
@@ -334,24 +367,27 @@ pnpm -F react-example preview
 
 ### Linting and Formatting
 
-See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome for linting and formatting.
+See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information.
 
 **Quick reference:**
 ```bash
-pnpm format    # Format all files
-pnpm lint      # Lint all files
-pnpm check     # Lint + format together
+pnpm format    # Format all files (Biome)
+pnpm lint      # Lint workspace (Biome + ESLint)
+pnpm lint:fix  # Auto-fix linting issues
+pnpm check     # Biome lint + format together
 ```
 
-**Biome configuration** (`biome.json`):
-- **Formatter**: Tabs for indentation, double quotes
-- **Linter**: Recommended rules enabled
-- **Auto-organize imports**: Enabled
-- **Ignored paths**: Examples and auto-generated files
+**Configuration:**
+- **Biome** (`biome.json`): Tabs for indentation, double quotes, recommended rules, auto-organize imports
+- **ESLint** (`eslint.config.mjs`): Stencil-specific rules for components only
 
-**Tip**: Use the Biome editor extension for automatic formatting on save instead of running commands manually.
+**Tip**: Use the Biome and ESLint editor extensions for automatic checking on save instead of running commands manually.
 
 ## 📝 Code Standards
+
+### Stencil.js Style Guide
+
+When working with Stencil components, follow the [official Stencil.js Style Guide](https://stenciljs.com/docs/style-guide). This guide covers best practices for component design, naming conventions, and architectural patterns.
 
 ### TypeScript
 
@@ -378,12 +414,12 @@ interface ButtonProps {
 
 ### Component Guidelines
 
-1. **Use functional components** in Stencil with decorators
+1. **Use components** in Stencil with decorators
 
 ```typescript
 @Component({
   tag: 'ifx-button',
-  styleUrl: 'ifx-button.scss',
+  styleUrl: 'button.scss',
   shadow: true,
 })
 export class IfxButton {
@@ -466,7 +502,7 @@ refactor(accordion): simplify state management
 ```
 
 ### Linting and Formatting
-See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome for linting and formatting.
+See [Code Quality Checks](#5-code-quality-checks) in the Development Workflow section for detailed information on using Biome and ESLint for linting and formatting.
 
 ## 🔧 Working with Components
 
@@ -495,7 +531,7 @@ handleIsOpenChange(newValue: boolean) {
 
 ### Events
 
-Emit custom events:
+Emit events:
 
 ```typescript
 @Event() ifxChange: EventEmitter<string>;
@@ -504,6 +540,38 @@ handleChange(value: string) {
   this.ifxChange.emit(value);
 }
 ```
+
+**Event details:**
+
+Stencil uses standard DOM `CustomEvent` for all component events. Define an interface or type for the event detail payload:
+
+```typescript
+interface ChangeDetail {
+  value: string;
+  checked: boolean;
+}
+
+@Event() ifxChange: EventEmitter<ChangeDetail>;
+
+handleChange(value: string, checked: boolean) {
+  // Include all changed values in the detail object
+  this.ifxChange.emit({
+    value: value,
+    checked: checked
+  });
+} 
+```
+
+Then consumers can access the values:
+
+```typescript
+element.addEventListener('ifxChange', (event: CustomEvent<ChangeDetail>) => {
+  console.log(event.detail.value);    // Access the value
+  console.log(event.detail.checked);  // Access the checked state
+});
+```
+
+> **Note:** For Vue v-model integration, ensure `event.detail` contains all changed values. See the [Stencil Vue documentation](https://stenciljs.com/docs/vue#componentmodels) for details.
 
 ### Props
 
