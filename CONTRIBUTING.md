@@ -414,7 +414,7 @@ interface ButtonProps {
 
 ### Component Guidelines
 
-1. **Use components** in Stencil with decorators
+1. **Define components** using Stencil decorators
 
 ```typescript
 @Component({

@@ -13,10 +13,7 @@ export default [
 		],
 	},
 	{
-		files: [
-			"packages/components/src/**/*.ts",
-			"packages/components/src/**/*.tsx",
-		],
+		files: ["src/**/*.ts", "src/**/*.tsx"],
 		ignores: [
 			"**/*.stories.ts",
 			"**/*.spec.ts",
@@ -29,7 +26,7 @@ export default [
 		languageOptions: {
 			parser: tseslint.parser,
 			parserOptions: {
-				project: "./packages/components/tsconfig.json",
+				project: "./tsconfig.json",
 			},
 		},
 		rules: {

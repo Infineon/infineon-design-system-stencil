@@ -37,10 +37,10 @@
 		"example:html-cdn": "pnpm run -F html-cdn-example dev",
 		"example:html-vite": "pnpm run -F html-vite-example dev",
 		"format": "biome format --write .",
-		"lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint",
-		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:fix",
+		"lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
+		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint:fix",
 		"check": "biome check --write .",
-		"check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint",
+		"check:ci": "biome ci . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
 		"check:staged": "lint-staged",
 		"prepare": "husky"
 	},
