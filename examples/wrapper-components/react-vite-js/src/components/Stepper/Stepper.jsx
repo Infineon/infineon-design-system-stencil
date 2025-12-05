@@ -33,6 +33,7 @@ function Stepper(){
 
     return(
         <div>
+          <h2>Stepper</h2>
             <IfxStepper id='myStepper' showStepNumber={false} variant="default" activeStep={activeStep}>
                 <IfxStep>Step 1</IfxStep>
                 <IfxStep disabled='true'>Step 2</IfxStep>
