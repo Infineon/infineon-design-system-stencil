@@ -5,6 +5,7 @@ function Tooltip() {
 
   return (
     <div>
+      <h2>Tooltip</h2>
       <IfxTooltip text="Hi, I'm a compact tooltip" variant="compact" position="right">I'm the compact tooltip reference
         element -
         Please hover me</IfxTooltip>

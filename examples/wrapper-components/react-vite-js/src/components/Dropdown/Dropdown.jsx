@@ -6,6 +6,8 @@ function Dropdown() {
     console.log('selected dropdown option', e.detail)
   }
   return (
+    <div>
+      <h2>Dropdown</h2>
     <IfxDropdown placement="bottom-start" no-close-on-menu-click="true">
     <IfxDropdownTriggerButton icon="calendar16">
       dropdown
@@ -18,6 +20,7 @@ function Dropdown() {
       <IfxDropdownItem>Menu Item</IfxDropdownItem>
     </IfxDropdownMenu>
   </IfxDropdown>
+  </div>
   );
 }
 

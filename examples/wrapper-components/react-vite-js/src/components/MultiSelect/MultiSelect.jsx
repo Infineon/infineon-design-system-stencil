@@ -12,6 +12,7 @@ function App() {
 
   return (
     <div>
+      <h2>Multi Select</h2>
       <IfxMultiselect
         onIfxSelect={handleIfxSelect}
         name='multiselect'

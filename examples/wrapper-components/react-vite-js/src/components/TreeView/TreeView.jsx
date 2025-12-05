@@ -3,6 +3,7 @@ import { IfxTreeView, IfxTreeViewItem } from '@infineon/infineon-design-system-r
 function TreeView() {
   return (
     <div>
+      <h2>Tree View</h2>
       <IfxTreeView expandAllItems={true} label="Beispiel TreeView">
         <IfxTreeViewItem label="Root Folder" icon="folder" initiallyExpanded={true}>
           <IfxTreeViewItem label="Subfolder 1" icon="folder">

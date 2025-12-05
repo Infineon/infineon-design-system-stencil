@@ -4,6 +4,7 @@ function Link() {
 
   return (
     <div>
+      <h2>Link</h2>
       <IfxLink href="#" target="_blank" size="m" variant='bold'>Link</IfxLink>
     </div>
   );

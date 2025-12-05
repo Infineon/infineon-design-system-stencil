@@ -3,6 +3,8 @@ import { IfxCard, IfxCardHeadline, IfxButton, IfxCardOverline, IfxCardText, IfxC
 
 function Card() {
   return (
+    <div>
+      <h2>Card</h2>
     <IfxCard href="http://google.com" target="_blank" direction="vertical">
       <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>
       <IfxCardOverline>Overline</IfxCardOverline>
@@ -15,6 +17,7 @@ function Card() {
         <IfxButton color='primary'>Button</IfxButton>  
       </IfxCardLinks>  
     </IfxCard>
+    </div>
   );
 }
 
