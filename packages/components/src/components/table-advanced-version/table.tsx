@@ -48,6 +48,7 @@ export class Table {
   @Prop() enableSelection: boolean = false;
   @State() selectedRows: Set<string> = new Set();
   @State() selectAll: boolean = false;
+  @State() selectedRowsData: Map<string, any> = new Map();
   @Prop() showLoading: boolean = false;
   private container: HTMLDivElement;
   @Element() host: HTMLElement;
@@ -193,10 +194,22 @@ export class Table {
       setTimeout(() => {
         const headerCheckbox = this.container?.querySelector('.ag-header-cell[col-id="__checkbox"] ifx-checkbox') as any;
         if (headerCheckbox) {
-          const allSelected = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
-          const someSelected = this.selectedRows.size > 0 && this.selectedRows.size < this.allRowData.length;
-          headerCheckbox.checked = allSelected;
-          headerCheckbox.indeterminate = someSelected;
+          if (this.serverSidePagination) {
+           
+            const currentPageSelectedCount = this.rowData.filter(row => this.selectedRows?.has(row.__rowId)).length;
+            const allOnPageSelected = currentPageSelectedCount === this.rowData.length && this.rowData.length > 0;
+            const someOnPageSelected = currentPageSelectedCount > 0 && currentPageSelectedCount < this.rowData.length;
+
+            headerCheckbox.checked = allOnPageSelected;
+            headerCheckbox.indeterminate = someOnPageSelected;
+          } else {
+    
+            const allSelected = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
+            const someSelected = this.selectedRows.size > 0 && this.selectedRows.size < this.allRowData.length;
+
+            headerCheckbox.checked = allSelected;
+            headerCheckbox.indeterminate = someSelected;
+          }
         }
       }, 0);
     }
@@ -308,32 +321,36 @@ export class Table {
   }
 
   async updateTableView() {
+    if (this.serverSidePagination) {
+      this.selectAll = false;
+    }
+
     if (this.serverSidePagination && this.serverPageChangeHandler) {
       const { rows, total } = await this.serverPageChangeHandler({
         page: this.currentPage,
         pageSize: this.paginationPageSize,
       });
 
-      if (this.enableSelection) {
-        rows.forEach((row, index) => {
-          if (!row.__rowId) {
-            row.__rowId = `row_${(this.currentPage - 1) * this.paginationPageSize + index}_${Date.now()}`;
-          }
-          row.__checkbox = {
-            disabled: false,
-            checked: this.selectedRows?.has(row.__rowId) || false,
-            size: 's',
-            indeterminate: false,
-            error: false,
-          };
-        });
-      }
+      rows.forEach((row, index) => {
+        const rowId = row.sampleNumber || `row_${(this.currentPage - 1) * this.paginationPageSize + index}`;
+        row.__rowId = rowId;
+        row.__checkbox = {
+          disabled: false,
+          checked: this.selectedRows?.has(rowId) || false,
+          size: 's',
+          indeterminate: false,
+          error: false,
+        };
+      });
 
       this.rowData = rows;
       this.matchingResultsCount = total;
+
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', rows);
+        this.updateHeaderCheckboxState();
       }
+
       const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
       if (paginationElement) {
         paginationElement.setAttribute('total', total.toString());
@@ -361,9 +378,12 @@ export class Table {
 
       this.rowData = visibleRowData;
       this.matchingResultsCount = this.allRowData.length;
+
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
       }
+
+      this.updateHeaderCheckboxState();
     }
   }
 
@@ -537,6 +557,9 @@ export class Table {
 
   async handlePageChange(event) {
     this.currentPage = event.detail.currentPage;
+    if (this.serverSidePagination) {
+      this.selectAll = false;
+    }
 
     if (this.serverSidePagination && this.serverPageChangeHandler) {
       const { rows, total } = await this.serverPageChangeHandler({
@@ -544,11 +567,26 @@ export class Table {
         pageSize: this.paginationPageSize,
       });
 
+      // Add checkbox properties to rows
+      rows.forEach((row, index) => {
+        const rowId = row.sampleNumber || `row_${(this.currentPage - 1) * this.paginationPageSize + index}`;
+        row.__rowId = rowId;
+        row.__checkbox = {
+          disabled: false,
+          checked: this.selectedRows?.has(rowId) || false,
+          size: 's',
+          indeterminate: false,
+          error: false,
+        };
+      });
+
       this.rowData = rows;
       this.matchingResultsCount = total;
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
+
+        this.updateHeaderCheckboxState();
       }
 
       const paginationElement = this.host.shadowRoot.querySelector('ifx-pagination');
@@ -559,8 +597,29 @@ export class Table {
       const startIndex = (this.currentPage - 1) * this.paginationPageSize;
       const endIndex = startIndex + this.paginationPageSize;
       const visibleRowData = this.allRowData.slice(startIndex, endIndex);
+
+      if (this.enableSelection) {
+        visibleRowData.forEach(row => {
+          if (!row.__checkbox) {
+            row.__checkbox = {
+              disabled: false,
+              checked: this.selectedRows?.has(row.__rowId) || false,
+              size: 's',
+              indeterminate: false,
+              error: false,
+            };
+          } else {
+            row.__checkbox.checked = this.selectedRows?.has(row.__rowId) || false;
+          }
+        });
+      }
+
+      this.rowData = visibleRowData;
+
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', visibleRowData);
+
+        this.updateHeaderCheckboxState();
       }
     }
   }
@@ -576,11 +635,46 @@ export class Table {
 
   handleSelectAll = (checked: boolean) => {
     this.selectAll = checked;
+
+    const newSelectedRows = new Set(this.selectedRows);
+    const newSelectedRowsData = new Map(this.selectedRowsData);
+
     if (checked) {
-      this.selectedRows = new Set(this.allRowData.map(row => row.__rowId));
+      if (this.serverSidePagination) {
+        // Server-side: select only current page rows
+        this.rowData.forEach(row => {
+          const rowId = row.__rowId;
+          newSelectedRows.add(rowId);
+          const { __checkbox, __rowId, ...cleanRow } = row;
+          newSelectedRowsData.set(rowId, cleanRow);
+        });
+      } else {
+        // Client-side: select ALL rows across ALL pages
+        this.allRowData.forEach(row => {
+          const rowId = row.__rowId;
+          newSelectedRows.add(rowId);
+          const { __checkbox, __rowId, ...cleanRow } = row;
+          newSelectedRowsData.set(rowId, cleanRow);
+        });
+      }
     } else {
-      this.selectedRows = new Set();
+      if (this.serverSidePagination) {
+        // Server-side: remove only current page rows
+        this.rowData.forEach(row => {
+          const rowId = row.__rowId;
+          newSelectedRows.delete(rowId);
+          newSelectedRowsData.delete(rowId);
+        });
+      } else {
+        // Client-side: remove ALL rows (clear entire selection)
+        newSelectedRows.clear();
+        newSelectedRowsData.clear();
+      }
     }
+
+    this.selectedRows = newSelectedRows;
+    this.selectedRowsData = newSelectedRowsData;
+
     this.updateCheckboxStates();
     this.updateHeaderCheckboxState();
     this.emitSelectionChange();
@@ -625,26 +719,37 @@ export class Table {
   handleRowCheckboxClick = (params: any) => {
     const clickedRowData = params.data;
     const rowId = clickedRowData.__rowId;
-
     const newSelectedRows = new Set(this.selectedRows);
+    const newSelectedRowsData = new Map(this.selectedRowsData);
+
     if (newSelectedRows.has(rowId)) {
       newSelectedRows.delete(rowId);
+      newSelectedRowsData.delete(rowId);
     } else {
       newSelectedRows.add(rowId);
+      const { __checkbox, __rowId, ...cleanRow } = clickedRowData;
+      newSelectedRowsData.set(rowId, cleanRow);
     }
+
     this.selectedRows = newSelectedRows;
-    this.selectAll = newSelectedRows.size === this.allRowData.length;
+    this.selectedRowsData = newSelectedRowsData;
+    this.selectAll = newSelectedRows.size === this.rowData.length && this.rowData.length > 0;
+
     this.updateCheckboxStates();
     this.updateHeaderCheckboxState();
     this.emitSelectionChange();
   };
 
   private updateCheckboxStates() {
-    this.allRowData.forEach(row => {
+    // Update checkboxes in the current view
+    const dataToUpdate = this.rowData; 
+
+    dataToUpdate.forEach(row => {
       if (row.__checkbox) {
         row.__checkbox.checked = this.selectedRows.has(row.__rowId);
       }
     });
+
     if (this.gridApi) {
       this.gridApi.refreshCells({
         columns: ['__checkbox'],
@@ -654,21 +759,23 @@ export class Table {
   }
 
   private emitSelectionChange() {
-    const selectedRowsData = Array.from(this.selectedRows)
-      .map(rowId => {
-        const row = this.allRowData.find(r => r.__rowId === rowId);
-        if (!row) return null;
-        const { __checkbox, __rowId, ...rowData } = row;
-        return rowData;
-      })
-      .filter(row => row !== null);
+    const selectedRowsArray = Array.from(this.selectedRowsData.values());
+
+    let isSelectAll;
+    if (this.serverSidePagination) {
+      // Server-side: select-all only applies to current page
+      isSelectAll = this.selectedRows.size === this.rowData.length && this.rowData.length > 0;
+    } else {
+      // Client-side: select-all applies to ALL data across all pages
+      isSelectAll = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
+    }
 
     this.host.dispatchEvent(
       new CustomEvent('ifxSelectionChange', {
         detail: {
-          selectedRows: selectedRowsData,
-          selectedCount: selectedRowsData.length,
-          isSelectAll: this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0,
+          selectedRows: selectedRowsArray,
+          selectedCount: selectedRowsArray.length,
+          isSelectAll: isSelectAll,
         },
         bubbles: true,
       }),
