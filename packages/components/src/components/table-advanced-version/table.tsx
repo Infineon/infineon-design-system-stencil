@@ -195,7 +195,7 @@ export class Table {
         const headerCheckbox = this.container?.querySelector('.ag-header-cell[col-id="__checkbox"] ifx-checkbox') as any;
         if (headerCheckbox) {
           if (this.serverSidePagination) {
-            // For server-side: only reflect current page selection
+           
             const currentPageSelectedCount = this.rowData.filter(row => this.selectedRows?.has(row.__rowId)).length;
             const allOnPageSelected = currentPageSelectedCount === this.rowData.length && this.rowData.length > 0;
             const someOnPageSelected = currentPageSelectedCount > 0 && currentPageSelectedCount < this.rowData.length;
@@ -203,7 +203,7 @@ export class Table {
             headerCheckbox.checked = allOnPageSelected;
             headerCheckbox.indeterminate = someOnPageSelected;
           } else {
-            // For client-side: reflect entire dataset selection
+    
             const allSelected = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
             const someSelected = this.selectedRows.size > 0 && this.selectedRows.size < this.allRowData.length;
 
@@ -321,7 +321,6 @@ export class Table {
   }
 
   async updateTableView() {
-    // Reset select-all when loading new data in server-side mode
     if (this.serverSidePagination) {
       this.selectAll = false;
     }
@@ -349,7 +348,6 @@ export class Table {
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', rows);
-        // Update header checkbox state
         this.updateHeaderCheckboxState();
       }
 
@@ -384,7 +382,7 @@ export class Table {
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
       }
-      // Update header checkbox state for client-side
+
       this.updateHeaderCheckboxState();
     }
   }
@@ -559,8 +557,6 @@ export class Table {
 
   async handlePageChange(event) {
     this.currentPage = event.detail.currentPage;
-
-    // Reset the select-all checkbox state when changing pages in server-side mode
     if (this.serverSidePagination) {
       this.selectAll = false;
     }
@@ -589,7 +585,7 @@ export class Table {
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
-        // Update header checkbox state
+
         this.updateHeaderCheckboxState();
       }
 
@@ -602,7 +598,6 @@ export class Table {
       const endIndex = startIndex + this.paginationPageSize;
       const visibleRowData = this.allRowData.slice(startIndex, endIndex);
 
-      // Update checkbox state for visible rows
       if (this.enableSelection) {
         visibleRowData.forEach(row => {
           if (!row.__checkbox) {
@@ -623,7 +618,7 @@ export class Table {
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', visibleRowData);
-        // Update header checkbox state for client-side too
+
         this.updateHeaderCheckboxState();
       }
     }
@@ -747,7 +742,7 @@ export class Table {
 
   private updateCheckboxStates() {
     // Update checkboxes in the current view
-    const dataToUpdate = this.rowData; // Always update current page
+    const dataToUpdate = this.rowData; 
 
     dataToUpdate.forEach(row => {
       if (row.__checkbox) {
