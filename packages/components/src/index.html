@@ -14,12 +14,81 @@
   </style>
 
   <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const table = document.getElementById('mytable');
+      
+      // Mock car data - 3 pages of 3 cars each
+      const allCars = [];
+      const makes = ['Toyota', 'Ford', 'Porsche', 'BMW', 'Mercedes', 'Ferrari', 'Audi', 'Tesla', 'Honda'];
+      const models = ['Model A', 'Model B', 'Model C', 'Model D', 'Model E', 'Model F'];
+      
+      for(let i = 1; i <= 9; i++) {
+        allCars.push({
+          make: makes[i % makes.length],
+          model: `${models[i % models.length]} ${i}`,
+          price: 20000 + (i * 5000),
+          age: 1 + (i % 10),
+          id: i // Add ID for stable selection
+        });
+      }
 
+      table.serverPageChangeHandler = async ({ page, pageSize }) => {
+        console.log(`Server: Loading page ${page}, size ${pageSize}`);
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Calculate page slice
+        const start = (page - 1) * pageSize;
+        const end = start + parseInt(pageSize);
+        const rows = allCars.slice(start, end);
+        
+        // Return data in the format your handler expects
+        return {
+          rows: rows,
+          total: allCars.length
+        };
+      };
+
+      table.addEventListener('ifxSelectionChange', (e) => { 
+        console.log('Selection changed:', e.detail);
+      });
+
+      console.log('Ready! Click checkboxes and change pages.');
+      console.log('Page 1 should show cars 1-3, Page 2 shows 4-6, etc.');
+    });
   </script>
 
 </head>
 
 <body>
+
+ <ifx-table
+    id="mytable"
+    enable-selection="true"
+    row-height="default"
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
+    table-height="400px"
+    pagination="true"
+    server-side-pagination="true"
+    pagination-items-per-page='[{"value":"3","selected":true}, {"value":"5","selected":false}]'
+    filter-orientation="none"
+    variant='default'>
+  </ifx-table>
+
+<!-- <ifx-table
+enable-selection="true"
+    row-height="default"
+    cols='[{"headerName":"Make","field":"make","sortable":true,"sort":"desc","unSortIcon":true},{"headerName":"Model","field":"model","sortable":true,"unSortIcon":true},{"headerName":"Price","field":"price"},{"headerName":"Age","field":"age"}]'
+    rows='[{"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000},{"make":"Bmw","model":"x","price":72000},{"make":"Mercedes","model":"y","price":72000},{"make":"Ferrari","model":"z","price":72000},{"make":"Chrysler","model":"a","price":72000},{"make":"Range rover","model":"b","price":72000},{"make":"Tesla","model":"x","price":72000},{"make":"Audi","model":"3","price":72000},{"make":"Landrover","model":"x","price":72000}, {"make":"Toyota","model":"Celica","price":35000,"age":10},{"make":"Ford","model":"Mondeo","price":32000,"age":12},{"make":"Porsche","model":"Boxster","price":72000},{"make":"Bmw","model":"x","price":72000},{"make":"Mercedes","model":"y","price":72000},{"make":"Ferrari","model":"z","price":72000},{"make":"Chrysler","model":"a","price":72000},{"make":"Range rover","model":"b","price":72000},{"make":"Tesla","model":"x","price":72000},{"make":"Audi","model":"3","price":72000},{"make":"Landrover","model":"x","price":72000}]'
+    enable-selection="false"
+    table-height="auto"
+    pagination="false"
+    server-side-pagination="false"
+    pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
+    filter-orientation="none"
+    variant='default'>
+</ifx-table> -->
 
 </body>
 
