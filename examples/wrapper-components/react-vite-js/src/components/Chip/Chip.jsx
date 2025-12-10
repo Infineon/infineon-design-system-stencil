@@ -2,42 +2,40 @@ import { useState } from 'react';
 import { IfxChip, IfxChipItem, IfxButton } from '@infineon/infineon-design-system-react';
 
 function Chip() {
-
   const [sizeIndex, setSizeIndex] = useState(1);
   const sizes = ["small", "medium", "large"];
+
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variants = ["single", "multi"];
+
+  const [readOnly, setReadOnly] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
+  const [themeIndex, setThemeIndex] = useState(0);
+  const themes = ["outlined", "filled-light", "filled-dark"];
+
+  const [iconIndex, setIconIndex] = useState(0);
+  const icons = ["", "windows16"];
 
   const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   }
   
-  const [variantIndex, setVariantIndex] = useState(0);
-  const variants = ["single", "multi"];
-
   const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   }
-
-  const [readOnly, setReadOnly] = useState(false);
 
   const toggleReadOnly = () => {
     setReadOnly(prevReadOnly => !prevReadOnly);
   }
 
-  const [disabled, setDisabled] = useState(false);
-
   const toggleDisabled = () => {
     setDisabled(prevDisabled => !prevDisabled);
   }
 
-  const [themeIndex, setThemeIndex] = useState(0);
-  const themes = ["outlined", "filled-light", "filled-dark"];
-
   const toggleTheme = () => {
     setThemeIndex((index) => (index + 1) % themes.length);
   }
-
-  const [iconIndex, setIconIndex] = useState(0);
-  const icons = ["", "windows16"];
 
   const toggleIcon = () => {
     setIconIndex((index) => (index + 1) % icons.length);

@@ -5,12 +5,12 @@ function Alert() {
 
   const [closable, setClosable] = useState(true);
 
+  const [variantIndex, setVariantIndex] = useState(0);
+  const variants = ["primary", "success", "danger", "warning"];
+
   const toggleClosable = () => {
     setClosable(prevClosable => !prevClosable);
   }
-
-  const [variantIndex, setVariantIndex] = useState(0);
-  const variants = ["primary", "success", "danger", "warning"];
 
   const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);

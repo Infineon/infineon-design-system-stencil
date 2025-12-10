@@ -6,38 +6,37 @@ function Button() {
   const [variantIndex, setVariantIndex] = useState(0);
   const variants = ["primary", "secondary", "tertiary"];
 
+  const [themeIndex, setThemeIndex] = useState(0);
+  const themes = ["default", "danger", "inverse"];
+
+  const [sizeIndex, setSizeIndex] = useState(2);
+  const sizes = ["xs", "s", "m", "l"];
+
+  const [fullWidth, setFullWidth] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
+  const [iconIndex, setIconIndex] = useState(0);
+  const icons = ["", "fileMpg16"];
+
   const toggleVariant = () => {
     setVariantIndex((index) => (index + 1) % variants.length);
   }
-
-  const [themeIndex, setThemeIndex] = useState(0);
-  const themes = ["default", "danger", "inverse"];
 
   const toggleTheme = () => {
     setThemeIndex((index) => (index + 1) % themes.length);
   }
 
-  const [sizeIndex, setSizeIndex] = useState(2);
-  const sizes = ["xs", "s", "m", "l"];
-
   const toggleSize = () => {
     setSizeIndex((index) => (index + 1) % sizes.length);
   }
-
-  const [fullWidth, setFullWidth] = useState(false);
 
   const toggleFullWidth = () => {
     setFullWidth(prevFullWidth => !prevFullWidth);
   }
 
-  const [disabled, setDisabled] = useState(false);
-
   const toggleDisabled = () => {
     setDisabled(prevDisabled => !prevDisabled);
   }
-
-  const [iconIndex, setIconIndex] = useState(0);
-  const icons = ["", "fileMpg16"];
 
   const toggleIcon = () => {
     setIconIndex((index) => (index + 1) % icons.length);
