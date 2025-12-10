@@ -1,6 +1,6 @@
 {
   "name": "components-angular",
-  "version": "39.4.3",
+  "version": "39.5.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
