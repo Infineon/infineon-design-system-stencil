@@ -19,6 +19,7 @@ export class CheckboxGroupComponent {
   checkboxGroupLabel = true;
   checkboxGroupCaption = true;
   checkboxGroupCaptionIcon = true;
+  checkboxGroupRequired = false;
 
   checkboxGroupAlignment = "vertical";
   checkboxGroupAlignments = ["vertical", "horizontal"];
@@ -51,6 +52,10 @@ export class CheckboxGroupComponent {
 
   toggleCheckboxGroupCaptionIcon() {
     this.checkboxGroupCaptionIcon = !this.checkboxGroupCaptionIcon;
+  }
+
+  toggleCheckboxGroupRequired() {
+    this.checkboxGroupRequired = !this.checkboxGroupRequired;
   }
 
   toggleCheckboxGroupSize() {

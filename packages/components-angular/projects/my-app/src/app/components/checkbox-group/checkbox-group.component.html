@@ -5,7 +5,8 @@
   group-label-text="Group Label" 
   [showCaption]="checkboxGroupCaption" 
   caption-text="Caption text, description, error notification" 
-  [showCaptionIcon]="checkboxGroupCaptionIcon">
+  [showCaptionIcon]="checkboxGroupCaptionIcon"
+  [required]="checkboxGroupRequired">
     <ifx-checkbox value="0" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 0</ifx-checkbox>
     <ifx-checkbox value="1" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 1</ifx-checkbox>
     <ifx-checkbox value="2" [disabled]="checkboxGroupDisabled" checked="false" [size]="checkboxGroupSize" indeterminate="false" [error]="checkboxGroupError">Option 2</ifx-checkbox>
@@ -21,6 +22,7 @@
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupLabel()">Toggle Label</ifx-button>
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupCaption()">Toggle Caption</ifx-button>
 <ifx-button variant="secondary" (click)="toggleCheckboxGroupCaptionIcon()">Toggle Caption Icon</ifx-button>
+<ifx-button variant="secondary" (click)="toggleCheckboxGroupRequired()">Toggle Required</ifx-button>
 <br>
 <br>
 <span><b>Alignment:</b> {{ checkboxGroupAlignment }} </span><br>
@@ -30,3 +32,4 @@
 <span><b>Label:</b> {{ checkboxGroupLabel }} </span><br>
 <span><b>Caption:</b> {{ checkboxGroupCaption }} </span><br>
 <span><b>Caption Icon:</b> {{ checkboxGroupCaptionIcon }} </span><br>
+<span><b>Required:</b> {{ checkboxGroupRequired }} </span><br>
