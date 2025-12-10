@@ -18,6 +18,7 @@ function ProgressBar() {
 
   return (
     <div>
+      <h2>Progress Bar</h2>
       Small
       <IfxProgressBar value={progressValue} size="s" ></IfxProgressBar>
       <br/>
