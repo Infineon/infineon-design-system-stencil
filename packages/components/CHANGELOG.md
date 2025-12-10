@@ -1,3 +1,20 @@
+# v39.5.0 (Wed Dec 10 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Adds checkbox integration to server side pagination [#2134](https://github.com/Infineon/infineon-design-system-stencil/pull/2134) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.4.3 (Wed Dec 03 2025)
 
 #### 🐛 Bug Fix
