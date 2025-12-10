@@ -1,22 +1,37 @@
-/* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 import { IfxCard, IfxCardHeadline, IfxButton, IfxCardOverline, IfxCardText, IfxCardImage, IfxCardLinks } from '@infineon/infineon-design-system-react';
 
 function Card() {
+
+  const [directionIndex, setDirectionIndex] = useState(0);
+  const directions = ["horizontal", "vertical"];
+  
+  const toggleDirection = () => {
+    setDirectionIndex((index) => (index + 1) % directions.length);
+  }
+
   return (
     <div>
       <h2>Card</h2>
-    <IfxCard href="http://google.com" target="_blank" direction="vertical">
-      <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>
-      <IfxCardOverline>Overline</IfxCardOverline>
-      <IfxCardHeadline>Headline</IfxCardHeadline>
-      <IfxCardText>
-        Some quick example text to build on the card title and make up the bulk of the card's content
-      </IfxCardText>
-      <IfxCardLinks slot="buttons">
-        <IfxButton color='primary'>Button</IfxButton>  
-        <IfxButton color='primary'>Button</IfxButton>  
-      </IfxCardLinks>  
-    </IfxCard>
+      <IfxCard href="http://google.com" target="_blank" direction={directions[directionIndex]}>
+        <IfxCardImage position="right" src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg" alt="" slot="img"></IfxCardImage>
+        <IfxCardOverline>Overline</IfxCardOverline>
+        <IfxCardHeadline>Headline</IfxCardHeadline>
+        <IfxCardText>
+          Some quick example text to build on the card title and make up the bulk of the card's content
+        </IfxCardText>
+        <IfxCardLinks slot="buttons">
+          <IfxButton color='primary'>Button</IfxButton>  
+          <IfxButton color='primary'>Button</IfxButton>  
+        </IfxCardLinks>  
+      </IfxCard>
+      <br />
+      <br />
+      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleDirection}>Toggle Direction</IfxButton>
+      <br />
+      <br />
+      <span><b>Direction:</b> {directions[directionIndex]}</span><br />
     </div>
   );
 }
