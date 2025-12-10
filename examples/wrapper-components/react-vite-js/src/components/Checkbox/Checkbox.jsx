@@ -1,22 +1,13 @@
-
 import  { useState } from 'react';
-
 import { IfxCheckbox, IfxButton } from '@infineon/infineon-design-system-react';
 
 function App() {
   const [disabled, setDisabled] = useState(false);
-  const [value, setValue] = useState(false);
   const [error, setError] = useState(false);
+  const [indeterminate, setIndeterminate] = useState(false);
 
-  const handleIfxChange = (e) => {
-    console.log('ifxChange event emitted with value:', e.detail);
-    setValue(e.detail);
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted. Checkbox value:', value);
-  }
+  const [sizeIndex, setSizeIndex] = useState(0);
+  const sizes = ["m", "s"];
 
   const toggleDisabled = () => {
     setDisabled(prevDisabled => !prevDisabled);
@@ -26,34 +17,41 @@ function App() {
     setError(prevError => !prevError);
   }
 
-  const toggleValue = () => {
-    setValue(prevValue => !prevValue);
+  const toggleIndeterminate = () => {
+    setIndeterminate(prevIndeterminate => !prevIndeterminate);
+  }
+
+  const toggleSize = () => {
+    setSizeIndex((index) => (index + 1) % sizes.length);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted. Checkbox value:', value);
   }
 
   return (
     <div>
-
+      <h2>Checkbox</h2>
       <form onSubmit={handleSubmit}>
-        <IfxCheckbox disabled={disabled} value={value} error={error} name="name"
-          onIfxChange={handleIfxChange}>label</IfxCheckbox>
+        <IfxCheckbox disabled={disabled} value="checkboxChecked" indeterminate={indeterminate} size={sizes[sizeIndex]} error={error} name="name">label</IfxCheckbox>
         <br />
-
+        <br />
         <IfxButton type="submit">Submit</IfxButton>
       </form>
       <br />
-      <div>
-        <IfxButton variant="outline" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
-
-        <IfxButton variant="outline" onClick={toggleError}>Toggle Error</IfxButton>
-
-        <IfxButton variant="outline" onClick={toggleValue}>Toggle Value</IfxButton>
-
-      </div>
       <br />
-      <span>Disabled: {String(disabled)} </span>
-      <span>Error: {String(error)} </span>
-      <span>Value: {String(value)}</span>
+      <h3 style={{textDecoration: "underline"}}>Controls</h3>
+      <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleError}>Toggle Error</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleIndeterminate}>Toggle Indeterminate</IfxButton>
+      <IfxButton variant="secondary" onClick={toggleSize}>Toggle Size</IfxButton>
       <br />
+      <br />
+      <span><b>Disabled:</b> {String(disabled)}</span><br />
+      <span><b>Error:</b> {String(error)}</span><br />
+      <span><b>Size:</b> {sizes[sizeIndex]}</span><br />
+      <span><b>Indeterminate:</b> {String(indeterminate)}</span><br />
     </div>
   );
 }

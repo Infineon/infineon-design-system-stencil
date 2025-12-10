@@ -25,6 +25,7 @@ export default function App() {
 
   return (
     <div>
+      <h2>Pagination</h2>
      <table border="1">
       <thead>
           <tr>

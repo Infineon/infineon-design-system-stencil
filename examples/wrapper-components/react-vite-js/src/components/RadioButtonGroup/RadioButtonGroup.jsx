@@ -21,6 +21,7 @@ function RadioButtonGroup() {
 
   return (
     <div>
+      <h2>Radio Button Group</h2>
       <IfxRadioButtonGroup alignment="vertical" show-group-label={true} group-label-text="Group Label" show-caption={true} caption-text="Caption text, description, error notification" show-caption-icon={true} required={required}>
           <IfxRadioButton value="0" disabled={disabled} checked={false} size="m" error={error}>Option 0</IfxRadioButton>
           <IfxRadioButton value="1" disabled={disabled} checked={false} size="m" error={error}>Option 1</IfxRadioButton>
