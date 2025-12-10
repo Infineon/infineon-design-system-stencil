@@ -195,15 +195,13 @@ export class Table {
         const headerCheckbox = this.container?.querySelector('.ag-header-cell[col-id="__checkbox"] ifx-checkbox') as any;
         if (headerCheckbox) {
           if (this.serverSidePagination) {
-           
-            const currentPageSelectedCount = this.rowData.filter(row => this.selectedRows?.has(row.__rowId)).length;
+            const currentPageSelectedCount = this.rowData.filter(row => this.selectedRows.has(row.__rowId)).length;
             const allOnPageSelected = currentPageSelectedCount === this.rowData.length && this.rowData.length > 0;
             const someOnPageSelected = currentPageSelectedCount > 0 && currentPageSelectedCount < this.rowData.length;
 
             headerCheckbox.checked = allOnPageSelected;
             headerCheckbox.indeterminate = someOnPageSelected;
           } else {
-    
             const allSelected = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
             const someSelected = this.selectedRows.size > 0 && this.selectedRows.size < this.allRowData.length;
 
@@ -306,10 +304,9 @@ export class Table {
           }
           if (!textFilterMatched) return false;
         }
-        // For multi-select filters, this remains unchanged
         else if (filterInfo.type === 'multi-select') {
           let rowValue = row[filterName] != null ? String(row[filterName]).toLowerCase() : '';
-          // Check if 'undefined' is a selected value and include rows with empty values in that case
+    
           let includesUndefined = selectedValues.includes('undefined');
           if (!selectedValues.includes(rowValue) && !(includesUndefined && rowValue === '')) {
             return false;
@@ -356,9 +353,15 @@ export class Table {
         paginationElement.setAttribute('total', total.toString());
       }
     } else {
-      const startIndex = (this.currentPage - 1) * this.paginationPageSize;
-      const endIndex = startIndex + this.paginationPageSize;
-      const visibleRowData = this.allRowData.slice(startIndex, endIndex);
+      let visibleRowData;
+
+      if (this.pagination) {
+        const startIndex = (this.currentPage - 1) * this.paginationPageSize;
+        const endIndex = startIndex + this.paginationPageSize;
+        visibleRowData = this.allRowData.slice(startIndex, endIndex);
+      } else {
+        visibleRowData = this.allRowData;
+      }
 
       if (this.enableSelection) {
         visibleRowData.forEach(row => {
@@ -382,7 +385,6 @@ export class Table {
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
       }
-
       this.updateHeaderCheckboxState();
     }
   }
@@ -556,6 +558,10 @@ export class Table {
   }
 
   async handlePageChange(event) {
+    if (!this.pagination) {
+      return;
+    }
+
     this.currentPage = event.detail.currentPage;
     if (this.serverSidePagination) {
       this.selectAll = false;
@@ -567,7 +573,6 @@ export class Table {
         pageSize: this.paginationPageSize,
       });
 
-      // Add checkbox properties to rows
       rows.forEach((row, index) => {
         const rowId = row.sampleNumber || `row_${(this.currentPage - 1) * this.paginationPageSize + index}`;
         row.__rowId = rowId;
@@ -585,7 +590,6 @@ export class Table {
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', this.rowData);
-
         this.updateHeaderCheckboxState();
       }
 
@@ -618,7 +622,6 @@ export class Table {
 
       if (this.gridApi) {
         this.gridApi.setGridOption('rowData', visibleRowData);
-
         this.updateHeaderCheckboxState();
       }
     }
@@ -641,7 +644,6 @@ export class Table {
 
     if (checked) {
       if (this.serverSidePagination) {
-        // Server-side: select only current page rows
         this.rowData.forEach(row => {
           const rowId = row.__rowId;
           newSelectedRows.add(rowId);
@@ -649,7 +651,6 @@ export class Table {
           newSelectedRowsData.set(rowId, cleanRow);
         });
       } else {
-        // Client-side: select ALL rows across ALL pages
         this.allRowData.forEach(row => {
           const rowId = row.__rowId;
           newSelectedRows.add(rowId);
@@ -659,14 +660,12 @@ export class Table {
       }
     } else {
       if (this.serverSidePagination) {
-        // Server-side: remove only current page rows
         this.rowData.forEach(row => {
           const rowId = row.__rowId;
           newSelectedRows.delete(rowId);
           newSelectedRowsData.delete(rowId);
         });
       } else {
-        // Client-side: remove ALL rows (clear entire selection)
         newSelectedRows.clear();
         newSelectedRowsData.clear();
       }
@@ -733,7 +732,13 @@ export class Table {
 
     this.selectedRows = newSelectedRows;
     this.selectedRowsData = newSelectedRowsData;
-    this.selectAll = newSelectedRows.size === this.rowData.length && this.rowData.length > 0;
+
+    if (this.serverSidePagination) {
+      const currentPageSelectedCount = this.rowData.filter(row => newSelectedRows.has(row.__rowId)).length;
+      this.selectAll = currentPageSelectedCount === this.rowData.length && this.rowData.length > 0;
+    } else {
+      this.selectAll = newSelectedRows.size === this.allRowData.length && this.allRowData.length > 0;
+    }
 
     this.updateCheckboxStates();
     this.updateHeaderCheckboxState();
@@ -741,8 +746,7 @@ export class Table {
   };
 
   private updateCheckboxStates() {
-    // Update checkboxes in the current view
-    const dataToUpdate = this.rowData; 
+    const dataToUpdate = this.rowData;
 
     dataToUpdate.forEach(row => {
       if (row.__checkbox) {
@@ -763,10 +767,9 @@ export class Table {
 
     let isSelectAll;
     if (this.serverSidePagination) {
-      // Server-side: select-all only applies to current page
-      isSelectAll = this.selectedRows.size === this.rowData.length && this.rowData.length > 0;
+      const currentPageSelectedCount = this.rowData.filter(row => this.selectedRows.has(row.__rowId)).length;
+      isSelectAll = currentPageSelectedCount === this.rowData.length && this.rowData.length > 0;
     } else {
-      // Client-side: select-all applies to ALL data across all pages
       isSelectAll = this.selectedRows.size === this.allRowData.length && this.allRowData.length > 0;
     }
 
