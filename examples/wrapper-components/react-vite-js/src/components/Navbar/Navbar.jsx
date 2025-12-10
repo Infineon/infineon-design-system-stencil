@@ -2,7 +2,7 @@ import { IfxNavbar, IfxNavbarProfile, IfxSearchBar, IfxNavbarItem } from '@infin
 
 function Navbar({onSelect}) {
   return (
-  <IfxNavbar  show-logo-and-appname="true" application-name="Vite + React" fixed="false" logo-href="http://google.com" logo-href-target="_self">
+  <IfxNavbar  show-logo-and-appname="true" application-name="Stencil Components - Vite + React" fixed="false" logo-href="http://google.com" logo-href-target="_self">
     <IfxNavbarItem icon="calendar16" slot="left-item" target="" href="" >
       Components A-N
       <IfxNavbarItem onClick={() => onSelect("accordion")}>Accordion</IfxNavbarItem>

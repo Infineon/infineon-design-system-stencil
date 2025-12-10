@@ -23,6 +23,8 @@ function ActionList() {
             <IfxCheckbox slot="leading" checked="false"></IfxCheckbox>
           </IfxActionListItem>
       </IfxActionList>
+      <br />
+      <br />
       <h3 style={{textDecoration: "underline"}}>Controls</h3>
       <IfxButton variant="secondary" onClick={toggleDisabled}>Toggle Disabled</IfxButton>
       <br />

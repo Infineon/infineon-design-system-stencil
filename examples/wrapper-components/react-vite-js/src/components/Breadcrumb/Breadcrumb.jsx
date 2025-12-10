@@ -26,7 +26,7 @@ function Breadcrumb() {
         </IfxBreadcrumbItem>
 
         <IfxBreadcrumbItem>
-          <IfxBreadcrumbItemLabel slot="label" href="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
+          <IfxBreadcrumbItemLabel slot="label" icon="chipAi16" href="http://google.com">Breadcrumb 3</IfxBreadcrumbItemLabel>
         </IfxBreadcrumbItem>
       </IfxBreadcrumb>
     </div>
