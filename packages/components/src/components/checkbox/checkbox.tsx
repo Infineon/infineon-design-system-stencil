@@ -24,7 +24,7 @@ export class Checkbox {
 
   @AttachInternals() internals: ElementInternals;
 
-  @Event({ bubbles: true, composed: true }) ifxChange: EventEmitter;
+  @Event() ifxChange: EventEmitter;
   @Event({ bubbles: true, composed: true }) ifxError: EventEmitter;
 
   handleCheckbox() {
