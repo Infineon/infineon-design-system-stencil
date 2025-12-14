@@ -39,8 +39,6 @@ export class DatePicker {
     const day = selectedDate.getDate();
     const month = selectedDate.getMonth() + 1; 
     const year = selectedDate.getFullYear();
-
- 
       
     if (!inputValue) {
       //this.internals.setFormValue(null);
@@ -70,17 +68,24 @@ export class DatePicker {
 
   handleInputFocusOnIconClick() { 
     const input = this.el.shadowRoot.querySelector('.date__picker-input') as HTMLInputElement;
-    if (!input || this.disabled) return;
+    if (!input) return;
 
     input.focus();
 
-    const anyInput = input as any;
-    if (typeof anyInput.showPicker === 'function') {
-      anyInput.showPicker();
+    if(typeof input.showPicker === 'function') {
+      input.showPicker();
     } else {
       input.click();
     }
   }
+
+  handleIconKeyDown(e: KeyboardEvent) {
+    if (this.disabled) return;
+    if (e.key === 'Enter' && this.getBrowser() === 'Firefox') {
+      e.preventDefault();
+      this.handleInputFocusOnIconClick();
+    }
+  } 
 
  getBrowser() {
     if( navigator.userAgent.indexOf("Chrome") != -1 ) {
@@ -99,12 +104,19 @@ export class DatePicker {
   setFireFoxClasses() { 
     const browser = this.getBrowser()
     const input = this.el.shadowRoot.querySelector('.date__picker-input');
+    const iconWrapper = this.el.shadowRoot.querySelector('.icon__wrapper');
 
     if(browser === 'Firefox') { 
       input.classList.add('firefox__classes')
+      iconWrapper.classList.add('firefox__classes')
     } else if(input.classList.contains('firefox__classes')) { 
       input.classList.remove('firefox__classes')
+      iconWrapper.classList.remove('firefox__classes')
     }
+  }
+
+  getTabIndex(): number | undefined {
+    return this.getBrowser() === 'Firefox' ? 0 : undefined;
   }
 
   async componentDidLoad() { 
@@ -147,7 +159,7 @@ export class DatePicker {
           value={this.value}
           required={this.required}
           onChange={(e) => this.getDate(e)} />
-          <div class="icon__wrapper" role="button" tabIndex={ this.getBrowser() === 'Firefox' ? 0 : undefined } onClick={() => this.handleInputFocusOnIconClick()}>
+          <div class="icon__wrapper" tabIndex={this.getTabIndex()} onClick={() => this.handleInputFocusOnIconClick()} onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}>
             <ifx-icon icon='calendar16' aria-hidden="true"></ifx-icon>
           </div>
         </div>
