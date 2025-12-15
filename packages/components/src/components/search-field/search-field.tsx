@@ -230,38 +230,6 @@ export class SearchField {
     }
   }
 
-  // Remove individual history entry
-  private removeFromHistory(term: string) {
-    if (!this.enableHistory) return;
-
-    const history = [...this.searchHistory];
-    const index = history.indexOf(term);
-
-    if (index > -1) {
-      history.splice(index, 1);
-      this.searchHistory = history;
-
-      // Update localStorage
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem(this.historyKey, JSON.stringify(this.searchHistory));
-      }
-
-      // Update suggestions after removal
-      this.updateSuggestions();
-
-      // Close dropdown if no history remains
-      if (this.searchHistory.length === 0 && this.value.length === 0) {
-        this.showDropdown = false;
-      }
-    }
-  }
-
-  // Handle click on history delete button
-  private handleHistoryDelete = (event: Event, term: string) => {
-    event.stopPropagation(); // Prevent selection of the entry
-    this.removeFromHistory(term);
-  }
-
   private requestSuggestions(query: string) {
     this.ifxSuggestionRequested.emit(query);
     this.updateSuggestions();
@@ -404,38 +372,6 @@ export class SearchField {
     }
   }
 
-  // Check if only history entries are displayed (without text input)
-  private isShowingOnlyHistory(): boolean {
-    return this.value.length === 0 &&
-           this.filteredSuggestions.length > 0 &&
-           this.filteredSuggestions.every(s => s.type === 'history');
-  }
-
-  // Render text with highlighted matches
-  private renderHighlightedText(text: string, query: string) {
-    if (!query || query.length === 0) {
-      return text;
-    }
-
-    const lowerText = text.toLowerCase();
-    const lowerQuery = query.toLowerCase();
-    const index = lowerText.indexOf(lowerQuery);
-
-    if (index === -1) {
-      return text;
-    }
-
-    const before = text.substring(0, index);
-    const match = text.substring(index, index + query.length);
-    const after = text.substring(index + query.length);
-
-    return [
-      before,
-      <strong>{match}</strong>,
-      after
-    ];
-  }
-
   componentWillLoad() {
     this.loadSearchHistory();
   }
@@ -456,13 +392,10 @@ export class SearchField {
   render() {
     return (
       <div
-        aria-disabled={this.disabled}
-        aria-value={this.value}
         class='search-field'
       >
         <div
           class={this.getWrapperClassNames()}
-          tabindex={1}
           onClick={() => this.focusInput()}
         >
           <ifx-icon icon="search-16" class="search-icon"></ifx-icon>
@@ -478,24 +411,12 @@ export class SearchField {
             maxlength={this.maxlength}
             value={this.value}
             role="combobox"
-            aria-controls={this.showDropdown ? 'suggestions-dropdown' : undefined}
-            aria-expanded={this.showDropdown}
-            aria-autocomplete="list"
-            aria-haspopup="listbox"
-            aria-label={this.ariaLabel}
-            aria-labelledby={this.ariaLabelledBy}
-            aria-describedby={this.ariaDescribedBy}
-            aria-owns={this.showDropdown ? 'suggestions-dropdown' : undefined}
-            aria-activedescendant={this.selectedSuggestionIndex >= 0 ? `suggestion-${this.selectedSuggestionIndex}` : undefined}
           />
           {this.showDeleteIcon && this.showDeleteIconInternalState ? (
             <ifx-icon
               icon="cRemove16"
               class="delete-icon"
               onClick={this.handleDelete}
-              role="button"
-              tabindex="0"
-              aria-label={this.deleteIconAriaLabel}
               onKeyDown={(event) => {
                 if (event.key === 'Enter' || event.key === ' ') {
                   event.preventDefault();
@@ -505,76 +426,6 @@ export class SearchField {
             </ifx-icon>
           ) : null}
         </div>
-
-        {/* Suggestions Dropdown */}
-        {this.showDropdown && this.filteredSuggestions.length > 0 && (
-          <div
-            ref={(el) => (this.dropdownElement = el)}
-            id="suggestions-dropdown"
-            class="suggestions-dropdown"
-            role="listbox"
-            aria-label={this.dropdownAriaLabel}
-          >
-            {/* History Header - only show when exclusively showing history entries */}
-            {this.isShowingOnlyHistory() && (
-              <div class="suggestions-header">
-                {this.historyHeaderText}
-              </div>
-            )}
-
-            {this.filteredSuggestions.map((suggestion, index) => (
-              <div
-                key={suggestion.id}
-                id={`suggestion-${index}`}
-                class={this.getSuggestionClassNames(index)}
-                role="option"
-                aria-selected={index === this.selectedSuggestionIndex}
-                aria-label={`${suggestion.type === 'history' ? this.historyItemAriaLabel : this.suggestionAriaLabel}: ${suggestion.text}${suggestion.scope ? `, ${suggestion.scope}` : ''}${suggestion.resultCount ? `, ${suggestion.resultCount} results` : ''}`}
-                onClick={() => this.selectSuggestion(suggestion)}
-                onMouseEnter={() => this.selectedSuggestionIndex = index}
-              >
-                <div class="suggestion-content">
-                  {suggestion.type === 'history' && (
-                    <ifx-icon icon="history-16" class="suggestion-icon suggestion-icon--history"></ifx-icon>
-                  )}
-                  {suggestion.type === 'suggestion' && (
-                    <ifx-icon icon="search-16" class="suggestion-icon suggestion-icon--suggestion"></ifx-icon>
-                  )}
-                  <span class="suggestion-text">
-                    <span class="suggestion-main-text">
-                      {this.renderHighlightedText(suggestion.text, this.value)}
-                    </span>
-                    {suggestion.scope && (
-                      <span class="suggestion-scope">– {suggestion.scope}</span>
-                    )}
-                  </span>
-
-                  {suggestion.resultCount !== undefined && suggestion.scope && (
-                    <span class="suggestion-count">{suggestion.resultCount}</span>
-                  )}
-
-                  {/* Delete Button only for history entries */}
-                  {suggestion.type === 'history' && (
-                    <ifx-icon
-                      icon="cross16"
-                      class="suggestion-delete-icon"
-                      role="button"
-                      tabindex="0"
-                      aria-label={`${this.historyDeleteAriaLabel}: ${suggestion.text}`}
-                      onClick={(event) => this.handleHistoryDelete(event, suggestion.text)}
-                      onKeyDown={(event) => {
-                        if (event.key === 'Enter' || event.key === ' ') {
-                          event.preventDefault();
-                          this.handleHistoryDelete(event, suggestion.text);
-                        }
-                      }}
-                    ></ifx-icon>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     );
   }
