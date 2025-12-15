@@ -15,6 +15,11 @@ const vueComponentModels: ComponentModelConfig[] = [
     event: 'ifxSelect',
     targetAttr: 'value',
   },
+  {
+    elements: [ 'ifx-checkbox' ],
+    event: 'ifxChange',
+    targetAttr: 'checked',
+  }
 ];
 
 const angularValueAccessorBindings: ValueAccessorConfig[] = [
