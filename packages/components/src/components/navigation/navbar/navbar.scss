@@ -19,6 +19,15 @@
 
   &.fixed {
     border-bottom: none;
+
+    & .navbar__sidebar {
+      top: 64px;
+    }
+
+    & .navbar__sidebar-bottom-row {
+      margin-bottom: 0;
+    }
+
   }
 
   // border-bottom: 1px solid #EEEDED; //when fixed is false
@@ -53,7 +62,7 @@
   box-sizing: border-box;
   position: fixed;
   right: -100%;
-  top: 64px;
+  top: 80px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -135,7 +144,7 @@
     background: var(--color-engineering-100, #F7F7F7);
     border-top: 1px solid var(--color-engineering-200, #EEEDED);
     gap: 10px;
-
+    margin-bottom: 16px;
     max-height: 160px;
     overflow-y: auto;
 
@@ -679,6 +688,14 @@
   .navbar__sidebar {
     &.show {
       width: 100%;  // 100% of viewport width
+    }
+  }
+
+  .navbar__container {
+    & .navbar__container-left {
+      & .navbar__container-left-logo h6 {
+          display: none;
+      }
     }
   }
 }
