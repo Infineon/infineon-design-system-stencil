@@ -573,6 +573,9 @@ element.addEventListener('ifxChange', (event: CustomEvent<ChangeDetail>) => {
 
 > **Note:** For Vue v-model integration, ensure `event.detail` contains all changed values. See the [Stencil Vue documentation](https://stenciljs.com/docs/vue#componentmodels) for details.
 
+### Framework Integration
+If your component exposes a value (e.g., for use with v-model in Vue or ngModel in Angular), ensure you update the componentModels (for Vue) and valueAccessorConfigs (for Angular) in the [stencil.config.ts](packages/components/stencil.config.ts). This enables proper two-way binding and integration with framework-specific features. See the Stencil documentation for [Vue integration](https://stenciljs.com/docs/vue#componentmodels) and [Angular integration](https://stenciljs.com/docs/angular#valueaccessorconfigs).
+
 ### Props
 
 Define props with validation:
