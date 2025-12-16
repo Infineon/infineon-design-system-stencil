@@ -51,54 +51,39 @@ import { ComponentLibrary } from '@infineon/infineon-design-system-vue';
 createApp(App).use(ComponentLibrary).mount('#app');
 ```
 
-**4. Register the components globally**
-
-```js
-//vite.config.js
-...
-plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes('ifx-'),
-        },
-      },
-    }),
-  ],
-```
-
-```js
-//vue.config.js
-module.exports = {
-  transpileDependencies: true,
-  ...
-  chainWebpack: config => {
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .loader('vue-loader')
-      .tap(options => {
-        return {
-          ...options,
-          compilerOptions: {
-            isCustomElement: (tag) => tag.includes('ifx-'),
-          },
-        };
-      });
-  }
-};
-```
-
 ## Usage
 
 ### Components
 
-```js
-<ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
+```html
+<script setup>
+import { IfxProgressBar } from '@infineon/infineon-design-system-vue'
+</script>
+<template>
+  <ifx-progress-bar v-model="progress" size="m" show-label="true"></ifx-progress-bar>
+</template>
 ```
 
+> **Note:**
+> We recommend importing the corresponding wrapper component from `@infineon/infineon-design-system-vue` in your `<script setup>` to enable Vue-specific features like `v-model`. If you do not import the wrapper, the component will still work as a plain web component, but some Vue-specific features (such as `v-model` and event modifiers) may not function as expected.
+
+
 ### Events
+
+#### Using v-model
+To use `v-model` (and other Vue features) with Stencil components, you must import the corresponding wrapper component from `@infineon/infineon-design-system-vue` in your `<script setup>`. If you do not import the wrapper, Vue will treat the tag as a plain web component and `v-model` will not work.
+
+```html
+<script setup>
+import { IfxCheckbox } from '@infineon/infineon-design-system-vue';
+import { ref } from 'vue'
+const textValue = ref('');
+<script setup>
+
+<template>
+  <ifx-text-field v-model="textValue"></ifx-text-field>
+</template>
+```
 
 #### Two way data binding
 
@@ -112,15 +97,6 @@ let textValue = ref('');
 ...
 <ifx-text-field @ifxInput="event => textValue = event.detail" :value="textValue">
 </ifx-text-field>
-```
-
-In Vue, the <b>v-model</b> directive helps to simplify this.
-
-```js
-//MyComponent.vue
-let textValue = ref('');
-...
-<ifx-text-field v-model="textValue"></ifx-text-field>
 ```
 
 ### Assets

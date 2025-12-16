@@ -30,7 +30,11 @@
   },
   "dependencies": {
     "@infineon/design-system-tokens": "5.0.0",
-    "@infineon/infineon-design-system-stencil": "39.5.2"
+    "@infineon/infineon-design-system-stencil": "39.5.2",
+    "@stencil/vue-output-target": "^0.11.8",
+    "vite-plugin-inspect": "^11.3.3",
+    "vite-plugin-vue-devtools": "^8.0.5",
+    "vue-router": "^4.6.4"
   },
   "auto": {
     "plugins": [

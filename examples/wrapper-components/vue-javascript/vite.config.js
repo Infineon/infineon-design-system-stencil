@@ -1,7 +1,8 @@
 import { fileURLToPath, URL } from 'node:url';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueDevtools from 'vite-plugin-vue-devtools';
+
 
 // Get dynamic base URL from environment variables
 const getPrNumber = () => process.env.PR_NUMBER || '';
@@ -28,15 +29,8 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          // treat all tags with a dash as custom elements
-          isCustomElement: (tag) => tag.includes('-'),
-        },
-      },
-    }),
-    vueJsx(),
+    vue(),
+    vueDevtools(),
   ],
   resolve: {
     alias: {
