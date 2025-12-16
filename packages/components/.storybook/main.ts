@@ -22,6 +22,10 @@ const config: StorybookConfig = {
 		},
 		"@storybook/addon-a11y",
 	],
+	docs: {
+		autodocs: "tag",
+		defaultName: "Development",
+	},
 	framework: {
 		name: "@storybook/web-components-vite",
 		options: {},
