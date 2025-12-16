@@ -9,6 +9,7 @@
   <Button />
   <Card />
   <Checkbox />
+  <CheckboxVModel />
   <CheckboxGroup />
   <Chip />
   <ContentSwitcher />
@@ -89,4 +90,5 @@ import SegmentedControl from './components/SegmentedControl.vue'
 import Textarea from './components/Textarea.vue'
 import FileUpload from './components/FileUpload.vue'
 import ActionList from './components/ActionList.vue'
+import CheckboxVModel from './components/CheckboxVModel.vue'
 </script>
