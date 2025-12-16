@@ -5,15 +5,97 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 
 import type { JSX } from '@infineon/infineon-design-system-stencil';
 
+import { defineCustomElement as defineIfxAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-accordion.js';
+import { defineCustomElement as defineIfxAccordionItem } from '@infineon/infineon-design-system-stencil/components/ifx-accordion-item.js';
+import { defineCustomElement as defineIfxActionList } from '@infineon/infineon-design-system-stencil/components/ifx-action-list.js';
+import { defineCustomElement as defineIfxActionListItem } from '@infineon/infineon-design-system-stencil/components/ifx-action-list-item.js';
+import { defineCustomElement as defineIfxAlert } from '@infineon/infineon-design-system-stencil/components/ifx-alert.js';
+import { defineCustomElement as defineIfxBasicTable } from '@infineon/infineon-design-system-stencil/components/ifx-basic-table.js';
+import { defineCustomElement as defineIfxBreadcrumb } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb.js';
+import { defineCustomElement as defineIfxBreadcrumbItem } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb-item.js';
+import { defineCustomElement as defineIfxBreadcrumbItemLabel } from '@infineon/infineon-design-system-stencil/components/ifx-breadcrumb-item-label.js';
+import { defineCustomElement as defineIfxButton } from '@infineon/infineon-design-system-stencil/components/ifx-button.js';
+import { defineCustomElement as defineIfxCard } from '@infineon/infineon-design-system-stencil/components/ifx-card.js';
+import { defineCustomElement as defineIfxCardHeadline } from '@infineon/infineon-design-system-stencil/components/ifx-card-headline.js';
+import { defineCustomElement as defineIfxCardImage } from '@infineon/infineon-design-system-stencil/components/ifx-card-image.js';
+import { defineCustomElement as defineIfxCardLinks } from '@infineon/infineon-design-system-stencil/components/ifx-card-links.js';
+import { defineCustomElement as defineIfxCardOverline } from '@infineon/infineon-design-system-stencil/components/ifx-card-overline.js';
+import { defineCustomElement as defineIfxCardText } from '@infineon/infineon-design-system-stencil/components/ifx-card-text.js';
+import { defineCustomElement as defineIfxCheckbox } from '@infineon/infineon-design-system-stencil/components/ifx-checkbox.js';
+import { defineCustomElement as defineIfxCheckboxGroup } from '@infineon/infineon-design-system-stencil/components/ifx-checkbox-group.js';
+import { defineCustomElement as defineIfxChip } from '@infineon/infineon-design-system-stencil/components/ifx-chip.js';
+import { defineCustomElement as defineIfxChipItem } from '@infineon/infineon-design-system-stencil/components/ifx-chip-item.js';
+import { defineCustomElement as defineIfxContentSwitcher } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher.js';
+import { defineCustomElement as defineIfxContentSwitcherItem } from '@infineon/infineon-design-system-stencil/components/ifx-content-switcher-item.js';
+import { defineCustomElement as defineIfxDatePicker } from '@infineon/infineon-design-system-stencil/components/ifx-date-picker.js';
+import { defineCustomElement as defineIfxDownload } from '@infineon/infineon-design-system-stencil/components/ifx-download.js';
+import { defineCustomElement as defineIfxDropdown } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown.js';
+import { defineCustomElement as defineIfxDropdownHeader } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-header.js';
+import { defineCustomElement as defineIfxDropdownItem } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-item.js';
+import { defineCustomElement as defineIfxDropdownMenu } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-menu.js';
+import { defineCustomElement as defineIfxDropdownSeparator } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-separator.js';
+import { defineCustomElement as defineIfxDropdownTrigger } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger.js';
+import { defineCustomElement as defineIfxDropdownTriggerButton } from '@infineon/infineon-design-system-stencil/components/ifx-dropdown-trigger-button.js';
+import { defineCustomElement as defineIfxFaq } from '@infineon/infineon-design-system-stencil/components/ifx-faq.js';
+import { defineCustomElement as defineIfxFileUpload } from '@infineon/infineon-design-system-stencil/components/ifx-file-upload.js';
+import { defineCustomElement as defineIfxFilterAccordion } from '@infineon/infineon-design-system-stencil/components/ifx-filter-accordion.js';
+import { defineCustomElement as defineIfxFilterBar } from '@infineon/infineon-design-system-stencil/components/ifx-filter-bar.js';
+import { defineCustomElement as defineIfxFilterSearch } from '@infineon/infineon-design-system-stencil/components/ifx-filter-search.js';
+import { defineCustomElement as defineIfxFilterTypeGroup } from '@infineon/infineon-design-system-stencil/components/ifx-filter-type-group.js';
+import { defineCustomElement as defineIfxFooter } from '@infineon/infineon-design-system-stencil/components/ifx-footer.js';
+import { defineCustomElement as defineIfxFooterColumn } from '@infineon/infineon-design-system-stencil/components/ifx-footer-column.js';
+import { defineCustomElement as defineIfxIcon } from '@infineon/infineon-design-system-stencil/components/ifx-icon.js';
+import { defineCustomElement as defineIfxIconButton } from '@infineon/infineon-design-system-stencil/components/ifx-icon-button.js';
+import { defineCustomElement as defineIfxIconsPreview } from '@infineon/infineon-design-system-stencil/components/ifx-icons-preview.js';
+import { defineCustomElement as defineIfxIndicator } from '@infineon/infineon-design-system-stencil/components/ifx-indicator.js';
+import { defineCustomElement as defineIfxLink } from '@infineon/infineon-design-system-stencil/components/ifx-link.js';
+import { defineCustomElement as defineIfxList } from '@infineon/infineon-design-system-stencil/components/ifx-list.js';
+import { defineCustomElement as defineIfxListEntry } from '@infineon/infineon-design-system-stencil/components/ifx-list-entry.js';
+import { defineCustomElement as defineIfxModal } from '@infineon/infineon-design-system-stencil/components/ifx-modal.js';
+import { defineCustomElement as defineIfxMultiselect } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect.js';
+import { defineCustomElement as defineIfxMultiselectOption } from '@infineon/infineon-design-system-stencil/components/ifx-multiselect-option.js';
+import { defineCustomElement as defineIfxNavbar } from '@infineon/infineon-design-system-stencil/components/ifx-navbar.js';
+import { defineCustomElement as defineIfxNavbarItem } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-item.js';
+import { defineCustomElement as defineIfxNavbarProfile } from '@infineon/infineon-design-system-stencil/components/ifx-navbar-profile.js';
+import { defineCustomElement as defineIfxNotification } from '@infineon/infineon-design-system-stencil/components/ifx-notification.js';
+import { defineCustomElement as defineIfxOverviewTable } from '@infineon/infineon-design-system-stencil/components/ifx-overview-table.js';
+import { defineCustomElement as defineIfxPagination } from '@infineon/infineon-design-system-stencil/components/ifx-pagination.js';
+import { defineCustomElement as defineIfxProgressBar } from '@infineon/infineon-design-system-stencil/components/ifx-progress-bar.js';
+import { defineCustomElement as defineIfxRadioButton } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button.js';
+import { defineCustomElement as defineIfxRadioButtonGroup } from '@infineon/infineon-design-system-stencil/components/ifx-radio-button-group.js';
+import { defineCustomElement as defineIfxSearchBar } from '@infineon/infineon-design-system-stencil/components/ifx-search-bar.js';
+import { defineCustomElement as defineIfxSearchField } from '@infineon/infineon-design-system-stencil/components/ifx-search-field.js';
+import { defineCustomElement as defineIfxSegment } from '@infineon/infineon-design-system-stencil/components/ifx-segment.js';
+import { defineCustomElement as defineIfxSegmentedControl } from '@infineon/infineon-design-system-stencil/components/ifx-segmented-control.js';
+import { defineCustomElement as defineIfxSelect } from '@infineon/infineon-design-system-stencil/components/ifx-select.js';
+import { defineCustomElement as defineIfxSetFilter } from '@infineon/infineon-design-system-stencil/components/ifx-set-filter.js';
+import { defineCustomElement as defineIfxSidebar } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar.js';
+import { defineCustomElement as defineIfxSidebarItem } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-item.js';
+import { defineCustomElement as defineIfxSidebarTitle } from '@infineon/infineon-design-system-stencil/components/ifx-sidebar-title.js';
+import { defineCustomElement as defineIfxSlider } from '@infineon/infineon-design-system-stencil/components/ifx-slider.js';
+import { defineCustomElement as defineIfxSpinner } from '@infineon/infineon-design-system-stencil/components/ifx-spinner.js';
+import { defineCustomElement as defineIfxStatus } from '@infineon/infineon-design-system-stencil/components/ifx-status.js';
+import { defineCustomElement as defineIfxStep } from '@infineon/infineon-design-system-stencil/components/ifx-step.js';
+import { defineCustomElement as defineIfxStepper } from '@infineon/infineon-design-system-stencil/components/ifx-stepper.js';
+import { defineCustomElement as defineIfxSwitch } from '@infineon/infineon-design-system-stencil/components/ifx-switch.js';
+import { defineCustomElement as defineIfxTab } from '@infineon/infineon-design-system-stencil/components/ifx-tab.js';
+import { defineCustomElement as defineIfxTable } from '@infineon/infineon-design-system-stencil/components/ifx-table.js';
+import { defineCustomElement as defineIfxTabs } from '@infineon/infineon-design-system-stencil/components/ifx-tabs.js';
+import { defineCustomElement as defineIfxTemplate } from '@infineon/infineon-design-system-stencil/components/ifx-template.js';
+import { defineCustomElement as defineIfxTemplatesUi } from '@infineon/infineon-design-system-stencil/components/ifx-templates-ui.js';
+import { defineCustomElement as defineIfxTextField } from '@infineon/infineon-design-system-stencil/components/ifx-text-field.js';
+import { defineCustomElement as defineIfxTextarea } from '@infineon/infineon-design-system-stencil/components/ifx-textarea.js';
+import { defineCustomElement as defineIfxTooltip } from '@infineon/infineon-design-system-stencil/components/ifx-tooltip.js';
+import { defineCustomElement as defineIfxTreeView } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view.js';
+import { defineCustomElement as defineIfxTreeViewItem } from '@infineon/infineon-design-system-stencil/components/ifx-tree-view-item.js';
 
 
-
-export const IfxAccordion: StencilVueComponent<JSX.IfxAccordion> = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', undefined, [
+export const IfxAccordion: StencilVueComponent<JSX.IfxAccordion> = /*@__PURE__*/ defineContainer<JSX.IfxAccordion>('ifx-accordion', defineIfxAccordion, [
   'autoCollapse'
 ]);
 
 
-export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', undefined, [
+export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__PURE__*/ defineContainer<JSX.IfxAccordionItem>('ifx-accordion-item', defineIfxAccordionItem, [
   'caption',
   'open',
   'AriaLevel',
@@ -25,12 +107,12 @@ export const IfxAccordionItem: StencilVueComponent<JSX.IfxAccordionItem> = /*@__
 ]);
 
 
-export const IfxActionList: StencilVueComponent<JSX.IfxActionList> = /*@__PURE__*/ defineContainer<JSX.IfxActionList>('ifx-action-list', undefined, [
+export const IfxActionList: StencilVueComponent<JSX.IfxActionList> = /*@__PURE__*/ defineContainer<JSX.IfxActionList>('ifx-action-list', defineIfxActionList, [
   'listAriaLabel'
 ]);
 
 
-export const IfxActionListItem: StencilVueComponent<JSX.IfxActionListItem> = /*@__PURE__*/ defineContainer<JSX.IfxActionListItem>('ifx-action-list-item', undefined, [
+export const IfxActionListItem: StencilVueComponent<JSX.IfxActionListItem> = /*@__PURE__*/ defineContainer<JSX.IfxActionListItem>('ifx-action-list-item', defineIfxActionListItem, [
   'itemTitle',
   'description',
   'value',
@@ -44,7 +126,7 @@ export const IfxActionListItem: StencilVueComponent<JSX.IfxActionListItem> = /*@
 ]);
 
 
-export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', undefined, [
+export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineContainer<JSX.IfxAlert>('ifx-alert', defineIfxAlert, [
   'variant',
   'icon',
   'closable',
@@ -55,7 +137,7 @@ export const IfxAlert: StencilVueComponent<JSX.IfxAlert> = /*@__PURE__*/ defineC
 ]);
 
 
-export const IfxBasicTable: StencilVueComponent<JSX.IfxBasicTable> = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('ifx-basic-table', undefined, [
+export const IfxBasicTable: StencilVueComponent<JSX.IfxBasicTable> = /*@__PURE__*/ defineContainer<JSX.IfxBasicTable>('ifx-basic-table', defineIfxBasicTable, [
   'cols',
   'rows',
   'rowHeight',
@@ -64,13 +146,13 @@ export const IfxBasicTable: StencilVueComponent<JSX.IfxBasicTable> = /*@__PURE__
 ]);
 
 
-export const IfxBreadcrumb: StencilVueComponent<JSX.IfxBreadcrumb> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', undefined);
+export const IfxBreadcrumb: StencilVueComponent<JSX.IfxBreadcrumb> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumb>('ifx-breadcrumb', defineIfxBreadcrumb);
 
 
-export const IfxBreadcrumbItem: StencilVueComponent<JSX.IfxBreadcrumbItem> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItem>('ifx-breadcrumb-item', undefined);
+export const IfxBreadcrumbItem: StencilVueComponent<JSX.IfxBreadcrumbItem> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItem>('ifx-breadcrumb-item', defineIfxBreadcrumbItem);
 
 
-export const IfxBreadcrumbItemLabel: StencilVueComponent<JSX.IfxBreadcrumbItemLabel> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItemLabel>('ifx-breadcrumb-item-label', undefined, [
+export const IfxBreadcrumbItemLabel: StencilVueComponent<JSX.IfxBreadcrumbItemLabel> = /*@__PURE__*/ defineContainer<JSX.IfxBreadcrumbItemLabel>('ifx-breadcrumb-item-label', defineIfxBreadcrumbItemLabel, [
   'icon',
   'href',
   'target',
@@ -80,7 +162,7 @@ export const IfxBreadcrumbItemLabel: StencilVueComponent<JSX.IfxBreadcrumbItemLa
 ]);
 
 
-export const IfxButton: StencilVueComponent<JSX.IfxButton> = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', undefined, [
+export const IfxButton: StencilVueComponent<JSX.IfxButton> = /*@__PURE__*/ defineContainer<JSX.IfxButton>('ifx-button', defineIfxButton, [
   'variant',
   'theme',
   'size',
@@ -93,7 +175,7 @@ export const IfxButton: StencilVueComponent<JSX.IfxButton> = /*@__PURE__*/ defin
 ]);
 
 
-export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', undefined, [
+export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineContainer<JSX.IfxCard>('ifx-card', defineIfxCard, [
   'direction',
   'href',
   'target',
@@ -101,10 +183,10 @@ export const IfxCard: StencilVueComponent<JSX.IfxCard> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxCardHeadline: StencilVueComponent<JSX.IfxCardHeadline> = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', undefined);
+export const IfxCardHeadline: StencilVueComponent<JSX.IfxCardHeadline> = /*@__PURE__*/ defineContainer<JSX.IfxCardHeadline>('ifx-card-headline', defineIfxCardHeadline);
 
 
-export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', undefined, [
+export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/ defineContainer<JSX.IfxCardImage>('ifx-card-image', defineIfxCardImage, [
   'src',
   'alt',
   'position',
@@ -114,16 +196,16 @@ export const IfxCardImage: StencilVueComponent<JSX.IfxCardImage> = /*@__PURE__*/
 ]);
 
 
-export const IfxCardLinks: StencilVueComponent<JSX.IfxCardLinks> = /*@__PURE__*/ defineContainer<JSX.IfxCardLinks>('ifx-card-links', undefined);
+export const IfxCardLinks: StencilVueComponent<JSX.IfxCardLinks> = /*@__PURE__*/ defineContainer<JSX.IfxCardLinks>('ifx-card-links', defineIfxCardLinks);
 
 
-export const IfxCardOverline: StencilVueComponent<JSX.IfxCardOverline> = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', undefined);
+export const IfxCardOverline: StencilVueComponent<JSX.IfxCardOverline> = /*@__PURE__*/ defineContainer<JSX.IfxCardOverline>('ifx-card-overline', defineIfxCardOverline);
 
 
-export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', undefined);
+export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', defineIfxCardText);
 
 
-export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', undefined, [
+export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]>('ifx-checkbox', defineIfxCheckbox, [
   'disabled',
   'checked',
   'error',
@@ -135,10 +217,11 @@ export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox> = /*@__PURE__*/ d
 ], [
   'ifxChange',
   'ifxError'
-]);
+],
+'checked', 'ifxChange', undefined);
 
 
-export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IfxCheckboxGroup>('ifx-checkbox-group', undefined, [
+export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IfxCheckboxGroup>('ifx-checkbox-group', defineIfxCheckboxGroup, [
   'alignment',
   'size',
   'showGroupLabel',
@@ -150,7 +233,7 @@ export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__
 ]);
 
 
-export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', undefined, [
+export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineContainer<JSX.IfxChip>('ifx-chip', defineIfxChip, [
   'placeholder',
   'size',
   'value',
@@ -166,7 +249,7 @@ export const IfxChip: StencilVueComponent<JSX.IfxChip> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxChipItem: StencilVueComponent<JSX.IfxChipItem> = /*@__PURE__*/ defineContainer<JSX.IfxChipItem>('ifx-chip-item', undefined, [
+export const IfxChipItem: StencilVueComponent<JSX.IfxChipItem> = /*@__PURE__*/ defineContainer<JSX.IfxChipItem>('ifx-chip-item', defineIfxChipItem, [
   'value',
   'chipState',
   'selected',
@@ -176,20 +259,20 @@ export const IfxChipItem: StencilVueComponent<JSX.IfxChipItem> = /*@__PURE__*/ d
 ]);
 
 
-export const IfxContentSwitcher: StencilVueComponent<JSX.IfxContentSwitcher> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcher>('ifx-content-switcher', undefined, [
+export const IfxContentSwitcher: StencilVueComponent<JSX.IfxContentSwitcher> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcher>('ifx-content-switcher', defineIfxContentSwitcher, [
   'ifxChange'
 ], [
   'ifxChange'
 ]);
 
 
-export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherItem> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcherItem>('ifx-content-switcher-item', undefined, [
+export const IfxContentSwitcherItem: StencilVueComponent<JSX.IfxContentSwitcherItem> = /*@__PURE__*/ defineContainer<JSX.IfxContentSwitcherItem>('ifx-content-switcher-item', defineIfxContentSwitcherItem, [
   'selected',
   'value'
 ]);
 
 
-export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IfxDatePicker>('ifx-date-picker', undefined, [
+export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__*/ defineContainer<JSX.IfxDatePicker>('ifx-date-picker', defineIfxDatePicker, [
   'size',
   'error',
   'success',
@@ -209,12 +292,12 @@ export const IfxDatePicker: StencilVueComponent<JSX.IfxDatePicker> = /*@__PURE__
 ]);
 
 
-export const IfxDownload: StencilVueComponent<JSX.IfxDownload> = /*@__PURE__*/ defineContainer<JSX.IfxDownload>('ifx-download', undefined, [
+export const IfxDownload: StencilVueComponent<JSX.IfxDownload> = /*@__PURE__*/ defineContainer<JSX.IfxDownload>('ifx-download', defineIfxDownload, [
   'tokens'
 ]);
 
 
-export const IfxDropdown: StencilVueComponent<JSX.IfxDropdown> = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', undefined, [
+export const IfxDropdown: StencilVueComponent<JSX.IfxDropdown> = /*@__PURE__*/ defineContainer<JSX.IfxDropdown>('ifx-dropdown', defineIfxDropdown, [
   'placement',
   'defaultOpen',
   'noAppendToBody',
@@ -231,10 +314,10 @@ export const IfxDropdown: StencilVueComponent<JSX.IfxDropdown> = /*@__PURE__*/ d
 ]);
 
 
-export const IfxDropdownHeader: StencilVueComponent<JSX.IfxDropdownHeader> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownHeader>('ifx-dropdown-header', undefined);
+export const IfxDropdownHeader: StencilVueComponent<JSX.IfxDropdownHeader> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownHeader>('ifx-dropdown-header', defineIfxDropdownHeader);
 
 
-export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', undefined, [
+export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownItem>('ifx-dropdown-item', defineIfxDropdownItem, [
   'icon',
   'href',
   'target',
@@ -245,7 +328,7 @@ export const IfxDropdownItem: StencilVueComponent<JSX.IfxDropdownItem> = /*@__PU
 ]);
 
 
-export const IfxDropdownMenu: StencilVueComponent<JSX.IfxDropdownMenu> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu>('ifx-dropdown-menu', undefined, [
+export const IfxDropdownMenu: StencilVueComponent<JSX.IfxDropdownMenu> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownMenu>('ifx-dropdown-menu', defineIfxDropdownMenu, [
   'isOpen',
   'size',
   'menuSize',
@@ -256,15 +339,15 @@ export const IfxDropdownMenu: StencilVueComponent<JSX.IfxDropdownMenu> = /*@__PU
 ]);
 
 
-export const IfxDropdownSeparator: StencilVueComponent<JSX.IfxDropdownSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownSeparator>('ifx-dropdown-separator', undefined);
+export const IfxDropdownSeparator: StencilVueComponent<JSX.IfxDropdownSeparator> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownSeparator>('ifx-dropdown-separator', defineIfxDropdownSeparator);
 
 
-export const IfxDropdownTrigger: StencilVueComponent<JSX.IfxDropdownTrigger> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTrigger>('ifx-dropdown-trigger', undefined, [
+export const IfxDropdownTrigger: StencilVueComponent<JSX.IfxDropdownTrigger> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTrigger>('ifx-dropdown-trigger', defineIfxDropdownTrigger, [
   'isOpen'
 ]);
 
 
-export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTriggerButton> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', undefined, [
+export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTriggerButton> = /*@__PURE__*/ defineContainer<JSX.IfxDropdownTriggerButton>('ifx-dropdown-trigger-button', defineIfxDropdownTriggerButton, [
   'isOpen',
   'theme',
   'variant',
@@ -274,10 +357,10 @@ export const IfxDropdownTriggerButton: StencilVueComponent<JSX.IfxDropdownTrigge
 ]);
 
 
-export const IfxFaq: StencilVueComponent<JSX.IfxFaq> = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', undefined);
+export const IfxFaq: StencilVueComponent<JSX.IfxFaq> = /*@__PURE__*/ defineContainer<JSX.IfxFaq>('ifx-faq', defineIfxFaq);
 
 
-export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__*/ defineContainer<JSX.IfxFileUpload>('ifx-file-upload', undefined, [
+export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__*/ defineContainer<JSX.IfxFileUpload>('ifx-file-upload', defineIfxFileUpload, [
   'dragAndDrop',
   'required',
   'disabled',
@@ -343,7 +426,7 @@ export const IfxFileUpload: StencilVueComponent<JSX.IfxFileUpload> = /*@__PURE__
 ]);
 
 
-export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /*@__PURE__*/ defineContainer<JSX.IfxFilterAccordion>('ifx-filter-accordion', undefined, [
+export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /*@__PURE__*/ defineContainer<JSX.IfxFilterAccordion>('ifx-filter-accordion', defineIfxFilterAccordion, [
   'maxVisibleItems',
   'filterGroupName',
   'ifxFilterAccordionChange'
@@ -352,7 +435,7 @@ export const IfxFilterAccordion: StencilVueComponent<JSX.IfxFilterAccordion> = /
 ]);
 
 
-export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/ defineContainer<JSX.IfxFilterBar>('ifx-filter-bar', undefined, [
+export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/ defineContainer<JSX.IfxFilterBar>('ifx-filter-bar', defineIfxFilterBar, [
   'maxShownFilters',
   'showMoreFiltersButton',
   'ifxTopbarFilterChange'
@@ -361,7 +444,7 @@ export const IfxFilterBar: StencilVueComponent<JSX.IfxFilterBar> = /*@__PURE__*/
 ]);
 
 
-export const IfxFilterSearch: StencilVueComponent<JSX.IfxFilterSearch> = /*@__PURE__*/ defineContainer<JSX.IfxFilterSearch>('ifx-filter-search', undefined, [
+export const IfxFilterSearch: StencilVueComponent<JSX.IfxFilterSearch> = /*@__PURE__*/ defineContainer<JSX.IfxFilterSearch>('ifx-filter-search', defineIfxFilterSearch, [
   'filterName',
   'disabled',
   'filterValue',
@@ -374,22 +457,22 @@ export const IfxFilterSearch: StencilVueComponent<JSX.IfxFilterSearch> = /*@__PU
 ]);
 
 
-export const IfxFilterTypeGroup: StencilVueComponent<JSX.IfxFilterTypeGroup> = /*@__PURE__*/ defineContainer<JSX.IfxFilterTypeGroup>('ifx-filter-type-group', undefined, [
+export const IfxFilterTypeGroup: StencilVueComponent<JSX.IfxFilterTypeGroup> = /*@__PURE__*/ defineContainer<JSX.IfxFilterTypeGroup>('ifx-filter-type-group', defineIfxFilterTypeGroup, [
   'ifxSidebarFilterChange'
 ], [
   'ifxSidebarFilterChange'
 ]);
 
 
-export const IfxFooter: StencilVueComponent<JSX.IfxFooter> = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', undefined, [
+export const IfxFooter: StencilVueComponent<JSX.IfxFooter> = /*@__PURE__*/ defineContainer<JSX.IfxFooter>('ifx-footer', defineIfxFooter, [
   'copyrightText'
 ]);
 
 
-export const IfxFooterColumn: StencilVueComponent<JSX.IfxFooterColumn> = /*@__PURE__*/ defineContainer<JSX.IfxFooterColumn>('ifx-footer-column', undefined);
+export const IfxFooterColumn: StencilVueComponent<JSX.IfxFooterColumn> = /*@__PURE__*/ defineContainer<JSX.IfxFooterColumn>('ifx-footer-column', defineIfxFooterColumn);
 
 
-export const IfxIcon: StencilVueComponent<JSX.IfxIcon> = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', undefined, [
+export const IfxIcon: StencilVueComponent<JSX.IfxIcon> = /*@__PURE__*/ defineContainer<JSX.IfxIcon>('ifx-icon', defineIfxIcon, [
   'icon',
   'ifxIcon',
   'consoleError'
@@ -398,7 +481,7 @@ export const IfxIcon: StencilVueComponent<JSX.IfxIcon> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxIconButton: StencilVueComponent<JSX.IfxIconButton> = /*@__PURE__*/ defineContainer<JSX.IfxIconButton>('ifx-icon-button', undefined, [
+export const IfxIconButton: StencilVueComponent<JSX.IfxIconButton> = /*@__PURE__*/ defineContainer<JSX.IfxIconButton>('ifx-icon-button', defineIfxIconButton, [
   'variant',
   'size',
   'disabled',
@@ -410,10 +493,10 @@ export const IfxIconButton: StencilVueComponent<JSX.IfxIconButton> = /*@__PURE__
 ]);
 
 
-export const IfxIconsPreview: StencilVueComponent<JSX.IfxIconsPreview> = /*@__PURE__*/ defineContainer<JSX.IfxIconsPreview>('ifx-icons-preview', undefined);
+export const IfxIconsPreview: StencilVueComponent<JSX.IfxIconsPreview> = /*@__PURE__*/ defineContainer<JSX.IfxIconsPreview>('ifx-icons-preview', defineIfxIconsPreview);
 
 
-export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/ defineContainer<JSX.IfxIndicator>('ifx-indicator', undefined, [
+export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/ defineContainer<JSX.IfxIndicator>('ifx-indicator', defineIfxIndicator, [
   'inverted',
   'ariaLabel',
   'variant',
@@ -421,7 +504,7 @@ export const IfxIndicator: StencilVueComponent<JSX.IfxIndicator> = /*@__PURE__*/
 ]);
 
 
-export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', undefined, [
+export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineContainer<JSX.IfxLink>('ifx-link', defineIfxLink, [
   'href',
   'target',
   'variant',
@@ -432,7 +515,7 @@ export const IfxLink: StencilVueComponent<JSX.IfxLink> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxList: StencilVueComponent<JSX.IfxList> = /*@__PURE__*/ defineContainer<JSX.IfxList>('ifx-list', undefined, [
+export const IfxList: StencilVueComponent<JSX.IfxList> = /*@__PURE__*/ defineContainer<JSX.IfxList>('ifx-list', defineIfxList, [
   'name',
   'maxVisibleItems',
   'type',
@@ -443,7 +526,7 @@ export const IfxList: StencilVueComponent<JSX.IfxList> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxListEntry: StencilVueComponent<JSX.IfxListEntry> = /*@__PURE__*/ defineContainer<JSX.IfxListEntry>('ifx-list-entry', undefined, [
+export const IfxListEntry: StencilVueComponent<JSX.IfxListEntry> = /*@__PURE__*/ defineContainer<JSX.IfxListEntry>('ifx-list-entry', defineIfxListEntry, [
   'value',
   'label',
   'type',
@@ -453,7 +536,7 @@ export const IfxListEntry: StencilVueComponent<JSX.IfxListEntry> = /*@__PURE__*/
 ]);
 
 
-export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', undefined, [
+export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineContainer<JSX.IfxModal>('ifx-modal', defineIfxModal, [
   'opened',
   'caption',
   'captionAriaLabel',
@@ -473,7 +556,7 @@ export const IfxModal: StencilVueComponent<JSX.IfxModal> = /*@__PURE__*/ defineC
 ]);
 
 
-export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', undefined, [
+export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselect>('ifx-multiselect', defineIfxMultiselect, [
   'name',
   'disabled',
   'required',
@@ -508,7 +591,7 @@ export const IfxMultiselect: StencilVueComponent<JSX.IfxMultiselect> = /*@__PURE
 ]);
 
 
-export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectOption>('ifx-multiselect-option', undefined, [
+export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption> = /*@__PURE__*/ defineContainer<JSX.IfxMultiselectOption>('ifx-multiselect-option', defineIfxMultiselectOption, [
   'value',
   'selected',
   'disabled',
@@ -516,7 +599,7 @@ export const IfxMultiselectOption: StencilVueComponent<JSX.IfxMultiselectOption>
 ]);
 
 
-export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', undefined, [
+export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defineContainer<JSX.IfxNavbar>('ifx-navbar', defineIfxNavbar, [
   'applicationName',
   'fixed',
   'showLogoAndAppname',
@@ -528,7 +611,7 @@ export const IfxNavbar: StencilVueComponent<JSX.IfxNavbar> = /*@__PURE__*/ defin
 ]);
 
 
-export const IfxNavbarItem: StencilVueComponent<JSX.IfxNavbarItem> = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', undefined, [
+export const IfxNavbarItem: StencilVueComponent<JSX.IfxNavbarItem> = /*@__PURE__*/ defineContainer<JSX.IfxNavbarItem>('ifx-navbar-item', defineIfxNavbarItem, [
   'showLabel',
   'icon',
   'href',
@@ -542,7 +625,7 @@ export const IfxNavbarItem: StencilVueComponent<JSX.IfxNavbarItem> = /*@__PURE__
 ]);
 
 
-export const IfxNavbarProfile: StencilVueComponent<JSX.IfxNavbarProfile> = /*@__PURE__*/ defineContainer<JSX.IfxNavbarProfile>('ifx-navbar-profile', undefined, [
+export const IfxNavbarProfile: StencilVueComponent<JSX.IfxNavbarProfile> = /*@__PURE__*/ defineContainer<JSX.IfxNavbarProfile>('ifx-navbar-profile', defineIfxNavbarProfile, [
   'showLabel',
   'href',
   'imageUrl',
@@ -552,7 +635,7 @@ export const IfxNavbarProfile: StencilVueComponent<JSX.IfxNavbarProfile> = /*@__
 ]);
 
 
-export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PURE__*/ defineContainer<JSX.IfxNotification>('ifx-notification', undefined, [
+export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PURE__*/ defineContainer<JSX.IfxNotification>('ifx-notification', defineIfxNotification, [
   'icon',
   'variant',
   'linkText',
@@ -561,10 +644,10 @@ export const IfxNotification: StencilVueComponent<JSX.IfxNotification> = /*@__PU
 ]);
 
 
-export const IfxOverviewTable: StencilVueComponent<JSX.IfxOverviewTable> = /*@__PURE__*/ defineContainer<JSX.IfxOverviewTable>('ifx-overview-table', undefined);
+export const IfxOverviewTable: StencilVueComponent<JSX.IfxOverviewTable> = /*@__PURE__*/ defineContainer<JSX.IfxOverviewTable>('ifx-overview-table', defineIfxOverviewTable);
 
 
-export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__*/ defineContainer<JSX.IfxPagination>('ifx-pagination', undefined, [
+export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__*/ defineContainer<JSX.IfxPagination>('ifx-pagination', defineIfxPagination, [
   'currentPage',
   'showItemsPerPage',
   'total',
@@ -577,14 +660,14 @@ export const IfxPagination: StencilVueComponent<JSX.IfxPagination> = /*@__PURE__
 ]);
 
 
-export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', undefined, [
+export const IfxProgressBar: StencilVueComponent<JSX.IfxProgressBar> = /*@__PURE__*/ defineContainer<JSX.IfxProgressBar>('ifx-progress-bar', defineIfxProgressBar, [
   'value',
   'size',
   'showLabel'
 ]);
 
 
-export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', undefined, [
+export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButton>('ifx-radio-button', defineIfxRadioButton, [
   'disabled',
   'value',
   'error',
@@ -599,7 +682,7 @@ export const IfxRadioButton: StencilVueComponent<JSX.IfxRadioButton> = /*@__PURE
 ]);
 
 
-export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButtonGroup>('ifx-radio-button-group', undefined, [
+export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> = /*@__PURE__*/ defineContainer<JSX.IfxRadioButtonGroup>('ifx-radio-button-group', defineIfxRadioButtonGroup, [
   'alignment',
   'size',
   'showGroupLabel',
@@ -611,7 +694,7 @@ export const IfxRadioButtonGroup: StencilVueComponent<JSX.IfxRadioButtonGroup> =
 ]);
 
 
-export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', undefined, [
+export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/ defineContainer<JSX.IfxSearchBar>('ifx-search-bar', defineIfxSearchBar, [
   'isOpen',
   'disabled',
   'value',
@@ -625,7 +708,7 @@ export const IfxSearchBar: StencilVueComponent<JSX.IfxSearchBar> = /*@__PURE__*/
 ]);
 
 
-export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField> = /*@__PURE__*/ defineContainer<JSX.IfxSearchField>('ifx-search-field', undefined, [
+export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField, JSX.IfxSearchField["value"]> = /*@__PURE__*/ defineContainer<JSX.IfxSearchField, JSX.IfxSearchField["value"]>('ifx-search-field', defineIfxSearchField, [
   'value',
   'suggestions',
   'showSuggestions',
@@ -659,10 +742,11 @@ export const IfxSearchField: StencilVueComponent<JSX.IfxSearchField> = /*@__PURE
   'ifxSuggestionSelected',
   'ifxFocus',
   'ifxBlur'
-]);
+],
+'value', 'ifxInput', undefined);
 
 
-export const IfxSegment: StencilVueComponent<JSX.IfxSegment> = /*@__PURE__*/ defineContainer<JSX.IfxSegment>('ifx-segment', undefined, [
+export const IfxSegment: StencilVueComponent<JSX.IfxSegment> = /*@__PURE__*/ defineContainer<JSX.IfxSegment>('ifx-segment', defineIfxSegment, [
   'icon',
   'segmentIndex',
   'selected',
@@ -673,7 +757,7 @@ export const IfxSegment: StencilVueComponent<JSX.IfxSegment> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> = /*@__PURE__*/ defineContainer<JSX.IfxSegmentedControl>('ifx-segmented-control', undefined, [
+export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> = /*@__PURE__*/ defineContainer<JSX.IfxSegmentedControl>('ifx-segmented-control', defineIfxSegmentedControl, [
   'caption',
   'label',
   'size',
@@ -685,7 +769,7 @@ export const IfxSegmentedControl: StencilVueComponent<JSX.IfxSegmentedControl> =
 ]);
 
 
-export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', undefined, [
+export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defineContainer<JSX.IfxSelect>('ifx-select', defineIfxSelect, [
   'value',
   'name',
   'items',
@@ -745,7 +829,7 @@ export const IfxSelect: StencilVueComponent<JSX.IfxSelect> = /*@__PURE__*/ defin
 ]);
 
 
-export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', undefined, [
+export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/ defineContainer<JSX.IfxSetFilter>('ifx-set-filter', defineIfxSetFilter, [
   'filterName',
   'filterLabel',
   'placeholder',
@@ -757,7 +841,7 @@ export const IfxSetFilter: StencilVueComponent<JSX.IfxSetFilter> = /*@__PURE__*/
 ]);
 
 
-export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', undefined, [
+export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ defineContainer<JSX.IfxSidebar>('ifx-sidebar', defineIfxSidebar, [
   'applicationName',
   'initialCollapse',
   'showFooter',
@@ -776,7 +860,7 @@ export const IfxSidebar: StencilVueComponent<JSX.IfxSidebar> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxSidebarItem: StencilVueComponent<JSX.IfxSidebarItem> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', undefined, [
+export const IfxSidebarItem: StencilVueComponent<JSX.IfxSidebarItem> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarItem>('ifx-sidebar-item', defineIfxSidebarItem, [
   'icon',
   'href',
   'target',
@@ -794,12 +878,12 @@ export const IfxSidebarItem: StencilVueComponent<JSX.IfxSidebarItem> = /*@__PURE
 ]);
 
 
-export const IfxSidebarTitle: StencilVueComponent<JSX.IfxSidebarTitle> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarTitle>('ifx-sidebar-title', undefined, [
+export const IfxSidebarTitle: StencilVueComponent<JSX.IfxSidebarTitle> = /*@__PURE__*/ defineContainer<JSX.IfxSidebarTitle>('ifx-sidebar-title', defineIfxSidebarTitle, [
   'showInCollapsed'
 ]);
 
 
-export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', undefined, [
+export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defineContainer<JSX.IfxSlider>('ifx-slider', defineIfxSlider, [
   'min',
   'max',
   'step',
@@ -820,7 +904,7 @@ export const IfxSlider: StencilVueComponent<JSX.IfxSlider> = /*@__PURE__*/ defin
 ]);
 
 
-export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', undefined, [
+export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ defineContainer<JSX.IfxSpinner>('ifx-spinner', defineIfxSpinner, [
   'size',
   'variant',
   'inverted',
@@ -828,14 +912,14 @@ export const IfxSpinner: StencilVueComponent<JSX.IfxSpinner> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxStatus: StencilVueComponent<JSX.IfxStatus> = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-status', undefined, [
+export const IfxStatus: StencilVueComponent<JSX.IfxStatus> = /*@__PURE__*/ defineContainer<JSX.IfxStatus>('ifx-status', defineIfxStatus, [
   'label',
   'border',
   'color'
 ]);
 
 
-export const IfxStep: StencilVueComponent<JSX.IfxStep> = /*@__PURE__*/ defineContainer<JSX.IfxStep>('ifx-step', undefined, [
+export const IfxStep: StencilVueComponent<JSX.IfxStep> = /*@__PURE__*/ defineContainer<JSX.IfxStep>('ifx-step', defineIfxStep, [
   'complete',
   'disabled',
   'error',
@@ -845,7 +929,7 @@ export const IfxStep: StencilVueComponent<JSX.IfxStep> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', undefined, [
+export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ defineContainer<JSX.IfxStepper>('ifx-stepper', defineIfxStepper, [
   'activeStep',
   'indicatorPosition',
   'showStepNumber',
@@ -858,7 +942,7 @@ export const IfxStepper: StencilVueComponent<JSX.IfxStepper> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch> = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', undefined, [
+export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch> = /*@__PURE__*/ defineContainer<JSX.IfxSwitch>('ifx-switch', defineIfxSwitch, [
   'checked',
   'name',
   'disabled',
@@ -869,7 +953,7 @@ export const IfxSwitch: StencilVueComponent<JSX.IfxSwitch> = /*@__PURE__*/ defin
 ]);
 
 
-export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', undefined, [
+export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineContainer<JSX.IfxTab>('ifx-tab', defineIfxTab, [
   'header',
   'disabled',
   'icon',
@@ -880,7 +964,7 @@ export const IfxTab: StencilVueComponent<JSX.IfxTab> = /*@__PURE__*/ defineConta
 ]);
 
 
-export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', undefined, [
+export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineContainer<JSX.IfxTable>('ifx-table', defineIfxTable, [
   'cols',
   'rows',
   'buttonRendererOptions',
@@ -900,7 +984,7 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
 ]);
 
 
-export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', undefined, [
+export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineContainer<JSX.IfxTabs>('ifx-tabs', defineIfxTabs, [
   'orientation',
   'activeTabIndex',
   'fullWidth',
@@ -910,7 +994,7 @@ export const IfxTabs: StencilVueComponent<JSX.IfxTabs> = /*@__PURE__*/ defineCon
 ]);
 
 
-export const IfxTemplate: StencilVueComponent<JSX.IfxTemplate> = /*@__PURE__*/ defineContainer<JSX.IfxTemplate>('ifx-template', undefined, [
+export const IfxTemplate: StencilVueComponent<JSX.IfxTemplate> = /*@__PURE__*/ defineContainer<JSX.IfxTemplate>('ifx-template', defineIfxTemplate, [
   'name',
   'thumbnail',
   'toggleTemplates',
@@ -921,10 +1005,10 @@ export const IfxTemplate: StencilVueComponent<JSX.IfxTemplate> = /*@__PURE__*/ d
 ]);
 
 
-export const IfxTemplatesUi: StencilVueComponent<JSX.IfxTemplatesUi> = /*@__PURE__*/ defineContainer<JSX.IfxTemplatesUi>('ifx-templates-ui', undefined);
+export const IfxTemplatesUi: StencilVueComponent<JSX.IfxTemplatesUi> = /*@__PURE__*/ defineContainer<JSX.IfxTemplatesUi>('ifx-templates-ui', defineIfxTemplatesUi);
 
 
-export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', undefined, [
+export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/ defineContainer<JSX.IfxTextField>('ifx-text-field', defineIfxTextField, [
   'placeholder',
   'value',
   'error',
@@ -947,7 +1031,7 @@ export const IfxTextField: StencilVueComponent<JSX.IfxTextField> = /*@__PURE__*/
 ]);
 
 
-export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea>('ifx-textarea', undefined, [
+export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ defineContainer<JSX.IfxTextarea>('ifx-textarea', defineIfxTextarea, [
   'caption',
   'cols',
   'disabled',
@@ -969,7 +1053,7 @@ export const IfxTextarea: StencilVueComponent<JSX.IfxTextarea> = /*@__PURE__*/ d
 ]);
 
 
-export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', undefined, [
+export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ defineContainer<JSX.IfxTooltip>('ifx-tooltip', defineIfxTooltip, [
   'header',
   'text',
   'position',
@@ -979,7 +1063,7 @@ export const IfxTooltip: StencilVueComponent<JSX.IfxTooltip> = /*@__PURE__*/ def
 ]);
 
 
-export const IfxTreeView: StencilVueComponent<JSX.IfxTreeView> = /*@__PURE__*/ defineContainer<JSX.IfxTreeView>('ifx-tree-view', undefined, [
+export const IfxTreeView: StencilVueComponent<JSX.IfxTreeView> = /*@__PURE__*/ defineContainer<JSX.IfxTreeView>('ifx-tree-view', defineIfxTreeView, [
   'label',
   'disableAllItems',
   'expandAllItems',
@@ -992,7 +1076,7 @@ export const IfxTreeView: StencilVueComponent<JSX.IfxTreeView> = /*@__PURE__*/ d
 ]);
 
 
-export const IfxTreeViewItem: StencilVueComponent<JSX.IfxTreeViewItem> = /*@__PURE__*/ defineContainer<JSX.IfxTreeViewItem>('ifx-tree-view-item', undefined, [
+export const IfxTreeViewItem: StencilVueComponent<JSX.IfxTreeViewItem> = /*@__PURE__*/ defineContainer<JSX.IfxTreeViewItem>('ifx-tree-view-item', defineIfxTreeViewItem, [
   'expanded',
   'initiallyExpanded',
   'disableItem',

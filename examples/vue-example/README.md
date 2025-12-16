@@ -20,10 +20,15 @@ createApp(App).use(ComponentLibrary).mount('#app');
 Now you can use the components in your Vue templates.
 [App.vue](./src/App.vue):
 ```vue
+<script setup lang="ts">
+import { IfxAlert } from '@infineon/infineon-design-system-vue';
+</script>
 <template>
   <ifx-alert variant="primary" icon="c-info-16">Attention! This is an alert message!</ifx-alert>
 </template>
 ```
+
+> Important: Make sure to import the component in the script to ensure that the v-model bindings work correctly. Without the import, Vue will use the plain web component, which will render correctly but v-model will not function as expected. 
 
 ## Running the Example App
 To run the example app in development mode, use the following command:

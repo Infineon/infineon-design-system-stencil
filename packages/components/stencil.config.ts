@@ -6,6 +6,14 @@ import { vueOutputTarget } from "@stencil/vue-output-target";
 
 const componentCorePackage = "@infineon/infineon-design-system-stencil";
 
+const componentModels = [
+	{
+		elements: ["ifx-search-field"],
+		event: "ifxInput",
+		targetAttr: "value",
+	},
+];
+
 export const config: Config = {
 	namespace: "infineon-design-system-stencil",
 	sourceMap: true,
@@ -71,10 +79,14 @@ export const config: Config = {
 		reactOutputTarget({
 			// Relative path to where the React components will be generated
 			outDir: "../wrapper-react/lib/components/stencil-generated/",
+			componentCorePackage: componentCorePackage,
+			includeImportCustomElements: true,
 		}),
 		vueOutputTarget({
 			componentCorePackage: componentCorePackage,
 			proxiesFile: "../wrapper-vue/lib/stencil-generated/components.ts",
+			includeImportCustomElements: true,
+			componentModels: componentModels,
 		}),
 		{
 			type: "dist-hydrate-script",

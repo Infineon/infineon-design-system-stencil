@@ -404,7 +404,7 @@ app.mount('#app');
 
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { IfxButton, IfxSwitch } from '@infineon/infineon-design-system-vue';
 const isChecked = ref(false);
 
 const handleClick = (event: CustomEvent) => {
@@ -417,43 +417,7 @@ const handleChange = (event: CustomEvent<boolean>) => {
 </script>
 ```
 
-### Composition API
-
-```vue
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-
-const email = ref('');
-const password = ref('');
-
-const handleSubmit = () => {
-  console.log('Login:', { 
-    email: email.value, 
-    password: password.value 
-  });
-};
-
-watch(email, (newEmail) => {
-  console.log('Email changed:', newEmail);
-});
-</script>
-
-<template>
-  <form @submit.prevent="handleSubmit">
-    <ifx-input
-      v-model="email"
-      type="email"
-      placeholder="Email"
-    />
-    <ifx-input
-      v-model="password"
-      type="password"
-      placeholder="Password"
-    />
-    <ifx-button type="submit">Login</ifx-button>
-  </form>
-</template>
-```
+> Important: Make sure to import the component in the script to ensure that the v-model bindings work correctly. Without the import, Vue will use the plain web component, which will render correctly but v-model will not function as expected. 
 
 ## TypeScript Support
 

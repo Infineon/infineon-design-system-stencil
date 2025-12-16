@@ -7,14 +7,7 @@ import vueDevTools from "vite-plugin-vue-devtools";
 export default defineConfig({
 	base: "./",
 	plugins: [
-		vue({
-			template: {
-				compilerOptions: {
-					// treat all tags that start with "ifx-" as custom elements
-					isCustomElement: (tag) => tag.includes("ifx-"),
-				},
-			},
-		}),
+		vue(),
 		vueDevTools(),
 	],
 	resolve: {
