@@ -30,6 +30,7 @@ const config: StorybookConfig = {
 		name: "@storybook/web-components-vite",
 		options: {},
 	},
+	staticDirs: ["../src/storybook/public"],
 	previewHead: (head) => {
 		const isCI = process.env.CI === "true";
 		const scriptSrc = isCI
