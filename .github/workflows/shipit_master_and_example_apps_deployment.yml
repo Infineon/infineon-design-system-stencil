@@ -98,31 +98,31 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           BRANCH_NAME: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
-          CANARY_VERSION: ${{ steps.build.outputs.CANARY_VERSION }}
+          VERSION: ${{ steps.build.outputs.VERSION }}
 
         run: |
-          echo "CANARY_VERSION: $CANARY_VERSION"
-          echo "Installing Stencil library for Angular, Vue and React: $CANARY_VERSION"
-          lerna version $CANARY_VERSION --no-git-tag-version --y
+          echo "VERSION: $VERSION"
+          echo "Installing Stencil library for Angular, Vue and React: $VERSION"
+          lerna version $VERSION --no-git-tag-version --y
 
           # Update Angular package
           cd packages/components-angular/projects/component-library
-          jq --arg CANARY_VERSION "$CANARY_VERSION" \
-            '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION | .peerDependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' \
+          jq --arg VERSION "$VERSION" \
+            '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION | .peerDependencies["@infineon/infineon-design-system-stencil"] = $VERSION' \
             package.json > tmp && mv tmp package.json
 
           cd ../../../../
 
           # Update Vue package
           cd packages/components-vue
-          CANARY_VERSION_CLEAN=$(echo "$CANARY_VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
+          VERSION_CLEAN=$(echo "$VERSION" | sed 's/^[\^~]*//') # strip any leading ^ or ~ just in case
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg v "$CANARY_VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
+          jq --arg v "$VERSION_CLEAN" '.dependencies["@infineon/infineon-design-system-stencil"] = $v' package.json > tmp && mv tmp package.json
  
           # Update React package
           cd ../components-react
           jq 'del(.dependencies["@infineon/infineon-design-system-stencil"])' package.json > tmp && mv tmp package.json
-          jq --arg CANARY_VERSION "$CANARY_VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $CANARY_VERSION' package.json > tmp && mv tmp package.json
+          jq --arg VERSION "$VERSION" '.dependencies["@infineon/infineon-design-system-stencil"] = $VERSION' package.json > tmp && mv tmp package.json
 
           cd ../../
 
