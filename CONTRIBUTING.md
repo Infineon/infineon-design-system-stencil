@@ -147,7 +147,6 @@ The following scripts in the root `package.json` are the most commonly used for 
 | `pnpm test` | Runs the test suite for the core components. |
 | `pnpm generate:examples` | Runs the example generator to update framework example apps. |
 | `pnpm example:<name>` | Starts the specified example app (e.g., `pnpm example:react`). |
-| `pnpm examples:all` | Starts all example apps in parallel. |
 | `pnpm format` | Formats all files in the workspace using Biome. |
 | `pnpm lint` | Lints the workspace using Biome and ESLint (for Stencil-specific rules). |
 | `pnpm lint:fix` | Attempts to auto-fix linting issues. |
