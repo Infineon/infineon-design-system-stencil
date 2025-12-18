@@ -10,11 +10,11 @@
 | Property    | Attribute    | Description | Type                                                                                                             | Default     |
 | ----------- | ------------ | ----------- | ---------------------------------------------------------------------------------------------------------------- | ----------- |
 | `ariaLabel` | `aria-label` |             | `string`                                                                                                         | `undefined` |
-| `header`    | `header`     |             | `string`                                                                                                         | `''`        |
+| `header`    | `header`     |             | `string`                                                                                                         | `""`        |
 | `icon`      | `icon`       |             | `string`                                                                                                         | `undefined` |
-| `position`  | `position`   |             | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `'auto'`    |
-| `text`      | `text`       |             | `string`                                                                                                         | `''`        |
-| `variant`   | `variant`    |             | `"compact" \| "dismissible" \| "extended"`                                                                       | `'compact'` |
+| `position`  | `position`   |             | `"auto" \| "bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "right" \| "top" \| "top-end" \| "top-start"` | `"auto"`    |
+| `text`      | `text`       |             | `string`                                                                                                         | `""`        |
+| `variant`   | `variant`    |             | `"compact" \| "dismissible" \| "extended"`                                                                       | `"compact"` |
 
 
 ## Dependencies

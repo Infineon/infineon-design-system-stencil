@@ -1,22 +1,38 @@
-import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
-import classNames from 'classnames';
-import { trackComponent } from '../../global/utils/tracking';
-import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
-import { detectFramework } from '../../global/utils/framework-detection';
-import { CellPosition, createGrid, FirstDataRenderedEvent, GridApi, GridOptions } from 'ag-grid-community';
-import { ButtonCellRenderer } from './buttonCellRenderer';
-import { CheckboxCellRenderer } from './checkboxCellRenderer';
-import { CheckboxHeaderRenderer } from './checkboxHeaderRenderer';
-import { IconButtonCellRenderer } from './iconButtonCellRenderer';
-import { LinkCellRenderer } from './linkCellRenderer';
-import { StatusCellRenderer } from './statusCellRenderer';
-import { CustomNoRowsOverlay } from './customNoRowsOverlay';
-import { CustomLoadingOverlay } from './customLoadingOverlay';
+import {
+	Component,
+	Element,
+	Host,
+	h,
+	Listen,
+	Method,
+	Prop,
+	State,
+	Watch,
+} from "@stencil/core";
+import {
+	type CellPosition,
+	createGrid,
+	type FirstDataRenderedEvent,
+	type GridApi,
+	type GridOptions,
+} from "ag-grid-community";
+import classNames from "classnames";
+import { isNestedInIfxComponent } from "../../shared/utils/dom-utils";
+import { detectFramework } from "../../shared/utils/framework-detection";
+import { trackComponent } from "../../shared/utils/tracking";
+import { ButtonCellRenderer } from "./buttonCellRenderer";
+import { CheckboxCellRenderer } from "./checkboxCellRenderer";
+import { CheckboxHeaderRenderer } from "./checkboxHeaderRenderer";
+import { CustomLoadingOverlay } from "./customLoadingOverlay";
+import { CustomNoRowsOverlay } from "./customNoRowsOverlay";
+import { IconButtonCellRenderer } from "./iconButtonCellRenderer";
+import { LinkCellRenderer } from "./linkCellRenderer";
+import { StatusCellRenderer } from "./statusCellRenderer";
 
 @Component({
-  tag: 'ifx-table',
-  styleUrl: 'table.scss',
-  shadow: true,
+	tag: "ifx-table",
+	styleUrl: "table.scss",
+	shadow: true,
 })
 export class Table {
   gridOptions: GridOptions;
@@ -142,7 +158,7 @@ export class Table {
   onButtonRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption("columnDefs", this.colData);
     }
   }
 
@@ -150,7 +166,7 @@ export class Table {
   onIconButtonRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption("columnDefs", this.colData);
     }
   }
 
@@ -158,7 +174,7 @@ export class Table {
   onCheckboxRendererOptionsChanged() {
     this.colData = this.getColData();
     if (this.gridApi) {
-      this.gridApi.setColumnDefs(this.colData);
+      this.gridApi.setGridOption("columnDefs", this.colData);
     }
   }
 

@@ -5,6 +5,12 @@ labels:
   - bug
   - request
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! 🐛
+        
+        **💡 Want to contribute?** We welcome pull requests! If you're interested in fixing this bug yourself, please check our [Contributing Guidelines](https://github.com/Infineon/infineon-design-system-stencil/blob/master/CONTRIBUTING.md) to get started.
   - type: textarea
     attributes:
       label: Detailed description of how to reproduce the problem

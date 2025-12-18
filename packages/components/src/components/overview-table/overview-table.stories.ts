@@ -1,13 +1,13 @@
 export default {
-  title: 'Components/OverviewTable',
-  tags: ['autodocs'],
+	title: "Components/OverviewTable",
+	tags: ["autodocs"],
 
-  excludeStories: ['Default'],
+	excludeStories: ["Default"],
 };
 
 const DefaultTemplate = () => `<ifx-overview-table></ifx-overview-table>`;
 
 export const Default = DefaultTemplate.bind({});
 Default.parameters = {
-  layout: 'fullscreen',
-}
+	layout: "fullscreen",
+};

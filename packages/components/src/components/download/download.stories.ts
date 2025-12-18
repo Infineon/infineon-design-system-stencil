@@ -1,8 +1,8 @@
 export default {
-  title: 'Components/Download',
-  tags: ['autodocs'],
+	title: "Components/Download",
+	tags: ["autodocs"],
 
-  excludeStories: ['Default'],
+	excludeStories: ["Default"],
 };
 
 const DefaultTemplate = () => `<ifx-download></ifx-download>`;

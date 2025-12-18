@@ -9,7 +9,7 @@
 
 | Property | Attribute | Description | Type              | Default |
 | -------- | --------- | ----------- | ----------------- | ------- |
-| `tokens` | `tokens`  |             | `"css" \| "scss"` | `'css'` |
+| `tokens` | `tokens`  |             | `"css" \| "scss"` | `"css"` |
 
 
 ## Dependencies

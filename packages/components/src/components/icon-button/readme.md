@@ -13,9 +13,9 @@
 | `disabled`  | `disabled`   |             | `boolean`                                | `undefined` |
 | `href`      | `href`       |             | `string`                                 | `undefined` |
 | `icon`      | `icon`       |             | `string`                                 | `undefined` |
-| `shape`     | `shape`      |             | `string`                                 | `'round'`   |
+| `shape`     | `shape`      |             | `string`                                 | `"round"`   |
 | `size`      | `size`       |             | `string`                                 | `undefined` |
-| `target`    | `target`     |             | `string`                                 | `'_self'`   |
+| `target`    | `target`     |             | `string`                                 | `"_self"`   |
 | `variant`   | `variant`    |             | `"primary" \| "secondary" \| "tertiary"` | `undefined` |
 
 
