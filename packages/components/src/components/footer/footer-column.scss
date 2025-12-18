@@ -9,7 +9,7 @@
   color: tokens.$ifxColorBaseBlack;
   font-family: var(--ifx-font-family); // tokens.$ifxFontFamilyBody;
 
-
+  
 
   & ::slotted([slot=title]) {
     box-sizing: border-box;
@@ -32,5 +32,5 @@
       font-size: tokens.$ifxFontSizeM;
       line-height: tokens.$ifxLineHeightM;
     }
-  }
+  } 
 }

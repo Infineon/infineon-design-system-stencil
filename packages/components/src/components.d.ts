@@ -1454,28 +1454,22 @@ export namespace Components {
         "iconPosition": "left" | "right";
     }
     interface IfxTable {
-        "buttonRendererOptions"?: {
-		onButtonClick?: (params: any, event: Event) => void;
-	};
-        "checkboxRendererOptions"?: {
-		onCheckboxClick?: (params: any, event: Event) => void;
-	};
+        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
+        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
         "cols": any;
         /**
           * @default false
          */
         "enableSelection": boolean;
         /**
-          * @default "sidebar"
+          * @default 'sidebar'
          */
         "filterOrientation": string;
         /**
-          * @default ""
+          * @default ''
          */
         "headline": string;
-        "iconButtonRendererOptions"?: {
-		onIconButtonClick?: (params: any, event: Event) => void;
-	};
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
         "onBtShowLoading": () => Promise<void>;
         /**
           * @default true
@@ -1483,14 +1477,11 @@ export namespace Components {
         "pagination": boolean;
         "paginationItemsPerPage": string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "rowHeight": string;
         "rows": any;
-        "serverPageChangeHandler"?: (params: {
-		page: number;
-		pageSize: number;
-	}) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -1500,11 +1491,11 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
         "tableHeight": string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "variant": string;
     }
@@ -4485,42 +4476,33 @@ declare namespace LocalJSX {
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
     }
     interface IfxTable {
-        "buttonRendererOptions"?: {
-		onButtonClick?: (params: any, event: Event) => void;
-	};
-        "checkboxRendererOptions"?: {
-		onCheckboxClick?: (params: any, event: Event) => void;
-	};
+        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
+        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
         "cols"?: any;
         /**
           * @default false
          */
         "enableSelection"?: boolean;
         /**
-          * @default "sidebar"
+          * @default 'sidebar'
          */
         "filterOrientation"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "headline"?: string;
-        "iconButtonRendererOptions"?: {
-		onIconButtonClick?: (params: any, event: Event) => void;
-	};
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
         /**
           * @default true
          */
         "pagination"?: boolean;
         "paginationItemsPerPage"?: string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "rowHeight"?: string;
         "rows"?: any;
-        "serverPageChangeHandler"?: (params: {
-		page: number;
-		pageSize: number;
-	}) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -4530,11 +4512,11 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
         "tableHeight"?: string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "variant"?: string;
     }

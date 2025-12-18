@@ -205,7 +205,7 @@ export const IfxCardOverline: StencilVueComponent<JSX.IfxCardOverline> = /*@__PU
 export const IfxCardText: StencilVueComponent<JSX.IfxCardText> = /*@__PURE__*/ defineContainer<JSX.IfxCardText>('ifx-card-text', defineIfxCardText);
 
 
-export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox, JSX.IfxCheckbox["checked"]>('ifx-checkbox', defineIfxCheckbox, [
+export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox> = /*@__PURE__*/ defineContainer<JSX.IfxCheckbox>('ifx-checkbox', defineIfxCheckbox, [
   'disabled',
   'checked',
   'error',
@@ -217,8 +217,7 @@ export const IfxCheckbox: StencilVueComponent<JSX.IfxCheckbox, JSX.IfxCheckbox["
 ], [
   'ifxChange',
   'ifxError'
-],
-'checked', 'ifxChange', undefined);
+]);
 
 
 export const IfxCheckboxGroup: StencilVueComponent<JSX.IfxCheckboxGroup> = /*@__PURE__*/ defineContainer<JSX.IfxCheckboxGroup>('ifx-checkbox-group', defineIfxCheckboxGroup, [

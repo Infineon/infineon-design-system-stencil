@@ -1,3 +1,92 @@
+# v39.5.5 (Thu Dec 18 2025)
+
+#### 🐛 Bug Fix
+
+- Fix failing lerna version command [#2151](https://github.com/Infineon/infineon-design-system-stencil/pull/2151) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.5.4 (Wed Dec 17 2025)
+
+
+
+---
+
+# v39.5.3 (Wed Dec 17 2025)
+
+#### 🐛 Bug Fix
+
+- Updates React package to latest stencil version [#2139](https://github.com/Infineon/infineon-design-system-stencil/pull/2139) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.2 (Thu Dec 11 2025)
+
+#### 🐛 Bug Fix
+
+- Select: Align Height of multi and single select menues [#2133](https://github.com/Infineon/infineon-design-system-stencil/pull/2133) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.1 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.1 (Wed Dec 10 2025)
+
+#### 🐛 Bug Fix
+
+- Footer: Updates component design and documentation [#2128](https://github.com/Infineon/infineon-design-system-stencil/pull/2128) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.0 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
+# v39.5.0 (Wed Dec 10 2025)
+
+#### 🚀 Enhancement
+
+- Advanced table: Adds checkbox integration to server side pagination [#2134](https://github.com/Infineon/infineon-design-system-stencil/pull/2134) ([@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.4.3 (github-actions@github.com)
+
+#### Authors: 2
+
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.4.3 (Wed Dec 03 2025)
 
 #### 🐛 Bug Fix
