@@ -16,14 +16,8 @@ export class IfxFooterMediumExample {
   standalone: false
 })
 export class IfxFooterMediumExample {}`;
-  protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2024 Infineon Technologies AG&quot;&gt;
+  protected readonly htmlCode = `  &lt;ifx-footer copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
     &lt;div slot=&quot;socials&quot;&gt;
-      &lt;ifx-link
-        variant=&quot;title&quot;
-        href=&quot;http://infineon.com&quot;
-        aria-label=&quot;Go to Homepage&quot;&gt;
-        &lt;ifx-icon icon=&quot;home-16&quot;&gt;&lt;/ifx-icon&gt;
-      &lt;/ifx-link&gt;
       &lt;ifx-link
         variant=&quot;title&quot;
         href=&quot;http://facebook.com/infineon&quot;

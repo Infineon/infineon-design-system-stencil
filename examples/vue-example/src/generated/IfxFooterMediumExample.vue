@@ -11,14 +11,8 @@ const codeString = `<script setup lang="ts">
 
 <template>
   <div>
-    <ifx-footer copyright-text="© 1999 - 2024 Infineon Technologies AG">
+    <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
       <div slot="socials">
-        <ifx-link
-          variant="title"
-          href="http://infineon.com"
-          aria-label="Go to Homepage">
-          <ifx-icon icon="home-16" />
-        </ifx-link>
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"
@@ -89,14 +83,8 @@ onMounted(() => {
 
 <template>
   <div>
-    <ifx-footer copyright-text="© 1999 - 2024 Infineon Technologies AG">
+    <ifx-footer copyright-text="© 1999 - 2026 Infineon Technologies AG">
       <div slot="socials">
-        <ifx-link
-          variant="title"
-          href="http://infineon.com"
-          aria-label="Go to Homepage">
-          <ifx-icon icon="home-16" />
-        </ifx-link>
         <ifx-link
           variant="title"
           href="http://facebook.com/infineon"

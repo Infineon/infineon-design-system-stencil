@@ -3,14 +3,8 @@ import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infineon-design-system-re
 export function IfxFooterMediumExample() {
   return (
     <>
-      <IfxFooter copyrightText="© 1999 - 2024 Infineon Technologies AG">
+      <IfxFooter copyrightText="© 1999 - 2026 Infineon Technologies AG">
         <div slot="socials">
-          <IfxLink
-            variant="title"
-            href="http://infineon.com"
-            ariaLabel="Go to Homepage">
-            <IfxIcon icon="home-16" />
-          </IfxLink>
           <IfxLink
             variant="title"
             href="http://facebook.com/infineon"
@@ -81,14 +75,8 @@ const codeString = `import { IfxFooter, IfxIcon, IfxLink } from '@infineon/infin
 
 export function IfxFooterExample() {
   return (
-      <IfxFooter copyrightText="© 1999 - 2024 Infineon Technologies AG">
+      <IfxFooter copyrightText="© 1999 - 2026 Infineon Technologies AG">
         <div slot="socials">
-          <IfxLink
-            variant="title"
-            href="http://infineon.com"
-            ariaLabel="Go to Homepage">
-            <IfxIcon icon="home-16" />
-          </IfxLink>
           <IfxLink
             variant="title"
             href="http://facebook.com/infineon"
