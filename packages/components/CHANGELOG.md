@@ -1,3 +1,15 @@
+# v39.5.5 (Thu Dec 18 2025)
+
+#### 🐛 Bug Fix
+
+- Fix failing lerna version command [#2151](https://github.com/Infineon/infineon-design-system-stencil/pull/2151) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
 # v39.5.4 (Wed Dec 17 2025)
 
 
