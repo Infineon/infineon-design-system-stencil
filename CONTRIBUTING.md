@@ -68,38 +68,7 @@ This builds the core Stencil component library that other packages depend on.
 
 ## 🏗️ Development Setup
 
-### Monorepo Structure
-
-This project uses **pnpm workspaces** and **Lerna** for monorepo management. The workspace is defined in `pnpm-workspace.yaml`:
-
-```yaml
-packages:
-  - 'packages/*'
-  - 'examples/*'
-  - 'example-generator'
-```
-
-### Running Commands
-
-You can run commands in specific packages using the `-F` (filter) flag:
-
-```bash
-# Run a command in a specific package
-pnpm -F <package-name> <command>
-
-# Examples:
-pnpm -F @infineon/infineon-design-system-stencil build
-pnpm -F react-example dev
-```
-
-Or navigate to the package directory and run commands directly:
-
-```bash
-cd packages/components
-pnpm run build
-```
-
-## 📁 Project Structure
+### Project Structure
 
 ```
 infineon-design-system-stencil/
@@ -143,6 +112,48 @@ infineon-design-system-stencil/
 │
 └── docs/                        # Additional documentation
 ```
+
+### Running Commands
+
+You can run commands in specific packages using the `-F` (filter) flag:
+
+```bash
+# Run a command in a specific package
+pnpm -F <package-name> <command>
+
+# Examples:
+pnpm -F @infineon/infineon-design-system-stencil build
+pnpm -F react-example dev
+```
+
+Or navigate to the package directory and run commands directly:
+
+```bash
+cd packages/components
+pnpm run build
+```
+
+#### Key NPM Scripts
+
+The following scripts in the root `package.json` are the most commonly used for development and maintenance:
+
+| Script | Description |
+|--------|-------------|
+| `pnpm build` | Builds both the core components and all wrappers. |
+| `pnpm build:components` | Builds only the core Stencil component library. |
+| `pnpm build:wrappers` | Builds all framework wrappers (Angular, React, Vue). |
+| `pnpm storybook` | Starts Storybook for component development and documentation. |
+| `pnpm dev` | Starts the development server for the core Stencil components. [index.html](packages/components/src/index.html) will be served at http://localhost:3333 and can be used to test components during development. |
+| `pnpm test` | Runs the test suite for the core components. |
+| `pnpm generate:examples` | Runs the example generator to update framework example apps. |
+| `pnpm example:<name>` | Starts the specified example app (e.g., `pnpm example:react`). |
+| `pnpm examples:all` | Starts all example apps in parallel. |
+| `pnpm format` | Formats all files in the workspace using Biome. |
+| `pnpm lint` | Lints the workspace using Biome and ESLint (for Stencil-specific rules). |
+| `pnpm lint:fix` | Attempts to auto-fix linting issues. |
+| `pnpm check` | Runs both linting and formatting checks. |
+
+See the [scripts section in package.json](package.json) for the full list and details. Most scripts can be run from the root or filtered to a specific package using the `-F` flag (see above).
 
 ## 🔄 Development Workflow
 

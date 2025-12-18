@@ -20,7 +20,8 @@
 		"husky": "^9.1.7",
 		"lerna": "^9.0.1",
 		"lint-staged": "^16.2.7",
-		"typescript-eslint": "^8.48.1"
+		"typescript-eslint": "^8.48.1",
+		"npm-run-all": "^4.1.5"
 	},
 	"scripts": {
 		"build": "pnpm run build:components && pnpm run build:wrappers",
@@ -28,6 +29,7 @@
 		"build:wrappers": "pnpm run -F @infineon/infineon-design-system-angular build && pnpm run -F @infineon/infineon-design-system-react build && pnpm run -F @infineon/infineon-design-system-vue build",
 		"storybook": "pnpm run -F @infineon/infineon-design-system-stencil storybook",
 		"build:storybook": "pnpm run -F @infineon/infineon-design-system-stencil build-storybook",
+		"dev": "pnpm run -F @infineon/infineon-design-system-stencil dev",
 		"test": "pnpm run -F @infineon/infineon-design-system-stencil test",
 		"generate:examples": "pnpm run -F example-generator start",
 		"example:angular-standalone": "pnpm run -F angular-standalone-example dev",
@@ -36,6 +38,7 @@
 		"example:vue": "pnpm run -F vue-example dev",
 		"example:html-cdn": "pnpm run -F html-cdn-example dev",
 		"example:html-vite": "pnpm run -F html-vite-example dev",
+		"examples:all": "run-p example:*",
 		"format": "biome format --write .",
 		"lint": "biome lint . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint",
 		"lint:fix": "biome lint --write . && pnpm -F @infineon/infineon-design-system-stencil lint:eslint:fix",
