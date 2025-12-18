@@ -159,23 +159,12 @@ See the [scripts section in package.json](package.json) for the full list and de
 
 ### 1. Working on Core Components
 
-```bash
-# Navigate to components package
-cd packages/components
+The components are all located in `packages/components/`.
 
-# Start Storybook for component development
-pnpm storybook
-# Open http://localhost:6262
+You can see your changes live during development in two ways:
 
-# Build components
-pnpm build:components
-
-# Run tests
-pnpm run test
-
-# Watch mode for tests
-pnpm run test.watch
-```
+- **Storybook**: Run `pnpm storybook` to launch Storybook at http://localhost:6262 for interactive component development and documentation.
+- **Stencil Dev Server**: Run `pnpm dev` to start the Stencil dev server. Open [index.html](packages/components/src/index.html) at http://localhost:3333 to test components directly in a browser.
 
 ### 2. Creating a New Component
 
@@ -201,7 +190,7 @@ This will:
 
 **Important:** When prompted for stylesheet type, select **SCSS** to maintain consistency with the project.
 
-#### 3. Create a Storybook Story
+### 3. Create a Storybook Story
 
 Create a story file in the same component directory (`src/components/my-component/`):
 
@@ -219,32 +208,18 @@ export const Default = {
 };
 ```
 
-#### 4. Build and Verify
+### 4. Write Tests and Run Them
+Add tests in `my-component.spec.ts` using Jest.
+You can refer to existing component tests for examples.
+
+
+Run tests with:
 
 ```bash
-pnpm build:components
-pnpm storybook
+pnpm test
 ```
 
-### 3. Testing Example Apps
-
-After making changes to components, test them in example applications:
-
-```bash
-# Rebuild components first
-pnpm build:components
-
-# Start an example app
-pnpm example:react
-# Open http://localhost:3005
-
-# Or start other examples
-pnpm example:html-vite   # http://localhost:3002
-pnpm example:vue         # http://localhost:3006
-pnpm example:angular-standalone  # http://localhost:3003
-```
-
-### 4. Using the Example Generator
+### 5. Using the Example Generator
 
 The example generator automatically creates example code from Storybook stories:
 
@@ -260,7 +235,31 @@ This will:
 
 See [example-generator/ARCHITECTURE.md](./example-generator/ARCHITECTURE.md) for detailed information.
 
-### 5. Code Quality Checks
+### 6. Testing in Example Apps
+After making changes, always build the components and test them in the example apps:
+
+```bash
+# Build the Stencil component library
+pnpm build:components
+pnpm build:wrappers
+
+# Build and run an example app to test your changes (e.g., React example)
+pnpm example:react
+# Open http://localhost:3005
+
+# Or run other examples as needed
+pnpm example:vue
+pnpm example:html-vite
+pnpm example:angular-standalone
+```
+
+You can also run all examples in parallel:
+
+```bash
+pnpm examples:all
+```
+
+### 7. Code Quality Checks
 
 This project uses two complementary tools for code quality:
 
