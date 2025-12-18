@@ -56,7 +56,7 @@
 	],
 	"scripts": {
 		"build": "stencil build",
-		"dev": "stencil build --dev --watch --serve",
+		"dev": "stencil build --watch --serve",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:update": "jest -u",
