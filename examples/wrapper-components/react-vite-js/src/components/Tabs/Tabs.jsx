@@ -26,6 +26,8 @@ function Tabs() {
   }
 
   return (
+    <div>
+      <h2>Tabs</h2>
     <IfxTabs onIfxChange={handleChange} active-tab-index={tabIndex} orientation="horizontal">
       <IfxTab header="tab header a" disabled={false} icon='c-check-16'>
         Content for Tab #1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -55,6 +57,7 @@ function Tabs() {
         bibendum, orci nisl cursus ipsum, nec egestas odio sapien eget neque.
       </IfxTab>
     </IfxTabs>
+    </div>
   );
 }
 
