@@ -1,3 +1,39 @@
+# v39.5.5 (Thu Dec 18 2025)
+
+#### 🐛 Bug Fix
+
+- Fix failing lerna version command [#2151](https://github.com/Infineon/infineon-design-system-stencil/pull/2151) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+#### Authors: 1
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+
+---
+
+# v39.5.4 (Wed Dec 17 2025)
+
+
+
+---
+
+# v39.5.3 (Wed Dec 17 2025)
+
+#### 🐛 Bug Fix
+
+- Updates React package to latest stencil version [#2139](https://github.com/Infineon/infineon-design-system-stencil/pull/2139) ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.2 (github-actions@github.com)
+
+#### Authors: 3
+
+- Fabian Pfaff ([@pfafffabian-ifx](https://github.com/pfafffabian-ifx))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.5.2 (Thu Dec 11 2025)
 
 #### 🐛 Bug Fix
