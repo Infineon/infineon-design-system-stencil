@@ -18,10 +18,11 @@
     "test:local": "run-p preview:link watch:library"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-react": "39.5.5",
+    "@infineon/infineon-design-system-react": "39.5.6--canary.1723.2725709f79b4a344fcfce03f5e4d8ec0d89ae12a.0",
     "path": "^0.12.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.10.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
