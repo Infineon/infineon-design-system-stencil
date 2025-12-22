@@ -1,0 +1,16 @@
+<h2>Icon Button</h2>
+<ifx-icon-button [shape]="iconButtonShape" [variant]="iconButtonVariant" icon="c-info-16" href="" target="_blank"  [size]="iconButtonSize" [disabled]="iconButtonDisabled" aria-label="Icon Button">
+</ifx-icon-button>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleIconButtonVariant()">Toggle Variant</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIconButtonSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIconButtonDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleIconButtonShape()">Toggle Shape</ifx-button>
+<br>
+<br>
+<span><b>Variant:</b> {{ iconButtonVariant }} </span><br>
+<span><b>Size:</b> {{ iconButtonSize }} </span><br>
+<span><b>Disabled:</b> {{ iconButtonDisabled }} </span><br>
+<span><b>Shape:</b> {{ iconButtonShape }} </span><br>

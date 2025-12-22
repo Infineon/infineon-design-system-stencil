@@ -1,0 +1,41 @@
+<h2>Text Field</h2>
+<ifx-text-field 
+[error]="textFieldError" 
+[disabled]="textFieldDisabled" 
+[size]="textFieldSize" 
+[icon]="textFieldIcon" 
+[success]="textFieldSuccess" 
+placeholder="Placeholder" 
+[readOnly]="textFieldReadOnly" 
+caption="Caption" 
+label="Label" 
+[required]="textFieldRequired" 
+name="text-field" 
+[showDeleteIcon]="textFieldDeleteIcon" 
+value="" 
+autocomplete="on" 
+type="text" 
+internal-id="text-field" 
+aria-label="text field for user input">
+</ifx-text-field>
+<br>
+<br>
+<h3 style="text-decoration: underline;">Controls</h3>
+<ifx-button variant="secondary" (click)="toggleTextFieldError()">Toggle Error</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldDisabled()">Toggle Disabled</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldSize()">Toggle Size</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldSuccess()">Toggle Success</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldReadOnly()">Toggle Read Only</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldRequired()">Toggle Required</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldDeleteIcon()">Toggle Delete Icon</ifx-button>
+<ifx-button variant="secondary" (click)="toggleTextFieldIcon()">Toggle Icon</ifx-button>
+<br>
+<br>
+<span><b>Error:</b> {{ textFieldError }} </span><br>
+<span><b>Disabled:</b> {{ textFieldDisabled }} </span><br>
+<span><b>Size:</b> {{ textFieldSize }} </span><br>
+<span><b>Success:</b> {{ textFieldSuccess }} </span><br>
+<span><b>Read Only:</b> {{ textFieldReadOnly }} </span><br>
+<span><b>Required:</b> {{ textFieldRequired }} </span><br>
+<span><b>Delete Icon:</b> {{ textFieldDeleteIcon }} </span><br>
+<span><b>Icon:</b> {{ textFieldIcon }} </span><br>
