@@ -19,6 +19,7 @@ function RadioButton() {
 
   return (
     <div>
+      <h2>Radio Button</h2>
       <form onSubmit={handleSubmit}>
         <IfxRadioButton disabled={disabled} onIfxChange={handleChange} value={radioBtnValue} error={error} name="name">
           label

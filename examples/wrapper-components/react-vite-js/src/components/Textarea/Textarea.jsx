@@ -8,6 +8,7 @@ function Textarea() {
 
   return (
     <div>
+      <h2>Textarea</h2>
       <form id="form-for-textarea">
         <IfxTextarea name='ts' onIfxInput={handleInput} placeholder="Placeholder" />
         <IfxButton type="submit" theme="default" size="s" disabled="false">

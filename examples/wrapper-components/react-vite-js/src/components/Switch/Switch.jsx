@@ -18,6 +18,7 @@ function Switch() {
 
   return (
     <div>
+      <h2>Switch</h2>
       <form onSubmit={handleSubmit}>
         <IfxSwitch disabled={disabled} onIfxChange={handleChange} value={switchChecked}>
           label

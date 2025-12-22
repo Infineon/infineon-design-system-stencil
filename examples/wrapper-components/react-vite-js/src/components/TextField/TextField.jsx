@@ -8,6 +8,7 @@ function TextField() {
 
   return (
     <div>
+      <h2>Text Field</h2>
       <form id="another-form">
         <IfxTextField onIfxInput={handleInput} />
         <IfxButton type="submit" theme="default" size="s" disabled="false">
