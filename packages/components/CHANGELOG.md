@@ -1,3 +1,21 @@
+# v39.5.6 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Status: changes font weight to 400 from 600 [#2136](https://github.com/Infineon/infineon-design-system-stencil/pull/2136) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.5 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.5.5 (Thu Dec 18 2025)
 
 #### 🐛 Bug Fix
