@@ -1,3 +1,21 @@
+# v39.5.8 (Mon Jan 05 2026)
+
+#### 🐛 Bug Fix
+
+- Table: Uses generic data naming [#2144](https://github.com/Infineon/infineon-design-system-stencil/pull/2144) ([@halmleticia](https://github.com/halmleticia) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.7 (github-actions@github.com)
+
+#### Authors: 3
+
+- [@halmleticia](https://github.com/halmleticia)
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.5.7 (Mon Jan 05 2026)
 
 #### 🐛 Bug Fix
