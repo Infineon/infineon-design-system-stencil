@@ -165,6 +165,13 @@
 
   &.disabled {
     & .icon__wrapper {
+      background: none;
+      color: tokens.$ifxColorBaseWhite;
+      &.firefox__classes { 
+        display: none;
+      }
+    }
+    & .icon__wrapper { 
       background-color: tokens.$ifxColorEngineering300;
       color: tokens.$ifxColorBaseWhite;
     }
@@ -189,7 +196,6 @@
   }
 
   &.firefox__classes {
-
     &:focus-visible::after {
       content: '';
       position: absolute;
