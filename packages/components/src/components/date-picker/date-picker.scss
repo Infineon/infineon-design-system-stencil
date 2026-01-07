@@ -48,6 +48,7 @@
 }
 
 .date__picker-input {
+  box-sizing: border-box;
   font-family: 'Source Sans 3';
   outline: none;
   width: 100%;
