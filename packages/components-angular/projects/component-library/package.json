@@ -1,6 +1,6 @@
 {
   "name": "@infineon/infineon-design-system-angular",
-  "version": "39.5.9--canary.2093.895d91efd1b5f6e402ebf8881dbdd9a5ccc9854c.0",
+  "version": "39.5.9--canary.2093.03bc2aff532ca6fadf723c6491decb1badddcc80.0",
   "description": "Infineon design system Stencil web components for Angular",
   "author": "Verena Lechner",
   "license": "MIT",
@@ -11,10 +11,10 @@
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@infineon/design-system-tokens": "5.0.0",
-    "@infineon/infineon-design-system-stencil": "39.5.9--canary.2093.895d91efd1b5f6e402ebf8881dbdd9a5ccc9854c.0"
+    "@infineon/infineon-design-system-stencil": "39.5.9--canary.2093.03bc2aff532ca6fadf723c6491decb1badddcc80.0"
   },
   "dependencies": {
-    "@infineon/infineon-design-system-stencil": "39.5.9--canary.2093.895d91efd1b5f6e402ebf8881dbdd9a5ccc9854c.0",
+    "@infineon/infineon-design-system-stencil": "39.5.9--canary.2093.03bc2aff532ca6fadf723c6491decb1badddcc80.0",
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
