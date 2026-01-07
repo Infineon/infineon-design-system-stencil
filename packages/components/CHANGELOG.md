@@ -1,3 +1,21 @@
+# v39.6.0 (Wed Jan 07 2026)
+
+#### 🚀 Enhancement
+
+- Date-picker: fixes icon design on Firefox and adds keyboard navigation [#2093](https://github.com/Infineon/infineon-design-system-stencil/pull/2093) ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou) [@tishoyanchev](https://github.com/tishoyanchev))
+
+#### ⚠️ Pushed to `master`
+
+- Update Stencil library version to 39.5.8 (github-actions@github.com)
+
+#### Authors: 3
+
+- Evangelia Panteliadou ([@evangeliaPanteliadou](https://github.com/evangeliaPanteliadou))
+- github-actions (github-actions@github.com)
+- Tisho Yanchev ([@tishoyanchev](https://github.com/tishoyanchev))
+
+---
+
 # v39.5.8 (Mon Jan 05 2026)
 
 #### 🐛 Bug Fix
