@@ -118,10 +118,10 @@
         .step-connector-r, 
         .step-icon {
             background: tokens.$ifxColorOcean500;
-            &.active, 
-            &.error {
-                background: tokens.$ifxColorEngineering300;
-            }
+           &.active, 
+           &.error {
+               background: tokens.$ifxColorEngineering300;
+           }
         }
         .step-label, 
         .step-label :hover{
@@ -138,6 +138,7 @@
     }
 
     &.error:not(.active){
+        margin: auto;
         color: tokens.$ifxColorRed500;
         .step-label{
             color: tokens.$ifxColorRed500;
@@ -196,6 +197,14 @@
     align-items: center;
     justify-content: center;
     color: white;
+}
+
+.error-icon {
+    width: tokens.$ifxSize300;
+    height: tokens.$ifxSize300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .step-connector-r, 
