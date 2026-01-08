@@ -62,7 +62,7 @@
   box-sizing: border-box;
   position: fixed;
   right: -100%;
-  top: 80px;
+  top: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -109,13 +109,12 @@
         align-self: stretch;
         justify-content: space-between;
 
-        & .navbar__sidebar-top-row-item-icon-wrapper { 
+        & .navbar__sidebar-top-row-item-icon-wrapper {
           & ifx-icon { 
             vertical-align: middle;
           }
         }
-  
-  
+
         &:hover { 
           cursor: pointer;
         }
@@ -635,6 +634,20 @@
             order: 1;
             flex-grow: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+// adjusts logo size for smaller screens
+@media screen and (max-width: 992px) {
+  .navbar__container {
+    & .navbar__container-left {
+      & .navbar__container-left-logo {
+        & .navbar__container-left-logo-default svg {
+          width: 72px;
+          height: 32px;
         }
       }
     }
