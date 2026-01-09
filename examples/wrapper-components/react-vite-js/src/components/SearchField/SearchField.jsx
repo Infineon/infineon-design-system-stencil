@@ -7,6 +7,7 @@ function SearchField() {
 
   return (
     <div  >
+      <h2>Search Field</h2>
       <IfxSearchField disabled="false" size='m' show-delete-icon="true" onIfxInput={handleSearch}></IfxSearchField>
     </div>
   )
