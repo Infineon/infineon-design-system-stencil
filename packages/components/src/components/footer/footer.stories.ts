@@ -1,53 +1,52 @@
 import { icons } from "@infineon/infineon-icons";
 export default {
-  title: 'Components/Footer',
-  tags: ['autodocs'],
-  args: {
-    copyrightText: '© 1999 - 2026 Infineon Technologies AG',
-    href: 'http://infineon.com',
-    icon: 'home-16',
-    ariaLabelOfLink: 'Go to Homepage',
-  },
-  argTypes: {
-    copyrightText: {
-      description: 'Sets the text for the copyright.',
-      control: 'text',
-      table: {
-        category: 'ifx-footer props',
-      }
-    },
-    icon: {
-      description: 'Sets the icon for the footer.',
-      options: Object.keys(icons),
-      control: { type: 'select' },
-      table: {
-        category: 'ifx-icon props',
-        type: {
-          summary: 'string'
-        }
-      }
-    },
-    href: {
-      description: 'Sets the link for the footer.',
-      control: 'text',
-      table: {
-        category: 'ifx-link props',
-      },
-    },
-    ariaLabelOfLink: {
-      name: 'ariaLabel',
-      description: 'Sets the aria-label for the link. Enhances accessibility.',
-      control: 'text',
-      table: {
-        category: 'ifx-link props',
-        type:{
-          summary: 'Options',
-          detail: 'Follow us on...'
-        }
-      },
-    },
-    
-  },
+	title: "Components/Footer",
+	tags: ["autodocs"],
+	args: {
+		copyrightText: "© 1999 - 2026 Infineon Technologies AG",
+		href: "http://infineon.com",
+		icon: "home-16",
+		ariaLabelOfLink: "Go to Homepage",
+	},
+	argTypes: {
+		copyrightText: {
+			description: "Sets the text for the copyright.",
+			control: "text",
+			table: {
+				category: "ifx-footer props",
+			},
+		},
+		icon: {
+			description: "Sets the icon for the footer.",
+			options: Object.keys(icons),
+			control: { type: "select" },
+			table: {
+				category: "ifx-icon props",
+				type: {
+					summary: "string",
+				},
+			},
+		},
+		href: {
+			description: "Sets the link for the footer.",
+			control: "text",
+			table: {
+				category: "ifx-link props",
+			},
+		},
+		ariaLabelOfLink: {
+			name: "ariaLabel",
+			description: "Sets the aria-label for the link. Enhances accessibility.",
+			control: "text",
+			table: {
+				category: "ifx-link props",
+				type: {
+					summary: "Options",
+					detail: "Follow us on...",
+				},
+			},
+		},
+	},
 };
 
 const DefaultTemplate = (args) => {

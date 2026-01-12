@@ -39,6 +39,13 @@ export class DatePicker {
 
 	@Event() ifxDate: EventEmitter;
 
+	getInput() {
+		const input = this.el.shadowRoot.querySelector(
+			".date__picker-input",
+		) as HTMLInputElement;
+		return input;
+	}
+
 	getDate(e) {
 		const inputValue = e.target.value;
 		const selectedDate = new Date(inputValue);
@@ -59,9 +66,7 @@ export class DatePicker {
 			return;
 		}
 
-		const input = this.el.shadowRoot.querySelector(
-			".date__picker-input",
-		) as HTMLInputElement;
+		const input = this.getInput();
 		input.classList.add("has-value");
 
 		//this.internals.setFormValue(selectedDate.toISOString().substring(0,10))
@@ -74,37 +79,34 @@ export class DatePicker {
 		}
 	}
 
-	handleInputFocusOnIconClick() {
-		const input = this.el.shadowRoot.querySelector(
-			".date__picker-input",
-		) as HTMLInputElement;
-		if (input) {
-			input.focus();
+	handleIconKeyDown(e: KeyboardEvent) {
+		if (this.disabled) return;
+		const browserIsFirefox = this.isFirefox();
+		const input = this.getInput();
+		if (e.key === "Enter" && browserIsFirefox) {
+			e.preventDefault();
+			if (input.showPicker) {
+				input.showPicker();
+			}
 		}
 	}
 
-	getBrowser() {
-		if (navigator.userAgent.indexOf("Chrome") != -1) {
-			return "Chrome";
-		} else if (navigator.userAgent.indexOf("Opera") != -1) {
-			return "Opera";
-		} else if (navigator.userAgent.indexOf("MSIE") != -1) {
-			return "IE";
-		} else if (navigator.userAgent.indexOf("Firefox") != -1) {
-			return "Firefox";
-		} else {
-			return "unknown";
-		}
+	isFirefox() {
+		const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1;
+		return isFirefox;
 	}
 
 	setFireFoxClasses() {
-		const browser = this.getBrowser();
-		const input = this.el.shadowRoot.querySelector(".date__picker-input");
+		const browserIsFirefox = this.isFirefox();
+		const input = this.getInput();
+		const iconWrapper = this.el.shadowRoot.querySelector(".icon__wrapper");
 
-		if (browser === "Firefox") {
+		if (browserIsFirefox) {
 			input.classList.add("firefox__classes");
+			iconWrapper.classList.add("firefox__classes");
 		} else if (input.classList.contains("firefox__classes")) {
 			input.classList.remove("firefox__classes");
+			iconWrapper.classList.remove("firefox__classes");
 		}
 	}
 
@@ -158,8 +160,8 @@ export class DatePicker {
 					/>
 					<div
 						class="icon__wrapper"
-						role="button"
-						onClick={() => this.handleInputFocusOnIconClick()}
+						tabIndex={this.isFirefox() ? 0 : undefined}
+						onKeyDown={(e) => this.handleIconKeyDown(e as KeyboardEvent)}
 					>
 						<ifx-icon icon="calendar16" aria-hidden="true"></ifx-icon>
 					</div>

@@ -54,7 +54,7 @@ jobs:
         run: |
           if ! git diff --quiet || ! git diff --cached --quiet; then
             echo "❌ Error: Generated files have uncommitted changes!"
-            echo "Please run 'pnpm run generate:examples' locally and commit the changes."
+            echo "Please run 'pnpm run build' and 'pnpm run generate:examples' locally and commit the changes."
             echo ""
             echo "Changed files:"
             git diff --name-only

@@ -33,7 +33,7 @@ export function IfxSidebarExample() {
         termsOfUse="https://yourwebsite.com/terms"
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
-        copyrightText="© 1999 - 2025 Infineon Technologies AG">
+        copyrightText="© 1999 - 2026 Infineon Technologies AG">
         <IfxSidebarTitle
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}
@@ -159,7 +159,7 @@ export function IfxSidebarExample() {
         termsOfUse="https://yourwebsite.com/terms"
         imprint="https://yourwebsite.com/imprint"
         privacyPolicy="https://yourwebsite.com/privacy-policy"
-        copyrightText="© 1999 - 2025 Infineon Technologies AG">
+        copyrightText="© 1999 - 2026 Infineon Technologies AG">
         <IfxSidebarTitle
           onIfxSidebarNavigationItem={handleSidebarNavigationItem}
           onIfxSidebarActionItem={handleSidebarActionItem}

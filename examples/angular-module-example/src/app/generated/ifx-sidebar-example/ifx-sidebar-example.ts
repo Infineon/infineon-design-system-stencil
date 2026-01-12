@@ -46,7 +46,7 @@ export class IfxSidebarExample {
     terms-of-use=&quot;https://yourwebsite.com/terms&quot;
     imprint=&quot;https://yourwebsite.com/imprint&quot;
     privacy-policy=&quot;https://yourwebsite.com/privacy-policy&quot;
-    copyright-text=&quot;© 1999 - 2025 Infineon Technologies AG&quot;&gt;
+    copyright-text=&quot;© 1999 - 2026 Infineon Technologies AG&quot;&gt;
     &lt;ifx-sidebar-title
       (ifxSidebarNavigationItem)=&quot;handleSidebarNavigationItem(\$any(\$event))&quot;
       (ifxSidebarActionItem)=&quot;handleSidebarActionItem(\$any(\$event))&quot;

@@ -108,7 +108,9 @@ export class Step {
 
 					{this.stepperState.variant !== "compact" &&
 						this.error &&
-						!this.active && <ifx-icon icon="warningF16"></ifx-icon>}
+						!this.active && (
+							<ifx-icon class="error-icon" icon="warningF16"></ifx-icon>
+						)}
 
 					{/* Right connector */}
 					{this.stepperState.variant !== "compact" && (

@@ -60,7 +60,7 @@ const handleSidebarCollapseChange = (event: CustomEvent) => {
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2025 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
@@ -166,7 +166,7 @@ onMounted(() => {
       terms-of-use="https://yourwebsite.com/terms"
       imprint="https://yourwebsite.com/imprint"
       privacy-policy="https://yourwebsite.com/privacy-policy"
-      copyright-text="© 1999 - 2025 Infineon Technologies AG">
+      copyright-text="© 1999 - 2026 Infineon Technologies AG">
       <ifx-sidebar-title
         @ifxSidebarNavigationItem="handleSidebarNavigationItem"
         @ifxSidebarActionItem="handleSidebarActionItem"
