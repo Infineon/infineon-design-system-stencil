@@ -1,4 +1,4 @@
-import { Component, h, Host, Method, Element, Prop, State, Listen, Watch } from '@stencil/core';
+import { Component, h, Host, Method, Element, Prop, State, Listen, Watch, Event, EventEmitter } from '@stencil/core';
 import classNames from 'classnames';
 import { trackComponent } from '../../global/utils/tracking';
 import { isNestedInIfxComponent } from '../../global/utils/dom-utils';
@@ -50,6 +50,7 @@ export class Table {
   @State() selectAll: boolean = false;
   @State() selectedRowsData: Map<string, any> = new Map();
   @Prop() showLoading: boolean = false;
+  @Event() ifxSortChange: EventEmitter;
   private container: HTMLDivElement;
   private lastSortedColumn: string = null;
   @Element() host: HTMLElement;
@@ -524,13 +525,7 @@ export class Table {
         }
       }
 
-      this.host.dispatchEvent(
-        new CustomEvent('ifxSortChange', {
-          detail: { field, sort },
-          bubbles: true,
-          composed: true,
-        }),
-      );
+      this.ifxSortChange.emit({ field, sort });
     });
   }
 
