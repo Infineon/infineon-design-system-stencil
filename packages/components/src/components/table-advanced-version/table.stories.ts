@@ -350,6 +350,19 @@ export default {
         },
       },
     },
+
+    ifxSortChange: {
+      action: 'ifxSortChange',
+      description: 'A custom event emitted on column sort change',
+      table: {
+        category: 'custom events',
+        type: {
+          summary: 'Framework integration',
+          detail:
+            'React: onIfxSortChange={handleInput}\nVue:@ifxIfxSortChange="handleInput"\nAngular:(ifxIfxSortChange)="handleInput()"\nVanillaJs:.addEventListener("ifxIfxSortChange", (event) => {//handle input});',
+        },
+      },
+    },
   },
 };
 

@@ -27,6 +27,13 @@
 | `variant`                   | `variant`                      |             | `string`                                                                                    | `'default'` |
 
 
+## Events
+
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `ifxSortChange` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
 ### `onBtShowLoading() => Promise<void>`
