@@ -6,6 +6,11 @@ export function IfxTablePaginationExample() {
     // Add your handler logic here
   };
 
+  const handleSortChange = (event: CustomEvent) => {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  };
+
   return (
     <>
       <IfxTable
@@ -19,7 +24,8 @@ export function IfxTablePaginationExample() {
         paginationItemsPerPage={`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]`}
         filterOrientation="none"
         variant="default"
-        onIfxSelectionChange={handleSelectionChange} />
+        onIfxSelectionChange={handleSelectionChange}
+        onIfxSortChange={handleSortChange} />
       <details className="code-details">
         <summary>View Code</summary>
         <pre><code className="language-tsx">{codeString}</code></pre>
@@ -36,6 +42,11 @@ export function IfxTableExample() {
     // Add your handler logic here
   };
 
+  const handleSortChange = (event: CustomEvent) => {
+    console.log('ifxSortChange:', event);
+    // Add your handler logic here
+  };
+
   return (
       <IfxTable
         rowHeight="default"
@@ -48,6 +59,7 @@ export function IfxTableExample() {
         paginationItemsPerPage={\`[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]\`}
         filterOrientation="none"
         variant="default"
-        onIfxSelectionChange={handleSelectionChange} />
+        onIfxSelectionChange={handleSelectionChange}
+        onIfxSortChange={handleSortChange} />
   );
 }`;

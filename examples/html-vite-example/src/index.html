@@ -1125,6 +1125,12 @@
           // Add your custom handler logic here
         });
 
+        // A custom event emitted on column sort change
+        document.querySelector('#ifx-table-example ifx-table')?.addEventListener('ifxSortChange', (event) => {
+          console.log('ifxSortChange:', event);
+          // Add your custom handler logic here
+        });
+
             // Custom event that is emitted when the active tab changes.
         document.querySelector('#ifx-tabs-example ifx-tabs')?.addEventListener('ifxChange', (event) => {
           console.log('ifxChange:', event);

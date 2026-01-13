@@ -979,7 +979,10 @@ export const IfxTable: StencilVueComponent<JSX.IfxTable> = /*@__PURE__*/ defineC
   'serverSidePagination',
   'serverPageChangeHandler',
   'enableSelection',
-  'showLoading'
+  'showLoading',
+  'ifxSortChange'
+], [
+  'ifxSortChange'
 ]);
 
 

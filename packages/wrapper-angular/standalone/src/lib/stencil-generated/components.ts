@@ -2101,9 +2101,11 @@ export declare interface IfxTab extends Components.IfxTab {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['buttonRendererOptions', 'checkboxRendererOptions', 'cols', 'enableSelection', 'filterOrientation', 'headline', 'iconButtonRendererOptions', 'pagination', 'paginationItemsPerPage', 'rowHeight', 'rows', 'serverPageChangeHandler', 'serverSidePagination', 'showLoading', 'tableHeight', 'variant'],
+  outputs: ['ifxSortChange'],
 })
 export class IfxTable {
   protected el: HTMLIfxTableElement;
+  @Output() ifxSortChange = new EventEmitter<CustomEvent<any>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -2111,7 +2113,10 @@ export class IfxTable {
 }
 
 
-export declare interface IfxTable extends Components.IfxTable {}
+export declare interface IfxTable extends Components.IfxTable {
+
+  ifxSortChange: EventEmitter<CustomEvent<any>>;
+}
 
 
 @ProxyCmp({

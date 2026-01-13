@@ -1050,14 +1050,14 @@ export const IfxTab: StencilReactComponent<IfxTabElement, IfxTabEvents> = /*@__P
     defineCustomElement: defineIfxTab
 });
 
-export type IfxTableEvents = NonNullable<unknown>;
+export type IfxTableEvents = { onIfxSortChange: EventName<CustomEvent<any>> };
 
 export const IfxTable: StencilReactComponent<IfxTableElement, IfxTableEvents> = /*@__PURE__*/ createComponent<IfxTableElement, IfxTableEvents>({
     tagName: 'ifx-table',
     elementClass: IfxTableElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: {} as IfxTableEvents,
+    events: { onIfxSortChange: 'ifxSortChange' } as IfxTableEvents,
     defineCustomElement: defineIfxTable
 });
 

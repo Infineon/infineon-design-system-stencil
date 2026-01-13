@@ -9,7 +9,8 @@
     pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
     filter-orientation="none"
     variant="default"
-    (ifxSelectionChange)="handleSelectionChange($any($event))"></ifx-table>
+    (ifxSelectionChange)="handleSelectionChange($any($event))"
+    (ifxSortChange)="handleSortChange($any($event))"></ifx-table>
 
 <details class="code-details">
   <summary>View Code</summary>

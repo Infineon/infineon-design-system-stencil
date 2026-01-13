@@ -11,9 +11,19 @@ const handleSelectionChange = (event: CustomEvent) => {
   // Add your handler logic here
 };
 
+const handleSortChange = (event: CustomEvent) => {
+  console.log('ifxSortChange:', event);
+  // Add your handler logic here
+};
+
 const codeString = `<script setup lang="ts">
 const handleSelectionChange = (event: CustomEvent) => {
   console.log('ifxSelectionChange:', event);
+  // Add your handler logic here
+};
+
+const handleSortChange = (event: CustomEvent) => {
+  console.log('ifxSortChange:', event);
   // Add your handler logic here
 };
 </' + 'script>
@@ -31,7 +41,8 @@ const handleSelectionChange = (event: CustomEvent) => {
       pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       filter-orientation="none"
       variant="default"
-      @ifxSelectionChange="handleSelectionChange" />
+      @ifxSelectionChange="handleSelectionChange"
+      @ifxSortChange="handleSortChange" />
   </div>
 </' + 'template>`;
 
@@ -55,7 +66,8 @@ onMounted(() => {
       pagination-items-per-page='[{"value":"10","selected":true}, {"value":"20","selected":false}, {"value":"30","selected":false}]'
       filter-orientation="none"
       variant="default"
-      @ifxSelectionChange="handleSelectionChange" />
+      @ifxSelectionChange="handleSelectionChange"
+      @ifxSortChange="handleSortChange" />
     <details class="code-details">
       <summary>View Code</summary>
       <pre><code class="language-markup">{{ codeString }}</code></pre>

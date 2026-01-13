@@ -14,6 +14,7 @@ import { NotificationVariant } from "./components/notification/notification";
 import { SuggestionItem } from "./components/search-field/search-field";
 import { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
 import { StepperState } from "./components/stepper/interfaces";
+import { Event } from "@stencil/core";
 import { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export { ActionListItemClickEvent } from "./components/action-list/action-list-item";
 export { ChipItemSelectEvent, ChipState } from "./components/chip/interfaces";
@@ -24,6 +25,7 @@ export { NotificationVariant } from "./components/notification/notification";
 export { SuggestionItem } from "./components/search-field/search-field";
 export { AddItemTextFn, AjaxFn, ClassNames, CustomAddItemText, FuseOptions, ItemFilterFn, MaxItemTextFn, NoChoicesTextFn, NoResultsTextFn, OnCreateTemplates, OnInit, SortFn, UniqueItemText, ValueCompareFunction } from "./components/select/single-select/interfaces";
 export { StepperState } from "./components/stepper/interfaces";
+export { Event } from "@stencil/core";
 export { TreeViewCheckChangeEvent, TreeViewDisableChangeEvent, TreeViewExpandChangeEvent } from "./components/tree-view/tree-view-item";
 export namespace Components {
     interface IfxAccordion {
@@ -1454,28 +1456,22 @@ export namespace Components {
         "iconPosition": "left" | "right";
     }
     interface IfxTable {
-        "buttonRendererOptions"?: {
-		onButtonClick?: (params: any, event: Event) => void;
-	};
-        "checkboxRendererOptions"?: {
-		onCheckboxClick?: (params: any, event: Event) => void;
-	};
+        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
+        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
         "cols": any;
         /**
           * @default false
          */
         "enableSelection": boolean;
         /**
-          * @default "sidebar"
+          * @default 'sidebar'
          */
         "filterOrientation": string;
         /**
-          * @default ""
+          * @default ''
          */
         "headline": string;
-        "iconButtonRendererOptions"?: {
-		onIconButtonClick?: (params: any, event: Event) => void;
-	};
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
         "onBtShowLoading": () => Promise<void>;
         /**
           * @default true
@@ -1483,14 +1479,11 @@ export namespace Components {
         "pagination": boolean;
         "paginationItemsPerPage": string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "rowHeight": string;
         "rows": any;
-        "serverPageChangeHandler"?: (params: {
-		page: number;
-		pageSize: number;
-	}) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -1500,11 +1493,11 @@ export namespace Components {
          */
         "showLoading": boolean;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
         "tableHeight": string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "variant": string;
     }
@@ -1848,6 +1841,10 @@ export interface IfxSwitchCustomEvent<T> extends CustomEvent<T> {
 export interface IfxTabCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLIfxTabElement;
+}
+export interface IfxTableCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLIfxTableElement;
 }
 export interface IfxTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2802,7 +2799,18 @@ declare global {
         prototype: HTMLIfxTabElement;
         new (): HTMLIfxTabElement;
     };
+    interface HTMLIfxTableElementEventMap {
+        "ifxSortChange": any;
+    }
     interface HTMLIfxTableElement extends Components.IfxTable, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLIfxTableElementEventMap>(type: K, listener: (this: HTMLIfxTableElement, ev: IfxTableCustomEvent<HTMLIfxTableElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLIfxTableElementEventMap>(type: K, listener: (this: HTMLIfxTableElement, ev: IfxTableCustomEvent<HTMLIfxTableElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLIfxTableElement: {
         prototype: HTMLIfxTableElement;
@@ -4485,42 +4493,34 @@ declare namespace LocalJSX {
         "onTabHeaderChange"?: (event: IfxTabCustomEvent<any>) => void;
     }
     interface IfxTable {
-        "buttonRendererOptions"?: {
-		onButtonClick?: (params: any, event: Event) => void;
-	};
-        "checkboxRendererOptions"?: {
-		onCheckboxClick?: (params: any, event: Event) => void;
-	};
+        "buttonRendererOptions"?: { onButtonClick?: (params: any, event: Event) => void };
+        "checkboxRendererOptions"?: { onCheckboxClick?: (params: any, event: Event) => void };
         "cols"?: any;
         /**
           * @default false
          */
         "enableSelection"?: boolean;
         /**
-          * @default "sidebar"
+          * @default 'sidebar'
          */
         "filterOrientation"?: string;
         /**
-          * @default ""
+          * @default ''
          */
         "headline"?: string;
-        "iconButtonRendererOptions"?: {
-		onIconButtonClick?: (params: any, event: Event) => void;
-	};
+        "iconButtonRendererOptions"?: { onIconButtonClick?: (params: any, event: Event) => void };
+        "onIfxSortChange"?: (event: IfxTableCustomEvent<any>) => void;
         /**
           * @default true
          */
         "pagination"?: boolean;
         "paginationItemsPerPage"?: string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "rowHeight"?: string;
         "rows"?: any;
-        "serverPageChangeHandler"?: (params: {
-		page: number;
-		pageSize: number;
-	}) => Promise<{ rows: any[]; total: number }>;
+        "serverPageChangeHandler"?: (params: { page: number; pageSize: number }) => Promise<{ rows: any[]; total: number }>;
         /**
           * @default false
          */
@@ -4530,11 +4530,11 @@ declare namespace LocalJSX {
          */
         "showLoading"?: boolean;
         /**
-          * @default "auto"
+          * @default 'auto'
          */
         "tableHeight"?: string;
         /**
-          * @default "default"
+          * @default 'default'
          */
         "variant"?: string;
     }

@@ -20,6 +20,11 @@ export class IfxTablePaginationExample {
     console.log(&#039;ifxSelectionChange:&#039;, event);
     // Add your handler logic here
   }
+
+  protected handleSortChange(event: CustomEvent) {
+    console.log(&#039;ifxSortChange:&#039;, event);
+    // Add your handler logic here
+  }
 }`;
   protected readonly htmlCode = `  &lt;ifx-table
     row-height=&quot;default&quot;
@@ -32,10 +37,16 @@ export class IfxTablePaginationExample {
     pagination-items-per-page=&#039;[{&quot;value&quot;:&quot;10&quot;,&quot;selected&quot;:true}, {&quot;value&quot;:&quot;20&quot;,&quot;selected&quot;:false}, {&quot;value&quot;:&quot;30&quot;,&quot;selected&quot;:false}]&#039;
     filter-orientation=&quot;none&quot;
     variant=&quot;default&quot;
-    (ifxSelectionChange)=&quot;handleSelectionChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
+    (ifxSelectionChange)=&quot;handleSelectionChange(\$any(\$event))&quot;
+    (ifxSortChange)=&quot;handleSortChange(\$any(\$event))&quot;&gt;&lt;/ifx-table&gt;`;
 
   protected handleSelectionChange(event: CustomEvent) {
     console.log('ifxSelectionChange:', event);
+    // Add your handler logic here
+  }
+
+  protected handleSortChange(event: CustomEvent) {
+    console.log('ifxSortChange:', event);
     // Add your handler logic here
   }
 }
