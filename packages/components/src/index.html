@@ -14,12 +14,36 @@
   </style>
 
   <script>
-    
+
   </script>
 
 </head>
 
 <body>
+
+  <ifx-table row-height="default" cols='[
+    { "headerName": "Item", "field": "item" },
+    { "headerName": "Info", "field": "tooltipInfo" }
+  ]' rows='[
+    {
+      "item": "Item 1",
+      "tooltipInfo": {
+        "value": "Hover me",
+        "text": "Hi, I am a tooltip",
+        "variant": "compact",
+        "position": "auto",
+        "icon": "c-info-16",
+        "ariaLabel": "Tooltip with important information"
+      }
+    }
+  ]' enable-selection="false" table-height="auto" pagination="false" server-side-pagination="false"
+    pagination-items-per-page='[
+    { "value": "10", "selected": true },
+    { "value": "20", "selected": false },
+    { "value": "30", "selected": false }
+  ]' filter-orientation="none" variant="default">
+  </ifx-table>
+
 
 </body>
 

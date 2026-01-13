@@ -46,6 +46,15 @@ export interface StatusInterface {
   border?: boolean
 }
 
+export interface TooltipInterface {
+  text?: string,
+  variant?: string,
+  position?: string,
+  icon?: string,
+  ariaLabel?: string,
+  value?: string
+}
+
 export const ButtonKeys: Array<keyof ButtonInterface> = 
 ['disabled', 'variant', 'size', 'target', 'href', 'theme', 'type', 'fullWidth', 'text'];
 
@@ -57,5 +66,8 @@ export const StatusKeys: Array<keyof StatusInterface> =
 
 export const CheckboxKeys: Array<keyof CheckboxInterface> = 
 ['disabled', 'error', 'size', 'checked', 'indeterminate'];
+
+export const TooltipKeys: Array<keyof TooltipInterface> = 
+['text', 'position', 'value', 'icon', 'ariaLabel', 'variant'];
 
 
