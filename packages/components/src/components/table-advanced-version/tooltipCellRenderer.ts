@@ -56,7 +56,7 @@ export class TooltipCellRenderer implements ICellRendererComp {
   private setTooltipAttributes(config: TooltipInterface) {
     this.eTooltip.setAttribute('text', config.text);
     this.eTooltip.setAttribute('append-to-body', 'true');
-    this.eTooltip.setAttribute('position', 'top');
+    //this.eTooltip.setAttribute('position', 'top');
 
     if (config.variant) {
       this.eTooltip.setAttribute('variant', config.variant);
