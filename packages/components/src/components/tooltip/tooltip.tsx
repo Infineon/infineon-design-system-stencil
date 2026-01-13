@@ -63,22 +63,17 @@ export class Tooltip {
     }
 
     if (this.appendToBody && originalTooltipEl && !this.tooltipContainer) {
-      this.tooltipContainer = document.createElement('div');
+      // Don't use shadow DOM - just append directly to body
+      this.tooltipContainer = originalTooltipEl.cloneNode(true) as HTMLElement;
 
-      // Make container display inline-block so it takes the size of its shadow content
-      this.tooltipContainer.style.display = 'inline-block';
-      this.tooltipContainer.style.width = 'max-content';
+      // Copy all computed styles
+      const computedStyle = window.getComputedStyle(originalTooltipEl);
+      Array.from(computedStyle).forEach(key => {
+        this.tooltipContainer.style.setProperty(key, computedStyle.getPropertyValue(key), computedStyle.getPropertyPriority(key));
+      });
 
-      const shadowRoot = this.tooltipContainer.attachShadow({ mode: 'open' });
-
-      const styles = this.el.shadowRoot.querySelector('style');
-      if (styles) {
-        shadowRoot.appendChild(styles.cloneNode(true));
-      }
-
-      const clonedTooltip = originalTooltipEl.cloneNode(true) as HTMLElement;
-      shadowRoot.appendChild(clonedTooltip);
-
+      // Ensure proper positioning
+      this.tooltipContainer.style.position = 'absolute';
       this.tooltipContainer.style.zIndex = '9999';
       this.tooltipContainer.style.pointerEvents = 'none';
 
@@ -141,12 +136,8 @@ export class Tooltip {
       });
     }
 
-    if (this.appendToBody && this.tooltipContainer) {
-      const tooltipInShadow = this.tooltipContainer.shadowRoot.querySelector('.tooltip-compact, .tooltip-dismissible, .tooltip-extended') as HTMLElement;
-      if (tooltipInShadow) {
-        tooltipInShadow.setAttribute('data-placement', this.internalPosition);
-      }
-    } else {
+    // Since we're no longer using shadow DOM, just set data-placement directly on tooltipEl
+    if (this.tooltipEl) {
       this.tooltipEl.setAttribute('data-placement', this.internalPosition);
     }
   }
@@ -192,12 +183,7 @@ export class Tooltip {
     // Make the tooltip visible
     this.tooltipVisible = true;
 
-    if (this.appendToBody && this.tooltipContainer) {
-      const tooltipInShadow = this.tooltipContainer.shadowRoot.querySelector('.tooltip-compact, .tooltip-dismissible, .tooltip-extended') as HTMLElement;
-      if (tooltipInShadow) {
-        tooltipInShadow.style.display = 'block';
-      }
-    } else {
+    if (this.tooltipEl) {
       this.tooltipEl.style.display = 'block';
     }
 
@@ -208,13 +194,7 @@ export class Tooltip {
   onMouseLeave = () => {
     this.tooltipVisible = false;
 
-    if (this.appendToBody && this.tooltipContainer) {
-      // Hide the tooltip inside the shadow DOM
-      const tooltipInShadow = this.tooltipContainer.shadowRoot.querySelector('.tooltip-compact, .tooltip-dismissible, .tooltip-extended') as HTMLElement;
-      if (tooltipInShadow) {
-        tooltipInShadow.style.display = 'none';
-      }
-    } else {
+    if (this.tooltipEl) {
       this.tooltipEl.style.display = 'none';
     }
 
